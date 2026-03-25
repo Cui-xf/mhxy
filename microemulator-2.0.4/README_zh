@@ -1,0 +1,85 @@
+微模拟器
+
+J2ME 设备模拟器是 J2ME 在 J2SE 中纯正实现的 Java。
+它允许演示基于MIDlet（MIDP/CLDC）的应用，作为
+独立的 Java 应用程序，或作为网页浏览器小程序。
+
+背景：
+    1. 运行应用
+    2. 小程序配置
+    3. 从源头构建微模拟器
+
+要求：
+ - J2SE 1.4+
+
+在模拟器中运行应用有两种方法：
+
+1. 作为应用：
+a） Java org.microemu.app.Main（MIDlet 应用主类）
+或者，java org.microemu.app.Main（MIDlet jad 文件）
+
+- microemulator.jar必须在CLASSPATH中
+
+b） java -jar microemulator.jar（MIDlet 应用主类）
+或者，java -jar microemulator.jar （MIDlet jad 文件）
+
+- （MIDlet 应用主类）参数为可选，若使用 MIDlet。
+   应用程序的jar文件必须在CLASSPATH中，
+ - （MIDlet jad 文件）必须具有 .jad 扩展名，
+ - 对于诺基亚用户界面支持，包括对 CLASSPATH 的nokiaui.jar，
+ - 对于西门子 API 支持，包含对 CLASSPATH 的siemensapi.jar。
+
+2. 在小程序中：
+
+准备MIDlet的小程序应通过从文件菜单中选择“保存为网页”菜单项来完成
+在独立的微模拟器应用中。在此过程中，还进行了额外的MIDlet字节码修改
+是为了解决在 Java SE 中运行 Java ME 代码时的一些兼容性问题。
+
+生成的HTML代码：
+<applet code=“org.microemu.applet.Main” width=226 height=471 archive=“microemu-javase-applet.jar，（MIDlet application jar）”>
+	<param name=“midlet” value=“（MIDlet 应用主类）”>
+</applet>
+
+- 对于诺基亚的用户界面支持，包含对归档属性的 nokiaui.jar，
+ - 对于西门子 API 支持，包含对归档属性的 siemensapi.jar。
+
+如果你想用 start applet 的话，applet 定义标签里还有额外参数
+使用非默认设备：
+  <param name=“device” value=“（{device class name} | {device.xml file location}）”>
+    例如，分发中包含的最低电话有
+        org/microemu/device/minimum/device.xml
+
+记得在小程序归档标签中包含新设备jar
+    例如，分发中包含的最低电话有
+        minimum.jar
+
+SimpleDemo MIDlet、诺基亚UI支持及最小设备示例：
+<applet code=“org.microemu.applet.Main” width=157 height=285 archive=“microemu-javase-applet.jar，nokiaui.jar，minimum.jar，simpledemo.jar”>
+	<param name=“midlet” value=“org.microemu.midp.examples.simpledemo.SimpleDemo”>
+	<param name=“device” value=“org/microemu/device/minimum/device.xml”>
+</applet>
+
+SimpleDemo MIDlet 和 Minimum 设备带鼠标和颜色的示例：
+<applet code=“org.microemu.applet.Main” width=157 height=285 archive=“microemu-javase-applet.jar，minimum.jar，simpledemo.jar”>
+	<param name=“midlet” value=“org.microemu.midp.examples.simpledemo.SimpleDemo”>
+	<param name=“device” value=“org/microemu/device/minimum/device-color.xml”>
+</applet>
+
+SimpleDemo MIDlet 和大表皮示例：
+<applet code=“org.microemu.applet.Main” width=292 height=618 archive=“microemu-javase-applet.jar，large.jar，simpledemo.jar”>
+	<param name=“midlet” value=“org.microemu.midp.examples.simpledemo.SimpleDemo”>
+	<param name=“device” value=“org/microemu/device/large/device.xml”>
+</applet>
+
+3. 从源头构建微模拟器
+
+我们用maven2来构建项目
+
+要构建项目，你需要以下环境变量：
+  JAVA_HOME、SWT_HOME（用于构建 swt 模块）和 WTK_HOME 来编译和测试 MIDlets
+
+创建 Eclipse 项目要执行：
+    mvn eclipse：clean eclipse：eclipse -DdownloadSources=true
+
+要运行不测试的构建：
+    mvn -Dmaven.test.skip=true
