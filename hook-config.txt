@@ -22,7 +22,9 @@ av#a
 # 收包业务分发入口：w 包对象（已解压）
 q#a
 # Socket 原始帧发送（Vector<byte[]>）
-at#a
+# at#a
 
 # 示例：登录包构造（账号密码明文）
-bz#a
+# bz#a
+
+t#a

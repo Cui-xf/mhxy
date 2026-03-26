@@ -20,39 +20,39 @@ public class HookHelper {
         try {
             if (printNetworkPacket(sig, args)) {
                 return;
-            }
-
-            StringBuilder sb = new StringBuilder(256);
-            sb.append("[HOOK ENTER] ").append(sig);
+            } else if (sig.contains("t.a(java.lang.String)")) {
+                StringBuilder sb = new StringBuilder(256);
+                sb.append("[HOOK ENTER] ").append(sig);
 //            sb.append(" | Thread: ").append(Thread.currentThread().getName());
-            sb.append("\n  args: ");
-            appendJsonArray(sb, args);
-            System.out.println(sb);
+                sb.append("\n  args: ");
+                appendJsonArray(sb, args);
+                System.out.println(sb);
+            }
         } catch (Throwable t) {
             System.out.println("[HOOK ENTER] " + sig + " | error: " + t);
         }
     }
 
     public static void printExit(String sig, Object ret) {
-        try {
-            System.out.println("[HOOK EXIT]  \n  return: " + toJson(ret));
-        } catch (Throwable t) {
-            System.out.println("[HOOK EXIT]  " + sig + " | error: " + t);
-        }
+//        try {
+//            System.out.println("[HOOK EXIT]  \n  return: " + toJson(ret));
+//        } catch (Throwable t) {
+//            System.out.println("[HOOK EXIT]  " + sig + " | error: " + t);
+//        }
     }
 
     public static void printExitVoid(String sig) {
-        System.out.println("[HOOK EXIT]  \n  return: void");
+//        System.out.println("[HOOK EXIT]  \n  return: void");
     }
 
     public static void printExitThrow(String sig, Throwable ex) {
-        try {
-            System.out.println("[HOOK EXIT]  \n  threw: "
-                    + "{\"type\":\"" + ex.getClass().getName()
-                    + "\",\"message\":" + GSON.toJson(ex.getMessage()) + "}");
-        } catch (Throwable t) {
-            System.out.println("[HOOK EXIT]  " + sig + " | error: " + t);
-        }
+//        try {
+//            System.out.println("[HOOK EXIT]  \n  threw: "
+//                    + "{\"type\":\"" + ex.getClass().getName()
+//                    + "\",\"message\":" + GSON.toJson(ex.getMessage()) + "}");
+//        } catch (Throwable t) {
+//            System.out.println("[HOOK EXIT]  " + sig + " | error: " + t);
+//        }
     }
 
     // ========== JSON 序列化 ==========
