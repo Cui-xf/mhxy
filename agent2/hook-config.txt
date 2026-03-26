@@ -1,0 +1,22 @@
+# ==========================================
+# Hook 配置文件 — 每行一条规则
+# ==========================================
+#
+# 格式说明：
+#   com.example.Foo          → hook Foo 类的所有方法
+#   com.example.Foo#bar      → 只 hook Foo 类的 bar 方法
+#   com.example.*            → hook com.example 包下所有类（不含子包）
+#   com.example.**           → hook com.example 包及子包下所有类
+#   av                       → hook 默认包下 av 类所有方法
+#   av#a                     → 只 hook av 类的 a 方法
+#
+# # 开头为注释，空行忽略
+# ==========================================
+
+# hook MainMidlet 的 startApp 方法
+# com.yinhan.kjava.main.MainMidlet#startApp
+
+# hook av 类的 a 和 b 方法
+# av#a
+# av#b
+bz#a

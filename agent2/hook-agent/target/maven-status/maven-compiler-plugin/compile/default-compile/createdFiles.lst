@@ -1,0 +1,10 @@
+com/hook/agent/HookConfig$Rule.class
+com/hook/agent/HookTransformer$HookClassVisitor.class
+com/hook/agent/HookTransformer$1.class
+com/hook/agent/HookTransformer$HookClassVisitor$1.class
+com/hook/agent/HookTransformer$1$1.class
+com/hook/agent/HookAgent.class
+com/hook/agent/HookConfig$RuleType.class
+com/hook/agent/HookConfig.class
+com/hook/agent/HookTransformer.class
+com/hook/agent/HookHelper.class

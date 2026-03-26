@@ -1,5 +1,0 @@
-
-java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005  -javaagent:agent/target/agent-1.0-SNAPSHOT.jar -jar microemulator-2.0.4/microemulator.jar java版梦回西游3区251011.jar
-
-
-java -javaagent:agent/target/agent-1.0-SNAPSHOT.jar -jar microemulator-2.0.4/microemulator.jar java版梦回西游3区251011.jar
