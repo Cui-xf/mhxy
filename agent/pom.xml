@@ -54,6 +54,7 @@
                             <Agent-Class>com.mhxy.agent.MethodSignatureAgent</Agent-Class>
                             <Can-Redefine-Classes>true</Can-Redefine-Classes>
                             <Can-Retransform-Classes>true</Can-Retransform-Classes>
+                            <Boot-Class-Path>agent-1.0-SNAPSHOT.jar</Boot-Class-Path>
                         </manifestEntries>
                     </archive>
                 </configuration>

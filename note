@@ -1,14 +1,3 @@
 java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005  -jar microemulator-2.0.4_aaa/microemulator.jar java版梦回西游3区251011.jar
-java -jar microemulator-2.0.4_aaa/microemulator.jar java版梦回西游3区251011.jar
 
-
-java -jar cfr-0.152.jar java版梦回西游3区251011.jar --outputdir decompiled_src
-
-frida -f java \
-  --runtime=jvm \
-  -l /Users/cxf/temp/mhxy/hook_network.js \
-  -- -jar /Users/cxf/temp/mhxy/microemulator-2.0.4_aaa/microemulator.jar \
-     "/Users/cxf/temp/mhxy/java版梦回西游3区251011.jar"
-
-
-frida -p 9213 -l /Users/cxf/temp/mhxy/hook_network.js
+java -javaagent:agent/target/agent-1.0-SNAPSHOT.jar -jar microemulator-2.0.4/microemulator.jar java版梦回西游3区251011.jar
