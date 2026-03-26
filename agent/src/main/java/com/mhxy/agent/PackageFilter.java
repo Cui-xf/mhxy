@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 public class PackageFilter {
 
-    private static volatile List<Pattern> patterns = new ArrayList<>();
-    private static volatile List<Pattern> excludePatterns = new ArrayList<>();
+    private static volatile List<Pattern> packagePatterns = new ArrayList<>();
+    private static volatile List<Pattern> methodPatterns = new ArrayList<>();
 
     public static void load(String configPath) {
         try {
@@ -20,19 +20,16 @@ public class PackageFilter {
                     .map(String::trim)
                     .filter(l -> !l.isEmpty() && !l.startsWith("#"))
                     .forEach(s -> {
-                        if (s.startsWith("[NOT]")) {
-                            Pattern compile = Pattern.compile(s.substring("[NOT]".length()));
-                            excludePatterns.add(compile);
-                        } else {
-                            Pattern compile = Pattern.compile(s);
-                            patterns.add(compile);
-                        }
+                        String[] split = s.split("@");
+                        Pattern compile1 = Pattern.compile(split[0].trim());
+                        packagePatterns.add(compile1);
+                        Pattern compile2 = Pattern.compile(split[1].trim());
+                        methodPatterns.add(compile2);
                     });
-            System.out.println("[MethodSignatureAgent] 命中过滤:" + patterns.size() + ": "
-                    + patterns.stream().map(Pattern::pattern).collect(Collectors.toList()));
-            System.out.println("[MethodSignatureAgent] 排除过滤:" + excludePatterns.size() + ": "
-                    + excludePatterns.stream().map(Pattern::pattern).collect(Collectors.toList()));
-        } catch (IOException e) {
+            System.out.println("[MethodSignatureAgent] 过滤package:" + packagePatterns.stream().map(Pattern::pattern).collect(Collectors.toList()));
+            System.out.println("[MethodSignatureAgent] 过滤method:" + methodPatterns.stream().map(Pattern::pattern).collect(Collectors.toList()));
+        } catch (
+                IOException e) {
             e.printStackTrace();
         }
     }
@@ -40,18 +37,18 @@ public class PackageFilter {
     /**
      * 返回 true 表示该类名命中了过滤器（应打印）
      */
-    public static boolean matches(String name) {
-        for (Pattern excludePattern : excludePatterns) {
-            if (excludePattern.matcher(name).find()) {
-                return false;
+    public static boolean matchesPackage(String name) {
+        for (Pattern pattern : packagePatterns) {
+            if (pattern.matcher(name).find()) {
+                System.out.println("[AGENT]命中类" + name);
+                return true;
             }
         }
+        return false;
+    }
 
-        List<Pattern> p = patterns;
-        if (p.isEmpty()) {
-            return true;
-        }
-        for (Pattern pattern : p) {
+    public static boolean matchesMethod(String name) {
+        for (Pattern pattern : methodPatterns) {
             if (pattern.matcher(name).find()) {
                 return true;
             }

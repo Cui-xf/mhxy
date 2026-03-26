@@ -34,7 +34,9 @@ public class CallStack {
     private static String indent(int depth) {
         if (depth <= 0) return "";
         StringBuilder sb = new StringBuilder(depth);
-        sb.append("-".repeat(depth));
+        for (int i = 0; i < depth; i++) {
+            sb.append("-");
+        }
         return sb.toString();
     }
 }
