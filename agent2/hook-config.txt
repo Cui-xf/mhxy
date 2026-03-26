@@ -16,7 +16,13 @@
 # hook MainMidlet 的 startApp 方法
 # com.yinhan.kjava.main.MainMidlet#startApp
 
-# hook av 类的 a 和 b 方法
-# av#a
-# av#b
+# 网络包（推荐）
+# 发送队列入口：w 包对象
+av#a
+# 收包业务分发入口：w 包对象（已解压）
+q#a
+# Socket 原始帧发送（Vector<byte[]>）
+at#a
+
+# 示例：登录包构造（账号密码明文）
 bz#a
