@@ -1,0 +1,198 @@
+{
+  "projectVersion": 2,
+  "files": [
+    "java版梦回西游3区251011.jar"
+  ],
+  "treeExpansionsV2": [
+    "p:"
+  ],
+  "codeData": {
+    "comments": [],
+    "renames": [
+      {
+        "nodeRef": {
+          "refType": "CLASS",
+          "declClass": "bt"
+        },
+        "newName": "UserInfo"
+      },
+      {
+        "nodeRef": {
+          "refType": "CLASS",
+          "declClass": "q"
+        },
+        "newName": "NetReciveUtil"
+      },
+      {
+        "nodeRef": {
+          "refType": "CLASS",
+          "declClass": "w"
+        },
+        "newName": "NetPacket"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "bt",
+          "shortId": "eB:B"
+        },
+        "newName": "serverReturnCode"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "bt",
+          "shortId": "eC:Ljava/lang/String;"
+        },
+        "newName": "serverReturnMessage"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "q",
+          "shortId": "b:Ljava/io/DataInputStream;"
+        },
+        "newName": "payloadDIS"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "q",
+          "shortId": "c:Ljava/io/ByteArrayInputStream;"
+        },
+        "newName": "payloadStream"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "q",
+          "shortId": "d:S"
+        },
+        "newName": "packetType"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "w",
+          "shortId": "a:Z"
+        },
+        "newName": "firstPacket"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "w",
+          "shortId": "b:[B"
+        },
+        "newName": "payload"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "w",
+          "shortId": "c:Ljava/util/Vector;"
+        },
+        "newName": "child"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "w",
+          "shortId": "d:S"
+        },
+        "newName": "packetType"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
+          "declClass": "bt",
+          "shortId": "w(Ljava/io/DataInputStream;)V"
+        },
+        "newName": "processSystemInfo"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
+          "declClass": "q",
+          "shortId": "a(Lw;)V"
+        },
+        "newName": "onRecive"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
+          "declClass": "w",
+          "shortId": "\u003cinit\u003e(S[B)V"
+        },
+        "codeRef": {
+          "attachType": "VAR",
+          "index": 262144
+        },
+        "newName": "packetType"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
+          "declClass": "w",
+          "shortId": "a()S"
+        },
+        "newName": "getPacketType"
+      }
+    ]
+  },
+  "openTabs": [
+    {
+      "type": "class",
+      "tabPath": "q",
+      "subPath": "java",
+      "caret": 96765,
+      "view": {
+        "x": 0,
+        "y": 33125
+      },
+      "active": true,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false,
+      "previewTab": false
+    },
+    {
+      "type": "class",
+      "tabPath": "bt",
+      "subPath": "java",
+      "caret": 77507,
+      "view": {
+        "x": 0,
+        "y": 37955
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false,
+      "previewTab": false
+    },
+    {
+      "type": "class",
+      "tabPath": "com.yinhan.kjava.main.a",
+      "subPath": "java",
+      "caret": 30954,
+      "view": {
+        "x": 0,
+        "y": 8425
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false,
+      "previewTab": false
+    }
+  ],
+  "cacheDir": "/Users/cxf/Library/Caches/io.github.skylot.jadx/projects/java版梦回西游3区251011-0f0cd2cba3ad178b1bd1f5a6bef51315",
+  "enableLiveReload": false,
+  "searchHistory": [
+    "8193"
+  ],
+  "searchResourcesFilter": "$TEXT",
+  "searchResourcesSizeLimit": 0,
+  "pluginOptions": {}
+}

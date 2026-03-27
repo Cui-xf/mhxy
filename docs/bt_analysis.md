@@ -1,0 +1,476 @@
+# bt.java 逆向分析文档
+
+> 文件路径：`jadx/sources/defpackage/bt.java`
+> 分析日期：2026-03-27
+
+---
+
+## 一、类定位
+
+`bt` 是游戏的**角色数据全局仓库**，是整个客户端最核心的静态数据类。
+
+- 所有字段均为 `public static`（全局单例式静态状态）
+- 无构造函数、无实例方法，纯静态工具类
+- 文件超过 7000 行，包含约 **600+ 个静态字段** 和 **150+ 个方法**
+- 职责：**接收服务器下发的角色数据包，反序列化并存入静态字段**
+
+---
+
+## 二、字段分类
+
+字段命名全部混淆（单字母 + 数字后缀），但按内容可归类如下：
+
+### 2.1 角色基础信息（`d()` 方法解析，`bt.java:1176`）
+
+| 字段 | 类型 | 推断含义 |
+|------|------|---------|
+| `bt.ad` | String | 角色名（未去VIP后缀） |
+| `bt.af` | String | 角色名（去掉VIP后缀的纯名字） |
+| `bt.ag` | String | 角色名（服务器原始值，含VIP标记如 `名字(VIP3)`） |
+| `bt.ak` | short | 角色ID |
+| `bt.aj` | byte | 角色等级 |
+| `bt.ax` | byte | 职业/类型 |
+| `bt.ah` | String | 角色描述/称号 |
+| `bt.ai` | int | 颜色（由 `ca.a(byte)` 转换，默认 0xFFFF00 黄色） |
+| `bt.ap` | long | 当前经验 |
+| `bt.aq` | long | 升级所需经验 |
+| `bt.al` | String | 附加字符串信息 |
+| `bt.am` | long | 金币（两）|
+| `bt.an` | long | 元宝 |
+| `bt.ao` | long | 绑定元宝 |
+| `bt.bA` | byte | VIP等级 |
+| `bt.bn` | String | 最后登录记录（默认"暂无记录。"） |
+| `bt.bo` | String | 登录记录2 |
+| `bt.bd` | String | 其他字符串字段 |
+
+**坐标/战斗属性（同在 `d()` 中）：**
+
+| 字段 | 类型 | 推断含义 |
+|------|------|---------|
+| `bt.aN` / `bt.aM` | int | 当前HP / 最大HP |
+| `bt.aP` / `bt.aO` | int | 当前MP / 最大MP |
+| `bt.aR` / `bt.aQ` | int | 攻击力相关 |
+| `bt.aT` / `bt.aS` | int | 防御力相关 |
+| `bt.aV` / `bt.aU` | int | 法术相关 |
+| `bt.aZ` | int | 其他属性 |
+| `bt.ba` / `bt.bb` / `bt.bc` | int | 其他战斗属性 |
+| `bt.aW` / `bt.aX` / `bt.aY` | int | 其他属性 |
+| `bt.be` | short | 坐标相关（-1时无坐标包） |
+| `bt.bp` / `bt.bq` / `bt.br` | short | 地图坐标 x/y/z |
+
+### 2.2 状态标志
+
+| 字段 | 类型 | 推断含义 |
+|------|------|---------|
+| `bt.a` | boolean | 初始为 false，状态标志 |
+| `bt.i` | byte | 当前场景/状态（初始 -1），`C()`/`D()`/`F()` 方法写入 |
+| `bt.j` | byte | 次要状态（初始 -1），与 `bt.i` 对应 |
+| `bt.g` | boolean | 布尔状态 |
+| `bt.bD` / `bt.bE` | boolean | 好友列表相关完成标志 |
+| `bt.bW` | boolean | 是否在组队 |
+| `bt.dJ` | boolean | 布尔标志 |
+| `bt.hw` | boolean | 布尔状态 |
+| `bt.jv` / `bt.jw` | boolean | 状态标志 |
+
+### 2.3 好友列表（`bC`，`e()`/`f()` 方法，`bt.java:1254`）
+
+- `bt.bC`：`Vector<bn>`，好友对象列表
+- `bn` 对象含字段：`h`（好友ID/key）、`a`（int）、`b`、`s`、`u` 等
+- `e()` 初始化列表，`f()` 增量更新（删除+新增+修改）
+- `i()` 清空列表元素
+
+### 2.4 装备/道具系统
+
+**装备格（`c()` / `a(DataInputStream, byte)` 私有，`bt.java:1987/2042`）：**
+
+每件装备含：ID(int)、名称(UTF)、类型(byte)、品质(byte)、强化级(byte)、属性1/2(short)、属性值、显示名、耐久度(byte)、描述(UTF)
+
+- `bt.cR/cS/cT/cU/cV/cW/cX/cY/cZ/da`：装备格1（私有方法 `c(dis,byte)` 解析）
+- `bt.db/dc/dd/de/df/dg/dh/di/dj/dk`：装备格2（`a(dis,byte)` 解析）
+
+**背包物品（`n()`，`bt.java:2122`）：**
+
+- `bt.dv`：int[] 物品ID
+- `bt.dw`：String[] 物品名
+- `bt.dx/dy/dz`：byte[] 类型/品质/其他
+- `bt.dA/dB`：short[] 属性
+- `bt.dD/dC`：String[] 描述
+
+**商店物品（`o()`，`bt.java:2172`）：**
+
+- `bt.dE`：int[] 商品ID
+- `bt.dF`：String[] 商品名
+- `bt.dG/dH`：short[] 属性
+- `bt.dI`：String[] 描述
+
+### 2.5 技能系统（`k()` / `l()` / `m()`，`bt.java:1623/1736/1877`）
+
+每条技能含：ID(int)、名称(UTF)、等级类型(byte)、阶(short)、6个描述字符串(UTF×6)、CD(short)、经验/金币(long)、扩展字段
+
+- `bt.ct/cu/cv/cw/cx`：技能数据1（`k()` 解析，方法 `bt.java:1623`）
+- `bt.cz/cA/cB/cC`：技能数据2（`l()` 解析，`bt.java:1736`）
+- `bt.cG/cH/cI/cJ`：技能数据3（`m()` 解析，`bt.java:1877`）
+
+### 2.6 宠物系统（`I()`，`bt.java:3623`）
+
+这是文件中最复杂的解析方法，每只宠物含约 **40+ 个字段**：
+
+| 字段组 | 类型 | 含义 |
+|--------|------|------|
+| `bt.fA` | int[] | 宠物ID |
+| `bt.fB/fC` | String[][] | 宠物名/昵称 |
+| `bt.fD~fH` | short[][] | 等级/星级/品质相关 |
+| `bt.fI~fV` | int[][] | 战斗属性（攻/防/HP/MP/速度等，14组属性） |
+| `bt.fX` | String[] | 技能名称 |
+| `bt.fW` | short[] | 技能ID |
+| `bt.fY/fZ` | long[] | 当前/最大经验 |
+| `bt.pF` | long[] | 价格（两，用 `a(long)` 转换为"X亿X万X两"） |
+| `bt.gb/gc/gd` | short[][]/String[][]/byte[][] | 技能列表（每宠多技能） |
+| `bt.gg/gh/gi/pG/gj` | int[][]/String[][] | 技能附魂槽（最多4个） |
+| `bt.gk/gl/gm/pH/gn` | 同上 | 状态附魂槽（最多4个） |
+| `bt.gf` | String[] | 星级字符串 |
+| `bt.ge` | byte[] | 宠物状态字节 |
+| `bt.fz` | byte[] | 是否上阵标志（1=上阵，有额外坐标数据） |
+
+**宠物市场列表（`D()`/`E()`，`bt.java:2775/2923`）：**
+
+- `D()` 解析**普通宠物市场**（`fo/oM/fp/fq/fr/fs` + 扩展字段）
+- `E()` 解析**精品宠物市场**（`fx/po/fy/pp~pt` + 扩展字段，结构更丰富含附魂信息）
+- 两者均含**卖家信息**和**宠物技能附魂/状态附魂**子列表
+
+### 2.7 队伍/周边玩家（`z()`/`A()`，`bt.java:2638/2658`）
+
+- `bt.v/w`：long，时间戳（`w` = 服务器时间）
+- `bt.x`：short，初始化为0
+- `bt.L`：short，置1
+- `z()` 读3个子集：`e(dis,b)`（我方队伍I数组）、`d(dis,b)`（J数组）、`c(dis,b)`（N数组 `ck[]`）
+- `A()` 读取带 `ck` 类型（N数组）的周边玩家
+
+**`ck` 对象字段（`bt.java:2668~2691`）：**
+
+| 字段 | 含义 |
+|------|------|
+| `.b` | 类型byte |
+| `.a` | 子类型byte |
+| `.c` | 服务器ID字符串（readShort转换） |
+| `.d` | 玩家名(UTF) |
+| `.e/.f` | 坐标int |
+| `.i` | short属性 |
+| `.g` | int属性 |
+| `.j` | 职业图标（`t.U[]` 数组索引或直接short） |
+| `.r/.s/.t` | short属性 |
+| `.k/.l` | byte属性 |
+
+**`p` 对象（I/J数组，队伍成员，`bt.java:2700~2745`）：**
+
+| 字段 | 含义 |
+|------|------|
+| `.b` | 类型（0=普通队员，1=特殊） |
+| `.a` | byte属性 |
+| `.c/.d` | 名称1/2(UTF) |
+| `.e/.f/.g/.h` | int属性（坐标/属性） |
+| `.i` | short |
+| `.p/.q/.r`（b==1时） | short×3 |
+
+### 2.8 场景/地图信息
+
+- `bt.b/c/d`：String，地图相关名称
+- `bt.r`：String，`J()` 方法写入（`bt.java:4155`）
+- `bt.s`：short，场景ID
+- `bt.K/L`：short
+- `bt.ar/at/au/av/aw`：角色坐标/朝向（`c()` 方法，`bt.java:1143`）
+- `bt.ae`：String，`c()` 中读取
+
+### 2.9 任务系统（`g()`，`bt.java:1413`）
+
+- `bt.bQ`：String，任务相关字符串
+- `bt.bI`：int[]，任务ID
+- `bt.bJ`：String[]，任务名称
+- `bt.bK`：byte[]，任务状态
+
+### 2.10 副本/战斗相关（`h()`，`bt.java:1445`）
+
+- `bt.bR/bS/bT/bU/bV`：副本信息（ID/名/等级/状态/描述）
+- `bt.bL/bM/bN/bO/bP`：副本第二组数据
+
+### 2.11 符文/附魂系统（`r()`，`bt.java:2282`）
+
+- `bt.dY`：int[]，符文ID
+- `bt.dZ`：String[]，符文名
+- `bt.ea/eb`：byte[]，类型
+- `bt.ec`：short[]
+- `bt.ed/oi/ee/oj/ok/ol`：String[]，多段描述
+- `bt.ef`：short[]，等级
+- `bt.eg`：long[]，价格
+- `bt.eh`：String[]，扩展描述
+
+### 2.12 坐骑系统（`aa()`，`bt.java:4794`）
+
+- `bt.iN`：int[]，坐骑ID
+- `bt.iO`：String[]，名称
+- `bt.iP/iQ`：byte[]，类型/品质
+- `bt.iR`：short[]，等级
+- `bt.iS~iX`：String[]×6，多段属性描述
+- `bt.iY`：short[]
+- `bt.iZ`：long[]，价格
+- `bt.ja`：String[]，描述
+- `bt.jb`：short[][]，附魂ID列表
+
+### 2.13 金币/货币格式化（`a(long)`，`bt.java:4225`）
+
+```java
+// 将long型铜钱值转为"X亿X万X两"人民币风格字符串
+// 单位：亿=100000000，万=10000，两=1
+public static String a(long j2) {
+    // 分解亿/万/两三段，拼接中文单位
+    // 0时返回"0两"
+}
+```
+
+### 2.14 场景内玩家列表 / 交易行（`G()`/`H()`，`bt.java:3568/3584`）
+
+- `G()` 完整读取场景内玩家列表（调用 `b(short)` 初始化 + 两轮解析）
+- `H()` 类似，额外带 `pQ long[]`（价格列表）和 `gQ/gR` 字节标志
+- `bt.gs`：int[]，玩家ID
+- `bt.gt`：String[]，玩家名
+- `bt.gu`：short[]，等级
+- `bt.gv`：long[]，价格/金币
+- `bt.gw/gx/gy/gz`：short[]，属性
+- `bt.gA`：short[][]，附魂槽
+- `bt.gC/gD/gE/gF`：int[]，战斗属性
+
+### 2.15 服务器列表（`M()`，`bt.java:4369`）
+
+**这是一个关键方法**，包含账号信息同步逻辑：
+
+```java
+// bt.java:4444~4461
+bb.g = dataInputStream.readUTF();   // 服务器地址1（新）
+bb.h = dataInputStream.readUTF();   // 服务器地址2（新）
+hy = dataInputStream.readUTF();     // 其他地址
+hz = dataInputStream.readUTF();
+
+// 若服务器下发新账号/密码（byte>0）：
+if (dataInputStream.readByte() > 0) {
+    String utf  = dataInputStream.readUTF();  // 新账号
+    String utf2 = dataInputStream.readUTF();  // 新密码
+    if (!"".equals(utf))  { a.am = utf;  bb.m = utf;  }   // 覆写全局账号
+    if (!"".equals(utf2)) { a.an = utf2; bb.n = utf2; }   // 覆写全局密码
+    bb.k = true;
+    bb.b();   // 持久化保存到 RMS
+}
+```
+
+> **结论**：服务器可以主动下发新账号/密码覆盖客户端本地存储，这是一个服务端强制改密的机制。
+
+另含服务器列表解析：
+- `bt.hA`：String[]，服务器名
+- `bt.hB`：String[]，服务器IP
+- `bt.hC`：String[]，服务器描述
+- `bt.hD`：short[]，服务器ID前缀（`t.a == 1` 且 `t.a != 0` 时才读取）
+- `bt.hE`：short[]，端口
+- `bt.hF`：String[]，服务器附加信息
+
+### 2.16 地图NPC（`J()`，`bt.java:4155`）
+
+- `bt.r`：String，地图/NPC主名
+- `bt.gR`：byte，类型标志
+- `bt.gS`：String[]，NPC名称
+- `bt.gT`：byte[]，NPC类型
+- `bt.gU`：String[]，NPC描述
+- `bt.gV`：short[]，等级
+- `bt.gW/gX`：byte[]，属性
+- `bt.gY/gZ`：short[]，坐标
+- `bt.pU`：short[]，NPC功能标志
+- `bt.pV/pW/pX`：short[]，条件标志（仅 `pU>0` 时有值）
+- `bt.ha`：byte[]，`bw>=1` 时额外读取的字节标志
+
+### 2.17 战场/组队（`K()`，`bt.java:4251`）
+
+- `bt.hb`：int[]，战场ID
+- `bt.hc`：short[][]，战场技能ID组
+- `bt.hd/he/hf`：short[]，颜色分量（readByte×16，RGB）
+- `bt.hg/hh/hi/hj`：short[]，属性
+- `bt.hk`：byte[]，战场状态
+
+### 2.18 公告/频道（`L()`，`bt.java:4306`）
+
+- `bt.hl`：short[]，频道ID
+- `bt.hm`：String[]，频道名
+- `bt.hn/ho`：int[]，属性
+- `bt.hp`：short[]
+- `bt.hq/hr`：byte[]
+- `bt.hs/ht/hu/hv`：short[]，属性
+
+### 2.19 服务器通知/操作结果（`w()`，`bt.java:2542`，包ID 0x2001）
+
+**这是游戏所有"操作成功/失败"弹窗的统一入口。**
+
+```java
+public static void w(DataInputStream dataInputStream) throws IOException {
+    byte b2 = dataInputStream.readByte();
+    eB = b2;               // 操作结果码
+    if (b2 <= 0) {
+        eC = dataInputStream.readUTF();   // 服务器自定义文本
+    } else {
+        eC = t.Y[eB];      // 从预定义字符串表取文本
+    }
+}
+```
+
+| 字段 | 类型 | 含义 |
+|------|------|------|
+| `bt.eB` | byte | 操作结果码，服务器下发 |
+| `bt.eC` | String | 最终显示给用户的消息文本 |
+
+**`t.Y[]` 预定义消息表（部分）：**
+
+| 索引 | 文本 |
+|------|------|
+| 0 | "异常离线" |
+| 1 | "战斗、交易状态不能进行其他操作" |
+| 2 | "非法操作" |
+| 3 | "您没有操作权限" |
+| 4 | "操作成功" |
+| 5 | "操作失败" |
+| 48 | （等待状态相关） |
+| 53 | （战斗结算相关） |
+
+**`q.java:158` 对 `eB` 的分发处理：**
+
+| `eB` 值 | 行为 |
+|---------|------|
+| `53` | 战斗结算：调用 `a.e.g.d()`，清空战场坐标，弹出结算文本 |
+| `48` | 等待状态：有战斗对象则标记取消等待（`f=-2`），否则弹消息 |
+| `-2` | 当前是"等待他人操作"时静默忽略 |
+| 其他 | 直接调 `this.a.b(bt.eC)` 弹出消息提示框 |
+
+> **设计说明**：`bt` 不仅是角色数据仓库，还兼任服务器下发的瞬态通知存储。`eB`/`eC` 属于"一次性状态"——收到后立即被 `q.java` 读取处理，与角色持久数据混存在同一个类中，是典型的 J2ME 时代"一个静态类装所有东西"的做法。
+
+---
+
+### 2.20 其他子系统
+
+| 方法 | 字段 | 推断功能 |
+|------|------|---------|
+| `B(dis)` | `eS/eT/eU/eV/eW/eX/eY/eZ/fa/fb/fc/fd/fe` | 单条详情信息（可能是物品/任务详情） |
+| `C(dis)` | `i/j/ff` | 场景状态切换（读取两个byte状态 + UTF + short） |
+| `N(dis)` | `hG/hH/hI/hJ/hK` | 某种图像/图标数据（涉及 `a.ae.e(str)` 和 `a.ae.a(str)`） |
+| `O(dis)` | `hL/hM/hN/pZ/hO` | 列表数据（short[]+String[]+String[]+long[]+int[]） |
+| `P(dis)` | `hP/hQ/hR/hS/hT` | 列表数据 |
+| `Q(dis)` | 字段段 | 继续读取数据 |
+| `ad(dis)` | `jg/jh/ji/jj/jk/jl/jm/jn` | 4组 long+short 对（可能是多种货币余额） |
+| `ac(dis)` | `jf` | 单个UTF字符串 |
+| `ab(dis)` | `jc/jd/je` | byte[]+String[]+String[] 列表 |
+
+---
+
+## 三、方法模式
+
+### 3.1 "读方法 + 清除方法" 成对出现
+
+整个类遵循统一模式：每个 `xxxRead(DataInputStream)` 方法对应一个 `xxx()` 清零方法，用于场景切换/登出时释放内存。
+
+```
+a(DataInputStream)  ←→  e()     // 服装/外观列表
+b(DataInputStream)  ←→  f()     // 坐标偏移列表
+d(DataInputStream)  ←→  h()     // 角色基础信息
+...以此类推
+```
+
+### 3.2 数组大小由服务器控制
+
+所有数组长度由 `dataInputStream.readByte()/readShort()` 读取，服务器完全控制客户端内存分配规模。
+
+### 3.3 `a(byte b2)` / `b(byte b2)` / `c(byte b2)` — 职业/类型判断
+
+```java
+// bt.java:979
+public static boolean a(byte b2) { return b(b2) || c(b2); }
+
+// b(byte) — 基础职业0~9
+public static boolean b(byte b2) {
+    return b2==0||b2==1||b2==2||b2==3||b2==4||b2==5||b2==6||b2==7||b2==8||b2==9;
+}
+
+// c(byte) — 高级职业20~25
+public static boolean c(byte b2) {
+    return b2==20||b2==21||b2==22||b2==23||b2==24||b2==25;
+}
+```
+
+**职业编码推断：**
+- 0~9：基础职业（10种）
+- 20~25：转职后高级职业（6种）
+- `a(byte)` 检查是否为合法职业
+
+---
+
+## 四、关键字段速查（Hook 参考）
+
+### 4.1 角色核心数据（登录后可直接读取）
+
+| 字段 | 类型 | 含义 | 解析方法 |
+|------|------|------|---------|
+| `bt.ag` | String | 角色名（原始，含VIP标记） | `d()` 1179 |
+| `bt.af` | String | 角色名（纯名字） | `d()` 1227 |
+| `bt.aj` | byte | 角色等级 | `d()` 1180 |
+| `bt.bA` | byte | VIP等级 | `d()` 1226 |
+| `bt.am` | long | 铜钱（两）| `d()` 1187 |
+| `bt.an` | long | 元宝 | `d()` 1188 |
+| `bt.ao` | long | 绑定元宝 | `d()` 1189 |
+| `bt.aN` | int | 当前HP | `d()` 1190 |
+| `bt.aM` | int | 最大HP | `d()` 1191 |
+| `bt.bp/bq/br` | short | 当前地图坐标 | `d()` 1207~1209 |
+| `bt.i` | byte | 当前场景状态 | `C()/D()/F()` |
+
+### 4.2 账号覆写监控点
+
+```
+bt.M(DataInputStream) → bt.java:4369
+  ↓
+bb.g = readUTF()    // 服务器下发 "新账号"（可能是换服场景）
+bb.h = readUTF()    // 服务器下发 "新密码"
+```
+
+Hook `bt.M()` 可以捕获服务器主动推送的账号/密码。
+
+### 4.3 宠物上阵判断
+
+```java
+// bt.fz[i] == 1 时为上阵宠物
+// 上阵宠物额外读取坐标：go/gp/gq/gr（short×4）
+// 以及装备格（调用 c(dis, readByte())）
+```
+
+---
+
+## 五、数据流关系图
+
+```
+服务器下发收包 (q.a(w))
+        ↓
+    按包ID分发
+        ↓
+    bt.xxx(DataInputStream)  ← bt.java 各解析方法
+        ↓
+    写入 bt.静态字段
+        ↓
+    UI层读取 bt.字段 渲染界面
+```
+
+---
+
+## 六、对 `analysis.md` 的补充结论
+
+1. **`bt` 是所有游戏数据的"中央内存"**，UI类从 `bt.*` 静态字段直接读取并渲染，无任何数据封装层。
+
+2. **职业系统**：共 16 个职业编码（0~9 基础，20~25 转职），由 `bt.b(byte)`/`bt.c(byte)` 判断。
+
+3. **宠物系统最复杂**：`I()` 方法一次解析 40+ 字段/宠物，含技能附魂和状态附魂各4格，宠物市场分普通/精品两张列表（`D()`/`E()`）。
+
+4. **货币显示**：`bt.a(long)` 将 long 铜钱值格式化为"X亿X万X两"，所有价格字段（`pF`/`gv`/`pe`/`pw` 等）均通过此方法显示。
+
+5. **服务器可强制覆盖账号密码**（`M()` 方法 `bt.java:4448~4461`），是服务端控制换号的机制，非恶意行为但值得关注。
+
+6. **内存管理**：每个数据域均有对应的清零方法，在场景切换/登出时调用，客户端在J2ME内存限制下精细管理内存。

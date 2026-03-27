@@ -1,7 +1,7 @@
 package com.hook.agent;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
+import com.alibaba.fastjson.JSON;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -11,154 +11,65 @@ public class HookHelper {
 
     private static final int HEX_DUMP_LIMIT = 512;
 
-    private static final Gson GSON = new GsonBuilder()
-            .serializeNulls()
-            .disableHtmlEscaping()
-            .create();
-
     public static void printEnter(String sig, Object[] args) {
         try {
-            if (printNetworkPacket(sig, args)) {
-                return;
-            } else if (sig.contains("t.a(java.lang.String)")) {
-                StringBuilder sb = new StringBuilder(256);
-                sb.append("[HOOK ENTER] ").append(sig);
-//            sb.append(" | Thread: ").append(Thread.currentThread().getName());
-                sb.append("\n  args: ");
-                appendJsonArray(sb, args);
-                System.out.println(sb);
-            }
+            doPrintEnter(sig, args);
         } catch (Throwable t) {
             System.out.println("[HOOK ENTER] " + sig + " | error: " + t);
         }
     }
 
     public static void printExit(String sig, Object ret) {
-//        try {
-//            System.out.println("[HOOK EXIT]  \n  return: " + toJson(ret));
-//        } catch (Throwable t) {
-//            System.out.println("[HOOK EXIT]  " + sig + " | error: " + t);
-//        }
+
     }
 
     public static void printExitVoid(String sig) {
-//        System.out.println("[HOOK EXIT]  \n  return: void");
     }
 
     public static void printExitThrow(String sig, Throwable ex) {
-//        try {
-//            System.out.println("[HOOK EXIT]  \n  threw: "
-//                    + "{\"type\":\"" + ex.getClass().getName()
-//                    + "\",\"message\":" + GSON.toJson(ex.getMessage()) + "}");
-//        } catch (Throwable t) {
-//            System.out.println("[HOOK EXIT]  " + sig + " | error: " + t);
-//        }
     }
 
     // ========== JSON 序列化 ==========
-
-    private static void appendJsonArray(StringBuilder sb, Object[] args) {
-        sb.append('[');
-        for (int i = 0; i < args.length; i++) {
-            if (i > 0) sb.append(", ");
-            sb.append(toJson(args[i]));
-        }
-        sb.append(']');
-    }
-
     private static String toJson(Object value) {
-        if (value == null) return "null";
-        if (value instanceof String) return GSON.toJson(value);
-        if (value instanceof Number || value instanceof Boolean) return value.toString();
-        if (value instanceof Character) return GSON.toJson(value.toString());
-
-        if (value instanceof byte[]) {
-            byte[] arr = (byte[]) value;
-            if (arr.length > 128) return "\"<byte[" + arr.length + "]>\"";
-            return GSON.toJson(value);
-        }
-        if (value instanceof int[]) return GSON.toJson(value);
-        if (value instanceof long[]) return GSON.toJson(value);
-        if (value instanceof float[]) return GSON.toJson(value);
-        if (value instanceof double[]) return GSON.toJson(value);
-        if (value instanceof boolean[]) return GSON.toJson(value);
-        if (value instanceof short[]) return GSON.toJson(value);
-        if (value instanceof char[]) return GSON.toJson(new String((char[]) value));
-        if (value instanceof Object[]) {
-            StringBuilder sb = new StringBuilder("[");
-            Object[] arr = (Object[]) value;
-            for (int i = 0; i < arr.length; i++) {
-                if (i > 0) sb.append(", ");
-                sb.append(toJson(arr[i]));
-            }
-            return sb.append("]").toString();
-        }
-
-        return "{\"@class\":\"" + value.getClass().getName()
-                + "\",\"@str\":" + GSON.toJson(value.toString()) + "}";
+        return JSON.toJSONString(value);
     }
 
     // ========== 网络数据包专用输出 ==========
-
-    private static boolean printNetworkPacket(String sig, Object[] args) {
-        if (args == null || args.length == 0 || args[0] == null) {
-            return false;
-        }
-
-        if (sig.contains("defpackage.av.a(defpackage.w)") || sig.contains(" av.a(w)")) {
-            printWPacket("SEND", args[0]);
-            return true;
-        }
-        if (sig.contains("defpackage.q.a(defpackage.w)") || sig.contains(" q.a(w)")) {
-            printWPacket("RECV", args[0]);
-            return true;
-        }
-        if (sig.contains("at.a(java.util.Vector)") || sig.contains("defpackage.at.a(java.util.Vector)")) {
-            printRawSendFrames(args[0]);
-            return true;
-        }
-        return false;
-    }
-
-    private static void printWPacket(String direction, Object wObj) {
-        try {
-            short packetId = readPacketId(wObj);
-            byte[] payload = readByteArrayField(wObj, "b");
-            Vector<?> children = readVectorField(wObj, "c");
-
-            StringBuilder sb = new StringBuilder(512);
-            sb.append("[NET ").append(direction).append("] ")
-                    .append("id=0x").append(toHex4(packetId))
-                    .append(" (").append(packetId & 0xFFFF).append(")")
-                    .append(", payloadLen=").append(payload == null ? 0 : payload.length)
-                    .append(", childCount=").append(children == null ? 0 : children.size());
-
-            if (payload != null && payload.length > 0) {
-                sb.append("\n  payload(hex):\n").append(hexDump(payload, HEX_DUMP_LIMIT));
-            }
-            if (children != null && !children.isEmpty()) {
-                sb.append("\n  children: ").append(children.size()).append(" packets");
-            }
-            System.out.println(sb);
-        } catch (Throwable t) {
-            System.out.println("[NET " + direction + "] parse error: " + t);
+    private static void doPrintEnter(String sig, Object[] args) throws Exception {
+        if (sig.contains("av.a(w)")) {
+            System.out.println("[NET] 发送:");
+            printNetworkPacket(args[0]);
+        } else if (sig.contains("q.a(w)")) {
+            System.out.println("[NET] 接收:");
+            printNetworkPacket(args[0]);
+        } else if (sig.contains("t.a(java.lang.String)")) {
+            System.out.println(String.format("[HOOK LOG] %s", args[0]));
+        } else {
+//            System.out.printf("[HOOK ENTER] %s  args: %s%n", sig, toJson(args));
         }
     }
 
-    private static void printRawSendFrames(Object arg) {
-        if (!(arg instanceof Vector)) return;
-        Vector<?> frames = (Vector<?>) arg;
-        StringBuilder sb = new StringBuilder(512);
-        sb.append("[NET SEND RAW] frameCount=").append(frames.size());
-        for (int i = 0; i < frames.size(); i++) {
-            Object item = frames.elementAt(i);
-            if (!(item instanceof byte[])) continue;
-            byte[] frame = (byte[]) item;
-            sb.append("\n  frame[").append(i).append("] len=").append(frame.length);
-            sb.append("\n").append(indent(hexDump(frame, HEX_DUMP_LIMIT), "    "));
+    private static void printNetworkPacket(Object netPacket) throws Exception {
+        short packetId = readPacketId(netPacket);
+        byte[] payload = readByteArrayField(netPacket, "b");
+//        Vector<?> children = readVectorField(netPacket, "c");
+        Vector<?> children = null;
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("id=0x").append(toHex4(packetId))
+                .append(" (").append(packetId & 0xFFFF).append(")")
+                .append(", payloadLen=").append(payload == null ? 0 : payload.length)
+                .append(", childCount=").append(children == null ? 0 : children.size());
+
+        if (payload != null && payload.length > 0) {
+            sb.append("  payload(hex):\n").append(hexDump(payload, HEX_DUMP_LIMIT));
+        }
+        if (children != null && !children.isEmpty()) {
+            sb.append("\n  children: ").append(children.size()).append(" packets");
         }
         System.out.println(sb);
     }
+
 
     private static short readPacketId(Object wObj) throws Exception {
         Method m = wObj.getClass().getMethod("a");
@@ -235,10 +146,5 @@ public class HookHelper {
             sb.append('0');
         }
         sb.append(hex);
-    }
-
-    private static String indent(String text, String prefix) {
-        if (text == null || text.isEmpty()) return prefix;
-        return prefix + text.replace("\n", "\n" + prefix);
     }
 }
