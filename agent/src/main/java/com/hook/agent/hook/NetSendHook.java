@@ -20,8 +20,8 @@ public class NetSendHook extends MethodHook {
     public static void printNetworkPacket(Object netPacket) throws Exception {
         short packetId = readPacketId(netPacket);
         byte[] payload = readByteArrayField(netPacket, "b");
-//        Vector<?> children = readVectorField(netPacket, "c");
-        Vector<?> children = null;
+        Vector<?> children = readVectorField(netPacket, "c");
+//        Vector<?> children = null;
 
         StringBuilder sb = new StringBuilder();
         sb.append("id=0x").append(toHex4(packetId)).append(" (").append(packetId & 0xFFFF).append(")").append(", payloadLen=").append(payload == null ? 0 : payload.length).append(", childCount=").append(children == null ? 0 : children.size());
@@ -100,5 +100,16 @@ public class NetSendHook extends MethodHook {
             sb.append('0');
         }
         sb.append(hex);
+    }
+
+    @SuppressWarnings("unchecked")
+    private static Vector<?> readVectorField(Object obj, String fieldName) {
+        try {
+            Field f = obj.getClass().getField(fieldName);
+            Object value = f.get(obj);
+            return (value instanceof Vector) ? (Vector<?>) value : null;
+        } catch (Throwable ignore) {
+            return null;
+        }
     }
 }

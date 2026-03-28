@@ -22,7 +22,7 @@ public class HookAgent {
         System.out.println("[HookAgent] Transformer registered");
 
         if (inst.isRetransformClassesSupported()) {
-            retransformAlreadyLoaded(inst);
+//            retransformAlreadyLoaded(inst);
         }
         System.out.println("[HookAgent] ============================");
     }
