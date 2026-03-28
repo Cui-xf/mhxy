@@ -1,5 +1,12 @@
 [\u4E00-\u9FFF&&[^版梦回西游区]]
 
+
 启动命令
 java -javaagent:agent/target/hook-agent.jar -jar microemulator.jar java版梦回西游3区251011.jar
 C:\Users\qaq\.jdks\jdk-21.0.9\bin\java -javaagent:agent/target/hook-agent.jar -jar microemulator.jar java版梦回西游3区251011.jar
+
+C:\Users\qaq\.jdks\azul-1.8.0_482\bin\java  -javaagent:agent/target/hook-agent.jar -jar microemulator.jar java版梦回西游3区251011.jar
+
+C:\Users\qaq\.jdks\azul-1.8.0_482\bin\java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005  -javaagent:agent/target/hook-agent.jar -jar microemulator.jar java版梦回西游3区251011.jar
+
+

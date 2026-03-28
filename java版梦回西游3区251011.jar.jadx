@@ -4,11 +4,18 @@
     "java版梦回西游3区251011.jar"
   ],
   "treeExpansionsV2": [
-    "p:"
+    "c:av"
   ],
   "codeData": {
     "comments": [],
     "renames": [
+      {
+        "nodeRef": {
+          "refType": "CLASS",
+          "declClass": "av"
+        },
+        "newName": "NetWorkUtil"
+      },
       {
         "nodeRef": {
           "refType": "CLASS",
@@ -29,6 +36,30 @@
           "declClass": "w"
         },
         "newName": "NetPacket"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "av",
+          "shortId": "k:Lq;"
+        },
+        "newName": "netReciveUtil"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "av",
+          "shortId": "m:Ljava/util/Vector;"
+        },
+        "newName": "netPacketQueue"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "av",
+          "shortId": "n:Lw;"
+        },
+        "newName": "currentPacket"
       },
       {
         "nodeRef": {
@@ -105,6 +136,14 @@
       {
         "nodeRef": {
           "refType": "METHOD",
+          "declClass": "av",
+          "shortId": "b(Lw;)V"
+        },
+        "newName": "doOnRecive"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
           "declClass": "bt",
           "shortId": "w(Ljava/io/DataInputStream;)V"
         },
@@ -145,12 +184,12 @@
       "type": "class",
       "tabPath": "q",
       "subPath": "java",
-      "caret": 96765,
+      "caret": 8226,
       "view": {
         "x": 0,
-        "y": 33125
+        "y": 2800
       },
-      "active": true,
+      "active": false,
       "pinned": false,
       "bookmarked": false,
       "hidden": false,
@@ -160,10 +199,10 @@
       "type": "class",
       "tabPath": "bt",
       "subPath": "java",
-      "caret": 77507,
+      "caret": 0,
       "view": {
         "x": 0,
-        "y": 37955
+        "y": 0
       },
       "active": false,
       "pinned": false,
@@ -175,19 +214,64 @@
       "type": "class",
       "tabPath": "com.yinhan.kjava.main.a",
       "subPath": "java",
-      "caret": 30954,
+      "caret": 1814,
       "view": {
         "x": 0,
-        "y": 8425
+        "y": 8866
       },
       "active": false,
       "pinned": false,
       "bookmarked": false,
       "hidden": false,
       "previewTab": false
+    },
+    {
+      "type": "class",
+      "tabPath": "av",
+      "subPath": "java",
+      "caret": 7966,
+      "view": {
+        "x": 0,
+        "y": 3677
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false,
+      "previewTab": false
+    },
+    {
+      "type": "class",
+      "tabPath": "t",
+      "subPath": "java",
+      "caret": 4637,
+      "view": {
+        "x": 0,
+        "y": 2062
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false,
+      "previewTab": false
+    },
+    {
+      "type": "class",
+      "tabPath": "at",
+      "subPath": "java",
+      "caret": 3720,
+      "view": {
+        "x": 0,
+        "y": 1639
+      },
+      "active": true,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false,
+      "previewTab": false
     }
   ],
-  "cacheDir": "/Users/cxf/Library/Caches/io.github.skylot.jadx/projects/java版梦回西游3区251011-0f0cd2cba3ad178b1bd1f5a6bef51315",
+  "cacheDir": "C:\\Users\\qaq\\AppData\\Local\\skylot\\jadx\\cache\\projects\\java版梦回西游3区251011.jar-011e17ab57204171d63dbcc82ab61cc8",
   "enableLiveReload": false,
   "searchHistory": [
     "8193"
