@@ -22,7 +22,7 @@ public class HookAgent {
         System.out.println("[HookAgent] Transformer registered");
 
         if (inst.isRetransformClassesSupported()) {
-//            retransformAlreadyLoaded(inst);
+            retransformAlreadyLoaded(inst);
         }
         System.out.println("[HookAgent] ============================");
     }
@@ -53,7 +53,7 @@ public class HookAgent {
         try {
             inst.retransformClasses(batch.toArray(new Class<?>[0]));
             System.out.println("[HookAgent] Retransformed " + batch.size() + " already-loaded class(es)");
-        } catch (UnmodifiableClassException e) {
+        } catch (Exception e) {
             System.err.println("[HookAgent] Retransform failed: " + e.getMessage());
             e.printStackTrace();
         }

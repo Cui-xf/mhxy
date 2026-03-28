@@ -6,8 +6,11 @@ public class NetReceiveHook extends MethodHook {
     }
 
     @Override
-    public void onEnter(String hookKey, Object[] args) throws Exception {
+    public void onEnter(String hookKey, Object receiver, Object[] args) throws Exception {
         System.out.println("[NET] 接收:");
-        NetSendHook.printNetworkPacket(args[0]);
+        Object w = (args != null && args.length > 1) ? args[1] : (args != null && args.length > 0 ? args[0] : null);
+        if (w != null) {
+            NetSendHook.printNetworkPacket(w);
+        }
     }
 }

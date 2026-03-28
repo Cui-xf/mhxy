@@ -19,11 +19,17 @@ public abstract class MethodHook {
         return method;
     }
 
-    public void onEnter(String hookKey, Object[] args) throws Exception {
+    /**
+     * @param receiver 实例方法 / 构造器为 {@code this}，静态方法为 {@code null}
+     */
+    public void onEnter(String hookKey, Object receiver, Object[] args) throws Exception {
 
     }
 
-    public void onExit(String hookKey, Object returnVal, Throwable ex) throws Exception {
+    /**
+     * @param receiver 实例方法 / 构造器为 {@code this}，静态方法为 {@code null}
+     */
+    public void onExit(String hookKey, Object receiver, Object returnVal, Throwable ex) throws Exception {
 
     }
 }

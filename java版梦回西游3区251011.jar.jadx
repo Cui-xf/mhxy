@@ -14,7 +14,7 @@
           "refType": "CLASS",
           "declClass": "av"
         },
-        "newName": "NetWorkUtil"
+        "newName": "av_NetWorkUtil"
       },
       {
         "nodeRef": {
@@ -22,6 +22,13 @@
           "declClass": "bt"
         },
         "newName": "UserInfo"
+      },
+      {
+        "nodeRef": {
+          "refType": "CLASS",
+          "declClass": "bz"
+        },
+        "newName": "PacketBuilder"
       },
       {
         "nodeRef": {
@@ -65,6 +72,38 @@
         "nodeRef": {
           "refType": "FIELD",
           "declClass": "bt",
+          "shortId": "ad:Ljava/lang/String;"
+        },
+        "newName": "userName"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "bt",
+          "shortId": "b:Ljava/lang/String;"
+        },
+        "newName": "zhanghao"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "bt",
+          "shortId": "c:Ljava/lang/String;"
+        },
+        "newName": "password"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "bt",
+          "shortId": "d:Ljava/lang/String;"
+        },
+        "newName": "token"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "bt",
           "shortId": "eB:B"
         },
         "newName": "serverReturnCode"
@@ -76,6 +115,14 @@
           "shortId": "eC:Ljava/lang/String;"
         },
         "newName": "serverReturnMessage"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "ca",
+          "shortId": "o:I"
+        },
+        "newName": "clickIndex"
       },
       {
         "nodeRef": {
@@ -136,6 +183,22 @@
       {
         "nodeRef": {
           "refType": "METHOD",
+          "declClass": "ao",
+          "shortId": "aZ()V"
+        },
+        "newName": "az_huiCheng"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
+          "declClass": "av",
+          "shortId": "a(Lw;)V"
+        },
+        "newName": "sendPacket"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
           "declClass": "av",
           "shortId": "b(Lw;)V"
         },
@@ -148,6 +211,26 @@
           "shortId": "w(Ljava/io/DataInputStream;)V"
         },
         "newName": "processSystemInfo"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
+          "declClass": "bz",
+          "shortId": "C(SLjava/lang/String;)[B"
+        },
+        "newName": "buildHuiCheng"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
+          "declClass": "bz",
+          "shortId": "C(SLjava/lang/String;)[B"
+        },
+        "codeRef": {
+          "attachType": "VAR",
+          "index": 262144
+        },
+        "newName": "code"
       },
       {
         "nodeRef": {
@@ -274,7 +357,13 @@
   "cacheDir": "C:\\Users\\qaq\\AppData\\Local\\skylot\\jadx\\cache\\projects\\java版梦回西游3区251011.jar-011e17ab57204171d63dbcc82ab61cc8",
   "enableLiveReload": false,
   "searchHistory": [
-    "8193"
+    "4680",
+    "aZ()",
+    "com.yinhan.kjava.main.a",
+    "8193",
+    "com.yinhan.kjava.main.a.",
+    "8199",
+    "回城"
   ],
   "searchResourcesFilter": "$TEXT",
   "searchResourcesSizeLimit": 0,

@@ -8,12 +8,19 @@ import java.util.concurrent.ConcurrentHashMap;
 public class HookConfig {
     private static final Map</*className*/String, List<MethodHook>> HOOK_INDEX = new ConcurrentHashMap<>();
     private static final Map</*hookKey*/String, MethodHook> METHOD_HOOK_MAP = new ConcurrentHashMap<>();
+    private static final Set<Class<?>> RETRANSFORM_CLASSES_MAP = new HashSet<Class<?>>() {{
+//        add(java.lang.StringBuffer.class);
+    }};
+
 
     static {
         registerHook(new AppendHook());
         registerHook(new LogHook());
         registerHook(new NetReceiveHook());
         registerHook(new NetSendHook());
+        registerHook(new DataInputStreamHook());
+        registerHook(new MainCanvasCtorHook());
+        registerHook(new HuiChengHook());
     }
 
 
@@ -55,10 +62,6 @@ public class HookConfig {
     }
 
     //===============================
-    private static final Set<Class<?>> RETRANSFORM_CLASSES_MAP = new HashSet<Class<?>>() {{
-        add(java.lang.StringBuffer.class);
-    }};
-
     public static boolean retransformClasses(Class<?> c) {
         return RETRANSFORM_CLASSES_MAP.contains(c);
     }

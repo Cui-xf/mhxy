@@ -10,9 +10,12 @@ public class NetSendHook extends MethodHook {
     }
 
     @Override
-    public void onEnter(String hookKey, Object[] args) throws Exception {
+    public void onEnter(String hookKey, Object receiver, Object[] args) throws Exception {
         System.out.println("[NET] 发送:");
-        printNetworkPacket(args[0]);
+        Object w = (args != null && args.length > 1) ? args[1] : (args != null && args.length > 0 ? args[0] : null);
+        if (w != null) {
+            printNetworkPacket(w);
+        }
     }
 
     private static final int HEX_DUMP_LIMIT = 512;
@@ -62,7 +65,7 @@ public class NetSendHook extends MethodHook {
         return hex;
     }
 
-    private static String hexDump(byte[] data, int limit) {
+    public static String hexDump(byte[] data, int limit) {
         if (data == null || data.length == 0) return "<empty>";
         int n = Math.min(data.length, Math.max(1, limit));
         StringBuilder sb = new StringBuilder(n * 4);

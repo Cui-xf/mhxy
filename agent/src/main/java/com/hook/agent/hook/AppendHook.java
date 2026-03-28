@@ -6,12 +6,12 @@ public class AppendHook extends MethodHook {
     }
 
     @Override
-    public void onEnter(String hookKey, Object[] args) {
+    public void onEnter(String hookKey, Object receiver, Object[] args) {
         String threadName = Thread.currentThread().getName();
         if (threadName.startsWith("Image Fetcher") || threadName.startsWith("main")) {
             return;
         } else {
-            System.out.println("[HOOK append-" + threadName + "]" + args[0]);
+            System.out.println("[HOOK append-" + threadName + "]" + receiver);
         }
     }
 }

@@ -115,25 +115,60 @@ public class HookTransformer implements ClassFileTransformer {
                 hookedCount++;
             }
             final String desc = descriptor;
+            final int acc = access;
 
             return new AdviceAdapter(Opcodes.ASM9, mv, access, name, descriptor) {
+                private final boolean isStaticMethod = (acc & Opcodes.ACC_STATIC) != 0;
+                private final boolean isConstructor = "<init>".equals(name);
+                private int receiverLocal = -1;
+                private boolean receiverCaptured = false;
+
+                private void captureReceiver() {
+                    if (isStaticMethod || receiverCaptured) {
+                        return;
+                    }
+                    receiverLocal = newLocal(Type.getType(Object.class));
+                    loadThis();
+                    storeLocal(receiverLocal);
+                    receiverCaptured = true;
+                }
+
+                private void loadReceiverForHook() {
+                    if (isStaticMethod) {
+                        visitInsn(ACONST_NULL);
+                        return;
+                    }
+                    if (isConstructor && !receiverCaptured) {
+                        // 构造器在 super()/this() 完成前，this 仍可能是未初始化状态。
+                        visitInsn(ACONST_NULL);
+                        return;
+                    }
+                    loadLocal(receiverLocal);
+                }
+
                 @Override
                 protected void onMethodEnter() {
+                    captureReceiver();
                     push(hookKey);
+                    loadReceiverForHook();
                     loadArgArray();
-                    visitMethodInsn(INVOKESTATIC, HELPER, "printEnter", "(Ljava/lang/String;[Ljava/lang/Object;)V", false);
+                    visitMethodInsn(INVOKESTATIC, HELPER, "printEnter", "(Ljava/lang/String;Ljava/lang/Object;[Ljava/lang/Object;)V", false);
                 }
 
                 @Override
                 protected void onMethodExit(int opcode) {
                     if (opcode == ATHROW) {
                         visitInsn(DUP);
+                        int exLocal = newLocal(Type.getType(Throwable.class));
+                        storeLocal(exLocal);
                         push(hookKey);
-                        visitInsn(SWAP);
-                        visitMethodInsn(INVOKESTATIC, HELPER, "printExitThrow", "(Ljava/lang/String;Ljava/lang/Throwable;)V", false);
+                        loadReceiverForHook();
+                        loadLocal(exLocal);
+                        visitMethodInsn(INVOKESTATIC, HELPER, "printExitThrow", "(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Throwable;)V", false);
                     } else if (opcode == RETURN) {
                         push(hookKey);
-                        visitMethodInsn(INVOKESTATIC, HELPER, "printExitVoid", "(Ljava/lang/String;)V", false);
+                        loadReceiverForHook();
+                        visitMethodInsn(INVOKESTATIC, HELPER, "printExitVoid", "(Ljava/lang/String;Ljava/lang/Object;)V", false);
                     } else {
                         Type retType = Type.getReturnType(desc);
                         if (retType.getSize() == 2) {
@@ -142,9 +177,12 @@ public class HookTransformer implements ClassFileTransformer {
                             visitInsn(DUP);
                         }
                         box(retType);
+                        int boxedLocal = newLocal(Type.getType(Object.class));
+                        storeLocal(boxedLocal);
                         push(hookKey);
-                        visitInsn(SWAP);
-                        visitMethodInsn(INVOKESTATIC, HELPER, "printExit", "(Ljava/lang/String;Ljava/lang/Object;)V", false);
+                        loadReceiverForHook();
+                        loadLocal(boxedLocal);
+                        visitMethodInsn(INVOKESTATIC, HELPER, "printExit", "(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V", false);
                     }
                 }
             };
