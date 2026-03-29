@@ -53,6 +53,14 @@ public class NetPacket {
             bos.flush();
             return new NetPacket(packetType, bos.toByteArray());
         }
+
+        public NetPacket build(byte[] payload) throws IOException {
+            dos.close();
+            bos.close();
+            dos = null;
+            bos = null;
+            return new NetPacket(packetType, payload);
+        }
     }
 
 }

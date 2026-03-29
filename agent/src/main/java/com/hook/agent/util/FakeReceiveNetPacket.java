@@ -14,9 +14,9 @@ import java.lang.reflect.Method;
  * NetPacket packet = NetPacket.builder((short) 8193).writeByte(0x81).writeUTF("啦啦啦，你好吗？").build();
  * FakeNetPacket.fake(packet);
  */
-public final class FakeNetPacket {
+public final class FakeReceiveNetPacket {
 
-    private FakeNetPacket() {
+    private FakeReceiveNetPacket() {
     }
 
     /**
@@ -37,7 +37,7 @@ public final class FakeNetPacket {
         doSend(packet);
     }
 
-    private static Object buildPacket(NetPacket packet) throws Exception {
+    public static Object buildPacket(NetPacket packet) throws Exception {
         byte[] body = packet.payload == null ? new byte[0] : packet.payload.clone();
         return getWCtor().newInstance(packet.packetType, body);
     }
@@ -48,7 +48,7 @@ public final class FakeNetPacket {
         b.invoke(av, packet);
     }
 
-    private static Object getAvIns() throws Exception {
+    public static Object getAvIns() throws Exception {
         Object mainCanvasIns = getMainCanvasIns();
         Field i = getIField();
         return i.get(mainCanvasIns);
@@ -106,7 +106,7 @@ public final class FakeNetPacket {
 
     private static volatile Class<?> wClass;
 
-    private static Class<?> getWClass() throws Exception {
+    public static Class<?> getWClass() throws Exception {
         if (wClass == null) {
             ClassLoader classLoader = getClassLoader();
             wClass = Class.forName("w", true, classLoader);
@@ -117,7 +117,7 @@ public final class FakeNetPacket {
 
     private static volatile ClassLoader cl;
 
-    private static ClassLoader getClassLoader() {
+    public static ClassLoader getClassLoader() {
         if (cl == null) {
             cl = getMainCanvasIns().getClass().getClassLoader();
         }

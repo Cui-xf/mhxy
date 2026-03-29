@@ -1,6 +1,6 @@
 package com.hook.agent.hook;
 
-import com.hook.agent.util.FakeNetPacket;
+import com.hook.agent.util.FakeReceiveNetPacket;
 
 /**
  * 主画布 {@code com.yinhan.kjava.main.a} 构造完成时拿到 {@code this}
@@ -18,6 +18,6 @@ public class MainCanvasCtorHook extends MethodHook {
         if (ex != null || receiver == null) {
             return;
         }
-        FakeNetPacket.setMainCanvasInstance(receiver);
+        FakeReceiveNetPacket.setMainCanvasInstance(receiver);
     }
 }

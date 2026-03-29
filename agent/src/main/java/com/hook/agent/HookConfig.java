@@ -14,13 +14,15 @@ public class HookConfig {
 
 
     static {
-        registerHook(new AppendHook());
+//        registerHook(new AppendHook());
         registerHook(new LogHook());
         registerHook(new NetReceiveHook());
         registerHook(new NetSendHook());
         registerHook(new DataInputStreamHook());
         registerHook(new MainCanvasCtorHook());
-        registerHook(new HuiChengHook());
+        // 回城：HuiChengHook=伪造 8199；HuiChengHook2=发 4142（docs/车夫传送与Hook思路.md），勿同时注册
+//        registerHook(new HuiChengHook());
+        registerHook(new HuiChengHook2());
     }
 
 

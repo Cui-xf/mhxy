@@ -4,7 +4,7 @@
     "java版梦回西游3区251011.jar"
   ],
   "treeExpansionsV2": [
-    "c:av"
+    "c:ao"
   ],
   "codeData": {
     "comments": [],
@@ -21,14 +21,14 @@
           "refType": "CLASS",
           "declClass": "bt"
         },
-        "newName": "UserInfo"
+        "newName": "bt_UserInfo"
       },
       {
         "nodeRef": {
           "refType": "CLASS",
           "declClass": "bz"
         },
-        "newName": "PacketBuilder"
+        "newName": "bz_PayloadBuilder"
       },
       {
         "nodeRef": {
@@ -74,7 +74,7 @@
           "declClass": "bt",
           "shortId": "ad:Ljava/lang/String;"
         },
-        "newName": "userName"
+        "newName": "ad_userName"
       },
       {
         "nodeRef": {
@@ -208,6 +208,14 @@
         "nodeRef": {
           "refType": "METHOD",
           "declClass": "bt",
+          "shortId": "j(Ljava/io/DataInputStream;)V"
+        },
+        "newName": "j_chuansong_liebiao"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
+          "declClass": "bt",
           "shortId": "w(Ljava/io/DataInputStream;)V"
         },
         "newName": "processSystemInfo"
@@ -231,6 +239,38 @@
           "index": 262144
         },
         "newName": "code"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
+          "declClass": "bz",
+          "shortId": "a(SLjava/lang/String;IS)[B"
+        },
+        "newName": "a_build_chuansong_packet"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
+          "declClass": "bz",
+          "shortId": "a(SLjava/lang/String;IS)[B"
+        },
+        "codeRef": {
+          "attachType": "VAR",
+          "index": 393216
+        },
+        "newName": "npcId"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
+          "declClass": "bz",
+          "shortId": "a(SLjava/lang/String;IS)[B"
+        },
+        "codeRef": {
+          "attachType": "VAR",
+          "index": 458752
+        },
+        "newName": "mapId"
       },
       {
         "nodeRef": {
@@ -265,12 +305,12 @@
   "openTabs": [
     {
       "type": "class",
-      "tabPath": "q",
+      "tabPath": "com.yinhan.kjava.main.a",
       "subPath": "java",
-      "caret": 8226,
+      "caret": 6699,
       "view": {
         "x": 0,
-        "y": 2800
+        "y": 2862
       },
       "active": false,
       "pinned": false,
@@ -280,9 +320,24 @@
     },
     {
       "type": "class",
-      "tabPath": "bt",
+      "tabPath": "av",
       "subPath": "java",
-      "caret": 0,
+      "caret": 1209,
+      "view": {
+        "x": 0,
+        "y": 108
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false,
+      "previewTab": false
+    },
+    {
+      "type": "class",
+      "tabPath": "w",
+      "subPath": "java",
+      "caret": 172,
       "view": {
         "x": 0,
         "y": 0
@@ -295,57 +350,12 @@
     },
     {
       "type": "class",
-      "tabPath": "com.yinhan.kjava.main.a",
+      "tabPath": "ao",
       "subPath": "java",
-      "caret": 1814,
+      "caret": 679681,
       "view": {
         "x": 0,
-        "y": 8866
-      },
-      "active": false,
-      "pinned": false,
-      "bookmarked": false,
-      "hidden": false,
-      "previewTab": false
-    },
-    {
-      "type": "class",
-      "tabPath": "av",
-      "subPath": "java",
-      "caret": 7966,
-      "view": {
-        "x": 0,
-        "y": 3677
-      },
-      "active": false,
-      "pinned": false,
-      "bookmarked": false,
-      "hidden": false,
-      "previewTab": false
-    },
-    {
-      "type": "class",
-      "tabPath": "t",
-      "subPath": "java",
-      "caret": 4637,
-      "view": {
-        "x": 0,
-        "y": 2062
-      },
-      "active": false,
-      "pinned": false,
-      "bookmarked": false,
-      "hidden": false,
-      "previewTab": false
-    },
-    {
-      "type": "class",
-      "tabPath": "at",
-      "subPath": "java",
-      "caret": 3720,
-      "view": {
-        "x": 0,
-        "y": 1639
+        "y": 307914
       },
       "active": true,
       "pinned": false,
@@ -357,6 +367,9 @@
   "cacheDir": "C:\\Users\\qaq\\AppData\\Local\\skylot\\jadx\\cache\\projects\\java版梦回西游3区251011.jar-011e17ab57204171d63dbcc82ab61cc8",
   "enableLiveReload": false,
   "searchHistory": [
+    "4142",
+    "4106",
+    "8227",
     "4680",
     "aZ()",
     "com.yinhan.kjava.main.a",

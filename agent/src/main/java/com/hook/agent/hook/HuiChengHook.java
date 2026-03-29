@@ -1,6 +1,6 @@
 package com.hook.agent.hook;
 
-import com.hook.agent.util.FakeNetPacket;
+import com.hook.agent.util.FakeReceiveNetPacket;
 import com.hook.agent.util.NetPacket;
 
 import java.io.IOException;
@@ -33,8 +33,8 @@ public class HuiChengHook extends MethodHook {
 
 
     private static void fakeTeleport(int mapId, String mapName, int x, int y, int av, int aw, int bw, int bx) throws Exception {
-        FakeNetPacket.fake(buildTransitionPacket());
-        FakeNetPacket.fake(buildMapPacket(mapId, mapName, x, y, av, aw, bw, bx));
+        FakeReceiveNetPacket.fake(buildTransitionPacket());
+        FakeReceiveNetPacket.fake(buildMapPacket(mapId, mapName, x, y, av, aw, bw, bx));
     }
 
     /**

@@ -2,9 +2,19 @@ package com.hook.agent.hook;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 
 public class NetSendHook extends MethodHook {
+    private static final Set<Short> detailPacket = new HashSet<Short>() {{
+//        8245`(地图资源分块)` → `8199(空间通道)` → `8199(目标图)` → `8198(地图实体)` → `8200(地图点集)`
+//        add((short) 8245);
+//        add((short) 8199);
+//        add((short) 8198);
+//        add((short) 8200);
+    }};
+
     public NetSendHook() {
         super("av", "a\\(Lw;\\)V");
     }
@@ -30,7 +40,13 @@ public class NetSendHook extends MethodHook {
         sb.append("id=0x").append(toHex4(packetId)).append(" (").append(packetId & 0xFFFF).append(")").append(", payloadLen=").append(payload == null ? 0 : payload.length).append(", childCount=").append(children == null ? 0 : children.size());
 
         if (payload != null && payload.length > 0) {
-            sb.append("  payload(hex):\n").append(hexDump(payload, HEX_DUMP_LIMIT));
+            int hexDumpLimit;
+            if (detailPacket.contains(packetId)) {
+                hexDumpLimit = Integer.MAX_VALUE;
+            } else {
+                hexDumpLimit = HEX_DUMP_LIMIT;
+            }
+            sb.append("  payload(hex):\n").append(hexDump(payload, hexDumpLimit));
         }
         if (children != null && !children.isEmpty()) {
             sb.append("\n  children: ").append(children.size()).append(" packets");
