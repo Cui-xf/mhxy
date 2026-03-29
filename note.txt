@@ -10,3 +10,8 @@ E:\WORK\mhxy\jdk8u472-b08\bin\java.exe -javaagent:E:\WORK\mhxy\agent\target\hook
 E:\WORK\mhxy\jdk8u472-b08\bin\java.exe  -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -javaagent:E:\WORK\mhxy\agent\target\hook-agent.jar  -cp "E:\WORK\mhxy\KEmulatorLite\KEmulator.jar" emulator.Emulator -jar "E:\WORK\mhxy\java版梦回西游3区251011.jar" -awt -lwj
 
 E:\WORK\mhxy\jdk8u472-b08\bin\java.exe  -javaagent:E:\WORK\mhxy\agent\target\hook-agent.jar  -cp "E:\WORK\mhxy\KEmulatorLite\KEmulator.jar" emulator.Emulator -jar "E:\WORK\mhxy\java版梦回西游3区251011.jar" -awt -lwj >>log.out
+
+
+E:\WORK\mhxy\jdk8u472-b08\bin\java.exe  -cp "E:\WORK\mhxy\KEmulatorLite\KEmulator.jar" emulator.Emulator -jar "C:\Users\qaq\j2mewtk\2.5.2\apps\Games\bin\games.jar" -awt -lwj
+
+E:\WORK\mhxy\jdk8u472-b08\bin\java.exe  -cp "E:\WORK\mhxy\KEmulatorLite\KEmulator.jar" emulator.Emulator -jar "C:\Users\qaq\j2mewtk\2.5.2\apps\mhxy_s\bin\mhxy_s.jar" -awt -lwj
