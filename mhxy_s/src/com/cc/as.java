@@ -3,6 +3,7 @@ package com.cc;
 import com.yinhan.kjava.main.a_MainCanvas;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
 public final class as {
@@ -28,7 +29,7 @@ public final class as {
       this.a = var2;
    }
 
-   public final void a(DataInputStream var1) {
+   public final void a(DataInputStream var1) throws IOException {
       boolean var2 = false;
       if (c > 0) {
          var2 = true;
@@ -103,19 +104,19 @@ public final class as {
       this.a.aq.b();
       this.a.aq.a("装备升星");
       this.a.aq.a(false);
-      this.l = Math.max((t.j << 1) + 25, 59);
-      this.m = t.j + 13;
+      this.l = Math.max((t_1.j << 1) + 25, 59);
+      this.m = t_1.j + 13;
       this.a.aq.a(this.l + this.m);
       this.a();
       this.a.aq.a((al)this.a.at);
       this.a.au.a("确定");
-      if (t.c > 220) {
+      if (t_1.c > 220) {
          this.a.aq.a((al)this.a.au);
       }
 
-      this.a.aq.a(t.f, t.g, t.d, t.e);
+      this.a.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.b();
-      ca.l = 0;
+      ca_1.l = 0;
       this.b.l = 0;
       this.a.j = this.a.k;
       this.b.j = this.b.k = 102;
@@ -123,15 +124,15 @@ public final class as {
 
    private void a() {
       if (k != null && !k.equals("")) {
-         this.a.at.a(k, t.i, (byte)1);
+         this.a.at.a(k, t_1.i, (byte)1);
       } else {
-         this.a.at.a((String)null, t.i, (byte)1);
+         this.a.at.a((String)null, t_1.i, (byte)1);
       }
    }
 
    private void b() {
       if (j != null) {
-         new bw_1(j, (short)t.i.stringWidth(j));
+         new bw_1(j, (short)t_1.i.stringWidth(j));
       }
 
    }

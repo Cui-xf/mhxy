@@ -47,15 +47,15 @@ public final class aq {
       this.b.aq.j();
       this.b.aq.a("帮派");
       this.b.aq.a(false);
-      this.b.ar.a((Image[])null, t.Z, (String[])null, (String[])null);
+      this.b.ar.a((Image[])null, t_1.Z, (String[])null, (String[])null);
       this.b.ar.a(var1);
-      this.b.at.b(t.aa[var1], t.i, (byte)2);
+      this.b.at.b(t_1.aa[var1], t_1.i, (byte)2);
       this.b.at.a((byte)1);
       this.b.au.a("选择");
       this.b.aq.a((al)this.b.ar);
       this.b.aq.a((al)this.b.at);
       this.b.aq.a((al)this.b.au);
-      this.b.aq.a(t.f, t.g, t.d, t.e);
+      this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
       this.a.e.j = this.a.e.k;
       this.a.j = this.a.k = 41;
@@ -68,7 +68,7 @@ public final class aq {
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 4 || var1 == 520) {
-            this.b.at.b(t.aa[this.b.ar.g()], t.i, (byte)2);
+            this.b.at.b(t_1.aa[this.b.ar.g()], t_1.i, (byte)2);
             this.b.at.a((byte)1);
          }
 
@@ -100,11 +100,11 @@ public final class aq {
                   break;
                case 5:
                   this.a.l = 1;
-                  ca.h = 0;
+                  ca_1.h = 0;
                   break;
                case 6:
                   this.a.l = 2;
-                  ca.h = 0;
+                  ca_1.h = 0;
                default:
                   return;
             }
@@ -164,9 +164,9 @@ public final class aq {
    }
 
    public final void a() {
-      this.a.am = ca.a("将交付" + this.u + "帮派基金作为招募费用，持续一周？", t.i, 140, "\t");
+      this.a.am = ca_1.a("将交付" + this.u + "帮派基金作为招募费用，持续一周？", t_1.i, 140, "\t");
       this.a.l = 3;
-      ca.h = 0;
+      ca_1.h = 0;
    }
 
    private void A() {
@@ -193,14 +193,14 @@ public final class aq {
       }
 
       var10000.a((Image[])null, var10002, (String[])null, var2);
-      this.b.at.b(bt_1.im == null ? null : bt_1.im[0], t.i, (byte)2);
+      this.b.at.b(bt_1.im == null ? null : bt_1.im[0], t_1.i, (byte)2);
       this.b.at.a((byte)1);
       this.b.au.a("响应");
       this.b.au.a(true);
       this.b.aq.a((al)this.b.ar);
       this.b.aq.a((al)this.b.at);
       this.b.aq.a((al)this.b.au);
-      this.b.aq.a(t.f, t.g, t.d, t.e);
+      this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
       this.b.j = this.b.k;
       this.a.j = this.a.k = 42;
@@ -213,12 +213,12 @@ public final class aq {
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-            this.b.at.b(bt_1.im == null ? null : bt_1.im[this.b.ar.g()], t.i, (byte)2);
+            this.b.at.b(bt_1.im == null ? null : bt_1.im[this.b.ar.g()], t_1.i, (byte)2);
             this.b.at.a((byte)1);
          }
 
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            ca.a(80 + t.f, t.j + 20 + this.b.ar.i() * t.j + t.g, bt_1.io[this.b.ar.g()] == 1 ? new String[]{"取消响应"} : new String[]{"响应"}, false);
+            ca_1.a(80 + t_1.f, t_1.j + 20 + this.b.ar.i() * t_1.j + t_1.g, bt_1.io[this.b.ar.g()] == 1 ? new String[]{"取消响应"} : new String[]{"响应"}, false);
             this.a.l = 1;
             return;
          }
@@ -269,7 +269,7 @@ public final class aq {
             if (var1 == 536870912) {
                this.a.l = 0;
             }
-         } else if (ca.o == 0) {
+         } else if (ca_1.o == 0) {
             if (bt_1.io[this.b.ar.g()] == 1) {
                byte[] var4;
                if ((var4 = bz_1.x((short)4243, bt_1.ad, bt_1.ik[this.b.ar.g()])) != null) {
@@ -303,14 +303,14 @@ public final class aq {
       this.b.aq.a("帮派招募");
       this.b.aq.a(false);
       this.b.ar.a((Image[])null, bt_1.iq, (String[])null, (String[])null);
-      this.b.at.b(bt_1.ir == null ? null : bt_1.ir[0], t.i, (byte)2);
+      this.b.at.b(bt_1.ir == null ? null : bt_1.ir[0], t_1.i, (byte)2);
       this.b.at.a((byte)1);
       this.b.au.a("申请");
       this.b.au.a(true);
       this.b.aq.a((al)this.b.ar);
       this.b.aq.a((al)this.b.at);
       this.b.aq.a((al)this.b.au);
-      this.b.aq.a(t.f, t.g, t.d, t.e);
+      this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
       this.b.j = this.b.k;
       this.a.j = this.a.k = 43;
@@ -325,12 +325,12 @@ public final class aq {
 
             this.b.aq.b(var1);
             if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-               this.b.at.b(bt_1.ir == null ? null : bt_1.ir[this.b.ar.g()], t.i, (byte)2);
+               this.b.at.b(bt_1.ir == null ? null : bt_1.ir[this.b.ar.g()], t_1.i, (byte)2);
                this.b.at.a((byte)1);
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-               ca.a(80 + t.f, t.j + 20 + this.b.ar.i() * t.j + t.g, bt_1.is[this.b.ar.g()] == 1 ? new String[]{"取消申请"} : new String[]{"申请"}, false);
+               ca_1.a(80 + t_1.f, t_1.j + 20 + this.b.ar.i() * t_1.j + t_1.g, bt_1.is[this.b.ar.g()] == 1 ? new String[]{"取消申请"} : new String[]{"申请"}, false);
                this.a.l = 1;
             }
          }
@@ -376,12 +376,12 @@ public final class aq {
             }
          }
       } else if (this.a.l == 1) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.a.l = 0;
             }
-         } else if (ca.o == 0) {
+         } else if (ca_1.o == 0) {
             if (bt_1.is[this.b.ar.g()] == 1) {
                String var2 = bt_1.ip[this.b.ar.g()];
                byte[] var3;
@@ -422,12 +422,12 @@ public final class aq {
       this.b.aq.j();
       this.b.aq.a("帮派管理");
       this.b.aq.a(false);
-      this.b.ar.a((Image[])null, t.ab, (String[])null, (String[])null);
+      this.b.ar.a((Image[])null, t_1.ab, (String[])null, (String[])null);
       if (var1) {
          this.b.ar.a(this.a.aA, this.a.aE);
-         this.b.at.b(t.ac[this.a.aE], t.i, (byte)2);
+         this.b.at.b(t_1.ac[this.a.aE], t_1.i, (byte)2);
       } else {
-         this.b.at.b(t.ac[0], t.i, (byte)2);
+         this.b.at.b(t_1.ac[0], t_1.i, (byte)2);
       }
 
       this.b.at.a((byte)1);
@@ -435,7 +435,7 @@ public final class aq {
       this.b.aq.a((al)this.b.ar);
       this.b.aq.a((al)this.b.at);
       this.b.aq.a((al)this.b.au);
-      this.b.aq.a(t.f, t.g, t.d, t.e);
+      this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
       this.b.j = this.b.k;
       this.a.j = this.a.k = 45;
@@ -448,7 +448,7 @@ public final class aq {
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-            this.b.at.b(t.ac[this.b.ar.g()], t.i, (byte)2);
+            this.b.at.b(t_1.ac[this.b.ar.g()], t_1.i, (byte)2);
             this.b.at.a((byte)1);
          }
 
@@ -521,7 +521,7 @@ public final class aq {
       this.b.au.a(true);
       this.b.aq.a((al)this.b.ar);
       this.b.aq.a((al)this.b.au);
-      this.b.aq.a(t.f, t.g, t.d, t.e);
+      this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
       this.b.j = this.b.k;
       this.a.j = this.a.k = 46;
@@ -534,7 +534,7 @@ public final class aq {
          }
 
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            ca.a(80 + t.f, t.j + 20 + this.b.ar.i() * t.j + t.g, new String[]{"详情", "接纳", "拒绝"}, false);
+            ca_1.a(80 + t_1.f, t_1.j + 20 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"详情", "接纳", "拒绝"}, false);
             this.a.l = 1;
             return;
          }
@@ -580,13 +580,13 @@ public final class aq {
             }
          }
       } else if (this.a.l == 1) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.a.l = 0;
                return;
             }
-         } else if (ca.o == 0) {
+         } else if (ca_1.o == 0) {
             if (bt_1.ix[this.b.ar.g()] != 1) {
                this.b.b("对方不在线");
                return;
@@ -600,7 +600,7 @@ public final class aq {
 
             a_MainCanvas.i.a(new w((short)4110, var2));
             this.b.a((String)null);
-         } else if (ca.o == 1) {
+         } else if (ca_1.o == 1) {
             byte[] var3;
             if ((var3 = bz_1.m((short)4228, bt_1.ad, bt_1.it[this.b.ar.g()])) == null) {
                this.b.b("获取上传指令数据错误!");
@@ -609,7 +609,7 @@ public final class aq {
 
             a_MainCanvas.i.a(new w((short)4228, var3));
             this.b.a((String)null);
-         } else if (ca.o == 2) {
+         } else if (ca_1.o == 2) {
             byte[] var4;
             if ((var4 = bz_1.m((short)4229, bt_1.ad, bt_1.it[this.b.ar.g()])) == null) {
                this.b.b("获取上传指令数据错误!");
@@ -695,12 +695,12 @@ public final class aq {
          this.b.au.a(true);
          this.b.aq.a((al)this.b.ar);
          this.b.aq.a((al)this.b.au);
-         this.b.aq.a(t.f, t.g, t.d, t.e);
+         this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       } else if (var1 == 1) {
          this.b.as.a = 1;
-         this.b.at.b(bt_1.iH, t.i, (byte)2);
+         this.b.at.b(bt_1.iH, t_1.i, (byte)2);
          this.b.aq.a((al)this.b.at);
-         this.b.aq.a(t.f, t.g, t.d, t.e);
+         this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       } else if (var1 == 2) {
          this.b.as.a = 2;
          String[] var4 = null;
@@ -729,16 +729,16 @@ public final class aq {
          this.b.au.a(true);
          this.b.aq.a((al)this.b.ar);
          this.b.aq.a((al)this.b.au);
-         this.b.aq.a(t.f, t.g, t.d, t.e);
-         ca.l = 0;
+         this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+         ca_1.l = 0;
       } else if (var1 == 3) {
          this.b.as.a = 3;
-         this.b.at.b(bt_1.kl, t.i, (byte)2);
+         this.b.at.b(bt_1.kl, t_1.i, (byte)2);
          this.b.au.a("确定");
          this.b.au.a(true);
          this.b.aq.a((al)this.b.at);
          this.b.aq.a((al)this.b.au);
-         this.b.aq.a(t.f, t.g, t.d, t.e);
+         this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       }
 
       this.a.l = 0;
@@ -784,13 +784,13 @@ public final class aq {
                   }
                } else if (bt_1.iD[this.b.ar.g()] == 1) {
                   if (!bt_1.iy[this.b.ar.g()].equals(bt_1.ad)) {
-                     ca.a(80 + t.f, 2 * t.j + 20 + this.b.ar.i() * t.j + t.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+                     ca_1.a(80 + t_1.f, 2 * t_1.j + 20 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
                      this.a.l = 1;
                      this.a.aE = this.b.ar.g();
                      this.a.aA = this.b.ar.h();
                   }
                } else if (!bt_1.iy[this.b.ar.g()].equals(bt_1.ad)) {
-                  ca.a(80 + t.f, 2 * t.j + 20 + this.b.ar.i() * t.j + t.g, new String[]{"查看"}, false);
+                  ca_1.a(80 + t_1.f, 2 * t_1.j + 20 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"查看"}, false);
                   this.a.l = 1;
                   this.a.aE = this.b.ar.g();
                   this.a.aA = this.b.ar.h();
@@ -875,7 +875,7 @@ public final class aq {
                if (this.b.ar.g() == this.b.ar.h()) {
                   this.b.a((String)"请输入要搜索的帮派名称", (int)0);
                } else if (bt_1.jY != null) {
-                  ca.a(80 + t.f, 2 * t.j + 20 + this.b.ar.i() * t.j + t.g, new String[]{"查看", "外交", "宣战"}, true);
+                  ca_1.a(80 + t_1.f, 2 * t_1.j + 20 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"查看", "外交", "宣战"}, true);
                   this.a.l = 7;
                }
             }
@@ -956,29 +956,29 @@ public final class aq {
             this.b.b("聊天消息已发送!");
          }
 
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.a.l = 0;
                return;
             }
          } else {
-            if (ca.o == 0) {
-               ca.a(80 + t.f, 2 * t.j + 20 + this.b.ar.i() * t.j + t.g, new String[]{"属性", "装备"}, false);
+            if (ca_1.o == 0) {
+               ca_1.a(80 + t_1.f, 2 * t_1.j + 20 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"属性", "装备"}, false);
                this.a.l = 2;
                return;
             }
 
-            if (ca.o == 1) {
+            if (ca_1.o == 1) {
                this.a.aS = bt_1.iy[this.b.ar.g()];
                this.a.aT = 4;
                this.b.a((String)"聊天", (int)0);
                return;
             }
 
-            if (ca.o == 2) {
+            if (ca_1.o == 2) {
                if (bt_1.bs == -1) {
-                  ca.a(80 + t.f, 2 * t.j + 20 + this.b.ar.i() * t.j + t.g, new String[]{"自由", "跟随"}, false);
+                  ca_1.a(80 + t_1.f, 2 * t_1.j + 20 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"自由", "跟随"}, false);
                   this.a.l = 6;
                   return;
                }
@@ -987,38 +987,38 @@ public final class aq {
                return;
             }
 
-            if (ca.o == 3) {
-               ca.a(80 + t.f, 2 * t.j + 20 + this.b.ar.i() * t.j + t.g, new String[]{"物品", "宠物"}, false);
+            if (ca_1.o == 3) {
+               ca_1.a(80 + t_1.f, 2 * t_1.j + 20 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"物品", "宠物"}, false);
                this.a.l = 5;
                return;
             }
 
-            if (ca.o == 4) {
+            if (ca_1.o == 4) {
                this.a.a(bt_1.iy[this.b.ar.g()]);
                this.a.l = 0;
                return;
             }
 
-            if (ca.o == 5) {
+            if (ca_1.o == 5) {
                this.a.b(bt_1.iy[this.b.ar.g()]);
                this.a.l = 0;
                return;
             }
          }
       } else if (this.a.l == 2) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                if (bt_1.iD[this.b.ar.g()] == 1) {
-                  ca.a(80 + t.f, 2 * t.j + 20 + this.b.ar.i() * t.j + t.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+                  ca_1.a(80 + t_1.f, 2 * t_1.j + 20 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
                } else {
-                  ca.a(80 + t.f, 2 * t.j + 20 + this.b.ar.i() * t.j + t.g, new String[]{"查看"}, false);
+                  ca_1.a(80 + t_1.f, 2 * t_1.j + 20 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"查看"}, false);
                }
 
                this.a.l = 1;
                return;
             }
-         } else if (ca.o == 0) {
+         } else if (ca_1.o == 0) {
             byte[] var6;
             if ((var6 = bz_1.a((short)4110, bt_1.ad, bt_1.iy[this.b.ar.g()], (byte)1)) == null) {
                this.b.b("获取上传指令数据错误!");
@@ -1027,7 +1027,7 @@ public final class aq {
 
             a_MainCanvas.i.a(new w((short)4110, var6));
             this.b.a((String)null);
-         } else if (ca.o == 1) {
+         } else if (ca_1.o == 1) {
             byte[] var7;
             if ((var7 = bz_1.b((short)4111, bt_1.ad, bt_1.iy[this.b.ar.g()])) == null) {
                this.b.b("获取上传指令数据错误!");
@@ -1065,17 +1065,17 @@ public final class aq {
             return;
          }
       } else if (this.a.l == 5) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
-               ca.a(80 + t.f, 2 * t.j + 20 + this.b.ar.i() * t.j + t.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
-               ca.o = 3;
+               ca_1.a(80 + t_1.f, 2 * t_1.j + 20 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+               ca_1.o = 3;
                this.a.l = 1;
                return;
             }
          } else {
             byte[] var8;
-            if ((var8 = bz_1.b((short)4124, bt_1.ad, bt_1.iy[this.b.ar.g()], (byte)((byte)ca.o))) == null) {
+            if ((var8 = bz_1.b((short)4124, bt_1.ad, bt_1.iy[this.b.ar.g()], (byte)((byte)ca_1.o))) == null) {
                this.b.b("获取上传指令数据错误!");
                return;
             }
@@ -1084,16 +1084,16 @@ public final class aq {
             this.b.a((String)null);
          }
       } else if (this.a.l == 6) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
-               ca.a(80 + t.f, 2 * t.j + 20 + this.b.ar.i() * t.j + t.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
-               ca.o = 2;
+               ca_1.a(80 + t_1.f, 2 * t_1.j + 20 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+               ca_1.o = 2;
                this.a.l = 1;
                return;
             }
          } else {
-            var1 = ca.o == 0 ? 1 : 0;
+            var1 = ca_1.o == 0 ? 1 : 0;
             if (bt_1.bs == 0) {
                this.b.b("队员不能发送组队邀请！");
             } else if (bt_1.bs == 1 && bt_1.q != null && bt_1.q.length >= 3) {
@@ -1111,45 +1111,45 @@ public final class aq {
             }
          }
       } else if (this.a.l == 7) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.a.l = 0;
                return;
             }
          } else {
-            this.b.aw = ca.o;
-            if (ca.o == 0) {
+            this.b.aw = ca_1.o;
+            if (ca_1.o == 0) {
                this.b(bt_1.jY[this.b.ar.g() - 1]);
                return;
             }
 
-            if (ca.o == 1) {
-               ca.a(80 + t.f, 2 * t.j + 20 + this.b.ar.i() * t.j + t.g, new String[]{"中立", "敌对"}, true);
+            if (ca_1.o == 1) {
+               ca_1.a(80 + t_1.f, 2 * t_1.j + 20 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"中立", "敌对"}, true);
                this.a.l = 8;
                return;
             }
 
-            if (ca.o == 2) {
+            if (ca_1.o == 2) {
                this.a.l = 9;
-               ca.h = 0;
+               ca_1.h = 0;
                return;
             }
          }
       } else if (this.a.l == 8) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.a.l = 0;
                return;
             }
          } else {
-            if (ca.o == 0) {
+            if (ca_1.o == 0) {
                this.a((byte)1, bt_1.jY[this.b.ar.g() - 1]);
                return;
             }
 
-            if (ca.o == 1) {
+            if (ca_1.o == 1) {
                this.a((byte)2, bt_1.jY[this.b.ar.g() - 1]);
                return;
             }
@@ -1189,7 +1189,7 @@ public final class aq {
       this.b.au.a(true);
       this.b.aq.a((al)this.b.ar);
       this.b.aq.a((al)this.b.au);
-      this.b.aq.a(t.f, t.g, t.d, t.e);
+      this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
       this.b.j = this.b.k;
       this.a.j = this.a.k = 48;
@@ -1216,7 +1216,7 @@ public final class aq {
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-               ca.a(80 + t.f, t.j + 20 + this.b.ar.i() * t.j + t.g, new String[]{"任免", "开除"}, false);
+               ca_1.a(80 + t_1.f, t_1.j + 20 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"任免", "开除"}, false);
                this.a.l = 1;
                this.v = this.b.ar.g();
             }
@@ -1269,13 +1269,13 @@ public final class aq {
             }
          }
       } else if (this.a.l == 1) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.a.l = 0;
                return;
             }
-         } else if (ca.o == 0) {
+         } else if (ca_1.o == 0) {
             byte[] var3;
             if ((var3 = bz_1.p((short)4241, bt_1.ad)) == null) {
                this.b.b("获取上传指令数据错误!");
@@ -1284,9 +1284,9 @@ public final class aq {
 
             a_MainCanvas.i.a(new w((short)4241, var3));
             this.b.a((String)null);
-         } else if (ca.o == 1) {
+         } else if (ca_1.o == 1) {
             this.a.l = 3;
-            ca.h = 0;
+            ca_1.h = 0;
             return;
          }
       } else if (this.a.l == 2) {
@@ -1295,7 +1295,7 @@ public final class aq {
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-            this.b.at.b(bt_1.je[this.b.ar.g()], t.i, (byte)2);
+            this.b.at.b(bt_1.je[this.b.ar.g()], t_1.i, (byte)2);
             this.b.at.a((byte)1);
          }
 
@@ -1342,13 +1342,13 @@ public final class aq {
       this.b.aq.a("职务列表");
       this.b.aq.a(true);
       this.b.ar.a((Image[])null, bt_1.jd, (String[])null, (String[])null);
-      this.b.at.b(bt_1.je[this.b.ar.g()], t.i, (byte)2);
+      this.b.at.b(bt_1.je[this.b.ar.g()], t_1.i, (byte)2);
       this.b.at.a((byte)1);
       this.b.au.a("确定");
       this.b.aq.a((al)this.b.ar);
       this.b.aq.a((al)this.b.at);
       this.b.aq.a((al)this.b.au);
-      this.b.aq.a(t.f, t.g, t.d, t.e);
+      this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 2;
       this.b.j = this.b.k;
       this.a.j = this.a.k = 48;
@@ -1371,11 +1371,11 @@ public final class aq {
       this.b.aq.j();
       this.b.aq.a("帮派公告");
       this.b.aq.a(false);
-      this.b.at.b(bt_1.jf, t.i, (byte)2);
+      this.b.at.b(bt_1.jf, t_1.i, (byte)2);
       this.b.au.a("确定");
       this.b.aq.a((al)this.b.at);
       this.b.aq.a((al)this.b.au);
-      this.b.aq.a(t.f, t.g, t.d, t.e);
+      this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
       this.b.j = this.b.k;
       this.a.j = this.a.k = 49;
@@ -1385,12 +1385,12 @@ public final class aq {
       this.b.aq.j();
       this.b.aq.a("宝库管理");
       this.b.aq.a(false);
-      this.b.ar.a((Image[])null, t.ad, (String[])null, (String[])null);
+      this.b.ar.a((Image[])null, t_1.ad, (String[])null, (String[])null);
       if (var1) {
          this.b.ar.a(this.a.aA, this.a.aE);
-         this.b.at.b(bt_1.iI[this.a.aE], t.i, (byte)2);
+         this.b.at.b(bt_1.iI[this.a.aE], t_1.i, (byte)2);
       } else {
-         this.b.at.b(bt_1.iI[0], t.i, (byte)2);
+         this.b.at.b(bt_1.iI[0], t_1.i, (byte)2);
       }
 
       this.b.at.a((byte)1);
@@ -1398,9 +1398,9 @@ public final class aq {
       this.b.aq.a((al)this.b.ar);
       this.b.aq.a((al)this.b.at);
       this.b.aq.a((al)this.b.au);
-      this.b.aq.a(t.f, t.g, t.d, t.e);
-      ca.h = 0;
-      ca.g = 0;
+      this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+      ca_1.h = 0;
+      ca_1.g = 0;
       this.b.a = 0;
       this.a.l = 0;
       this.b.j = this.b.k;
@@ -1414,7 +1414,7 @@ public final class aq {
          }
 
          if (var1 == 514 || var1 == 520 || var1 == 1 || var1 == 4) {
-            this.b.at.b(bt_1.iI[this.b.ar.g()], t.i, (byte)2);
+            this.b.at.b(bt_1.iI[this.b.ar.g()], t_1.i, (byte)2);
             this.b.at.a((byte)1);
          }
 
@@ -1466,12 +1466,12 @@ public final class aq {
                case 9:
                   this.a.l = 6;
                   this.a.at = "您确定要消耗一定物品提升帮派人气吗？";
-                  ca.h = 0;
+                  ca_1.h = 0;
                   break;
                case 10:
                   this.a.l = 7;
                   this.a.at = "您确定要消耗一定物品扩容帮派宝库吗？";
-                  ca.h = 0;
+                  ca_1.h = 0;
                default:
                   return;
             }
@@ -1520,8 +1520,8 @@ public final class aq {
                   }
 
                   if (var1 == 536870912) {
-                     ca.l = 0;
-                     ca.h = 0;
+                     ca_1.l = 0;
+                     ca_1.h = 0;
                      this.a.l = 0;
                      return;
                   }
@@ -1533,8 +1533,8 @@ public final class aq {
                   }
 
                   if (var1 == 536870912) {
-                     ca.l = 0;
-                     ca.h = 0;
+                     ca_1.l = 0;
+                     ca_1.h = 0;
                      this.a.l = 0;
                   }
 
@@ -1557,7 +1557,7 @@ public final class aq {
 
                this.a.at = "发布" + this.a.ag + "天帮派任务\t是否确认？";
                this.a.m = 1;
-               ca.h = 0;
+               ca_1.h = 0;
                return;
             }
 
@@ -1569,7 +1569,7 @@ public final class aq {
                if (var1 == 536870912) {
                   this.a.at = null;
                   this.a.m = 0;
-                  ca.h = 0;
+                  ca_1.h = 0;
                   return;
                }
 
@@ -1584,7 +1584,7 @@ public final class aq {
                this.b.b("获取上传指令数据错误!");
             }
 
-            ca.h = 0;
+            ca_1.h = 0;
             this.a.m = 0;
             return;
          }
@@ -1652,7 +1652,7 @@ public final class aq {
       this.b.aq.j();
       this.b.aq.a("贡献物品");
       this.b.aq.a(false);
-      String[] var1 = t.b <= 176 ? new String[]{"", "", "", "", ""} : t.ae;
+      String[] var1 = t_1.b <= 176 ? new String[]{"", "", "", "", ""} : t_1.ae;
       this.b.ar.a(ao_1.b(this.w), var1, (String[])null, (String[])null);
       short var2 = a_MainCanvas.L.c;
       this.b.aq.f = var2;
@@ -1660,7 +1660,7 @@ public final class aq {
       this.b.au.a(new String[]{"确定", "返回"});
       this.b.aq.a((al)this.b.ar);
       this.b.aq.a((al)this.b.au);
-      this.b.aq.a(t.f, t.g, t.d, t.e);
+      this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
       this.b.j = this.b.k;
       this.a.j = this.a.k = 51;
@@ -1992,11 +1992,11 @@ public final class aq {
       this.b.aq.j();
       this.b.aq.a("宝库配置");
       this.b.aq.a(false);
-      this.b.ar.a(ao_1.b(this.A), t.af, (String[])null, (String[])null);
+      this.b.ar.a(ao_1.b(this.A), t_1.af, (String[])null, (String[])null);
       this.b.au.a(new String[]{"确定", "返回"});
       this.b.aq.a((al)this.b.ar);
       this.b.aq.a((al)this.b.au);
-      this.b.aq.a(t.f, t.g, t.d, t.e);
+      this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
       this.b.j = this.b.k;
       this.a.j = this.a.k = 114;
@@ -2200,27 +2200,27 @@ public final class aq {
          for(int var2 = 0; var2 < this.b.ar.f(); ++var2) {
             int var3 = this.b.ar.a() + this.b.ar.c() - a_MainCanvas.C.b - 126;
             int var4 = this.b.ar.b() + 4 + var2 * this.b.ar.e();
-            ca.a(var1, var2 == 1 ? ao_1.a(this.b.l, (long)this.i[var2]) : this.i[var2] + "%", var3, var4, 122);
+            ca_1.a(var1, var2 == 1 ? ao_1.a(this.b.l, (long)this.i[var2]) : this.i[var2] + "%", var3, var4, 122);
             var3 = 122;
             if (this.x != null && this.x.length > var2) {
                this.x[var2][0] = var3;
                this.x[var2][1] = var4;
                this.x[var2][2] = 12;
-               this.x[var2][3] = t.j;
+               this.x[var2][3] = t_1.j;
             }
 
             if (this.y != null && this.y.length > var2) {
                this.y[var2][0] = var3 + 122 - 12;
                this.y[var2][1] = var4;
                this.y[var2][2] = 12;
-               this.y[var2][3] = t.j;
+               this.y[var2][3] = t_1.j;
             }
 
             if (this.z != null) {
                this.z[var2][0] = var3 + 12;
                this.z[var2][1] = var4;
                this.z[var2][2] = 98;
-               this.z[var2][3] = t.j;
+               this.z[var2][3] = t_1.j;
             }
          }
       }
@@ -2250,13 +2250,13 @@ public final class aq {
    public final void o() {
       this.a.l = 0;
       this.b.aw = 0;
-      ca.l = 0;
+      ca_1.l = 0;
       this.b.aq.b();
       this.b.aq.a("帮派宝库");
       this.b.aq.a(true);
       this.b.as.a(new String[]{"宝库一", "宝库二", "宝库三"});
       this.b.as.a((byte)1);
-      this.b.aq.a(t.e <= 240 ? 79 : 120);
+      this.b.aq.a(t_1.e <= 240 ? 79 : 120);
       if (this.a.j != 115 && this.a.j != 64) {
          this.a.aq = this.a.ar = 0;
       } else {
@@ -2267,9 +2267,9 @@ public final class aq {
 
       int var1 = (this.b.as.a << 5) + (this.a.ar << 3) + this.a.aq;
       if (bt_1.iN != null && var1 < bt_1.iN.length) {
-         this.b.at.a(bt_1.ja[var1], t.i, (byte)1);
+         this.b.at.a(bt_1.ja[var1], t_1.i, (byte)1);
       } else {
-         this.b.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", t.i, (byte)1);
+         this.b.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", t_1.i, (byte)1);
       }
 
       this.b.au.a("操作");
@@ -2278,7 +2278,7 @@ public final class aq {
       this.b.aq.a((al)this.b.as);
       this.b.aq.a((al)this.b.at);
       this.b.aq.a((al)this.b.au);
-      this.b.aq.a(t.f, t.g, t.d, t.e);
+      this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.b.j = this.b.k;
       this.a.j = this.a.k = 115;
    }
@@ -2286,13 +2286,13 @@ public final class aq {
    public final void p() {
       int var1 = (this.b.as.a << 5) + (this.a.ar << 3) + this.a.aq;
       if (bt_1.iN != null && var1 < bt_1.iN.length) {
-         this.b.at.a(bt_1.ja[var1], t.i, (byte)1);
+         this.b.at.a(bt_1.ja[var1], t_1.i, (byte)1);
       } else {
-         this.b.at.a("没有物品，按3、9键可以上下翻滚此属性描述框", t.i, (byte)1);
+         this.b.at.a("没有物品，按3、9键可以上下翻滚此属性描述框", t_1.i, (byte)1);
       }
 
       this.b.at.a((byte)1);
-      ca.l = 0;
+      ca_1.l = 0;
    }
 
    public final void p(int var1) {
@@ -2342,30 +2342,30 @@ public final class aq {
             return;
          } else if (bt_1.iN != null && var2 < bt_1.iN.length) {
             String[] var10 = new String[]{"查看", "取出", "丢弃", "整理"};
-            ca.a(this.a.au[(this.a.ar << 3) + this.a.aq][0] - 17, this.a.au[(this.a.ar << 3) + this.a.aq][1] + 17, var10, false);
+            ca_1.a(this.a.au[(this.a.ar << 3) + this.a.aq][0] - 17, this.a.au[(this.a.ar << 3) + this.a.aq][1] + 17, var10, false);
             this.a.l = 1;
             return;
          }
       } else if (this.a.l == 1) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 517 && var1 != 1073741824) {
             if (var1 == 536870912) {
                this.a.l = 0;
                return;
             }
          } else if (bt_1.iN != null && var2 < bt_1.iN.length && bt_1.iQ[var2] > 0) {
-            switch (ca.o) {
+            switch (ca_1.o) {
                case 0:
                   if (!bt_1.a(bt_1.iP[var2])) {
                      this.b.aq.j();
                      this.b.aq.b();
                      this.b.aq.a("宝物详情");
                      if (bt_1.ja != null && var2 < bt_1.ja.length && bt_1.ja[var2] != null) {
-                        this.b.at.a(bt_1.iO[var2] + "：\t" + bt_1.ja[var2], t.i, (byte)1);
+                        this.b.at.a(bt_1.iO[var2] + "：\t" + bt_1.ja[var2], t_1.i, (byte)1);
                      }
 
                      this.b.aq.a((al)this.b.at);
-                     this.b.aq.a(t.f, t.g, t.d, t.e);
+                     this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
                      this.a.l = 2;
                   } else {
                      var1 = var2;
@@ -2406,9 +2406,9 @@ public final class aq {
                      this.a.a((long) bt_1.iQ[var2]);
                      this.a.l = 3;
                   } else {
-                     ca.h = 0;
+                     ca_1.h = 0;
                      String var8;
-                     int var15 = ca.a(var8 = bt_1.iO[var2]) != -1 ? ca.a(var8) : 15138723;
+                     int var15 = ca_1.a(var8 = bt_1.iO[var2]) != -1 ? ca_1.a(var8) : 15138723;
                      this.a.at = "您确定取出" + (var15 != 15138723 ? var8.substring(3, var8.length()) : var8) + "X" + bt_1.iQ[var2] + "？";
                      this.a.l = 5;
                   }
@@ -2418,9 +2418,9 @@ public final class aq {
                      this.a.a((long) bt_1.iQ[var2]);
                      this.a.l = 6;
                   } else {
-                     ca.h = 0;
+                     ca_1.h = 0;
                      String var7;
-                     int var14 = ca.a(var7 = bt_1.iO[var2]) != -1 ? ca.a(var7) : 15138723;
+                     int var14 = ca_1.a(var7 = bt_1.iO[var2]) != -1 ? ca_1.a(var7) : 15138723;
                      this.a.at = "您确定丢弃" + (var14 != 15138723 ? var7.substring(3, var7.length()) : var7) + "X" + bt_1.iQ[var2] + "？";
                      this.a.l = 4;
                   }
@@ -2458,12 +2458,12 @@ public final class aq {
                }
 
                this.a.l = 0;
-               ca.h = 0;
+               ca_1.h = 0;
                return;
             }
 
             if (var1 == 536870912) {
-               ca.h = 0;
+               ca_1.h = 0;
                this.a.l = 0;
                return;
             }
@@ -2475,13 +2475,13 @@ public final class aq {
                   this.d(bt_1.iQ[var2]);
                }
 
-               ca.h = 0;
+               ca_1.h = 0;
                this.a.l = 0;
                return;
             }
 
             if (var1 == 536870912) {
-               ca.h = 0;
+               ca_1.h = 0;
                this.a.l = 0;
             }
          }
@@ -2493,19 +2493,19 @@ public final class aq {
                return;
             }
          } else if (bt_1.iN != null && var2 < bt_1.iN.length && bt_1.iQ[var2] > 0) {
-            ca.h = 0;
+            ca_1.h = 0;
             if (this.a.l == 3) {
-               ca.h = 0;
+               ca_1.h = 0;
                String var5;
-               int var13 = ca.a(var5 = bt_1.iO[var2]) != -1 ? ca.a(var5) : 15138723;
+               int var13 = ca_1.a(var5 = bt_1.iO[var2]) != -1 ? ca_1.a(var5) : 15138723;
                this.a.at = "您确定取出" + (var13 != 15138723 ? var5.substring(3, var5.length()) : var5) + "X" + this.a.ag + "？";
                this.a.l = 5;
                return;
             }
 
-            ca.h = 0;
+            ca_1.h = 0;
             String var4;
-            int var3 = ca.a(var4 = bt_1.iO[var2]) != -1 ? ca.a(var4) : 15138723;
+            int var3 = ca_1.a(var4 = bt_1.iO[var2]) != -1 ? ca_1.a(var4) : 15138723;
             this.a.at = "您确定丢弃" + (var3 != 15138723 ? var4.substring(3, var4.length()) : var4) + "X" + this.a.ag + "？";
             this.a.l = 4;
             return;
@@ -2526,14 +2526,14 @@ public final class aq {
 
    public final void b(Graphics var1) {
       if (this.b.aq != null) {
-         int var2 = t.e <= 240 ? 79 : 120;
+         int var2 = t_1.e <= 240 ? 79 : 120;
          this.b.aq.a(var1);
-         ca.a(var1, this.b.aq.a + 5, this.b.aq.b + 29 + this.b.as.b, this.b.aq.c - 11, var2, 1);
-         ca.a(var1);
+         ca_1.a(var1, this.b.aq.a + 5, this.b.aq.b + 29 + this.b.as.b, this.b.aq.c - 11, var2, 1);
+         ca_1.a(var1);
          Graphics var3 = var1;
          aq var11 = this;
          int var4 = (this.b.aq.c - 11 - (ao_1.x.b << 3)) / 9;
-         int var5 = ((t.e <= 240 ? 79 : 120) - 6 - (ao_1.x.b << 2)) / 5;
+         int var5 = ((t_1.e <= 240 ? 79 : 120) - 6 - (ao_1.x.b << 2)) / 5;
          int var6 = this.b.aq.a + 8 + var4;
          int var7 = this.b.aq.b + 33 + this.b.as.b + var5;
 
@@ -2543,7 +2543,7 @@ public final class aq {
          }
 
          int var12 = 0;
-         ca.d(var3, var6 + var11.a.aq * (ao_1.x.b + var4), var7 + var11.a.ar * (ao_1.x.b + var5), 17, 17);
+         ca_1.d(var3, var6 + var11.a.aq * (ao_1.x.b + var4), var7 + var11.a.ar * (ao_1.x.b + var5), 17, 17);
          if (bt_1.iR != null) {
             for(int var9 = var11.b.as.a << 5; var9 < (bt_1.iR.length > var11.b.as.a + 1 << 5 ? var11.b.as.a + 1 << 5 : bt_1.iR.length); ++var9) {
                int var10 = var9 % 32;
@@ -2561,15 +2561,15 @@ public final class aq {
             }
 
             if (var12 >= 0 && var12 < bt_1.iR.length && var12 == (var11.a.ar << 3) + var11.a.aq + 32 * var11.b.as.a) {
-               ca.a(var3, bt_1.iO[var12] + "X" + bt_1.iQ[var12], bt_1.iZ[var12], var6 + var11.a.aq * (ao_1.x.b + var4) + ao_1.x.b / 2, var7 + var11.a.ar * (ao_1.x.b + var5) + ao_1.x.b / 2);
+               ca_1.a(var3, bt_1.iO[var12] + "X" + bt_1.iQ[var12], bt_1.iZ[var12], var6 + var11.a.aq * (ao_1.x.b + var4) + ao_1.x.b / 2, var7 + var11.a.ar * (ao_1.x.b + var5) + ao_1.x.b / 2);
             } else if ((var11.b.as.a << 5) + (var11.a.ar << 3) + var11.a.aq >= bt_1.iJ) {
-               ca.a(var3, "未开启", -1L, var6 + var11.a.aq * (ao_1.x.b + var4) + ao_1.x.b / 2, var7 + var11.a.ar * (ao_1.x.b + var5) + ao_1.x.b / 2);
+               ca_1.a(var3, "未开启", -1L, var6 + var11.a.aq * (ao_1.x.b + var4) + ao_1.x.b / 2, var7 + var11.a.ar * (ao_1.x.b + var5) + ao_1.x.b / 2);
             }
          }
       }
 
       if (this.a.l == 1) {
-         ca.c(var1);
+         ca_1.c(var1);
       } else {
          if (this.a.l == 2) {
             if (this.b.aq != null) {
@@ -2583,7 +2583,7 @@ public final class aq {
             }
 
             if (this.a.l == 5 || this.a.l == 4) {
-               ca.a(var1, this.a.at, new String[]{"确定", "取消"});
+               ca_1.a(var1, this.a.at, new String[]{"确定", "取消"});
             }
          }
 
@@ -2610,38 +2610,38 @@ public final class aq {
 
    public final void c(Graphics var1) {
       if (this.a.l == 0 && this.b.aq != null) {
-         ca.a(var1, (Image) a_MainCanvas.L.a, (short) a_MainCanvas.L.b, this.b.aq.a + 5, this.b.aq.b + this.b.aq.d - 53, this.b.aq.c - 10, a_MainCanvas.L.c);
+         ca_1.a(var1, (Image) a_MainCanvas.L.a, (short) a_MainCanvas.L.b, this.b.aq.a + 5, this.b.aq.b + this.b.aq.d - 53, this.b.aq.c - 10, a_MainCanvas.L.c);
          this.b.aq.a(var1);
 
          for(int var2 = 0; var2 < this.b.ar.f(); ++var2) {
             int var3 = this.b.ar.a() + this.b.ar.c() - a_MainCanvas.C.b - 130;
             int var4 = this.b.ar.b() + 4 + var2 * this.b.ar.e();
-            ca.a(var1, var2 == 0 ? ao_1.a(this.b.l, this.j) : "" + this.k[var2], var3, var4, 124);
+            ca_1.a(var1, var2 == 0 ? ao_1.a(this.b.l, this.j) : "" + this.k[var2], var3, var4, 124);
             var3 = 124;
             if (this.l != null && this.l.length > var2) {
                this.l[var2][0] = var3;
                this.l[var2][1] = var4;
                this.l[var2][2] = 12;
-               this.l[var2][3] = t.j;
+               this.l[var2][3] = t_1.j;
             }
 
             if (this.m != null && this.m.length > var2) {
                this.m[var2][0] = var3 + 124 - 12;
                this.m[var2][1] = var4;
                this.m[var2][2] = 12;
-               this.m[var2][3] = t.j;
+               this.m[var2][3] = t_1.j;
             }
 
             if (this.n != null && var2 == 0) {
                this.n[0] = var3 + 12;
                this.n[1] = var4;
                this.n[2] = 100;
-               this.n[3] = t.j;
+               this.n[3] = t_1.j;
             }
          }
 
          long var7 = (this.j + (long)this.B * bt_1.jg + (long)this.C * bt_1.ji + (long)this.D * bt_1.jk + (long)this.E * bt_1.jm) / 300L;
-         ca.a(var1, (String)("得到功勋：" + var7), (int)(this.b.aq.a + this.b.aq.c / 2), this.b.aq.b + this.b.aq.d - 51 + (a_MainCanvas.M.a.getHeight() - t.j) / 2, 17, 16776666, 0);
+         ca_1.a(var1, (String)("得到功勋：" + var7), (int)(this.b.aq.a + this.b.aq.c / 2), this.b.aq.b + this.b.aq.d - 51 + (a_MainCanvas.M.a.getHeight() - t_1.j) / 2, 17, 16776666, 0);
       }
 
    }
@@ -2672,7 +2672,7 @@ public final class aq {
       this.b.aq.a(true);
       this.b.as.a(new String[]{"购买", "仓库"});
       this.b.ar.a((Image[])null, bt_1.jp, (String[])null, (String[])null);
-      this.b.at.b(bt_1.jq == null ? null : bt_1.jq[this.b.ar.g()], t.i, (byte)2);
+      this.b.at.b(bt_1.jq == null ? null : bt_1.jq[this.b.ar.g()], t_1.i, (byte)2);
       this.b.at.a((byte)1);
       this.b.au.a("购买");
       this.b.au.a(true);
@@ -2680,7 +2680,7 @@ public final class aq {
       this.b.aq.a((al)this.b.ar);
       this.b.aq.a((al)this.b.at);
       this.b.aq.a((al)this.b.au);
-      this.b.aq.a(t.f, t.g, t.d, t.e);
+      this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
       this.b.j = this.b.k;
       this.a.j = this.a.k = 52;
@@ -2688,7 +2688,7 @@ public final class aq {
 
    public final void t() {
       this.b.ar.a((Image[])null, bt_1.js, (String[])null, (String[])null);
-      this.b.at.b(bt_1.jt == null ? null : bt_1.jt[this.b.ar.g()], t.i, (byte)2);
+      this.b.at.b(bt_1.jt == null ? null : bt_1.jt[this.b.ar.g()], t_1.i, (byte)2);
       this.b.at.a((byte)1);
       this.b.au.a("选择");
       this.b.au.a(true);
@@ -2725,7 +2725,7 @@ public final class aq {
                   break label159;
                }
 
-               this.b.at.b(this.b.as.a == 0 ? bt_1.jq[this.b.ar.g()] : bt_1.jt[this.b.ar.g()], t.i, (byte)2);
+               this.b.at.b(this.b.as.a == 0 ? bt_1.jq[this.b.ar.g()] : bt_1.jt[this.b.ar.g()], t_1.i, (byte)2);
                this.b.at.a((byte)1);
             }
          }
@@ -2775,19 +2775,19 @@ public final class aq {
             }
          } else {
             if (this.b.as.a == 0 && bt_1.jo != null) {
-               ca.a(0 + t.f, 2 * t.j + 11 + this.b.ar.i() * t.j + t.g, new String[]{"购买"}, true);
+               ca_1.a(0 + t_1.f, 2 * t_1.j + 11 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"购买"}, true);
                this.a.l = 1;
                return;
             }
 
             if (this.b.as.a == 1 && bt_1.jr != null) {
-               ca.a(0 + t.f, 2 * t.j + 11 + this.b.ar.i() * t.j + t.g, new String[]{"布置", "卖出"}, true);
+               ca_1.a(0 + t_1.f, 2 * t_1.j + 11 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"布置", "卖出"}, true);
                this.a.l = 2;
                return;
             }
          }
       } else if (this.a.l == 1) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.a.l = 0;
@@ -2804,18 +2804,18 @@ public final class aq {
             this.b.a((String)null);
          }
       } else if (this.a.l == 2) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.a.l = 0;
             }
          } else {
-            if (ca.o == 0) {
+            if (ca_1.o == 0) {
                this.a.a((String) bt_1.js[this.b.ar.g()], bt_1.jr[this.b.ar.g()], (short) bt_1.ju[this.b.ar.g()], (byte)0, (byte)4);
                return;
             }
 
-            if (ca.o == 1) {
+            if (ca_1.o == 1) {
                byte[] var3;
                if ((var3 = bz_1.y((short)4237, bt_1.ad, bt_1.jr[this.b.ar.g()])) == null) {
                   this.b.b("获取上传指令数据错误!");
@@ -2880,8 +2880,8 @@ public final class aq {
       this.b.au.a(true);
       this.b.aq.a((al)this.b.ar);
       this.b.aq.a((al)this.b.au);
-      this.b.aq.a(t.f, t.g, t.d, t.e);
-      ca.l = 0;
+      this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+      ca_1.l = 0;
       this.a.l = 0;
       this.b.j = this.b.k;
       this.a.j = this.a.k = 60;
@@ -2974,51 +2974,51 @@ public final class aq {
             }
 
             if (bt_1.jY != null) {
-               ca.a(t.f, t.j + 11 + this.b.ar.i() * t.j + t.g, new String[]{"查看", "外交", "宣战"}, true);
+               ca_1.a(t_1.f, t_1.j + 11 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"查看", "外交", "宣战"}, true);
                this.a.l = 1;
                return;
             }
          }
       } else if (this.a.l == 1) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.a.l = 0;
                return;
             }
          } else {
-            this.b.aw = ca.o;
-            if (ca.o == 0) {
+            this.b.aw = ca_1.o;
+            if (ca_1.o == 0) {
                this.b(bt_1.jY[this.b.ar.g() - 1]);
                return;
             }
 
-            if (ca.o == 1) {
-               ca.a(0, t.j + 11 + this.b.ar.i() * t.j + t.g, new String[]{"中立", "敌对"}, true);
+            if (ca_1.o == 1) {
+               ca_1.a(0, t_1.j + 11 + this.b.ar.i() * t_1.j + t_1.g, new String[]{"中立", "敌对"}, true);
                this.a.l = 2;
                return;
             }
 
-            if (ca.o == 2) {
-               ca.h = 0;
+            if (ca_1.o == 2) {
+               ca_1.h = 0;
                this.a.l = 3;
                return;
             }
          }
       } else if (this.a.l == 2) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.a.l = 0;
                return;
             }
          } else {
-            if (ca.o == 0) {
+            if (ca_1.o == 0) {
                this.a((byte)1, bt_1.jY[this.b.ar.g() - 1]);
                return;
             }
 
-            if (ca.o == 1) {
+            if (ca_1.o == 1) {
                this.a((byte)2, bt_1.jY[this.b.ar.g() - 1]);
                return;
             }
@@ -3052,13 +3052,13 @@ public final class aq {
          if (this.b.b != 2 && this.b.b != 518) {
             if (this.b.b != 1 && this.b.b != 514) {
                if (this.b.b == 4 || this.b.b == 520) {
-                  ao_1.i = ao_1.i + 4 > this.a.f.b - t.c ? this.a.f.b - t.c : ao_1.i + 4;
+                  ao_1.i = ao_1.i + 4 > this.a.f.b - t_1.c ? this.a.f.b - t_1.c : ao_1.i + 4;
                }
             } else {
                ao_1.i = ao_1.i - 4 < 0 ? 0 : ao_1.i - 4;
             }
          } else {
-            ao_1.h = ao_1.h + 4 > this.a.f.a - t.b ? this.a.f.a - t.b : ao_1.h + 4;
+            ao_1.h = ao_1.h + 4 > this.a.f.a - t_1.b ? this.a.f.a - t_1.b : ao_1.h + 4;
          }
       } else {
          ao_1.h = ao_1.h - 4 < 0 ? 0 : ao_1.h - 4;
@@ -3096,7 +3096,7 @@ public final class aq {
    }
 
    public final void w() {
-      ca.h = 0;
+      ca_1.h = 0;
       this.a.l = 0;
       this.b.j = this.b.k;
       this.a.j = this.a.k = 62;
@@ -3129,18 +3129,18 @@ public final class aq {
          this.b.aq.a("战争捷报");
          this.b.aq.a(false);
          this.b.ar.a((Image[])null, bt_1.kE, (String[])null, (String[])null);
-         this.b.at.b(bt_1.kF[0], t.i, (byte)2);
+         this.b.at.b(bt_1.kF[0], t_1.i, (byte)2);
          this.b.at.a((byte)1);
          this.b.au.a("确定");
          this.b.aq.a((al)this.b.ar);
          this.b.aq.a((al)this.b.at);
          this.b.aq.a((al)this.b.au);
          m_1 var10000 = this.b.aq;
-         int var2 = 2 * t.j + 8;
+         int var2 = 2 * t_1.j + 8;
          m_1 var1 = var10000;
          var10000.e = var2;
          int var3 = var1.e;
-         this.b.aq.a(t.f, t.g, t.d, t.e);
+         this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
          this.a.l = 0;
          this.b.j = this.b.k;
          this.a.j = this.a.k = 63;
@@ -3155,7 +3155,7 @@ public final class aq {
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-            this.b.at.b(bt_1.kF[this.b.ar.g()], t.i, (byte)2);
+            this.b.at.b(bt_1.kF[this.b.ar.g()], t_1.i, (byte)2);
             this.b.at.a((byte)1);
          }
 
@@ -3196,15 +3196,15 @@ public final class aq {
       this.b.aq.b();
       this.b.aq.a("帮派升级");
       this.b.aq.a(false);
-      this.b.at.b(bt_1.mw == null ? "暂无帮派升级信息" : bt_1.mw, t.i, (byte)0);
+      this.b.at.b(bt_1.mw == null ? "暂无帮派升级信息" : bt_1.mw, t_1.i, (byte)0);
       this.b.aq.a((al)this.b.at);
       this.b.au.a("升级");
       this.b.aq.a((al)this.b.at);
-      if (t.c > 220) {
+      if (t_1.c > 220) {
          this.b.aq.a((al)this.b.au);
       }
 
-      this.b.aq.a(t.f, t.g, t.d, t.e);
+      this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
       this.b.j = this.b.k;
       this.a.j = this.a.k = 113;

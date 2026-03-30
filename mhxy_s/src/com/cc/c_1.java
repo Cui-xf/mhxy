@@ -58,7 +58,7 @@ public final class c_1 extends al {
       this.e = 0;
       this.f = 0;
       this.z = 0;
-      this.i = t.j;
+      this.i = t_1.j;
       this.h = var2 == null ? 0 : var2.length;
       this.g = Math.min(this.h + this.z, (this.d - 8) / this.i);
    }
@@ -117,7 +117,7 @@ public final class c_1 extends al {
    }
 
    public final void a(String var1, int var2) {
-      ca.l = 0;
+       ca_1.l = 0;
       this.q = var1;
       this.y = (byte)var2;
    }
@@ -203,8 +203,6 @@ public final class c_1 extends al {
       } else {
          var2 = var2;
          var1 = var1;
-         this = this;
-
          for(int var3 = 0; var3 < this.g; ++var3) {
             if (var1 > this.a + 4 && var1 < this.a + this.c - 8 && var2 > this.b + 4 + var3 * this.i && var2 < this.b + 4 + (var3 + 1) * this.i) {
                if (this.f == this.e + var3) {
@@ -235,12 +233,12 @@ public final class c_1 extends al {
 
    public final void a(Graphics var1) {
       this.g = Math.min(this.h + this.z, (this.d - 8) / this.i);
-      ca.a(var1, 6014420);
-      var1.setClip(0, 0, t.b, t.c);
+       ca_1.a(var1, 6014420);
+      var1.setClip(0, 0, t_1.b, t_1.c);
       var1.fillRect(this.a, this.b, this.c, this.d);
-      ca.a(var1, this.a, this.b, this.c, this.d, 1);
+       ca_1.a(var1, this.a, this.b, this.c, this.d, 1);
       if (this.E) {
-         ca.a(var1);
+          ca_1.a(var1);
       }
 
       int var2 = 0;
@@ -251,7 +249,7 @@ public final class c_1 extends al {
       for(int var6 = this.e - this.z; var5 < this.g && var6 < this.h; ++var6) {
          var1.setClip(this.a, this.b, this.c, this.d);
          if (this.f == var6 + this.z) {
-            ca.a(var1, 9);
+             ca_1.a(var1, 9);
             var1.fillRect(this.a + 4, this.b + 4 + var5 * this.i, this.c - 11, this.i);
          }
 
@@ -271,15 +269,15 @@ public final class c_1 extends al {
 
             var2 = (var2 = 0 + this.A + (this.v != null && this.v[var6] > 0 ? 16 : 0)) + (this.w != null && this.w[var6] > 0 ? 18 : 0);
             if (this.s[var6] != null) {
-               var2 += t.i.stringWidth(this.s[var6]);
+               var2 += t_1.i.stringWidth(this.s[var6]);
             }
 
             if (this.t != null && this.t[var6] != null) {
-               var3 = t.i.stringWidth(this.t[var6]);
+               var3 = t_1.i.stringWidth(this.t[var6]);
             }
 
             if (this.u != null && this.u[var6] != null) {
-               var4 = t.i.stringWidth(this.u[var6]);
+               var4 = t_1.i.stringWidth(this.u[var6]);
             }
 
             this.m = (short)(this.a + 4 + var2 + Math.max(4, this.c - var2 - var3 - var4 - 20 >> 1));
@@ -287,8 +285,8 @@ public final class c_1 extends al {
             this.o = (short)(this.f == var6 + this.z ? this.n + var4 : 0);
             var1.setClip(this.a + 4 + this.A, this.b, this.c - 6 - this.A - 12, this.d);
             if (this.s != null && this.s[var6] != null) {
-               if (ca.a(this.s[var6]) != -1) {
-                  var1.setColor(this.f == var6 + this.z ? 16777215 : ca.a(this.s[var6]));
+               if ( ca_1.a(this.s[var6]) != -1) {
+                  var1.setColor(this.f == var6 + this.z ? 16777215 :  ca_1.a(this.s[var6]));
                   this.a(var1, this.s[var6].substring(3), this.a + 6 + this.A, this.b + 4 + var5 * this.i, this.o > this.a + this.c - 12);
                } else {
                   var1.setColor(this.f == var6 + this.z ? 16777215 : (this.x != null ? this.x[var6] : 2176196));
@@ -297,7 +295,7 @@ public final class c_1 extends al {
             }
 
             if (this.v != null && this.v[var6] > 0) {
-               this.a(var1, this.a + 4 + this.A + t.i.stringWidth(this.s[var6]) + 2, this.b + 4 + var5 * this.i, a_MainCanvas.d(this.v[var6]));
+               this.a(var1, this.a + 4 + this.A + t_1.i.stringWidth(this.s[var6]) + 2, this.b + 4 + var5 * this.i, a_MainCanvas.d(this.v[var6]));
             }
 
             if (this.w != null && this.w[var6] > 0) {
@@ -337,17 +335,17 @@ public final class c_1 extends al {
       }
 
       if (this.g > 0) {
-         var1.setClip(0, 0, t.b, t.c);
+         var1.setClip(0, 0, t_1.b, t_1.c);
          if (a_MainCanvas.C != null) {
             this.j = 0;
             if (this.g < this.h && this.h != 0) {
                this.j = this.g * (this.d - 16) / this.h > 6 ? this.g * (this.d - 16) / this.h : 6;
             }
 
-            ca.a(var1, this.a + this.c - 2 - a_MainCanvas.C.b, this.b + 3, this.d - 5, this.j, this.e, this.h, this.g - this.z);
+             ca_1.a(var1, this.a + this.c - 2 - a_MainCanvas.C.b, this.b + 3, this.d - 5, this.j, this.e, this.h, this.g - this.z);
          }
 
-         ca.b(var1, this.q, this.a + 5, this.b + (this.f - this.e + 1) * this.i, this.b + this.d, this.y);
+          ca_1.b(var1, this.q, this.a + 5, this.b + (this.f - this.e + 1) * this.i, this.b + this.d, this.y);
       }
 
    }

@@ -15,61 +15,55 @@ public final class ab_1 {
    }
 
    public final void a() {
-      if (this.c != null && this.c.I != null) {
-         if (bt_1.bu && bt_1.bv > 0) {
-            if (this.c.I.c != null && this.c.I.c.size() > 0) {
-               if (this.c.e.ak - this.d < 2500L) {
-                  return;
-               }
-
-               this.c.I.c.removeAllElements();
-            }
-
-            this.d = this.c.e.ak;
-            ab_1 var1 = this;
-            s var10000;
-            if (this.c == null) {
-               var10000 = null;
-            } else if (this.c.aO != null && this.c.aO.size() > 0) {
-               int var2 = 0;
-               int var3 = 0;
-               boolean var4 = false;
-               au var11 = null;
-               int var5 = -1;
-
-               for(int var6 = 0; var6 < var1.c.aO.size(); ++var6) {
-                  if ((var11 = (s)var1.c.aO.elementAt(var6)).a != var1.a && var11 != null && (var11 == null || var11.f != null) && a_MainCanvas.f.a(var1.c.f, var11.h, var11.i) != 1) {
-                     var3 = (var11.h - var1.c.I.j) * (var11.h - var1.c.I.j);
-                     int var13 = (var11.i - var1.c.I.k) * (var11.i - var1.c.I.k);
-                     if (var6 == 0) {
-                        var2 = var3 + var13;
-                        var5 = var6;
-                     } else if (var2 == 0) {
-                        var2 = var3 + var13;
-                        var5 = var6;
-                     } else if (var2 > var3 + var13) {
-                        var2 = var3 + var13;
-                        var5 = var6;
-                     }
-                  }
-               }
-
-               var10000 = var5 == -1 ? null : (s)var1.c.aO.elementAt(var5);
-            } else {
-               var10000 = null;
-            }
-
-            s var7 = var10000;
-            if (var10000 != null && (var7 == null || var7.f != null)) {
-               int var9 = var7.h - var7.f.g() / 2;
-               int var8 = var7.i - var7.f.h();
-               if (a_MainCanvas.f.a(this.c.f, var9, var8) != 1) {
-                  this.c.e.b(var9, var8);
+      s sVar;
+      if (this.c == null || this.c.I == null || !bt_1.bu || bt_1.bv <= 0) {
+         return;
+      }
+      if (this.c.I.c != null && this.c.I.c.size() > 0) {
+         if (this.c.e.ak - this.d < 2500) {
+            return;
+         } else {
+            this.c.I.c.removeAllElements();
+         }
+      }
+      this.d = this.c.e.ak;
+      if (this.c == null || this.c.aO == null || this.c.aO.size() <= 0) {
+         sVar = null;
+      } else {
+         int i = 0;
+         int i2 = -1;
+         for (int i3 = 0; i3 < this.c.aO.size(); i3++) {
+            s sVar2 = (s) this.c.aO.elementAt(i3);
+            if (sVar2.a != this.a && sVar2 != null && ((sVar2 == null || sVar2.f != null) && a_MainCanvas.f.a(this.c.f, sVar2.h, sVar2.i) != 1)) {
+               int i4 = (sVar2.h - this.c.I.j) * (sVar2.h - this.c.I.j);
+               int i5 = (sVar2.i - this.c.I.k) * (sVar2.i - this.c.I.k);
+               if (i3 == 0) {
+                  i = i4 + i5;
+                  i2 = i3;
+               } else if (i == 0) {
+                  i = i4 + i5;
+                  i2 = i3;
+               } else if (i > i4 + i5) {
+                  i = i4 + i5;
+                  i2 = i3;
                }
             }
          }
+         sVar = i2 == -1 ? null : (s) this.c.aO.elementAt(i2);
+      }
+      s sVar3 = sVar;
+      if (sVar != null) {
+         if (sVar3 == null || sVar3.f != null) {
+            int iG = sVar3.h - (sVar3.f.g() / 2);
+            int iH = sVar3.i - sVar3.f.h();
+            if (a_MainCanvas.f.a(this.c.f, iG, iH) == 1) {
+               return;
+            }
+            this.c.e.b(iG, iH);
+         }
       }
    }
+
 
    public final void b() {
       if (this.c != null && this.c.I != null && this.c.I.c != null) {

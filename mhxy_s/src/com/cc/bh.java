@@ -131,98 +131,149 @@ public final class bh {
       return var1;
    }
 
-   private void a(String var1, ad[] var2) {
-      var1 = ca.a(var1, t.i, this.b, "\t");
-      int var3 = 0;
-      this.a = new j[var1.length];
-      Vector var4 = new Vector();
-      Vector var5 = new Vector();
-      Vector var6 = new Vector();
-      Object var7 = null;
-      Object var8 = null;
-      Object var9 = null;
-
-      for(int var10 = 0; var10 < var1.length; ++var10) {
-         var3 = this.a(var1[var10], var3, var2, var4, var5, var6);
-         String[] var12 = new String[var4.size()];
-         String[] var13 = new String[var5.size()];
-         String[] var14 = new String[var6.size()];
-         var4.copyInto(var12);
-         var5.copyInto(var13);
-         var6.copyInto(var14);
-         this.a[var10] = new j(this, var12, var13, var14);
-         var4.removeAllElements();
-         var5.removeAllElements();
-         var6.removeAllElements();
+   private void a(String str, ad[] adVarArr) {
+      String[] strArrA = ca_1.a(str, t_1.i, this.b, "\t");
+      int iA = 0;
+      this.a = new j[strArrA.length];
+      Vector vector = new Vector();
+      Vector vector2 = new Vector();
+      Vector vector3 = new Vector();
+      for (int i = 0; i < strArrA.length; i++) {
+         iA = a(strArrA[i], iA, adVarArr, vector, vector2, vector3);
+         String[] strArr = new String[vector.size()];
+         String[] strArr2 = new String[vector2.size()];
+         String[] strArr3 = new String[vector3.size()];
+         vector.copyInto(strArr);
+         vector2.copyInto(strArr2);
+         vector3.copyInto(strArr3);
+         this.a[i] = new j(this, strArr, strArr2, strArr3);
+         vector.removeAllElements();
+         vector2.removeAllElements();
+         vector3.removeAllElements();
       }
-
    }
 
-   private int a(String var1, int var2, ad[] var3, Vector var4, Vector var5, Vector var6) {
-      int var15 = 0;
-      int var7 = 0;
-      int var8 = -1;
-      int var9 = 0;
-      int var10 = 0;
-      var15 = (boolean)0;
+
+
+//   private int a(String var1, int var2, ad[] var3, Vector var4, Vector var5, Vector var6) {
+//      int var15 = 0;
+//      int var7 = 0;
+//      int var8 = -1;
+//      int var9 = 0;
+//      int var10 = 0;
+//      var15 = (boolean)0;
+//
+//      int var11 = 0;
+//      for(var11 = 0; var11 < var1.length(); ++var11) {
+//         int var10000 = var15 = var2 + var11;
+//         ad[] var13 = var3;
+//         int var12 = var10000;
+//         int var14 = 0;
+//
+//         while(true) {
+//            if (var14 >= var13.length) {
+//               var10000 = -1;
+//               break;
+//            }
+//
+//            if (var12 >= var13[var14].c && var12 <= var13[var14].d) {
+//               var10000 = var13[var14].a;
+//               break;
+//            }
+//
+//            ++var14;
+//         }
+//
+//         var7 = var10000;
+//         var13 = var3;
+//         var12 = var15;
+//         var14 = 0;
+//
+//         while(true) {
+//            if (var14 >= var13.length) {
+//               var10000 = 0;
+//               break;
+//            }
+//
+//            if (var12 >= var13[var14].c && var12 <= var13[var14].d) {
+//               var10000 = var13[var14].b;
+//               break;
+//            }
+//
+//            ++var14;
+//         }
+//
+//         var15 = var10000;
+//         if (var8 != var7) {
+//            var4.addElement(var1.substring(var9, var11));
+//            var5.addElement(String.valueOf(var8));
+//            var6.addElement(String.valueOf(var10));
+//            var9 = var11;
+//            var8 = var7;
+//            var10 = var15;
+//         }
+//      }
+//
+//      if (var11 == var1.length()) {
+//         var4.addElement(var1.substring(var9, var1.length()));
+//         var5.addElement(String.valueOf(var8));
+//         var6.addElement(String.valueOf(var10));
+//      }
+//
+//      return var2 + var1.length();
+//   }
+
+   private int a(String str, int var2, ad[] adVarArr, Vector vector, Vector vector2, Vector vector3) {
+      int i;
+      int i2;
+      int i3 = -1;
+      int i4 = 0;
+      int i5 = 0;
       int var11 = 0;
-
-      for(var11 = 0; var11 < var1.length(); ++var11) {
-         int var10000 = var15 = var2 + var11;
-         ad[] var13 = var3;
-         int var12 = var10000;
-         int var14 = 0;
-
-         while(true) {
-            if (var14 >= var13.length) {
-               var10000 = -1;
+      while (var11 < str.length()) {
+         int i6 = var2 + var11;
+         int i7 = 0;
+         while (true) {
+            if (i7 >= adVarArr.length) {
+               i = -1;
                break;
             }
-
-            if (var12 >= var13[var14].c && var12 <= var13[var14].d) {
-               var10000 = var13[var14].a;
+            if (i6 >= adVarArr[i7].c && i6 <= adVarArr[i7].d) {
+               i = adVarArr[i7].a;
                break;
             }
-
-            ++var14;
+            i7++;
          }
-
-         var7 = var10000;
-         var13 = var3;
-         var12 = var15;
-         var14 = 0;
-
-         while(true) {
-            if (var14 >= var13.length) {
-               var10000 = 0;
+         int i8 = i;
+         int i9 = 0;
+         while (true) {
+            if (i9 >= adVarArr.length) {
+               i2 = 0;
                break;
             }
-
-            if (var12 >= var13[var14].c && var12 <= var13[var14].d) {
-               var10000 = var13[var14].b;
+            if (i6 >= adVarArr[i9].c && i6 <= adVarArr[i9].d) {
+               i2 = adVarArr[i9].b;
                break;
             }
-
-            ++var14;
+            i9++;
          }
-
-         var15 = var10000;
-         if (var8 != var7) {
-            var4.addElement(var1.substring(var9, var11));
-            var5.addElement(String.valueOf(var8));
-            var6.addElement(String.valueOf(var10));
-            var9 = var11;
-            var8 = var7;
-            var10 = var15;
+         int i10 = i2;
+         if (i3 != i8) {
+            vector.addElement(str.substring(i4, var11));
+            vector2.addElement(String.valueOf(i3));
+            vector3.addElement(String.valueOf(i5));
+            i4 = var11;
+            i3 = i8;
+            i5 = i10;
          }
+         var11++;
       }
-
-      if (var11 == var1.length()) {
-         var4.addElement(var1.substring(var9, var1.length()));
-         var5.addElement(String.valueOf(var8));
-         var6.addElement(String.valueOf(var10));
+      if (var11 == str.length()) {
+         vector.addElement(str.substring(i4, str.length()));
+         vector2.addElement(String.valueOf(i3));
+         vector3.addElement(String.valueOf(i5));
       }
-
-      return var2 + var1.length();
+      return var2 + str.length();
    }
+
 }

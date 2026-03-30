@@ -3,6 +3,7 @@ package com.cc;
 import com.yinhan.kjava.main.a_MainCanvas;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
 public final class k {
@@ -36,7 +37,7 @@ public final class k {
       this.j = var2;
    }
 
-   public final void a(DataInputStream var1) {
+   public final void a(DataInputStream var1) throws IOException {
       boolean var2 = false;
       if (this.c > 0) {
          var2 = true;
@@ -81,9 +82,9 @@ public final class k {
 
       if (var2) {
          if (this.s != null && !this.s.equals("")) {
-            this.j.at.a(this.s, t.i, (byte)1);
+            this.j.at.a(this.s, t_1.i, (byte)1);
          } else {
-            this.j.at.a((String)null, t.i, (byte)1);
+            this.j.at.a((String)null, t_1.i, (byte)1);
          }
       }
 
@@ -120,9 +121,9 @@ public final class k {
 
    private void c() {
       if (this.s != null && !this.s.equals("")) {
-         this.j.at.a(this.s, t.i, (byte)1);
+         this.j.at.a(this.s, t_1.i, (byte)1);
       } else {
-         this.j.at.a((String)null, t.i, (byte)1);
+         this.j.at.a((String)null, t_1.i, (byte)1);
       }
    }
 
@@ -161,7 +162,7 @@ public final class k {
    private void e() {
       this.t = null;
       if (this.o != null && !this.o.equals("")) {
-         this.t = new bw_1("<0>银两：</0><5></5>" + this.o + (this.o.equals("0") ? "" : "万"), (short)(t.d - 20));
+         this.t = new bw_1("<0>银两：</0><5></5>" + this.o + (this.o.equals("0") ? "" : "万"), (short)(t_1.d - 20));
       }
 
    }
@@ -169,7 +170,7 @@ public final class k {
    private void f() {
       this.u = null;
       if (this.r != null) {
-         this.u = new bw_1(this.r, (short)(t.d - 20));
+         this.u = new bw_1(this.r, (short)(t_1.d - 20));
       }
 
    }
@@ -246,22 +247,22 @@ public final class k {
       this.j.aq.b();
       this.j.aq.a("物品合成");
       this.j.aq.a(false);
-      this.w = (Math.max(t.j, 17) << 1) + 10;
-      this.x = t.j + 26 + 5;
+      this.w = (Math.max(t_1.j, 17) << 1) + 10;
+      this.x = t_1.j + 26 + 5;
       this.j.aq.a(this.w + this.x);
       this.c();
       this.j.aq.a((al)this.j.at);
       this.j.at.a((byte)1);
       this.j.au.a("确定");
-      if (t.c > 220) {
+      if (t_1.c > 220) {
          this.j.aq.a((al)this.j.au);
       }
 
-      this.j.aq.a(t.f, t.g, t.d, t.e);
+      this.j.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.d();
       this.e();
       this.f();
-      ca.l = 0;
+      ca_1.l = 0;
       this.i.l = 0;
       this.j.j = this.j.k;
       this.i.j = this.i.k = 118;
@@ -281,7 +282,7 @@ public final class k {
                   this.a = this.a == 2 ? 0 : this.a + 1;
                }
 
-               ca.l = 0;
+               ca_1.l = 0;
                this.d();
                this.e();
                this.f();
@@ -292,7 +293,7 @@ public final class k {
                   this.a = this.a == 0 ? 2 : this.a - 1;
                }
 
-               ca.l = 0;
+               ca_1.l = 0;
                this.d();
                this.e();
                this.f();
@@ -302,7 +303,7 @@ public final class k {
                      if (this.c == -1) {
                         this.i.a((byte)0, (byte[])(new byte[]{7}));
                      } else {
-                        ca.a(this.g[this.a][0] + ao_1.x.b / 2, this.g[this.a][1] + ao_1.x.b / 2, new String[]{"合成", "查看", "取消"}, false);
+                        ca_1.a(this.g[this.a][0] + ao_1.x.b / 2, this.g[this.a][1] + ao_1.x.b / 2, new String[]{"合成", "查看", "取消"}, false);
                         this.i.l = 1;
                      }
                   } else if (this.a == 1) {
@@ -311,14 +312,14 @@ public final class k {
                      } else if (this.d == -1) {
                         this.i.a((byte)0, (byte[])(new byte[]{7}));
                      } else {
-                        ca.a(this.g[this.a][0] + ao_1.x.b / 2, this.g[this.a][1] + ao_1.x.b / 2, new String[]{"取出"}, false);
+                        ca_1.a(this.g[this.a][0] + ao_1.x.b / 2, this.g[this.a][1] + ao_1.x.b / 2, new String[]{"取出"}, false);
                         System.out.println("GameSys.goods.width:" + ao_1.x.b);
                         this.i.l = 1;
                      }
                   }
                } else if (this.b == 1) {
                   if (this.d(this.a) != -1) {
-                     ca.a(this.g[this.a + 2][0] + ao_1.x.b / 2, this.g[this.a + 2][1] + ao_1.x.b / 2, new String[]{"取出"}, false);
+                     ca_1.a(this.g[this.a + 2][0] + ao_1.x.b / 2, this.g[this.a + 2][1] + ao_1.x.b / 2, new String[]{"取出"}, false);
                      this.i.l = 1;
                   } else if (this.c != -1 && this.d != -1) {
                      this.i.a((byte)0, (byte[])(new byte[]{8}));
@@ -330,7 +331,7 @@ public final class k {
          } else {
             this.b = this.b == 0 ? 1 : 0;
             this.a = this.b == 0 ? 1 : 0;
-            ca.l = 0;
+            ca_1.l = 0;
             this.d();
             this.e();
             this.f();
@@ -345,16 +346,16 @@ public final class k {
             this.i.c((int)5);
          }
       } else if (this.i.l == 1) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824) {
             if (var1 == 536870912) {
-               ca.l = 0;
+               ca_1.l = 0;
                this.d();
                this.e();
                this.f();
                this.i.l = 0;
             }
-         } else if (ca.o == 0) {
+         } else if (ca_1.o == 0) {
             if (this.b == 1) {
                byte[] var2;
                if ((var2 = bz_1.a((byte)5, this.c, this.d, this.e, this.f, this.d(this.a), (byte)this.a, bt_1.ad)) != null) {
@@ -380,10 +381,10 @@ public final class k {
                   this.j.b("获取上传指令数据错误!");
                }
             }
-         } else if (ca.o == 1) {
+         } else if (ca_1.o == 1) {
             bt_1.a(e(this.c));
             this.i.O.a(0, (short)this.i.k, -1);
-         } else if (ca.o == 2) {
+         } else if (ca_1.o == 2) {
             this.a();
             this.c();
             this.d();
@@ -400,11 +401,11 @@ public final class k {
       short var2 = ao_1.x.b;
       if (this.j.aq != null) {
          this.j.aq.a(var1);
-         ca.a(var1, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, this.w, 1);
-         ca.a(var1, this.j.aq.a + 5, this.j.aq.b + 32 + this.w + 1, this.j.aq.c - 11, this.x - 2, 1);
+         ca_1.a(var1, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, this.w, 1);
+         ca_1.a(var1, this.j.aq.a + 5, this.j.aq.b + 32 + this.w + 1, this.j.aq.c - 11, this.x - 2, 1);
       }
 
-      int var3 = this.j.aq.a + t.i.stringWidth(this.h[0]) + 10;
+      int var3 = this.j.aq.a + t_1.i.stringWidth(this.h[0]) + 10;
       int var4 = this.j.aq.b + 40;
       if (this.g == null) {
          this.g = new int[5][4];
@@ -432,8 +433,8 @@ public final class k {
       }
 
       var1.setColor(255);
-      var1.drawString(this.h[0], this.g[0][0] - 2, this.g[0][1] + (var2 - t.j) / 2, 24);
-      var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] - var2 + (var2 - t.j) / 2, 20);
+      var1.drawString(this.h[0], this.g[0][0] - 2, this.g[0][1] + (var2 - t_1.j) / 2, 24);
+      var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] - var2 + (var2 - t_1.j) / 2, 20);
       bf_1 var13;
       if (this.c != -1 && (var13 = ao_1.b(this.k)) != null) {
          var1.drawImage(var13.a, this.g[0][0] + 1, this.g[0][1] + 1, 20);
@@ -454,7 +455,7 @@ public final class k {
       }
 
       int var17 = this.a + (this.b << 1);
-      ca.d(var1, this.g[var17][0], this.g[var17][1], 17, 17);
+      ca_1.d(var1, this.g[var17][0], this.g[var17][1], 17, 17);
       if (this.t != null) {
          try {
             this.t.a(var1, this.j.aq.a + 5 + 6, this.j.aq.b + this.w + 8, 0);
@@ -473,14 +474,14 @@ public final class k {
 
       if (this.i.l == 0 && (this.v != null || this.v != "")) {
          if ((this.b != 0 || this.a != 1) && this.b == 1) {
-            ca.b(var1, this.v, this.g[this.a + 2][0] + ao_1.x.b / 2, this.g[this.a + 2][1] + ao_1.x.b / 2, t.c - 5, 1);
+            ca_1.b(var1, this.v, this.g[this.a + 2][0] + ao_1.x.b / 2, this.g[this.a + 2][1] + ao_1.x.b / 2, t_1.c - 5, 1);
          } else {
-            ca.b(var1, this.v, this.g[this.a][0] + ao_1.x.b / 2, this.g[this.a][1] + ao_1.x.b / 2, t.c - 5, 1);
+            ca_1.b(var1, this.v, this.g[this.a][0] + ao_1.x.b / 2, this.g[this.a][1] + ao_1.x.b / 2, t_1.c - 5, 1);
          }
       }
 
       if (this.i.l == 1) {
-         ca.c(var1);
+         ca_1.c(var1);
       }
 
    }

@@ -129,22 +129,22 @@ public final class bp_1 extends ar {
                      this.a(true);
                   }
 
-                  ai.a(super.g, var2);
+                  ai_1.a(super.g, var2);
                   return;
                }
 
                this.a(true);
-               ai.a(super.g, var2);
+               ai_1.a(super.g, var2);
                return;
             }
 
             this.a(true);
-            ai.a(super.g, var2);
+            ai_1.a(super.g, var2);
             return;
          }
 
          if (this.a(this.a, 1)) {
-            ai.a(super.g, var2);
+            ai_1.a(super.g, var2);
             int var4;
             if ((var4 = super.f.size()) < 7) {
                this.a(true);
@@ -186,86 +186,90 @@ public final class bp_1 extends ar {
             }
          } else {
             this.a(true);
-            ai.a(super.g, var2);
+            ai_1.a(super.g, var2);
          }
       }
 
    }
 
-   private boolean a(byte var1, int var2) {
+   private boolean a(byte b, int i) {
+      bp_1 bpVar;
       if (this.s == 1) {
          return true;
+      }
+      if (bt_1.q != null) {
+         for (int i2 = 0; i2 < bt_1.q.length; i2++) {
+            if (bt_1.q[i2].s == 1) {
+               bpVar = bt_1.q[i2];
+               break;
+            }
+         }
+         bpVar = null;
       } else {
-         bp_1 var10000;
-         label147: {
-            if (bt_1.q != null) {
-               for(int var3 = 0; var3 < bt_1.q.length; ++var3) {
-                  if (bt_1.q[var3].s == 1) {
-                     var10000 = bt_1.q[var3];
-                     break label147;
-                  }
-               }
+         bpVar = null;
+      }
+      bp_1 bpVar2 = bpVar;
+      if (i == 0) {
+         if (bpVar2.a == 0) {
+            if (b == 1) {
+               return bpVar2.f.size() <= 0 || Math.abs(bt_1.q[b].f.size() - bt_1.q[0].f.size()) > 7;
             }
-
-            var10000 = null;
+            if (b == 2) {
+               return bt_1.q[1].f.size() <= 0 || Math.abs(bt_1.q[b].f.size() - bt_1.q[1].f.size()) > 7;
+            }
+            return false;
          }
-
-         this = var10000;
-         if (var2 == 0) {
-            if (this.a == 0) {
-               if (var1 == 1) {
-                  if (super.f.size() <= 0 || Math.abs(bt_1.q[var1].f.size() - bt_1.q[0].f.size()) > 7) {
-                     return true;
-                  }
-               } else if (var1 == 2 && (bt_1.q[1].f.size() <= 0 || Math.abs(bt_1.q[var1].f.size() - bt_1.q[1].f.size()) > 7)) {
-                  return true;
-               }
-            } else if (this.a == 1) {
-               if (var1 == 0) {
-                  if (bt_1.q[1].f.size() <= 0 || Math.abs(bt_1.q[var1].f.size() - bt_1.q[1].f.size()) > 7) {
-                     return true;
-                  }
-               } else if (var1 == 2 && (bt_1.q[0].f.size() <= 0 || Math.abs(bt_1.q[var1].f.size() - bt_1.q[0].f.size()) > 7)) {
-                  return true;
-               }
-            } else if (this.a == 2) {
-               if (var1 == 0) {
-                  if (bt_1.q[2].f.size() <= 0 || Math.abs(bt_1.q[var1].f.size() - bt_1.q[2].f.size()) > 7) {
-                     return true;
-                  }
-               } else if (var1 == 1 && (bt_1.q[0].f.size() <= 0 || Math.abs(bt_1.q[var1].f.size() - bt_1.q[0].f.size()) > 7)) {
-                  return true;
-               }
+         if (bpVar2.a == 1) {
+            if (b == 0) {
+               return bt_1.q[1].f.size() <= 0 || Math.abs(bt_1.q[b].f.size() - bt_1.q[1].f.size()) > 7;
             }
-         } else if (var2 == 1) {
-            if (this.a == 0) {
-               if (var1 == 1) {
-                  if (bt_1.q[var1].f.size() > 2) {
-                     return true;
-                  }
-               } else if (var1 == 2 && (bt_1.q[1].f.size() <= 2 || Math.abs(bt_1.q[var1].f.size() - bt_1.q[1].f.size()) > 5)) {
-                  return true;
-               }
-            } else if (this.a == 1) {
-               if (var1 == 0) {
-                  if (bt_1.q[var1].f.size() > 2) {
-                     return true;
-                  }
-               } else if (var1 == 2 && (bt_1.q[0].f.size() <= 2 || Math.abs(bt_1.q[var1].f.size() - bt_1.q[0].f.size()) > 5)) {
-                  return true;
-               }
-            } else if (this.a == 2) {
-               if (var1 == 0) {
-                  if (bt_1.q[var1].f.size() > 2) {
-                     return true;
-                  }
-               } else if (var1 == 1 && (bt_1.q[0].f.size() <= 2 || Math.abs(bt_1.q[var1].f.size() - bt_1.q[0].f.size()) > 5)) {
-                  return true;
-               }
+            if (b == 2) {
+               return bt_1.q[0].f.size() <= 0 || Math.abs(bt_1.q[b].f.size() - bt_1.q[0].f.size()) > 7;
             }
+            return false;
          }
-
+         if (bpVar2.a != 2) {
+            return false;
+         }
+         if (b == 0) {
+            return bt_1.q[2].f.size() <= 0 || Math.abs(bt_1.q[b].f.size() - bt_1.q[2].f.size()) > 7;
+         }
+         if (b == 1) {
+            return bt_1.q[0].f.size() <= 0 || Math.abs(bt_1.q[b].f.size() - bt_1.q[0].f.size()) > 7;
+         }
          return false;
       }
+      if (i != 1) {
+         return false;
+      }
+      if (bpVar2.a == 0) {
+         if (b == 1) {
+            return bt_1.q[b].f.size() > 2;
+         }
+         if (b == 2) {
+            return bt_1.q[1].f.size() <= 2 || Math.abs(bt_1.q[b].f.size() - bt_1.q[1].f.size()) > 5;
+         }
+         return false;
+      }
+      if (bpVar2.a == 1) {
+         if (b == 0) {
+            return bt_1.q[b].f.size() > 2;
+         }
+         if (b == 2) {
+            return bt_1.q[0].f.size() <= 2 || Math.abs(bt_1.q[b].f.size() - bt_1.q[0].f.size()) > 5;
+         }
+         return false;
+      }
+      if (bpVar2.a != 2) {
+         return false;
+      }
+      if (b == 0) {
+         return bt_1.q[b].f.size() > 2;
+      }
+      if (b == 1) {
+         return bt_1.q[0].f.size() <= 2 || Math.abs(bt_1.q[b].f.size() - bt_1.q[0].f.size()) > 5;
+      }
+      return false;
    }
+
 }

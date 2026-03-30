@@ -27,8 +27,8 @@ public final class bw_1 {
 
                for(int var6 = 0; var6 < this.b[var5].a.length; ++var6) {
                   var1.setColor(this.b[var5].b[var6]);
-                  var1.drawString(this.b[var5].a[var6], var2 + this.d, var3 + var5 * t.j, var4);
-                  this.d += t.i.stringWidth(this.b[var5].a[var6]);
+                  var1.drawString(this.b[var5].a[var6], var2 + this.d, var3 + var5 * t_1.j, var4);
+                  this.d += t_1.i.stringWidth(this.b[var5].a[var6]);
                }
             }
          }
@@ -47,8 +47,8 @@ public final class bw_1 {
 
                for(int var6 = 0; var6 < this.b[var5].a.length; ++var6) {
                   var1.setColor(this.b[var5].b[var6]);
-                  var1.drawString(this.b[var5].a[var6], var2 - var4 / 2 + this.d, var3 + var5 * t.j, 20);
-                  this.d += t.i.stringWidth(this.b[var5].a[var6]);
+                  var1.drawString(this.b[var5].a[var6], var2 - var4 / 2 + this.d, var3 + var5 * t_1.j, 20);
+                  this.d += t_1.i.stringWidth(this.b[var5].a[var6]);
                }
             }
          }
@@ -62,7 +62,7 @@ public final class bw_1 {
       for(int var6 = 0; var6 < this.b[var4].a.length; ++var6) {
          var1.setColor(this.b[var4].b[var6]);
          var1.drawString(this.b[var4].a[var6], var2 + this.d, var3, var5);
-         this.d += t.i.stringWidth(this.b[var4].a[var6]);
+         this.d += t_1.i.stringWidth(this.b[var4].a[var6]);
       }
 
    }
@@ -181,102 +181,82 @@ public final class bw_1 {
       return var1;
    }
 
-   private void a(String var1, ap[] var2) {
-      String var6 = "\t";
-      short var5 = this.c;
-      Font var4 = t.i;
-      String var3 = var1;
-      bw_1 var10 = this;
-      if (var1 == null) {
-         var3 = "";
+   private void a(String str, ap[] apVarArr) {
+      String strSubstring;
+      Font font = t_1.i;
+      int i = this.c;
+      String str2 = str;
+      if (str2 == null) {
+         str2 = "";
       }
-
-      Vector var7 = new Vector();
-      var3 = this.a(var3, var6);
-
-      for(int var16 = 0; var16 < ((Object[])var3).length; ++var16) {
-         String var8 = ((Object[])var3)[var16];
-
-         while(true) {
-            String var9 = var10.a(var8, var4, var5);
-            var7.addElement(var9);
-            if ((var8 = var8.substring(var9.length())).length() == 0) {
-               break;
-            }
+      Vector vector = new Vector();
+      for (String str3 : a(str2, "\t")) {
+         do {
+            String strA = a(str3, font, i);
+            vector.addElement(strA);
+            strSubstring = str3.substring(strA.length());
+            str3 = strSubstring;
+         } while (strSubstring.length() != 0);
+      }
+      String[] strArr = new String[vector.size()];
+      vector.copyInto(strArr);
+      String[] strArrA = a(strArr);
+      int iA = 0;
+      this.b = new e[strArrA.length];
+      Vector vector2 = new Vector();
+      Vector vector3 = new Vector();
+      for (int i2 = 0; i2 < strArrA.length; i2++) {
+         iA = a(strArrA[i2], iA, apVarArr, vector2, vector3);
+         String[] strArr2 = new String[vector2.size()];
+         String[] strArr3 = new String[vector3.size()];
+         vector2.copyInto(strArr2);
+         vector3.copyInto(strArr3);
+         this.b[i2] = new e(this, strArr2, strArr3);
+         short sA = this.b[i2].a();
+         if (this.a < sA) {
+            this.a = sA;
          }
+         vector2.removeAllElements();
+         vector3.removeAllElements();
       }
-
-      var6 = new String[var7.size()];
-      var7.copyInto(var6);
-      String[] var11 = a((String[])var6);
-      int var13 = 0;
-      this.b = new e[var11.length];
-      Vector var14 = new Vector();
-      Vector var15 = new Vector();
-      Object var18 = null;
-      Object var21 = null;
-
-      for(int var23 = 0; var23 < var11.length; ++var23) {
-         var13 = this.a(var11[var23], var13, var2, var14, var15);
-         String[] var19 = new String[var14.size()];
-         String[] var22 = new String[var15.size()];
-         var14.copyInto(var19);
-         var15.copyInto(var22);
-         this.b[var23] = new e(this, var19, var22);
-         short var20 = this.b[var23].a();
-         if (this.a < var20) {
-            this.a = var20;
-         }
-
-         var14.removeAllElements();
-         var15.removeAllElements();
-      }
-
    }
 
-   private int a(String var1, int var2, ap[] var3, Vector var4, Vector var5) {
-      int var11 = 0;
-      var11 = (boolean)0;
-      int var6 = -1;
-      int var7 = 0;
-      int var8 = 0;
 
-      for(var8 = 0; var8 < var1.length(); ++var8) {
-         int var10000 = var2 + var8;
-         ap[] var9 = var3;
-         var11 = var10000;
-         int var10 = 0;
-
-         while(true) {
-            if (var10 >= var9.length) {
-               var10000 = -1;
+   private int a(String str, int i, ap[] apVarArr, Vector vector, Vector vector2) {
+      int i2;
+      int i3 = -1;
+      int i4 = 0;
+      int i5 = 0;
+      while (i5 < str.length()) {
+         int i6 = i + i5;
+         int i7 = 0;
+         while (true) {
+            if (i7 >= apVarArr.length) {
+               i2 = -1;
                break;
             }
-
-            if (var11 >= var9[var10].b && var11 <= var9[var10].c) {
-               var10000 = var9[var10].a;
+            if (i6 >= apVarArr[i7].b && i6 <= apVarArr[i7].c) {
+               i2 = apVarArr[i7].a;
                break;
             }
-
-            ++var10;
+            i7++;
          }
-
-         var11 = var10000;
-         if (var10000 != var6) {
-            var4.addElement(var1.substring(var7, var8));
-            var5.addElement(String.valueOf(var6));
-            var7 = var8;
-            var6 = var11;
+         int i8 = i2;
+         if (i2 != i3) {
+            vector.addElement(str.substring(i4, i5));
+            vector2.addElement(String.valueOf(i3));
+            i4 = i5;
+            i3 = i8;
          }
+         i5++;
       }
-
-      if (var8 == var1.length()) {
-         var4.addElement(var1.substring(var7, var1.length()));
-         var5.addElement(String.valueOf(var6));
+      if (i5 == str.length()) {
+         vector.addElement(str.substring(i4, str.length()));
+         vector2.addElement(String.valueOf(i3));
       }
-
-      return var2 + var1.length();
+      return i + str.length();
    }
+
 
    private String[] a(String var1, String var2) {
       int var3 = 0;

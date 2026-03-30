@@ -38,7 +38,7 @@ public final class bj {
                return null;
             }
 
-            var16 = var1.getRecord(1);
+            return  var1.getRecord(1);
          } catch (RecordStoreException var14) {
             ((Throwable)var14).printStackTrace();
             return null;
@@ -54,14 +54,12 @@ public final class bj {
             }
 
          }
-
-         return var16;
       } else {
          return null;
       }
    }
 
-   private static RecordStore a(String var0, boolean var1) {
+   private static RecordStore a(String var0, boolean var1) throws RecordStoreException {
       Object var2 = null;
       if (var1) {
          RecordStore.deleteRecordStore(var0);

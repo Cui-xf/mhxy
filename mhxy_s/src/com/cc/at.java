@@ -128,7 +128,7 @@ public final class at implements Runnable {
          ByteArrayOutputStream var6 = new ByteArrayOutputStream();
          DataOutputStream var7 = new DataOutputStream(var6);
          if (var9.i || var5.a) {
-            if (t.a == 0) {
+            if (t_1.a == 0) {
                ((OutputStream)var7).write(bz_1.a((byte)1, bz_1.c, 0, 0));
             } else {
                var7.writeByte(bz_1.a);

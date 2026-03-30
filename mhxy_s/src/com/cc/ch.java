@@ -3,6 +3,7 @@ package com.cc;
 import com.yinhan.kjava.main.a_MainCanvas;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
 public final class ch {
@@ -62,7 +63,7 @@ public final class ch {
       bt_1.N();
    }
 
-   public final void a(DataInputStream var1) {
+   public final void a(DataInputStream var1) throws IOException {
       h = var1.readInt();
       j = var1.readShort();
       k = var1.readUTF();
@@ -122,9 +123,9 @@ public final class ch {
 
    private void d() {
       if (r != null && !r.equals("")) {
-         this.d.at.a(m + "\t" + i + "\t" + s + "\t" + r, t.i, (byte)1);
+         this.d.at.a(m + "\t" + i + "\t" + s + "\t" + r, t_1.i, (byte)1);
       } else {
-         this.d.at.a((String)null, t.i, (byte)1);
+         this.d.at.a((String)null, t_1.i, (byte)1);
       }
    }
 
@@ -139,7 +140,7 @@ public final class ch {
    private void e() {
       this.g = null;
       if (u != null) {
-         this.g = new bw_1(u, (short)t.i.stringWidth(u));
+         this.g = new bw_1(u, (short)t_1.i.stringWidth(u));
       }
 
    }
@@ -164,38 +165,38 @@ public final class ch {
       this.d.aq.b();
       this.d.aq.a("装备升星");
       this.d.aq.a(false);
-      this.w = Math.max((t.j << 1) + 25, 59);
-      this.x = t.j + 13;
+      this.w = Math.max((t_1.j << 1) + 25, 59);
+      this.x = t_1.j + 13;
       this.d.aq.a(this.w + this.x);
       this.d();
       this.b();
       this.d.aq.a((al)this.d.at);
       this.d.au.a("确定");
-      if (t.c > 220) {
+      if (t_1.c > 220) {
          this.d.aq.a((al)this.d.au);
       }
 
-      this.d.aq.a(t.f, t.g, t.d, t.e);
+      this.d.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.d.at.a(this.d.at.b, this.d.at.c, this.d.aq.c / 2 - 6, this.d.at.e);
-      var1 = (boolean)0;
+      int var1_t = 0;
       int var2 = 0;
       if (this.a != null) {
          for(int var3 = 0; var3 < this.a.length; ++var3) {
             if (var3 == 0) {
-               var1 = this.d.aq.a + this.d.aq.c / 4 - 8;
+               var1_t = this.d.aq.a + this.d.aq.c / 4 - 8;
                var2 = this.d.aq.b + 32 + this.w - 30;
             } else if (var3 < 4) {
-               var1 = this.d.aq.a + this.d.aq.c / 2 + 13;
+               var1_t = this.d.aq.a + this.d.aq.c / 2 + 13;
                var2 = this.d.aq.b + 32 + this.d.aq.d / 4 + (var3 - 1) * 40 - 20;
             } else {
-               var1 = this.d.aq.a + this.d.aq.c * 3 / 4 - 18;
+               var1_t = this.d.aq.a + this.d.aq.c * 3 / 4 - 18;
                var2 = this.d.aq.b + 32 + this.d.aq.d / 4 + (var3 - 4) * 40 - 20;
             }
 
-            var1 = 17;
-            var1 = 17;
+            var1_t = 17;
+            var1_t = 17;
             if (this.a != null && this.a.length > var3) {
-               this.a[var3][0] = var1;
+               this.a[var3][0] = var1_t;
                this.a[var3][1] = var2;
                this.a[var3][2] = 17;
                this.a[var3][3] = 17;
@@ -203,7 +204,7 @@ public final class ch {
          }
       }
 
-      ca.l = 0;
+      ca_1.l = 0;
       this.c.l = 0;
       this.d.j = this.d.k;
       this.c.j = this.c.k = 102;
@@ -230,7 +231,7 @@ public final class ch {
                this.b();
             }
 
-            ca.l = 0;
+            ca_1.l = 0;
             return;
          }
 
@@ -241,7 +242,7 @@ public final class ch {
                this.b();
             }
 
-            ca.l = 0;
+            ca_1.l = 0;
             return;
          }
 
@@ -274,7 +275,7 @@ public final class ch {
                   return;
                }
 
-               ca.a(this.d.aq.a + 24, this.d.aq.b + 49, new String[]{"升星", "查看", "取出"}, false);
+               ca_1.a(this.d.aq.a + 24, this.d.aq.b + 49, new String[]{"升星", "查看", "取出"}, false);
                this.c.l = 1;
                return;
             }
@@ -308,12 +309,12 @@ public final class ch {
             }
          }
       } else if (this.c.l == 1) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824) {
             if (var1 == 536870912) {
                this.c.l = 0;
             }
-         } else if (ca.o == 0) {
+         } else if (ca_1.o == 0) {
             if (q[0]) {
                var1 = 0;
             } else if (q[1]) {
@@ -352,7 +353,7 @@ public final class ch {
             a_MainCanvas.i.a(var13);
             this.d.a((String)null);
          } else {
-            if (ca.o == 1) {
+            if (ca_1.o == 1) {
                if (this.c.aw && !this.A) {
                   bt_1.a(this.c.av);
                } else if (this.c.aJ && !this.A) {
@@ -391,7 +392,7 @@ public final class ch {
                return;
             }
 
-            if (ca.o == 2) {
+            if (ca_1.o == 2) {
                a();
                this.d();
                this.b();
@@ -407,9 +408,9 @@ public final class ch {
    public final void a(Graphics var1) {
       if (this.d.aq != null) {
          this.d.aq.a(var1);
-         ca.a(var1, this.d.aq.a + 5, this.d.aq.b + 32, (this.d.aq.c - 11) / 2, this.w, 1);
-         ca.a(var1, this.d.aq.a + 5, this.d.aq.b + 32 + this.w + 1, (this.d.aq.c - 11) / 2, this.x - 2, 1);
-         ca.a(var1, this.d.aq.a + 5 + (this.d.aq.c - 11) / 2, this.d.aq.b + 32, (this.d.aq.c - 10) / 2, this.d.aq.d - 62, 1);
+         ca_1.a(var1, this.d.aq.a + 5, this.d.aq.b + 32, (this.d.aq.c - 11) / 2, this.w, 1);
+         ca_1.a(var1, this.d.aq.a + 5, this.d.aq.b + 32 + this.w + 1, (this.d.aq.c - 11) / 2, this.x - 2, 1);
+         ca_1.a(var1, this.d.aq.a + 5 + (this.d.aq.c - 11) / 2, this.d.aq.b + 32, (this.d.aq.c - 10) / 2, this.d.aq.d - 62, 1);
       }
 
       if (this.a != null) {
@@ -447,7 +448,7 @@ public final class ch {
          this.e.a(var1, ao_1.b(j), (int[])null, (aj)null, 0, 0, this.a[0][0], this.a[0][1], 0, 0);
       }
 
-      ca.d(var1, this.a[this.b][0], this.a[this.b][1], 17, 17);
+      ca_1.d(var1, this.a[this.b][0], this.a[this.b][1], 17, 17);
       if (h != -1) {
          double var4;
          if ((var4 = l + 0.001) > (double)1.0F) {
@@ -468,11 +469,11 @@ public final class ch {
 
       if (this.c.l == 0) {
          if (this.b == 0 && (this.f != null || this.f != "")) {
-            ca.b(var1, this.f, this.d.aq.a + 5 + 2, this.d.aq.b + 32 + 8 + ao_1.x.c, t.c - 5, 1);
+            ca_1.b(var1, this.f, this.d.aq.a + 5 + 2, this.d.aq.b + 32 + 8 + ao_1.x.c, t_1.c - 5, 1);
             return;
          }
       } else if (this.c.l == 1) {
-         ca.c(var1);
+         ca_1.c(var1);
       }
 
    }

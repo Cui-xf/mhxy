@@ -1,6 +1,7 @@
 package com.cc;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 
 public final class ce {
    public byte a;
@@ -19,7 +20,7 @@ public final class ce {
       this.a = var4;
    }
 
-   public final void a(DataInputStream var1) {
+   public final void a(DataInputStream var1) throws IOException {
       var1.readInt();
       this.a = var1.readByte();
       this.b = var1.readByte();

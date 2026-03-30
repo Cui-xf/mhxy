@@ -7,14 +7,15 @@ if "%OS%" == "Windows_NT" setlocal
 set DEMO=mhxy_s
 
 rem JDK 8 (javac / jar)
-set "JAVA_HOME=C:\Users\qaq\.jdks\azul-1.8.0_482"
+@REM set "JAVA_HOME=C:\Users\qaq\.jdks\azul-1.8.0_482"
+set "JAVA_HOME=E:\WORK\mhxy\jdk8u472-b08"
 
 rem J2ME API stubs + WTK tools (preverify); full toolkit root on E:
 set "J2ME_HOME=E:\WORK\mhxy\j2me"
 set "LIB_DIR=%J2ME_HOME%\lib"
 set "CLDCAPI=%LIB_DIR%\cldcapi10.jar"
 rem project: MIDP 1.0 (see mhxy_s.jad / project.properties)
-set "MIDPAPI=%LIB_DIR%\midpapi10.jar"
+set "MIDPAPI=%LIB_DIR%\midpapi20.jar"
 set "PREVERIFY=%J2ME_HOME%\bin\preverify"
 
 set "JAVAC=%JAVA_HOME%\bin\javac.exe"
@@ -50,7 +51,7 @@ if not exist .\%DEMO%.jad (
 
 rem Windows: javac does not expand *.java; list saved next to this script
 set "SRC_LIST=%~dp0mhxy_s_sources.txt"
-(for /com.cc.r ..\src %%com.cc.f_1 in (*.java) do @echo %%com.cc.f_1) > "%SRC_LIST%" 2>nul
+(for /r ..\src %%f in (*.java) do @echo %%f) > "%SRC_LIST%" 2>nul
 for %%A in ("%SRC_LIST%") do if %%~zA equ 0 (
   echo *** No .java files found under ..\src
   goto end
@@ -65,7 +66,7 @@ if not exist ..\classes md ..\classes
 
 echo *** Compiling source files ***
 rem Source files are UTF-8; Windows javac defaults to GBK and fails on Chinese comments/strings.
-%JAVAC% -encoding UTF-8 -bootclasspath "%CLDCAPI%;%MIDPAPI%;%RT_JAR%" -source 1.8 -target 1.8 -com.cc.d ..\tmpclasses -classpath ..\tmpclasses @"%SRC_LIST%"
+%JAVAC% -encoding UTF-8 -bootclasspath "%CLDCAPI%;%MIDPAPI%;%RT_JAR%" -source 1.8 -target 1.8 -d ..\tmpclasses -classpath ..\tmpclasses @"%SRC_LIST%"
 if errorlevel 1 (
   echo *** javac failed ***
   goto end
@@ -73,7 +74,7 @@ if errorlevel 1 (
 
 echo *** Preverifying class files ***
 
-%PREVERIFY% -classpath "%CLDCAPI%;%MIDPAPI%;..\tmpclasses" -com.cc.d ..\classes ..\tmpclasses
+%PREVERIFY% -classpath "%CLDCAPI%;%MIDPAPI%;..\tmpclasses" -d ..\classes ..\tmpclasses
 if errorlevel 1 (
   echo *** preverify failed ***
   goto end

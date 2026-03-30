@@ -1,6 +1,7 @@
 package com.cc;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
 public final class bv {
@@ -27,7 +28,7 @@ public final class bv {
       this.i = var5;
    }
 
-   public final void a(DataInputStream var1) {
+   public final void a(DataInputStream var1) throws IOException {
       this.c = var1.readInt();
       var1.readUTF();
       this.e = var1.readShort();

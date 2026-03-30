@@ -984,7 +984,7 @@ public final class bt_1 {
       return var0 == 20 || var0 == 21 || var0 == 22 || var0 == 23 || var0 == 24 || var0 == 25;
    }
 
-   public static void a() throws IOException {
+   public static void a() {
       if (I != null) {
          for(int var0 = 0; var0 < I.length; ++var0) {
             if (I[var0] != null) {
@@ -1020,7 +1020,7 @@ public final class bt_1 {
 
    }
 
-   public static void b() throws IOException {
+   public static void b() {
       if (q != null) {
          for(int var0 = 0; var0 < q.length; ++var0) {
             if (q[var0] != null) {
@@ -1047,7 +1047,7 @@ public final class bt_1 {
 
    }
 
-   public static void c() throws IOException {
+   public static void c() {
       if (o != null) {
          for(int var0 = 0; var0 < o.length; ++var0) {
             if (o[var0] != null) {
@@ -1074,7 +1074,7 @@ public final class bt_1 {
 
    }
 
-   public static void d() throws IOException {
+   public static void d()  {
       if (t != null) {
          for(int var0 = 0; var0 < t.length; ++var0) {
             if (t[var0] != null) {
@@ -1123,7 +1123,7 @@ public final class bt_1 {
       }
    }
 
-   public static void e() throws IOException {
+   public static void e() {
       if (W != null) {
          for(int var0 = 0; var0 < W.length; ++var0) {
             W[var0] = null;
@@ -1157,12 +1157,12 @@ public final class bt_1 {
 
    }
 
-   public static void f() throws IOException {
+   public static void f() {
       ab = null;
       ac = null;
    }
 
-   public static void c(DataInputStream var0) throws IOException {
+   public static void c(DataInputStream var0) {
       ar = var0.readShort();
       ae = var0.readUTF();
       at = var0.readShort();
@@ -1187,7 +1187,7 @@ public final class bt_1 {
       nG = -1;
    }
 
-   public static void h() throws IOException {
+   public static void h() {
       ad = null;
       af = null;
       ag = null;
@@ -1294,7 +1294,7 @@ public final class bt_1 {
       bD = true;
    }
 
-   public static void i() throws IOException {
+   public static void i()  {
       if (bC != null) {
          short var0 = (short)bC.size();
          bn var1 = null;
@@ -1420,7 +1420,7 @@ public final class bt_1 {
       }
    }
 
-   public static void j() throws IOException {
+   public static void j()  {
       bI = null;
       if (bJ != null) {
          for(int var0 = 0; var0 < bJ.length; ++var0) {
@@ -1570,7 +1570,7 @@ public final class bt_1 {
       }
    }
 
-   public static void k() throws IOException {
+   public static void k() {
       bY = null;
       cp = null;
       ca = null;
@@ -1622,7 +1622,7 @@ public final class bt_1 {
       }
    }
 
-   public static void l() throws IOException {
+   public static void l() {
       cr = null;
       if (cs != null) {
          for(int var0 = 0; var0 < cs.length; ++var0) {
@@ -1686,7 +1686,7 @@ public final class bt_1 {
       }
    }
 
-   public static void m() throws IOException {
+   public static void m() {
       ct = null;
       cv = null;
       cw = null;
@@ -1811,7 +1811,7 @@ public final class bt_1 {
       }
    }
 
-   public static void n() throws IOException {
+   public static void n() {
       cz = null;
       cB = null;
       cC = null;
@@ -1974,7 +1974,7 @@ public final class bt_1 {
       }
    }
 
-   public static void o() throws IOException {
+   public static void o() {
       cG = null;
       cI = null;
       cJ = null;
@@ -2232,7 +2232,7 @@ public final class bt_1 {
       }
    }
 
-   public static void q() throws IOException {
+   public static void q() {
       dv = null;
       dx = null;
       dy = null;
@@ -2282,7 +2282,7 @@ public final class bt_1 {
       }
    }
 
-   public static void r() throws IOException {
+   public static void r() {
       dE = null;
       if (dF != null) {
          for(int var0 = 0; var0 < dF.length; ++var0) {
@@ -2346,7 +2346,7 @@ public final class bt_1 {
       }
    }
 
-   public static void s() throws IOException {
+   public static void s() {
       dM = null;
       dN = null;
       dO = null;
@@ -2523,7 +2523,7 @@ public final class bt_1 {
       }
    }
 
-   public static void t() throws IOException {
+   public static void t() {
       Y();
    }
 
@@ -2644,7 +2644,7 @@ public final class bt_1 {
 
    }
 
-   public static void u() throws IOException {
+   public static void u() {
       ew = null;
       if (ex != null) {
          for(int var0 = 0; var0 < ex.length; ++var0) {
@@ -3319,7 +3319,7 @@ public final class bt_1 {
       return false;
    }
 
-   public static void v() throws IOException {
+   public static void v() {
       fh = null;
       fj = null;
       fi = null;
@@ -3398,7 +3398,7 @@ public final class bt_1 {
 
    }
 
-   public static void w() throws IOException {
+   public static void w() {
       fo = null;
       fq = null;
       fp = null;
@@ -3551,7 +3551,7 @@ public final class bt_1 {
       return var2.toString();
    }
 
-   public static void x() throws IOException {
+   public static void x() {
       fw = null;
       if (fA != null && fA.length > 0) {
          fw = new int[fA.length];
@@ -3635,7 +3635,7 @@ public final class bt_1 {
       return var0.toString();
    }
 
-   public static void y() throws IOException {
+   public static void y() {
       fv = null;
       fu = null;
       oX = null;
@@ -3754,7 +3754,7 @@ public final class bt_1 {
       return var0.toString();
    }
 
-   public static void z() throws IOException {
+   public static void z() {
       fy = null;
       fx = null;
       pp = null;
@@ -3846,7 +3846,7 @@ public final class bt_1 {
       gR = var0.readByte();
    }
 
-   public static void A() throws IOException {
+   public static void A() {
       Y();
    }
 
@@ -4111,7 +4111,7 @@ public final class bt_1 {
       return var0.toString();
    }
 
-   public static void B() throws IOException {
+   public static void B() {
       fz = null;
       fA = null;
       fD = null;
@@ -4402,7 +4402,7 @@ public final class bt_1 {
       gG = null;
    }
 
-   public static void C() throws IOException {
+   public static void C() {
       gH = null;
       gI = null;
       gJ = null;
@@ -4463,7 +4463,7 @@ public final class bt_1 {
 
    }
 
-   public static void D() throws IOException {
+   public static void D() {
       if (gS != null) {
          for(int var0 = 0; var0 < gS.length; ++var0) {
             gS[var0] = null;
@@ -4615,7 +4615,7 @@ public final class bt_1 {
       }
    }
 
-   public static void E() throws IOException {
+   public static void E() {
       hb = null;
       hc = null;
       hd = null;
@@ -4749,7 +4749,7 @@ public final class bt_1 {
 
    }
 
-   public static void F() throws IOException {
+   public static void F() {
       hG = -1;
       hH = null;
       hI = -1;
@@ -5129,7 +5129,7 @@ public final class bt_1 {
       }
    }
 
-   public static void H() throws IOException {
+   public static void H() {
       iN = null;
       iP = null;
       iQ = null;
@@ -5256,7 +5256,7 @@ public final class bt_1 {
       }
    }
 
-   public static void I() throws IOException {
+   public static void I(){
       jo = null;
       jp = null;
       jq = null;
@@ -5285,7 +5285,7 @@ public final class bt_1 {
       }
    }
 
-   public static void J() throws IOException {
+   public static void J() {
       jr = null;
       js = null;
       jt = null;
@@ -6101,7 +6101,7 @@ public final class bt_1 {
       }
    }
 
-   public static void a(int var0, int var1) throws IOException {
+   public static void a(int var0, int var1) {
       int var2 = var0;
       if (var1 == 0) {
          for(byte var3 = 0; var3 < fh.length; ++var3) {
@@ -6144,7 +6144,7 @@ public final class bt_1 {
       kA = var1 == 0 ? fm[var2] : ft[var2];
    }
 
-   public static void a(bn var0) throws IOException {
+   public static void a(bn var0) {
       ko = var0.a;
       kp = var0.b;
       kq = var0.b;
@@ -6172,7 +6172,7 @@ public final class bt_1 {
       kA = var0.s;
    }
 
-   public static void a(int var0) throws IOException {
+   public static void a(int var0) {
       for(int var1 = 0; var1 < cz.length; ++var1) {
          if (cB[var1] == var0) {
             ko = cz[var1];
@@ -6205,7 +6205,7 @@ public final class bt_1 {
 
    }
 
-   public static void b(int var0) throws IOException {
+   public static void b(int var0) {
       for(int var1 = 0; var1 < jH.length; ++var1) {
          if (jJ[var1] == var0) {
             ko = jH[var1];
@@ -6238,7 +6238,7 @@ public final class bt_1 {
 
    }
 
-   public static void c(int var0) throws IOException {
+   public static void c(int var0) {
       ko = ct[var0];
       kp = cu[var0];
       kq = cu[var0];
@@ -6266,7 +6266,7 @@ public final class bt_1 {
       kA = nQ[var0];
    }
 
-   public static void d(int var0) throws IOException {
+   public static void d(int var0) {
       ko = dY[var0];
       kp = dZ[var0];
       kq = dZ[var0];
@@ -6294,7 +6294,7 @@ public final class bt_1 {
       kA = eh[var0];
    }
 
-   public static void e(int var0) throws IOException {
+   public static void e(int var0) {
       ko = jN[var0];
       kp = jO[var0];
       kq = jO[var0];
@@ -6506,7 +6506,7 @@ public final class bt_1 {
       return var0.toString();
    }
 
-   public static void K() throws IOException {
+   public static void K() {
       kp = null;
       kq = null;
       kr = null;
@@ -6780,7 +6780,7 @@ public final class bt_1 {
       }
    }
 
-   public static void L() throws IOException {
+   public static void L() {
       if (kH != null) {
          for(int var0 = 0; var0 < kH.length; ++var0) {
             kH[var0] = null;
@@ -6815,7 +6815,7 @@ public final class bt_1 {
       }
    }
 
-   public static void M() throws IOException {
+   public static void M() {
       if (kJ != null) {
          kJ = null;
       }
@@ -6850,7 +6850,7 @@ public final class bt_1 {
 
    }
 
-   public static void N() throws IOException {
+   public static void N(){
       if (bC != null && bC.size() > 0) {
          Object var0 = null;
 
@@ -6990,7 +6990,8 @@ public final class bt_1 {
             if ((var4 = (br)rk.elementAt(var2)) != null && var4.a == var0) {
                try {
                   return ci_1.a(var4.b);
-               } catch (IOException var3) {
+               } catch (Exception var3) {
+                  
                }
             }
          }
@@ -7077,7 +7078,7 @@ public final class bt_1 {
 
    }
 
-   public static void O() throws IOException {
+   public static void O() {
       if (rk != null) {
          rk.removeAllElements();
          rk = null;
@@ -7112,7 +7113,7 @@ public final class bt_1 {
 
    }
 
-   public static void P() throws IOException {
+   public static void P() {
       la = null;
       lb = null;
       lc = null;
@@ -7148,7 +7149,7 @@ public final class bt_1 {
 
    }
 
-   public static void Q() throws IOException {
+   public static void Q() {
       rm = null;
       li = null;
       rn = null;
@@ -7572,11 +7573,11 @@ public final class bt_1 {
       }
    }
 
-   public static void R() throws IOException {
+   public static void R() {
       mv = null;
    }
 
-   public static void S() throws IOException {
+   public static void S() {
       mu = null;
    }
 
@@ -7599,7 +7600,7 @@ public final class bt_1 {
       }
    }
 
-   public static void T() throws IOException {
+   public static void T() {
       mx = -1;
       mD = -1;
       mJ = new int[3];
@@ -7616,7 +7617,7 @@ public final class bt_1 {
       mN = null;
    }
 
-   public static void U() throws IOException {
+   public static void U() {
       mC = null;
       mI = null;
       mJ = null;
@@ -7722,7 +7723,7 @@ public final class bt_1 {
       }
    }
 
-   public static void V() throws IOException {
+   public static void V() {
       fw = null;
       if (fA != null && fA.length > 0) {
          int var0 = 0;
@@ -7937,7 +7938,7 @@ public final class bt_1 {
 
    }
 
-   public static void W() throws IOException {
+   public static void W() {
       ni = null;
       nj = null;
       nl = null;
@@ -8091,7 +8092,7 @@ public final class bt_1 {
       }
    }
 
-   public static void X() throws IOException {
+   public static void X() {
       if (nx != null) {
          for(int var0 = 0; var0 < nx.length; ++var0) {
             nx[var0] = null;

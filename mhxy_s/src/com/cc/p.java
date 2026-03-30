@@ -76,34 +76,34 @@ public final class p {
    }
 
    public final void b(byte var1) {
-      t.ag.delete(0, t.ag.length());
+      t_1.ag.delete(0, t_1.ag.length());
       this.k = var1;
       if (this.b == 0) {
          if (var1 == 4) {
-            t.ag.append("com.cc.f").append(this.i).append(0).append(var1);
+            t_1.ag.append("com.cc.f").append(this.i).append(0).append(var1);
          } else {
-            t.ag.append("com.cc.f").append(this.i).append(0).append(this.t).append(var1);
+            t_1.ag.append("com.cc.f").append(this.i).append(0).append(this.t).append(var1);
          }
 
-         this.j = a_MainCanvas.ab.b(t.ag.toString());
+         this.j = a_MainCanvas.ab.b(t_1.ag.toString());
          if (this.j == null && var1 != 4) {
-            t.ag.delete(0, t.ag.length());
-            t.ag.append("com.cc.f").append(this.i).append(0).append(1).append(var1);
-            this.j = a_MainCanvas.ab.b(t.ag.toString());
+            t_1.ag.delete(0, t_1.ag.length());
+            t_1.ag.append("com.cc.f").append(this.i).append(0).append(1).append(var1);
+            this.j = a_MainCanvas.ab.b(t_1.ag.toString());
             return;
          }
       } else if (this.b == 1) {
-         t.ag.append(this.i).append(var1 > 3 ? 3 : var1);
-         this.j = a_MainCanvas.ah.a(t.ag.toString(), this.p, this.q, this.r);
+         t_1.ag.append(this.i).append(var1 > 3 ? 3 : var1);
+         this.j = a_MainCanvas.ah.a(t_1.ag.toString(), this.p, this.q, this.r);
          if (this.j == null) {
-            t.ag.delete(0, t.ag.length());
-            t.ag.append(100).append(var1 > 3 ? 3 : var1);
-            this.j = a_MainCanvas.ah.a(t.ag.toString(), this.p, this.q, this.r);
+            t_1.ag.delete(0, t_1.ag.length());
+            t_1.ag.append(100).append(var1 > 3 ? 3 : var1);
+            this.j = a_MainCanvas.ah.a(t_1.ag.toString(), this.p, this.q, this.r);
             return;
          }
       } else if (this.b == 2) {
-         t.ag.append(this.i).append(var1 > 3 ? 3 : var1);
-         this.j = a_MainCanvas.ah.a(t.ag.toString(), this.p, this.q, this.r);
+         t_1.ag.append(this.i).append(var1 > 3 ? 3 : var1);
+         this.j = a_MainCanvas.ah.a(t_1.ag.toString(), this.p, this.q, this.r);
       }
 
    }

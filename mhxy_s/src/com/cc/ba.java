@@ -21,12 +21,12 @@ public final class ba {
       var1.aq.b();
       var1.aq.a("宠物升星");
       var1.aq.a((al)var1.at);
-      if (t.c > 220) {
+      if (t_1.c > 220) {
          var1.au.a("");
          var1.aq.a((al)var1.au);
       }
 
-      var1.aq.a(t.f, t.g, t.d, t.e);
+      var1.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.d = (short)(var1.at.e >> 1);
       this.e = var1.at.b;
       this.f = var1.at.c;
@@ -39,7 +39,7 @@ public final class ba {
       this.c.aq.b();
       this.c.aq.a("宠物升星");
       this.c.aq.a((al)this.c.at);
-      if (t.c > 220) {
+      if (t_1.c > 220) {
          this.c.au.a("");
          this.c.aq.a((al)this.c.au);
       }
@@ -50,8 +50,8 @@ public final class ba {
 
    public final void a(Graphics var1) {
       this.c.aq.a(var1);
-      ca.a(var1, this.e, this.f, this.g, this.h - 32, 1);
-      ca.a(var1, this.e, this.f, 80, this.h - 32, 1);
+      ca_1.a(var1, this.e, this.f, this.g, this.h - 32, 1);
+      ca_1.a(var1, this.e, this.f, 80, this.h - 32, 1);
       if (this.a.bf == 0 && this.a.be == 0) {
          var1.setColor(16776960);
          var1.drawRect(this.e, this.f, 80, this.h - 32);
@@ -87,21 +87,21 @@ public final class ba {
          var1.drawString("副宠", this.e + this.g - 44 + 20, this.f + (this.h - 32) / 2, 65);
       }
 
-      ca.a(var1, this.e, this.f + this.h - 32, this.g, 32, 1);
+      ca_1.a(var1, this.e, this.f + this.h - 32, this.g, 32, 1);
       if (bt_1.mM != null) {
          var1.setColor(16776960);
-         var1.drawString(bt_1.mM, t.b / 2, this.f + this.h - 25 + 2, 17);
+         var1.drawString(bt_1.mM, t_1.b / 2, this.f + this.h - 25 + 2, 17);
       }
 
       if (this.a.l == 1) {
-         ca.c(var1);
+         ca_1.c(var1);
       }
 
    }
 
    public final int a(byte var1, int var2, int var3) {
       if (this.a.l == 1) {
-         return ca.c(var2, var3);
+         return ca_1.c(var2, var3);
       } else if (this.c.aq.b(var2, var3) > 0) {
          return this.c.aq.b(var2, var3);
       } else {
@@ -112,7 +112,7 @@ public final class ba {
 
             this.a.bf = 0;
             this.a.be = 0;
-            ca.l = 0;
+            ca_1.l = 0;
             this.a.ak();
          } else if (var2 > this.e + this.g - 44 && var2 < this.e + this.g - 4 && var3 > this.f + (this.h - 32 - 40) / 2 && var3 < this.f + (this.h - 32 - 40) / 2 + 40) {
             if (this.a.be == 0 && this.a.bf == 1) {
@@ -121,7 +121,7 @@ public final class ba {
 
             this.a.bf = 1;
             this.a.be = 0;
-            ca.l = 0;
+            ca_1.l = 0;
             this.a.ak();
          } else if (var2 > this.e + 80 + 8 + 24 && var2 < this.e + 80 + 8 + 24 + 16 && var3 > this.f + this.h - 32 - 44 && var3 < this.f + this.h - 32 - 44 + 16) {
             if (this.a.be == 1 && this.a.bf == 0) {
@@ -130,7 +130,7 @@ public final class ba {
 
             this.a.bf = 0;
             this.a.be = 1;
-            ca.l = 0;
+            ca_1.l = 0;
             this.a.ak();
          }
 

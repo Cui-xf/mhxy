@@ -3,6 +3,7 @@ package com.cc;
 import com.yinhan.kjava.main.a_MainCanvas;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
@@ -51,7 +52,7 @@ public final class v_1 {
       }
    }
 
-   public static void a(DataInputStream var0) {
+   public static void a(DataInputStream var0) throws IOException {
       bt_1.gQ = var0.readShort();
       short var1 = var0.readShort();
       bt_1.gR = var0.readByte();
@@ -77,7 +78,7 @@ public final class v_1 {
       k = null;
    }
 
-   public static void b(DataInputStream var0) {
+   public static void b(DataInputStream var0) throws IOException {
       b = var0.readUTF();
    }
 
@@ -91,7 +92,7 @@ public final class v_1 {
       this.i.au.a(true);
       this.i.aq.a((al)this.i.ar);
       this.i.aq.a((al)this.i.au);
-      this.i.aq.a(t.f, t.g, t.d, t.e);
+      this.i.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.h.l = 0;
       this.i.j = this.i.k;
       this.h.j = this.h.k = 90;
@@ -101,11 +102,11 @@ public final class v_1 {
       this.i.aq.j();
       this.i.aq.a("求爱宣言");
       this.i.aq.a(false);
-      this.i.at.a(b, t.i, (byte)2);
+      this.i.at.a(b, t_1.i, (byte)2);
       this.i.au.a("确定");
       this.i.aq.a((al)this.i.at);
       this.i.aq.a((al)this.i.au);
-      this.i.aq.a(t.f, t.g, t.d, t.e);
+      this.i.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.h.l = 2;
       this.i.j = this.i.k;
       this.h.j = this.h.k = 90;
@@ -118,7 +119,7 @@ public final class v_1 {
          }
 
          if (a != null && (var1 == 268435456 || var1 == 1073741824 || var1 == 517)) {
-            ca.a(80 + t.f, t.j + 20 + this.i.ar.i() * t.j + t.g, new String[]{"查看"}, false);
+             ca_1.a(80 + t_1.f, t_1.j + 20 + this.i.ar.i() * t_1.j + t_1.g, new String[]{"查看"}, false);
             this.h.l = 1;
             this.h.aA = this.i.ar.h();
             this.h.aE = this.i.ar.g();
@@ -166,13 +167,13 @@ public final class v_1 {
             }
          }
       } else if (this.h.l == 1) {
-         ca.b(var1);
+          ca_1.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.h.l = 0;
                return;
             }
-         } else if (ca.o == 0) {
+         } else if ( ca_1.o == 0) {
             var1 = a[this.i.ar.g()];
             byte[] var3;
             if ((var3 = bz_1.A((short)4859, bt_1.ad, var1)) == null) {
@@ -208,7 +209,7 @@ public final class v_1 {
          }
 
          if (this.h.l == 1) {
-            ca.c(var1);
+             ca_1.c(var1);
             return;
          }
       }
@@ -226,7 +227,7 @@ public final class v_1 {
       }
    }
 
-   public static void c(DataInputStream var0) {
+   public static void c(DataInputStream var0) throws IOException {
       l = var0.readByte();
    }
 
@@ -235,12 +236,12 @@ public final class v_1 {
       this.i.aq.j();
       this.i.aq.a("申请结婚");
       this.i.aq.a(false);
-      this.i.at.b(c, t.i, (byte)2);
+      this.i.at.b(c, t_1.i, (byte)2);
       this.i.at.a((byte)1);
       this.i.aq.a((al)this.i.at);
-      int var2 = 2 * t.j + 16;
+      int var2 = 2 * t_1.j + 16;
       this.i.aq.g = var2;
-      this.i.aq.a(t.f, t.g, t.d, t.e);
+      this.i.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.h.l = 0;
       this.i.j = this.i.k;
       this.h.j = this.h.k = 91;
@@ -289,8 +290,8 @@ public final class v_1 {
          int var3 = 0;
          if (this.i.aq != null) {
             var2 = this.i.aq.a + 5;
-            var3 = this.i.aq.b + this.i.aq.d - (2 * t.j + 16) - 6;
-            ca.a(var1, var2, var3, this.i.aq.c - 11, 2 * t.j + 16, 1);
+            var3 = this.i.aq.b + this.i.aq.d - (2 * t_1.j + 16) - 6;
+             ca_1.a(var1, var2, var3, this.i.aq.c - 11, 2 * t_1.j + 16, 1);
             this.i.aq.a(var1);
          }
 
@@ -305,7 +306,7 @@ public final class v_1 {
                this.m[0] = "同意(点击申请结婚)";
             }
 
-            ca.a(var1, (String)this.m[var5], (int)(var2 + 4), var3 + 5 + var5 * (t.j + 5), 20, this.d == var5 ? 16711680 : var4, 0);
+             ca_1.a(var1, (String)this.m[var5], (int)(var2 + 4), var3 + 5 + var5 * (t_1.j + 5), 20, this.d == var5 ? 16711680 : var4, 0);
          }
       }
 
@@ -322,7 +323,7 @@ public final class v_1 {
       }
    }
 
-   public static void d(DataInputStream var0) {
+   public static void d(DataInputStream var0) throws IOException {
       e = var0.readByte();
    }
 
@@ -330,12 +331,12 @@ public final class v_1 {
       this.i.aq.j();
       this.i.aq.a("申请离婚");
       this.i.aq.a(false);
-      this.i.at.b(f, t.i, (byte)2);
+      this.i.at.b(f, t_1.i, (byte)2);
       this.i.at.a((byte)1);
       this.i.aq.a((al)this.i.at);
-      int var2 = 2 * t.j + 16;
+      int var2 = 2 * t_1.j + 16;
       this.i.aq.g = var2;
-      this.i.aq.a(t.f, t.g, t.d, t.e);
+      this.i.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.h.l = 0;
       this.i.j = this.i.k;
       this.h.j = this.h.k = 92;
@@ -389,8 +390,8 @@ public final class v_1 {
          int var3 = 0;
          if (this.i.aq != null) {
             var2 = this.i.aq.a + 5;
-            var3 = this.i.aq.b + this.i.aq.d - (2 * t.j + 16) - 6;
-            ca.a(var1, var2, var3, this.i.aq.c - 11, 2 * t.j + 16, 1);
+            var3 = this.i.aq.b + this.i.aq.d - (2 * t_1.j + 16) - 6;
+             ca_1.a(var1, var2, var3, this.i.aq.c - 11, 2 * t_1.j + 16, 1);
             this.i.aq.a(var1);
          }
 
@@ -405,7 +406,7 @@ public final class v_1 {
                this.n[0] = "离婚(点击申请离婚)";
             }
 
-            ca.a(var1, (String)this.n[var5], (int)(var2 + 4), var3 + 5 + var5 * (t.j + 5), 20, this.g == var5 ? 16711680 : var4, 0);
+             ca_1.a(var1, (String)this.n[var5], (int)(var2 + 4), var3 + 5 + var5 * (t_1.j + 5), 20, this.g == var5 ? 16711680 : var4, 0);
          }
       }
 
@@ -422,7 +423,7 @@ public final class v_1 {
       }
    }
 
-   public static void e(DataInputStream var0) {
+   public static void e(DataInputStream var0) throws IOException {
       bt_1.gQ = var0.readShort();
       short var1 = var0.readShort();
       bt_1.gR = var0.readByte();
@@ -449,7 +450,7 @@ public final class v_1 {
       this.i.au.a(true);
       this.i.aq.a((al)this.i.ar);
       this.i.aq.a((al)this.i.au);
-      this.i.aq.a(t.f, t.g, t.d, t.e);
+      this.i.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.h.l = 0;
       this.i.j = this.i.k;
       this.h.j = this.h.k = 93;

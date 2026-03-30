@@ -9,7 +9,7 @@ final class e {
       this.b = new int[var3.length];
 
       for(int var4 = 0; var4 < var3.length; ++var4) {
-         this.b[var4] = ca.a(Integer.parseInt(var3[var4]));
+         this.b[var4] = ca_1.a(Integer.parseInt(var3[var4]));
       }
 
    }
@@ -19,7 +19,7 @@ final class e {
          short var1 = 0;
 
          for(int var2 = 0; var2 < this.a.length; ++var2) {
-            var1 = (short)(var1 + t.i.stringWidth(this.a[var2]));
+            var1 = (short)(var1 + t_1.i.stringWidth(this.a[var2]));
          }
 
          return var1;

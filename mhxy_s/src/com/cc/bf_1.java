@@ -2,6 +2,7 @@ package com.cc;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import javax.microedition.lcdui.Image;
 
@@ -31,29 +32,29 @@ public final class bf_1 extends cf {
       return var1 >= 0 && var1 < this.d.length ? this.d[var1] : null;
    }
 
-   public final void a(byte[][] var1, boolean var2) {
+   public final void a(byte[][] var1, boolean var2) throws IOException {
       if (this.e == 0 && this.f == 0 && this.g == 0) {
          byte[][] var21 = var1;
          ByteArrayOutputStream var22;
-         (var22 = new ByteArrayOutputStream()).write(ai.b);
+         (var22 = new ByteArrayOutputStream()).write(ai_1.b);
 
          for(int var11 = 1; var11 < var21.length; ++var11) {
             if (var21[var11] != null && var21[var11].length > 4) {
-               ((OutputStream)var22).write(a(ai.a[var11 > 4 ? 4 : var11], var21[var11]));
+               ((OutputStream)var22).write(a(ai_1.a[var11 > 4 ? 4 : var11], var21[var11]));
             }
          }
 
-         ((OutputStream)var22).write(ai.c);
+         ((OutputStream)var22).write(ai_1.c);
          byte[] var12 = var22.toByteArray();
          this.a = Image.createImage(new ByteArrayInputStream(var12));
          var22.close();
       } else {
          ByteArrayOutputStream var13;
-         (var13 = new ByteArrayOutputStream()).write(ai.b);
+         (var13 = new ByteArrayOutputStream()).write(ai_1.b);
 
          for(int var3 = 1; var3 < var1.length; ++var3) {
             if (var1[var3] != null && var1[var3].length > 4) {
-               if (ai.a[var3 > 4 ? 4 : var3].equals("PLTE")) {
+               if (ai_1.a[var3 > 4 ? 4 : var3].equals("PLTE")) {
                   byte[] var4;
                   byte[] var5 = new byte[(var4 = var1[var3]).length - 4];
                   System.arraycopy(var4, 0, var5, 0, var5.length);
@@ -72,11 +73,11 @@ public final class bf_1 extends cf {
                   var4[var20 + 3] = (byte)var6;
                }
 
-               ((OutputStream)var13).write(a(ai.a[var3 > 4 ? 4 : var3], var1[var3]));
+               ((OutputStream)var13).write(a(ai_1.a[var3 > 4 ? 4 : var3], var1[var3]));
             }
          }
 
-         ((OutputStream)var13).write(ai.c);
+         ((OutputStream)var13).write(ai_1.c);
          byte[] var14 = var13.toByteArray();
 
          try {
@@ -171,12 +172,10 @@ public final class bf_1 extends cf {
       var8 = ~a(var13, var12, 0, var10);
 
       try {
-         var10 = this.i == var8;
+       return this.i == var8;
       } finally {
          this.i = var8;
       }
-
-      return (boolean)var10;
    }
 
    private static int a(int var0, byte[] var1, int var2, int var3) {

@@ -6,11 +6,11 @@ import java.util.Vector;
 import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
 
-public final class d {
+public final class d_1 {
    private int a;
    private ah[] b;
 
-   private d(Vector var1) {
+   private d_1(Vector var1) {
       this.b = new ah[var1.size()];
       var1.copyInto(this.b);
 
@@ -34,7 +34,7 @@ public final class d {
 
    }
 
-   public static d[] a(String var0, int var1, Font var2, char var3) {
+   public static d_1[] a(String var0, int var1, Font var2, char var3) {
       if (var0 != null && var2 != null && var1 >= 0) {
          StringBuffer var16 = new StringBuffer();
          StringBuffer var4 = new StringBuffer();
@@ -94,7 +94,7 @@ public final class d {
                   short var20 = (var19 = ao_1.b(var8)) == null ? 0 : var19.b;
                   if ((var7 += var20) > var1) {
                      var7 = var20;
-                     var11.addElement(new d(var10));
+                     var11.addElement(new d_1(var10));
                      var10.removeAllElements();
                   }
 
@@ -115,7 +115,7 @@ public final class d {
                      var4.delete(0, var4.length());
                   }
 
-                  var11.addElement(new d(var10));
+                  var11.addElement(new d_1(var10));
                   var10.removeAllElements();
                }
             }
@@ -126,10 +126,10 @@ public final class d {
                var10.addElement(new ah((byte)0, (short)var6, var4.toString()));
             }
 
-            var11.addElement(new d(var10));
+            var11.addElement(new d_1(var10));
          }
 
-         d[] var18 = new d[var11.size()];
+         d_1[] var18 = new d_1[var11.size()];
          var11.copyInto(var18);
          return var18;
       } else {

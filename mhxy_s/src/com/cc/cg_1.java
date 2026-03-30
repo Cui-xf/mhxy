@@ -3,6 +3,7 @@ package com.cc;
 import com.yinhan.kjava.main.a_MainCanvas;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
 public final class cg_1 {
@@ -95,7 +96,7 @@ public final class cg_1 {
       this.i = null;
    }
 
-   public static void a(DataInputStream var0) {
+   public static void a(DataInputStream var0) throws IOException {
       if ((C = var0.readByte()) != 0) {
          if (C == 1) {
             k = bt_1.fA[c];
@@ -180,7 +181,7 @@ public final class cg_1 {
 
    public final int a(int var1, int var2) {
       if (this.e.l == 1) {
-         return ca.c(var1, var2);
+         return ca_1.c(var1, var2);
       } else {
          int var3 = 0;
          if ((var3 = this.f.aq.b(var1, var2)) <= 0) {
@@ -235,8 +236,8 @@ public final class cg_1 {
       this.f.aq.b();
       this.f.aq.a("星级继承");
       this.f.aq.a(true);
-      this.H.a(this.L, t.i, (byte)2);
-      this.I.a(this.M, t.i, (byte)2);
+      this.H.a(this.L, t_1.i, (byte)2);
+      this.I.a(this.M, t_1.i, (byte)2);
       if (a != -1 && u != -1) {
          ao_1.a(u, v, w, x);
          this.h = a_MainCanvas.ah.a(String.valueOf(u + "_0"), v, w, x);
@@ -253,16 +254,16 @@ public final class cg_1 {
          this.i = null;
       }
 
-      if (t.c > 220) {
+      if (t_1.c > 220) {
          this.f.au.a("");
          this.f.aq.a((al)this.f.au);
       }
 
-      this.G = (this.f.aq.d - 32 - t.j) / 3 - 10;
-      this.f.aq.a(t.f, t.g, t.d, t.e);
+      this.G = (this.f.aq.d - 32 - t_1.j) / 3 - 10;
+      this.f.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.H.a(this.f.aq.a + 5, this.f.aq.b + 32 + this.G, this.f.aq.c - 11, this.G + 10);
       this.I.a(this.f.aq.a + 5, this.f.aq.b + 32 + 2 * this.G + 10, this.f.aq.c - 11, this.G + 10);
-      ca.l = 0;
+      ca_1.l = 0;
       this.e.l = 0;
       this.f.j = this.f.k;
       this.e.j = this.e.k = 131;
@@ -275,7 +276,7 @@ public final class cg_1 {
          var1 = 0;
          this.e.c((int)0, (int)this.e.aE, (int)this.e.aA);
          this.e.E();
-         ca.o = 3;
+         ca_1.o = 3;
          this.e.l = 1;
       }
 
@@ -296,7 +297,7 @@ public final class cg_1 {
 
          if (var1 == 8 || var1 == 2) {
             this.K = this.K == 1 ? 0 : 1;
-            ca.l = 0;
+            ca_1.l = 0;
             return;
          }
 
@@ -304,14 +305,14 @@ public final class cg_1 {
             if (var1 == 536870912) {
                this.e.c((int)0, (int)this.e.aE, (int)this.e.aA);
                this.e.E();
-               ca.o = 3;
+               ca_1.o = 3;
                this.e.l = 1;
                return;
             }
          } else {
             if (this.K == 0) {
                if (a != -1) {
-                  ca.a(t.b / 2, t.c / 2, new String[]{"继承", "更换"}, true);
+                  ca_1.a(t_1.b / 2, t_1.c / 2, new String[]{"继承", "更换"}, true);
                   this.e.l = 1;
                   return;
                }
@@ -323,7 +324,7 @@ public final class cg_1 {
             if (this.K == 1) {
                if (a != -1) {
                   if (k != -1) {
-                     ca.a(t.b / 2, t.c / 2, new String[]{"更换"}, true);
+                     ca_1.a(t_1.b / 2, t_1.c / 2, new String[]{"更换"}, true);
                      this.e.l = 1;
                      return;
                   }
@@ -344,7 +345,7 @@ public final class cg_1 {
             }
          }
       } else if (this.e.l == 1) {
-         ca.b(var1);
+         ca_1.b(var1);
          if (var1 == 536870912) {
             this.e.l = 0;
             return;
@@ -352,7 +353,7 @@ public final class cg_1 {
 
          if (var1 == 268435456 || var1 == 1073741824) {
             if (this.K == 0) {
-               if (ca.o == 0) {
+               if (ca_1.o == 0) {
                   if (a == -1 || k == -1) {
                      this.f.b("请先放入副宠");
                      return;
@@ -367,7 +368,7 @@ public final class cg_1 {
                   w var4 = new w((short)4691, var3);
                   a_MainCanvas.i.a(var4);
                   this.f.a((String)null);
-               } else if (ca.o == 1) {
+               } else if (ca_1.o == 1) {
                   bt_1.fw = null;
                   if (bt_1.fA != null && bt_1.fA.length > 0) {
                      var1 = 0;
@@ -399,7 +400,7 @@ public final class cg_1 {
                   this.f.b("您没有主宠可以选择");
                   return;
                }
-            } else if (this.K == 1 && ca.o == 0) {
+            } else if (this.K == 1 &&ca_1.o == 0) {
                c();
                if (bt_1.fw == null || bt_1.fw.length <= 0) {
                   this.f.b("您没有符合要求的副宠");
@@ -419,17 +420,17 @@ public final class cg_1 {
          this.f.aq.a(var1);
          this.H.a(var1);
          this.I.a(var1);
-         ca.a(var1, this.f.aq.a + 5, this.f.aq.b + 32, this.f.aq.c - 11, this.G, 1);
+         ca_1.a(var1, this.f.aq.a + 5, this.f.aq.b + 32, this.f.aq.c - 11, this.G, 1);
       }
 
-      ca.a(var1, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 50, 50, 1);
+      ca_1.a(var1, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 50, 50, 1);
       var1.setColor(2917024);
       var1.fillRect(this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 50, 50);
       var1.setColor(9360850);
       var1.drawRect(this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 49, 49);
       this.a(0, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 50, 50);
       this.a(1, this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 50, 50);
-      ca.d(var1, this.J[this.K][0], this.J[this.K][1], 50, 50);
+      ca_1.d(var1, this.J[this.K][0], this.J[this.K][1], 50, 50);
       if (a != -1 && this.h != null) {
          this.g.a(var1, (bc_1)this.h, (int[])null, 0, 0, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 0, 0);
       }
@@ -438,11 +439,11 @@ public final class cg_1 {
          this.g.a(var1, (bc_1)this.i, (int[])null, 0, 0, this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 0, 0);
       } else {
          var1.setColor(16776960);
-         var1.drawString("副宠", this.f.aq.a + 5 + 25 + this.f.aq.c / 2 + 25, this.f.aq.b + 32 + 10 + t.j / 4 + 25, 65);
+         var1.drawString("副宠", this.f.aq.a + 5 + 25 + this.f.aq.c / 2 + 25, this.f.aq.b + 32 + 10 + t_1.j / 4 + 25, 65);
       }
 
       if (this.e.l == 1) {
-         ca.c(var1);
+         ca_1.c(var1);
       }
 
    }

@@ -153,7 +153,7 @@ public final class bg implements CommandListener {
       this.l.addCommand(var6);
       this.l.addCommand(var7);
       this.l.setCommandListener(this);
-      if (bb.k) {
+      if (bb_1.k) {
          this.p.setSelectedIndex(0, true);
       }
 
@@ -230,7 +230,7 @@ public final class bg implements CommandListener {
    }
 
    public final void a(Display var1, boolean var2) {
-      bb.c = var2;
+      bb_1.c = var2;
       if (this.x != null) {
          this.d();
       }
@@ -249,7 +249,7 @@ public final class bg implements CommandListener {
       Command var4 = new Command("提交", 4, 0);
       Command var5 = new Command("返回游戏", 4, 1);
       this.x.addCommand(var4);
-      if (bb.c) {
+      if (bb_1.c) {
          this.x.addCommand(var5);
       } else {
          this.x.addCommand(var6);
@@ -321,7 +321,7 @@ public final class bg implements CommandListener {
 
       Command var14 = new Command("返回", 2, 1);
       var8.G.addCommand(var14);
-      if (var2.equals("一哥哥通行证帮助") && !bb.c) {
+      if (var2.equals("一哥哥通行证帮助") && !bb_1.c) {
          Command var10 = new Command("登录", 4, 1);
          Command var12 = new Command("注册", 4, 1);
          Command var13 = new Command("退出", 7, 1);
@@ -522,7 +522,7 @@ public final class bg implements CommandListener {
                }
 
                if (var13.equals("返回") && this.b == 12) {
-                  this.a(this.h.a(), bb.m, bb.n, 0);
+                  this.a(this.h.a(), bb_1.m, bb_1.n, 0);
                   return;
                }
 
@@ -550,7 +550,7 @@ public final class bg implements CommandListener {
                   default:
                      if (var13.equals("返回")) {
                         if (this.b == 3) {
-                           this.a(this.h.a(), bb.m, bb.n, 0);
+                           this.a(this.h.a(), bb_1.m, bb_1.n, 0);
                            return;
                         } else {
                            if (this.b == 11) {
@@ -558,7 +558,7 @@ public final class bg implements CommandListener {
                            }
 
                            if (this.b == 4) {
-                              this.a(this.h.a(), bb.c);
+                              this.a(this.h.a(), bb_1.c);
                               return;
                            } else {
                               if (this.b == 6) {
@@ -576,7 +576,7 @@ public final class bg implements CommandListener {
                         }
                      } else {
                         if (var13.equals("登录")) {
-                           this.a(this.h.a(), bb.m, bb.n, 0);
+                           this.a(this.h.a(), bb_1.m, bb_1.n, 0);
                         } else {
                            if (!var13.equals("注册")) {
                               if (!var13.equals("短信注册") && var13.equals("退出")) {
@@ -586,7 +586,7 @@ public final class bg implements CommandListener {
                               return;
                            }
 
-                           this.a(this.h.a(), bb.c);
+                           this.a(this.h.a(), bb_1.c);
                         }
 
                         return;
@@ -596,16 +596,16 @@ public final class bg implements CommandListener {
                      if (this.b == -1) {
                         this.h.c();
                      } else {
-                        this.a(this.h.a(), bb.m, bb.n, 0);
+                        this.a(this.h.a(), bb_1.m, bb_1.n, 0);
                      }
 
                      return;
                   case 4:
                      this.c();
                      if (var13.equals("登录")) {
-                        this.a(this.h.a(), bb.m, bb.n, 2);
+                        this.a(this.h.a(), bb_1.m, bb_1.n, 2);
                      } else {
-                        this.a(this.h.a(), bb.c);
+                        this.a(this.h.a(), bb_1.c);
                      }
 
                      return;
@@ -703,34 +703,34 @@ public final class bg implements CommandListener {
                   var41 = this.z.getString();
                   var48 = this.A.getString();
                   this.B.getString();
-                  if (z.a(var31)) {
+                  if (z_1.a(var31)) {
                      this.a((String)"用户名不能为空！", (byte)0);
-                  } else if (!z.a(var31, 4, 10)) {
+                  } else if (!z_1.a(var31, 4, 10)) {
                      this.a((String)"用户名只允许4～10位字母和数字！", (byte)0);
                   } else if (!bj.c(var31)) {
                      this.a((String)"用户名只允许字母和数字！", (byte)0);
-                  } else if (z.a(var41)) {
+                  } else if (z_1.a(var41)) {
                      this.a((String)"密码不能为空", (byte)2);
-                  } else if (!z.c(var41)) {
+                  } else if (!z_1.c(var41)) {
                      this.a((String)"密码不是数字和字母的组合", (byte)2);
-                  } else if (!z.a(var41, 6, 12)) {
+                  } else if (!z_1.a(var41, 6, 12)) {
                      this.a((String)"密码为6-12 的数字和字母的组合形式", (byte)2);
                   } else if (!bj.c(var41)) {
                      this.a((String)"密码只允许字母和数字！", (byte)0);
                   } else {
-                     if (z.b(var41) && z.b(var48) && var41.trim().equals(var48.trim())) {
+                     if (z_1.b(var41) && z_1.b(var48) && var41.trim().equals(var48.trim())) {
                         StringBuffer var12;
                         (var12 = new StringBuffer()).append(var31);
                         var12.append(':');
                         var12.append(var41);
                         a_MainCanvas.am = var31;
-                        bb.m = var31;
+                        bb_1.m = var31;
                         a_MainCanvas.an = var41;
-                        bb.n = var41;
+                        bb_1.n = var41;
                         a_MainCanvas.ao = 0;
-                        bb.l = 0;
+                        bb_1.l = 0;
                         a_MainCanvas.ap = true;
-                        bb.k = true;
+                        bb_1.k = true;
                         w var57;
                         if ((var57 = bz_1.a((byte)1, (byte)2, var12.toString())) != null) {
                            var22.h.a(var57);
@@ -763,13 +763,13 @@ public final class bg implements CommandListener {
                this.e();
                if (var13.equals("返回")) {
                   if (this.b == 3) {
-                     this.a(this.h.a(), bb.j, bb.i, 0);
+                     this.a(this.h.a(), bb_1.j, bb_1.i, 0);
                      return;
                   }
 
                   if (this.b != 11) {
                      if (this.b == 4) {
-                        this.a(this.h.a(), bb.c);
+                        this.a(this.h.a(), bb_1.c);
                         return;
                      }
 
@@ -785,12 +785,12 @@ public final class bg implements CommandListener {
                   }
                } else {
                   if (var13.equals("登录")) {
-                     this.a(this.h.a(), bb.j, bb.i, 0);
+                     this.a(this.h.a(), bb_1.j, bb_1.i, 0);
                      return;
                   }
 
                   if (var13.equals("注册")) {
-                     this.a(this.h.a(), bb.c);
+                     this.a(this.h.a(), bb_1.c);
                      return;
                   }
 
@@ -811,18 +811,18 @@ public final class bg implements CommandListener {
                   String var40 = this.S.getString();
                   String var47 = this.T.getString();
                   int var54 = Integer.parseInt(X[this.U.getSelectedIndex()].trim());
-                  if (z.a(var40)) {
+                  if (z_1.a(var40)) {
                      this.a((String)"您没有输入卡号，请返回重新输入", (byte)2);
                   } else if (!bj.b(var40)) {
                      this.a((String)"充值卡序号有误！", (byte)2);
-                  } else if (z.a(var47)) {
+                  } else if (z_1.a(var47)) {
                      this.a((String)"您没有输入充值卡密码，请返回重新输入", (byte)2);
                   } else {
                      if (bj.b(var47)) {
                         StringBuffer var11;
-                        (var11 = new StringBuffer()).append(bb.g);
+                        (var11 = new StringBuffer()).append(bb_1.g);
                         var11.append(':');
-                        var11.append(bb.h);
+                        var11.append(bb_1.h);
                         var11.append(':');
                         var11.append(var30);
                         var11.append(':');
@@ -853,7 +853,7 @@ public final class bg implements CommandListener {
 
                   if (var13.equals("充值帮助")) {
                      this.f();
-                     this.a(this.h.a(), "充值帮助", (String[])null, bb.e);
+                     this.a(this.h.a(), "充值帮助", (String[])null, bb_1.e);
                      return;
                   }
 
@@ -878,13 +878,13 @@ public final class bg implements CommandListener {
                }
 
                boolean var28;
-               if (!(var28 = z.d(var13 = this.I.getString()))) {
+               if (!(var28 = z_1.d(var13 = this.I.getString()))) {
                   this.f();
                   this.a((String)"金额输入错误！", (byte)0);
                   return;
                }
 
-               int var38 = z.f(var13);
+               int var38 = z_1.f(var13);
                if (var28 && var38 <= 0 || var38 > 100) {
                   this.a((String)"购买数量必须在1~100之间！", (byte)0);
                   return;
@@ -922,15 +922,15 @@ public final class bg implements CommandListener {
 
                   var13 = this.I.getString();
                   String var37 = this.J.getString();
-                  if (z.a(var13)) {
+                  if (z_1.a(var13)) {
                      this.a((String)"购买数量不能为空", (byte)0);
                   } else if (!bj.b(var13)) {
                      this.a((String)"购买数量必须为数字", (byte)0);
-                  } else if (z.f(var13) > 0 && z.f(var13) <= 100) {
+                  } else if (z_1.f(var13) > 0 && z_1.f(var13) <= 100) {
                      StringBuffer var46;
-                     (var46 = new StringBuffer()).append(bb.g);
+                     (var46 = new StringBuffer()).append(bb_1.g);
                      var46.append(':');
-                     var46.append(bb.h);
+                     var46.append(bb_1.h);
                      var46.append(':');
                      var46.append(var13);
                      var46.append(':');
@@ -966,26 +966,26 @@ public final class bg implements CommandListener {
 
                   String var36 = this.aa.getString();
                   String var45 = this.ab.getString();
-                  if (z.a(var36)) {
+                  if (z_1.a(var36)) {
                      this.a((String)"帐号不能为空！", (byte)2);
-                  } else if (var26 == 1 && !z.c(var36)) {
+                  } else if (var26 == 1 && !z_1.c(var36)) {
                      this.a((String)"用户名只能为数字和字母的组合形式", (byte)2);
-                  } else if (var26 == 1 && !z.a(var36, 4, 10)) {
+                  } else if (var26 == 1 && !z_1.a(var36, 4, 10)) {
                      this.a((String)"用户名为4-10 的数字和字母的组合", (byte)2);
-                  } else if (var26 == 2 && !z.e(var36)) {
+                  } else if (var26 == 2 && !z_1.e(var36)) {
                      this.a((String)"手机号不合符规范，应为11位数字", (byte)2);
-                  } else if (var26 == 3 && !z.d(var36)) {
+                  } else if (var26 == 3 && !z_1.d(var36)) {
                      this.a((String)"ID 应为数字", (byte)2);
-                  } else if (z.a(var45)) {
+                  } else if (z_1.a(var45)) {
                      this.a((String)"密码不能为空", (byte)2);
-                  } else if (!z.c(var45)) {
+                  } else if (!z_1.c(var45)) {
                      this.a((String)"密码只能为数字和字母的组合", (byte)0);
                   } else {
-                     if (z.a(var45, 6, 12)) {
+                     if (z_1.a(var45, 6, 12)) {
                         StringBuffer var52;
-                        (var52 = new StringBuffer()).append(bb.g);
+                        (var52 = new StringBuffer()).append(bb_1.g);
                         var52.append(':');
-                        var52.append(bb.h);
+                        var52.append(bb_1.h);
                         var52.append(':');
                         var52.append(var26);
                         var52.append(':');
@@ -1029,20 +1029,20 @@ public final class bg implements CommandListener {
 
                   String var35 = this.S.getString();
                   String var44 = this.T.getString();
-                  int var51 = z.f(X[this.U.getSelectedIndex()].trim());
+                  int var51 = z_1.f(X[this.U.getSelectedIndex()].trim());
                   this.V.getString();
-                  if (z.a(var35)) {
+                  if (z_1.a(var35)) {
                      this.a((String)"您没有输入卡号，请返回重新输入", (byte)2);
                   } else if (!bj.b(var35)) {
                      this.a((String)"充值卡序号有误！", (byte)2);
-                  } else if (z.a(var44)) {
+                  } else if (z_1.a(var44)) {
                      this.a((String)"您没有输入充值卡密码，请返回重新输入", (byte)2);
                   } else {
                      if (bj.b(var44)) {
                         StringBuffer var55;
-                        (var55 = new StringBuffer()).append(bb.g);
+                        (var55 = new StringBuffer()).append(bb_1.g);
                         var55.append(':');
-                        var55.append(bb.h);
+                        var55.append(bb_1.h);
                         var55.append(':');
                         var55.append(var25);
                         var55.append(':');
@@ -1053,7 +1053,7 @@ public final class bg implements CommandListener {
                         var55.append(var51);
                         Object var8 = null;
                         w var9;
-                        if (t.x) {
+                        if (t_1.x) {
                            var9 = bz_1.a((byte)3, (byte)8, var55.toString());
                         } else {
                            var9 = bz_1.a((byte)2, (byte)8, var55.toString());
@@ -1074,7 +1074,7 @@ public final class bg implements CommandListener {
                } else {
                   if (var13.equals("充值帮助")) {
                      this.f();
-                     this.a(this.h.a(), "充值帮助", (String[])null, bb.f);
+                     this.a(this.h.a(), "充值帮助", (String[])null, bb_1.f);
                      return;
                   }
 
@@ -1090,7 +1090,7 @@ public final class bg implements CommandListener {
             case 12:
                if (var13.equals("返回")) {
                   this.b();
-                  this.a(this.h.a(), bb.m, bb.n, 0);
+                  this.a(this.h.a(), bb_1.m, bb_1.n, 0);
                   return;
                }
 
@@ -1121,7 +1121,7 @@ public final class bg implements CommandListener {
             default:
                if (var13.equals("返回")) {
                   if (this.b == 3) {
-                     this.a(this.h.a(), bb.m, bb.n, 0);
+                     this.a(this.h.a(), bb_1.m, bb_1.n, 0);
                      return;
                   }
 
@@ -1132,7 +1132,7 @@ public final class bg implements CommandListener {
 
                   if (this.b != 11) {
                      if (this.b == 4) {
-                        this.a(this.h.a(), bb.c);
+                        this.a(this.h.a(), bb_1.c);
                         return;
                      }
 
@@ -1148,12 +1148,12 @@ public final class bg implements CommandListener {
                   }
                } else {
                   if (var13.equals("登录")) {
-                     this.a(this.h.a(), bb.m, bb.n, 0);
+                     this.a(this.h.a(), bb_1.m, bb_1.n, 0);
                      return;
                   }
 
                   if (var13.equals("注册")) {
-                     this.a(this.h.a(), bb.c);
+                     this.a(this.h.a(), bb_1.c);
                      return;
                   }
 
@@ -1171,17 +1171,17 @@ public final class bg implements CommandListener {
                   var3 = var23;
                   var23 = var13;
                   bg var15 = this;
-                  if (z.a(var3)) {
+                  if (z_1.a(var3)) {
                      this.a((String)"旧密码不能为空", (byte)0);
-                  } else if (z.a(var4)) {
+                  } else if (z_1.a(var4)) {
                      this.a((String)"新密码不能为空", (byte)0);
-                  } else if (!z.c(var4)) {
+                  } else if (!z_1.c(var4)) {
                      this.a((String)"新密码须为数字和字母的组合", (byte)0);
-                  } else if (!z.a(var4, 6, 12)) {
+                  } else if (!z_1.a(var4, 6, 12)) {
                      this.a((String)"新密码须为6-12的数字和字母的组合形式", (byte)0);
                   } else {
                      if (bj.c(var4)) {
-                        int var5 = bb.l == 2 ? 3 : (bb.l == 1 ? 2 : (bb.l == 0 ? 1 : 0));
+                        int var5 = bb_1.l == 2 ? 3 : (bb_1.l == 1 ? 2 : (bb_1.l == 0 ? 1 : 0));
                         StringBuffer var7;
                         (var7 = new StringBuffer()).append(var5);
                         var7.append(':');
@@ -1220,24 +1220,24 @@ public final class bg implements CommandListener {
       String var1 = this.n.getString();
       String var2 = this.o.getString();
       byte var3 = a(this.m);
-      if (z.a(var1)) {
-         bb.m = var1;
+      if (z_1.a(var1)) {
+         bb_1.m = var1;
          this.a((String)ac, (byte)0);
-      } else if (a(this.m) == 0 && !z.a(var1, 4, 12)) {
-         bb.m = var1;
+      } else if (a(this.m) == 0 && !z_1.a(var1, 4, 12)) {
+         bb_1.m = var1;
          this.a((String)ac, (byte)0);
-      } else if (a(this.m) == 1 && !z.e(var1.trim())) {
-         bb.m = var1;
+      } else if (a(this.m) == 1 && !z_1.e(var1.trim())) {
+         bb_1.m = var1;
          this.a((String)ad, (byte)0);
-      } else if (a(this.m) != 2 || z.d(var1.trim()) && z.a(var1, 4, 12)) {
-         if (z.a(var2)) {
-            bb.m = var1;
+      } else if (a(this.m) != 2 || z_1.d(var1.trim()) && z_1.a(var1, 4, 12)) {
+         if (z_1.a(var2)) {
+            bb_1.m = var1;
             this.a((String)af, (byte)0);
          } else {
             if (a(this.m) == 2 || a(this.m) == 1 || a(this.m) == 0) {
-               bb.n = var2;
+               bb_1.n = var2;
                int var4;
-               bb.l = (byte)(var4 = a(this.m) == 2 ? 3 : (a(this.m) == 1 ? 2 : (a(this.m) == 0 ? 1 : 0)));
+               bb_1.l = (byte)(var4 = a(this.m) == 2 ? 3 : (a(this.m) == 1 ? 2 : (a(this.m) == 0 ? 1 : 0)));
                StringBuffer var5;
                (var5 = new StringBuffer()).append(var4);
                var5.append(':');
@@ -1247,13 +1247,13 @@ public final class bg implements CommandListener {
                w var6;
                if ((var6 = bz_1.a((byte)1, (byte)1, var5.toString())) != null) {
                   a_MainCanvas.am = var1;
-                  bb.m = var1;
+                  bb_1.m = var1;
                   a_MainCanvas.an = var2;
-                  bb.n = var2;
+                  bb_1.n = var2;
                   a_MainCanvas.ao = var3;
-                  bb.l = var3;
-                  bb.k = a_MainCanvas.ap = this.p.isSelected(0);
-                  bb.b();
+                  bb_1.l = var3;
+                  bb_1.k = a_MainCanvas.ap = this.p.isSelected(0);
+                  bb_1.b();
                   this.h.a(var6);
                   this.h.a.a();
                   this.h.a.a.a("请求中...");
@@ -1264,7 +1264,7 @@ public final class bg implements CommandListener {
 
          }
       } else {
-         bb.m = var1;
+         bb_1.m = var1;
          this.a((String)ae, (byte)0);
       }
    }

@@ -20,11 +20,11 @@ public final class h {
       var6 = (var6 = ((MIDlet)var1).getAppProperty("LoginServerId")) == null ? "" : var6;
       String var3;
       var3 = (var3 = ((MIDlet)var1).getAppProperty("PaymentServerId")) == null ? "" : var3;
-      bb.a = z.f(var4.trim());
-      bb.b = z.f(var5.trim());
-      z.f(var6.trim());
-      z.f(var3.trim());
-      bb.a();
+      bb_1.a = z_1.f(var4.trim());
+      bb_1.b = z_1.f(var5.trim());
+      z_1.f(var6.trim());
+      z_1.f(var3.trim());
+      bb_1.a();
       this.a = var1;
       this.c = var2;
       this.b = new bg(this);

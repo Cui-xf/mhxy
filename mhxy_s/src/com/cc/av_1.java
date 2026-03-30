@@ -28,7 +28,7 @@ public final class av_1 {
    public static byte i = 2;
 
    public av_1() {
-      bz_1.c = t.a == 0 ? 162 : 40;
+      bz_1.c = t_1.a == 0 ? 162 : 40;
       h = -1;
       i = 2;
       if (a == null) {
@@ -77,7 +77,7 @@ public final class av_1 {
    }
 
    public final void b() {
-      if (t.a == 0) {
+      if (t_1.a == 0) {
          if (h == -1) {
             i = 2;
             j = null;
@@ -96,7 +96,7 @@ public final class av_1 {
             this.e();
          }
 
-         t.a("当前服务地址-->" + c);
+         t_1.a("当前服务地址-->" + c);
       }
    }
 
@@ -145,7 +145,7 @@ public final class av_1 {
    }
 
    public final void a(w var1) {
-      t.a("sendPacket:" + Integer.toHexString(var1.a()));
+      t_1.a("sendPacket:" + Integer.toHexString(var1.a()));
       at var2 = this.g;
       if (var1.a() == 4101) {
          if (var2.b.size() == 0) {
@@ -159,7 +159,7 @@ public final class av_1 {
 
    }
 
-   public final void a(InputStream var1) {
+   public final void a(InputStream var1) throws IOException {
       DataInputStream var4;
       if ((var4 = new DataInputStream(var1)).readByte() == 2) {
          short var2 = var4.readShort();
@@ -200,7 +200,7 @@ public final class av_1 {
 
    }
 
-   private void a(DataInputStream var1) {
+   private void a(DataInputStream var1) throws IOException {
       byte var2;
       if ((var2 = var1.readByte()) > 0) {
          w var3 = new w((short)8192);

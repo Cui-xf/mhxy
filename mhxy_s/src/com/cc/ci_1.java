@@ -12,132 +12,124 @@ public final class ci_1 {
    private static int g;
    private static int h;
 
-   public static byte[] a(byte[] var0) {
-      Object var1 = null;
+   public static byte[] a(byte[] bArr) throws IOException {
+      int iA;
+      int[] iArrB;
+      int[] iArrB2;
+      int i;
+      int i2;
       h = 0;
       g = 0;
       f = 0;
-      if (a(var0, 16) == 35615 && a(var0, 8) == 8) {
-         int var11 = a(var0, 8);
-         f += 6;
-         if ((var11 & 4) != 0) {
-            f += a(var0, 16);
-         }
-
-         if ((var11 & 8) != 0) {
-            while(var0[f++] != 0) {
-            }
-         }
-
-         if ((var11 & 16) != 0) {
-            while(var0[f++] != 0) {
-            }
-         }
-
-         if ((var11 & 2) != 0) {
-            f += 2;
-         }
-
-         int var2 = f;
-         f = var0.length - 4;
-         byte[] var12 = new byte[a(var0, 16) | a(var0, 16) << 16];
-         int var3 = 0;
-         f = var2;
-         var2 = 0;
-         int var4 = 0;
-
-         do {
-            var2 = a(var0, 1);
-            if ((var4 = a(var0, 2)) == 0) {
-               h = 0;
-               var4 = a(var0, 16);
-               a(var0, 16);
-               System.arraycopy(var0, f, var12, var3, var4);
-               f += var4;
-               var3 += var4;
-            } else {
-               int[] var5;
-               int[] var16;
-               if (var4 == 2) {
-                  int var6 = a(var0, 5) + 257;
-                  int var7 = a(var0, 5) + 1;
-                  int var8 = a(var0, 4) + 4;
-                  byte[] var9 = new byte[19];
-
-                  for(int var10 = 0; var10 < var8; ++var10) {
-                     var9[e[var10]] = (byte)a(var0, 3);
-                  }
-
-                  int[] var34 = b(var9, 18);
-                  var16 = b(a(var0, var34, var6), var6 - 1);
-                  var5 = b(a(var0, var34, var7), var7 - 1);
-               } else {
-                  byte[] var18 = new byte[288];
-
-                  for(int var24 = 0; var24 < 144; ++var24) {
-                     var18[var24] = 8;
-                  }
-
-                  for(int var25 = 144; var25 < 256; ++var25) {
-                     var18[var25] = 9;
-                  }
-
-                  for(int var26 = 256; var26 < 280; ++var26) {
-                     var18[var26] = 7;
-                  }
-
-                  for(int var27 = 280; var27 < 288; ++var27) {
-                     var18[var27] = 8;
-                  }
-
-                  var16 = b(var18, 287);
-                  byte[] var28 = new byte[32];
-
-                  for(int var31 = 0; var31 < var28.length; ++var31) {
-                     var28[var31] = 5;
-                  }
-
-                  var5 = b(var28, 31);
-               }
-
-               int var19 = 0;
-               int var29 = 0;
-
-               while((var19 = a(var0, var16)) != 256) {
-                  if (var19 > 256) {
-                     var19 -= 257;
-                     int var33 = b[var19];
-                     if ((var29 = a[var19]) > 0) {
-                        var33 += a(var0, var29);
-                     }
-
-                     var19 = a(var0, var5);
-                     int var35 = d[var19];
-                     int var32;
-                     if ((var32 = c[var19]) > 0) {
-                        var35 += a(var0, var32);
-                     }
-
-                     for(var19 = var3 - var35; var35 < var33; var35 <<= 1) {
-                        System.arraycopy(var12, var19, var12, var3, var35);
-                        var3 += var35;
-                        var33 -= var35;
-                     }
-
-                     System.arraycopy(var12, var19, var12, var3, var33);
-                     var3 += var33;
-                  } else {
-                     var12[var3++] = (byte)var19;
-                  }
-               }
-            }
-         } while(var2 == 0);
-
-         return var12;
-      } else {
+      if (a(bArr, 16) != 35615 || a(bArr, 8) != 8) {
          throw new IOException("Invalid GZIP format");
       }
+      int iA2 = a(bArr, 8);
+      f += 6;
+      if ((iA2 & 4) != 0) {
+         f += a(bArr, 16);
+      }
+      if ((iA2 & 8) != 0) {
+         do {
+            i2 = f;
+            f = i2 + 1;
+         } while (bArr[i2] != 0);
+      }
+      if ((iA2 & 16) != 0) {
+         do {
+            i = f;
+            f = i + 1;
+         } while (bArr[i] != 0);
+      }
+      if ((iA2 & 2) != 0) {
+         f += 2;
+      }
+      int i3 = f;
+      f = bArr.length - 4;
+      byte[] bArr2 = new byte[a(bArr, 16) | (a(bArr, 16) << 16)];
+      int i4 = 0;
+      f = i3;
+      do {
+         iA = a(bArr, 1);
+         int iA3 = a(bArr, 2);
+         if (iA3 != 0) {
+            if (iA3 == 2) {
+               int iA4 = a(bArr, 5) + 257;
+               int iA5 = a(bArr, 5) + 1;
+               int iA6 = a(bArr, 4) + 4;
+               byte[] bArr3 = new byte[19];
+               for (int i5 = 0; i5 < iA6; i5++) {
+                  bArr3[e[i5]] = (byte) a(bArr, 3);
+               }
+               int[] iArrB3 = b(bArr3, 18);
+               iArrB = b(a(bArr, iArrB3, iA4), iA4 - 1);
+               iArrB2 = b(a(bArr, iArrB3, iA5), iA5 - 1);
+            } else {
+               byte[] bArr4 = new byte[288];
+               for (int i6 = 0; i6 < 144; i6++) {
+                  bArr4[i6] = 8;
+               }
+               for (int i7 = 144; i7 < 256; i7++) {
+                  bArr4[i7] = 9;
+               }
+               for (int i8 = 256; i8 < 280; i8++) {
+                  bArr4[i8] = 7;
+               }
+               for (int i9 = 280; i9 < 288; i9++) {
+                  bArr4[i9] = 8;
+               }
+               iArrB = b(bArr4, 287);
+               byte[] bArr5 = new byte[32];
+               for (int i10 = 0; i10 < bArr5.length; i10++) {
+                  bArr5[i10] = 5;
+               }
+               iArrB2 = b(bArr5, 31);
+            }
+            while (true) {
+               int iA7 = a(bArr, iArrB);
+               if (iA7 == 256) {
+                  break;
+               }
+               if (iA7 > 256) {
+                  int i11 = iA7 - 257;
+                  int iA8 = b[i11];
+                  int i12 = a[i11];
+                  if (i12 > 0) {
+                     iA8 += a(bArr, i12);
+                  }
+                  int iA9 = a(bArr, iArrB2);
+                  int iA10 = d[iA9];
+                  int i13 = c[iA9];
+                  if (i13 > 0) {
+                     iA10 += a(bArr, i13);
+                  }
+                  int i14 = i4 - iA10;
+                  while (iA10 < iA8) {
+                     System.arraycopy(bArr2, i14, bArr2, i4, iA10);
+                     i4 += iA10;
+                     iA8 -= iA10;
+                     iA10 <<= 1;
+                  }
+                  System.arraycopy(bArr2, i14, bArr2, i4, iA8);
+                  i4 += iA8;
+               } else {
+                  int i15 = i4;
+                  i4++;
+                  bArr2[i15] = (byte) iA7;
+               }
+            }
+         } else {
+            h = 0;
+            int iA11 = a(bArr, 16);
+            a(bArr, 16);
+            System.arraycopy(bArr, f, bArr2, i4, iA11);
+            f += iA11;
+            i4 += iA11;
+         }
+      } while (iA == 0);
+      return bArr2;
    }
+
 
    private static int a(byte[] var0, int var1) {
       int var2 = h == 0 ? (g = var0[f++] & 255) : g >> h;

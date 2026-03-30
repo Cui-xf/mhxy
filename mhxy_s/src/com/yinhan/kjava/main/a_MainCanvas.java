@@ -752,7 +752,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
          if (this.p) {
             ca_1.b(var1);
          } else {
-            if ((this = this).aJ) {
+            if (this.aJ) {
                switch (this.j) {
                   case 0:
                      ca_1.a(var1, this.bf);
@@ -1320,7 +1320,6 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
       }
 
       var1 = var1;
-      this = this;
       if (this.bj != null && this.bk != null && this.bp != null) {
          for(int var2 = 0; var2 < this.bp.length; ++var2) {
             for(int var3 = 0; var3 < this.bp[var2].length; ++var3) {
@@ -3536,11 +3535,11 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
       this.aJ = false;
       i = null;
 
-      try {
+//      try {
          this.d.destroyApp(true);
-      } catch (MIDletStateChangeException var1) {
+//      } catch (MIDletStateChangeException var1) {
 
-      }
+//      }
 
       this.d.notifyDestroyed();
    }
@@ -3801,7 +3800,6 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
             } else if (fVar.b.c != 2) {
                return;
             }
-            break;
          case 6:
             if (fVar.b.aq != null) {
                fVar.b.a = fVar.b.aq.b(i7, i8);
@@ -3847,8 +3845,8 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
             int i13 = 0;
             while (true) {
                if (i13 >= a_maincanvas6.bo.length) {
-                  i6 = (t_1.a != 1 || i7 < (t.b - t_1.i.stringWidth("退出")) + (-4) || i7 > t.b + (-4) || i8 < (t.c - t_1.j) + (-4) || i8 > t.c + (-4)) ? 0 : 536870912;
-               } else if (i7 <= ((t.b - a_maincanvas6.bi.getWidth()) >> 1) || i7 >= ((t.b - a_maincanvas6.bi.getWidth()) >> 1) + a_maincanvas6.bi.getWidth() || i8 <= (a_maincanvas6.bt << 1) + a_maincanvas6.bh.getHeight() + (a_maincanvas6.bi.getHeight() * i13) || i8 >= (a_maincanvas6.bt << 1) + a_maincanvas6.bh.getHeight() + ((i13 + 1) * a_maincanvas6.bi.getHeight())) {
+                  i6 = (t_1.a != 1 || i7 < (t_1.b - t_1.i.stringWidth("退出")) - 4 || i7 > t_1.b - 4 || i8 < (t_1.c - t_1.j) - 4 || i8 > t_1.c - 4) ? 0 : 536870912;
+               } else if (i7 <= ((t_1.b - a_maincanvas6.bi.getWidth()) >> 1) || i7 >= ((t_1.b - a_maincanvas6.bi.getWidth()) >> 1) + a_maincanvas6.bi.getWidth() || i8 <= (a_maincanvas6.bt << 1) + a_maincanvas6.bh.getHeight() + (i13 * a_maincanvas6.bi.getHeight()) || i8 >= (a_maincanvas6.bt << 1) + a_maincanvas6.bh.getHeight() + ((i13 + 1) * a_maincanvas6.bi.getHeight())) {
                   i13++;
                } else {
                   a_maincanvas6.bs = i13;
@@ -3856,8 +3854,8 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
                   i6 = 1073741824;
                }
             }
-            a_maincanvas5.a = i6;
-            return;
+//            a_maincanvas5.a = i6;
+//            return;
          case 15:
             fVar.b.a = ca_1.b(i7, i8);
             return;
@@ -3878,6 +3876,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
       }
       fVar.b.a = ca_1.b(i7, i8);
    }
+
 
    protected final void pointerReleased(int var1, int var2) {
       if (t_1.o && this.aj != null) {

@@ -14,7 +14,7 @@ public final class bi extends bk {
    private boolean k;
    private int l;
    private String m;
-   private d[] n;
+   private d_1[] n;
 
    public bi() {
    }
@@ -29,11 +29,11 @@ public final class bi extends bk {
    public final void a() {
       this.a = this.b = 0;
       if (this.m != null) {
-         this.n = d.a(this.m, super.h - 6, t.i, '\t');
+         this.n = d_1.a(this.m, super.h - 6, t_1.i, '\t');
       }
 
       this.d = this.n == null ? 0 : this.n.length;
-      this.l = t.j;
+      this.l = t_1.j;
 
       for(int var1 = 0; var1 < this.d; ++var1) {
          if (this.n[var1].a() > this.l) {
@@ -43,7 +43,7 @@ public final class bi extends bk {
 
       this.c = (super.i - 6) / this.l;
       if (this.d > this.c) {
-         this.n = d.a(this.m, super.h - 6 - 12, t.i, '\t');
+         this.n = d_1.a(this.m, super.h - 6 - 12, t_1.i, '\t');
          this.d = this.n.length;
          this.b = Math.max(6, this.c * (super.i - 6 - 10) / this.d);
       }
@@ -90,9 +90,9 @@ public final class bi extends bk {
 
    public final void a(Graphics var1) {
       var1.setClip(super.f, super.g, super.h, super.i);
-      ca.a(var1, super.f, super.g, super.h, super.i, 1);
+      ca_1.a(var1, super.f, super.g, super.h, super.i, 1);
       if (this.e) {
-         ca.a(var1);
+         ca_1.a(var1);
       }
 
       var1.setClip(super.f, super.g + 4, super.h, super.i - 6);
@@ -107,7 +107,7 @@ public final class bi extends bk {
 
       if (this.b > 0) {
          var1.setClip(super.f, super.g, super.h, super.i);
-         ca.a(var1, super.f + super.h - 2 - a_MainCanvas.C.b, super.g + 4, super.i - 6, this.b, this.a, this.l * this.d, super.i - 6);
+         ca_1.a(var1, super.f + super.h - 2 - a_MainCanvas.C.b, super.g + 4, super.i - 6, this.b, this.a, this.l * this.d, super.i - 6);
       }
 
    }

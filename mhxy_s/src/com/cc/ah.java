@@ -14,18 +14,18 @@ public final class ah {
    }
 
    public final int a() {
-      return this.a == 1 ? 16 : t.i.stringWidth(this.c);
+      return this.a == 1 ? 16 : t_1.i.stringWidth(this.c);
    }
 
    public final int b() {
-      return this.a == 1 ? 17 : t.j;
+      return this.a == 1 ? 17 : t_1.j;
    }
 
    public final void a(Graphics var1, int var2, int var3, int var4, int var5) {
       switch (this.a) {
          case 0:
-            var1.setColor(ca.a(this.b));
-            var1.drawString(this.c, var2, var3 + (var4 - t.j) / 2, var5);
+            var1.setColor(ca_1.a(this.b));
+            var1.drawString(this.c, var2, var3 + (var4 - t_1.j) / 2, var5);
             break;
          case 1:
             bf_1 var6;

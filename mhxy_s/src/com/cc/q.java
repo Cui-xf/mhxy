@@ -55,7 +55,7 @@ public final class q {
                      if (a_MainCanvas.e.g != null) {
                         a_MainCanvas.e.g.d();
                         a_MainCanvas.e.j = a_MainCanvas.e.k = 0;
-                        this.a.b(t.Y[bt_1.eB]);
+                        this.a.b(t_1.Y[bt_1.eB]);
                      }
 
                      return;
@@ -65,7 +65,7 @@ public final class q {
                      if (a_MainCanvas.e.g != null) {
                         a_MainCanvas.e.g.f = -2;
                      } else {
-                        this.a.b(t.Y[bt_1.eB]);
+                        this.a.b(t_1.Y[bt_1.eB]);
                      }
 
                      return;
@@ -76,7 +76,7 @@ public final class q {
                         if (bt_1.eC != null) {
                            this.a.b(bt_1.eC);
                         } else {
-                           this.a.b(t.Y[bt_1.eB < 0 ? 0 : bt_1.eB]);
+                           this.a.b(t_1.Y[bt_1.eB < 0 ? 0 : bt_1.eB]);
                         }
                         break;
                      }
@@ -94,7 +94,7 @@ public final class q {
                   bt_1.d = this.b.readUTF();
                   return;
                case 8195:
-                  t.a("exec角色列表:");
+                  t_1.a("exec角色列表:");
                   bt_1.a(this.b);
                   this.a.b(bt_1.W == null ? 0 : bt_1.W.length);
                   return;
@@ -106,9 +106,9 @@ public final class q {
 
                   a_MainCanvas.e.aX = false;
                   if (a_MainCanvas.e.k == 2 && a_MainCanvas.e.l == 4) {
-                     String var48 = t.a(this.a.l, bt_1.aq);
-                     t.a(this.a.l, bt_1.ap);
-                     a_MainCanvas.e.am = ca.a(bt_1.t[a_MainCanvas.e.af].b + ":已存入银两" + var48 + "，现有银两" + this.a.l.toString(), t.i, t.b == 176 ? 118 : 152, "\t");
+                     String var48 = t_1.a(this.a.l, bt_1.aq);
+                     t_1.a(this.a.l, bt_1.ap);
+                     a_MainCanvas.e.am = ca_1.a(bt_1.t[a_MainCanvas.e.af].b + ":已存入银两" + var48 + "，现有银两" + this.a.l.toString(), t_1.i, t_1.b == 176 ? 118 : 152, "\t");
                      a_MainCanvas.e.ah = a_MainCanvas.e.m == 1 ? bt_1.aq : bt_1.ap;
                   } else if (a_MainCanvas.e.k == 37 && a_MainCanvas.e.ao) {
                      a_MainCanvas.e.p();
@@ -384,7 +384,7 @@ public final class q {
                   bt_1.F(this.b);
                   return;
                case 8222:
-                  t.a("exec宠物列表:");
+                  t_1.a("exec宠物列表:");
                   this.d();
                   return;
                case 8223:
@@ -414,12 +414,12 @@ public final class q {
                   if (a_MainCanvas.e.k == 6) {
                      this.a.aq.b();
                      this.a.aq.a("任务详细");
-                     this.a.at.a(bt_1.bH, t.i, (byte)2);
+                     this.a.at.a(bt_1.bH, t_1.i, (byte)2);
                      this.a.at.a((byte)0);
                      this.a.au.a("确定");
                      this.a.aq.a((al)this.a.at);
                      this.a.aq.a((al)this.a.au);
-                     this.a.aq.a(t.f, t.g, t.d, t.e);
+                     this.a.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
                      this.a.j = this.a.k;
                      a_MainCanvas.e.l = 3;
                   }
@@ -727,7 +727,7 @@ public final class q {
                   if (a_MainCanvas.e.k == 2) {
                      a_MainCanvas.e.M.b(false);
                   } else if (a_MainCanvas.e.k == 50) {
-                     this.a.at.b(bt_1.iI[this.a.ar.g()], t.i, (byte)2);
+                     this.a.at.b(bt_1.iI[this.a.ar.g()], t_1.i, (byte)2);
                      this.a.at.a((byte)1);
                      break;
                   }
@@ -828,7 +828,7 @@ public final class q {
                   return;
                case 8273:
                   a_MainCanvas.e.J = this.b.readUTF();
-                  ca.h = 0;
+                  ca_1.h = 0;
                   if (!a_MainCanvas.e.c && a_MainCanvas.e.k != 0 && a_MainCanvas.e.k != 25) {
                      this.a.j = this.a.k = 7;
                      a_MainCanvas.e.N();
@@ -889,7 +889,7 @@ public final class q {
                case 8290:
                   bt_1.b = this.b.readUTF();
                   bt_1.d = this.b.readUTF();
-                  if (t.a == 1) {
+                  if (t_1.a == 1) {
                      this.b.readUTF();
                      bt_1.m = this.b.readUTF();
                   }
@@ -921,7 +921,7 @@ public final class q {
                   return;
                case 8294:
                   if (a_MainCanvas.e != null) {
-                     if (t.a == 0) {
+                     if (t_1.a == 0) {
                         if (bt_1.jy != 1) {
                            this.a.b("充值卡充值暂时关闭");
                         }
@@ -935,7 +935,7 @@ public final class q {
 
                   return;
                case 8295:
-                  t.a("exec宠物升星");
+                  t_1.a("exec宠物升星");
                   bt_1.aS(this.b);
                   if (a_MainCanvas.e != null) {
                      a_MainCanvas.e.e(false);
@@ -943,12 +943,12 @@ public final class q {
 
                   return;
                case 8296:
-                  t.a("exec抽奖");
+                  t_1.a("exec抽奖");
                   bt_1.aW(this.b);
                   a_MainCanvas.e.am();
                   return;
                case 8297:
-                  t.a("exec抽奖结果");
+                  t_1.a("exec抽奖结果");
                   bt_1.aX(this.b);
                   if (a_MainCanvas.e.k == 127) {
                      a_MainCanvas.e.am();
@@ -957,7 +957,7 @@ public final class q {
 
                   return;
                case 8298:
-                  t.a("exec宠物升星结果");
+                  t_1.a("exec宠物升星结果");
                   bt_1.bc(this.b);
                   if (bt_1.nB == 1) {
                      this.a.b("升星成功");
@@ -989,7 +989,7 @@ public final class q {
                   a_MainCanvas.e.N.a((short)0);
                   return;
                case 8303:
-                  t.a("宠物继承");
+                  t_1.a("宠物继承");
                   cg_1.a(cg_1.b);
                   cg_1.a(this.b);
                   a_MainCanvas.e.W.b();
@@ -1411,49 +1411,49 @@ public final class q {
                   a_MainCanvas.e.u();
                   return;
                case 8974:
-                  t.a("exec特效查看");
+                  t_1.a("exec特效查看");
                   bt_1.aT(this.b);
                   a_MainCanvas.e.z();
                   return;
                case 8975:
-                  t.a("exec特效激活");
+                  t_1.a("exec特效激活");
                   bt_1.aU(this.b);
                   a_MainCanvas.e.B();
                   return;
                case 8976:
-                  t.a("exec特效消除");
+                  t_1.a("exec特效消除");
                   bt_1.aV(this.b);
                   a_MainCanvas.e.A();
                   return;
                case 8977:
-                  t.a("exec查看坐骑");
+                  t_1.a("exec查看坐骑");
                   bt_1.aY(this.b);
                   a_MainCanvas.e.al();
                   a_MainCanvas.e.I.a(true);
                   return;
                case 8978:
-                  t.a("exec坐骑升星");
+                  t_1.a("exec坐骑升星");
                   bt_1.aZ(this.b);
                   a_MainCanvas.e.al();
                   return;
                case 8979:
-                  t.a("exec更换坐骑");
+                  t_1.a("exec更换坐骑");
                   bt_1.ba(this.b);
                   a_MainCanvas.e.al();
                   a_MainCanvas.e.I.a(true);
                   return;
                case 8981:
-                  t.a("exec特效技能");
+                  t_1.a("exec特效技能");
                   bt_1.bb(this.b);
                   a_MainCanvas.e.an();
                   return;
                case 8982:
-                  t.a("exec宠物炼化需 求");
+                  t_1.a("exec宠物炼化需 求");
                   (bt_1.nC = new String[3])[0] = this.b.readUTF();
                   bt_1.nC[1] = this.b.readUTF();
                   bt_1.nC[2] = this.b.readUTF();
                   a_MainCanvas.e.l = 11;
-                  ca.h = 0;
+                  ca_1.h = 0;
                   this.a.j = this.a.k;
                   return;
                case 9216:
@@ -1515,7 +1515,7 @@ public final class q {
                   return;
                case 9472:
                   bt_1.M(this.b);
-                  if (t.a != 0 && !t.w) {
+                  if (t_1.a != 0 && !t_1.w) {
                      if (bt_1.hw) {
                         if (bt_1.hw && bt_1.hA.length <= 0) {
                            this.a.b("服务维护中，暂无可以进入的服务器");
@@ -1580,7 +1580,7 @@ public final class q {
                   a_MainCanvas.e.aj();
                   return;
                case 9491:
-                  t.a("exec 随机名称");
+                  t_1.a("exec 随机名称");
                   this.a.ay = this.b.readUTF();
                   if (this.a.k == 6) {
                      this.a.j = this.a.k;
@@ -1603,20 +1603,20 @@ public final class q {
                   this.b.readByte();
                   if (var30 == 4) {
                      String[] var3;
-                     bb.j = (var3 = z.a(this.b.readUTF(), ':'))[0].trim();
-                     bb.i = var3[1].trim();
-                     bb.m = bb.j;
-                     bb.n = bb.i;
-                     bb.b();
+                     bb_1.j = (var3 = z_1.a(this.b.readUTF(), ':'))[0].trim();
+                     bb_1.i = var3[1].trim();
+                     bb_1.m = bb_1.j;
+                     bb_1.n = bb_1.i;
+                     bb_1.b();
                      String var4 = this.b.readUTF();
                      this.a.b(var4);
                   } else if (var30 == 2) {
                      String[] var49;
-                     bb.j = (var49 = z.a(this.b.readUTF(), ':'))[0].trim();
-                     bb.i = var49[1].trim();
-                     bb.m = bb.j;
-                     bb.n = bb.i;
-                     bb.b();
+                     bb_1.j = (var49 = z_1.a(this.b.readUTF(), ':'))[0].trim();
+                     bb_1.i = var49[1].trim();
+                     bb_1.m = bb_1.j;
+                     bb_1.n = bb_1.i;
+                     bb_1.b();
                      String var58 = this.b.readUTF();
                      this.a.b(var58);
                      break;
@@ -1662,7 +1662,7 @@ public final class q {
       }
    }
 
-   private void a() {
+   private void a() throws IOException {
       bt_1.C = new byte[this.b.readByte()];
 
       for(byte var1 = 0; var1 < bt_1.C.length; ++var1) {
@@ -1826,7 +1826,7 @@ public final class q {
    private void b() {
       bt_1.c(this.b);
       if (a_MainCanvas.e != null && a_MainCanvas.e.I != null) {
-         if (t.o && this.a.aj != null) {
+         if (t_1.o && this.a.aj != null) {
             if (!a_MainCanvas.e.I.c.isEmpty()) {
                a_MainCanvas.e.I.c.removeAllElements();
                a_MainCanvas.e.I.b();
@@ -1949,7 +1949,7 @@ public final class q {
       }
    }
 
-   private void c() {
+   private void c() throws IOException {
       if (bt_1.bE = this.b.readByte() == 1) {
          bt_1.bF = this.b.readInt();
       } else {
@@ -1963,7 +1963,7 @@ public final class q {
       }
 
       if (a_MainCanvas.e.k == 2) {
-         ao_1.K = new bw_1(bt_1.bH, (short)(t.b - 20));
+         ao_1.K = new bw_1(bt_1.bH, (short)(t_1.b - 20));
          if (bt_1.bE) {
             a_MainCanvas.e.an = new String[]{"接受", "返回"};
          } else if (bt_1.bK[a_MainCanvas.e.ai] == -1) {
@@ -1974,7 +1974,7 @@ public final class q {
             a_MainCanvas.e.an = new String[]{"提交", "返回"};
          }
 
-         ca.a(a_MainCanvas.F, ao_1.K, a_MainCanvas.e.an, (String[])null, true);
+         ca_1.a(a_MainCanvas.F, ao_1.K, a_MainCanvas.e.an, (String[])null, true);
          this.a.j = this.a.k;
          a_MainCanvas.e.l = 1;
       } else {
@@ -1985,7 +1985,7 @@ public final class q {
       }
    }
 
-   private void d() {
+   private void d() throws IOException {
       bt_1.I(this.b);
       if (a_MainCanvas.e != null) {
          if (!ao_1.i()) {
@@ -2046,7 +2046,7 @@ public final class q {
 
    }
 
-   private static void b(DataInputStream var0) {
+   private static void b(DataInputStream var0) throws IOException {
       long var1 = var0.readLong();
       if (bq_1.g > 0 && bt_1.v <= 0L) {
          bt_1.v = var1;
@@ -2115,7 +2115,7 @@ public final class q {
 
    }
 
-   private void e() {
+   private void e() throws IOException {
       byte var1;
       if ((var1 = this.b.readByte()) <= 0) {
          if (a_MainCanvas.e != null) {
@@ -2157,7 +2157,7 @@ public final class q {
       }
    }
 
-   private void f() {
+   private void f() throws IOException {
       byte var1 = this.b.readByte();
       if (bt_1.fl != null) {
          bt_1.v();
@@ -2192,7 +2192,7 @@ public final class q {
       }
    }
 
-   private static void c(DataInputStream var0) {
+   private static void c(DataInputStream var0) throws IOException {
       bt_1.am(var0);
       a_MainCanvas.e.l((byte)1);
    }

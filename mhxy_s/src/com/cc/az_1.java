@@ -1,6 +1,7 @@
 package com.cc;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
 public final class az_1 {
@@ -82,7 +83,7 @@ public final class az_1 {
       }
    }
 
-   public final void a(DataInputStream var1) {
+   public final void a(DataInputStream var1) throws IOException {
       this.a = var1.readShort();
       this.b = var1.readUTF();
       var1.readShort();
@@ -156,7 +157,7 @@ public final class az_1 {
       this.v = bu_1.a(bu_1.b(String.valueOf(this.u), (byte)2).toCharArray());
       this.V = 1;
       if (this.V == 1 && this.U > 0) {
-         int var10003 = t.b - 40;
+         int var10003 = t_1.b - 40;
          byte var4 = this.U;
          short var15 = this.d;
          var2 = var10003;
@@ -173,11 +174,11 @@ public final class az_1 {
          this.Z = 0;
          this.X = new bw_1(var7, (short)(var2 - 10));
          if (this.X != null && this.X.a() != 0) {
-            int var8 = t.j;
+            int var8 = t_1.j;
             this.Y = new int[4];
             this.Y[2] = var2;
             this.Y[3] = this.X.a() * var8 + 10;
-            this.Y[0] = (t.b - this.Y[2]) / 2;
+            this.Y[0] = (t_1.b - this.Y[2]) / 2;
             this.Y[1] = var15;
             return;
          }
@@ -188,20 +189,20 @@ public final class az_1 {
    }
 
    public final void a(Graphics var1, ai_1 var2, int var3, int var4, byte var5) {
-      if (this.t == -1 && ao_1.t != null || this.I == 100 && ao_1.t != null) {
-         var2.a(var1, (bc_1) ao_1.t, (int[])null, var3, var4, this.c - ao_1.t.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - t.j - ao_1.t.j(), 20, var5);
+      if (this.t == -1 && ao_1.t_2 != null || this.I == 100 && ao_1.t_2 != null) {
+         var2.a(var1, (bc_1) ao_1.t_2, (int[])null, var3, var4, this.c - ao_1.t_2.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - t_1.j - ao_1.t_2.j(), 20, var5);
       } else if (this.t == 1 && ao_1.s != null) {
-         var2.a(var1, (bc_1) ao_1.s, (int[])null, var3, var4, this.c - ao_1.s.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - t.j - ao_1.s.j(), 20, var5);
+         var2.a(var1, (bc_1) ao_1.s, (int[])null, var3, var4, this.c - ao_1.s.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - t_1.j - ao_1.s.j(), 20, var5);
       }
 
       if (this.x && ao_1.u != null) {
          var2.a(var1, (bc_1) ao_1.u, (int[])null, var3, var4, this.c + (this.w == null ? 8 : this.w.i() / 2), this.d - (this.w == null ? 30 : this.w.j()), 20, var5);
-         if ((this = this).X != null && this.Y != null && this.U != 0) {
-            var1.setClip(0, 0, t.b, t.c);
+         if (this.X != null && this.Y != null && this.U != 0) {
+            var1.setClip(0, 0, t_1.b, t_1.c);
             if (this.Z >= 0) {
                int var9;
-               if ((var9 = this.Y[1] - var4) + this.Y[3] > t.c) {
-                  var9 = t.c - this.Y[3] - 4;
+               if ((var9 = this.Y[1] - var4) + this.Y[3] > t_1.c) {
+                  var9 = t_1.c - this.Y[3] - 4;
                }
 
                int var10001 = this.Y[0];
@@ -209,7 +210,7 @@ public final class az_1 {
                int var7 = this.Y[3];
                int var6 = var10003;
                var4 = var10001;
-               ca.a(var1, 1009050, 150, var4, var9, var6, var7);
+               ca_1.a(var1, 1009050, 150, var4, var9, var6, var7);
                if (this.Z >= 3) {
                   this.X.a(var1, this.Y[0] + 5, var9 + 5, 20);
                }

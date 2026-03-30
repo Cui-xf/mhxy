@@ -1,6 +1,7 @@
 package com.cc;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 
 public final class bx {
    public cf a;
@@ -20,7 +21,7 @@ public final class bx {
       return this.h == null ? new aj((short)0, (short)0, (short)0, (short)0) : this.h;
    }
 
-   public final void a(DataInputStream var1, boolean var2) {
+   public final void a(DataInputStream var1, boolean var2) throws IOException {
       this.b = var1.readShort();
       this.c = var1.readByte();
       this.e = var1.readShort();

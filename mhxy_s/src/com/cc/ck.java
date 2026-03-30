@@ -36,24 +36,24 @@ public final class ck {
    }
 
    public final void b(byte var1) {
-      t.ag.delete(0, t.ag.length());
+      t_1.ag.delete(0, t_1.ag.length());
       this.n = var1;
       if (this.b == 0) {
          if (var1 == 4) {
-            t.ag.append("com.cc.f").append(this.j).append(1).append(var1);
+            t_1.ag.append("com.cc.f").append(this.j).append(1).append(var1);
          } else {
-            t.ag.append("com.cc.f").append(this.j).append(1).append(this.v).append(var1);
+            t_1.ag.append("com.cc.f").append(this.j).append(1).append(this.v).append(var1);
          }
 
-         this.m = a_MainCanvas.ab.b(t.ag.toString());
+         this.m = a_MainCanvas.ab.b(t_1.ag.toString());
          if (this.m == null && var1 != 4) {
-            t.ag.delete(0, t.ag.length());
-            t.ag.append("com.cc.f").append(this.j).append(1).append(1).append(var1);
-            this.m = a_MainCanvas.ab.b(t.ag.toString());
+            t_1.ag.delete(0, t_1.ag.length());
+            t_1.ag.append("com.cc.f").append(this.j).append(1).append(1).append(var1);
+            this.m = a_MainCanvas.ab.b(t_1.ag.toString());
          }
       } else if (this.b == 1) {
-         t.ag.append(this.j).append(var1 > 3 ? 3 : var1);
-         this.m = a_MainCanvas.ah.a(t.ag.toString(), this.r, this.s, this.t);
+         t_1.ag.append(this.j).append(var1 > 3 ? 3 : var1);
+         this.m = a_MainCanvas.ah.a(t_1.ag.toString(), this.r, this.s, this.t);
       }
 
       if (this.m != null) {

@@ -1,20 +1,20 @@
-//package com.yinhan.kjava.main;
-//
-//import javax.microedition.io.Connector;
+package com.yinhan.kjava.main;
+
+import javax.microedition.io.Connector;
 //import javax.wireless.messaging.MessageConnection;
 //import javax.wireless.messaging.TextMessage;
-//
-//final class e_3 implements Runnable {
-//   private String a;
-//   private String b;
-//
-//   public e_3(a_MainCanvas var1, String var2, String var3) {
-//      this.a = var2;
-//      this.b = var3;
-//      (new Thread(this)).start();
-//   }
-//
-//   public final void run() {
+
+final class e_3 implements Runnable {
+   private String a;
+   private String b;
+
+   public e_3(a_MainCanvas var1, String var2, String var3) {
+      this.a = var2;
+      this.b = var3;
+      (new Thread(this)).start();
+   }
+
+   public final void run() {
 //      String var10000 = this.a;
 //      String var1 = this.b;
 //      String var11 = var10000;
@@ -39,5 +39,5 @@
 //         }
 //
 //      }
-//   }
-//}
+   }
+}

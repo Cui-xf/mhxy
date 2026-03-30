@@ -234,6 +234,30 @@
       {
         "nodeRef": {
           "refType": "METHOD",
+          "declClass": "bh",
+          "shortId": "a(Ljava/lang/String;I[Lad;Ljava/util/Vector;Ljava/util/Vector;Ljava/util/Vector;)I"
+        },
+        "codeRef": {
+          "attachType": "VAR",
+          "index": 458752
+        },
+        "newName": "var2"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
+          "declClass": "bh",
+          "shortId": "a(Ljava/lang/String;I[Lad;Ljava/util/Vector;Ljava/util/Vector;Ljava/util/Vector;)I"
+        },
+        "codeRef": {
+          "attachType": "VAR",
+          "index": 1048577
+        },
+        "newName": "var11"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
           "declClass": "bt",
           "shortId": "j(Ljava/io/DataInputStream;)V"
         },
@@ -376,7 +400,7 @@
       "previewTab": false
     }
   ],
-  "cacheDir": "/Users/cxf/Library/Caches/io.github.skylot.jadx/projects/java版梦回西游3区251011.jar-0f0cd2cba3ad178b1bd1f5a6bef51315",
+  "cacheDir": "C:\\Users\\qaq\\AppData\\Local\\skylot\\jadx\\cache\\projects\\java版梦回西游3区251011.jar-011e17ab57204171d63dbcc82ab61cc8",
   "enableLiveReload": false,
   "searchHistory": [
     "4142",

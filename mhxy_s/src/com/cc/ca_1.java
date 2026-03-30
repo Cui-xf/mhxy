@@ -80,7 +80,7 @@ public final class ca_1 {
    private static Random aq = new Random();
 
    public static void a(Graphics var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-      if (t.q != 2) {
+      if (t_1.q != 2) {
          ax.a(var0, var1, var2, var3, var4, var5, var6);
       }
 
@@ -112,7 +112,7 @@ public final class ca_1 {
       }
 
       if (var1 != null && var1.a() != 0) {
-         int var6 = (t.c - 26 - var9 - var11 * t.j) / t.j;
+         int var6 = (t_1.c - 26 - var9 - var11 * t_1.j) / t_1.j;
          if (!var4) {
             C = var1.a() / var6 + (var1.a() % var6 != 0 ? 1 : 0);
             d = var6;
@@ -123,15 +123,14 @@ public final class ca_1 {
                var10[0] = 1;
                var10[1] = var6;
             } else {
-               var4 = 0;
-
+               int  var4_t = 0;
                for(int var5 = var6; var5 > 0; --var5) {
                   if (var6 % var5 == 0) {
-                     ++var4;
+                     ++var4_t;
                   }
                }
 
-               if (var4 == 2) {
+               if (var4_t == 2) {
                   ++var6;
                }
 
@@ -155,7 +154,7 @@ public final class ca_1 {
          }
       }
 
-      f = (d + var11) * t.j + 26;
+      f = (d + var11) * t_1.j + 26;
    }
 
    public static int a(int var0, int var1) {
@@ -200,12 +199,12 @@ public final class ca_1 {
          var1 = e + d >= var5.a() ? var5.a() : e + d;
 
          for(int var10 = e; var10 < var1; ++var10) {
-            var5.a(var0, 10, var2 + 12 + (var10 - e) * t.j, var10, 20);
+            var5.a(var0, 10, var2 + 12 + (var10 - e) * t_1.j, var10, 20);
          }
 
          if (a_MainCanvas.A != null) {
             if (e != 0) {
-               ai.a(a_MainCanvas.A, System.currentTimeMillis());
+               ai_1.a(a_MainCanvas.A, System.currentTimeMillis());
                a_MainCanvas.f.a(var0, (bc_1) a_MainCanvas.A, (int[])null, 0, 0, 16, var2 + 5, 20, 0);
                a((int[])(E != null ? E[0] : null), 16, var2 + 5, 16, 9);
             } else {
@@ -215,7 +214,7 @@ public final class ca_1 {
 
          if (a_MainCanvas.B != null) {
             if (e + d < var5.a()) {
-               ai.a(a_MainCanvas.B, System.currentTimeMillis());
+               ai_1.a(a_MainCanvas.B, System.currentTimeMillis());
                a_MainCanvas.f.a(var0, (bc_1) a_MainCanvas.B, (int[])null, 0, 0, var3 - 32, var2 + 5, 20, 0);
                a((int[])(E != null ? E[1] : null), var3 - 32, var2 + 5, 16, 9);
             } else {
@@ -226,7 +225,7 @@ public final class ca_1 {
 
       if (var6 != null && F != null) {
          for(int var9 = 0; var9 < var6.length; ++var9) {
-            a((int[])(F != null ? F[var9] : null), 10, var2 + var4 - 9 - (var6.length - var9) * t.j, t.i.stringWidth(var6[var9]), t.j);
+            a((int[])(F != null ? F[var9] : null), 10, var2 + var4 - 9 - (var6.length - var9) * t_1.j, t_1.i.stringWidth(var6[var9]), t_1.j);
             a(var0, (String)var6[var9], (int)F[var9][0], F[var9][1], 20, g == var9 ? 16711680 : 16777215, 0);
          }
       }
@@ -236,24 +235,24 @@ public final class ca_1 {
    public static void a(Graphics var0, String var1, String[] var2) {
       if (var1 != null) {
          l = 0;
-         var0.setClip(0, 0, t.b, t.c);
+         var0.setClip(0, 0, t_1.b, t_1.c);
          if (h >= 0) {
             if (h == 0) {
-               I = ((H = a(var1, t.i, t.b - 10, "\t")).length + 1) * t.j + 20;
-               a(var0, t.b / 2 * 3, (t.c - I / 4) / 2, t.b / 4, I / 4);
+               I = ((H = a(var1, t_1.i, t_1.b - 10, "\t")).length + 1) * t_1.j + 20;
+               a(var0, t_1.b / 2 * 3, (t_1.c - I / 4) / 2, t_1.b / 4, I / 4);
                J = new int[var2.length][4];
             } else if (h == 1) {
-               a(var0, t.b / 4, (t.c - I / 2) / 2, t.b / 2, I / 2);
+               a(var0, t_1.b / 4, (t_1.c - I / 2) / 2, t_1.b / 2, I / 2);
             } else if (h == 2) {
-               a(var0, t.b / 8, (t.c - I / 4 * 3) / 2, t.b / 4 * 3, I / 4 * 3);
+               a(var0, t_1.b / 8, (t_1.c - I / 4 * 3) / 2, t_1.b / 4 * 3, I / 4 * 3);
             } else {
-               a((Graphics)var0, 0, (t.c - I) / 2, t.b, I);
+               a((Graphics)var0, 0, (t_1.c - I) / 2, t_1.b, I);
                if (H != null) {
                   if (H.length == 1) {
-                     a(var0, (String)H[0], (int)((t.b - t.i.stringWidth(H[0])) / 2), (t.c - I) / 2 + 10, 20, 16777215, 0);
+                     a(var0, (String)H[0], (int)((t_1.b - t_1.i.stringWidth(H[0])) / 2), (t_1.c - I) / 2 + 10, 20, 16777215, 0);
                   } else {
                      for(int var3 = 0; var3 < H.length; ++var3) {
-                        a(var0, (String)H[var3], (int)((t.b - t.i.stringWidth(H[var3])) / 2), (t.c - I) / 2 + 10 + var3 * t.j, 20, 16777215, 0);
+                        a(var0, (String)H[var3], (int)((t_1.b - t_1.i.stringWidth(H[var3])) / 2), (t_1.c - I) / 2 + 10 + var3 * t_1.j, 20, 16777215, 0);
                      }
                   }
                }
@@ -264,12 +263,12 @@ public final class ca_1 {
                }
 
                if (var2.length == 2) {
-                  a((String)var2[0], 0, 10, (t.c - I) / 2 + I - 9 - t.j);
+                  a((String)var2[0], 0, 10, (t_1.c - I) / 2 + I - 9 - t_1.j);
                   a(var0, (String)var2[0], (int)J[0][0], J[0][1], 20, 16775357, 0);
-                  a((String)var2[1], 1, t.b - 10 - t.i.stringWidth(var2[1]), (t.c - I) / 2 + I - 9 - t.j);
+                  a((String)var2[1], 1, t_1.b - 10 - t_1.i.stringWidth(var2[1]), (t_1.c - I) / 2 + I - 9 - t_1.j);
                   a(var0, (String)var2[1], (int)J[1][0], J[1][1], 20, 16775357, 0);
                } else {
-                  a((String)var2[0], 0, (t.b - t.i.stringWidth(var2[0])) / 2, (t.c - I) / 2 + I - 9 - t.j);
+                  a((String)var2[0], 0, (t_1.b - t_1.i.stringWidth(var2[0])) / 2, (t_1.c - I) / 2 + I - 9 - t_1.j);
                   a(var0, (String)var2[0], (int)J[0][0], J[0][0], 20, 16775357, 0);
                }
             }
@@ -283,8 +282,8 @@ public final class ca_1 {
       if (var0 != null && J != null && J.length > var1) {
          J[var1][0] = var2;
          J[var1][1] = var3;
-         J[var1][2] = t.i.stringWidth(var0);
-         J[var1][3] = t.j;
+         J[var1][2] = t_1.i.stringWidth(var0);
+         J[var1][3] = t_1.j;
       }
 
    }
@@ -304,7 +303,7 @@ public final class ca_1 {
    }
 
    public static void a(Graphics var0, int var1, int var2, int var3, int var4) {
-      var0.setClip(0, 0, t.b, t.c);
+      var0.setClip(0, 0, t_1.b, t_1.c);
       a(var0, 1009050, 180, var1, var2, var3, var4);
       a(var0, 2);
       var0.drawRect(var1, var2, var3 - 1, var4 - 1);
@@ -340,7 +339,7 @@ public final class ca_1 {
          var0.drawImage(var1, var3 + var8 * var2, var4, 20);
       }
 
-      var0.setClip(0, 0, t.b, t.c);
+      var0.setClip(0, 0, t_1.b, t_1.c);
    }
 
    public static void b(Graphics var0, int var1, int var2, int var3, int var4) {
@@ -450,9 +449,26 @@ public final class ca_1 {
 
    }
 
-   public static String[] a(String var0, Font var1, int var2, String var3) {
-      // $FF: Couldn't com.cc.be decompiled
+   public static String[] a(String str, Font font, int i2, String str2) {
+      String strSubstring;
+      if (str == null) {
+         str = "";
+      }
+      Vector vector = new Vector();
+      String[] strArrA = a(str, str2);
+      for (String str3 : strArrA) {
+         do {
+            String strB = b(str3, font, i2);
+            vector.addElement(strB);
+            strSubstring = str3.substring(strB.length());
+            str3 = strSubstring;
+         } while (strSubstring.length() != 0);
+      }
+      String[] strArr = new String[vector.size()];
+      vector.copyInto(strArr);
+      return a(strArr);
    }
+
 
    private static String[] a(String[] var0) {
       Vector var1 = new Vector();
@@ -576,17 +592,17 @@ public final class ca_1 {
       N = var1;
       O = var2;
       Q = var4 == null ? "载入中…" : var4;
-      P = M + (O - t.i.stringWidth(Q)) / 2;
+      P = M + (O - t_1.i.stringWidth(Q)) / 2;
    }
 
    public static void b(Graphics var0) {
-      var0.setClip(0, 0, t.b, t.c);
-      a(var0, 1808583, 95, M, N - (4 + t.j), O, 8 + t.j + 18);
+      var0.setClip(0, 0, t_1.b, t_1.c);
+      a(var0, 1808583, 95, M, N - (4 + t_1.j), O, 8 + t_1.j + 18);
       var0.setColor(26540);
-      var0.drawRect(M, N - (4 + t.j), O, 8 + t.j + 18);
-      var0.drawRect(M + 2, N - (2 + t.j), O - 4, 8 + t.j + 14);
+      var0.drawRect(M, N - (4 + t_1.j), O, 8 + t_1.j + 18);
+      var0.drawRect(M + 2, N - (2 + t_1.j), O - 4, 8 + t_1.j + 14);
       var0.setColor(11267556);
-      var0.drawRect(M + 1, N - (3 + t.j), O - 2, 8 + t.j + 16);
+      var0.drawRect(M + 1, N - (3 + t_1.j), O - 2, 8 + t_1.j + 16);
       a(var0, (String)Q, (int)P, N, 36, 16777215, 727632);
       var0.setColor(539727);
       var0.fillRect(M + 2, N, O - 4, 18);
@@ -607,24 +623,26 @@ public final class ca_1 {
       var0.setColor(26540);
       var0.drawRect(var2, var3, 24, 11);
       var0.drawLine(var2 + 12, var3, var2 + 12, var3 + 12);
-      var0.setClip(0, 0, t.b, t.c);
+      var0.setClip(0, 0, t_1.b, t_1.c);
       l += 2;
    }
 
-   public static String[] a(String var0, Font var1, int var2) {
-      Vector var3 = new Vector();
-      var0 = var0;
 
-      String var4;
+   public static String[] a(String str, Font font, int i2) {
+      String strSubstring;
+      Vector vector = new Vector();
+      String str2 = str;
       do {
-         var4 = c(var0, var1, var2);
-         var3.addElement(var4);
-      } while((var0 = var0.substring(var4.length())).length() != 0);
-
-      var4 = new String[var3.size()];
-      var3.copyInto(var4);
-      return a((String[])var4);
+         String strC = c(str2, font, i2);
+         vector.addElement(strC);
+         strSubstring = str2.substring(strC.length());
+         str2 = strSubstring;
+      } while (strSubstring.length() != 0);
+      String[] strArr = new String[vector.size()];
+      vector.copyInto(strArr);
+      return a(strArr);
    }
+
 
    private static String c(String var0, Font var1, int var2) {
       S = 0;
@@ -662,73 +680,69 @@ public final class ca_1 {
       }
    }
 
-   public static void b(Graphics var0, String var1, int var2, int var3, int var4, int var5) {
-      if (var1 != null && var5 != 0 && var1.trim().length() != 0) {
-         if (l >= 15) {
-            int var7 = t.d - 20;
-            String[] var6 = var1;
-            int var8 = 0;
-            String var9 = "";
-
-            do {
-               if ((var8 = ((String)var6).indexOf(62)) < 0) {
-                  var9 = var9 + var6;
-                  break;
-               }
-
-               if (var8 - 2 >= 0 && ((String)var6).charAt(var8 - 2) == '<') {
-                  var9 = var9 + ((String)var6).substring(0, var8 - 2);
-                  var6 = ((String)var6).substring(var8 + 1);
-               } else {
-                  var9 = var9 + ((String)var6).substring(0, var8 + 1);
-                  var6 = ((String)var6).substring(var8 + 1);
-               }
-            } while(var8 >= 0);
-
-            var6 = a(var9.trim(), t.i, var7, "\t");
-            var8 = 0;
-
-            for(int var14 = 0; var14 < var6.length; ++var14) {
-               var8 = Math.max(var8, t.i.stringWidth(var6[var14]) + 8);
+   public static void b(Graphics graphics, String str, int i2, int i3, int i4, int i5) {
+      if (str == null || i5 == 0 || str.trim().length() == 0) {
+         return;
+      }
+      if (l >= 15) {
+         int i6 = t_1.d - 20;
+         String strSubstring = str;
+         String string = "";
+         while (true) {
+            int iIndexOf = strSubstring.indexOf(62);
+            if (iIndexOf < 0) {
+               string = new StringBuffer().append(string).append(strSubstring).toString();
+               break;
             }
-
-            X = Math.min(var8, var7);
-            if (var5 == 1) {
-               V = new bw_1(var1, (short)(X - 8));
-               Y = t.j * V.a() + 8;
-            } else if (var5 == 2) {
-               W = a(var1.trim(), t.i, X - 8, "\t");
-               Y = t.j * W.length + 8;
-            }
-
-            Z = var2 + X <= t.f + t.d ? var2 : (var2 - X >= t.f ? var2 - X : t.f + (t.d - X) / 2);
-            aa = var3 + Y <= var4 ? var3 : (var3 - Y >= t.g ? var3 - Y : t.g + (t.e - Y) / 2);
-            if (l == 15) {
-               a(var0, 1009050, 210, Z, aa, X / 4, Y / 4);
-            } else if (l == 16) {
-               a(var0, 1009050, 210, Z, aa, X / 2, Y / 2);
-            } else if (l == 17) {
-               a(var0, 1009050, 210, Z, aa, X / 4 * 3, Y / 4 * 3);
+            if (iIndexOf - 2 < 0 || strSubstring.charAt(iIndexOf - 2) != '<') {
+               string = new StringBuffer().append(string).append(strSubstring.substring(0, iIndexOf + 1)).toString();
+               strSubstring = strSubstring.substring(iIndexOf + 1);
             } else {
-               a(var0, 1009050, 210, Z, aa, X, Y);
-               var0.setColor(16230);
-               var0.drawRect(Z, aa, X, Y);
-               if (var5 == 1) {
-                  V.a(var0, Z + 4, aa + 4, 20);
-               } else if (var5 == 2) {
-                  var0.setColor(15138723);
-
-                  for(int var10 = 0; var10 < W.length; ++var10) {
-                     if (W[var10] != null) {
-                        var0.drawString(W[var10], Z + 4, aa + 4 + var10 * t.j, 0);
-                     }
+               string = new StringBuffer().append(string).append(strSubstring.substring(0, iIndexOf - 2)).toString();
+               strSubstring = strSubstring.substring(iIndexOf + 1);
+            }
+            if (iIndexOf < 0) {
+               break;
+            }
+         }
+         String[] strArrA = a(string.trim(), t_1.i, i6, "\t");
+         int iMax = 0;
+         for (String str2 : strArrA) {
+            iMax = Math.max(iMax, t_1.i.stringWidth(str2) + 8);
+         }
+         X = Math.min(iMax, i6);
+         if (i5 == 1) {
+            V = new bw_1(str, (short) (X - 8));
+            Y = (t_1.j * V.a()) + 8;
+         } else if (i5 == 2) {
+            W = a(str.trim(), t_1.i, X - 8, "\t");
+            Y = (t_1.j * W.length) + 8;
+         }
+         Z = i2 + X <= t_1.f + t_1.d ? i2 : i2 - X >= t_1.f ? i2 - X : t_1.f + ((t_1.d - X) / 2);
+         aa = i3 + Y <= i4 ? i3 : i3 - Y >= t_1.g ? i3 - Y : t_1.g + ((t_1.e - Y) / 2);
+         if (l == 15) {
+            a(graphics, 1009050, 210, Z, aa, X / 4, Y / 4);
+         } else if (l == 16) {
+            a(graphics, 1009050, 210, Z, aa, X / 2, Y / 2);
+         } else if (l == 17) {
+            a(graphics, 1009050, 210, Z, aa, (X / 4) * 3, (Y / 4) * 3);
+         } else {
+            a(graphics, 1009050, 210, Z, aa, X, Y);
+            graphics.setColor(16230);
+            graphics.drawRect(Z, aa, X, Y);
+            if (i5 == 1) {
+               V.a(graphics, Z + 4, aa + 4, 20);
+            } else if (i5 == 2) {
+               graphics.setColor(15138723);
+               for (int i7 = 0; i7 < W.length; i7++) {
+                  if (W[i7] != null) {
+                     graphics.drawString(W[i7], Z + 4, aa + 4 + (i7 * t_1.j), 0);
                   }
                }
             }
          }
-
-         ++l;
       }
+      l++;
    }
 
    public static void a(Graphics var0, String var1, long var2, int var4, int var5) {
@@ -739,7 +753,7 @@ public final class ca_1 {
       if (l >= 15) {
          if (l == 15) {
             label148: {
-               ad = var2 >= 0L ? "价格:" + t.a(new StringBuffer(), var2) : null;
+               ad = var2 >= 0L ? "价格:" + t_1.a(new StringBuffer(), var2) : null;
                String var10000;
                if (var1 != null) {
                   if ((ab = a(var1) != -1 ? a(var1) : 15138723) != 15138723) {
@@ -761,8 +775,8 @@ public final class ca_1 {
                ac = var10000;
             }
 
-            X = Math.max(t.i.stringWidth(ac), ad == null ? 0 : t.i.stringWidth(ad)) + 8;
-            Y = t.j * (ad == null ? 1 : 2) + 8;
+            X = Math.max(t_1.i.stringWidth(ac), ad == null ? 0 : t_1.i.stringWidth(ad)) + 8;
+            Y = t_1.j * (ad == null ? 1 : 2) + 8;
             Z = var4;
             aa = var5;
             if (var6 == 40) {
@@ -772,7 +786,7 @@ public final class ca_1 {
                   a(var0, 1009050, 210, Z - X / 4, var5 - Y / 4, X / 4, Y / 4);
                }
             } else if (var6 == 36) {
-               if (Z + X > t.f + t.d) {
+               if (Z + X > t_1.f + t_1.d) {
                   a(var0, 1009050, 210, Z - X / 4, var5 - Y / 4, X / 4, Y / 4);
                } else {
                   a(var0, 1009050, 210, Z, var5 - Y / 4, X / 4, Y / 4);
@@ -783,7 +797,7 @@ public final class ca_1 {
                } else {
                   a(var0, 1009050, 210, Z - X / 4, var5, X / 4, Y / 4);
                }
-            } else if (var4 + X <= t.f + t.d) {
+            } else if (var4 + X <= t_1.f + t_1.d) {
                a(var0, 1009050, 210, Z, var5, X / 4, Y / 4);
             } else {
                a(var0, 1009050, 210, Z - X / 4, var5, X / 4, Y / 4);
@@ -796,7 +810,7 @@ public final class ca_1 {
                   a(var0, 1009050, 210, Z - X / 2, var5 - Y / 2, X / 2, Y / 2);
                }
             } else if (var6 == 36) {
-               if (Z + X > t.f + t.d) {
+               if (Z + X > t_1.f + t_1.d) {
                   a(var0, 1009050, 210, Z - X / 2, var5 - Y / 2, X / 2, Y / 2);
                } else {
                   a(var0, 1009050, 210, Z, var5 - Y / 2, X / 2, Y / 2);
@@ -807,7 +821,7 @@ public final class ca_1 {
                } else {
                   a(var0, 1009050, 210, Z - X / 2, var5, X / 2, Y / 2);
                }
-            } else if (var4 + X <= t.f + t.d) {
+            } else if (var4 + X <= t_1.f + t_1.d) {
                a(var0, 1009050, 210, Z, var5, X / 2, Y / 2);
             } else {
                a(var0, 1009050, 210, Z - X / 2, var5, X / 2, Y / 4);
@@ -820,7 +834,7 @@ public final class ca_1 {
                   a(var0, 1009050, 210, Z - X / 4 * 3, var5 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                }
             } else if (var6 == 36) {
-               if (Z + X > t.f + t.d) {
+               if (Z + X > t_1.f + t_1.d) {
                   a(var0, 1009050, 210, Z - X / 4 * 3, var5 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                } else {
                   a(var0, 1009050, 210, Z, var5 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
@@ -831,7 +845,7 @@ public final class ca_1 {
                } else {
                   a(var0, 1009050, 210, Z - X / 4 * 3, var5, X / 4 * 3, Y / 4 * 3);
                }
-            } else if (var4 + X <= t.f + t.d) {
+            } else if (var4 + X <= t_1.f + t_1.d) {
                a(var0, 1009050, 210, Z, var5, X / 4 * 3, Y / 4 * 3);
             } else {
                a(var0, 1009050, 210, Z - X / 4 * 3, var5, X / 4 * 3, Y / 4 * 3);
@@ -845,7 +859,7 @@ public final class ca_1 {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var5 - Y + 4, 20);
                   if (ad != null) {
-                     var0.drawString(ad, Z + 4, var5 - Y + 4 + t.j, 20);
+                     var0.drawString(ad, Z + 4, var5 - Y + 4 + t_1.j, 20);
                   }
                } else {
                   a(var0, 1009050, 210, Z - X, var5 - Y, X, Y);
@@ -853,17 +867,17 @@ public final class ca_1 {
                   var0.setColor(ab);
                   var0.drawString(ac, Z - X + 4, var5 - Y + 4, 20);
                   if (ad != null) {
-                     var0.drawString(ad, Z - X + 4, var5 - Y + 4 + t.j, 20);
+                     var0.drawString(ad, Z - X + 4, var5 - Y + 4 + t_1.j, 20);
                   }
                }
             } else if (var6 == 36) {
-               if (Z + X > t.f + t.d) {
+               if (Z + X > t_1.f + t_1.d) {
                   a(var0, 1009050, 210, Z - X, var5 - Y, X, Y);
                   var0.drawRect(Z - X, var5 - Y, X, Y);
                   var0.setColor(ab);
                   var0.drawString(ac, Z - X + 4, var5 - Y + 4, 20);
                   if (ad != null) {
-                     var0.drawString(ad, Z - X + 4, var5 - Y + 4 + t.j, 20);
+                     var0.drawString(ad, Z - X + 4, var5 - Y + 4 + t_1.j, 20);
                   }
                } else {
                   a(var0, 1009050, 210, Z, var5 - Y, X, Y);
@@ -871,7 +885,7 @@ public final class ca_1 {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var5 - Y + 4, 20);
                   if (ad != null) {
-                     var0.drawString(ad, Z + 4, var5 - Y + 4 + t.j, 20);
+                     var0.drawString(ad, Z + 4, var5 - Y + 4 + t_1.j, 20);
                   }
                }
             } else if (var6 == 24) {
@@ -881,7 +895,7 @@ public final class ca_1 {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var5 + 4, 20);
                   if (ad != null) {
-                     var0.drawString(ad, Z + 4, var5 + 4 + t.j, 20);
+                     var0.drawString(ad, Z + 4, var5 + 4 + t_1.j, 20);
                   }
                } else {
                   a(var0, 1009050, 210, Z - X, var5, X, Y);
@@ -889,13 +903,13 @@ public final class ca_1 {
                   var0.setColor(ab);
                   var0.drawString(ac, Z - X + 4, var5 + 4, 20);
                   if (ad != null) {
-                     var0.drawString(ad, Z - X + 4, var5 + 4 + t.j, 20);
+                     var0.drawString(ad, Z - X + 4, var5 + 4 + t_1.j, 20);
                   }
                }
             } else {
                int var8 = Z;
                int var7 = aa;
-               if (var4 + X > t.f + t.d && (var8 -= X) < 0) {
+               if (var4 + X > t_1.f + t_1.d && (var8 -= X) < 0) {
                   var8 = 0;
                }
 
@@ -904,7 +918,7 @@ public final class ca_1 {
                var0.setColor(ab);
                var0.drawString(ac, var8 + 4, var7 + 4, 20);
                if (ad != null) {
-                  var0.drawString(ad, var8 + 4, var7 + 4 + t.j, 20);
+                  var0.drawString(ad, var8 + 4, var7 + 4 + t_1.j, 20);
                }
             }
          }
@@ -916,7 +930,7 @@ public final class ca_1 {
    public static void a(Graphics var0, String var1, String var2, int var3, int var4, int var5) {
       if (l >= 15) {
          if (l == 15) {
-            X = t.b - 30;
+            X = t_1.b - 30;
             if (var2.equals("")) {
                ae = null;
             } else {
@@ -931,17 +945,17 @@ public final class ca_1 {
                ac = "";
             }
 
-            int var6 = t.i.stringWidth(ac) + 8;
+            int var6 = t_1.i.stringWidth(ac) + 8;
             X = ae == null ? var6 : (ae.a <= 0 ? X : Math.max(var6, ae.a + 8));
-            Y = t.j * (ae == null ? 1 : ae.a() + 1) + 8;
-            if (var3 + X > t.b) {
-               var3 = t.b - X;
+            Y = t_1.j * (ae == null ? 1 : ae.a() + 1) + 8;
+            if (var3 + X > t_1.b) {
+               var3 = t_1.b - X;
             } else if (var3 < 0) {
                var3 = 0;
             }
 
-            if (var4 + Y > t.c) {
-               var4 = t.c - Y;
+            if (var4 + Y > t_1.c) {
+               var4 = t_1.c - Y;
             } else if (var4 < 0) {
                var4 = 0;
             }
@@ -962,7 +976,7 @@ public final class ca_1 {
             } else {
                label279: {
                   if (var5 == 36) {
-                     if (Z + X <= t.b) {
+                     if (Z + X <= t_1.b) {
                         if (var4 < Y) {
                            a(var0, 1009050, 210, Z, var4, X / 4, Y / 4);
                         } else {
@@ -978,12 +992,12 @@ public final class ca_1 {
                   } else {
                      if (var5 == 24) {
                         if (Z - X < 0) {
-                           if (var4 + Y >= t.c) {
+                           if (var4 + Y >= t_1.c) {
                               a(var0, 1009050, 210, Z, var4 - Y / 4, X / 4, Y / 4);
                            } else {
                               a(var0, 1009050, 210, Z, var4, X / 4, Y / 4);
                            }
-                        } else if (var4 + Y >= t.c) {
+                        } else if (var4 + Y >= t_1.c) {
                            a(var0, 1009050, 210, Z, var4 - Y / 4, X / 4, Y / 4);
                         } else {
                            a(var0, 1009050, 210, Z - X / 4, var4, X / 4, Y / 4);
@@ -991,8 +1005,8 @@ public final class ca_1 {
                         break label279;
                      }
 
-                     if (var3 + X <= t.b) {
-                        if (var4 + Y >= t.c) {
+                     if (var3 + X <= t_1.b) {
+                        if (var4 + Y >= t_1.c) {
                            a(var0, 1009050, 210, Z - X / 4, var4 - Y / 4, X / 4, Y / 4);
                         } else {
                            a(var0, 1009050, 210, Z, var4, X / 4, Y / 4);
@@ -1000,7 +1014,7 @@ public final class ca_1 {
                         break label279;
                      }
 
-                     if (var4 + Y >= t.c) {
+                     if (var4 + Y >= t_1.c) {
                         a(var0, 1009050, 210, Z - X / 4, var4 - Y / 4, X / 4, Y / 4);
                         break label279;
                      }
@@ -1023,7 +1037,7 @@ public final class ca_1 {
                   a(var0, 1009050, 210, Z - X / 2, var4 - Y / 2, X / 2, Y / 2);
                }
             } else if (var5 == 36) {
-               if (Z + X > t.b) {
+               if (Z + X > t_1.b) {
                   if (var4 < Y) {
                      a(var0, 1009050, 210, Z - X / 2, var4, X / 2, Y / 2);
                   } else {
@@ -1036,23 +1050,23 @@ public final class ca_1 {
                }
             } else if (var5 == 24) {
                if (Z - X < 0) {
-                  if (var4 + Y >= t.c) {
+                  if (var4 + Y >= t_1.c) {
                      a(var0, 1009050, 210, Z, var4 - Y / 2, X / 2, Y / 2);
                   } else {
                      a(var0, 1009050, 210, Z, var4, X / 2, Y / 2);
                   }
-               } else if (var4 + Y >= t.c) {
+               } else if (var4 + Y >= t_1.c) {
                   a(var0, 1009050, 210, Z, var4 - Y / 2, X / 2, Y / 2);
                } else {
                   a(var0, 1009050, 210, Z - X / 2, var4, X / 2, Y / 2);
                }
-            } else if (var3 + X <= t.b) {
-               if (var4 + Y >= t.c) {
+            } else if (var3 + X <= t_1.b) {
+               if (var4 + Y >= t_1.c) {
                   a(var0, 1009050, 210, Z - X / 2, var4 - Y / 2, X / 2, Y / 2);
                } else {
                   a(var0, 1009050, 210, Z, var4, X / 2, Y / 2);
                }
-            } else if (var4 + Y >= t.c) {
+            } else if (var4 + Y >= t_1.c) {
                a(var0, 1009050, 210, Z - X / 2, var4 - Y / 2, X / 2, Y / 4);
             } else {
                a(var0, 1009050, 210, Z - X / 2, var4, X / 2, Y / 4);
@@ -1071,7 +1085,7 @@ public final class ca_1 {
                   a(var0, 1009050, 210, Z - X / 4 * 3, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                }
             } else if (var5 == 36) {
-               if (Z + X > t.b) {
+               if (Z + X > t_1.b) {
                   if (var4 < Y) {
                      a(var0, 1009050, 210, Z - X / 4 * 3, var4, X / 4 * 3, Y / 4 * 3);
                   } else {
@@ -1084,23 +1098,23 @@ public final class ca_1 {
                }
             } else if (var5 == 24) {
                if (Z - X < 0) {
-                  if (var4 + Y >= t.c) {
+                  if (var4 + Y >= t_1.c) {
                      a(var0, 1009050, 210, Z, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                   } else {
                      a(var0, 1009050, 210, Z, var4, X / 4 * 3, Y / 4 * 3);
                   }
-               } else if (var4 + Y >= t.c) {
+               } else if (var4 + Y >= t_1.c) {
                   a(var0, 1009050, 210, Z, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                } else {
                   a(var0, 1009050, 210, Z - X / 4 * 3, var4, X / 4 * 3, Y / 4 * 3);
                }
-            } else if (var3 + X <= t.b) {
-               if (var4 + Y >= t.c) {
+            } else if (var3 + X <= t_1.b) {
+               if (var4 + Y >= t_1.c) {
                   a(var0, 1009050, 210, Z - X / 4 * 3, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                } else {
                   a(var0, 1009050, 210, Z, var4, X / 4 * 3, Y / 4 * 3);
                }
-            } else if (var4 + Y >= t.c) {
+            } else if (var4 + Y >= t_1.c) {
                a(var0, 1009050, 210, Z - X / 4 * 3, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
             } else {
                a(var0, 1009050, 210, Z - X / 4 * 3, var4, X / 4 * 3, Y / 4 * 3);
@@ -1115,7 +1129,7 @@ public final class ca_1 {
                      var0.setColor(ab);
                      var0.drawString(ac, Z + 4, var4 + 4, 20);
                      if (ae != null) {
-                        ae.a(var0, Z + 4, var4 + 4 + t.j, 0);
+                        ae.a(var0, Z + 4, var4 + 4 + t_1.j, 0);
                      }
                   } else {
                      a(var0, 1009050, 210, Z, var4 - Y, X, Y);
@@ -1123,7 +1137,7 @@ public final class ca_1 {
                      var0.setColor(ab);
                      var0.drawString(ac, Z + 4, var4 - Y + 4, 20);
                      if (ae != null) {
-                        ae.a(var0, Z + 4, var4 - Y + 4 + t.j, 0);
+                        ae.a(var0, Z + 4, var4 - Y + 4 + t_1.j, 0);
                      }
                   }
                } else if (var4 < Y) {
@@ -1132,7 +1146,7 @@ public final class ca_1 {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var4 + 4, 20);
                   if (ae != null) {
-                     ae.a(var0, Z + 4, var4 + 4 + t.j, 0);
+                     ae.a(var0, Z + 4, var4 + 4 + t_1.j, 0);
                   }
                } else {
                   a(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
@@ -1140,18 +1154,18 @@ public final class ca_1 {
                   var0.setColor(ab);
                   var0.drawString(ac, Z - X + 4, var4 - Y + 4, 20);
                   if (ae != null) {
-                     ae.a(var0, Z - X + 4, var4 - Y + 4 + t.j, 0);
+                     ae.a(var0, Z - X + 4, var4 - Y + 4 + t_1.j, 0);
                   }
                }
             } else if (var5 == 36) {
-               if (Z + X > t.b) {
+               if (Z + X > t_1.b) {
                   if (var4 < Y) {
                      a(var0, 1009050, 210, Z, var4, X, Y);
                      var0.drawRect(Z, var4, X, Y);
                      var0.setColor(ab);
                      var0.drawString(ac, Z + 4, var4 + 4, 20);
                      if (ae != null) {
-                        ae.a(var0, Z + 4, var4 + 4 + t.j, 0);
+                        ae.a(var0, Z + 4, var4 + 4 + t_1.j, 0);
                      }
                   } else {
                      a(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
@@ -1159,7 +1173,7 @@ public final class ca_1 {
                      var0.setColor(ab);
                      var0.drawString(ac, Z - X + 4, var4 - Y + 4, 20);
                      if (ae != null) {
-                        ae.a(var0, Z - X + 4, var4 - Y + 4 + t.j, 0);
+                        ae.a(var0, Z - X + 4, var4 - Y + 4 + t_1.j, 0);
                      }
                   }
                } else if (var4 < Y) {
@@ -1168,7 +1182,7 @@ public final class ca_1 {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var4 + 4, 20);
                   if (ae != null) {
-                     ae.a(var0, Z + 4, var4 + 4 + t.j, 0);
+                     ae.a(var0, Z + 4, var4 + 4 + t_1.j, 0);
                   }
                } else {
                   a(var0, 1009050, 210, Z, var4 - Y, X, Y);
@@ -1176,18 +1190,18 @@ public final class ca_1 {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var4 - Y + 4, 20);
                   if (ae != null) {
-                     ae.a(var0, Z + 4, var4 - Y + 4 + t.j, 0);
+                     ae.a(var0, Z + 4, var4 - Y + 4 + t_1.j, 0);
                   }
                }
             } else if (var5 == 24) {
                if (Z - X < 0) {
-                  if (var4 + Y >= t.c) {
+                  if (var4 + Y >= t_1.c) {
                      a(var0, 1009050, 210, Z, var4 - Y, X, Y);
                      var0.drawRect(Z, var4 - Y, X, Y);
                      var0.setColor(ab);
                      var0.drawString(ac, Z + 4, var4 + 4 - Y, 20);
                      if (ae != null) {
-                        ae.a(var0, Z + 4, var4 + 4 + t.j - Y, 0);
+                        ae.a(var0, Z + 4, var4 + 4 + t_1.j - Y, 0);
                      }
                   } else {
                      a(var0, 1009050, 210, Z, var4, X, Y);
@@ -1195,16 +1209,16 @@ public final class ca_1 {
                      var0.setColor(ab);
                      var0.drawString(ac, Z + 4, var4 + 4, 20);
                      if (ae != null) {
-                        ae.a(var0, Z + 4, var4 + 4 + t.j, 0);
+                        ae.a(var0, Z + 4, var4 + 4 + t_1.j, 0);
                      }
                   }
-               } else if (var4 + Y >= t.c) {
+               } else if (var4 + Y >= t_1.c) {
                   a(var0, 1009050, 210, Z, var4 - Y, X, Y);
                   var0.drawRect(Z, var4 - Y, X, Y);
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var4 + 4 - Y, 20);
                   if (ae != null) {
-                     ae.a(var0, Z + 4, var4 + 4 + t.j - Y, 0);
+                     ae.a(var0, Z + 4, var4 + 4 + t_1.j - Y, 0);
                   }
                } else {
                   a(var0, 1009050, 210, Z - X, var4, X, Y);
@@ -1212,17 +1226,17 @@ public final class ca_1 {
                   var0.setColor(ab);
                   var0.drawString(ac, Z - X + 4, var4 + 4, 20);
                   if (ae != null) {
-                     ae.a(var0, Z - X + 4, var4 + 4 + t.j, 0);
+                     ae.a(var0, Z - X + 4, var4 + 4 + t_1.j, 0);
                   }
                }
-            } else if (var3 + X <= t.b) {
-               if (var4 + Y >= t.c) {
+            } else if (var3 + X <= t_1.b) {
+               if (var4 + Y >= t_1.c) {
                   a(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
                   var0.drawRect(Z - X, var4 - Y, X, Y);
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4 - X, var4 + 4 - Y, 20);
                   if (ae != null) {
-                     ae.a(var0, Z + 4 - X, var4 + 4 + t.j - Y, 0);
+                     ae.a(var0, Z + 4 - X, var4 + 4 + t_1.j - Y, 0);
                   }
                } else {
                   a(var0, 1009050, 210, Z, var4, X, Y);
@@ -1230,10 +1244,10 @@ public final class ca_1 {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var4 + 4, 20);
                   if (ae != null) {
-                     ae.a(var0, Z + 4, var4 + 4 + t.j, 0);
+                     ae.a(var0, Z + 4, var4 + 4 + t_1.j, 0);
                   }
                }
-            } else if (var4 + Y >= t.c) {
+            } else if (var4 + Y >= t_1.c) {
                a(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
                if (Z < X) {
                   Z = X;
@@ -1243,7 +1257,7 @@ public final class ca_1 {
                var0.setColor(ab);
                var0.drawString(ac, Z - X + 4, var4 + 4 - Y, 20);
                if (ae != null) {
-                  ae.a(var0, Z - X + 4, var4 + 4 + t.j - Y, 0);
+                  ae.a(var0, Z - X + 4, var4 + 4 + t_1.j - Y, 0);
                }
             } else {
                a(var0, 1009050, 210, Z - X, var4, X, Y);
@@ -1251,7 +1265,7 @@ public final class ca_1 {
                var0.setColor(ab);
                var0.drawString(ac, Z - X + 4, var4 + 4, 20);
                if (ae != null) {
-                  ae.a(var0, Z - X + 4, var4 + 4 + t.j, 0);
+                  ae.a(var0, Z - X + 4, var4 + 4 + t_1.j, 0);
                }
             }
          }
@@ -1306,28 +1320,28 @@ public final class ca_1 {
             System.arraycopy(var2, 0, p, 0, var2.length);
          }
 
-         q = t.i.stringWidth("菜单");
+         q = t_1.i.stringWidth("菜单");
 
          for(int var5 = 0; var5 < p.length; ++var5) {
-            q = Math.max(q, t.i.stringWidth(p[var5]));
+            q = Math.max(q, t_1.i.stringWidth(p[var5]));
          }
 
          q += 20;
          af[0] = var0;
          af[1] = var1;
-         ag = p.length * (t.j + 3) + 3;
-         af[1] = af[1] + ag > t.c ? t.c - ag : af[1];
+         ag = p.length * (t_1.j + 3) + 3;
+         af[1] = af[1] + ag > t_1.c ? t_1.c - ag : af[1];
          int[] var10000;
          byte var10001;
          int var10002;
          if (var3) {
             var10000 = af;
             var10001 = 0;
-            var10002 = t.b / 2 - q / 2;
+            var10002 = t_1.b / 2 - q / 2;
          } else {
             var10000 = af;
             var10001 = 0;
-            var10002 = af[0] + q > t.b ? t.b - q : af[0];
+            var10002 = af[0] + q > t_1.b ? t_1.b - q : af[0];
          }
 
          var10000[var10001] = var10002;
@@ -1351,7 +1365,7 @@ public final class ca_1 {
 
    public static void c(Graphics var0) {
       l = 0;
-      var0.setClip(0, 0, t.b, t.c);
+      var0.setClip(0, 0, t_1.b, t_1.c);
       var0.setColor(11138815);
       var0.fillRect(af[0], af[1], q, ag);
       var0.setColor(14172);
@@ -1359,16 +1373,16 @@ public final class ca_1 {
 
       for(int var1 = 0; var1 < p.length; ++var1) {
          var0.setColor(o == var1 ? 1539988 : 6082765);
-         var0.fillRect(af[0] + 2, af[1] + 2 + (t.j + 3) * var1, q - 4, t.j + 2);
+         var0.fillRect(af[0] + 2, af[1] + 2 + (t_1.j + 3) * var1, q - 4, t_1.j + 2);
          var0.setColor(14172);
-         var0.drawRect(af[0] + 2, af[1] + 2 + (t.j + 3) * var1, q - 5, t.j + 1);
-         a(ai[var1], af[0] + 2, af[1] + 2 + (t.j + 3) * var1, q - 5, t.j + 1);
+         var0.drawRect(af[0] + 2, af[1] + 2 + (t_1.j + 3) * var1, q - 5, t_1.j + 1);
+         a(ai[var1], af[0] + 2, af[1] + 2 + (t_1.j + 3) * var1, q - 5, t_1.j + 1);
          var0.setColor(o == var1 ? 16053950 : 3756286);
          if (ah != null && var1 < ah.length && ah[var1] == 1) {
             var0.setColor(8750469);
          }
 
-         var0.drawString(p[var1], af[0] + q / 2, af[1] + 2 + (t.j + 3) * var1, 17);
+         var0.drawString(p[var1], af[0] + q / 2, af[1] + 2 + (t_1.j + 3) * var1, 17);
       }
 
       if (a_MainCanvas.S != null && a_MainCanvas.S.length == 4) {
@@ -1395,26 +1409,26 @@ public final class ca_1 {
 
    public static void a(Graphics var0, String var1, int var2, boolean var3) {
       l = 0;
-      int var4 = (t.j << 1) + 35 + 24;
-      int var5 = (t.b - 140) / 2;
-      int var6 = (t.c - var4) / 2;
+      int var4 = (t_1.j << 1) + 35 + 24;
+      int var5 = (t_1.b - 140) / 2;
+      int var6 = (t_1.c - var4) / 2;
       c(var0, var5, var6, 140, var4, 0);
-      c(var0, var5 + 20, var6 + 5 + t.j + 12, 100, t.j, 1);
-      a((int[])al, var5 + 20, var6 + 5 + t.j + 12, 100, t.j);
+      c(var0, var5 + 20, var6 + 5 + t_1.j + 12, 100, t_1.j, 1);
+      a((int[])al, var5 + 20, var6 + 5 + t_1.j + 12, 100, t_1.j);
       a(var0, (String)var1, (int)(var5 + 70), var6 + 5, 17, 16776666, 0);
       if (var2 > 0) {
-         a(var0, "" + var2, var5 + 70, var6 + 6 + t.j + 12, 17, 16711639);
+         a(var0, "" + var2, var5 + 70, var6 + 6 + t_1.j + 12, 17, 16711639);
       }
 
       if (var3 && a_MainCanvas.X != null && a_MainCanvas.Y != null && a_MainCanvas.V != null && a_MainCanvas.W != null) {
-         var0.drawImage(a_MainCanvas.V.a, var5 + (140 - a_MainCanvas.V.b) / 2, var6 + 7 + t.j, 20);
-         a(aj[0], var5 + (140 - a_MainCanvas.V.b) / 2, var6 + 7 + t.j, a_MainCanvas.V.a.getWidth(), a_MainCanvas.V.a.getHeight());
-         var0.drawImage(a_MainCanvas.W.a, var5 + (140 - a_MainCanvas.V.b) / 2, var6 + 5 + (t.j << 1) + 14, 20);
-         a(aj[1], var5 + (140 - a_MainCanvas.V.b) / 2, var6 + 5 + (t.j << 1) + 14, a_MainCanvas.W.a.getWidth(), a_MainCanvas.W.a.getHeight());
-         var0.drawImage(a_MainCanvas.X.a, var5 + 5, var6 + 5 + t.j + 12, 20);
-         a(aj[2], var5 + 5, var6 + 5 + t.j + 12, a_MainCanvas.X.a.getWidth(), a_MainCanvas.X.a.getHeight());
-         var0.drawImage(a_MainCanvas.Y.a, var5 + 140 - 5 - a_MainCanvas.Y.b, var6 + 5 + t.j + 12, 20);
-         a(aj[3], var5 + 140 - 5 - a_MainCanvas.Y.b, var6 + 5 + t.j + 12, a_MainCanvas.Y.a.getWidth(), a_MainCanvas.Y.a.getHeight());
+         var0.drawImage(a_MainCanvas.V.a, var5 + (140 - a_MainCanvas.V.b) / 2, var6 + 7 + t_1.j, 20);
+         a(aj[0], var5 + (140 - a_MainCanvas.V.b) / 2, var6 + 7 + t_1.j, a_MainCanvas.V.a.getWidth(), a_MainCanvas.V.a.getHeight());
+         var0.drawImage(a_MainCanvas.W.a, var5 + (140 - a_MainCanvas.V.b) / 2, var6 + 5 + (t_1.j << 1) + 14, 20);
+         a(aj[1], var5 + (140 - a_MainCanvas.V.b) / 2, var6 + 5 + (t_1.j << 1) + 14, a_MainCanvas.W.a.getWidth(), a_MainCanvas.W.a.getHeight());
+         var0.drawImage(a_MainCanvas.X.a, var5 + 5, var6 + 5 + t_1.j + 12, 20);
+         a(aj[2], var5 + 5, var6 + 5 + t_1.j + 12, a_MainCanvas.X.a.getWidth(), a_MainCanvas.X.a.getHeight());
+         var0.drawImage(a_MainCanvas.Y.a, var5 + 140 - 5 - a_MainCanvas.Y.b, var6 + 5 + t_1.j + 12, 20);
+         a(aj[3], var5 + 140 - 5 - a_MainCanvas.Y.b, var6 + 5 + t_1.j + 12, a_MainCanvas.Y.a.getWidth(), a_MainCanvas.Y.a.getHeight());
       }
 
       if (a_MainCanvas.T != null && a_MainCanvas.U != null) {
@@ -1443,7 +1457,7 @@ public final class ca_1 {
 
    public static void a(Graphics var0, String var1, int var2, int var3, int var4) {
       var0.drawImage(a_MainCanvas.X.a, var2, var3 + 3, 20);
-      c(var0, var2 + 12, var3, var4 - 24, t.j, 1);
+      c(var0, var2 + 12, var3, var4 - 24, t_1.j, 1);
       var0.drawImage(a_MainCanvas.Y.a, var2 + var4 - 9, var3 + 3, 20);
       a(var0, var1, var2 + var4 / 2, var3 + 3, 17, 16711639);
    }
@@ -1544,7 +1558,7 @@ public final class ca_1 {
    }
 
    public static void d(Graphics var0, int var1, int var2, int var3, int var4) {
-      var0.setClip(0, 0, t.b, t.c);
+      var0.setClip(0, 0, t_1.b, t_1.c);
       var0.setColor(16248869);
       var0.drawLine(var1, var2, var1 + 4, var2);
       var0.drawLine(var1, var2, var1, var2 + 4);
@@ -1577,23 +1591,23 @@ public final class ca_1 {
    }
 
    public static void a() {
-      an = new int[]{(t.b - 100) / 2, (t.c / 3 << 1) + 20, 100, 3};
+      an = new int[]{(t_1.b - 100) / 2, (t_1.c / 3 << 1) + 20, 100, 3};
       A = 0;
-      ap = new bw_1(ao[f(1, 100) % 7], (short)(t.b - 20));
+      ap = new bw_1(ao[f(1, 100) % 7], (short)(t_1.b - 20));
    }
 
    public static void a(Graphics var0, Image var1) {
       if (an != null && var1 != null) {
          var0.setColor(0);
-         var0.fillRect(0, 0, t.b, t.c);
+         var0.fillRect(0, 0, t_1.b, t_1.c);
          if (ap != null) {
-            ap.a(var0, t.b / 2, 20, 17);
+            ap.a(var0, t_1.b / 2, 20, 17);
          }
 
          var0.setColor(16777215);
-         var0.drawString("正在载入资源...", t.b / 2, t.c / 2, 17);
+         var0.drawString("正在载入资源...", t_1.b / 2, t_1.c / 2, 17);
          var0.setColor(14459464);
-         var0.drawString(100 * A / 100 + "%", t.b / 2, an[1] + 10, 17);
+         var0.drawString(100 * A / 100 + "%", t_1.b / 2, an[1] + 10, 17);
          var0.drawImage(var1, an[0] - 5, an[1] - 4, 20);
          var0.setColor(16382066);
          var0.fillRect(an[0], an[1], 100 * A / 100, 3);
@@ -1610,7 +1624,7 @@ public final class ca_1 {
    }
 
    public static void f(Graphics var0, int var1, int var2, int var3, int var4) {
-      var0.setClip(0, 0, t.b, t.c);
+      var0.setClip(0, 0, t_1.b, t_1.c);
       a(var0, 2);
       var0.drawRect(var1 - 4, var2 - 4, var3 + 7, var4 + 7);
       var0.drawRect(var1, var2, var3 - 1, var4 - 1);

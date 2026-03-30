@@ -66,7 +66,7 @@ public final class ac extends ar {
       short var2;
       short var3;
       short var4;
-      if (!bt_1.nn.equals("") && t.p) {
+      if (!bt_1.nn.equals("") && t_1.p) {
          var2 = bt_1.no;
          var3 = bt_1.nq;
          var4 = bt_1.np;
@@ -204,20 +204,20 @@ public final class ac extends ar {
          var2.a(var1, (bc_1)super.g, (int[])null, var3, var4, super.j + 8, super.k + 16, 20, 0);
          if (bt_1.ag != null) {
             this.w = bt_1.ag;
-            ca.a(var1, (String)this.w, (int)(super.j + 8 - var3), super.k - var4 - t.j - super.g.j() + 16, 17, bt_1.bs >= 0 ? '\uff00' : bt_1.ai_1, 0);
+           ca_1.a(var1, (String)this.w, (int)(super.j + 8 - var3), super.k - var4 - t_1.j- super.g.j() + 16, 17, bt_1.bs >= 0 ? '\uff00' : bt_1.ai, 0);
          }
 
          if (bt_1.ah != null && !bt_1.ah.equals("")) {
-            ca.a(var1, bt_1.ah, super.j + 8 - var3, super.k - var4 - (t.j << 1) - super.g.j() + 16, 17, bt_1.bs >= 0 ? '\uff00' : bt_1.ai_1);
+           ca_1.a(var1, bt_1.ah, super.j + 8 - var3, super.k - var4 - (t_1.j<< 1) - super.g.j() + 16, 17, bt_1.bs >= 0 ? '\uff00' : bt_1.ai);
          }
 
          if (bt_1.bs == 1) {
-            var2.a(var1, ao_1.y, (int[])null, (aj)null, var3, var4, super.j + 8 - t.i.stringWidth(this.w) / 2 - ao_1.y.b, super.k - t.j - 18, 20, 0);
+            var2.a(var1, ao_1.y, (int[])null, (aj)null, var3, var4, super.j + 8 - t_1.i.stringWidth(this.w) / 2 - ao_1.y.b, super.k - t_1.j- 18, 20, 0);
             return;
          }
 
          if (bt_1.bs == 0) {
-            var2.a(var1, ao_1.z, (int[])null, (aj)null, var3, var4, super.j + 8 - t.i.stringWidth(this.w) / 2 - ao_1.z.b, super.k - t.j - 18, 20, 0);
+            var2.a(var1, ao_1.z, (int[])null, (aj)null, var3, var4, super.j + 8 - t_1.i.stringWidth(this.w) / 2 - ao_1.z.b, super.k - t_1.j- 18, 20, 0);
          }
       }
 

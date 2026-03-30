@@ -273,8 +273,8 @@ public final class ai_1 {
    }
 
    public final void a(Graphics var1, aw var2, int var3, int var4) {
-      if (t.b - var2.a > 0) {
-         var1.setClip((t.b - var2.a) / 2, this.q, var2.a, var2.b);
+      if (t_1.b - var2.a > 0) {
+         var1.setClip((t_1.b - var2.a) / 2, this.q, var2.a, var2.b);
       } else {
          var1.setClip(this.p, this.q, this.r, this.s);
       }
@@ -296,7 +296,7 @@ public final class ai_1 {
          a_MainCanvas.f.m.drawImage(ao_1.A, this.j - ao_1.A.getWidth() >> 1, this.k - ao_1.A.getHeight() - 16 >> 1, 20);
       }
 
-      ca.a(this.m, 4017771, 159, 0, 0, this.j, this.k);
+      ca_1.a(this.m, 4017771, 159, 0, 0, this.j, this.k);
    }
 
    public final void a(aw var1, int var2, int var3, boolean var4, boolean var5, int var6) {
@@ -309,7 +309,7 @@ public final class ai_1 {
 
       this.a(var1, var2, var3, 0, 0, var4);
       if (var5) {
-         ca.a(this.m, var6, 175, 0, 0, this.j, this.k);
+         ca_1.a(this.m, var6, 175, 0, 0, this.j, this.k);
       }
 
    }
@@ -359,13 +359,13 @@ public final class ai_1 {
          for(int var11 = 0; var11 < bt_1.t.length; ++var11) {
             if (bt_1.t[var11] != null) {
                if (ao_1.aW[3] == 0 && bt_1.t[var11].b != null) {
-                  var1.setFont(t.i);
-                  ca.a(var1, (String) bt_1.t[var11].b, (int)(bt_1.t[var11].c - var3), bt_1.t[var11].d - (bt_1.t[var11].w == null ? 30 : bt_1.t[var11].w.j()) - t.j - var4, 17, 255, 16777215);
+                  var1.setFont(t_1.i);
+                  ca_1.a(var1, (String) bt_1.t[var11].b, (int)(bt_1.t[var11].c - var3), bt_1.t[var11].d - (bt_1.t[var11].w == null ? 30 : bt_1.t[var11].w.j()) - t_1.j - var4, 17, 255, 16777215);
                }
 
                if (bt_1.t[var11].w != null && bt_1.t[var11].w.k != null && ao_1.aW[10] == 1) {
                   this.a(var1, bt_1.t[var11].w.k[bt_1.t[var11].w.f], bt_1.t[var11].w.g(), bt_1.t[var11].w.h(), (int[])null, var3, var4, bt_1.t[var11].c, bt_1.t[var11].d, 20, var5);
-                  var1.setFont(t.i);
+                  var1.setFont(t_1.i);
                }
             }
          }

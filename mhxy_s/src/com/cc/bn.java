@@ -1,6 +1,7 @@
 package com.cc;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 
 public final class bn {
    public int a;
@@ -26,7 +27,7 @@ public final class bn {
    public short[] u;
    public byte v = 0;
 
-   public final void a(DataInputStream var1) {
+   public final void a(DataInputStream var1) throws IOException {
       this.a = var1.readInt();
       this.b = var1.readUTF();
       this.h = var1.readShort();
