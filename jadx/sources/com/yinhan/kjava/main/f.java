@@ -8,391 +8,23 @@ import defpackage.ch;
 import defpackage.k;
 import defpackage.r;
 import defpackage.t;
-import java.io.IOException;
 
-/* loaded from: java版梦回西游3区251011.jar:com/yinhan/kjava/main/f.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class f {
     public ao a;
     public a b;
     public int c;
     public int d;
-    private int g;
-    private int h;
     public int e;
     public int f;
+    private int g;
+    private int h;
     private int i = 0;
     private int j = 0;
     private int k = 0;
 
     public f(a aVar, ai aiVar) {
         this.b = aVar;
-    }
-
-    /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
-    /* JADX WARN: Code restructure failed: missing block: B:852:0x0c24, code lost:
-    
-        continue;
-     */
-    /* JADX WARN: Removed duplicated region for block: B:95:0x0811  */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    public final void a(int r7, int r8) {
-        /*
-            Method dump skipped, instructions count: 7926
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.yinhan.kjava.main.f.a(int, int):void");
-    }
-
-    private void b(int i, int i2) {
-        if (this.a.l == 0) {
-            this.b.a = this.b.aq.b(i, i2);
-        } else if (this.a.l == 1) {
-            this.b.a = ca.c(i, i2);
-        }
-    }
-
-    private void c(int i, int i2) {
-        if (this.a.l == 0) {
-            this.b.a = this.b.aq.b(i, i2);
-        }
-    }
-
-    private void d(int i, int i2) {
-        if (this.a.l == 0) {
-            this.b.a = this.b.aq.b(i, i2);
-        }
-    }
-
-    private void e(int i, int i2) {
-        if (this.a.l != 0 || this.b.aq == null) {
-            return;
-        }
-        this.b.a = this.b.aq.b(i, i2);
-    }
-
-    private void f(int i, int i2) {
-        if (this.a.l == 0) {
-            if (this.b.aq != null) {
-                this.b.a = this.b.aq.b(i, i2);
-                this.b.a = this.a.b(this.b.a, i, i2);
-                return;
-            }
-            return;
-        }
-        if (this.a.l == 1) {
-            this.b.a = ca.c(i, i2);
-            return;
-        }
-        if (this.a.l == 2) {
-            if (this.b.aq != null) {
-                this.b.a = this.b.aq.b(i, i2);
-                return;
-            }
-            return;
-        }
-        if (this.a.l == 3 || this.a.l == 6) {
-            this.b.a = ca.d(i, i2);
-        } else if (this.a.l == 5 || this.a.l == 4) {
-            this.b.a = ca.b(i, i2);
-        }
-    }
-
-    private void g(int i, int i2) {
-        if (this.b.aq != null) {
-            int iB = this.b.aq.b(i, i2);
-            this.b.a = iB == 1073741824 ? 0 : iB;
-            this.b.a = this.a.M.a(this.b.a, i, i2);
-        }
-    }
-
-    private void h(int i, int i2) {
-        if (this.a.l == 0 && this.b.aq != null) {
-            this.b.a = this.b.aq.b(i, i2);
-        } else if (this.a.l == 1 && this.b.av != null) {
-            this.b.a = this.b.av.a(i, i2);
-        } else if (this.a.l == 2) {
-            this.b.a = ca.b(i, i2);
-        }
-    }
-
-    private void i(int i, int i2) {
-        if (this.a.l == 0) {
-            if (this.b.aq != null) {
-                this.b.a = this.b.aq.b(i, i2);
-                return;
-            }
-            return;
-        }
-        if (this.a.l == 1) {
-            this.b.a = ca.c(i, i2);
-        }
-    }
-
-    private void j(int i, int i2) {
-        if (this.a.l == 0) {
-            if (this.b.aq != null) {
-                this.b.a = this.b.aq.b(i, i2);
-                return;
-            }
-            return;
-        }
-        if (this.a.l == 1) {
-            this.b.a = ca.c(i, i2);
-        }
-    }
-
-    private void k(int i, int i2) {
-        if (this.a.l == 0) {
-            this.b.a = ca.a(i, i2);
-        } else if (this.a.l == 1) {
-            this.b.a = ca.b(i, i2);
-        }
-    }
-
-    private void l(int i, int i2) {
-        if (this.a.l != 0 || this.b.aq == null) {
-            return;
-        }
-        this.b.a = this.b.aq.b(i, i2);
-        if (this.b.a == 0) {
-            this.b.a = this.a.b(this.b.a, i, i2);
-        }
-    }
-
-    private void m(int i, int i2) {
-        if (this.a.l == 0) {
-            if (this.b.aq != null) {
-                this.b.a = this.b.aq.b(i, i2);
-                return;
-            }
-            return;
-        }
-        if (this.a.l == 6) {
-            this.b.a = this.a.e(i, i2);
-        } else if (this.a.l == 1 || this.a.l == 7) {
-            this.b.a = ca.c(i, i2);
-        }
-    }
-
-    private void n(int i, int i2) {
-        if (this.b.aq != null) {
-            this.b.a = this.b.aq.b(i, i2);
-            a aVar = this.b;
-            a aVar2 = this.b;
-            int iA = this.a.a(this.b.a, i, i2);
-            aVar2.a = iA;
-            aVar.b = iA;
-        }
-    }
-
-    private void o(int i, int i2) {
-        if (this.a.l == 0) {
-            if (this.b.aq != null) {
-                this.b.a = this.b.aq.b(i, i2);
-                return;
-            }
-            return;
-        }
-        if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3) {
-            this.b.a = ca.c(i, i2);
-        } else {
-            if (this.a.l == 4) {
-                if (this.b.aq != null) {
-                    this.b.a = this.b.aq.b(i, i2);
-                    return;
-                }
-                return;
-            }
-            if (this.a.l == 5) {
-                this.b.a = this.a.c(i, i2);
-            }
-        }
-    }
-
-    private void p(int i, int i2) {
-        if (this.a.l == 0 || this.a.l == 10) {
-            if (this.b.aq != null) {
-                this.b.a = this.b.aq.b(i, i2);
-                return;
-            }
-            return;
-        }
-        if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3 || this.a.l == 4 || this.a.l == 5 || this.a.l == 6 || this.a.l == 7 || this.a.l == 9) {
-            this.b.a = ca.c(i, i2);
-        } else if (this.a.l == 8) {
-            this.b.a = ca.b(i, i2);
-        }
-    }
-
-    private void q(int i, int i2) {
-        if (this.a.l == 0 || this.a.l == 1) {
-            if (this.b.aq != null) {
-                this.b.a = this.b.aq.b(i, i2);
-                this.b.aw = this.b.as.a;
-                this.b.a = this.a.d(this.b.a, i, i2);
-                if (this.b.a == 0 && ao.aP.size() == 0) {
-                    this.b.a = 1073741824;
-                }
-            }
-        } else if (this.a.l == 2 || this.a.l == 3 || this.a.l == 4 || this.a.l == 5 || this.a.l == 6) {
-            this.b.a = ca.c(i, i2);
-        }
-        if (a.u == null || i < (t.b - 4) - a.u.a.getWidth() || i >= t.b - 4 || i2 < 4 || i2 > a.u.a.getHeight() + 4) {
-            return;
-        }
-        this.b.a = 536870912;
-    }
-
-    private void r(int i, int i2) {
-        if (this.a.l == 6 || this.a.l == 7) {
-            this.b.a = ca.b(i, i2);
-        } else if (this.a.l == 8) {
-            this.b.a = ca.d(i, i2);
-        } else {
-            this.b.a = this.a.a(i, i2);
-        }
-    }
-
-    private void s(int i, int i2) {
-        if (this.a.l != 0) {
-            if (this.a.l != 1 && this.a.l != 3 && this.a.l != 4 && this.a.l != 5 && this.a.l != 7 && this.a.l != 9 && this.a.l != 10) {
-                return;
-            }
-            if (this.a.m == 1 || this.a.m == 2) {
-                this.b.a = ca.d(i, i2);
-                if (ca.e(i, i2)) {
-                    this.b.a(this.a.m == 1 ? "请输入取出银两" : "请输入存入银两", 2);
-                    return;
-                }
-                return;
-            }
-            if (this.a.m == 3) {
-                this.b.a = ca.d(i, i2);
-                if (ca.e(i, i2)) {
-                    this.b.a("请输入竞标银两", 2);
-                    return;
-                }
-                return;
-            }
-            if (this.a.m == 4) {
-                this.b.a = ca.d(i, i2);
-                return;
-            } else if (this.a.m == 5 || this.a.m == 6) {
-                this.b.a = ca.b(i, i2);
-                return;
-            }
-        }
-        this.b.a = ca.a(i, i2);
-    }
-
-    private void t(int i, int i2) {
-        if (this.b.aq != null) {
-            int iB = this.b.aq.b(i, i2);
-            int iF = iB;
-            if (iB == 1073741824) {
-                iF = (this.b.ar.g() == 0 || this.b.ar.g() == 1) ? this.a.f(this.b.ar.g(), i, i2) : 8;
-            }
-            this.b.a = iF;
-        }
-    }
-
-    private void u(int i, int i2) {
-        if ((this.a.l == 0 || this.a.l == 1) && this.b.aq != null) {
-            this.b.a = this.b.aq.b(i, i2);
-        }
-    }
-
-    private void v(int i, int i2) {
-        if (this.a.l == 0) {
-            if (this.b.aq != null) {
-                this.b.a = this.b.aq.b(i, i2);
-                return;
-            }
-            return;
-        }
-        if (this.a.l == 3 || this.a.l == 11) {
-            if (this.a.T != null) {
-                this.b.a = this.a.T.b(i, i2);
-                return;
-            }
-            return;
-        }
-        if (this.a.l == 1 || this.a.l == 2 || this.a.l == 5 || this.a.l == 6 || this.a.l == 8 || this.a.l == 9 || this.a.l == 10) {
-            this.b.a = ca.c(i, i2);
-            return;
-        }
-        if (this.a.l == 4 || this.a.l == 12) {
-            if (this.a.m == 1) {
-                this.b.a = this.a.T.b(i, i2);
-                return;
-            } else {
-                this.b.a = this.a.c(i, i2);
-                return;
-            }
-        }
-        if (this.a.l == 7) {
-            this.b.a = ca.d(i, i2);
-            if (ca.e(i, i2)) {
-                this.b.a("请输入决斗金额", 2);
-            }
-        }
-    }
-
-    private void w(int i, int i2) {
-        if (i < this.a.aB || i > this.a.aB + ((this.a.f.a * this.a.aD) / 16) || i2 < this.a.aC || i2 > this.a.aC + ((this.a.f.b * this.a.aD) / 16)) {
-            this.b.a = 536870912;
-        }
-    }
-
-    private void x(int i, int i2) {
-        if (this.a.l == 0) {
-            if (this.b.aq != null) {
-                this.b.a = this.b.aq.b(i, i2);
-                return;
-            }
-            return;
-        }
-        if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3 || this.a.l == 4 || this.a.l == 5 || this.a.l == 6 || this.a.l == 7 || this.a.l == 8 || this.a.l == 10) {
-            this.b.a = ca.c(i, i2);
-        } else if (this.a.l == 9) {
-            this.b.a = ca.b(i, i2);
-        }
-    }
-
-    private void y(int i, int i2) {
-        if (this.a.l == 0) {
-            this.b.a = ca.a(i, i2);
-        } else if (this.a.l == 1) {
-            this.b.a = this.b.aq.b(i, i2);
-        }
-    }
-
-    private void z(int i, int i2) throws IOException {
-        if (i < (this.a.ba.e - ao.h) + this.a.g() || i > (this.a.ba.e - ao.h) + this.a.g() + this.a.ba.a() || i2 < (this.a.ba.f - ao.i) + this.a.h() || i2 > (this.a.ba.f - ao.i) + this.a.h() + this.a.ba.b()) {
-            this.j++;
-            if (this.j >= 2 && this.k <= 30) {
-                this.j = 0;
-                this.b.a = 536870912;
-                this.a.V();
-                this.b.a = 0;
-            }
-            this.k = 0;
-            this.i = 0;
-            return;
-        }
-        this.c = 1;
-        this.i++;
-        if (this.i >= 2 && this.k <= 30) {
-            this.i = 0;
-            this.b.a = 1073741824;
-            this.a.V();
-            this.b.a = 0;
-        }
-        this.k = 0;
-        this.j = 0;
     }
 
     private void A(int i, int i2) {
@@ -571,8 +203,12 @@ public final class f {
             return;
         }
         int iB = this.b.aq.b(i, i2);
-        this.b.a = iB == 1073741824 ? 0 : iB;
         a aVar = this.b;
+        if (iB == 1073741824) {
+            iB = 0;
+        }
+        aVar.a = iB;
+        a aVar2 = this.b;
         aq aqVar = this.a.M;
         int i4 = this.b.a;
         if (i4 == 0) {
@@ -596,7 +232,7 @@ public final class f {
         } else {
             i3 = i4;
         }
-        aVar.a = i3;
+        aVar2.a = i3;
     }
 
     private void K(int i, int i2) {
@@ -634,7 +270,7 @@ public final class f {
         this.b.a = this.b.aq.b(i, i2);
     }
 
-    private void N(int i, int i2) throws IOException {
+    private void N(int i, int i2) {
         if (this.a.l != 0 || this.b.aq == null) {
             return;
         }
@@ -643,7 +279,7 @@ public final class f {
         this.b.a = 0;
     }
 
-    private void O(int i, int i2) throws IOException {
+    private void O(int i, int i2) {
         if (this.a.l != 0 || this.b.aq == null) {
             return;
         }
@@ -700,75 +336,6 @@ public final class f {
             return;
         }
         this.b.a = this.b.aq.b(i, i2);
-    }
-
-    public final void a() {
-        if (this.a != null) {
-            switch (this.a.k) {
-                case 0:
-                    if (this.d != 0) {
-                        this.g = (this.a.I.j - ao.h) + this.a.g() + 8;
-                        this.h = (this.a.I.k - ao.i) + this.a.h() + 16;
-                        if ((this.b.aF > this.g ? this.b.aF - this.g : this.g - this.b.aF) <= 4) {
-                            if ((this.b.aG > this.h ? this.b.aG - this.h : this.h - this.b.aG) > (this.b.aF > this.g ? this.b.aF - this.g : this.g - this.b.aF)) {
-                                if (this.b.aG >= this.h) {
-                                    this.b.b = 4;
-                                } else if (this.b.aG < this.h) {
-                                    this.b.b = 1;
-                                }
-                            }
-                        } else if (this.b.aF >= this.g) {
-                            this.b.b = 2;
-                        } else if (this.b.aF < this.g) {
-                            this.b.b = 8;
-                        }
-                        if (this.b.aF <= this.g + 5 && this.b.aF >= this.g - 5) {
-                            if ((this.b.aG <= this.h + 5) & (this.b.aG >= this.h - 5)) {
-                                this.b.b = 0;
-                                break;
-                            }
-                        }
-                    }
-                    break;
-                case 39:
-                    if (this.d != 1) {
-                        this.k++;
-                        if (this.k > 30) {
-                            this.j = 0;
-                            break;
-                        }
-                    } else {
-                        this.g = (this.a.ba.e - ao.h) + this.a.g() + (this.a.ba.a() / 2);
-                        this.h = (this.a.ba.f - ao.i) + this.a.h() + (this.a.ba.b() / 2);
-                        if ((this.b.aF > this.g ? this.b.aF - this.g : this.g - this.b.aF) > 4) {
-                            if (this.b.aF >= this.g) {
-                                this.b.b = 2;
-                            } else if (this.b.aF < this.g) {
-                                this.b.b = 8;
-                            }
-                            this.i = 0;
-                        } else {
-                            if ((this.b.aG > this.h ? this.b.aG - this.h : this.h - this.b.aG) > (this.b.aF > this.g ? this.b.aF - this.g : this.g - this.b.aF)) {
-                                if (this.b.aG >= this.h) {
-                                    this.b.b = 4;
-                                } else if (this.b.aG < this.h) {
-                                    this.b.b = 1;
-                                }
-                                this.i = 0;
-                            }
-                        }
-                        if (this.b.aF <= this.g + 5 && this.b.aF >= this.g - 5) {
-                            if ((this.b.aG <= this.h + 5) & (this.b.aG >= this.h - 5)) {
-                                this.b.b = 0;
-                            }
-                        }
-                        this.k = 0;
-                        this.j = 0;
-                        break;
-                    }
-                    break;
-            }
-        }
     }
 
     private void T(int i, int i2) {
@@ -1003,17 +570,17 @@ public final class f {
         }
         this.b.a = this.b.aq.b(i, i2);
         int i3 = this.b.aq.a + 5;
-        int i4 = ((this.b.aq.b + this.b.aq.d) - ((2 * t.j) + 16)) - 6;
+        int i4 = ((this.b.aq.b + this.b.aq.d) - ((t.j * 2) + 16)) - 6;
         int iStringWidth = t.i.stringWidth("同意(点击申请结婚)");
         int iStringWidth2 = t.i.stringWidth("拒绝");
-        if (i >= i3 + 4 && i2 >= i4 + 5 && i <= i3 + 4 + iStringWidth && i2 <= i4 + 5 + t.j) {
+        if (i >= i3 + 4 && i2 >= i4 + 5 && i <= iStringWidth + i3 + 4 && i2 <= i4 + 5 + t.j) {
             this.b.a = this.a.S.d == 0 ? 1073741824 : this.b.a;
             this.a.S.d = 0;
         }
         if (i < i3 + 4 || i2 < i4 + 5 + t.j + 5 || i > i3 + 4 + iStringWidth2 || i2 > i4 + 5 + t.j + 5 + t.j) {
             return;
         }
-        this.b.a = this.a.S.d == 1 ? 1073741824 : this.b.a;
+        this.b.a = this.a.S.d != 1 ? this.b.a : 1073741824;
         this.a.S.d = 1;
     }
 
@@ -1023,17 +590,17 @@ public final class f {
         }
         this.b.a = this.b.aq.b(i, i2);
         int i3 = this.b.aq.a + 5;
-        int i4 = ((this.b.aq.b + this.b.aq.d) - ((2 * t.j) + 16)) - 6;
+        int i4 = ((this.b.aq.b + this.b.aq.d) - ((t.j * 2) + 16)) - 6;
         int iStringWidth = t.i.stringWidth("离婚(点击申请离婚)");
         int iStringWidth2 = t.i.stringWidth("取消离婚");
-        if (i >= i3 + 4 && i2 >= i4 + 5 && i <= i3 + 4 + iStringWidth && i2 <= i4 + 5 + t.j) {
+        if (i >= i3 + 4 && i2 >= i4 + 5 && i <= iStringWidth + i3 + 4 && i2 <= i4 + 5 + t.j) {
             this.b.a = this.a.S.g == 0 ? 1073741824 : this.b.a;
             this.a.S.g = 0;
         }
         if (i < i3 + 4 || i2 < i4 + 5 + t.j + 5 || i > i3 + 4 + iStringWidth2 || i2 > i4 + 5 + t.j + 5 + t.j) {
             return;
         }
-        this.b.a = this.a.S.g == 1 ? 1073741824 : this.b.a;
+        this.b.a = this.a.S.g != 1 ? this.b.a : 1073741824;
         this.a.S.g = 1;
     }
 
@@ -1163,5 +730,444 @@ public final class f {
                 this.b.a = this.a.T.b(i, i2);
             }
         }
+    }
+
+    private void b(int i, int i2) {
+        if (this.a.l == 0) {
+            this.b.a = this.b.aq.b(i, i2);
+        } else if (this.a.l == 1) {
+            this.b.a = ca.c(i, i2);
+        }
+    }
+
+    private void c(int i, int i2) {
+        if (this.a.l == 0) {
+            this.b.a = this.b.aq.b(i, i2);
+        }
+    }
+
+    private void d(int i, int i2) {
+        if (this.a.l == 0) {
+            this.b.a = this.b.aq.b(i, i2);
+        }
+    }
+
+    private void e(int i, int i2) {
+        if (this.a.l != 0 || this.b.aq == null) {
+            return;
+        }
+        this.b.a = this.b.aq.b(i, i2);
+    }
+
+    private void f(int i, int i2) {
+        if (this.a.l == 0) {
+            if (this.b.aq != null) {
+                this.b.a = this.b.aq.b(i, i2);
+                this.b.a = this.a.b(this.b.a, i, i2);
+                return;
+            }
+            return;
+        }
+        if (this.a.l == 1) {
+            this.b.a = ca.c(i, i2);
+            return;
+        }
+        if (this.a.l == 2) {
+            if (this.b.aq != null) {
+                this.b.a = this.b.aq.b(i, i2);
+                return;
+            }
+            return;
+        }
+        if (this.a.l == 3 || this.a.l == 6) {
+            this.b.a = ca.d(i, i2);
+        } else if (this.a.l == 5 || this.a.l == 4) {
+            this.b.a = ca.b(i, i2);
+        }
+    }
+
+    private void g(int i, int i2) {
+        if (this.b.aq != null) {
+            int iB = this.b.aq.b(i, i2);
+            a aVar = this.b;
+            if (iB == 1073741824) {
+                iB = 0;
+            }
+            aVar.a = iB;
+            this.b.a = this.a.M.a(this.b.a, i, i2);
+        }
+    }
+
+    private void h(int i, int i2) {
+        if (this.a.l == 0 && this.b.aq != null) {
+            this.b.a = this.b.aq.b(i, i2);
+        } else if (this.a.l == 1 && this.b.av != null) {
+            this.b.a = this.b.av.a(i, i2);
+        } else if (this.a.l == 2) {
+            this.b.a = ca.b(i, i2);
+        }
+    }
+
+    private void i(int i, int i2) {
+        if (this.a.l == 0) {
+            if (this.b.aq != null) {
+                this.b.a = this.b.aq.b(i, i2);
+                return;
+            }
+            return;
+        }
+        if (this.a.l == 1) {
+            this.b.a = ca.c(i, i2);
+        }
+    }
+
+    private void j(int i, int i2) {
+        if (this.a.l == 0) {
+            if (this.b.aq != null) {
+                this.b.a = this.b.aq.b(i, i2);
+                return;
+            }
+            return;
+        }
+        if (this.a.l == 1) {
+            this.b.a = ca.c(i, i2);
+        }
+    }
+
+    private void k(int i, int i2) {
+        if (this.a.l == 0) {
+            this.b.a = ca.a(i, i2);
+        } else if (this.a.l == 1) {
+            this.b.a = ca.b(i, i2);
+        }
+    }
+
+    private void l(int i, int i2) {
+        if (this.a.l != 0 || this.b.aq == null) {
+            return;
+        }
+        this.b.a = this.b.aq.b(i, i2);
+        if (this.b.a == 0) {
+            this.b.a = this.a.b(this.b.a, i, i2);
+        }
+    }
+
+    private void m(int i, int i2) {
+        if (this.a.l == 0) {
+            if (this.b.aq != null) {
+                this.b.a = this.b.aq.b(i, i2);
+                return;
+            }
+            return;
+        }
+        if (this.a.l == 6) {
+            this.b.a = this.a.e(i, i2);
+        } else if (this.a.l == 1 || this.a.l == 7) {
+            this.b.a = ca.c(i, i2);
+        }
+    }
+
+    private void n(int i, int i2) {
+        if (this.b.aq != null) {
+            this.b.a = this.b.aq.b(i, i2);
+            a aVar = this.b;
+            a aVar2 = this.b;
+            int iA = this.a.a(this.b.a, i, i2);
+            aVar2.a = iA;
+            aVar.b = iA;
+        }
+    }
+
+    private void o(int i, int i2) {
+        if (this.a.l == 0) {
+            if (this.b.aq != null) {
+                this.b.a = this.b.aq.b(i, i2);
+                return;
+            }
+            return;
+        }
+        if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3) {
+            this.b.a = ca.c(i, i2);
+        } else {
+            if (this.a.l == 4) {
+                if (this.b.aq != null) {
+                    this.b.a = this.b.aq.b(i, i2);
+                    return;
+                }
+                return;
+            }
+            if (this.a.l == 5) {
+                this.b.a = this.a.c(i, i2);
+            }
+        }
+    }
+
+    private void p(int i, int i2) {
+        if (this.a.l == 0 || this.a.l == 10) {
+            if (this.b.aq != null) {
+                this.b.a = this.b.aq.b(i, i2);
+                return;
+            }
+            return;
+        }
+        if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3 || this.a.l == 4 || this.a.l == 5 || this.a.l == 6 || this.a.l == 7 || this.a.l == 9) {
+            this.b.a = ca.c(i, i2);
+        } else if (this.a.l == 8) {
+            this.b.a = ca.b(i, i2);
+        }
+    }
+
+    private void q(int i, int i2) {
+        if (this.a.l == 0 || this.a.l == 1) {
+            if (this.b.aq != null) {
+                this.b.a = this.b.aq.b(i, i2);
+                this.b.aw = this.b.as.a;
+                this.b.a = this.a.d(this.b.a, i, i2);
+                if (this.b.a == 0 && ao.aP.size() == 0) {
+                    this.b.a = 1073741824;
+                }
+            }
+        } else if (this.a.l == 2 || this.a.l == 3 || this.a.l == 4 || this.a.l == 5 || this.a.l == 6) {
+            this.b.a = ca.c(i, i2);
+        }
+        if (a.u == null || i < (t.b - 4) - a.u.a.getWidth() || i >= t.b - 4 || i2 < 4 || i2 > a.u.a.getHeight() + 4) {
+            return;
+        }
+        this.b.a = 536870912;
+    }
+
+    private void r(int i, int i2) {
+        if (this.a.l == 6 || this.a.l == 7) {
+            this.b.a = ca.b(i, i2);
+        } else if (this.a.l == 8) {
+            this.b.a = ca.d(i, i2);
+        } else {
+            this.b.a = this.a.a(i, i2);
+        }
+    }
+
+    private void s(int i, int i2) {
+        if (this.a.l != 0) {
+            if (this.a.l != 1 && this.a.l != 3 && this.a.l != 4 && this.a.l != 5 && this.a.l != 7 && this.a.l != 9 && this.a.l != 10) {
+                return;
+            }
+            if (this.a.m == 1 || this.a.m == 2) {
+                this.b.a = ca.d(i, i2);
+                if (ca.e(i, i2)) {
+                    this.b.a(this.a.m == 1 ? "请输入取出银两" : "请输入存入银两", 2);
+                    return;
+                }
+                return;
+            }
+            if (this.a.m == 3) {
+                this.b.a = ca.d(i, i2);
+                if (ca.e(i, i2)) {
+                    this.b.a("请输入竞标银两", 2);
+                    return;
+                }
+                return;
+            }
+            if (this.a.m == 4) {
+                this.b.a = ca.d(i, i2);
+                return;
+            } else if (this.a.m == 5 || this.a.m == 6) {
+                this.b.a = ca.b(i, i2);
+                return;
+            }
+        }
+        this.b.a = ca.a(i, i2);
+    }
+
+    private void t(int i, int i2) {
+        if (this.b.aq != null) {
+            int iB = this.b.aq.b(i, i2);
+            if (iB == 1073741824) {
+                iB = (this.b.ar.g() == 0 || this.b.ar.g() == 1) ? this.a.f(this.b.ar.g(), i, i2) : 8;
+            }
+            this.b.a = iB;
+        }
+    }
+
+    private void u(int i, int i2) {
+        if ((this.a.l == 0 || this.a.l == 1) && this.b.aq != null) {
+            this.b.a = this.b.aq.b(i, i2);
+        }
+    }
+
+    private void v(int i, int i2) {
+        if (this.a.l == 0) {
+            if (this.b.aq != null) {
+                this.b.a = this.b.aq.b(i, i2);
+                return;
+            }
+            return;
+        }
+        if (this.a.l == 3 || this.a.l == 11) {
+            if (this.a.T != null) {
+                this.b.a = this.a.T.b(i, i2);
+                return;
+            }
+            return;
+        }
+        if (this.a.l == 1 || this.a.l == 2 || this.a.l == 5 || this.a.l == 6 || this.a.l == 8 || this.a.l == 9 || this.a.l == 10) {
+            this.b.a = ca.c(i, i2);
+            return;
+        }
+        if (this.a.l == 4 || this.a.l == 12) {
+            if (this.a.m == 1) {
+                this.b.a = this.a.T.b(i, i2);
+                return;
+            } else {
+                this.b.a = this.a.c(i, i2);
+                return;
+            }
+        }
+        if (this.a.l == 7) {
+            this.b.a = ca.d(i, i2);
+            if (ca.e(i, i2)) {
+                this.b.a("请输入决斗金额", 2);
+            }
+        }
+    }
+
+    private void w(int i, int i2) {
+        if (i < this.a.aB || i > this.a.aB + ((this.a.f.a * this.a.aD) / 16) || i2 < this.a.aC || i2 > this.a.aC + ((this.a.f.b * this.a.aD) / 16)) {
+            this.b.a = 536870912;
+        }
+    }
+
+    private void x(int i, int i2) {
+        if (this.a.l == 0) {
+            if (this.b.aq != null) {
+                this.b.a = this.b.aq.b(i, i2);
+                return;
+            }
+            return;
+        }
+        if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3 || this.a.l == 4 || this.a.l == 5 || this.a.l == 6 || this.a.l == 7 || this.a.l == 8 || this.a.l == 10) {
+            this.b.a = ca.c(i, i2);
+        } else if (this.a.l == 9) {
+            this.b.a = ca.b(i, i2);
+        }
+    }
+
+    private void y(int i, int i2) {
+        if (this.a.l == 0) {
+            this.b.a = ca.a(i, i2);
+        } else if (this.a.l == 1) {
+            this.b.a = this.b.aq.b(i, i2);
+        }
+    }
+
+    private void z(int i, int i2) {
+        if (i < (this.a.ba.e - ao.h) + this.a.g() || i > (this.a.ba.e - ao.h) + this.a.g() + this.a.ba.a() || i2 < (this.a.ba.f - ao.i) + this.a.h() || i2 > (this.a.ba.f - ao.i) + this.a.h() + this.a.ba.b()) {
+            this.j++;
+            if (this.j >= 2 && this.k <= 30) {
+                this.j = 0;
+                this.b.a = 536870912;
+                this.a.V();
+                this.b.a = 0;
+            }
+            this.k = 0;
+            this.i = 0;
+            return;
+        }
+        this.c = 1;
+        this.i++;
+        if (this.i >= 2 && this.k <= 30) {
+            this.i = 0;
+            this.b.a = 1073741824;
+            this.a.V();
+            this.b.a = 0;
+        }
+        this.k = 0;
+        this.j = 0;
+    }
+
+    public final void a() {
+        if (this.a != null) {
+            switch (this.a.k) {
+                case 0:
+                    if (this.d != 0) {
+                        this.g = (this.a.I.j - ao.h) + this.a.g() + 8;
+                        this.h = (this.a.I.k - ao.i) + this.a.h() + 16;
+                        if ((this.b.aF > this.g ? this.b.aF - this.g : this.g - this.b.aF) <= 4) {
+                            if ((this.b.aG > this.h ? this.b.aG - this.h : this.h - this.b.aG) > (this.b.aF > this.g ? this.b.aF - this.g : this.g - this.b.aF)) {
+                                if (this.b.aG >= this.h) {
+                                    this.b.b = 4;
+                                } else if (this.b.aG < this.h) {
+                                    this.b.b = 1;
+                                }
+                            }
+                        } else if (this.b.aF >= this.g) {
+                            this.b.b = 2;
+                        } else if (this.b.aF < this.g) {
+                            this.b.b = 8;
+                        }
+                        if (this.b.aF <= this.g + 5 && this.b.aF >= this.g - 5) {
+                            if ((this.b.aG <= this.h + 5) & (this.b.aG >= this.h + (-5))) {
+                                this.b.b = 0;
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                case 39:
+                    if (this.d != 1) {
+                        this.k++;
+                        if (this.k > 30) {
+                            this.j = 0;
+                            break;
+                        }
+                    } else {
+                        this.g = (this.a.ba.e - ao.h) + this.a.g() + (this.a.ba.a() / 2);
+                        this.h = (this.a.ba.f - ao.i) + this.a.h() + (this.a.ba.b() / 2);
+                        if ((this.b.aF > this.g ? this.b.aF - this.g : this.g - this.b.aF) > 4) {
+                            if (this.b.aF >= this.g) {
+                                this.b.b = 2;
+                            } else if (this.b.aF < this.g) {
+                                this.b.b = 8;
+                            }
+                            this.i = 0;
+                        } else {
+                            if ((this.b.aG > this.h ? this.b.aG - this.h : this.h - this.b.aG) > (this.b.aF > this.g ? this.b.aF - this.g : this.g - this.b.aF)) {
+                                if (this.b.aG >= this.h) {
+                                    this.b.b = 4;
+                                } else if (this.b.aG < this.h) {
+                                    this.b.b = 1;
+                                }
+                                this.i = 0;
+                            }
+                        }
+                        if (this.b.aF <= this.g + 5 && this.b.aF >= this.g - 5) {
+                            if ((this.b.aG <= this.h + 5) & (this.b.aG >= this.h + (-5))) {
+                                this.b.b = 0;
+                            }
+                        }
+                        this.k = 0;
+                        this.j = 0;
+                        break;
+                    }
+                    break;
+            }
+        }
+    }
+
+    /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
+    /* JADX WARN: Code restructure failed: missing block: B:735:0x0218, code lost:
+    
+        continue;
+     */
+    /* JADX WARN: Removed duplicated region for block: B:59:0x01e7  */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    public final void a(int r9, int r10) {
+        /*
+            Method dump skipped, instructions count: 5120
+            To view this dump change 'Code comments level' option to 'DEBUG'
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.yinhan.kjava.main.f.a(int, int):void");
     }
 }

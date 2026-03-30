@@ -4,22 +4,22 @@ import com.yinhan.kjava.main.a;
 import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
 
-/* loaded from: java版梦回西游3区251011.jar:au.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public class au {
+    private short a;
+    private short b;
+    private short c;
+    private int[] d;
     public Vector e = new Vector();
     public bc f;
     public short g;
     public short h;
     public short i;
     public byte j;
-    private short a;
-    private short b;
-    private short c;
-    private int[] d;
     private short[] k;
 
-    public au(short s, short s2, short s3, short s4) {
-        this.g = s == 0 ? (short) 701 : s;
+    public au(byte b, short s, short s2, short s3, short s4) {
+        this.g = s;
         this.a = s2;
         this.b = s3;
         this.c = s4;
@@ -27,8 +27,8 @@ public class au {
         a((byte) 3);
     }
 
-    public au(byte b, short s, short s2, short s3, short s4) {
-        this.g = s;
+    public au(short s, short s2, short s3, short s4) {
+        this.g = s == 0 ? (short) 701 : s;
         this.a = s2;
         this.b = s3;
         this.c = s4;
@@ -40,11 +40,11 @@ public class au {
         if (this.g == 701) {
             this.d = new int[1];
             this.d[0] = bu.a(new StringBuffer().append((int) this.g).append("_").append(0).toString(), (byte) 2);
-            return;
-        }
-        this.d = new int[4];
-        for (int i = 0; i < 4; i++) {
-            this.d[i] = bu.a(new StringBuffer().append((int) this.g).append("_").append((i / 2) << 1).toString(), (byte) 2);
+        } else {
+            this.d = new int[4];
+            for (int i = 0; i < 4; i++) {
+                this.d[i] = bu.a(new StringBuffer().append((int) this.g).append("_").append((i / 2) << 1).toString(), (byte) 2);
+            }
         }
     }
 
@@ -55,52 +55,12 @@ public class au {
                     return (short) 0;
                 }
                 return (short) (this.i + this.f.h());
-            case 3:
-                return (short) (this.i + 8);
+            case 2:
             default:
                 return (short) (this.i + 16);
-        }
-    }
-
-    public final short b() {
-        if (this.f == null) {
-            return (short) 0;
-        }
-        switch (this.j) {
-            case 0:
-                return (short) (this.i - (this.f.h() - 16));
-            case 1:
-                return this.i;
-            case 2:
-                return (short) (this.i - (this.f.h() - 16));
             case 3:
-                return (short) (this.i - (this.f.h() - 8));
-            default:
-                return (short) (this.i - (this.f.h() - 16));
+                return (short) (this.i + 8);
         }
-    }
-
-    public final short c() {
-        if (this.f == null) {
-            return (short) 0;
-        }
-        switch (this.j) {
-        }
-        return (short) ((this.h + 8) - (this.f.g() / 2));
-    }
-
-    public final short d() {
-        if (this.f == null) {
-            return (short) 0;
-        }
-        return this.f.g();
-    }
-
-    public final short e() {
-        if (this.f == null) {
-            return (short) 0;
-        }
-        return this.f.h();
     }
 
     public final void a(byte b) {
@@ -133,6 +93,25 @@ public class au {
         this.e.removeElementAt(0);
     }
 
+    public void a(Graphics graphics, ai aiVar, int i, int i2, byte b) {
+        if (this.f != null) {
+            switch (this.j) {
+                case 0:
+                    aiVar.a(graphics, this.f, (int[]) null, i, i2, (this.h + 16) - (this.f.i() / 2), (this.i + 16) - this.f.h(), 20, 0);
+                    break;
+                case 1:
+                    aiVar.a(graphics, this.f, (int[]) null, i, i2, (this.h + 8) - (this.f.i() / 2), this.i, 20, 0);
+                    break;
+                case 2:
+                    aiVar.a(graphics, this.f, (int[]) null, i, i2, this.h - (this.f.i() / 2), (this.i + 16) - this.f.h(), 20, 0);
+                    break;
+                case 3:
+                    aiVar.a(graphics, this.f, (int[]) null, i, i2, (this.h + 8) - (this.f.i() / 2), (this.i + 8) - this.f.h(), 20, 0);
+                    break;
+            }
+        }
+    }
+
     protected final void a(short[] sArr) {
         if (this.k == null) {
             this.k = sArr;
@@ -156,22 +135,53 @@ public class au {
         a(this.j);
     }
 
-    public void a(Graphics graphics, ai aiVar, int i, int i2, byte b) {
-        if (this.f != null) {
-            switch (this.j) {
-                case 0:
-                    aiVar.a(graphics, this.f, (int[]) null, i, i2, (this.h + 16) - (this.f.i() / 2), (this.i + 16) - this.f.h(), 20, 0);
-                    break;
-                case 1:
-                    aiVar.a(graphics, this.f, (int[]) null, i, i2, (this.h + 8) - (this.f.i() / 2), this.i, 20, 0);
-                    break;
-                case 2:
-                    aiVar.a(graphics, this.f, (int[]) null, i, i2, this.h - (this.f.i() / 2), (this.i + 16) - this.f.h(), 20, 0);
-                    break;
-                case 3:
-                    aiVar.a(graphics, this.f, (int[]) null, i, i2, (this.h + 8) - (this.f.i() / 2), (this.i + 8) - this.f.h(), 20, 0);
-                    break;
-            }
+    public final short b() {
+        if (this.f == null) {
+            return (short) 0;
         }
+        switch (this.j) {
+            case 0:
+                return (short) (this.i - (this.f.h() - 16));
+            case 1:
+                return this.i;
+            case 2:
+                return (short) (this.i - (this.f.h() - 16));
+            case 3:
+                return (short) (this.i - (this.f.h() - 8));
+            default:
+                return (short) (this.i - (this.f.h() - 16));
+        }
+    }
+
+    public final short c() {
+        if (this.f == null) {
+            return (short) 0;
+        }
+        switch (this.j) {
+            case 0:
+                return (short) ((this.h + 16) - (this.f.g() / 2));
+            case 1:
+                return (short) ((this.h + 8) - (this.f.g() / 2));
+            case 2:
+                return (short) (this.h - (this.f.g() / 2));
+            case 3:
+                return (short) ((this.h + 8) - (this.f.g() / 2));
+            default:
+                return (short) ((this.h + 16) - (this.f.g() / 2));
+        }
+    }
+
+    public final short d() {
+        if (this.f == null) {
+            return (short) 0;
+        }
+        return this.f.g();
+    }
+
+    public final short e() {
+        if (this.f == null) {
+            return (short) 0;
+        }
+        return this.f.h();
     }
 }

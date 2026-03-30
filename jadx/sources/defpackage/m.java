@@ -4,11 +4,11 @@ import com.yinhan.kjava.main.a;
 import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
 
-/* loaded from: java版梦回西游3区251011.jar:m.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class m extends al {
-    private String i;
     public int c;
     public int d;
+    private String i;
     private int m;
     private int n;
     private int o;
@@ -32,25 +32,6 @@ public final class m extends al {
     private int x = -1;
     private boolean y = false;
 
-    public final void a(boolean z) {
-        this.j = z;
-    }
-
-    public final void a(String str) {
-        this.i = str;
-        if (str == null) {
-            this.q = null;
-        } else {
-            this.q = new int[4];
-        }
-        this.r = 0;
-        this.s = 0;
-    }
-
-    public final int a() {
-        return this.n + this.p + 3;
-    }
-
     private void b(int i, int i2, int i3, int i4) {
         this.a = i;
         this.b = i2;
@@ -71,6 +52,32 @@ public final class m extends al {
             this.p = s;
             this.s = this.s + this.p + 3;
         }
+    }
+
+    private void c() {
+        this.t = -1;
+        this.u = -1;
+        this.v = -1;
+        this.w = -1;
+        this.x = -1;
+        for (int i = 0; i < this.l.size(); i++) {
+            Object objElementAt = this.l.elementAt(i);
+            if (objElementAt instanceof n) {
+                this.t = i;
+            } else if (objElementAt instanceof c) {
+                this.u = i;
+            } else if (objElementAt instanceof an) {
+                this.v = i;
+            } else if (objElementAt instanceof bm) {
+                this.w = i;
+            } else if (objElementAt instanceof l) {
+                this.x = i;
+            }
+        }
+    }
+
+    public final int a() {
+        return this.n + this.p + 3;
     }
 
     public final int a(int i) {
@@ -158,60 +165,15 @@ public final class m extends al {
         this.l.addElement(alVar);
     }
 
-    public final void b() {
-        this.i = null;
-        this.j = false;
+    public final void a(String str) {
+        this.i = str;
+        if (str == null) {
+            this.q = null;
+        } else {
+            this.q = new int[4];
+        }
         this.r = 0;
-        this.e = 0;
-        this.f = 0;
-        this.g = 0;
-        this.l.removeAllElements();
-    }
-
-    @Override // defpackage.al
-    public final void b(int i) {
-        for (int i2 = 0; i2 < this.l.size(); i2++) {
-            ((al) this.l.elementAt(i2)).b(i);
-        }
-    }
-
-    @Override // defpackage.al
-    public final int b(int i, int i2) {
-        if (this.q != null && i >= this.q[0] && i <= this.q[0] + this.q[2] && i2 >= this.q[1] && i2 <= this.q[1] + this.q[3]) {
-            return 536870912;
-        }
-        for (int i3 = 0; i3 < this.l.size(); i3++) {
-            if (((al) this.l.elementAt(i3)).b(i, i2) != 0) {
-                return ((al) this.l.elementAt(i3)).b(i, i2);
-            }
-        }
-        return 0;
-    }
-
-    private void c() {
-        this.t = -1;
-        this.u = -1;
-        this.v = -1;
-        this.w = -1;
-        this.x = -1;
-        for (int i = 0; i < this.l.size(); i++) {
-            Object objElementAt = this.l.elementAt(i);
-            if (objElementAt instanceof n) {
-                this.t = i;
-            } else if (objElementAt instanceof c) {
-                this.u = i;
-            } else if (objElementAt instanceof an) {
-                this.v = i;
-            } else if (objElementAt instanceof bm) {
-                this.w = i;
-            } else if (objElementAt instanceof l) {
-                this.x = i;
-            }
-        }
-    }
-
-    public final void b(boolean z) {
-        this.k = false;
+        this.s = 0;
     }
 
     public final void a(Graphics graphics) {
@@ -239,7 +201,7 @@ public final class m extends al {
             if (iA != this.h) {
                 strSubstring = ca.m == 2 ? this.i.substring(4, this.i.length()) : this.i.substring(3, this.i.length());
             }
-            ca.a(graphics, strSubstring, this.m + (this.o / 2), this.n + t.a(a.v.c), 17, iA, 0);
+            ca.a(graphics, strSubstring, (this.o / 2) + this.m, t.a(a.v.c) + this.n, 17, iA, 0);
             ca.a(graphics, this.m, this.n + this.p, this.o);
         }
         for (int i3 = 0; i3 < this.l.size(); i3++) {
@@ -278,8 +240,53 @@ public final class m extends al {
         graphics.setClip(this.a, this.b, this.c, this.d);
     }
 
+    public final void a(boolean z) {
+        this.j = z;
+    }
+
+    @Override // defpackage.al
+    public final int b(int i, int i2) {
+        if (this.q != null && i >= this.q[0] && i <= this.q[0] + this.q[2] && i2 >= this.q[1] && i2 <= this.q[1] + this.q[3]) {
+            return 536870912;
+        }
+        for (int i3 = 0; i3 < this.l.size(); i3++) {
+            if (((al) this.l.elementAt(i3)).b(i, i2) != 0) {
+                return ((al) this.l.elementAt(i3)).b(i, i2);
+            }
+        }
+        return 0;
+    }
+
+    public final void b() {
+        this.i = null;
+        this.j = false;
+        this.r = 0;
+        this.e = 0;
+        this.f = 0;
+        this.g = 0;
+        this.l.removeAllElements();
+    }
+
+    @Override // defpackage.al
+    public final void b(int i) {
+        int i2 = 0;
+        while (true) {
+            int i3 = i2;
+            if (i3 >= this.l.size()) {
+                return;
+            }
+            ((al) this.l.elementAt(i3)).b(i);
+            i2 = i3 + 1;
+        }
+    }
+
+    public final void b(boolean z) {
+        this.k = false;
+    }
+
     @Override // defpackage.al
     public final void j() {
+        int i = 0;
         this.i = null;
         this.j = false;
         this.r = 0;
@@ -287,9 +294,15 @@ public final class m extends al {
         this.f = 0;
         this.g = 0;
         this.k = true;
-        for (int i = 0; i < this.l.size(); i++) {
-            ((al) this.l.elementAt(i)).j();
+        while (true) {
+            int i2 = i;
+            if (i2 >= this.l.size()) {
+                this.l.removeAllElements();
+                return;
+            } else {
+                ((al) this.l.elementAt(i2)).j();
+                i = i2 + 1;
+            }
         }
-        this.l.removeAllElements();
     }
 }

@@ -1,11 +1,6 @@
 package defpackage;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-
-/* loaded from: java版梦回西游3区251011.jar:bb.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class bb {
     public static String g;
     public static String h;
@@ -22,149 +17,190 @@ public final class bb {
     public static boolean k = true;
     public static byte l = 0;
 
-    /* JADX WARN: Multi-variable type inference failed */
-    /* JADX WARN: Type inference failed for: r0v10, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v11 */
-    /* JADX WARN: Type inference failed for: r0v13, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v15, types: [java.io.DataInputStream] */
-    /* JADX WARN: Type inference failed for: r0v28, types: [java.io.DataInputStream] */
-    /* JADX WARN: Type inference failed for: r0v29, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v3 */
-    /* JADX WARN: Type inference failed for: r0v30, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v31, types: [java.io.DataInputStream] */
-    /* JADX WARN: Type inference failed for: r0v4 */
-    /* JADX WARN: Type inference failed for: r0v7, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v9, types: [java.io.DataInputStream] */
-    public static void a() {
-        byte[] bArrA = bj.a("silver_kj");
-        if (bArrA == null) {
-            return;
-        }
-        ByteArrayInputStream byteArrayInputStream = null;
-        ?? r0 = 0;
-        DataInputStream dataInputStream = null;
-        try {
-            try {
-                byteArrayInputStream = new ByteArrayInputStream(bArrA);
-                DataInputStream dataInputStream2 = new DataInputStream(byteArrayInputStream);
-                dataInputStream = dataInputStream2;
-                k = dataInputStream2.readByte() == 1;
-                l = dataInputStream.readByte();
-                m = dataInputStream.readUTF();
-                n = dataInputStream.readUTF();
-                byteArrayInputStream.close();
-                r0 = dataInputStream;
-                r0.close();
-                ?? r02 = byteArrayInputStream;
-                try {
-                    r02.close();
-                    r02 = dataInputStream;
-                    r02.close();
-                } catch (Exception e2) {
-                    r02.printStackTrace();
-                }
-            } catch (Throwable th) {
-                ?? r03 = byteArrayInputStream;
-                if (r03 != 0) {
-                    try {
-                        byteArrayInputStream.close();
-                    } catch (Exception e3) {
-                        r03.printStackTrace();
-                        throw th;
-                    }
-                }
-                if (dataInputStream != null) {
-                    r03 = dataInputStream;
-                    r03.close();
-                }
-                throw th;
-            }
-        } catch (Exception e4) {
-            r0.printStackTrace();
-            ?? r04 = byteArrayInputStream;
-            if (r04 != 0) {
-                try {
-                    byteArrayInputStream.close();
-                } catch (Exception e5) {
-                    r04.printStackTrace();
-                    return;
-                }
-            }
-            if (dataInputStream != null) {
-                r04 = dataInputStream;
-                r04.close();
-            }
-        }
+    /* JADX WARN: Removed duplicated region for block: B:30:0x0063 A[Catch: Exception -> 0x0067, TRY_LEAVE, TryCatch #1 {Exception -> 0x0067, blocks: (B:28:0x005e, B:30:0x0063), top: B:44:0x005e }] */
+    /* JADX WARN: Removed duplicated region for block: B:44:0x005e A[EXC_TOP_SPLITTER, SYNTHETIC] */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    public static void a() throws java.lang.Throwable {
+        /*
+            r2 = 0
+            r0 = 1
+            java.lang.String r1 = "silver_kj"
+            byte[] r1 = defpackage.bj.a(r1)
+            if (r1 != 0) goto Lb
+        La:
+            return
+        Lb:
+            java.io.ByteArrayInputStream r3 = new java.io.ByteArrayInputStream     // Catch: java.lang.Exception -> L43 java.lang.Throwable -> L59
+            r3.<init>(r1)     // Catch: java.lang.Exception -> L43 java.lang.Throwable -> L59
+            java.io.DataInputStream r1 = new java.io.DataInputStream     // Catch: java.lang.Throwable -> L6c java.lang.Exception -> L71
+            r1.<init>(r3)     // Catch: java.lang.Throwable -> L6c java.lang.Exception -> L71
+            byte r2 = r1.readByte()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            if (r2 != r0) goto L41
+        L1b:
+            defpackage.bb.k = r0     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            byte r0 = r1.readByte()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            defpackage.bb.l = r0     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            java.lang.String r0 = r1.readUTF()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            defpackage.bb.m = r0     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            java.lang.String r0 = r1.readUTF()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            defpackage.bb.n = r0     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            r3.close()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            r1.close()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            r3.close()     // Catch: java.lang.Exception -> L3c
+            r1.close()     // Catch: java.lang.Exception -> L3c
+            goto La
+        L3c:
+            r0 = move-exception
+            r0.printStackTrace()
+            goto La
+        L41:
+            r0 = 0
+            goto L1b
+        L43:
+            r0 = move-exception
+            r1 = r2
+            r3 = r2
+        L46:
+            r0.printStackTrace()     // Catch: java.lang.Throwable -> L6f
+            if (r3 == 0) goto L4e
+            r3.close()     // Catch: java.lang.Exception -> L54
+        L4e:
+            if (r1 == 0) goto La
+            r1.close()     // Catch: java.lang.Exception -> L54
+            goto La
+        L54:
+            r0 = move-exception
+            r0.printStackTrace()
+            goto La
+        L59:
+            r0 = move-exception
+            r1 = r2
+            r3 = r2
+        L5c:
+            if (r3 == 0) goto L61
+            r3.close()     // Catch: java.lang.Exception -> L67
+        L61:
+            if (r1 == 0) goto L66
+            r1.close()     // Catch: java.lang.Exception -> L67
+        L66:
+            throw r0
+        L67:
+            r1 = move-exception
+            r1.printStackTrace()
+            goto L66
+        L6c:
+            r0 = move-exception
+            r1 = r2
+            goto L5c
+        L6f:
+            r0 = move-exception
+            goto L5c
+        L71:
+            r0 = move-exception
+            r1 = r2
+            goto L46
+        L74:
+            r0 = move-exception
+            goto L46
+        */
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.bb.a():void");
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    /* JADX WARN: Type inference failed for: r0v1 */
-    /* JADX WARN: Type inference failed for: r0v11, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v13, types: [java.io.DataOutputStream] */
-    /* JADX WARN: Type inference failed for: r0v2, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v21, types: [byte[]] */
-    /* JADX WARN: Type inference failed for: r0v22, types: [java.io.ByteArrayOutputStream] */
-    /* JADX WARN: Type inference failed for: r0v23, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v24, types: [java.io.DataOutputStream] */
-    /* JADX WARN: Type inference failed for: r0v3 */
-    /* JADX WARN: Type inference failed for: r0v5, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v7, types: [java.io.DataOutputStream] */
-    /* JADX WARN: Type inference failed for: r0v8 */
-    public static void b() {
-        ByteArrayOutputStream byteArrayOutputStream = null;
-        ?? byteArray = 0;
-        DataOutputStream dataOutputStream = null;
-        try {
-            try {
-                byteArrayOutputStream = new ByteArrayOutputStream();
-                DataOutputStream dataOutputStream2 = new DataOutputStream(byteArrayOutputStream);
-                dataOutputStream = dataOutputStream2;
-                dataOutputStream2.writeByte(k ? 1 : 0);
-                dataOutputStream.writeByte(l);
-                dataOutputStream.writeUTF(m);
-                dataOutputStream.writeUTF(k ? n : "");
-                dataOutputStream.flush();
-                byteArray = byteArrayOutputStream.toByteArray();
-                bj.a((byte[]) byteArray, "silver_kj");
-                ?? r0 = byteArrayOutputStream;
-                try {
-                    r0.close();
-                    r0 = dataOutputStream;
-                    r0.close();
-                } catch (Exception e2) {
-                    r0.printStackTrace();
-                }
-            } catch (Exception e3) {
-                byteArray.printStackTrace();
-                ?? r02 = byteArrayOutputStream;
-                if (r02 != 0) {
-                    try {
-                        byteArrayOutputStream.close();
-                    } catch (Exception e4) {
-                        r02.printStackTrace();
-                        return;
-                    }
-                }
-                if (dataOutputStream != null) {
-                    r02 = dataOutputStream;
-                    r02.close();
-                }
-            }
-        } catch (Throwable th) {
-            ?? r03 = byteArrayOutputStream;
-            if (r03 != 0) {
-                try {
-                    byteArrayOutputStream.close();
-                } catch (Exception e5) {
-                    r03.printStackTrace();
-                    throw th;
-                }
-            }
-            if (dataOutputStream != null) {
-                r03 = dataOutputStream;
-                r03.close();
-            }
-            throw th;
-        }
+    /* JADX WARN: Removed duplicated region for block: B:34:0x0063 A[Catch: Exception -> 0x0067, TRY_LEAVE, TryCatch #1 {Exception -> 0x0067, blocks: (B:32:0x005e, B:34:0x0063), top: B:48:0x005e }] */
+    /* JADX WARN: Removed duplicated region for block: B:48:0x005e A[EXC_TOP_SPLITTER, SYNTHETIC] */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    public static void b() throws java.lang.Throwable {
+        /*
+            r2 = 0
+            java.io.ByteArrayOutputStream r3 = new java.io.ByteArrayOutputStream     // Catch: java.lang.Exception -> L43 java.lang.Throwable -> L59
+            r3.<init>()     // Catch: java.lang.Exception -> L43 java.lang.Throwable -> L59
+            java.io.DataOutputStream r1 = new java.io.DataOutputStream     // Catch: java.lang.Throwable -> L6c java.lang.Exception -> L71
+            r1.<init>(r3)     // Catch: java.lang.Throwable -> L6c java.lang.Exception -> L71
+            boolean r0 = defpackage.bb.k     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            if (r0 == 0) goto L39
+            r0 = 1
+        L10:
+            r1.writeByte(r0)     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            byte r0 = defpackage.bb.l     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            r1.writeByte(r0)     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            java.lang.String r0 = defpackage.bb.m     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            r1.writeUTF(r0)     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            boolean r0 = defpackage.bb.k     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            if (r0 == 0) goto L3b
+            java.lang.String r0 = defpackage.bb.n     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+        L23:
+            r1.writeUTF(r0)     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            r1.flush()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            byte[] r0 = r3.toByteArray()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            java.lang.String r2 = "silver_kj"
+            defpackage.bj.a(r0, r2)     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
+            r3.close()     // Catch: java.lang.Exception -> L3e
+            r1.close()     // Catch: java.lang.Exception -> L3e
+        L38:
+            return
+        L39:
+            r0 = 0
+            goto L10
+        L3b:
+            java.lang.String r0 = ""
+            goto L23
+        L3e:
+            r0 = move-exception
+            r0.printStackTrace()
+            goto L38
+        L43:
+            r0 = move-exception
+            r1 = r2
+            r3 = r2
+        L46:
+            r0.printStackTrace()     // Catch: java.lang.Throwable -> L6f
+            if (r3 == 0) goto L4e
+            r3.close()     // Catch: java.lang.Exception -> L54
+        L4e:
+            if (r1 == 0) goto L38
+            r1.close()     // Catch: java.lang.Exception -> L54
+            goto L38
+        L54:
+            r0 = move-exception
+            r0.printStackTrace()
+            goto L38
+        L59:
+            r0 = move-exception
+            r1 = r2
+            r3 = r2
+        L5c:
+            if (r3 == 0) goto L61
+            r3.close()     // Catch: java.lang.Exception -> L67
+        L61:
+            if (r1 == 0) goto L66
+            r1.close()     // Catch: java.lang.Exception -> L67
+        L66:
+            throw r0
+        L67:
+            r1 = move-exception
+            r1.printStackTrace()
+            goto L66
+        L6c:
+            r0 = move-exception
+            r1 = r2
+            goto L5c
+        L6f:
+            r0 = move-exception
+            goto L5c
+        L71:
+            r0 = move-exception
+            r1 = r2
+            goto L46
+        L74:
+            r0 = move-exception
+            goto L46
+        */
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.bb.b():void");
     }
 }

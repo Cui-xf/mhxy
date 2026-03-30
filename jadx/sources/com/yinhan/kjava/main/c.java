@@ -5,25 +5,66 @@ import defpackage.bz;
 import defpackage.h;
 import defpackage.t;
 import defpackage.w;
+import java.io.IOException;
 import javax.microedition.lcdui.Display;
 import javax.microedition.lcdui.Displayable;
 
-/* loaded from: java版梦回西游3区251011.jar:com/yinhan/kjava/main/c.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class c {
+    private static h c;
     private MainMidlet a;
     private Display b;
-    private static h c;
 
     public c(MainMidlet mainMidlet, Display display) {
         this.a = mainMidlet;
         this.b = display;
     }
 
+    public static void a(String str, String str2) {
+        c.a(str, str2);
+    }
+
+    public static void a(Displayable displayable, String str, short s, int i) {
+        c.a(1);
+    }
+
+    public static void a(boolean z) {
+        c.a(true);
+    }
+
+    public static void b() {
+        c.b.b();
+    }
+
+    public static void c() {
+        c.h();
+    }
+
+    public static void e() {
+        c.a(false);
+    }
+
+    public static void f() {
+        c.g();
+    }
+
+    public static void g() {
+        if (t.x) {
+            c.e();
+        } else {
+            c.d();
+        }
+    }
+
+    public static void h() {
+        c.f();
+    }
+
     public final void a() {
         c = new h(this.a, this.b);
     }
 
-    public final void a(byte b, String str, String str2) {
+    public final void a(byte b, String str, String str2) throws IOException {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append((int) b);
         stringBuffer.append(':');
@@ -42,49 +83,9 @@ public final class c {
         }
     }
 
-    public static void b() {
-        c.b.b();
-    }
-
-    public static void c() {
-        c.h();
-    }
-
     public final void d() {
         c.a(bz.a((byte) 1, (byte) 3, ""));
         this.a.a();
         this.a.a.a("请求中...");
-    }
-
-    public static void e() {
-        c.a(false);
-    }
-
-    public static void f() {
-        c.g();
-    }
-
-    public static void a(String str, String str2) {
-        c.a(str, str2);
-    }
-
-    public static void a(boolean z) {
-        c.a(true);
-    }
-
-    public static void a(Displayable displayable, String str, short s, int i) {
-        c.a(1);
-    }
-
-    public static void g() {
-        if (t.x) {
-            c.e();
-        } else {
-            c.d();
-        }
-    }
-
-    public static void h() {
-        c.f();
     }
 }

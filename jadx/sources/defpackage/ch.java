@@ -2,16 +2,11 @@ package defpackage;
 
 import com.yinhan.kjava.main.a;
 import java.io.DataInputStream;
-import java.io.IOException;
+import java.lang.reflect.Array;
 import javax.microedition.lcdui.Graphics;
 
-/* loaded from: java版梦回西游3区251011.jar:ch.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class ch {
-    private ao c;
-    private a d;
-    private ai e;
-    private String f;
-    private bw g;
     private static int h;
     private static String i;
     private static short j;
@@ -26,14 +21,19 @@ public final class ch {
     private static String s;
     private static byte t;
     private static String u;
+    private boolean A = false;
     public int[][] a;
     public int b;
+    private ao c;
+    private a d;
+    private ai e;
+    private String f;
+    private bw g;
     private int v;
     private int w;
     private int x;
     private bf y;
     private bf z;
-    private boolean A = false;
 
     public ch(ao aoVar, a aVar, ai aiVar) {
         this.c = aoVar;
@@ -61,51 +61,6 @@ public final class ch {
         bt.N();
     }
 
-    public final void a(DataInputStream dataInputStream) {
-        h = dataInputStream.readInt();
-        j = dataInputStream.readShort();
-        k = dataInputStream.readUTF();
-        m = dataInputStream.readUTF();
-        l = dataInputStream.readDouble();
-        n[0] = dataInputStream.readInt();
-        n[1] = dataInputStream.readInt();
-        n[2] = dataInputStream.readInt();
-        o = dataInputStream.readByte();
-        t = dataInputStream.readByte();
-        i = dataInputStream.readUTF();
-        s = dataInputStream.readUTF();
-        r = dataInputStream.readUTF();
-        switch (o) {
-            case 0:
-                if (n[0] >= 1) {
-                    q[0] = true;
-                    l += 0.2d;
-                    break;
-                } else {
-                    q[0] = false;
-                    break;
-                }
-            case 1:
-                if (n[1] >= 1) {
-                    q[1] = true;
-                    l += 0.5d;
-                    break;
-                } else {
-                    q[1] = false;
-                    break;
-                }
-            case 2:
-                if (n[2] >= 1) {
-                    q[2] = true;
-                    l += 1.0d;
-                    break;
-                } else {
-                    q[2] = false;
-                    break;
-                }
-        }
-    }
-
     private void c() {
         if (this.a != null) {
             for (int i2 = 0; i2 < this.a.length; i2++) {
@@ -125,13 +80,6 @@ public final class ch {
         }
     }
 
-    public final void b() {
-        this.f = null;
-        if (k != null) {
-            this.f = k;
-        }
-    }
-
     private void e() {
         this.g = null;
         if (u != null) {
@@ -139,70 +87,9 @@ public final class ch {
         }
     }
 
-    public final void a(boolean z) {
-        int i2;
-        int i3;
-        if (z) {
-            this.b = 0;
-            this.v = 0;
-        }
-        if (h != -1) {
-            this.c.a(new short[]{j});
-        }
-        if (this.y == null) {
-            this.y = a.ag.a("jianding_02");
-            this.z = a.ag.a("jianding_01");
-        }
-        c();
-        this.a = new int[7][4];
-        this.d.aq.b();
-        this.d.aq.a("装备升星");
-        this.d.aq.a(false);
-        this.w = Math.max((t.j << 1) + 25, 59);
-        this.x = t.j + 13;
-        this.d.aq.a(this.w + this.x);
-        d();
-        b();
-        this.d.aq.a(this.d.at);
-        this.d.au.a("确定");
-        if (t.c > 220) {
-            this.d.aq.a(this.d.au);
-        }
-        this.d.aq.a(t.f, t.g, t.d, t.e);
-        this.d.at.a(this.d.at.b, this.d.at.c, (this.d.aq.c / 2) - 6, this.d.at.e);
-        if (this.a != null) {
-            for (int i4 = 0; i4 < this.a.length; i4++) {
-                if (i4 == 0) {
-                    i2 = (this.d.aq.a + (this.d.aq.c / 4)) - 8;
-                    i3 = ((this.d.aq.b + 32) + this.w) - 30;
-                } else if (i4 < 4) {
-                    i2 = this.d.aq.a + (this.d.aq.c / 2) + 13;
-                    i3 = (((this.d.aq.b + 32) + (this.d.aq.d / 4)) + ((i4 - 1) * 40)) - 20;
-                } else {
-                    i2 = (this.d.aq.a + ((this.d.aq.c * 3) / 4)) - 18;
-                    i3 = (((this.d.aq.b + 32) + (this.d.aq.d / 4)) + ((i4 - 4) * 40)) - 20;
-                }
-                int i5 = i4;
-                int i6 = i2;
-                int i7 = i3;
-                if (this.a != null && this.a.length > i5) {
-                    this.a[i5][0] = i6;
-                    this.a[i5][1] = i7;
-                    this.a[i5][2] = 17;
-                    this.a[i5][3] = 17;
-                }
-            }
-        }
-        ca.l = 0;
-        this.c.l = (short) 0;
-        this.d.j = this.d.k;
-        ao aoVar = this.c;
-        this.c.k = (short) 102;
-        aoVar.j = (short) 102;
-    }
-
-    public final void a(int i2) throws IOException {
+    public final void a(int i2) {
         bn bnVar;
+        byte b = 2;
         if (t == 1) {
             t = (byte) 0;
             this.d.b("升星成功");
@@ -218,7 +105,14 @@ public final class ch {
                     return;
                 }
                 if (ca.o == 0) {
-                    p = q[0] ? (byte) 0 : q[1] ? (byte) 1 : q[2] ? (byte) 2 : (byte) -1;
+                    if (q[0]) {
+                        b = 0;
+                    } else if (q[1]) {
+                        b = 1;
+                    } else if (!q[2]) {
+                        b = -1;
+                    }
+                    p = b;
                     if (h == -1) {
                         this.d.b("请先放入装备");
                     } else if (m.equals("不能升级")) {
@@ -263,16 +157,15 @@ public final class ch {
                             bnVar = null;
                             break;
                         }
-                        bn bnVar2 = (bn) bt.bC.elementAt(i4);
-                        if (bnVar2 != null && bnVar2.a == i3) {
-                            bnVar = bnVar2;
+                        bnVar = (bn) bt.bC.elementAt(i4);
+                        if (bnVar != null && bnVar.a == i3) {
                             break;
+                        } else {
+                            i4++;
                         }
-                        i4++;
                     }
-                    bn bnVar3 = bnVar;
                     if (bnVar != null) {
-                        bt.a(bnVar3);
+                        bt.a(bnVar);
                     } else {
                         this.d.b("装备不存在");
                     }
@@ -344,7 +237,7 @@ public final class ch {
             int i5 = this.b - 1;
             if (q[i5]) {
                 q[i5] = false;
-                l -= 0.2d + ((i5 * 0.1d) * (i5 + 2));
+                l -= 0.2d + ((i5 + 2) * (i5 * 0.1d));
                 return;
             }
             if (h == -1) {
@@ -371,34 +264,85 @@ public final class ch {
         }
     }
 
+    public final void a(DataInputStream dataInputStream) {
+        h = dataInputStream.readInt();
+        j = dataInputStream.readShort();
+        k = dataInputStream.readUTF();
+        m = dataInputStream.readUTF();
+        l = dataInputStream.readDouble();
+        n[0] = dataInputStream.readInt();
+        n[1] = dataInputStream.readInt();
+        n[2] = dataInputStream.readInt();
+        o = dataInputStream.readByte();
+        t = dataInputStream.readByte();
+        i = dataInputStream.readUTF();
+        s = dataInputStream.readUTF();
+        r = dataInputStream.readUTF();
+        switch (o) {
+            case 0:
+                if (n[0] >= 1) {
+                    q[0] = true;
+                    l += 0.2d;
+                    break;
+                } else {
+                    q[0] = false;
+                    break;
+                }
+            case 1:
+                if (n[1] >= 1) {
+                    q[1] = true;
+                    l += 0.5d;
+                    break;
+                } else {
+                    q[1] = false;
+                    break;
+                }
+            case 2:
+                if (n[2] >= 1) {
+                    q[2] = true;
+                    l += 1.0d;
+                    break;
+                } else {
+                    q[2] = false;
+                    break;
+                }
+        }
+    }
+
     public final void a(Graphics graphics) {
         if (this.d.aq != null) {
             this.d.aq.a(graphics);
             ca.a(graphics, this.d.aq.a + 5, this.d.aq.b + 32, (this.d.aq.c - 11) / 2, this.w, 1);
             ca.a(graphics, this.d.aq.a + 5, this.d.aq.b + 32 + this.w + 1, (this.d.aq.c - 11) / 2, this.x - 2, 1);
-            ca.a(graphics, this.d.aq.a + 5 + ((this.d.aq.c - 11) / 2), this.d.aq.b + 32, (this.d.aq.c - 10) / 2, this.d.aq.d - 62, 1);
+            ca.a(graphics, ((this.d.aq.c - 11) / 2) + this.d.aq.a + 5, this.d.aq.b + 32, (this.d.aq.c - 10) / 2, this.d.aq.d - 62, 1);
         }
         if (this.a != null) {
-            for (int i2 = 0; i2 < this.a.length; i2++) {
-                if (i2 == 0) {
-                    this.e.a(graphics, ao.x, (int[]) null, (aj) null, 0, 0, this.a[i2][0], this.a[i2][1], 0, 0);
-                } else if (i2 < 4) {
-                    this.e.a(graphics, q[i2 - 1] ? this.y : this.z, (int[]) null, (aj) null, 0, 0, this.a[i2][0], this.a[i2][1], 0, 0);
+            int i2 = 0;
+            while (true) {
+                int i3 = i2;
+                if (i3 >= this.a.length) {
+                    break;
+                }
+                if (i3 == 0) {
+                    this.e.a(graphics, ao.x, (int[]) null, (aj) null, 0, 0, this.a[i3][0], this.a[i3][1], 0, 0);
+                } else if (i3 < 4) {
+                    this.e.a(graphics, q[i3 + (-1)] ? this.y : this.z, (int[]) null, (aj) null, 0, 0, this.a[i3][0], this.a[i3][1], 0, 0);
                 } else {
                     a.af.e(String.valueOf(1702));
-                    a.f.a(graphics, ao.b((short) 1702), (int[]) null, (aj) null, 0, 0, this.a[i2][0], this.a[i2][1], 0, 0);
-                    if (n[i2 - 4] > 99) {
-                        a.f.a(graphics, a.n, (int[]) null, n[i2 - 4] / 100, 0, 0, (this.a[i2][0] + 13) - 8, this.a[i2][1] + 11, 0, 0);
-                        a.f.a(graphics, a.n, (int[]) null, (n[i2 - 4] % 100) / 10, 0, 0, (this.a[i2][0] + 13) - 4, this.a[i2][1] + 11, 0, 0);
-                        a.f.a(graphics, a.n, (int[]) null, n[i2 - 4] % 100, 0, 0, this.a[i2][0] + 13, this.a[i2][1] + 11, 0, 0);
+                    a.f.a(graphics, ao.b((short) 1702), (int[]) null, (aj) null, 0, 0, this.a[i3][0], this.a[i3][1], 0, 0);
+                    if (n[i3 - 4] > 99) {
+                        a.f.a(graphics, a.n, (int[]) null, n[i3 - 4] / 100, 0, 0, (this.a[i3][0] + 13) - 8, this.a[i3][1] + 11, 0, 0);
+                        a.f.a(graphics, a.n, (int[]) null, (n[i3 - 4] % 100) / 10, 0, 0, (this.a[i3][0] + 13) - 4, this.a[i3][1] + 11, 0, 0);
+                        a.f.a(graphics, a.n, (int[]) null, n[i3 - 4] % 100, 0, 0, this.a[i3][0] + 13, this.a[i3][1] + 11, 0, 0);
                     }
-                    if (n[i2 - 4] > 9) {
-                        a.f.a(graphics, a.n, (int[]) null, n[i2 - 4] / 10, 0, 0, (this.a[i2][0] + 13) - 4, this.a[i2][1] + 11, 0, 0);
-                        a.f.a(graphics, a.n, (int[]) null, n[i2 - 4] % 10, 0, 0, this.a[i2][0] + 13, this.a[i2][1] + 11, 0, 0);
-                    } else if (n[i2 - 4] >= 0) {
-                        a.f.a(graphics, a.n, (int[]) null, n[i2 - 4] % 10, 0, 0, this.a[i2][0] + 13, this.a[i2][1] + 11, 0, 0);
+                    if (n[i3 - 4] > 9) {
+                        a.f.a(graphics, a.n, (int[]) null, n[i3 - 4] / 10, 0, 0, (this.a[i3][0] + 13) - 4, this.a[i3][1] + 11, 0, 0);
+                        a.f.a(graphics, a.n, (int[]) null, n[i3 - 4] % 10, 0, 0, this.a[i3][0] + 13, this.a[i3][1] + 11, 0, 0);
+                    } else if (n[i3 - 4] >= 0) {
+                        a.f.a(graphics, a.n, (int[]) null, n[i3 - 4] % 10, 0, 0, this.a[i3][0] + 13, this.a[i3][1] + 11, 0, 0);
                     }
                 }
+                i2 = i3 + 1;
             }
         }
         graphics.setColor(255);
@@ -412,7 +356,10 @@ public final class ch {
         }
         ca.d(graphics, this.a[this.b][0], this.a[this.b][1], 17, 17);
         if (h != -1) {
-            double d = l + 0.001d > 1.0d ? 1.0d : 8.4E-323d;
+            double d = l + 0.001d;
+            if (d > 1.0d) {
+                d = 1.0d;
+            }
             StringBuffer stringBuffer = new StringBuffer();
             stringBuffer.append("成功率：");
             stringBuffer.append((int) (d * 100.0d));
@@ -431,7 +378,73 @@ public final class ch {
             if (this.f == null && this.f == "") {
                 return;
             }
-            ca.b(graphics, this.f, this.d.aq.a + 5 + 2, this.d.aq.b + 32 + 8 + ao.x.c, t.c - 5, 1);
+            ca.b(graphics, this.f, this.d.aq.a + 5 + 2, ao.x.c + this.d.aq.b + 32 + 8, t.c - 5, 1);
+        }
+    }
+
+    public final void a(boolean z) {
+        int i2;
+        int i3;
+        if (z) {
+            this.b = 0;
+            this.v = 0;
+        }
+        if (h != -1) {
+            this.c.a(new short[]{j});
+        }
+        if (this.y == null) {
+            this.y = a.ag.a("jianding_02");
+            this.z = a.ag.a("jianding_01");
+        }
+        c();
+        this.a = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 7, 4);
+        this.d.aq.b();
+        this.d.aq.a("装备升星");
+        this.d.aq.a(false);
+        this.w = Math.max((t.j << 1) + 25, 59);
+        this.x = t.j + 13;
+        this.d.aq.a(this.w + this.x);
+        d();
+        b();
+        this.d.aq.a(this.d.at);
+        this.d.au.a("确定");
+        if (t.c > 220) {
+            this.d.aq.a(this.d.au);
+        }
+        this.d.aq.a(t.f, t.g, t.d, t.e);
+        this.d.at.a(this.d.at.b, this.d.at.c, (this.d.aq.c / 2) - 6, this.d.at.e);
+        if (this.a != null) {
+            for (int i4 = 0; i4 < this.a.length; i4++) {
+                if (i4 == 0) {
+                    i2 = (this.d.aq.a + (this.d.aq.c / 4)) - 8;
+                    i3 = ((this.d.aq.b + 32) + this.w) - 30;
+                } else if (i4 < 4) {
+                    i2 = this.d.aq.a + (this.d.aq.c / 2) + 13;
+                    i3 = (((this.d.aq.b + 32) + (this.d.aq.d / 4)) + ((i4 - 1) * 40)) - 20;
+                } else {
+                    i2 = (this.d.aq.a + ((this.d.aq.c * 3) / 4)) - 18;
+                    i3 = (((this.d.aq.b + 32) + (this.d.aq.d / 4)) + ((i4 - 4) * 40)) - 20;
+                }
+                if (this.a != null && this.a.length > i4) {
+                    this.a[i4][0] = i2;
+                    this.a[i4][1] = i3;
+                    this.a[i4][2] = 17;
+                    this.a[i4][3] = 17;
+                }
+            }
+        }
+        ca.l = 0;
+        this.c.l = (short) 0;
+        this.d.j = this.d.k;
+        ao aoVar = this.c;
+        this.c.k = (short) 102;
+        aoVar.j = (short) 102;
+    }
+
+    public final void b() {
+        this.f = null;
+        if (k != null) {
+            this.f = k;
         }
     }
 }

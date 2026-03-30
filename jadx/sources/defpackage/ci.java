@@ -2,7 +2,7 @@ package defpackage;
 
 import java.io.IOException;
 
-/* loaded from: java版梦回西游3区251011.jar:ci.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class ci {
     private static final int[] a = {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 99, 99};
     private static final int[] b = {3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 23, 27, 31, 35, 43, 51, 59, 67, 83, 99, 115, 131, 163, 195, 227, 258, 0, 0};
@@ -12,6 +12,41 @@ public final class ci {
     private static int f;
     private static int g;
     private static int h;
+
+    private static int a(byte[] bArr, int i) {
+        int i2;
+        if (h == 0) {
+            int i3 = f;
+            f = i3 + 1;
+            i2 = bArr[i3] & 255;
+            g = i2;
+        } else {
+            i2 = g >> h;
+        }
+        int i4 = i2;
+        for (int i5 = 8 - h; i5 < i; i5 += 8) {
+            int i6 = f;
+            f = i6 + 1;
+            g = bArr[i6] & 255;
+            i4 |= g << i5;
+        }
+        h = (h + i) & 7;
+        return ((1 << i) - 1) & i4;
+    }
+
+    private static int a(byte[] bArr, int[] iArr) {
+        int i = iArr[0];
+        while (i >= 0) {
+            if (h == 0) {
+                int i2 = f;
+                f = i2 + 1;
+                g = bArr[i2] & 255;
+            }
+            i = (g & (1 << h)) == 0 ? iArr[i >> 16] : iArr[i & 65535];
+            h = (h + 1) & 7;
+        }
+        return i & 65535;
+    }
 
     public static byte[] a(byte[] bArr) throws IOException {
         int iA;
@@ -48,8 +83,8 @@ public final class ci {
         int i3 = f;
         f = bArr.length - 4;
         byte[] bArr2 = new byte[a(bArr, 16) | (a(bArr, 16) << 16)];
-        int i4 = 0;
         f = i3;
+        int i4 = 0;
         do {
             iA = a(bArr, 1);
             int iA3 = a(bArr, 2);
@@ -114,9 +149,8 @@ public final class ci {
                         System.arraycopy(bArr2, i14, bArr2, i4, iA8);
                         i4 += iA8;
                     } else {
-                        int i15 = i4;
+                        bArr2[i4] = (byte) iA7;
                         i4++;
-                        bArr2[i15] = (byte) iA7;
                     }
                 }
             } else {
@@ -131,92 +165,52 @@ public final class ci {
         return bArr2;
     }
 
-    private static int a(byte[] bArr, int i) {
-        int i2;
-        if (h == 0) {
-            int i3 = f;
-            f = i3 + 1;
-            i2 = bArr[i3] & 255;
-            g = i2;
-        } else {
-            i2 = g >> h;
-        }
-        int i4 = i2;
-        for (int i5 = 8 - h; i5 < i; i5 += 8) {
-            int i6 = f;
-            f = i6 + 1;
-            g = bArr[i6] & 255;
-            i4 |= g << i5;
-        }
-        h = (h + i) & 7;
-        return i4 & ((1 << i) - 1);
-    }
-
-    private static int a(byte[] bArr, int[] iArr) {
-        int i = iArr[0];
-        while (i >= 0) {
-            if (h == 0) {
-                int i2 = f;
-                f = i2 + 1;
-                g = bArr[i2] & 255;
-            }
-            i = (g & (1 << h)) == 0 ? iArr[i >> 16] : iArr[i & 65535];
-            h = (h + 1) & 7;
-        }
-        return i & 65535;
-    }
-
     private static byte[] a(byte[] bArr, int[] iArr, int i) {
         int iA;
         byte[] bArr2 = new byte[i];
         int i2 = 0;
         int i3 = 0;
-        while (true) {
-            int i4 = i3;
-            if (i2 >= i) {
-                return bArr2;
-            }
+        while (i3 < i) {
             int iA2 = a(bArr, iArr);
-            int i5 = iA2;
             if (iA2 >= 16) {
-                if (i5 == 16) {
-                    iA = 3 + a(bArr, 2);
-                    i5 = i4;
+                if (iA2 == 16) {
+                    iA = a(bArr, 2) + 3;
                 } else {
-                    iA = i5 == 17 ? 3 + a(bArr, 3) : 11 + a(bArr, 7);
-                    i5 = 0;
+                    iA = iA2 == 17 ? a(bArr, 3) + 3 : a(bArr, 7) + 11;
+                    i2 = 0;
                 }
                 while (true) {
-                    int i6 = iA;
-                    iA--;
-                    if (i6 > 0) {
-                        int i7 = i2;
-                        i2++;
-                        bArr2[i7] = (byte) i5;
+                    int i4 = iA - 1;
+                    if (iA <= 0) {
+                        break;
                     }
+                    bArr2[i3] = (byte) i2;
+                    iA = i4;
+                    i3++;
                 }
+                iA2 = i2;
             } else {
-                int i8 = i2;
-                i2++;
-                bArr2[i8] = (byte) i5;
+                bArr2[i3] = (byte) iA2;
+                i3++;
             }
-            i3 = i5;
+            i2 = iA2;
         }
+        return bArr2;
     }
 
     private static int[] b(byte[] bArr, int i) {
         int i2;
+        int i3;
         int[] iArr = new int[17];
         for (byte b2 : bArr) {
             iArr[b2] = iArr[b2] + 1;
         }
-        int i3 = 0;
         iArr[0] = 0;
         int[] iArr2 = new int[17];
-        for (int i4 = 1; i4 <= 16; i4++) {
-            int i5 = (i3 + iArr[i4 - 1]) << 1;
-            i3 = i5;
-            iArr2[i4] = i5;
+        int i4 = 0;
+        for (int i5 = 1; i5 <= 16; i5++) {
+            i4 = (i4 + iArr[i5 - 1]) << 1;
+            iArr2[i5] = i4;
         }
         int[] iArr3 = new int[(i << 1) + 16];
         int i6 = 1;
@@ -226,29 +220,30 @@ public final class ci {
                 int i8 = iArr2[b3];
                 iArr2[b3] = i8 + 1;
                 int i9 = 0;
-                for (int i10 = b3 - 1; i10 >= 0; i10--) {
-                    if ((i8 & (1 << i10)) == 0) {
-                        int i11 = iArr3[i9] >> 16;
-                        if (i11 == 0) {
-                            int i12 = i9;
-                            iArr3[i12] = iArr3[i12] | (i6 << 16);
+                int i10 = b3 - 1;
+                while (i10 >= 0) {
+                    if (((1 << i10) & i8) == 0) {
+                        i2 = iArr3[i9] >> 16;
+                        if (i2 == 0) {
+                            iArr3[i9] = iArr3[i9] | (i6 << 16);
+                            i3 = i6 + 1;
                             i2 = i6;
-                            i6++;
                         } else {
-                            i2 = i11;
+                            i3 = i6;
                         }
                     } else {
-                        int i13 = iArr3[i9] & 65535;
-                        if (i13 == 0) {
-                            int i14 = i9;
-                            iArr3[i14] = iArr3[i14] | i6;
+                        i2 = iArr3[i9] & 65535;
+                        if (i2 == 0) {
+                            iArr3[i9] = iArr3[i9] | i6;
+                            i3 = i6 + 1;
                             i2 = i6;
-                            i6++;
                         } else {
-                            i2 = i13;
+                            i3 = i6;
                         }
                     }
+                    i10--;
                     i9 = i2;
+                    i6 = i3;
                 }
                 iArr3[i9] = Integer.MIN_VALUE | i7;
             }

@@ -3,7 +3,7 @@ package defpackage;
 import com.yinhan.kjava.main.a;
 import javax.microedition.lcdui.Graphics;
 
-/* loaded from: java版梦回西游3区251011.jar:ba.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class ba {
     private ao a;
     private ai b;
@@ -32,6 +32,45 @@ public final class ba {
         this.g = aVar.at.d;
         this.h = this.d;
         aVar.at.a(this.e, this.f + this.h, this.g, this.h + 1);
+    }
+
+    public final int a(byte b, int i, int i2) {
+        if (this.a.l == 1) {
+            return ca.c(i, i2);
+        }
+        if (this.c.aq.b(i, i2) > 0) {
+            return this.c.aq.b(i, i2);
+        }
+        if (i <= this.e || i >= this.e + 80 || i2 <= this.f || i2 >= (this.f + this.h) - 32) {
+            if (i <= (this.e + this.g) - 44 || i >= (this.e + this.g) - 4 || i2 <= this.f + (((this.h - 32) - 40) / 2) || i2 >= this.f + (((this.h - 32) - 40) / 2) + 40) {
+                if (i > this.e + 80 + 8 + 24 && i < this.e + 80 + 8 + 24 + 16 && i2 > ((this.f + this.h) - 32) - 44 && i2 < (((this.f + this.h) - 32) - 44) + 16) {
+                    if (this.a.be == 1 && this.a.bf == 0) {
+                        return 268435456;
+                    }
+                    this.a.bf = 0;
+                    this.a.be = 1;
+                    ca.l = 0;
+                    this.a.ak();
+                }
+            } else {
+                if (this.a.be == 0 && this.a.bf == 1) {
+                    return 268435456;
+                }
+                this.a.bf = 1;
+                this.a.be = 0;
+                ca.l = 0;
+                this.a.ak();
+            }
+        } else {
+            if (this.a.be == 0 && this.a.bf == 0) {
+                return 268435456;
+            }
+            this.a.bf = 0;
+            this.a.be = 0;
+            ca.l = 0;
+            this.a.ak();
+        }
+        return 0;
     }
 
     public final void a() {
@@ -88,45 +127,5 @@ public final class ba {
         if (this.a.l == 1) {
             ca.c(graphics);
         }
-    }
-
-    public final int a(byte b, int i, int i2) {
-        if (this.a.l == 1) {
-            return ca.c(i, i2);
-        }
-        if (this.c.aq.b(i, i2) > 0) {
-            return this.c.aq.b(i, i2);
-        }
-        if (i > this.e && i < this.e + 80 && i2 > this.f && i2 < (this.f + this.h) - 32) {
-            if (this.a.be == 0 && this.a.bf == 0) {
-                return 268435456;
-            }
-            this.a.bf = 0;
-            this.a.be = 0;
-            ca.l = 0;
-            this.a.ak();
-            return 0;
-        }
-        if (i > (this.e + this.g) - 44 && i < (this.e + this.g) - 4 && i2 > this.f + (((this.h - 32) - 40) / 2) && i2 < this.f + (((this.h - 32) - 40) / 2) + 40) {
-            if (this.a.be == 0 && this.a.bf == 1) {
-                return 268435456;
-            }
-            this.a.bf = 1;
-            this.a.be = 0;
-            ca.l = 0;
-            this.a.ak();
-            return 0;
-        }
-        if (i <= this.e + 80 + 8 + 24 || i >= this.e + 80 + 8 + 24 + 16 || i2 <= ((this.f + this.h) - 32) - 44 || i2 >= (((this.f + this.h) - 32) - 44) + 16) {
-            return 0;
-        }
-        if (this.a.be == 1 && this.a.bf == 0) {
-            return 268435456;
-        }
-        this.a.bf = 0;
-        this.a.be = 1;
-        ca.l = 0;
-        this.a.ak();
-        return 0;
     }
 }

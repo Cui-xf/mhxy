@@ -4,7 +4,7 @@ import com.yinhan.kjava.main.a;
 import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
 
-/* loaded from: java版梦回西游3区251011.jar:ck.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class ck {
     public byte a;
     public byte b;
@@ -16,48 +16,20 @@ public final class ck {
     public int h;
     public short i;
     public short j;
-    private byte v;
     public byte k;
     public byte l;
     public bc m;
     public byte n;
-    private int[] w;
     public short r;
     public short s;
     public short t;
+    private byte v;
+    private int[] w;
     public boolean o = false;
     public boolean p = false;
     public boolean q = false;
     public Vector u = new Vector();
     private int x = 0;
-
-    public final void a(byte b) {
-        this.v = b <= 0 ? (byte) 1 : b;
-    }
-
-    public final void b(byte b) {
-        t.ag.delete(0, t.ag.length());
-        this.n = b;
-        if (this.b == 0) {
-            if (b == 4) {
-                t.ag.append("f").append((int) this.j).append(1).append((int) b);
-            } else {
-                t.ag.append("f").append((int) this.j).append(1).append((int) this.v).append((int) b);
-            }
-            this.m = a.ab.b(t.ag.toString());
-            if (this.m == null && b != 4) {
-                t.ag.delete(0, t.ag.length());
-                t.ag.append("f").append((int) this.j).append(1).append(1).append((int) b);
-                this.m = a.ab.b(t.ag.toString());
-            }
-        } else if (this.b == 1) {
-            t.ag.append((int) this.j).append((int) (b > 3 ? (byte) 3 : b));
-            this.m = a.ah.a(t.ag.toString(), this.r, this.s, this.t);
-        }
-        if (this.m != null) {
-            this.m = this.m.b();
-        }
-    }
 
     public final int a(ai aiVar, long j) {
         if (this.m == null || a()) {
@@ -74,6 +46,13 @@ public final class ck {
             this.x = 0;
         }
         return this.x;
+    }
+
+    public final void a(byte b) {
+        if (b <= 0) {
+            b = 1;
+        }
+        this.v = b;
     }
 
     public final void a(Graphics graphics, ai aiVar, int i, int i2, byte b) {
@@ -98,6 +77,34 @@ public final class ck {
             bc bcVar = this.m;
         }
         this.m = null;
+    }
+
+    public final void b(byte b) {
+        t.ag.delete(0, t.ag.length());
+        this.n = b;
+        if (this.b == 0) {
+            if (b == 4) {
+                t.ag.append("f").append((int) this.j).append(1).append((int) b);
+            } else {
+                t.ag.append("f").append((int) this.j).append(1).append((int) this.v).append((int) b);
+            }
+            this.m = a.ab.b(t.ag.toString());
+            if (this.m == null && b != 4) {
+                t.ag.delete(0, t.ag.length());
+                t.ag.append("f").append((int) this.j).append(1).append(1).append((int) b);
+                this.m = a.ab.b(t.ag.toString());
+            }
+        } else if (this.b == 1) {
+            StringBuffer stringBufferAppend = t.ag.append((int) this.j);
+            if (b > 3) {
+                b = 3;
+            }
+            stringBufferAppend.append((int) b);
+            this.m = a.ah.a(t.ag.toString(), this.r, this.s, this.t);
+        }
+        if (this.m != null) {
+            this.m = this.m.b();
+        }
     }
 
     public final short c() {

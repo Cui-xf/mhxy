@@ -1,6 +1,6 @@
 package defpackage;
 
-/* loaded from: java版梦回西游3区251011.jar:cd.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class cd {
     public short a = -1;
     public String b = null;
@@ -16,12 +16,12 @@ public final class cd {
     public int[] l = null;
     public y m = null;
 
-    public final void a(y yVar) {
-        this.m = yVar;
-    }
-
     public final void a() {
         this.m.a(this.c, this.d, this.e, this.f);
+    }
+
+    public final void a(y yVar) {
+        this.m = yVar;
     }
 
     public final void b() {

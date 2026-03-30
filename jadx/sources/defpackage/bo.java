@@ -3,16 +3,20 @@ package defpackage;
 import java.io.DataInputStream;
 import javax.microedition.lcdui.Image;
 
-/* loaded from: java版梦回西游3区251011.jar:bo.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class bo {
+    public static Image[] g = new Image[2];
     public String a;
     public String b;
-    private String h;
     public String c;
     public String d;
     public String e;
     public boolean f;
-    public static Image[] g = new Image[2];
+    private String h;
+
+    public final String a() {
+        return this.b.length() < 5 ? this.b : new StringBuffer().append(this.b.substring(0, 5)).append("…").toString();
+    }
 
     public final void a(DataInputStream dataInputStream) {
         this.a = dataInputStream.readUTF();
@@ -22,10 +26,6 @@ public final class bo {
         this.c = dataInputStream.readUTF();
         this.d = dataInputStream.readUTF();
         this.f = dataInputStream.readBoolean();
-    }
-
-    public final String a() {
-        return this.b.length() < 5 ? this.b : new StringBuffer().append(this.b.substring(0, 5)).append("…").toString();
     }
 
     public final String b() {

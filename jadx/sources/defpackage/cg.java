@@ -3,16 +3,21 @@ package defpackage;
 import com.yinhan.kjava.main.a;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import javax.microedition.lcdui.Graphics;
 
-/* loaded from: java版梦回西游3区251011.jar:cg.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class cg {
-    private ao e;
-    private a f;
-    private ai g;
-    private bc h;
-    private bc i;
+    private static short A;
+    private static short B;
+    private static byte C;
+    private static int[] D;
+    private static int E;
+    private static int F;
     public static int a;
+    public static int b = 0;
+    public static int c = 0;
+    public static boolean d = false;
     private static String j;
     private static int k;
     private static int l;
@@ -30,15 +35,6 @@ public final class cg {
     private static short x;
     private static short y;
     private static short z;
-    private static short A;
-    private static short B;
-    private static byte C;
-    private static int[] D;
-    private static int E;
-    private static int F;
-    public static int b = 0;
-    public static int c = 0;
-    public static boolean d = false;
     private int G;
     private an H;
     private an I;
@@ -46,6 +42,11 @@ public final class cg {
     private int K;
     private String L;
     private String M;
+    private ao e;
+    private a f;
+    private ai g;
+    private bc h;
+    private bc i;
 
     public cg(ao aoVar, a aVar, ai aiVar) {
         this.e = aoVar;
@@ -75,25 +76,14 @@ public final class cg {
         F = -1;
     }
 
-    public final void a() {
-        a = -1;
-        j = null;
-        u = (short) -1;
-        l = -1;
-        m = -1;
-        n = -1;
-        o = -1;
-        k = -1;
-        p = "";
-        y = (short) -1;
-        q = -1;
-        r = -1;
-        s = -1;
-        t = -1;
-        F = -1;
-        E = 0;
-        this.h = null;
-        this.i = null;
+    private void a(int i, int i2, int i3, int i4, int i5) {
+        if (this.J == null || this.J.length <= i) {
+            return;
+        }
+        this.J[i][0] = i2;
+        this.J[i][1] = i3;
+        this.J[i][2] = 50;
+        this.J[i][3] = 50;
     }
 
     public static void a(DataInputStream dataInputStream) throws IOException {
@@ -149,7 +139,7 @@ public final class cg {
         if (bt.fA == null || bt.fA.length <= 0) {
             return;
         }
-        bt.fw = new int[D.length - (k != -1 ? 0 + 1 : 0)];
+        bt.fw = new int[D.length - (k != -1 ? 1 : 0)];
         int i = 0;
         for (int i2 = 0; i2 < D.length; i2++) {
             for (int i3 = 0; i3 < bt.fA.length; i3++) {
@@ -161,41 +151,81 @@ public final class cg {
         }
     }
 
-    private void a(int i, int i2, int i3, int i4, int i5) {
-        if (this.J == null || this.J.length <= i) {
-            return;
-        }
-        this.J[i][0] = i2;
-        this.J[i][1] = i3;
-        this.J[i][2] = 50;
-        this.J[i][3] = 50;
-    }
-
     public final int a(int i, int i2) {
         if (this.e.l == 1) {
             return ca.c(i, i2);
         }
         int iB = this.f.aq.b(i, i2);
-        int iB2 = iB;
         if (iB <= 0) {
-            iB2 = this.H.b(i, i2);
+            iB = this.H.b(i, i2);
         }
-        if (iB2 <= 0) {
-            iB2 = this.I.b(i, i2);
+        if (iB <= 0) {
+            iB = this.I.b(i, i2);
         }
-        if (iB2 <= 0) {
-            for (int i3 = 0; i3 < this.J.length; i3++) {
-                if (i >= this.J[i3][0] && i <= this.J[i3][0] + this.J[i3][2] && i2 >= this.J[i3][1] && i2 <= this.J[i3][1] + this.J[i3][3]) {
-                    if (i3 == 0) {
-                        this.K = 0;
-                    } else {
-                        this.K = 1;
-                    }
-                    iB2 = 268435456;
+        if (iB > 0) {
+            return iB;
+        }
+        for (int i3 = 0; i3 < this.J.length; i3++) {
+            if (i >= this.J[i3][0] && i <= this.J[i3][0] + this.J[i3][2] && i2 >= this.J[i3][1] && i2 <= this.J[i3][1] + this.J[i3][3]) {
+                if (i3 == 0) {
+                    this.K = 0;
+                } else {
+                    this.K = 1;
                 }
+                iB = 268435456;
             }
         }
-        return iB2;
+        return iB;
+    }
+
+    public final void a() {
+        a = -1;
+        j = null;
+        u = (short) -1;
+        l = -1;
+        m = -1;
+        n = -1;
+        o = -1;
+        k = -1;
+        p = "";
+        y = (short) -1;
+        q = -1;
+        r = -1;
+        s = -1;
+        t = -1;
+        F = -1;
+        E = 0;
+        this.h = null;
+        this.i = null;
+    }
+
+    public final void a(Graphics graphics) {
+        if (this.f.aq != null) {
+            this.f.aq.a(graphics);
+            this.H.a(graphics);
+            this.I.a(graphics);
+            ca.a(graphics, this.f.aq.a + 5, this.f.aq.b + 32, this.f.aq.c - 11, this.G, 1);
+        }
+        ca.a(graphics, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 50, 50, 1);
+        graphics.setColor(2917024);
+        graphics.fillRect(this.f.aq.a + 5 + 25 + (this.f.aq.c / 2), this.f.aq.b + 32 + 10, 50, 50);
+        graphics.setColor(9360850);
+        graphics.drawRect(this.f.aq.a + 5 + 25 + (this.f.aq.c / 2), this.f.aq.b + 32 + 10, 49, 49);
+        a(0, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 50, 50);
+        a(1, (this.f.aq.c / 2) + this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 50, 50);
+        ca.d(graphics, this.J[this.K][0], this.J[this.K][1], 50, 50);
+        if (a != -1 && this.h != null) {
+            this.g.a(graphics, this.h, (int[]) null, 0, 0, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 0, 0);
+        }
+        if (k == -1 || this.i == null) {
+            graphics.setColor(16776960);
+            graphics.drawString("副宠", this.f.aq.a + 5 + 25 + (this.f.aq.c / 2) + 25, this.f.aq.b + 32 + 10 + (t.j / 4) + 25, 65);
+        } else {
+            this.g.a(graphics, this.i, (int[]) null, 0, 0, (this.f.aq.c / 2) + this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 0, 0);
+        }
+        if (this.e.l == 1) {
+            ca.c(graphics);
+        }
     }
 
     public final void b() {
@@ -208,7 +238,7 @@ public final class cg {
             }
             this.J = null;
         }
-        this.J = new int[2][4];
+        this.J = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 2, 4);
         this.H = new an();
         this.I = new an();
         this.L = new StringBuffer().append("继承前\t").append(j).append("\t").append("星级: \t").append("攻击：").append(l).append("-").append(m).append("\t").append("法功：").append(n).append("-").append(o).toString();
@@ -243,7 +273,7 @@ public final class cg {
         this.G = (((this.f.aq.d - 32) - t.j) / 3) - 10;
         this.f.aq.a(t.f, t.g, t.d, t.e);
         this.H.a(this.f.aq.a + 5, this.f.aq.b + 32 + this.G, this.f.aq.c - 11, this.G + 10);
-        this.I.a(this.f.aq.a + 5, this.f.aq.b + 32 + (2 * this.G) + 10, this.f.aq.c - 11, this.G + 10);
+        this.I.a(this.f.aq.a + 5, this.f.aq.b + 32 + (this.G * 2) + 10, this.f.aq.c - 11, this.G + 10);
         ca.l = 0;
         this.e.l = (short) 0;
         this.f.j = this.f.k;
@@ -252,15 +282,15 @@ public final class cg {
         aoVar.j = (short) 131;
     }
 
-    public final void b(int i) throws IOException {
+    public final void b(int i) {
         if (F == 1) {
             F = 0;
             this.f.b("宠物星级继承成功");
-            i = 0;
             this.e.c(0, this.e.aE, this.e.aA);
             this.e.E();
             ca.o = 3;
             this.e.l = (short) 1;
+            i = 0;
         }
         if (this.e.l == 0) {
             if (this.f.aq != null) {
@@ -369,11 +399,14 @@ public final class cg {
                         if (i2 - 1 > 0) {
                             bt.fw = new int[i2 - 1];
                             int i4 = 0;
-                            for (int i5 = 0; i5 < bt.fA.length; i5++) {
+                            int i5 = 0;
+                            while (i5 < bt.fA.length) {
                                 if (bt.fA[i5] != a && bt.gf[i5].equals("")) {
                                     bt.fw[i4] = i5;
                                     i4++;
                                 }
+                                i5++;
+                                i4 = i4;
                             }
                         }
                     }
@@ -384,35 +417,6 @@ public final class cg {
                     }
                 }
             }
-        }
-    }
-
-    public final void a(Graphics graphics) {
-        if (this.f.aq != null) {
-            this.f.aq.a(graphics);
-            this.H.a(graphics);
-            this.I.a(graphics);
-            ca.a(graphics, this.f.aq.a + 5, this.f.aq.b + 32, this.f.aq.c - 11, this.G, 1);
-        }
-        ca.a(graphics, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 50, 50, 1);
-        graphics.setColor(2917024);
-        graphics.fillRect(this.f.aq.a + 5 + 25 + (this.f.aq.c / 2), this.f.aq.b + 32 + 10, 50, 50);
-        graphics.setColor(9360850);
-        graphics.drawRect(this.f.aq.a + 5 + 25 + (this.f.aq.c / 2), this.f.aq.b + 32 + 10, 49, 49);
-        a(0, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 50, 50);
-        a(1, this.f.aq.a + 5 + 25 + (this.f.aq.c / 2), this.f.aq.b + 32 + 10, 50, 50);
-        ca.d(graphics, this.J[this.K][0], this.J[this.K][1], 50, 50);
-        if (a != -1 && this.h != null) {
-            this.g.a(graphics, this.h, (int[]) null, 0, 0, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 0, 0);
-        }
-        if (k == -1 || this.i == null) {
-            graphics.setColor(16776960);
-            graphics.drawString("副宠", this.f.aq.a + 5 + 25 + (this.f.aq.c / 2) + 25, this.f.aq.b + 32 + 10 + (t.j / 4) + 25, 65);
-        } else {
-            this.g.a(graphics, this.i, (int[]) null, 0, 0, this.f.aq.a + 5 + 25 + (this.f.aq.c / 2), this.f.aq.b + 32 + 10, 0, 0);
-        }
-        if (this.e.l == 1) {
-            ca.c(graphics);
         }
     }
 }

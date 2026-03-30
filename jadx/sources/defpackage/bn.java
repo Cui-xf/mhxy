@@ -1,9 +1,8 @@
 package defpackage;
 
 import java.io.DataInputStream;
-import java.io.IOException;
 
-/* loaded from: java版梦回西游3区251011.jar:bn.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class bn {
     public int a;
     public String b;
@@ -28,7 +27,7 @@ public final class bn {
     public short[] u;
     public byte v = 0;
 
-    public final void a(DataInputStream dataInputStream) throws IOException {
+    public final void a(DataInputStream dataInputStream) {
         this.a = dataInputStream.readInt();
         this.b = dataInputStream.readUTF();
         this.h = dataInputStream.readShort();
@@ -50,18 +49,11 @@ public final class bn {
         this.s = dataInputStream.readUTF();
         this.t = dataInputStream.readInt();
         int i = dataInputStream.readByte();
-        if (i <= 0) {
-            return;
-        }
-        this.u = new short[i];
-        byte b = 0;
-        while (true) {
-            byte b2 = b;
-            if (b2 >= i) {
-                return;
+        if (i > 0) {
+            this.u = new short[i];
+            for (byte b = 0; b < i; b = (byte) (b + 1)) {
+                this.u[b] = dataInputStream.readShort();
             }
-            this.u[b2] = dataInputStream.readShort();
-            b = (byte) (b2 + 1);
         }
     }
 }

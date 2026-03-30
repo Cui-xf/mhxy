@@ -2,7 +2,7 @@ package defpackage;
 
 import java.util.Vector;
 
-/* loaded from: java版梦回西游3区251011.jar:ar.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public abstract class ar {
     public au d;
     public String e;

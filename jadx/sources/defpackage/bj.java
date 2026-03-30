@@ -4,132 +4,8 @@ import javax.microedition.rms.RecordStore;
 import javax.microedition.rms.RecordStoreException;
 import javax.microedition.rms.RecordStoreNotOpenException;
 
-/* loaded from: java版梦回西游3区251011.jar:bj.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class bj {
-    /* JADX WARN: Type inference failed for: r0v2, types: [boolean, java.lang.Throwable] */
-    public static void a(byte[] bArr, String str) {
-        RecordStore recordStore = null;
-        ?? D = d(str);
-        try {
-            try {
-                RecordStore recordStoreA = a(str, (boolean) D);
-                recordStore = recordStoreA;
-                recordStoreA.addRecord(bArr, 0, bArr.length);
-                RecordStore recordStore2 = recordStore;
-                if (recordStore2 != null) {
-                    try {
-                        recordStore2 = recordStore;
-                        recordStore2.closeRecordStore();
-                    } catch (RecordStoreNotOpenException e) {
-                        recordStore2.printStackTrace();
-                    } catch (RecordStoreException e2) {
-                        recordStore2.printStackTrace();
-                    }
-                }
-            } catch (RecordStoreException e3) {
-                D.printStackTrace();
-                RecordStore recordStore3 = recordStore;
-                if (recordStore3 != null) {
-                    try {
-                        recordStore3 = recordStore;
-                        recordStore3.closeRecordStore();
-                    } catch (RecordStoreNotOpenException e4) {
-                        recordStore3.printStackTrace();
-                    } catch (RecordStoreException e5) {
-                        recordStore3.printStackTrace();
-                    }
-                }
-            }
-        } catch (Throwable th) {
-            RecordStore recordStore4 = recordStore;
-            if (recordStore4 != null) {
-                try {
-                    recordStore4 = recordStore;
-                    recordStore4.closeRecordStore();
-                } catch (RecordStoreNotOpenException e6) {
-                    recordStore4.printStackTrace();
-                } catch (RecordStoreException e7) {
-                    recordStore4.printStackTrace();
-                }
-            }
-            throw th;
-        }
-    }
-
-    public static byte[] a(String str) {
-        if (!d(str)) {
-            return null;
-        }
-        Throwable th = null;
-        RecordStore recordStore = null;
-        try {
-            try {
-                RecordStore recordStoreA = a(str, false);
-                recordStore = recordStoreA;
-                if (recordStoreA.getNumRecords() + 1 > 1) {
-                    byte[] record = recordStore.getRecord(1);
-                    RecordStore recordStore2 = recordStore;
-                    if (recordStore2 != null) {
-                        try {
-                            recordStore2 = recordStore;
-                            recordStore2.closeRecordStore();
-                        } catch (RecordStoreException e) {
-                            recordStore2.printStackTrace();
-                        } catch (RecordStoreNotOpenException e2) {
-                            recordStore2.printStackTrace();
-                        }
-                    }
-                    return record;
-                }
-                RecordStore recordStore3 = recordStore;
-                if (recordStore3 == null) {
-                    return null;
-                }
-                try {
-                    recordStore3 = recordStore;
-                    recordStore3.closeRecordStore();
-                    return null;
-                } catch (RecordStoreException e3) {
-                    recordStore3.printStackTrace();
-                    return null;
-                } catch (RecordStoreNotOpenException e4) {
-                    recordStore3.printStackTrace();
-                    return null;
-                }
-            } catch (RecordStoreException e5) {
-                th.printStackTrace();
-                RecordStore recordStore4 = recordStore;
-                if (recordStore4 == null) {
-                    return null;
-                }
-                try {
-                    recordStore4 = recordStore;
-                    recordStore4.closeRecordStore();
-                    return null;
-                } catch (RecordStoreException e6) {
-                    recordStore4.printStackTrace();
-                    return null;
-                } catch (RecordStoreNotOpenException e7) {
-                    recordStore4.printStackTrace();
-                    return null;
-                }
-            }
-        } catch (Throwable th2) {
-            RecordStore recordStore5 = recordStore;
-            if (recordStore5 != null) {
-                try {
-                    recordStore5 = recordStore;
-                    recordStore5.closeRecordStore();
-                } catch (RecordStoreException e8) {
-                    recordStore5.printStackTrace();
-                } catch (RecordStoreNotOpenException e9) {
-                    recordStore5.printStackTrace();
-                }
-            }
-            throw th2;
-        }
-    }
-
     private static RecordStore a(String str, boolean z) {
         if (!z) {
             return RecordStore.openRecordStore(str, !z);
@@ -138,17 +14,134 @@ public final class bj {
         return RecordStore.openRecordStore(str, z);
     }
 
-    private static boolean d(String str) {
-        String[] strArrListRecordStores = RecordStore.listRecordStores();
-        if (strArrListRecordStores == null) {
-            return false;
-        }
-        for (int length = strArrListRecordStores.length - 1; length >= 0; length--) {
-            if (strArrListRecordStores[length].equals(str)) {
-                return true;
+    public static void a(byte[] bArr, String str) {
+        RecordStore recordStoreA = null;
+        try {
+            try {
+                recordStoreA = a(str, d(str));
+                recordStoreA.addRecord(bArr, 0, bArr.length);
+                if (recordStoreA != null) {
+                    try {
+                        recordStoreA.closeRecordStore();
+                    } catch (RecordStoreNotOpenException e) {
+                        e.printStackTrace();
+                    } catch (RecordStoreException e2) {
+                        e2.printStackTrace();
+                    }
+                }
+            } catch (RecordStoreException e3) {
+                e3.printStackTrace();
+                if (recordStoreA != null) {
+                    try {
+                        recordStoreA.closeRecordStore();
+                    } catch (RecordStoreException e4) {
+                        e4.printStackTrace();
+                    } catch (RecordStoreNotOpenException e5) {
+                        e5.printStackTrace();
+                    }
+                }
             }
+        } catch (Throwable th) {
+            if (recordStoreA != null) {
+                try {
+                    recordStoreA.closeRecordStore();
+                } catch (RecordStoreException e6) {
+                    e6.printStackTrace();
+                } catch (RecordStoreNotOpenException e7) {
+                    e7.printStackTrace();
+                }
+            }
+            throw th;
         }
-        return false;
+    }
+
+    private static boolean a(byte b) {
+        return (b & 255) > 128;
+    }
+
+    /* JADX WARN: Removed duplicated region for block: B:55:0x0053 A[EXC_TOP_SPLITTER, SYNTHETIC] */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    public static byte[] a(java.lang.String r4) {
+        /*
+            r0 = 0
+            r3 = 1
+            boolean r1 = d(r4)
+            if (r1 == 0) goto L1f
+            r1 = 0
+            javax.microedition.rms.RecordStore r2 = a(r4, r1)     // Catch: javax.microedition.rms.RecordStoreException -> L3a java.lang.Throwable -> L4f
+            int r1 = r2.getNumRecords()     // Catch: java.lang.Throwable -> L61 javax.microedition.rms.RecordStoreException -> L64
+            int r1 = r1 + 1
+            if (r1 <= r3) goto L2a
+            r1 = 1
+            byte[] r0 = r2.getRecord(r1)     // Catch: java.lang.Throwable -> L61 javax.microedition.rms.RecordStoreException -> L64
+            if (r2 == 0) goto L1f
+            r2.closeRecordStore()     // Catch: javax.microedition.rms.RecordStoreNotOpenException -> L20 javax.microedition.rms.RecordStoreException -> L25
+        L1f:
+            return r0
+        L20:
+            r1 = move-exception
+            r1.printStackTrace()
+            goto L1f
+        L25:
+            r1 = move-exception
+            r1.printStackTrace()
+            goto L1f
+        L2a:
+            if (r2 == 0) goto L1f
+            r2.closeRecordStore()     // Catch: javax.microedition.rms.RecordStoreNotOpenException -> L30 javax.microedition.rms.RecordStoreException -> L35
+            goto L1f
+        L30:
+            r1 = move-exception
+            r1.printStackTrace()
+            goto L1f
+        L35:
+            r1 = move-exception
+            r1.printStackTrace()
+            goto L1f
+        L3a:
+            r1 = move-exception
+            r2 = r0
+        L3c:
+            r1.printStackTrace()     // Catch: java.lang.Throwable -> L61
+            if (r2 == 0) goto L1f
+            r2.closeRecordStore()     // Catch: javax.microedition.rms.RecordStoreNotOpenException -> L45 javax.microedition.rms.RecordStoreException -> L4a
+            goto L1f
+        L45:
+            r1 = move-exception
+            r1.printStackTrace()
+            goto L1f
+        L4a:
+            r1 = move-exception
+            r1.printStackTrace()
+            goto L1f
+        L4f:
+            r1 = move-exception
+            r2 = r0
+        L51:
+            if (r2 == 0) goto L56
+            r2.closeRecordStore()     // Catch: javax.microedition.rms.RecordStoreNotOpenException -> L57 javax.microedition.rms.RecordStoreException -> L5c
+        L56:
+            throw r1
+        L57:
+            r0 = move-exception
+            r0.printStackTrace()
+            goto L56
+        L5c:
+            r0 = move-exception
+            r0.printStackTrace()
+            goto L56
+        L61:
+            r0 = move-exception
+            r1 = r0
+            goto L51
+        L64:
+            r1 = move-exception
+            goto L3c
+        */
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.bj.a(java.lang.String):byte[]");
     }
 
     public static boolean b(String str) {
@@ -191,8 +184,17 @@ public final class bj {
         return true;
     }
 
-    private static boolean a(byte b) {
-        return (b & 255) > 128;
+    private static boolean d(String str) {
+        String[] strArrListRecordStores = RecordStore.listRecordStores();
+        if (strArrListRecordStores == null) {
+            return false;
+        }
+        for (int length = strArrListRecordStores.length - 1; length >= 0; length--) {
+            if (strArrListRecordStores[length].equals(str)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static boolean e(String str) {

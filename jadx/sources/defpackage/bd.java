@@ -11,10 +11,11 @@ import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.TextField;
 
-/* loaded from: java版梦回西游3区251011.jar:bd.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class bd implements CommandListener {
     public ao a;
     public a b;
+    public TextField d;
     private String e;
     private String f;
     private short g;
@@ -24,7 +25,6 @@ public final class bd implements CommandListener {
     private int[] l;
     private String[] m;
     private Form n;
-    public TextField d;
     private Command o;
     private Command p;
     public byte c = 0;
@@ -33,6 +33,36 @@ public final class bd implements CommandListener {
     public bd(ao aoVar, a aVar, ai aiVar) {
         this.a = aoVar;
         this.b = aVar;
+    }
+
+    public final void a() {
+        this.c = (byte) 0;
+        ca.h = 0;
+        ca.g = 0;
+        String str = this.e;
+        String str2 = this.f;
+        short s = this.g;
+        if (str == null) {
+            str = "";
+        }
+        if (str2 == null) {
+            str2 = "";
+        }
+        this.n = new Form(str);
+        this.o = new Command("确定", 4, 2);
+        this.p = new Command("返回", 2, 1);
+        this.n.addCommand(this.p);
+        this.n.addCommand(this.o);
+        this.n.setCommandListener(this);
+        this.n.append(str2);
+        this.d = new TextField((String) null, "", s, 0);
+        this.n.append(this.d);
+        this.b.q.setCurrent(this.n);
+        this.b.a = 0;
+        this.b.b = 0;
+        this.b.j = this.b.k;
+        this.a.l = (short) 0;
+        this.a.k = (short) 129;
     }
 
     public final void a(DataInputStream dataInputStream) {
@@ -77,41 +107,7 @@ public final class bd implements CommandListener {
         }
     }
 
-    public final void a() {
-        this.c = (byte) 0;
-        ca.h = 0;
-        ca.g = 0;
-        String str = this.e;
-        String str2 = this.f;
-        short s = this.g;
-        String str3 = str2;
-        String str4 = str;
-        if (str4 == null) {
-            str4 = "";
-        }
-        if (str3 == null) {
-            str3 = "";
-        }
-        this.n = new Form(str4);
-        this.o = new Command("确定", 4, 2);
-        this.p = new Command("返回", 2, 1);
-        this.n.addCommand(this.p);
-        this.n.addCommand(this.o);
-        this.n.setCommandListener(this);
-        this.n.append(str3);
-        this.d = new TextField((String) null, "", s, 0);
-        this.n.append(this.d);
-        this.b.q.setCurrent(this.n);
-        this.b.a = 0;
-        this.b.b = 0;
-        this.b.j = this.b.k;
-        this.a.l = (short) 0;
-        this.a.k = (short) 129;
-    }
-
-    /* JADX WARN: Type inference failed for: r0v23, types: [byte[], java.lang.Throwable] */
-    public final byte[] a(short s, String str, String str2) throws IOException {
-        ?? byteArray;
+    public final byte[] a(short s, String str, String str2) {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -146,10 +142,9 @@ public final class bd implements CommandListener {
                 }
             }
             dataOutputStream.writeByte(-81);
-            byteArray = byteArrayOutputStream.toByteArray();
-            return byteArray;
+            return byteArrayOutputStream.toByteArray();
         } catch (IOException e) {
-            byteArray.printStackTrace();
+            e.printStackTrace();
             return null;
         }
     }

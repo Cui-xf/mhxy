@@ -1,6 +1,6 @@
 package defpackage;
 
-/* loaded from: java版梦回西游3区251011.jar:ak.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class ak {
     public int a;
     public String b;

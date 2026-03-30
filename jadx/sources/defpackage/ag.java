@@ -3,10 +3,10 @@ package defpackage;
 import com.yinhan.kjava.main.a;
 import javax.microedition.lcdui.Image;
 
-/* loaded from: java版梦回西游3区251011.jar:ag.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class ag {
-    private static String[] p = {"联系客服", "", ""};
     public static final String[] a;
+    private static String[] p = {"联系客服", "", ""};
     public be[] b = new be[0];
     public ak[] c = new ak[0];
     private int q = 0;
@@ -25,14 +25,15 @@ public final class ag {
     public int[] n = null;
     public boolean o = false;
 
-    public final String a() {
-        for (int i = 0; i < this.b.length; i++) {
-            be beVar = this.b[i];
-            if (beVar.d) {
-                return beVar.a;
-            }
-        }
-        return null;
+    static {
+        new String[1][0] = "查看";
+        a = new String[]{"Bug", "建议", "咨询"};
+    }
+
+    public static ag b() {
+        ag agVar = new ag();
+        agVar.b = new be[0];
+        return agVar;
     }
 
     public final int a(String str) {
@@ -44,10 +45,14 @@ public final class ag {
         return -1;
     }
 
-    public static ag b() {
-        ag agVar = new ag();
-        agVar.b = new be[0];
-        return agVar;
+    public final String a() {
+        for (int i = 0; i < this.b.length; i++) {
+            be beVar = this.b[i];
+            if (beVar.d) {
+                return beVar.a;
+            }
+        }
+        return null;
     }
 
     public final void c() {
@@ -70,7 +75,7 @@ public final class ag {
 
     public final void d() {
         this.o = false;
-        this.q = 1 + this.b.length;
+        this.q = this.b.length + 1;
         this.d = new String[this.q];
         this.e = new String[this.q];
         this.f = new String[this.q];
@@ -83,7 +88,7 @@ public final class ag {
         this.r[0] = "";
         this.g[0] = a.af.a("103").a;
         this.h[0] = 4915330;
-        int i = 0 + 1;
+        int i = 1;
         for (int i2 = 0; i2 < this.b.length; i2++) {
             this.d[i] = this.b[i2].b;
             this.e[i] = "";
@@ -100,10 +105,5 @@ public final class ag {
             this.h[i] = 9118290;
             i++;
         }
-    }
-
-    static {
-        new String[1][0] = "查看";
-        a = new String[]{"Bug", "建议", "咨询"};
     }
 }

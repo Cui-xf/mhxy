@@ -3,7 +3,7 @@ package defpackage;
 import com.yinhan.kjava.main.a;
 import javax.microedition.lcdui.Graphics;
 
-/* loaded from: java版梦回西游3区251011.jar:cj.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class cj {
     public bc a;
     public int[] b;
@@ -24,19 +24,12 @@ public final class cj {
     }
 
     public final void a(Graphics graphics, ai aiVar, int i, int i2) {
-        if (this.a == null) {
-            return;
-        }
-        byte b = 0;
-        while (true) {
-            byte b2 = b;
-            if (b2 >= this.b.length) {
-                return;
+        if (this.a != null) {
+            for (byte b = 0; b < this.b.length; b = (byte) (b + 1)) {
+                if (this.b[b] != 0 && this.c[b] != 0) {
+                    aiVar.a(graphics, this.a, (int[]) null, 0, 0, this.b[b], this.c[b], 20, 0);
+                }
             }
-            if (this.b[b2] != 0 && this.c[b2] != 0) {
-                aiVar.a(graphics, this.a, (int[]) null, 0, 0, this.b[b2], this.c[b2], 20, 0);
-            }
-            b = (byte) (b2 + 1);
         }
     }
 }

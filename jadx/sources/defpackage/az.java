@@ -4,8 +4,28 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
-/* loaded from: java版梦回西游3区251011.jar:az.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class az {
+    public short A;
+    public byte D;
+    public byte E;
+    public byte F;
+    public byte G;
+    public byte H;
+    public byte I;
+    public byte J;
+    public byte K;
+    public byte L;
+    public byte M;
+    public byte N;
+    public byte O;
+    public byte P;
+    public byte Q;
+    public byte R;
+    public int S;
+    public byte T;
+    private String W;
+    private bw X;
     public short a;
     public String b;
     public short c;
@@ -30,26 +50,6 @@ public final class az {
     public int v;
     public short y;
     public short z;
-    public short A;
-    public byte D;
-    public byte E;
-    public byte F;
-    public byte G;
-    public byte H;
-    public byte I;
-    public byte J;
-    public byte K;
-    public byte L;
-    public byte M;
-    public byte N;
-    public byte O;
-    public byte P;
-    public byte Q;
-    public byte R;
-    public int S;
-    public byte T;
-    private String W;
-    private bw X;
     public bc w = null;
     public boolean x = false;
     public String[] B = null;
@@ -62,27 +62,6 @@ public final class az {
 
     public final short a() {
         return this.w == null ? (short) (this.c - 8) : (short) (this.c - (this.w.g() / 2));
-    }
-
-    public final short b() {
-        if (this.w == null) {
-            return (short) (this.d - 30);
-        }
-        return (short) (this.d - (this.w.h() == 0 ? (short) 30 : this.w.h()));
-    }
-
-    public final short c() {
-        if (this.w == null || this.w == null || this.w.g() == 0) {
-            return (short) 16;
-        }
-        return this.w.g();
-    }
-
-    public final short d() {
-        if (this.w == null || this.w.h() == 0) {
-            return (short) 30;
-        }
-        return this.w.h();
     }
 
     public final void a(DataInputStream dataInputStream) throws IOException {
@@ -176,7 +155,7 @@ public final class az {
         int i5 = t.j;
         this.Y = new int[4];
         this.Y[2] = i4;
-        this.Y[3] = (this.X.a() * i5) + 10;
+        this.Y[3] = (i5 * this.X.a()) + 10;
         this.Y[0] = (t.b - this.Y[2]) / 2;
         this.Y[1] = s;
     }
@@ -198,17 +177,37 @@ public final class az {
         graphics.setClip(0, 0, t.b, t.c);
         if (this.Z >= 0) {
             int i3 = this.Y[1] - i2;
-            int i4 = i3;
-            if (i3 + this.Y[3] > t.c) {
-                i4 = (t.c - this.Y[3]) - 4;
+            if (this.Y[3] + i3 > t.c) {
+                i3 = (t.c - this.Y[3]) - 4;
             }
-            ca.a(graphics, 1009050, 150, this.Y[0], i4, this.Y[2], this.Y[3]);
+            ca.a(graphics, 1009050, 150, this.Y[0], i3, this.Y[2], this.Y[3]);
             if (this.Z >= 3) {
-                this.X.a(graphics, this.Y[0] + 5, i4 + 5, 20);
+                this.X.a(graphics, this.Y[0] + 5, i3 + 5, 20);
             }
         }
         this.aa = true;
         this.Z++;
+    }
+
+    public final short b() {
+        if (this.w == null) {
+            return (short) (this.d - 30);
+        }
+        return (short) (this.d - (this.w.h() == 0 ? (short) 30 : this.w.h()));
+    }
+
+    public final short c() {
+        if (this.w == null || this.w == null || this.w.g() == 0) {
+            return (short) 16;
+        }
+        return this.w.g();
+    }
+
+    public final short d() {
+        if (this.w == null || this.w.h() == 0) {
+            return (short) 30;
+        }
+        return this.w.h();
     }
 
     public final void e() {

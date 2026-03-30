@@ -1,10 +1,9 @@
 package defpackage;
 
 import java.io.DataInputStream;
-import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
-/* loaded from: java版梦回西游3区251011.jar:bv.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class bv {
     public short a;
     public short b;
@@ -35,22 +34,6 @@ public final class bv {
         this.i = b;
     }
 
-    public final void a(DataInputStream dataInputStream) throws IOException {
-        this.c = dataInputStream.readInt();
-        dataInputStream.readUTF();
-        this.e = dataInputStream.readShort();
-        this.f = dataInputStream.readShort();
-        this.g = dataInputStream.readShort();
-        int i = dataInputStream.readByte();
-        this.j = new int[i];
-        this.k = new String[i];
-        this.h = bu.a(String.valueOf((int) this.g), (byte) 2);
-        for (int i2 = 0; i2 < i; i2++) {
-            this.j[i2] = dataInputStream.readInt();
-            this.k[i2] = dataInputStream.readUTF();
-        }
-    }
-
     public final short a() {
         if (this.d == null) {
             return (short) 0;
@@ -59,16 +42,6 @@ public final class bv {
             return (short) 16;
         }
         return this.d.g();
-    }
-
-    public final short b() {
-        if (this.d == null) {
-            return (short) 0;
-        }
-        if (this.d.h() == 0) {
-            return (short) 24;
-        }
-        return this.d.h();
     }
 
     public final void a(byte b) {
@@ -95,10 +68,36 @@ public final class bv {
         }
     }
 
+    public final void a(DataInputStream dataInputStream) {
+        this.c = dataInputStream.readInt();
+        dataInputStream.readUTF();
+        this.e = dataInputStream.readShort();
+        this.f = dataInputStream.readShort();
+        this.g = dataInputStream.readShort();
+        int i = dataInputStream.readByte();
+        this.j = new int[i];
+        this.k = new String[i];
+        this.h = bu.a(String.valueOf((int) this.g), (byte) 2);
+        for (int i2 = 0; i2 < i; i2++) {
+            this.j[i2] = dataInputStream.readInt();
+            this.k[i2] = dataInputStream.readUTF();
+        }
+    }
+
     public final void a(Graphics graphics, ai aiVar, int i, int i2, byte b) {
         if (this.d == null || this.d.k == null) {
             return;
         }
         aiVar.a(graphics, this.d.k[this.d.f], this.d.g(), this.d.h(), null, i, i2, this.e, this.f, 20, 0);
+    }
+
+    public final short b() {
+        if (this.d == null) {
+            return (short) 0;
+        }
+        if (this.d.h() == 0) {
+            return (short) 24;
+        }
+        return this.d.h();
     }
 }

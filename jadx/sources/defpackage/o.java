@@ -3,15 +3,18 @@ package defpackage;
 import com.yinhan.kjava.main.a;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
-/* loaded from: java版梦回西游3区251011.jar:o.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class o {
-    private ao i;
-    private a j;
-    private ai k;
-    private int[][] l;
+    private static String A;
+    private static byte[] B;
+    private static int[] C;
+    private static int[] D;
+    private static int E;
+    public static int g;
     private static String m;
     private static String n;
     private static String o;
@@ -21,18 +24,11 @@ public final class o {
     private static String s;
     private static short t;
     private static String u;
-    public int f;
-    public static int g;
     private static short v;
     private static String w;
     private static long x;
     private static String y;
     private static short z;
-    private static String A;
-    private static byte[] B;
-    private static int[] C;
-    private static int[] D;
-    private static int E;
     private String F;
     private int[][] G;
     private int H;
@@ -40,6 +36,11 @@ public final class o {
     private int J;
     private bf K;
     private bf L;
+    public int f;
+    private ao i;
+    private a j;
+    private ai k;
+    private int[][] l;
     public static byte e = -1;
     public static byte h = 0;
     public byte a = 0;
@@ -58,45 +59,27 @@ public final class o {
         this.k = aiVar;
     }
 
-    public final void a(int i, short s2, int i2) {
-        this.i.l = (short) 0;
-        this.b = (byte) i;
-        this.c = s2;
-        this.d = i2;
-        e();
-        if (bt.kr != null) {
-            this.l = new int[bt.kr.length][4];
+    private void a(int i, int i2, int i3, int i4, int i5) {
+        if (this.G == null || this.G.length <= i) {
+            return;
         }
-        this.i.a(bt.kr);
-        this.j.aq.b();
-        this.j.aq.a(bt.kp);
-        this.j.aq.a(false);
-        this.j.aq.a(30);
-        this.j.at.a(bt.a(this.j.l), t.i, (byte) 1);
-        this.j.au.a("确定");
-        this.j.aq.a(this.j.at);
-        if (t.c > 220) {
-            this.j.aq.a(this.j.au);
-        }
-        this.j.aq.a(t.f, t.g, t.d, t.e);
-        int iStringWidth = this.j.aq.a + 10 + t.i.stringWidth("宝石:");
-        int i3 = this.j.aq.b + 37;
-        if (this.l != null) {
-            for (int i4 = 0; i4 < this.l.length; i4++) {
-                int i5 = i4;
-                int i6 = iStringWidth + 2 + (i4 * 17);
-                if (this.l != null && this.l.length > i5) {
-                    this.l[i5][0] = i6;
-                    this.l[i5][1] = i3;
-                    this.l[i5][2] = 17;
-                    this.l[i5][3] = 17;
-                }
-            }
-        }
-        this.j.j = this.j.k;
-        ao aoVar = this.i;
-        this.i.k = (short) 64;
-        aoVar.j = (short) 64;
+        this.G[i][0] = i2;
+        this.G[i][1] = i3;
+        this.G[i][2] = 17;
+        this.G[i][3] = 17;
+    }
+
+    public static void a(DataInputStream dataInputStream) throws IOException {
+        m = dataInputStream.readUTF();
+        dataInputStream.readShort();
+        n = dataInputStream.readUTF();
+        o = dataInputStream.readUTF();
+        p = dataInputStream.readUTF();
+        q = dataInputStream.readUTF();
+        r = dataInputStream.readUTF();
+        s = dataInputStream.readUTF();
+        t = dataInputStream.readShort();
+        u = dataInputStream.readUTF();
     }
 
     private void e() {
@@ -110,9 +93,94 @@ public final class o {
         }
     }
 
-    public final void a(int i) throws IOException {
+    private void f() {
+        if (this.G != null) {
+            for (int i = 0; i < this.G.length; i++) {
+                if (this.G[i] != null) {
+                    this.G[i] = null;
+                }
+            }
+            this.G = null;
+        }
+    }
+
+    private static void f(int i) {
+        if (bt.bC == null || bt.bC.size() <= 0) {
+            return;
+        }
+        int i2 = 0;
+        while (true) {
+            int i3 = i2;
+            if (i3 >= bt.bC.size()) {
+                return;
+            }
+            bn bnVar = (bn) bt.bC.elementAt(i3);
+            if (bnVar != null && bnVar.a == i) {
+                bnVar.v = (byte) (bnVar.v + 1);
+            }
+            i2 = i3 + 1;
+        }
+    }
+
+    private void g() {
+        this.F = null;
+        if (this.f == 0) {
+            if (w != null) {
+                this.F = w;
+            }
+        } else {
+            if (this.f != 1 || A == null) {
+                return;
+            }
+            this.F = y;
+        }
+    }
+
+    public final int a(int i, int i2, int i3) {
+        if (this.l == null) {
+            return i;
+        }
+        for (int i4 = 0; i4 < this.l.length; i4++) {
+            if (i2 >= this.l[i4][0] && i2 <= this.l[i4][0] + this.l[i4][2] && i3 >= this.l[i4][1] && i3 <= this.l[i4][1] + this.l[i4][3]) {
+                if (this.b == i4) {
+                    return 268435456;
+                }
+                this.b = (byte) (i4 - 1);
+                return 2;
+            }
+        }
+        return i;
+    }
+
+    public final void a() {
+        this.i.l = (short) 0;
+        this.j.aq.b();
+        this.j.aq.a("装备打孔");
+        this.j.ar.a((Image[]) null, bt.kn, (String[]) null, (String[]) null);
+        this.j.au.a("确定");
+        if (bt.km == null || bt.km.length <= 0) {
+            this.j.at.a((String) null, t.i, (byte) 2);
+        } else {
+            this.j.at.a(bt.i(this.j.l, this.j.ar.g()), t.i, (byte) 2);
+        }
+        this.j.at.a((byte) 1);
+        this.j.aq.a(this.j.ar);
+        this.j.aq.a(this.j.at);
+        if (t.c > 220) {
+            this.j.aq.a(this.j.au);
+        }
+        this.j.aq.a(t.f, t.g, t.d, t.e);
+        a aVar = this.j;
+        this.j.k = (short) 7;
+        aVar.j = (short) 7;
+        ao aoVar = this.i;
+        this.i.k = (short) 65;
+        aoVar.j = (short) 65;
+    }
+
+    public final void a(int i) {
         byte length;
-        byte b;
+        byte b = 0;
         if (this.i.l != 0) {
             if (this.i.l == 1) {
                 ca.b(i);
@@ -239,9 +307,8 @@ public final class o {
                 if (this.b <= 0) {
                     length = (byte) (bt.kr.length - 1);
                 } else {
-                    byte b2 = (byte) (this.b - 1);
-                    length = b2;
-                    this.b = b2;
+                    length = (byte) (this.b - 1);
+                    this.b = length;
                 }
                 this.b = length;
                 return;
@@ -250,12 +317,9 @@ public final class o {
         }
         if (i == 2 || i == 518) {
             if (bt.kr != null) {
-                if (this.b >= ((byte) (bt.kr.length - 1))) {
-                    b = 0;
-                } else {
-                    byte b3 = (byte) (this.b + 1);
-                    b = b3;
-                    this.b = b3;
+                if (this.b < ((byte) (bt.kr.length - 1))) {
+                    b = (byte) (this.b + 1);
+                    this.b = b;
                 }
                 this.b = b;
                 return;
@@ -267,20 +331,20 @@ public final class o {
             e();
             bt.K();
             if (this.c == 4) {
-                byte b4 = (byte) this.i.aq;
-                byte b5 = (byte) this.i.ar;
+                byte b2 = (byte) this.i.aq;
+                byte b3 = (byte) this.i.ar;
                 this.i.e(this.d);
-                this.i.aq = b4;
-                this.i.ar = b5;
+                this.i.aq = b2;
+                this.i.ar = b3;
                 this.i.q();
                 return;
             }
             if (this.c == 11) {
-                byte b6 = (byte) this.i.aq;
-                byte b7 = (byte) this.i.ar;
+                byte b4 = (byte) this.i.aq;
+                byte b5 = (byte) this.i.ar;
                 this.i.n(this.d);
-                this.i.aq = b6;
-                this.i.ar = b7;
+                this.i.aq = b4;
+                this.i.ar = b5;
                 return;
             }
             if (this.c == 23) {
@@ -292,11 +356,11 @@ public final class o {
                 return;
             }
             if (this.c == 22) {
-                byte b8 = (byte) this.j.ax;
-                byte b9 = (byte) this.i.ar;
+                byte b6 = (byte) this.j.ax;
+                byte b7 = (byte) this.i.ar;
                 this.i.b((byte) this.d, true);
-                this.j.ax = b8;
-                this.i.ar = b9;
+                this.j.ax = b6;
+                this.i.ar = b7;
                 return;
             }
             if (this.c == 102) {
@@ -335,15 +399,55 @@ public final class o {
         }
     }
 
+    public final void a(int i, short s2, int i2) {
+        this.i.l = (short) 0;
+        this.b = (byte) i;
+        this.c = s2;
+        this.d = i2;
+        e();
+        if (bt.kr != null) {
+            this.l = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, bt.kr.length, 4);
+        }
+        this.i.a(bt.kr);
+        this.j.aq.b();
+        this.j.aq.a(bt.kp);
+        this.j.aq.a(false);
+        this.j.aq.a(30);
+        this.j.at.a(bt.a(this.j.l), t.i, (byte) 1);
+        this.j.au.a("确定");
+        this.j.aq.a(this.j.at);
+        if (t.c > 220) {
+            this.j.aq.a(this.j.au);
+        }
+        this.j.aq.a(t.f, t.g, t.d, t.e);
+        int iStringWidth = t.i.stringWidth("宝石:") + this.j.aq.a + 10;
+        int i3 = this.j.aq.b + 37;
+        if (this.l != null) {
+            for (int i4 = 0; i4 < this.l.length; i4++) {
+                int i5 = iStringWidth + 2 + (i4 * 17);
+                if (this.l != null && this.l.length > i4) {
+                    this.l[i4][0] = i5;
+                    this.l[i4][1] = i3;
+                    this.l[i4][2] = 17;
+                    this.l[i4][3] = 17;
+                }
+            }
+        }
+        this.j.j = this.j.k;
+        ao aoVar = this.i;
+        this.i.k = (short) 64;
+        aoVar.j = (short) 64;
+    }
+
     public final void a(Graphics graphics) {
         if (this.j.aq != null) {
             this.j.aq.a(30);
             this.j.aq.a(graphics);
             ca.a(graphics, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, 30, 1);
-            ca.a(graphics, "宝石", this.j.aq.a + 10, this.j.aq.b + 35 + t.a(25), 20, 16776960, 0);
+            ca.a(graphics, "宝石", this.j.aq.a + 10, t.a(25) + this.j.aq.b + 35, 20, 16776960, 0);
         }
         if (bt.kr != null) {
-            this.i.a(graphics, this.j.aq.a + 10 + t.i.stringWidth("宝石:"), this.j.aq.b + 37, 17, 17, bt.kr.length, 1);
+            this.i.a(graphics, t.i.stringWidth("宝石:") + this.j.aq.a + 10, this.j.aq.b + 37, 17, 17, bt.kr.length, 1);
             byte b = 0;
             while (true) {
                 byte b2 = b;
@@ -351,10 +455,10 @@ public final class o {
                     break;
                 }
                 if (bt.kr[b2] <= -1) {
-                    ca.a(graphics, 125269879, 207, this.j.aq.a + 10 + t.i.stringWidth("宝石:") + 2 + (b2 * 17), this.j.aq.b + 39, 17, 17);
+                    ca.a(graphics, 125269879, 207, (b2 * 17) + this.j.aq.a + 10 + t.i.stringWidth("宝石:") + 2, this.j.aq.b + 39, 17, 17);
                 }
                 if (bt.kr[b2] > 0) {
-                    a.f.a(graphics, ao.b(bt.kr[b2]), (int[]) null, (aj) null, 0, 0, this.j.aq.a + 10 + t.i.stringWidth("宝石:") + 2 + (b2 * 17), this.j.aq.b + 39, 0, 0);
+                    a.f.a(graphics, ao.b(bt.kr[b2]), (int[]) null, (aj) null, 0, 0, (b2 * 17) + this.j.aq.a + 10 + t.i.stringWidth("宝石:") + 2, this.j.aq.b + 39, 0, 0);
                 }
                 b = (byte) (b2 + 1);
             }
@@ -368,45 +472,86 @@ public final class o {
         }
     }
 
-    public final int a(int i, int i2, int i3) {
-        if (this.l != null) {
-            for (int i4 = 0; i4 < this.l.length; i4++) {
-                if (i2 >= this.l[i4][0] && i2 <= this.l[i4][0] + this.l[i4][2] && i3 >= this.l[i4][1] && i3 <= this.l[i4][1] + this.l[i4][3]) {
-                    if (this.b == i4) {
-                        return 268435456;
-                    }
-                    this.b = (byte) (i4 - 1);
-                    return 2;
+    public final void a(boolean z2) {
+        if (z2) {
+            this.f = 0;
+            this.M = 0;
+        }
+        f();
+        if (B != null) {
+            this.O = new boolean[B.length];
+            this.G = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, B.length + 2, 4);
+        } else {
+            this.G = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 2, 4);
+        }
+        if (this.K == null) {
+            this.K = a.ag.a("jianding_02");
+            this.L = a.ag.a("jianding_01");
+        }
+        if (g != -1) {
+            this.i.a(new short[]{v});
+        }
+        if (x != -1) {
+            this.i.a(new short[]{z});
+        }
+        this.j.aq.b();
+        this.j.aq.a("装备洗炼");
+        this.j.aq.a(false);
+        this.J = (Math.max((int) ao.x.c, t.j) * 7) + 16;
+        this.H = ao.x.c + t.j + 8;
+        this.I = (((t.e - 32) - l.b()) - (this.J + 4)) - this.H;
+        this.j.aq.a(this.H + this.I);
+        this.j.at.a((String) null, t.i, (byte) 1);
+        this.j.aq.a(this.j.at);
+        this.j.at.a((byte) 1);
+        this.j.au.a("确定");
+        this.j.aq.a(this.j.au);
+        this.j.aq.a(t.f, t.g, t.d, t.e);
+        if (this.G != null) {
+            int iMax = 0;
+            int i = 0;
+            for (int i2 = 0; i2 < this.G.length; i2++) {
+                if (i2 == 0) {
+                    i = (this.j.aq.a + (this.j.aq.c / 4)) - 8;
+                    iMax = (((this.j.aq.b + 32) + this.H) - 4) - 17;
+                } else if (i2 == 1) {
+                    i = (this.j.aq.a + ((this.j.aq.c / 4) * 3)) - 8;
+                } else if (i2 > 1) {
+                    i = ((this.j.aq.c - 17) / 2) + this.j.aq.a;
+                    iMax = ((i2 - 1) * (Math.max((int) ao.x.c, t.j) + 1)) + this.j.aq.b + 32 + this.H + this.I + 4 + 2;
                 }
+                a(i2, i, iMax, 17, 17);
+            }
+        }
+        g();
+        ca.l = 0;
+        this.i.l = (short) 0;
+        this.j.j = this.j.k;
+        ao aoVar = this.i;
+        this.i.k = (short) 106;
+        aoVar.j = (short) 106;
+    }
+
+    public final int b(int i, int i2, int i3) {
+        if (this.G == null) {
+            return i;
+        }
+        for (int i4 = 0; i4 < this.G.length; i4++) {
+            if (i2 >= this.G[i4][0] && i2 <= this.G[i4][0] + this.G[i4][2] && i3 >= this.G[i4][1] && i3 <= this.G[i4][1] + this.G[i4][3]) {
+                if (this.f == i4) {
+                    return 1073741824;
+                }
+                this.f = i4;
+                ca.l = 0;
+                g();
+                return i;
             }
         }
         return i;
     }
 
-    public final void a() {
-        this.i.l = (short) 0;
-        this.j.aq.b();
-        this.j.aq.a("装备打孔");
-        this.j.ar.a((Image[]) null, bt.kn, (String[]) null, (String[]) null);
-        this.j.au.a("确定");
-        if (bt.km == null || bt.km.length <= 0) {
-            this.j.at.a((String) null, t.i, (byte) 2);
-        } else {
-            this.j.at.a(bt.i(this.j.l, this.j.ar.g()), t.i, (byte) 2);
-        }
-        this.j.at.a((byte) 1);
-        this.j.aq.a(this.j.ar);
-        this.j.aq.a(this.j.at);
-        if (t.c > 220) {
-            this.j.aq.a(this.j.au);
-        }
-        this.j.aq.a(t.f, t.g, t.d, t.e);
-        a aVar = this.j;
-        this.j.k = (short) 7;
-        aVar.j = (short) 7;
-        ao aoVar = this.i;
-        this.i.k = (short) 65;
-        aoVar.j = (short) 65;
+    public final void b() {
+        this.j.b("此界面正在维护，如有不便之处请谅解!");
     }
 
     public final void b(int i) {
@@ -452,122 +597,6 @@ public final class o {
         }
     }
 
-    public final void b(Graphics graphics) {
-        if (this.i.l == 0 && this.j.aq != null) {
-            this.j.aq.a(graphics);
-        }
-        if (this.i.l == 1) {
-            ca.c(graphics);
-        }
-    }
-
-    public final void b() {
-        this.j.b("此界面正在维护，如有不便之处请谅解!");
-    }
-
-    public final void c(int i) {
-        if (i == 536870912) {
-            ao aoVar = this.i;
-            this.i.k = (short) 0;
-            aoVar.j = (short) 0;
-        }
-    }
-
-    public static void a(DataInputStream dataInputStream) throws IOException {
-        m = dataInputStream.readUTF();
-        dataInputStream.readShort();
-        n = dataInputStream.readUTF();
-        o = dataInputStream.readUTF();
-        p = dataInputStream.readUTF();
-        q = dataInputStream.readUTF();
-        r = dataInputStream.readUTF();
-        s = dataInputStream.readUTF();
-        t = dataInputStream.readShort();
-        u = dataInputStream.readUTF();
-    }
-
-    public final void c() {
-        this.j.aq.b();
-        this.j.aq.a(m);
-        an anVar = this.j.at;
-        StringBuffer stringBuffer = this.j.l;
-        StringBuffer stringBuffer2 = stringBuffer;
-        if (stringBuffer == null) {
-            stringBuffer2 = new StringBuffer();
-        } else {
-            t.a(stringBuffer2);
-        }
-        stringBuffer2.append(m);
-        stringBuffer2.append("\t");
-        if (n != null && n.length() > 0) {
-            stringBuffer2.append(n);
-            stringBuffer2.append('\t');
-        }
-        if (o != null && o.length() > 0) {
-            stringBuffer2.append(o);
-            stringBuffer2.append('\t');
-        }
-        if (p != null && p.length() > 0) {
-            stringBuffer2.append(p);
-            stringBuffer2.append('\t');
-        }
-        if (q != null && q.length() > 0) {
-            stringBuffer2.append(q);
-            stringBuffer2.append('\t');
-        }
-        if (r != null && r.length() > 0) {
-            stringBuffer2.append(r);
-            stringBuffer2.append('\t');
-        }
-        if (s != null && s.length() > 0) {
-            stringBuffer2.append(s);
-            stringBuffer2.append('\t');
-        }
-        if (t > 0) {
-            stringBuffer2.append("要求装备等级:");
-            stringBuffer2.append((int) t);
-            stringBuffer2.append('\t');
-        }
-        if (u != null && !u.equals("")) {
-            stringBuffer2.append(u);
-        }
-        anVar.a(stringBuffer2.toString(), t.i, (byte) 1);
-        this.j.au.a("确定");
-        this.j.aq.a(this.j.at);
-        if (t.c > 220) {
-            this.j.aq.a(this.j.au);
-        }
-        this.j.aq.a(t.f, t.g, t.d, t.e);
-        a aVar = this.j;
-        this.j.k = (short) 7;
-        aVar.j = (short) 7;
-        ao aoVar = this.i;
-        this.i.k = (short) 67;
-        aoVar.j = (short) 67;
-    }
-
-    public final void d(int i) {
-        if (this.j.aq != null) {
-            this.j.aq.b(i);
-        }
-        if (i == 536870912) {
-            m = null;
-            u = null;
-            n = null;
-            o = null;
-            q = null;
-            r = null;
-            s = null;
-            a((int) this.a, this.c, this.d);
-        }
-    }
-
-    public final void c(Graphics graphics) {
-        if (this.j.aq != null) {
-            this.j.aq.a(graphics);
-        }
-    }
-
     public final void b(DataInputStream dataInputStream) throws IOException {
         g = dataInputStream.readInt();
         v = dataInputStream.readShort();
@@ -601,40 +630,85 @@ public final class o {
         g();
     }
 
-    private static void f(int i) {
-        if (bt.bC == null || bt.bC.size() <= 0) {
-            return;
+    public final void b(Graphics graphics) {
+        if (this.i.l == 0 && this.j.aq != null) {
+            this.j.aq.a(graphics);
         }
-        for (int i2 = 0; i2 < bt.bC.size(); i2++) {
-            bn bnVar = (bn) bt.bC.elementAt(i2);
-            if (bnVar != null && bnVar.a == i) {
-                bnVar.v = (byte) (bnVar.v + 1);
-            }
+        if (this.i.l == 1) {
+            ca.c(graphics);
         }
     }
 
-    private void f() {
-        if (this.G != null) {
-            for (int i = 0; i < this.G.length; i++) {
-                if (this.G[i] != null) {
-                    this.G[i] = null;
-                }
-            }
-            this.G = null;
-        }
-    }
-
-    private void g() {
-        this.F = null;
-        if (this.f == 0) {
-            if (w != null) {
-                this.F = w;
-            }
+    public final void c() {
+        this.j.aq.b();
+        this.j.aq.a(m);
+        an anVar = this.j.at;
+        StringBuffer stringBuffer = this.j.l;
+        if (stringBuffer == null) {
+            stringBuffer = new StringBuffer();
         } else {
-            if (this.f != 1 || A == null) {
-                return;
-            }
-            this.F = y;
+            t.a(stringBuffer);
+        }
+        stringBuffer.append(m);
+        stringBuffer.append("\t");
+        if (n != null && n.length() > 0) {
+            stringBuffer.append(n);
+            stringBuffer.append('\t');
+        }
+        if (o != null && o.length() > 0) {
+            stringBuffer.append(o);
+            stringBuffer.append('\t');
+        }
+        if (p != null && p.length() > 0) {
+            stringBuffer.append(p);
+            stringBuffer.append('\t');
+        }
+        if (q != null && q.length() > 0) {
+            stringBuffer.append(q);
+            stringBuffer.append('\t');
+        }
+        if (r != null && r.length() > 0) {
+            stringBuffer.append(r);
+            stringBuffer.append('\t');
+        }
+        if (s != null && s.length() > 0) {
+            stringBuffer.append(s);
+            stringBuffer.append('\t');
+        }
+        if (t > 0) {
+            stringBuffer.append("要求装备等级:");
+            stringBuffer.append((int) t);
+            stringBuffer.append('\t');
+        }
+        if (u != null && !u.equals("")) {
+            stringBuffer.append(u);
+        }
+        anVar.a(stringBuffer.toString(), t.i, (byte) 1);
+        this.j.au.a("确定");
+        this.j.aq.a(this.j.at);
+        if (t.c > 220) {
+            this.j.aq.a(this.j.au);
+        }
+        this.j.aq.a(t.f, t.g, t.d, t.e);
+        a aVar = this.j;
+        this.j.k = (short) 7;
+        aVar.j = (short) 7;
+        ao aoVar = this.i;
+        this.i.k = (short) 67;
+        aoVar.j = (short) 67;
+    }
+
+    public final void c(int i) {
+        if (i == 536870912) {
+            ao aoVar = this.i;
+            this.i.k = (short) 0;
+            aoVar.j = (short) 0;
+        }
+    }
+
+    public final void c(Graphics graphics) {
+        if (this.j.aq != null) {
+            this.j.aq.a(graphics);
         }
     }
 
@@ -657,68 +731,110 @@ public final class o {
         bt.N();
     }
 
-    public final void a(boolean z2) {
-        if (z2) {
-            this.f = 0;
-            this.M = 0;
+    public final void d(int i) {
+        if (this.j.aq != null) {
+            this.j.aq.b(i);
         }
-        f();
-        if (B != null) {
-            this.O = new boolean[B.length];
-            this.G = new int[2 + B.length][4];
-        } else {
-            this.G = new int[2][4];
+        if (i == 536870912) {
+            m = null;
+            u = null;
+            n = null;
+            o = null;
+            q = null;
+            r = null;
+            s = null;
+            a((int) this.a, this.c, this.d);
         }
-        if (this.K == null) {
-            this.K = a.ag.a("jianding_02");
-            this.L = a.ag.a("jianding_01");
-        }
-        if (g != -1) {
-            this.i.a(new short[]{v});
-        }
-        if (x != -1) {
-            this.i.a(new short[]{z});
-        }
-        this.j.aq.b();
-        this.j.aq.a("装备洗炼");
-        this.j.aq.a(false);
-        this.J = (Math.max((int) ao.x.c, t.j) * 7) + 16;
-        this.H = ao.x.c + t.j + 8;
-        this.I = (((t.e - 32) - l.b()) - (this.J + 4)) - this.H;
-        this.j.aq.a(this.H + this.I);
-        this.j.at.a((String) null, t.i, (byte) 1);
-        this.j.aq.a(this.j.at);
-        this.j.at.a((byte) 1);
-        this.j.au.a("确定");
-        this.j.aq.a(this.j.au);
-        this.j.aq.a(t.f, t.g, t.d, t.e);
-        int i = 0;
-        int iMax = 0;
-        if (this.G != null) {
-            for (int i2 = 0; i2 < this.G.length; i2++) {
-                if (i2 == 0) {
-                    i = (this.j.aq.a + (this.j.aq.c / 4)) - 8;
-                    iMax = (((this.j.aq.b + 32) + this.H) - 4) - 17;
-                } else if (i2 == 1) {
-                    i = (this.j.aq.a + ((this.j.aq.c / 4) * 3)) - 8;
-                } else if (i2 > 1) {
-                    i = this.j.aq.a + ((this.j.aq.c - 17) / 2);
-                    iMax = this.j.aq.b + 32 + this.H + this.I + 4 + 2 + ((i2 - 1) * (Math.max((int) ao.x.c, t.j) + 1));
-                }
-                a(i2, i, iMax, 17, 17);
-            }
-        }
-        g();
-        ca.l = 0;
-        this.i.l = (short) 0;
-        this.j.j = this.j.k;
-        ao aoVar = this.i;
-        this.i.k = (short) 106;
-        aoVar.j = (short) 106;
     }
 
-    public final void e(int i) throws IOException {
+    public final void d(Graphics graphics) {
+        ai aiVar;
+        bf bfVar;
+        Graphics graphics2;
+        int i = this.j.aq.b + 32 + this.H + this.I + 4;
+        int i2 = ((this.j.aq.c - 21) - 31) / 2;
+        int i3 = this.j.aq.a + 10;
+        int i4 = i3 + i2 + 31;
+        if (this.j.aq != null) {
+            this.j.aq.a(graphics);
+            ca.a(graphics, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, this.H, 1);
+            ca.a(graphics, this.j.aq.a + 5, this.j.aq.b + 32 + this.H + 1, this.j.aq.c - 11, this.I - 2, 1);
+            ca.a(graphics, i3, i, i2, this.J - 9, 1);
+            ca.a(graphics, i4, i, i2, this.J - 9, 1);
+        }
+        if (this.G != null) {
+            int i5 = 0;
+            while (true) {
+                int i6 = i5;
+                if (i6 >= this.G.length) {
+                    break;
+                }
+                if (i6 < 2) {
+                    aiVar = this.k;
+                    bfVar = ao.x;
+                    graphics2 = graphics;
+                } else if (this.O == null || i6 - 2 >= this.O.length) {
+                    i5 = i6 + 1;
+                } else {
+                    aiVar = this.k;
+                    if (this.O[i6 - 2]) {
+                        bfVar = this.K;
+                        graphics2 = graphics;
+                    } else {
+                        bfVar = this.L;
+                        graphics2 = graphics;
+                    }
+                }
+                aiVar.a(graphics2, bfVar, (int[]) null, (aj) null, 0, 0, this.G[i6][0], this.G[i6][1], 0, 0);
+                i5 = i6 + 1;
+            }
+        }
+        graphics.setColor(255);
+        graphics.drawString("装备孔", this.G[0][0] + 8, this.G[0][1] - 2, 33);
+        if (g != -1) {
+            this.k.a(graphics, ao.b(v), (int[]) null, (aj) null, 0, 0, this.G[0][0], this.G[0][1], 0, 0);
+        }
+        graphics.setColor(255);
+        graphics.drawString("洗炼符", this.G[1][0] + 8, this.G[1][1] - 2, 33);
+        if (x != -1) {
+            this.k.a(graphics, ao.b(z), (int[]) null, (aj) null, 0, 0, this.G[1][0], this.G[1][1], 0, 0);
+        }
+        graphics.drawString("洗炼锁", this.G[0][0] + 17, this.j.aq.b + 32 + this.H + 3, 20);
+        graphics.drawString(new StringBuffer().append(this.M).append(" / ").append(E).toString(), this.G[1][0] - 5, this.j.aq.b + 32 + this.H + 3, 20);
+        int i7 = i + 2;
+        int iMax = Math.max((int) ao.x.c, t.j);
+        graphics.drawString("当    前", (i2 / 2) + i3, i7, 17);
+        graphics.drawString("最    大", (i2 / 2) + i4, i7, 17);
+        if (C != null) {
+            for (int i8 = 0; i8 < C.length; i8++) {
+                i7 += iMax + 1;
+                graphics.drawString(this.P[B[i8]], i3 + 4, i7, 20);
+                graphics.drawString(new StringBuffer().append("+").append(C[i8]).toString(), (i3 + i2) - 4, i7, 24);
+                graphics.drawString(this.P[B[i8]], i4 + 4, i7, 20);
+                graphics.drawString(new StringBuffer().append("+").append(D[i8]).toString(), (i4 + i2) - 4, i7, 24);
+            }
+        }
+        ca.d(graphics, this.G[this.f][0], this.G[this.f][1], 17, 17);
+        if (this.i.l != 0) {
+            if (this.i.l == 1) {
+                ca.c(graphics);
+            }
+        } else {
+            if (this.F == null && this.F == "") {
+                return;
+            }
+            if (this.f == 1) {
+                ca.b(graphics, this.F, this.G[1][0] + 8, this.G[1][1] + 8, t.c - 5, 1);
+            } else if (this.f == 0) {
+                ca.b(graphics, this.F, this.G[0][0] + 8, this.G[0][1] + 8, t.c - 5, 1);
+            }
+        }
+    }
+
+    public final void e(int i) {
         bn bnVar;
+        byte[] bArrA;
+        byte[] bArr;
         if (this.i.l == 0) {
             if (this.j.aq != null) {
                 this.j.aq.b(i);
@@ -785,9 +901,7 @@ public final class o {
             ca.b(i);
             if (i == 268435456 || i == 1073741824) {
                 if (ca.o == 0) {
-                    byte[] bArrA = null;
                     if (this.f == 0) {
-                        byte[] bArr = null;
                         if (this.O != null) {
                             bArr = new byte[this.M];
                             byte b = 0;
@@ -797,10 +911,12 @@ public final class o {
                                     b = (byte) (b + 1);
                                 }
                             }
+                        } else {
+                            bArr = null;
                         }
                         bArrA = bz.a((short) 4688, g, x, (byte) 3, h, bt.jG, bArr, bt.ad);
-                    } else if (this.f == 1) {
-                        bArrA = bz.a((short) 4688, g, x, (byte) 2, h, bt.jG, B, bt.ad);
+                    } else {
+                        bArrA = this.f == 1 ? bz.a((short) 4688, g, x, (byte) 2, h, bt.jG, B, bt.ad) : null;
                     }
                     if (bArrA != null) {
                         a.i.a(new w((short) 4688, bArrA));
@@ -819,16 +935,15 @@ public final class o {
                                 bnVar = null;
                                 break;
                             }
-                            bn bnVar2 = (bn) bt.bC.elementAt(i4);
-                            if (bnVar2 != null && bnVar2.a == i3) {
-                                bnVar = bnVar2;
+                            bnVar = (bn) bt.bC.elementAt(i4);
+                            if (bnVar != null && bnVar.a == i3) {
                                 break;
+                            } else {
+                                i4++;
                             }
-                            i4++;
                         }
-                        bn bnVar3 = bnVar;
                         if (bnVar != null) {
-                            bt.a(bnVar3);
+                            bt.a(bnVar);
                         } else {
                             this.j.b("装备不存在");
                         }
@@ -849,103 +964,5 @@ public final class o {
             }
         }
         this.j.a = 0;
-    }
-
-    private void a(int i, int i2, int i3, int i4, int i5) {
-        if (this.G == null || this.G.length <= i) {
-            return;
-        }
-        this.G[i][0] = i2;
-        this.G[i][1] = i3;
-        this.G[i][2] = 17;
-        this.G[i][3] = 17;
-    }
-
-    public final int b(int i, int i2, int i3) {
-        if (this.G != null) {
-            for (int i4 = 0; i4 < this.G.length; i4++) {
-                if (i2 >= this.G[i4][0] && i2 <= this.G[i4][0] + this.G[i4][2] && i3 >= this.G[i4][1] && i3 <= this.G[i4][1] + this.G[i4][3]) {
-                    if (this.f == i4) {
-                        return 1073741824;
-                    }
-                    this.f = i4;
-                    ca.l = 0;
-                    g();
-                    return i;
-                }
-            }
-        }
-        return i;
-    }
-
-    public final void d(Graphics graphics) {
-        ai aiVar;
-        Graphics graphics2;
-        bf bfVar;
-        int i = this.j.aq.b + 32 + this.H + this.I + 4;
-        int i2 = ((this.j.aq.c - 21) - 31) / 2;
-        int i3 = this.j.aq.a + 10;
-        int i4 = i3 + i2 + 31;
-        if (this.j.aq != null) {
-            this.j.aq.a(graphics);
-            ca.a(graphics, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, this.H, 1);
-            ca.a(graphics, this.j.aq.a + 5, this.j.aq.b + 32 + this.H + 1, this.j.aq.c - 11, this.I - 2, 1);
-            ca.a(graphics, i3, i, i2, this.J - 9, 1);
-            ca.a(graphics, i4, i, i2, this.J - 9, 1);
-        }
-        if (this.G != null) {
-            for (int i5 = 0; i5 < this.G.length; i5++) {
-                if (i5 < 2) {
-                    aiVar = this.k;
-                    graphics2 = graphics;
-                    bfVar = ao.x;
-                } else if (this.O != null && i5 - 2 < this.O.length) {
-                    aiVar = this.k;
-                    graphics2 = graphics;
-                    bfVar = this.O[i5 - 2] ? this.K : this.L;
-                }
-                aiVar.a(graphics2, bfVar, (int[]) null, (aj) null, 0, 0, this.G[i5][0], this.G[i5][1], 0, 0);
-            }
-        }
-        graphics.setColor(255);
-        graphics.drawString("装备孔", this.G[0][0] + 8, this.G[0][1] - 2, 33);
-        if (g != -1) {
-            this.k.a(graphics, ao.b(v), (int[]) null, (aj) null, 0, 0, this.G[0][0], this.G[0][1], 0, 0);
-        }
-        graphics.setColor(255);
-        graphics.drawString("洗炼符", this.G[1][0] + 8, this.G[1][1] - 2, 33);
-        if (x != -1) {
-            this.k.a(graphics, ao.b(z), (int[]) null, (aj) null, 0, 0, this.G[1][0], this.G[1][1], 0, 0);
-        }
-        graphics.drawString("洗炼锁", this.G[0][0] + 17, this.j.aq.b + 32 + this.H + 3, 20);
-        graphics.drawString(new StringBuffer().append(this.M).append(" / ").append(E).toString(), this.G[1][0] - 5, this.j.aq.b + 32 + this.H + 3, 20);
-        int i6 = i + 2;
-        int iMax = Math.max((int) ao.x.c, t.j);
-        graphics.drawString("当    前", i3 + (i2 / 2), i6, 17);
-        graphics.drawString("最    大", i4 + (i2 / 2), i6, 17);
-        if (C != null) {
-            for (int i7 = 0; i7 < C.length; i7++) {
-                i6 += iMax + 1;
-                graphics.drawString(this.P[B[i7]], i3 + 4, i6, 20);
-                graphics.drawString(new StringBuffer().append("+").append(C[i7]).toString(), (i3 + i2) - 4, i6, 24);
-                graphics.drawString(this.P[B[i7]], i4 + 4, i6, 20);
-                graphics.drawString(new StringBuffer().append("+").append(D[i7]).toString(), (i4 + i2) - 4, i6, 24);
-            }
-        }
-        ca.d(graphics, this.G[this.f][0], this.G[this.f][1], 17, 17);
-        if (this.i.l != 0) {
-            if (this.i.l == 1) {
-                ca.c(graphics);
-            }
-        } else {
-            if (this.F == null && this.F == "") {
-                return;
-            }
-            if (this.f == 1) {
-                ca.b(graphics, this.F, this.G[1][0] + 8, this.G[1][1] + 8, t.c - 5, 1);
-            } else if (this.f == 0) {
-                ca.b(graphics, this.F, this.G[0][0] + 8, this.G[0][1] + 8, t.c - 5, 1);
-            }
-        }
     }
 }

@@ -3,12 +3,11 @@ package defpackage;
 import com.yinhan.kjava.main.a;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import javax.microedition.lcdui.Graphics;
 
-/* loaded from: java版梦回西游3区251011.jar:as.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class as {
-    private ao b;
-    public a a;
     private static int c;
     private static short d;
     private static String e;
@@ -18,6 +17,8 @@ public final class as {
     private static byte[] i;
     private static String j;
     private static String k;
+    public a a;
+    private ao b;
     private int l;
     private int m;
     private int n;
@@ -27,6 +28,64 @@ public final class as {
     public as(ao aoVar, a aVar, ai aiVar) {
         this.b = aoVar;
         this.a = aVar;
+    }
+
+    private void a() {
+        if (k == null || k.equals("")) {
+            this.a.at.a((String) null, t.i, (byte) 1);
+        } else {
+            this.a.at.a(k, t.i, (byte) 1);
+        }
+    }
+
+    private void b() {
+        if (j != null) {
+            new bw(j, (short) t.i.stringWidth(j));
+        }
+    }
+
+    private static void b(int i2) {
+        if (bt.bC == null || bt.bC.size() <= 0) {
+            return;
+        }
+        int i3 = 0;
+        while (true) {
+            int i4 = i3;
+            if (i4 >= bt.bC.size()) {
+                return;
+            }
+            bn bnVar = (bn) bt.bC.elementAt(i4);
+            if (bnVar != null && bnVar.a == i2) {
+                bnVar.v = (byte) (bnVar.v + 1);
+            }
+            i3 = i4 + 1;
+        }
+    }
+
+    public final void a(int i2) {
+        if (this.b.l == 0 && this.a.aq != null) {
+            this.a.aq.b(i2);
+        }
+        if (i2 == 514 || i2 == 520 || i2 == 1 || i2 == 4) {
+            return;
+        }
+        if (i2 != 268435456 && i2 != 1073741824 && i2 != 517) {
+            if (i2 == 536870912) {
+                this.b.m();
+                return;
+            }
+            return;
+        }
+        c = -1;
+        d = (short) -1;
+        e = null;
+        f = null;
+        g = null;
+        j = null;
+        k = null;
+        h = null;
+        bt.N();
+        a(true);
     }
 
     public final void a(DataInputStream dataInputStream) throws IOException {
@@ -67,6 +126,13 @@ public final class as {
         b();
     }
 
+    public final void a(Graphics graphics) {
+        if (this.b.l != 0 || this.a.aq == null) {
+            return;
+        }
+        this.a.aq.a(graphics);
+    }
+
     public final void a(boolean z) {
         if (z) {
             this.n = 0;
@@ -86,7 +152,7 @@ public final class as {
             }
             this.p = null;
         }
-        this.p = new int[4][4];
+        this.p = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 4, 4);
         this.a.aq.b();
         this.a.aq.a("装备升星");
         this.a.aq.a(false);
@@ -107,64 +173,5 @@ public final class as {
         ao aoVar = this.b;
         this.b.k = (short) 102;
         aoVar.j = (short) 102;
-    }
-
-    private void a() {
-        if (k == null || k.equals("")) {
-            this.a.at.a((String) null, t.i, (byte) 1);
-        } else {
-            this.a.at.a(k, t.i, (byte) 1);
-        }
-    }
-
-    private void b() {
-        if (j != null) {
-            new bw(j, (short) t.i.stringWidth(j));
-        }
-    }
-
-    public final void a(int i2) {
-        if (this.b.l == 0 && this.a.aq != null) {
-            this.a.aq.b(i2);
-        }
-        if (i2 == 514 || i2 == 520 || i2 == 1 || i2 == 4) {
-            return;
-        }
-        if (i2 != 268435456 && i2 != 1073741824 && i2 != 517) {
-            if (i2 == 536870912) {
-                this.b.m();
-                return;
-            }
-            return;
-        }
-        c = -1;
-        d = (short) -1;
-        e = null;
-        f = null;
-        g = null;
-        j = null;
-        k = null;
-        h = null;
-        bt.N();
-        a(true);
-    }
-
-    public final void a(Graphics graphics) {
-        if (this.b.l != 0 || this.a.aq == null) {
-            return;
-        }
-        this.a.aq.a(graphics);
-    }
-
-    private static void b(int i2) {
-        if (bt.bC == null || bt.bC.size() <= 0) {
-            return;
-        }
-        for (int i3 = 0; i3 < bt.bC.size(); i3++) {
-            bn bnVar = (bn) bt.bC.elementAt(i3);
-            if (bnVar != null && bnVar.a == i2) {
-                bnVar.v = (byte) (bnVar.v + 1);
-            }
-        }
     }
 }

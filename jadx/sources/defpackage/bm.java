@@ -2,7 +2,7 @@ package defpackage;
 
 import javax.microedition.lcdui.Font;
 
-/* loaded from: java版梦回西游3区251011.jar:bm.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class bm extends al {
     private String a;
     private String b;
@@ -20,13 +20,9 @@ public final class bm extends al {
     private Font n = t.i;
 
     @Override // defpackage.al
-    public final void b(int i) {
-    }
-
-    @Override // defpackage.al
     public final int b(int i, int i2) {
         boolean z;
-        boolean z2;
+        boolean z2 = true;
         if (i < this.c || i > this.c + this.e || i2 < this.d || i2 > this.d + this.f) {
             this.m = t.i;
             this.k = 16776960;
@@ -46,9 +42,12 @@ public final class bm extends al {
         } else {
             this.l = 16711680;
             this.n = t.h;
-            z2 = true;
         }
         return z2 ? 536870912 : 0;
+    }
+
+    @Override // defpackage.al
+    public final void b(int i) {
     }
 
     @Override // defpackage.al

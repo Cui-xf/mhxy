@@ -7,7 +7,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.Vector;
 
-/* loaded from: java版梦回西游3区251011.jar:q.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class q {
     private a a;
     private DataInputStream b;
@@ -20,125 +20,457 @@ public final class q {
     private short d = -1;
     private Vector i = new Vector();
 
+    private static bs a(Vector vector, bs bsVar) {
+        bs bsVar2 = null;
+        int i = 0;
+        while (i < vector.size()) {
+            bs bsVar3 = (bs) vector.elementAt(i);
+            if (bsVar2 != null && bsVar2.a(bsVar) <= bsVar3.a(bsVar)) {
+                bsVar3 = bsVar2;
+            }
+            i++;
+            bsVar2 = bsVar3;
+        }
+        return bsVar2;
+    }
+
+    private void a() {
+        bt.C = new byte[this.b.readByte()];
+        for (byte b = 0; b < bt.C.length; b = (byte) (b + 1)) {
+            bt.C[b] = this.b.readByte();
+        }
+    }
+
+    /* JADX WARN: Removed duplicated region for block: B:161:0x020d A[SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:88:0x01bb A[Catch: Exception -> 0x02f2, TryCatch #0 {Exception -> 0x02f2, blocks: (B:2:0x0000, B:4:0x0004, B:6:0x000c, B:9:0x0015, B:11:0x0020, B:13:0x0024, B:14:0x002a, B:16:0x002f, B:17:0x003e, B:19:0x0042, B:21:0x004d, B:23:0x0054, B:25:0x0058, B:66:0x0153, B:68:0x0158, B:69:0x0160, B:72:0x0167, B:73:0x017b, B:75:0x017e, B:77:0x0182, B:80:0x0187, B:82:0x018c, B:84:0x0192, B:86:0x01a0, B:88:0x01bb, B:90:0x01cd, B:92:0x01d1, B:94:0x01d5, B:97:0x01db, B:99:0x01ec, B:102:0x01ff, B:104:0x0204, B:106:0x0211, B:105:0x020d, B:27:0x005e, B:30:0x0064, B:32:0x0069, B:34:0x006f, B:37:0x0082, B:40:0x0098, B:43:0x00ae, B:46:0x00c4, B:48:0x00cd, B:50:0x00d3, B:52:0x00f5, B:54:0x0108, B:56:0x0116, B:57:0x0120, B:59:0x0126, B:64:0x0130, B:129:0x02a4, B:116:0x022a, B:117:0x024c, B:119:0x0252, B:124:0x025c, B:128:0x0282, B:130:0x02a9, B:136:0x02c7, B:139:0x02cd, B:141:0x02d0, B:143:0x02e2, B:145:0x02e5, B:146:0x02ed, B:132:0x02af, B:134:0x02b2), top: B:154:0x0000 }] */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    private void a(java.io.DataInputStream r14) throws java.io.IOException {
+        /*
+            Method dump skipped, instructions count: 774
+            To view this dump change 'Code comments level' option to 'DEBUG'
+        */
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.q.a(java.io.DataInputStream):void");
+    }
+
+    private static boolean a(Vector vector, int i, int i2) {
+        for (int i3 = 0; i3 < vector.size(); i3++) {
+            if (i == ((bs) vector.elementAt(i3)).a && i2 == ((bs) vector.elementAt(i3)).b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void b() {
+        bt.c(this.b);
+        if (a.e != null && a.e.I != null) {
+            if (t.o && this.a.aj != null) {
+                if (!a.e.I.c.isEmpty()) {
+                    a.e.I.c.removeAllElements();
+                    a.e.I.b();
+                }
+                if (this.a.aj != null) {
+                    this.a.aj.c = 0;
+                    this.a.aj.d = 0;
+                }
+                this.a.b = 0;
+                this.a.a = 0;
+            }
+            a.e.I.j = bt.at;
+            a.e.I.k = bt.au;
+        }
+        if (bt.bs == 0 && bt.q != null && bt.s == 0) {
+            for (int i = 0; i < bt.q.length; i++) {
+                bt.q[i].f.removeAllElements();
+                if (bt.q[i].j == -1 && bt.q[i].k == -1) {
+                    bt.q[i].j = bt.at;
+                    bt.q[i].k = bt.au;
+                }
+                bt.q[i].l = bt.at;
+                bt.q[i].m = bt.au;
+            }
+        }
+        if (a.e == null) {
+            this.a.g();
+            a.e.I.d();
+            return;
+        }
+        if (a.e != null) {
+            a.e.I.a((int) bt.av);
+        }
+        if (a.e.Y != bt.ar || a.e.I.h()) {
+            if (bt.bs == -1) {
+                a.e.aY = 0L;
+            }
+            if (a.e.I.d != null) {
+                a.e.I.d.e.removeAllElements();
+                a.e.I.d.h = bt.at;
+                a.e.I.d.i = bt.au;
+                a.e.I.d.j = a.e.I.h;
+                a.e.I.d.a(a.e.I.h);
+            }
+            if (ao.i()) {
+                if (a.e.Y != bt.ar) {
+                    a.e.e();
+                } else {
+                    a.e.f();
+                }
+                a.e.I.i();
+                a.e.Y = bt.ar;
+            }
+            a.e.I.d();
+            return;
+        }
+        if (bt.bs == 0 && bt.q != null && bt.s == 0) {
+            a aVar = this.a;
+            Vector vector = new Vector();
+            this.e = (bt.q[0].j % 16 == 0 ? 0 : 1) + (bt.q[0].j / 16);
+            this.f = (bt.q[0].k % 16 == 0 ? 0 : 1) + (bt.q[0].k / 16);
+            this.g = (bt.q[0].l % 16 == 0 ? 0 : 1) + (bt.q[0].l / 16);
+            this.h = (bt.q[0].m % 16 == 0 ? 0 : 1) + (bt.q[0].m / 16);
+            if (this.e == this.g && this.f == this.h) {
+                return;
+            }
+            if (bt.q[0].f == null) {
+                bt.q[0].f = new Vector();
+            }
+            Vector vectorA = a(a.e.f, vector, new bs(this.e, this.f), new bs(this.g, this.h));
+            int size = vectorA.size();
+            for (int i2 = 0; i2 < bt.q.length; i2++) {
+                bt.q[i2].f.removeAllElements();
+                int i3 = 0;
+                while (i3 < size) {
+                    bs bsVar = (bs) vectorA.elementAt(i3);
+                    bs bsVar2 = i3 < size + (-1) ? (bs) vectorA.elementAt(i3 + 1) : bsVar;
+                    if (bsVar.a != bsVar2.a) {
+                        if (bsVar.a > bsVar2.a) {
+                            for (int i4 = 0; i4 < 4; i4++) {
+                                bt.q[i2].f.addElement(new short[]{(short) ((bsVar.a << 4) - (i4 << 2)), (short) (bsVar.b << 4)});
+                            }
+                        } else {
+                            for (int i5 = 0; i5 < 4; i5++) {
+                                bt.q[i2].f.addElement(new short[]{(short) ((bsVar.a << 4) + (i5 << 2)), (short) (bsVar.b << 4)});
+                            }
+                        }
+                    } else if (bsVar.b != bsVar2.b) {
+                        if (bsVar.b > bsVar2.b) {
+                            for (int i6 = 0; i6 < 4; i6++) {
+                                bt.q[i2].f.addElement(new short[]{(short) (bsVar.a << 4), (short) ((bsVar.b << 4) - (i6 << 2))});
+                            }
+                        } else {
+                            for (int i7 = 0; i7 < 4; i7++) {
+                                bt.q[i2].f.addElement(new short[]{(short) (bsVar.a << 4), (short) ((bsVar.b << 4) + (i7 << 2))});
+                            }
+                        }
+                    }
+                    i3++;
+                }
+            }
+        }
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    /* JADX WARN: Type inference failed for: r1v9, types: [int] */
+    private static void b(DataInputStream dataInputStream) throws IOException {
+        long j = dataInputStream.readLong();
+        if (bq.g > 0 && bt.v <= 0) {
+            bt.v = j;
+            bq.g = -1;
+        }
+        short s = dataInputStream.readShort();
+        if (s > 0) {
+            for (short s2 = 0; s2 < s; s2++) {
+                int i = dataInputStream.readShort();
+                if (i > 0) {
+                    i[] iVarArr = new i[i];
+                    for (int i2 = 0; i2 < i; i2++) {
+                        iVarArr[i2] = new i();
+                        i iVar = iVarArr[i2];
+                        iVar.a = dataInputStream.readByte();
+                        iVar.b = dataInputStream.readByte();
+                        dataInputStream.readByte();
+                        iVar.c = dataInputStream.readByte();
+                        iVar.d = dataInputStream.readByte();
+                        iVar.e = dataInputStream.readShort();
+                        iVar.f = dataInputStream.readUTF();
+                    }
+                    a.e.g.a(iVarArr);
+                }
+            }
+            for (int i3 = 0; i3 < s; i3++) {
+                int i4 = dataInputStream.readShort();
+                if (i4 > 0) {
+                    ae[] aeVarArr = new ae[i4];
+                    for (int i5 = 0; i5 < i4; i5++) {
+                        aeVarArr[i5] = new ae();
+                        ae aeVar = aeVarArr[i5];
+                        aeVar.f = 0;
+                        aeVar.a = dataInputStream.readByte();
+                        aeVar.b = dataInputStream.readByte();
+                        aeVar.c = dataInputStream.readByte();
+                        aeVar.d = dataInputStream.readInt();
+                        aeVar.g = dataInputStream.readInt();
+                        aeVar.i = dataInputStream.readInt();
+                        aeVar.e = dataInputStream.readInt();
+                        aeVar.h = dataInputStream.readInt();
+                        aeVar.j = dataInputStream.readInt();
+                        aeVar.k = dataInputStream.readByte();
+                    }
+                    a.e.g.a(aeVarArr);
+                }
+            }
+            for (int i6 = 0; i6 < s; i6++) {
+                a.e.g.a(dataInputStream.readUTF());
+            }
+            if (a.e.k == 25 || a.e.k == 18 || !ao.i()) {
+                a.e.g.f = (short) 1;
+            }
+        }
+    }
+
+    private static boolean b(Vector vector, int i, int i2) {
+        for (int i3 = 0; i3 < vector.size(); i3++) {
+            if (i == ((bs) vector.elementAt(i3)).a && i2 == ((bs) vector.elementAt(i3)).b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void c() {
+        boolean z = this.b.readByte() == 1;
+        bt.bE = z;
+        if (z) {
+            bt.bF = this.b.readInt();
+        } else {
+            bt.bF = -1;
+        }
+        bt.bG = this.b.readInt();
+        bt.bH = this.b.readUTF();
+        if (bt.bE) {
+            a.e.k = (short) 2;
+        }
+        if (a.e.k != 2) {
+            if (a.e.k == 6) {
+                this.a.b("不处理");
+                return;
+            }
+            return;
+        }
+        ao.K = new bw(bt.bH, (short) (t.b - 20));
+        if (bt.bE) {
+            a.e.an = new String[]{"接受", "返回"};
+        } else if (bt.bK[a.e.ai] == -1) {
+            a.e.an = new String[]{"接受", "返回"};
+        } else if (bt.bK[a.e.ai] == 0) {
+            a.e.an = new String[]{"确定", "返回"};
+        } else if (bt.bK[a.e.ai] == 1) {
+            a.e.an = new String[]{"提交", "返回"};
+        }
+        ca.a(a.F, ao.K, a.e.an, (String[]) null, true);
+        this.a.j = this.a.k;
+        a.e.l = (short) 1;
+    }
+
+    private static void c(DataInputStream dataInputStream) throws IOException {
+        bt.am(dataInputStream);
+        a.e.l((byte) 1);
+    }
+
+    private void d() throws IOException {
+        bt.I(this.b);
+        if (a.e == null || !ao.i()) {
+            return;
+        }
+        if (a.e.k != 13) {
+            if (a.e.k == 36) {
+                a.e.b(false);
+                return;
+            }
+            if (a.e.k == 96 && a.e.ap) {
+                a.e.k(a.e.aE);
+                a.e.ap = false;
+                return;
+            } else if (a.e.k == 4 && a.e.bh) {
+                a.e.s(a.e.bg);
+                return;
+            } else {
+                if (a.e.k == 120) {
+                    a.e.t(this.a.ar.g());
+                    return;
+                }
+                return;
+            }
+        }
+        if (bt.fA == null) {
+            bt.B();
+            this.a.b("您没有宠物！");
+            return;
+        }
+        if (a.e.l == 6) {
+            a.e.k(a.e.aE);
+            return;
+        }
+        if (a.e.l == 8) {
+            if (this.a.j != 2) {
+                this.a.j = this.a.k;
+                return;
+            }
+            return;
+        }
+        if (o.e == 1) {
+            if (this.a.j != 2) {
+                this.a.j = this.a.k;
+                return;
+            }
+            return;
+        }
+        a.e.j(a.e.as);
+        if (this.a.j != 2) {
+            this.a.j = this.a.k;
+        }
+    }
+
+    private void e() throws IOException {
+        int i = this.b.readByte();
+        if (i <= 0) {
+            if (a.e != null) {
+                a.e.a((bp[]) null);
+                return;
+            }
+            return;
+        }
+        bt.s = this.b.readByte();
+        bp[] bpVarArr = new bp[i];
+        byte b = 1;
+        for (int i2 = 0; i2 < i; i2++) {
+            bpVarArr[i2] = new bp();
+            bpVarArr[i2].a(a.e, this.b);
+            if (bpVarArr[i2].s == 1) {
+                bpVarArr[i2].a = (byte) 0;
+            } else {
+                bpVarArr[i2].a = b;
+                b = (byte) (b + 1);
+            }
+        }
+        for (int i3 = 0; i3 < bpVarArr.length - 1; i3++) {
+            for (int i4 = 0; i4 < bpVarArr.length - 1; i4++) {
+                bp bpVar = bpVarArr[i4];
+                bp bpVar2 = bpVarArr[i4 + 1];
+                if (bpVar2.a < bpVar.a) {
+                    bpVarArr[i4] = bpVar2;
+                    bpVarArr[i4 + 1] = bpVar;
+                }
+            }
+        }
+        if (a.e != null) {
+            a.e.a(bpVarArr);
+        }
+    }
+
+    private void f() throws IOException {
+        byte b = this.b.readByte();
+        if (bt.fl != null) {
+            bt.v();
+        }
+        if (bt.fs != null) {
+            bt.w();
+        }
+        bt.fw = null;
+        bt.y();
+        bt.z();
+        bt.fg = 0L;
+        bt.fn = 0L;
+        a.e.am = null;
+        a.e.al = null;
+        if (ao.i()) {
+            a.f.a(a.e.f, ao.h, ao.i, true, false, 2109231);
+            a aVar = this.a;
+            this.a.k = (short) 7;
+            aVar.j = (short) 7;
+            ao aoVar = a.e;
+            a.e.k = (short) 0;
+            aoVar.j = (short) 0;
+        }
+        if (b == 1) {
+            this.a.b("交易成功!");
+        } else if (b == 0) {
+            this.a.b("交易取消!");
+        } else if (b == -1) {
+            this.a.b(this.b.readUTF());
+        }
+    }
+
+    public final Vector a(aw awVar, Vector vector, bs bsVar, bs bsVar2) {
+        if (awVar != null && vector != null) {
+            if (awVar.i != null) {
+                Vector vector2 = new Vector();
+                vector.removeAllElements();
+                vector.addElement(bsVar);
+                boolean z = false;
+                while (!vector.isEmpty()) {
+                    bs bsVarA = a(vector, bsVar2);
+                    boolean z2 = bsVarA.b(bsVar2) ? true : z;
+                    if (z2) {
+                        vector2.removeAllElements();
+                        vector2.addElement(bsVar2);
+                        bs bsVarA2 = a(vector, bsVar2);
+                        while (!bsVarA2.b(bsVar)) {
+                            bsVarA2 = bsVarA2.c;
+                            vector2.addElement(bsVarA2);
+                        }
+                        return vector2;
+                    }
+                    vector.removeElement(bsVarA);
+                    vector2.addElement(bsVarA);
+                    bs[] bsVarArr = {new bs(bsVarA.a, bsVarA.b - 1), new bs(bsVarA.a, bsVarA.b + 1), new bs(bsVarA.a - 1, bsVarA.b), new bs(bsVarA.a + 1, bsVarA.b)};
+                    for (int i = 0; i < bsVarArr.length; i++) {
+                        if ((bsVarArr[i].a != bsVarA.a || bsVarArr[i].b != bsVarA.b) && bsVarArr[i].a >= 0) {
+                            if (bsVarArr[i].a < (awVar.a % 16 == 0 ? 0 : 1) + (awVar.a / 16) + 1 && bsVarArr[i].b >= 0) {
+                                if (bsVarArr[i].b < (awVar.b % 16 == 0 ? 0 : 1) + (awVar.b / 16) + 1 && !a(vector, bsVarArr[i].a, bsVarArr[i].b) && !b(vector2, bsVarArr[i].a, bsVarArr[i].b) && a.f.a(awVar, (bsVarArr[i].a << 4) + 8, bsVarArr[i].b << 4) == 0 && !a.f.a((bsVarArr[i].a << 4) + 8, bsVarArr[i].b << 4)) {
+                                    vector.addElement(new bs(bsVarArr[i].a, bsVarArr[i].b, bsVarA));
+                                }
+                            }
+                        }
+                    }
+                    z = z2;
+                }
+                return new Vector();
+            }
+        }
+        return new Vector();
+    }
+
     public final void a(a aVar) {
         this.a = aVar;
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    /* JADX WARN: Type inference failed for: r0v10, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v1020 */
-    /* JADX WARN: Type inference failed for: r0v1021, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v1027, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v1069 */
-    /* JADX WARN: Type inference failed for: r0v1070, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v1076, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v1081 */
-    /* JADX WARN: Type inference failed for: r0v1082, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v1088, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v1178 */
-    /* JADX WARN: Type inference failed for: r0v1179, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v1185, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v1239 */
-    /* JADX WARN: Type inference failed for: r0v1240, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v1246, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v1311 */
-    /* JADX WARN: Type inference failed for: r0v1312, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v1318, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v1342 */
-    /* JADX WARN: Type inference failed for: r0v1343, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v1349, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v1360 */
-    /* JADX WARN: Type inference failed for: r0v1361, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v1367, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v1437 */
-    /* JADX WARN: Type inference failed for: r0v1438, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v1444, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v1496 */
-    /* JADX WARN: Type inference failed for: r0v1497, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v1503, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v17 */
-    /* JADX WARN: Type inference failed for: r0v1703 */
-    /* JADX WARN: Type inference failed for: r0v1704, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v1710, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v1714 */
-    /* JADX WARN: Type inference failed for: r0v1715 */
-    /* JADX WARN: Type inference failed for: r0v1716 */
-    /* JADX WARN: Type inference failed for: r0v1717 */
-    /* JADX WARN: Type inference failed for: r0v1718 */
-    /* JADX WARN: Type inference failed for: r0v1719 */
-    /* JADX WARN: Type inference failed for: r0v1720 */
-    /* JADX WARN: Type inference failed for: r0v1721 */
-    /* JADX WARN: Type inference failed for: r0v1722 */
-    /* JADX WARN: Type inference failed for: r0v1723 */
-    /* JADX WARN: Type inference failed for: r0v1724 */
-    /* JADX WARN: Type inference failed for: r0v1725 */
-    /* JADX WARN: Type inference failed for: r0v1726 */
-    /* JADX WARN: Type inference failed for: r0v1727 */
-    /* JADX WARN: Type inference failed for: r0v1728 */
-    /* JADX WARN: Type inference failed for: r0v1729 */
-    /* JADX WARN: Type inference failed for: r0v1730 */
-    /* JADX WARN: Type inference failed for: r0v1731 */
-    /* JADX WARN: Type inference failed for: r0v1732 */
-    /* JADX WARN: Type inference failed for: r0v1733 */
-    /* JADX WARN: Type inference failed for: r0v1734 */
-    /* JADX WARN: Type inference failed for: r0v1735 */
-    /* JADX WARN: Type inference failed for: r0v1736 */
-    /* JADX WARN: Type inference failed for: r0v1737 */
-    /* JADX WARN: Type inference failed for: r0v1738 */
-    /* JADX WARN: Type inference failed for: r0v1739 */
-    /* JADX WARN: Type inference failed for: r0v1740 */
-    /* JADX WARN: Type inference failed for: r0v1741 */
-    /* JADX WARN: Type inference failed for: r0v1742 */
-    /* JADX WARN: Type inference failed for: r0v1743 */
-    /* JADX WARN: Type inference failed for: r0v1744 */
-    /* JADX WARN: Type inference failed for: r0v1745 */
-    /* JADX WARN: Type inference failed for: r0v1746 */
-    /* JADX WARN: Type inference failed for: r0v1747 */
-    /* JADX WARN: Type inference failed for: r0v18, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v2 */
-    /* JADX WARN: Type inference failed for: r0v24, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v3, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v34 */
-    /* JADX WARN: Type inference failed for: r0v35, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v41, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v517 */
-    /* JADX WARN: Type inference failed for: r0v518, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v524, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v614 */
-    /* JADX WARN: Type inference failed for: r0v615, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v621, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r0v628 */
-    /* JADX WARN: Type inference failed for: r0v629, types: [java.lang.Throwable] */
-    /* JADX WARN: Type inference failed for: r0v635, types: [java.io.ByteArrayInputStream] */
-    /* JADX WARN: Type inference failed for: r8v0, types: [java.lang.Throwable, w] */
     public final void a(w wVar) {
         try {
-            if (wVar == 0) {
+            if (wVar == null) {
                 return;
             }
             try {
                 this.d = wVar.a();
                 if (this.d != 8192) {
                     if (wVar.b == null) {
-                        boolean z = wVar;
-                        ?? r0 = z;
-                        if (z) {
-                            q qVar = this;
-                            qVar.d = wVar.a();
-                            r0 = qVar;
+                        if (wVar != null) {
+                            this.d = wVar.a();
                         }
                         try {
                             if (this.b != null) {
                                 this.b.close();
                             }
                             if (this.c != null) {
-                                r0 = this.c;
-                                r0.close();
+                                this.c.close();
                                 return;
                             }
                             return;
                         } catch (IOException e) {
-                            r0.printStackTrace();
+                            e.printStackTrace();
                             return;
                         }
                     }
@@ -180,7 +512,7 @@ public final class q {
                                     this.a.b(bt.eC);
                                     break;
                                 } else {
-                                    this.a.b(t.Y[bt.eB < 0 ? (byte) 0 : bt.eB]);
+                                    this.a.b(t.Y[bt.eB >= 0 ? bt.eB : (byte) 0]);
                                     break;
                                 }
                             }
@@ -196,7 +528,7 @@ public final class q {
                     case 8195:
                         t.a("exec角色列表:");
                         bt.a(this.b);
-                        this.a.b(bt.W == null ? 0 : bt.W.length);
+                        this.a.b(bt.W != null ? bt.W.length : 0);
                         break;
                     case 8197:
                         bt.d(this.b);
@@ -289,25 +621,20 @@ public final class q {
                         break;
                     case 8207:
                         if (!ao.i()) {
-                            boolean z2 = wVar;
-                            ?? r02 = z2;
-                            if (z2) {
-                                q qVar2 = this;
-                                qVar2.d = wVar.a();
-                                r02 = qVar2;
+                            if (wVar != null) {
+                                this.d = wVar.a();
                             }
                             try {
                                 if (this.b != null) {
                                     this.b.close();
                                 }
                                 if (this.c != null) {
-                                    r02 = this.c;
-                                    r02.close();
+                                    this.c.close();
                                     return;
                                 }
                                 return;
                             } catch (IOException e2) {
-                                r02.printStackTrace();
+                                e2.printStackTrace();
                                 return;
                             }
                         }
@@ -336,25 +663,20 @@ public final class q {
                     case 8210:
                         bt.t(this.b);
                         if (a.e == null) {
-                            boolean z3 = wVar;
-                            ?? r03 = z3;
-                            if (z3) {
-                                q qVar3 = this;
-                                qVar3.d = wVar.a();
-                                r03 = qVar3;
+                            if (wVar != null) {
+                                this.d = wVar.a();
                             }
                             try {
                                 if (this.b != null) {
                                     this.b.close();
                                 }
                                 if (this.c != null) {
-                                    r03 = this.c;
-                                    r03.close();
+                                    this.c.close();
                                     return;
                                 }
                                 return;
                             } catch (IOException e3) {
-                                r03.printStackTrace();
+                                e3.printStackTrace();
                                 return;
                             }
                         }
@@ -398,25 +720,20 @@ public final class q {
                             if (!ao.i() || a.e.k == 20) {
                                 this.a.az = false;
                                 a.e.b(bt.dT[1], bt.dX);
-                                boolean z4 = wVar;
-                                ?? r04 = z4;
-                                if (z4) {
-                                    q qVar4 = this;
-                                    qVar4.d = wVar.a();
-                                    r04 = qVar4;
+                                if (wVar != null) {
+                                    this.d = wVar.a();
                                 }
                                 try {
                                     if (this.b != null) {
                                         this.b.close();
                                     }
                                     if (this.c != null) {
-                                        r04 = this.c;
-                                        r04.close();
+                                        this.c.close();
                                         return;
                                     }
                                     return;
                                 } catch (IOException e4) {
-                                    r04.printStackTrace();
+                                    e4.printStackTrace();
                                     return;
                                 }
                             }
@@ -439,33 +756,28 @@ public final class q {
                             }
                             if (a.e != null) {
                                 a.e.a(ceVarArr);
+                                break;
                             }
-                            break;
                         }
                         break;
                     case 8215:
                         bt.B(this.b);
                         if (!ao.i()) {
                             this.a.b("战斗中不能进行该操作");
-                            boolean z5 = wVar;
-                            ?? r05 = z5;
-                            if (z5) {
-                                q qVar5 = this;
-                                qVar5.d = wVar.a();
-                                r05 = qVar5;
+                            if (wVar != null) {
+                                this.d = wVar.a();
                             }
                             try {
                                 if (this.b != null) {
                                     this.b.close();
                                 }
                                 if (this.c != null) {
-                                    r05 = this.c;
-                                    r05.close();
+                                    this.c.close();
                                     return;
                                 }
                                 return;
                             } catch (IOException e5) {
-                                r05.printStackTrace();
+                                e5.printStackTrace();
                                 return;
                             }
                         }
@@ -479,32 +791,26 @@ public final class q {
                         } else {
                             if (!ao.i()) {
                                 this.a.b("战斗中不能进行该操作");
-                                boolean z6 = wVar;
-                                ?? r06 = z6;
-                                if (z6) {
-                                    q qVar6 = this;
-                                    qVar6.d = wVar.a();
-                                    r06 = qVar6;
+                                if (wVar != null) {
+                                    this.d = wVar.a();
                                 }
                                 try {
                                     if (this.b != null) {
                                         this.b.close();
                                     }
                                     if (this.c != null) {
-                                        r06 = this.c;
-                                        r06.close();
+                                        this.c.close();
                                         return;
                                     }
                                     return;
                                 } catch (IOException e6) {
-                                    r06.printStackTrace();
+                                    e6.printStackTrace();
                                     return;
                                 }
                             }
                             a.e.w();
                             break;
                         }
-                        break;
                     case 8217:
                         e();
                         if (a.e.k == 100) {
@@ -573,25 +879,20 @@ public final class q {
                     case 8223:
                         if (!ao.i()) {
                             bt.h(this.b);
-                            boolean z7 = wVar;
-                            ?? r07 = z7;
-                            if (z7) {
-                                q qVar7 = this;
-                                qVar7.d = wVar.a();
-                                r07 = qVar7;
+                            if (wVar != null) {
+                                this.d = wVar.a();
                             }
                             try {
                                 if (this.b != null) {
                                     this.b.close();
                                 }
                                 if (this.c != null) {
-                                    r07 = this.c;
-                                    r07.close();
+                                    this.c.close();
                                     return;
                                 }
                                 return;
                             } catch (IOException e7) {
-                                r07.printStackTrace();
+                                e7.printStackTrace();
                                 return;
                             }
                         }
@@ -636,25 +937,20 @@ public final class q {
                         if (bt.gS != null) {
                             if (!ao.i()) {
                                 this.a.b("战斗中不能查看周围玩家");
-                                boolean z8 = wVar;
-                                ?? r08 = z8;
-                                if (z8) {
-                                    q qVar8 = this;
-                                    qVar8.d = wVar.a();
-                                    r08 = qVar8;
+                                if (wVar != null) {
+                                    this.d = wVar.a();
                                 }
                                 try {
                                     if (this.b != null) {
                                         this.b.close();
                                     }
                                     if (this.c != null) {
-                                        r08 = this.c;
-                                        r08.close();
+                                        this.c.close();
                                         return;
                                     }
                                     return;
                                 } catch (IOException e8) {
-                                    r08.printStackTrace();
+                                    e8.printStackTrace();
                                     return;
                                 }
                             }
@@ -686,7 +982,8 @@ public final class q {
                             break;
                         } else {
                             if (a.e.aM > 1) {
-                                a.e.aM--;
+                                ao aoVar2 = a.e;
+                                aoVar2.aM--;
                                 this.a.b("没有更多的宠物了！");
                             } else {
                                 bt.t();
@@ -708,7 +1005,8 @@ public final class q {
                             a.e.I();
                             break;
                         } else if (a.e.aM > 1) {
-                            a.e.aM--;
+                            ao aoVar3 = a.e;
+                            aoVar3.aM--;
                             this.a.b("没有更多的物品了！");
                             this.a.j = this.a.k;
                             break;
@@ -747,7 +1045,7 @@ public final class q {
                     case 8234:
                         bt.o(this.b);
                         if (a.e.k == 29 && bt.dE != null) {
-                            a.e.i(a.e.aE > bt.dE.length - 1 ? bt.dE.length - 1 : a.e.aE);
+                            a.e.i(a.e.aE > bt.dE.length + (-1) ? bt.dE.length - 1 : a.e.aE);
                             break;
                         }
                         break;
@@ -758,48 +1056,38 @@ public final class q {
                             bt.s();
                         }
                         if (!bt.dJ) {
-                            boolean z9 = wVar;
-                            ?? r09 = z9;
-                            if (z9) {
-                                q qVar9 = this;
-                                qVar9.d = wVar.a();
-                                r09 = qVar9;
+                            if (wVar != null) {
+                                this.d = wVar.a();
                             }
                             try {
                                 if (this.b != null) {
                                     this.b.close();
                                 }
                                 if (this.c != null) {
-                                    r09 = this.c;
-                                    r09.close();
+                                    this.c.close();
                                     return;
                                 }
                                 return;
                             } catch (IOException e9) {
-                                r09.printStackTrace();
+                                e9.printStackTrace();
                                 return;
                             }
                         }
                         if (!ao.i()) {
-                            boolean z10 = wVar;
-                            ?? r010 = z10;
-                            if (z10) {
-                                q qVar10 = this;
-                                qVar10.d = wVar.a();
-                                r010 = qVar10;
+                            if (wVar != null) {
+                                this.d = wVar.a();
                             }
                             try {
                                 if (this.b != null) {
                                     this.b.close();
                                 }
                                 if (this.c != null) {
-                                    r010 = this.c;
-                                    r010.close();
+                                    this.c.close();
                                     return;
                                 }
                                 return;
                             } catch (IOException e10) {
-                                r010.printStackTrace();
+                                e10.printStackTrace();
                                 return;
                             }
                         }
@@ -855,29 +1143,23 @@ public final class q {
                             a.e.a(bt.fz[a.e.ay] == 0, false);
                             break;
                         }
-                        break;
                     case 8244:
                         bt.u(this.b);
                         if (a.e == null) {
-                            boolean z11 = wVar;
-                            ?? r011 = z11;
-                            if (z11) {
-                                q qVar11 = this;
-                                qVar11.d = wVar.a();
-                                r011 = qVar11;
+                            if (wVar != null) {
+                                this.d = wVar.a();
                             }
                             try {
                                 if (this.b != null) {
                                     this.b.close();
                                 }
                                 if (this.c != null) {
-                                    r011 = this.c;
-                                    r011.close();
+                                    this.c.close();
                                     return;
                                 }
                                 return;
                             } catch (IOException e11) {
-                                r011.printStackTrace();
+                                e11.printStackTrace();
                                 return;
                             }
                         }
@@ -1019,14 +1301,10 @@ public final class q {
                             break;
                         }
                         break;
-                    case 8262:
-                        break;
-                    case 8263:
-                        break;
                     case 8264:
-                        boolean z12 = this.b.readByte() != 0;
-                        bt.bu = z12;
-                        if (z12) {
+                        boolean z = this.b.readByte() != 0;
+                        bt.bu = z;
+                        if (z) {
                             ab.b = true;
                         }
                         if (a.e != null && a.e.X != null) {
@@ -1040,8 +1318,6 @@ public final class q {
                     case 8265:
                         bt.bv = this.b.readInt();
                         break;
-                    case 8266:
-                        break;
                     case 8267:
                         bt.bz = this.b.readUTF();
                         bt.by = this.b.readUTF();
@@ -1049,8 +1325,6 @@ public final class q {
                             a.e.aa();
                             break;
                         }
-                        break;
-                    case 8268:
                         break;
                     case 8269:
                         if (a.e != null) {
@@ -1123,8 +1397,6 @@ public final class q {
                         this.a.k = (short) 7;
                         aVar4.j = (short) 7;
                         break;
-                    case 8276:
-                        break;
                     case 8277:
                         if (a.e != null && a.e.P != null) {
                             a.e.P.a(this.b);
@@ -1151,8 +1423,6 @@ public final class q {
                             a.e.ab();
                             break;
                         }
-                        break;
-                    case 8287:
                         break;
                     case 8288:
                         a.aH = this.b.readUTF();
@@ -1319,11 +1589,12 @@ public final class q {
                             }
                             a.e.j((byte) 6);
                             this.a.j = this.a.k;
-                            ao aoVar2 = a.e;
+                            ao aoVar4 = a.e;
                             a.e.k = (short) 38;
-                            aoVar2.j = (short) 38;
+                            aoVar4.j = (short) 38;
                             break;
                         }
+                        break;
                     case 8455:
                         bt.P(this.b);
                         a.e.k((byte) 5);
@@ -1453,48 +1724,38 @@ public final class q {
                         bt.aj(this.b);
                         if (!ao.i()) {
                             this.a.b("战斗中不能进行该操作");
-                            boolean z13 = wVar;
-                            ?? r012 = z13;
-                            if (z13) {
-                                q qVar12 = this;
-                                qVar12.d = wVar.a();
-                                r012 = qVar12;
+                            if (wVar != null) {
+                                this.d = wVar.a();
                             }
                             try {
                                 if (this.b != null) {
                                     this.b.close();
                                 }
                                 if (this.c != null) {
-                                    r012 = this.c;
-                                    r012.close();
+                                    this.c.close();
                                     return;
                                 }
                                 return;
                             } catch (IOException e12) {
-                                r012.printStackTrace();
+                                e12.printStackTrace();
                                 return;
                             }
                         }
                         if (a.e == null) {
-                            boolean z14 = wVar;
-                            ?? r013 = z14;
-                            if (z14) {
-                                q qVar13 = this;
-                                qVar13.d = wVar.a();
-                                r013 = qVar13;
+                            if (wVar != null) {
+                                this.d = wVar.a();
                             }
                             try {
                                 if (this.b != null) {
                                     this.b.close();
                                 }
                                 if (this.c != null) {
-                                    r013 = this.c;
-                                    r013.close();
+                                    this.c.close();
                                     return;
                                 }
                                 return;
                             } catch (IOException e13) {
-                                r013.printStackTrace();
+                                e13.printStackTrace();
                                 return;
                             }
                         }
@@ -1672,25 +1933,20 @@ public final class q {
                         break;
                     case 8971:
                         if (a.e.k == 111) {
-                            boolean z15 = wVar;
-                            ?? r014 = z15;
-                            if (z15) {
-                                q qVar14 = this;
-                                qVar14.d = wVar.a();
-                                r014 = qVar14;
+                            if (wVar != null) {
+                                this.d = wVar.a();
                             }
                             try {
                                 if (this.b != null) {
                                     this.b.close();
                                 }
                                 if (this.c != null) {
-                                    r014 = this.c;
-                                    r014.close();
+                                    this.c.close();
                                     return;
                                 }
                                 return;
                             } catch (IOException e14) {
-                                r014.printStackTrace();
+                                e14.printStackTrace();
                                 return;
                             }
                         }
@@ -1815,9 +2071,9 @@ public final class q {
                             a aVar5 = this.a;
                             this.a.k = (short) 7;
                             aVar5.j = (short) 7;
-                            ao aoVar3 = a.e;
+                            ao aoVar5 = a.e;
                             a.e.k = (short) 0;
-                            aoVar3.j = (short) 0;
+                            aoVar5.j = (short) 0;
                         }
                         this.a.b(this.b.readUTF());
                         break;
@@ -1965,492 +2221,51 @@ public final class q {
                         }
                         break;
                 }
-                boolean z16 = wVar;
-                ?? r015 = z16;
-                if (z16) {
-                    q qVar15 = this;
-                    qVar15.d = wVar.a();
-                    r015 = qVar15;
+                if (wVar != null) {
+                    this.d = wVar.a();
                 }
                 try {
                     if (this.b != null) {
                         this.b.close();
                     }
                     if (this.c != null) {
-                        r015 = this.c;
-                        r015.close();
+                        this.c.close();
                     }
                 } catch (IOException e15) {
-                    r015.printStackTrace();
+                    e15.printStackTrace();
                 }
             } catch (Exception e16) {
-                wVar.printStackTrace();
+                e16.printStackTrace();
                 this.a.a(e16, (byte) 5);
-                boolean z17 = wVar;
-                ?? r016 = z17;
-                if (z17) {
-                    q qVar16 = this;
-                    qVar16.d = wVar.a();
-                    r016 = qVar16;
+                if (wVar != null) {
+                    this.d = wVar.a();
                 }
                 try {
                     if (this.b != null) {
                         this.b.close();
                     }
                     if (this.c != null) {
-                        r016 = this.c;
-                        r016.close();
+                        this.c.close();
                     }
                 } catch (IOException e17) {
-                    r016.printStackTrace();
+                    e17.printStackTrace();
                 }
             }
         } catch (Throwable th) {
-            boolean z18 = wVar;
-            ?? r017 = z18;
-            if (z18) {
-                q qVar17 = this;
-                qVar17.d = wVar.a();
-                r017 = qVar17;
+            if (wVar != null) {
+                this.d = wVar.a();
             }
             try {
                 if (this.b != null) {
                     this.b.close();
                 }
                 if (this.c != null) {
-                    r017 = this.c;
-                    r017.close();
+                    this.c.close();
                 }
             } catch (IOException e18) {
-                r017.printStackTrace();
+                e18.printStackTrace();
             }
             throw th;
         }
-    }
-
-    private void a() {
-        bt.C = new byte[this.b.readByte()];
-        byte b = 0;
-        while (true) {
-            byte b2 = b;
-            if (b2 >= bt.C.length) {
-                return;
-            }
-            bt.C[b2] = this.b.readByte();
-            b = (byte) (b2 + 1);
-        }
-    }
-
-    /* JADX WARN: Removed duplicated region for block: B:171:0x020e A[SYNTHETIC] */
-    /* JADX WARN: Removed duplicated region for block: B:55:0x0174 A[Catch: Exception -> 0x0520, TryCatch #0 {Exception -> 0x0520, blocks: (B:2:0x0000, B:4:0x0006, B:6:0x0011, B:9:0x001d, B:11:0x002b, B:13:0x0031, B:14:0x0037, B:17:0x0045, B:18:0x005e, B:20:0x0064, B:22:0x0084, B:25:0x0092, B:27:0x0098, B:31:0x00a7, B:33:0x00b2, B:34:0x00c1, B:37:0x00ce, B:38:0x00f8, B:40:0x0100, B:42:0x0108, B:45:0x0116, B:47:0x011f, B:49:0x0128, B:51:0x013c, B:55:0x0174, B:57:0x0198, B:59:0x01a1, B:61:0x01aa, B:65:0x01b8, B:67:0x01d1, B:71:0x01ef, B:73:0x01fa, B:52:0x016a, B:74:0x020e, B:75:0x0214, B:78:0x021e, B:80:0x0228, B:82:0x0232, B:86:0x0255, B:90:0x027c, B:94:0x02a3, B:98:0x02ca, B:100:0x02d9, B:102:0x02e4, B:104:0x031b, B:107:0x033b, B:109:0x0352, B:111:0x0369, B:113:0x0376, B:118:0x038c, B:138:0x048e, B:123:0x03c9, B:125:0x03fd, B:127:0x040a, B:132:0x0420, B:137:0x045d, B:139:0x0494, B:147:0x04cd, B:150:0x04d7, B:152:0x04de, B:155:0x0504, B:157:0x050b, B:158:0x051b, B:142:0x04a0, B:144:0x04a7), top: B:164:0x0000 }] */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
-    */
-    private void a(java.io.DataInputStream r11) throws java.io.IOException {
-        /*
-            Method dump skipped, instructions count: 1329
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.q.a(java.io.DataInputStream):void");
-    }
-
-    private void b() {
-        bt.c(this.b);
-        if (a.e != null && a.e.I != null) {
-            if (t.o && this.a.aj != null) {
-                if (!a.e.I.c.isEmpty()) {
-                    a.e.I.c.removeAllElements();
-                    a.e.I.b();
-                }
-                if (this.a.aj != null) {
-                    this.a.aj.c = 0;
-                    this.a.aj.d = 0;
-                }
-                this.a.b = 0;
-                this.a.a = 0;
-            }
-            a.e.I.j = bt.at;
-            a.e.I.k = bt.au;
-        }
-        if (bt.bs == 0 && bt.q != null && bt.s == 0) {
-            for (int i = 0; i < bt.q.length; i++) {
-                bt.q[i].f.removeAllElements();
-                if (bt.q[i].j == -1 && bt.q[i].k == -1) {
-                    bt.q[i].j = bt.at;
-                    bt.q[i].k = bt.au;
-                }
-                bt.q[i].l = bt.at;
-                bt.q[i].m = bt.au;
-            }
-        }
-        if (a.e == null) {
-            this.a.g();
-            a.e.I.d();
-            return;
-        }
-        if (a.e != null) {
-            a.e.I.a((int) bt.av);
-        }
-        if (a.e.Y != bt.ar || a.e.I.h()) {
-            if (bt.bs == -1) {
-                a.e.aY = 0L;
-            }
-            if (a.e.I.d != null) {
-                a.e.I.d.e.removeAllElements();
-                a.e.I.d.h = bt.at;
-                a.e.I.d.i = bt.au;
-                a.e.I.d.j = a.e.I.h;
-                a.e.I.d.a(a.e.I.h);
-            }
-            if (ao.i()) {
-                if (a.e.Y != bt.ar) {
-                    a.e.e();
-                } else {
-                    a.e.f();
-                }
-                a.e.I.i();
-                a.e.Y = bt.ar;
-            }
-            a.e.I.d();
-            return;
-        }
-        if (bt.bs == 0 && bt.q != null && bt.s == 0) {
-            a aVar = this.a;
-            Vector vector = new Vector();
-            this.e = (bt.q[0].j / 16) + (bt.q[0].j % 16 == 0 ? 0 : 1);
-            this.f = (bt.q[0].k / 16) + (bt.q[0].k % 16 == 0 ? 0 : 1);
-            this.g = (bt.q[0].l / 16) + (bt.q[0].l % 16 == 0 ? 0 : 1);
-            this.h = (bt.q[0].m / 16) + (bt.q[0].m % 16 == 0 ? 0 : 1);
-            if (this.e == this.g && this.f == this.h) {
-                return;
-            }
-            if (bt.q[0].f == null) {
-                bt.q[0].f = new Vector();
-            }
-            Vector vectorA = a(a.e.f, vector, new bs(this.e, this.f), new bs(this.g, this.h));
-            int size = vectorA.size();
-            for (int i2 = 0; i2 < bt.q.length; i2++) {
-                bt.q[i2].f.removeAllElements();
-                int i3 = 0;
-                while (i3 < size) {
-                    bs bsVar = (bs) vectorA.elementAt(i3);
-                    bs bsVar2 = i3 < size - 1 ? (bs) vectorA.elementAt(i3 + 1) : bsVar;
-                    if (bsVar.a != bsVar2.a) {
-                        if (bsVar.a > bsVar2.a) {
-                            for (int i4 = 0; i4 < 4; i4++) {
-                                bt.q[i2].f.addElement(new short[]{(short) ((bsVar.a << 4) - (i4 << 2)), (short) (bsVar.b << 4)});
-                            }
-                        } else {
-                            for (int i5 = 0; i5 < 4; i5++) {
-                                bt.q[i2].f.addElement(new short[]{(short) ((bsVar.a << 4) + (i5 << 2)), (short) (bsVar.b << 4)});
-                            }
-                        }
-                    } else if (bsVar.b != bsVar2.b) {
-                        if (bsVar.b > bsVar2.b) {
-                            for (int i6 = 0; i6 < 4; i6++) {
-                                bt.q[i2].f.addElement(new short[]{(short) (bsVar.a << 4), (short) ((bsVar.b << 4) - (i6 << 2))});
-                            }
-                        } else {
-                            for (int i7 = 0; i7 < 4; i7++) {
-                                bt.q[i2].f.addElement(new short[]{(short) (bsVar.a << 4), (short) ((bsVar.b << 4) + (i7 << 2))});
-                            }
-                        }
-                    }
-                    i3++;
-                }
-            }
-        }
-    }
-
-    private void c() {
-        boolean z = this.b.readByte() == 1;
-        bt.bE = z;
-        if (z) {
-            bt.bF = this.b.readInt();
-        } else {
-            bt.bF = -1;
-        }
-        bt.bG = this.b.readInt();
-        bt.bH = this.b.readUTF();
-        if (bt.bE) {
-            a.e.k = (short) 2;
-        }
-        if (a.e.k != 2) {
-            if (a.e.k == 6) {
-                this.a.b("不处理");
-                return;
-            }
-            return;
-        }
-        ao.K = new bw(bt.bH, (short) (t.b - 20));
-        if (bt.bE) {
-            a.e.an = new String[]{"接受", "返回"};
-        } else if (bt.bK[a.e.ai] == -1) {
-            a.e.an = new String[]{"接受", "返回"};
-        } else if (bt.bK[a.e.ai] == 0) {
-            a.e.an = new String[]{"确定", "返回"};
-        } else if (bt.bK[a.e.ai] == 1) {
-            a.e.an = new String[]{"提交", "返回"};
-        }
-        ca.a(a.F, ao.K, a.e.an, (String[]) null, true);
-        this.a.j = this.a.k;
-        a.e.l = (short) 1;
-    }
-
-    private void d() throws IOException {
-        bt.I(this.b);
-        if (a.e == null || !ao.i()) {
-            return;
-        }
-        if (a.e.k != 13) {
-            if (a.e.k == 36) {
-                a.e.b(false);
-                return;
-            }
-            if (a.e.k == 96 && a.e.ap) {
-                a.e.k(a.e.aE);
-                a.e.ap = false;
-                return;
-            } else if (a.e.k == 4 && a.e.bh) {
-                a.e.s(a.e.bg);
-                return;
-            } else {
-                if (a.e.k == 120) {
-                    a.e.t(this.a.ar.g());
-                    return;
-                }
-                return;
-            }
-        }
-        if (bt.fA == null) {
-            bt.B();
-            this.a.b("您没有宠物！");
-            return;
-        }
-        if (a.e.l == 6) {
-            a.e.k(a.e.aE);
-            return;
-        }
-        if (a.e.l == 8) {
-            if (this.a.j != 2) {
-                this.a.j = this.a.k;
-                return;
-            }
-            return;
-        }
-        if (o.e == 1) {
-            if (this.a.j != 2) {
-                this.a.j = this.a.k;
-                return;
-            }
-            return;
-        }
-        a.e.j(a.e.as);
-        if (this.a.j != 2) {
-            this.a.j = this.a.k;
-        }
-    }
-
-    private static void b(DataInputStream dataInputStream) throws IOException {
-        long j = dataInputStream.readLong();
-        if (bq.g > 0 && bt.v <= 0) {
-            bt.v = j;
-            bq.g = -1;
-        }
-        int i = dataInputStream.readShort();
-        if (i > 0) {
-            for (int i2 = 0; i2 < i; i2++) {
-                int i3 = dataInputStream.readShort();
-                if (i3 > 0) {
-                    i[] iVarArr = new i[i3];
-                    for (int i4 = 0; i4 < i3; i4++) {
-                        iVarArr[i4] = new i();
-                        i iVar = iVarArr[i4];
-                        iVar.a = dataInputStream.readByte();
-                        iVar.b = dataInputStream.readByte();
-                        dataInputStream.readByte();
-                        iVar.c = dataInputStream.readByte();
-                        iVar.d = dataInputStream.readByte();
-                        iVar.e = dataInputStream.readShort();
-                        iVar.f = dataInputStream.readUTF();
-                    }
-                    a.e.g.a(iVarArr);
-                }
-            }
-            for (int i5 = 0; i5 < i; i5++) {
-                int i6 = dataInputStream.readShort();
-                if (i6 > 0) {
-                    ae[] aeVarArr = new ae[i6];
-                    for (int i7 = 0; i7 < i6; i7++) {
-                        aeVarArr[i7] = new ae();
-                        ae aeVar = aeVarArr[i7];
-                        aeVar.f = 0;
-                        aeVar.a = dataInputStream.readByte();
-                        aeVar.b = dataInputStream.readByte();
-                        aeVar.c = dataInputStream.readByte();
-                        aeVar.d = dataInputStream.readInt();
-                        aeVar.g = dataInputStream.readInt();
-                        aeVar.i = dataInputStream.readInt();
-                        aeVar.e = dataInputStream.readInt();
-                        aeVar.h = dataInputStream.readInt();
-                        aeVar.j = dataInputStream.readInt();
-                        aeVar.k = dataInputStream.readByte();
-                    }
-                    a.e.g.a(aeVarArr);
-                }
-            }
-            for (int i8 = 0; i8 < i; i8++) {
-                a.e.g.a(dataInputStream.readUTF());
-            }
-            if (a.e.k == 25 || a.e.k == 18 || !ao.i()) {
-                a.e.g.f = (short) 1;
-            }
-        }
-    }
-
-    private void e() throws IOException {
-        int i = this.b.readByte();
-        if (i <= 0) {
-            if (a.e != null) {
-                a.e.a((bp[]) null);
-                return;
-            }
-            return;
-        }
-        bt.s = this.b.readByte();
-        bp[] bpVarArr = new bp[i];
-        byte b = 1;
-        for (int i2 = 0; i2 < i; i2++) {
-            bpVarArr[i2] = new bp();
-            bpVarArr[i2].a(a.e, this.b);
-            if (bpVarArr[i2].s == 1) {
-                bpVarArr[i2].a = (byte) 0;
-            } else {
-                bpVarArr[i2].a = b;
-                b = (byte) (b + 1);
-            }
-        }
-        for (int i3 = 0; i3 < bpVarArr.length - 1; i3++) {
-            for (int i4 = 0; i4 < bpVarArr.length - 1; i4++) {
-                bp bpVar = bpVarArr[i4];
-                bp bpVar2 = bpVarArr[i4 + 1];
-                if (bpVar2.a < bpVar.a) {
-                    bpVarArr[i4] = bpVar2;
-                    bpVarArr[i4 + 1] = bpVar;
-                }
-            }
-        }
-        if (a.e != null) {
-            a.e.a(bpVarArr);
-        }
-    }
-
-    private void f() throws IOException {
-        byte b = this.b.readByte();
-        if (bt.fl != null) {
-            bt.v();
-        }
-        if (bt.fs != null) {
-            bt.w();
-        }
-        bt.fw = null;
-        bt.y();
-        bt.z();
-        bt.fg = 0L;
-        bt.fn = 0L;
-        a.e.am = null;
-        a.e.al = null;
-        if (ao.i()) {
-            a.f.a(a.e.f, ao.h, ao.i, true, false, 2109231);
-            a aVar = this.a;
-            this.a.k = (short) 7;
-            aVar.j = (short) 7;
-            ao aoVar = a.e;
-            a.e.k = (short) 0;
-            aoVar.j = (short) 0;
-        }
-        if (b == 1) {
-            this.a.b("交易成功!");
-        } else if (b == 0) {
-            this.a.b("交易取消!");
-        } else if (b == -1) {
-            this.a.b(this.b.readUTF());
-        }
-    }
-
-    private static void c(DataInputStream dataInputStream) throws IOException {
-        bt.am(dataInputStream);
-        a.e.l((byte) 1);
-    }
-
-    public final Vector a(aw awVar, Vector vector, bs bsVar, bs bsVar2) {
-        if (awVar != null && vector != null) {
-            if (awVar.i != null) {
-                Vector vector2 = new Vector();
-                boolean z = false;
-                vector.removeAllElements();
-                vector.addElement(bsVar);
-                while (!vector.isEmpty()) {
-                    bs bsVarA = a(vector, bsVar2);
-                    if (bsVarA.b(bsVar2)) {
-                        z = true;
-                    }
-                    if (z) {
-                        vector2.removeAllElements();
-                        vector2.addElement(bsVar2);
-                        bs bsVarA2 = a(vector, bsVar2);
-                        while (!bsVarA2.b(bsVar)) {
-                            bsVarA2 = bsVarA2.c;
-                            vector2.addElement(bsVarA2);
-                        }
-                        return vector2;
-                    }
-                    vector.removeElement(bsVarA);
-                    vector2.addElement(bsVarA);
-                    bs[] bsVarArr = {new bs(bsVarA.a, bsVarA.b - 1), new bs(bsVarA.a, bsVarA.b + 1), new bs(bsVarA.a - 1, bsVarA.b), new bs(bsVarA.a + 1, bsVarA.b)};
-                    for (int i = 0; i < bsVarArr.length; i++) {
-                        if ((bsVarArr[i].a != bsVarA.a || bsVarArr[i].b != bsVarA.b) && bsVarArr[i].a >= 0) {
-                            if (bsVarArr[i].a < (awVar.a / 16) + (awVar.a % 16 == 0 ? 0 : 1) + 1 && bsVarArr[i].b >= 0) {
-                                if (bsVarArr[i].b < (awVar.b / 16) + (awVar.b % 16 == 0 ? 0 : 1) + 1 && !a(vector, bsVarArr[i].a, bsVarArr[i].b) && !b(vector2, bsVarArr[i].a, bsVarArr[i].b) && a.f.a(awVar, (bsVarArr[i].a << 4) + 8, bsVarArr[i].b << 4) == 0 && !a.f.a((bsVarArr[i].a << 4) + 8, bsVarArr[i].b << 4)) {
-                                    vector.addElement(new bs(bsVarArr[i].a, bsVarArr[i].b, bsVarA));
-                                }
-                            }
-                        }
-                    }
-                }
-                return new Vector();
-            }
-        }
-        return new Vector();
-    }
-
-    private static boolean a(Vector vector, int i, int i2) {
-        for (int i3 = 0; i3 < vector.size(); i3++) {
-            if (i == ((bs) vector.elementAt(i3)).a && i2 == ((bs) vector.elementAt(i3)).b) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static boolean b(Vector vector, int i, int i2) {
-        for (int i3 = 0; i3 < vector.size(); i3++) {
-            if (i == ((bs) vector.elementAt(i3)).a && i2 == ((bs) vector.elementAt(i3)).b) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static bs a(Vector vector, bs bsVar) {
-        bs bsVar2 = null;
-        for (int i = 0; i < vector.size(); i++) {
-            bs bsVar3 = (bs) vector.elementAt(i);
-            if (bsVar2 == null || bsVar2.a(bsVar) > bsVar3.a(bsVar)) {
-                bsVar2 = bsVar3;
-            }
-        }
-        return bsVar2;
     }
 }

@@ -314,12 +314,12 @@
       "type": "class",
       "tabPath": "com.yinhan.kjava.main.a",
       "subPath": "java",
-      "caret": 34363,
+      "caret": 6717,
       "view": {
         "x": 6,
-        "y": 11211
+        "y": 3727
       },
-      "active": true,
+      "active": false,
       "pinned": false,
       "bookmarked": false,
       "hidden": false,
@@ -444,9 +444,24 @@
       "bookmarked": false,
       "hidden": false,
       "previewTab": false
+    },
+    {
+      "type": "class",
+      "tabPath": "com.yinhan.kjava.main.c",
+      "subPath": "java",
+      "caret": 473,
+      "view": {
+        "x": 0,
+        "y": 0
+      },
+      "active": true,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false,
+      "previewTab": false
     }
   ],
-  "cacheDir": "C:\\Users\\qaq\\AppData\\Local\\skylot\\jadx\\cache\\projects\\java版梦回西游3区251011.jar-011e17ab57204171d63dbcc82ab61cc8",
+  "cacheDir": "/Users/cxf/Library/Caches/io.github.skylot.jadx/projects/java版梦回西游3区251011.jar-0f0cd2cba3ad178b1bd1f5a6bef51315",
   "enableLiveReload": false,
   "searchHistory": [
     "4142",

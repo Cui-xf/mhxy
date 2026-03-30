@@ -3,10 +3,11 @@ package defpackage;
 import com.yinhan.kjava.main.a;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
-/* loaded from: java版梦回西游3区251011.jar:cc.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class cc {
     private ao b;
     private a c;
@@ -43,65 +44,55 @@ public final class cc {
         this.c = aVar;
     }
 
-    public final void a(short s) {
-        if (this.d == null) {
-            this.d = new int[4][4];
-            this.f = new bc[4];
+    public final int a(int i, int i2, int i3) {
+        if (this.a != 0 || this.p == null) {
+            return i;
         }
-        if (this.p != null) {
-            for (int i = 0; i < this.f.length && i < this.p.length; i++) {
-                this.f[i] = a.ab.a(this.s[i], (short) 0, (short) 0, (short) 0);
-                if (this.f[i] == null) {
-                    a.a(this.t[i], this.u[i], (byte) 0, (byte) 0, this.s[i], (short) 0, (short) 0, (short) 0);
-                    this.f[i] = a.ab.a(this.v[i], (short) 0, (short) 0, (short) 0);
+        for (int i4 = 0; i4 < this.d.length && i4 < this.p.length; i4++) {
+            if (i2 >= this.d[i4][0] && i2 <= this.d[i4][0] + this.d[i4][2] && i3 >= this.d[i4][1] && i3 <= this.d[i4][1] + this.d[i4][3]) {
+                if (this.g == i4) {
+                    return 1073741824;
                 }
+                this.g = (byte) i4;
             }
         }
-        this.b.l = (short) 0;
-        this.c.aq.j();
-        this.c.aq.a("仙位排位赛");
-        this.c.as.a(new String[]{"风云榜", "斗法场", "斗法记录"});
-        this.c.as.a = (byte) s;
-        this.a = s;
-        this.c.aq.a(this.c.as);
-        this.c.aq.a(true);
-        if (this.a == 0) {
-            this.c.at.b("", t.i, (byte) 1);
-            this.c.aq.a(this.c.at);
-            this.c.au.a(new String[]{"操作", "返回"});
-            this.c.aq.a(this.c.au);
-            this.c.aq.a(t.f, t.g, t.d, t.e);
-            this.e = this.c.at.e;
-            int i2 = ((this.c.aq.c - 16) - 2) / 2;
-            int i3 = (this.c.at.e - 6) / 2;
-            for (int i4 = 0; i4 < this.d.length; i4++) {
-                this.d[i4][0] = this.c.at.b + 2 + ((i4 % 2) * (i2 + 2));
-                this.d[i4][1] = this.c.at.c + 2 + ((i4 / 2) * (i3 + 2));
-                this.d[i4][2] = i2;
-                this.d[i4][3] = i3;
-            }
-        } else if (this.a == 1) {
-            this.c.ar.a((Image[]) null, this.w, this.x, this.y);
-            this.c.ar.a(this.B);
-            this.c.aq.a(this.c.ar);
-            this.c.aq.a(t.f, t.g, t.d, t.e);
-        } else if (this.a == 2) {
-            this.c.at.b(this.C, t.i, (byte) 1);
-            this.c.aq.a(this.c.at);
-            this.c.au.a(new String[]{"购买次数", "返回"});
-            this.c.aq.a(this.c.au);
-            this.c.aq.a(t.f, t.g, t.d, t.e);
-            this.e = (t.j * 3) + 4;
-            this.c.at.a(this.c.at.b, this.c.at.c, this.c.at.d, (this.c.at.e - this.e) - 2);
-            ao.K = new bw(new StringBuffer().append("当前排名：").append(this.h <= 0 ? "无" : new StringBuffer().append("第").append((int) this.h).append("名").toString()).append("\t剩余挑战：").append((int) this.i).append("次\t当前积分：").append(this.j).toString(), (short) (this.c.at.d - 20));
-        }
-        this.c.j = this.c.k;
-        ao aoVar = this.b;
-        this.b.k = (short) 130;
-        aoVar.j = (short) 130;
+        return i;
     }
 
-    public final void a(int i) throws IOException {
+    public final void a() {
+        this.k = null;
+        this.l = null;
+        this.m = null;
+        this.n = null;
+        this.o = null;
+        this.p = null;
+        this.q = null;
+        this.r = null;
+        this.s = null;
+        this.t = null;
+        this.u = null;
+        this.v = null;
+        this.w = null;
+        this.x = null;
+        this.y = null;
+        this.z = null;
+        this.A = null;
+        this.B = null;
+        if (this.d != null) {
+            for (int i = 0; i < this.d.length; i++) {
+                this.d[i] = null;
+            }
+        }
+        this.d = null;
+        if (this.f != null) {
+            for (int i2 = 0; i2 < this.f.length; i2++) {
+                this.f[i2] = null;
+            }
+        }
+        this.f = null;
+    }
+
+    public final void a(int i) {
         if (this.b.l == 0) {
             if (this.c.aq != null) {
                 this.c.aq.b(i);
@@ -246,54 +237,6 @@ public final class cc {
         }
     }
 
-    public final void a(Graphics graphics) {
-        if (this.c.aq != null) {
-            if (this.b.l == 4) {
-                this.b.a(graphics, "", ao.q);
-                return;
-            }
-            this.c.aq.a(graphics);
-            if (this.a == 0) {
-                int i = 0;
-                while (i < this.d.length) {
-                    ca.a(graphics, (Image) null, this.d[i][0], this.d[i][1], this.d[i][2], this.d[i][3], i == this.g);
-                    if (this.p != null && i < this.p.length) {
-                        graphics.setColor(65535);
-                        graphics.drawString(this.l[i], this.d[i][0] + ((this.d[i][2] - t.i.stringWidth(this.l[i])) / 2), this.d[i][1] + 4, 20);
-                        graphics.setColor(16777215);
-                        graphics.drawString(this.k[i], this.d[i][0] + ((this.d[i][2] - t.i.stringWidth(this.k[i])) / 2), ((this.d[i][1] + this.d[i][3]) - t.j) - 4, 20);
-                        a.f.a(graphics, this.f[i], (int[]) null, 0, 0, this.d[i][0] + (this.d[i][2] / 2), this.d[i][1] + ((this.d[i][3] / 4) * 3), 20, 0);
-                    }
-                    i++;
-                }
-            } else if (this.a != 1 && this.a == 2) {
-                ca.a(graphics, this.c.at.b, this.c.at.c + this.c.at.e + 1, this.c.at.d, this.e + 1, 1);
-                ao.K.a(graphics, this.c.at.b + 10, this.c.at.c + this.c.at.e + 4, 0);
-            }
-            if (this.b.l == 1) {
-                ca.c(graphics);
-            } else if (this.b.l == 2) {
-                ca.a(graphics, "确定挑战该玩家?", new String[]{"确定", "取消"});
-            } else if (this.b.l == 3) {
-                this.b.T.a(graphics);
-            }
-        }
-    }
-
-    public final int a(int i, int i2, int i3) {
-        if (this.a == 0 && this.p != null) {
-            for (int i4 = 0; i4 < this.d.length && i4 < this.p.length; i4++) {
-                if (i2 >= this.d[i4][0] && i2 <= this.d[i4][0] + this.d[i4][2] && i3 >= this.d[i4][1] && i3 <= this.d[i4][1] + this.d[i4][3]) {
-                    if (this.g == i4) {
-                        return 1073741824;
-                    }
-                    this.g = (byte) i4;
-                }
-            }
-        }
-        return i;
-    }
-
     public final void a(DataInputStream dataInputStream) throws IOException {
         this.h = dataInputStream.readShort();
         this.i = dataInputStream.readShort();
@@ -370,40 +313,103 @@ public final class cc {
         this.C = dataInputStream.readUTF();
     }
 
-    public final void b(DataInputStream dataInputStream) {
-        this.i = dataInputStream.readShort();
+    public final void a(Graphics graphics) {
+        if (this.c.aq != null) {
+            if (this.b.l == 4) {
+                this.b.a(graphics, "", ao.q);
+                return;
+            }
+            this.c.aq.a(graphics);
+            if (this.a == 0) {
+                int i = 0;
+                while (true) {
+                    int i2 = i;
+                    if (i2 >= this.d.length) {
+                        break;
+                    }
+                    ca.a(graphics, (Image) null, this.d[i2][0], this.d[i2][1], this.d[i2][2], this.d[i2][3], i2 == this.g);
+                    if (this.p != null && i2 < this.p.length) {
+                        graphics.setColor(65535);
+                        graphics.drawString(this.l[i2], this.d[i2][0] + ((this.d[i2][2] - t.i.stringWidth(this.l[i2])) / 2), this.d[i2][1] + 4, 20);
+                        graphics.setColor(16777215);
+                        graphics.drawString(this.k[i2], this.d[i2][0] + ((this.d[i2][2] - t.i.stringWidth(this.k[i2])) / 2), ((this.d[i2][1] + this.d[i2][3]) - t.j) - 4, 20);
+                        a.f.a(graphics, this.f[i2], (int[]) null, 0, 0, (this.d[i2][2] / 2) + this.d[i2][0], ((this.d[i2][3] / 4) * 3) + this.d[i2][1], 20, 0);
+                    }
+                    i = i2 + 1;
+                }
+            } else if (this.a != 1 && this.a == 2) {
+                ca.a(graphics, this.c.at.b, this.c.at.c + this.c.at.e + 1, this.c.at.d, this.e + 1, 1);
+                ao.K.a(graphics, this.c.at.b + 10, this.c.at.c + this.c.at.e + 4, 0);
+            }
+            if (this.b.l == 1) {
+                ca.c(graphics);
+            } else if (this.b.l == 2) {
+                ca.a(graphics, "确定挑战该玩家?", new String[]{"确定", "取消"});
+            } else if (this.b.l == 3) {
+                this.b.T.a(graphics);
+            }
+        }
     }
 
-    public final void a() {
-        this.k = null;
-        this.l = null;
-        this.m = null;
-        this.n = null;
-        this.o = null;
-        this.p = null;
-        this.q = null;
-        this.r = null;
-        this.s = null;
-        this.t = null;
-        this.u = null;
-        this.v = null;
-        this.w = null;
-        this.x = null;
-        this.y = null;
-        this.z = null;
-        this.A = null;
-        this.B = null;
-        if (this.d != null) {
-            for (int i = 0; i < this.d.length; i++) {
-                this.d[i] = null;
+    public final void a(short s) {
+        if (this.d == null) {
+            this.d = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 4, 4);
+            this.f = new bc[4];
+        }
+        if (this.p != null) {
+            for (int i = 0; i < this.f.length && i < this.p.length; i++) {
+                this.f[i] = a.ab.a(this.s[i], (short) 0, (short) 0, (short) 0);
+                if (this.f[i] == null) {
+                    a.a(this.t[i], this.u[i], (byte) 0, (byte) 0, this.s[i], (short) 0, (short) 0, (short) 0);
+                    this.f[i] = a.ab.a(this.v[i], (short) 0, (short) 0, (short) 0);
+                }
             }
         }
-        this.d = null;
-        if (this.f != null) {
-            for (int i2 = 0; i2 < this.f.length; i2++) {
-                this.f[i2] = null;
+        this.b.l = (short) 0;
+        this.c.aq.j();
+        this.c.aq.a("仙位排位赛");
+        this.c.as.a(new String[]{"风云榜", "斗法场", "斗法记录"});
+        this.c.as.a = (byte) s;
+        this.a = s;
+        this.c.aq.a(this.c.as);
+        this.c.aq.a(true);
+        if (this.a == 0) {
+            this.c.at.b("", t.i, (byte) 1);
+            this.c.aq.a(this.c.at);
+            this.c.au.a(new String[]{"操作", "返回"});
+            this.c.aq.a(this.c.au);
+            this.c.aq.a(t.f, t.g, t.d, t.e);
+            this.e = this.c.at.e;
+            int i2 = ((this.c.aq.c - 16) - 2) / 2;
+            int i3 = (this.c.at.e - 6) / 2;
+            for (int i4 = 0; i4 < this.d.length; i4++) {
+                this.d[i4][0] = this.c.at.b + 2 + ((i4 % 2) * (i2 + 2));
+                this.d[i4][1] = this.c.at.c + 2 + ((i4 / 2) * (i3 + 2));
+                this.d[i4][2] = i2;
+                this.d[i4][3] = i3;
             }
+        } else if (this.a == 1) {
+            this.c.ar.a((Image[]) null, this.w, this.x, this.y);
+            this.c.ar.a(this.B);
+            this.c.aq.a(this.c.ar);
+            this.c.aq.a(t.f, t.g, t.d, t.e);
+        } else if (this.a == 2) {
+            this.c.at.b(this.C, t.i, (byte) 1);
+            this.c.aq.a(this.c.at);
+            this.c.au.a(new String[]{"购买次数", "返回"});
+            this.c.aq.a(this.c.au);
+            this.c.aq.a(t.f, t.g, t.d, t.e);
+            this.e = (t.j * 3) + 4;
+            this.c.at.a(this.c.at.b, this.c.at.c, this.c.at.d, (this.c.at.e - this.e) - 2);
+            ao.K = new bw(new StringBuffer().append("当前排名：").append(this.h <= 0 ? "无" : new StringBuffer().append("第").append((int) this.h).append("名").toString()).append("\t剩余挑战：").append((int) this.i).append("次\t当前积分：").append(this.j).toString(), (short) (this.c.at.d - 20));
         }
-        this.f = null;
+        this.c.j = this.c.k;
+        ao aoVar = this.b;
+        this.b.k = (short) 130;
+        aoVar.j = (short) 130;
+    }
+
+    public final void b(DataInputStream dataInputStream) {
+        this.i = dataInputStream.readShort();
     }
 }

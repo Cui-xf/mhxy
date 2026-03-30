@@ -1,10 +1,11 @@
 package com.yinhan.kjava.main;
 
+import javax.microedition.io.Connection;
 import javax.microedition.io.Connector;
 import javax.wireless.messaging.MessageConnection;
 import javax.wireless.messaging.TextMessage;
 
-/* loaded from: java版梦回西游3区251011.jar:com/yinhan/kjava/main/e.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 final class e implements Runnable {
     private String a;
     private String b;
@@ -16,40 +17,52 @@ final class e implements Runnable {
     }
 
     @Override // java.lang.Runnable
-    public final void run() {
+    public final void run() throws Throwable {
+        Throwable th;
+        Connection connection;
+        Connection connection2;
         String str = this.a;
         String str2 = this.b;
         if (str == null || str2 == null) {
             return;
         }
-        MessageConnection messageConnection = null;
         try {
-            MessageConnection messageConnectionOpen = Connector.open(new StringBuffer().append("sms://").append(str).toString());
-            messageConnection = messageConnectionOpen;
-            TextMessage textMessageNewMessage = messageConnectionOpen.newMessage("text");
-            textMessageNewMessage.setPayloadText(str2);
-            messageConnection.send(textMessageNewMessage);
-            if (messageConnection != null) {
+            connection2 = (MessageConnection) Connector.open(new StringBuffer().append("sms://").append(str).toString());
+            try {
+                TextMessage textMessageNewMessage = connection2.newMessage("text");
+                textMessageNewMessage.setPayloadText(str2);
+                connection2.send(textMessageNewMessage);
+                if (connection2 != null) {
+                    try {
+                        connection2.close();
+                    } catch (Exception e) {
+                    }
+                }
+            } catch (Exception e2) {
+                if (connection2 != null) {
+                    try {
+                        connection2.close();
+                    } catch (Exception e3) {
+                    }
+                }
+            } catch (Throwable th2) {
+                th = th2;
+                connection = connection2;
+                if (connection == null) {
+                    throw th;
+                }
                 try {
-                    messageConnection.close();
-                } catch (Exception unused) {
+                    connection.close();
+                    throw th;
+                } catch (Exception e4) {
+                    throw th;
                 }
             }
-        } catch (Exception unused2) {
-            if (messageConnection != null) {
-                try {
-                    messageConnection.close();
-                } catch (Exception unused3) {
-                }
-            }
-        } catch (Throwable th) {
-            if (messageConnection != null) {
-                try {
-                    messageConnection.close();
-                } catch (Exception unused4) {
-                }
-            }
-            throw th;
+        } catch (Exception e5) {
+            connection2 = null;
+        } catch (Throwable th3) {
+            th = th3;
+            connection = null;
         }
     }
 }

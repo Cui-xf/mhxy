@@ -3,7 +3,7 @@ package defpackage;
 import com.yinhan.kjava.main.a;
 import javax.microedition.lcdui.Graphics;
 
-/* loaded from: java版梦回西游3区251011.jar:ay.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class ay extends bk {
     private boolean a;
     private int b;
@@ -12,23 +12,37 @@ public final class ay extends bk {
     private int e;
     private a j;
 
+    /* JADX WARN: Multi-variable type inference failed */
+    @Override // defpackage.bk
+    public final int a(int i, int i2) {
+        if (b(i, i2)) {
+            Object[] objArr = 0;
+            objArr[1] = i2;
+            if (this.e > 0 && i >= (this.f + this.h) - 15 && i < this.f + this.h) {
+                if (i2 >= this.g && i2 <= this.g + 20) {
+                    return 1;
+                }
+                if (i2 > (this.g + this.i) - 20 && i2 <= this.g + this.i) {
+                    return 4;
+                }
+            }
+            int i3 = ((this.b + i2) - this.g) / 0;
+            if (i3 == this.c) {
+                return 1073741824;
+            }
+            this.c = i3;
+        }
+        return 0;
+    }
+
     @Override // defpackage.bk
     public final void a() {
         this.e = 0;
         this.b = 0;
         this.d = (this.i - 4) / 0;
-        if (0 > this.d) {
+        if (this.d < 0) {
             this.e = Math.max(6, (this.d * (this.i - 6)) / 0);
         }
-    }
-
-    @Override // defpackage.bk
-    public final void b() {
-        this.j = null;
-    }
-
-    public final void a(boolean z) {
-        this.a = z;
     }
 
     @Override // defpackage.bk
@@ -79,30 +93,6 @@ public final class ay extends bk {
         }
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    @Override // defpackage.bk
-    public final int a(int i, int i2) {
-        if (!b(i, i2)) {
-            return 0;
-        }
-        Object[] objArr = 0;
-        objArr[1] = i2;
-        if (this.e > 0 && i >= (this.f + this.h) - 15 && i < this.f + this.h) {
-            if (i2 >= this.g && i2 <= this.g + 20) {
-                return 1;
-            }
-            if (i2 > (this.g + this.i) - 20 && i2 <= this.g + this.i) {
-                return 4;
-            }
-        }
-        int i3 = ((this.b + i2) - this.g) / 0;
-        if (i3 == this.c) {
-            return 1073741824;
-        }
-        this.c = i3;
-        return 0;
-    }
-
     @Override // defpackage.bk
     public final void a(Graphics graphics) {
         graphics.setClip(this.f, this.g, this.h, this.i);
@@ -116,5 +106,14 @@ public final class ay extends bk {
             graphics.setClip(this.f, this.g, this.h, this.i);
             ca.a(graphics, ((this.f + this.h) - 2) - a.C.b, this.g + 2, this.i - 4, this.e, this.b, 0, this.i - 6);
         }
+    }
+
+    public final void a(boolean z) {
+        this.a = z;
+    }
+
+    @Override // defpackage.bk
+    public final void b() {
+        this.j = null;
     }
 }

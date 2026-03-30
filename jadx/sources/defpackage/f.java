@@ -2,7 +2,7 @@ package defpackage;
 
 import javax.microedition.lcdui.Image;
 
-/* loaded from: java版梦回西游3区251011.jar:f.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class f {
     private static String[] v = {"【邮件标题】", "【发件人】"};
     public static final String[] a = {"上页", "下页", "发件", "清理", "定购"};
@@ -29,6 +29,14 @@ public final class f {
     public String[] t = null;
     public boolean u = false;
 
+    public static f b() {
+        f fVar = new f();
+        fVar.d = 0;
+        fVar.e = "【我的邮件】\t邮件同步中...请稍候...";
+        fVar.f = new bo[0];
+        return fVar;
+    }
+
     public final void a() {
         this.m = null;
         this.n = null;
@@ -36,14 +44,6 @@ public final class f {
         this.p = null;
         this.q = null;
         this.r = null;
-    }
-
-    public static f b() {
-        f fVar = new f();
-        fVar.d = 0;
-        fVar.e = "【我的邮件】\t邮件同步中...请稍候...";
-        fVar.f = new bo[0];
-        return fVar;
     }
 
     public final void c() {
@@ -56,7 +56,7 @@ public final class f {
         this.j = null;
         this.k = null;
         this.l = null;
-        this.w = 1 + this.f.length;
+        this.w = this.f.length + 1;
         this.g = new String[this.w];
         this.h = new String[this.w];
         this.i = new String[this.w];
@@ -71,7 +71,7 @@ public final class f {
         this.j[0] = this.e;
         this.k[0] = null;
         this.l[0] = 4915330;
-        int i = 0 + 1;
+        int i = 1;
         for (int i2 = 0; i2 < this.f.length; i2++) {
             this.g[i] = this.f[i2].a();
             this.h[i] = "";

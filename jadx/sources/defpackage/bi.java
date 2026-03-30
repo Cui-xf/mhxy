@@ -3,7 +3,7 @@ package defpackage;
 import com.yinhan.kjava.main.a;
 import javax.microedition.lcdui.Graphics;
 
-/* loaded from: java版梦回西游3区251011.jar:bi.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class bi extends bk {
     private int a;
     private int b;
@@ -23,6 +23,19 @@ public final class bi extends bk {
         this.m = str;
         this.j = true;
         this.k = false;
+    }
+
+    @Override // defpackage.bk
+    public final int a(int i, int i2) {
+        if (this.b > 0 && i >= (this.f + this.h) - 15 && i < this.f + this.h) {
+            if (i2 >= this.g && i2 <= this.g + 20) {
+                return 1;
+            }
+            if (i2 > (this.g + this.i) - 20 && i2 <= this.g + this.i) {
+                return 4;
+            }
+        }
+        return 0;
     }
 
     @Override // defpackage.bk
@@ -48,37 +61,18 @@ public final class bi extends bk {
     }
 
     @Override // defpackage.bk
-    public final void b() {
-        this.m = null;
-        this.n = null;
-    }
-
-    public final void a(boolean z) {
-        this.e = z;
-    }
-
-    @Override // defpackage.bk
     public final void a(int i) {
         int i2 = this.j ? this.l : this.c * this.l;
         if (i == 1 || i == 514) {
             int i3 = (this.a - i2) % this.l;
-            this.a = (this.a - i2) + (i3 <= 0 ? 0 : this.l - i3);
+            this.a = (i3 <= 0 ? 0 : this.l - i3) + (this.a - i2);
             this.a = Math.max(this.a, 0);
-        } else if (i == 4 || i == 520) {
-            this.a += i2 - (this.a % this.l);
+            return;
+        }
+        if (i == 4 || i == 520) {
+            this.a = (i2 - (this.a % this.l)) + this.a;
             this.a = Math.min(this.a, Math.max(0, ((this.l * this.d) - this.i) + 6));
         }
-    }
-
-    @Override // defpackage.bk
-    public final int a(int i, int i2) {
-        if (this.b <= 0 || i < (this.f + this.h) - 15 || i >= this.f + this.h) {
-            return 0;
-        }
-        if (i2 < this.g || i2 > this.g + 20) {
-            return (i2 <= (this.g + this.i) - 20 || i2 > this.g + this.i) ? 0 : 4;
-        }
-        return 1;
     }
 
     @Override // defpackage.bk
@@ -90,15 +84,26 @@ public final class bi extends bk {
         }
         graphics.setClip(this.f, this.g + 4, this.h, this.i - 6);
         int i = this.a / this.l;
-        int iMin = Math.min(i + this.c + 2, this.d);
-        int i2 = (this.g + 4) - (this.a - (i * this.l));
-        for (int i3 = i; i3 < iMin; i3++) {
-            this.n[i3].a(graphics, this.f + 4, i2, 20);
+        int iMin = Math.min(this.c + i + 2, this.d);
+        int i2 = (this.g + 4) - (this.a - (this.l * i));
+        while (i < iMin) {
+            this.n[i].a(graphics, this.f + 4, i2, 20);
             i2 += this.l;
+            i++;
         }
         if (this.b > 0) {
             graphics.setClip(this.f, this.g, this.h, this.i);
-            ca.a(graphics, ((this.f + this.h) - 2) - a.C.b, this.g + 4, this.i - 6, this.b, this.a, this.l * this.d, this.i - 6);
+            ca.a(graphics, ((this.f + this.h) - 2) - a.C.b, this.g + 4, this.i - 6, this.b, this.a, this.d * this.l, this.i - 6);
         }
+    }
+
+    public final void a(boolean z) {
+        this.e = z;
+    }
+
+    @Override // defpackage.bk
+    public final void b() {
+        this.m = null;
+        this.n = null;
     }
 }

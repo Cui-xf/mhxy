@@ -4,7 +4,7 @@ import com.yinhan.kjava.main.a;
 import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
 
-/* loaded from: java版梦回西游3区251011.jar:p.class */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public final class p {
     public byte a;
     public byte b;
@@ -15,24 +15,34 @@ public final class p {
     public int g;
     public int h;
     public short i;
-    private byte t;
     public bc j;
     public byte k;
     public short p;
     public short q;
     public short r;
+    private byte t;
     public boolean l = false;
     public boolean m = false;
     public boolean n = false;
     public boolean o = false;
     public Vector s = new Vector();
 
-    public final void a(byte b) {
-        this.t = b <= 0 ? (byte) 1 : b;
-    }
-
     public final byte a() {
         return this.t;
+    }
+
+    public final void a(byte b) {
+        if (b <= 0) {
+            b = 1;
+        }
+        this.t = b;
+    }
+
+    public final void a(Graphics graphics, ai aiVar, int i, int i2, byte b) {
+        if (d() || this.j == null) {
+            return;
+        }
+        aiVar.a(graphics, this.j, (int[]) null, 0, 0, i, i2, 20, 0);
     }
 
     public final ck b() {
@@ -55,26 +65,6 @@ public final class p {
         return ckVar;
     }
 
-    public final p c() {
-        p pVar = new p();
-        pVar.a = this.a;
-        pVar.b = this.b;
-        pVar.c = this.c;
-        pVar.d = this.d;
-        pVar.e = this.e;
-        pVar.f = this.f;
-        pVar.g = this.g;
-        pVar.h = this.h;
-        pVar.i = this.i;
-        pVar.a(this.t);
-        pVar.k = this.k;
-        pVar.j = this.j;
-        pVar.p = this.p;
-        pVar.q = this.q;
-        pVar.r = this.r;
-        return pVar;
-    }
-
     public final void b(byte b) {
         t.ag.delete(0, t.ag.length());
         this.k = b;
@@ -95,7 +85,7 @@ public final class p {
         }
         if (this.b != 1) {
             if (this.b == 2) {
-                t.ag.append((int) this.i).append((int) (b > 3 ? (byte) 3 : b));
+                t.ag.append((int) this.i).append((int) (b <= 3 ? b : (byte) 3));
                 this.j = a.ah.a(t.ag.toString(), this.p, this.q, this.r);
                 return;
             }
@@ -105,16 +95,29 @@ public final class p {
         this.j = a.ah.a(t.ag.toString(), this.p, this.q, this.r);
         if (this.j == null) {
             t.ag.delete(0, t.ag.length());
-            t.ag.append(100).append((int) (b > 3 ? (byte) 3 : b));
+            t.ag.append(100).append((int) (b <= 3 ? b : (byte) 3));
             this.j = a.ah.a(t.ag.toString(), this.p, this.q, this.r);
         }
     }
 
-    public final void a(Graphics graphics, ai aiVar, int i, int i2, byte b) {
-        if (d() || this.j == null) {
-            return;
-        }
-        aiVar.a(graphics, this.j, (int[]) null, 0, 0, i, i2, 20, 0);
+    public final p c() {
+        p pVar = new p();
+        pVar.a = this.a;
+        pVar.b = this.b;
+        pVar.c = this.c;
+        pVar.d = this.d;
+        pVar.e = this.e;
+        pVar.f = this.f;
+        pVar.g = this.g;
+        pVar.h = this.h;
+        pVar.i = this.i;
+        pVar.a(this.t);
+        pVar.k = this.k;
+        pVar.j = this.j;
+        pVar.p = this.p;
+        pVar.q = this.q;
+        pVar.r = this.r;
+        return pVar;
     }
 
     public final boolean d() {
