@@ -6,7 +6,7 @@ import java.io.DataInputStream;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
-public final class v {
+public final class v_1 {
    private ao_1 h;
    private a_MainCanvas i;
    public static int[] a;
@@ -24,7 +24,7 @@ public final class v {
    private static int[] o;
    private static String[] p;
 
-   public v(ao_1 var1, a_MainCanvas var2) {
+   public v_1(ao_1 var1, a_MainCanvas var2) {
       this.h = var1;
       this.i = var2;
    }

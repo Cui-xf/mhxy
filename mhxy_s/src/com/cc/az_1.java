@@ -187,7 +187,7 @@ public final class az_1 {
 
    }
 
-   public final void a(Graphics var1, ai var2, int var3, int var4, byte var5) {
+   public final void a(Graphics var1, ai_1 var2, int var3, int var4, byte var5) {
       if (this.t == -1 && ao_1.t != null || this.I == 100 && ao_1.t != null) {
          var2.a(var1, (bc_1) ao_1.t, (int[])null, var3, var4, this.c - ao_1.t.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - t.j - ao_1.t.j(), 20, var5);
       } else if (this.t == 1 && ao_1.s != null) {

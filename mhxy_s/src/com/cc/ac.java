@@ -137,7 +137,7 @@ public final class ac extends ar {
 
    }
 
-   public final void a(aw var1, ai var2, long var3) {
+   public final void a(aw var1, ai_1 var2, long var3) {
       if (super.g != null && var1 != null) {
          if (!this.y && !this.A) {
             if (this.a == 0 && this.b < 0) {
@@ -165,7 +165,7 @@ public final class ac extends ar {
             }
          }
 
-         ai.a(super.g, var3);
+         ai_1.a(super.g, var3);
          if (super.d != null) {
             super.d.a(var1, var2, var3);
          }
@@ -199,16 +199,16 @@ public final class ac extends ar {
 
    }
 
-   public final void a(Graphics var1, ai var2, int var3, int var4, byte var5) {
+   public final void a(Graphics var1, ai_1 var2, int var3, int var4, byte var5) {
       if (super.g != null) {
          var2.a(var1, (bc_1)super.g, (int[])null, var3, var4, super.j + 8, super.k + 16, 20, 0);
          if (bt_1.ag != null) {
             this.w = bt_1.ag;
-            ca.a(var1, (String)this.w, (int)(super.j + 8 - var3), super.k - var4 - t.j - super.g.j() + 16, 17, bt_1.bs >= 0 ? '\uff00' : bt_1.ai, 0);
+            ca.a(var1, (String)this.w, (int)(super.j + 8 - var3), super.k - var4 - t.j - super.g.j() + 16, 17, bt_1.bs >= 0 ? '\uff00' : bt_1.ai_1, 0);
          }
 
          if (bt_1.ah != null && !bt_1.ah.equals("")) {
-            ca.a(var1, bt_1.ah, super.j + 8 - var3, super.k - var4 - (t.j << 1) - super.g.j() + 16, 17, bt_1.bs >= 0 ? '\uff00' : bt_1.ai);
+            ca.a(var1, bt_1.ah, super.j + 8 - var3, super.k - var4 - (t.j << 1) - super.g.j() + 16, 17, bt_1.bs >= 0 ? '\uff00' : bt_1.ai_1);
          }
 
          if (bt_1.bs == 1) {

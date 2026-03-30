@@ -3,6 +3,7 @@ package com.cc;
 import com.yinhan.kjava.main.a_MainCanvas;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
 public final class r {
@@ -31,12 +32,12 @@ public final class r {
    private int w;
    private boolean x = false;
 
-   public r(ao_1 var1, a_MainCanvas var2, ai var3) {
+   public r(ao_1 var1, a_MainCanvas var2, ai_1 var3) {
       this.i = var1;
       this.j = var2;
    }
 
-   public final void a(DataInputStream var1) {
+   public final void a(DataInputStream var1) throws IOException {
       boolean var2 = false;
       if (this.c > 0) {
          var2 = true;

@@ -6,7 +6,7 @@ import javax.microedition.lcdui.Graphics;
 
 public final class ba {
    private ao_1 a;
-   private ai b;
+   private ai_1 b;
    private a_MainCanvas c;
    private short d;
    private int e;
@@ -14,7 +14,7 @@ public final class ba {
    private int g;
    private int h;
 
-   public ba(a_MainCanvas var1, ao_1 var2, ai var3) {
+   public ba(a_MainCanvas var1, ao_1 var2, ai_1 var3) {
       this.c = var1;
       this.a = var2;
       this.b = var3;

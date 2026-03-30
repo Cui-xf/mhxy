@@ -4,10 +4,10 @@ import javax.microedition.lcdui.ChoiceGroup;
 import javax.microedition.lcdui.Item;
 import javax.microedition.lcdui.ItemStateListener;
 
-final class d implements ItemStateListener {
+final class d_3 implements ItemStateListener {
    private final a_MainCanvas a;
 
-   d(a_MainCanvas var1) {
+   d_3(a_MainCanvas var1) {
       this.a = var1;
    }
 

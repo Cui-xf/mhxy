@@ -1,10 +1,10 @@
 package com.yinhan.kjava.main;
 
-final class b implements Runnable {
+final class b_3 implements Runnable {
    private byte a;
    private final a_MainCanvas b;
 
-   public b(a_MainCanvas var1, byte var2) {
+   public b_3(a_MainCanvas var1, byte var2) {
       this.b = var1;
       this.a = var2;
       (new Thread(this)).start();

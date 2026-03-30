@@ -4,8 +4,7 @@
     "java版梦回西游3区251011.jar"
   ],
   "treeExpansionsV2": [
-    "c:ao",
-    "p:com.yinhan.kjava.main"
+    "c:ao"
   ],
   "codeData": {
     "comments": [],
@@ -51,6 +50,14 @@
           "declClass": "w"
         },
         "newName": "NetPacket"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "ao",
+          "shortId": "t:Lbc;"
+        },
+        "newName": "t_3"
       },
       {
         "nodeRef": {
@@ -192,6 +199,18 @@
         "nodeRef": {
           "refType": "METHOD",
           "declClass": "ao",
+          "shortId": "aI(I)V"
+        },
+        "codeRef": {
+          "attachType": "VAR",
+          "index": 94
+        },
+        "newName": "var8"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
+          "declClass": "ao",
           "shortId": "aZ()V"
         },
         "newName": "az_huiCheng"
@@ -315,10 +334,25 @@
       "type": "class",
       "tabPath": "ao",
       "subPath": "java",
-      "caret": 7919,
+      "caret": 202464,
       "view": {
-        "x": 6,
-        "y": 3437
+        "x": 0,
+        "y": 80374
+      },
+      "active": true,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false,
+      "previewTab": false
+    },
+    {
+      "type": "class",
+      "tabPath": "ca",
+      "subPath": "java",
+      "caret": 6653,
+      "view": {
+        "x": 0,
+        "y": 2585
       },
       "active": false,
       "pinned": false,
@@ -328,14 +362,14 @@
     },
     {
       "type": "class",
-      "tabPath": "c",
+      "tabPath": "f",
       "subPath": "java",
-      "caret": 308,
+      "caret": 275,
       "view": {
         "x": 0,
         "y": 0
       },
-      "active": true,
+      "active": false,
       "pinned": false,
       "bookmarked": false,
       "hidden": false,

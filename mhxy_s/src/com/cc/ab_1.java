@@ -4,13 +4,13 @@ import com.yinhan.kjava.main.a_MainCanvas;
 
 import java.util.Vector;
 
-public final class ab {
+public final class ab_1 {
    private ao_1 c;
    private long d = 0L;
    public int a = -1;
    public static boolean b;
 
-   public ab(ao_1 var1) {
+   public ab_1(ao_1 var1) {
       this.c = var1;
    }
 
@@ -26,7 +26,7 @@ public final class ab {
             }
 
             this.d = this.c.e.ak;
-            ab var1 = this;
+            ab_1 var1 = this;
             s var10000;
             if (this.c == null) {
                var10000 = null;

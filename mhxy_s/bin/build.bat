@@ -50,7 +50,7 @@ if not exist .\%DEMO%.jad (
 
 rem Windows: javac does not expand *.java; list saved next to this script
 set "SRC_LIST=%~dp0mhxy_s_sources.txt"
-(for /com.cc.r ..\src %%com.cc.f in (*.java) do @echo %%com.cc.f) > "%SRC_LIST%" 2>nul
+(for /com.cc.r ..\src %%com.cc.f_1 in (*.java) do @echo %%com.cc.f_1) > "%SRC_LIST%" 2>nul
 for %%A in ("%SRC_LIST%") do if %%~zA equ 0 (
   echo *** No .java files found under ..\src
   goto end

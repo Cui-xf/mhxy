@@ -92,8 +92,8 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
    public static bu_1 af;
    public static bu_1 ag;
    public static bu_1 ah;
-   public static com.yinhan.kjava.main.c ai = null;
-   public com.yinhan.kjava.main.f aj;
+   public static c_3 ai = null;
+   public f_3 aj;
    public long ak;
    public long al;
    private static Vector aN = new Vector();
@@ -228,7 +228,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
       ((Canvas)this).setFullScreenMode(true);
       this.q = var2;
       this.d = var1;
-      ai = new com.yinhan.kjava.main.c(var1, var2);
+      ai = new c_3(var1, var2);
       this.aJ = true;
       t_1.b = (short)((Displayable)this).getWidth();
       t_1.c = (short)((Displayable)this).getHeight();
@@ -567,7 +567,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
                         this.be = null;
                         ca_1.a();
                         this.k = this.j = 0;
-                        new com.yinhan.kjava.main.b(this, bK);
+                        new b_3(this, bK);
                      }
                      break;
                   case 14:
@@ -607,14 +607,14 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
                                        if (t_1.x) {
                                           this.v();
                                        } else {
-                                          com.yinhan.kjava.main.c.c();
+                                          c_3.c();
                                        }
                                        break;
                                     case 1:
-                                       com.yinhan.kjava.main.c.e();
+                                       c_3.e();
                                        break;
                                     case 2:
-                                       com.yinhan.kjava.main.c.f();
+                                       c_3.f();
                                  }
                               }
                            } else {
@@ -1147,7 +1147,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
          this.bO.setString(bt_1.c);
       }
 
-      this.aD.setItemStateListener(new com.yinhan.kjava.main.d(this));
+      this.aD.setItemStateListener(new d_3(this));
       this.aD.append(this.bb);
       this.aD.append(this.bc);
       this.aD.append(this.bN);
@@ -2070,7 +2070,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
       }
    }
 
-   private static DataInputStream a(RecordStore var0) {
+   private static DataInputStream a(RecordStore var0) throws RecordStoreException {
       Object var1 = null;
       if (1 < var0.getNumRecords() + 1) {
          byte[] var2 = var0.getRecord(1);
@@ -2095,7 +2095,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
       }
    }
 
-   private static RecordStore a(String var0, boolean var1) {
+   private static RecordStore a(String var0, boolean var1) throws RecordStoreException {
       Object var2 = null;
       if (var1) {
          RecordStore.deleteRecordStore(var0);
@@ -2425,7 +2425,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
 
    public final void l() {
       this.aD = new Form("联系客服");
-      this.bX = new ChoiceGroup("类型: ", 1, .ag.a, (Image[])null);
+      this.bX = new ChoiceGroup("类型: ", 1, ag_1.a, (Image[])null);
       this.aC = new TextField("内容: ", "", 100, 0);
       this.bP = new Command("确定", 3, 0);
       this.bQ = new Command("返回", 1, 5);
@@ -2437,11 +2437,11 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
       this.aD.setCommandListener(this);
    }
 
-   public final void a(byte var1, String var2, String var3, String var4, String var5, String var6, String var7) {
+   public final void a(byte _t, String var2, String var3, String var4, String var5, String var6, String var7) {
       this.bY = 0;
       bt_1.O.q = var6;
       bt_1.O.r = var7;
-      var1 = var2.equals("回复邮件");
+      boolean var1 = var2.equals("回复邮件");
       if (this.bY == 0) {
          this.aD = new Form(var2);
          if (!var1) {
@@ -2809,7 +2809,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
                   } else {
                      e.M.d = var73;
                      this.I();
-                     .aq var42;
+                     aq var42;
                      if ((var42 = e.M).c != null && var42.d != null) {
                         byte[] var87;
                         if ((var87 = bz_1.b((short)4197, bt_1.ad, var42.c, var42.d)) != null) {
@@ -3034,7 +3034,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
                   } else {
                      e.M.h = var70;
                      this.I();
-                     .aq var32 = e.M;
+                     aq var32 = e.M;
                      byte[] var85;
                      if ((var85 = bz_1.n((short)4218, bt_1.ad, var32.h)) != null) {
                         i.a(new w((short)4218, var85));
@@ -3132,7 +3132,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
                   }
 
                   if (var67.equals("OK")) {
-                     .aq var27 = e.M;
+                     aq var27 = e.M;
                      byte[] var83;
                      if ((var83 = bz_1.n((short)4214, bt_1.ad)) != null) {
                         i.a(new w((short)4214, var83));
@@ -3327,7 +3327,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
                   }
 
                   if (var60.equals("OK")) {
-                     if (.v.e == 1) {
+                     if (v_1.e == 1) {
                         return;
                      }
 
@@ -3387,7 +3387,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
 
                      String var16;
                      if ((var16 = this.aC.getString().trim()).length() >= 5) {
-                        e.a(var16, .ag.a[this.bX.getSelectedIndex()]);
+                        e.a(var16, ag_1.a[this.bX.getSelectedIndex()]);
                         this.d.a();
                         return;
                      }
@@ -3479,21 +3479,20 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
             }
 
             byte var3 = (byte)this.bc.getSelectedIndex();
-            byte var4 = this.bd.isSelected(0);
+            boolean zIsSelected = this.bd.isSelected(0);
             String var5 = this.bN.getString().trim();
             String var8 = this.bO.getString().trim();
-            if (var4) {
+            if (zIsSelected) {
                byte var10001 = (byte)(var51.equals("登录当乐通行证") ? 0 : 1);
                String var9 = var8;
                String var7 = var5;
                byte var6 = var3;
-               var4 = var10001;
                a_MainCanvas var13 = this;
                ByteArrayOutputStream var10 = new ByteArrayOutputStream();
                DataOutputStream var11 = new DataOutputStream(var10);
 
                try {
-                  var11.writeBoolean(var4 == 0);
+                  var11.writeBoolean(var10001 == 0);
                   var11.writeByte(var6);
                   var11.writeBoolean(true);
                   var11.writeUTF(var7 == null ? "" : var7);
@@ -3508,7 +3507,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
 
             if (var51.equals("登录当乐通行证")) {
                t_1.w = true;
-               com.yinhan.kjava.main.c.b();
+               c_3.b();
                String var98 = var3 == 0 ? var5 : "";
                String var90 = var3 == 1 ? var5 : "";
                String var80 = var98;
@@ -3540,190 +3539,344 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
       try {
          this.d.destroyApp(true);
       } catch (MIDletStateChangeException var1) {
+
       }
 
       this.d.notifyDestroyed();
    }
+//
+//   protected final void pointerPressed(int var1, int var2) {
+//      if (t_1.o && this.aj != null) {
+//         this.aj.e = var1;
+//         this.aj.f = var2;
+//         this.aA = 0;
+//         this.aj.a(this.aj.e, this.aj.f);
+//         f_3 var10000 = this.aj;
+//         var2 = this.aj.f;
+//         var1 = this.aj.e;
+//         f_3 fVar = var10000;
+//         switch (var10000.b.j) {
+//            case 2:
+//               fVar.b.a = fVar.b.a(var1, var2);
+//               return;
+//            case 3:
+//            case 7:
+//            case 8:
+//            case 9:
+//            case 11:
+//            case 12:
+//            case 13:
+//            default:
+//               break;
+//            case 4:
+//               if (fVar.b.c == 0) {
+//                  if (fVar.b.aq != null) {
+//                     fVar.b.a = fVar.b.aq.b(var1, var2);
+//                     return;
+//                  }
+//               } else if (fVar.b.c == 2) {
+//                  fVar.b.a = fVar.b.a(var1, var2);
+//                  return;
+//               }
+//               break;
+//            case 5:
+//               if (fVar.b.aq != null) {
+//                  int var28;
+//                  label158: {
+//                     fVar.b.a = fVar.b.aq.b(var1, var2);
+//                     a_MainCanvas var24 = fVar.b;
+//                     a_MainCanvas a_maincanvas2 = fVar.b;
+//                     int var20 = var2;
+//                     int var17 = var1;
+//                     int var14 = fVar.b.a;
+//                     a_MainCanvas var12 = a_maincanvas2;
+//                     if (a_maincanvas2.bC != null) {
+//                        for(int var21 = 0; var21 < var12.bC.length; ++var21) {
+//                           if (var17 >= var12.bC[var21][0] && var17 <= var12.bC[var21][0] + var12.bC[var21][2] && var20 >= var12.bC[var21][1] && var20 <= var12.bC[var21][1] + var12.bC[var21][3]) {
+//                              var14 = (byte)(var21 % 2);
+//                              var17 = (byte)(var21 / 2);
+//                              if (var14 == var12.bz && var17 == var12.bA) {
+//                                 var28 = 1073741824;
+//                              } else {
+//                                 var12.bz = (byte)var14;
+//                                 var12.bA = (byte)(var17 == 0 ? 1 : 0);
+//                                 var28 = 4;
+//                              }
+//                              break label158;
+//                           }
+//                        }
+//                     }
+//
+//                     var28 = var14;
+//                  }
+//
+//                  var24.a = var28;
+//               }
+//
+//               if (fVar.b.c == 1) {
+//                  fVar.b.a = ca_1.c(var1, var2);
+//                  return;
+//               }
+//
+//               if (fVar.b.c != 2) {
+//                  break;
+//               }
+//            case 20:
+//               fVar.b.a = ca_1.b(var1, var2);
+//               break;
+//            case 6:
+//               if (fVar.b.aq != null) {
+//                  int var26;
+//                  label126: {
+//                     fVar.b.a = fVar.b.aq.b(var1, var2);
+//                     var23 = fVar.b;
+//                     a_MainCanvas var25 = fVar.b;
+//                     int var19 = var2;
+//                     int var16 = var1;
+//                     int var13 = fVar.b.a;
+//                     a_MainCanvas var11 = var25;
+//                     if (var25.bC != null) {
+//                        for(int var7 = 0; var7 < var11.bC.length; ++var7) {
+//                           if (var16 >= var11.bC[var7][0] && var16 <= var11.bC[var7][0] + var11.bC[var7][2] && var19 >= var11.bC[var7][1] && var19 <= var11.bC[var7][1] + var11.bC[var7][3]) {
+//                              if (var7 < 2) {
+//                                 var11.bH = 0;
+//                              } else {
+//                                 if (var7 >= 4) {
+//                                    var11.bH = 2;
+//                                    var11.bG = var7 % 2;
+//                                    var26 = 1073741824;
+//                                    break label126;
+//                                 }
+//
+//                                 var11.bH = 1;
+//                              }
+//
+//                              var26 = var7 % 2 == 0 ? 8 : 2;
+//                              break label126;
+//                           }
+//                        }
+//                     }
+//
+//                     var26 = var13;
+//                  }
+//
+//                  var23.a = var26;
+//                  return;
+//               }
+//               break;
+//            case 10:
+//               if (fVar.b.aq != null) {
+//                  fVar.b.a = fVar.b.aq.b(var1, var2);
+//                  return;
+//               }
+//               break;
+//            case 14:
+//               if (fVar.b.c != 0) {
+//                  fVar.b.a = ca_1.b(var1, var2);
+//                  return;
+//               }
+//
+//               a_MainCanvas var22 = fVar.b;
+//               int var5 = var2;
+//               int var4 = var1;
+//               a_MainCanvas var3 = fVar.b;
+//               int var6 = 0;
+//
+//               int var10001;
+//               while(true) {
+//                  if (var6 >= var3.bo.length) {
+//                     if (t_1.a == 1 && var4 >= t_1.b - t_1.i.stringWidth("退出") - 4 && var4 <= t_1.b - 4 && var5 >= t_1.c - t_1.j - 4 && var5 <= t_1.c - 4) {
+//                        var10001 = 536870912;
+//                        break;
+//                     }
+//
+//                     var10001 = 0;
+//                     break;
+//                  }
+//
+//                  if (var4 > t_1.b - var3.bi.getWidth() >> 1 && var4 < (t_1.b - var3.bi.getWidth() >> 1) + var3.bi.getWidth() && var5 > (var3.bt << 1) + var3.bh.getHeight() + var6 * var3.bi.getHeight() && var5 < (var3.bt << 1) + var3.bh.getHeight() + (var6 + 1) * var3.bi.getHeight()) {
+//                     var3.bs = var6;
+//                     var3.al = 0L;
+//                     var10001 = 1073741824;
+//                     break;
+//                  }
+//
+//                  ++var6;
+//               }
+//
+//               var22.a = var10001;
+//               return;
+//            case 15:
+//               fVar.b.a = ca_1.b(var1, var2);
+//               return;
+//            case 16:
+//               fVar.b.a = ca_1.b(var1, var2);
+//               return;
+//            case 17:
+//               fVar.b.a = ca_1.b(var1, var2);
+//               return;
+//            case 18:
+//               fVar.b.a = ca_1.a(var1, var2);
+//               return;
+//            case 19:
+//               fVar.b.a = ca_1.a(var1, var2);
+//               return;
+//         }
+//      }
+//
+//   }
 
-   protected final void pointerPressed(int var1, int var2) {
-      if (t_1.o && this.aj != null) {
-         this.aj.e = var1;
-         this.aj.f = var2;
-         this.aA = 0;
-         this.aj.a(this.aj.e, this.aj.f);
-         com.yinhan.kjava.main.f var10000 = this.aj;
-         var2 = this.aj.f;
-         var1 = this.aj.e;
-         com.yinhan.kjava.main.f var8 = var10000;
-         switch (var10000.b.j) {
-            case 2:
-               var8.b.a = var8.b.a(var1, var2);
-               return;
-            case 3:
-            case 7:
-            case 8:
-            case 9:
-            case 11:
-            case 12:
-            case 13:
-            default:
-               break;
-            case 4:
-               if (var8.b.c == 0) {
-                  if (var8.b.aq != null) {
-                     var8.b.a = var8.b.aq.b(var1, var2);
-                     return;
-                  }
-               } else if (var8.b.c == 2) {
-                  var8.b.a = var8.b.a(var1, var2);
-                  return;
-               }
-               break;
-            case 5:
-               if (var8.b.aq != null) {
-                  int var28;
-                  label158: {
-                     var8.b.a = var8.b.aq.b(var1, var2);
-                     var24 = var8.b;
-                     a_MainCanvas var27 = var8.b;
-                     int var20 = var2;
-                     int var17 = var1;
-                     int var14 = var8.b.a;
-                     a_MainCanvas var12 = var27;
-                     if (var27.bC != null) {
-                        for(int var21 = 0; var21 < var12.bC.length; ++var21) {
-                           if (var17 >= var12.bC[var21][0] && var17 <= var12.bC[var21][0] + var12.bC[var21][2] && var20 >= var12.bC[var21][1] && var20 <= var12.bC[var21][1] + var12.bC[var21][3]) {
-                              var14 = (byte)(var21 % 2);
-                              var17 = (byte)(var21 / 2);
-                              if (var14 == var12.bz && var17 == var12.bA) {
-                                 var28 = 1073741824;
-                              } else {
-                                 var12.bz = (byte)var14;
-                                 var12.bA = (byte)(var17 == 0 ? 1 : 0);
-                                 var28 = 4;
-                              }
-                              break label158;
-                           }
-                        }
-                     }
-
-                     var28 = var14;
-                  }
-
-                  var24.a = var28;
-               }
-
-               if (var8.b.c == 1) {
-                  var8.b.a = ca_1.c(var1, var2);
-                  return;
-               }
-
-               if (var8.b.c != 2) {
-                  break;
-               }
-            case 20:
-               var8.b.a = ca_1.b(var1, var2);
-               break;
-            case 6:
-               if (var8.b.aq != null) {
-                  int var26;
-                  label126: {
-                     var8.b.a = var8.b.aq.b(var1, var2);
-                     var23 = var8.b;
-                     a_MainCanvas var25 = var8.b;
-                     int var19 = var2;
-                     int var16 = var1;
-                     int var13 = var8.b.a;
-                     a_MainCanvas var11 = var25;
-                     if (var25.bC != null) {
-                        for(int var7 = 0; var7 < var11.bC.length; ++var7) {
-                           if (var16 >= var11.bC[var7][0] && var16 <= var11.bC[var7][0] + var11.bC[var7][2] && var19 >= var11.bC[var7][1] && var19 <= var11.bC[var7][1] + var11.bC[var7][3]) {
-                              if (var7 < 2) {
-                                 var11.bH = 0;
-                              } else {
-                                 if (var7 >= 4) {
-                                    var11.bH = 2;
-                                    var11.bG = var7 % 2;
-                                    var26 = 1073741824;
-                                    break label126;
-                                 }
-
-                                 var11.bH = 1;
-                              }
-
-                              var26 = var7 % 2 == 0 ? 8 : 2;
-                              break label126;
-                           }
-                        }
-                     }
-
-                     var26 = var13;
-                  }
-
-                  var23.a = var26;
-                  return;
-               }
-               break;
-            case 10:
-               if (var8.b.aq != null) {
-                  var8.b.a = var8.b.aq.b(var1, var2);
-                  return;
-               }
-               break;
-            case 14:
-               if (var8.b.c != 0) {
-                  var8.b.a = ca_1.b(var1, var2);
-                  return;
-               }
-
-               a_MainCanvas var22 = var8.b;
-               int var5 = var2;
-               int var4 = var1;
-               a_MainCanvas var3 = var8.b;
-               int var6 = 0;
-
-               int var10001;
-               while(true) {
-                  if (var6 >= var3.bo.length) {
-                     if (t_1.a == 1 && var4 >= t_1.b - t_1.i.stringWidth("退出") - 4 && var4 <= t_1.b - 4 && var5 >= t_1.c - t_1.j - 4 && var5 <= t_1.c - 4) {
-                        var10001 = 536870912;
-                        break;
-                     }
-
-                     var10001 = 0;
-                     break;
-                  }
-
-                  if (var4 > t_1.b - var3.bi.getWidth() >> 1 && var4 < (t_1.b - var3.bi.getWidth() >> 1) + var3.bi.getWidth() && var5 > (var3.bt << 1) + var3.bh.getHeight() + var6 * var3.bi.getHeight() && var5 < (var3.bt << 1) + var3.bh.getHeight() + (var6 + 1) * var3.bi.getHeight()) {
-                     var3.bs = var6;
-                     var3.al = 0L;
-                     var10001 = 1073741824;
-                     break;
-                  }
-
-                  ++var6;
-               }
-
-               var22.a = var10001;
-               return;
-            case 15:
-               var8.b.a = ca_1.b(var1, var2);
-               return;
-            case 16:
-               var8.b.a = ca_1.b(var1, var2);
-               return;
-            case 17:
-               var8.b.a = ca_1.b(var1, var2);
-               return;
-            case 18:
-               var8.b.a = ca_1.a(var1, var2);
-               return;
-            case 19:
-               var8.b.a = ca_1.a(var1, var2);
-               return;
-         }
+   protected final void pointerPressed(int i2, int i3) {
+      int i4;
+      int i5;
+      int i6;
+      if (!t_1.o || this.aj == null) {
+         return;
       }
-
+      this.aj.e = i2;
+      this.aj.f = i3;
+      this.aA = 0;
+      this.aj.a(this.aj.e, this.aj.f);
+      f_3 fVar = this.aj;
+      int i7 = this.aj.e;
+      int i8 = this.aj.f;
+      switch (fVar.b.j) {
+         case 2:
+            fVar.b.a = fVar.b.a(i7, i8);
+            return;
+         case 3:
+         case 7:
+         case 8:
+         case 9:
+         case 11:
+         case 12:
+         case 13:
+         default:
+            return;
+         case 4:
+            if (fVar.b.c == 0) {
+               if (fVar.b.aq != null) {
+                  fVar.b.a = fVar.b.aq.b(i7, i8);
+                  return;
+               }
+               return;
+            } else {
+               if (fVar.b.c == 2) {
+                  fVar.b.a = fVar.b.a(i7, i8);
+                  return;
+               }
+               return;
+            }
+         case 5:
+            if (fVar.b.aq != null) {
+               fVar.b.a = fVar.b.aq.b(i7, i8);
+               a_MainCanvas a_maincanvas = fVar.b;
+               a_MainCanvas a_maincanvas2 = fVar.b;
+               int i9 = fVar.b.a;
+               if (a_maincanvas2.bC != null) {
+                  for (int i10 = 0; i10 < a_maincanvas2.bC.length; i10++) {
+                     if (i7 >= a_maincanvas2.bC[i10][0] && i7 <= a_maincanvas2.bC[i10][0] + a_maincanvas2.bC[i10][2] && i8 >= a_maincanvas2.bC[i10][1] && i8 <= a_maincanvas2.bC[i10][1] + a_maincanvas2.bC[i10][3]) {
+                        byte b = (byte) (i10 % 2);
+                        byte b2 = (byte) (i10 / 2);
+                        if (b == a_maincanvas2.bz && b2 == a_maincanvas2.bA) {
+                           i5 = 1073741824;
+                        } else {
+                           a_maincanvas2.bz = b;
+                           a_maincanvas2.bA = (byte) (b2 == 0 ? 1 : 0);
+                           i5 = 4;
+                        }
+                        a_maincanvas.a = i5;
+                     }
+                  }
+                  i5 = i9;
+                  a_maincanvas.a = i5;
+               } else {
+                  i5 = i9;
+                  a_maincanvas.a = i5;
+               }
+            }
+            if (fVar.b.c == 1) {
+               fVar.b.a = ca_1.c(i7, i8);
+               return;
+            } else if (fVar.b.c != 2) {
+               return;
+            }
+            break;
+         case 6:
+            if (fVar.b.aq != null) {
+               fVar.b.a = fVar.b.aq.b(i7, i8);
+               a_MainCanvas a_maincanvas3 = fVar.b;
+               a_MainCanvas a_maincanvas4 = fVar.b;
+               int i11 = fVar.b.a;
+               if (a_maincanvas4.bC != null) {
+                  for (int i12 = 0; i12 < a_maincanvas4.bC.length; i12++) {
+                     if (i7 >= a_maincanvas4.bC[i12][0] && i7 <= a_maincanvas4.bC[i12][0] + a_maincanvas4.bC[i12][2] && i8 >= a_maincanvas4.bC[i12][1] && i8 <= a_maincanvas4.bC[i12][1] + a_maincanvas4.bC[i12][3]) {
+                        if (i12 < 2) {
+                           a_maincanvas4.bH = 0;
+                        } else if (i12 < 4) {
+                           a_maincanvas4.bH = 1;
+                        } else {
+                           a_maincanvas4.bH = 2;
+                           a_maincanvas4.bG = i12 % 2;
+                           i4 = 1073741824;
+                        }
+                        i4 = i12 % 2 == 0 ? 8 : 2;
+                     }
+                  }
+                  i4 = i11;
+               } else {
+                  i4 = i11;
+               }
+               a_maincanvas3.a = i4;
+               return;
+            }
+            return;
+         case 10:
+            if (fVar.b.aq != null) {
+               fVar.b.a = fVar.b.aq.b(i7, i8);
+               return;
+            }
+            return;
+         case 14:
+            if (fVar.b.c != 0) {
+               fVar.b.a = ca_1.b(i7, i8);
+               return;
+            }
+            a_MainCanvas a_maincanvas5 = fVar.b;
+            a_MainCanvas a_maincanvas6 = fVar.b;
+            int i13 = 0;
+            while (true) {
+               if (i13 >= a_maincanvas6.bo.length) {
+                  i6 = (t_1.a != 1 || i7 < (t.b - t_1.i.stringWidth("退出")) + (-4) || i7 > t.b + (-4) || i8 < (t.c - t_1.j) + (-4) || i8 > t.c + (-4)) ? 0 : 536870912;
+               } else if (i7 <= ((t.b - a_maincanvas6.bi.getWidth()) >> 1) || i7 >= ((t.b - a_maincanvas6.bi.getWidth()) >> 1) + a_maincanvas6.bi.getWidth() || i8 <= (a_maincanvas6.bt << 1) + a_maincanvas6.bh.getHeight() + (a_maincanvas6.bi.getHeight() * i13) || i8 >= (a_maincanvas6.bt << 1) + a_maincanvas6.bh.getHeight() + ((i13 + 1) * a_maincanvas6.bi.getHeight())) {
+                  i13++;
+               } else {
+                  a_maincanvas6.bs = i13;
+                  a_maincanvas6.al = 0L;
+                  i6 = 1073741824;
+               }
+            }
+            a_maincanvas5.a = i6;
+            return;
+         case 15:
+            fVar.b.a = ca_1.b(i7, i8);
+            return;
+         case 16:
+            fVar.b.a = ca_1.b(i7, i8);
+            return;
+         case 17:
+            fVar.b.a = ca_1.b(i7, i8);
+            return;
+         case 18:
+            fVar.b.a = ca_1.a(i7, i8);
+            return;
+         case 19:
+            fVar.b.a = ca_1.a(i7, i8);
+            return;
+         case 20:
+            break;
+      }
+      fVar.b.a = ca_1.b(i7, i8);
    }
 
    protected final void pointerReleased(int var1, int var2) {
@@ -3777,7 +3930,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
             }
          }
 
-         if ((var3 = i.a().a(e.f, var3, new .bs(this.ca, this.cb), new .bs(this.cc, this.cd))).isEmpty()) {
+         if ((var3 = i.a().a(e.f, var3, new bs(this.ca, this.cb), new bs(this.cc, this.cd))).isEmpty()) {
             return;
          }
 
@@ -3785,10 +3938,10 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
          e.I.c.removeAllElements();
 
          for(int var8 = 0; var8 < var6; ++var8) {
-            .bs var15 = (.bs)var3.elementAt(var8);
-            .bs var16;
+            bs var15 = (bs)var3.elementAt(var8);
+            bs var16;
             if (var8 < var6 - 1) {
-               var16 = (.bs)var3.elementAt(var8 + 1);
+               var16 = (bs)var3.elementAt(var8 + 1);
             } else {
                var16 = var15;
             }
@@ -3881,7 +4034,7 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
    }
 
    public final void c(String var1, String var2) {
-      new com.yinhan.kjava.main.e(this, var1, var2);
+      new e_3(this, var1, var2);
    }
 
    public static final Image c(int var0) {
@@ -3936,15 +4089,15 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
          ao_1.D = ag.a("elite");
          n = ag.a("num");
          ag.b("email");
-         .bf var2;
-         .aj[] var1 = (var2 = ag.a("mail_2")).d;
+         bf_1 var2;
+         aj[] var1 = (var2 = ag.a("mail_2")).d;
 
          for(int var3 = 1; var3 < var1.length; ++var3) {
             Image var4 = Image.createImage(var2.a, var1[var3].a, var1[var3].b, var1[var3].c, var1[var3].d, 0);
             if ((var3 & 1) == 0) {
-               .be.e[var3 >> 2] = var4;
+               be_1.e[var3 >> 2] = var4;
             } else {
-               .bo.g[var3 >> 1] = var4;
+               bo_1.g[var3 >> 1] = var4;
             }
          }
 
@@ -3963,11 +4116,11 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
          D = ag.a("down");
          A = ag.b("go-left");
          B = ag.b("go-right");
-         .y.a = v;
-         .y.b = u;
-         .y.c = r;
-         .y.d = z;
-         .y.e = x;
+         y_1.a = v;
+         y_1.b = u;
+         y_1.c = r;
+         y_1.d = z;
+         y_1.e = x;
          G = ag.a("tradetitle");
          L = ag.a("tradebottom");
          K = ag.a("moneybutton");
@@ -3979,13 +4132,13 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
          O = ag.a("equip");
          P = ag.a("nextpage");
          Q = ag.a("backpage");
-         R = new .bf[8];
+         R = new bf_1[8];
 
          for(int var20 = 0; var20 < R.length; ++var20) {
             R[var20] = ag.a("equip_" + var20);
          }
 
-         S = new .bf[4];
+         S = new bf_1[4];
 
          for(int var21 = 0; var21 < S.length; ++var21) {
             S[var21] = ag.a("submenu_" + var21);
@@ -4036,15 +4189,15 @@ public final class a_MainCanvas extends Canvas implements Runnable, CommandListe
       }
 
       var0.l = new StringBuffer();
-      var0.aq = new .m();
-      var0.av = .y.c();
-      var0.ar = new .c();
-      var0.au = new .l();
-      var0.as = new .n();
-      var0.at = new .an();
-      f = new .ai();
+      var0.aq = new m_1();
+      var0.av = y_1.c();
+      var0.ar = new c_1();
+      var0.au = new l_1();
+      var0.as = new n_1();
+      var0.at = new an_1();
+      f = new ai_1();
       if (t_1.o) {
-         var0.aj = new com.yinhan.kjava.main.f(var0, f);
+         var0.aj = new f_3(var0, f);
       }
 
       ai.a();

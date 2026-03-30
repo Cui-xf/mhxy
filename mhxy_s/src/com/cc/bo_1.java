@@ -1,9 +1,10 @@
 package com.cc;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import javax.microedition.lcdui.Image;
 
-public final class bo {
+public final class bo_1 {
    public String a;
    public String b;
    private String h;
@@ -13,7 +14,7 @@ public final class bo {
    public boolean f;
    public static Image[] g = new Image[2];
 
-   public final void a(DataInputStream var1) {
+   public final void a(DataInputStream var1) throws IOException {
       this.a = var1.readUTF();
       this.b = var1.readUTF();
       this.h = var1.readUTF();

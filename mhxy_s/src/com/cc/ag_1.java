@@ -4,10 +4,10 @@ import com.yinhan.kjava.main.a_MainCanvas;
 
 import javax.microedition.lcdui.Image;
 
-public final class ag {
+public final class ag_1 {
    private static String[] p = new String[]{"联系客服", "", ""};
    public static final String[] a;
-   public be[] b = new be[0];
+   public be_1[] b = new be_1[0];
    public ak[] c = new ak[0];
    private int q = 0;
    public String[] d = null;
@@ -29,7 +29,7 @@ public final class ag {
       Object var1 = null;
 
       for(int var2 = 0; var2 < this.b.length; ++var2) {
-         be var3;
+         be_1 var3;
          if ((var3 = this.b[var2]).d) {
             return var3.a;
          }
@@ -48,9 +48,9 @@ public final class ag {
       return -1;
    }
 
-   public static ag b() {
-      ag var0;
-      (var0 = new ag()).b = new be[0];
+   public static ag_1 b() {
+      ag_1 var0;
+      (var0 = new ag_1()).b = new be_1[0];
       return var0;
    }
 
@@ -103,9 +103,9 @@ public final class ag {
                this.o = true;
             }
 
-            this.g[var1] = be.e[0];
+            this.g[var1] = be_1.e[0];
          } else {
-            this.g[var1] = be.e[1];
+            this.g[var1] = be_1.e[1];
          }
 
          this.h[var1] = 9118290;

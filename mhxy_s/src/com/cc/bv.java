@@ -82,7 +82,7 @@ public final class bv {
       }
    }
 
-   public final void a(Graphics var1, ai var2, int var3, int var4, byte var5) {
+   public final void a(Graphics var1, ai_1 var2, int var3, int var4, byte var5) {
       if (this.d != null && this.d.k != null) {
          var2.a(var1, this.d.k[this.d.f], this.d.g(), this.d.h(), (int[])null, var3, var4, this.e, this.f, 20, 0);
       }

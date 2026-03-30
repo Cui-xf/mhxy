@@ -1,8 +1,8 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.mai_1n.a_Mai_1nCanvas;
 
-import java.io.DataInputStream;
+import java.io.Datai_1nputStream;
 
 public final class bl extends ar {
    public String a = "";
@@ -26,7 +26,7 @@ public final class bl extends ar {
    public byte u;
    public byte v;
 
-   public final void a(DataInputStream var1) {
+   public final void a(Datai_1nputStream var1) {
       this.a = var1.readUTF();
       super.e = var1.readUTF();
       this.b = var1.readUTF();
@@ -52,22 +52,22 @@ public final class bl extends ar {
          this.A = var1.readShort();
       }
 
-      this.C[1] = bu_1.a((String) a_MainCanvas.a(this.c, this.n, (byte)1, this.o, false, this.x), (byte)2);
-      this.D[1] = bu_1.a((String) a_MainCanvas.a(this.c, this.n, (byte)1, this.o, true, this.x), (byte)2);
-      this.C[3] = bu_1.a((String) a_MainCanvas.a(this.c, this.n, (byte)3, this.o, false, this.x), (byte)2);
-      this.D[3] = bu_1.a((String) a_MainCanvas.a(this.c, this.n, (byte)3, this.o, true, this.x), (byte)2);
-      this.C[0] = bu_1.a((String) a_MainCanvas.a(this.c, this.n, (byte)0, this.o, false, this.x), (byte)2);
-      this.D[0] = bu_1.a((String) a_MainCanvas.a(this.c, this.n, (byte)0, this.o, true, this.x), (byte)2);
-      this.C[2] = bu_1.a((String) a_MainCanvas.a(this.c, this.n, (byte)2, this.o, false, this.x), (byte)2);
-      this.D[2] = bu_1.a((String) a_MainCanvas.a(this.c, this.n, (byte)2, this.o, true, this.x), (byte)2);
+      this.C[1] = bu_1.a((String) a_Mai_1nCanvas.a(this.c, this.n, (byte)1, this.o, false, this.x), (byte)2);
+      this.D[1] = bu_1.a((String) a_Mai_1nCanvas.a(this.c, this.n, (byte)1, this.o, true, this.x), (byte)2);
+      this.C[3] = bu_1.a((String) a_Mai_1nCanvas.a(this.c, this.n, (byte)3, this.o, false, this.x), (byte)2);
+      this.D[3] = bu_1.a((String) a_Mai_1nCanvas.a(this.c, this.n, (byte)3, this.o, true, this.x), (byte)2);
+      this.C[0] = bu_1.a((String) a_Mai_1nCanvas.a(this.c, this.n, (byte)0, this.o, false, this.x), (byte)2);
+      this.D[0] = bu_1.a((String) a_Mai_1nCanvas.a(this.c, this.n, (byte)0, this.o, true, this.x), (byte)2);
+      this.C[2] = bu_1.a((String) a_Mai_1nCanvas.a(this.c, this.n, (byte)2, this.o, false, this.x), (byte)2);
+      this.D[2] = bu_1.a((String) a_Mai_1nCanvas.a(this.c, this.n, (byte)2, this.o, true, this.x), (byte)2);
       this.a(true);
    }
 
    private void a(boolean var1) {
       if (!this.x.equals("")) {
-         super.g = a_MainCanvas.ab.a(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
+         super.g = a_Mai_1nCanvas.ab.a(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
       } else {
-         super.g = a_MainCanvas.ab.c(var1 ? this.D[super.h] : this.C[super.h]);
+         super.g = a_Mai_1nCanvas.ab.c(var1 ? this.D[super.h] : this.C[super.h]);
       }
 
       if (super.g == null && !this.B) {
@@ -78,9 +78,9 @@ public final class bl extends ar {
          }
 
          if (!this.x.equals("")) {
-            super.g = a_MainCanvas.ab.a(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
+            super.g = a_Mai_1nCanvas.ab.a(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
          } else {
-            super.g = a_MainCanvas.ab.c(var1 ? this.D[super.h] : this.C[super.h]);
+            super.g = a_Mai_1nCanvas.ab.c(var1 ? this.D[super.h] : this.C[super.h]);
          }
 
          this.B = true;
@@ -88,7 +88,7 @@ public final class bl extends ar {
 
    }
 
-   public final void a(aw var1, ai var2, long var3) {
+   public final void a(aw var1, ai_1 var2, long var3) {
       try {
          if (super.g != null) {
             if (super.f != null && super.f.size() > 3) {
@@ -136,10 +136,10 @@ public final class bl extends ar {
                   this.a(false);
                }
 
-               ai.a(super.g, var3);
+               ai_1.a(super.g, var3);
             } else {
                this.a(true);
-               ai.a(super.g, var3);
+               ai_1.a(super.g, var3);
             }
 
             if (super.d != null) {

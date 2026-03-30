@@ -31,7 +31,7 @@ public final class k {
    private int w;
    private int x;
 
-   public k(ao_1 var1, a_MainCanvas var2, ai var3) {
+   public k(ao_1 var1, a_MainCanvas var2, ai_1 var3) {
       this.i = var1;
       this.j = var2;
    }

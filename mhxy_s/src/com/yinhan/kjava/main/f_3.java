@@ -1,7 +1,7 @@
 package com.yinhan.kjava.main;
 
 import com.cc.*;
-public final class f {
+public final class f_3 {
    public ao_1 a;
    public a_MainCanvas b;
    public int c;
@@ -14,7 +14,7 @@ public final class f {
    private int j = 0;
    private int k = 0;
 
-   public f(a_MainCanvas var1, .ai var2) {
+   public f_3(a_MainCanvas var1, ai_1 var2) {
       this.b = var1;
    }
 
@@ -24,20 +24,19 @@ public final class f {
             case 0:
                var2 = var2;
                var1 = var1;
-               this = this;
                if (this.a.k == 0 && this.a.J != null) {
-                  this.b.a = .ca.b(var1, var2);
+                  this.b.a = ca_1.b(var1, var2);
                } else {
-                  if (.bt.t != null) {
-                     for(int var37 = 0; var37 < .bt.t.length; ++var37) {
-                        if (.bt.t[var37] != null && .bt.t[var37].x && .ao_1.u != null && (var1 >= .bt.t[var37].c - .
-                        ao_1.h + this.a.g() - .bt.t[var37].c() / 2 && var1 <= .bt.t[var37].c - .ao_1.h + this.a.g() + .bt.t[var37].c() / 2 && var2 >= .bt.t[var37].d - .
-                        ao_1.i + this.a.h() - .bt.t[var37].d() && var2 <= .bt.t[var37].d - .ao_1.i + this.a.h() || var1 >= .bt.t[var37].c - .
-                        ao_1.h + this.a.g() + .bt.t[var37].c() / 2 && var1 <= .bt.t[var37].c - .ao_1.h + this.a.g() + .bt.t[var37].c() / 2 + .
-                        ao_1.u.i() && var2 >= .bt.t[var37].d - .ao_1.i + this.a.h() - .bt.t[var37].d() && var2 <= .bt.t[var37].d - .
-                        ao_1.i + this.a.h() - .bt.t[var37].d() + .ao_1.u.j() || var1 >= .bt.t[var37].c - .ao_1.h + this.a.g() - .
-                        ao_1.s.i() / 2 && var1 <= .bt.t[var37].c - .ao_1.h + this.a.g() + .ao_1.s.i() / 2 && var2 >= .bt.t[var37].d - .
-                        ao_1.i + this.a.h() - .bt.t[var37].d() - .t.j - .ao_1.s.j() && var2 <= .bt.t[var37].d - .ao_1.i + this.a.h() - .bt.t[var37].d() - .t.j)) {
+                  if (bt_1.t != null) {
+                     for(int var37 = 0; var37 < bt_1.t.length; ++var37) {
+                        if (bt_1.t[var37] != null && bt_1.t[var37].x && ao_1.u != null && (var1 >= bt_1.t[var37].c -
+                        ao_1.h + this.a.g() - bt_1.t[var37].c() / 2 && var1 <= bt_1.t[var37].c - ao_1.h + this.a.g() + bt_1.t[var37].c() / 2 && var2 >= bt_1.t[var37].d -
+                        ao_1.i + this.a.h() - bt_1.t[var37].d() && var2 <= bt_1.t[var37].d - ao_1.i + this.a.h() || var1 >= bt_1.t[var37].c -
+                        ao_1.h + this.a.g() + bt_1.t[var37].c() / 2 && var1 <= bt_1.t[var37].c - ao_1.h + this.a.g() + bt_1.t[var37].c() / 2 +
+                        ao_1.u.i() && var2 >= bt_1.t[var37].d - ao_1.i + this.a.h() - bt_1.t[var37].d() && var2 <= bt_1.t[var37].d -
+                        ao_1.i + this.a.h() - bt_1.t[var37].d() + ao_1.u.j() || var1 >= bt_1.t[var37].c - ao_1.h + this.a.g() -
+                        ao_1.s.i() / 2 && var1 <= bt_1.t[var37].c - ao_1.h + this.a.g() + ao_1.s.i() / 2 && var2 >= bt_1.t[var37].d -
+                        ao_1.i + this.a.h() - bt_1.t[var37].d() - t_1.j - ao_1.s.j() && var2 <= bt_1.t[var37].d - ao_1.i + this.a.h() - bt_1.t[var37].d() - t_1.j)) {
                            this.a.a(1073741824);
                            if (!this.a.I.c.isEmpty()) {
                               this.a.I.c.removeAllElements();
@@ -51,10 +50,10 @@ public final class f {
 
                   boolean var42;
                   label749: {
-                     if (.ao_1.i() && this.a.I.g != null) {
+                     if (ao_1.i() && this.a.I.g != null) {
                         switch (this.a.I.h) {
                            case 0:
-                              if (var1 >= this.a.I.j + 16 - this.a.I.g.g() / 2 - (.ao.h - this.a.g()) - 3 && var1 <= this.a.I.j + 16 + this.a.I.g.g() / 2 - (.ao.h - this.a.g()) - 5 && var2 >= this.a.I.k + 16 - this.a.I.g.h() - (.ao.i - this.a.h()) && var2 <= this.a.I.k + 16 - (.ao.i - this.a.h())) {
+                              if (var1 >= this.a.I.j + 16 - this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) - 3 && var1 <= this.a.I.j + 16 + this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) - 5 && var2 >= this.a.I.k + 16 - this.a.I.g.h() - (ao_1.i - this.a.h()) && var2 <= this.a.I.k + 16 - (ao_1.i - this.a.h())) {
                                  this.b.a = 536870912;
                                  this.a.I.c.removeAllElements();
                                  this.a.I.a(true);
@@ -63,7 +62,7 @@ public final class f {
                               }
                               break;
                            case 1:
-                              if (var1 >= this.a.I.j + 8 - this.a.I.g.g() / 2 - (.ao.h - this.a.g()) && var1 <= this.a.I.j + 8 + this.a.I.g.g() / 2 - (.ao.h - this.a.g()) && var2 >= this.a.I.k - (.ao.i - this.a.h()) - 12 && var2 <= this.a.I.k + this.a.I.g.h() - (.ao.i - this.a.h()) - 5) {
+                              if (var1 >= this.a.I.j + 8 - this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) && var1 <= this.a.I.j + 8 + this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) && var2 >= this.a.I.k - (ao_1.i - this.a.h()) - 12 && var2 <= this.a.I.k + this.a.I.g.h() - (ao_1.i - this.a.h()) - 5) {
                                  this.b.a = 536870912;
                                  this.a.I.c.removeAllElements();
                                  this.a.I.a(true);
@@ -72,7 +71,7 @@ public final class f {
                               }
                               break;
                            case 2:
-                              if (var1 >= this.a.I.j - this.a.I.g.g() / 2 - (.ao.h - this.a.g()) + 4 && var1 <= this.a.I.j + this.a.I.g.g() / 2 - (.ao.h - this.a.g()) + 4 && var2 >= this.a.I.k + 16 - this.a.I.g.h() - (.ao.i - this.a.h()) && var2 <= this.a.I.k + 16 - (.ao.i - this.a.h())) {
+                              if (var1 >= this.a.I.j - this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) + 4 && var1 <= this.a.I.j + this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) + 4 && var2 >= this.a.I.k + 16 - this.a.I.g.h() - (ao_1.i - this.a.h()) && var2 <= this.a.I.k + 16 - (ao_1.i - this.a.h())) {
                                  this.b.a = 536870912;
                                  this.a.I.c.removeAllElements();
                                  this.a.I.a(true);
@@ -81,7 +80,7 @@ public final class f {
                               }
                               break;
                            case 3:
-                              if (var1 >= this.a.I.j + 8 - this.a.I.g.g() / 2 - (.ao.h - this.a.g()) && var1 <= this.a.I.j + 8 + this.a.I.g.g() / 2 - (.ao.h - this.a.g()) && var2 >= this.a.I.k + 8 - this.a.I.g.h() - (.ao.i - this.a.h()) - 4 && var2 <= this.a.I.k + 8 - (.ao.i - this.a.h()) + 4) {
+                              if (var1 >= this.a.I.j + 8 - this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) && var1 <= this.a.I.j + 8 + this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) && var2 >= this.a.I.k + 8 - this.a.I.g.h() - (ao_1.i - this.a.h()) - 4 && var2 <= this.a.I.k + 8 - (ao_1.i - this.a.h()) + 4) {
                                  this.b.a = 536870912;
                                  this.a.I.c.removeAllElements();
                                  this.a.I.a(true);
@@ -100,14 +99,14 @@ public final class f {
 
                   int var5 = var2;
                   int var38 = var1;
-                  com.yinhan.kjava.main.f var40 = this;
-                  if (.bt.fz != null && .bt.fz.length > 0 && .bt.s != 0) {
+                  f_3 var40 = this;
+                  if (bt_1.fz != null && bt_1.fz.length > 0 && bt_1.s != 0) {
                      label719:
-                     for(int var6 = 0; var6 < .bt.fz.length; ++var6) {
-                        if (.bt.fz[var6] == 1 && var40.a.I.d.f != null) {
+                     for(int var6 = 0; var6 < bt_1.fz.length; ++var6) {
+                        if (bt_1.fz[var6] == 1 && var40.a.I.d.f != null) {
                            switch (var40.a.I.d.j) {
                               case 0:
-                                 if (var38 >= var40.a.I.d.h + 16 - var40.a.I.d.f.g() / 2 - (.ao.h - var40.a.g()) && var38 <= var40.a.I.d.h + 16 + var40.a.I.d.f.g() / 2 - (.ao.h - var40.a.g()) && var5 >= var40.a.I.d.i + 16 - var40.a.I.d.f.h() - (.ao.i - var40.a.h()) && var5 <= var40.a.I.d.i + 16 - (.ao.i - var40.a.h())) {
+                                 if (var38 >= var40.a.I.d.h + 16 - var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var38 <= var40.a.I.d.h + 16 + var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var5 >= var40.a.I.d.i + 16 - var40.a.I.d.f.h() - (ao_1.i - var40.a.h()) && var5 <= var40.a.I.d.i + 16 - (ao_1.i - var40.a.h())) {
                                     var40.b.a = 48;
                                     var40.a.I.c.removeAllElements();
                                     var40.a.I.a(true);
@@ -115,7 +114,7 @@ public final class f {
                                  }
                                  break;
                               case 1:
-                                 if (var38 >= var40.a.I.d.h + 8 - var40.a.I.d.f.g() / 2 - (.ao.h - var40.a.g()) && var38 <= var40.a.I.d.h + 8 + var40.a.I.d.f.g() / 2 - (.ao.h - var40.a.g()) && var5 >= var40.a.I.d.i - (.ao.i - var40.a.h()) && var5 <= var40.a.I.d.i + var40.a.I.d.f.h() - (.ao.i - var40.a.h())) {
+                                 if (var38 >= var40.a.I.d.h + 8 - var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var38 <= var40.a.I.d.h + 8 + var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var5 >= var40.a.I.d.i - (ao_1.i - var40.a.h()) && var5 <= var40.a.I.d.i + var40.a.I.d.f.h() - (ao_1.i - var40.a.h())) {
                                     var40.b.a = 48;
                                     var40.a.I.c.removeAllElements();
                                     var40.a.I.a(true);
@@ -123,7 +122,7 @@ public final class f {
                                  }
                                  break;
                               case 2:
-                                 if (var38 >= var40.a.I.d.h - var40.a.I.d.f.g() / 2 - (.ao.h - var40.a.g()) && var38 <= var40.a.I.d.h + var40.a.I.d.f.g() / 2 - (.ao.h - var40.a.g()) && var5 >= var40.a.I.d.i + 16 - var40.a.I.d.f.h() - (.ao.i - var40.a.h()) && var5 <= var40.a.I.d.i + 16 - (.ao.i - var40.a.h())) {
+                                 if (var38 >= var40.a.I.d.h - var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var38 <= var40.a.I.d.h + var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var5 >= var40.a.I.d.i + 16 - var40.a.I.d.f.h() - (ao_1.i - var40.a.h()) && var5 <= var40.a.I.d.i + 16 - (ao_1.i - var40.a.h())) {
                                     var40.b.a = 48;
                                     var40.a.I.c.removeAllElements();
                                     var40.a.I.a(true);
@@ -131,7 +130,7 @@ public final class f {
                                  }
                                  break;
                               case 3:
-                                 if (var38 >= var40.a.I.d.h + 8 - var40.a.I.d.f.g() / 2 - (.ao.h - var40.a.g()) && var38 <= var40.a.I.d.h + 8 + var40.a.I.d.f.g() / 2 - (.ao.h - var40.a.g()) && var5 >= var40.a.I.d.i + 8 - var40.a.I.d.f.h() - (.ao.i - var40.a.h()) && var5 <= var40.a.I.d.i + 8 - (.ao.i - var40.a.h())) {
+                                 if (var38 >= var40.a.I.d.h + 8 - var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var38 <= var40.a.I.d.h + 8 + var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var5 >= var40.a.I.d.i + 8 - var40.a.I.d.f.h() - (ao_1.i - var40.a.h()) && var5 <= var40.a.I.d.i + 8 - (ao_1.i - var40.a.h())) {
                                     var40.b.a = 48;
                                     var40.a.I.c.removeAllElements();
                                     var40.a.I.a(true);
@@ -142,7 +141,7 @@ public final class f {
                      }
                   }
 
-                  if (.ao_1.aW[6] == 0 && var1 >= 2 && var1 <= 2 + a_MainCanvas.f.e && var2 >= 2 + .t.j && var2 <= 2 + .t.j + a_MainCanvas.f.f) {
+                  if (ao_1.aW[6] == 0 && var1 >= 2 && var1 <= 2 + a_MainCanvas.f.e && var2 >= 2 + t_1.j && var2 <= 2 + t_1.j + a_MainCanvas.f.f) {
                      this.b.a = 519;
                      if (!this.a.I.c.isEmpty()) {
                         this.a.I.c.removeAllElements();
@@ -150,59 +149,59 @@ public final class f {
                      }
                   } else {
                      if (this.a.k != 25) {
-                        var38 = 0;
-                        if (var1 >= .t.b - .bo.g[0].getWidth() - 10 && var1 <= .t.b - 10 && var2 >= 40 && var2 <= 40 + .bo.g[0].getHeight()) {
-                           var38 = 1;
+                       boolean var38_ = false;
+                        if (var1 >= t_1.b - bo_1.g[0].getWidth() - 10 && var1 <= t_1.b - 10 && var2 >= 40 && var2 <= 40 + bo_1.g[0].getHeight()) {
+                           var38_ = true;
                         }
 
-                        if (var38) {
-                           if (.bt.P.o) {
+                        if (var38_) {
+                           if (bt_1.P.o) {
                               this.a.d((byte)1);
                               return;
                            }
 
-                           if (.bt.O.u) {
+                           if (bt_1.O.u) {
                               this.a.d((byte)0);
                               return;
                            }
 
-                           if (this.a.n && .ao_1.i()) {
+                           if (this.a.n && ao_1.i()) {
                               this.b.a = 1024;
                            }
                            break;
                         }
                      }
 
-                     if (.ao_1.L != null && var1 >= .ao_1.L.e - .ao_1.h && var1 <= .ao_1.L.e - .ao_1.h + .ao_1.L.d.g() && var2 >= .
-                     ao_1.L.f - .ao_1.i && var2 <= .ao_1.L.f - .ao_1.i + .ao_1.L.d.h()) {
+                     if (ao_1.L != null && var1 >= ao_1.L.e - ao_1.h && var1 <= ao_1.L.e - ao_1.h + ao_1.L.d.g() && var2 >=
+                     ao_1.L.f - ao_1.i && var2 <= ao_1.L.f - ao_1.i + ao_1.L.d.h()) {
                         this.b.a = 1073741824;
                         if (!this.a.I.c.isEmpty()) {
                            this.a.I.c.removeAllElements();
                            this.a.I.a(true);
                         }
-                     } else if (var1 >= .t.b - 67 + 37 && var1 <= .t.b - 67 + 37 + .ao_1.v.a.getWidth() && var2 >= 8 && var2 <= .
+                     } else if (var1 >= t_1.b - 67 + 37 && var1 <= t_1.b - 67 + 37 + ao_1.v.a.getWidth() && var2 >= 8 && var2 <=
                      ao_1.v.a.getHeight() + 8) {
                         this.b.a = 2048;
-                     } else if (var1 >= .t.b - 67 && var1 <= .t.b - 67 + 33 && var2 >= 5 && var2 <= 18) {
+                     } else if (var1 >= t_1.b - 67 && var1 <= t_1.b - 67 + 33 && var2 >= 5 && var2 <= 18) {
                         this.b.a = 515;
-                     } else if (var1 >= 20 && var1 <= 20 + .t.i.stringWidth(.bt.ae) && var2 >= 2 && var2 <= 2 + .t.j) {
+                     } else if (var1 >= 20 && var1 <= 20 + t_1.i.stringWidth(bt_1.ae) && var2 >= 2 && var2 <= 2 + t_1.j) {
                         this.b.a = 513;
-                     } else if (var1 >= .t.b - 67 && var1 <= .t.b - 67 + 16 && var2 >= 24 && var2 <= 34) {
-                        if (.bt.bf == 0) {
+                     } else if (var1 >= t_1.b - 67 && var1 <= t_1.b - 67 + 16 && var2 >= 24 && var2 <= 34) {
+                        if (bt_1.bf == 0) {
                            return;
                         }
 
                         this.a.p();
                      } else {
-                        if (var1 >= 1 && var1 <= 1 + .t.i.stringWidth("菜单") && var2 >= .t.c - .t.j - 1 && var2 <= .t.c - 1) {
+                        if (var1 >= 1 && var1 <= 1 + t_1.i.stringWidth("菜单") && var2 >= t_1.c - t_1.j - 1 && var2 <= t_1.c - 1) {
                            this.b.a = 268435456;
                            break;
                         }
 
-                        if (var1 < .t.b - .t.i.stringWidth("聊天") || var1 > .t.b || var2 < .t.c - .t.j - 1 || var2 > .t.c - 1) {
-                           if (!.bt.bu) {
+                        if (var1 < t_1.b - t_1.i.stringWidth("聊天") || var1 > t_1.b || var2 < t_1.c - t_1.j - 1 || var2 > t_1.c - 1) {
+                           if (!bt_1.bu) {
                               this.a.d = -1;
-                              this.b.b(var1 + .ao.h - this.a.g(), var2 + .ao_1.i - this.a.h());
+                              this.b.b(var1 + ao_1.h - this.a.g(), var2 + ao_1.i - this.a.h());
                            }
 
                            return;
@@ -220,13 +219,13 @@ public final class f {
                this.s(var1, var2);
                return;
             case 3:
-               if ((this = this).b.aq != null) {
+               if (this.b.aq != null) {
                   this.b.a = this.b.aq.b(var1, var2);
                }
 
                return;
             case 4:
-               if ((this = this).a.l == 0) {
+               if (this.a.l == 0) {
                   if (this.b.aq == null) {
                      return;
                   }
@@ -248,28 +247,28 @@ public final class f {
                                  return;
                               }
 
-                              this.b.a = .ca.b(var1, var2);
+                              this.b.a = ca_1.b(var1, var2);
                            }
                         } else {
-                           this.b.a = .ca.b(var1, var2);
+                           this.b.a = ca_1.b(var1, var2);
                         }
                      } else {
-                        this.b.a = .ca.d(var1, var2);
-                        if (!.ca.e(var1, var2)) {
+                        this.b.a = ca_1.d(var1, var2);
+                        if (!ca_1.e(var1, var2)) {
                            return;
                         }
 
                         this.b.a((String)"拍卖价格", (int)2);
                      }
                   } else {
-                     this.b.a = .ca.d(var1, var2);
+                     this.b.a = ca_1.d(var1, var2);
                   }
                } else {
-                  this.b.a = .ca.c(var1, var2);
+                  this.b.a = ca_1.c(var1, var2);
                }
                break;
             case 5:
-               if ((this = this).a.l == 0) {
+               if (this.a.l == 0) {
                   this.b.a = this.a.b(var1, var2);
                } else {
                   if (this.a.l != 1) {
@@ -280,13 +279,13 @@ public final class f {
                      return;
                   }
 
-                  this.b.a = .ca.c(var1, var2);
+                  this.b.a = ca_1.c(var1, var2);
                }
                break;
             case 6:
-               if ((this = this).a.l != 0 && this.a.l != 3) {
+               if (this.a.l != 0 && this.a.l != 3) {
                   if (this.a.l == 1 || this.a.l == 2) {
-                     this.b.a = .ca.c(var1, var2);
+                     this.b.a = ca_1.c(var1, var2);
                   }
 
                   return;
@@ -302,9 +301,9 @@ public final class f {
                this.v(var1, var2);
                return;
             case 8:
-               if ((this = this).a.l != 0) {
+               if (this.a.l != 0) {
                   if (this.a.l == 2) {
-                     this.b.a = .ca.d(var1, var2);
+                     this.b.a = ca_1.d(var1, var2);
                   }
 
                   return;
@@ -318,9 +317,9 @@ public final class f {
                this.b.a = this.a.b(this.b.a, var1, var2);
                break;
             case 9:
-               if ((this = this).a.l != 0) {
+               if (this.a.l != 0) {
                   if (this.a.l == 2) {
-                     this.b.a = .ca.d(var1, var2);
+                     this.b.a = ca_1.d(var1, var2);
                   }
 
                   return;
@@ -334,13 +333,13 @@ public final class f {
                this.b.a = this.a.b(this.b.a, var1, var2);
                break;
             case 10:
-               if ((this = this).b.aq != null) {
+               if (this.b.aq != null) {
                   this.b.a = this.b.aq.b(var1, var2);
                }
 
                return;
             case 11:
-               if ((this = this).a.l == 0) {
+               if (this.a.l == 0) {
                   if (this.b.aq == null) {
                      return;
                   }
@@ -350,34 +349,34 @@ public final class f {
                } else {
                   if (this.a.l != 2) {
                      if (this.a.l == 4) {
-                        this.b.a = .ca.c(var1, var2);
+                        this.b.a = ca_1.c(var1, var2);
                      }
 
                      return;
                   }
 
-                  this.b.a = .ca.d(var1, var2);
+                  this.b.a = ca_1.d(var1, var2);
                }
                break;
             case 12:
                this.m(var1, var2);
                return;
             case 13:
-               if ((this = this).a.l != 0 && this.a.l != 10 && this.a.l != 5 && this.a.l != 6) {
+               if (this.a.l != 0 && this.a.l != 10 && this.a.l != 5 && this.a.l != 6) {
                   if (this.a.l != 1 && this.a.l != 2 && this.a.l != 8 && this.a.l != 9) {
                      if (this.a.l == 3) {
-                        this.b.a = .ca.d(var1, var2);
-                        if (!.ca.e(var1, var2)) {
+                        this.b.a = ca_1.d(var1, var2);
+                        if (!ca_1.e(var1, var2)) {
                            return;
                         }
 
                         this.b.a((String)"请输入拍卖价格", (int)2);
                      } else if (this.a.l == 4) {
-                        this.b.a = .ca.b(var1, var2);
+                        this.b.a = ca_1.b(var1, var2);
                      } else {
                         if (this.a.l != 7) {
                            if (this.a.l == 11) {
-                              this.b.a = .ca.b(var1, var2);
+                              this.b.a = ca_1.b(var1, var2);
                            }
 
                            return;
@@ -386,7 +385,7 @@ public final class f {
                         this.b.a = this.a.c(var1, var2);
                      }
                   } else {
-                     this.b.a = .ca.c(var1, var2);
+                     this.b.a = ca_1.c(var1, var2);
                   }
                } else {
                   if (this.b.aq == null) {
@@ -397,13 +396,13 @@ public final class f {
                }
                break;
             case 14:
-               if ((this = this).b.aq != null) {
+               if (this.b.aq != null) {
                   this.b.a = this.b.aq.b(var1, var2);
                }
 
                return;
             case 15:
-               if ((this = this).b.aq != null) {
+               if (this.b.aq != null) {
                   this.b.a = this.b.aq.b(var1, var2);
                }
 
@@ -443,13 +442,13 @@ public final class f {
                this.p(var1, var2);
                return;
             case 20:
-               this.b.a = .ca.a(var1, var2);
+               this.b.a = ca_1.a(var1, var2);
                return;
             case 21:
                this.o(var1, var2);
                return;
             case 22:
-               if ((this = this).a.l == 0) {
+               if (this.a.l == 0) {
                   if (this.b.aq == null) {
                      return;
                   }
@@ -457,8 +456,8 @@ public final class f {
                   this.b.a = this.b.aq.b(var1, var2);
                   this.b.a = this.a.e(this.b.a, var1, var2);
                } else if (this.a.l == 6) {
-                  this.b.a = .ca.d(var1, var2);
-                  if (!.ca.e(var1, var2)) {
+                  this.b.a = ca_1.d(var1, var2);
+                  if (!ca_1.e(var1, var2)) {
                      return;
                   }
 
@@ -466,38 +465,38 @@ public final class f {
                } else {
                   if (this.a.l != 1 && this.a.l != 2 && this.a.l != 3) {
                      if (this.a.l == 5) {
-                        this.b.a = .ca.b(var1, var2);
+                        this.b.a = ca_1.b(var1, var2);
                      }
 
                      return;
                   }
 
-                  this.b.a = .ca.c(var1, var2);
+                  this.b.a = ca_1.c(var1, var2);
                }
                break;
             case 23:
-               if ((this = this).a.l == 0) {
+               if (this.a.l == 0) {
                   if (this.b.aq == null) {
                      return;
                   }
 
                   this.b.a = this.b.aq.b(var1, var2);
                } else if (this.a.l == 1) {
-                  this.b.a = .ca.c(var1, var2);
+                  this.b.a = ca_1.c(var1, var2);
                } else {
                   if (this.a.l != 2) {
                      if (this.a.l == 3 || this.a.l == 4) {
-                        this.b.a = .ca.b(var1, var2);
+                        this.b.a = ca_1.b(var1, var2);
                      }
 
                      return;
                   }
 
-                  this.b.a = .ca.d(var1, var2);
+                  this.b.a = ca_1.d(var1, var2);
                }
                break;
             case 24:
-               if ((this = this).a.l == 0) {
+               if (this.a.l == 0) {
                   if (this.b.aq == null) {
                      return;
                   }
@@ -506,19 +505,18 @@ public final class f {
                } else {
                   if (this.a.l != 1) {
                      if (this.a.l == 2) {
-                        this.b.a = .ca.b(var1, var2);
+                        this.b.a = ca_1.b(var1, var2);
                      }
 
                      return;
                   }
 
-                  this.b.a = .ca.c(var1, var2);
+                  this.b.a = ca_1.c(var1, var2);
                }
                break;
             case 25:
                var2 = var2;
                var1 = var1;
-               this = this;
                if (this.a.g.d == 0 || this.a.g.d == 2 || this.a.g.f > 1) {
                   this.b.a = this.a.g.a(this.a.g.d, var1, var2);
                   if (this.b.a != 0) {
@@ -540,10 +538,10 @@ public final class f {
 
                if (this.a.g.d != 1 && this.a.g.d != 3) {
                   if (this.a.g.d == 4) {
-                     if (.bt.H != null) {
-                        for(byte var36 = (byte)(.bt.H.length - 1); var36 >= 0; --var36) {
-                           if (.bt.H[var36].j != null && var1 >= .t.Q[.bt.H[var36].a][0] - .bt.H[var36].f() / 2 && var1 <= .t.Q[.bt.H[var36].a][0] + .bt.H[var36].f() / 2 && var2 >= .t.Q[.bt.H[var36].a][1] - .bt.H[var36].g() && var2 <= .t.Q[.bt.H[var36].a][1]) {
-                              if (.bq.h()) {
+                     if (bt_1.H != null) {
+                        for(byte var36 = (byte)(bt_1.H.length - 1); var36 >= 0; --var36) {
+                           if (bt_1.H[var36].j != null && var1 >= t_1.Q[bt_1.H[var36].a][0] - bt_1.H[var36].f() / 2 && var1 <= t_1.Q[bt_1.H[var36].a][0] + bt_1.H[var36].f() / 2 && var2 >= t_1.Q[bt_1.H[var36].a][1] - bt_1.H[var36].g() && var2 <= t_1.Q[bt_1.H[var36].a][1]) {
+                              if (bq_1.h()) {
                                  this.b.b("只能对自己使用复活道具");
                               } else if (this.a.g.i != var36) {
                                  this.a.g.i = var36;
@@ -553,10 +551,10 @@ public final class f {
                            }
                         }
                      }
-                  } else if ((this.a.g.d == 5 || this.a.g.d == 6 || this.a.g.d == 7 || this.a.g.d == 8) && .bt.H != null) {
-                     for(byte var35 = (byte)(.bt.H.length - 1); var35 >= 0; --var35) {
-                        if (.bt.H[var35].j != null && var1 >= .t.Q[.bt.H[var35].a][0] - .bt.H[var35].f() / 2 && var1 <= .t.Q[.bt.H[var35].a][0] + .bt.H[var35].f() / 2 && var2 >= .t.Q[.bt.H[var35].a][1] - .bt.H[var35].g() && var2 <= .t.Q[.bt.H[var35].a][1]) {
-                           if (.bq.h()) {
+                  } else if ((this.a.g.d == 5 || this.a.g.d == 6 || this.a.g.d == 7 || this.a.g.d == 8) && bt_1.H != null) {
+                     for(byte var35 = (byte)(bt_1.H.length - 1); var35 >= 0; --var35) {
+                        if (bt_1.H[var35].j != null && var1 >= t_1.Q[bt_1.H[var35].a][0] - bt_1.H[var35].f() / 2 && var1 <= t_1.Q[bt_1.H[var35].a][0] + bt_1.H[var35].f() / 2 && var2 >= t_1.Q[bt_1.H[var35].a][1] - bt_1.H[var35].g() && var2 <= t_1.Q[bt_1.H[var35].a][1]) {
+                           if (bq_1.h()) {
                               this.b.b("只能对自己使用复活道具");
                            } else if (this.a.g.i != var35) {
                               this.a.g.i = var35;
@@ -566,10 +564,10 @@ public final class f {
                         }
                      }
                   }
-               } else if (.bt.M != null) {
-                  for(byte var3 = (byte)(.bt.M.length - 1); var3 >= 0; --var3) {
-                     .ck var4;
-                     if (.bt.M[var3].m != null && !.bt.M[var3].a() && (.bt.M[var3].n == 1 || .bt.M[var3].n == 4) && var1 >= .t.R[.bt.M[var3].a][0] - .bt.M[var3].c() / 2 && var1 <= .t.R[.bt.M[var3].a][0] + .bt.M[var3].c() / 2 && var2 >= .t.R[.bt.M[var3].a][1] - ((var4 = .bt.M[var3]).m != null && var4.m.h != null ? var4.m.h[var4.m.f] : 0) && var2 <= .t.R[.bt.M[var3].a][1]) {
+               } else if (bt_1.M != null) {
+                  for(byte var3 = (byte)(bt_1.M.length - 1); var3 >= 0; --var3) {
+                     ck var4;
+                     if (bt_1.M[var3].m != null && !bt_1.M[var3].a() && (bt_1.M[var3].n == 1 || bt_1.M[var3].n == 4) && var1 >= t_1.R[bt_1.M[var3].a][0] - bt_1.M[var3].c() / 2 && var1 <= t_1.R[bt_1.M[var3].a][0] + bt_1.M[var3].c() / 2 && var2 >= t_1.R[bt_1.M[var3].a][1] - ((var4 = bt_1.M[var3]).m != null && var4.m.h != null ? var4.m.h[var4.m.f] : 0) && var2 <= t_1.R[bt_1.M[var3].a][1]) {
                         if (this.a.g.h != var3) {
                            this.a.g.h = var3;
                         } else {
@@ -579,7 +577,7 @@ public final class f {
                   }
                }
 
-               if (var1 >= .t.b - a_MainCanvas.U.b && var1 <= .t.b && var2 >= .t.c - a_MainCanvas.U.c && var2 <= .t.c) {
+               if (var1 >= t_1.b - a_MainCanvas.U.b && var1 <= t_1.b && var2 >= t_1.c - a_MainCanvas.U.c && var2 <= t_1.c) {
                   this.b.a = 536870912;
                }
 
@@ -591,7 +589,7 @@ public final class f {
                this.t(var1, var2);
                return;
             case 29:
-               if ((this = this).a.l == 0 && this.b.aq != null) {
+               if (this.a.l == 0 && this.b.aq != null) {
                   this.b.a = this.b.aq.b(var1, var2);
                }
 
@@ -600,7 +598,7 @@ public final class f {
                this.w(var1, var2);
                return;
             case 31:
-               if ((this = this).a.l == 0) {
+               if (this.a.l == 0) {
                   if (this.b.aq == null) {
                      return;
                   }
@@ -609,24 +607,24 @@ public final class f {
                } else {
                   if (this.a.l != 1) {
                      if (this.a.l == 2) {
-                        this.b.a = .ca.c(var1, var2);
+                        this.b.a = ca_1.c(var1, var2);
                      }
 
                      return;
                   }
 
-                  this.b.a = .ca.d(var1, var2);
+                  this.b.a = ca_1.d(var1, var2);
                }
                break;
             case 32:
-               com.yinhan.kjava.main.f var12;
-               (var12 = this).b.a = var12.a.d(var1, var2);
+               f_3 var12 = this;
+               var12.b.a = var12.a.d(var1, var2);
                return;
             case 33:
                this.ap(var1, var2);
                return;
             case 34:
-               if ((this = this).a.l == 0) {
+               if (this.a.l == 0) {
                   if (this.b.aq == null) {
                      return;
                   }
@@ -635,8 +633,8 @@ public final class f {
                } else if (this.a.l != 1 && this.a.l != 2) {
                   if (this.a.l != 3 && this.a.l != 5) {
                      if (this.a.l == 4) {
-                        this.b.a = .ca.d(var1, var2);
-                        if (.ca.e(var1, var2)) {
+                        this.b.a = ca_1.d(var1, var2);
+                        if (ca_1.e(var1, var2)) {
                            this.b.a((String)"请输入拍卖价格", (int)2);
                            return;
                         }
@@ -645,19 +643,19 @@ public final class f {
                      return;
                   }
 
-                  this.b.a = .ca.b(var1, var2);
+                  this.b.a = ca_1.b(var1, var2);
                } else {
-                  this.b.a = .ca.c(var1, var2);
+                  this.b.a = ca_1.c(var1, var2);
                }
                break;
             case 35:
-               if ((this = this).a.l == 0 && this.b.aq != null) {
+               if (this.a.l == 0 && this.b.aq != null) {
                   this.b.a = this.b.aq.b(var1, var2);
                }
 
                return;
             case 36:
-               if ((this = this).a.l == 0) {
+               if (this.a.l == 0) {
                   if (this.b.aq == null) {
                      return;
                   }
@@ -668,13 +666,13 @@ public final class f {
                } else {
                   if (this.a.l != 1 && this.a.l != 3 && this.a.l != 5) {
                      if (this.a.l == 4) {
-                        this.b.a = .ca.b(var1, var2);
+                        this.b.a = ca_1.b(var1, var2);
                      }
 
                      return;
                   }
 
-                  this.b.a = .ca.c(var1, var2);
+                  this.b.a = ca_1.c(var1, var2);
                }
                break;
             case 37:
@@ -797,20 +795,20 @@ public final class f {
                this.ak(var1, var2);
                return;
             case 95:
-               if ((this = this).b.aq != null) {
+               if (this.b.aq != null) {
                   this.b.a = this.b.aq.b(var1, var2);
                }
 
                return;
             case 96:
-               if ((this = this).b.aq != null) {
+               if (this.b.aq != null) {
                   this.b.a = this.b.aq.b(var1, var2);
                   this.b.a = this.a.a(this.b.a, var1, var2);
                }
 
                return;
             case 98:
-               this.b.a = .ca.a(var1, var2);
+               this.b.a = ca_1.a(var1, var2);
                return;
             case 100:
                this.al(var1, var2);
@@ -877,7 +875,7 @@ public final class f {
                }
 
                if (this.a.l == 1) {
-                  this.b.a = .ca.c(var1, var2);
+                  this.b.a = ca_1.c(var1, var2);
                   return;
                }
                break;
@@ -917,7 +915,7 @@ public final class f {
          this.b.a = this.b.aq.b(var1, var2);
       } else {
          if (this.a.l == 1) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
          }
 
       }
@@ -953,7 +951,7 @@ public final class f {
          }
       } else {
          if (this.a.l == 1) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
             return;
          }
 
@@ -964,12 +962,12 @@ public final class f {
             }
          } else {
             if (this.a.l == 3 || this.a.l == 6) {
-               this.b.a = .ca.d(var1, var2);
+               this.b.a = ca_1.d(var1, var2);
                return;
             }
 
             if (this.a.l == 5 || this.a.l == 4) {
-               this.b.a = .ca.b(var1, var2);
+               this.b.a = ca_1.b(var1, var2);
             }
          }
       }
@@ -992,7 +990,7 @@ public final class f {
          this.b.a = this.b.av.a(var1, var2);
       } else {
          if (this.a.l == 2) {
-            this.b.a = .ca.b(var1, var2);
+            this.b.a = ca_1.b(var1, var2);
          }
 
       }
@@ -1005,7 +1003,7 @@ public final class f {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = .ca.c(var1, var2);
+         this.b.a = ca_1.c(var1, var2);
       }
 
    }
@@ -1017,17 +1015,17 @@ public final class f {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = .ca.c(var1, var2);
+         this.b.a = ca_1.c(var1, var2);
       }
 
    }
 
    private void k(int var1, int var2) {
       if (this.a.l == 0) {
-         this.b.a = .ca.a(var1, var2);
+         this.b.a = ca_1.a(var1, var2);
       } else {
          if (this.a.l == 1) {
-            this.b.a = .ca.b(var1, var2);
+            this.b.a = ca_1.b(var1, var2);
          }
 
       }
@@ -1056,7 +1054,7 @@ public final class f {
          }
 
          if (this.a.l == 1 || this.a.l == 7) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
          }
       }
 
@@ -1078,7 +1076,7 @@ public final class f {
          }
       } else {
          if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
             return;
          }
 
@@ -1097,12 +1095,12 @@ public final class f {
    private void p(int var1, int var2) {
       if (this.a.l != 0 && this.a.l != 10) {
          if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3 || this.a.l == 4 || this.a.l == 5 || this.a.l == 6 || this.a.l == 7 || this.a.l == 9) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
             return;
          }
 
          if (this.a.l == 8) {
-            this.b.a = .ca.b(var1, var2);
+            this.b.a = ca_1.b(var1, var2);
          }
       } else if (this.b.aq != null) {
          this.b.a = this.b.aq.b(var1, var2);
@@ -1114,18 +1112,18 @@ public final class f {
    private void q(int var1, int var2) {
       if (this.a.l != 0 && this.a.l != 1) {
          if (this.a.l == 2 || this.a.l == 3 || this.a.l == 4 || this.a.l == 5 || this.a.l == 6) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
          }
       } else if (this.b.aq != null) {
          this.b.a = this.b.aq.b(var1, var2);
          this.b.aw = this.b.as.a;
          this.b.a = this.a.d(this.b.a, var1, var2);
-         if (this.b.a == 0 && .ao_1.aP.size() == 0) {
+         if (this.b.a == 0 && ao_1.aP.size() == 0) {
             this.b.a = 1073741824;
          }
       }
 
-      if (a_MainCanvas.u != null && var1 >= .t.b - 4 - a_MainCanvas.u.a.getWidth() && var1 < .t.b - 4 && var2 >= 4 && var2 <= a_MainCanvas.u.a.getHeight() + 4) {
+      if (a_MainCanvas.u != null && var1 >= t_1.b - 4 - a_MainCanvas.u.a.getWidth() && var1 < t_1.b - 4 && var2 >= 4 && var2 <= a_MainCanvas.u.a.getHeight() + 4) {
          this.b.a = 536870912;
       }
 
@@ -1134,12 +1132,12 @@ public final class f {
    private void r(int var1, int var2) {
       if (this.a.l != 6 && this.a.l != 7) {
          if (this.a.l == 8) {
-            this.b.a = .ca.d(var1, var2);
+            this.b.a = ca_1.d(var1, var2);
          } else {
             this.b.a = this.a.a(var1, var2);
          }
       } else {
-         this.b.a = .ca.b(var1, var2);
+         this.b.a = ca_1.b(var1, var2);
       }
    }
 
@@ -1150,8 +1148,8 @@ public final class f {
          }
 
          if (this.a.m == 1 || this.a.m == 2) {
-            this.b.a = .ca.d(var1, var2);
-            if (.ca.e(var1, var2)) {
+            this.b.a = ca_1.d(var1, var2);
+            if (ca_1.e(var1, var2)) {
                this.b.a((String)(this.a.m == 1 ? "请输入取出银两" : "请输入存入银两"), (int)2);
                return;
             }
@@ -1160,8 +1158,8 @@ public final class f {
          }
 
          if (this.a.m == 3) {
-            this.b.a = .ca.d(var1, var2);
-            if (.ca.e(var1, var2)) {
+            this.b.a = ca_1.d(var1, var2);
+            if (ca_1.e(var1, var2)) {
                this.b.a((String)"请输入竞标银两", (int)2);
                return;
             }
@@ -1170,17 +1168,17 @@ public final class f {
          }
 
          if (this.a.m == 4) {
-            this.b.a = .ca.d(var1, var2);
+            this.b.a = ca_1.d(var1, var2);
             return;
          }
 
          if (this.a.m == 5 || this.a.m == 6) {
-            this.b.a = .ca.b(var1, var2);
+            this.b.a = ca_1.b(var1, var2);
             return;
          }
       }
 
-      this.b.a = .ca.a(var1, var2);
+      this.b.a = ca_1.a(var1, var2);
    }
 
    private void t(int var1, int var2) {
@@ -1214,7 +1212,7 @@ public final class f {
          }
       } else if (this.a.l != 3 && this.a.l != 11) {
          if (this.a.l == 1 || this.a.l == 2 || this.a.l == 5 || this.a.l == 6 || this.a.l == 8 || this.a.l == 9 || this.a.l == 10) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
             return;
          }
 
@@ -1229,8 +1227,8 @@ public final class f {
          }
 
          if (this.a.l == 7) {
-            this.b.a = .ca.d(var1, var2);
-            if (.ca.e(var1, var2)) {
+            this.b.a = ca_1.d(var1, var2);
+            if (ca_1.e(var1, var2)) {
                this.b.a((String)"请输入决斗金额", (int)2);
             }
          }
@@ -1256,12 +1254,12 @@ public final class f {
          }
       } else {
          if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3 || this.a.l == 4 || this.a.l == 5 || this.a.l == 6 || this.a.l == 7 || this.a.l == 8 || this.a.l == 10) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
             return;
          }
 
          if (this.a.l == 9) {
-            this.b.a = .ca.b(var1, var2);
+            this.b.a = ca_1.b(var1, var2);
          }
       }
 
@@ -1269,7 +1267,7 @@ public final class f {
 
    private void y(int var1, int var2) {
       if (this.a.l == 0) {
-         this.b.a = .ca.a(var1, var2);
+         this.b.a = ca_1.a(var1, var2);
       } else {
          if (this.a.l == 1) {
             this.b.a = this.b.aq.b(var1, var2);
@@ -1279,8 +1277,8 @@ public final class f {
    }
 
    private void z(int var1, int var2) {
-      if (var1 >= this.a.ba.e - .ao_1.h + this.a.g() && var1 <= this.a.ba.e - .ao_1.h + this.a.g() + this.a.ba.a() && var2 >= this.a.ba.f - .
-      ao_1.i + this.a.h() && var2 <= this.a.ba.f - .ao_1.i + this.a.h() + this.a.ba.b()) {
+      if (var1 >= this.a.ba.e - ao_1.h + this.a.g() && var1 <= this.a.ba.e - ao_1.h + this.a.g() + this.a.ba.a() && var2 >= this.a.ba.f -
+      ao_1.i + this.a.h() && var2 <= this.a.ba.f - ao_1.i + this.a.h() + this.a.ba.b()) {
          this.c = 1;
          ++this.i;
          if (this.i >= 2 && this.k <= 30) {
@@ -1313,7 +1311,7 @@ public final class f {
             return;
          }
       } else if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3) {
-         this.b.a = .ca.b(var1, var2);
+         this.b.a = ca_1.b(var1, var2);
       }
 
    }
@@ -1325,7 +1323,7 @@ public final class f {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = .ca.c(var1, var2);
+         this.b.a = ca_1.c(var1, var2);
       }
 
    }
@@ -1337,7 +1335,7 @@ public final class f {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = .ca.c(var1, var2);
+         this.b.a = ca_1.c(var1, var2);
       }
 
    }
@@ -1357,7 +1355,7 @@ public final class f {
          }
       } else {
          if (this.a.l == 1) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
             return;
          }
 
@@ -1376,7 +1374,7 @@ public final class f {
          }
       } else {
          if (this.a.l == 1 || this.a.l == 2 || this.a.l == 5 || this.a.l == 6 || this.a.l == 7 || this.a.l == 8) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
             return;
          }
 
@@ -1396,7 +1394,7 @@ public final class f {
                return;
             }
          } else if (this.a.l == 9) {
-            this.b.a = .ca.b(var1, var2);
+            this.b.a = ca_1.b(var1, var2);
          }
       }
 
@@ -1410,7 +1408,7 @@ public final class f {
          }
       } else {
          if (this.a.l == 1) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
             return;
          }
 
@@ -1420,7 +1418,7 @@ public final class f {
                return;
             }
          } else if (this.a.l == 3) {
-            this.b.a = .ca.b(var1, var2);
+            this.b.a = ca_1.b(var1, var2);
          }
       }
 
@@ -1440,20 +1438,20 @@ public final class f {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = .ca.d(var1, var2);
-         if (.ca.e(var1, var2)) {
+         this.b.a = ca_1.d(var1, var2);
+         if (ca_1.e(var1, var2)) {
             this.b.a((String)"捐献银两数量", (int)2);
             return;
          }
       } else if (this.a.l == 2) {
-         this.b.a = .ca.d(var1, var2);
-         if (.ca.e(var1, var2)) {
+         this.b.a = ca_1.d(var1, var2);
+         if (ca_1.e(var1, var2)) {
             this.b.a((String)"捐献经验数量", (int)2);
             return;
          }
       } else if (this.a.l == 5) {
-         this.b.a = .ca.d(var1, var2);
-         if (.ca.e(var1, var2)) {
+         this.b.a = ca_1.d(var1, var2);
+         if (ca_1.e(var1, var2)) {
             this.b.a((String)"取出银两数量", (int)2);
             return;
          }
@@ -1464,7 +1462,7 @@ public final class f {
             }
          } else {
             if (this.a.m == 0) {
-               this.b.a = .ca.d(var1, var2);
+               this.b.a = ca_1.d(var1, var2);
                return;
             }
 
@@ -1473,7 +1471,7 @@ public final class f {
             }
          }
 
-         this.b.a = .ca.b(var1, var2);
+         this.b.a = ca_1.b(var1, var2);
       }
 
    }
@@ -1489,7 +1487,7 @@ public final class f {
             var3 = var2;
             var2 = var1;
             var1 = this.b.a;
-            .aq var5 = this.a.M;
+            aq var5 = this.a.M;
             if (var1 == 0) {
                for(int var4 = 0; var4 < var5.l.length; ++var4) {
                   if (var2 >= var5.l[var4][0] && var2 <= var5.l[var4][0] + var5.l[var4][2] && var3 >= var5.l[var4][1] && var3 <= var5.l[var4][1] + var5.l[var4][3]) {
@@ -1524,7 +1522,7 @@ public final class f {
             return;
          }
       } else if (this.a.l == 1 || this.a.l == 2) {
-         this.b.a = .ca.c(var1, var2);
+         this.b.a = ca_1.c(var1, var2);
       }
 
    }
@@ -1537,12 +1535,12 @@ public final class f {
          }
       } else {
          if (this.a.l == 1) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
             return;
          }
 
          if (this.a.l == 2) {
-            this.b.a = .ca.d(var1, var2);
+            this.b.a = ca_1.d(var1, var2);
          }
       }
 
@@ -1581,18 +1579,18 @@ public final class f {
          }
       } else {
          if (this.a.l == 1 || this.a.l == 2) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
             return;
          }
 
          if (this.a.l == 3 || this.a.l == 5) {
-            this.b.a = .ca.b(var1, var2);
+            this.b.a = ca_1.b(var1, var2);
             return;
          }
 
          if (this.a.l == 4) {
-            this.b.a = .ca.d(var1, var2);
-            if (.ca.e(var1, var2)) {
+            this.b.a = ca_1.d(var1, var2);
+            if (ca_1.e(var1, var2)) {
                this.b.a((String)"拍卖价格", (int)2);
             }
          }
@@ -1608,12 +1606,12 @@ public final class f {
          }
       } else {
          if (this.a.l == 1 || this.a.l == 2) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
             return;
          }
 
          if (this.a.l == 3) {
-            this.b.a = .ca.b(var1, var2);
+            this.b.a = ca_1.b(var1, var2);
          }
       }
 
@@ -1621,7 +1619,7 @@ public final class f {
 
    private void R(int var1, int var2) {
       if (this.a.l == 0) {
-         this.b.a = .ca.b(var1, var2);
+         this.b.a = ca_1.b(var1, var2);
       }
 
    }
@@ -1638,8 +1636,8 @@ public final class f {
          switch (this.a.k) {
             case 0:
                if (this.d != 0) {
-                  this.g = this.a.I.j - .ao_1.h + this.a.g() + 8;
-                  this.h = this.a.I.k - .ao_1.i + this.a.h() + 16;
+                  this.g = this.a.I.j - ao_1.h + this.a.g() + 8;
+                  this.h = this.a.I.k - ao_1.i + this.a.h() + 16;
                   if ((this.b.aF > this.g ? this.b.aF - this.g : this.g - this.b.aF) > 4) {
                      if (this.b.aF >= this.g) {
                         this.b.b = 2;
@@ -1662,8 +1660,8 @@ public final class f {
                break;
             case 39:
                if (this.d == 1) {
-                  this.g = this.a.ba.e - .ao_1.h + this.a.g() + this.a.ba.a() / 2;
-                  this.h = this.a.ba.f - .ao_1.i + this.a.h() + this.a.ba.b() / 2;
+                  this.g = this.a.ba.e - ao_1.h + this.a.g() + this.a.ba.a() / 2;
+                  this.h = this.a.ba.f - ao_1.i + this.a.h() + this.a.ba.b() / 2;
                   if ((this.b.aF > this.g ? this.b.aF - this.g : this.g - this.b.aF) > 4) {
                      if (this.b.aF >= this.g) {
                         this.b.b = 2;
@@ -1716,12 +1714,12 @@ public final class f {
          }
       } else {
          if (this.a.l == 1 || this.a.l == 2) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
             return;
          }
 
          if (this.a.l == 3) {
-            this.b.a = .ca.b(var1, var2);
+            this.b.a = ca_1.b(var1, var2);
          }
       }
 
@@ -1749,11 +1747,11 @@ public final class f {
             label37: {
                this.b.a = this.b.aq.b(var1, var2);
                var10000 = this.b;
-               .ch var10001 = this.a.V;
+               ch var10001 = this.a.V;
                int var3 = var2;
                var2 = var1;
                var1 = this.b.a;
-               .ch var5 = var10001;
+               ch var5 = var10001;
                if (var10001.a != null) {
                   for(int var4 = 0; var4 < var5.a.length - 3; ++var4) {
                      if (var2 >= var5.a[var4][0] && var2 <= var5.a[var4][0] + var5.a[var4][2] && var3 >= var5.a[var4][1] && var3 <= var5.a[var4][1] + var5.a[var4][3]) {
@@ -1763,7 +1761,7 @@ public final class f {
                         }
 
                         var5.b = var4;
-                        .ca.l = 0;
+                        ca_1.l = 0;
                         var5.b();
                         break;
                      }
@@ -1777,7 +1775,7 @@ public final class f {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = .ca.c(var1, var2);
+         this.b.a = ca_1.c(var1, var2);
       }
 
    }
@@ -1790,7 +1788,7 @@ public final class f {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = .ca.c(var1, var2);
+         this.b.a = ca_1.c(var1, var2);
       }
 
    }
@@ -1803,11 +1801,11 @@ public final class f {
             label44: {
                this.b.a = this.b.aq.b(var1, var2);
                var10000 = this.b;
-               .r var10001 = this.a.P;
+               r var10001 = this.a.P;
                int var3 = var2;
                var2 = var1;
                var1 = this.b.a;
-               .r var5 = var10001;
+               r var5 = var10001;
                if (var10001.g != null) {
                   for(int var4 = 0; var4 < var5.g.length; ++var4) {
                      if (var2 >= var5.g[var4][0] && var2 <= var5.g[var4][0] + var5.g[var4][2] && var3 >= var5.g[var4][1] && var3 <= var5.g[var4][1] + var5.g[var4][3]) {
@@ -1819,7 +1817,7 @@ public final class f {
                            }
 
                            var5.a = (byte)var4;
-                           .ca.l = 0;
+                           ca_1.l = 0;
                            var5.a();
                         } else {
                            var5.b = 1;
@@ -1829,7 +1827,7 @@ public final class f {
                            }
 
                            var5.a = (byte)(var4 - 2);
-                           .ca.l = 0;
+                           ca_1.l = 0;
                            var5.a();
                         }
                         break;
@@ -1844,7 +1842,7 @@ public final class f {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = .ca.c(var1, var2);
+         this.b.a = ca_1.c(var1, var2);
       }
 
    }
@@ -1857,11 +1855,11 @@ public final class f {
             label42: {
                this.b.a = this.b.aq.b(var1, var2);
                var10000 = this.b;
-               .k var10001 = this.a.Q;
+               k var10001 = this.a.Q;
                int var3 = var2;
                var2 = var1;
                var1 = this.b.a;
-               .k var5 = var10001;
+               k var5 = var10001;
                if (var10001.g != null) {
                   for(int var4 = 0; var4 < var5.g.length; ++var4) {
                      if (var2 >= var5.g[var4][0] && var2 <= var5.g[var4][0] + var5.g[var4][2] && var3 >= var5.g[var4][1] && var3 <= var5.g[var4][1] + var5.g[var4][3]) {
@@ -1894,7 +1892,7 @@ public final class f {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = .ca.c(var1, var2);
+         this.b.a = ca_1.c(var1, var2);
       }
 
    }
@@ -1913,7 +1911,7 @@ public final class f {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = .ca.d(var1, var2);
+         this.b.a = ca_1.d(var1, var2);
       }
 
    }
@@ -1933,7 +1931,7 @@ public final class f {
          }
       } else {
          if (this.a.l == 1) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
             return;
          }
 
@@ -1948,15 +1946,15 @@ public final class f {
       if (this.a.l == 0 && this.b.aq != null) {
          this.b.a = this.b.aq.b(var1, var2);
          int var3 = this.b.aq.a + 5;
-         int var4 = this.b.aq.b + this.b.aq.d - (2 * .t.j + 16) - 6;
-         int var5 = .t.i.stringWidth("同意(点击申请结婚)");
-         int var6 = .t.i.stringWidth("拒绝");
-         if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + .t.j) {
+         int var4 = this.b.aq.b + this.b.aq.d - (2 * t_1.j + 16) - 6;
+         int var5 = t_1.i.stringWidth("同意(点击申请结婚)");
+         int var6 = t_1.i.stringWidth("拒绝");
+         if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + t_1.j) {
             this.b.a = this.a.S.d == 0 ? 1073741824 : this.b.a;
             this.a.S.d = 0;
          }
 
-         if (var1 >= var3 + 4 && var2 >= var4 + 5 + .t.j + 5 && var1 <= var3 + 4 + var6 && var2 <= var4 + 5 + .t.j + 5 + .t.j) {
+         if (var1 >= var3 + 4 && var2 >= var4 + 5 + t_1.j + 5 && var1 <= var3 + 4 + var6 && var2 <= var4 + 5 + t_1.j + 5 + t_1.j) {
             this.b.a = this.a.S.d == 1 ? 1073741824 : this.b.a;
             this.a.S.d = 1;
          }
@@ -1968,15 +1966,15 @@ public final class f {
       if (this.a.l == 0 && this.b.aq != null) {
          this.b.a = this.b.aq.b(var1, var2);
          int var3 = this.b.aq.a + 5;
-         int var4 = this.b.aq.b + this.b.aq.d - (2 * .t.j + 16) - 6;
-         int var5 = .t.i.stringWidth("离婚(点击申请离婚)");
-         int var6 = .t.i.stringWidth("取消离婚");
-         if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + .t.j) {
+         int var4 = this.b.aq.b + this.b.aq.d - (2 * t_1.j + 16) - 6;
+         int var5 = t_1.i.stringWidth("离婚(点击申请离婚)");
+         int var6 = t_1.i.stringWidth("取消离婚");
+         if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + t_1.j) {
             this.b.a = this.a.S.g == 0 ? 1073741824 : this.b.a;
             this.a.S.g = 0;
          }
 
-         if (var1 >= var3 + 4 && var2 >= var4 + 5 + .t.j + 5 && var1 <= var3 + 4 + var6 && var2 <= var4 + 5 + .t.j + 5 + .t.j) {
+         if (var1 >= var3 + 4 && var2 >= var4 + 5 + t_1.j + 5 && var1 <= var3 + 4 + var6 && var2 <= var4 + 5 + t_1.j + 5 + t_1.j) {
             this.b.a = this.a.S.g == 1 ? 1073741824 : this.b.a;
             this.a.S.g = 1;
          }
@@ -1993,7 +1991,7 @@ public final class f {
 
    private void ai(int var1, int var2) {
       if (this.a.l == 0) {
-         this.b.a = .ca.a(var1, var2);
+         this.b.a = ca_1.a(var1, var2);
       }
 
    }
@@ -2014,10 +2012,10 @@ public final class f {
 
    private void al(int var1, int var2) {
       if (this.a.l == 0) {
-         this.b.a = .ca.c(var1, var2);
+         this.b.a = ca_1.c(var1, var2);
       } else {
          if (this.a.l == 1) {
-            this.b.a = .ca.c(var1, var2);
+            this.b.a = ca_1.c(var1, var2);
          }
 
       }
@@ -2030,7 +2028,7 @@ public final class f {
             return;
          }
       } else if (this.a.l == 1 || this.a.l == 2) {
-         this.b.a = .ca.c(var1, var2);
+         this.b.a = ca_1.c(var1, var2);
       }
 
    }
@@ -2057,7 +2055,7 @@ public final class f {
             return;
          }
       } else {
-         this.b.a = .ca.c(var1, var2);
+         this.b.a = ca_1.c(var1, var2);
       }
 
    }
@@ -2065,7 +2063,7 @@ public final class f {
    private void aq(int var1, int var2) {
       if (this.a.l != 0 && this.a.l != 1) {
          if (this.a.l == 2 || this.a.l == 3) {
-            this.b.a = .ca.b(var1, var2);
+            this.b.a = ca_1.b(var1, var2);
          }
       } else if (this.b.aq != null) {
          this.b.a = this.b.aq.b(var1, var2);
@@ -2075,11 +2073,11 @@ public final class f {
    }
 
    private void ar(int var1, int var2) {
-      this.b.a = .ca.a(var1, var2);
+      this.b.a = ca_1.a(var1, var2);
    }
 
    private void as(int var1, int var2) {
-      this.b.a = .ca.b(var1, var2);
+      this.b.a = ca_1.b(var1, var2);
    }
 
    private void at(int var1, int var2) {
@@ -2089,7 +2087,7 @@ public final class f {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = .ca.c(var1, var2);
+         this.b.a = ca_1.c(var1, var2);
       }
 
    }
@@ -2109,12 +2107,12 @@ public final class f {
             }
          } else {
             if (this.a.l == 1) {
-               this.b.a = .ca.c(var1, var2);
+               this.b.a = ca_1.c(var1, var2);
                return;
             }
 
             if (this.a.l == 2) {
-               this.b.a = .ca.b(var1, var2);
+               this.b.a = ca_1.b(var1, var2);
                return;
             }
 

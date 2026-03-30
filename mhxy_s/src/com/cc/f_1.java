@@ -2,14 +2,14 @@ package com.cc;
 
 import javax.microedition.lcdui.Image;
 
-public final class f {
+public final class f_1 {
    private static String[] v = new String[]{"【邮件标题】", "【发件人】"};
    public static final String[] a = new String[]{"上页", "下页", "发件", "清理", "定购"};
    public static final String[] b = new String[]{"查看", "回复", "删除", "加为好友", "加黑名单", "举报"};
    public static final String[] c;
    public int d = 0;
    public String e = "";
-   public bo[] f = new bo[0];
+   public bo_1[] f = new bo_1[0];
    private int w = 0;
    public String[] g = null;
    public String[] h = null;
@@ -37,11 +37,11 @@ public final class f {
       this.r = null;
    }
 
-   public static f b() {
-      f var0;
-      (var0 = new f()).d = 0;
+   public static f_1 b() {
+      f_1 var0;
+      (var0 = new f_1()).d = 0;
       var0.e = "【我的邮件】\t邮件同步中...请稍候...";
-      var0.f = new bo[0];
+      var0.f = new bo_1[0];
       return var0;
    }
 
@@ -80,13 +80,13 @@ public final class f {
          this.x[var1] = "";
          this.j[var1] = this.f[var2].b();
          if (this.f[var2].f) {
-            this.k[var1] = bo.g[1];
+            this.k[var1] = bo_1.g[1];
          } else {
             if (!this.u) {
                this.u = true;
             }
 
-            this.k[var1] = bo.g[0];
+            this.k[var1] = bo_1.g[0];
          }
 
          this.l[var1] = 16777215;

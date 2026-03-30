@@ -1,6 +1,7 @@
 package com.cc;
 
 import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.c_3;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
@@ -338,7 +339,7 @@ public final class q {
                         bt_1.x = -1;
                         a_MainCanvas.e.g.l();
                      }
-                  } else if (bq.g <= 0 && var6 != bt_1.v) {
+                  } else if (bq_1.g <= 0 && var6 != bt_1.v) {
                      if (a_MainCanvas.e.g != null) {
                         bt_1.v = -1L;
                         bt_1.x = -1;
@@ -581,7 +582,7 @@ public final class q {
                      bt_1.bt = true;
                   }
 
-                  bq.k();
+                  bq_1.k();
                   if (a_MainCanvas.e != null) {
                      a_MainCanvas.e.d(false);
                   }
@@ -766,7 +767,7 @@ public final class q {
                   return;
                case 8264:
                   if (bt_1.bu = this.b.readByte() != 0) {
-                     ab.b = true;
+                     ab_1.b = true;
                   }
 
                   if (a_MainCanvas.e != null && a_MainCanvas.e.X != null) {
@@ -925,7 +926,7 @@ public final class q {
                            this.a.b("充值卡充值暂时关闭");
                         }
                      } else if (bt_1.jy == 1) {
-                        com.yinhan.kjava.main.c.g();
+                        c_3.g();
                      } else {
                         this.a.b("充值功能暂时关闭");
                      }
@@ -989,8 +990,8 @@ public final class q {
                   return;
                case 8303:
                   t.a("宠物继承");
-                  cg.a(cg.b);
-                  cg.a(this.b);
+                  cg_1.a(cg_1.b);
+                  cg_1.a(this.b);
                   a_MainCanvas.e.W.b();
                   return;
                case 8304:
@@ -1218,7 +1219,7 @@ public final class q {
                   return;
                case 8732:
                   bt_1.av(this.b);
-                  if (o.e == 1) {
+                  if (o_1.e == 1) {
                      a_MainCanvas.e.O.a(a_MainCanvas.e.O.a, (short) a_MainCanvas.e.O.c, a_MainCanvas.e.O.d);
                   } else {
                      a_MainCanvas.e.O.a(0, (short)-1, -1);
@@ -1226,7 +1227,7 @@ public final class q {
 
                   return;
                case 8733:
-                  o.a(this.b);
+                  o_1.a(this.b);
                   a_MainCanvas.e.O.c();
                   return;
                case 8734:
@@ -1303,7 +1304,7 @@ public final class q {
                   return;
                case 8739:
                   bt_1.aN(this.b);
-                  com.yinhan.kjava.main.c.a("游客注册 第2步: ", "创建一哥哥通行证密码");
+                  c_3.a("游客注册 第2步: ", "创建一哥哥通行证密码");
                   this.a.j = 7;
                   return;
                case 8960:
@@ -1456,8 +1457,8 @@ public final class q {
                   this.a.j = this.a.k;
                   return;
                case 9216:
-                  v.a(this.b);
-                  if (v.a != null) {
+                  v_1.a(this.b);
+                  if (v_1.a != null) {
                      a_MainCanvas.e.S.a((int)0);
                   } else {
                      this.a.b("暂无求爱信息!");
@@ -1465,8 +1466,8 @@ public final class q {
 
                   return;
                case 9217:
-                  v.b(this.b);
-                  if (v.b != null) {
+                  v_1.b(this.b);
+                  if (v_1.b != null) {
                      a_MainCanvas.e.S.b();
                   } else {
                      this.a.b("求爱信息不存在!");
@@ -1474,15 +1475,15 @@ public final class q {
 
                   return;
                case 9218:
-                  v.c(this.b);
+                  v_1.c(this.b);
                   a_MainCanvas.e.S.c();
                   return;
                case 9219:
-                  v.d(this.b);
+                  v_1.d(this.b);
                   a_MainCanvas.e.S.d();
                   return;
                case 9220:
-                  v.e(this.b);
+                  v_1.e(this.b);
                   a_MainCanvas.e.S.f();
                   return;
                case 9221:
@@ -2008,7 +2009,7 @@ public final class q {
                   this.a.j = this.a.k;
                   return;
                }
-            } else if (o.e == 1) {
+            } else if (o_1.e == 1) {
                if (this.a.j != 2) {
                   this.a.j = this.a.k;
                   return;
@@ -2047,9 +2048,9 @@ public final class q {
 
    private static void b(DataInputStream var0) {
       long var1 = var0.readLong();
-      if (bq.g > 0 && bt_1.v <= 0L) {
+      if (bq_1.g > 0 && bt_1.v <= 0L) {
          bt_1.v = var1;
-         bq.g = -1;
+         bq_1.g = -1;
       }
 
       short var8;
@@ -2118,16 +2119,16 @@ public final class q {
       byte var1;
       if ((var1 = this.b.readByte()) <= 0) {
          if (a_MainCanvas.e != null) {
-            a_MainCanvas.e.a((bp[])null);
+            a_MainCanvas.e.a((bp_1[])null);
          }
 
       } else {
          bt_1.s = (short)this.b.readByte();
-         bp[] var2 = new bp[var1];
+         bp_1[] var2 = new bp_1[var1];
          byte var3 = 1;
 
          for(int var4 = 0; var4 < var1; ++var4) {
-            var2[var4] = new bp();
+            var2[var4] = new bp_1();
             var2[var4].a(a_MainCanvas.e, this.b);
             if (var2[var4].s == 1) {
                var2[var4].a = 0;
@@ -2136,12 +2137,12 @@ public final class q {
             }
          }
 
-         bp[] var6 = var2;
+         bp_1[] var6 = var2;
 
          for(int var7 = 0; var7 < var6.length - 1; ++var7) {
             for(int var8 = 0; var8 < var6.length - 1; ++var8) {
-               bp var9 = var6[var8];
-               bp var5;
+               bp_1 var9 = var6[var8];
+               bp_1 var5;
                if ((var5 = var6[var8 + 1]).a < var9.a) {
                   var6[var8] = var5;
                   var6[var8 + 1] = var9;

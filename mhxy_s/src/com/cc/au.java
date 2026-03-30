@@ -134,13 +134,13 @@ public class au {
 
    }
 
-   public void a(aw var1, ai var2, long var3) {
+   public void a(aw var1, ai_1 var2, long var3) {
       if (this.f != null && this.e.size() >= 6) {
          short[] var5 = (short[])this.e.elementAt(0);
          this.a(var5);
          this.h = var5[0];
          this.i = var5[1];
-         ai.a(this.f, var3);
+         ai_1.a(this.f, var3);
          this.e.removeElementAt(0);
       }
 
@@ -171,7 +171,7 @@ public class au {
       }
    }
 
-   public void a(Graphics var1, ai var2, int var3, int var4, byte var5) {
+   public void a(Graphics var1, ai_1 var2, int var3, int var4, byte var5) {
       if (this.f != null) {
          switch (this.j) {
             case 0:

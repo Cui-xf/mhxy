@@ -23,7 +23,7 @@ public final class bt_1 {
    public static String n;
    public static bl[] o;
    public static Vector p = new Vector();
-   public static bp[] q;
+   public static bp_1[] q;
    public static String r;
    public static short s;
    public static az_1[] t;
@@ -47,8 +47,8 @@ public final class bt_1 {
    public static short L;
    public static ck[] M;
    public static ck[] N;
-   public static f O;
-   public static ag P;
+   public static f_1 O;
+   public static ag_1 P;
    public static cd Q;
    public static String R;
    public static String S;
@@ -984,7 +984,7 @@ public final class bt_1 {
       return var0 == 20 || var0 == 21 || var0 == 22 || var0 == 23 || var0 == 24 || var0 == 25;
    }
 
-   public static void a() {
+   public static void a() throws IOException {
       if (I != null) {
          for(int var0 = 0; var0 < I.length; ++var0) {
             if (I[var0] != null) {
@@ -1020,11 +1020,11 @@ public final class bt_1 {
 
    }
 
-   public static void b() {
+   public static void b() throws IOException {
       if (q != null) {
          for(int var0 = 0; var0 < q.length; ++var0) {
             if (q[var0] != null) {
-               bp var1;
+               bp_1 var1;
                if ((var1 = q[var0]).g != null) {
                   bc_1 var2 = var1.g;
                }
@@ -1047,7 +1047,7 @@ public final class bt_1 {
 
    }
 
-   public static void c() {
+   public static void c() throws IOException {
       if (o != null) {
          for(int var0 = 0; var0 < o.length; ++var0) {
             if (o[var0] != null) {
@@ -1074,7 +1074,7 @@ public final class bt_1 {
 
    }
 
-   public static void d() {
+   public static void d() throws IOException {
       if (t != null) {
          for(int var0 = 0; var0 < t.length; ++var0) {
             if (t[var0] != null) {
@@ -1123,7 +1123,7 @@ public final class bt_1 {
       }
    }
 
-   public static void e() {
+   public static void e() throws IOException {
       if (W != null) {
          for(int var0 = 0; var0 < W.length; ++var0) {
             W[var0] = null;
@@ -1157,7 +1157,7 @@ public final class bt_1 {
 
    }
 
-   public static void f() {
+   public static void f() throws IOException {
       ab = null;
       ac = null;
    }
@@ -1173,7 +1173,7 @@ public final class bt_1 {
       bx = var0.readByte();
    }
 
-   public static void g() {
+   public static void g() throws IOException {
       if (nF != -1) {
          aN = nF;
          aP = nH;
@@ -1187,7 +1187,7 @@ public final class bt_1 {
       nG = -1;
    }
 
-   public static void h() {
+   public static void h() throws IOException {
       ad = null;
       af = null;
       ag = null;
@@ -1294,7 +1294,7 @@ public final class bt_1 {
       bD = true;
    }
 
-   public static void i() {
+   public static void i() throws IOException {
       if (bC != null) {
          short var0 = (short)bC.size();
          bn var1 = null;
@@ -1420,7 +1420,7 @@ public final class bt_1 {
       }
    }
 
-   public static void j() {
+   public static void j() throws IOException {
       bI = null;
       if (bJ != null) {
          for(int var0 = 0; var0 < bJ.length; ++var0) {
@@ -1570,7 +1570,7 @@ public final class bt_1 {
       }
    }
 
-   public static void k() {
+   public static void k() throws IOException {
       bY = null;
       cp = null;
       ca = null;
@@ -1622,7 +1622,7 @@ public final class bt_1 {
       }
    }
 
-   public static void l() {
+   public static void l() throws IOException {
       cr = null;
       if (cs != null) {
          for(int var0 = 0; var0 < cs.length; ++var0) {
@@ -1686,7 +1686,7 @@ public final class bt_1 {
       }
    }
 
-   public static void m() {
+   public static void m() throws IOException {
       ct = null;
       cv = null;
       cw = null;
@@ -1811,7 +1811,7 @@ public final class bt_1 {
       }
    }
 
-   public static void n() {
+   public static void n() throws IOException {
       cz = null;
       cB = null;
       cC = null;
@@ -1974,7 +1974,7 @@ public final class bt_1 {
       }
    }
 
-   public static void o() {
+   public static void o() throws IOException {
       cG = null;
       cI = null;
       cJ = null;
@@ -2168,7 +2168,7 @@ public final class bt_1 {
       }
    }
 
-   public static void p() {
+   public static void p() throws IOException {
       dl = null;
       dn = null;
       dq = null;
@@ -2232,7 +2232,7 @@ public final class bt_1 {
       }
    }
 
-   public static void q() {
+   public static void q() throws IOException {
       dv = null;
       dx = null;
       dy = null;
@@ -2282,7 +2282,7 @@ public final class bt_1 {
       }
    }
 
-   public static void r() {
+   public static void r() throws IOException {
       dE = null;
       if (dF != null) {
          for(int var0 = 0; var0 < dF.length; ++var0) {
@@ -2346,7 +2346,7 @@ public final class bt_1 {
       }
    }
 
-   public static void s() {
+   public static void s() throws IOException {
       dM = null;
       dN = null;
       dO = null;
@@ -2523,7 +2523,7 @@ public final class bt_1 {
       }
    }
 
-   public static void t() {
+   public static void t() throws IOException {
       Y();
    }
 
@@ -2644,7 +2644,7 @@ public final class bt_1 {
 
    }
 
-   public static void u() {
+   public static void u() throws IOException {
       ew = null;
       if (ex != null) {
          for(int var0 = 0; var0 < ex.length; ++var0) {
@@ -3319,7 +3319,7 @@ public final class bt_1 {
       return false;
    }
 
-   public static void v() {
+   public static void v() throws IOException {
       fh = null;
       fj = null;
       fi = null;
@@ -3398,7 +3398,7 @@ public final class bt_1 {
 
    }
 
-   public static void w() {
+   public static void w() throws IOException {
       fo = null;
       fq = null;
       fp = null;
@@ -3551,7 +3551,7 @@ public final class bt_1 {
       return var2.toString();
    }
 
-   public static void x() {
+   public static void x() throws IOException {
       fw = null;
       if (fA != null && fA.length > 0) {
          fw = new int[fA.length];
@@ -3635,7 +3635,7 @@ public final class bt_1 {
       return var0.toString();
    }
 
-   public static void y() {
+   public static void y() throws IOException {
       fv = null;
       fu = null;
       oX = null;
@@ -3754,7 +3754,7 @@ public final class bt_1 {
       return var0.toString();
    }
 
-   public static void z() {
+   public static void z() throws IOException {
       fy = null;
       fx = null;
       pp = null;
@@ -3846,7 +3846,7 @@ public final class bt_1 {
       gR = var0.readByte();
    }
 
-   public static void A() {
+   public static void A() throws IOException {
       Y();
    }
 
@@ -4111,7 +4111,7 @@ public final class bt_1 {
       return var0.toString();
    }
 
-   public static void B() {
+   public static void B() throws IOException {
       fz = null;
       fA = null;
       fD = null;
@@ -4402,7 +4402,7 @@ public final class bt_1 {
       gG = null;
    }
 
-   public static void C() {
+   public static void C() throws IOException {
       gH = null;
       gI = null;
       gJ = null;
@@ -4463,7 +4463,7 @@ public final class bt_1 {
 
    }
 
-   public static void D() {
+   public static void D() throws IOException {
       if (gS != null) {
          for(int var0 = 0; var0 < gS.length; ++var0) {
             gS[var0] = null;
@@ -4615,7 +4615,7 @@ public final class bt_1 {
       }
    }
 
-   public static void E() {
+   public static void E() throws IOException {
       hb = null;
       hc = null;
       hd = null;
@@ -4749,7 +4749,7 @@ public final class bt_1 {
 
    }
 
-   public static void F() {
+   public static void F() throws IOException {
       hG = -1;
       hH = null;
       hI = -1;
@@ -4757,7 +4757,7 @@ public final class bt_1 {
       hK = null;
    }
 
-   public static void O(DataInputStream var0) {
+   public static void O(DataInputStream var0) throws IOException {
       short var1;
       if ((var1 = var0.readShort()) <= 0) {
          hL = null;
@@ -4782,7 +4782,7 @@ public final class bt_1 {
       }
    }
 
-   public static void P(DataInputStream var0) {
+   public static void P(DataInputStream var0) throws IOException {
       short var1;
       if ((var1 = var0.readShort()) <= 0) {
          hP = null;
@@ -4808,7 +4808,7 @@ public final class bt_1 {
       }
    }
 
-   public static void Q(DataInputStream var0) {
+   public static void Q(DataInputStream var0) throws IOException {
       short var1;
       if ((var1 = var0.readShort()) <= 0) {
          hU = null;
@@ -4828,7 +4828,7 @@ public final class bt_1 {
       }
    }
 
-   public static void R(DataInputStream var0) {
+   public static void R(DataInputStream var0) throws IOException {
       short var1;
       if ((var1 = var0.readShort()) <= 0) {
          hX = null;
@@ -4872,7 +4872,7 @@ public final class bt_1 {
       ij.addElement(var0);
    }
 
-   public static void S(DataInputStream var0) {
+   public static void S(DataInputStream var0) throws IOException {
       ib = var0.readByte();
       qd = var0.readInt();
       if (ij != null) {
@@ -4893,20 +4893,20 @@ public final class bt_1 {
       id = var0.readShort();
       if ((var2 = (short)var0.readByte()) < 0) {
          ie = null;
-         if = null;
+         if_2 = null;
          ig = null;
          ih = null;
          ii = null;
       } else {
          ie = new short[var2];
-         if = new short[var2];
+         if_2 = new short[var2];
          ig = new short[var2];
          ih = new short[var2];
          ii = new byte[var2][];
 
          for(int var9 = 0; var9 < var2; ++var9) {
             ie[var9] = var0.readShort();
-            if[var9] = var0.readShort();
+            if_2[var9] = var0.readShort();
             ig[var9] = var0.readShort();
             ih[var9] = var0.readShort();
             byte var7;
@@ -4924,7 +4924,7 @@ public final class bt_1 {
       }
    }
 
-   public static void T(DataInputStream var0) {
+   public static void T(DataInputStream var0) throws IOException {
       gQ = var0.readShort();
       short var1 = var0.readShort();
       gR = var0.readByte();
@@ -4955,7 +4955,7 @@ public final class bt_1 {
       }
    }
 
-   public static void U(DataInputStream var0) {
+   public static void U(DataInputStream var0) throws IOException {
       gQ = var0.readShort();
       short var1 = var0.readShort();
       gR = var0.readByte();
@@ -4983,7 +4983,7 @@ public final class bt_1 {
       }
    }
 
-   public static void V(DataInputStream var0) {
+   public static void V(DataInputStream var0) throws IOException {
       gQ = var0.readShort();
       short var1 = var0.readShort();
       gR = var0.readByte();
@@ -5011,7 +5011,7 @@ public final class bt_1 {
       }
    }
 
-   public static void W(DataInputStream var0) {
+   public static void W(DataInputStream var0) throws IOException {
       gQ = var0.readShort();
       short var1 = var0.readShort();
       gR = var0.readByte();
@@ -5022,7 +5022,7 @@ public final class bt_1 {
          iB = null;
          iD = null;
          iE = null;
-         iF = null;
+         if_2 = null;
          iG = null;
       } else {
          iy = new String[var1];
@@ -5032,7 +5032,7 @@ public final class bt_1 {
          iC = new int[var1];
          iD = new byte[var1];
          iE = new short[var1];
-         iF = new short[var1];
+         if_2 = new short[var1];
          iG = new int[var1];
          byte var2 = 0;
 
@@ -5043,7 +5043,7 @@ public final class bt_1 {
             iB[var3] = var0.readInt();
             iD[var3] = var0.readByte();
             iE[var3] = var0.readShort();
-            iF[var3] = var0.readShort();
+            if_2[var3] = var0.readShort();
             var2 = var0.readByte();
             iG[var3] = ca_1.a(var2);
             iC[var3] = var0.readInt();
@@ -5052,11 +5052,11 @@ public final class bt_1 {
       }
    }
 
-   public static void X(DataInputStream var0) {
+   public static void X(DataInputStream var0) throws IOException {
       iH = var0.readUTF();
    }
 
-   public static void Y(DataInputStream var0) {
+   public static void Y(DataInputStream var0) throws IOException {
       iJ = var0.readByte();
 
       for(int var1 = 0; var1 < iI.length; ++var1) {
@@ -5065,7 +5065,7 @@ public final class bt_1 {
 
    }
 
-   public static void Z(DataInputStream var0) {
+   public static void Z(DataInputStream var0) throws IOException {
       if ((qe = var0.readByte()) == 1) {
          iK[0] = var0.readByte();
          iL[0] = var0.readByte();
@@ -5077,7 +5077,7 @@ public final class bt_1 {
 
    }
 
-   public static void aa(DataInputStream var0) {
+   public static void aa(DataInputStream var0) throws IOException {
       short var1;
       if ((var1 = var0.readShort()) <= 0) {
          H();
@@ -5129,7 +5129,7 @@ public final class bt_1 {
       }
    }
 
-   public static void H() {
+   public static void H() throws IOException {
       iN = null;
       iP = null;
       iQ = null;
@@ -5203,7 +5203,7 @@ public final class bt_1 {
 
    }
 
-   public static void ab(DataInputStream var0) {
+   public static void ab(DataInputStream var0) throws IOException {
       short var1;
       if ((var1 = var0.readShort()) > 0) {
          jc = new byte[var1];
@@ -5219,11 +5219,11 @@ public final class bt_1 {
 
    }
 
-   public static void ac(DataInputStream var0) {
+   public static void ac(DataInputStream var0) throws IOException {
       jf = var0.readUTF();
    }
 
-   public static void ad(DataInputStream var0) {
+   public static void ad(DataInputStream var0) throws IOException {
       jg = var0.readLong();
       jh = var0.readShort();
       ji = var0.readLong();
@@ -5234,7 +5234,7 @@ public final class bt_1 {
       jn = var0.readShort();
    }
 
-   public static void ae(DataInputStream var0) {
+   public static void ae(DataInputStream var0) throws IOException {
       gQ = var0.readShort();
       short var1 = var0.readShort();
       gR = var0.readByte();
@@ -5256,14 +5256,14 @@ public final class bt_1 {
       }
    }
 
-   public static void I() {
+   public static void I() throws IOException {
       jo = null;
       jp = null;
       jq = null;
       qf = null;
    }
 
-   public static void af(DataInputStream var0) {
+   public static void af(DataInputStream var0) throws IOException {
       gQ = var0.readShort();
       short var1 = var0.readShort();
       gR = var0.readByte();
@@ -5285,14 +5285,14 @@ public final class bt_1 {
       }
    }
 
-   public static void J() {
+   public static void J() throws IOException {
       jr = null;
       js = null;
       jt = null;
       ju = null;
    }
 
-   public static void ag(DataInputStream var0) {
+   public static void ag(DataInputStream var0) throws IOException {
       if (!G()) {
          ib = 4;
          if (ij != null) {
@@ -5311,7 +5311,7 @@ public final class bt_1 {
       }
    }
 
-   public static void ah(DataInputStream var0) {
+   public static void ah(DataInputStream var0) throws IOException {
       short var1;
       if ((var1 = var0.readShort()) > 0) {
          boolean var2 = false;
@@ -5340,7 +5340,7 @@ public final class bt_1 {
       }
    }
 
-   public static void ai(DataInputStream var0) {
+   public static void ai(DataInputStream var0) throws IOException {
       byte var1;
       if ((var1 = var0.readByte()) <= 0) {
          jE = null;
@@ -5357,7 +5357,7 @@ public final class bt_1 {
       }
    }
 
-   public static void aj(DataInputStream var0) {
+   public static void aj(DataInputStream var0) throws IOException {
       byte var1 = var0.readByte();
       jG = var0.readInt();
       if (var1 > 0) {
@@ -5477,7 +5477,7 @@ public final class bt_1 {
       }
    }
 
-   public static void ak(DataInputStream var0) {
+   public static void ak(DataInputStream var0) throws IOException {
       byte var1 = var0.readByte();
       gR = var0.readByte();
       gQ = (short)var0.readByte();
@@ -5646,7 +5646,7 @@ public final class bt_1 {
       return var2.toString();
    }
 
-   public static void al(DataInputStream var0) {
+   public static void al(DataInputStream var0) throws IOException {
       byte var1 = var0.readByte();
       gR = var0.readByte();
       gQ = (short)var0.readByte();
@@ -5674,7 +5674,7 @@ public final class bt_1 {
       }
    }
 
-   public static void am(DataInputStream var0) {
+   public static void am(DataInputStream var0) throws IOException {
       byte var1;
       if ((var1 = var0.readByte()) > 0) {
          byte var2 = 0;
@@ -5776,7 +5776,7 @@ public final class bt_1 {
       return var1.toString();
    }
 
-   public static void an(DataInputStream var0) {
+   public static void an(DataInputStream var0) throws IOException {
       byte var1 = var0.readByte();
       gR = var0.readByte();
       gQ = (short)var0.readByte();
@@ -5892,7 +5892,7 @@ public final class bt_1 {
       }
    }
 
-   public static void ao(DataInputStream var0) {
+   public static void ao(DataInputStream var0) throws IOException {
       gQ = var0.readShort();
       short var1 = var0.readShort();
       gR = var0.readByte();
@@ -5933,7 +5933,7 @@ public final class bt_1 {
       }
    }
 
-   public static void ap(DataInputStream var0) {
+   public static void ap(DataInputStream var0) throws IOException {
       x = 0;
       v = w = var0.readLong();
       L = 1;
@@ -5952,16 +5952,16 @@ public final class bt_1 {
 
    }
 
-   public static void aq(DataInputStream var0) {
+   public static void aq(DataInputStream var0) throws IOException {
       kh = var0.readInt();
       ki = var0.readInt();
    }
 
-   public static void ar(DataInputStream var0) {
+   public static void ar(DataInputStream var0) throws IOException {
       kk = var0.readUTF();
    }
 
-   public static void as(DataInputStream var0) {
+   public static void as(DataInputStream var0) throws IOException {
       gQ = var0.readShort();
       gR = var0.readByte();
       kl = var0.readUTF();
@@ -6023,7 +6023,7 @@ public final class bt_1 {
       }
    }
 
-   public static void at(DataInputStream var0) {
+   public static void at(DataInputStream var0) throws IOException {
       byte var1;
       if ((var1 = var0.readByte()) > 0) {
          km = new short[var1];
@@ -6101,7 +6101,7 @@ public final class bt_1 {
       }
    }
 
-   public static void a(int var0, int var1) {
+   public static void a(int var0, int var1) throws IOException {
       int var2 = var0;
       if (var1 == 0) {
          for(byte var3 = 0; var3 < fh.length; ++var3) {
@@ -6144,7 +6144,7 @@ public final class bt_1 {
       kA = var1 == 0 ? fm[var2] : ft[var2];
    }
 
-   public static void a(bn var0) {
+   public static void a(bn var0) throws IOException {
       ko = var0.a;
       kp = var0.b;
       kq = var0.b;
@@ -6172,7 +6172,7 @@ public final class bt_1 {
       kA = var0.s;
    }
 
-   public static void a(int var0) {
+   public static void a(int var0) throws IOException {
       for(int var1 = 0; var1 < cz.length; ++var1) {
          if (cB[var1] == var0) {
             ko = cz[var1];
@@ -6205,7 +6205,7 @@ public final class bt_1 {
 
    }
 
-   public static void b(int var0) {
+   public static void b(int var0) throws IOException {
       for(int var1 = 0; var1 < jH.length; ++var1) {
          if (jJ[var1] == var0) {
             ko = jH[var1];
@@ -6238,7 +6238,7 @@ public final class bt_1 {
 
    }
 
-   public static void c(int var0) {
+   public static void c(int var0) throws IOException {
       ko = ct[var0];
       kp = cu[var0];
       kq = cu[var0];
@@ -6266,7 +6266,7 @@ public final class bt_1 {
       kA = nQ[var0];
    }
 
-   public static void d(int var0) {
+   public static void d(int var0) throws IOException {
       ko = dY[var0];
       kp = dZ[var0];
       kq = dZ[var0];
@@ -6294,7 +6294,7 @@ public final class bt_1 {
       kA = eh[var0];
    }
 
-   public static void e(int var0) {
+   public static void e(int var0) throws IOException {
       ko = jN[var0];
       kp = jO[var0];
       kq = jO[var0];
@@ -6322,7 +6322,7 @@ public final class bt_1 {
       kA = qw[var0];
    }
 
-   public static void au(DataInputStream var0) {
+   public static void au(DataInputStream var0) throws IOException {
       cd var1;
       (var1 = new cd()).a = var0.readShort();
       var1.b = var0.readUTF();
@@ -6332,10 +6332,10 @@ public final class bt_1 {
          var1.e = var0.readInt();
          var1.f = var0.readInt();
       } else {
-         var1.c = t.f;
-         var1.d = t.g;
-         var1.e = t.d;
-         var1.f = t.e;
+         var1.c = t_1.f;
+         var1.d = t_1.g;
+         var1.e = t_1.d;
+         var1.f = t_1.e;
       }
 
       var1.g = var0.readUTF();
@@ -6348,59 +6348,60 @@ public final class bt_1 {
          var1.h = null;
       }
 
-      byte var2 = 0;
+      boolean var2 = false;
       var1.i = new String[3];
       var1.i[0] = var0.readUTF();
       if (var1.i[0].length() == 0) {
          var1.i[0] = null;
       } else {
-         var2 = 1;
+         var2 = true;
       }
 
       var1.i[1] = var0.readUTF();
       if (var1.i[1].length() == 0) {
          var1.i[1] = null;
       } else {
-         var2 = 1;
+         var2 = true;
       }
 
       var1.i[2] = var0.readUTF();
       if (var1.i[2].length() == 0) {
          var1.i[2] = null;
       } else {
-         var2 = 1;
+         var2 = true;
       }
 
       if (!var2) {
          var1.i = null;
       }
 
-      if ((var2 = var0.readByte()) == 0) {
+      byte var2_;
+      if ((var2_ = var0.readByte()) == 0) {
          var1.j = null;
       } else {
-         var1.j = new int[var2];
+         var1.j = new int[var2_];
 
-         for(int var3 = 0; var3 < var2; ++var3) {
+         for(int var3 = 0; var3 < var2_; ++var3) {
             var1.j[var3] = var0.readInt();
          }
       }
 
-      if ((var2 = var0.readByte()) == 0) {
+      if ((var2_ = var0.readByte()) == 0) {
          var1.k = null;
       } else {
-         var1.k = new int[var2];
+         var1.k = new int[var2_];
 
-         for(int var8 = 0; var8 < var2; ++var8) {
+         for(int var8 = 0; var8 < var2_; ++var8) {
             var1.k[var8] = var0.readInt();
          }
       }
 
-      if ((var2 = var0.readByte()) == 0) {
+      if ((var2_ = var0.readByte()) == 0) {
          var1.l = null;
       } else {
-         var1.l = new int[var2];
+         var1.l = new int[var2_];
 
-         for(int var9 = 0; var9 < var2; ++var9) {
+         for(int var9 = 0; var9 < var2_; ++var9) {
             var1.l[var9] = var0.readInt();
          }
       }
@@ -6418,7 +6419,7 @@ public final class bt_1 {
       Q = var1;
    }
 
-   public static void av(DataInputStream var0) {
+   public static void av(DataInputStream var0) throws IOException {
       ko = var0.readInt();
       kp = var0.readUTF();
       kq = var0.readUTF();
@@ -6505,7 +6506,7 @@ public final class bt_1 {
       return var0.toString();
    }
 
-   public static void K() {
+   public static void K() throws IOException {
       kp = null;
       kq = null;
       kr = null;
@@ -6519,7 +6520,7 @@ public final class bt_1 {
       kx = null;
    }
 
-   public static void aw(DataInputStream var0) {
+   public static void aw(DataInputStream var0) throws IOException {
       short var1;
       if ((var1 = var0.readShort()) > 0) {
          kB = new int[var1];
@@ -6641,11 +6642,11 @@ public final class bt_1 {
       }
    }
 
-   public static void ax(DataInputStream var0) {
+   public static void ax(DataInputStream var0)  throws IOException {
       kC = var0.readUTF();
    }
 
-   public static void ay(DataInputStream var0) {
+   public static void ay(DataInputStream var0) throws IOException {
       short var1;
       if ((var1 = (short)var0.readByte()) <= 0) {
          kD = 0;
@@ -6670,9 +6671,9 @@ public final class bt_1 {
       }
    }
 
-   public static void az(DataInputStream var0) {
+   public static void az(DataInputStream var0) throws IOException {
       if (P == null) {
-         P = new ag();
+         P = new ag_1();
       }
 
       byte var1 = var0.readByte();
@@ -6686,43 +6687,43 @@ public final class bt_1 {
 
    }
 
-   public static void aA(DataInputStream var0) {
+   public static void aA(DataInputStream var0) throws IOException {
       if (P == null) {
-         P = new ag();
+         P = new ag_1();
       } else {
          P.b = null;
       }
 
       byte var1 = var0.readByte();
-      P.b = new be[var1];
+      P.b = new be_1[var1];
 
       for(int var2 = 0; var2 < var1; ++var2) {
-         P.b[var2] = new be();
+         P.b[var2] = new be_1();
          P.b[var2].a(var0);
       }
 
       P.d();
    }
 
-   public static void aB(DataInputStream var0) {
+   public static void aB(DataInputStream var0) throws IOException {
       if (O == null) {
-         O = new f();
+         O = new f_1();
       }
 
       O.d = var0.readInt();
       O.e = var0.readUTF();
       byte var1 = var0.readByte();
-      O.f = new bo[var1];
+      O.f = new bo_1[var1];
 
       for(int var2 = 0; var2 < var1; ++var2) {
-         O.f[var2] = new bo();
+         O.f[var2] = new bo_1();
          O.f[var2].a(var0);
       }
 
       O.c();
    }
 
-   public static void aC(DataInputStream var0) {
+   public static void aC(DataInputStream var0) throws IOException {
       byte var1 = var0.readByte();
       if ((1 & var1 >> 7) == 1) {
          R = var0.readUTF();
@@ -6755,7 +6756,7 @@ public final class bt_1 {
       }
    }
 
-   public static void aD(DataInputStream var0) {
+   public static void aD(DataInputStream var0) throws IOException {
       kI = var0.readByte();
       short var1;
       if ((var1 = var0.readShort()) > 0) {
@@ -6779,7 +6780,7 @@ public final class bt_1 {
       }
    }
 
-   public static void L() {
+   public static void L() throws IOException {
       if (kH != null) {
          for(int var0 = 0; var0 < kH.length; ++var0) {
             kH[var0] = null;
@@ -6790,7 +6791,7 @@ public final class bt_1 {
 
    }
 
-   public static void aE(DataInputStream var0) {
+   public static void aE(DataInputStream var0) throws IOException {
       kI = var0.readByte();
       kN = var0.readShort();
       short var1;
@@ -6814,7 +6815,7 @@ public final class bt_1 {
       }
    }
 
-   public static void M() {
+   public static void M() throws IOException {
       if (kJ != null) {
          kJ = null;
       }
@@ -6849,7 +6850,7 @@ public final class bt_1 {
 
    }
 
-   public static void N() {
+   public static void N() throws IOException {
       if (bC != null && bC.size() > 0) {
          Object var0 = null;
 
@@ -6863,21 +6864,21 @@ public final class bt_1 {
       }
    }
 
-   public static void aF(DataInputStream var0) {
+   public static void aF(DataInputStream var0) throws IOException {
       byte var1;
       if ((var1 = var0.readByte()) > 0) {
-         ca.n = new int[var1];
+         ca_1.n = new int[var1];
 
          for(byte var2 = 0; var2 < var1; ++var2) {
-            ca.n[var2] = var0.readInt();
+            ca_1.n[var2] = var0.readInt();
          }
       }
 
       n = var0.readUTF();
-      bq.a = var0.readByte();
+      bq_1.a = var0.readByte();
       kG = var0.readByte();
-      v.c = var0.readUTF();
-      v.f = var0.readUTF();
+      v_1.c = var0.readUTF();
+      v_1.f = var0.readUTF();
       if ((aC = var0.readByte()) == 1) {
          aD = var0.readUTF();
          aE = var0.readUTF();
@@ -6892,11 +6893,11 @@ public final class bt_1 {
          var0.readUTF();
       }
 
-      bq.b = (short)bq.a;
+      bq_1.b = (short)bq_1.a;
       a = true;
    }
 
-   public static void aG(DataInputStream var0) {
+   public static void aG(DataInputStream var0) throws IOException {
       kO = var0.readInt();
       kQ = var0.readUTF();
       byte var1;
@@ -6923,7 +6924,7 @@ public final class bt_1 {
       kT = true;
    }
 
-   public static void aH(DataInputStream var0) {
+   public static void aH(DataInputStream var0) throws IOException {
       rj = new int[9];
       var0.readUTF();
       kU = var0.readByte();
@@ -6938,7 +6939,7 @@ public final class bt_1 {
       kW = var0.readUTF();
    }
 
-   public static void aI(DataInputStream var0) {
+   public static void aI(DataInputStream var0) throws IOException {
       short var1 = var0.readShort();
       short var2 = var0.readShort();
       System.out.println(var1 + " | " + var2);
@@ -6988,7 +6989,7 @@ public final class bt_1 {
             br var4;
             if ((var4 = (br)rk.elementAt(var2)) != null && var4.a == var0) {
                try {
-                  return ci.a(var4.b);
+                  return ci_1.a(var4.b);
                } catch (IOException var3) {
                }
             }
@@ -6998,7 +6999,7 @@ public final class bt_1 {
       return null;
    }
 
-   public static void aJ(DataInputStream var0) {
+   public static void aJ(DataInputStream var0) throws IOException {
       short var1;
       if ((var1 = var0.readShort()) > 0) {
          if (rl == null) {
@@ -7017,7 +7018,7 @@ public final class bt_1 {
 
    }
 
-   public static void aK(DataInputStream var0) {
+   public static void aK(DataInputStream var0) throws IOException {
       short var1;
       if ((var1 = var0.readShort()) > 0) {
          if (kY == null) {
@@ -7076,7 +7077,7 @@ public final class bt_1 {
 
    }
 
-   public static void O() {
+   public static void O() throws IOException {
       if (rk != null) {
          rk.removeAllElements();
          rk = null;
@@ -7094,7 +7095,7 @@ public final class bt_1 {
 
    }
 
-   public static void aL(DataInputStream var0) {
+   public static void aL(DataInputStream var0) throws IOException {
       if (le > 0) {
          la = new String[le];
          lb = new String[le];
@@ -7111,7 +7112,7 @@ public final class bt_1 {
 
    }
 
-   public static void P() {
+   public static void P() throws IOException {
       la = null;
       lb = null;
       lc = null;
@@ -7120,7 +7121,7 @@ public final class bt_1 {
       lp = 1;
    }
 
-   public static void aM(DataInputStream var0) {
+   public static void aM(DataInputStream var0) throws IOException {
       if (ll > 0) {
          rm = new String[ll];
          li = new String[ll];
@@ -7147,7 +7148,7 @@ public final class bt_1 {
 
    }
 
-   public static void Q() {
+   public static void Q() throws IOException {
       rm = null;
       li = null;
       rn = null;
@@ -7158,11 +7159,11 @@ public final class bt_1 {
       lr = 1;
    }
 
-   public static void aN(DataInputStream var0) {
+   public static void aN(DataInputStream var0) throws IOException {
       var0.readUTF();
    }
 
-   public static void aO(DataInputStream var0) {
+   public static void aO(DataInputStream var0) throws IOException {
       lt[1] = lu = var0.readShort();
       lv = var0.readInt();
       lw = var0.readUTF();
@@ -7198,7 +7199,7 @@ public final class bt_1 {
 
    }
 
-   public static void aP(DataInputStream var0) {
+   public static void aP(DataInputStream var0) throws IOException {
       lt[0] = lD = var0.readShort();
       lE = var0.readInt();
       lF = var0.readUTF();
@@ -7510,7 +7511,7 @@ public final class bt_1 {
 
    }
 
-   public static void aQ(DataInputStream var0) {
+   public static void aQ(DataInputStream var0) throws IOException {
       short var1 = var0.readShort();
       mj = var0.readByte();
       if (var1 <= 0) {
@@ -7541,7 +7542,7 @@ public final class bt_1 {
       }
    }
 
-   public static void aR(DataInputStream var0) {
+   public static void aR(DataInputStream var0) throws IOException {
       mq = var0.readByte();
       mr = var0.readUTF();
       ms = var0.readByte();
@@ -7571,22 +7572,22 @@ public final class bt_1 {
       }
    }
 
-   public static void R() {
+   public static void R() throws IOException {
       mv = null;
    }
 
-   public static void S() {
+   public static void S() throws IOException {
       mu = null;
    }
 
-   public static void b(DataInputStream var0, byte var1) {
+   public static void b(DataInputStream var0, byte var1) throws IOException {
       if (var1 == 1) {
          mw = var0.readUTF();
       }
 
    }
 
-   public static void a(byte var0, DataInputStream var1) {
+   public static void a(byte var0, DataInputStream var1) throws IOException {
       try {
          switch (var0) {
             case 0:
@@ -7598,7 +7599,7 @@ public final class bt_1 {
       }
    }
 
-   public static void T() {
+   public static void T() throws IOException {
       mx = -1;
       mD = -1;
       mJ = new int[3];
@@ -7615,7 +7616,7 @@ public final class bt_1 {
       mN = null;
    }
 
-   public static void U() {
+   public static void U() throws IOException {
       mC = null;
       mI = null;
       mJ = null;
@@ -7633,7 +7634,7 @@ public final class bt_1 {
       N();
    }
 
-   public static void aS(DataInputStream var0) {
+   public static void aS(DataInputStream var0) throws IOException {
       if ((rp = var0.readByte()) == 0) {
          T();
          mx = var0.readInt();
@@ -7721,7 +7722,7 @@ public final class bt_1 {
       }
    }
 
-   public static void V() {
+   public static void V() throws IOException {
       fw = null;
       if (fA != null && fA.length > 0) {
          int var0 = 0;
@@ -7803,7 +7804,7 @@ public final class bt_1 {
       }
    }
 
-   public static void aT(DataInputStream var0) {
+   public static void aT(DataInputStream var0) throws IOException {
       int var1 = var0.readInt();
       t_1.a("size=" + var1);
       if (var1 <= 0) {
@@ -7831,7 +7832,7 @@ public final class bt_1 {
       }
    }
 
-   public static void aU(DataInputStream var0) {
+   public static void aU(DataInputStream var0) throws IOException {
       mT = var0.readUTF();
       int var1;
       if ((var1 = var0.readInt()) <= 0) {
@@ -7857,7 +7858,7 @@ public final class bt_1 {
       }
    }
 
-   public static void aV(DataInputStream var0) {
+   public static void aV(DataInputStream var0) throws IOException {
       mZ = var0.readUTF();
       na = var0.readUTF();
       int var1;
@@ -7881,7 +7882,7 @@ public final class bt_1 {
       }
    }
 
-   public static void aW(DataInputStream var0) {
+   public static void aW(DataInputStream var0) throws IOException {
       byte var1;
       if ((var1 = var0.readByte()) <= 0) {
          ne = null;
@@ -7923,7 +7924,7 @@ public final class bt_1 {
       }
    }
 
-   public static void aX(DataInputStream var0) {
+   public static void aX(DataInputStream var0) throws IOException {
       ni = var0.readUTF();
       t_1.a("lottery message=" + ni);
       if (var0.readByte() != -1) {
@@ -7936,14 +7937,14 @@ public final class bt_1 {
 
    }
 
-   public static void W() {
+   public static void W() throws IOException {
       ni = null;
       nj = null;
       nl = null;
       nk = 0;
    }
 
-   public static void aY(DataInputStream var0) {
+   public static void aY(DataInputStream var0) throws IOException {
       rr = var0.readShort();
       nm = var0.readByte();
       byte var1 = 0;
@@ -8016,14 +8017,14 @@ public final class bt_1 {
       }
    }
 
-   public static void aZ(DataInputStream var0) {
+   public static void aZ(DataInputStream var0) throws IOException {
       rr = var0.readShort();
       nr = var0.readUTF();
       nt = "当前骑术等级为" + rr + "\t" + var0.readUTF();
       ns = var0.readUTF();
    }
 
-   public static void ba(DataInputStream var0) {
+   public static void ba(DataInputStream var0) throws IOException {
       if ((nn = var0.readUTF()).length() > 1) {
          nm = var0.readByte();
          var0.readShort();
@@ -8070,7 +8071,7 @@ public final class bt_1 {
 
    }
 
-   public static void bb(DataInputStream var0) {
+   public static void bb(DataInputStream var0) throws IOException {
       int var1;
       if ((var1 = var0.readInt()) <= 0) {
          X();
@@ -8090,7 +8091,7 @@ public final class bt_1 {
       }
    }
 
-   public static void X() {
+   public static void X() throws IOException {
       if (nx != null) {
          for(int var0 = 0; var0 < nx.length; ++var0) {
             nx[var0] = null;
@@ -8125,7 +8126,7 @@ public final class bt_1 {
 
    }
 
-   public static void bc(DataInputStream var0) {
+   public static void bc(DataInputStream var0) throws IOException {
       nB = var0.readByte();
       var0.readUTF();
    }
@@ -8139,8 +8140,8 @@ public final class bt_1 {
       G = null;
       K = -1;
       L = -1;
-      O = f.b();
-      P = ag.b();
+      O = f_1.b();
+      P = ag_1.b();
       Q = null;
       R = null;
       S = null;
@@ -8196,7 +8197,7 @@ public final class bt_1 {
       pY = new StringBuffer();
       hG = -1;
       qd = -1;
-      iI = new String[t.ad.length];
+      iI = new String[t_1.ad.length];
       iK = new byte[2];
       iL = new byte[2];
       iM = new int[2];

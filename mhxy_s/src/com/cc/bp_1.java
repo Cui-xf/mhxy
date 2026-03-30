@@ -3,8 +3,9 @@ package com.cc;
 import com.yinhan.kjava.main.a_MainCanvas;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 
-public final class bp extends ar {
+public final class bp_1 extends ar {
    public byte a;
    public String b = "";
    public String c;
@@ -23,12 +24,12 @@ public final class bp extends ar {
    private int[] z = new int[4];
    private int[] A = new int[4];
 
-   public final void a(ao_1 var1, DataInputStream var2) {
+   public final void a(ao_1 var1, DataInputStream var2) throws IOException {
       var2.readByte();
       this.b = var2.readUTF();
       super.e = var2.readUTF();
       this.c = var2.readUTF();
-      this.n = ca.a(var2.readByte());
+      this.n = ca_1.a(var2.readByte());
       this.o = var2.readShort();
       this.p = var2.readByte();
       this.q = var2.readByte();
@@ -84,7 +85,7 @@ public final class bp extends ar {
 
    }
 
-   public final void a(ai var1, long var2) {
+   public final void a(ai_1 var1, long var2) {
       if (super.g != null) {
          if (bt_1.bs == 0) {
             if (this.a(this.a, 0)) {
@@ -195,7 +196,7 @@ public final class bp extends ar {
       if (this.s == 1) {
          return true;
       } else {
-         bp var10000;
+         bp_1 var10000;
          label147: {
             if (bt_1.q != null) {
                for(int var3 = 0; var3 < bt_1.q.length; ++var3) {

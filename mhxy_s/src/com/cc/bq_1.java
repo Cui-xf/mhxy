@@ -5,7 +5,7 @@ import com.yinhan.kjava.main.a_MainCanvas;
 import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
 
-public final class bq {
+public final class bq_1 {
    public static byte a = 25;
    public static short b = (short)25;
    public static short c;
@@ -50,7 +50,7 @@ public final class bq {
    private static short P;
    private boolean Q = true;
 
-   public bq(a_MainCanvas var1, ao_1 var2, byte var3) {
+   public bq_1(a_MainCanvas var1, ao_1 var2, byte var3) {
       this.y = var1;
       this.z = var2;
       t = (short)var3;
@@ -193,17 +193,17 @@ public final class bq {
          this.d();
       } else {
          if (this.f != 10) {
-            bq var2 = this;
+            bq_1 var2 = this;
             if (ao_1.ac != null) {
-               ai.a(ao_1.ac, this.y.ak);
+               ai_1.a(ao_1.ac, this.y.ak);
             }
 
             if (ao_1.ad != null) {
-               ai.a(ao_1.ad, this.y.ak);
+               ai_1.a(ao_1.ad, this.y.ak);
             }
 
             if (ao_1.ae != null) {
-               ai.a(ao_1.ae, this.y.ak);
+               ai_1.a(ao_1.ae, this.y.ak);
             }
 
             if (bt_1.H != null) {
@@ -211,10 +211,10 @@ public final class bq {
                   if (bt_1.H[var3].k == 1) {
                      p var10000 = bt_1.H[var3];
                      long var10 = var2.y.ak;
-                     ai var7 = a_MainCanvas.f;
+                     ai_1 var7 = a_MainCanvas.f;
                      p var6 = var10000;
                      if (var10000.j != null && !var6.d()) {
-                        ai.a(var6.j, var10);
+                        ai_1.a(var6.j, var10);
                      } else {
                         boolean var50 = true;
                      }
@@ -227,7 +227,7 @@ public final class bq {
                         }
                      }
                   } else if (bt_1.H[var3].k == 2) {
-                     if (bt_1.H[var3].j == null || ai.a(bt_1.H[var3].j, var2.y.ak) == 2) {
+                     if (bt_1.H[var3].j == null || ai_1.a(bt_1.H[var3].j, var2.y.ak) == 2) {
                         bt_1.H[var3].b((byte)1);
                         if (var2.F != null) {
                            for(byte var28 = 0; var28 < var2.F.length; ++var28) {
@@ -266,7 +266,7 @@ public final class bq {
                            var2.f = 3;
                         }
                      }
-                  } else if (bt_1.H[var3].k == 4 && (bt_1.H[var3].j == null || ai.a(bt_1.H[var3].j, var2.y.ak) == 2)) {
+                  } else if (bt_1.H[var3].k == 4 && (bt_1.H[var3].j == null || ai_1.a(bt_1.H[var3].j, var2.y.ak) == 2)) {
                      if (var2.F != null) {
                         for(byte var4 = 0; var4 < var2.F.length; ++var4) {
                            if (var2.F[var4].b == 0 && var2.F[var4].c == bt_1.H[var3].a) {
@@ -285,7 +285,7 @@ public final class bq {
                   if (bt_1.M[var24].n == 1) {
                      bt_1.M[var24].a(a_MainCanvas.f, var2.y.ak);
                   } else if (bt_1.M[var24].n == 2) {
-                     if (bt_1.M[var24].m == null || ai.a(bt_1.M[var24].m, var2.y.ak) == 2) {
+                     if (bt_1.M[var24].m == null || ai_1.a(bt_1.M[var24].m, var2.y.ak) == 2) {
                         bt_1.M[var24].b((byte)1);
                         if (var2.A != null) {
                            var2.f = 5;
@@ -316,7 +316,7 @@ public final class bq {
                            var2.f = 3;
                         }
                      }
-                  } else if (bt_1.M[var24].n != 3 && bt_1.M[var24].n == 4 && (bt_1.M[var24].m == null || ai.a(bt_1.M[var24].m, var2.y.ak) == 2)) {
+                  } else if (bt_1.M[var24].n != 3 && bt_1.M[var24].n == 4 && (bt_1.M[var24].m == null || ai_1.a(bt_1.M[var24].m, var2.y.ak) == 2)) {
                      if (var2.F != null) {
                         for(byte var32 = 0; var32 < var2.F.length; ++var32) {
                            if (var2.F[var32].b == 1 && var2.F[var32].c == bt_1.M[var24].a) {
@@ -949,7 +949,7 @@ public final class bq {
                }
             }
          } else if (this.f == 1) {
-            bq var20 = this;
+            bq_1 var20 = this;
             if (this.Q) {
                this.Q = false;
                boolean var25 = false;
@@ -1192,11 +1192,11 @@ public final class bq {
                this.f = 3;
             }
          } else if (this.f == 6) {
-            if (ai.a(ao_1.ab, this.y.ak) == 2) {
+            if (ai_1.a(ao_1.ab, this.y.ak) == 2) {
                this.f = 1;
             }
          } else if (this.f == 7) {
-            if (ai.a(ao_1.aa, this.y.ak) == 2) {
+            if (ai_1.a(ao_1.aa, this.y.ak) == 2) {
                this.f = 8;
             }
          } else if (this.f == 8) {
@@ -1219,7 +1219,7 @@ public final class bq {
       }
    }
 
-   public final void a(ai var1, Graphics var2) {
+   public final void a(ai_1 var1, Graphics var2) {
       var2.setClip(0, 0, t.b, t.c);
       if ((this.f == 2 || this.f == 3 || this.f == 6) && this.E != null && this.E[0].f != null && !this.E[0].f.equals("")) {
          ca.a(var2, (String)this.E[0].f, (int)(t.b / 2), t.c - 22 - t.j, 17, 0, 16777215);
@@ -1227,7 +1227,7 @@ public final class bq {
 
       if (this.f != 4 && this.f != 8) {
          Graphics var5 = var2;
-         bq var4 = this;
+         bq_1 var4 = this;
          if (bt_1.H != null) {
             for(byte var6 = (byte)(bt_1.H.length - 1); var6 >= 0; --var6) {
                if (bt_1.H[var6].j != null) {
@@ -1367,7 +1367,7 @@ public final class bq {
          }
 
          Graphics var3 = var2;
-         bq var9 = this;
+         bq_1 var9 = this;
          if (this.d != 4 && this.d != 5 && this.d != 6) {
             if (this.d != 0 && this.d != 1) {
                if (this.d == 2 || this.d == 3) {
@@ -1447,11 +1447,11 @@ public final class bq {
       if (this.f == 0 || this.f == 1) {
          if (this.d != 4 && this.d != 5 && this.d != 6 && this.d != 7 && this.d != 8) {
             if (this.h >= 0 && this.h <= bt_1.M.length - 1) {
-               ai.a(ao_1.r, this.y.ak);
+               ai_1.a(ao_1.r, this.y.ak);
                a_MainCanvas.f.a(var2, (bc_1) ao_1.r, (int[])null, 0, 0, t.R[bt_1.M[this.h].a][0], t.R[bt_1.M[this.h].a][1] - 10 - bt_1.M[this.h].d(), 20, 0);
             }
          } else if (this.i >= 0 && this.i <= bt_1.H.length - 1 && bt_1.H[this.i].j != null) {
-            ai.a(ao_1.r, this.y.ak);
+            ai_1.a(ao_1.r, this.y.ak);
             a_MainCanvas.f.a(var2, (bc_1) ao_1.r, (int[])null, 0, 0, t.Q[bt_1.H[this.i].a][0], t.Q[bt_1.H[this.i].a][1] - 10 - bt_1.H[this.i].i(), 20, 0);
          }
       }
@@ -1749,7 +1749,7 @@ public final class bq {
             this.a((byte)(bt_1.bt ? 0 : 1), bt_1.bt ? 0 : 1, (byte)1, bt_1.M[this.h].a, (byte)(bt_1.bt ? 0 : 1), bt_1.bt ? 0 : 1, (byte)1, bt_1.M[this.h].a);
             this.f = -1;
             this.e = 5;
-            if (!ab.c()) {
+            if (!ab_1.c()) {
                c = (byte)(bt_1.bt ? c - 1 : 0);
             }
          }
@@ -2283,7 +2283,7 @@ public final class bq {
          }
 
          for(byte var2 = 0; var2 < bt_1.ej.length; ++var2) {
-            ai var10000;
+            ai_1 var10000;
             Graphics var10001;
             bf_1 var10002;
             Object var10003;
@@ -2379,8 +2379,8 @@ public final class bq {
       if (this.A != null) {
          cj var10000 = this.A;
          long var3 = this.y.ak;
-         ai var5 = a_MainCanvas.f;
-         return ai.a(var10000.a, var3);
+         ai_1 var5 = a_MainCanvas.f;
+         return ai_1.a(var10000.a, var3);
       } else {
          return 0;
       }

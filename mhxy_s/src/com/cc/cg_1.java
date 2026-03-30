@@ -5,7 +5,7 @@ import com.yinhan.kjava.main.a_MainCanvas;
 import java.io.DataInputStream;
 import javax.microedition.lcdui.Graphics;
 
-public final class cg {
+public final class cg_1 {
    private ao_1 e;
    private a_MainCanvas f;
    private ai_1 g;
@@ -46,7 +46,7 @@ public final class cg {
    private String L;
    private String M;
 
-   public cg(ao_1 var1, a_MainCanvas var2, ai_1 var3) {
+   public cg_1(ao_1 var1, a_MainCanvas var2, ai_1 var3) {
       this.e = var1;
       this.f = var2;
       this.g = var3;
@@ -211,7 +211,7 @@ public final class cg {
 
    public final void b() {
       this.K = 0;
-      cg var1 = this;
+      cg_1 var1 = this;
       if (this.J != null) {
          for(int var2 = 0; var2 < var1.J.length; ++var2) {
             if (var1.J[var2] != null) {

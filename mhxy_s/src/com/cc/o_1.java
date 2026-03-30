@@ -6,7 +6,7 @@ import java.io.DataInputStream;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
-public final class o {
+public final class o_1 {
    private ao_1 i;
    private a_MainCanvas j;
    private ai_1 k;
@@ -50,7 +50,7 @@ public final class o {
    private boolean[] O;
    private String[] P;
 
-   public o(ao_1 var1, a_MainCanvas var2, ai_1 var3) {
+   public o_1(ao_1 var1, a_MainCanvas var2, ai_1 var3) {
       int[] var10000 = new int[]{15588137, 15531505, 955345, 6893779};
       this.M = 0;
       this.N = false;
