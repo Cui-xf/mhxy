@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+MIDlet-Vendor: 银汉科技
+Model: touch
+PaymentServerId: 2
+hasRideRes: true
+MIDlet-Version: 1.4.4
+CpId: 1
+LoginServerId: 1
+Created-By: 1.6.0_02-b05 (Sun Microsystems Inc.)
+GameId: 1
+MIDlet-Name: 梦回西游
+Ant-Version: Apache Ant 1.8.2
+PopularizeChannel: egege
+MIDlet-1: 梦回西游,icon.png,com.yinhan.kjava.main.MainMidlet
+MicroEdition-Configuration: CLDC-1.0
+LargeClient: 0
+ConfigServerURL: 3g.egege.com.cn/inf/config.do?cpId=1&gameId=1
+MIDlet-Icon: icon.png
+MicroEdition-Profile: MIDP-2.0
+
