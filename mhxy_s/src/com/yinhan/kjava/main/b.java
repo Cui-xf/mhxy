@@ -1,32 +1,28 @@
 package com.yinhan.kjava.main;
 
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 final class b implements Runnable {
-    private byte a;
-    private final a b;
+   private byte a;
+   private final a_MainCanvas b;
 
-    public b(a aVar, byte b) {
-        this.b = aVar;
-        this.a = b;
-        new Thread(this).start();
-    }
+   public b(a_MainCanvas var1, byte var2) {
+      this.b = var1;
+      this.a = var2;
+      (new Thread(this)).start();
+   }
 
-    @Override // java.lang.Runnable
-    public final void run() throws InterruptedException {
-        if (this.a != a.aB) {
-            a.c(this.b);
-            return;
-        }
-        while (true) {
-            if (this.b.j != 1 && !this.b.p) {
-                return;
-            }
+   public final void run() {
+      if (this.a != a_MainCanvas.aB) {
+         a_MainCanvas.c(this.b);
+      } else {
+         while(this.b.j == 1 || this.b.p) {
             try {
-                this.b.b();
-                Thread.sleep(30L);
-            } catch (Exception e) {
-                e.printStackTrace();
+               this.b.b();
+               Thread.sleep(30L);
+            } catch (Exception var2) {
+               ((Throwable)var2).printStackTrace();
             }
-        }
-    }
+         }
+      }
+
+   }
 }

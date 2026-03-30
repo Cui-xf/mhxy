@@ -15,3 +15,5 @@ E:\WORK\mhxy\jdk8u472-b08\bin\java.exe  -javaagent:E:\WORK\mhxy\agent\target\hoo
 E:\WORK\mhxy\jdk8u472-b08\bin\java.exe  -cp "E:\WORK\mhxy\KEmulatorLite\KEmulator.jar" emulator.Emulator -jar "C:\Users\qaq\j2mewtk\2.5.2\apps\Games\bin\games.jar" -awt -lwj
 
 E:\WORK\mhxy\jdk8u472-b08\bin\java.exe  -cp "E:\WORK\mhxy\KEmulatorLite\KEmulator.jar" emulator.Emulator -jar "C:\Users\qaq\j2mewtk\2.5.2\apps\mhxy_s\bin\mhxy_s.jar" -awt -lwj
+
+java -cp "/Applications/IntelliJ IDEA.app/Contents/plugins/java-decompiler/lib/java-decompiler.jar" org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler -dgs=true "/Users/cxf/temp/mhxy/java版梦回西游3区251011.jar" "/Users/cxf/temp/mhxy/mhxy_s/src"

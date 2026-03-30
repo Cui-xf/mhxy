@@ -8,10 +8,10 @@ set -e
 DEMO=mhxy_s
 
 # TODO: 设置 JDK 8 路径
-JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_411.jdk/Contents/Home"  # e.g. /Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
+JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_411.jdk/Contents/Home"  # e.com.cc.g. /Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
 
 # TODO: 设置 J2ME 工具路径（包含 lib/ 和 bin/preverify）
-J2ME_HOME="/Users/cxf/temp/mhxy/mhxy_s/idea_lib"  # e.g. /opt/j2me
+J2ME_HOME="/Users/cxf/temp/mhxy/mhxy_s/idea_lib"  # e.com.cc.g. /opt/j2me
 
 #LIB_DIR="${J2ME_HOME}/lib"
 LIB_DIR="${J2ME_HOME}"

@@ -3,26 +3,30 @@ package com.yinhan.kjava.main;
 import javax.microedition.lcdui.Display;
 import javax.microedition.midlet.MIDlet;
 
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-8105993946875401281/classes.dex */
 public class MainMidlet extends MIDlet {
-    public static long c = Runtime.getRuntime().totalMemory();
-    public Display b = Display.getDisplay(this);
-    public a a = new a(this, this.b);
+   public a_MainCanvas a;
+   public Display b = Display.getDisplay(this);
+   public static long c = Runtime.getRuntime().totalMemory();
 
-    public final void a() {
-        if (this.a != null) {
-            this.a.setFullScreenMode(true);
-        }
-        this.b.setCurrent(this.a);
-    }
+   public MainMidlet() {
+      this.a = new a_MainCanvas(this, this.b);
+   }
 
-    public void destroyApp(boolean z) {
-    }
+   public void destroyApp(boolean var1) {
+   }
 
-    public void pauseApp() {
-    }
+   public void pauseApp() {
+   }
 
-    public void startApp() {
-        a();
-    }
+   public void startApp() {
+      this.a();
+   }
+
+   public final void a() {
+      if (this.a != null) {
+         this.a.setFullScreenMode(true);
+      }
+
+      this.b.setCurrent(this.a);
+   }
 }

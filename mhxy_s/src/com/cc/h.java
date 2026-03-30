@@ -1,0 +1,94 @@
+package com.cc;
+
+import com.yinhan.kjava.main.MainMidlet;
+import com.yinhan.kjava.main.a_MainCanvas;
+
+import javax.microedition.lcdui.Display;
+import javax.microedition.midlet.MIDlet;
+
+public final class h {
+   public MainMidlet a;
+   private Display c;
+   public bg b;
+
+   public h(MainMidlet var1, Display var2) {
+      String var4;
+      var4 = (var4 = ((MIDlet)var1).getAppProperty("CpId")) == null ? "" : var4;
+      String var5;
+      var5 = (var5 = ((MIDlet)var1).getAppProperty("GameId")) == null ? "" : var5;
+      String var6;
+      var6 = (var6 = ((MIDlet)var1).getAppProperty("LoginServerId")) == null ? "" : var6;
+      String var3;
+      var3 = (var3 = ((MIDlet)var1).getAppProperty("PaymentServerId")) == null ? "" : var3;
+      bb.a = z.f(var4.trim());
+      bb.b = z.f(var5.trim());
+      z.f(var6.trim());
+      z.f(var3.trim());
+      bb.a();
+      this.a = var1;
+      this.c = var2;
+      this.b = new bg(this);
+      this.b.a();
+   }
+
+   public final Display a() {
+      return this.c;
+   }
+
+   public final void a(w var1) {
+      if (a_MainCanvas.i == null || bz_1.b != 72 || av_1.a("socket://120.78.151.213:20008")) {
+         bz_1.b = 72;
+         a_MainCanvas.a((String)"socket://120.78.151.213:20008", (byte)2);
+         this.a.a.a("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
+      }
+
+      if (a_MainCanvas.i != null) {
+         var1.a = true;
+         a_MainCanvas.i.a(var1);
+      }
+
+   }
+
+   public final void b() {
+      if (this.a != null) {
+         this.a.a.r();
+      }
+   }
+
+   public final void c() {
+      this.b = null;
+      this.a.notifyDestroyed();
+   }
+
+   public final void a(int var1) {
+      this.b.a(this.c, var1);
+   }
+
+   public final void d() {
+      this.b.b(this.c);
+   }
+
+   public final void e() {
+      this.b.b(this.c);
+   }
+
+   public final void f() {
+      this.b.c(this.c);
+   }
+
+   public final void a(boolean var1) {
+      this.b.a(this.c, var1);
+   }
+
+   public final void g() {
+      this.b.a(this.c);
+   }
+
+   public final void a(String var1, String var2) {
+      this.b.a(this.c, var1, var2);
+   }
+
+   public final void h() {
+      this.b.a(this.c, a_MainCanvas.am, a_MainCanvas.an, 0);
+   }
+}
