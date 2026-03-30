@@ -34,7 +34,7 @@ public final class l_1 extends al {
    }
 
    public static int b() {
-      return a_MainCanvas.E != null ? a_MainCanvas.E.c : t.j;
+      return a_MainCanvas.E != null ? a_MainCanvas.E.c : t_1.j;
    }
 
    public final void a(String var1) {
@@ -54,16 +54,16 @@ public final class l_1 extends al {
       this.d = var2 + var4 - a_MainCanvas.E.c;
       this.e = var3;
       if (this.a != null) {
-         this.b(var1 + (var3 - t.i.stringWidth(this.a)) / 2, this.d, t.i.stringWidth(this.a), a_MainCanvas.E.c);
+         this.b(var1 + (var3 - t_1.i.stringWidth(this.a)) / 2, this.d, t_1.i.stringWidth(this.a), a_MainCanvas.E.c);
       } else if (this.b != null && this.b.length == 2) {
-         this.b(var1 + 10, this.d, t.i.stringWidth(this.b[0]), a_MainCanvas.E.c);
-         this.c(var1 + var3 - 10 - t.i.stringWidth(this.b[1]), this.d, t.i.stringWidth(this.b[1]), a_MainCanvas.E.c);
+         this.b(var1 + 10, this.d, t_1.i.stringWidth(this.b[0]), a_MainCanvas.E.c);
+         this.c(var1 + var3 - 10 - t_1.i.stringWidth(this.b[1]), this.d, t_1.i.stringWidth(this.b[1]), a_MainCanvas.E.c);
       } else {
          if (this.b != null && this.b.length == 3) {
-            this.b(var1 + 10, this.d, t.i.stringWidth(this.b[0]), a_MainCanvas.E.c);
-            int var10001 = (var1 + var3 - 10 - t.i.stringWidth(this.b[1])) / 2;
+            this.b(var1 + 10, this.d, t_1.i.stringWidth(this.b[0]), a_MainCanvas.E.c);
+            int var10001 = (var1 + var3 - 10 - t_1.i.stringWidth(this.b[1])) / 2;
             int var10002 = this.d;
-            int var10003 = t.i.stringWidth(this.b[1]);
+            int var10003 = t_1.i.stringWidth(this.b[1]);
             short var7 = a_MainCanvas.E.c;
             int var6 = var10003;
             int var5 = var10002;
@@ -72,7 +72,7 @@ public final class l_1 extends al {
             this.o = var5;
             this.p = var6;
             this.q = var7;
-            this.c(var1 + var3 - 10 - t.i.stringWidth(this.b[2]), this.d, t.i.stringWidth(this.b[2]), a_MainCanvas.E.c);
+            this.c(var1 + var3 - 10 - t_1.i.stringWidth(this.b[2]), this.d, t_1.i.stringWidth(this.b[2]), a_MainCanvas.E.c);
          }
 
       }
@@ -147,23 +147,23 @@ public final class l_1 extends al {
 
    public final void a(Graphics var1) {
       if (this.a != null || this.b != null) {
-         ca.a(var1, (Image) a_MainCanvas.E.a, (short) a_MainCanvas.E.b, this.c, this.d, this.e, a_MainCanvas.E.c);
-         var1.setFont(t.i);
+         ca_1.a(var1, (Image) a_MainCanvas.E.a, (short) a_MainCanvas.E.b, this.c, this.d, this.e, a_MainCanvas.E.c);
+         var1.setFont(t_1.i);
          if (this.a != null) {
-            ca.a(var1, (String)this.a, (int)this.f, this.g + t.a(a_MainCanvas.E.c), 20, this.r, 0);
-            this.a(var1, this.f - 5 - a_MainCanvas.Q.b, this.f + 5 + t.i.stringWidth(this.a), this.g + 4);
+            ca_1.a(var1, (String)this.a, (int)this.f, this.g + t_1.a(a_MainCanvas.E.c), 20, this.r, 0);
+            this.a(var1, this.f - 5 - a_MainCanvas.Q.b, this.f + 5 + t_1.i.stringWidth(this.a), this.g + 4);
          } else {
             if (this.b != null) {
                if (this.b.length == 2) {
-                  ca.a(var1, (String)this.b[0], (int)this.f, this.g + t.a(a_MainCanvas.E.c), 20, this.r, 0);
-                  ca.a(var1, (String)this.b[1], (int)this.j, this.k + t.a(a_MainCanvas.E.c), 20, this.s, 0);
+                  ca_1.a(var1, (String)this.b[0], (int)this.f, this.g + t_1.a(a_MainCanvas.E.c), 20, this.r, 0);
+                  ca_1.a(var1, (String)this.b[1], (int)this.j, this.k + t_1.a(a_MainCanvas.E.c), 20, this.s, 0);
                } else if (this.b.length == 3) {
-                  ca.a(var1, (String)this.b[0], (int)this.f, this.g + t.a(a_MainCanvas.E.c), 20, this.r, 0);
-                  ca.a(var1, (String)this.b[1], (int)this.n, this.o + t.a(a_MainCanvas.E.c), 20, this.t, 0);
-                  ca.a(var1, (String)this.b[2], (int)this.j, this.k + t.a(a_MainCanvas.E.c), 20, this.s, 0);
+                  ca_1.a(var1, (String)this.b[0], (int)this.f, this.g + t_1.a(a_MainCanvas.E.c), 20, this.r, 0);
+                  ca_1.a(var1, (String)this.b[1], (int)this.n, this.o + t_1.a(a_MainCanvas.E.c), 20, this.t, 0);
+                  ca_1.a(var1, (String)this.b[2], (int)this.j, this.k + t_1.a(a_MainCanvas.E.c), 20, this.s, 0);
                }
 
-               this.a(var1, this.f + t.i.stringWidth(this.b[0]) + 10, this.j - 10 - a_MainCanvas.P.b, this.g + 4);
+               this.a(var1, this.f + t_1.i.stringWidth(this.b[0]) + 10, this.j - 10 - a_MainCanvas.P.b, this.g + 4);
             }
 
          }

@@ -48,7 +48,7 @@ public final class n_1 extends al {
       this.h = 0;
 
       for(int var5 = 0; var5 < this.c.length; ++var5) {
-         this.h += 10 + t.i.stringWidth(this.c[var5]);
+         this.h += 10 + t_1.i.stringWidth(this.c[var5]);
       }
 
       this.i = this.h > this.g - 22;
@@ -58,7 +58,7 @@ public final class n_1 extends al {
       int var1 = 0;
 
       for(byte var2 = this.d; var2 <= this.a; ++var2) {
-         var1 += 10 + t.i.stringWidth(this.c[var2]);
+         var1 += 10 + t_1.i.stringWidth(this.c[var2]);
       }
 
       return var1;
@@ -136,24 +136,24 @@ public final class n_1 extends al {
 
    public final void a(Graphics var1) {
       int var2 = 0;
-      int var3 = 10 + t.i.stringWidth(this.c[this.d]);
+      int var3 = 10 + t_1.i.stringWidth(this.c[this.d]);
       this.k = 0;
 
       for(int var4 = this.d; var4 < this.c.length && var3 <= this.g - 22; ++var4) {
-         int var5 = 10 + t.i.stringWidth(this.c[var4]);
+         int var5 = 10 + t_1.i.stringWidth(this.c[var4]);
          ++this.k;
          if (var4 == this.a) {
-            ca.a(var1, this.e + var2, this.f, var5 - 1, this.b, 1);
-            ca.j[0] = this.e + var2 + 3;
-            ca.j[1] = this.f + this.b - 3;
-            ca.j[2] = var5 - 6;
+            ca_1.a(var1, this.e + var2, this.f, var5 - 1, this.b, 1);
+            ca_1.j[0] = this.e + var2 + 3;
+            ca_1.j[1] = this.f + this.b - 3;
+            ca_1.j[2] = var5 - 6;
          } else {
-            ca.a(var1, this.e + var2, this.f, var5 - 1, this.b, 2);
+            ca_1.a(var1, this.e + var2, this.f, var5 - 1, this.b, 2);
          }
 
-         ca.a(var1, this.c[var4], this.e + var2 + (var5 - 1) / 2, this.f + t.a(this.b), 17, var4 == this.a ? this.v : 5426130);
+         ca_1.a(var1, this.c[var4], this.e + var2 + (var5 - 1) / 2, this.f + t_1.a(this.b), 17, var4 == this.a ? this.v : 5426130);
          var2 += var5;
-         var3 += var4 < this.c.length - 1 ? 10 + t.i.stringWidth(this.c[var4 + 1]) : 0;
+         var3 += var4 < this.c.length - 1 ? 10 + t_1.i.stringWidth(this.c[var4 + 1]) : 0;
       }
 
       int var10003 = this.e + 1;
@@ -166,12 +166,12 @@ public final class n_1 extends al {
 
       for(int var9 = 0; var9 < var12.length; ++var9) {
          if (var9 >= var15 && var9 < var15 + var11.k) {
-            int var10 = 10 + t.i.stringWidth(var11.c[var9]);
+            int var10 = 10 + t_1.i.stringWidth(var11.c[var9]);
             var11.j[var9][0] = var6 + var8;
             var11.j[var9][1] = var7;
             var11.j[var9][2] = var10 - 2;
-            var11.j[var9][3] = t.j - 2;
-            var8 += 10 + t.i.stringWidth(var11.c[var9]);
+            var11.j[var9][3] = t_1.j - 2;
+            var8 += 10 + t_1.i.stringWidth(var11.c[var9]);
          } else {
             var11.j[var9][0] = -1;
             var11.j[var9][1] = -1;
@@ -181,13 +181,13 @@ public final class n_1 extends al {
       }
 
       if (this.i) {
-         var1.setColor(ca.c);
-         var1.fillRect(this.e + var2 + 1, this.f + 2, 19, t.j - 2);
-         var1.setColor(ca.i);
-         var1.drawRect(this.e + var2, this.f + 1, 19, t.j - 2);
+         var1.setColor(ca_1.c);
+         var1.fillRect(this.e + var2 + 1, this.f + 2, 19, t_1.j - 2);
+         var1.setColor(ca_1.i);
+         var1.drawRect(this.e + var2, this.f + 1, 19, t_1.j - 2);
          int var10001 = this.e + var2 + 1;
          int var10002 = this.f + 1;
-         var7 = t.j - 2;
+         var7 = t_1.j - 2;
          var6 = 9;
          var15 = var10002;
          int var13 = var10001;
@@ -197,7 +197,7 @@ public final class n_1 extends al {
          this.o = var7;
          var10001 = this.e + var2 + 11;
          var10002 = this.f + 1;
-         var7 = t.j - 2;
+         var7 = t_1.j - 2;
          var6 = 9;
          var15 = var10002;
          var13 = var10001;
@@ -205,8 +205,8 @@ public final class n_1 extends al {
          this.q = var15;
          this.r = 9;
          this.s = var7;
-         ca.b(var1, this.a == 0 ? 2780801 : this.t, this.e + var2 + 3, this.f + t.j / 2, 6, 1);
-         ca.b(var1, this.a == this.c.length - 1 ? 2780801 : this.u, this.e + var2 + 16, this.f + t.j / 2, -6, 1);
+         ca_1.b(var1, this.a == 0 ? 2780801 : this.t, this.e + var2 + 3, this.f + t_1.j / 2, 6, 1);
+         ca_1.b(var1, this.a == this.c.length - 1 ? 2780801 : this.u, this.e + var2 + 16, this.f + t_1.j / 2, -6, 1);
       }
 
    }

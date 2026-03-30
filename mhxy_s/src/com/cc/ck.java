@@ -62,15 +62,15 @@ public final class ck {
 
    }
 
-   public final int a(ai var1, long var2) {
+   public final int a(ai_1 var1, long var2) {
       if (this.m != null && !this.a()) {
          if (this.w == null) {
             this.w = new int[2];
-            ai.a(this.m, this.w);
+            ai_1.a(this.m, this.w);
          }
 
          if (this.x != 2) {
-            this.x = ai.a(this.m, var2);
+            this.x = ai_1.a(this.m, var2);
          }
 
          if (this.x == 2) {
@@ -83,11 +83,11 @@ public final class ck {
       }
    }
 
-   public final void a(Graphics var1, ai var2, int var3, int var4, byte var5) {
+   public final void a(Graphics var1, ai_1 var2, int var3, int var4, byte var5) {
       if (!this.a() && this.m != null) {
          if (this.w == null) {
             this.w = new int[2];
-            ai.a(this.m, this.w);
+            ai_1.a(this.m, this.w);
          }
 
          var2.a(var1, (bc_1)this.m, (int[])null, 0, 0, var3, var4, 20, 0);

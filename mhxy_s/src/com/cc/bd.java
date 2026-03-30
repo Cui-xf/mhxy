@@ -30,12 +30,12 @@ public final class bd implements CommandListener {
    private Command o;
    private Command p;
 
-   public bd(ao_1 var1, a_MainCanvas var2, ai var3) {
+   public bd(ao_1 var1, a_MainCanvas var2, ai_1 var3) {
       this.a = var1;
       this.b = var2;
    }
 
-   public final void a(DataInputStream var1) {
+   public final void a(DataInputStream var1) throws IOException {
       this.e = var1.readUTF();
       this.f = var1.readUTF();
       this.g = var1.readShort();
@@ -87,8 +87,8 @@ public final class bd implements CommandListener {
 
    public final void a() {
       this.c = 0;
-      ca.h = 0;
-      ca.g = 0;
+      ca_1.h = 0;
+      ca_1.g = 0;
       short var4 = this.g;
       String var3 = this.f;
       String var2 = this.e;

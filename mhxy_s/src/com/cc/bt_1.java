@@ -1173,7 +1173,7 @@ public final class bt_1 {
       bx = var0.readByte();
    }
 
-   public static void g() throws IOException {
+   public static void g()  {
       if (nF != -1) {
          aN = nF;
          aP = nH;
@@ -2168,7 +2168,7 @@ public final class bt_1 {
       }
    }
 
-   public static void p() throws IOException {
+   public static void p()  {
       dl = null;
       dn = null;
       dq = null;

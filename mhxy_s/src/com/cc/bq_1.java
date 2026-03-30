@@ -61,33 +61,33 @@ public final class bq_1 {
    }
 
    public final void a() {
-      int var2 = (t.b - 176) / 4;
-      int var3 = (t.c - 208) / 6;
-      t.Q = new short[6][2];
-      (t.R = new short[6][2])[0][0] = (short)(t.T[0][0] + var2);
-      t.R[0][1] = (short)(t.T[0][1] + (var3 << 1));
-      t.R[1][0] = (short)(t.T[1][0] + (var2 << 1));
-      t.R[1][1] = (short)(t.T[1][1] + (var3 << 1));
-      t.R[2][0] = (short)(t.T[2][0] + var2 * 3);
-      t.R[2][1] = (short)(t.T[2][1] + (var3 << 1));
-      t.R[3][0] = (short)(t.T[3][0] + var2);
-      t.R[3][1] = (short)(t.T[3][1] + var3);
-      t.R[4][0] = (short)(t.T[4][0] + (var2 << 1));
-      t.R[4][1] = (short)(t.T[4][1] + var3);
-      t.R[5][0] = (short)(t.T[5][0] + var2 * 3);
-      t.R[5][1] = (short)(t.T[5][1] + var3);
-      t.Q[0][0] = (short)(t.S[0][0] + var2);
-      t.Q[0][1] = (short)(t.S[0][1] + var3 * 5);
-      t.Q[1][0] = (short)(t.S[1][0] + (var2 << 1));
-      t.Q[1][1] = (short)(t.S[1][1] + var3 * 5);
-      t.Q[2][0] = (short)(t.S[2][0] + var2 * 3);
-      t.Q[2][1] = (short)(t.S[2][1] + var3 * 5);
-      t.Q[3][0] = (short)(t.S[3][0] + var2);
-      t.Q[3][1] = (short)(t.S[3][1] + (var3 << 2));
-      t.Q[4][0] = (short)(t.S[4][0] + (var2 << 1));
-      t.Q[4][1] = (short)(t.S[4][1] + (var3 << 2));
-      t.Q[5][0] = (short)(t.S[5][0] + var2 * 3);
-      t.Q[5][1] = (short)(t.S[5][1] + (var3 << 2));
+      int var2 = (t_1.b - 176) / 4;
+      int var3 = (t_1.c - 208) / 6;
+      t_1.Q = new short[6][2];
+      (t_1.R = new short[6][2])[0][0] = (short)(t_1.T[0][0] + var2);
+      t_1.R[0][1] = (short)(t_1.T[0][1] + (var3 << 1));
+      t_1.R[1][0] = (short)(t_1.T[1][0] + (var2 << 1));
+      t_1.R[1][1] = (short)(t_1.T[1][1] + (var3 << 1));
+      t_1.R[2][0] = (short)(t_1.T[2][0] + var2 * 3);
+      t_1.R[2][1] = (short)(t_1.T[2][1] + (var3 << 1));
+      t_1.R[3][0] = (short)(t_1.T[3][0] + var2);
+      t_1.R[3][1] = (short)(t_1.T[3][1] + var3);
+      t_1.R[4][0] = (short)(t_1.T[4][0] + (var2 << 1));
+      t_1.R[4][1] = (short)(t_1.T[4][1] + var3);
+      t_1.R[5][0] = (short)(t_1.T[5][0] + var2 * 3);
+      t_1.R[5][1] = (short)(t_1.T[5][1] + var3);
+      t_1.Q[0][0] = (short)(t_1.S[0][0] + var2);
+      t_1.Q[0][1] = (short)(t_1.S[0][1] + var3 * 5);
+      t_1.Q[1][0] = (short)(t_1.S[1][0] + (var2 << 1));
+      t_1.Q[1][1] = (short)(t_1.S[1][1] + var3 * 5);
+      t_1.Q[2][0] = (short)(t_1.S[2][0] + var2 * 3);
+      t_1.Q[2][1] = (short)(t_1.S[2][1] + var3 * 5);
+      t_1.Q[3][0] = (short)(t_1.S[3][0] + var2);
+      t_1.Q[3][1] = (short)(t_1.S[3][1] + (var3 << 2));
+      t_1.Q[4][0] = (short)(t_1.S[4][0] + (var2 << 1));
+      t_1.Q[4][1] = (short)(t_1.S[4][1] + (var3 << 2));
+      t_1.Q[5][0] = (short)(t_1.S[5][0] + var2 * 3);
+      t_1.Q[5][1] = (short)(t_1.S[5][1] + (var3 << 2));
       bt_1.H = new p[bt_1.I.length];
       if (t == 0) {
          bt_1.M = new ck[bt_1.N.length];
@@ -1220,9 +1220,9 @@ public final class bq_1 {
    }
 
    public final void a(ai_1 var1, Graphics var2) {
-      var2.setClip(0, 0, t.b, t.c);
+      var2.setClip(0, 0, t_1.b, t_1.c);
       if ((this.f == 2 || this.f == 3 || this.f == 6) && this.E != null && this.E[0].f != null && !this.E[0].f.equals("")) {
-         ca.a(var2, (String)this.E[0].f, (int)(t.b / 2), t.c - 22 - t.j, 17, 0, 16777215);
+         ca_1.a(var2, (String)this.E[0].f, (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 0, 16777215);
       }
 
       if (this.f != 4 && this.f != 8) {
@@ -1232,16 +1232,16 @@ public final class bq_1 {
             for(byte var6 = (byte)(bt_1.H.length - 1); var6 >= 0; --var6) {
                if (bt_1.H[var6].j != null) {
                   if (bt_1.H[var6].d()) {
-                     a_MainCanvas.f.a(var5, (bc_1) ao_1.ad, (int[])null, 0, 0, t.Q[bt_1.H[var6].a][0], t.Q[bt_1.H[var6].a][1], 0, 0);
+                     a_MainCanvas.f.a(var5, (bc_1) ao_1.ad, (int[])null, 0, 0, t_1.Q[bt_1.H[var6].a][0], t_1.Q[bt_1.H[var6].a][1], 0, 0);
                   } else if (bt_1.H[var6].b != 0 && bt_1.H[var6].j != null) {
                      if (bt_1.H[var6].k == 1 || bt_1.H[var6].k == 4) {
-                        bt_1.H[var6].a(var5, a_MainCanvas.f, t.Q[bt_1.H[var6].a][0], t.Q[bt_1.H[var6].a][1], (byte)0);
+                        bt_1.H[var6].a(var5, a_MainCanvas.f, t_1.Q[bt_1.H[var6].a][0], t_1.Q[bt_1.H[var6].a][1], (byte)0);
                      }
 
                      if (var4.f != -1 && var4.f != 0 && var4.f != 7 && bt_1.H[var6].m) {
-                        a_MainCanvas.f.a(var5, (bc_1) ao_1.ae, (int[])null, 0, 0, t.Q[bt_1.H[var6].a][0], t.Q[bt_1.H[var6].a][1], 0, 0);
+                        a_MainCanvas.f.a(var5, (bc_1) ao_1.ae, (int[])null, 0, 0, t_1.Q[bt_1.H[var6].a][0], t_1.Q[bt_1.H[var6].a][1], 0, 0);
                      } else if (var4.f == 6 && bt_1.H[var6].l) {
-                        a_MainCanvas.f.a(var5, (bc_1) ao_1.ab, (int[])null, 0, 0, t.Q[bt_1.H[var6].a][0], t.Q[bt_1.H[var6].a][1], 0, 0);
+                        a_MainCanvas.f.a(var5, (bc_1) ao_1.ab, (int[])null, 0, 0, t_1.Q[bt_1.H[var6].a][0], t_1.Q[bt_1.H[var6].a][1], 0, 0);
                      }
                   }
                }
@@ -1250,54 +1250,54 @@ public final class bq_1 {
             for(byte var17 = 0; var17 < bt_1.H.length; ++var17) {
                if (bt_1.H[var17].b == 0 && bt_1.H[var17].j != null) {
                   if (bt_1.H[var17].c.equals(bt_1.ad)) {
-                     var5.drawImage(ao_1.H.a, t.Q[bt_1.H[var17].a][0] - ao_1.H.b / 2, t.Q[bt_1.H[var17].a][1] - ao_1.H.c / 2, 20);
+                     var5.drawImage(ao_1.H.a, t_1.Q[bt_1.H[var17].a][0] - ao_1.H.b / 2, t_1.Q[bt_1.H[var17].a][1] - ao_1.H.c / 2, 20);
                      if ((var4.f != 7 || bt_1.bs != 1) && (var4.f != 7 || bt_1.bs != -1) && (var4.f != 7 || bt_1.s != 1)) {
                         if (!bt_1.H[var17].d()) {
                            if (bt_1.H[var17].k == 1 || bt_1.H[var17].k == 4) {
-                              bt_1.H[var17].a(var5, a_MainCanvas.f, t.Q[bt_1.H[var17].a][0], t.Q[bt_1.H[var17].a][1], (byte)0);
+                              bt_1.H[var17].a(var5, a_MainCanvas.f, t_1.Q[bt_1.H[var17].a][0], t_1.Q[bt_1.H[var17].a][1], (byte)0);
                            }
 
                            if (var4.f != -1 && var4.f != 0 && bt_1.H[var17].m) {
-                              a_MainCanvas.f.a(var5, (bc_1) ao_1.ae, (int[])null, 0, 0, t.Q[bt_1.H[var17].a][0], t.Q[bt_1.H[var17].a][1], 0, 0);
+                              a_MainCanvas.f.a(var5, (bc_1) ao_1.ae, (int[])null, 0, 0, t_1.Q[bt_1.H[var17].a][0], t_1.Q[bt_1.H[var17].a][1], 0, 0);
                            } else if (var4.f == 6 && bt_1.H[var17].l) {
-                              a_MainCanvas.f.a(var5, (bc_1) ao_1.ab, (int[])null, 0, 0, t.Q[bt_1.H[var17].a][0], t.Q[bt_1.H[var17].a][1], 0, 0);
+                              a_MainCanvas.f.a(var5, (bc_1) ao_1.ab, (int[])null, 0, 0, t_1.Q[bt_1.H[var17].a][0], t_1.Q[bt_1.H[var17].a][1], 0, 0);
                            }
                         }
                      } else {
-                        a_MainCanvas.f.a(var5, (bc_1) ao_1.aa, (int[])null, 0, 0, t.Q[bt_1.H[var17].a][0], t.Q[bt_1.H[var17].a][1], 0, 0);
+                        a_MainCanvas.f.a(var5, (bc_1) ao_1.aa, (int[])null, 0, 0, t_1.Q[bt_1.H[var17].a][0], t_1.Q[bt_1.H[var17].a][1], 0, 0);
                      }
                   } else if (var4.f == 7) {
                      for(int var7 = 0; var7 < bt_1.q.length; ++var7) {
                         if (bt_1.q[var7].e.equals(bt_1.H[var17].d) && bt_1.q[var7].s == 1) {
-                           a_MainCanvas.f.a(var5, (bc_1) ao_1.aa, (int[])null, 0, 0, t.Q[bt_1.H[var17].a][0], t.Q[bt_1.H[var17].a][1], 0, 0);
+                           a_MainCanvas.f.a(var5, (bc_1) ao_1.aa, (int[])null, 0, 0, t_1.Q[bt_1.H[var17].a][0], t_1.Q[bt_1.H[var17].a][1], 0, 0);
                         } else if (bt_1.q[var7].e.equals(bt_1.H[var17].d) && bt_1.q[var7].s == 0 && !bt_1.H[var17].d()) {
                            if (bt_1.H[var17].k == 1 || bt_1.H[var17].k == 4) {
-                              bt_1.H[var17].a(var5, a_MainCanvas.f, t.Q[bt_1.H[var17].a][0], t.Q[bt_1.H[var17].a][1], (byte)0);
+                              bt_1.H[var17].a(var5, a_MainCanvas.f, t_1.Q[bt_1.H[var17].a][0], t_1.Q[bt_1.H[var17].a][1], (byte)0);
                            }
 
                            if (var4.f != -1 && var4.f != 0 && bt_1.H[var17].m) {
-                              a_MainCanvas.f.a(var5, (bc_1) ao_1.ae, (int[])null, 0, 0, t.Q[bt_1.H[var17].a][0], t.Q[bt_1.H[var17].a][1], 0, 0);
+                              a_MainCanvas.f.a(var5, (bc_1) ao_1.ae, (int[])null, 0, 0, t_1.Q[bt_1.H[var17].a][0], t_1.Q[bt_1.H[var17].a][1], 0, 0);
                            } else if (var4.f == 6 && bt_1.H[var17].l) {
-                              a_MainCanvas.f.a(var5, (bc_1) ao_1.ab, (int[])null, 0, 0, t.Q[bt_1.H[var17].a][0], t.Q[bt_1.H[var17].a][1], 0, 0);
+                              a_MainCanvas.f.a(var5, (bc_1) ao_1.ab, (int[])null, 0, 0, t_1.Q[bt_1.H[var17].a][0], t_1.Q[bt_1.H[var17].a][1], 0, 0);
                            }
                         }
                      }
                   } else if (!bt_1.H[var17].d()) {
                      if (bt_1.H[var17].k == 1 || bt_1.H[var17].k == 4) {
-                        bt_1.H[var17].a(var5, a_MainCanvas.f, t.Q[bt_1.H[var17].a][0], t.Q[bt_1.H[var17].a][1], (byte)0);
+                        bt_1.H[var17].a(var5, a_MainCanvas.f, t_1.Q[bt_1.H[var17].a][0], t_1.Q[bt_1.H[var17].a][1], (byte)0);
                      }
 
                      if (var4.f != -1 && var4.f != 0 && bt_1.H[var17].m) {
-                        a_MainCanvas.f.a(var5, (bc_1) ao_1.ae, (int[])null, 0, 0, t.Q[bt_1.H[var17].a][0], t.Q[bt_1.H[var17].a][1], 0, 0);
+                        a_MainCanvas.f.a(var5, (bc_1) ao_1.ae, (int[])null, 0, 0, t_1.Q[bt_1.H[var17].a][0], t_1.Q[bt_1.H[var17].a][1], 0, 0);
                      } else if (var4.f == 6 && bt_1.H[var17].l) {
-                        a_MainCanvas.f.a(var5, (bc_1) ao_1.ab, (int[])null, 0, 0, t.Q[bt_1.H[var17].a][0], t.Q[bt_1.H[var17].a][1], 0, 0);
+                        a_MainCanvas.f.a(var5, (bc_1) ao_1.ab, (int[])null, 0, 0, t_1.Q[bt_1.H[var17].a][0], t_1.Q[bt_1.H[var17].a][1], 0, 0);
                      }
                   }
                }
 
                if (bt_1.H[var17].s.size() > 0 && bt_1.H[var17].j != null) {
                   for(byte var22 = 0; var22 < bt_1.H[var17].s.size(); ++var22) {
-                     a_MainCanvas.f.a(var5, (bf_1) bt_1.H[var17].s.elementAt(var22), (int[])null, 0, 0, 0, t.Q[bt_1.H[var17].a][0] - bt_1.H[var17].h() / 2, t.Q[bt_1.H[var17].a][1] + var22 * 11 - bt_1.H[var17].i(), 0, 0);
+                     a_MainCanvas.f.a(var5, (bf_1) bt_1.H[var17].s.elementAt(var22), (int[])null, 0, 0, 0, t_1.Q[bt_1.H[var17].a][0] - bt_1.H[var17].h() / 2, t_1.Q[bt_1.H[var17].a][1] + var22 * 11 - bt_1.H[var17].i(), 0, 0);
                   }
                }
             }
@@ -1310,34 +1310,34 @@ public final class bq_1 {
                if (bt_1.M[var18].m != null) {
                   if (bt_1.M[var18].a()) {
                      if (t == 1 || t == 2) {
-                        a_MainCanvas.f.a(var5, (bc_1) ao_1.ac, (int[])null, 0, 0, t.R[bt_1.M[var18].a][0], t.R[bt_1.M[var18].a][1], 0, 0);
+                        a_MainCanvas.f.a(var5, (bc_1) ao_1.ac, (int[])null, 0, 0, t_1.R[bt_1.M[var18].a][0], t_1.R[bt_1.M[var18].a][1], 0, 0);
                      }
                   } else {
                      if (bt_1.M[var18].n != 1 && bt_1.M[var18].n != 4) {
                         if (bt_1.M[var18].n == 2) {
                            if (var4.A != null && var4.A.b.length > 0) {
-                              bt_1.M[var18].a(var5, a_MainCanvas.f, t.R[bt_1.M[var18].a][0], t.R[bt_1.M[var18].a][1], (byte)0);
+                              bt_1.M[var18].a(var5, a_MainCanvas.f, t_1.R[bt_1.M[var18].a][0], t_1.R[bt_1.M[var18].a][1], (byte)0);
                            } else if (bt_1.M[var18].q) {
                               if (c((int)var4.E[0].c) >= 0 && c((int)var4.E[0].c) < bt_1.M.length) {
-                                 bt_1.M[var18].a(var5, a_MainCanvas.f, t.R[bt_1.M[c((int)var4.E[0].c)].a][0], t.R[bt_1.M[c((int)var4.E[0].c)].a][1], (byte)0);
+                                 bt_1.M[var18].a(var5, a_MainCanvas.f, t_1.R[bt_1.M[c((int)var4.E[0].c)].a][0], t_1.R[bt_1.M[c((int)var4.E[0].c)].a][1], (byte)0);
                               }
                            } else if (a(var4.E[0].c) >= 0 && a(var4.E[0].c) < bt_1.H.length) {
-                              bt_1.M[var18].a(var5, a_MainCanvas.f, t.Q[bt_1.H[a(var4.E[0].c)].a][0] - bt_1.H[a(var4.E[0].c)].h() / 2, t.Q[bt_1.H[a(var4.E[0].c)].a][1], (byte)0);
+                              bt_1.M[var18].a(var5, a_MainCanvas.f, t_1.Q[bt_1.H[a(var4.E[0].c)].a][0] - bt_1.H[a(var4.E[0].c)].h() / 2, t_1.Q[bt_1.H[a(var4.E[0].c)].a][1], (byte)0);
                            }
                         }
                      } else {
-                        bt_1.M[var18].a(var5, a_MainCanvas.f, t.R[bt_1.M[var18].a][0], t.R[bt_1.M[var18].a][1], (byte)0);
+                        bt_1.M[var18].a(var5, a_MainCanvas.f, t_1.R[bt_1.M[var18].a][0], t_1.R[bt_1.M[var18].a][1], (byte)0);
                         if (var4.f != -1 && var4.f != 0 && bt_1.M[var18].p) {
-                           a_MainCanvas.f.a(var5, (bc_1) ao_1.ae, (int[])null, 0, 0, t.R[bt_1.M[var18].a][0], t.R[bt_1.M[var18].a][1], 0, 0);
+                           a_MainCanvas.f.a(var5, (bc_1) ao_1.ae, (int[])null, 0, 0, t_1.R[bt_1.M[var18].a][0], t_1.R[bt_1.M[var18].a][1], 0, 0);
                         } else if (var4.f == 6 && bt_1.M[var18].o) {
-                           a_MainCanvas.f.a(var5, (bc_1) ao_1.ab, (int[])null, 0, 0, t.R[bt_1.M[var18].a][0], t.R[bt_1.M[var18].a][1], 0, 0);
+                           a_MainCanvas.f.a(var5, (bc_1) ao_1.ab, (int[])null, 0, 0, t_1.R[bt_1.M[var18].a][0], t_1.R[bt_1.M[var18].a][1], 0, 0);
                         }
                      }
 
                      if (bt_1.M[var18].u.size() > 0) {
                         for(byte var23 = 0; var23 < bt_1.M[var18].u.size(); ++var23) {
                            ck var8;
-                           a_MainCanvas.f.a(var5, (bf_1) bt_1.M[var18].u.elementAt(var23), (int[])null, 0, 0, 0, t.R[bt_1.M[var18].a][0] - ((var8 = bt_1.M[var18]).m != null && var8.m.g != null ? var8.m.g[0] : 0) / 2, t.R[bt_1.M[var18].a][1] + var23 * 11 - bt_1.M[var18].d(), 0, 0);
+                           a_MainCanvas.f.a(var5, (bf_1) bt_1.M[var18].u.elementAt(var23), (int[])null, 0, 0, 0, t_1.R[bt_1.M[var18].a][0] - ((var8 = bt_1.M[var18]).m != null && var8.m.g != null ? var8.m.g[0] : 0) / 2, t_1.R[bt_1.M[var18].a][1] + var23 * 11 - bt_1.M[var18].d(), 0, 0);
                         }
                      }
                   }
@@ -1351,15 +1351,15 @@ public final class bq_1 {
             for(byte var19 = 0; var19 < bt_1.H.length; ++var19) {
                if (!bt_1.H[var19].d() && bt_1.H[var19].k == 2 && var4.E[0].c >= 0) {
                   if (var4.A != null && var4.A.b.length > 0) {
-                     bt_1.H[var19].a(var5, a_MainCanvas.f, t.Q[bt_1.H[var19].a][0], t.Q[bt_1.H[var19].a][1], (byte)0);
+                     bt_1.H[var19].a(var5, a_MainCanvas.f, t_1.Q[bt_1.H[var19].a][0], t_1.Q[bt_1.H[var19].a][1], (byte)0);
                   } else {
                      byte var24 = 0;
                      if (bt_1.H[var19].n) {
                         if ((var24 = (byte)a(var4.E[0].c)) >= 0 && var24 <= bt_1.H.length - 1) {
-                           bt_1.H[var19].a(var5, a_MainCanvas.f, t.Q[bt_1.H[a(var4.E[0].c)].a][0], t.Q[bt_1.H[a(var4.E[0].c)].a][1], (byte)0);
+                           bt_1.H[var19].a(var5, a_MainCanvas.f, t_1.Q[bt_1.H[a(var4.E[0].c)].a][0], t_1.Q[bt_1.H[a(var4.E[0].c)].a][1], (byte)0);
                         }
                      } else if ((var24 = (byte)c((int)var4.E[0].c)) >= 0 && var24 <= bt_1.M.length - 1) {
-                        bt_1.H[var19].a(var5, a_MainCanvas.f, t.R[bt_1.M[c((int)var4.E[0].c)].a][0] + bt_1.M[c((int)var4.E[0].c)].c() / 2, t.R[bt_1.M[c((int)var4.E[0].c)].a][1], (byte)0);
+                        bt_1.H[var19].a(var5, a_MainCanvas.f, t_1.R[bt_1.M[c((int)var4.E[0].c)].a][0] + bt_1.M[c((int)var4.E[0].c)].c() / 2, t_1.R[bt_1.M[c((int)var4.E[0].c)].a][1], (byte)0);
                      }
                   }
                }
@@ -1375,8 +1375,8 @@ public final class bq_1 {
 
                   for(byte var27 = 0; var27 < bt_1.H.length; ++var27) {
                      if (bt_1.H[var27].e > 0 && bt_1.H[var27].b != 0 && bt_1.H[var27].a == i() + 3) {
-                        ca.e(var21, t.Q[bt_1.H[var27].a][0] - 10, t.Q[bt_1.H[var27].a][1] - 9 - bt_1.H[var27].i(), bt_1.H[var27].e * 19 / (bt_1.H[var27].f <= 0 ? 1 : bt_1.H[var27].f), 0);
-                        ca.e(var21, t.Q[bt_1.H[var27].a][0] - 10, t.Q[bt_1.H[var27].a][1] - 4 - bt_1.H[var27].i(), bt_1.H[var27].g * 19 / (bt_1.H[var27].h <= 0 ? 1 : bt_1.H[var27].h), 1);
+                        ca_1.e(var21, t_1.Q[bt_1.H[var27].a][0] - 10, t_1.Q[bt_1.H[var27].a][1] - 9 - bt_1.H[var27].i(), bt_1.H[var27].e * 19 / (bt_1.H[var27].f <= 0 ? 1 : bt_1.H[var27].f), 0);
+                        ca_1.e(var21, t_1.Q[bt_1.H[var27].a][0] - 10, t_1.Q[bt_1.H[var27].a][1] - 4 - bt_1.H[var27].i(), bt_1.H[var27].g * 19 / (bt_1.H[var27].h <= 0 ? 1 : bt_1.H[var27].h), 1);
                      }
                   }
                }
@@ -1386,11 +1386,11 @@ public final class bq_1 {
                for(byte var20 = 0; var20 < bt_1.H.length; ++var20) {
                   if (bt_1.H[var20].e > 0 && bt_1.H[var20].b == 0 && bt_1.H[var20].c.equals(bt_1.ad)) {
                      if (bt_1.H[var20].i == 291) {
-                        ca.e(var5, t.Q[bt_1.H[var20].a][0] - 10, t.Q[bt_1.H[var20].a][1] - 2 - bt_1.H[var20].i(), bt_1.H[var20].e * 19 / (bt_1.H[var20].f <= 0 ? 1 : bt_1.H[var20].f), 0);
-                        ca.e(var5, t.Q[bt_1.H[var20].a][0] - 10, t.Q[bt_1.H[var20].a][1] + 3 - bt_1.H[var20].i(), bt_1.H[var20].g * 19 / (bt_1.H[var20].h <= 0 ? 1 : bt_1.H[var20].h), 1);
+                        ca_1.e(var5, t_1.Q[bt_1.H[var20].a][0] - 10, t_1.Q[bt_1.H[var20].a][1] - 2 - bt_1.H[var20].i(), bt_1.H[var20].e * 19 / (bt_1.H[var20].f <= 0 ? 1 : bt_1.H[var20].f), 0);
+                        ca_1.e(var5, t_1.Q[bt_1.H[var20].a][0] - 10, t_1.Q[bt_1.H[var20].a][1] + 3 - bt_1.H[var20].i(), bt_1.H[var20].g * 19 / (bt_1.H[var20].h <= 0 ? 1 : bt_1.H[var20].h), 1);
                      } else {
-                        ca.e(var5, t.Q[bt_1.H[var20].a][0] - 10, t.Q[bt_1.H[var20].a][1] - 9 - bt_1.H[var20].i(), bt_1.H[var20].e * 19 / (bt_1.H[var20].f <= 0 ? 1 : bt_1.H[var20].f), 0);
-                        ca.e(var5, t.Q[bt_1.H[var20].a][0] - 10, t.Q[bt_1.H[var20].a][1] - 4 - bt_1.H[var20].i(), bt_1.H[var20].g * 19 / (bt_1.H[var20].h <= 0 ? 1 : bt_1.H[var20].h), 1);
+                        ca_1.e(var5, t_1.Q[bt_1.H[var20].a][0] - 10, t_1.Q[bt_1.H[var20].a][1] - 9 - bt_1.H[var20].i(), bt_1.H[var20].e * 19 / (bt_1.H[var20].f <= 0 ? 1 : bt_1.H[var20].f), 0);
+                        ca_1.e(var5, t_1.Q[bt_1.H[var20].a][0] - 10, t_1.Q[bt_1.H[var20].a][1] - 4 - bt_1.H[var20].i(), bt_1.H[var20].g * 19 / (bt_1.H[var20].h <= 0 ? 1 : bt_1.H[var20].h), 1);
                      }
                   }
                }
@@ -1400,45 +1400,45 @@ public final class bq_1 {
          for(byte var12 = 0; var12 < bt_1.H.length; ++var12) {
             if (bt_1.H != null && var12 >= 0 && var12 <= bt_1.H.length - 1 && var12 >= 0 && !bt_1.H[var12].d()) {
                if (var9.i == var12 && (var9.d == 4 || var9.d == 5)) {
-                  ca.a(var3, (String) bt_1.H[var9.i].d, (int)2, 2, 20, 14337302, 0);
+                  ca_1.a(var3, (String) bt_1.H[var9.i].d, (int)2, 2, 20, 14337302, 0);
                }
 
                if (bt_1.H[var12].b == 0) {
                   if (bt_1.H[var12].i == 291) {
-                     ca.e(var3, t.Q[bt_1.H[var12].a][0] - 10, t.Q[bt_1.H[var12].a][1] - 2 - bt_1.H[var12].i(), bt_1.H[var12].e * 19 / bt_1.H[var12].f, 0);
-                     ca.e(var3, t.Q[bt_1.H[var12].a][0] - 10, t.Q[bt_1.H[var12].a][1] + 3 - bt_1.H[var12].i(), bt_1.H[var12].g * 19 / bt_1.H[var12].h, 1);
+                     ca_1.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] - 2 - bt_1.H[var12].i(), bt_1.H[var12].e * 19 / bt_1.H[var12].f, 0);
+                     ca_1.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] + 3 - bt_1.H[var12].i(), bt_1.H[var12].g * 19 / bt_1.H[var12].h, 1);
                   } else {
-                     ca.e(var3, t.Q[bt_1.H[var12].a][0] - 10, t.Q[bt_1.H[var12].a][1] - 9 - bt_1.H[var12].i(), bt_1.H[var12].e * 19 / bt_1.H[var12].f, 0);
-                     ca.e(var3, t.Q[bt_1.H[var12].a][0] - 10, t.Q[bt_1.H[var12].a][1] - 4 - bt_1.H[var12].i(), bt_1.H[var12].g * 19 / bt_1.H[var12].h, 1);
+                     ca_1.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] - 9 - bt_1.H[var12].i(), bt_1.H[var12].e * 19 / bt_1.H[var12].f, 0);
+                     ca_1.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] - 4 - bt_1.H[var12].i(), bt_1.H[var12].g * 19 / bt_1.H[var12].h, 1);
                   }
                } else if (bt_1.H[var12].b == 2) {
-                  ca.e(var3, t.Q[bt_1.H[var12].a][0] - 10, t.Q[bt_1.H[var12].a][1] - 9 - bt_1.H[var12].i(), bt_1.H[var12].e * 19 / bt_1.H[var12].f, 0);
-                  ca.e(var3, t.Q[bt_1.H[var12].a][0] - 10, t.Q[bt_1.H[var12].a][1] - 4 - bt_1.H[var12].i(), bt_1.H[var12].g * 19 / bt_1.H[var12].h, 1);
+                  ca_1.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] - 9 - bt_1.H[var12].i(), bt_1.H[var12].e * 19 / bt_1.H[var12].f, 0);
+                  ca_1.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] - 4 - bt_1.H[var12].i(), bt_1.H[var12].g * 19 / bt_1.H[var12].h, 1);
                }
             }
          }
 
          for(byte var13 = 0; var13 < bt_1.M.length; ++var13) {
             if (var13 >= 0 && !bt_1.M[var13].a()) {
-               ca.e(var3, t.R[bt_1.M[var13].a][0] - 11, t.R[bt_1.M[var13].a][1] - 4 - bt_1.M[var13].d(), bt_1.M[var13].e * 19 / bt_1.M[var13].f, 0);
+               ca_1.e(var3, t_1.R[bt_1.M[var13].a][0] - 11, t_1.R[bt_1.M[var13].a][1] - 4 - bt_1.M[var13].d(), bt_1.M[var13].e * 19 / bt_1.M[var13].f, 0);
                if (var9.h == var13 && (var9.d == 1 || var9.d == 0 || var9.d == 2 || var9.d == 3 || var9.d == 9)) {
-                  ca.a(var3, (String) bt_1.M[var13].d, (int)2, 2, 20, 14337302, 0);
-                  ca.a(var3, (String)("" + t.K[bt_1.M[var13].k]), (int)(t.b - 2), 2, 24, 14337302, 0);
+                  ca_1.a(var3, (String) bt_1.M[var13].d, (int)2, 2, 20, 14337302, 0);
+                  ca_1.a(var3, (String)("" + t_1.K[bt_1.M[var13].k]), (int)(t_1.b - 2), 2, 24, 14337302, 0);
                }
 
                if (bt_1.M[var13].i > 99) {
-                  a_MainCanvas.f.a(var3, ao_1.B, (int[])null, bt_1.M[var13].i / 100 + 1, 0, 0, t.R[bt_1.M[var13].a][0] - 15, t.R[bt_1.M[var13].a][1] - 11 - bt_1.M[var13].d(), 0, 0);
-                  a_MainCanvas.f.a(var3, ao_1.B, (int[])null, (bt_1.M[var13].i - 100) / 10 + 1, 0, 0, t.R[bt_1.M[var13].a][0] - 11, t.R[bt_1.M[var13].a][1] - 11 - bt_1.M[var13].d(), 0, 0);
-                  a_MainCanvas.f.a(var3, ao_1.B, (int[])null, bt_1.M[var13].i % 10 + 1, 0, 0, t.R[bt_1.M[var13].a][0] - 7, t.R[bt_1.M[var13].a][1] - 11 - bt_1.M[var13].d(), 0, 0);
+                  a_MainCanvas.f.a(var3, ao_1.B, (int[])null, bt_1.M[var13].i / 100 + 1, 0, 0, t_1.R[bt_1.M[var13].a][0] - 15, t_1.R[bt_1.M[var13].a][1] - 11 - bt_1.M[var13].d(), 0, 0);
+                  a_MainCanvas.f.a(var3, ao_1.B, (int[])null, (bt_1.M[var13].i - 100) / 10 + 1, 0, 0, t_1.R[bt_1.M[var13].a][0] - 11, t_1.R[bt_1.M[var13].a][1] - 11 - bt_1.M[var13].d(), 0, 0);
+                  a_MainCanvas.f.a(var3, ao_1.B, (int[])null, bt_1.M[var13].i % 10 + 1, 0, 0, t_1.R[bt_1.M[var13].a][0] - 7, t_1.R[bt_1.M[var13].a][1] - 11 - bt_1.M[var13].d(), 0, 0);
                } else if (bt_1.M[var13].i > 9) {
-                  a_MainCanvas.f.a(var3, ao_1.B, (int[])null, bt_1.M[var13].i / 10 + 1, 0, 0, t.R[bt_1.M[var13].a][0] - 11, t.R[bt_1.M[var13].a][1] - 11 - bt_1.M[var13].d(), 0, 0);
-                  a_MainCanvas.f.a(var3, ao_1.B, (int[])null, bt_1.M[var13].i % 10 + 1, 0, 0, t.R[bt_1.M[var13].a][0] - 7, t.R[bt_1.M[var13].a][1] - 11 - bt_1.M[var13].d(), 0, 0);
+                  a_MainCanvas.f.a(var3, ao_1.B, (int[])null, bt_1.M[var13].i / 10 + 1, 0, 0, t_1.R[bt_1.M[var13].a][0] - 11, t_1.R[bt_1.M[var13].a][1] - 11 - bt_1.M[var13].d(), 0, 0);
+                  a_MainCanvas.f.a(var3, ao_1.B, (int[])null, bt_1.M[var13].i % 10 + 1, 0, 0, t_1.R[bt_1.M[var13].a][0] - 7, t_1.R[bt_1.M[var13].a][1] - 11 - bt_1.M[var13].d(), 0, 0);
                } else if (bt_1.M[var13].i > 1) {
-                  a_MainCanvas.f.a(var3, ao_1.B, (int[])null, bt_1.M[var13].i % 10 + 1, 0, 0, t.R[bt_1.M[var13].a][0] - 11, t.R[bt_1.M[var13].a][1] - 11 - bt_1.M[var13].d(), 0, 0);
+                  a_MainCanvas.f.a(var3, ao_1.B, (int[])null, bt_1.M[var13].i % 10 + 1, 0, 0, t_1.R[bt_1.M[var13].a][0] - 11, t_1.R[bt_1.M[var13].a][1] - 11 - bt_1.M[var13].d(), 0, 0);
                }
 
                if (var9.h == var13 && bt_1.M[var13].l == 1) {
-                  a_MainCanvas.f.a(var3, ao_1.D, (int[])null, -1, 0, 0, 4 + t.i.stringWidth(bt_1.M[var13].d), 6, 0, 0);
+                  a_MainCanvas.f.a(var3, ao_1.D, (int[])null, -1, 0, 0, 4 + t_1.i.stringWidth(bt_1.M[var13].d), 6, 0, 0);
                }
             }
          }
@@ -1448,11 +1448,11 @@ public final class bq_1 {
          if (this.d != 4 && this.d != 5 && this.d != 6 && this.d != 7 && this.d != 8) {
             if (this.h >= 0 && this.h <= bt_1.M.length - 1) {
                ai_1.a(ao_1.r, this.y.ak);
-               a_MainCanvas.f.a(var2, (bc_1) ao_1.r, (int[])null, 0, 0, t.R[bt_1.M[this.h].a][0], t.R[bt_1.M[this.h].a][1] - 10 - bt_1.M[this.h].d(), 20, 0);
+               a_MainCanvas.f.a(var2, (bc_1) ao_1.r, (int[])null, 0, 0, t_1.R[bt_1.M[this.h].a][0], t_1.R[bt_1.M[this.h].a][1] - 10 - bt_1.M[this.h].d(), 20, 0);
             }
          } else if (this.i >= 0 && this.i <= bt_1.H.length - 1 && bt_1.H[this.i].j != null) {
             ai_1.a(ao_1.r, this.y.ak);
-            a_MainCanvas.f.a(var2, (bc_1) ao_1.r, (int[])null, 0, 0, t.Q[bt_1.H[this.i].a][0], t.Q[bt_1.H[this.i].a][1] - 10 - bt_1.H[this.i].i(), 20, 0);
+            a_MainCanvas.f.a(var2, (bc_1) ao_1.r, (int[])null, 0, 0, t_1.Q[bt_1.H[this.i].a][0], t_1.Q[bt_1.H[this.i].a][1] - 10 - bt_1.H[this.i].i(), 20, 0);
          }
       }
 
@@ -1464,7 +1464,7 @@ public final class bq_1 {
          }
 
          if ((bt_1.bs >= 0 && bt_1.s == 0 || t == 1 || t == 2) && s >= 0) {
-            ca.a(var2, (String)String.valueOf(s), (int)(t.b / 2), t.c / 2 - (t.c <= 240 ? t.j : t.j / 2), 17, 16711680, 0);
+            ca_1.a(var2, (String)String.valueOf(s), (int)(t_1.b / 2), t_1.c / 2 - (t_1.c <= 240 ? t_1.j : t_1.j / 2), 17, 16711680, 0);
          }
       } else if (this.f == 3) {
          this.a(var2);
@@ -1485,14 +1485,14 @@ public final class bq_1 {
 
       this.d(var2);
       if (bt_1.bt && c > 0) {
-         ca.a(var2, (String)("自动回合:" + c), (int)(t.b - t.i.stringWidth("自动回合:" + c) / 2 - 45), 2, 17, 16777215, 0);
+         ca_1.a(var2, (String)("自动回合:" + c), (int)(t_1.b - t_1.i.stringWidth("自动回合:" + c) / 2 - 45), 2, 17, 16777215, 0);
       }
 
-      if (t.o) {
-         var2.drawImage(a_MainCanvas.U.a, t.b - a_MainCanvas.U.b, t.c - a_MainCanvas.U.c, 20);
+      if (t_1.o) {
+         var2.drawImage(a_MainCanvas.U.a, t_1.b - a_MainCanvas.U.b, t_1.c - a_MainCanvas.U.c, 20);
       }
 
-      var2.setClip(0, 0, t.b, t.c);
+      var2.setClip(0, 0, t_1.b, t_1.c);
    }
 
    private void n() {
@@ -1553,7 +1553,7 @@ public final class bq_1 {
                               if (this.F[var12].b == 1 && this.F[var12].l == 0) {
                                  this.F[var12].l = 1;
                                  if (c((int)this.F[var12].c) >= 0 && c((int)this.F[var12].c) < bt_1.M.length && bt_1.M[c((int)this.F[var12].c)].m != null) {
-                                    this.A.a(var9, t.R[this.F[var12].c][0], t.R[this.F[var12].c][1]);
+                                    this.A.a(var9, t_1.R[this.F[var12].c][0], t_1.R[this.F[var12].c][1]);
                                  }
                                  break;
                               }
@@ -1561,7 +1561,7 @@ public final class bq_1 {
                               if (this.F[var12].b == 0 && this.F[var12].l == 0) {
                                  this.F[var12].l = 1;
                                  if (bt_1.H[a(this.F[var12].c)].j != null) {
-                                    this.A.a(var9, t.Q[this.F[var12].c][0], t.Q[this.F[var12].c][1]);
+                                    this.A.a(var9, t_1.Q[this.F[var12].c][0], t_1.Q[this.F[var12].c][1]);
                                  }
                                  break;
                               }
@@ -1576,9 +1576,9 @@ public final class bq_1 {
                         for(byte var8 = 0; var8 < this.F.length; ++var8) {
                            if (this.F[var8].b >= 0) {
                               if (this.F[var8].b == 1) {
-                                 this.A.a(0, t.R[1][0], t.R[1][1]);
+                                 this.A.a(0, t_1.R[1][0], t_1.R[1][1]);
                               } else if (this.F[var8].b == 0) {
-                                 this.A.a(0, t.Q[1][0], t.Q[1][1]);
+                                 this.A.a(0, t_1.Q[1][0], t_1.Q[1][1]);
                               }
                               break;
                            }
@@ -1594,7 +1594,7 @@ public final class bq_1 {
                            if (this.F[var11].b == 1 && this.F[var11].l == 0 || this.E[0].e == 22) {
                               this.F[var11].l = 1;
                               if (c((int)this.F[var11].c) >= 0 && c((int)this.F[var11].c) < bt_1.M.length && bt_1.M[c((int)this.F[var11].c)].m != null) {
-                                 this.A.a(var7, t.R[this.F[var11].c][0], t.R[this.F[var11].c][1]);
+                                 this.A.a(var7, t_1.R[this.F[var11].c][0], t_1.R[this.F[var11].c][1]);
                               }
                               break;
                            }
@@ -1636,13 +1636,13 @@ public final class bq_1 {
                                  if (this.F[var3].b == 0 && this.F[var3].l == 0) {
                                     this.F[var3].l = 1;
                                     if (a(this.F[var3].c) >= 0 && a(this.F[var3].c) <= bt_1.H.length - 1 && bt_1.H[a(this.F[var3].c)].j != null) {
-                                       this.A.a(var2, t.Q[this.F[var3].c][0], t.Q[this.F[var3].c][1]);
+                                       this.A.a(var2, t_1.Q[this.F[var3].c][0], t_1.Q[this.F[var3].c][1]);
                                        break;
                                     }
                                  } else if (this.F[var3].b == 1 && this.F[var3].l == 0) {
                                     this.F[var3].l = 1;
                                     if (c((int)this.F[var3].c) >= 0 && c((int)this.F[var3].c) <= bt_1.M.length - 1 && bt_1.M[c((int)this.F[var3].c)].m != null) {
-                                       this.A.a(var2, t.R[this.F[var3].c][0], t.R[this.F[var3].c][1]);
+                                       this.A.a(var2, t_1.R[this.F[var3].c][0], t_1.R[this.F[var3].c][1]);
                                        break;
                                     }
                                  }
@@ -1657,9 +1657,9 @@ public final class bq_1 {
                            for(byte var5 = 0; var5 < this.F.length; ++var5) {
                               if (this.F[var5].b >= 0) {
                                  if (this.F[var5].b == 1) {
-                                    this.A.a(0, t.R[1][0], t.R[1][1]);
+                                    this.A.a(0, t_1.R[1][0], t_1.R[1][1]);
                                  } else if (this.F[var5].b == 0) {
-                                    this.A.a(0, t.Q[1][0], t.Q[1][1]);
+                                    this.A.a(0, t_1.Q[1][0], t_1.Q[1][1]);
                                  }
                                  break;
                               }
@@ -1674,7 +1674,7 @@ public final class bq_1 {
                            for(byte var10 = 0; var10 < this.F.length; ++var10) {
                               if (this.F[var10].b == 0 && this.F[var10].l == 0 && a(this.F[var10].c) >= 0 && a(this.F[var10].c) <= bt_1.H.length - 1 && bt_1.H[a(this.F[var10].c)].j != null) {
                                  this.F[var10].l = 1;
-                                 this.A.a(var6, t.Q[this.F[var10].c][0], t.Q[this.F[var10].c][1]);
+                                 this.A.a(var6, t_1.Q[this.F[var10].c][0], t_1.Q[this.F[var10].c][1]);
                                  break;
                               }
                            }
@@ -1989,8 +1989,8 @@ public final class bq_1 {
          for(byte var6 = 0; var6 < this.F.length; ++var6) {
             if (this.F[var6].b == 1 && this.F[var6].d != 0 && c((int)this.F[var6].c) >= 0 && c((int)this.F[var6].c) < bt_1.M.length) {
                int var10002 = this.F[var6].d;
-               short var10003 = t.R[this.F[var6].c][0];
-               int var10004 = t.R[this.F[var6].c][1] - bt_1.M[c((int)this.F[var6].c)].d();
+               short var10003 = t_1.R[this.F[var6].c][0];
+               int var10004 = t_1.R[this.F[var6].c][1] - bt_1.M[c((int)this.F[var6].c)].d();
                int var16;
                if (this.F[var6].f <= 24) {
                   ae var10005 = this.F[var6];
@@ -2005,8 +2005,8 @@ public final class bq_1 {
 
             if (this.F[var6].b == 1 && this.F[var6].e != 0 && c((int)this.F[var6].c) >= 0 && c((int)this.F[var6].c) < bt_1.M.length) {
                int var7 = this.F[var6].e;
-               short var10 = t.R[this.F[var6].c][0];
-               int var13 = t.R[this.F[var6].c][1] - bt_1.M[c((int)this.F[var6].c)].d();
+               short var10 = t_1.R[this.F[var6].c][0];
+               int var13 = t_1.R[this.F[var6].c][1] - bt_1.M[c((int)this.F[var6].c)].d();
                int var18;
                if (this.F[var6].f <= 24) {
                   ae var17 = this.F[var6];
@@ -2021,8 +2021,8 @@ public final class bq_1 {
 
             if (this.F[var6].b == 0 && this.F[var6].d != 0 && a(this.F[var6].c) >= 0 && a(this.F[var6].c) < bt_1.H.length) {
                int var8 = this.F[var6].d;
-               int var11 = t.Q[this.F[var6].c][0] + 10;
-               int var14 = t.Q[this.F[var6].c][1] - bt_1.H[a(this.F[var6].c)].i();
+               int var11 = t_1.Q[this.F[var6].c][0] + 10;
+               int var14 = t_1.Q[this.F[var6].c][1] - bt_1.H[a(this.F[var6].c)].i();
                int var20;
                if (this.F[var6].f <= 24) {
                   ae var19 = this.F[var6];
@@ -2037,8 +2037,8 @@ public final class bq_1 {
 
             if (this.F[var6].b == 0 && this.F[var6].e != 0 && a(this.F[var6].c) >= 0 && a(this.F[var6].c) < bt_1.H.length) {
                int var9 = this.F[var6].e;
-               int var12 = t.Q[this.F[var6].c][0] + 10;
-               int var15 = t.Q[this.F[var6].c][1] - bt_1.H[a(this.F[var6].c)].i();
+               int var12 = t_1.Q[this.F[var6].c][0] + 10;
+               int var15 = t_1.Q[this.F[var6].c][1] - bt_1.H[a(this.F[var6].c)].i();
                int var22;
                if (this.F[var6].f <= 24) {
                   ae var21 = this.F[var6];
@@ -2058,14 +2058,14 @@ public final class bq_1 {
    private void a(Graphics var1, String var2) {
       if (this.y.j != 2) {
          if (this.K == null) {
-            this.K = ca.a(var2, t.i, t.b / 2 - 20, "/t");
+            this.K = ca_1.a(var2, t_1.i, t_1.b / 2 - 20, "/t");
          }
 
          if (this.K != null) {
-            ca.a(var1, (t.b - t.k * 10) / 2, (t.c - t.j * this.K.length - 20) / 2, t.k * 10, t.j * this.K.length + 20);
+            ca_1.a(var1, (t_1.b - t_1.k * 10) / 2, (t_1.c - t_1.j * this.K.length - 20) / 2, t_1.k * 10, t_1.j * this.K.length + 20);
 
             for(int var3 = 0; var3 < this.K.length; ++var3) {
-               ca.a(var1, (String)this.K[var3], (int)(t.b / 2), (t.c - t.j * this.K.length - 20) / 2 + 10 + var3 * t.j, 17, ca.a, 0);
+               ca_1.a(var1, (String)this.K[var3], (int)(t_1.b / 2), (t_1.c - t_1.j * this.K.length - 20) / 2 + 10 + var3 * t_1.j, 17, ca_1.a, 0);
             }
          }
       }
@@ -2164,7 +2164,7 @@ public final class bq_1 {
    private void b(Graphics var1) {
       if (ao_1.Z != null) {
          for(byte var2 = 0; var2 < 5; ++var2) {
-            int var10003 = t.c - 102 + (var2 << 4);
+            int var10003 = t_1.c - 102 + (var2 << 4);
             short var6 = ao_1.Z.c;
             boolean var3 = true;
             int var5 = var10003;
@@ -2176,25 +2176,25 @@ public final class bq_1 {
                this.L[var2][3] = var6;
             }
 
-            a_MainCanvas.f.a(var1, ao_1.Z, (int[])null, var2 + 1, 0, 0, 1, t.c - 102 + (var2 << 4), 0, 0);
+            a_MainCanvas.f.a(var1, ao_1.Z, (int[])null, var2 + 1, 0, 0, 1, t_1.c - 102 + (var2 << 4), 0, 0);
             if (var2 == this.e) {
                var1.setColor(16711680);
-               ca.d(var1, 1, t.c - 102 + (this.e << 4), 25, 15);
+               ca_1.d(var1, 1, t_1.c - 102 + (this.e << 4), 25, 15);
                switch (this.e) {
                   case 0:
-                     ca.a(var1, (String)"攻击", (int)(t.b / 2), t.c - 22 - t.j, 17, 16776960, 0);
+                     ca_1.a(var1, (String)"攻击", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                      break;
                   case 1:
-                     ca.a(var1, (String)"防御", (int)(t.b / 2), t.c - 22 - t.j, 17, 16776960, 0);
+                     ca_1.a(var1, (String)"防御", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                      break;
                   case 2:
-                     ca.a(var1, (String)"技能", (int)(t.b / 2), t.c - 22 - t.j, 17, 16776960, 0);
+                     ca_1.a(var1, (String)"技能", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                      break;
                   case 3:
-                     ca.a(var1, (String)"道具", (int)(t.b / 2), t.c - 22 - t.j, 17, 16776960, 0);
+                     ca_1.a(var1, (String)"道具", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                      break;
                   case 4:
-                     ca.a(var1, (String)"逃跑", (int)(t.b / 2), t.c - 22 - t.j, 17, 16776960, 0);
+                     ca_1.a(var1, (String)"逃跑", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                }
             }
          }
@@ -2218,7 +2218,7 @@ public final class bq_1 {
    private void c(Graphics var1) {
       if (ao_1.Z != null) {
          for(byte var2 = 0; var2 < 3; ++var2) {
-            int var10003 = t.c - 70 + (var2 << 4);
+            int var10003 = t_1.c - 70 + (var2 << 4);
             short var6 = ao_1.Z.c;
             boolean var3 = true;
             int var5 = var10003;
@@ -2230,19 +2230,19 @@ public final class bq_1 {
                this.M[var2][3] = var6;
             }
 
-            a_MainCanvas.f.a(var1, ao_1.Z, (int[])null, var2 + 1, 0, 0, 1, t.c - 70 + (var2 << 4), 0, 0);
+            a_MainCanvas.f.a(var1, ao_1.Z, (int[])null, var2 + 1, 0, 0, 1, t_1.c - 70 + (var2 << 4), 0, 0);
             if (var2 == this.e) {
                var1.setColor(16711680);
-               ca.d(var1, 1, t.c - 70 + (var2 << 4), 25, 15);
+               ca_1.d(var1, 1, t_1.c - 70 + (var2 << 4), 25, 15);
                switch (this.e) {
                   case 0:
-                     ca.a(var1, (String)"攻击", (int)(t.b / 2), t.c - 22 - t.j, 17, 16776960, 0);
+                     ca_1.a(var1, (String)"攻击", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                      break;
                   case 1:
-                     ca.a(var1, (String)"防御", (int)(t.b / 2), t.c - 22 - t.j, 17, 16776960, 0);
+                     ca_1.a(var1, (String)"防御", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                      break;
                   case 2:
-                     ca.a(var1, (String)"技能", (int)(t.b / 2), t.c - 22 - t.j, 17, 16776960, 0);
+                     ca_1.a(var1, (String)"技能", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                }
             }
          }
@@ -2277,9 +2277,9 @@ public final class bq_1 {
    private void d(Graphics var1) {
       if (bt_1.ej != null) {
          if (this.d != 0 && this.d != 1 && this.d != 4) {
-            this.z.a(var1, 0, t.c - 22, 1);
+            this.z.a(var1, 0, t_1.c - 22, 1);
          } else {
-            this.z.a(var1, 0, t.c - 22, 0);
+            this.z.a(var1, 0, t_1.c - 22, 0);
          }
 
          for(byte var2 = 0; var2 < bt_1.ej.length; ++var2) {
@@ -2295,7 +2295,7 @@ public final class bq_1 {
                var10003 = null;
                var10004 = var2 + 1;
             } else {
-               a_MainCanvas.f.a(var1, ao_1.F, (int[])null, var2 == 8 ? 0 : 2, 0, 0, 3 + bt_1.ej[var2] * 17, t.c - 19, 0, 0);
+               a_MainCanvas.f.a(var1, ao_1.F, (int[])null, var2 == 8 ? 0 : 2, 0, 0, 3 + bt_1.ej[var2] * 17, t_1.c - 19, 0, 0);
                var10000 = a_MainCanvas.f;
                var10001 = var1;
                var10002 = ao_1.G;
@@ -2303,9 +2303,9 @@ public final class bq_1 {
                var10004 = var2 == 8 ? 0 : 1;
             }
 
-            var10000.a(var10001, var10002, (int[])var10003, var10004, 0, 0, 3 + bt_1.ej[var2] * 17, t.c - 19, 0, 0);
+            var10000.a(var10001, var10002, (int[])var10003, var10004, 0, 0, 3 + bt_1.ej[var2] * 17, t_1.c - 19, 0, 0);
             int var9 = 3 + var2 * 17;
-            int var10 = t.c - 19;
+            int var10 = t_1.c - 19;
             boolean var3 = true;
             var3 = true;
             int var6 = var10;
@@ -2322,7 +2322,7 @@ public final class bq_1 {
             for(byte var7 = 0; var7 < bt_1.ej.length; ++var7) {
                if (var7 == this.z.az) {
                   var1.setColor(16711680);
-                  ca.d(var1, 2 + var7 * 17, t.c - 20, 17, 17);
+                  ca_1.d(var1, 2 + var7 * 17, t_1.c - 20, 17, 17);
                   if (this.f == 0) {
                      switch (this.z.az) {
                         case 0:
@@ -2338,21 +2338,21 @@ public final class bq_1 {
                                  return;
                               }
 
-                              ca.a(var1, (String) bt_1.eo[this.z.az], (int)(t.b / 2), t.c - 22 - t.j, 17, 16776960, 0);
+                              ca_1.a(var1, (String) bt_1.eo[this.z.az], (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                            } else {
                               if (this.d != 2 || bt_1.et[this.z.az] == -1) {
                                  return;
                               }
 
-                              ca.a(var1, (String) bt_1.eu[this.z.az], (int)(t.b / 2), t.c - 22 - t.j, 17, 16776960, 0);
+                              ca_1.a(var1, (String) bt_1.eu[this.z.az], (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                            }
 
                            return;
                         case 8:
-                           ca.a(var1, (String)"聊天记录", (int)(t.b / 2), t.c - 22 - t.j, 17, 16776960, 0);
+                           ca_1.a(var1, (String)"聊天记录", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                            return;
                         case 9:
-                           ca.a(var1, (String)"自动打怪", (int)(t.b / 2), t.c - 22 - t.j, 17, 16776960, 0);
+                           ca_1.a(var1, (String)"自动打怪", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                            return;
                         default:
                            return;
@@ -2369,7 +2369,7 @@ public final class bq_1 {
    private void e(Graphics var1) {
       if (this.u != null) {
          for(byte var2 = 0; var2 < this.u.length; ++var2) {
-            ca.a(var1, (String)this.u[var2], (int)(t.b / 2), (t.c - this.u.length * t.j) / 2 + var2 * t.j, 17, 15849739, 0);
+            ca_1.a(var1, (String)this.u[var2], (int)(t_1.b / 2), (t_1.c - this.u.length * t_1.j) / 2 + var2 * t_1.j, 17, 15849739, 0);
          }
       }
 
@@ -2412,7 +2412,7 @@ public final class bq_1 {
    public final void a(String var1) {
       if (this.x != null) {
          synchronized(this.x) {
-            this.x.addElement(ca.a(var1, t.i, t.b * 5 / 7, "\t"));
+            this.x.addElement(ca_1.a(var1, t_1.i, t_1.b * 5 / 7, "\t"));
          }
       }
    }
