@@ -19,6 +19,7 @@ public class MainMidlet extends MIDlet {
    }
 
    public void startApp() {
+      System.out.println("aaa");
       this.a();
    }
 

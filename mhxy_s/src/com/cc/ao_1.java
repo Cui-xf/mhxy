@@ -9441,12 +9441,12 @@ public final class ao_1 {
             for(byte var3 = 0; var3 < var4.size(); ++var3) {
                if (bt_1.gG[this.e.ar.g()] > 11) {
                   if (var3 < 11) {
-                     a_MainCanvas.f.a(var1, b((Short)var4.elementAt(var3)), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                     a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                   } else {
-                     a_MainCanvas.f.a(var1, b((Short)var4.elementAt(var3)), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
+                     a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
                   }
                } else {
-                  a_MainCanvas.f.a(var1, b((Short)var4.elementAt(var3)), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                  a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                }
             }
          }
@@ -9596,12 +9596,12 @@ public final class ao_1 {
             for(byte var3 = 0; var3 < var4.size(); ++var3) {
                if (bt_1.gG[this.e.ar.g()] > 11) {
                   if (var3 < 11) {
-                     a_MainCanvas.f.a(var1, b((Short)var4.elementAt(var3)), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                     a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                   } else {
-                     a_MainCanvas.f.a(var1, b((Short)var4.elementAt(var3)), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
+                     a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
                   }
                } else {
-                  a_MainCanvas.f.a(var1, b((Short)var4.elementAt(var3)), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                  a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                }
             }
          }
@@ -10652,12 +10652,12 @@ public final class ao_1 {
                   for(byte var4 = 0; var4 < var5.size(); ++var4) {
                      if (bt_1.ge[var3] > 11) {
                         if (var4 < 11) {
-                           a_MainCanvas.f.a(var1, b((Short)var5.elementAt(var4)), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var4) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                           a_MainCanvas.f.a(var1, b(((Short)var5.elementAt(var4)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var4) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                         } else {
-                           a_MainCanvas.f.a(var1, b((Short)var5.elementAt(var4)), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.ge[var3] - var4) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
+                           a_MainCanvas.f.a(var1, b(((Short)var5.elementAt(var4)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.ge[var3] - var4) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
                         }
                      } else {
-                        a_MainCanvas.f.a(var1, b((Short)var5.elementAt(var4)), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.ge[var3] - var4) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                        a_MainCanvas.f.a(var1, b(((Short)var5.elementAt(var4)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.ge[var3] - var4) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                      }
                   }
                }
@@ -11907,12 +11907,12 @@ public final class ao_1 {
             for(byte var3 = 0; var3 < var4.size(); ++var3) {
                if (bt_1.gG[this.e.ar.g()] > 11) {
                   if (var3 < 11) {
-                     a_MainCanvas.f.a(var1, b((Short)var4.elementAt(var3)), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                     a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                   } else {
-                     a_MainCanvas.f.a(var1, b((Short)var4.elementAt(var3)), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
+                     a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
                   }
                } else {
-                  a_MainCanvas.f.a(var1, b((Short)var4.elementAt(var3)), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                  a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                }
             }
          }

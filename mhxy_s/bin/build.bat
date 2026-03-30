@@ -8,7 +8,8 @@ set DEMO=mhxy_s
 
 rem JDK 8 (javac / jar)
 @REM set "JAVA_HOME=C:\Users\qaq\.jdks\azul-1.8.0_482"
-set "JAVA_HOME=E:\WORK\mhxy\jdk8u472-b08"
+@REM set "JAVA_HOME=E:\WORK\mhxy\jdk8u472-b08"
+set "JAVA_HOME=E:\WORK\mhxy\j2sdk1.4.2_01"
 
 rem J2ME API stubs + WTK tools (preverify); full toolkit root on E:
 set "J2ME_HOME=E:\WORK\mhxy\j2me"
@@ -21,7 +22,7 @@ set "PREVERIFY=%J2ME_HOME%\bin\preverify"
 set "JAVAC=%JAVA_HOME%\bin\javac.exe"
 set "JAR=%JAVA_HOME%\bin\jar"
 rem JDK 8: java.lang.Override 等注解在 rt.jar；CLDC/MIDP stub 无此类，需追加在 bootclasspath 末尾供 javac 解析（仍以 CLDC 为先）
-set "RT_JAR=%JAVA_HOME%\jre\lib\rt.jar"
+@REM set "RT_JAR=%JAVA_HOME%\jre\lib\rt.jar"
 
 if not exist "%JAVAC%" (
   echo *** JDK not found: %JAVAC%
@@ -66,7 +67,7 @@ if not exist ..\classes md ..\classes
 
 echo *** Compiling source files ***
 rem Source files are UTF-8; Windows javac defaults to GBK and fails on Chinese comments/strings.
-%JAVAC% -encoding UTF-8 -bootclasspath "%CLDCAPI%;%MIDPAPI%;%RT_JAR%" -source 1.8 -target 1.8 -d ..\tmpclasses -classpath ..\tmpclasses @"%SRC_LIST%"
+%JAVAC% -encoding UTF-8 -bootclasspath "%CLDCAPI%;%MIDPAPI%" -source 1.4 -target 1.4 -d ..\tmpclasses -classpath ..\tmpclasses @"%SRC_LIST%"
 if errorlevel 1 (
   echo *** javac failed ***
   goto end

@@ -456,7 +456,8 @@ public final class ca_1 {
       }
       Vector vector = new Vector();
       String[] strArrA = a(str, str2);
-      for (String str3 : strArrA) {
+      for (int i1 = 0; i1 < strArrA.length; i1++) {
+         String str3 = strArrA[i1];
          do {
             String strB = b(str3, font, i2);
             vector.addElement(strB);
@@ -464,6 +465,7 @@ public final class ca_1 {
             str3 = strSubstring;
          } while (strSubstring.length() != 0);
       }
+
       String[] strArr = new String[vector.size()];
       vector.copyInto(strArr);
       return a(strArr);
@@ -707,9 +709,11 @@ public final class ca_1 {
          }
          String[] strArrA = a(string.trim(), t_1.i, i6, "\t");
          int iMax = 0;
-         for (String str2 : strArrA) {
+         for (int i1 = 0; i1 < strArrA.length; i1++) {
+            String str2 = strArrA[i1];
             iMax = Math.max(iMax, t_1.i.stringWidth(str2) + 8);
          }
+
          X = Math.min(iMax, i6);
          if (i5 == 1) {
             V = new bw_1(str, (short) (X - 8));

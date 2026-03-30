@@ -82,8 +82,8 @@ public final class ay extends bk {
    }
 
    public final int a(int var1, int var2) {
-      if (((bk)this).b(var1, var2)) {
-         ((Object[])null)[1] = var2;
+      if (b(var1, var2)) {
+//         ((Object[])null)[1] = var2;
          if (this.e > 0 && var1 >= super.f + super.h - 15 && var1 < super.f + super.h) {
             if (var2 >= super.g && var2 <= super.g + 20) {
                return 1;

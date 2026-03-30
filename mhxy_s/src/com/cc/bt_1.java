@@ -1162,7 +1162,7 @@ public final class bt_1 {
       ac = null;
    }
 
-   public static void c(DataInputStream var0) {
+   public static void c(DataInputStream var0) throws IOException {
       ar = var0.readShort();
       ae = var0.readUTF();
       at = var0.readShort();

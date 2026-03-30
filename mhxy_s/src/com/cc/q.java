@@ -1823,7 +1823,7 @@ public final class q {
       }
    }
 
-   private void b() {
+   private void b() throws IOException {
       bt_1.c(this.b);
       if (a_MainCanvas.e != null && a_MainCanvas.e.I != null) {
          if (t_1.o && this.a.aj != null) {

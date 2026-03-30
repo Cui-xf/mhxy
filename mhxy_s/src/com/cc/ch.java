@@ -68,7 +68,8 @@ public final class ch {
       j = var1.readShort();
       k = var1.readUTF();
       m = var1.readUTF();
-      l = var1.readDouble();
+//      l = var1.readDouble();
+//      l = var1.readDouble();
       n[0] = var1.readInt();
       n[1] = var1.readInt();
       n[2] = var1.readInt();
