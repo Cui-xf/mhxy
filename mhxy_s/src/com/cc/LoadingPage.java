@@ -8,7 +8,8 @@ import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
-public final class ca_1 {
+//ca_1
+public final class LoadingPage {
    public static int a = 16777215;
    public static int b = 0;
    private static int B = 6732228;
@@ -41,7 +42,7 @@ public final class ca_1 {
    private static short S;
    private static int T;
    private static int U;
-   private static bw_1 V;
+   private static TextRender V;
    private static String[] W;
    private static int X = 0;
    private static int Y = 0;
@@ -50,7 +51,7 @@ public final class ca_1 {
    private static int ab = 0;
    private static String ac;
    private static String ad;
-   private static bw_1 ae;
+   private static TextRender ae;
    public static int m = 1;
    public static int[] n = new int[]{16711680, 4194166, 15588145, 12066995, 12066995, 16776960, 2241484, 16777215, 15138723, 4521983, 16755438, 15095, 14221536, 31834, 13513984, 8750469, 65280, 0, 16514810, 65532, 65316, 16490750, 16197367};
    private static int[] af = new int[2];
@@ -73,10 +74,10 @@ public final class ca_1 {
    public static int x;
    public static int y;
    public static int z;
-   private static int[] an;
-   public static int A = 0;
-   private static String[] ao = new String[]{"系统菜单内可进行动态NPC和小地图等设置", "按“3”键可打开角色物品栏", "按“1”键可查看周围玩家", "按“0”键可打开宠物栏", "按“7”键可打开地图", "按“9”键可打开社交栏", "按“*”键可打开聊天栏", "按“#”键可打开任务栏"};
-   private static bw_1 ap;
+   private static int[] an;              // 加载进度条位置和尺寸 [x, y, width, height]
+   public static int A = 0;              // 加载进度百分比（0-100）
+   private static String[] tips = new String[]{"系统菜单内可进行动态NPC和小地图等设置", "按“3”键可打开角色物品栏", "按“1”键可查看周围玩家", "按“0”键可打开宠物栏", "按“7”键可打开地图", "按“9”键可打开社交栏", "按“*”键可打开聊天栏", "按“#”键可打开任务栏"};
+   private static TextRender ap;               // 加载画面顶部提示文字的富文本渲染组件
    private static Random aq = new Random();
 
    public static void a(Graphics var0, int var1, int var2, int var3, int var4, int var5, int var6) {
@@ -91,7 +92,7 @@ public final class ca_1 {
       var0.drawString(var1, var2, var3, var4);
    }
 
-   public static void a(az_1 var0, bw_1 var1, String[] var2, String[] var3, boolean var4) {
+   public static void a(az_1 var0, TextRender var1, String[] var2, String[] var3, boolean var4) {
       C = 0;
       d = 0;
       e = 0;
@@ -192,7 +193,7 @@ public final class ca_1 {
       return 0;
    }
 
-   public static void a(Graphics var0, int var1, int var2, int var3, int var4, bw_1 var5, String[] var6, String[] var7) {
+   public static void a(Graphics var0, int var1, int var2, int var3, int var4, TextRender var5, String[] var6, String[] var7) {
       a((Graphics)var0, 0, var2, var3, var4);
       a((int[])D, 0, var2, var3, var4);
       if (var5 != null) {
@@ -314,19 +315,19 @@ public final class ca_1 {
       a(var0, 4);
       var0.drawRect(var1 + 2, var2 + 2, var3 - 5, var4 - 5);
       if (MainCanvas.y != null) {
-         var0.drawImage(MainCanvas.y.a, var1, var2, 20);
+         var0.drawImage(MainCanvas.y.pngImage, var1, var2, 20);
       }
 
       if (MainCanvas.z != null) {
-         var0.drawImage(MainCanvas.z.a, var1, var2 + var4 - MainCanvas.z.c, 20);
+         var0.drawImage(MainCanvas.z.pngImage, var1, var2 + var4 - MainCanvas.z.c, 20);
       }
 
       if (MainCanvas.w != null) {
-         var0.drawImage(MainCanvas.w.a, var1 + var3 - MainCanvas.w.b, var2, 20);
+         var0.drawImage(MainCanvas.w.pngImage, var1 + var3 - MainCanvas.w.b, var2, 20);
       }
 
       if (MainCanvas.x != null) {
-         var0.drawImage(MainCanvas.x.a, var1 + var3 - MainCanvas.x.b, var2 + var4 - MainCanvas.x.c, 20);
+         var0.drawImage(MainCanvas.x.pngImage, var1 + var3 - MainCanvas.x.b, var2 + var4 - MainCanvas.x.c, 20);
       }
 
    }
@@ -412,8 +413,8 @@ public final class ca_1 {
       var0.fillRect(var1 + 4, var2, 4, var3);
       var0.setColor(1152942);
       var0.fillRect(var1 + 5, var2, 2, var3);
-      var0.drawImage(MainCanvas.C.a, var1, var2, 20);
-      var0.drawImage(MainCanvas.D.a, var1, var2 + var3 - MainCanvas.D.c, 20);
+      var0.drawImage(MainCanvas.C.pngImage, var1, var2, 20);
+      var0.drawImage(MainCanvas.D.pngImage, var1, var2 + var3 - MainCanvas.D.c, 20);
       int var8 = 0;
       if (var6 == var7) {
          var4 = 0;
@@ -716,7 +717,7 @@ public final class ca_1 {
 
          X = Math.min(iMax, i6);
          if (i5 == 1) {
-            V = new bw_1(str, (short) (X - 8));
+            V = new TextRender(str, (short) (X - 8));
             Y = (t_1.j * V.a()) + 8;
          } else if (i5 == 2) {
             W = a(str.trim(), t_1.i, X - 8, "\t");
@@ -938,7 +939,7 @@ public final class ca_1 {
             if (var2.equals("")) {
                ae = null;
             } else {
-               ae = new bw_1(var2, (short)(X - 8));
+               ae = new TextRender(var2, (short)(X - 8));
             }
 
             if (var1 != null) {
@@ -1390,10 +1391,10 @@ public final class ca_1 {
       }
 
       if (MainCanvas.S != null && MainCanvas.S.length == 4) {
-         var0.drawImage(MainCanvas.S[0].a, af[0], af[1], 20);
-         var0.drawImage(MainCanvas.S[1].a, af[0] + q - MainCanvas.S[1].b, af[1], 20);
-         var0.drawImage(MainCanvas.S[2].a, af[0], af[1] + ag - MainCanvas.S[2].c, 20);
-         var0.drawImage(MainCanvas.S[3].a, af[0] + q - MainCanvas.S[3].b, af[1] + ag - MainCanvas.S[3].c, 20);
+         var0.drawImage(MainCanvas.S[0].pngImage, af[0], af[1], 20);
+         var0.drawImage(MainCanvas.S[1].pngImage, af[0] + q - MainCanvas.S[1].b, af[1], 20);
+         var0.drawImage(MainCanvas.S[2].pngImage, af[0], af[1] + ag - MainCanvas.S[2].c, 20);
+         var0.drawImage(MainCanvas.S[3].pngImage, af[0] + q - MainCanvas.S[3].b, af[1] + ag - MainCanvas.S[3].c, 20);
       }
 
    }
@@ -1425,21 +1426,21 @@ public final class ca_1 {
       }
 
       if (var3 && MainCanvas.X != null && MainCanvas.Y != null && MainCanvas.V != null && MainCanvas.W != null) {
-         var0.drawImage(MainCanvas.V.a, var5 + (140 - MainCanvas.V.b) / 2, var6 + 7 + t_1.j, 20);
-         a(aj[0], var5 + (140 - MainCanvas.V.b) / 2, var6 + 7 + t_1.j, MainCanvas.V.a.getWidth(), MainCanvas.V.a.getHeight());
-         var0.drawImage(MainCanvas.W.a, var5 + (140 - MainCanvas.V.b) / 2, var6 + 5 + (t_1.j << 1) + 14, 20);
-         a(aj[1], var5 + (140 - MainCanvas.V.b) / 2, var6 + 5 + (t_1.j << 1) + 14, MainCanvas.W.a.getWidth(), MainCanvas.W.a.getHeight());
-         var0.drawImage(MainCanvas.X.a, var5 + 5, var6 + 5 + t_1.j + 12, 20);
-         a(aj[2], var5 + 5, var6 + 5 + t_1.j + 12, MainCanvas.X.a.getWidth(), MainCanvas.X.a.getHeight());
-         var0.drawImage(MainCanvas.Y.a, var5 + 140 - 5 - MainCanvas.Y.b, var6 + 5 + t_1.j + 12, 20);
-         a(aj[3], var5 + 140 - 5 - MainCanvas.Y.b, var6 + 5 + t_1.j + 12, MainCanvas.Y.a.getWidth(), MainCanvas.Y.a.getHeight());
+         var0.drawImage(MainCanvas.V.pngImage, var5 + (140 - MainCanvas.V.b) / 2, var6 + 7 + t_1.j, 20);
+         a(aj[0], var5 + (140 - MainCanvas.V.b) / 2, var6 + 7 + t_1.j, MainCanvas.V.pngImage.getWidth(), MainCanvas.V.pngImage.getHeight());
+         var0.drawImage(MainCanvas.W.pngImage, var5 + (140 - MainCanvas.V.b) / 2, var6 + 5 + (t_1.j << 1) + 14, 20);
+         a(aj[1], var5 + (140 - MainCanvas.V.b) / 2, var6 + 5 + (t_1.j << 1) + 14, MainCanvas.W.pngImage.getWidth(), MainCanvas.W.pngImage.getHeight());
+         var0.drawImage(MainCanvas.X.pngImage, var5 + 5, var6 + 5 + t_1.j + 12, 20);
+         a(aj[2], var5 + 5, var6 + 5 + t_1.j + 12, MainCanvas.X.pngImage.getWidth(), MainCanvas.X.pngImage.getHeight());
+         var0.drawImage(MainCanvas.Y.pngImage, var5 + 140 - 5 - MainCanvas.Y.b, var6 + 5 + t_1.j + 12, 20);
+         a(aj[3], var5 + 140 - 5 - MainCanvas.Y.b, var6 + 5 + t_1.j + 12, MainCanvas.Y.pngImage.getWidth(), MainCanvas.Y.pngImage.getHeight());
       }
 
       if (MainCanvas.T != null && MainCanvas.U != null) {
-         var0.drawImage(MainCanvas.T.a, var5 + 5, var6 + var4 - 5 - MainCanvas.T.c, 20);
-         a(ak[0], var5 + 5, var6 + var4 - 5 - MainCanvas.T.c, MainCanvas.T.a.getWidth(), MainCanvas.T.a.getHeight());
-         var0.drawImage(MainCanvas.U.a, var5 + 140 - 5 - MainCanvas.U.b, var6 + var4 - 5 - MainCanvas.U.c, 20);
-         a(ak[1], var5 + 140 - 5 - MainCanvas.U.b, var6 + var4 - 5 - MainCanvas.U.c, MainCanvas.U.a.getWidth(), MainCanvas.U.a.getHeight());
+         var0.drawImage(MainCanvas.T.pngImage, var5 + 5, var6 + var4 - 5 - MainCanvas.T.c, 20);
+         a(ak[0], var5 + 5, var6 + var4 - 5 - MainCanvas.T.c, MainCanvas.T.pngImage.getWidth(), MainCanvas.T.pngImage.getHeight());
+         var0.drawImage(MainCanvas.U.pngImage, var5 + 140 - 5 - MainCanvas.U.b, var6 + var4 - 5 - MainCanvas.U.c, 20);
+         a(ak[1], var5 + 140 - 5 - MainCanvas.U.b, var6 + var4 - 5 - MainCanvas.U.c, MainCanvas.U.pngImage.getWidth(), MainCanvas.U.pngImage.getHeight());
       }
 
    }
@@ -1460,9 +1461,9 @@ public final class ca_1 {
    }
 
    public static void a(Graphics var0, String var1, int var2, int var3, int var4) {
-      var0.drawImage(MainCanvas.X.a, var2, var3 + 3, 20);
+      var0.drawImage(MainCanvas.X.pngImage, var2, var3 + 3, 20);
       c(var0, var2 + 12, var3, var4 - 24, t_1.j, 1);
-      var0.drawImage(MainCanvas.Y.a, var2 + var4 - 9, var3 + 3, 20);
+      var0.drawImage(MainCanvas.Y.pngImage, var2 + var4 - 9, var3 + 3, 20);
       a(var0, var1, var2 + var4 / 2, var3 + 3, 17, 16711639);
    }
 
@@ -1581,7 +1582,7 @@ public final class ca_1 {
       var0.fillRect(var1 + 1, var2 + 1, var3, 2);
       var0.setColor(var4 == 0 ? 10945027 : 230064);
       var0.fillRect(var1 + 1, var2 + 2, var3, 1);
-      var0.drawImage(MainCanvas.Z.a, var1, var2, 20);
+      var0.drawImage(MainCanvas.Z.pngImage, var1, var2, 20);
    }
 
    private static void a(int[] var0, int var1, int var2, int var3, int var4) {
@@ -1594,30 +1595,44 @@ public final class ca_1 {
 
    }
 
+   /** 初始化加载画面：设置进度条位置，重置进度，随机选择一条提示语创建富文本组件 */
    public static void a() {
-      an = new int[]{(t_1.b - 100) / 2, (t_1.c / 3 << 1) + 20, 100, 3};
-      A = 0;
-      ap = new bw_1(ao[f(1, 100) % 7], (short)(t_1.b - 20));
+      an = new int[]{(t_1.b - 100) / 2, (t_1.c / 3 << 1) + 20, 100, 3};  // 进度条 [x, y, w, h]
+      A = 0;  // 进度归零
+      // 从 ao 提示语数组中随机选一条，创建富文本渲染组件，最大宽度为屏幕宽-20
+      ap = new TextRender(tips[f(1, 100) % 7], (short)(t_1.b - 20));
    }
 
+   /**
+    * 绘制加载画面（前台渲染线程调用）。
+    * 由 MainCanvas.paint() 在 j==0 时通过 ca_1.a(var1, this.bf) 调用。
+    *
+    * 画面内容从上到下：
+    *   1. 顶部提示文字（ap 富文本组件绘制，如 "按"9"键可打开社交栏"）
+    *   2. 居中 "正在载入资源..." 白色文字
+    *   3. 进度条和百分比
+    *
+    * @param var0 Graphics 画布
+    * @param var1 进度条背景图片
+    */
    public static void a(Graphics var0, Image var1) {
       if (an != null && var1 != null) {
          var0.setColor(0);
-         var0.fillRect(0, 0, t_1.b, t_1.c);
+         var0.fillRect(0, 0, t_1.b, t_1.c);          // 黑色填充整个屏幕
          if (ap != null) {
-            ap.a(var0, t_1.b / 2, 20, 17);
+            ap.a(var0, t_1.b / 2, 20, 17);            // 顶部居中绘制提示文字（anchor=TOP|HCENTER）
          }
 
-         var0.setColor(16777215);
-         var0.drawString("正在载入资源...", t_1.b / 2, t_1.c / 2, 17);
-         var0.setColor(14459464);
-         var0.drawString(100 * A / 100 + "%", t_1.b / 2, an[1] + 10, 17);
-         var0.drawImage(var1, an[0] - 5, an[1] - 4, 20);
-         var0.setColor(16382066);
+         var0.setColor(16777215);                      // 白色
+         var0.drawString("正在载入资源...", t_1.b / 2, t_1.c / 2, 17);  // 屏幕中央
+         var0.setColor(14459464);                      // 浅蓝色
+         var0.drawString(100 * A / 100 + "%", t_1.b / 2, an[1] + 10, 17);  // 百分比数字
+         var0.drawImage(var1, an[0] - 5, an[1] - 4, 20);   // 进度条背景图
+         var0.setColor(16382066);                      // 进度条前景色1
          var0.fillRect(an[0], an[1], 100 * A / 100, 3);
-         var0.setColor(14459464);
+         var0.setColor(14459464);                      // 进度条前景色2（高光层）
          var0.fillRect(an[0], an[1] + 1, 100 * A / 100, 2);
-         A = ++A > 100 ? 100 : A;
+         A = ++A > 100 ? 100 : A;                     // 进度递增，上限100
       }
    }
 
@@ -1638,19 +1653,19 @@ public final class ca_1 {
       a(var0, 4);
       var0.drawRect(var1 - 2, var2 - 2, var3 + 3, var4 + 3);
       if (MainCanvas.y != null) {
-         var0.drawImage(MainCanvas.y.a, var1 - 4, var2 - 4, 20);
+         var0.drawImage(MainCanvas.y.pngImage, var1 - 4, var2 - 4, 20);
       }
 
       if (MainCanvas.z != null) {
-         var0.drawImage(MainCanvas.z.a, var1 - 4, var2 + var4 + 4 - MainCanvas.z.c, 20);
+         var0.drawImage(MainCanvas.z.pngImage, var1 - 4, var2 + var4 + 4 - MainCanvas.z.c, 20);
       }
 
       if (MainCanvas.w != null) {
-         var0.drawImage(MainCanvas.w.a, var1 + 4 + var3 - MainCanvas.w.b, var2 - 4, 20);
+         var0.drawImage(MainCanvas.w.pngImage, var1 + 4 + var3 - MainCanvas.w.b, var2 - 4, 20);
       }
 
       if (MainCanvas.x != null) {
-         var0.drawImage(MainCanvas.x.a, var1 + 4 + var3 - MainCanvas.x.b, var2 + var4 + 4 - MainCanvas.x.c, 20);
+         var0.drawImage(MainCanvas.x.pngImage, var1 + 4 + var3 - MainCanvas.x.b, var2 + var4 + 4 - MainCanvas.x.c, 20);
       }
 
    }

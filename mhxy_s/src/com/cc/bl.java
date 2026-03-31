@@ -31,7 +31,7 @@ public final class bl extends ar {
       this.a = var1.readUTF();
       super.e = var1.readUTF();
       this.b = var1.readUTF();
-      this.w = ca_1.a(var1.readByte());
+      this.w = LoadingPage.a(var1.readByte());
       var1.readShort();
       this.c = var1.readByte();
       this.n = var1.readByte();

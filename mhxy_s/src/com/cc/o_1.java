@@ -220,31 +220,31 @@ public final class o_1 {
                 }
             } else if (bt_1.kr != null && (this.c == 4 && this.d == 0 || this.c == 5 || this.c == 13) && bt_1.kr[this.b] > -1) {
                 if (bt_1.kr[this.b] == 0) {
-                    ca_1.a(this.j.aq.a + 10 + t_1.i.stringWidth("宝石:") + 12 + this.b * 17, this.j.aq.b + 45, new String[]{"镶嵌", "全部挖出"}, false);
+                    LoadingPage.a(this.j.aq.a + 10 + t_1.i.stringWidth("宝石:") + 12 + this.b * 17, this.j.aq.b + 45, new String[]{"镶嵌", "全部挖出"}, false);
                     this.a = this.b;
                     this.i.l = 1;
                     return;
                 }
 
-                ca_1.a(this.j.aq.a + 10 + t_1.i.stringWidth("宝石:") + 12 + this.b * 17, this.j.aq.b + 45, new String[]{"查看", "挖出", "全部挖出"}, false);
+                LoadingPage.a(this.j.aq.a + 10 + t_1.i.stringWidth("宝石:") + 12 + this.b * 17, this.j.aq.b + 45, new String[]{"查看", "挖出", "全部挖出"}, false);
                 this.a = this.b;
                 this.i.l = 2;
                 return;
             }
         } else if (this.i.l == 1) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
                     this.i.l = 0;
                     return;
                 }
             } else {
-                if (ca_1.o == 0) {
+                if (LoadingPage.o == 0) {
                     this.i.a((byte) 1, (byte[]) (new byte[]{30}));
                     return;
                 }
 
-                if (ca_1.o == 1) {
+                if (LoadingPage.o == 1) {
                     e = 1;
                     byte[] var6;
                     if ((var6 = bz_1.a((short) 4687, bt_1.ko, (byte) 2, this.c == 13 ? bt_1.jG : 0, 0, (byte) 0, "", bt_1.ad)) == null) {
@@ -258,12 +258,12 @@ public final class o_1 {
                 }
             }
         } else if (this.i.l == 2) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
                     this.i.l = 0;
                 }
-            } else if (ca_1.o == 0) {
+            } else if (LoadingPage.o == 0) {
                 if (this.c == 13) {
                     byte[] var7;
                     if ((var7 = bz_1.a((short) 4687, bt_1.ko, (byte) 0, bt_1.jG, 0, this.b, "", bt_1.ad)) == null) {
@@ -285,7 +285,7 @@ public final class o_1 {
                     MainCanvas.i.a(var16);
                     this.j.a((String) null);
                 }
-            } else if (ca_1.o == 1) {
+            } else if (LoadingPage.o == 1) {
                 e = 1;
                 if (this.c == 13) {
                     byte[] var9;
@@ -308,7 +308,7 @@ public final class o_1 {
                     MainCanvas.i.a(var18);
                     this.j.a((String) null);
                 }
-            } else if (ca_1.o == 2) {
+            } else if (LoadingPage.o == 2) {
                 e = 1;
                 byte[] var11;
                 if ((var11 = bz_1.a((short) 4687, bt_1.ko, (byte) 2, this.c == 13 ? bt_1.jG : 0, 0, (byte) 0, "", bt_1.ad)) == null) {
@@ -328,8 +328,8 @@ public final class o_1 {
         if (this.j.aq != null) {
             this.j.aq.a(30);
             this.j.aq.a(var1);
-            ca_1.a(var1, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, 30, 1);
-            ca_1.a(var1, (String) "宝石", (int) (this.j.aq.a + 10), this.j.aq.b + 35 + t_1.a(25), 20, 16776960, 0);
+            LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, 30, 1);
+            LoadingPage.a(var1, (String) "宝石", (int) (this.j.aq.a + 10), this.j.aq.b + 35 + t_1.a(25), 20, 16776960, 0);
         }
 
         if (bt_1.kr != null) {
@@ -337,7 +337,7 @@ public final class o_1 {
 
             for (byte var2 = 0; var2 < bt_1.kr.length; ++var2) {
                 if (bt_1.kr[var2] <= -1) {
-                    ca_1.a(var1, 125269879, 207, this.j.aq.a + 10 + t_1.i.stringWidth("宝石:") + 2 + var2 * 17, this.j.aq.b + 39, 17, 17);
+                    LoadingPage.a(var1, 125269879, 207, this.j.aq.a + 10 + t_1.i.stringWidth("宝石:") + 2 + var2 * 17, this.j.aq.b + 39, 17, 17);
                 }
 
                 if (bt_1.kr[var2] > 0) {
@@ -352,7 +352,7 @@ public final class o_1 {
         }
 
         if (this.i.l == 1 || this.i.l == 2) {
-            ca_1.c(var1);
+            LoadingPage.c(var1);
         }
 
     }
@@ -420,12 +420,12 @@ public final class o_1 {
                 return;
             }
         } else if (this.i.l == 1) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
                     this.i.l = 0;
                 }
-            } else if (ca_1.o == 0) {
+            } else if (LoadingPage.o == 0) {
                 this.i.e((int) 10);
                 return;
             }
@@ -439,7 +439,7 @@ public final class o_1 {
         }
 
         if (this.i.l == 1) {
-            ca_1.c(var1);
+            LoadingPage.c(var1);
         }
 
     }
@@ -711,7 +711,7 @@ public final class o_1 {
         }
 
         this.g();
-        ca_1.l = 0;
+        LoadingPage.l = 0;
         this.i.l = 0;
         this.j.j = this.j.k;
         this.i.j = this.i.k = 106;
@@ -746,7 +746,7 @@ public final class o_1 {
                             this.N = true;
                             this.i.a((byte) 0, (byte[]) (new byte[]{2}));
                         } else {
-                            ca_1.a(this.G[0][0] + 8, this.G[0][1] + 8, new String[]{"洗炼", "查看", "取出"}, false);
+                            LoadingPage.a(this.G[0][0] + 8, this.G[0][1] + 8, new String[]{"洗炼", "查看", "取出"}, false);
                             this.i.l = 1;
                         }
                     } else if (this.f == 1) {
@@ -755,7 +755,7 @@ public final class o_1 {
                         } else if (x == -1L) {
                             this.i.a((byte) 0, (byte[]) (new byte[]{5}));
                         } else {
-                            ca_1.a(this.G[1][0] + 8, this.G[1][1] + 8, new String[]{"取出"}, false);
+                            LoadingPage.a(this.G[1][0] + 8, this.G[1][1] + 8, new String[]{"取出"}, false);
                             this.i.l = 1;
                         }
                     } else if (this.O != null && this.f - 2 < this.O.length) {
@@ -777,7 +777,7 @@ public final class o_1 {
                         this.f = 0;
                     }
 
-                    ca_1.l = 0;
+                    LoadingPage.l = 0;
                     this.g();
                 }
             } else {
@@ -786,18 +786,18 @@ public final class o_1 {
                     this.f = this.G.length - 1;
                 }
 
-                ca_1.l = 0;
+                LoadingPage.l = 0;
                 this.g();
             }
         } else if (this.i.l == 1) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824) {
                 if (var1 == 536870912) {
-                    ca_1.l = 0;
+                    LoadingPage.l = 0;
                     this.g();
                     this.i.l = 0;
                 }
-            } else if (ca_1.o == 0) {
+            } else if (LoadingPage.o == 0) {
                 byte[] var4 = null;
                 if (this.f != 0) {
                     if (this.f == 1) {
@@ -827,7 +827,7 @@ public final class o_1 {
                 } else {
                     this.j.b("获取上传指令数据错误!");
                 }
-            } else if (ca_1.o == 1) {
+            } else if (LoadingPage.o == 1) {
                 if (this.i.aw && !this.N) {
                     bt_1.a(this.i.av);
                 } else if (this.i.aJ && !this.N) {
@@ -862,7 +862,7 @@ public final class o_1 {
                 }
 
                 this.i.O.a(0, (short) this.i.k, -1);
-            } else if (ca_1.o == 2) {
+            } else if (LoadingPage.o == 2) {
                 this.d();
                 this.a(true);
                 this.g();
@@ -892,7 +892,7 @@ public final class o_1 {
                     }
 
                     this.f = var4;
-                    ca_1.l = 0;
+                    LoadingPage.l = 0;
                     this.g();
                     return var1;
                 }
@@ -909,10 +909,10 @@ public final class o_1 {
         int var5 = (var4 = this.j.aq.a + 10) + var3 + 31;
         if (this.j.aq != null) {
             this.j.aq.a(var1);
-            ca_1.a(var1, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, this.H, 1);
-            ca_1.a(var1, this.j.aq.a + 5, this.j.aq.b + 32 + this.H + 1, this.j.aq.c - 11, this.I - 2, 1);
-            ca_1.a(var1, var4, var2, var3, this.J - 9, 1);
-            ca_1.a(var1, var5, var2, var3, this.J - 9, 1);
+            LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, this.H, 1);
+            LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32 + this.H + 1, this.j.aq.c - 11, this.I - 2, 1);
+            LoadingPage.a(var1, var4, var2, var3, this.J - 9, 1);
+            LoadingPage.a(var1, var5, var2, var3, this.J - 9, 1);
         }
 
         if (this.G != null) {
@@ -966,21 +966,21 @@ public final class o_1 {
             }
         }
 
-        ca_1.d(var1, this.G[this.f][0], this.G[this.f][1], 17, 17);
+        LoadingPage.d(var1, this.G[this.f][0], this.G[this.f][1], 17, 17);
         if (this.i.l == 0) {
             if (this.F != null || this.F != "") {
                 if (this.f == 1) {
-                    ca_1.b(var1, this.F, this.G[1][0] + 8, this.G[1][1] + 8, t_1.c - 5, 1);
+                    LoadingPage.b(var1, this.F, this.G[1][0] + 8, this.G[1][1] + 8, t_1.c - 5, 1);
                     return;
                 }
 
                 if (this.f == 0) {
-                    ca_1.b(var1, this.F, this.G[0][0] + 8, this.G[0][1] + 8, t_1.c - 5, 1);
+                    LoadingPage.b(var1, this.F, this.G[0][0] + 8, this.G[0][1] + 8, t_1.c - 5, 1);
                     return;
                 }
             }
         } else if (this.i.l == 1) {
-            ca_1.c(var1);
+            LoadingPage.c(var1);
         }
 
     }

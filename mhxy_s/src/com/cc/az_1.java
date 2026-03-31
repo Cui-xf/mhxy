@@ -54,7 +54,7 @@ public final class az_1 {
    private byte V = 0;
    private String W;
    public byte U = 0;
-   private bw_1 X;
+   private TextRender X;
    private int[] Y = null;
    private int Z = 0;
    private boolean aa = false;
@@ -172,7 +172,7 @@ public final class az_1 {
          this.U = var4;
          this.aa = false;
          this.Z = 0;
-         this.X = new bw_1(var7, (short)(var2 - 10));
+         this.X = new TextRender(var7, (short)(var2 - 10));
          if (this.X != null && this.X.a() != 0) {
             int var8 = t_1.j;
             this.Y = new int[4];
@@ -210,7 +210,7 @@ public final class az_1 {
                int var7 = this.Y[3];
                int var6 = var10003;
                var4 = var10001;
-               ca_1.a(var1, 1009050, 150, var4, var9, var6, var7);
+               LoadingPage.a(var1, 1009050, 150, var4, var9, var6, var7);
                if (this.Z >= 3) {
                   this.X.a(var1, this.Y[0] + 5, var9 + 5, 20);
                }

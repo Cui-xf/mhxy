@@ -143,15 +143,15 @@ public final class n_1 extends al {
          int var5 = 10 + t_1.i.stringWidth(this.c[var4]);
          ++this.k;
          if (var4 == this.a) {
-            ca_1.a(var1, this.e + var2, this.f, var5 - 1, this.b, 1);
-            ca_1.j[0] = this.e + var2 + 3;
-            ca_1.j[1] = this.f + this.b - 3;
-            ca_1.j[2] = var5 - 6;
+            LoadingPage.a(var1, this.e + var2, this.f, var5 - 1, this.b, 1);
+            LoadingPage.j[0] = this.e + var2 + 3;
+            LoadingPage.j[1] = this.f + this.b - 3;
+            LoadingPage.j[2] = var5 - 6;
          } else {
-            ca_1.a(var1, this.e + var2, this.f, var5 - 1, this.b, 2);
+            LoadingPage.a(var1, this.e + var2, this.f, var5 - 1, this.b, 2);
          }
 
-         ca_1.a(var1, this.c[var4], this.e + var2 + (var5 - 1) / 2, this.f + t_1.a(this.b), 17, var4 == this.a ? this.v : 5426130);
+         LoadingPage.a(var1, this.c[var4], this.e + var2 + (var5 - 1) / 2, this.f + t_1.a(this.b), 17, var4 == this.a ? this.v : 5426130);
          var2 += var5;
          var3 += var4 < this.c.length - 1 ? 10 + t_1.i.stringWidth(this.c[var4 + 1]) : 0;
       }
@@ -181,9 +181,9 @@ public final class n_1 extends al {
       }
 
       if (this.i) {
-         var1.setColor(ca_1.c);
+         var1.setColor(LoadingPage.c);
          var1.fillRect(this.e + var2 + 1, this.f + 2, 19, t_1.j - 2);
-         var1.setColor(ca_1.i);
+         var1.setColor(LoadingPage.i);
          var1.drawRect(this.e + var2, this.f + 1, 19, t_1.j - 2);
          int var10001 = this.e + var2 + 1;
          int var10002 = this.f + 1;
@@ -205,8 +205,8 @@ public final class n_1 extends al {
          this.q = var15;
          this.r = 9;
          this.s = var7;
-         ca_1.b(var1, this.a == 0 ? 2780801 : this.t, this.e + var2 + 3, this.f + t_1.j / 2, 6, 1);
-         ca_1.b(var1, this.a == this.c.length - 1 ? 2780801 : this.u, this.e + var2 + 16, this.f + t_1.j / 2, -6, 1);
+         LoadingPage.b(var1, this.a == 0 ? 2780801 : this.t, this.e + var2 + 3, this.f + t_1.j / 2, 6, 1);
+         LoadingPage.b(var1, this.a == this.c.length - 1 ? 2780801 : this.u, this.e + var2 + 16, this.f + t_1.j / 2, -6, 1);
       }
 
    }

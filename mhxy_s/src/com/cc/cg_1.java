@@ -181,7 +181,7 @@ public final class cg_1 {
 
    public final int a(int var1, int var2) {
       if (this.e.l == 1) {
-         return ca_1.c(var1, var2);
+         return LoadingPage.c(var1, var2);
       } else {
          int var3 = 0;
          if ((var3 = this.f.aq.b(var1, var2)) <= 0) {
@@ -263,7 +263,7 @@ public final class cg_1 {
       this.f.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.H.a(this.f.aq.a + 5, this.f.aq.b + 32 + this.G, this.f.aq.c - 11, this.G + 10);
       this.I.a(this.f.aq.a + 5, this.f.aq.b + 32 + 2 * this.G + 10, this.f.aq.c - 11, this.G + 10);
-      ca_1.l = 0;
+      LoadingPage.l = 0;
       this.e.l = 0;
       this.f.j = this.f.k;
       this.e.j = this.e.k = 131;
@@ -276,7 +276,7 @@ public final class cg_1 {
          var1 = 0;
          this.e.c((int)0, (int)this.e.aE, (int)this.e.aA);
          this.e.E();
-         ca_1.o = 3;
+         LoadingPage.o = 3;
          this.e.l = 1;
       }
 
@@ -297,7 +297,7 @@ public final class cg_1 {
 
          if (var1 == 8 || var1 == 2) {
             this.K = this.K == 1 ? 0 : 1;
-            ca_1.l = 0;
+            LoadingPage.l = 0;
             return;
          }
 
@@ -305,14 +305,14 @@ public final class cg_1 {
             if (var1 == 536870912) {
                this.e.c((int)0, (int)this.e.aE, (int)this.e.aA);
                this.e.E();
-               ca_1.o = 3;
+               LoadingPage.o = 3;
                this.e.l = 1;
                return;
             }
          } else {
             if (this.K == 0) {
                if (a != -1) {
-                  ca_1.a(t_1.b / 2, t_1.c / 2, new String[]{"继承", "更换"}, true);
+                  LoadingPage.a(t_1.b / 2, t_1.c / 2, new String[]{"继承", "更换"}, true);
                   this.e.l = 1;
                   return;
                }
@@ -324,7 +324,7 @@ public final class cg_1 {
             if (this.K == 1) {
                if (a != -1) {
                   if (k != -1) {
-                     ca_1.a(t_1.b / 2, t_1.c / 2, new String[]{"更换"}, true);
+                     LoadingPage.a(t_1.b / 2, t_1.c / 2, new String[]{"更换"}, true);
                      this.e.l = 1;
                      return;
                   }
@@ -345,7 +345,7 @@ public final class cg_1 {
             }
          }
       } else if (this.e.l == 1) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 == 536870912) {
             this.e.l = 0;
             return;
@@ -353,7 +353,7 @@ public final class cg_1 {
 
          if (var1 == 268435456 || var1 == 1073741824) {
             if (this.K == 0) {
-               if (ca_1.o == 0) {
+               if (LoadingPage.o == 0) {
                   if (a == -1 || k == -1) {
                      this.f.b("请先放入副宠");
                      return;
@@ -368,7 +368,7 @@ public final class cg_1 {
                   w var4 = new w((short)4691, var3);
                   MainCanvas.i.a(var4);
                   this.f.a((String)null);
-               } else if (ca_1.o == 1) {
+               } else if (LoadingPage.o == 1) {
                   bt_1.fw = null;
                   if (bt_1.fA != null && bt_1.fA.length > 0) {
                      var1 = 0;
@@ -400,7 +400,7 @@ public final class cg_1 {
                   this.f.b("您没有主宠可以选择");
                   return;
                }
-            } else if (this.K == 1 &&ca_1.o == 0) {
+            } else if (this.K == 1 && LoadingPage.o == 0) {
                c();
                if (bt_1.fw == null || bt_1.fw.length <= 0) {
                   this.f.b("您没有符合要求的副宠");
@@ -420,17 +420,17 @@ public final class cg_1 {
          this.f.aq.a(var1);
          this.H.a(var1);
          this.I.a(var1);
-         ca_1.a(var1, this.f.aq.a + 5, this.f.aq.b + 32, this.f.aq.c - 11, this.G, 1);
+         LoadingPage.a(var1, this.f.aq.a + 5, this.f.aq.b + 32, this.f.aq.c - 11, this.G, 1);
       }
 
-      ca_1.a(var1, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 50, 50, 1);
+      LoadingPage.a(var1, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 50, 50, 1);
       var1.setColor(2917024);
       var1.fillRect(this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 50, 50);
       var1.setColor(9360850);
       var1.drawRect(this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 49, 49);
       this.a(0, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 50, 50);
       this.a(1, this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 50, 50);
-      ca_1.d(var1, this.J[this.K][0], this.J[this.K][1], 50, 50);
+      LoadingPage.d(var1, this.J[this.K][0], this.J[this.K][1], 50, 50);
       if (a != -1 && this.h != null) {
          this.g.a(var1, (Frame1)this.h, (int[])null, 0, 0, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 0, 0);
       }
@@ -443,7 +443,7 @@ public final class cg_1 {
       }
 
       if (this.e.l == 1) {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
 
    }

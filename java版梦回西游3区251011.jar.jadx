@@ -4,7 +4,8 @@
     "java版梦回西游3区251011.jar"
   ],
   "treeExpansionsV2": [
-    "p:"
+    "c:bu",
+    "p:com.yinhan.kjava.main"
   ],
   "codeData": {
     "comments": [],
@@ -404,10 +405,10 @@
       "type": "class",
       "tabPath": "com.yinhan.kjava.main.a",
       "subPath": "java",
-      "caret": 122029,
+      "caret": 22205,
       "view": {
-        "x": 6,
-        "y": 55059
+        "x": 0,
+        "y": 10400
       },
       "active": false,
       "pinned": false,
@@ -419,10 +420,10 @@
       "type": "class",
       "tabPath": "bu",
       "subPath": "java",
-      "caret": 49085,
+      "caret": 7482,
       "view": {
         "x": 0,
-        "y": 20368
+        "y": 2502
       },
       "active": false,
       "pinned": false,
@@ -432,12 +433,12 @@
     },
     {
       "type": "class",
-      "tabPath": "ay",
+      "tabPath": "bf",
       "subPath": "java",
-      "caret": 2766,
+      "caret": 9410,
       "view": {
         "x": 0,
-        "y": 1126
+        "y": 3714
       },
       "active": true,
       "pinned": false,

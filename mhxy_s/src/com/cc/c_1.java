@@ -117,7 +117,7 @@ public final class c_1 extends al {
    }
 
    public final void a(String var1, int var2) {
-       ca_1.l = 0;
+       LoadingPage.l = 0;
       this.q = var1;
       this.y = (byte)var2;
    }
@@ -233,12 +233,12 @@ public final class c_1 extends al {
 
    public final void a(Graphics var1) {
       this.g = Math.min(this.h + this.z, (this.d - 8) / this.i);
-       ca_1.a(var1, 6014420);
+       LoadingPage.a(var1, 6014420);
       var1.setClip(0, 0, t_1.b, t_1.c);
       var1.fillRect(this.a, this.b, this.c, this.d);
-       ca_1.a(var1, this.a, this.b, this.c, this.d, 1);
+       LoadingPage.a(var1, this.a, this.b, this.c, this.d, 1);
       if (this.E) {
-          ca_1.a(var1);
+          LoadingPage.a(var1);
       }
 
       int var2 = 0;
@@ -249,7 +249,7 @@ public final class c_1 extends al {
       for(int var6 = this.e - this.z; var5 < this.g && var6 < this.h; ++var6) {
          var1.setClip(this.a, this.b, this.c, this.d);
          if (this.f == var6 + this.z) {
-             ca_1.a(var1, 9);
+             LoadingPage.a(var1, 9);
             var1.fillRect(this.a + 4, this.b + 4 + var5 * this.i, this.c - 11, this.i);
          }
 
@@ -285,8 +285,8 @@ public final class c_1 extends al {
             this.o = (short)(this.f == var6 + this.z ? this.n + var4 : 0);
             var1.setClip(this.a + 4 + this.A, this.b, this.c - 6 - this.A - 12, this.d);
             if (this.s != null && this.s[var6] != null) {
-               if ( ca_1.a(this.s[var6]) != -1) {
-                  var1.setColor(this.f == var6 + this.z ? 16777215 :  ca_1.a(this.s[var6]));
+               if ( LoadingPage.a(this.s[var6]) != -1) {
+                  var1.setColor(this.f == var6 + this.z ? 16777215 :  LoadingPage.a(this.s[var6]));
                   this.a(var1, this.s[var6].substring(3), this.a + 6 + this.A, this.b + 4 + var5 * this.i, this.o > this.a + this.c - 12);
                } else {
                   var1.setColor(this.f == var6 + this.z ? 16777215 : (this.x != null ? this.x[var6] : 2176196));
@@ -342,10 +342,10 @@ public final class c_1 extends al {
                this.j = this.g * (this.d - 16) / this.h > 6 ? this.g * (this.d - 16) / this.h : 6;
             }
 
-             ca_1.a(var1, this.a + this.c - 2 - MainCanvas.C.b, this.b + 3, this.d - 5, this.j, this.e, this.h, this.g - this.z);
+             LoadingPage.a(var1, this.a + this.c - 2 - MainCanvas.C.b, this.b + 3, this.d - 5, this.j, this.e, this.h, this.g - this.z);
          }
 
-          ca_1.b(var1, this.q, this.a + 5, this.b + (this.f - this.e + 1) * this.i, this.b + this.d, this.y);
+          LoadingPage.b(var1, this.q, this.a + 5, this.b + (this.f - this.e + 1) * this.i, this.b + this.d, this.y);
       }
 
    }

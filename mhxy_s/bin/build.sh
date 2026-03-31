@@ -23,6 +23,8 @@ PREVERIFY="${J2ME_HOME}/bin/preverify"
 JAVAC="${JAVA_HOME}/bin/javac"
 JAR="${JAVA_HOME}/bin/jar"
 
+RT_JAR="${JAVA_HOME}/jre/lib/rt.jar"
+
 # --- 检查工具是否存在 ---
 if [ ! -x "$JAVAC" ]; then
   echo "*** JDK not found: $JAVAC"
@@ -67,7 +69,7 @@ mkdir -p "${SCRIPT_DIR}/../classes"
 echo "*** Compiling source files ***"
 # Source files are UTF-8
 "$JAVAC" -encoding UTF-8 \
-  -bootclasspath "${CLDCAPI}:${MIDPAPI}" \
+  -bootclasspath "${CLDCAPI}:${MIDPAPI}:${RT_JAR}" \
   -source 1.4 -target 1.4 \
   -d "${SCRIPT_DIR}/../tmpclasses" \
   -classpath "${SCRIPT_DIR}/../tmpclasses" \
@@ -75,7 +77,7 @@ echo "*** Compiling source files ***"
 
 echo "*** Preverifying class files ***"
 "$PREVERIFY" \
-  -classpath "${CLDCAPI}:${MIDPAPI}:${SCRIPT_DIR}/../tmpclasses" \
+  -classpath "${CLDCAPI}:${MIDPAPI}:${RT_JAR}:${SCRIPT_DIR}/../tmpclasses" \
   -d "${SCRIPT_DIR}/../classes" \
   "${SCRIPT_DIR}/../tmpclasses"
 

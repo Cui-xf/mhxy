@@ -108,7 +108,7 @@ public final class q {
                   if (MainCanvas.e.k == 2 && MainCanvas.e.l == 4) {
                      String var48 = t_1.a(this.a.l, bt_1.aq);
                      t_1.a(this.a.l, bt_1.ap);
-                     MainCanvas.e.am = ca_1.a(bt_1.t[MainCanvas.e.af].b + ":已存入银两" + var48 + "，现有银两" + this.a.l.toString(), t_1.i, t_1.b == 176 ? 118 : 152, "\t");
+                     MainCanvas.e.am = LoadingPage.a(bt_1.t[MainCanvas.e.af].b + ":已存入银两" + var48 + "，现有银两" + this.a.l.toString(), t_1.i, t_1.b == 176 ? 118 : 152, "\t");
                      MainCanvas.e.ah = MainCanvas.e.m == 1 ? bt_1.aq : bt_1.ap;
                   } else if (MainCanvas.e.k == 37 && MainCanvas.e.ao) {
                      MainCanvas.e.p();
@@ -828,7 +828,7 @@ public final class q {
                   return;
                case 8273:
                   MainCanvas.e.J = this.b.readUTF();
-                  ca_1.h = 0;
+                  LoadingPage.h = 0;
                   if (!MainCanvas.e.c && MainCanvas.e.k != 0 && MainCanvas.e.k != 25) {
                      this.a.j = this.a.k = 7;
                      MainCanvas.e.N();
@@ -1453,7 +1453,7 @@ public final class q {
                   bt_1.nC[1] = this.b.readUTF();
                   bt_1.nC[2] = this.b.readUTF();
                   MainCanvas.e.l = 11;
-                  ca_1.h = 0;
+                  LoadingPage.h = 0;
                   this.a.j = this.a.k;
                   return;
                case 9216:
@@ -1963,7 +1963,7 @@ public final class q {
       }
 
       if (MainCanvas.e.k == 2) {
-         ao_1.K = new bw_1(bt_1.bH, (short)(t_1.b - 20));
+         ao_1.K = new TextRender(bt_1.bH, (short)(t_1.b - 20));
          if (bt_1.bE) {
             MainCanvas.e.an = new String[]{"接受", "返回"};
          } else if (bt_1.bK[MainCanvas.e.ai] == -1) {
@@ -1974,7 +1974,7 @@ public final class q {
             MainCanvas.e.an = new String[]{"提交", "返回"};
          }
 
-         ca_1.a(MainCanvas.F, ao_1.K, MainCanvas.e.an, (String[])null, true);
+         LoadingPage.a(MainCanvas.F, ao_1.K, MainCanvas.e.an, (String[])null, true);
          this.a.j = this.a.k;
          MainCanvas.e.l = 1;
       } else {

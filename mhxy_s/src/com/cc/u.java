@@ -60,7 +60,7 @@ public final class u extends bk {
 
    public final void a(Graphics var1) {
       var1.setClip(super.f, super.g, super.h, super.i);
-      ca_1.a(var1, (Image) MainCanvas.E.a, (short) MainCanvas.E.b, super.f, super.g, super.h, MainCanvas.E.c);
+      LoadingPage.a(var1, (Image) MainCanvas.E.pngImage, (short) MainCanvas.E.b, super.f, super.g, super.h, MainCanvas.E.c);
       if (this.d != null) {
          var1.setColor(this.a);
          var1.drawString(this.d, super.f + 3, super.g + (super.i - t_1.j) / 2, 20);

@@ -151,13 +151,13 @@ public final class y_1 extends bk {
       var1.setClip(super.f, super.g + 5, super.h, a.c);
 
       for(int var3 = 0; var3 < var2; ++var3) {
-         var1.drawImage(a.a, super.f + var3 * a.b, super.g + 5, 20);
+         var1.drawImage(a.pngImage, super.f + var3 * a.b, super.g + 5, 20);
       }
 
       var1.setClip(super.f, super.g, super.h, super.i);
-      var1.drawImage(b.a, super.f + super.h - b.b - 5, super.g + 6, 20);
+      var1.drawImage(b.pngImage, super.f + super.h - b.b - 5, super.g + 6, 20);
       if (this.m != null) {
-         ca_1.a(var1, (String)this.m, (int)this.n, this.o + (a.c - t_1.j) / 2, 0, this.l, 0);
+         LoadingPage.a(var1, (String)this.m, (int)this.n, this.o + (a.c - t_1.j) / 2, 0, this.l, 0);
       }
 
       var1.setColor(11267556);
@@ -174,8 +174,8 @@ public final class y_1 extends bk {
          var1.drawRect(super.f + var5, super.g + var5, super.h - var5 * 2 - 1, super.i - var5 * 2 - 1);
       }
 
-      var1.drawImage(c.a, super.f, super.g, 20);
-      var1.drawImage(d.a, super.f, super.g + super.i - d.c, 20);
-      var1.drawImage(e.a, super.f + super.h - e.b, super.g + super.i - e.c, 20);
+      var1.drawImage(c.pngImage, super.f, super.g, 20);
+      var1.drawImage(d.pngImage, super.f, super.g + super.i - d.c, 20);
+      var1.drawImage(e.pngImage, super.f + super.h - e.b, super.g + super.i - e.c, 20);
    }
 }

@@ -96,7 +96,7 @@ public final class cc {
             this.c.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
             this.e = t_1.j * 3 + 4;
             this.c.at.a(this.c.at.b, this.c.at.c, this.c.at.d, this.c.at.e - this.e - 2);
-            ao_1.K = new bw_1("当前排名：" + (this.h <= 0 ? "无" : "第" + this.h + "名") + "\t剩余挑战：" + this.i + "次\t当前积分：" + this.j, (short) (this.c.at.d - 20));
+            ao_1.K = new TextRender("当前排名：" + (this.h <= 0 ? "无" : "第" + this.h + "名") + "\t剩余挑战：" + this.i + "次\t当前积分：" + this.j, (short) (this.c.at.d - 20));
         }
 
         this.c.j = this.c.k;
@@ -138,13 +138,13 @@ public final class cc {
                 }
 
                 if ((var1 == 1073741824 || var1 == 517 || var1 == 268435456) && this.g >= 0 && this.g <= 3 && this.p != null && this.g < this.p.length) {
-                    ca_1.a(this.d[this.g][0] + 30, this.d[this.g][1] + 20, new String[]{"属性", "装备"}, false);
+                    LoadingPage.a(this.d[this.g][0] + 30, this.d[this.g][1] + 20, new String[]{"属性", "装备"}, false);
                     this.b.l = 1;
                     return;
                 }
             } else if (this.a == 1) {
                 if ((var1 == 268435456 || var1 == 1073741824 || var1 == 517) && this.c.ar.g() > 0) {
-                    ca_1.a(t_1.d / 3, this.c.ar.b() + 40, new String[]{"挑战", "属性", "装备"}, false);
+                    LoadingPage.a(t_1.d / 3, this.c.ar.b() + 40, new String[]{"挑战", "属性", "装备"}, false);
                     this.b.l = 1;
                     return;
                 }
@@ -161,7 +161,7 @@ public final class cc {
                 this.c.a((String) null);
             }
         } else if (this.b.l == 1) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
                     this.b.l = 0;
@@ -169,13 +169,13 @@ public final class cc {
                 }
             } else {
                 this.a = (short) this.c.as.a;
-                if (ca_1.o == 0 && this.a == 1) {
-                    ca_1.h = 0;
+                if (LoadingPage.o == 0 && this.a == 1) {
+                    LoadingPage.h = 0;
                     this.b.l = 2;
                     return;
                 }
 
-                if (ca_1.o == 1 && this.a == 1 || ca_1.o == 0 && this.a == 0) {
+                if (LoadingPage.o == 1 && this.a == 1 || LoadingPage.o == 0 && this.a == 0) {
                     this.a = (short) this.c.as.a;
                     String var8 = this.a == 0 ? this.p[this.g] : this.A[this.c.ar.g() - 1];
                     byte[] var4;
@@ -256,7 +256,7 @@ public final class cc {
             this.c.aq.a(var1);
             if (this.a == 0) {
                 for (int var2 = 0; var2 < this.d.length; ++var2) {
-                    ca_1.a(var1, (Image) null, this.d[var2][0], this.d[var2][1], this.d[var2][2], this.d[var2][3], var2 == this.g);
+                    LoadingPage.a(var1, (Image) null, this.d[var2][0], this.d[var2][1], this.d[var2][2], this.d[var2][3], var2 == this.g);
                     if (this.p != null && var2 < this.p.length) {
                         var1.setColor(65535);
                         var1.drawString(this.l[var2], this.d[var2][0] + (this.d[var2][2] - t_1.i.stringWidth(this.l[var2])) / 2, this.d[var2][1] + 4, 20);
@@ -266,17 +266,17 @@ public final class cc {
                     }
                 }
             } else if (this.a != 1 && this.a == 2) {
-                ca_1.a(var1, this.c.at.b, this.c.at.c + this.c.at.e + 1, this.c.at.d, this.e + 1, 1);
+                LoadingPage.a(var1, this.c.at.b, this.c.at.c + this.c.at.e + 1, this.c.at.d, this.e + 1, 1);
                 ao_1.K.a(var1, this.c.at.b + 10, this.c.at.c + this.c.at.e + 4, 0);
             }
 
             if (this.b.l == 1) {
-                ca_1.c(var1);
+                LoadingPage.c(var1);
                 return;
             }
 
             if (this.b.l == 2) {
-                ca_1.a(var1, "确定挑战该玩家?", new String[]{"确定", "取消"});
+                LoadingPage.a(var1, "确定挑战该玩家?", new String[]{"确定", "取消"});
                 return;
             }
 
@@ -329,7 +329,7 @@ public final class cc {
                 this.n[var3] = var1.readInt();
                 this.o[var3] = var1.readUTF();
                 this.p[var3] = var1.readUTF();
-                this.q[var3] = ca_1.a(var1.readInt());
+                this.q[var3] = LoadingPage.a(var1.readInt());
                 this.r[var3] = var1.readByte();
                 this.s[var3] = var1.readUTF();
                 this.t[var3] = var1.readByte();
@@ -362,7 +362,7 @@ public final class cc {
             this.w[0] = "排行";
             this.x[0] = "昵称";
             this.y[0] = "战力";
-            this.B[0] = ca_1.a(0);
+            this.B[0] = LoadingPage.a(0);
 
             for (int var5 = 0; var5 < var6; ++var5) {
                 this.w[var5 + 1] = var1.readShort() + "";
@@ -371,7 +371,7 @@ public final class cc {
                 this.z[var5] = var1.readUTF();
                 this.A[var5] = var1.readUTF();
                 int var4 = var1.readInt();
-                this.B[var5 + 1] = ca_1.a(var4 == 0 ? 15 : 5);
+                this.B[var5 + 1] = LoadingPage.a(var4 == 0 ? 15 : 5);
             }
         } else {
             this.w = null;

@@ -119,7 +119,7 @@ public final class v_1 {
          }
 
          if (a != null && (var1 == 268435456 || var1 == 1073741824 || var1 == 517)) {
-             ca_1.a(80 + t_1.f, t_1.j + 20 + this.i.ar.i() * t_1.j + t_1.g, new String[]{"查看"}, false);
+             LoadingPage.a(80 + t_1.f, t_1.j + 20 + this.i.ar.i() * t_1.j + t_1.g, new String[]{"查看"}, false);
             this.h.l = 1;
             this.h.aA = this.i.ar.h();
             this.h.aE = this.i.ar.g();
@@ -167,13 +167,13 @@ public final class v_1 {
             }
          }
       } else if (this.h.l == 1) {
-          ca_1.b(var1);
+          LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.h.l = 0;
                return;
             }
-         } else if ( ca_1.o == 0) {
+         } else if ( LoadingPage.o == 0) {
             var1 = a[this.i.ar.g()];
             byte[] var3;
             if ((var3 = bz_1.A((short)4859, bt_1.ad, var1)) == null) {
@@ -209,7 +209,7 @@ public final class v_1 {
          }
 
          if (this.h.l == 1) {
-             ca_1.c(var1);
+             LoadingPage.c(var1);
             return;
          }
       }
@@ -291,7 +291,7 @@ public final class v_1 {
          if (this.i.aq != null) {
             var2 = this.i.aq.a + 5;
             var3 = this.i.aq.b + this.i.aq.d - (2 * t_1.j + 16) - 6;
-             ca_1.a(var1, var2, var3, this.i.aq.c - 11, 2 * t_1.j + 16, 1);
+             LoadingPage.a(var1, var2, var3, this.i.aq.c - 11, 2 * t_1.j + 16, 1);
             this.i.aq.a(var1);
          }
 
@@ -306,7 +306,7 @@ public final class v_1 {
                this.m[0] = "同意(点击申请结婚)";
             }
 
-             ca_1.a(var1, (String)this.m[var5], (int)(var2 + 4), var3 + 5 + var5 * (t_1.j + 5), 20, this.d == var5 ? 16711680 : var4, 0);
+             LoadingPage.a(var1, (String)this.m[var5], (int)(var2 + 4), var3 + 5 + var5 * (t_1.j + 5), 20, this.d == var5 ? 16711680 : var4, 0);
          }
       }
 
@@ -391,7 +391,7 @@ public final class v_1 {
          if (this.i.aq != null) {
             var2 = this.i.aq.a + 5;
             var3 = this.i.aq.b + this.i.aq.d - (2 * t_1.j + 16) - 6;
-             ca_1.a(var1, var2, var3, this.i.aq.c - 11, 2 * t_1.j + 16, 1);
+             LoadingPage.a(var1, var2, var3, this.i.aq.c - 11, 2 * t_1.j + 16, 1);
             this.i.aq.a(var1);
          }
 
@@ -406,7 +406,7 @@ public final class v_1 {
                this.n[0] = "离婚(点击申请离婚)";
             }
 
-             ca_1.a(var1, (String)this.n[var5], (int)(var2 + 4), var3 + 5 + var5 * (t_1.j + 5), 20, this.g == var5 ? 16711680 : var4, 0);
+             LoadingPage.a(var1, (String)this.n[var5], (int)(var2 + 4), var3 + 5 + var5 * (t_1.j + 5), 20, this.g == var5 ? 16711680 : var4, 0);
          }
       }
 

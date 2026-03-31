@@ -236,8 +236,8 @@ public final class m_1 extends al {
 
       this.y = false;
       if (this.i != null && this.i != null) {
-         ca_1.a(var1, MainCanvas.v.a, MainCanvas.v.b, this.m, this.n, this.o, this.p);
-         var1.drawImage(MainCanvas.u.a, this.m + this.o - 5 - MainCanvas.u.b, this.n + 1, 20);
+         LoadingPage.a(var1, MainCanvas.v.pngImage, MainCanvas.v.b, this.m, this.n, this.o, this.p);
+         var1.drawImage(MainCanvas.u.pngImage, this.m + this.o - 5 - MainCanvas.u.b, this.n + 1, 20);
          int var10001 = this.m + this.o - 5 - MainCanvas.u.b;
          int var10002 = this.n + 1;
          short var8 = MainCanvas.u.c;
@@ -251,18 +251,18 @@ public final class m_1 extends al {
             this.q[3] = var8;
          }
 
-         int var2 = ca_1.a(this.i) != -1 ? ca_1.a(this.i) : this.h;
+         int var2 = LoadingPage.a(this.i) != -1 ? LoadingPage.a(this.i) : this.h;
          String var10 = this.i;
          if (var2 != this.h) {
-            if (ca_1.m == 2) {
+            if (LoadingPage.m == 2) {
                var10 = this.i.substring(4, this.i.length());
             } else {
                var10 = this.i.substring(3, this.i.length());
             }
          }
 
-         ca_1.a(var1, (String)var10, (int)(this.m + this.o / 2), this.n + t_1.a(MainCanvas.v.c), 17, var2, 0);
-         ca_1.a(var1, this.m, this.n + this.p, this.o);
+         LoadingPage.a(var1, (String)var10, (int)(this.m + this.o / 2), this.n + t_1.a(MainCanvas.v.c), 17, var2, 0);
+         LoadingPage.a(var1, this.m, this.n + this.p, this.o);
       }
 
       for(int var9 = 0; var9 < this.l.size(); ++var9) {
@@ -285,24 +285,24 @@ public final class m_1 extends al {
          }
       }
 
-      ca_1.a(var1, 2);
+      LoadingPage.a(var1, 2);
       var1.drawRect(this.a, this.b, this.c - 1, this.d - 1);
       var1.drawRect(this.a + 4, this.b + 4, this.c - 9, this.d - 9);
-      ca_1.a(var1, 3);
+      LoadingPage.a(var1, 3);
       var1.drawRect(this.a + 1, this.b + 1, this.c - 3, this.d - 3);
       var1.drawRect(this.a + 3, this.b + 3, this.c - 7, this.d - 7);
-      ca_1.a(var1, 4);
+      LoadingPage.a(var1, 4);
       var1.drawRect(this.a + 2, this.b + 2, this.c - 5, this.d - 5);
-      if (MainCanvas.r.a != null && this.k) {
-         var1.drawImage(MainCanvas.r.a, this.a, this.b, 20);
+      if (MainCanvas.r.pngImage != null && this.k) {
+         var1.drawImage(MainCanvas.r.pngImage, this.a, this.b, 20);
       }
 
-      if (MainCanvas.s.a != null) {
-         var1.drawImage(MainCanvas.s.a, this.a, this.b + this.d - MainCanvas.s.c, 20);
+      if (MainCanvas.s.pngImage != null) {
+         var1.drawImage(MainCanvas.s.pngImage, this.a, this.b + this.d - MainCanvas.s.c, 20);
       }
 
-      if (MainCanvas.t.a != null) {
-         var1.drawImage(MainCanvas.t.a, this.a + this.c - MainCanvas.t.b, this.b + this.d - MainCanvas.t.c, 20);
+      if (MainCanvas.t.pngImage != null) {
+         var1.drawImage(MainCanvas.t.pngImage, this.a + this.c - MainCanvas.t.b, this.b + this.d - MainCanvas.t.c, 20);
       }
 
       var1.setClip(this.a, this.b, this.c, this.d);

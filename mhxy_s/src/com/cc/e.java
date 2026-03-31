@@ -4,12 +4,12 @@ final class e {
    public String[] a;
    public int[] b;
 
-   public e(bw_1 var1, String[] var2, String[] var3) {
+   public e(TextRender var1, String[] var2, String[] var3) {
       this.a = var2;
       this.b = new int[var3.length];
 
       for(int var4 = 0; var4 < var3.length; ++var4) {
-         this.b[var4] = ca_1.a(Integer.parseInt(var3[var4]));
+         this.b[var4] = LoadingPage.a(Integer.parseInt(var3[var4]));
       }
 
    }

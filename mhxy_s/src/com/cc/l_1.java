@@ -147,20 +147,20 @@ public final class l_1 extends al {
 
    public final void a(Graphics var1) {
       if (this.a != null || this.b != null) {
-         ca_1.a(var1, (Image) MainCanvas.E.a, (short) MainCanvas.E.b, this.c, this.d, this.e, MainCanvas.E.c);
+         LoadingPage.a(var1, (Image) MainCanvas.E.pngImage, (short) MainCanvas.E.b, this.c, this.d, this.e, MainCanvas.E.c);
          var1.setFont(t_1.i);
          if (this.a != null) {
-            ca_1.a(var1, (String)this.a, (int)this.f, this.g + t_1.a(MainCanvas.E.c), 20, this.r, 0);
+            LoadingPage.a(var1, (String)this.a, (int)this.f, this.g + t_1.a(MainCanvas.E.c), 20, this.r, 0);
             this.a(var1, this.f - 5 - MainCanvas.Q.b, this.f + 5 + t_1.i.stringWidth(this.a), this.g + 4);
          } else {
             if (this.b != null) {
                if (this.b.length == 2) {
-                  ca_1.a(var1, (String)this.b[0], (int)this.f, this.g + t_1.a(MainCanvas.E.c), 20, this.r, 0);
-                  ca_1.a(var1, (String)this.b[1], (int)this.j, this.k + t_1.a(MainCanvas.E.c), 20, this.s, 0);
+                  LoadingPage.a(var1, (String)this.b[0], (int)this.f, this.g + t_1.a(MainCanvas.E.c), 20, this.r, 0);
+                  LoadingPage.a(var1, (String)this.b[1], (int)this.j, this.k + t_1.a(MainCanvas.E.c), 20, this.s, 0);
                } else if (this.b.length == 3) {
-                  ca_1.a(var1, (String)this.b[0], (int)this.f, this.g + t_1.a(MainCanvas.E.c), 20, this.r, 0);
-                  ca_1.a(var1, (String)this.b[1], (int)this.n, this.o + t_1.a(MainCanvas.E.c), 20, this.t, 0);
-                  ca_1.a(var1, (String)this.b[2], (int)this.j, this.k + t_1.a(MainCanvas.E.c), 20, this.s, 0);
+                  LoadingPage.a(var1, (String)this.b[0], (int)this.f, this.g + t_1.a(MainCanvas.E.c), 20, this.r, 0);
+                  LoadingPage.a(var1, (String)this.b[1], (int)this.n, this.o + t_1.a(MainCanvas.E.c), 20, this.t, 0);
+                  LoadingPage.a(var1, (String)this.b[2], (int)this.j, this.k + t_1.a(MainCanvas.E.c), 20, this.s, 0);
                }
 
                this.a(var1, this.f + t_1.i.stringWidth(this.b[0]) + 10, this.j - 10 - MainCanvas.P.b, this.g + 4);
@@ -172,8 +172,8 @@ public final class l_1 extends al {
 
    private void a(Graphics var1, int var2, int var3, int var4) {
       if (this.u) {
-         var1.drawImage(MainCanvas.Q.a, var2, var4, 20);
-         var1.drawImage(MainCanvas.P.a, var3, var4, 20);
+         var1.drawImage(MainCanvas.Q.pngImage, var2, var4, 20);
+         var1.drawImage(MainCanvas.P.pngImage, var3, var4, 20);
          this.v[0][0] = var2;
          this.v[0][1] = var4;
          this.v[0][2] = MainCanvas.Q.b;

@@ -29,7 +29,7 @@ public final class bp_1 extends ar {
       this.b = var2.readUTF();
       super.e = var2.readUTF();
       this.c = var2.readUTF();
-      this.n = ca_1.a(var2.readByte());
+      this.n = LoadingPage.a(var2.readByte());
       this.o = var2.readShort();
       this.p = var2.readByte();
       this.q = var2.readByte();

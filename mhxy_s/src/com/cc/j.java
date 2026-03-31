@@ -7,7 +7,7 @@ final class j {
       this.a = new int[var3.length];
 
       for(int var5 = 0; var5 < var3.length; ++var5) {
-         this.a[var5] = ca_1.a(Integer.parseInt(var3[var5]));
+         this.a[var5] = LoadingPage.a(Integer.parseInt(var3[var5]));
       }
 
    }

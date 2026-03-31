@@ -7,9 +7,9 @@ import javax.microedition.lcdui.Image;
 import java.io.UnsupportedEncodingException;
 
 public final class ai_1 {
-    public static final String[] a = new String[]{"sBIT", "IHDR", "PLTE", "tRNS", "IDAT"};
-    public static byte[] b = new byte[]{-119, 80, 78, 71, 13, 10, 26, 10};
-    public static byte[] c = new byte[]{0, 0, 0, 0, 73, 69, 78, 68, -82, 66, 96, -126};
+    public static final String[] pngChunks = new String[]{"sBIT", "IHDR", "PLTE", "tRNS", "IDAT"};
+    public static byte[] pngHeader = new byte[]{-119, 80, 78, 71, 13, 10, 26, 10};
+    public static byte[] pngEnd = new byte[]{0, 0, 0, 0, 73, 69, 78, 68, -82, 66, 96, -126};
     private int[] g = new int[2];
     private int[] h = new int[4];
     public static final byte[] skip = defaultByte();
@@ -132,11 +132,11 @@ public final class ai_1 {
     public final void a(Graphics var1, Frame0 var2, int[] var3, aj var4, int var5, int var6, int var7, int var8, int var9, int var10) {
         var7 -= var5;
         var8 -= var6;
-        if (var2 != null && var2.a != null) {
+        if (var2 != null && var2.pngImage != null) {
             if (var3 != null && var3[2] > 0 && var3[3] > 0) {
                 if (var4 == null) {
                     var1.setClip(var3[0] - var5, var3[1] - var6, var3[2], var3[3]);
-                    var1.drawRegion(var2.a, 0, 0, var2.b, var2.c, i[var10], var7, var8, var9);
+                    var1.drawRegion(var2.pngImage, 0, 0, var2.b, var2.c, i[var10], var7, var8, var9);
                 } else {
                     a(var2, this.h, var4);
                     short var15 = (short) this.h[0];
@@ -145,12 +145,12 @@ public final class ai_1 {
                     short var20 = (short) this.h[3];
                     if (var15 >= 0 && var15 + var19 <= var2.b && var18 >= 0 && var18 + var20 <= var2.c && var15 < var2.b && var18 < var2.c && var19 > 0 && var20 > 0) {
                         var1.setClip(var3[0] - var5, var3[1] - var6, var3[2], var3[3]);
-                        var1.drawRegion(var2.a, var15, var18, var19, var20, i[var10], var7, var8, var9);
+                        var1.drawRegion(var2.pngImage, var15, var18, var19, var20, i[var10], var7, var8, var9);
                         var1.setClip(this.p, this.q, this.r, this.s);
                     }
                 }
             } else if (var4 == null) {
-                var1.drawRegion(var2.a, 0, 0, var2.b, var2.c, i[var10], var7, var8, var9);
+                var1.drawRegion(var2.pngImage, 0, 0, var2.b, var2.c, i[var10], var7, var8, var9);
             } else {
                 a(var2, this.h, var4);
                 short var14 = (short) this.h[0];
@@ -158,7 +158,7 @@ public final class ai_1 {
                 short var12 = (short) this.h[2];
                 short var13 = (short) this.h[3];
                 if (var14 >= 0 && var14 + var12 <= var2.b && var11 >= 0 && var11 + var13 <= var2.c && var14 < var2.b && var11 < var2.c && var12 > 0 && var13 > 0) {
-                    var1.drawRegion(var2.a, var14, var11, var12, var13, i[var10], var7, var8, var9);
+                    var1.drawRegion(var2.pngImage, var14, var11, var12, var13, i[var10], var7, var8, var9);
                 }
             }
         }
@@ -296,7 +296,7 @@ public final class ai_1 {
             MainCanvas.f.m.drawImage(ao_1.A, this.j - ao_1.A.getWidth() >> 1, this.k - ao_1.A.getHeight() - 16 >> 1, 20);
         }
 
-        ca_1.a(this.m, 4017771, 159, 0, 0, this.j, this.k);
+        LoadingPage.a(this.m, 4017771, 159, 0, 0, this.j, this.k);
     }
 
     public final void a(aw var1, int var2, int var3, boolean var4, boolean var5, int var6) {
@@ -309,7 +309,7 @@ public final class ai_1 {
 
         this.a(var1, var2, var3, 0, 0, var4);
         if (var5) {
-            ca_1.a(this.m, var6, 175, 0, 0, this.j, this.k);
+            LoadingPage.a(this.m, var6, 175, 0, 0, this.j, this.k);
         }
 
     }
@@ -360,7 +360,7 @@ public final class ai_1 {
                 if (bt_1.t[var11] != null) {
                     if (ao_1.aW[3] == 0 && bt_1.t[var11].b != null) {
                         var1.setFont(t_1.i);
-                        ca_1.a(var1, (String) bt_1.t[var11].b, (int) (bt_1.t[var11].c - var3), bt_1.t[var11].d - (bt_1.t[var11].w == null ? 30 : bt_1.t[var11].w.j()) - t_1.j - var4, 17, 255, 16777215);
+                        LoadingPage.a(var1, (String) bt_1.t[var11].b, (int) (bt_1.t[var11].c - var3), bt_1.t[var11].d - (bt_1.t[var11].w == null ? 30 : bt_1.t[var11].w.j()) - t_1.j - var4, 17, 255, 16777215);
                     }
 
                     if (bt_1.t[var11].w != null && bt_1.t[var11].w.k != null && ao_1.aW[10] == 1) {

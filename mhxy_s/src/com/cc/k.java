@@ -25,8 +25,8 @@ public final class k {
    public byte[] f;
    private String r;
    private String s;
-   private bw_1 t = null;
-   private bw_1 u = null;
+   private TextRender t = null;
+   private TextRender u = null;
    private String v;
    public int[][] g;
    private int w;
@@ -162,7 +162,7 @@ public final class k {
    private void e() {
       this.t = null;
       if (this.o != null && !this.o.equals("")) {
-         this.t = new bw_1("<0>银两：</0><5></5>" + this.o + (this.o.equals("0") ? "" : "万"), (short)(t_1.d - 20));
+         this.t = new TextRender("<0>银两：</0><5></5>" + this.o + (this.o.equals("0") ? "" : "万"), (short)(t_1.d - 20));
       }
 
    }
@@ -170,7 +170,7 @@ public final class k {
    private void f() {
       this.u = null;
       if (this.r != null) {
-         this.u = new bw_1(this.r, (short)(t_1.d - 20));
+         this.u = new TextRender(this.r, (short)(t_1.d - 20));
       }
 
    }
@@ -262,7 +262,7 @@ public final class k {
       this.d();
       this.e();
       this.f();
-      ca_1.l = 0;
+      LoadingPage.l = 0;
       this.i.l = 0;
       this.j.j = this.j.k;
       this.i.j = this.i.k = 118;
@@ -282,7 +282,7 @@ public final class k {
                   this.a = this.a == 2 ? 0 : this.a + 1;
                }
 
-               ca_1.l = 0;
+               LoadingPage.l = 0;
                this.d();
                this.e();
                this.f();
@@ -293,7 +293,7 @@ public final class k {
                   this.a = this.a == 0 ? 2 : this.a - 1;
                }
 
-               ca_1.l = 0;
+               LoadingPage.l = 0;
                this.d();
                this.e();
                this.f();
@@ -303,7 +303,7 @@ public final class k {
                      if (this.c == -1) {
                         this.i.a((byte)0, (byte[])(new byte[]{7}));
                      } else {
-                        ca_1.a(this.g[this.a][0] + ao_1.x.b / 2, this.g[this.a][1] + ao_1.x.b / 2, new String[]{"合成", "查看", "取消"}, false);
+                        LoadingPage.a(this.g[this.a][0] + ao_1.x.b / 2, this.g[this.a][1] + ao_1.x.b / 2, new String[]{"合成", "查看", "取消"}, false);
                         this.i.l = 1;
                      }
                   } else if (this.a == 1) {
@@ -312,14 +312,14 @@ public final class k {
                      } else if (this.d == -1) {
                         this.i.a((byte)0, (byte[])(new byte[]{7}));
                      } else {
-                        ca_1.a(this.g[this.a][0] + ao_1.x.b / 2, this.g[this.a][1] + ao_1.x.b / 2, new String[]{"取出"}, false);
+                        LoadingPage.a(this.g[this.a][0] + ao_1.x.b / 2, this.g[this.a][1] + ao_1.x.b / 2, new String[]{"取出"}, false);
                         System.out.println("GameSys.goods.width:" + ao_1.x.b);
                         this.i.l = 1;
                      }
                   }
                } else if (this.b == 1) {
                   if (this.d(this.a) != -1) {
-                     ca_1.a(this.g[this.a + 2][0] + ao_1.x.b / 2, this.g[this.a + 2][1] + ao_1.x.b / 2, new String[]{"取出"}, false);
+                     LoadingPage.a(this.g[this.a + 2][0] + ao_1.x.b / 2, this.g[this.a + 2][1] + ao_1.x.b / 2, new String[]{"取出"}, false);
                      this.i.l = 1;
                   } else if (this.c != -1 && this.d != -1) {
                      this.i.a((byte)0, (byte[])(new byte[]{8}));
@@ -331,7 +331,7 @@ public final class k {
          } else {
             this.b = this.b == 0 ? 1 : 0;
             this.a = this.b == 0 ? 1 : 0;
-            ca_1.l = 0;
+            LoadingPage.l = 0;
             this.d();
             this.e();
             this.f();
@@ -346,16 +346,16 @@ public final class k {
             this.i.c((int)5);
          }
       } else if (this.i.l == 1) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824) {
             if (var1 == 536870912) {
-               ca_1.l = 0;
+               LoadingPage.l = 0;
                this.d();
                this.e();
                this.f();
                this.i.l = 0;
             }
-         } else if (ca_1.o == 0) {
+         } else if (LoadingPage.o == 0) {
             if (this.b == 1) {
                byte[] var2;
                if ((var2 = bz_1.a((byte)5, this.c, this.d, this.e, this.f, this.d(this.a), (byte)this.a, bt_1.ad)) != null) {
@@ -381,10 +381,10 @@ public final class k {
                   this.j.b("获取上传指令数据错误!");
                }
             }
-         } else if (ca_1.o == 1) {
+         } else if (LoadingPage.o == 1) {
             bt_1.a(e(this.c));
             this.i.O.a(0, (short)this.i.k, -1);
-         } else if (ca_1.o == 2) {
+         } else if (LoadingPage.o == 2) {
             this.a();
             this.c();
             this.d();
@@ -401,8 +401,8 @@ public final class k {
       short var2 = ao_1.x.b;
       if (this.j.aq != null) {
          this.j.aq.a(var1);
-         ca_1.a(var1, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, this.w, 1);
-         ca_1.a(var1, this.j.aq.a + 5, this.j.aq.b + 32 + this.w + 1, this.j.aq.c - 11, this.x - 2, 1);
+         LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, this.w, 1);
+         LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32 + this.w + 1, this.j.aq.c - 11, this.x - 2, 1);
       }
 
       int var3 = this.j.aq.a + t_1.i.stringWidth(this.h[0]) + 10;
@@ -429,7 +429,7 @@ public final class k {
             this.g[var5][3] = 17;
          }
 
-         var1.drawImage(ao_1.x.a, this.g[var5][0], this.g[var5][1], 20);
+         var1.drawImage(ao_1.x.pngImage, this.g[var5][0], this.g[var5][1], 20);
       }
 
       var1.setColor(255);
@@ -437,11 +437,11 @@ public final class k {
       var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] - var2 + (var2 - t_1.j) / 2, 20);
       Frame0 var13;
       if (this.c != -1 && (var13 = ao_1.b(this.k)) != null) {
-         var1.drawImage(var13.a, this.g[0][0] + 1, this.g[0][1] + 1, 20);
+         var1.drawImage(var13.pngImage, this.g[0][0] + 1, this.g[0][1] + 1, 20);
       }
 
       if (this.d != -1 && (var13 = ao_1.b(this.n)) != null) {
-         var1.drawImage(var13.a, this.g[1][0] + 1, this.g[1][1] + 1, 20);
+         var1.drawImage(var13.pngImage, this.g[1][0] + 1, this.g[1][1] + 1, 20);
       }
 
       if (this.p != null && this.p.length > 0) {
@@ -449,13 +449,13 @@ public final class k {
 
          for(int var12 = 0; var12 < this.p.length; ++var12) {
             if ((var13 = ao_1.b(this.p[var12])) != null) {
-               var1.drawImage(var13.a, this.g[2 + this.f[var12]][0] + 1, this.g[2 + this.f[var12]][1] + 1, 20);
+               var1.drawImage(var13.pngImage, this.g[2 + this.f[var12]][0] + 1, this.g[2 + this.f[var12]][1] + 1, 20);
             }
          }
       }
 
       int var17 = this.a + (this.b << 1);
-      ca_1.d(var1, this.g[var17][0], this.g[var17][1], 17, 17);
+      LoadingPage.d(var1, this.g[var17][0], this.g[var17][1], 17, 17);
       if (this.t != null) {
          try {
             this.t.a(var1, this.j.aq.a + 5 + 6, this.j.aq.b + this.w + 8, 0);
@@ -474,14 +474,14 @@ public final class k {
 
       if (this.i.l == 0 && (this.v != null || this.v != "")) {
          if ((this.b != 0 || this.a != 1) && this.b == 1) {
-            ca_1.b(var1, this.v, this.g[this.a + 2][0] + ao_1.x.b / 2, this.g[this.a + 2][1] + ao_1.x.b / 2, t_1.c - 5, 1);
+            LoadingPage.b(var1, this.v, this.g[this.a + 2][0] + ao_1.x.b / 2, this.g[this.a + 2][1] + ao_1.x.b / 2, t_1.c - 5, 1);
          } else {
-            ca_1.b(var1, this.v, this.g[this.a][0] + ao_1.x.b / 2, this.g[this.a][1] + ao_1.x.b / 2, t_1.c - 5, 1);
+            LoadingPage.b(var1, this.v, this.g[this.a][0] + ao_1.x.b / 2, this.g[this.a][1] + ao_1.x.b / 2, t_1.c - 5, 1);
          }
       }
 
       if (this.i.l == 1) {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
 
    }

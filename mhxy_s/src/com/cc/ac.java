@@ -204,11 +204,11 @@ public final class ac extends ar {
          var2.a(var1, (Frame1)super.g, (int[])null, var3, var4, super.j + 8, super.k + 16, 20, 0);
          if (bt_1.ag != null) {
             this.w = bt_1.ag;
-           ca_1.a(var1, (String)this.w, (int)(super.j + 8 - var3), super.k - var4 - t_1.j- super.g.j() + 16, 17, bt_1.bs >= 0 ? '\uff00' : bt_1.ai, 0);
+           LoadingPage.a(var1, (String)this.w, (int)(super.j + 8 - var3), super.k - var4 - t_1.j- super.g.j() + 16, 17, bt_1.bs >= 0 ? '\uff00' : bt_1.ai, 0);
          }
 
          if (bt_1.ah != null && !bt_1.ah.equals("")) {
-           ca_1.a(var1, bt_1.ah, super.j + 8 - var3, super.k - var4 - (t_1.j<< 1) - super.g.j() + 16, 17, bt_1.bs >= 0 ? '\uff00' : bt_1.ai);
+           LoadingPage.a(var1, bt_1.ah, super.j + 8 - var3, super.k - var4 - (t_1.j<< 1) - super.g.j() + 16, 17, bt_1.bs >= 0 ? '\uff00' : bt_1.ai);
          }
 
          if (bt_1.bs == 1) {

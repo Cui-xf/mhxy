@@ -11,7 +11,7 @@ public final class ch {
    private MainCanvas d;
    private ai_1 e;
    private String f;
-   private bw_1 g;
+   private TextRender g;
    private static int h;
    private static String i;
    private static short j;
@@ -141,7 +141,7 @@ public final class ch {
    private void e() {
       this.g = null;
       if (u != null) {
-         this.g = new bw_1(u, (short)t_1.i.stringWidth(u));
+         this.g = new TextRender(u, (short)t_1.i.stringWidth(u));
       }
 
    }
@@ -205,7 +205,7 @@ public final class ch {
          }
       }
 
-      ca_1.l = 0;
+      LoadingPage.l = 0;
       this.c.l = 0;
       this.d.j = this.d.k;
       this.c.j = this.c.k = 102;
@@ -232,7 +232,7 @@ public final class ch {
                this.b();
             }
 
-            ca_1.l = 0;
+            LoadingPage.l = 0;
             return;
          }
 
@@ -243,7 +243,7 @@ public final class ch {
                this.b();
             }
 
-            ca_1.l = 0;
+            LoadingPage.l = 0;
             return;
          }
 
@@ -276,7 +276,7 @@ public final class ch {
                   return;
                }
 
-               ca_1.a(this.d.aq.a + 24, this.d.aq.b + 49, new String[]{"升星", "查看", "取出"}, false);
+               LoadingPage.a(this.d.aq.a + 24, this.d.aq.b + 49, new String[]{"升星", "查看", "取出"}, false);
                this.c.l = 1;
                return;
             }
@@ -310,12 +310,12 @@ public final class ch {
             }
          }
       } else if (this.c.l == 1) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824) {
             if (var1 == 536870912) {
                this.c.l = 0;
             }
-         } else if (ca_1.o == 0) {
+         } else if (LoadingPage.o == 0) {
             if (q[0]) {
                var1 = 0;
             } else if (q[1]) {
@@ -354,7 +354,7 @@ public final class ch {
             MainCanvas.i.a(var13);
             this.d.a((String)null);
          } else {
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                if (this.c.aw && !this.A) {
                   bt_1.a(this.c.av);
                } else if (this.c.aJ && !this.A) {
@@ -393,7 +393,7 @@ public final class ch {
                return;
             }
 
-            if (ca_1.o == 2) {
+            if (LoadingPage.o == 2) {
                a();
                this.d();
                this.b();
@@ -409,9 +409,9 @@ public final class ch {
    public final void a(Graphics var1) {
       if (this.d.aq != null) {
          this.d.aq.a(var1);
-         ca_1.a(var1, this.d.aq.a + 5, this.d.aq.b + 32, (this.d.aq.c - 11) / 2, this.w, 1);
-         ca_1.a(var1, this.d.aq.a + 5, this.d.aq.b + 32 + this.w + 1, (this.d.aq.c - 11) / 2, this.x - 2, 1);
-         ca_1.a(var1, this.d.aq.a + 5 + (this.d.aq.c - 11) / 2, this.d.aq.b + 32, (this.d.aq.c - 10) / 2, this.d.aq.d - 62, 1);
+         LoadingPage.a(var1, this.d.aq.a + 5, this.d.aq.b + 32, (this.d.aq.c - 11) / 2, this.w, 1);
+         LoadingPage.a(var1, this.d.aq.a + 5, this.d.aq.b + 32 + this.w + 1, (this.d.aq.c - 11) / 2, this.x - 2, 1);
+         LoadingPage.a(var1, this.d.aq.a + 5 + (this.d.aq.c - 11) / 2, this.d.aq.b + 32, (this.d.aq.c - 10) / 2, this.d.aq.d - 62, 1);
       }
 
       if (this.a != null) {
@@ -449,7 +449,7 @@ public final class ch {
          this.e.a(var1, ao_1.b(j), (int[])null, (aj)null, 0, 0, this.a[0][0], this.a[0][1], 0, 0);
       }
 
-      ca_1.d(var1, this.a[this.b][0], this.a[this.b][1], 17, 17);
+      LoadingPage.d(var1, this.a[this.b][0], this.a[this.b][1], 17, 17);
       if (h != -1) {
          double var4;
          if ((var4 = l + 0.001) > (double)1.0F) {
@@ -470,11 +470,11 @@ public final class ch {
 
       if (this.c.l == 0) {
          if (this.b == 0 && (this.f != null || this.f != "")) {
-            ca_1.b(var1, this.f, this.d.aq.a + 5 + 2, this.d.aq.b + 32 + 8 + ao_1.x.c, t_1.c - 5, 1);
+            LoadingPage.b(var1, this.f, this.d.aq.a + 5 + 2, this.d.aq.b + 32 + 8 + ao_1.x.c, t_1.c - 5, 1);
             return;
          }
       } else if (this.c.l == 1) {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
 
    }

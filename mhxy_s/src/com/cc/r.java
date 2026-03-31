@@ -25,7 +25,7 @@ public final class r {
    public byte[] f;
    private String r;
    private String s;
-   private bw_1 t = null;
+   private TextRender t = null;
    private String u;
    public int[][] g;
    private int v;
@@ -165,7 +165,7 @@ public final class r {
          var1.append(this.o == null ? "" : this.o);
          var1.append("\t");
          var1.append(this.r == null ? "无幸运加成" : this.r);
-         this.t = new bw_1(var1.toString(), (short)(t_1.d - 20));
+         this.t = new TextRender(var1.toString(), (short)(t_1.d - 20));
       }
 
    }
@@ -245,7 +245,7 @@ public final class r {
       this.j.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a();
       this.e();
-      ca_1.l = 0;
+      LoadingPage.l = 0;
       this.i.l = 0;
       this.j.j = this.j.k;
       this.i.j = this.i.k = 110;
@@ -265,7 +265,7 @@ public final class r {
                   this.a = this.a == 2 ? 0 : this.a + 1;
                }
 
-               ca_1.l = 0;
+               LoadingPage.l = 0;
                this.a();
                this.e();
             } else if (var1 == 8) {
@@ -275,7 +275,7 @@ public final class r {
                   this.a = this.a == 0 ? 2 : this.a - 1;
                }
 
-               ca_1.l = 0;
+               LoadingPage.l = 0;
                this.a();
                this.e();
             } else if (var1 != 268435456 && var1 != 1073741824) {
@@ -301,7 +301,7 @@ public final class r {
                      this.x = true;
                      this.i.a((byte)0, (byte[])(new byte[]{0}));
                   } else {
-                     ca_1.a(this.j.aq.a + t_1.k * 3 + 29, this.j.aq.b + 49, new String[]{"附魔", "查看", "取出"}, false);
+                     LoadingPage.a(this.j.aq.a + t_1.k * 3 + 29, this.j.aq.b + 49, new String[]{"附魔", "查看", "取出"}, false);
                      this.i.l = 1;
                   }
                } else if (this.a == 1) {
@@ -310,13 +310,13 @@ public final class r {
                   } else if (this.d == -1L) {
                      this.i.a((byte)0, (byte[])(new byte[]{3}));
                   } else {
-                     ca_1.a(this.j.aq.c - 3 * ao_1.x.b - 21, this.j.aq.b + 49, new String[]{"取出"}, false);
+                     LoadingPage.a(this.j.aq.c - 3 * ao_1.x.b - 21, this.j.aq.b + 49, new String[]{"取出"}, false);
                      this.i.l = 1;
                   }
                }
             } else if (this.b == 1) {
                if (this.d(this.a) != -1) {
-                  ca_1.a(this.j.aq.c - 10 - ao_1.x.b - (this.a + 2 * (1 - this.a)) * (ao_1.x.b + 10) - ca_1.q / 2 + 9, this.j.aq.b + ao_1.x.c + 69, new String[]{"取出"}, false);
+                  LoadingPage.a(this.j.aq.c - 10 - ao_1.x.b - (this.a + 2 * (1 - this.a)) * (ao_1.x.b + 10) - LoadingPage.q / 2 + 9, this.j.aq.b + ao_1.x.c + 69, new String[]{"取出"}, false);
                   this.i.l = 1;
                } else if (this.c != -1 && this.d != -1L) {
                   this.i.a((byte)0, (byte[])(new byte[]{4}));
@@ -327,20 +327,20 @@ public final class r {
          } else {
             this.b = this.b == 0 ? 1 : 0;
             this.a = this.b == 0 ? 1 : 0;
-            ca_1.l = 0;
+            LoadingPage.l = 0;
             this.a();
             this.e();
          }
       } else if (this.i.l == 1) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824) {
             if (var1 == 536870912) {
-               ca_1.l = 0;
+               LoadingPage.l = 0;
                this.a();
                this.e();
                this.i.l = 0;
             }
-         } else if (ca_1.o == 0) {
+         } else if (LoadingPage.o == 0) {
             if (this.b == 1) {
                byte[] var4;
                if ((var4 = bz_1.a((short)4262, this.c, this.d, (byte)2, this.e, this.f, this.d(this.a), (byte)this.a, bt_1.ad)) != null) {
@@ -366,7 +366,7 @@ public final class r {
                   this.j.b("获取上传指令数据错误!");
                }
             }
-         } else if (ca_1.o == 1) {
+         } else if (LoadingPage.o == 1) {
             if (this.i.aw && !this.x) {
                bt_1.a(this.i.av);
             } else if (this.i.aJ && !this.x) {
@@ -401,7 +401,7 @@ public final class r {
             }
 
             this.i.O.a(0, (short)this.i.k, -1);
-         } else if (ca_1.o == 2) {
+         } else if (LoadingPage.o == 2) {
             this.b();
             this.a();
             this.d();
@@ -417,8 +417,8 @@ public final class r {
       short var2 = ao_1.x.b;
       if (this.j.aq != null) {
          this.j.aq.a(var1);
-         ca_1.a(var1, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, this.v, 1);
-         ca_1.a(var1, this.j.aq.a + 5, this.j.aq.b + 32 + this.v + 1, this.j.aq.c - 11, this.w - 2, 1);
+         LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, this.v, 1);
+         LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32 + this.v + 1, this.j.aq.c - 11, this.w - 2, 1);
       }
 
       int var3 = this.j.aq.a + t_1.i.stringWidth("装备孔") + 10;
@@ -442,7 +442,7 @@ public final class r {
             this.g[var5][3] = 17;
          }
 
-         var1.drawImage(ao_1.x.a, this.g[var5][0], this.g[var5][1], 20);
+         var1.drawImage(ao_1.x.pngImage, this.g[var5][0], this.g[var5][1], 20);
       }
 
       var1.setColor(255);
@@ -451,11 +451,11 @@ public final class r {
       var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] + (var2 - t_1.j) / 2, 24);
       Frame0 var11;
       if (this.c != -1 && (var11 = ao_1.b(this.k)) != null) {
-         var1.drawImage(var11.a, this.g[0][0], this.g[0][1], 20);
+         var1.drawImage(var11.pngImage, this.g[0][0], this.g[0][1], 20);
       }
 
       if (this.d != -1L && (var11 = ao_1.b(this.n)) != null) {
-         var1.drawImage(var11.a, this.g[1][0], this.g[1][1], 20);
+         var1.drawImage(var11.pngImage, this.g[1][0], this.g[1][1], 20);
       }
 
       if (this.p != null && this.p.length > 0) {
@@ -463,13 +463,13 @@ public final class r {
 
          for(int var10 = 0; var10 < this.p.length; ++var10) {
             if ((var11 = ao_1.b(this.p[var10])) != null) {
-               var1.drawImage(var11.a, this.g[2 + this.f[var10]][0], this.g[2 + this.f[var10]][1], 20);
+               var1.drawImage(var11.pngImage, this.g[2 + this.f[var10]][0], this.g[2 + this.f[var10]][1], 20);
             }
          }
       }
 
       int var15 = this.a + (this.b << 1);
-      ca_1.d(var1, this.g[var15][0], this.g[var15][1], 17, 17);
+      LoadingPage.d(var1, this.g[var15][0], this.g[var15][1], 17, 17);
       if (this.r != null || this.o != null) {
          this.t.a(var1, this.j.aq.a + 5 + 6, this.j.aq.b + 32 + this.v + 1 + 3, 0);
       }
@@ -477,20 +477,20 @@ public final class r {
       if (this.i.l == 0) {
          if (this.u != null || this.u != "") {
             if (this.b == 0 && this.a == 1) {
-               ca_1.b(var1, this.u, this.j.aq.c - 10 - ao_1.x.b - 2 * (ao_1.x.b + 10) - 6 - t_1.i.stringWidth("装备孔"), this.j.aq.b + 32 + 8 + ao_1.x.c, t_1.c - 5, 1);
+               LoadingPage.b(var1, this.u, this.j.aq.c - 10 - ao_1.x.b - 2 * (ao_1.x.b + 10) - 6 - t_1.i.stringWidth("装备孔"), this.j.aq.b + 32 + 8 + ao_1.x.c, t_1.c - 5, 1);
                return;
             }
 
             if (this.b == 1) {
-               ca_1.b(var1, this.u, this.j.aq.c - (ao_1.x.b + 10) * 3, this.j.aq.b + 32 + 8 + 10 + (ao_1.x.c << 1), t_1.c - 5, 1);
+               LoadingPage.b(var1, this.u, this.j.aq.c - (ao_1.x.b + 10) * 3, this.j.aq.b + 32 + 8 + 10 + (ao_1.x.c << 1), t_1.c - 5, 1);
                return;
             }
 
-            ca_1.b(var1, this.u, this.j.aq.a + 5 + 2, this.j.aq.b + 32 + 8 + ao_1.x.c, t_1.c - 5, 1);
+            LoadingPage.b(var1, this.u, this.j.aq.a + 5 + 2, this.j.aq.b + 32 + 8 + ao_1.x.c, t_1.c - 5, 1);
             return;
          }
       } else if (this.i.l == 1) {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
 
    }

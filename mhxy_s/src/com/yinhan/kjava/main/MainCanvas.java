@@ -17,10 +17,10 @@ import com.cc.be_1;
 import com.cc.bo_1;
 import com.cc.bs;
 import com.cc.bt_1;
-import com.cc.bw_1;
+import com.cc.TextRender;
 import com.cc.bz_1;
 import com.cc.c_1;
-import com.cc.ca_1;
+import com.cc.LoadingPage;
 import com.cc.l_1;
 import com.cc.m_1;
 import com.cc.n_1;
@@ -130,7 +130,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
     private long aQ;
     private boolean aR;
     private String aS;
-    private bw_1 aT;
+    private TextRender aT;
     private boolean aU;
     private int aV;
     private int aW;
@@ -593,7 +593,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                             if (this.al >= 520L) {
                                 this.al = 0L;
                                 this.be = null;
-                                ca_1.a();
+                                LoadingPage.a();
                                 this.k = this.j = 0;
                                 new b_3(this, bK);
                             }
@@ -604,7 +604,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                                     if (this.a != 4 && this.a != 520 && this.a != 2 && this.a != 518) {
                                         if (this.a != 268435456 && this.a != 1073741824 && this.a != 517) {
                                             if (this.a == 536870912 && t_1.a == 1) {
-                                                ca_1.h = 0;
+                                                LoadingPage.h = 0;
                                                 this.k = this.j = 16;
                                             }
                                         } else if (t_1.a == 0) {
@@ -679,7 +679,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                         case 16:
                             if (this.a == 268435456) {
                                 if (!t_1.y && !t_1.B && !t_1.D) {
-                                    ca_1.h = 0;
+                                    LoadingPage.h = 0;
                                     this.k = this.j = 17;
                                 } else {
                                     this.aJ = false;
@@ -724,10 +724,10 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                                         this.c(aI);
                                     }
                                 } else {
-                                    ca_1.e = ca_1.e + ca_1.d < ao_1.K.a() ? ca_1.e + ca_1.d : ca_1.e;
+                                    LoadingPage.e = LoadingPage.e + LoadingPage.d < ao_1.K.a() ? LoadingPage.e + LoadingPage.d : LoadingPage.e;
                                 }
                             } else {
-                                ca_1.e = ca_1.e - ca_1.d >= 0 ? ca_1.e - ca_1.d : 0;
+                                LoadingPage.e = LoadingPage.e - LoadingPage.d >= 0 ? LoadingPage.e - LoadingPage.d : 0;
                             }
 
                             this.a = 0;
@@ -778,12 +778,12 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
             var1.setClip(0, 0, t_1.b, t_1.c);
             var1.setFont(t_1.i);
             if (this.p) {
-                ca_1.b(var1);
+                LoadingPage.b(var1);
             } else {
                 if (this.aJ) {
                     switch (this.j) {
-                        case 0:
-                            ca_1.a(var1, this.bf);
+                        case 0:  // 加载阶段：绘制加载画面（提示文字 + "正在载入资源..." + 进度条）
+                            LoadingPage.a(var1, this.bf);
                             return;
                         case 1:
                             if (e != null) {
@@ -800,7 +800,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                                 this.d(var1);
                             }
 
-                            ca_1.b(var1);
+                            LoadingPage.b(var1);
                             return;
                         case 2:
                             if (this.aS != null && this.aS.startsWith("系统异常")) {
@@ -827,25 +827,25 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                             this.c(var1);
                             if (this.aq != null) {
                                 this.aq.a(var1);
-                                ca_1.a(var1, this.aq.a + 5, this.aq.b + 32, this.aq.c - 11, this.aq.a(t_1.e <= 240 ? this.bB * 3 + 6 : 150), 1);
-                                ca_1.b(var1, this.aq.a + 80, this.aq.b + 35, this.aq.a + 80, this.aq.b + 35 + this.aq.a(t_1.e <= 240 ? this.bB * 3 + 6 : 150) - 5);
+                                LoadingPage.a(var1, this.aq.a + 5, this.aq.b + 32, this.aq.c - 11, this.aq.a(t_1.e <= 240 ? this.bB * 3 + 6 : 150), 1);
+                                LoadingPage.b(var1, this.aq.a + 80, this.aq.b + 35, this.aq.a + 80, this.aq.b + 35 + this.aq.a(t_1.e <= 240 ? this.bB * 3 + 6 : 150) - 5);
                                 var1.setColor(2176196);
                                 int var2 = t_1.i.stringWidth(t_1.G[0]);
                                 int var3 = this.aq.b + 45;
                                 int var4 = this.aq.a + 5 + 80 + (this.aq.c - 80 - 13 - var2) / 2;
                                 var1.drawString(t_1.G[this.bE], this.bE == 2 ? var4 + t_1.k / 2 : var4, var3, 20);
-                                var1.drawImage(X.a, var4 - 20, var3, 20);
+                                var1.drawImage(X.pngImage, var4 - 20, var3, 20);
                                 this.a(0, var4 - 20, var3, X.b, X.c);
-                                var1.drawImage(Y.a, var4 + var2 + 15, var3, 20);
+                                var1.drawImage(Y.pngImage, var4 + var2 + 15, var3, 20);
                                 this.a(1, var4 + var2 + 15, var3, Y.b, Y.c);
                                 var1.drawString(this.bF == 0 ? "男" : "女", this.aq.a + 5 + 80 + (this.aq.c - 80 - 13 - t_1.k) / 2, var3 + t_1.j + 10, 20);
-                                var1.drawImage(X.a, var4 - 20, var3 + t_1.j + 10, 20);
+                                var1.drawImage(X.pngImage, var4 - 20, var3 + t_1.j + 10, 20);
                                 this.a(2, var4 - 20, var3 + t_1.j + 10, X.b, X.c);
-                                var1.drawImage(Y.a, var4 + var2 + 15, var3 + t_1.j + 10, 20);
+                                var1.drawImage(Y.pngImage, var4 + var2 + 15, var3 + t_1.j + 10, 20);
                                 this.a(3, var4 + var2 + 15, var3 + t_1.j + 10, X.b, X.c);
                                 var1.drawString("昵称：", this.aq.a + 5 + 80 + 5, var3 + (t_1.j + 10 << 1), 20);
-                                ca_1.c(var1, this.aq.a + 5 + 80 + 5, var3 + (t_1.j + 10) * 3 - 1, this.aq.c - 80 - this.bD.getWidth() - 20, t_1.j, 0);
-                                ca_1.a(var1, this.ay, this.aq.a + 5 + 80 + 5 + 2, var3 + (t_1.j + 10) * 3, 20, 16711639);
+                                LoadingPage.c(var1, this.aq.a + 5 + 80 + 5, var3 + (t_1.j + 10) * 3 - 1, this.aq.c - 80 - this.bD.getWidth() - 20, t_1.j, 0);
+                                LoadingPage.a(var1, this.ay, this.aq.a + 5 + 80 + 5 + 2, var3 + (t_1.j + 10) * 3, 20, 16711639);
                                 var1.drawImage(this.bD, this.aq.a + this.aq.c - 8, var3 + (t_1.j + 10) * 3, 24);
                                 this.a(4, this.aq.a + 5 + 80 + 5, var3 + (t_1.j + 10) * 3, this.aq.c - 80 - this.bD.getWidth() - 20, t_1.j);
                                 this.a(5, this.aq.a + this.aq.c - 8 - this.bD.getWidth(), var3 + (t_1.j + 10) * 3, this.bD.getWidth(), this.bD.getHeight());
@@ -887,40 +887,40 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                         case 15:
                             this.c(var1);
                             if (t_1.a == 0) {
-                                ca_1.a(var1, "更多精彩游戏尽在腾讯游戏频道\t(3g.qq.com)", new String[]{"更多", "退出"});
+                                LoadingPage.a(var1, "更多精彩游戏尽在腾讯游戏频道\t(3g.qq.com)", new String[]{"更多", "退出"});
                             } else {
                                 if (t_1.a != 1) {
-                                    ca_1.a(var1, "更多精彩游戏尽在当乐网\t(com.cc.d.cn)", new String[]{"更多", "返回"});
+                                    LoadingPage.a(var1, "更多精彩游戏尽在当乐网\t(com.cc.d.cn)", new String[]{"更多", "返回"});
                                     return;
                                 }
 
-                                ca_1.a(var1, "更多精彩游戏尽在一哥哥网游戏频道\t(3g.01234.com.cn)", new String[]{"更多", "返回"});
+                                LoadingPage.a(var1, "更多精彩游戏尽在一哥哥网游戏频道\t(3g.01234.com.cn)", new String[]{"更多", "返回"});
                             }
                             break;
                         case 16:
                             this.d(var1);
-                            ca_1.a(var1, "确认退出？", new String[]{"确认", "返回"});
+                            LoadingPage.a(var1, "确认退出？", new String[]{"确认", "返回"});
                             return;
                         case 17:
                             this.d(var1);
                             if (t_1.x) {
-                                ca_1.a(var1, "是否进入当乐梦回西游论坛\t(http://zt.d.cn/a091111_netgame_forum_promotion/index.pih?fid=6724&cid=269)", new String[]{"进入", "退出"});
+                                LoadingPage.a(var1, "是否进入当乐梦回西游论坛\t(http://zt.d.cn/a091111_netgame_forum_promotion/index.pih?fid=6724&cid=269)", new String[]{"进入", "退出"});
                             } else if (t_1.z) {
-                                ca_1.a(var1, "更多精彩游戏尽在九游网游戏频道\t(http://9Game.CN/Url.Aspx?id=219)", new String[]{"更多", "退出"});
+                                LoadingPage.a(var1, "更多精彩游戏尽在九游网游戏频道\t(http://9Game.CN/Url.Aspx?id=219)", new String[]{"更多", "退出"});
                             } else if (t_1.A) {
-                                ca_1.a(var1, "更多精彩游戏尽在http://g.uc.cn", new String[]{"更多", "退出"});
+                                LoadingPage.a(var1, "更多精彩游戏尽在http://g.uc.cn", new String[]{"更多", "退出"});
                             } else {
                                 if (!t_1.C) {
-                                    ca_1.a(var1, "更多精彩游戏尽在一哥哥网游戏频道\t(3g.01234.com.cn)", new String[]{"更多", "退出"});
+                                    LoadingPage.a(var1, "更多精彩游戏尽在一哥哥网游戏频道\t(3g.01234.com.cn)", new String[]{"更多", "退出"});
                                     return;
                                 }
 
-                                ca_1.a(var1, "更多精彩游戏尽在http://haxiang.cn", new String[]{"更多", "退出"});
+                                LoadingPage.a(var1, "更多精彩游戏尽在http://haxiang.cn", new String[]{"更多", "退出"});
                             }
                             break;
                         case 20:
                             this.c(var1);
-                            ca_1.a(var1, aH, new String[]{"下载", "取消"});
+                            LoadingPage.a(var1, aH, new String[]{"下载", "取消"});
                     }
                 }
 
@@ -1020,7 +1020,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
             var2 = 160;
         }
 
-        ca_1.a((t_1.b - var2) / 2, t_1.c / 2 + 15, var2, 20, var1);
+        LoadingPage.a((t_1.b - var2) / 2, t_1.c / 2 + 15, var2, 20, var1);
         this.aP = this.ak;
         this.j = 1;
     }
@@ -1040,7 +1040,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
             this.i();
         } else {
             bt_1.eC = var1;
-            this.aT = new bw_1(bt_1.eC, (short) (t_1.b - 20));
+            this.aT = new TextRender(bt_1.eC, (short) (t_1.b - 20));
             if (e == null || e.k != 25) {
                 ((Canvas) this).setFullScreenMode(true);
                 this.d.b.setCurrent(this);
@@ -1091,7 +1091,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
 
     private void a(Graphics var1) {
         if (!u()) {
-            ca_1.a(var1, this.aV, this.aW, this.aX, this.aY);
+            LoadingPage.a(var1, this.aV, this.aW, this.aX, this.aY);
             if (this.aT != null) {
                 this.aT.a(var1, t_1.b / 2, this.aW + 7);
             }
@@ -1273,7 +1273,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
             var1.fillRect(0, 0, t_1.b, t_1.c);
             var1.drawImage(this.be, t_1.b - this.be.getWidth() >> 1, t_1.c - this.be.getHeight() >> 1, 20);
             this.bu = (int) (515L - this.al > 0L ? 515L - this.al : 0L);
-            ca_1.a(var1, 0, this.bu, t_1.b - this.be.getWidth() >> 1, t_1.c - this.be.getHeight() >> 1, this.be.getWidth(), this.be.getHeight());
+            LoadingPage.a(var1, 0, this.bu, t_1.b - this.be.getWidth() >> 1, t_1.c - this.be.getHeight() >> 1, this.be.getWidth(), this.be.getHeight());
             this.al += 5L;
         }
 
@@ -1290,8 +1290,8 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
 
         this.c = 0;
         this.bu = 0;
-        ca_1.l = 0;
-        ca_1.h = 0;
+        LoadingPage.l = 0;
+        LoadingPage.h = 0;
         if (t_1.a != 0) {
             if (am == null && bb_1.m != null) {
                 am = bb_1.m;
@@ -1353,7 +1353,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                 for (int var3 = 0; var3 < this.bp[var2].length; ++var3) {
                     if (this.bp[var2][0] >= 0 && this.bp[var2][0] <= t_1.b && this.bp[var2][1] >= 0) {
                         if ((this.br & 1) == 0) {
-                            this.bp[var2][0] += ca_1.f(10, 40) % 2 == 0 ? -this.bp[var2][2] : this.bp[var2][2];
+                            this.bp[var2][0] += LoadingPage.f(10, 40) % 2 == 0 ? -this.bp[var2][2] : this.bp[var2][2];
                             this.bp[var2][1] -= this.bp[var2][3];
                         }
                     } else {
@@ -1370,19 +1370,19 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
 
     private int[] z() {
         int[] var1;
-        (var1 = new int[5])[0] = this.bq[ca_1.f(1, 100) % 8];
-        var1[1] = t_1.c + ca_1.f(1, 200);
+        (var1 = new int[5])[0] = this.bq[LoadingPage.f(1, 100) % 8];
+        var1[1] = t_1.c + LoadingPage.f(1, 200);
         var1[2] = 1;
         var1[3] = 1;
-        var1[4] = ca_1.f(1, 100) % 2;
+        var1[4] = LoadingPage.f(1, 100) % 2;
         return var1;
     }
 
     private void d(Graphics var1) {
         this.c(var1);
-        ca_1.a(var1, (String) t_1.t, (int) 5, t_1.c - 3, 36, 6160358, 335925);
+        LoadingPage.a(var1, (String) t_1.t, (int) 5, t_1.c - 3, 36, 6160358, 335925);
         if (t_1.a == 1) {
-            ca_1.a(var1, (String) "退出", (int) (t_1.b - 5), t_1.c - 3, 40, 16777215, 335925);
+            LoadingPage.a(var1, (String) "退出", (int) (t_1.b - 5), t_1.c - 3, 40, 16777215, 335925);
         }
 
         for (int var2 = 0; var2 < this.bo.length; ++var2) {
@@ -1390,11 +1390,11 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                 var1.drawImage(this.bi, t_1.b - this.bi.getWidth() >> 1, (this.bt << 1) + this.bh.getHeight() + var2 * this.bi.getHeight(), 20);
             }
 
-            ca_1.a(var1, (String) this.bo[var2], (int) (t_1.b >> 1), (this.bt << 1) + this.bh.getHeight() + var2 * this.bi.getHeight() + (this.bi.getHeight() - t_1.j) / 2, 17, 16777215, 335925);
+            LoadingPage.a(var1, (String) this.bo[var2], (int) (t_1.b >> 1), (this.bt << 1) + this.bh.getHeight() + var2 * this.bi.getHeight() + (this.bi.getHeight() - t_1.j) / 2, 17, 16777215, 335925);
         }
 
         if (this.c == 1) {
-            ca_1.a(var1, "当前没有账号信息，是否自动注册？", new String[]{"确定", "返回"});
+            LoadingPage.a(var1, "当前没有账号信息，是否自动注册？", new String[]{"确定", "返回"});
         }
 
     }
@@ -1458,9 +1458,9 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
 
             for (int var10 = 0; var10 < var9.length; ++var10) {
                 if (var10 == bt_1.hx) {
-                    var9[var10] = ca_1.a(0);
+                    var9[var10] = LoadingPage.a(0);
                 } else {
-                    var9[var10] = ca_1.a(6);
+                    var9[var10] = LoadingPage.a(6);
                 }
             }
         }
@@ -1578,9 +1578,9 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
     public final void b(int var1) {
         this.w();
         this.bC = new int[6][4];
-        ca_1.l = 0;
-        ca_1.h = 0;
-        ca_1.o = 0;
+        LoadingPage.l = 0;
+        LoadingPage.h = 0;
+        LoadingPage.o = 0;
         this.c = 0;
         this.a = 0;
         this.b = 0;
@@ -1660,7 +1660,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                             } else if (bt_1.W != null && (this.bA << 1) + this.bz < bt_1.W.length) {
                                 if (bt_1.W.length >= 4) {
                                     String[] var1 = new String[]{"进入", "删除"};
-                                    ca_1.a(this.bC[(this.bA << 1) + this.bz][0] + this.bB / 2, this.bC[(this.bA << 1) + this.bz][1] + this.bB / 2, var1, false);
+                                    LoadingPage.a(this.bC[(this.bA << 1) + this.bz][0] + this.bB / 2, this.bC[(this.bA << 1) + this.bz][1] + this.bB / 2, var1, false);
                                     this.c = 1;
                                 } else {
                                     this.g(bt_1.W[(this.bA << 1) + this.bz]);
@@ -1711,15 +1711,15 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
             }
 
         } else {
-            ca_1.b(this.a);
+            LoadingPage.b(this.a);
             if (this.a != 268435456 && this.a != 1073741824 && this.a != 517) {
                 if (this.a == 536870912) {
                     this.b(bt_1.W.length);
                     this.c = 0;
                 }
-            } else if (ca_1.o == 0) {
+            } else if (LoadingPage.o == 0) {
                 this.g(bt_1.W[(this.bA << 1) + this.bz]);
-            } else if (ca_1.o == 1) {
+            } else if (LoadingPage.o == 1) {
                 this.aw = (this.bA << 1) + this.bz;
                 this.c = 2;
             }
@@ -1742,14 +1742,14 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
         this.c(var1);
         if (this.aq != null) {
             this.aq.a(var1);
-            ca_1.a(var1, this.aq.a + 5, this.aq.b + 32, this.aq.c - 11, this.aq.a((this.bB << 1) + 6), 1);
+            LoadingPage.a(var1, this.aq.a + 5, this.aq.b + 32, this.aq.c - 11, this.aq.a((this.bB << 1) + 6), 1);
             int var2 = (this.aq.c - (this.bB << 1) - 16) / 3;
             int var3 = (this.aq.a(t_1.e <= 240 ? (this.bB << 1) + 6 : 111) - (this.bB << 1) - 6) / 3;
 
             for (int var4 = 0; var4 < 2; ++var4) {
                 for (int var5 = 0; var5 < 2; ++var5) {
                     this.a((var4 << 1) + var5, this.aq.a + 8 + var2 + (var2 + this.bB) * var5, this.aq.b + 35 + var3 + (var3 + this.bB) * var4, this.bB, this.bB);
-                    ca_1.a(var1, (Image) null, this.bC[(var4 << 1) + var5][0], this.bC[(var4 << 1) + var5][1], this.bB, this.bB, var4 == this.bA && var5 == this.bz);
+                    LoadingPage.a(var1, (Image) null, this.bC[(var4 << 1) + var5][0], this.bC[(var4 << 1) + var5][1], this.bB, this.bB, var4 == this.bA && var5 == this.bz);
                 }
             }
 
@@ -1781,10 +1781,10 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
         }
 
         if (this.c == 1) {
-            ca_1.c(var1);
+            LoadingPage.c(var1);
         } else {
             if (this.c == 2) {
-                ca_1.a(var1, "确认删除？", new String[]{"确认", "返回"});
+                LoadingPage.a(var1, "确认删除？", new String[]{"确认", "返回"});
             }
 
         }
@@ -1974,7 +1974,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
         } else if (e.k == 52) {
             if (var1 == 0 && this.as.a == 1) {
                 e.M.t();
-            } else if (var1 == 2 && ca_1.o == 1) {
+            } else if (var1 == 2 && LoadingPage.o == 1) {
                 e.M.q(1);
             }
         } else if (e.k == 70 && !bt_1.kT) {
@@ -2365,15 +2365,15 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                 if (this.as.a < 3) {
                     this.aC = new TextField("与" + bt_1.gJ[this.ar.g()] + "私聊", (String) null, 30, var2);
                 } else if (bt_1.bs == 1) {
-                    if (ca_1.o == 3) {
+                    if (LoadingPage.o == 3) {
                         this.aC = new TextField("群聊", (String) null, 30, var2);
-                    } else if (ca_1.o == 4) {
+                    } else if (LoadingPage.o == 4) {
                         this.aC = new TextField("与" + bt_1.q[this.ar.g()].e + "私聊", (String) null, 30, var2);
                     }
                 } else if (bt_1.bs == 0) {
-                    if (ca_1.o == 0) {
+                    if (LoadingPage.o == 0) {
                         this.aC = new TextField("群聊", (String) null, 30, var2);
-                    } else if (ca_1.o == 1) {
+                    } else if (LoadingPage.o == 1) {
                         this.aC = new TextField("与" + bt_1.q[this.ar.g()].e + "私聊", (String) null, 30, var2);
                     }
                 }
@@ -3824,7 +3824,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                     }
                 }
                 if (fVar.b.c == 1) {
-                    fVar.b.a = ca_1.c(i7, i8);
+                    fVar.b.a = LoadingPage.c(i7, i8);
                     return;
                 } else if (fVar.b.c != 2) {
                     return;
@@ -3866,7 +3866,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                 return;
             case 14:
                 if (fVar.b.c != 0) {
-                    fVar.b.a = ca_1.b(i7, i8);
+                    fVar.b.a = LoadingPage.b(i7, i8);
                     return;
                 }
                 MainCanvas _maincanvas5 = fVar.b;
@@ -3886,24 +3886,24 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
 //            a_maincanvas5.a = i6;
 //            return;
             case 15:
-                fVar.b.a = ca_1.b(i7, i8);
+                fVar.b.a = LoadingPage.b(i7, i8);
                 return;
             case 16:
-                fVar.b.a = ca_1.b(i7, i8);
+                fVar.b.a = LoadingPage.b(i7, i8);
                 return;
             case 17:
-                fVar.b.a = ca_1.b(i7, i8);
+                fVar.b.a = LoadingPage.b(i7, i8);
                 return;
             case 18:
-                fVar.b.a = ca_1.a(i7, i8);
+                fVar.b.a = LoadingPage.a(i7, i8);
                 return;
             case 19:
-                fVar.b.a = ca_1.a(i7, i8);
+                fVar.b.a = LoadingPage.a(i7, i8);
                 return;
             case 20:
                 break;
         }
-        fVar.b.a = ca_1.b(i7, i8);
+        fVar.b.a = LoadingPage.b(i7, i8);
     }
 
 
@@ -4057,7 +4057,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
     }
 
     public final void q() {
-        ca_1.h = 0;
+        LoadingPage.h = 0;
         this.k = this.j = 20;
     }
 
@@ -4083,7 +4083,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
     }
 
     public final void r() {
-        ca_1.A = 100;
+        LoadingPage.A = 100;
         this.b();
         this.d.start();
     }
@@ -4121,7 +4121,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
             aj[] var1 = var2.d;
 
             for (int var3 = 1; var3 < var1.length; ++var3) {
-                Image var4 = Image.createImage(var2.a, var1[var3].a, var1[var3].b, var1[var3].c, var1[var3].d, 0);
+                Image var4 = Image.createImage(var2.pngImage, var1[var3].a, var1[var3].b, var1[var3].c, var1[var3].d, 0);
                 if ((var3 & 1) == 0) {
                     be_1.e[var3 >> 2] = var4;
                 } else {
@@ -4129,7 +4129,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                 }
             }
 
-            aa = publicUI.getFrame("talk_01").a;
+            aa = publicUI.getFrame("talk_01").pngImage;
             u = publicUI.getFrame("close");
             v = publicUI.getFrame("title");
             E = publicUI.getFrame("button1");
@@ -4185,7 +4185,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
             aL = new Image[7];
 
             for (int var22 = 0; var22 < aL.length; ++var22) {
-                aL[var22] = publicUI.getFrame("chq-" + (var22 + 1)).a;
+                aL[var22] = publicUI.getFrame("chq-" + (var22 + 1)).pngImage;
             }
 
             aM = k("/images/mz_1.png");

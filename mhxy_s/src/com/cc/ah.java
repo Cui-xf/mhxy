@@ -24,13 +24,13 @@ public final class ah {
    public final void a(Graphics var1, int var2, int var3, int var4, int var5) {
       switch (this.a) {
          case 0:
-            var1.setColor(ca_1.a(this.b));
+            var1.setColor(LoadingPage.a(this.b));
             var1.drawString(this.c, var2, var3 + (var4 - t_1.j) / 2, var5);
             break;
          case 1:
             Frame0 var6;
             if ((var6 = ao_1.b(this.b)) != null) {
-               var1.drawImage(var6.a, var2, var3 + (var4 - var6.c) / 2, var5);
+               var1.drawImage(var6.pngImage, var2, var3 + (var4 - var6.c) / 2, var5);
                return;
             }
       }

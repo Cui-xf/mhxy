@@ -87,8 +87,8 @@ public final class bd implements CommandListener {
 
    public final void a() {
       this.c = 0;
-      ca_1.h = 0;
-      ca_1.g = 0;
+      LoadingPage.h = 0;
+      LoadingPage.g = 0;
       short var4 = this.g;
       String var3 = this.f;
       String var2 = this.e;

@@ -835,73 +835,51 @@ public final class Page {
         this.frames.addElement(var6);
     }
 
-    private static Frame0 buildFrame0(byte[][] var0, short var1, short var2, short var3) {
-        Frame0 var20;
-        Frame0 var10000 = var20 = new Frame0(var1, var2, var3);
-        boolean var18 = true;
-        byte[][] var21 = var0;
-        Frame0 var19 = var10000;
-        DataInputStream var22 = new DataInputStream(new ByteArrayInputStream(var0[1]));
-        boolean var12 = false;
+    //private static bf a(byte[][] bArr, short s, short s2, short s3) throws Throwable {
+    private static Frame0 buildFrame0(byte[][] frameData, short s, short s2, short s3) {
 
-        label124:
-        {
-            try {
-                var12 = true;
-                var19.b = (short) var22.readInt();
-                var19.c = (short) var22.readInt();
-                if (var21[0] != null && var21[0].length > 4) {
-                    byte var4 = (var22 = new DataInputStream(new ByteArrayInputStream(var21[0], 2, var21[0].length - 2))).readByte();
-                    var19.d = new aj[var4];
-
-                    for (int var5 = 0; var5 < var4; ++var5) {
-                        aj var6 = new aj(var22.readShort(), var22.readShort(), var22.readShort(), var22.readShort());
-                        var19.d[var5] = var6;
-                    }
-
-                    if (var4 == 0) {
-                        var19.d = new aj[1];
-                        var19.d[0] = new aj((short) 0, (short) 0, var19.b, var19.c);
-                    }
-
-                    var22.close();
-                } else {
-                    var19.d = new aj[1];
-                    var19.d[0] = new aj((short) 0, (short) 0, var19.b, var19.c);
-                }
-
-                var22.close();
-                var19.a(var21, true);
-                var12 = false;
-                break label124;
-            } catch (IOException var16) {
-                ((Throwable) var16).printStackTrace();
-                var12 = false;
-            } finally {
-                if (var12) {
-                    try {
-                        var22.close();
-                    } catch (IOException var13) {
-                    }
-
-                }
-            }
-
-            try {
-                var22.close();
-            } catch (IOException var14) {
-            }
-
-            return var20;
-        }
+        Frame0 frame0 = new Frame0(s, s2, s3);
+        DataInputStream is1 = new DataInputStream(new ByteArrayInputStream(frameData[1]));
+        DataInputStream is2 = null;
 
         try {
-            var22.close();
-        } catch (IOException var15) {
+            frame0.b = (short) is1.readInt();
+            frame0.c = (short) is1.readInt();
+            if (frameData[0] != null && frameData[0].length > 4) {
+                is2 = new DataInputStream(new ByteArrayInputStream(frameData[0], 2, frameData[0].length - 2));
+                int len = is2.readByte();
+                if (len == 0) {
+                    frame0.d = new aj[1];
+                    frame0.d[0] = new aj((short) 0, (short) 0, frame0.b, frame0.c);
+                } else {
+                    frame0.d = new aj[len];
+                    for (int i = 0; i < len; i++) {
+                        frame0.d[i] = new aj(is2.readShort(), is2.readShort(), is2.readShort(), is2.readShort());
+                    }
+                }
+            } else {
+                frame0.d = new aj[1];
+                frame0.d[0] = new aj((short) 0, (short) 0, frame0.b, frame0.c);
+            }
+            frame0.draw(frameData, true);
+            return frame0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("buildFrame0");
+        } finally {
+            try {
+                if (is1 != null) {
+                    is1.close();
+                }
+                if (is2 != null) {
+                    is2.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
-
-        return var20;
     }
+
 
     private static Frame1 buildFrame1(byte[][] var0, short var1, short var2, short var3) {
         Frame1 var4;

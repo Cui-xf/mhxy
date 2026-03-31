@@ -60,7 +60,7 @@ public final class ao_1 {
    public String J = null;
    private short bs = 0;
    private long bt;
-   public static bw_1 K;
+   public static TextRender K;
    public static bv L;
    public aq M;
    public cc N;
@@ -217,7 +217,7 @@ public final class ao_1 {
    private String da = null;
    private int db;
    private int dc;
-   private bw_1 dd;
+   private TextRender dd;
    private String de = null;
    private String df = null;
    private String[] dg = new String[]{"确定", "取消"};
@@ -241,7 +241,7 @@ public final class ao_1 {
    private int ds;
    private int dt;
    private boolean du;
-   private bw_1 dv;
+   private TextRender dv;
 
    public ao_1(MainCanvas var1, ai_1 var2) {
       this.e = var1;
@@ -587,7 +587,7 @@ public final class ao_1 {
                                              break label986;
                                           case 4:
                                              this.l = 6;
-                                             ca_1.h = 0;
+                                             LoadingPage.h = 0;
                                        }
                                     }
                                     break label986;
@@ -772,7 +772,7 @@ public final class ao_1 {
                                              break label986;
                                           case 5:
                                              this.l = 7;
-                                             ca_1.h = 0;
+                                             LoadingPage.h = 0;
                                        }
                                     }
                                     break label986;
@@ -964,7 +964,7 @@ public final class ao_1 {
                            }
 
                            if (var26) {
-                              ca_1.a(28 + o + (0 + (var5.av >= 1 ? 1 : 0)) % 2 * 80, (t_1.c - (t_1.j + 3) * 6) / 2, new String[]{"查看", "装备", "卸下", "升星", "洗炼", "附魔"}, true);
+                              LoadingPage.a(28 + o + (0 + (var5.av >= 1 ? 1 : 0)) % 2 * 80, (t_1.c - (t_1.j + 3) * 6) / 2, new String[]{"查看", "装备", "卸下", "升星", "洗炼", "附魔"}, true);
                               var5.l = 1;
                            } else {
                               var5.e((int)7);
@@ -972,25 +972,25 @@ public final class ao_1 {
                         }
                      } else {
                         this.av = this.av >= this.bY.length - 1 ? 0 : ++this.av;
-                        ca_1.l = 0;
+                        LoadingPage.l = 0;
                      }
                   } else {
                      this.av = this.av <= 0 ? this.bY.length - 1 : --this.av;
-                     ca_1.l = 0;
+                     LoadingPage.l = 0;
                   }
                } else if (this.l == 1) {
-                  ca_1.b(var16);
+                  LoadingPage.b(var16);
                   if (var16 != 268435456 && var16 != 1073741824 && var16 != 517) {
                      if (var16 == 536870912) {
                         this.aw = false;
                         this.l = 0;
                      }
-                  } else if (ca_1.o == 0) {
+                  } else if (LoadingPage.o == 0) {
                      bt_1.a(this.av);
                      this.O.a(0, (short)this.k, this.as);
-                  } else if (ca_1.o == 1) {
+                  } else if (LoadingPage.o == 1) {
                      this.e((int)7);
-                  } else if (ca_1.o == 2) {
+                  } else if (LoadingPage.o == 2) {
                      int var27 = -1;
 
                      for(int var33 = 0; var33 < bt_1.cz.length; ++var33) {
@@ -1007,7 +1007,7 @@ public final class ao_1 {
                      } else {
                         var5.e.b("获取上传指令数据错误!");
                      }
-                  } else if (ca_1.o == 3) {
+                  } else if (LoadingPage.o == 3) {
                      this.aw = true;
                      ch.a();
                      int var28 = -1;
@@ -1028,7 +1028,7 @@ public final class ao_1 {
                      } else {
                         var5.e.b("获取上传指令数据错误!");
                      }
-                  } else if (ca_1.o == 4) {
+                  } else if (LoadingPage.o == 4) {
                      this.aw = true;
                      this.O.d();
                      int var29 = -1;
@@ -1048,7 +1048,7 @@ public final class ao_1 {
                      } else {
                         var5.e.b("获取上传指令数据错误!");
                      }
-                  } else if (ca_1.o == 5) {
+                  } else if (LoadingPage.o == 5) {
                      if (this.P == null) {
                         this.P = new r(this, this.e, MainCanvas.f);
                      }
@@ -1568,7 +1568,7 @@ public final class ao_1 {
                int var7 = 2 + t_1.j;
                MainCanvas.f.a(var1, this.I.j / this.e.m, this.I.k / this.e.m, 2, var7, 17 / this.e.m, 25 / this.e.m, 0, 0);
                var1.setColor(16711680);
-               ca_1.a(var1, (String)(this.I.j / 16 + "," + (this.I.k + 25) / 16), (int)2, var7 + MainCanvas.f.f, 20, 16777215, 0);
+               LoadingPage.a(var1, (String)(this.I.j / 16 + "," + (this.I.k + 25) / 16), (int)2, var7 + MainCanvas.f.f, 20, 16777215, 0);
                if (bt_1.ab != null) {
                   var1.setColor(16711680);
 
@@ -1603,7 +1603,7 @@ public final class ao_1 {
             var1.setClip(0, 0, t_1.b, t_1.c);
             this.A(var1);
             var1.setClip(0, 0, t_1.b, t_1.c);
-            ca_1.a(var1, (String)bt_1.ae, (int)20, 2, 20, 0, bt_1.bw >= 1 ? 16711680 : 16777215);
+            LoadingPage.a(var1, (String)bt_1.ae, (int)20, 2, 20, 0, bt_1.bw >= 1 ? 16711680 : 16777215);
          }
       }
 
@@ -1620,20 +1620,20 @@ public final class ao_1 {
       int var35 = bt_1.kh;
       aq var26 = var10000;
       if (var10000.a.k == 0 && bt_1.bw == 2 && var35 != 0 && var36 != 0) {
-         ca_1.a(var1, (String)"阵营", (int)(t_1.b >> 1), 2, 17, 1017663, 0);
-         ca_1.a(var1, (String)("" + var35), (int)(t_1.b / 2 - 4), 2 + t_1.j, 24, 16776960, 0);
-         ca_1.a(var1, (String)":", (int)(t_1.b >> 1), 2 + t_1.j, 17, 16776960, 0);
-         ca_1.a(var1, (String)("" + var36), (int)(t_1.b / 2 + 5), 2 + t_1.j, 20, 16776960, 0);
+         LoadingPage.a(var1, (String)"阵营", (int)(t_1.b >> 1), 2, 17, 1017663, 0);
+         LoadingPage.a(var1, (String)("" + var35), (int)(t_1.b / 2 - 4), 2 + t_1.j, 24, 16776960, 0);
+         LoadingPage.a(var1, (String)":", (int)(t_1.b >> 1), 2 + t_1.j, 17, 16776960, 0);
+         LoadingPage.a(var1, (String)("" + var36), (int)(t_1.b / 2 + 5), 2 + t_1.j, 20, 16776960, 0);
       } else if (var26.a.k == 0 && bt_1.ke != -1 && bt_1.kf != -1 && bt_1.kg != -1) {
-         ca_1.a(var1, (String)"阵营", (int)(t_1.b >> 1), 2, 17, 16776960, 0);
-         ca_1.a(var1, (String)("" + bt_1.ke), (int)(t_1.b / 2 - 4), 2 + t_1.j, 24, 16776960, 0);
-         ca_1.a(var1, (String)":", (int)(t_1.b >> 1), 2 + t_1.j, 17, 16776960, 0);
-         ca_1.a(var1, (String)("" + bt_1.kf), (int)(t_1.b / 2 + 5), 2 + t_1.j, 20, 16776960, 0);
-         ca_1.a(var1, (String)("个人:" + bt_1.kg), (int)(t_1.b >> 1), 2 + (t_1.j << 1), 17, 16776960, 0);
+         LoadingPage.a(var1, (String)"阵营", (int)(t_1.b >> 1), 2, 17, 16776960, 0);
+         LoadingPage.a(var1, (String)("" + bt_1.ke), (int)(t_1.b / 2 - 4), 2 + t_1.j, 24, 16776960, 0);
+         LoadingPage.a(var1, (String)":", (int)(t_1.b >> 1), 2 + t_1.j, 17, 16776960, 0);
+         LoadingPage.a(var1, (String)("" + bt_1.kf), (int)(t_1.b / 2 + 5), 2 + t_1.j, 20, 16776960, 0);
+         LoadingPage.a(var1, (String)("个人:" + bt_1.kg), (int)(t_1.b >> 1), 2 + (t_1.j << 1), 17, 16776960, 0);
       }
 
       if (bt_1.bu) {
-         ca_1.a(var1, (String)String.valueOf(bt_1.bv), (int)(t_1.b / 2), 0, 17, 0, 16711680);
+         LoadingPage.a(var1, (String)String.valueOf(bt_1.bv), (int)(t_1.b / 2), 0, 17, 0, 16711680);
       }
 
       if (this.k != 25) {
@@ -1655,13 +1655,13 @@ public final class ao_1 {
       }
 
       if (this.k == 0 && this.J != null) {
-         ca_1.a(var1, this.J, new String[]{"确定", "取消"});
+         LoadingPage.a(var1, this.J, new String[]{"确定", "取消"});
       }
 
       switch (this.k) {
          case 0:
             if (bt_1.k != null && this.dd != null && aW[18] == 0) {
-               ca_1.a(var1, 873078, 191, 0, this.dc, t_1.b, t_1.j + 2);
+               LoadingPage.a(var1, 873078, 191, 0, this.dc, t_1.b, t_1.j + 2);
                this.dd.a(var1, this.db, this.dc + 1, 20);
                if (this.db <= -t_1.i.stringWidth(bt_1.k)) {
                   if (bt_1.l <= 0) {
@@ -1678,8 +1678,8 @@ public final class ao_1 {
 
             if (bt_1.E == 1 && bt_1.F != null && bt_1.G != null) {
                var1.setClip(0, 40 + t_1.j, 70, t_1.j << 1);
-               ca_1.a(var1, (String)bt_1.F, (int)this.bs, 40 + t_1.j, 20, 16776960, 0);
-               ca_1.a(var1, (String)bt_1.G, (int)5, 40 + (t_1.j << 1), 20, 16776960, 0);
+               LoadingPage.a(var1, (String)bt_1.F, (int)this.bs, 40 + t_1.j, 20, 16776960, 0);
+               LoadingPage.a(var1, (String)bt_1.G, (int)5, 40 + (t_1.j << 1), 20, 16776960, 0);
                if (t_1.i.stringWidth(bt_1.F) > 70) {
                   if (this.bs + t_1.i.stringWidth(bt_1.F) - 10 < 0 || this.bs > 75) {
                      this.bi = (byte)(this.bi == -1 ? 1 : -1);
@@ -1695,20 +1695,20 @@ public final class ao_1 {
             return;
          case 2:
             if (this.l == 0) {
-               ca_1.a(var1, 0, t_1.c - ca_1.f, t_1.b, ca_1.f, K, this.am, (String[])null);
+               LoadingPage.a(var1, 0, t_1.c - LoadingPage.f, t_1.b, LoadingPage.f, K, this.am, (String[])null);
             } else {
                if (this.l != 1 && this.l != 3 && this.l != 4 && this.l != 5 && this.l != 7 && this.l != 9 && this.l != 10) {
                   return;
                }
 
-               ca_1.a(var1, 0, t_1.c - ca_1.f, t_1.b, ca_1.f, K, this.an, (String[])null);
+               LoadingPage.a(var1, 0, t_1.c - LoadingPage.f, t_1.b, LoadingPage.f, K, this.an, (String[])null);
                if (this.m != 1 && this.m != 2) {
                   if (this.m == 3) {
                      this.b(var1, "请输入竞标银两");
                   } else {
                      if (this.m != 4) {
                         if (this.m == 5 || this.m == 6) {
-                           ca_1.a(var1, this.at, new String[]{"确定", "取消"});
+                           LoadingPage.a(var1, this.at, new String[]{"确定", "取消"});
                         }
 
                         return;
@@ -1761,7 +1761,7 @@ public final class ao_1 {
                }
 
                if (this.l == 1 || this.l == 2) {
-                  ca_1.c(var1);
+                  LoadingPage.c(var1);
                }
             }
 
@@ -1855,14 +1855,14 @@ public final class ao_1 {
                   return;
                }
 
-               ca_1.a(var1, "删除好友将清空对该好友的好感度，确认删除？", new String[]{"确定", "取消"});
+               LoadingPage.a(var1, "删除好友将清空对该好友的好感度，确认删除？", new String[]{"确定", "取消"});
             } else {
-               ca_1.c(var1);
+               LoadingPage.c(var1);
             }
             break;
          case 20:
             if (K != null) {
-               ca_1.a(var1, 0, t_1.c - ca_1.f, t_1.b, ca_1.f, K, this.an, (String[])null);
+               LoadingPage.a(var1, 0, t_1.c - LoadingPage.f, t_1.b, LoadingPage.f, K, this.an, (String[])null);
             }
 
             return;
@@ -1888,7 +1888,7 @@ public final class ao_1 {
                break;
             }
 
-            ca_1.c(var1);
+            LoadingPage.c(var1);
             break;
          case 22:
             this.v(var1);
@@ -1900,19 +1900,19 @@ public final class ao_1 {
 
             this.e.aq.a(var1);
             if (this.l == 1) {
-               ca_1.c(var1);
+               LoadingPage.c(var1);
             } else if (this.l == 2) {
                this.a(var1, "购买个数");
             } else {
                if (this.l != 3) {
                   if (this.l == 4) {
-                     ca_1.a(var1, "您确认以" + bt_1.a(bt_1.eg[this.e.ar.g()]) + "两的价格购买该物品" + this.ag + "个", new String[]{"确定", "取消"});
+                     LoadingPage.a(var1, "您确认以" + bt_1.a(bt_1.eg[this.e.ar.g()]) + "两的价格购买该物品" + this.ag + "个", new String[]{"确定", "取消"});
                   }
 
                   return;
                }
 
-               ca_1.a(var1, "您确认以" + bt_1.eg[this.e.ar.g()] + "两的价格购买该物品" + bt_1.eb[this.e.ar.g()] + "个", new String[]{"确定", "取消"});
+               LoadingPage.a(var1, "您确认以" + bt_1.eg[this.e.ar.g()] + "两的价格购买该物品" + bt_1.eb[this.e.ar.g()] + "个", new String[]{"确定", "取消"});
             }
             break;
          case 24:
@@ -1933,7 +1933,7 @@ public final class ao_1 {
                if (this.e.ar.h() == 1) {
                   int var23 = this.e.ar.a() + this.e.ar.c() - MainCanvas.C.b - 70;
                   int var30 = this.e.ar.b() + 4;
-                  ca_1.a(var1, "" + aW[1], var23, var30, 60);
+                  LoadingPage.a(var1, "" + aW[1], var23, var30, 60);
                   this.b((int)1, (int)var23, (int)var30, (int)60);
                }
 
@@ -1942,8 +1942,8 @@ public final class ao_1 {
 
             int var22 = this.e.ar.a() + this.e.ar.c() - MainCanvas.C.b - 70;
             int var29 = this.e.ar.b() + 4;
-            ca_1.a(var1, "" + aW[0], var22, var29, 60);
-            ca_1.a(var1, "" + aW[1], var22, var29 + t_1.j, 60);
+            LoadingPage.a(var1, "" + aW[0], var22, var29, 60);
+            LoadingPage.a(var1, "" + aW[1], var22, var29 + t_1.j, 60);
             this.b((int)0, (int)var22, (int)var29, (int)60);
             this.b((int)1, (int)var22, (int)(var29 + t_1.j), (int)60);
             break;
@@ -1963,7 +1963,7 @@ public final class ao_1 {
 
             if (this.l != 1) {
                if (this.l == 2) {
-                  ca_1.c(var1);
+                  LoadingPage.c(var1);
                }
 
                return;
@@ -1977,8 +1977,8 @@ public final class ao_1 {
          case 33:
             if (this.e.aq != null) {
                this.e.aq.a(var1);
-               ca_1.a(var1, this.e.aq.a + 5, this.e.aq.b + 32, this.e.aq.c - 11, this.bQ, 1);
-               ca_1.c(var1, this.e.aq.a + 62, this.e.aq.b + 35, this.e.aq.a + 62, this.e.aq.b + 29 + this.bQ);
+               LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 32, this.e.aq.c - 11, this.bQ, 1);
+               LoadingPage.c(var1, this.e.aq.a + 62, this.e.aq.b + 35, this.e.aq.a + 62, this.e.aq.b + 29 + this.bQ);
             }
 
             if (bp != null) {
@@ -2002,7 +2002,7 @@ public final class ao_1 {
             var1.drawString("超Q等级：" + bt_1.kU, this.e.aq.a + 70, this.e.aq.b + 30 + this.bQ / 2 - t_1.j, 20);
             var1.drawString("超Q特权礼包：" + (bt_1.kV == 1 ? "领取" : "未领取"), this.e.aq.a + 70, this.e.aq.b + 30 + this.bQ / 2, 20);
             if (this.l == 1) {
-               ca_1.c(var1);
+               LoadingPage.c(var1);
             }
 
             return;
@@ -2024,11 +2024,11 @@ public final class ao_1 {
             }
 
             if (this.l == 1 || this.l == 2 || this.l == 3 || this.l == 4 || this.l == 5 || this.l == 6 || this.l == 7 || this.l == 8 || this.l == 10) {
-               ca_1.c(var1);
+               LoadingPage.c(var1);
             }
 
             if (this.l == 9) {
-               ca_1.a(var1, "您确定招募" + bt_1.hU[this.e.ar.g()] + "？", new String[]{"确定", "返回"});
+               LoadingPage.a(var1, "您确定招募" + bt_1.hU[this.e.ar.g()] + "？", new String[]{"确定", "返回"});
             }
 
             return;
@@ -2068,7 +2068,7 @@ public final class ao_1 {
                return;
             }
 
-            ca_1.a(var1, 0, t_1.c - ca_1.f, t_1.b, ca_1.f, K, this.an, (String[])null);
+            LoadingPage.a(var1, 0, t_1.c - LoadingPage.f, t_1.b, LoadingPage.f, K, this.an, (String[])null);
             break;
          case 41:
             aq var18;
@@ -2081,17 +2081,17 @@ public final class ao_1 {
             }
 
             if (var18.a.l == 1) {
-               ca_1.a(var1, "您真的要退出帮派吗？", new String[]{"确定", "返回"});
+               LoadingPage.a(var1, "您真的要退出帮派吗？", new String[]{"确定", "返回"});
             } else {
                if (var18.a.l != 2) {
                   if (var18.a.l == 3) {
-                     ca_1.a(var1, "您真的要发布招募吗？", new String[]{"确定", "返回"});
+                     LoadingPage.a(var1, "您真的要发布招募吗？", new String[]{"确定", "返回"});
                   }
 
                   return;
                }
 
-               ca_1.a(var1, "您真的要解散帮派吗？", new String[]{"确定", "返回"});
+               LoadingPage.a(var1, "您真的要解散帮派吗？", new String[]{"确定", "返回"});
             }
             break;
          case 42:
@@ -2102,7 +2102,7 @@ public final class ao_1 {
                }
 
                if (var17.a.l == 1) {
-                  ca_1.c(var1);
+                  LoadingPage.c(var1);
                }
             }
 
@@ -2115,7 +2115,7 @@ public final class ao_1 {
                }
 
                if (var16.a.l == 1) {
-                  ca_1.c(var1);
+                  LoadingPage.c(var1);
                }
             }
 
@@ -2145,7 +2145,7 @@ public final class ao_1 {
                return;
             }
 
-            ca_1.c(var1);
+            LoadingPage.c(var1);
             break;
          case 47:
             aq var13;
@@ -2159,7 +2159,7 @@ public final class ao_1 {
                } else {
                   if (var13.a.l != 4) {
                      if (var13.a.l == 9) {
-                        ca_1.a(var1, "需要消耗基金300万和20点军力，一旦宣战必须等到战争结束后才能再次宣战！", new String[]{"确定", "取消"});
+                        LoadingPage.a(var1, "需要消耗基金300万和20点军力，一旦宣战必须等到战争结束后才能再次宣战！", new String[]{"确定", "取消"});
                      }
 
                      return;
@@ -2168,7 +2168,7 @@ public final class ao_1 {
                   var13.a.a(var1, bt_1.iz[var13.b.ar.g()], q);
                }
             } else {
-               ca_1.c(var1);
+               LoadingPage.c(var1);
             }
             break;
          case 48:
@@ -2186,13 +2186,13 @@ public final class ao_1 {
             }
 
             if (var12.a.l == 1) {
-               ca_1.c(var1);
+               LoadingPage.c(var1);
             } else {
                if (var12.a.l != 3) {
                   return;
                }
 
-               ca_1.a(var1, "要开除" + bt_1.iz[var12.b.ar.g()] + "出帮派吗？", new String[]{"确定", "取消"});
+               LoadingPage.a(var1, "要开除" + bt_1.iz[var12.b.ar.g()] + "出帮派吗？", new String[]{"确定", "取消"});
             }
             break;
          case 49:
@@ -2229,7 +2229,7 @@ public final class ao_1 {
                   }
                }
 
-               ca_1.a(var1, var10.a.at, new String[]{"确定", "取消"});
+               LoadingPage.a(var1, var10.a.at, new String[]{"确定", "取消"});
                return;
             }
             break;
@@ -2243,7 +2243,7 @@ public final class ao_1 {
             }
 
             if (var9.a.l == 1 || var9.a.l == 2) {
-               ca_1.c(var1);
+               LoadingPage.c(var1);
             }
 
             return;
@@ -2260,7 +2260,7 @@ public final class ao_1 {
                return;
             }
 
-            ca_1.c(var1);
+            LoadingPage.c(var1);
             break;
          case 57:
             if (this.l == 0) {
@@ -2278,10 +2278,10 @@ public final class ao_1 {
             this.e.aq.a(var1);
             if (this.l != 1 && this.l != 2) {
                if (this.l == 3) {
-                  if (ca_1.a(bt_1.jO[this.e.ar.g()]) != -1) {
-                     ca_1.a(var1, "是否将" + bt_1.jO[this.e.ar.g()].substring(3, bt_1.jO[this.e.ar.g()].length()) + "从拍卖场中撤下？", new String[]{"确定", "取消"});
+                  if (LoadingPage.a(bt_1.jO[this.e.ar.g()]) != -1) {
+                     LoadingPage.a(var1, "是否将" + bt_1.jO[this.e.ar.g()].substring(3, bt_1.jO[this.e.ar.g()].length()) + "从拍卖场中撤下？", new String[]{"确定", "取消"});
                   } else {
-                     ca_1.a(var1, "是否将" + bt_1.jO[this.e.ar.g()] + "从拍卖场中撤下？", new String[]{"确定", "取消"});
+                     LoadingPage.a(var1, "是否将" + bt_1.jO[this.e.ar.g()] + "从拍卖场中撤下？", new String[]{"确定", "取消"});
                   }
                } else {
                   if (this.l != 5) {
@@ -2292,10 +2292,10 @@ public final class ao_1 {
                      return;
                   }
 
-                  ca_1.a(var1, "您确定以" + this.bR + "两的价格拍卖此物品?", new String[]{"确定", "取消"});
+                  LoadingPage.a(var1, "您确定以" + this.bR + "两的价格拍卖此物品?", new String[]{"确定", "取消"});
                }
             } else {
-               ca_1.c(var1);
+               LoadingPage.c(var1);
             }
             break;
          case 60:
@@ -2306,25 +2306,25 @@ public final class ao_1 {
 
             if (var8.a.l != 1 && var8.a.l != 2) {
                if (var8.a.l == 3) {
-                  ca_1.a(var1, "需要消耗基金300万和20点军力，一旦宣战必须等到战争结束后才能再次宣战！", new String[]{"确定", "取消"});
+                  LoadingPage.a(var1, "需要消耗基金300万和20点军力，一旦宣战必须等到战争结束后才能再次宣战！", new String[]{"确定", "取消"});
                }
 
                return;
             }
 
-            ca_1.c(var1);
+            LoadingPage.c(var1);
             break;
          case 61:
             String var3 = "离复活还有" + bt_1.kj + "秒！";
-            ca_1.a(var1, (String)var3, (int)((t_1.b - t_1.i.stringWidth(var3)) / 2), (t_1.c - t_1.j) / 2, 20, 16711680, 0);
+            LoadingPage.a(var1, (String)var3, (int)((t_1.b - t_1.i.stringWidth(var3)) / 2), (t_1.c - t_1.j) / 2, 20, 16711680, 0);
             return;
          case 62:
-            ca_1.a(var1, bt_1.kC, new String[]{"确定", "取消"});
+            LoadingPage.a(var1, bt_1.kC, new String[]{"确定", "取消"});
             return;
          case 63:
             aq var2;
             if ((var2 = this.M).a.l == 0 && var2.b.aq != null) {
-               ca_1.a(var1, var2.b.aq.a + 5, var2.b.aq.a(), var2.b.aq.c - 11, 2 * t_1.j + 8, 1);
+               LoadingPage.a(var1, var2.b.aq.a + 5, var2.b.aq.a(), var2.b.aq.c - 11, 2 * t_1.j + 8, 1);
                var1.setColor(16711680);
                var1.drawString("处置战败方：", t_1.f + t_1.d / 2, var2.b.aq.a() + 2, 17);
                var1.drawString("（" + bt_1.kD + "分钟限时）", t_1.f + t_1.d / 2, var2.b.aq.a() + 2 + t_1.j + 4, 17);
@@ -3065,7 +3065,7 @@ public final class ao_1 {
                var14.addElement("传送");
                String[] var17 = new String[var14.size()];
                var14.copyInto(var17);
-               ca_1.a((t_1.d - t_1.i.stringWidth("操作")) / 2, (t_1.e - t_1.j * var17.length) / 2, var17, true);
+               LoadingPage.a((t_1.d - t_1.i.stringWidth("操作")) / 2, (t_1.e - t_1.j * var17.length) / 2, var17, true);
                this.l = 0;
                bt_1.gQ = 1;
                this.e.j = this.e.k;
@@ -3172,9 +3172,9 @@ public final class ao_1 {
                   this.ar = 0;
                   this.m = 0;
                   this.an = L.k;
-                  K = new bw_1("你想...", (short)(t_1.b - 20));
-                  ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
-                  ca_1.g = 0;
+                  K = new TextRender("你想...", (short)(t_1.b - 20));
+                  LoadingPage.a(MainCanvas.F, K, this.an, (String[])null, true);
+                  LoadingPage.g = 0;
                   this.e.j = this.e.k;
                   MainCanvas.f.a(this.f, h, i, false, false, 1009050);
                   this.j = this.k = 40;
@@ -3295,7 +3295,7 @@ public final class ao_1 {
    }
 
    public final void a(Graphics var1, String var2) {
-      ca_1.a(var1, var2 + "(" + this.ah + ")", this.ag, true);
+      LoadingPage.a(var1, var2 + "(" + this.ah + ")", this.ag, true);
    }
 
    private void at() {
@@ -3424,10 +3424,10 @@ public final class ao_1 {
 
       for(int var6 = 0; var6 < this.bD; ++var6) {
          for(int var7 = 0; var7 < this.bC; ++var7) {
-            ca_1.a(var1, 4);
+            LoadingPage.a(var1, 4);
             var1.drawRect(var4 + var7 * var2 + 1, var5 + var6 * var3, var2 - 2, var3);
             var1.drawRect(var4 + var7 * var2, var5 + var6 * var3 + 1, var2, var3 - 2);
-            ca_1.a(var1, 3);
+            LoadingPage.a(var1, 3);
             var1.drawRect(var4 + var7 * var2 + 2, var5 + var6 * var3 + 2, var2 - 3, var3 - 3);
             if (this.bB == var6 * this.bC + var7) {
                var1.setColor(2780801);
@@ -3453,11 +3453,11 @@ public final class ao_1 {
          }
       }
 
-      ca_1.f(var1, var4, var5, this.bC * var2, this.bD * var3);
+      LoadingPage.f(var1, var4, var5, this.bC * var2, this.bD * var3);
       if (this.l == 6) {
-         ca_1.a(var1, "您真的要退出帮派吗？", new String[]{"确定", "返回"});
+         LoadingPage.a(var1, "您真的要退出帮派吗？", new String[]{"确定", "返回"});
       } else if (this.l == 7) {
-         ca_1.a(var1, "您确定要退出游戏吗？", new String[]{"确定", "返回"});
+         LoadingPage.a(var1, "您确定要退出游戏吗？", new String[]{"确定", "返回"});
       }
 
       if (this.l == 8) {
@@ -3813,8 +3813,8 @@ public final class ao_1 {
             this.am = null;
          }
 
-         K = new bw_1(bt_1.bQ, (short)(t_1.b - 20));
-         ca_1.a(MainCanvas.F, K, this.am, (String[])null, true);
+         K = new TextRender(bt_1.bQ, (short)(t_1.b - 20));
+         LoadingPage.a(MainCanvas.F, K, this.am, (String[])null, true);
          this.e.a = 0;
          this.e.b = 0;
          this.e.j = this.e.k;
@@ -3842,10 +3842,10 @@ public final class ao_1 {
             if ((bH.size() <= 0 || var1 != 536870912) && (bH.size() > 0 || var1 != 536870912 && var1 != 268435456 && var1 != 517 && var1 != 1073741824)) {
                if (var1 != 8 && var1 != 516) {
                   if (var1 == 2 || var1 == 518) {
-                     ca_1.e = ca_1.e + ca_1.d < K.a() ? ca_1.e + ca_1.d : ca_1.e;
+                     LoadingPage.e = LoadingPage.e + LoadingPage.d < K.a() ? LoadingPage.e + LoadingPage.d : LoadingPage.e;
                   }
                } else {
-                  ca_1.e = ca_1.e - ca_1.d >= 0 ? ca_1.e - ca_1.d : 0;
+                  LoadingPage.e = LoadingPage.e - LoadingPage.d >= 0 ? LoadingPage.e - LoadingPage.d : 0;
                }
 
                if (bH.size() <= 0) {
@@ -3860,7 +3860,7 @@ public final class ao_1 {
                            var1 = bt_1.bI.length;
                         }
 
-                        this.ai = ca_1.g;
+                        this.ai = LoadingPage.g;
                         this.bI = bH.elementAt(this.ai).toString();
                         int var2 = -1;
 
@@ -3910,8 +3910,8 @@ public final class ao_1 {
                               this.ar = 0;
                               this.m = 0;
                               this.an = new String[]{"取出物品", "存入物品"};
-                              K = new bw_1(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
-                              ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
+                              K = new TextRender(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
+                              LoadingPage.a(MainCanvas.F, K, this.an, (String[])null, true);
                               this.l = 3;
                               break;
                            case 5:
@@ -3920,16 +3920,16 @@ public final class ao_1 {
                               this.an = new String[]{"取出银两", "存入银两"};
                               String var10 = bt_1.a(bt_1.aq);
                               t_1.a(this.e.l, bt_1.ap);
-                              K = new bw_1(bt_1.t[this.af].b + ":已存入银两" + var10 + ",现有银两" + this.e.l.toString(), (short)(t_1.b - 20));
-                              ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
+                              K = new TextRender(bt_1.t[this.af].b + ":已存入银两" + var10 + ",现有银两" + this.e.l.toString(), (short)(t_1.b - 20));
+                              LoadingPage.a(MainCanvas.F, K, this.an, (String[])null, true);
                               this.l = 4;
                               break;
                            case 6:
                               this.ar = 0;
                               this.m = 0;
                               this.an = new String[]{"寄养宠物", "领回宠物"};
-                              K = new bw_1(bt_1.t[this.af].b + ":宠物仓库已打开", (short)(t_1.b - 20));
-                              ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
+                              K = new TextRender(bt_1.t[this.af].b + ":宠物仓库已打开", (short)(t_1.b - 20));
+                              LoadingPage.a(MainCanvas.F, K, this.an, (String[])null, true);
                               this.l = 5;
                               break;
                            case 7:
@@ -4054,9 +4054,9 @@ public final class ao_1 {
                               this.ar = 0;
                               this.m = 0;
                               this.an = new String[]{"查看公告", "修改公告"};
-                              K = new bw_1("查看和修改公告", (short)(t_1.b - 20));
-                              ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
-                              ca_1.g = 0;
+                              K = new TextRender("查看和修改公告", (short)(t_1.b - 20));
+                              LoadingPage.a(MainCanvas.F, K, this.an, (String[])null, true);
+                              LoadingPage.g = 0;
                               this.l = 9;
                               break;
                            case 27:
@@ -4112,9 +4112,9 @@ public final class ao_1 {
                               this.ar = 0;
                               this.m = 0;
                               this.an = new String[]{"查看", "发布"};
-                              K = new bw_1("查看、发布“求爱宣言”", (short)(t_1.b - 20));
-                              ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
-                              ca_1.g = 0;
+                              K = new TextRender("查看、发布“求爱宣言”", (short)(t_1.b - 20));
+                              LoadingPage.a(MainCanvas.F, K, this.an, (String[])null, true);
+                              LoadingPage.g = 0;
                               this.l = 7;
                               break;
                            case 35:
@@ -4184,8 +4184,8 @@ public final class ao_1 {
                               this.m = 0;
                               this.an = new String[]{"银两竞标", "金豆竞标"};
                               t_1.a(this.e.l, bt_1.ap);
-                              K = new bw_1(bt_1.t[this.af].b + ":选择银两竞标或金豆竞标，一金豆折合300万银两。", (short)(t_1.b - 20));
-                              ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
+                              K = new TextRender(bt_1.t[this.af].b + ":选择银两竞标或金豆竞标，一金豆折合300万银两。", (short)(t_1.b - 20));
+                              LoadingPage.a(MainCanvas.F, K, this.an, (String[])null, true);
                               this.l = 10;
                               break;
                            case 49:
@@ -4200,10 +4200,10 @@ public final class ao_1 {
                         }
                      }
                   } else if (this.am != null) {
-                     ca_1.g = ca_1.g + 1 < this.am.length ? ca_1.g + 1 : 0;
+                     LoadingPage.g = LoadingPage.g + 1 < this.am.length ? LoadingPage.g + 1 : 0;
                   }
                } else if (this.am != null) {
-                  ca_1.g = ca_1.g - 1 >= 0 ? ca_1.g - 1 : this.am.length - 1;
+                  LoadingPage.g = LoadingPage.g - 1 >= 0 ? LoadingPage.g - 1 : this.am.length - 1;
                }
             } else {
                bt_1.j();
@@ -4233,7 +4233,7 @@ public final class ao_1 {
                            this.l = 0;
                            this.m();
                         }
-                     } else if (ca_1.g == 0) {
+                     } else if (LoadingPage.g == 0) {
                         if (bt_1.bE && bt_1.bG != -1) {
                            byte[] var14;
                            if ((var14 = bz_1.b((short)4108, bt_1.ad, (int)bt_1.bG, (int)bt_1.bF)) != null) {
@@ -4273,7 +4273,7 @@ public final class ao_1 {
                         }
 
                         this.l = 0;
-                     } else if (ca_1.g == 1) {
+                     } else if (LoadingPage.g == 1) {
                         bt_1.bH = null;
                         this.am = null;
                         K = null;
@@ -4287,16 +4287,16 @@ public final class ao_1 {
                         }
                      }
                   } else {
-                     ca_1.e = ca_1.e + ca_1.d < K.a() ? ca_1.e + ca_1.d : ca_1.e;
+                     LoadingPage.e = LoadingPage.e + LoadingPage.d < K.a() ? LoadingPage.e + LoadingPage.d : LoadingPage.e;
                   }
                } else {
-                  ca_1.e = ca_1.e - ca_1.d >= 0 ? ca_1.e - ca_1.d : 0;
+                  LoadingPage.e = LoadingPage.e - LoadingPage.d >= 0 ? LoadingPage.e - LoadingPage.d : 0;
                }
             } else if (this.an != null) {
-               ca_1.g = ca_1.g + 1 < this.an.length ? ca_1.g + 1 : 0;
+               LoadingPage.g = LoadingPage.g + 1 < this.an.length ? LoadingPage.g + 1 : 0;
             }
          } else if (this.an != null) {
-            ca_1.g = ca_1.g - 1 >= 0 ? ca_1.g - 1 : this.an.length - 1;
+            LoadingPage.g = LoadingPage.g - 1 >= 0 ? LoadingPage.g - 1 : this.an.length - 1;
          }
       } else if (this.l != 3 && this.l != 4 && this.l != 10) {
          if (this.l == 5) {
@@ -4307,13 +4307,13 @@ public final class ao_1 {
                         this.l = 0;
                         this.m();
                      }
-                  } else if (ca_1.g == 0) {
+                  } else if (LoadingPage.g == 0) {
                      if (bt_1.fA != null) {
                         this.j((int)2);
                      } else {
                         this.e.b("您没有宠物!");
                      }
-                  } else if (ca_1.g == 1) {
+                  } else if (LoadingPage.g == 1) {
                      if (bt_1.gs != null) {
                         this.aF();
                      } else {
@@ -4321,10 +4321,10 @@ public final class ao_1 {
                      }
                   }
                } else if (this.an != null) {
-                  ca_1.g = ca_1.g + 1 < this.an.length ? ca_1.g + 1 : 0;
+                  LoadingPage.g = LoadingPage.g + 1 < this.an.length ? LoadingPage.g + 1 : 0;
                }
             } else if (this.an != null) {
-               ca_1.g = ca_1.g - 1 >= 0 ? ca_1.g - 1 : this.an.length - 1;
+               LoadingPage.g = LoadingPage.g - 1 >= 0 ? LoadingPage.g - 1 : this.an.length - 1;
             }
          } else if (this.l == 7) {
             if (var1 != 514 && var1 != 1) {
@@ -4334,17 +4334,17 @@ public final class ao_1 {
                         this.l = 0;
                         this.m();
                      }
-                  } else if (ca_1.g == 0) {
+                  } else if (LoadingPage.g == 0) {
                      bt_1.gQ = 1;
                      this.S.a();
-                  } else if (ca_1.g == 1) {
+                  } else if (LoadingPage.g == 1) {
                      this.e.p();
                   }
                } else {
-                  ca_1.g = ca_1.g == 1 ? 0 : 1;
+                  LoadingPage.g = LoadingPage.g == 1 ? 0 : 1;
                }
             } else {
-               ca_1.g = ca_1.g == 0 ? 1 : 0;
+               LoadingPage.g = LoadingPage.g == 0 ? 1 : 0;
             }
          } else if (this.l == 9) {
             if (var1 != 514 && var1 != 1) {
@@ -4354,7 +4354,7 @@ public final class ao_1 {
                         this.l = 0;
                         this.m();
                      }
-                  } else if (ca_1.g == 0) {
+                  } else if (LoadingPage.g == 0) {
                      aq var19 = this.M;
                      byte[] var30;
                      if ((var30 = bz_1.q((short)4219, bt_1.ad)) != null) {
@@ -4363,14 +4363,14 @@ public final class ao_1 {
                      } else {
                         var19.b.b("获取上传指令数据错误!");
                      }
-                  } else if (ca_1.g == 1) {
+                  } else if (LoadingPage.g == 1) {
                      this.e.a((String)"输入公告", (int)0);
                   }
                } else {
-                  ca_1.g = ca_1.g == 1 ? 0 : 1;
+                  LoadingPage.g = LoadingPage.g == 1 ? 0 : 1;
                }
             } else {
-               ca_1.g = ca_1.g == 0 ? 1 : 0;
+               LoadingPage.g = LoadingPage.g == 0 ? 1 : 0;
             }
          }
       } else if (this.m == 0) {
@@ -4381,7 +4381,7 @@ public final class ao_1 {
                      this.l = 0;
                      this.m();
                   }
-               } else if (ca_1.g == 0) {
+               } else if (LoadingPage.g == 0) {
                   if (this.l == 3) {
                      if (bt_1.ct != null) {
                         if (this.k == 2) {
@@ -4406,7 +4406,7 @@ public final class ao_1 {
                   } else {
                      this.e.b("身上没有银两");
                   }
-               } else if (ca_1.g == 1) {
+               } else if (LoadingPage.g == 1) {
                   if (this.l == 3) {
                      this.e((int)2);
                   } else if (this.l == 4) {
@@ -4424,10 +4424,10 @@ public final class ao_1 {
                   }
                }
             } else if (this.an != null) {
-               ca_1.g = ca_1.g + 1 < this.an.length ? ca_1.g + 1 : 0;
+               LoadingPage.g = LoadingPage.g + 1 < this.an.length ? LoadingPage.g + 1 : 0;
             }
          } else if (this.an != null) {
-            ca_1.g = ca_1.g - 1 >= 0 ? ca_1.g - 1 : this.an.length - 1;
+            LoadingPage.g = LoadingPage.g - 1 >= 0 ? LoadingPage.g - 1 : this.an.length - 1;
          }
       } else if (this.m != 1 && this.m != 2 && this.m != 3) {
          if (this.m == 4) {
@@ -4438,14 +4438,14 @@ public final class ao_1 {
                }
             } else {
                this.at = "确定消耗" + this.ag + "金豆进行攻城竞标？";
-               ca_1.h = 0;
+               LoadingPage.h = 0;
                this.m = 6;
             }
          } else if (this.m == 5) {
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                if (var1 == 536870912) {
                   this.m = 0;
-                  ca_1.h = 0;
+                  LoadingPage.h = 0;
                   this.at = null;
                }
             } else {
@@ -4462,7 +4462,7 @@ public final class ao_1 {
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                if (var1 == 536870912) {
                   this.m = 0;
-                  ca_1.h = 0;
+                  LoadingPage.h = 0;
                   this.at = null;
                }
             } else {
@@ -4510,7 +4510,7 @@ public final class ao_1 {
             }
          } else if (this.m == 3) {
             this.at = "确定消耗" + bt_1.a(this.n()) + "进行攻城竞标？";
-            ca_1.h = 0;
+            LoadingPage.h = 0;
             this.m = 5;
          }
       } else {
@@ -4623,7 +4623,7 @@ public final class ao_1 {
    }
 
    public final void b(Graphics var1, String var2) {
-      ca_1.a(var1, var2, (int)this.n(), false);
+      LoadingPage.a(var1, var2, (int)this.n(), false);
    }
 
    public final void a(byte var1) {
@@ -4911,7 +4911,7 @@ public final class ao_1 {
             }
 
             this.c((int)0, (int)this.aE, (int)this.aA);
-            ca_1.o = 7;
+            LoadingPage.o = 7;
             this.l = 1;
          }
 
@@ -4948,8 +4948,8 @@ public final class ao_1 {
       }
 
       int var3 = 0;
-      var1.drawImage(MainCanvas.L.a, this.e.aq.a + 5, this.e.aq.b + this.e.aq.d - 53, 20);
-      var1.drawImage(MainCanvas.L.a, this.e.aq.a + this.e.aq.c - 5 - MainCanvas.L.b, this.e.aq.b + this.e.aq.d - 53, 20);
+      var1.drawImage(MainCanvas.L.pngImage, this.e.aq.a + 5, this.e.aq.b + this.e.aq.d - 53, 20);
+      var1.drawImage(MainCanvas.L.pngImage, this.e.aq.a + this.e.aq.c - 5 - MainCanvas.L.b, this.e.aq.b + this.e.aq.d - 53, 20);
       int var4 = Math.max(this.e.aq.c - (MainCanvas.L.b << 1), t_1.i.stringWidth(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE))));
       var3 = this.e.aq.a + (this.e.aq.c - var4) / 2;
       var1.setColor(79948);
@@ -4962,7 +4962,7 @@ public final class ao_1 {
 
       var1.fillRect(var3 - 15, this.e.aq.b + this.e.aq.d - 42, 10, 2);
       this.b(0, var3 - MainCanvas.N.b, this.e.aq.b + this.e.aq.d - 51, MainCanvas.N.b, MainCanvas.N.c);
-      var1.drawImage(MainCanvas.N.a, this.bP[0][0], this.bP[0][1], 20);
+      var1.drawImage(MainCanvas.N.pngImage, this.bP[0][0], this.bP[0][1], 20);
       if (var2 == 0) {
          var1.setColor(this.aC() > 0 ? 16776960 : 16777215);
       } else {
@@ -4971,9 +4971,9 @@ public final class ao_1 {
 
       var1.fillRect(var3 + var4 + 5, this.e.aq.b + this.e.aq.d - 46, 10, 10);
       this.b(1, var3 + var4, this.e.aq.b + this.e.aq.d - 51, MainCanvas.M.b, MainCanvas.M.c);
-      var1.drawImage(MainCanvas.M.a, this.bP[1][0], this.bP[1][1], 20);
+      var1.drawImage(MainCanvas.M.pngImage, this.bP[1][0], this.bP[1][1], 20);
       var1.setColor(16776960);
-      var1.drawString(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE)), t_1.b >> 1, this.e.aq.b + this.e.aq.d - 51 + (MainCanvas.M.a.getHeight() - t_1.j) / 2, 17);
+      var1.drawString(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE)), t_1.b >> 1, this.e.aq.b + this.e.aq.d - 51 + (MainCanvas.M.pngImage.getHeight() - t_1.j) / 2, 17);
    }
 
    public final void e(int var1) {
@@ -4992,7 +4992,7 @@ public final class ao_1 {
          this.aq = this.ar = 0;
       }
 
-      ca_1.l = 0;
+      LoadingPage.l = 0;
       this.e.aq.b();
       this.e.aq.a("");
       this.e.aq.a(true);
@@ -5035,7 +5035,7 @@ public final class ao_1 {
       }
 
       this.e.at.a((byte)1);
-      ca_1.l = 0;
+      LoadingPage.l = 0;
    }
 
    private bn y(int var1) {
@@ -5174,7 +5174,7 @@ public final class ao_1 {
                            if (this.as == 1) {
                               this.c((int)0, (int)this.aE, (int)this.aA);
                               this.E();
-                              ca_1.o = 0;
+                              LoadingPage.o = 0;
                               this.l = 1;
                               return;
                            }
@@ -5183,15 +5183,15 @@ public final class ao_1 {
                               this.m();
                               this.aq = 0;
                               this.an = new String[]{"取出物品", "存入物品"};
-                              K = new bw_1(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
-                              ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
+                              K = new TextRender(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
+                              LoadingPage.a(MainCanvas.F, K, this.an, (String[])null, true);
                               this.l = 3;
                               return;
                            }
 
                            if (this.as == 3) {
                               this.c((int)0, (int)this.aE, (int)this.aA);
-                              ca_1.o = 2;
+                              LoadingPage.o = 2;
                               this.l = 1;
                               return;
                            }
@@ -5205,7 +5205,7 @@ public final class ao_1 {
 
                            if (this.as == 5 || this.as == 8) {
                               this.m();
-                              ca_1.o = this.ai;
+                              LoadingPage.o = this.ai;
                               return;
                            }
 
@@ -5246,7 +5246,7 @@ public final class ao_1 {
                            if (this.as == 14) {
                               this.c((int)0, (int)this.aE, (int)this.aA);
                               this.E();
-                              ca_1.o = 8;
+                              LoadingPage.o = 8;
                               this.l = 1;
                               return;
                            }
@@ -5295,7 +5295,7 @@ public final class ao_1 {
             }
 
             if (this.as == 0) {
-               ca_1.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, this.am, false);
+               LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, this.am, false);
                this.l = 1;
             } else if (this.as == 1) {
                byte[] var34;
@@ -5330,7 +5330,7 @@ public final class ao_1 {
                }
 
                if (bt_1.a(var22.d)) {
-                  ca_1.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"查看", "交易"}, false);
+                  LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"查看", "交易"}, false);
                   this.l = 15;
                } else if (var22.g - var22.v <= 1) {
                   this.D(1);
@@ -5349,7 +5349,7 @@ public final class ao_1 {
                }
             } else if (this.as == 5) {
                if (bt_1.a(var22.d)) {
-                  ca_1.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"查看", "拍卖"}, false);
+                  LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"查看", "拍卖"}, false);
                   this.l = 16;
                } else if (var22.g > 1) {
                   this.a((long)var22.g);
@@ -5453,7 +5453,7 @@ public final class ao_1 {
 
                if (var22.e == 2) {
                   this.l = 13;
-                  ca_1.h = 0;
+                  LoadingPage.h = 0;
                } else {
                   this.as = 0;
                   this.V(var22.a);
@@ -5463,7 +5463,7 @@ public final class ao_1 {
                   return;
                }
 
-               ca_1.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"查看", "打孔"}, false);
+               LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"查看", "打孔"}, false);
                this.l = 14;
             } else if (this.as == 11) {
                if (var22.d != 30) {
@@ -5516,8 +5516,8 @@ public final class ao_1 {
                   this.a((long)var22.g);
                   this.l = 2;
                } else {
-                  ca_1.h = 0;
-                  int var40 = ca_1.a(var22.b) != -1 ? ca_1.a(var22.b) : 15138723;
+                  LoadingPage.h = 0;
+                  int var40 = LoadingPage.a(var22.b) != -1 ? LoadingPage.a(var22.b) : 15138723;
                   this.at = "您确定向你的帮派捐献" + (var40 != 15138723 ? var22.b.substring(3, var22.b.length()) : var22.b) + "X" + var22.g + "？";
                   this.l = 18;
                }
@@ -5542,7 +5542,7 @@ public final class ao_1 {
          }
       } else if (this.l == 1) {
          this.a(bt_1.en);
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
@@ -5555,11 +5555,11 @@ public final class ao_1 {
                return;
             }
 
-            switch (ca_1.o) {
+            switch (LoadingPage.o) {
                case 0:
                   if (bt_1.a(var19.d) && var19.e == 2) {
                      this.l = 10;
-                     ca_1.h = 0;
+                     LoadingPage.h = 0;
                      return;
                   }
 
@@ -5594,7 +5594,7 @@ public final class ao_1 {
                      this.a((long)var19.g);
                      this.l = 2;
                   } else {
-                     ca_1.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"取消", "确认"}, false);
+                     LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"取消", "确认"}, false);
                      this.l = 3;
                   }
 
@@ -5624,7 +5624,7 @@ public final class ao_1 {
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                if (this.as == 0) {
-                  ca_1.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, this.am, false);
+                  LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, this.am, false);
                   this.l = 1;
                   return;
                }
@@ -5639,13 +5639,13 @@ public final class ao_1 {
             }
 
             if (this.as == 0) {
-               ca_1.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"取消", "确认"}, false);
+               LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"取消", "确认"}, false);
                this.l = 3;
             } else {
                if (this.as != 2) {
                   if (this.as == 18) {
-                     ca_1.h = 0;
-                     int var31 = ca_1.a(var18.b) != -1 ? ca_1.a(var18.b) : 15138723;
+                     LoadingPage.h = 0;
+                     int var31 = LoadingPage.a(var18.b) != -1 ? LoadingPage.a(var18.b) : 15138723;
                      this.at = "您确定向你的帮派捐献" + (var31 != 15138723 ? var18.b.substring(3, var18.b.length()) : var18.b) + "X" + this.ag + "？";
                      this.l = 18;
                   }
@@ -5657,7 +5657,7 @@ public final class ao_1 {
             }
          }
       } else if (this.l == 3) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                bn var17;
@@ -5666,7 +5666,7 @@ public final class ao_1 {
                   return;
                }
 
-               ca_1.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, this.am, false);
+               LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, this.am, false);
                this.l = 1;
             }
          } else {
@@ -5676,7 +5676,7 @@ public final class ao_1 {
                return;
             }
 
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                if (this.as == 0) {
                   if (var16.r != 0) {
                      this.e.a((String)"重要物品输入OK丢弃", (int)0);
@@ -5688,7 +5688,7 @@ public final class ao_1 {
                   return;
                }
             } else {
-               ca_1.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, this.am, false);
+               LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, this.am, false);
                this.l = 1;
             }
          }
@@ -5741,7 +5741,7 @@ public final class ao_1 {
                      this.bR = this.n();
                      this.at = "您确定以" + this.bR + "两的价格拍卖此物品" + (this.ag > var13.g ? var13.g : this.ag) + "个?";
                      this.l = 5;
-                     ca_1.h = 0;
+                     LoadingPage.h = 0;
                   }
 
                   return;
@@ -5787,7 +5787,7 @@ public final class ao_1 {
             if (var1 != 518 && var1 != 2) {
                if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                   if (var1 == 536870912) {
-                     ca_1.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, this.am, false);
+                     LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, this.am, false);
                      this.l = 1;
                      return;
                   }
@@ -5800,7 +5800,7 @@ public final class ao_1 {
                   return;
                }
 
-               ca_1.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"覆盖", "清空"}, false);
+               LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"覆盖", "清空"}, false);
                this.l = 9;
                return;
             }
@@ -5812,9 +5812,9 @@ public final class ao_1 {
          this.az = this.az <= 0 ? 7 : --this.az;
          return;
       } else if (this.l == 9) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.a(true, (byte)2);
                return;
             }
@@ -5854,7 +5854,7 @@ public final class ao_1 {
                      this.bR = this.n();
                      this.at = "您确定以" + this.bR + "个金豆的价格拍卖此物品" + (this.ag > var10.g ? var10.g : this.ag) + "个?";
                      this.l = 5;
-                     ca_1.h = 0;
+                     LoadingPage.h = 0;
                   }
 
                   return;
@@ -5906,21 +5906,21 @@ public final class ao_1 {
             return;
          }
       } else if (this.l == 14) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
                return;
             }
          } else {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.aH = this.e.as.a;
                bt_1.a(this.y((this.ar << 3) + this.aq));
                this.O.a(0, (short)this.k, this.as);
                return;
             }
 
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                o_1.e = 0;
                bn var8 = this.y((this.ar << 3) + this.aq);
                byte[] var2;
@@ -5934,7 +5934,7 @@ public final class ao_1 {
             }
          }
       } else if (this.l == 15) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
@@ -5942,12 +5942,12 @@ public final class ao_1 {
             }
          } else {
             bn var7 = this.y((this.ar << 3) + this.aq);
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.aH = this.e.as.a;
                bt_1.a(var7);
                this.O.a(0, (short)this.k, this.as);
             } else {
-               if (ca_1.o != 1) {
+               if (LoadingPage.o != 1) {
                   return;
                }
 
@@ -5969,7 +5969,7 @@ public final class ao_1 {
             }
          }
       } else if (this.l == 16) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
@@ -5977,7 +5977,7 @@ public final class ao_1 {
             }
          } else {
             bn var6 = this.y((this.ar << 3) + this.aq);
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.aH = this.e.as.a;
                bt_1.a(var6);
                this.O.a(0, (short)this.k, this.as);
@@ -6011,13 +6011,13 @@ public final class ao_1 {
                this.C(var5.g);
             }
 
-            ca_1.h = 0;
+            LoadingPage.h = 0;
             this.l = 0;
             return;
          }
 
          if (var1 == 536870912) {
-            ca_1.h = 0;
+            LoadingPage.h = 0;
             this.l = 0;
          }
       }
@@ -6098,7 +6098,7 @@ public final class ao_1 {
 
       this.e.at.a((byte)1);
       this.l = 0;
-      ca_1.l = 0;
+      LoadingPage.l = 0;
    }
 
    public final void f(int var1) {
@@ -6158,8 +6158,8 @@ public final class ao_1 {
          this.e.aq.a(var2);
          int var12 = t_1.e <= 240 ? 79 : 120;
          this.e.aq.a(var1);
-         ca_1.a(var1, this.e.aq.a + 5, this.e.aq.b + 29 + this.e.as.b, this.e.aq.c - 11, var12, 1);
-         ca_1.a(var1);
+         LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 29 + this.e.as.b, this.e.aq.c - 11, var12, 1);
+         LoadingPage.a(var1);
          Graphics var3 = var1;
          ao_1 var13 = this;
          int var4 = (this.e.aq.c - 11 - (x.b << 3)) / 9;
@@ -6204,9 +6204,9 @@ public final class ao_1 {
             }
          }
 
-         ca_1.d(var3, var6 + var13.aq * (x.b + var4), var7 + var13.ar * (x.b + var5), 17, 17);
+         LoadingPage.d(var3, var6 + var13.aq * (x.b + var4), var7 + var13.ar * (x.b + var5), 17, 17);
          if (var15 != null && var15.a >= 0) {
-            ca_1.a(var3, var15.b + "X" + (var15.g - var15.v), var15.q, var6 + var13.aq * (x.b + var4) + x.b / 2, var7 + var13.ar * (x.b + var5) + x.b / 2);
+            LoadingPage.a(var3, var15.b + "X" + (var15.g - var15.v), var15.q, var6 + var13.aq * (x.b + var4) + x.b / 2, var7 + var13.ar * (x.b + var5) + x.b / 2);
          }
 
          if (this.as != 18) {
@@ -6229,7 +6229,7 @@ public final class ao_1 {
                         }
 
                         if (var14 == this.az) {
-                           ca_1.d(var1, (t_1.b - 176) / 2 + 2 + var14 * 17, (t_1.c - 20) / 2 + 2, 17, 17);
+                           LoadingPage.d(var1, (t_1.b - 176) / 2 + 2 + var14 * 17, (t_1.c - 20) / 2 + 2, 17, 17);
                            break;
                         }
 
@@ -6237,7 +6237,7 @@ public final class ao_1 {
                      }
                   } else {
                      if (this.l == 10 || this.l == 13) {
-                        ca_1.a(var1, "使用该物品将与你绑定，是否确认使用？", new String[]{"确定", "取消"});
+                        LoadingPage.a(var1, "使用该物品将与你绑定，是否确认使用？", new String[]{"确定", "取消"});
                         return;
                      }
 
@@ -6248,7 +6248,7 @@ public final class ao_1 {
                   }
 
                } else {
-                  ca_1.a(var1, this.at, new String[]{"确定", "取消"});
+                  LoadingPage.a(var1, this.at, new String[]{"确定", "取消"});
                }
             } else if (this.l == 6) {
                this.b(var1, "拍卖价格");
@@ -6259,7 +6259,7 @@ public final class ao_1 {
             this.a(var1, "数量");
          }
       } else {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
    }
 
@@ -6292,7 +6292,7 @@ public final class ao_1 {
          }
       }
 
-      ca_1.l = 0;
+      LoadingPage.l = 0;
       this.e.aq.b();
       this.e.aq.a("可选物品");
       this.e.aq.a(true);
@@ -6306,7 +6306,7 @@ public final class ao_1 {
       }
 
       this.e.at.a((byte)1);
-      ca_1.l = 0;
+      LoadingPage.l = 0;
       this.e.au.a("");
       this.e.aq.a((al)this.e.as);
       this.e.aq.a((al)this.e.at);
@@ -6511,8 +6511,8 @@ public final class ao_1 {
       if (this.e.aq != null) {
          this.e.aq.a(var1);
          int var2 = t_1.e <= 240 ? 79 : 120;
-         ca_1.a(var1, this.e.aq.a + 5, this.e.aq.b + 29 + this.e.as.b, this.e.aq.c - 11, var2, 1);
-         ca_1.a(var1);
+         LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 29 + this.e.as.b, this.e.aq.c - 11, var2, 1);
+         LoadingPage.a(var1);
          Graphics var3 = var1;
          ao_1 var12 = this;
          int var4 = (this.e.aq.c - 11 - (x.b << 3)) / 9;
@@ -6552,9 +6552,9 @@ public final class ao_1 {
             }
          }
 
-         ca_1.d(var3, var6 + var12.aq * (x.b + var4), var7 + var12.ar * (x.b + var5), 17, 17);
+         LoadingPage.d(var3, var6 + var12.aq * (x.b + var4), var7 + var12.ar * (x.b + var5), 17, 17);
          if (var13 != null && var13.a >= 0) {
-            ca_1.a(var3, var13.b + "X" + (var13.g - var13.v), var13.q, var6 + var12.aq * (x.b + var4) + x.b / 2, var7 + var12.ar * (x.b + var5) + x.b / 2);
+            LoadingPage.a(var3, var13.b + "X" + (var13.g - var13.v), var13.q, var6 + var12.aq * (x.b + var4) + x.b / 2, var7 + var12.ar * (x.b + var5) + x.b / 2);
          }
 
          this.a(var1, bt_1.ap, t_1.b / 2 + 15, this.e.au.a() + t_1.a(MainCanvas.E.c));
@@ -6573,7 +6573,7 @@ public final class ao_1 {
 
       this.e.at.a((byte)1);
       this.l = 0;
-      ca_1.l = 0;
+      LoadingPage.l = 0;
    }
 
    private void c(int var1, int var2, int var3, int var4, int var5) {
@@ -6602,7 +6602,7 @@ public final class ao_1 {
             if (var1 >= this.bV[var3][0] && var1 <= this.bV[var3][0] + this.bV[var3][2] && var2 >= this.bV[var3][1] && var2 <= this.bV[var3][1] + this.bV[var3][3]) {
                if (this.av != var3) {
                   this.av = var3;
-                  ca_1.l = 0;
+                  LoadingPage.l = 0;
                   return 0;
                }
 
@@ -6622,7 +6622,7 @@ public final class ao_1 {
             if (var1 >= this.bV[var3][0] && var1 <= this.bV[var3][0] + this.bV[var3][2] && var2 >= this.bV[var3][1] && var2 <= this.bV[var3][1] + this.bV[var3][3]) {
                if (this.aq != var3) {
                   this.aq = var3;
-                  ca_1.l = 0;
+                  LoadingPage.l = 0;
                   return 0;
                }
 
@@ -6640,7 +6640,7 @@ public final class ao_1 {
       this.bV = new int[10][4];
       this.l = 0;
       this.m = 0;
-      ca_1.l = 0;
+      LoadingPage.l = 0;
       q = this.e.a(q, bt_1.ax, bt_1.aj, (byte)3, (byte)1, false);
       if (bt_1.cz != null) {
          for(byte var1 = 0; var1 < bt_1.cz.length; ++var1) {
@@ -6660,16 +6660,16 @@ public final class ao_1 {
          if (q != null && MainCanvas.O != null && MainCanvas.R != null) {
             var6 = (t_1.b - MainCanvas.O.b) / 2;
             var7 = (t_1.c - MainCanvas.O.c) / 2;
-            var1.drawImage(MainCanvas.O.a, var6, var7, 20);
+            var1.drawImage(MainCanvas.O.pngImage, var6, var7, 20);
             this.a((int)var6, (int)var7, (int) MainCanvas.O.b, (int) MainCanvas.O.c);
 
             for(int var4 = 0; var4 < this.bY.length; ++var4) {
                if (var4 < MainCanvas.R.length) {
-                  this.bZ = MainCanvas.R[var4].a;
+                  this.bZ = MainCanvas.R[var4].pngImage;
                } else if (var4 == 8) {
-                  this.bZ = MainCanvas.R[1].a;
+                  this.bZ = MainCanvas.R[1].pngImage;
                } else if (var4 == 9) {
-                  this.bZ = MainCanvas.R[7].a;
+                  this.bZ = MainCanvas.R[7].pngImage;
                }
 
                var1.drawImage(this.bZ, var6 + this.bY[var4][0], var7 + this.bY[var4][1], 20);
@@ -6680,7 +6680,7 @@ public final class ao_1 {
          }
 
          var1.setColor(10092544);
-         ca_1.d(var1, var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 17, 17);
+         LoadingPage.d(var1, var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 17, 17);
          int[] var8 = new int[]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
          if (bt_1.cz != null) {
             for(int var5 = 0; var5 < bt_1.cz.length; var8[bt_1.cB[var5]] = var5++) {
@@ -6690,26 +6690,26 @@ public final class ao_1 {
 
          if (var8[this.av] >= 0) {
             if (this.av < 3) {
-               ca_1.a(var1, bt_1.cA[var8[this.av]], bt_1.a(this.e.l, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1], 40);
+               LoadingPage.a(var1, bt_1.cA[var8[this.av]], bt_1.a(this.e.l, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1], 40);
             } else if (this.av < 5) {
-               ca_1.a(var1, bt_1.cA[var8[this.av]], bt_1.a(this.e.l, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1] + 16, 24);
+               LoadingPage.a(var1, bt_1.cA[var8[this.av]], bt_1.a(this.e.l, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1] + 16, 24);
             } else if (this.av < 7) {
-               ca_1.a(var1, bt_1.cA[var8[this.av]], bt_1.a(this.e.l, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1] + 16, 20);
+               LoadingPage.a(var1, bt_1.cA[var8[this.av]], bt_1.a(this.e.l, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1] + 16, 20);
             } else {
-               ca_1.a(var1, bt_1.cA[var8[this.av]], bt_1.a(this.e.l, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 36);
+               LoadingPage.a(var1, bt_1.cA[var8[this.av]], bt_1.a(this.e.l, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 36);
             }
          } else if (this.av < 3) {
-            ca_1.a(var1, t_1.M[this.av], "", var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1], 40);
+            LoadingPage.a(var1, t_1.M[this.av], "", var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1], 40);
          } else if (this.av < 5) {
-            ca_1.a(var1, t_1.M[this.av], "", var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1] + 16, 24);
+            LoadingPage.a(var1, t_1.M[this.av], "", var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1] + 16, 24);
          } else if (this.av < 7) {
-            ca_1.a(var1, t_1.M[this.av], "", var6 + this.bY[this.av][0], var7 + this.bY[this.av][1] + 16, 20);
+            LoadingPage.a(var1, t_1.M[this.av], "", var6 + this.bY[this.av][0], var7 + this.bY[this.av][1] + 16, 20);
          } else {
-            ca_1.a(var1, t_1.M[this.av], "", var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 36);
+            LoadingPage.a(var1, t_1.M[this.av], "", var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 36);
          }
 
          if (this.l == 1) {
-            ca_1.c(var1);
+            LoadingPage.c(var1);
          }
 
       } else {
@@ -6717,8 +6717,8 @@ public final class ao_1 {
             if (this.e.aq != null) {
                this.e.aq.a(30);
                this.e.aq.a(var1);
-               ca_1.a(var1, this.e.aq.a + 5, this.e.aq.b + 32, this.e.aq.c - 11, 30, 1);
-               ca_1.a(var1, (String)"宝石", (int)(this.e.aq.a + 10), this.e.aq.b + 35 + t_1.a(25), 20, 16776960, 0);
+               LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 32, this.e.aq.c - 11, 30, 1);
+               LoadingPage.a(var1, (String)"宝石", (int)(this.e.aq.a + 10), this.e.aq.b + 35 + t_1.a(25), 20, 16776960, 0);
             }
 
             if (bt_1.cD != null) {
@@ -6728,7 +6728,7 @@ public final class ao_1 {
 
                      for(byte var3 = 0; var3 < bt_1.cD[var2].length; ++var3) {
                         if (bt_1.cD[var2][var3] <= -1) {
-                           ca_1.a(var1, 125269879, 207, this.e.aq.a + 10 + t_1.i.stringWidth("宝石:") + 2 + var3 * 17, this.e.aq.b + 39, 17, 17);
+                           LoadingPage.a(var1, 125269879, 207, this.e.aq.a + 10 + t_1.i.stringWidth("宝石:") + 2 + var3 * 17, this.e.aq.b + 39, 17, 17);
                         }
 
                         if (bt_1.cD[var2][var3] > 0) {
@@ -6773,9 +6773,9 @@ public final class ao_1 {
    }
 
    public final void c(byte var1) {
-      K = new bw_1(bt_1.lw, (short)(t_1.b - bt_1.ly));
-      ca_1.a((az_1)null, K, bt_1.lz, (String[])null, bt_1.lx);
-      ca_1.h = 0;
+      K = new TextRender(bt_1.lw, (short)(t_1.b - bt_1.ly));
+      LoadingPage.a((az_1)null, K, bt_1.lz, (String[])null, bt_1.lx);
+      LoadingPage.h = 0;
       this.e.j = this.e.k;
       this.e.a = 0;
       this.e.b = 0;
@@ -7029,7 +7029,7 @@ public final class ao_1 {
 
                if (var12) {
                   bt_1.gH[var10] = bt_1.gS[var14];
-                  bt_1.gI[var10] = ca_1.a(bt_1.gT[var14]);
+                  bt_1.gI[var10] = LoadingPage.a(bt_1.gT[var14]);
                   bt_1.gJ[var10] = bt_1.gU[var14];
                   bt_1.gK[var10] = bt_1.gV[var14];
                   bt_1.gL[var10] = bt_1.gW[var14];
@@ -7055,9 +7055,9 @@ public final class ao_1 {
             for(int var15 = 0; var15 < bt_1.gH.length; ++var15) {
                this.al[var15] = bt_1.gK[var15] + "级";
                if (bt_1.gL[var15] == 1) {
-                  var13[var15] = y.a;
+                  var13[var15] = y.pngImage;
                } else if (bt_1.gL[var15] == 0) {
-                  var13[var15] = z.a;
+                  var13[var15] = z.pngImage;
                }
             }
          }
@@ -7094,9 +7094,9 @@ public final class ao_1 {
 
                this.am[var6] = bt_1.q[var6].e + var8;
                if (bt_1.q[var6].s == 1) {
-                  var7[var6] = y.a;
+                  var7[var6] = y.pngImage;
                } else if (bt_1.q[var6].s == 0) {
-                  var7[var6] = z.a;
+                  var7[var6] = z.pngImage;
                }
 
                var3[var6] = bt_1.q[var6].n;
@@ -7180,7 +7180,7 @@ public final class ao_1 {
             }
          } else if (this.e.as.a < 3) {
             if (bt_1.gH != null) {
-               ca_1.a(65 + o, 2 * t_1.j + 10 + this.e.ar.g() * t_1.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
+               LoadingPage.a(65 + o, 2 * t_1.j + 10 + this.e.ar.g() * t_1.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
                this.l = 1;
                return;
             }
@@ -7194,9 +7194,9 @@ public final class ao_1 {
             }
 
             if (bt_1.bs == 1) {
-               ca_1.a(0, (3 + this.e.ar.g()) * t_1.j + 10 + p, new String[]{"踢除", "任命", "解散", "群聊", "私聊", "查看", bt_1.s == 0 ? "自由" : "跟随"}, true);
+               LoadingPage.a(0, (3 + this.e.ar.g()) * t_1.j + 10 + p, new String[]{"踢除", "任命", "解散", "群聊", "私聊", "查看", bt_1.s == 0 ? "自由" : "跟随"}, true);
             } else {
-               ca_1.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"群聊", "私聊", "离开", "查看"}, true);
+               LoadingPage.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"群聊", "私聊", "离开", "查看"}, true);
             }
 
             this.l = 8;
@@ -7209,27 +7209,27 @@ public final class ao_1 {
             this.l = 0;
          }
 
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
                return;
             }
          } else {
-            if (ca_1.o == 0) {
-               ca_1.a(65 + o, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"属性", "装备", "成就"}, false);
+            if (LoadingPage.o == 0) {
+               LoadingPage.a(65 + o, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"属性", "装备", "成就"}, false);
                this.l = 2;
                return;
             }
 
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                this.aS = bt_1.gH[this.e.ar.g()];
                this.aT = 4;
                this.e.a((String)"聊天", (int)0);
                return;
             }
 
-            if (ca_1.o == 2) {
+            if (LoadingPage.o == 2) {
                if (bt_1.G()) {
                   this.e.b("住宅中不能组队");
                   return;
@@ -7237,7 +7237,7 @@ public final class ao_1 {
 
                if (bt_1.bw < 1 || bt_1.gP[this.e.ar.g()] != 2 && bt_1.gP[this.e.ar.g()] != 3) {
                   if (bt_1.bs == -1) {
-                     ca_1.a(65 + o, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"自由", "跟随"}, false);
+                     LoadingPage.a(65 + o, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"自由", "跟随"}, false);
                      this.l = 6;
                      return;
                   }
@@ -7250,9 +7250,9 @@ public final class ao_1 {
                return;
             }
 
-            if (ca_1.o == 3) {
+            if (LoadingPage.o == 3) {
                if (bt_1.bw < 1 || bt_1.gP[this.e.ar.g()] != 2 && bt_1.gP[this.e.ar.g()] != 3) {
-                  ca_1.a(65 + o, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"物品", "宠物"}, false);
+                  LoadingPage.a(65 + o, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"物品", "宠物"}, false);
                   this.l = 5;
                   return;
                }
@@ -7261,20 +7261,20 @@ public final class ao_1 {
                return;
             }
 
-            if (ca_1.o == 4) {
+            if (LoadingPage.o == 4) {
                this.a(bt_1.gH[this.e.ar.g()]);
                this.l = 0;
                return;
             }
 
-            if (ca_1.o == 5) {
+            if (LoadingPage.o == 5) {
                this.b(bt_1.gH[this.e.ar.g()]);
                this.l = 0;
                return;
             }
 
-            if (ca_1.o != 6) {
-               if (ca_1.o == 7) {
+            if (LoadingPage.o != 6) {
+               if (LoadingPage.o == 7) {
                   if (bt_1.G()) {
                      this.e.b("住宅中不能参观别人住宅");
                      return;
@@ -7371,15 +7371,15 @@ public final class ao_1 {
                return;
             }
          } else if (this.l == 5) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                this.e(bt_1.gH[this.e.ar.g()]);
                return;
             }
 
             if (var1 == 536870912) {
-               ca_1.a(65 + o, 2 * t_1.j + 20 + this.e.ar.g() * t_1.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
-               ca_1.o = 3;
+               LoadingPage.a(65 + o, 2 * t_1.j + 20 + this.e.ar.g() * t_1.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
+               LoadingPage.o = 3;
                this.l = 1;
                return;
             }
@@ -7408,19 +7408,19 @@ public final class ao_1 {
             }
 
             if (var1 == 536870912) {
-               ca_1.a(65 + o, 2 * t_1.j + 20 + this.e.ar.g() * t_1.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
+               LoadingPage.a(65 + o, 2 * t_1.j + 20 + this.e.ar.g() * t_1.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
                this.l = 1;
                return;
             }
          } else if (this.l != 8) {
             if (this.l == 9) {
-               ca_1.b(var1);
+               LoadingPage.b(var1);
                if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                   if (var1 == 536870912) {
                      this.an(this.bz);
                      return;
                   }
-               } else if (ca_1.o == 0) {
+               } else if (LoadingPage.o == 0) {
                   if (this.bz == 0) {
                      byte[] var6;
                      if ((var6 = bz_1.e((short)4114, bt_1.ad, bt_1.q[this.e.ar.g()].b)) == null) {
@@ -7460,12 +7460,12 @@ public final class ao_1 {
                         this.e.b("脱离队伍请求已发送!");
                      }
                   }
-               } else if (ca_1.o == 1) {
+               } else if (LoadingPage.o == 1) {
                   this.an(this.bz);
                   return;
                }
             } else if (this.l == 10) {
-               ca_1.b(var1);
+               LoadingPage.b(var1);
                if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                   if (var1 == 536870912) {
                      this.bz = 3;
@@ -7476,7 +7476,7 @@ public final class ao_1 {
                      this.an(this.bz);
                      return;
                   }
-               } else if (ca_1.o == 0) {
+               } else if (LoadingPage.o == 0) {
                   byte[] var10;
                   if ((var10 = bz_1.a((short)4110, bt_1.ad, bt_1.q[this.e.ar.g()].b, (byte)0)) == null) {
                      this.e.b("获取上传指令数据错误!");
@@ -7485,7 +7485,7 @@ public final class ao_1 {
 
                   MainCanvas.i.a(new w((short)4110, var10));
                   this.e.a((String)null);
-               } else if (ca_1.o == 1) {
+               } else if (LoadingPage.o == 1) {
                   byte[] var11;
                   if ((var11 = bz_1.b((short)4111, bt_1.ad, bt_1.q[this.e.ar.g()].b)) == null) {
                      this.e.b("获取上传指令数据错误!");
@@ -7498,7 +7498,7 @@ public final class ao_1 {
             } else if (this.l == 11) {
                this.T.b(var1);
                if (var1 == 268435456 || var1 == 536870912) {
-                  ca_1.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"属性", "装备"}, true);
+                  LoadingPage.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"属性", "装备"}, true);
                   this.T.j();
                   this.l = 10;
                   return;
@@ -7513,7 +7513,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  ca_1.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"属性", "装备"}, true);
+                  LoadingPage.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"属性", "装备"}, true);
                   if (bt_1.cJ != null) {
                      bt_1.o();
                   }
@@ -7525,7 +7525,7 @@ public final class ao_1 {
                }
             }
          } else {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (this.e.aC != null && this.e.g) {
                if (this.bz != 0 && this.bz != 3) {
                   this.a((String)bt_1.q[this.e.ar.g()].b, (byte)4);
@@ -7540,28 +7540,28 @@ public final class ao_1 {
                   return;
                }
             } else if (bt_1.bs == 1) {
-               if (ca_1.o == 0) {
-                  ca_1.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"确认", "取消"}, true);
+               if (LoadingPage.o == 0) {
+                  LoadingPage.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"确认", "取消"}, true);
                   this.bz = 0;
                   this.l = 9;
                   return;
                }
 
-               if (ca_1.o == 1) {
-                  ca_1.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"确认", "取消"}, true);
+               if (LoadingPage.o == 1) {
+                  LoadingPage.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"确认", "取消"}, true);
                   this.bz = 1;
                   this.l = 9;
                   return;
                }
 
-               if (ca_1.o == 2) {
-                  ca_1.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"确认", "取消"}, true);
+               if (LoadingPage.o == 2) {
+                  LoadingPage.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"确认", "取消"}, true);
                   this.bz = 2;
                   this.l = 9;
                   return;
                }
 
-               if (ca_1.o == 3) {
+               if (LoadingPage.o == 3) {
                   this.aS = null;
                   this.aT = 2;
                   this.e.a((String)"聊天", (int)0);
@@ -7570,7 +7570,7 @@ public final class ao_1 {
                   return;
                }
 
-               if (ca_1.o == 4) {
+               if (LoadingPage.o == 4) {
                   this.aS = bt_1.q[this.e.ar.g()].b;
                   this.aT = 4;
                   this.e.a((String)"聊天", (int)0);
@@ -7579,13 +7579,13 @@ public final class ao_1 {
                   return;
                }
 
-               if (ca_1.o == 5) {
-                  ca_1.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"属性", "装备"}, true);
+               if (LoadingPage.o == 5) {
+                  LoadingPage.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"属性", "装备"}, true);
                   this.l = 10;
                   return;
                }
 
-               if (ca_1.o == 6) {
+               if (LoadingPage.o == 6) {
                   this.bz = 6;
                   byte[] var5;
                   if ((var5 = bz_1.b((short)4115, bt_1.ad, (short)bt_1.s)) == null) {
@@ -7605,7 +7605,7 @@ public final class ao_1 {
                   }
                }
             } else if (bt_1.bs == 0) {
-               if (ca_1.o == 0) {
+               if (LoadingPage.o == 0) {
                   this.aS = null;
                   this.aT = 2;
                   this.e.a((String)"聊天", (int)0);
@@ -7614,7 +7614,7 @@ public final class ao_1 {
                   return;
                }
 
-               if (ca_1.o == 1) {
+               if (LoadingPage.o == 1) {
                   this.aS = bt_1.q[this.e.ar.g()].b;
                   this.aT = 2;
                   this.e.a((String)"聊天", (int)0);
@@ -7623,15 +7623,15 @@ public final class ao_1 {
                   return;
                }
 
-               if (ca_1.o == 2) {
-                  ca_1.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"确认", "取消"}, true);
+               if (LoadingPage.o == 2) {
+                  LoadingPage.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"确认", "取消"}, true);
                   this.bz = 2;
                   this.l = 9;
                   return;
                }
 
-               if (ca_1.o == 3) {
-                  ca_1.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"属性", "装备"}, true);
+               if (LoadingPage.o == 3) {
+                  LoadingPage.a(0, (3 + this.e.ar.g()) * t_1.j + p, new String[]{"属性", "装备"}, true);
                   this.bz = 3;
                   this.l = 10;
                   return;
@@ -7639,20 +7639,20 @@ public final class ao_1 {
             }
          }
       } else {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
-               ca_1.a(65 + o, 2 * t_1.j + 20 + this.e.ar.g() * t_1.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
+               LoadingPage.a(65 + o, 2 * t_1.j + 20 + this.e.ar.g() * t_1.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
                this.l = 1;
                return;
             }
          } else {
             if (this.l == 6) {
-               this.a((short)(ca_1.o == 0 ? 1 : 0), (String)bt_1.gH[this.e.ar.g()]);
+               this.a((short)(LoadingPage.o == 0 ? 1 : 0), (String)bt_1.gH[this.e.ar.g()]);
                return;
             }
 
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                byte[] var3;
                if ((var3 = bz_1.a((short)4110, bt_1.ad, bt_1.gH[this.e.ar.g()], (byte)0)) == null) {
                   this.e.b("获取上传指令数据错误!");
@@ -7661,7 +7661,7 @@ public final class ao_1 {
 
                MainCanvas.i.a(new w((short)4110, var3));
                this.e.a((String)null);
-            } else if (ca_1.o == 1) {
+            } else if (LoadingPage.o == 1) {
                byte[] var4;
                if ((var4 = bz_1.b((short)4111, bt_1.ad, bt_1.gH[this.e.ar.g()])) == null) {
                   this.e.b("获取上传指令数据错误!");
@@ -7670,7 +7670,7 @@ public final class ao_1 {
 
                MainCanvas.i.a(new w((short)4111, var4));
                this.e.a((String)null);
-            } else if (ca_1.o == 2) {
+            } else if (LoadingPage.o == 2) {
                this.df = bt_1.gH[this.e.ar.g()];
                this.a(bt_1.gH[this.e.ar.g()], bt_1.ad, (short)2, (short)1);
                return;
@@ -7688,11 +7688,11 @@ public final class ao_1 {
       if (this.e.as.a != 3) {
          if (this.l == 1) {
             if (bt_1.bw < 1) {
-               ca_1.c(var1);
+               LoadingPage.c(var1);
                return;
             }
 
-            int[] var2 = new int[ca_1.p.length];
+            int[] var2 = new int[LoadingPage.p.length];
 
             for(int var3 = 0; var3 < var2.length; ++var3) {
                if (var3 != 2 && var3 != 3) {
@@ -7712,13 +7712,13 @@ public final class ao_1 {
                }
             }
 
-            ca_1.a(var2);
-            ca_1.c(var1);
+            LoadingPage.a(var2);
+            LoadingPage.c(var1);
             return;
          }
 
          if (this.l == 2 || this.l == 5 || this.l == 6) {
-            ca_1.c(var1);
+            LoadingPage.c(var1);
             return;
          }
 
@@ -7738,7 +7738,7 @@ public final class ao_1 {
          }
       } else if (this.e.as.a == 3 && bt_1.q != null) {
          if (this.l == 8 || this.l == 9 || this.l == 10) {
-            ca_1.c(var1);
+            LoadingPage.c(var1);
             return;
          }
 
@@ -7756,7 +7756,7 @@ public final class ao_1 {
 
    private void e(String var1) {
       byte[] var2;
-      if ((var2 = bz_1.b((short)4124, bt_1.ad, var1, (byte)((byte)ca_1.o))) != null) {
+      if ((var2 = bz_1.b((short)4124, bt_1.ad, var1, (byte)((byte) LoadingPage.o))) != null) {
          MainCanvas.i.a(new w((short)4124, var2));
          this.e.a((String)null);
       } else {
@@ -7815,7 +7815,7 @@ public final class ao_1 {
 
    public final void w() {
       this.aq = 0;
-      ca_1.l = 0;
+      LoadingPage.l = 0;
       this.bV = new int[10][4];
       MainCanvas.f.a(this.f, h, i, false, true, 1009050);
       if (bt_1.cG != null) {
@@ -7919,11 +7919,11 @@ public final class ao_1 {
 
             } else {
                this.aq = this.aq + 1 > this.bY.length - 1 ? 0 : this.aq + 1;
-               ca_1.l = 0;
+               LoadingPage.l = 0;
             }
          } else {
             this.aq = this.aq - 1 < 0 ? this.bY.length - 1 : this.aq - 1;
-            ca_1.l = 0;
+            LoadingPage.l = 0;
          }
       }
    }
@@ -7934,14 +7934,14 @@ public final class ao_1 {
       if (var2 != null && MainCanvas.O != null && MainCanvas.R != null) {
          var3 = (t_1.b - MainCanvas.O.b) / 2;
          var4 = (t_1.c - MainCanvas.O.c) / 2;
-         var1.drawImage(MainCanvas.O.a, var3, var4, 20);
+         var1.drawImage(MainCanvas.O.pngImage, var3, var4, 20);
          this.a((int)var3, (int)var4, (int) MainCanvas.O.b, (int) MainCanvas.O.c);
-         var1.drawImage(MainCanvas.R[0].a, var3 + this.cc[0][0], var4 + this.cc[0][1], 20);
-         var1.drawImage(MainCanvas.R[1].a, var3 + this.cc[1][0], var4 + this.cc[1][1], 20);
-         var1.drawImage(MainCanvas.R[4].a, var3 + this.cc[2][0], var4 + this.cc[2][1], 20);
-         var1.drawImage(MainCanvas.R[3].a, var3 + this.cc[3][0], var4 + this.cc[3][1], 20);
-         var1.drawImage(MainCanvas.R[5].a, var3 + this.cc[4][0], var4 + this.cc[4][1], 20);
-         var1.drawImage(MainCanvas.R[6].a, var3 + this.cc[5][0], var4 + this.cc[5][1], 20);
+         var1.drawImage(MainCanvas.R[0].pngImage, var3 + this.cc[0][0], var4 + this.cc[0][1], 20);
+         var1.drawImage(MainCanvas.R[1].pngImage, var3 + this.cc[1][0], var4 + this.cc[1][1], 20);
+         var1.drawImage(MainCanvas.R[4].pngImage, var3 + this.cc[2][0], var4 + this.cc[2][1], 20);
+         var1.drawImage(MainCanvas.R[3].pngImage, var3 + this.cc[3][0], var4 + this.cc[3][1], 20);
+         var1.drawImage(MainCanvas.R[5].pngImage, var3 + this.cc[4][0], var4 + this.cc[4][1], 20);
+         var1.drawImage(MainCanvas.R[6].pngImage, var3 + this.cc[5][0], var4 + this.cc[5][1], 20);
 
          for(int var5 = 0; var5 < 6; ++var5) {
             this.c(var5, var3 + this.cc[var5][0], var4 + this.cc[var5][1], MainCanvas.R[0].b, MainCanvas.R[0].c);
@@ -7950,7 +7950,7 @@ public final class ao_1 {
          MainCanvas.f.a(var1, (Frame1)var2, (int[])null, 0, 0, var3 + (MainCanvas.O.b - var2.i()) / 2, var4 + (MainCanvas.O.c - var2.j()) / 2, 20, 0);
       }
 
-      ca_1.d(var1, var3 + this.cc[this.aq][0], var4 + this.cc[this.aq][1], 17, 17);
+      LoadingPage.d(var1, var3 + this.cc[this.aq][0], var4 + this.cc[this.aq][1], 17, 17);
       int[] var7 = new int[]{-1, -1, -1, -1, -1, -1};
       if (bt_1.jH != null) {
          for(int var6 = 0; var6 < bt_1.jH.length; var7[n(bt_1.jJ[var6])] = var6++) {
@@ -7960,22 +7960,22 @@ public final class ao_1 {
 
       if (var7[this.aq] >= 0) {
          if (this.aq == 0) {
-            ca_1.a(var1, bt_1.jI[var7[this.aq]], bt_1.jL[var7[this.aq]], var3 + this.cc[this.aq][0] + 16, var4 + this.cc[this.aq][1], 40);
+            LoadingPage.a(var1, bt_1.jI[var7[this.aq]], bt_1.jL[var7[this.aq]], var3 + this.cc[this.aq][0] + 16, var4 + this.cc[this.aq][1], 40);
          } else if (this.aq == 1) {
-            ca_1.a(var1, bt_1.jI[var7[this.aq]], bt_1.jL[var7[this.aq]], var3 + this.cc[this.aq][0] + 16, var4 + this.cc[this.aq][1] + 16, 24);
+            LoadingPage.a(var1, bt_1.jI[var7[this.aq]], bt_1.jL[var7[this.aq]], var3 + this.cc[this.aq][0] + 16, var4 + this.cc[this.aq][1] + 16, 24);
          } else if (this.aq == 2) {
-            ca_1.a(var1, bt_1.jI[var7[this.aq]], bt_1.jL[var7[this.aq]], var3 + this.cc[this.aq][0], var4 + this.cc[this.aq][1] + 16, 20);
+            LoadingPage.a(var1, bt_1.jI[var7[this.aq]], bt_1.jL[var7[this.aq]], var3 + this.cc[this.aq][0], var4 + this.cc[this.aq][1] + 16, 20);
          } else {
-            ca_1.a(var1, bt_1.jI[var7[this.aq]], bt_1.jL[var7[this.aq]], var3 + this.cc[this.aq][0], var4 + this.cc[this.aq][1], 36);
+            LoadingPage.a(var1, bt_1.jI[var7[this.aq]], bt_1.jL[var7[this.aq]], var3 + this.cc[this.aq][0], var4 + this.cc[this.aq][1], 36);
          }
       } else if (this.aq == 0) {
-         ca_1.a(var1, "没有装备", -1L, var3 + this.cc[this.aq][0] + 16, var4 + this.cc[this.aq][1], 40);
+         LoadingPage.a(var1, "没有装备", -1L, var3 + this.cc[this.aq][0] + 16, var4 + this.cc[this.aq][1], 40);
       } else if (this.aq == 1) {
-         ca_1.a(var1, "没有装备", -1L, var3 + this.cc[this.aq][0] + 16, var4 + this.cc[this.aq][1] + 16, 24);
+         LoadingPage.a(var1, "没有装备", -1L, var3 + this.cc[this.aq][0] + 16, var4 + this.cc[this.aq][1] + 16, 24);
       } else if (this.aq == 2) {
-         ca_1.a(var1, "没有装备", -1L, var3 + this.cc[this.aq][0], var4 + this.cc[this.aq][1] + 16, 20);
+         LoadingPage.a(var1, "没有装备", -1L, var3 + this.cc[this.aq][0], var4 + this.cc[this.aq][1] + 16, 20);
       } else {
-         ca_1.a(var1, "没有装备", -1L, var3 + this.cc[this.aq][0], var4 + this.cc[this.aq][1], 36);
+         LoadingPage.a(var1, "没有装备", -1L, var3 + this.cc[this.aq][0], var4 + this.cc[this.aq][1], 36);
       }
    }
 
@@ -7986,16 +7986,16 @@ public final class ao_1 {
          if (var3 != null && MainCanvas.O != null && MainCanvas.R != null) {
             var4 = (t_1.b - MainCanvas.O.b) / 2;
             var5 = (t_1.c - MainCanvas.O.c) / 2;
-            var1.drawImage(MainCanvas.O.a, var4, var5, 20);
+            var1.drawImage(MainCanvas.O.pngImage, var4, var5, 20);
             this.a((int)var4, (int)var5, (int) MainCanvas.O.b, (int) MainCanvas.O.c);
 
             for(int var6 = 0; var6 < this.bY.length; ++var6) {
                if (var6 < MainCanvas.R.length) {
-                  this.bZ = MainCanvas.R[var6].a;
+                  this.bZ = MainCanvas.R[var6].pngImage;
                } else if (var6 == 8) {
-                  this.bZ = MainCanvas.R[1].a;
+                  this.bZ = MainCanvas.R[1].pngImage;
                } else if (var6 == 9) {
-                  this.bZ = MainCanvas.R[7].a;
+                  this.bZ = MainCanvas.R[7].pngImage;
                }
 
                var1.drawImage(this.bZ, var4 + this.bY[var6][0], var5 + this.bY[var6][1], 20);
@@ -8003,7 +8003,7 @@ public final class ao_1 {
             }
 
             MainCanvas.f.a(var1, (Frame1)var3, (int[])null, 0, 0, var4 + MainCanvas.O.b / 2, var5 + (MainCanvas.O.c - var3.j()) / 2 + var3.j(), 20, 0);
-            ca_1.a(var1, (String)var2, (int)(var4 + MainCanvas.O.b / 2), var5 + 26, 17, 16776960, 0);
+            LoadingPage.a(var1, (String)var2, (int)(var4 + MainCanvas.O.b / 2), var5 + 26, 17, 16776960, 0);
          }
 
          var1.setColor(10092544);
@@ -8017,30 +8017,30 @@ public final class ao_1 {
 
          if (var10[this.aq] >= 0) {
             if (this.aq < 3) {
-               ca_1.a(var1, bt_1.cH[var10[this.aq]], this.a(this.aq, false), var4 + this.bY[this.aq][0] + 16, var5 + this.bY[this.aq][1], 40);
+               LoadingPage.a(var1, bt_1.cH[var10[this.aq]], this.a(this.aq, false), var4 + this.bY[this.aq][0] + 16, var5 + this.bY[this.aq][1], 40);
             } else if (this.aq < 5) {
-               ca_1.a(var1, bt_1.cH[var10[this.aq]], this.a(this.aq, false), var4 + this.bY[this.aq][0] + 16, var5 + this.bY[this.aq][1] + 16, 24);
+               LoadingPage.a(var1, bt_1.cH[var10[this.aq]], this.a(this.aq, false), var4 + this.bY[this.aq][0] + 16, var5 + this.bY[this.aq][1] + 16, 24);
             } else if (this.aq < 7) {
-               ca_1.a(var1, bt_1.cH[var10[this.aq]], this.a(this.aq, false), var4 + this.bY[this.aq][0], var5 + this.bY[this.aq][1] + 16, 20);
+               LoadingPage.a(var1, bt_1.cH[var10[this.aq]], this.a(this.aq, false), var4 + this.bY[this.aq][0], var5 + this.bY[this.aq][1] + 16, 20);
             } else {
-               ca_1.a(var1, bt_1.cH[var10[this.aq]], this.a(this.aq, false), var4 + this.bY[this.aq][0], var5 + this.bY[this.aq][1], 36);
+               LoadingPage.a(var1, bt_1.cH[var10[this.aq]], this.a(this.aq, false), var4 + this.bY[this.aq][0], var5 + this.bY[this.aq][1], 36);
             }
          } else if (this.aq < 3) {
-            ca_1.a(var1, t_1.M[this.aq], -1L, var4 + this.bY[this.aq][0] + 16, var5 + this.bY[this.aq][1], 40);
+            LoadingPage.a(var1, t_1.M[this.aq], -1L, var4 + this.bY[this.aq][0] + 16, var5 + this.bY[this.aq][1], 40);
          } else if (this.aq < 5) {
-            ca_1.a(var1, t_1.M[this.aq], -1L, var4 + this.bY[this.aq][0] + 16, var5 + this.bY[this.aq][1] + 16, 24);
+            LoadingPage.a(var1, t_1.M[this.aq], -1L, var4 + this.bY[this.aq][0] + 16, var5 + this.bY[this.aq][1] + 16, 24);
          } else {
             if (this.aq >= 7) {
-               ca_1.a(var1, t_1.M[this.aq], -1L, var4 + this.bY[this.aq][0], var5 + this.bY[this.aq][1], 36);
+               LoadingPage.a(var1, t_1.M[this.aq], -1L, var4 + this.bY[this.aq][0], var5 + this.bY[this.aq][1], 36);
                return;
             }
 
-            ca_1.a(var1, t_1.M[this.aq], -1L, var4 + this.bY[this.aq][0], var5 + this.bY[this.aq][1] + 16, 20);
+            LoadingPage.a(var1, t_1.M[this.aq], -1L, var4 + this.bY[this.aq][0], var5 + this.bY[this.aq][1] + 16, 20);
          }
       } else if (this.m == 1) {
          this.T.a(var1);
-         ca_1.a(var1, this.T.a + 5, this.T.b + 32, this.T.c - 11, 30, 1);
-         ca_1.a(var1, (String)"宝石", (int)(this.T.a + 10), this.T.b + 35 + t_1.a(25), 20, 16776960, 0);
+         LoadingPage.a(var1, this.T.a + 5, this.T.b + 32, this.T.c - 11, 30, 1);
+         LoadingPage.a(var1, (String)"宝石", (int)(this.T.a + 10), this.T.b + 35 + t_1.a(25), 20, 16776960, 0);
          if (bt_1.cQ != null) {
             for(int var8 = 0; var8 < bt_1.cG.length; ++var8) {
                if (bt_1.cI[var8] == this.aq && bt_1.cQ[var8] != null) {
@@ -8188,10 +8188,10 @@ public final class ao_1 {
          }
       } else {
          if (this.l == 1) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 == 268435456 || var1 == 517 || var1 == 1073741824) {
                Object var3 = null;
-               switch (ca_1.o) {
+               switch (LoadingPage.o) {
                   case 0:
                      byte[] var7 = bz_1.a((short)5124, bt_1.ad, (int)bt_1.bR[this.e.ar.g()]);
                      this.a((short)5124, var7, (String)null);
@@ -8210,7 +8210,7 @@ public final class ao_1 {
                      return;
                   case 3:
                      String[] var4 = new String[]{"确认", "取消"};
-                     ca_1.a(35 + o, (3 + this.e.ar.i()) * t_1.j + 12 + p, var4, false);
+                     LoadingPage.a(35 + o, (3 + this.e.ar.i()) * t_1.j + 12 + p, var4, false);
                      this.l = 2;
                   default:
                      return;
@@ -8222,7 +8222,7 @@ public final class ao_1 {
             }
          } else {
             if (this.l == 2) {
-               ca_1.b(var1);
+               LoadingPage.b(var1);
                if (var1 != 268435456 && var1 != 517 && var1 != 1073741824) {
                   if (var1 == 536870912) {
                      this.aE();
@@ -8241,13 +8241,13 @@ public final class ao_1 {
                      return;
                   }
                } else {
-                  if (ca_1.o == 0) {
+                  if (LoadingPage.o == 0) {
                      byte[] var2 = bz_1.e((short)4133, bt_1.ad, (int)bt_1.bR[this.e.ar.g()]);
                      this.a((short)4133, var2, (String)null);
                      return;
                   }
 
-                  if (ca_1.o == 1) {
+                  if (LoadingPage.o == 1) {
                      this.aE();
                      return;
                   }
@@ -8281,7 +8281,7 @@ public final class ao_1 {
 
    private void aE() {
       String[] var1 = new String[]{"自动", "追踪", "详情", "放弃"};
-      ca_1.a(35 + o, (3 + this.e.ar.i()) * t_1.j + 12 + p, var1, false);
+      LoadingPage.a(35 + o, (3 + this.e.ar.i()) * t_1.j + 12 + p, var1, false);
       this.l = 1;
    }
 
@@ -8412,7 +8412,7 @@ public final class ao_1 {
 
                this.c((int)0, (int)this.aE, (int)this.aA);
                this.E();
-               ca_1.o = 8;
+               LoadingPage.o = 8;
                this.l = 1;
                return;
             }
@@ -8431,7 +8431,7 @@ public final class ao_1 {
                      var8 = new String[]{"升级", bt_1.du[this.e.ar.g()] == 0 ? "激活技能" : "取消激活", "遗忘技能"};
                   }
 
-                  ca_1.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, var8, true);
+                  LoadingPage.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, var8, true);
                   this.l = 5;
                   return;
                }
@@ -8443,7 +8443,7 @@ public final class ao_1 {
                   var7 = new String[]{"升级", "设置快捷", bt_1.du[this.e.ar.g()] == 0 ? "激活技能" : "取消激活", "遗忘技能"};
                }
 
-               ca_1.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, var7, true);
+               LoadingPage.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, var7, true);
                this.l = 1;
             } else if (this.g != null && bt_1.dn[this.e.ar.g()] != 2 && !i() && bt_1.du[this.e.ar.g()] == 1) {
                if (bt_1.do_2[this.e.ar.g()] == 2) {
@@ -8492,11 +8492,11 @@ public final class ao_1 {
                return;
             }
 
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             return;
          }
 
-         if (ca_1.p.length == 4 && ca_1.o == 0) {
+         if (LoadingPage.p.length == 4 && LoadingPage.o == 0) {
             this.l = 0;
             this.aq = this.e.ar.h();
             this.ar = this.e.ar.g();
@@ -8509,7 +8509,7 @@ public final class ao_1 {
             MainCanvas.i.a(new w((short)4166, var5));
             this.e.a((String)null);
          } else {
-            if (ca_1.p.length == 3 && ca_1.o == 0 || ca_1.p.length == 4 && ca_1.o == 1) {
+            if (LoadingPage.p.length == 3 && LoadingPage.o == 0 || LoadingPage.p.length == 4 && LoadingPage.o == 1) {
                this.az = 0;
                if (bt_1.eq == null) {
                   if (this.e.j != 2) {
@@ -8524,8 +8524,8 @@ public final class ao_1 {
                return;
             }
 
-            if ((ca_1.p.length != 3 || ca_1.o != 1) && (ca_1.p.length != 4 || ca_1.o != 2)) {
-               if (ca_1.p.length == 3 && ca_1.o == 2 || ca_1.p.length == 4 && ca_1.o == 3) {
+            if ((LoadingPage.p.length != 3 || LoadingPage.o != 1) && (LoadingPage.p.length != 4 || LoadingPage.o != 2)) {
+               if (LoadingPage.p.length == 3 && LoadingPage.o == 2 || LoadingPage.p.length == 4 && LoadingPage.o == 3) {
                   if (bt_1.dl[this.e.ar.g()] != 1) {
                      this.e.a((String)"输入OK确定遗忘宠物技能", (int)0);
                   } else {
@@ -8566,7 +8566,7 @@ public final class ao_1 {
                   return;
                }
 
-               ca_1.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"覆盖", "清空"}, true);
+               LoadingPage.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"覆盖", "清空"}, true);
                this.l = 3;
                return;
             }
@@ -8586,11 +8586,11 @@ public final class ao_1 {
                   return;
                }
 
-               ca_1.b(var1);
+               LoadingPage.b(var1);
                return;
             }
 
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.b(true, (byte)1);
                return;
             }
@@ -8600,12 +8600,12 @@ public final class ao_1 {
          }
 
          if (this.l == 5) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                if (var1 == 536870912) {
                   this.l = 0;
                }
-            } else if (ca_1.p.length == 3 && ca_1.o == 0) {
+            } else if (LoadingPage.p.length == 3 && LoadingPage.o == 0) {
                this.l = 0;
                this.aq = this.e.ar.h();
                this.ar = this.e.ar.g();
@@ -8617,8 +8617,8 @@ public final class ao_1 {
 
                MainCanvas.i.a(new w((short)4166, var3));
                this.e.a((String)null);
-            } else if ((ca_1.p.length != 3 || ca_1.o != 1) && (ca_1.p.length != 2 || ca_1.o != 0)) {
-               if (ca_1.p.length == 3 && ca_1.o == 2 || ca_1.p.length == 2 && ca_1.o == 1) {
+            } else if ((LoadingPage.p.length != 3 || LoadingPage.o != 1) && (LoadingPage.p.length != 2 || LoadingPage.o != 0)) {
+               if (LoadingPage.p.length == 3 && LoadingPage.o == 2 || LoadingPage.p.length == 2 && LoadingPage.o == 1) {
                   if (bt_1.dl[this.e.ar.g()] != 1) {
                      this.e.a((String)"输入OK确定遗忘宠物技能", (int)0);
                   } else {
@@ -8667,14 +8667,14 @@ public final class ao_1 {
 
             for(int var2 = 0; var2 < bt_1.ep.length; ++var2) {
                if (var2 == this.az) {
-                  ca_1.d(var1, (t_1.b - 176) / 2 + 2 + var2 * 17, (t_1.c - 20) / 2 + 2, 17, 17);
+                  LoadingPage.d(var1, (t_1.b - 176) / 2 + 2 + var2 * 17, (t_1.c - 20) / 2 + 2, 17, 17);
                   return;
                }
             }
          }
 
       } else {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
    }
 
@@ -8717,7 +8717,7 @@ public final class ao_1 {
          }
 
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            ca_1.a(70 + t_1.f, 2 * t_1.j + 28 + this.e.ar.i() * t_1.j + p, new String[]{"激活", "取消激活"}, true);
+            LoadingPage.a(70 + t_1.f, 2 * t_1.j + 28 + this.e.ar.i() * t_1.j + p, new String[]{"激活", "取消激活"}, true);
             this.l = 1;
             return;
          }
@@ -8728,18 +8728,18 @@ public final class ao_1 {
             return;
          }
       } else if (this.l == 1) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
             }
          } else {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.a((byte)1, bt_1.mO[this.e.ar.g()], (int)0);
                return;
             }
 
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                this.a((byte)3, bt_1.mO[this.e.ar.g()], (int)0);
                return;
             }
@@ -8757,7 +8757,7 @@ public final class ao_1 {
             return;
          }
       } else if (this.l == 1) {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
 
    }
@@ -9041,7 +9041,7 @@ public final class ao_1 {
             if (this.as == 0) {
                if (this.e.as.a == 0) {
                   String[] var6 = "".equals(bt_1.dt[this.e.ar.g()]) ? new String[]{"设置", "特效"} : new String[]{"升级", "设置", "特效"};
-                  ca_1.a(t_1.d / 3 - t_1.i.stringWidth("操作") / 2, 2 * t_1.j + 28 + this.e.ar.i() * t_1.j + p, var6, true);
+                  LoadingPage.a(t_1.d / 3 - t_1.i.stringWidth("操作") / 2, 2 * t_1.j + 28 + this.e.ar.i() * t_1.j + p, var6, true);
                   this.l = 1;
                   return;
                }
@@ -9104,11 +9104,11 @@ public final class ao_1 {
                return;
             }
 
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             return;
          }
 
-         if (ca_1.p.length == 3 && ca_1.o == 0) {
+         if (LoadingPage.p.length == 3 && LoadingPage.o == 0) {
             this.aE = this.e.ar.g();
             this.aA = this.e.ar.h();
             byte[] var2;
@@ -9121,7 +9121,7 @@ public final class ao_1 {
             MainCanvas.i.a(var3);
             this.e.a((String)null);
          } else {
-            if (ca_1.p.length == 3 && ca_1.o == 1 || ca_1.p.length == 2 && ca_1.o == 0) {
+            if (LoadingPage.p.length == 3 && LoadingPage.o == 1 || LoadingPage.p.length == 2 && LoadingPage.o == 0) {
                this.az = 0;
                if (bt_1.ek == null) {
                   if (this.e.j != 2) {
@@ -9136,7 +9136,7 @@ public final class ao_1 {
                return;
             }
 
-            if (ca_1.p.length == 2 && ca_1.o == 1 || ca_1.p.length == 3 && ca_1.o == 2) {
+            if (LoadingPage.p.length == 2 && LoadingPage.o == 1 || LoadingPage.p.length == 3 && LoadingPage.o == 2) {
                this.a((byte)5, "", (int)bt_1.dl[this.e.ar.g()]);
                return;
             }
@@ -9159,7 +9159,7 @@ public final class ao_1 {
                   return;
                }
 
-               ca_1.a(70 + t_1.f, 2 * t_1.j + 28 + this.e.ar.i() * t_1.j + p, new String[]{"覆盖", "清空"}, true);
+               LoadingPage.a(70 + t_1.f, 2 * t_1.j + 28 + this.e.ar.i() * t_1.j + p, new String[]{"覆盖", "清空"}, true);
                this.l = 7;
                return;
             }
@@ -9172,7 +9172,7 @@ public final class ao_1 {
          return;
       } else if (this.l == 7) {
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.a(true, (byte)1);
                return;
             }
@@ -9186,7 +9186,7 @@ public final class ao_1 {
             return;
          }
 
-         ca_1.b(var1);
+         LoadingPage.b(var1);
       }
 
    }
@@ -9202,14 +9202,14 @@ public final class ao_1 {
 
             for(int var2 = 0; var2 < bt_1.ej.length; ++var2) {
                if (var2 == this.az) {
-                  ca_1.d(var1, (t_1.b - 176) / 2 + 2 + var2 * 17, (t_1.c - 20) / 2 + 2, 17, 17);
+                  LoadingPage.d(var1, (t_1.b - 176) / 2 + 2 + var2 * 17, (t_1.c - 20) / 2 + 2, 17, 17);
                   return;
                }
             }
          }
 
       } else {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
    }
 
@@ -9329,44 +9329,44 @@ public final class ao_1 {
             ai_1.a(this.aI, this.e.ak);
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                if (this.e.as.a == 0 && bt_1.gs != null) {
-                  ca_1.a(35 + t_1.f, (3 + this.e.ar.i()) * t_1.j + t_1.g, new String[]{"取消拍卖"}, false);
+                  LoadingPage.a(35 + t_1.f, (3 + this.e.ar.i()) * t_1.j + t_1.g, new String[]{"取消拍卖"}, false);
                   this.l = 1;
                   return;
                }
 
                if (this.e.as.a == 1 && bt_1.gs != null) {
-                  ca_1.a(35 + t_1.f, (3 + this.e.ar.i()) * t_1.j + t_1.g, new String[]{"拍卖", "取回"}, false);
+                  LoadingPage.a(35 + t_1.f, (3 + this.e.ar.i()) * t_1.j + t_1.g, new String[]{"拍卖", "取回"}, false);
                   this.l = 2;
                   return;
                }
             }
          }
       } else if (this.l == 1) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 1073741824 && var1 != 268435456 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
                return;
             }
-         } else if (ca_1.o == 0) {
+         } else if (LoadingPage.o == 0) {
             this.l = 3;
-            ca_1.h = 0;
+            LoadingPage.h = 0;
             return;
          }
       } else if (this.l == 2) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 1073741824 && var1 != 268435456 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
                return;
             }
          } else {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.l = 4;
                return;
             }
 
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                byte[] var2;
                if ((var2 = bz_1.n((short)4151, bt_1.ad, (int)bt_1.gs[this.e.ar.g()])) == null) {
                   this.e.b("获取上传指令数据错误!");
@@ -9398,7 +9398,7 @@ public final class ao_1 {
             }
 
             this.l = 5;
-            ca_1.h = 0;
+            LoadingPage.h = 0;
             this.o();
             return;
          }
@@ -9455,7 +9455,7 @@ public final class ao_1 {
             int var5;
             var5 = (var5 = this.e.ar.b() + 2 + (this.e.ar.g() - this.e.ar.h() + 1) * t_1.j) + 50 > this.e.ar.b() + this.e.ar.d() ? this.e.ar.b() + this.e.ar.d() - 50 : var5;
             int var7 = this.e.ar.a() + this.e.ar.c() - 50 - 20;
-            ca_1.a(var1, 1009050, 159, var7, var5, 50, 50);
+            LoadingPage.a(var1, 1009050, 159, var7, var5, 50, 50);
             var1.setColor(16776960);
             var1.drawRect(var7 - 1, var5 - 1, 51, 51);
             var1.setColor(16777215);
@@ -9476,17 +9476,17 @@ public final class ao_1 {
 
       if (this.l != 1 && this.l != 2) {
          if (this.l == 3) {
-            ca_1.a(var1, "是否将" + bt_1.gt[this.e.ar.g()] + "从拍卖场中撤下？", new String[]{"确定", "取消"});
+            LoadingPage.a(var1, "是否将" + bt_1.gt[this.e.ar.g()] + "从拍卖场中撤下？", new String[]{"确定", "取消"});
          } else if (this.l == 4) {
             this.b(var1, "拍卖价格");
          } else {
             if (this.l == 5) {
-               ca_1.a(var1, "您确定以" + this.bR + "两的价格拍卖此物品?", new String[]{"确定", "取消"});
+               LoadingPage.a(var1, "您确定以" + this.bR + "两的价格拍卖此物品?", new String[]{"确定", "取消"});
             }
 
          }
       } else {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
    }
 
@@ -9610,7 +9610,7 @@ public final class ao_1 {
             int var5;
             var5 = (var5 = this.e.ar.b() + 2 + (this.e.ar.g() - this.e.ar.h()) * t_1.j) + 42 > this.e.ar.b() + this.e.ar.d() ? this.e.ar.b() + this.e.ar.d() - 42 : var5;
             int var7 = t_1.f + t_1.d - 50 - 20;
-            ca_1.a(var1, 1009050, 159, var7, var5, 50, 42);
+            LoadingPage.a(var1, 1009050, 159, var7, var5, 50, 42);
             var1.setColor(16776960);
             var1.drawRect(var7 - 1, var5 - 1, 51, 43);
             var1.setColor(16777215);
@@ -9767,9 +9767,9 @@ public final class ao_1 {
                   }
 
                   if (bt_1.t[var5].b.length() <= 2) {
-                     ca_1.a(var1, (String)bt_1.t[var5].b, (int)(this.aB + bt_1.t[var5].c * this.aD / 16), this.aC + bt_1.t[var5].d * this.aD / 16 - t_1.j - 5, 17, 13883606, 0);
+                     LoadingPage.a(var1, (String)bt_1.t[var5].b, (int)(this.aB + bt_1.t[var5].c * this.aD / 16), this.aC + bt_1.t[var5].d * this.aD / 16 - t_1.j - 5, 17, 13883606, 0);
                   } else {
-                     ca_1.a(var1, (String)(bt_1.t[var5].b.substring(0, 1) + "~"), (int)(this.aB + bt_1.t[var5].c * this.aD / 16), this.aC + bt_1.t[var5].d * this.aD / 16 - t_1.j - 5, 17, 13883606, 0);
+                     LoadingPage.a(var1, (String)(bt_1.t[var5].b.substring(0, 1) + "~"), (int)(this.aB + bt_1.t[var5].c * this.aD / 16), this.aC + bt_1.t[var5].d * this.aD / 16 - t_1.j - 5, 17, 13883606, 0);
                   }
 
                   if (bo != null) {
@@ -9953,7 +9953,7 @@ public final class ao_1 {
       MainCanvas.f.a(this.f, h, i, false, true, 1009050);
       this.j = this.k = 13;
       this.l = 7;
-      ca_1.l = 0;
+      LoadingPage.l = 0;
    }
 
    private void T(int var1) {
@@ -10049,13 +10049,13 @@ public final class ao_1 {
                      this.E();
                      this.aE = this.e.ar.g();
                   } else if (this.as == 1) {
-                     ca_1.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"拍卖"}, false);
+                     LoadingPage.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"拍卖"}, false);
                   } else if (this.as == 2) {
-                     ca_1.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"寄养"}, false);
+                     LoadingPage.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"寄养"}, false);
                   } else if (this.as == 4) {
-                     ca_1.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"交易"}, false);
+                     LoadingPage.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"交易"}, false);
                   } else if (this.as == 5) {
-                     ca_1.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"出售", "取消"}, false);
+                     LoadingPage.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"出售", "取消"}, false);
                   }
 
                   this.l = 1;
@@ -10104,14 +10104,14 @@ public final class ao_1 {
                   }
                }
             } else if (this.l == 1) {
-               ca_1.b(var1);
+               LoadingPage.b(var1);
                if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                   if (var1 == 536870912) {
                      this.l = 0;
                      return;
                   }
                } else if (this.as == 0) {
-                  if (ca_1.o == 0) {
+                  if (LoadingPage.o == 0) {
                      if (bt_1.bC.size() > 0) {
                         this.e((int)1);
                         return;
@@ -10121,12 +10121,12 @@ public final class ao_1 {
                      return;
                   }
 
-                  if (ca_1.o == 1) {
+                  if (LoadingPage.o == 1) {
                      this.s(this.e.ar.g());
                      return;
                   }
 
-                  if (ca_1.o == 2) {
+                  if (LoadingPage.o == 2) {
                      if (bt_1.bC.size() > 0) {
                         this.e((int)3);
                         return;
@@ -10136,7 +10136,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  if (ca_1.o == 3) {
+                  if (LoadingPage.o == 3) {
                      if (!bt_1.gf[this.e.ar.g()].equals("")) {
                         this.e.b("该宠物已经自带星级了，星级为零的宠物才能做主宠。");
                         return;
@@ -10153,7 +10153,7 @@ public final class ao_1 {
                      w var36 = new w((short)4691, var15);
                      MainCanvas.i.a(var36);
                      this.e.a((String)null);
-                  } else if (ca_1.o == 4) {
+                  } else if (LoadingPage.o == 4) {
                      if (bt_1.fz[this.e.ar.g()] == 0) {
                         byte[] var16;
                         if ((var16 = bz_1.h((short)4163, bt_1.ad, (int)bt_1.fA[this.e.ar.g()])) == null) {
@@ -10176,29 +10176,29 @@ public final class ao_1 {
                         this.e.a((String)null);
                      }
                   } else {
-                     if (ca_1.o == 5) {
+                     if (LoadingPage.o == 5) {
                         this.W(this.e.ar.g());
                         return;
                      }
 
-                     if (ca_1.o == 6) {
+                     if (LoadingPage.o == 6) {
                         this.e.f("宠物名称");
                         return;
                      }
 
-                     if (ca_1.o == 7) {
+                     if (LoadingPage.o == 7) {
                         this.aE = this.e.ar.g();
                         this.k(this.e.ar.g());
                         return;
                      }
 
-                     if (ca_1.o == 8) {
-                        ca_1.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"列表", "开灵"}, false);
+                     if (LoadingPage.o == 8) {
+                        LoadingPage.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"列表", "开灵"}, false);
                         this.l = 9;
                         return;
                      }
 
-                     if (ca_1.o == 9) {
+                     if (LoadingPage.o == 9) {
                         byte[] var39;
                         if ((var39 = bz_1.z((short)4613, bt_1.ad, bt_1.fA[this.e.ar.g()])) == null) {
                            this.e.b("获取上传指令数据错误!");
@@ -10208,7 +10208,7 @@ public final class ao_1 {
                         w var52 = new w((short)4148, var39);
                         MainCanvas.i.a(var52);
                         this.e.a((String)null);
-                     } else if (ca_1.o == 10) {
+                     } else if (LoadingPage.o == 10) {
                         byte[] var18;
                         if ((var18 = bz_1.b(bt_1.fA[this.e.ar.g()])) == null) {
                            this.e.b("获取上传指令数据错误!");
@@ -10233,7 +10233,7 @@ public final class ao_1 {
                   }
 
                   if (this.as == 2) {
-                     if (ca_1.o == 0) {
+                     if (LoadingPage.o == 0) {
                         byte[] var19;
                         if ((var19 = bz_1.k((short)4161, bt_1.ad, (int)bt_1.fA[this.e.ar.g()])) == null) {
                            this.e.b("获取上传指令数据错误!");
@@ -10245,7 +10245,7 @@ public final class ao_1 {
                         this.e.a((String)null);
                      }
                   } else if (this.as == 4) {
-                     if (ca_1.o == 0) {
+                     if (LoadingPage.o == 0) {
                         int var20 = bt_1.fw[this.e.ar.g()];
                         if (bt_1.fz[var20] == 0) {
                            byte[] var53 = bz_1.i((short)4172, bt_1.ad, bt_1.fA[var20], this.e.ax % 10);
@@ -10261,7 +10261,7 @@ public final class ao_1 {
                         this.e.b("出战宠物不能交易");
                      }
                   } else if (this.as == 5) {
-                     if (ca_1.o == 0) {
+                     if (LoadingPage.o == 0) {
                         if (bt_1.fz[this.e.ar.g()] != 0) {
                            this.e.b("出战宠物不能出售");
                            return;
@@ -10276,21 +10276,21 @@ public final class ao_1 {
                         w var42 = new w((short)4146, var21);
                         MainCanvas.i.a(var42);
                         this.e.a((String)null);
-                     } else if (ca_1.o == 1) {
+                     } else if (LoadingPage.o == 1) {
                         this.l = 0;
                         return;
                      }
                   }
                }
             } else if (this.l == 2) {
-               ca_1.b(var1);
+               LoadingPage.b(var1);
                if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                   if (var1 == 536870912) {
                      this.E();
                      this.l = 1;
                      return;
                   }
-               } else if (ca_1.o == 1) {
+               } else if (LoadingPage.o == 1) {
                   byte[] var14;
                   if ((var14 = bz_1.g((short)4165, bt_1.ad, (int)bt_1.fA[this.e.ar.g()])) == null) {
                      this.e.b("获取上传指令数据错误!");
@@ -10300,7 +10300,7 @@ public final class ao_1 {
                   w var35 = new w((short)4165, var14);
                   MainCanvas.i.a(var35);
                   this.e.a((String)null);
-               } else if (ca_1.o == 0) {
+               } else if (LoadingPage.o == 0) {
                   this.E();
                   this.l = 1;
                   return;
@@ -10310,7 +10310,7 @@ public final class ao_1 {
                   if (var1 != 1073741824) {
                      if (var1 == 536870912) {
                         this.e.o();
-                        ca_1.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"拍卖"}, false);
+                        LoadingPage.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"拍卖"}, false);
                         this.l = 1;
                         return;
                      }
@@ -10328,7 +10328,7 @@ public final class ao_1 {
                      this.bR = this.n();
                      if (this.bR <= 999999999L) {
                         this.l = 4;
-                        ca_1.h = 0;
+                        LoadingPage.h = 0;
                         return;
                      }
 
@@ -10364,7 +10364,7 @@ public final class ao_1 {
                      if (var1 == 536870912) {
                         this.c((int)0, (int)this.aE, (int)this.aA);
                         this.E();
-                        ca_1.o = 9;
+                        LoadingPage.o = 9;
                         this.l = 1;
                      } else {
                         if (var1 != 268435456 && var1 != 517 && var1 != 1073741824) {
@@ -10377,37 +10377,37 @@ public final class ao_1 {
                            return;
                         }
 
-                        ca_1.a((t_1.b - t_1.i.stringWidth("操作") - 20) / 2, (t_1.c - (t_1.j + 3) * 6) / 2, new String[]{"查看", "更换", "卸下", "升星", "洗炼", "附魔"}, true);
+                        LoadingPage.a((t_1.b - t_1.i.stringWidth("操作") - 20) / 2, (t_1.c - (t_1.j + 3) * 6) / 2, new String[]{"查看", "更换", "卸下", "升星", "洗炼", "附魔"}, true);
                         this.l = 8;
                      }
                   } else {
                      this.aq = this.aq + 1 > 5 ? 0 : this.aq + 1;
-                     ca_1.l = 0;
+                     LoadingPage.l = 0;
                   }
                } else {
                   this.aq = this.aq - 1 < 0 ? 5 : this.aq - 1;
-                  ca_1.l = 0;
+                  LoadingPage.l = 0;
                }
             } else if (this.l == 8) {
-               ca_1.b(var1);
+               LoadingPage.b(var1);
                if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                   if (var1 == 536870912) {
                      this.c(false);
                      return;
                   }
                } else {
-                  if (ca_1.o == 0) {
+                  if (LoadingPage.o == 0) {
                      bt_1.b((int)l(this.aq));
                      this.O.a(0, (short)this.k, this.as);
                      return;
                   }
 
-                  if (ca_1.o == 1) {
+                  if (LoadingPage.o == 1) {
                      this.e((int)9);
                      return;
                   }
 
-                  if (ca_1.o == 2) {
+                  if (LoadingPage.o == 2) {
                      byte var24;
                      if ((var24 = l(this.aq)) >= 0 && var24 <= 6) {
                         byte[] var48;
@@ -10422,7 +10422,7 @@ public final class ao_1 {
                      } else {
                         this.e.b("卸下失败");
                      }
-                  } else if (ca_1.o == 3) {
+                  } else if (LoadingPage.o == 3) {
                      this.aJ = true;
                      ch.a();
                      int var2 = -1;
@@ -10444,7 +10444,7 @@ public final class ao_1 {
                      w var6 = new w((short)4689, var27);
                      MainCanvas.i.a(var6);
                      this.e.a((String)null);
-                  } else if (ca_1.o == 4) {
+                  } else if (LoadingPage.o == 4) {
                      this.aJ = true;
                      this.O.d();
                      int var10 = -1;
@@ -10465,7 +10465,7 @@ public final class ao_1 {
 
                      MainCanvas.i.a(new w((short)4688, var29));
                      this.e.a((String)null);
-                  } else if (ca_1.o == 5) {
+                  } else if (LoadingPage.o == 5) {
                      if (this.P == null) {
                         this.P = new r(this, this.e, MainCanvas.f);
                      }
@@ -10492,15 +10492,15 @@ public final class ao_1 {
                   }
                }
             } else if (this.l == 9) {
-               ca_1.b(var1);
+               LoadingPage.b(var1);
                if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                   if (var1 == 536870912) {
                      this.E();
-                     ca_1.o = 8;
+                     LoadingPage.o = 8;
                      this.l = 1;
                      return;
                   }
-               } else if (ca_1.o == 0) {
+               } else if (LoadingPage.o == 0) {
                   int var12 = this.e.ar.g();
                   this.ay = var12;
                   if (bt_1.fz[this.e.ar.g()] == 0) {
@@ -10516,7 +10516,7 @@ public final class ao_1 {
 
                      this.e.b("宠物没有技能!");
                   }
-               } else if (ca_1.o == 1) {
+               } else if (LoadingPage.o == 1) {
                   this.cj = (byte)this.aq;
                   this.e((int)14);
                   return;
@@ -10618,9 +10618,9 @@ public final class ao_1 {
 
    public final void E() {
       if (bt_1.fz[this.e.ar.g()] == 0) {
-         ca_1.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"喂养", "附魂", "学习", "继承", "出战", "状态", "改名", "配点", "技能", "装备", "炼化"}, false);
+         LoadingPage.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"喂养", "附魂", "学习", "继承", "出战", "状态", "改名", "配点", "技能", "装备", "炼化"}, false);
       } else {
-         ca_1.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"喂养", "附魂", "学习", "继承", "休息", "状态", "改名", "配点", "技能", "装备", "炼化"}, false);
+         LoadingPage.a(70 + o, 2 * t_1.j + 5 + this.e.ar.i() * t_1.j + p, new String[]{"喂养", "附魂", "学习", "继承", "休息", "状态", "改名", "配点", "技能", "装备", "炼化"}, false);
       }
    }
 
@@ -10674,7 +10674,7 @@ public final class ao_1 {
                int var6 = 0;
                var6 = (var6 = this.e.ar.b() + 2 + (this.e.ar.g() - this.e.ar.h() + 1) * t_1.j) + 50 > this.e.ar.b() + this.e.ar.d() ? this.e.ar.b() + this.e.ar.d() - 50 : var6;
                var12 = this.e.ar.a() + this.e.ar.c() - 50 - 20;
-               ca_1.a(var1, 1009050, 159, var12, var6, 50, 50);
+               LoadingPage.a(var1, 1009050, 159, var12, var6, 50, 50);
                var1.setColor(16776960);
                var1.drawRect(var12 - 1, var6 - 1, 51, 51);
                var1.setColor(16777215);
@@ -10696,21 +10696,21 @@ public final class ao_1 {
                if (this.l == 3) {
                   this.b(var1, "请输入拍卖价格:");
                } else if (this.l == 4) {
-                  ca_1.a(var1, "您确定以" + this.bR + "两的价格拍卖此宠物1只?", new String[]{"确定", "取消"});
+                  LoadingPage.a(var1, "您确定以" + this.bR + "两的价格拍卖此宠物1只?", new String[]{"确定", "取消"});
                } else if (this.l == 6) {
                   this.a((Graphics)var1, (int)1);
                } else if (this.l == 7) {
                   this.a(var1, this.aI);
                } else if (this.l == 8) {
                   this.a(var1, this.aI);
-                  ca_1.c(var1);
+                  LoadingPage.c(var1);
                } else {
                   if (this.l == 10) {
                      if (this.e.aq != null) {
                         this.e.aq.a(30);
                         this.e.aq.a(var1);
-                        ca_1.a(var1, this.e.aq.a + 5, this.e.aq.b + 32, this.e.aq.c - 11, 30, 1);
-                        ca_1.a(var1, (String)"宝石", (int)(this.e.aq.a + 10), this.e.aq.b + 35 + t_1.a(25), 20, 16776960, 0);
+                        LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 32, this.e.aq.c - 11, 30, 1);
+                        LoadingPage.a(var1, (String)"宝石", (int)(this.e.aq.a + 10), this.e.aq.b + 35 + t_1.a(25), 20, 16776960, 0);
                      }
 
                      if (bt_1.jM != null) {
@@ -10720,7 +10720,7 @@ public final class ao_1 {
 
                               for(byte var9 = 0; var9 < bt_1.jM[var14].length; ++var9) {
                                  if (bt_1.jM[var14][var9] <= -1) {
-                                    ca_1.a(var1, 125269879, 207, this.e.aq.a + 10 + t_1.i.stringWidth("宝石:") + 2 + var9 * 17, this.e.aq.b + 39, 17, 17);
+                                    LoadingPage.a(var1, 125269879, 207, this.e.aq.a + 10 + t_1.i.stringWidth("宝石:") + 2 + var9 * 17, this.e.aq.b + 39, 17, 17);
                                  }
 
                                  if (bt_1.jM[var14][var9] > 0) {
@@ -10739,12 +10739,12 @@ public final class ao_1 {
                      String var15 = "炼化条件:" + bt_1.nC[0] + "\t";
                      var15 = var15 + "炼化所得:" + bt_1.nC[2] + "\t";
                      var15 = var15 + "消耗:" + bt_1.nC[1] + "\t";
-                     ca_1.a(var1, var15, new String[]{"确定", "取消"});
+                     LoadingPage.a(var1, var15, new String[]{"确定", "取消"});
                   }
 
                }
             } else {
-               ca_1.c(var1);
+               LoadingPage.c(var1);
             }
          }
       }
@@ -10833,7 +10833,7 @@ public final class ao_1 {
 
       if (var1 == 268435456 || var1 == 536870912) {
          this.c((int)0, (int)this.aE, (int)this.aA);
-         ca_1.o = 5;
+         LoadingPage.o = 5;
          this.l = 1;
       }
 
@@ -10849,7 +10849,7 @@ public final class ao_1 {
    public final void F() {
       this.l = 0;
       this.e.aw = 0;
-      ca_1.l = 0;
+      LoadingPage.l = 0;
       this.aq = this.ar = 0;
       this.e.aq.b();
       this.e.aq.a("买东西");
@@ -10971,7 +10971,7 @@ public final class ao_1 {
       }
 
       this.e.at.a((byte)1);
-      ca_1.l = 0;
+      LoadingPage.l = 0;
    }
 
    private void Z(int var1) {
@@ -10997,8 +10997,8 @@ public final class ao_1 {
          int var2 = t_1.e <= 240 ? 79 : 120;
          this.e.aq.a(var2);
          this.e.aq.a(var1);
-         ca_1.a(var1, this.e.aq.a + 5, this.e.aq.b + 29 + this.e.as.b, this.e.aq.c - 11, var2, 1);
-         ca_1.a(var1);
+         LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 29 + this.e.as.b, this.e.aq.c - 11, var2, 1);
+         LoadingPage.a(var1);
          var2 = (this.e.aq.c - 11 - (x.b << 3)) / 9;
          int var3 = ((t_1.e <= 240 ? 79 : 120) - 6 - (x.b << 2)) / 5;
          int var4 = this.e.aq.a + 8 + var2;
@@ -11019,9 +11019,9 @@ public final class ao_1 {
          }
 
          var1.setColor(13172693);
-         ca_1.d(var1, var4 + this.aq * (x.b + var2) - 1, var5 + this.ar * (x.b + var3) - 1, 19, 19);
+         LoadingPage.d(var1, var4 + this.aq * (x.b + var2) - 1, var5 + this.ar * (x.b + var3) - 1, 19, 19);
          if (var9 >= 0 && var9 < bt_1.cb.length) {
-            ca_1.a(var1, bt_1.bZ[var9], bt_1.cp[var9], var4 + this.aq * (x.b + var2) + x.b / 2, var5 + this.ar * (x.b + var3) + x.b / 2);
+            LoadingPage.a(var1, bt_1.bZ[var9], bt_1.cp[var9], var4 + this.aq * (x.b + var2) + x.b / 2, var5 + this.ar * (x.b + var3) + x.b / 2);
          }
 
          this.a(var1, bt_1.ap, t_1.b / 2 + x.b, this.e.au.a() + t_1.a(MainCanvas.E.c));
@@ -11036,7 +11036,7 @@ public final class ao_1 {
 
    private void a(Graphics var1, long var2, int var4, int var5) {
       t_1.a(this.e.l, var2);
-      ca_1.a(var1, (String)this.e.l.toString(), (int)var4, var5, 17, 16776917, 0);
+      LoadingPage.a(var1, (String)this.e.l.toString(), (int)var4, var5, 17, 16776917, 0);
    }
 
    public static String a(StringBuffer var0, long var1) {
@@ -11150,7 +11150,7 @@ public final class ao_1 {
       this.l = 0;
       this.e.aw = 0;
       this.as = var1;
-      ca_1.l = 0;
+      LoadingPage.l = 0;
       this.e.aq.b();
       this.e.aq.a("");
       this.e.aq.a(true);
@@ -11189,13 +11189,13 @@ public final class ao_1 {
          this.aq = 0;
          if (this.as == 0) {
             this.an = new String[]{"取出物品", "存入物品"};
-            K = new bw_1(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
-            ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
+            K = new TextRender(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
+            LoadingPage.a(MainCanvas.F, K, this.an, (String[])null, true);
             this.l = 3;
          } else if (this.as == 1) {
             this.an = new String[]{"拍卖物品", "拍卖场", "拍卖场仓库"};
-            K = new bw_1(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
-            ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
+            K = new TextRender(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
+            LoadingPage.a(MainCanvas.F, K, this.an, (String[])null, true);
          }
       }
 
@@ -11217,16 +11217,16 @@ public final class ao_1 {
                this.aH = 0;
                if (this.as == 0) {
                   this.an = new String[]{"取出物品", "存入物品"};
-                  K = new bw_1(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
-                  ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
+                  K = new TextRender(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
+                  LoadingPage.a(MainCanvas.F, K, this.an, (String[])null, true);
                   this.l = 3;
                   return;
                }
 
                if (this.as == 1) {
                   this.an = new String[]{"拍卖物品", "拍卖场", "拍卖场仓库"};
-                  K = new bw_1(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
-                  ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
+                  K = new TextRender(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
+                  LoadingPage.a(MainCanvas.F, K, this.an, (String[])null, true);
                   return;
                }
             } else {
@@ -11259,7 +11259,7 @@ public final class ao_1 {
          } else if (bt_1.ct != null && (this.e.as.a << 5) + (this.ar << 3) + this.aq < bt_1.ct.length) {
             if (this.as == 0) {
                if (bt_1.a(bt_1.cv[(this.e.as.a << 5) + (this.ar << 3) + this.aq])) {
-                  ca_1.a(3 + this.aq * 17 + 8 + o, 2 * t_1.j + 13 + this.ar * 17 + 17 + p, new String[]{"查看", "取出"}, false);
+                  LoadingPage.a(3 + this.aq * 17 + 8 + o, 2 * t_1.j + 13 + this.ar * 17 + 17 + p, new String[]{"查看", "取出"}, false);
                   this.l = 4;
                   return;
                }
@@ -11313,20 +11313,20 @@ public final class ao_1 {
             }
          }
       } else if (this.l == 4) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
             }
          } else {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.aH = this.e.as.a;
                bt_1.c((this.e.as.a << 5) + (this.ar << 3) + this.aq);
                this.O.a(0, (short)this.k, this.as);
                return;
             }
 
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                if (bt_1.cw[(this.e.as.a << 5) + (this.ar << 3) + this.aq] > 1) {
                   this.a((long)bt_1.cw[(this.e.as.a << 5) + (this.ar << 3) + this.aq]);
                   this.l = 2;
@@ -11356,7 +11356,7 @@ public final class ao_1 {
       }
 
       this.e.at.a((byte)1);
-      ca_1.l = 0;
+      LoadingPage.l = 0;
    }
 
    private void ac(int var1) {
@@ -11388,8 +11388,8 @@ public final class ao_1 {
             int var2 = t_1.e <= 240 ? 79 : 120;
             this.e.aq.a(var2);
             this.e.aq.a(var1);
-            ca_1.a(var1, this.e.aq.a + 5, this.e.aq.b + 29 + this.e.as.b, this.e.aq.c - 11, var2, 1);
-            ca_1.a(var1);
+            LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 29 + this.e.as.b, this.e.aq.c - 11, var2, 1);
+            LoadingPage.a(var1);
             var2 = (this.e.aq.c - 11 - (x.b << 3)) / 9;
             int var3 = ((t_1.e <= 240 ? 79 : 120) - 6 - (x.b << 2)) / 5;
             int var4 = this.e.aq.a + 8 + var2;
@@ -11417,9 +11417,9 @@ public final class ao_1 {
                }
             }
 
-            ca_1.d(var1, var4 + this.aq * (x.b + var2), var5 + this.ar * (x.b + var3), 17, 17);
+            LoadingPage.d(var1, var4 + this.aq * (x.b + var2), var5 + this.ar * (x.b + var3), 17, 17);
             if (var10 >= 0 && var10 < bt_1.cx.length && var10 == (this.ar << 3) + this.aq + 32 * this.e.as.a) {
-               ca_1.a(var1, bt_1.cu[var10] + "X" + bt_1.cw[var10], bt_1.cy[var10], var4 + this.aq * (x.b + var2) + x.b / 2, var5 + this.ar * (x.b + var3) + x.b / 2);
+               LoadingPage.a(var1, bt_1.cu[var10] + "X" + bt_1.cw[var10], bt_1.cy[var10], var4 + this.aq * (x.b + var2) + x.b / 2, var5 + this.ar * (x.b + var3) + x.b / 2);
             }
          }
 
@@ -11429,7 +11429,7 @@ public final class ao_1 {
             }
 
          } else {
-            ca_1.c(var1);
+            LoadingPage.c(var1);
          }
       }
    }
@@ -11580,14 +11580,14 @@ public final class ao_1 {
       } else {
          if (this.l != 0) {
             if (this.l == 1) {
-               ca_1.b(var1);
+               LoadingPage.b(var1);
                if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                   if (var1 == 536870912) {
                      this.l = 0;
                      return;
                   }
                } else if (bt_1.a(bt_1.ea[this.e.ar.g()])) {
-                  if (ca_1.o == 0) {
+                  if (LoadingPage.o == 0) {
                      this.aq = this.e.ar.g();
                      this.aA = this.e.ar.h();
                      this.aH = this.e.as.a;
@@ -11596,23 +11596,23 @@ public final class ao_1 {
                      return;
                   }
 
-                  if (ca_1.o == 1) {
+                  if (LoadingPage.o == 1) {
                      this.ag = 1;
-                     ca_1.h = 0;
+                     LoadingPage.h = 0;
                      this.l = 3;
                      return;
                   }
-               } else if (ca_1.o == 0) {
+               } else if (LoadingPage.o == 0) {
                   this.ag = 1;
                   this.l = 3;
-                  ca_1.h = 0;
+                  LoadingPage.h = 0;
                   return;
                }
             } else if (this.l == 2) {
                this.b(var1);
                if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                   this.l = 4;
-                  ca_1.h = 0;
+                  LoadingPage.h = 0;
                   return;
                }
 
@@ -11692,7 +11692,7 @@ public final class ao_1 {
                   var3 = new String[]{"购买"};
                }
 
-               ca_1.a(o + 50, 2 * t_1.j + 15 + p + this.e.ar.i() * t_1.j, var3, false);
+               LoadingPage.a(o + 50, 2 * t_1.j + 15 + p + this.e.ar.i() * t_1.j, var3, false);
                this.l = 1;
                return;
             }
@@ -11729,7 +11729,7 @@ public final class ao_1 {
          if (var1 == 536870912) {
             this.al = null;
             this.m();
-            ca_1.g = this.ai;
+            LoadingPage.g = this.ai;
          }
 
       } else {
@@ -11843,7 +11843,7 @@ public final class ao_1 {
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-               ca_1.a(o + 50, 2 * t_1.j + 15 + p + this.e.ar.i() * t_1.j, new String[]{"购买"}, false);
+               LoadingPage.a(o + 50, 2 * t_1.j + 15 + p + this.e.ar.i() * t_1.j, new String[]{"购买"}, false);
                this.l = 1;
                return;
             }
@@ -11855,21 +11855,21 @@ public final class ao_1 {
                return;
             }
          } else if (this.l == 1) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                if (var1 == 536870912) {
                   this.l = 0;
                   return;
                }
-            } else if (ca_1.o == 0) {
+            } else if (LoadingPage.o == 0) {
                this.l = 2;
-               ca_1.h = 0;
+               LoadingPage.h = 0;
                return;
             }
          } else if (this.l == 2) {
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                if (var1 == 536870912) {
-                  ca_1.a(o + 50, 2 * t_1.j + 15 + p + this.e.ar.i() * t_1.j, new String[]{"购买"}, false);
+                  LoadingPage.a(o + 50, 2 * t_1.j + 15 + p + this.e.ar.i() * t_1.j, new String[]{"购买"}, false);
                   this.l = 1;
                }
             } else {
@@ -11921,7 +11921,7 @@ public final class ao_1 {
             int var5;
             var5 = (var5 = this.e.ar.b() + 2 + (this.e.ar.g() - this.e.ar.h() + 1) * t_1.j) + 50 > this.e.ar.b() + this.e.ar.d() ? this.e.ar.b() + this.e.ar.d() - 50 : var5;
             int var7 = this.e.ar.a() + this.e.ar.c() - 50 - 20;
-            ca_1.a(var1, 1009050, 159, var7, var5, 50, 50);
+            LoadingPage.a(var1, 1009050, 159, var7, var5, 50, 50);
             var1.setColor(16776960);
             var1.drawRect(var7 - 1, var5 - 1, 51, 51);
             var1.setColor(16777215);
@@ -11940,10 +11940,10 @@ public final class ao_1 {
          }
 
          if (this.l == 1) {
-            ca_1.c(var1);
+            LoadingPage.c(var1);
          } else {
             if (this.l == 2) {
-               ca_1.a(var1, "您确认以" + bt_1.a(bt_1.gv[this.e.ar.g()]) + "的价格购买该宠物1只", new String[]{"确定", "取消"});
+               LoadingPage.a(var1, "您确认以" + bt_1.a(bt_1.gv[this.e.ar.g()]) + "的价格购买该宠物1只", new String[]{"确定", "取消"});
             }
 
          }
@@ -12010,7 +12010,7 @@ public final class ao_1 {
 
             this.g.a(MainCanvas.f, var1);
             if (this.k == 18) {
-               ca_1.a(var1, 0, 159, 0, 0, t_1.b, t_1.c);
+               LoadingPage.a(var1, 0, 159, 0, 0, t_1.b, t_1.c);
             }
          }
 
@@ -12029,7 +12029,7 @@ public final class ao_1 {
 
       this.aR = false;
       this.aM();
-      ca_1.a(aP.size(), 4, this.e.as.b + 6, t_1.b - 8, t_1.c - this.e.as.b - 6, (t_1.c - this.e.as.b - 6) / t_1.j, false);
+      LoadingPage.a(aP.size(), 4, this.e.as.b + 6, t_1.b - 8, t_1.c - this.e.as.b - 6, (t_1.c - this.e.as.b - 6) / t_1.j, false);
       this.cr = new int[aP.size()][4];
       this.l = 1;
       this.e.aq.j();
@@ -12063,10 +12063,10 @@ public final class ao_1 {
       }
 
       this.cr = new int[aP.size()][4];
-      ca_1.a(aP.size(), 4, this.e.as.b + 6, t_1.b - 8, t_1.c - this.e.as.b - 6, (t_1.c - this.e.as.b - 6) / t_1.j, false);
+      LoadingPage.a(aP.size(), 4, this.e.as.b + 6, t_1.b - 8, t_1.c - this.e.as.b - 6, (t_1.c - this.e.as.b - 6) / t_1.j, false);
       if (this.cp == this.e.as.a) {
-         ca_1.w = this.cn;
-         ca_1.z = this.co;
+         LoadingPage.w = this.cn;
+         LoadingPage.z = this.co;
       }
 
    }
@@ -12113,14 +12113,14 @@ public final class ao_1 {
          }
 
          if (this.e.aA > 40) {
-            ca_1.a(this.e.b, 1, 1);
+            LoadingPage.a(this.e.b, 1, 1);
          } else {
-            ca_1.a(var1, 1, 1);
+            LoadingPage.a(var1, 1, 1);
             ++this.e.aA;
          }
 
-         this.cn = ca_1.w;
-         this.co = ca_1.z;
+         this.cn = LoadingPage.w;
+         this.co = LoadingPage.z;
          if (var1 != 1024) {
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                this.g((short)2);
@@ -12154,14 +12154,14 @@ public final class ao_1 {
          }
 
          if (this.e.aA > 40) {
-            ca_1.a(this.e.b, 1, 1);
+            LoadingPage.a(this.e.b, 1, 1);
          } else {
-            ca_1.a(var1, 1, 1);
+            LoadingPage.a(var1, 1, 1);
             ++this.e.aA;
          }
 
-         this.cn = ca_1.w;
-         this.co = ca_1.z;
+         this.cn = LoadingPage.w;
+         this.co = LoadingPage.z;
          if (var1 != 1024) {
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                this.g((short)3);
@@ -12186,54 +12186,54 @@ public final class ao_1 {
          }
       } else if (this.l != 2 && this.l != 3) {
          if (this.l == 4) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                if (var1 == 536870912) {
                   if (this.e.as.a == 5) {
                      if (this.c) {
-                        ca_1.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单"}, true);
+                        LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单"}, true);
                      } else {
-                        ca_1.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单", "组队", "交易"}, true);
+                        LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单", "组队", "交易"}, true);
                      }
 
-                     ca_1.o = 2;
+                     LoadingPage.o = 2;
                   } else {
                      if (this.c) {
-                        ca_1.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单"}, true);
+                        LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单"}, true);
                      } else {
-                        ca_1.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单", "组队", "交易"}, true);
+                        LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单", "组队", "交易"}, true);
                      }
 
-                     ca_1.o = 3;
+                     LoadingPage.o = 3;
                   }
 
                   this.l = this.m;
                   return;
                }
             } else {
-               if (ca_1.o == 0) {
+               if (LoadingPage.o == 0) {
                   this.b(this.cl);
                   this.l = 0;
                   return;
                }
 
-               if (ca_1.o == 1) {
+               if (LoadingPage.o == 1) {
                   if (this.e.as.a == 5) {
                      if (this.c) {
-                        ca_1.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单"}, true);
+                        LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单"}, true);
                      } else {
-                        ca_1.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单", "组队", "交易"}, true);
+                        LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单", "组队", "交易"}, true);
                      }
 
-                     ca_1.o = 2;
+                     LoadingPage.o = 2;
                   } else {
                      if (this.c) {
-                        ca_1.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单"}, true);
+                        LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单"}, true);
                      } else {
-                        ca_1.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单", "组队", "交易"}, true);
+                        LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单", "组队", "交易"}, true);
                      }
 
-                     ca_1.o = 3;
+                     LoadingPage.o = 3;
                   }
 
                   this.l = this.m;
@@ -12241,9 +12241,9 @@ public final class ao_1 {
                }
             }
          } else if (this.l == 5) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-               this.a((short)(ca_1.o == 0 ? 0 : 1), (String)this.cl);
+               this.a((short)(LoadingPage.o == 0 ? 0 : 1), (String)this.cl);
                return;
             }
 
@@ -12252,7 +12252,7 @@ public final class ao_1 {
                return;
             }
          } else if (this.l == 6) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                this.e(this.cl);
                return;
@@ -12263,7 +12263,7 @@ public final class ao_1 {
             }
          }
       } else {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                if (this.l == 2) {
@@ -12278,7 +12278,7 @@ public final class ao_1 {
             this.aR = false;
             if (this.cl != null && !this.cl.equals("")) {
                if (this.e.as.a == 6) {
-                  if (ca_1.o == 0) {
+                  if (LoadingPage.o == 0) {
                      this.aR = true;
                      this.aS = this.cl;
                      this.aT = 4;
@@ -12286,21 +12286,21 @@ public final class ao_1 {
                      return;
                   }
 
-                  if (ca_1.o == 1) {
+                  if (LoadingPage.o == 1) {
                      this.a(this.cl);
                      this.l = 0;
                      return;
                   }
 
-                  if (ca_1.o == 2) {
-                     ca_1.a(0, this.l == 2 ? 150 : 40, new String[]{"确认", "取消"}, true);
+                  if (LoadingPage.o == 2) {
+                     LoadingPage.a(0, this.l == 2 ? 150 : 40, new String[]{"确认", "取消"}, true);
                      this.l = 4;
                      return;
                   }
 
-                  if (ca_1.o == 3) {
+                  if (LoadingPage.o == 3) {
                      if (bt_1.bs == -1) {
-                        ca_1.a(ca_1.r + 65 + o, 2 * t_1.j + 20 + ca_1.w * t_1.j + p, new String[]{"跟随", "自由"}, false);
+                        LoadingPage.a(LoadingPage.r + 65 + o, 2 * t_1.j + 20 + LoadingPage.w * t_1.j + p, new String[]{"跟随", "自由"}, false);
                         this.l = 5;
                         return;
                      }
@@ -12309,13 +12309,13 @@ public final class ao_1 {
                      return;
                   }
 
-                  if (ca_1.o == 4) {
-                     ca_1.a(ca_1.r + 65 + o, 2 * t_1.j + 20 + ca_1.w * t_1.j + p, new String[]{"物品", "宠物"}, false);
+                  if (LoadingPage.o == 4) {
+                     LoadingPage.a(LoadingPage.r + 65 + o, 2 * t_1.j + 20 + LoadingPage.w * t_1.j + p, new String[]{"物品", "宠物"}, false);
                      this.l = 6;
                      return;
                   }
                } else {
-                  if (ca_1.o == 0) {
+                  if (LoadingPage.o == 0) {
                      this.aR = true;
                      this.aS = this.cl;
                      this.aT = 4;
@@ -12323,7 +12323,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  if (ca_1.o == 1) {
+                  if (LoadingPage.o == 1) {
                      if (this.e.as.a != 1) {
                         this.aS = this.cl;
                         this.aT = this.cm == 4 ? 0 : this.cm;
@@ -12346,21 +12346,21 @@ public final class ao_1 {
                         return;
                      }
                   } else {
-                     if (ca_1.o == 2) {
+                     if (LoadingPage.o == 2) {
                         this.a(this.cl);
                         this.l = 1;
                         return;
                      }
 
-                     if (ca_1.o == 3) {
-                        ca_1.a(0, this.l == 2 ? 150 : 40, new String[]{"确认", "取消"}, true);
+                     if (LoadingPage.o == 3) {
+                        LoadingPage.a(0, this.l == 2 ? 150 : 40, new String[]{"确认", "取消"}, true);
                         this.l = 4;
                         return;
                      }
 
-                     if (ca_1.o == 4) {
+                     if (LoadingPage.o == 4) {
                         if (bt_1.bs == -1) {
-                           ca_1.a(ca_1.r + 65 + o, 2 * t_1.j + 20 + ca_1.w * t_1.j + p, new String[]{"跟随", "自由"}, false);
+                           LoadingPage.a(LoadingPage.r + 65 + o, 2 * t_1.j + 20 + LoadingPage.w * t_1.j + p, new String[]{"跟随", "自由"}, false);
                            this.l = 5;
                            return;
                         }
@@ -12369,8 +12369,8 @@ public final class ao_1 {
                         return;
                      }
 
-                     if (ca_1.o == 5) {
-                        ca_1.a(ca_1.r + 65 + o, 2 * t_1.j + 20 + ca_1.w * t_1.j + p, new String[]{"物品", "宠物"}, false);
+                     if (LoadingPage.o == 5) {
+                        LoadingPage.a(LoadingPage.r + 65 + o, 2 * t_1.j + 20 + LoadingPage.w * t_1.j + p, new String[]{"物品", "宠物"}, false);
                         this.l = 6;
                         return;
                      }
@@ -12410,8 +12410,8 @@ public final class ao_1 {
    }
 
    private void g(short var1) {
-      if (ca_1.v > 0 && this.e.as.a != 1) {
-         if (ca_1.w >= aP.size() || aP.size() < 1) {
+      if (LoadingPage.v > 0 && this.e.as.a != 1) {
+         if (LoadingPage.w >= aP.size() || aP.size() < 1) {
             this.aK();
             return;
          }
@@ -12421,7 +12421,7 @@ public final class ao_1 {
             return;
          }
 
-         this.cq = aP.size() > 0 ? (b)aP.elementAt(ca_1.w) : null;
+         this.cq = aP.size() > 0 ? (b)aP.elementAt(LoadingPage.w) : null;
          if (this.cq == null || this.cq.equals("")) {
             this.aK();
             return;
@@ -12483,9 +12483,9 @@ public final class ao_1 {
 
             if (this.e.as.a != 6) {
                if (this.c) {
-                  ca_1.a(0, var1 == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单"}, true);
+                  LoadingPage.a(0, var1 == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单"}, true);
                } else {
-                  ca_1.a(0, var1 == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单", "组队", "交易"}, true);
+                  LoadingPage.a(0, var1 == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单", "组队", "交易"}, true);
                }
 
                this.m = this.l = var1;
@@ -12493,9 +12493,9 @@ public final class ao_1 {
             }
 
             if (this.c) {
-               ca_1.a(0, var1 == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单"}, true);
+               LoadingPage.a(0, var1 == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单"}, true);
             } else {
-               ca_1.a(0, var1 == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单", "组队", "交易"}, true);
+               LoadingPage.a(0, var1 == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单", "组队", "交易"}, true);
             }
 
             this.m = this.l = var1;
@@ -12575,9 +12575,9 @@ public final class ao_1 {
          for(int var2 = 0; var2 < ck.size(); ++var2) {
             ce var6 = (ce)ck.elementAt(var2);
             String[] var1;
-            if ((var1 = ca_1.a("[" + var6.d + "]" + var6.e, t_1.i, t_1.b - 20)) != null && var1.length > 0) {
+            if ((var1 = LoadingPage.a("[" + var6.d + "]" + var6.e, t_1.i, t_1.b - 20)) != null && var1.length > 0) {
                for(int var3 = 0; var3 < var1.length; ++var3) {
-                  aP.addElement(new b(var1[var3], ca_1.n[var6.a]));
+                  aP.addElement(new b(var1[var3], LoadingPage.n[var6.a]));
                }
             }
          }
@@ -12593,9 +12593,9 @@ public final class ao_1 {
       for(int var3 = 0; var3 < ck.size(); ++var3) {
          String[] var2;
          ce var5;
-         if ((var5 = (ce)ck.elementAt(var3)).b == var0 && (var2 = ca_1.a("[" + var5.d + "]" + var5.e, t_1.i, t_1.b - 20)) != null && var2.length > 0) {
+         if ((var5 = (ce)ck.elementAt(var3)).b == var0 && (var2 = LoadingPage.a("[" + var5.d + "]" + var5.e, t_1.i, t_1.b - 20)) != null && var2.length > 0) {
             for(int var4 = 0; var4 < var2.length; ++var4) {
-               aP.addElement(new b(var2[var4], ca_1.n[var5.a]));
+               aP.addElement(new b(var2[var4], LoadingPage.n[var5.a]));
             }
          }
       }
@@ -12604,21 +12604,21 @@ public final class ao_1 {
 
    private void u(Graphics var1) {
       try {
-         for(int var2 = ca_1.z; var2 < aP.size() && var2 < ca_1.z + ca_1.x; ++var2) {
-            if (ca_1.w == var2) {
-               ca_1.a(var1, 9);
-               if (ca_1.w >= ca_1.x) {
-                  ca_1.a(var1, 873078, 191, ca_1.r + 2, ca_1.s + (ca_1.x - 1) * t_1.j, ca_1.t - 20, t_1.j);
+         for(int var2 = LoadingPage.z; var2 < aP.size() && var2 < LoadingPage.z + LoadingPage.x; ++var2) {
+            if (LoadingPage.w == var2) {
+               LoadingPage.a(var1, 9);
+               if (LoadingPage.w >= LoadingPage.x) {
+                  LoadingPage.a(var1, 873078, 191, LoadingPage.r + 2, LoadingPage.s + (LoadingPage.x - 1) * t_1.j, LoadingPage.t - 20, t_1.j);
                } else {
-                  ca_1.a(var1, 873078, 191, ca_1.r + 2, ca_1.s + ca_1.w * t_1.j, ca_1.t - 20, t_1.j);
+                  LoadingPage.a(var1, 873078, 191, LoadingPage.r + 2, LoadingPage.s + LoadingPage.w * t_1.j, LoadingPage.t - 20, t_1.j);
                }
             }
 
             this.cq = (b)aP.elementAt(var2);
-            this.cq.a(var1, MainCanvas.f, C, ca_1.r + 2, ca_1.s + (var2 - ca_1.z) * var1.getFont().getHeight());
-            int var10002 = ca_1.r + 2;
-            int var10003 = ca_1.s + (var2 - ca_1.z) * var1.getFont().getHeight();
-            int var10004 = ca_1.t - 20;
+            this.cq.a(var1, MainCanvas.f, C, LoadingPage.r + 2, LoadingPage.s + (var2 - LoadingPage.z) * var1.getFont().getHeight());
+            int var10002 = LoadingPage.r + 2;
+            int var10003 = LoadingPage.s + (var2 - LoadingPage.z) * var1.getFont().getHeight();
+            int var10004 = LoadingPage.t - 20;
             int var8 = t_1.j;
             int var7 = var10004;
             int var6 = var10003;
@@ -12631,11 +12631,11 @@ public final class ao_1 {
             }
          }
 
-         ca_1.a(var1, t_1.b - 5 - MainCanvas.C.b, t_1.j + 10, ca_1.u - 20, ca_1.y, ca_1.z, ca_1.v, ca_1.x);
+         LoadingPage.a(var1, t_1.b - 5 - MainCanvas.C.b, t_1.j + 10, LoadingPage.u - 20, LoadingPage.y, LoadingPage.z, LoadingPage.v, LoadingPage.x);
          int var10001 = t_1.b - 5 - MainCanvas.C.b;
          int var15 = t_1.j + 10;
          int var16 = t_1.b - 5 - MainCanvas.C.b;
-         int var17 = t_1.j - 10 + ca_1.u - MainCanvas.D.c;
+         int var17 = t_1.j - 10 + LoadingPage.u - MainCanvas.D.c;
          short var10 = MainCanvas.D.c;
          short var14 = MainCanvas.D.b;
          int var13 = var17;
@@ -12652,11 +12652,11 @@ public final class ao_1 {
          this.cs[1][3] = var10;
          this.e.aq.a(var1);
          if (this.l == 2 || this.l == 3 || this.l == 4 || this.l == 5 || this.l == 6) {
-            ca_1.c(var1);
+            LoadingPage.c(var1);
          }
 
          if (t_1.o && this.e.aj != null && MainCanvas.u != null) {
-            var1.drawImage(MainCanvas.u.a, t_1.b - MainCanvas.u.b - 5, 5, 20);
+            var1.drawImage(MainCanvas.u.pngImage, t_1.b - MainCanvas.u.b - 5, 5, 20);
          }
 
       } catch (Exception var9) {
@@ -12678,8 +12678,8 @@ public final class ao_1 {
       if (this.cr != null) {
          for(int var4 = 0; var4 < this.cr.length; ++var4) {
             if (var2 >= this.cr[var4][0] && var2 <= this.cr[var4][0] + this.cr[var4][2] && var3 >= this.cr[var4][1] && var3 <= this.cr[var4][1] + this.cr[var4][3]) {
-               if (ca_1.w != var4) {
-                  ca_1.w = var4 - 1;
+               if (LoadingPage.w != var4) {
+                  LoadingPage.w = var4 - 1;
                   return 4;
                }
 
@@ -12782,9 +12782,9 @@ public final class ao_1 {
                   this.e.a((String)"请输入好友昵称", (int)0);
                } else if (bt_1.dK != null) {
                   if (bt_1.dM[this.e.ar.g() - 1] == 0) {
-                     ca_1.a(t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
+                     LoadingPage.a(t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
                   } else if (bt_1.dM[this.e.ar.g() - 1] == 1) {
-                     ca_1.a(t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
+                     LoadingPage.a(t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
                   }
 
                   this.l = 1;
@@ -12792,7 +12792,7 @@ public final class ao_1 {
             }
          } else if (this.e.as.a == 2 && (var1 == 268435456 || var1 == 1073741824 || var1 == 517) && bt_1.dK != null) {
             if (bt_1.dM[this.e.ar.g()] == 0 || bt_1.dM[this.e.ar.g()] == 1) {
-               ca_1.a(0 + t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"删除", "加为好友"}, true);
+               LoadingPage.a(0 + t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"删除", "加为好友"}, true);
             }
 
             this.l = 4;
@@ -12811,15 +12811,15 @@ public final class ao_1 {
             return;
          }
       } else if (this.l == 1) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
                return;
             }
          } else {
-            this.e.aw = ca_1.o;
-            if (ca_1.o == 0) {
+            this.e.aw = LoadingPage.o;
+            if (LoadingPage.o == 0) {
                this.aQ = bt_1.dL[this.e.ar.g() - 1];
                this.aS = bt_1.dK[this.e.ar.g() - 1];
                this.aT = 4;
@@ -12827,27 +12827,27 @@ public final class ao_1 {
                return;
             }
 
-            if (ca_1.o == 1) {
-               ca_1.a(0, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"查看", "道具", "成就"}, true);
+            if (LoadingPage.o == 1) {
+               LoadingPage.a(0, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"查看", "道具", "成就"}, true);
                this.l = 9;
                return;
             }
 
-            if (ca_1.o == 2) {
-               ca_1.a(0, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"确认", "取消"}, true);
+            if (LoadingPage.o == 2) {
+               LoadingPage.a(0, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"确认", "取消"}, true);
                this.l = 2;
                return;
             }
 
-            if (ca_1.o == 3) {
-               ca_1.a(0, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"确认", "取消"}, true);
+            if (LoadingPage.o == 3) {
+               LoadingPage.a(0, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"确认", "取消"}, true);
                this.l = 3;
                return;
             }
 
-            if (ca_1.o == 4) {
+            if (LoadingPage.o == 4) {
                if (bt_1.bs == -1) {
-                  ca_1.a(65 + t_1.f, 2 * t_1.j + 20 + this.e.ar.g() * t_1.j + t_1.g, new String[]{"自由", "跟随"}, false);
+                  LoadingPage.a(65 + t_1.f, 2 * t_1.j + 20 + this.e.ar.g() * t_1.j + t_1.g, new String[]{"自由", "跟随"}, false);
                   this.l = 6;
                   return;
                }
@@ -12856,13 +12856,13 @@ public final class ao_1 {
                return;
             }
 
-            if (ca_1.o == 5) {
-               ca_1.a(65 + t_1.f, 2 * t_1.j + 20 + this.e.ar.g() * t_1.j + t_1.g, new String[]{"物品", "宠物"}, false);
+            if (LoadingPage.o == 5) {
+               LoadingPage.a(65 + t_1.f, 2 * t_1.j + 20 + this.e.ar.g() * t_1.j + t_1.g, new String[]{"物品", "宠物"}, false);
                this.l = 7;
                return;
             }
 
-            if (ca_1.o == 6) {
+            if (LoadingPage.o == 6) {
                if (bt_1.G()) {
                   this.e.b("住宅中不能参观别人住宅");
                   return;
@@ -12877,7 +12877,7 @@ public final class ao_1 {
                return;
             }
 
-            if (ca_1.o == 7) {
+            if (LoadingPage.o == 7) {
                aq var10000 = this.M;
                String var7 = bt_1.dL[this.e.ar.g() - 1];
                var10000.f = var7;
@@ -12887,33 +12887,33 @@ public final class ao_1 {
          }
       } else if (this.l != 2 && this.l != 3) {
          if (this.l == 4) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                if (var1 == 536870912) {
                   this.l = 0;
                   return;
                }
             } else {
-               if (ca_1.o == 0) {
-                  ca_1.a(0, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"确认", "取消"}, true);
+               if (LoadingPage.o == 0) {
+                  LoadingPage.a(0, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"确认", "取消"}, true);
                   this.l = 5;
                   return;
                }
 
-               if (ca_1.o == 1) {
+               if (LoadingPage.o == 1) {
                   this.a(bt_1.dK[this.e.ar.g()]);
                   return;
                }
             }
          } else if (this.l == 5) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                if (var1 == 536870912 && (bt_1.dM[this.e.ar.g()] == 0 || bt_1.dM[this.e.ar.g()] == 1)) {
-                  ca_1.a(0 + t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"删除", "加为好友"}, true);
+                  LoadingPage.a(0 + t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"删除", "加为好友"}, true);
                   this.l = 4;
                   return;
                }
-            } else if (ca_1.o == 0) {
+            } else if (LoadingPage.o == 0) {
                byte[] var5;
                if ((var5 = bz_1.d((short)4171, bt_1.ad, bt_1.dK[this.e.ar.g()])) == null) {
                   this.e.b("获取上传指令数据错误!");
@@ -12923,15 +12923,15 @@ public final class ao_1 {
                w var6 = new w((short)4171, var5);
                MainCanvas.i.a(var6);
                this.e.a((String)null);
-            } else if (ca_1.o == 1 && (bt_1.dM[this.e.ar.g()] == 0 || bt_1.dM[this.e.ar.g()] == 1)) {
-               ca_1.a(0 + t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"删除", "加为好友"}, true);
+            } else if (LoadingPage.o == 1 && (bt_1.dM[this.e.ar.g()] == 0 || bt_1.dM[this.e.ar.g()] == 1)) {
+               LoadingPage.a(0 + t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"删除", "加为好友"}, true);
                this.l = 4;
                return;
             }
          } else if (this.l == 6) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-               this.a((short)(ca_1.o == 0 ? 1 : 0), (String)bt_1.dK[this.e.ar.g() - 1]);
+               this.a((short)(LoadingPage.o == 0 ? 1 : 0), (String)bt_1.dK[this.e.ar.g() - 1]);
                return;
             }
 
@@ -12940,7 +12940,7 @@ public final class ao_1 {
                return;
             }
          } else if (this.l == 7) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                this.e(bt_1.dK[this.e.ar.g() - 1]);
                return;
@@ -12967,13 +12967,13 @@ public final class ao_1 {
                MainCanvas.i.a(var3);
             }
          } else if (this.l == 9) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                if (var1 == 536870912) {
                   this.l = 0;
                   return;
                }
-            } else if (ca_1.o == 0) {
+            } else if (LoadingPage.o == 0) {
                byte[] var4;
                if ((var4 = bz_1.a((short)4110, bt_1.ad, bt_1.dK[this.e.ar.g() - 1], (byte)0)) == null) {
                   this.e.b("获取上传指令数据错误!");
@@ -12983,7 +12983,7 @@ public final class ao_1 {
                MainCanvas.i.a(new w((short)4110, var4));
                this.e.a((String)null);
             } else {
-               if (ca_1.o == 1) {
+               if (LoadingPage.o == 1) {
                   if (bt_1.bC.size() > 0) {
                      this.e((int)13);
                      return;
@@ -12993,7 +12993,7 @@ public final class ao_1 {
                   return;
                }
 
-               if (ca_1.o == 2) {
+               if (LoadingPage.o == 2) {
                   this.de = bt_1.dK[this.e.ar.g() - 1];
                   this.a(bt_1.dK[this.e.ar.g() - 1], bt_1.ad, (short)3, (short)1);
                   return;
@@ -13007,23 +13007,23 @@ public final class ao_1 {
             }
          }
       } else {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                if (bt_1.dM[this.e.ar.g() - 1] == 0) {
-                  ca_1.a(t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
+                  LoadingPage.a(t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
                } else if (bt_1.dM[this.e.ar.g() - 1] == 1) {
-                  ca_1.a(t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
+                  LoadingPage.a(t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
                }
 
-               ca_1.o = this.e.aw;
+               LoadingPage.o = this.e.aw;
                this.l = 1;
                return;
             }
-         } else if (ca_1.o == 0) {
+         } else if (LoadingPage.o == 0) {
             if (this.e.aw == 2) {
                this.l = 8;
-               ca_1.h = 0;
+               LoadingPage.h = 0;
                return;
             }
 
@@ -13036,14 +13036,14 @@ public final class ao_1 {
                this.e.b("对方不在线");
                return;
             }
-         } else if (ca_1.o == 1) {
+         } else if (LoadingPage.o == 1) {
             if (bt_1.dM[this.e.ar.g() - 1] == 0) {
-               ca_1.a(t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
+               LoadingPage.a(t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
             } else if (bt_1.dM[this.e.ar.g() - 1] == 1) {
-               ca_1.a(t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
+               LoadingPage.a(t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
             }
 
-            ca_1.o = this.e.aw;
+            LoadingPage.o = this.e.aw;
             this.l = 1;
             return;
          }
@@ -13058,8 +13058,8 @@ public final class ao_1 {
       bt_1.dU = bt_1.dV;
       bt_1.dW = bt_1.dX;
       this.an = new String[]{bt_1.dS[2], bt_1.dS[3]};
-      K = new bw_1(bt_1.dS[0], (short)(t_1.b - 20));
-      ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
+      K = new TextRender(bt_1.dS[0], (short)(t_1.b - 20));
+      LoadingPage.a(MainCanvas.F, K, this.an, (String[])null, true);
       MainCanvas.f.a(this.f, h, i, true, false, 1009050);
       this.e.az = false;
       this.e.j = this.e.k;
@@ -13077,7 +13077,7 @@ public final class ao_1 {
                         this.N();
                      }
                   } else {
-                     if (ca_1.g == 0) {
+                     if (LoadingPage.g == 0) {
                         this.N();
                         this.b(bt_1.dS[1], bt_1.dU);
                         if (bt_1.dU == 26 && bt_1.dS[2].equals("注册")) {
@@ -13087,7 +13087,7 @@ public final class ao_1 {
                         } else {
                            this.e.a((String)null);
                         }
-                     } else if (ca_1.g == 1) {
+                     } else if (LoadingPage.g == 1) {
                         this.b(bt_1.dS[1], bt_1.dW);
                         this.N();
                      }
@@ -13098,16 +13098,16 @@ public final class ao_1 {
                      }
                   }
                } else {
-                  ca_1.e = ca_1.e + ca_1.d < K.a() ? ca_1.e + ca_1.d : ca_1.e;
+                  LoadingPage.e = LoadingPage.e + LoadingPage.d < K.a() ? LoadingPage.e + LoadingPage.d : LoadingPage.e;
                }
             } else {
-               ca_1.e = ca_1.e - ca_1.d >= 0 ? ca_1.e - ca_1.d : 0;
+               LoadingPage.e = LoadingPage.e - LoadingPage.d >= 0 ? LoadingPage.e - LoadingPage.d : 0;
             }
          } else if (this.an != null) {
-            ca_1.g = ca_1.g + 1 < this.an.length ? ca_1.g + 1 : 0;
+            LoadingPage.g = LoadingPage.g + 1 < this.an.length ? LoadingPage.g + 1 : 0;
          }
       } else if (this.an != null) {
-         ca_1.g = ca_1.g - 1 >= 0 ? ca_1.g - 1 : this.an.length - 1;
+         LoadingPage.g = LoadingPage.g - 1 >= 0 ? LoadingPage.g - 1 : this.an.length - 1;
       }
 
       this.e.b = 0;
@@ -13122,9 +13122,9 @@ public final class ao_1 {
          this.am[var2] = bt_1.q[var2].e;
          this.al[var2] = bt_1.q[var2].o + "级";
          if (bt_1.q[var2].s == 1) {
-            var1[var2] = y.a;
+            var1[var2] = y.pngImage;
          } else if (bt_1.q[var2].s == 0) {
-            var1[var2] = z.a;
+            var1[var2] = z.pngImage;
          }
       }
 
@@ -13164,9 +13164,9 @@ public final class ao_1 {
                }
 
                if (bt_1.bs == 1) {
-                  ca_1.a(0, 2 * t_1.j + 10 + p, new String[]{"踢除", "任命", "解散", "群聊", "私聊", "查看", bt_1.s == 0 ? "自由" : "跟随"}, true);
+                  LoadingPage.a(0, 2 * t_1.j + 10 + p, new String[]{"踢除", "任命", "解散", "群聊", "私聊", "查看", bt_1.s == 0 ? "自由" : "跟随"}, true);
                } else {
-                  ca_1.a(0, 2 * t_1.j + 10 + p, new String[]{"群聊", "私聊", "离开", "查看"}, true);
+                  LoadingPage.a(0, 2 * t_1.j + 10 + p, new String[]{"群聊", "私聊", "离开", "查看"}, true);
                }
 
                this.l = 1;
@@ -13182,55 +13182,55 @@ public final class ao_1 {
                return;
             }
          } else if (this.l == 1) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                if (var1 == 536870912) {
                   this.l = 0;
                   return;
                }
             } else if (bt_1.bs == 1) {
-               if (ca_1.o == 0) {
-                  ca_1.a(0, 2 * t_1.j + 10 + p, new String[]{"确认", "取消"}, true);
+               if (LoadingPage.o == 0) {
+                  LoadingPage.a(0, 2 * t_1.j + 10 + p, new String[]{"确认", "取消"}, true);
                   this.bz = 0;
                   this.l = 2;
                   return;
                }
 
-               if (ca_1.o == 1) {
-                  ca_1.a(0, 2 * t_1.j + 10 + p, new String[]{"确认", "取消"}, true);
+               if (LoadingPage.o == 1) {
+                  LoadingPage.a(0, 2 * t_1.j + 10 + p, new String[]{"确认", "取消"}, true);
                   this.bz = 1;
                   this.l = 2;
                   return;
                }
 
-               if (ca_1.o == 2) {
-                  ca_1.a(0, 2 * t_1.j + 10 + p, new String[]{"确认", "取消"}, true);
+               if (LoadingPage.o == 2) {
+                  LoadingPage.a(0, 2 * t_1.j + 10 + p, new String[]{"确认", "取消"}, true);
                   this.bz = 2;
                   this.l = 2;
                   return;
                }
 
-               if (ca_1.o == 3) {
+               if (LoadingPage.o == 3) {
                   this.e.a((String)"聊天", (int)0);
                   this.bz = 3;
                   this.aQ = bt_1.q[this.e.ar.g()].e;
                   return;
                }
 
-               if (ca_1.o == 4) {
+               if (LoadingPage.o == 4) {
                   this.e.a((String)"聊天", (int)0);
                   this.bz = 4;
                   this.aQ = bt_1.q[this.e.ar.g()].e;
                   return;
                }
 
-               if (ca_1.o == 5) {
-                  ca_1.a(0, 2 * t_1.j + 10 + p, new String[]{"属性", "装备"}, true);
+               if (LoadingPage.o == 5) {
+                  LoadingPage.a(0, 2 * t_1.j + 10 + p, new String[]{"属性", "装备"}, true);
                   this.l = 3;
                   return;
                }
 
-               if (ca_1.o == 6) {
+               if (LoadingPage.o == 6) {
                   this.bz = 6;
                   byte[] var8;
                   if ((var8 = bz_1.b((short)4115, bt_1.ad, (short)bt_1.s)) == null) {
@@ -13250,42 +13250,42 @@ public final class ao_1 {
                   }
                }
             } else if (bt_1.bs == 0) {
-               if (ca_1.o == 0) {
+               if (LoadingPage.o == 0) {
                   this.e.a((String)"聊天", (int)0);
                   this.bz = 0;
                   this.aQ = bt_1.q[this.e.ar.g()].e;
                   return;
                }
 
-               if (ca_1.o == 1) {
+               if (LoadingPage.o == 1) {
                   this.e.a((String)"聊天", (int)0);
                   this.bz = 1;
                   this.aQ = bt_1.q[this.e.ar.g()].e;
                   return;
                }
 
-               if (ca_1.o == 2) {
-                  ca_1.a(0, 2 * t_1.j + 10 + p, new String[]{"确认", "取消"}, true);
+               if (LoadingPage.o == 2) {
+                  LoadingPage.a(0, 2 * t_1.j + 10 + p, new String[]{"确认", "取消"}, true);
                   this.bz = 2;
                   this.l = 2;
                   return;
                }
 
-               if (ca_1.o == 3) {
-                  ca_1.a(0, 2 * t_1.j + 10 + p, new String[]{"属性", "装备"}, true);
+               if (LoadingPage.o == 3) {
+                  LoadingPage.a(0, 2 * t_1.j + 10 + p, new String[]{"属性", "装备"}, true);
                   this.bz = 3;
                   this.l = 3;
                   return;
                }
             }
          } else if (this.l == 2) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                if (var1 == 536870912) {
                   this.an(this.bz);
                   return;
                }
-            } else if (ca_1.o == 0) {
+            } else if (LoadingPage.o == 0) {
                if (this.bz == 0) {
                   byte[] var2;
                   if ((var2 = bz_1.e((short)4114, bt_1.ad, bt_1.q[this.e.ar.g()].b)) == null) {
@@ -13325,12 +13325,12 @@ public final class ao_1 {
                      this.e.b("脱离队伍请求已发送!");
                   }
                }
-            } else if (ca_1.o == 1) {
+            } else if (LoadingPage.o == 1) {
                this.an(this.bz);
                return;
             }
          } else if (this.l == 3) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                if (var1 == 536870912) {
                   this.bz = 3;
@@ -13341,7 +13341,7 @@ public final class ao_1 {
                   this.an(this.bz);
                   return;
                }
-            } else if (ca_1.o == 0) {
+            } else if (LoadingPage.o == 0) {
                byte[] var6;
                if ((var6 = bz_1.a((short)4110, bt_1.ad, bt_1.q[this.e.ar.g()].b, (byte)0)) == null) {
                   this.e.b("获取上传指令数据错误!");
@@ -13350,7 +13350,7 @@ public final class ao_1 {
 
                MainCanvas.i.a(new w((short)4110, var6));
                this.e.a((String)null);
-            } else if (ca_1.o == 1) {
+            } else if (LoadingPage.o == 1) {
                byte[] var7;
                if ((var7 = bz_1.b((short)4111, bt_1.ad, bt_1.q[this.e.ar.g()].b)) == null) {
                   this.e.b("获取上传指令数据错误!");
@@ -13363,7 +13363,7 @@ public final class ao_1 {
          } else if (this.l == 4) {
             this.T.b(var1);
             if (var1 == 268435456 || var1 == 536870912) {
-               ca_1.a(0, 2 * t_1.j + 10 + p, new String[]{"属性", "装备"}, true);
+               LoadingPage.a(0, 2 * t_1.j + 10 + p, new String[]{"属性", "装备"}, true);
                this.al = null;
                this.T.j();
                this.l = 3;
@@ -13373,7 +13373,7 @@ public final class ao_1 {
             this.a(bt_1.cJ);
             this.g(var1);
             if (var1 == 536870912) {
-               ca_1.a(0, 2 * t_1.j + 10 + p, new String[]{"属性", "装备"}, true);
+               LoadingPage.a(0, 2 * t_1.j + 10 + p, new String[]{"属性", "装备"}, true);
                if (bt_1.cJ != null) {
                   bt_1.o();
                }
@@ -13389,12 +13389,12 @@ public final class ao_1 {
 
    private void an(int var1) {
       if (bt_1.bs == 1) {
-         ca_1.a(0, 2 * t_1.j + 10 + p, new String[]{"踢除", "任命", "解散", "群聊", "私聊", "查看", bt_1.s == 0 ? "自由" : "跟随"}, true);
+         LoadingPage.a(0, 2 * t_1.j + 10 + p, new String[]{"踢除", "任命", "解散", "群聊", "私聊", "查看", bt_1.s == 0 ? "自由" : "跟随"}, true);
       } else {
-         ca_1.a(0, 2 * t_1.j + 10 + p, new String[]{"群聊", "私聊", "离开", "查看"}, true);
+         LoadingPage.a(0, 2 * t_1.j + 10 + p, new String[]{"群聊", "私聊", "离开", "查看"}, true);
       }
 
-      ca_1.o = var1;
+      LoadingPage.o = var1;
       if (this.k == 21) {
          this.l = 1;
       } else {
@@ -13446,7 +13446,7 @@ public final class ao_1 {
                      if (var1 == 1073741824) {
                         if (this.ar == 0) {
                            if (bt_1.fp != null && bt_1.a((byte)1, this.e.ax)) {
-                              ca_1.a(t_1.f + 20 + this.e.ax * 17, t_1.g + 41, new String[]{"查看"}, false);
+                              LoadingPage.a(t_1.f + 20 + this.e.ax * 17, t_1.g + 41, new String[]{"查看"}, false);
                               this.l = 3;
                            }
                         } else if (this.ar <= 1) {
@@ -13455,32 +13455,32 @@ public final class ao_1 {
                               if (this.ar == 1) {
                                  if (bt_1.fh == null || bt_1.fh != null && this.aO()) {
                                     if (bt_1.fi != null && bt_1.a((byte)0, this.e.ax)) {
-                                       ca_1.a(t_1.f + 20 + this.e.ax * 17, t_1.g + 4 * t_1.j + 35, new String[]{"查看", "放入", "金钱", "锁定", "交易", "退出"}, false);
+                                       LoadingPage.a(t_1.f + 20 + this.e.ax * 17, t_1.g + 4 * t_1.j + 35, new String[]{"查看", "放入", "金钱", "锁定", "交易", "退出"}, false);
                                     } else {
-                                       ca_1.a(t_1.f + 20 + this.e.ax * 17, t_1.g + 4 * t_1.j + 35, new String[]{"放入", "金钱", "锁定", "交易", "退出"}, false);
+                                       LoadingPage.a(t_1.f + 20 + this.e.ax * 17, t_1.g + 4 * t_1.j + 35, new String[]{"放入", "金钱", "锁定", "交易", "退出"}, false);
                                     }
 
-                                    ca_1.o = 0;
+                                    LoadingPage.o = 0;
                                     this.l = 1;
                                  } else {
                                     if (bt_1.fi != null && bt_1.a((byte)0, this.e.ax)) {
-                                       ca_1.a(t_1.f + 20 + this.e.ax * 17, t_1.g + 4 * t_1.j + 35, new String[]{"查看", "取出", "金钱", "锁定", "交易", "退出"}, false);
+                                       LoadingPage.a(t_1.f + 20 + this.e.ax * 17, t_1.g + 4 * t_1.j + 35, new String[]{"查看", "取出", "金钱", "锁定", "交易", "退出"}, false);
                                     } else {
-                                       ca_1.a(t_1.f + 20 + this.e.ax * 17, t_1.g + 4 * t_1.j + 35, new String[]{"取出", "金钱", "锁定", "交易", "退出"}, false);
+                                       LoadingPage.a(t_1.f + 20 + this.e.ax * 17, t_1.g + 4 * t_1.j + 35, new String[]{"取出", "金钱", "锁定", "交易", "退出"}, false);
                                     }
 
-                                    ca_1.o = 0;
+                                    LoadingPage.o = 0;
                                     this.l = 2;
                                  }
                               }
                            } else if (this.ct == 1 && this.ar == 1) {
                               if (bt_1.fu != null && (bt_1.fu == null || !this.aO())) {
-                                 ca_1.a(t_1.f + 20 + this.e.ax * 17, t_1.g + 4 * t_1.j + 35, new String[]{"取出", "金钱", "锁定", "交易", "退出"}, false);
-                                 ca_1.o = 0;
+                                 LoadingPage.a(t_1.f + 20 + this.e.ax * 17, t_1.g + 4 * t_1.j + 35, new String[]{"取出", "金钱", "锁定", "交易", "退出"}, false);
+                                 LoadingPage.o = 0;
                                  this.l = 2;
                               } else {
-                                 ca_1.a(t_1.f + 20 + this.e.ax * 17, t_1.g + 4 * t_1.j + 35, new String[]{"放入", "金钱", "锁定", "交易", "退出"}, false);
-                                 ca_1.o = 0;
+                                 LoadingPage.a(t_1.f + 20 + this.e.ax * 17, t_1.g + 4 * t_1.j + 35, new String[]{"放入", "金钱", "锁定", "交易", "退出"}, false);
+                                 LoadingPage.o = 0;
                                  this.l = 1;
                               }
                            }
@@ -13491,7 +13491,7 @@ public final class ao_1 {
                      }
 
                      if (var1 == 536870912) {
-                        ca_1.h = 0;
+                        LoadingPage.h = 0;
                         this.l = 5;
                         return;
                      }
@@ -13641,21 +13641,21 @@ public final class ao_1 {
             }
          }
       } else {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 517 && var1 != 1073741824) {
             if (var1 == 536870912) {
                this.l = 0;
                return;
             }
          } else if (bt_1.fi != null && bt_1.a((byte)0, this.e.ax)) {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.aH = this.e.as.a;
                bt_1.a((int)this.e.ax, 0);
                this.O.a(0, (short)this.k, this.ct);
                return;
             }
 
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                if (bt_1.i == 0) {
                   this.e.b("交易已锁定");
                   return;
@@ -13707,7 +13707,7 @@ public final class ao_1 {
                   }
                }
             } else {
-               if (ca_1.o == 2) {
+               if (LoadingPage.o == 2) {
                   if (bt_1.i == 0) {
                      this.e.b("交易已锁定");
                      return;
@@ -13724,7 +13724,7 @@ public final class ao_1 {
                   return;
                }
 
-               if (ca_1.o == 3) {
+               if (LoadingPage.o == 3) {
                   if (bt_1.i == 0) {
                      this.e.b("交易已锁定");
                      return;
@@ -13738,7 +13738,7 @@ public final class ao_1 {
 
                   MainCanvas.i.a(new w((short)4128, var4));
                   this.e.a((String)null);
-               } else if (ca_1.o == 4) {
+               } else if (LoadingPage.o == 4) {
                   byte[] var5;
                   if ((var5 = bz_1.h((short)4129, bt_1.ad, (byte)this.ct)) == null) {
                      this.e.b("获取上传指令数据错误!");
@@ -13747,13 +13747,13 @@ public final class ao_1 {
 
                   MainCanvas.i.a(new w((short)4129, var5));
                   this.e.a((String)null);
-               } else if (ca_1.o == 5) {
-                  ca_1.h = 0;
+               } else if (LoadingPage.o == 5) {
+                  LoadingPage.h = 0;
                   this.l = 5;
                   return;
                }
             }
-         } else if (ca_1.o == 0) {
+         } else if (LoadingPage.o == 0) {
             if (bt_1.i == 0) {
                this.e.b("交易已锁定");
                return;
@@ -13805,7 +13805,7 @@ public final class ao_1 {
                }
             }
          } else {
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                if (bt_1.i == 0) {
                   this.e.b("交易已锁定");
                   return;
@@ -13822,7 +13822,7 @@ public final class ao_1 {
                return;
             }
 
-            if (ca_1.o == 2) {
+            if (LoadingPage.o == 2) {
                if (bt_1.i == 0) {
                   this.e.b("交易已锁定");
                   return;
@@ -13836,7 +13836,7 @@ public final class ao_1 {
 
                MainCanvas.i.a(new w((short)4128, var2));
                this.e.a((String)null);
-            } else if (ca_1.o == 3) {
+            } else if (LoadingPage.o == 3) {
                byte[] var3;
                if ((var3 = bz_1.h((short)4129, bt_1.ad, (byte)this.ct)) == null) {
                   this.e.b("获取上传指令数据错误!");
@@ -13845,8 +13845,8 @@ public final class ao_1 {
 
                MainCanvas.i.a(new w((short)4129, var3));
                this.e.a((String)null);
-            } else if (ca_1.o == 4) {
-               ca_1.h = 0;
+            } else if (LoadingPage.o == 4) {
+               LoadingPage.h = 0;
                this.l = 5;
                return;
             }
@@ -13895,7 +13895,7 @@ public final class ao_1 {
 
    private void aP() {
       int var1 = this.e.ax;
-      ca_1.l = 0;
+      LoadingPage.l = 0;
       this.cu = this.ct == 0 ? "没有物品" : "没有宠物";
       if (this.ct == 0) {
          if (this.ar == 0 && bt_1.fo != null) {
@@ -14021,7 +14021,7 @@ public final class ao_1 {
                if (this.e.ax != var4) {
                   this.ar = 0;
                   this.aE = this.e.ax = var4;
-                  ca_1.l = 0;
+                  LoadingPage.l = 0;
                   return 0;
                }
 
@@ -14041,7 +14041,7 @@ public final class ao_1 {
                if (this.e.ax != var5) {
                   this.ar = 1;
                   this.aE = this.e.ax = var5;
-                  ca_1.l = 0;
+                  LoadingPage.l = 0;
                   return 0;
                }
 
@@ -14069,7 +14069,7 @@ public final class ao_1 {
 
    private void v(Graphics var1) {
       this.e.aq.a(var1);
-      ca_1.a(var1, this.e.aq.a + 5, this.e.aq.b + 29, this.e.aq.c - 11, this.e.aq.d - 30 - l_1.b(), 1);
+      LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 29, this.e.aq.c - 11, this.e.aq.d - 30 - l_1.b(), 1);
       int var2 = this.e.aq.a + 8;
       int var3 = this.e.aq.b + 32;
       int var4 = this.e.aq.c - 16;
@@ -14106,7 +14106,7 @@ public final class ao_1 {
             }
          }
       } else if (this.ct == 1 && bt_1.fx != null) {
-         Image var28 = b((short)1920).a;
+         Image var28 = b((short)1920).pngImage;
 
          for(int var9 = 0; var9 < bt_1.fx.length; ++var9) {
             var1.drawImage(var28, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fy[var9] + 1) + bt_1.fy[var9] * 18 + 1, var3 + 1, 0);
@@ -14114,7 +14114,7 @@ public final class ao_1 {
       }
 
       if (this.ar == 0) {
-         ca_1.d(var1, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (this.e.ax + 1) + this.e.ax * 18, var3, 18, 18);
+         LoadingPage.d(var1, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (this.e.ax + 1) + this.e.ax * 18, var3, 18, 18);
          var7 = var3;
       }
 
@@ -14155,7 +14155,7 @@ public final class ao_1 {
             }
          }
       } else if (this.ct == 1 && bt_1.fu != null) {
-         Image var31 = b((short)1920).a;
+         Image var31 = b((short)1920).pngImage;
 
          for(int var32 = 0; var32 < bt_1.fu.length; ++var32) {
             var1.drawImage(var31, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fv[var32] + 1) + bt_1.fv[var32] * 18 + 1, var3 + 1, 0);
@@ -14163,7 +14163,7 @@ public final class ao_1 {
       }
 
       if (this.ar == 1) {
-         ca_1.d(var1, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (this.e.ax + 1) + this.e.ax * 18, var3, 18, 18);
+         LoadingPage.d(var1, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (this.e.ax + 1) + this.e.ax * 18, var3, 18, 18);
          var7 = var3;
       }
 
@@ -14189,12 +14189,12 @@ public final class ao_1 {
       MainCanvas.f.a(var1, MainCanvas.K, (int[])null, (aj)null, 0, 0, this.cx[1][0], this.cx[1][1], 0, 0);
       if (this.cu != null) {
          var2 = var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (this.e.ax + 1) + this.e.ax * 18 + 16;
-         ca_1.b(var1, this.cu, var2, var7 + 16, t_1.g + t_1.e, 1);
+         LoadingPage.b(var1, this.cu, var2, var7 + 16, t_1.g + t_1.e, 1);
       }
 
       if ((this.ar != 1 || this.l != 1 && this.l != 2) && (this.ar != 0 || this.l != 3)) {
          if (this.l == 5) {
-            ca_1.a(var1, "确定放弃该次交易?", new String[]{"确定", "取消"});
+            LoadingPage.a(var1, "确定放弃该次交易?", new String[]{"确定", "取消"});
          } else {
             if (this.l == 6) {
                this.b(var1, "输入交易银两");
@@ -14202,7 +14202,7 @@ public final class ao_1 {
 
          }
       } else {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
    }
 
@@ -14266,7 +14266,7 @@ public final class ao_1 {
                }
             } else if (bt_1.ew != null && bt_1.ew.length > 0) {
                if (this.cy == 2) {
-                  ca_1.a(this.e.ar.a() + 65 + t_1.f, t_1.j + 20 + this.e.ar.g() * t_1.j + t_1.g, new String[]{"锻造", "查看"}, true);
+                  LoadingPage.a(this.e.ar.a() + 65 + t_1.f, t_1.j + 20 + this.e.ar.g() * t_1.j + t_1.g, new String[]{"锻造", "查看"}, true);
                   this.l = 2;
                   return;
                }
@@ -14306,12 +14306,12 @@ public final class ao_1 {
             this.e.a((String)null);
          }
       } else if (this.l == 2) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
             }
-         } else if (ca_1.o == 0) {
+         } else if (LoadingPage.o == 0) {
             Object var5 = null;
             byte[] var6;
             if (aj) {
@@ -14328,7 +14328,7 @@ public final class ao_1 {
             w var7 = new w((short)4178, var6);
             MainCanvas.i.a(var7);
             this.e.a((String)null);
-         } else if (ca_1.o == 1) {
+         } else if (LoadingPage.o == 1) {
             this.e.b("没有此功能!");
             return;
          }
@@ -14427,7 +14427,7 @@ public final class ao_1 {
          }
       }
 
-      ca_1.d(var1, this.aB - 7 + this.aq * 19, this.aC + 1 + this.ar * 19, 17, 17);
+      LoadingPage.d(var1, this.aB - 7 + this.aq * 19, this.aC + 1 + this.ar * 19, 17, 17);
       var1.setClip(0, 0, t_1.b, t_1.c);
    }
 
@@ -14756,11 +14756,11 @@ public final class ao_1 {
    private void a(ce var1) {
       if (this.k != 18 && (aW[5] != 1 || var1.b == 5) && (aW[7] != 1 || var1.b != 0) && (aW[8] != 1 || var1.b != 1) && (aW[17] != 1 || var1.b != 3) && (aW[7] != 1 || var1.b != 6)) {
          String[] var2;
-         if ((var2 = ca_1.a("[" + var1.d + "]" + var1.e, t_1.i, t_1.b - 5)) != null && var2.length > 0) {
+         if ((var2 = LoadingPage.a("[" + var1.d + "]" + var1.e, t_1.i, t_1.b - 5)) != null && var2.length > 0) {
             this.u((byte)var2.length);
 
             for(int var3 = 0; var3 < var2.length; ++var3) {
-               this.cD.insertElementAt(new b(var2[var3], ca_1.n[var1.a]), this.cD.size());
+               this.cD.insertElementAt(new b(var2[var3], LoadingPage.n[var1.a]), this.cD.size());
             }
          }
 
@@ -14789,7 +14789,7 @@ public final class ao_1 {
          }
 
          if (var2 != null) {
-            ca_1.a(var1, 2109231, 175, 0, t_1.c - (var4 - var3) * var5, t_1.b, var5);
+            LoadingPage.a(var1, 2109231, 175, 0, t_1.c - (var4 - var3) * var5, t_1.b, var5);
             var2.a(var1, MainCanvas.f, C, 2, t_1.c - (var4 - var3) * var5);
             ++var3;
          }
@@ -14817,7 +14817,7 @@ public final class ao_1 {
    }
 
    public final void a(Graphics var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-      ca_1.l = 0;
+      LoadingPage.l = 0;
       var1.setColor(15975);
       var1.drawRect(var2, var3, var6 * 17 + 4, 21);
       int var10003 = var6 * 17 + 4;
@@ -14832,7 +14832,7 @@ public final class ao_1 {
 
       for(int var13 = 0; var13 < var6; ++var13) {
          for(int var14 = 0; var14 < 1; ++var14) {
-            var1.drawImage(x.a, var2 + 2 + var13 * 17, var3 + 2 + var14 * 17, 20);
+            var1.drawImage(x.pngImage, var2 + 2 + var13 * 17, var3 + 2 + var14 * 17, 20);
             int var10002 = var2 + 2 + var13 * 17;
             var10003 = var3 + 2 + var14 * 17;
             byte var12 = 17;
@@ -14872,10 +14872,10 @@ public final class ao_1 {
                      var7.a(var1, (Frame1)var13.g, (int[])null, var3, var4, var13.j + 8, var13.k + 16, 20, 0);
                      if (var13.e != null && aW[2] == 0) {
                         if (var13.b != null && !var13.b.equals("")) {
-                           ca_1.a(var1, var13.b, var13.j - var3 + 8, var13.k - var4 - (t_1.j << 1) - var13.g.j() + 16, 17, var13.a(var13.u, var13.p));
+                           LoadingPage.a(var1, var13.b, var13.j - var3 + 8, var13.k - var4 - (t_1.j << 1) - var13.g.j() + 16, 17, var13.a(var13.u, var13.p));
                         }
 
-                        ca_1.a(var1, (String)var13.e, (int)(var13.j - var3 + 8), var13.k - var4 - t_1.j - var13.g.j() + 16, 17, var13.a(var13.u, var13.p), 0);
+                        LoadingPage.a(var1, (String)var13.e, (int)(var13.j - var3 + 8), var13.k - var4 - t_1.j - var13.g.j() + 16, 17, var13.a(var13.u, var13.p), 0);
                      }
 
                      if (var13.p == 1 && y != null) {
@@ -14893,10 +14893,10 @@ public final class ao_1 {
                      var22.a(var1, (Frame1)var15.g, (int[])null, var3, var4, var15.j + 8, var15.k + 16, 20, 0);
                      if (var15.e != null && (var15.b.equals(bt_1.ad) || aW[4] == 0)) {
                         if (var15.c != null && !var15.c.equals("")) {
-                           ca_1.a(var1, var15.c, var15.j - var3 + 8, var15.k - var4 - (t_1.j << 1) - var15.g.j() + 16, 17, 65280);
+                           LoadingPage.a(var1, var15.c, var15.j - var3 + 8, var15.k - var4 - (t_1.j << 1) - var15.g.j() + 16, 17, 65280);
                         }
 
-                        ca_1.a(var1, (String)var15.e, (int)(var15.j - var3 + 8), var15.k - var4 - t_1.j - var15.g.j() + 16, 17, 65280, 0);
+                        LoadingPage.a(var1, (String)var15.e, (int)(var15.j - var3 + 8), var15.k - var4 - t_1.j - var15.g.j() + 16, 17, 65280, 0);
                      }
 
                      if (var15.s == 1) {
@@ -14931,7 +14931,7 @@ public final class ao_1 {
                   }
 
                   if (var20.b != null && var20.x && aW[3] == 1) {
-                     ca_1.a(var1, (String)var20.b, (int)(var20.c - var3), var20.d - (var20.w == null ? 30 : var20.w.j()) - t_1.j - var4, 17, 255, 16777215);
+                     LoadingPage.a(var1, (String)var20.b, (int)(var20.c - var3), var20.d - (var20.w == null ? 30 : var20.w.j()) - t_1.j - var4, 17, 255, 16777215);
                   }
 
                   var20.a(var1, var24, var3, var4, (byte)0);
@@ -14986,10 +14986,10 @@ public final class ao_1 {
    }
 
    private void A(Graphics var1) {
-      if (B != null && v.a != null && bq != null) {
+      if (B != null && v.pngImage != null && bq != null) {
          int var2 = t_1.b - 67;
-         var1.drawImage(bq.a, var2, 5, 20);
-         var1.drawImage(v.a, var2 + 37, 8, 20);
+         var1.drawImage(bq.pngImage, var2, 5, 20);
+         var1.drawImage(v.pngImage, var2 + 37, 8, 20);
          if (bt_1.ak < 10) {
             MainCanvas.f.a(var1, B, (int[])null, bt_1.ak % 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
          } else if (bt_1.ak >= 10 && bt_1.ak <= 99) {
@@ -15039,14 +15039,14 @@ public final class ao_1 {
          if (bt_1.bf != 0) {
             var1.setColor(this.e.al++ % 8L / 4L == 0L ? 15984780 : 15953687);
             var1.fillRect(var2 + 2, 24, br.b - 2, br.c);
-            var1.drawImage(br.a, var2, 24, 20);
+            var1.drawImage(br.pngImage, var2, 24, 20);
          }
 
          int var4 = 0;
          if (bt_1.bs >= 0 && bt_1.q != null) {
             for(int var5 = 0; var5 < bt_1.q.length; ++var5) {
                if (bt_1.q[var5] != null && !bt_1.q[var5].b.equals(bt_1.ad)) {
-                  ca_1.a(var1, (String)bt_1.q[var5].e, (int)(t_1.b - 2 - t_1.i.stringWidth(bt_1.q[var5].e)), 60 + t_1.j * var4, 0, 65280, 0);
+                  LoadingPage.a(var1, (String)bt_1.q[var5].e, (int)(t_1.b - 2 - t_1.i.stringWidth(bt_1.q[var5].e)), 60 + t_1.j * var4, 0, 65280, 0);
                   ++var4;
                }
             }
@@ -15959,7 +15959,7 @@ public final class ao_1 {
             for(int var2 = 0; var2 < var0.length; ++var2) {
                Frame0 var3;
                if ((var3 = b(var0[var2])) != null) {
-                  var1[var2] = var3.a;
+                  var1[var2] = var3.pngImage;
                } else {
                   var1[var2] = null;
                }
@@ -16230,72 +16230,72 @@ public final class ao_1 {
             }
          } else if (this.as == 0 && this.e.as.a == 0) {
             if (bt_1.hL != null) {
-               ca_1.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"购买", "取消"}, true);
+               LoadingPage.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"购买", "取消"}, true);
                this.l = 1;
                return;
             }
          } else if (this.as == 1 && this.e.as.a == 1) {
             if (bt_1.hP != null) {
-               ca_1.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"进入", "拍卖", "消拍", "卖出"}, true);
+               LoadingPage.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"进入", "拍卖", "消拍", "卖出"}, true);
                this.l = 2;
                return;
             }
          } else if (this.as == 2 && this.e.as.a == 0) {
             if (bt_1.hL != null) {
-               ca_1.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"购买"}, true);
+               LoadingPage.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"购买"}, true);
                this.l = 3;
                return;
             }
          } else if (this.as == 3 && this.e.as.a == 1) {
             if (bt_1.hP != null) {
-               ca_1.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"布置", "卖出"}, true);
+               LoadingPage.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"布置", "卖出"}, true);
                this.l = 4;
                return;
             }
          } else if (this.as == 4 && this.e.as.a == 0) {
             if (bt_1.hL != null) {
-               ca_1.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"购买", "取消"}, true);
+               LoadingPage.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"购买", "取消"}, true);
                this.l = 5;
                return;
             }
          } else if (this.as == 5 && this.e.as.a == 1) {
             if (bt_1.hP != null) {
-               ca_1.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"布置", "卖出"}, true);
+               LoadingPage.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"布置", "卖出"}, true);
                this.l = 6;
                return;
             }
          } else if (this.as == 6 && this.e.as.a == 2) {
             if (bt_1.hL != null) {
-               ca_1.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"升级", "取消"}, true);
+               LoadingPage.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"升级", "取消"}, true);
                this.l = 8;
                return;
             }
          } else if ((this.as != 7 || this.e.as.a != 2) && (this.as != 9 || this.e.as.a != 3)) {
             if ((this.as == 8 && this.e.as.a == 3 || this.as == 10 && this.e.as.a == 4) && bt_1.hX != null) {
-               ca_1.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"安排", "解约"}, true);
+               LoadingPage.a(70 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"安排", "解约"}, true);
                this.l = 10;
                return;
             }
          } else if (bt_1.hV != null) {
             this.l = 9;
-            ca_1.h = 0;
+            LoadingPage.h = 0;
             return;
          }
       } else if (this.l != 1 && this.l != 2 && this.l != 3 && this.l != 4 && this.l != 5 && this.l != 6 && this.l != 8 && this.l != 10) {
          if (this.l == 7) {
-            ca_1.b(var1);
+            LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                if (var1 == 536870912) {
                   this.l = 0;
                   return;
                }
             } else {
-               if (ca_1.o == 0) {
+               if (LoadingPage.o == 0) {
                   this.l = 0;
                   return;
                }
 
-               if (ca_1.o == 1) {
+               if (LoadingPage.o == 1) {
                   if (this.as == 3) {
                      this.a((byte)2, (int)bt_1.hP[this.e.ar.g()], (byte)3);
                      return;
@@ -16328,33 +16328,33 @@ public final class ao_1 {
             }
          }
       } else if (this.as == 0) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
                return;
             }
          } else {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.b((short)4354, (byte)((byte)this.e.ar.g()), (byte)this.af);
                return;
             }
 
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                this.l = 0;
                return;
             }
          }
       } else if (this.as == 1) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.a((byte)1, (short)bt_1.hP[this.e.ar.g()], bt_1.ad);
                return;
             }
 
-            if (ca_1.o == 3) {
-               ca_1.a(40 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"取消", "确认"}, false);
+            if (LoadingPage.o == 3) {
+               LoadingPage.a(40 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"取消", "确认"}, false);
                this.l = 7;
                return;
             }
@@ -16368,9 +16368,9 @@ public final class ao_1 {
             return;
          }
       } else if (this.as == 2) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.b((short)4359, (byte)((byte)this.e.ar.g()), (byte)this.af);
                return;
             }
@@ -16384,17 +16384,17 @@ public final class ao_1 {
             return;
          }
       } else if (this.as == 3) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.as = -1;
                this.aZ = -1;
                this.a((String)bt_1.hQ[this.e.ar.g()], bt_1.hP[this.e.ar.g()], (short)bt_1.hS[this.e.ar.g()], (byte)bt_1.hT[this.e.ar.g()], (byte)2);
                return;
             }
 
-            if (ca_1.o == 1) {
-               ca_1.a(40 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"取消", "确认"}, false);
+            if (LoadingPage.o == 1) {
+               LoadingPage.a(40 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"取消", "确认"}, false);
                this.l = 7;
                return;
             }
@@ -16408,9 +16408,9 @@ public final class ao_1 {
             return;
          }
       } else if (this.as == 4) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.b((short)4362, (byte)((byte)this.e.ar.g()), (byte)this.af);
                return;
             }
@@ -16424,17 +16424,17 @@ public final class ao_1 {
             return;
          }
       } else if (this.as == 5) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.as = -1;
                this.aZ = -1;
                this.a((String)bt_1.hQ[this.e.ar.g()], bt_1.hP[this.e.ar.g()], (short)bt_1.hS[this.e.ar.g()], (byte)bt_1.hT[this.e.ar.g()], (byte)3);
                return;
             }
 
-            if (ca_1.o == 1) {
-               ca_1.a(40 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"取消", "确认"}, false);
+            if (LoadingPage.o == 1) {
+               LoadingPage.a(40 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"取消", "确认"}, false);
                this.l = 7;
                return;
             }
@@ -16448,40 +16448,40 @@ public final class ao_1 {
             return;
          }
       } else if (this.as == 6) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
                return;
             }
          } else {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.b((short)4362, (byte)((byte)this.e.ar.g()), (byte)this.af);
                return;
             }
 
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                this.l = 0;
                return;
             }
          }
       } else if (this.as == 8 || this.as == 10) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
                return;
             }
          } else {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.as = -1;
                this.aZ = -1;
                this.a((String)"", -1, (short)Short.parseShort(bt_1.ia[this.e.ar.g()]), (byte)0, (byte)5);
                return;
             }
 
-            if (ca_1.o == 1) {
-               ca_1.a(40 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"取消", "确认"}, false);
+            if (LoadingPage.o == 1) {
+               LoadingPage.a(40 + t_1.f, 2 * t_1.j + 16 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"取消", "确认"}, false);
                this.l = 7;
                return;
             }
@@ -17043,11 +17043,11 @@ public final class ao_1 {
                }
 
                if (bt_1.ib == 1) {
-                  this.a((byte)2, (int)L.c, (int)ca_1.g);
+                  this.a((byte)2, (int)L.c, (int) LoadingPage.g);
                } else if (bt_1.ib == 2) {
-                  this.a((byte)3, (int)L.c, (int)ca_1.g);
+                  this.a((byte)3, (int)L.c, (int) LoadingPage.g);
                } else if (bt_1.ib == 4) {
-                  int var3 = ca_1.g;
+                  int var3 = LoadingPage.g;
                   int var2 = L.c;
                   aq var4 = this.M;
                   if (L.j != null && L.j.length > var3) {
@@ -17069,11 +17069,11 @@ public final class ao_1 {
                return;
             }
 
-            ca_1.g = ca_1.g == this.an.length - 1 ? 0 : ca_1.g + 1;
+            LoadingPage.g = LoadingPage.g == this.an.length - 1 ? 0 : LoadingPage.g + 1;
             return;
          }
 
-         ca_1.g = ca_1.g == 0 ? this.an.length - 1 : ca_1.g - 1;
+         LoadingPage.g = LoadingPage.g == 0 ? this.an.length - 1 : LoadingPage.g - 1;
          return;
       } else if (this.l == 1) {
          if (this.e.aq != null) {
@@ -17185,7 +17185,7 @@ public final class ao_1 {
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-               ca_1.a(65 + o, t_1.j + 20 + this.e.ar.g() * t_1.j + p, new String[]{"取回"}, true);
+               LoadingPage.a(65 + o, t_1.j + 20 + this.e.ar.g() * t_1.j + p, new String[]{"取回"}, true);
                this.l = 1;
             }
          }
@@ -17196,13 +17196,13 @@ public final class ao_1 {
             return;
          }
       } else if (this.l == 1) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
                return;
             }
-         } else if (ca_1.o == 0) {
+         } else if (LoadingPage.o == 0) {
             this.a(bt_1.jB[this.e.ar.g()] > 99 ? 99L : (long)bt_1.jB[this.e.ar.g()]);
             this.l = 2;
             return;
@@ -17286,7 +17286,7 @@ public final class ao_1 {
          }
 
          for(int var3 = 0; var3 < bt_1.jT.length; ++var3) {
-            String[] var2 = ca_1.a("<" + bt_1.jS[var3] + ">以" + t_1.a(this.e.l, bt_1.jU[var3]) + "购买了您的" + bt_1.jT[var3], t_1.i, 155, "\t");
+            String[] var2 = LoadingPage.a("<" + bt_1.jS[var3] + ">以" + t_1.a(this.e.l, bt_1.jU[var3]) + "购买了您的" + bt_1.jT[var3], t_1.i, 155, "\t");
 
             for(int var4 = 0; var4 < var2.length; ++var4) {
                var1.append(var2[var4]);
@@ -17299,7 +17299,7 @@ public final class ao_1 {
          }
 
          for(int var6 = 0; var6 < bt_1.jW.length; ++var6) {
-            String[] var5 = ca_1.a("<" + bt_1.jV[var6] + ">以" + t_1.a(this.e.l, bt_1.jX[var6]) + "购买了您的" + bt_1.jW[var6], t_1.i, 160, "\t");
+            String[] var5 = LoadingPage.a("<" + bt_1.jV[var6] + ">以" + t_1.a(this.e.l, bt_1.jX[var6]) + "购买了您的" + bt_1.jW[var6], t_1.i, 160, "\t");
 
             for(int var7 = 0; var7 < var5.length; ++var7) {
                var1.append(var5[var7]);
@@ -17433,7 +17433,7 @@ public final class ao_1 {
                if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                   if (var1 == 536870912) {
                      this.m();
-                     ca_1.g = this.ai;
+                     LoadingPage.g = this.ai;
                      return;
                   }
 
@@ -17477,7 +17477,7 @@ public final class ao_1 {
                            var4 = new String[]{"拍卖", "取回"};
                         }
 
-                        ca_1.a(35 + o, (3 + this.e.ar.i()) * t_1.j + p, var4, false);
+                        LoadingPage.a(35 + o, (3 + this.e.ar.i()) * t_1.j + p, var4, false);
                         this.l = 2;
                      }
 
@@ -17491,7 +17491,7 @@ public final class ao_1 {
                      var3 = new String[]{"取消拍卖"};
                   }
 
-                  ca_1.a(35 + o, (3 + this.e.ar.i()) * t_1.j + p, var3, false);
+                  LoadingPage.a(35 + o, (3 + this.e.ar.i()) * t_1.j + p, var3, false);
                   this.l = 1;
                }
             } else {
@@ -17526,14 +17526,14 @@ public final class ao_1 {
             return;
          }
       } else if (this.l == 1) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 1073741824 && var1 != 268435456 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
                return;
             }
          } else if (bt_1.a(bt_1.jQ[this.e.ar.g()])) {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                if (this.e.as.a == 0) {
                   bt_1.e(this.e.ar.g());
                } else {
@@ -17546,25 +17546,25 @@ public final class ao_1 {
                return;
             }
 
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                this.l = 3;
-               ca_1.h = 0;
+               LoadingPage.h = 0;
                return;
             }
-         } else if (ca_1.o == 0) {
+         } else if (LoadingPage.o == 0) {
             this.l = 3;
-            ca_1.h = 0;
+            LoadingPage.h = 0;
             return;
          }
       } else if (this.l == 2) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 1073741824 && var1 != 268435456 && var1 != 517) {
             if (var1 == 536870912) {
                this.l = 0;
                return;
             }
          } else if (bt_1.a(bt_1.cv[this.e.ar.g()])) {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                if (this.e.as.a == 0) {
                   bt_1.e(this.e.ar.g());
                } else {
@@ -17577,22 +17577,22 @@ public final class ao_1 {
                return;
             }
 
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                this.l = 4;
                return;
             }
 
-            if (ca_1.o == 2) {
+            if (LoadingPage.o == 2) {
                this.ad(bt_1.ct[this.e.ar.g()]);
                return;
             }
          } else {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.l = 4;
                return;
             }
 
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                this.ad(bt_1.ct[this.e.ar.g()]);
                return;
             }
@@ -17617,7 +17617,7 @@ public final class ao_1 {
             }
 
             this.l = 5;
-            ca_1.h = 0;
+            LoadingPage.h = 0;
             this.o();
             return;
          }
@@ -17718,7 +17718,7 @@ public final class ao_1 {
       this.bb = var1;
       this.l = 0;
       this.e.aq.b();
-      this.e.aq.a(ca_1.a(bt_1.kH[bt_1.kN]) == -1 ? bt_1.kH[bt_1.kN] : bt_1.kH[bt_1.kN].substring(3, bt_1.kH[bt_1.kN].length()));
+      this.e.aq.a(LoadingPage.a(bt_1.kH[bt_1.kN]) == -1 ? bt_1.kH[bt_1.kN] : bt_1.kH[bt_1.kN].substring(3, bt_1.kH[bt_1.kN].length()));
       this.e.ar.a((Image[])null, bt_1.kK, (String[])null, (String[])null);
       this.e.au.a("兑换");
       if (bt_1.kJ != null && bt_1.kJ.length > 0) {
@@ -17810,9 +17810,9 @@ public final class ao_1 {
          this.da = "第" + bt_1.kS + "题:" + bt_1.kQ;
       }
 
-      K = new bw_1(this.da, (short)(t_1.b - 20));
+      K = new TextRender(this.da, (short)(t_1.b - 20));
       this.am = bt_1.kR;
-      ca_1.a(MainCanvas.F, K, this.am, (String[])null, true);
+      LoadingPage.a(MainCanvas.F, K, this.am, (String[])null, true);
       MainCanvas.f.a(this.f, h, i, true, false, 1009050);
       this.e.j = this.e.k;
       this.j = this.k = 70;
@@ -17822,10 +17822,10 @@ public final class ao_1 {
       if (this.l == 0) {
          if (var1 != 8 && var1 != 516) {
             if (var1 == 2 || var1 == 518) {
-               ca_1.e = ca_1.e + ca_1.d < K.a() ? ca_1.e + ca_1.d : ca_1.e;
+               LoadingPage.e = LoadingPage.e + LoadingPage.d < K.a() ? LoadingPage.e + LoadingPage.d : LoadingPage.e;
             }
          } else {
-            ca_1.e = ca_1.e - ca_1.d >= 0 ? ca_1.e - ca_1.d : 0;
+            LoadingPage.e = LoadingPage.e - LoadingPage.d >= 0 ? LoadingPage.e - LoadingPage.d : 0;
          }
 
          if (bt_1.kR.length <= 0) {
@@ -17836,7 +17836,7 @@ public final class ao_1 {
             if (var1 != 4 && var1 != 520) {
                if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                   byte[] var2;
-                  if ((var2 = bz_1.a((short)4652, bt_1.ad, (int)bt_1.kO, (byte)bt_1.kP, (byte)((byte)ca_1.g))) != null) {
+                  if ((var2 = bz_1.a((short)4652, bt_1.ad, (int)bt_1.kO, (byte)bt_1.kP, (byte)((byte) LoadingPage.g))) != null) {
                      MainCanvas.i.a(new w((short)4652, var2));
                      this.e.a((String)null);
                   } else {
@@ -17847,11 +17847,11 @@ public final class ao_1 {
                   this.l = 0;
                }
             } else if (this.am != null) {
-               ca_1.g = ca_1.g + 1 < this.am.length ? ca_1.g + 1 : 0;
+               LoadingPage.g = LoadingPage.g + 1 < this.am.length ? LoadingPage.g + 1 : 0;
                return;
             }
          } else if (this.am != null) {
-            ca_1.g = ca_1.g - 1 >= 0 ? ca_1.g - 1 : this.am.length - 1;
+            LoadingPage.g = LoadingPage.g - 1 >= 0 ? LoadingPage.g - 1 : this.am.length - 1;
             return;
          }
       }
@@ -17860,7 +17860,7 @@ public final class ao_1 {
 
    private void B(Graphics var1) {
       if (this.l == 0) {
-         ca_1.a(var1, 0, t_1.c - ca_1.f, t_1.b, ca_1.f, K, this.am, (String[])null);
+         LoadingPage.a(var1, 0, t_1.c - LoadingPage.f, t_1.b, LoadingPage.f, K, this.am, (String[])null);
       }
 
    }
@@ -17897,24 +17897,24 @@ public final class ao_1 {
 
    private void aE(int var1) {
       if (this.l == 0) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                this.j = this.k = 0;
             }
          } else if (bt_1.bf != 0) {
             if (bt_1.bs >= 0) {
-               if (ca_1.o == 0) {
+               if (LoadingPage.o == 0) {
                   this.aZ();
                   return;
                }
 
-               if (ca_1.o == 1) {
+               if (LoadingPage.o == 1) {
                   this.ba();
                   return;
                }
 
-               if (ca_1.o == 3) {
+               if (LoadingPage.o == 3) {
                   if (bt_1.bs == 0) {
                      this.bd();
                      return;
@@ -17925,71 +17925,71 @@ public final class ao_1 {
                      return;
                   }
                } else {
-                  if (ca_1.o == 2) {
+                  if (LoadingPage.o == 2) {
                      this.p();
                      return;
                   }
 
-                  if (ca_1.o == 4) {
+                  if (LoadingPage.o == 4) {
                      this.d((byte)0);
                      return;
                   }
 
-                  if (ca_1.o == 5) {
+                  if (LoadingPage.o == 5) {
                      this.bb();
                      return;
                   }
 
-                  if (ca_1.o == 6) {
+                  if (LoadingPage.o == 6) {
                      this.by = 1;
                      this.aF(-1);
                      return;
                   }
                }
             } else {
-               if (ca_1.o == 0) {
+               if (LoadingPage.o == 0) {
                   this.aZ();
                   return;
                }
 
-               if (ca_1.o == 1) {
+               if (LoadingPage.o == 1) {
                   this.ba();
                   return;
                }
 
-               if (ca_1.o == 2) {
+               if (LoadingPage.o == 2) {
                   this.p();
                   return;
                }
 
-               if (ca_1.o == 3) {
+               if (LoadingPage.o == 3) {
                   this.d((byte)0);
                   return;
                }
 
-               if (ca_1.o == 4) {
+               if (LoadingPage.o == 4) {
                   this.bb();
                   return;
                }
 
-               if (ca_1.o == 5) {
+               if (LoadingPage.o == 5) {
                   this.by = 1;
                   this.aF(-1);
                   return;
                }
             }
          } else if (bt_1.bs >= 0) {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.aZ();
                return;
             }
 
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                this.ba();
                return;
             }
 
-            if (ca_1.o == 2) {
+            if (LoadingPage.o == 2) {
                if (bt_1.bs == 0) {
                   this.bd();
                   return;
@@ -18000,44 +18000,44 @@ public final class ao_1 {
                   return;
                }
             } else {
-               if (ca_1.o == 3) {
+               if (LoadingPage.o == 3) {
                   this.d((byte)0);
                   return;
                }
 
-               if (ca_1.o == 4) {
+               if (LoadingPage.o == 4) {
                   this.bb();
                   return;
                }
 
-               if (ca_1.o == 5) {
+               if (LoadingPage.o == 5) {
                   this.by = 1;
                   this.aF(-1);
                   return;
                }
             }
          } else {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                this.aZ();
                return;
             }
 
-            if (ca_1.o == 1) {
+            if (LoadingPage.o == 1) {
                this.ba();
                return;
             }
 
-            if (ca_1.o == 2) {
+            if (LoadingPage.o == 2) {
                this.d((byte)0);
                return;
             }
 
-            if (ca_1.o == 3) {
+            if (LoadingPage.o == 3) {
                this.bb();
                return;
             }
 
-            if (ca_1.o == 4) {
+            if (LoadingPage.o == 4) {
                this.by = 1;
                this.aF(-1);
                return;
@@ -18072,10 +18072,10 @@ public final class ao_1 {
       if (this.l == 0) {
          if (var1 != 8 && var1 != 516) {
             if (var1 == 2 || var1 == 518) {
-               ca_1.e = ca_1.e + ca_1.d < K.a() ? ca_1.e + ca_1.d : ca_1.e;
+               LoadingPage.e = LoadingPage.e + LoadingPage.d < K.a() ? LoadingPage.e + LoadingPage.d : LoadingPage.e;
             }
          } else {
-            ca_1.e = ca_1.e - ca_1.d >= 0 ? ca_1.e - ca_1.d : 0;
+            LoadingPage.e = LoadingPage.e - LoadingPage.d >= 0 ? LoadingPage.e - LoadingPage.d : 0;
          }
 
          if (bt_1.lz == null || bt_1.lz.length <= 0) {
@@ -18085,29 +18085,29 @@ public final class ao_1 {
          if (var1 != 1 && var1 != 514) {
             if (var1 != 4 && var1 != 520) {
                if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                  if (bt_1.lB[ca_1.g] != null) {
+                  if (bt_1.lB[LoadingPage.g] != null) {
                      this.l = 1;
                   } else {
                      short var2 = this.j;
                      this.N();
                      if (aD()) {
-                        if (ca_1.g == 0) {
+                        if (LoadingPage.g == 0) {
                            this.e.b("游客注册 第1步: ", "修改角色昵称");
                         }
                      } else if (var2 == 76) {
-                        this.a((byte)1, bt_1.lu, bt_1.lv, Short.parseShort(bt_1.lA[ca_1.g]), bt_1.lC);
+                        this.a((byte)1, bt_1.lu, bt_1.lv, Short.parseShort(bt_1.lA[LoadingPage.g]), bt_1.lC);
                      } else {
-                        this.a((byte)1, bt_1.lu, bt_1.lv, Short.parseShort(bt_1.lA[ca_1.g]), bt_1.lz[ca_1.g]);
+                        this.a((byte)1, bt_1.lu, bt_1.lv, Short.parseShort(bt_1.lA[LoadingPage.g]), bt_1.lz[LoadingPage.g]);
                      }
                   }
                }
             } else if (bt_1.lz != null) {
-               ca_1.g = ca_1.g + 1 < bt_1.lz.length ? ca_1.g + 1 : 0;
-               ca_1.h = 0;
+               LoadingPage.g = LoadingPage.g + 1 < bt_1.lz.length ? LoadingPage.g + 1 : 0;
+               LoadingPage.h = 0;
             }
          } else if (bt_1.lz != null) {
-            ca_1.g = ca_1.g - 1 >= 0 ? ca_1.g - 1 : bt_1.lz.length - 1;
-            ca_1.h = 0;
+            LoadingPage.g = LoadingPage.g - 1 >= 0 ? LoadingPage.g - 1 : bt_1.lz.length - 1;
+            LoadingPage.h = 0;
          }
 
          if (var1 == 536870912) {
@@ -18132,7 +18132,7 @@ public final class ao_1 {
       } else if (this.l == 1) {
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
             this.N();
-            this.a((byte)1, bt_1.lu, bt_1.lv, Short.parseShort(bt_1.lA[ca_1.g]), bt_1.lz[ca_1.g]);
+            this.a((byte)1, bt_1.lu, bt_1.lv, Short.parseShort(bt_1.lA[LoadingPage.g]), bt_1.lz[LoadingPage.g]);
             this.l = 0;
          }
 
@@ -18175,7 +18175,7 @@ public final class ao_1 {
 
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
             this.l = 2;
-            ca_1.h = 0;
+            LoadingPage.h = 0;
          }
 
          if (var1 == 536870912) {
@@ -18220,12 +18220,12 @@ public final class ao_1 {
             int var8 = this.e.ar.g();
             if (this.as == 0) {
                if (var8 == 0) {
-                  ca_1.a(80 + t_1.f, 2 * t_1.j + 26 + this.e.ar.i() * t_1.j + t_1.g, f_1.a, false);
+                  LoadingPage.a(80 + t_1.f, 2 * t_1.j + 26 + this.e.ar.i() * t_1.j + t_1.g, f_1.a, false);
                   this.l = 1;
                } else {
                   bo_1 var9;
                   boolean var11 = (var9 = bt_1.O.f[var8 - 1]) != null && var9.f;
-                  ca_1.a(80 + t_1.f, 2 * t_1.j + 26 + this.e.ar.i() * t_1.j + t_1.g, var11 ? f_1.c : f_1.b, false);
+                  LoadingPage.a(80 + t_1.f, 2 * t_1.j + 26 + this.e.ar.i() * t_1.j + t_1.g, var11 ? f_1.c : f_1.b, false);
                   this.l = 1;
                }
             } else if (var8 == 0) {
@@ -18254,7 +18254,7 @@ public final class ao_1 {
          if (this.l == 1) {
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                if (var1 == 1 || var1 == 4 || var1 == 514 || var1 == 520) {
-                  ca_1.b(var1);
+                  LoadingPage.b(var1);
                   return;
                }
 
@@ -18263,7 +18263,7 @@ public final class ao_1 {
                }
             } else if (this.as == 0) {
                int var2 = this.e.ar.g();
-               String var3 = ca_1.p[ca_1.o];
+               String var3 = LoadingPage.p[LoadingPage.o];
                if (var2 == 0) {
                   if (f_1.a[0].equals(var3)) {
                      this.av(bt_1.O.d - 1);
@@ -18393,7 +18393,7 @@ public final class ao_1 {
             }
 
             if (var5 != null) {
-               ca_1.a(80 + t_1.f, 2 * t_1.j + 26 + this.e.ar.i() * t_1.j + t_1.g, new String[]{var5}, false);
+               LoadingPage.a(80 + t_1.f, 2 * t_1.j + 26 + this.e.ar.i() * t_1.j + t_1.g, new String[]{var5}, false);
                this.l = 1;
             }
          }
@@ -18505,7 +18505,7 @@ public final class ao_1 {
          if (this.l == 2 && this.e.av != null) {
             this.e.av.a(var1);
             ak var2 = bt_1.P.c[bt_1.P.i];
-            ca_1.a(var1, var2.e, new String[]{"确定", "取消"});
+            LoadingPage.a(var1, var2.e, new String[]{"确定", "取消"});
          }
 
       }
@@ -18517,7 +18517,7 @@ public final class ao_1 {
       }
 
       if (this.l == 1) {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
 
    }
@@ -18528,15 +18528,15 @@ public final class ao_1 {
       }
 
       if (this.l == 1) {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
 
    }
 
    private void F(Graphics var1) {
-      ca_1.a(var1, 0, t_1.c - ca_1.f, t_1.b, ca_1.f, K, bt_1.lz, (String[])null);
+      LoadingPage.a(var1, 0, t_1.c - LoadingPage.f, t_1.b, LoadingPage.f, K, bt_1.lz, (String[])null);
       if (this.l == 1) {
-         ca_1.a(var1, bt_1.lB[ca_1.g], new String[]{"确定", "取消"});
+         LoadingPage.a(var1, bt_1.lB[LoadingPage.g], new String[]{"确定", "取消"});
       }
 
    }
@@ -18602,14 +18602,14 @@ public final class ao_1 {
 
    private void G(Graphics var1) {
       if (this.l == 0) {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
 
    }
 
    public final void ab() {
       if (aW[18] == 0) {
-         this.dd = new bw_1(bt_1.k, (short)t_1.i.stringWidth(bt_1.k));
+         this.dd = new TextRender(bt_1.k, (short)t_1.i.stringWidth(bt_1.k));
          this.db = t_1.b;
          this.dc = 40;
       }
@@ -19127,22 +19127,22 @@ public final class ao_1 {
                this.l = 2;
             }
 
-            ca_1.a(t_1.f, 3 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, this.am, true);
+            LoadingPage.a(t_1.f, 3 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, this.am, true);
             return;
          }
       } else if (this.l == 1) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 517 && var1 != 1073741824) {
             if (var1 == 536870912) {
                this.l = 0;
                return;
             }
-         } else if (ca_1.o == 0) {
+         } else if (LoadingPage.o == 0) {
             this.a(this.e.as.a, bt_1.mk[this.e.ar.g()], (byte)2);
             return;
          }
       } else if (this.l == 2) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 == 268435456 || var1 == 517 || var1 == 1073741824) {
             this.a(this.e.as.a, bt_1.mk[this.e.ar.g()], (byte)1);
             return;
@@ -19168,7 +19168,7 @@ public final class ao_1 {
    private void J(Graphics var1) {
       this.e.aq.a(var1);
       if (this.l == 1 || this.l == 2) {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
 
    }
@@ -19181,7 +19181,7 @@ public final class ao_1 {
       if (var1 != 1 && var1 != 514) {
          if (var1 != 4 && var1 != 520) {
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-               if (ca_1.g == 0) {
+               if (LoadingPage.g == 0) {
                   this.e.b("游客注册 第1步: ", "修改角色昵称");
                }
 
@@ -19195,18 +19195,18 @@ public final class ao_1 {
                this.j = this.k = 0;
             }
          } else if (this.dg != null) {
-            ca_1.g = ca_1.g + 1 < this.dg.length ? ca_1.g + 1 : 0;
+            LoadingPage.g = LoadingPage.g + 1 < this.dg.length ? LoadingPage.g + 1 : 0;
             return;
          }
       } else if (this.dg != null) {
-         ca_1.g = ca_1.g - 1 >= 0 ? ca_1.g - 1 : this.dg.length - 1;
+         LoadingPage.g = LoadingPage.g - 1 >= 0 ? LoadingPage.g - 1 : this.dg.length - 1;
          return;
       }
 
    }
 
    private void K(Graphics var1) {
-      ca_1.a(var1, 0, t_1.c - ca_1.f, t_1.b, ca_1.f, K, this.dg, (String[])null);
+      LoadingPage.a(var1, 0, t_1.c - LoadingPage.f, t_1.b, LoadingPage.f, K, this.dg, (String[])null);
    }
 
    public final void ae() {
@@ -19318,7 +19318,7 @@ public final class ao_1 {
                return;
             }
          } else {
-            ca_1.h = 0;
+            LoadingPage.h = 0;
             this.l = 2;
             if (this.k == 108) {
                this.l = 1;
@@ -19338,7 +19338,7 @@ public final class ao_1 {
       } else if (this.l == 1) {
          this.e.aq.b(var1);
          if (var1 == 268435456 || var1 == 1073741824) {
-            ca_1.h = 0;
+            LoadingPage.h = 0;
             this.l = (short)(this.e.ar.g() == 0 ? 2 : 3);
             return;
          }
@@ -19385,11 +19385,11 @@ public final class ao_1 {
 
       if (this.l == 2) {
          String var2 = this.k == 108 ? "确认以发送短信方式开通超Q？ " : "确认以发送短信方式开通魔钻？";
-         ca_1.a(var1, var2, new String[]{"确 认", "取 消"});
+         LoadingPage.a(var1, var2, new String[]{"确 认", "取 消"});
       }
 
       if (this.l == 3) {
-         ca_1.a(var1, "进入超Q官网开通超Q？", new String[]{"进入", "返回"});
+         LoadingPage.a(var1, "进入超Q官网开通超Q？", new String[]{"进入", "返回"});
       }
 
    }
@@ -19428,7 +19428,7 @@ public final class ao_1 {
          switch (this.l) {
             case 0:
                this.l = 1;
-               ca_1.a(this.e.aq.a + this.e.aq.c / 2, this.e.aq.b + 45 + this.bQ / 2, new String[]{"领取"}, false);
+               LoadingPage.a(this.e.aq.a + this.e.aq.c / 2, this.e.aq.b + 45 + this.bQ / 2, new String[]{"领取"}, false);
                break;
             case 1:
                byte[] var2;
@@ -19573,8 +19573,8 @@ public final class ao_1 {
    }
 
    public final void ai() {
-      ca_1.g = 0;
-      ca_1.h = 0;
+      LoadingPage.g = 0;
+      LoadingPage.h = 0;
       this.e.a = 0;
       this.e.b = 0;
       this.l = 0;
@@ -19588,7 +19588,7 @@ public final class ao_1 {
             this.k = this.j;
             this.l = 0;
             this.m = 0;
-            ca_1.h = 0;
+            LoadingPage.h = 0;
          }
 
       } else {
@@ -19600,19 +19600,19 @@ public final class ao_1 {
          this.k = this.j;
          this.l = 0;
          this.m = 0;
-         ca_1.h = 0;
+         LoadingPage.h = 0;
       }
    }
 
    private static void P(Graphics var0) {
-      ca_1.a(var0, bt_1.eD, new String[]{"确定", "取消"});
+      LoadingPage.a(var0, bt_1.eD, new String[]{"确定", "取消"});
    }
 
    public final void aj() {
-      K = new bw_1(bt_1.eK, (short)(t_1.b - 20));
-      ca_1.a((az_1)null, K, bt_1.eL, (String[])null, true);
-      ca_1.h = 0;
-      ca_1.g = 0;
+      K = new TextRender(bt_1.eK, (short)(t_1.b - 20));
+      LoadingPage.a((az_1)null, K, bt_1.eL, (String[])null, true);
+      LoadingPage.h = 0;
+      LoadingPage.g = 0;
       this.e.a = 0;
       this.e.b = 0;
       this.l = 0;
@@ -19625,16 +19625,16 @@ public final class ao_1 {
          this.k = this.j;
          this.l = 0;
          this.m = 0;
-         ca_1.g = 0;
-         ca_1.h = 0;
+         LoadingPage.g = 0;
+         LoadingPage.h = 0;
       }
 
       if (var1 != 8 && var1 != 516) {
          if (var1 == 2 || var1 == 518) {
-            ca_1.e = ca_1.e + ca_1.d < K.a() ? ca_1.e + ca_1.d : ca_1.e;
+            LoadingPage.e = LoadingPage.e + LoadingPage.d < K.a() ? LoadingPage.e + LoadingPage.d : LoadingPage.e;
          }
       } else {
-         ca_1.e = ca_1.e - ca_1.d >= 0 ? ca_1.e - ca_1.d : 0;
+         LoadingPage.e = LoadingPage.e - LoadingPage.d >= 0 ? LoadingPage.e - LoadingPage.d : 0;
       }
 
       if (bt_1.eL.length > 0) {
@@ -19642,21 +19642,21 @@ public final class ao_1 {
             if (var1 != 4 && var1 != 520) {
                if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                   byte[] var2;
-                  if ((var2 = bz_1.c((short)4370, (byte)ca_1.g, bt_1.ad)) != null) {
+                  if ((var2 = bz_1.c((short)4370, (byte) LoadingPage.g, bt_1.ad)) != null) {
                      MainCanvas.i.a(new w((short)4370, var2));
                      this.e.a((String)null);
                   } else {
                      this.e.b("获取上传指令数据错误!");
                   }
 
-                  ca_1.g = 0;
+                  LoadingPage.g = 0;
                }
             } else if (bt_1.eL != null) {
-               ca_1.g = ca_1.g + 1 < bt_1.eL.length ? ca_1.g + 1 : 0;
+               LoadingPage.g = LoadingPage.g + 1 < bt_1.eL.length ? LoadingPage.g + 1 : 0;
                return;
             }
          } else if (bt_1.eL != null) {
-            ca_1.g = ca_1.g - 1 >= 0 ? ca_1.g - 1 : bt_1.eL.length - 1;
+            LoadingPage.g = LoadingPage.g - 1 >= 0 ? LoadingPage.g - 1 : bt_1.eL.length - 1;
             return;
          }
 
@@ -19664,7 +19664,7 @@ public final class ao_1 {
    }
 
    private static void Q(Graphics var0) {
-      ca_1.a(var0, 0, t_1.c - ca_1.f, t_1.b, ca_1.f, K, bt_1.eL, (String[])null);
+      LoadingPage.a(var0, 0, t_1.c - LoadingPage.f, t_1.b, LoadingPage.f, K, bt_1.eL, (String[])null);
    }
 
    private void R(Graphics var1) {
@@ -19749,7 +19749,7 @@ public final class ao_1 {
       }
 
       this.ak();
-      ca_1.l = 0;
+      LoadingPage.l = 0;
       this.l = 0;
       this.e.j = this.e.k = 7;
       this.j = this.k = 119;
@@ -19769,24 +19769,24 @@ public final class ao_1 {
          if (var1 == 2) {
             if (this.be == 0 && this.bf == 0) {
                this.be = 1;
-               ca_1.l = 0;
+               LoadingPage.l = 0;
                this.ak();
             } else if (this.be == 1) {
                this.be = 0;
                this.bf = 1;
-               ca_1.l = 0;
+               LoadingPage.l = 0;
                this.ak();
             }
          } else if (var1 == 8) {
             if (this.be == 0 && this.bf == 1) {
                this.be = 1;
                this.bf = 0;
-               ca_1.l = 0;
+               LoadingPage.l = 0;
                this.ak();
             } else if (this.be == 1) {
                this.be = 0;
                this.bf = 0;
-               ca_1.l = 0;
+               LoadingPage.l = 0;
                this.ak();
             }
          } else if (var1 == 268435456 || var1 == 1073741824) {
@@ -19799,7 +19799,7 @@ public final class ao_1 {
                         this.e.b("您没有宠物可选择");
                      }
                   } else {
-                     ca_1.a(t_1.b / 2, t_1.c / 2, new String[]{"升星", "取出"}, true);
+                     LoadingPage.a(t_1.b / 2, t_1.c / 2, new String[]{"升星", "取出"}, true);
                      this.l = 1;
                   }
                } else if (this.bf == 1) {
@@ -19814,13 +19814,13 @@ public final class ao_1 {
                         this.e.b("请先放入要升星的宠物");
                      }
                   } else {
-                     ca_1.a(t_1.b / 2, t_1.c / 2, new String[]{"取出"}, true);
+                     LoadingPage.a(t_1.b / 2, t_1.c / 2, new String[]{"取出"}, true);
                      this.l = 1;
                   }
                }
             } else if (this.be == 1) {
                if (bt_1.mJ[this.bf] != -1) {
-                  ca_1.a(t_1.b / 2, t_1.c / 2, new String[]{"取出"}, true);
+                  LoadingPage.a(t_1.b / 2, t_1.c / 2, new String[]{"取出"}, true);
                   this.l = 1;
                } else if (bt_1.mx != -1) {
                   this.e((int)20);
@@ -19845,11 +19845,11 @@ public final class ao_1 {
             this.c((int)4);
          }
       } else if (this.l == 1) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 == 536870912) {
             this.l = 0;
          } else if (var1 == 268435456 || var1 == 1073741824) {
-            if (ca_1.o == 0) {
+            if (LoadingPage.o == 0) {
                if (this.be == 0 && this.bf == 1) {
                   this.c((int)0, (byte)1);
                } else if (this.be == 0 && this.bf == 0) {
@@ -19864,7 +19864,7 @@ public final class ao_1 {
                } else if (this.be == 1) {
                   this.b((int)0, (byte)1);
                }
-            } else if (ca_1.o == 1) {
+            } else if (LoadingPage.o == 1) {
                this.c((int)0, (byte)1);
             }
          }
@@ -20042,23 +20042,23 @@ public final class ao_1 {
          } else if (this.e.ar.g() != 0 && this.e.ar.g() != 5) {
             if (this.e.ar.g() < 5) {
                if (bt_1.gh[this.bg] != null && bt_1.gh[this.bg][this.e.ar.g() - 1] != null) {
-                  ca_1.a(t_1.b >> 1, t_1.c >> 1, new String[]{"挖出"}, true);
+                  LoadingPage.a(t_1.b >> 1, t_1.c >> 1, new String[]{"挖出"}, true);
                   this.l = 1;
                   return;
                }
 
-               ca_1.a(t_1.b >> 1, t_1.c >> 1, new String[]{"嵌入"}, true);
+               LoadingPage.a(t_1.b >> 1, t_1.c >> 1, new String[]{"嵌入"}, true);
                this.l = 1;
                return;
             }
 
             if (bt_1.gl[this.bg] != null && bt_1.gl[this.bg][this.e.ar.g() - 6] != null) {
-               ca_1.a(t_1.b >> 1, t_1.c >> 1, new String[]{"挖出"}, true);
+               LoadingPage.a(t_1.b >> 1, t_1.c >> 1, new String[]{"挖出"}, true);
                this.l = 1;
                return;
             }
 
-            ca_1.a(t_1.b >> 1, t_1.c >> 1, new String[]{"嵌入"}, true);
+            LoadingPage.a(t_1.b >> 1, t_1.c >> 1, new String[]{"嵌入"}, true);
             this.l = 1;
             return;
          }
@@ -20067,7 +20067,7 @@ public final class ao_1 {
             if (var1 == 536870912) {
                this.l = 0;
             }
-         } else if (ca_1.o == 0) {
+         } else if (LoadingPage.o == 0) {
             if (this.e.ar.g() < 5) {
                if (bt_1.gh[this.bg] != null && bt_1.gh[this.bg][this.e.ar.g() - 1] != null) {
                   this.a((byte)1, bt_1.fA[this.bg], bt_1.gg[this.bg][this.e.ar.g() - 1], (byte)34, (byte)bt_1.gj[this.bg][this.e.ar.g() - 1]);
@@ -20093,7 +20093,7 @@ public final class ao_1 {
    private void T(Graphics var1) {
       this.e.aq.a(var1);
       if (this.l == 1) {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
 
    }
@@ -20253,8 +20253,8 @@ public final class ao_1 {
             this.dn = var2 + t_1.j + 10;
          }
 
-         var1.drawImage(MainCanvas.X.a, this.dm - 30, this.dn, 20);
-         var1.drawImage(MainCanvas.Y.a, this.dm + 20, this.dn, 20);
+         var1.drawImage(MainCanvas.X.pngImage, this.dm - 30, this.dn, 20);
+         var1.drawImage(MainCanvas.Y.pngImage, this.dm + 20, this.dn, 20);
       }
 
    }
@@ -20300,7 +20300,7 @@ public final class ao_1 {
    public final void am() {
       this.l = 0;
       this.aq = 0;
-      this.dv = new bw_1(bt_1.nh, (short)120);
+      this.dv = new TextRender(bt_1.nh, (short)120);
       this.e.aq.b();
       this.e.aq.a("见钱开箱");
       this.e.aq.a(true);
@@ -20317,7 +20317,7 @@ public final class ao_1 {
       this.e.at.a(this.e.at.b, this.e.at.c + (this.e.at.e >> 1), this.e.at.d, this.e.at.e >> 1);
       this.e.j = this.e.k;
       this.j = this.k = 127;
-      ca_1.l = 0;
+      LoadingPage.l = 0;
    }
 
    private void bb(int var1) {
@@ -20347,18 +20347,18 @@ public final class ao_1 {
          } else {
             this.aq = this.aq >= 3 ? this.aq : this.aq + 1;
             this.du = true;
-            ca_1.l = 0;
+            LoadingPage.l = 0;
          }
       } else {
          this.aq = this.aq <= 0 ? this.aq : this.aq - 1;
          this.du = true;
-         ca_1.l = 0;
+         LoadingPage.l = 0;
       }
    }
 
    private void V(Graphics var1) {
       this.e.aq.a(var1);
-      ca_1.a(var1, this.ds, this.dt, this.e.at.d, this.e.at.e >> 1, 1);
+      LoadingPage.a(var1, this.ds, this.dt, this.e.at.d, this.e.at.e >> 1, 1);
       var1.setColor(255);
       var1.drawString("可开出的珍贵物品", this.ds + 32, this.dt + 8, 0);
 
@@ -20372,12 +20372,12 @@ public final class ao_1 {
             }
 
             if (var2 == this.aq) {
-               ca_1.d(var1, this.ds + this.e.at.d / 2 - 76 + var2 * 40, this.dt + (this.e.at.e >> 1) - 24, 17, 17);
+               LoadingPage.d(var1, this.ds + this.e.at.d / 2 - 76 + var2 * 40, this.dt + (this.e.at.e >> 1) - 24, 17, 17);
             }
          }
       }
 
-      ca_1.a(var1, this.ds, this.dt + (this.e.at.e >> 1), this.e.at.d, this.e.at.e >> 1, 1);
+      LoadingPage.a(var1, this.ds, this.dt + (this.e.at.e >> 1), this.e.at.d, this.e.at.e >> 1, 1);
       var1.setColor(2917024);
       var1.fillRect(this.ds + -70 + (this.e.at.d >> 1) - 20, this.dt + (this.e.at.e >> 1) + (this.e.at.e >> 2) - 20, 40, 40);
       var1.setColor(9360850);
@@ -20397,7 +20397,7 @@ public final class ao_1 {
                   var4 = "金钱";
                }
 
-               ca_1.a(var1, bt_1.ne[var6], var4, this.ds + this.e.at.d / 2 - 76 + var6 * 40, this.dt + (this.e.at.e >> 1) - 24, 40);
+               LoadingPage.a(var1, bt_1.ne[var6], var4, this.ds + this.e.at.d / 2 - 76 + var6 * 40, this.dt + (this.e.at.e >> 1) - 24, 40);
             }
          }
       }
@@ -20411,7 +20411,7 @@ public final class ao_1 {
          for(int var4 = 0; var4 < 4; ++var4) {
             if (var1 > this.ds + this.e.at.d / 2 - 80 + var4 * 40 && var1 < this.ds + this.e.at.d / 2 - 80 + var4 * 40 + 17 && var2 > this.dt + (this.e.at.e >> 1) - 24 && var2 < this.dt + (this.e.at.e >> 1) - 24 + 17) {
                this.aq = var4;
-               ca_1.l = 0;
+               LoadingPage.l = 0;
                this.du = true;
                return 0;
             }
@@ -20454,12 +20454,12 @@ public final class ao_1 {
          }
 
          if (var1 == 268435456 || var1 == 1073741824) {
-            ca_1.a(t_1.d / 3 - t_1.i.stringWidth("操作") / 2, 3 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"激活"}, true);
+            LoadingPage.a(t_1.d / 3 - t_1.i.stringWidth("操作") / 2, 3 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"激活"}, true);
             this.l = 1;
             return;
          }
       } else if (this.l == 1) {
-         ca_1.b(var1);
+         LoadingPage.b(var1);
          if (var1 == 268435456 || var1 == 1073741824) {
             this.a((byte)6, bt_1.nx[this.e.ar.g()], (int)bt_1.dl[this.aU]);
             return;
@@ -20475,7 +20475,7 @@ public final class ao_1 {
    private void W(Graphics var1) {
       this.e.aq.a(var1);
       if (this.l == 1) {
-         ca_1.c(var1);
+         LoadingPage.c(var1);
       }
 
    }

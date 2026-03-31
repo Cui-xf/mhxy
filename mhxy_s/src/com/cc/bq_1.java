@@ -1222,7 +1222,7 @@ public final class bq_1 {
    public final void a(ai_1 var1, Graphics var2) {
       var2.setClip(0, 0, t_1.b, t_1.c);
       if ((this.f == 2 || this.f == 3 || this.f == 6) && this.E != null && this.E[0].f != null && !this.E[0].f.equals("")) {
-         ca_1.a(var2, (String)this.E[0].f, (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 0, 16777215);
+         LoadingPage.a(var2, (String)this.E[0].f, (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 0, 16777215);
       }
 
       if (this.f != 4 && this.f != 8) {
@@ -1250,7 +1250,7 @@ public final class bq_1 {
             for(byte var17 = 0; var17 < bt_1.H.length; ++var17) {
                if (bt_1.H[var17].b == 0 && bt_1.H[var17].j != null) {
                   if (bt_1.H[var17].c.equals(bt_1.ad)) {
-                     var5.drawImage(ao_1.H.a, t_1.Q[bt_1.H[var17].a][0] - ao_1.H.b / 2, t_1.Q[bt_1.H[var17].a][1] - ao_1.H.c / 2, 20);
+                     var5.drawImage(ao_1.H.pngImage, t_1.Q[bt_1.H[var17].a][0] - ao_1.H.b / 2, t_1.Q[bt_1.H[var17].a][1] - ao_1.H.c / 2, 20);
                      if ((var4.f != 7 || bt_1.bs != 1) && (var4.f != 7 || bt_1.bs != -1) && (var4.f != 7 || bt_1.s != 1)) {
                         if (!bt_1.H[var17].d()) {
                            if (bt_1.H[var17].k == 1 || bt_1.H[var17].k == 4) {
@@ -1375,8 +1375,8 @@ public final class bq_1 {
 
                   for(byte var27 = 0; var27 < bt_1.H.length; ++var27) {
                      if (bt_1.H[var27].e > 0 && bt_1.H[var27].b != 0 && bt_1.H[var27].a == i() + 3) {
-                        ca_1.e(var21, t_1.Q[bt_1.H[var27].a][0] - 10, t_1.Q[bt_1.H[var27].a][1] - 9 - bt_1.H[var27].i(), bt_1.H[var27].e * 19 / (bt_1.H[var27].f <= 0 ? 1 : bt_1.H[var27].f), 0);
-                        ca_1.e(var21, t_1.Q[bt_1.H[var27].a][0] - 10, t_1.Q[bt_1.H[var27].a][1] - 4 - bt_1.H[var27].i(), bt_1.H[var27].g * 19 / (bt_1.H[var27].h <= 0 ? 1 : bt_1.H[var27].h), 1);
+                        LoadingPage.e(var21, t_1.Q[bt_1.H[var27].a][0] - 10, t_1.Q[bt_1.H[var27].a][1] - 9 - bt_1.H[var27].i(), bt_1.H[var27].e * 19 / (bt_1.H[var27].f <= 0 ? 1 : bt_1.H[var27].f), 0);
+                        LoadingPage.e(var21, t_1.Q[bt_1.H[var27].a][0] - 10, t_1.Q[bt_1.H[var27].a][1] - 4 - bt_1.H[var27].i(), bt_1.H[var27].g * 19 / (bt_1.H[var27].h <= 0 ? 1 : bt_1.H[var27].h), 1);
                      }
                   }
                }
@@ -1386,11 +1386,11 @@ public final class bq_1 {
                for(byte var20 = 0; var20 < bt_1.H.length; ++var20) {
                   if (bt_1.H[var20].e > 0 && bt_1.H[var20].b == 0 && bt_1.H[var20].c.equals(bt_1.ad)) {
                      if (bt_1.H[var20].i == 291) {
-                        ca_1.e(var5, t_1.Q[bt_1.H[var20].a][0] - 10, t_1.Q[bt_1.H[var20].a][1] - 2 - bt_1.H[var20].i(), bt_1.H[var20].e * 19 / (bt_1.H[var20].f <= 0 ? 1 : bt_1.H[var20].f), 0);
-                        ca_1.e(var5, t_1.Q[bt_1.H[var20].a][0] - 10, t_1.Q[bt_1.H[var20].a][1] + 3 - bt_1.H[var20].i(), bt_1.H[var20].g * 19 / (bt_1.H[var20].h <= 0 ? 1 : bt_1.H[var20].h), 1);
+                        LoadingPage.e(var5, t_1.Q[bt_1.H[var20].a][0] - 10, t_1.Q[bt_1.H[var20].a][1] - 2 - bt_1.H[var20].i(), bt_1.H[var20].e * 19 / (bt_1.H[var20].f <= 0 ? 1 : bt_1.H[var20].f), 0);
+                        LoadingPage.e(var5, t_1.Q[bt_1.H[var20].a][0] - 10, t_1.Q[bt_1.H[var20].a][1] + 3 - bt_1.H[var20].i(), bt_1.H[var20].g * 19 / (bt_1.H[var20].h <= 0 ? 1 : bt_1.H[var20].h), 1);
                      } else {
-                        ca_1.e(var5, t_1.Q[bt_1.H[var20].a][0] - 10, t_1.Q[bt_1.H[var20].a][1] - 9 - bt_1.H[var20].i(), bt_1.H[var20].e * 19 / (bt_1.H[var20].f <= 0 ? 1 : bt_1.H[var20].f), 0);
-                        ca_1.e(var5, t_1.Q[bt_1.H[var20].a][0] - 10, t_1.Q[bt_1.H[var20].a][1] - 4 - bt_1.H[var20].i(), bt_1.H[var20].g * 19 / (bt_1.H[var20].h <= 0 ? 1 : bt_1.H[var20].h), 1);
+                        LoadingPage.e(var5, t_1.Q[bt_1.H[var20].a][0] - 10, t_1.Q[bt_1.H[var20].a][1] - 9 - bt_1.H[var20].i(), bt_1.H[var20].e * 19 / (bt_1.H[var20].f <= 0 ? 1 : bt_1.H[var20].f), 0);
+                        LoadingPage.e(var5, t_1.Q[bt_1.H[var20].a][0] - 10, t_1.Q[bt_1.H[var20].a][1] - 4 - bt_1.H[var20].i(), bt_1.H[var20].g * 19 / (bt_1.H[var20].h <= 0 ? 1 : bt_1.H[var20].h), 1);
                      }
                   }
                }
@@ -1400,30 +1400,30 @@ public final class bq_1 {
          for(byte var12 = 0; var12 < bt_1.H.length; ++var12) {
             if (bt_1.H != null && var12 >= 0 && var12 <= bt_1.H.length - 1 && var12 >= 0 && !bt_1.H[var12].d()) {
                if (var9.i == var12 && (var9.d == 4 || var9.d == 5)) {
-                  ca_1.a(var3, (String) bt_1.H[var9.i].d, (int)2, 2, 20, 14337302, 0);
+                  LoadingPage.a(var3, (String) bt_1.H[var9.i].d, (int)2, 2, 20, 14337302, 0);
                }
 
                if (bt_1.H[var12].b == 0) {
                   if (bt_1.H[var12].i == 291) {
-                     ca_1.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] - 2 - bt_1.H[var12].i(), bt_1.H[var12].e * 19 / bt_1.H[var12].f, 0);
-                     ca_1.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] + 3 - bt_1.H[var12].i(), bt_1.H[var12].g * 19 / bt_1.H[var12].h, 1);
+                     LoadingPage.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] - 2 - bt_1.H[var12].i(), bt_1.H[var12].e * 19 / bt_1.H[var12].f, 0);
+                     LoadingPage.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] + 3 - bt_1.H[var12].i(), bt_1.H[var12].g * 19 / bt_1.H[var12].h, 1);
                   } else {
-                     ca_1.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] - 9 - bt_1.H[var12].i(), bt_1.H[var12].e * 19 / bt_1.H[var12].f, 0);
-                     ca_1.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] - 4 - bt_1.H[var12].i(), bt_1.H[var12].g * 19 / bt_1.H[var12].h, 1);
+                     LoadingPage.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] - 9 - bt_1.H[var12].i(), bt_1.H[var12].e * 19 / bt_1.H[var12].f, 0);
+                     LoadingPage.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] - 4 - bt_1.H[var12].i(), bt_1.H[var12].g * 19 / bt_1.H[var12].h, 1);
                   }
                } else if (bt_1.H[var12].b == 2) {
-                  ca_1.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] - 9 - bt_1.H[var12].i(), bt_1.H[var12].e * 19 / bt_1.H[var12].f, 0);
-                  ca_1.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] - 4 - bt_1.H[var12].i(), bt_1.H[var12].g * 19 / bt_1.H[var12].h, 1);
+                  LoadingPage.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] - 9 - bt_1.H[var12].i(), bt_1.H[var12].e * 19 / bt_1.H[var12].f, 0);
+                  LoadingPage.e(var3, t_1.Q[bt_1.H[var12].a][0] - 10, t_1.Q[bt_1.H[var12].a][1] - 4 - bt_1.H[var12].i(), bt_1.H[var12].g * 19 / bt_1.H[var12].h, 1);
                }
             }
          }
 
          for(byte var13 = 0; var13 < bt_1.M.length; ++var13) {
             if (var13 >= 0 && !bt_1.M[var13].a()) {
-               ca_1.e(var3, t_1.R[bt_1.M[var13].a][0] - 11, t_1.R[bt_1.M[var13].a][1] - 4 - bt_1.M[var13].d(), bt_1.M[var13].e * 19 / bt_1.M[var13].f, 0);
+               LoadingPage.e(var3, t_1.R[bt_1.M[var13].a][0] - 11, t_1.R[bt_1.M[var13].a][1] - 4 - bt_1.M[var13].d(), bt_1.M[var13].e * 19 / bt_1.M[var13].f, 0);
                if (var9.h == var13 && (var9.d == 1 || var9.d == 0 || var9.d == 2 || var9.d == 3 || var9.d == 9)) {
-                  ca_1.a(var3, (String) bt_1.M[var13].d, (int)2, 2, 20, 14337302, 0);
-                  ca_1.a(var3, (String)("" + t_1.K[bt_1.M[var13].k]), (int)(t_1.b - 2), 2, 24, 14337302, 0);
+                  LoadingPage.a(var3, (String) bt_1.M[var13].d, (int)2, 2, 20, 14337302, 0);
+                  LoadingPage.a(var3, (String)("" + t_1.K[bt_1.M[var13].k]), (int)(t_1.b - 2), 2, 24, 14337302, 0);
                }
 
                if (bt_1.M[var13].i > 99) {
@@ -1464,7 +1464,7 @@ public final class bq_1 {
          }
 
          if ((bt_1.bs >= 0 && bt_1.s == 0 || t == 1 || t == 2) && s >= 0) {
-            ca_1.a(var2, (String)String.valueOf(s), (int)(t_1.b / 2), t_1.c / 2 - (t_1.c <= 240 ? t_1.j : t_1.j / 2), 17, 16711680, 0);
+            LoadingPage.a(var2, (String)String.valueOf(s), (int)(t_1.b / 2), t_1.c / 2 - (t_1.c <= 240 ? t_1.j : t_1.j / 2), 17, 16711680, 0);
          }
       } else if (this.f == 3) {
          this.a(var2);
@@ -1485,11 +1485,11 @@ public final class bq_1 {
 
       this.d(var2);
       if (bt_1.bt && c > 0) {
-         ca_1.a(var2, (String)("自动回合:" + c), (int)(t_1.b - t_1.i.stringWidth("自动回合:" + c) / 2 - 45), 2, 17, 16777215, 0);
+         LoadingPage.a(var2, (String)("自动回合:" + c), (int)(t_1.b - t_1.i.stringWidth("自动回合:" + c) / 2 - 45), 2, 17, 16777215, 0);
       }
 
       if (t_1.o) {
-         var2.drawImage(MainCanvas.U.a, t_1.b - MainCanvas.U.b, t_1.c - MainCanvas.U.c, 20);
+         var2.drawImage(MainCanvas.U.pngImage, t_1.b - MainCanvas.U.b, t_1.c - MainCanvas.U.c, 20);
       }
 
       var2.setClip(0, 0, t_1.b, t_1.c);
@@ -2058,14 +2058,14 @@ public final class bq_1 {
    private void a(Graphics var1, String var2) {
       if (this.y.j != 2) {
          if (this.K == null) {
-            this.K = ca_1.a(var2, t_1.i, t_1.b / 2 - 20, "/t");
+            this.K = LoadingPage.a(var2, t_1.i, t_1.b / 2 - 20, "/t");
          }
 
          if (this.K != null) {
-            ca_1.a(var1, (t_1.b - t_1.k * 10) / 2, (t_1.c - t_1.j * this.K.length - 20) / 2, t_1.k * 10, t_1.j * this.K.length + 20);
+            LoadingPage.a(var1, (t_1.b - t_1.k * 10) / 2, (t_1.c - t_1.j * this.K.length - 20) / 2, t_1.k * 10, t_1.j * this.K.length + 20);
 
             for(int var3 = 0; var3 < this.K.length; ++var3) {
-               ca_1.a(var1, (String)this.K[var3], (int)(t_1.b / 2), (t_1.c - t_1.j * this.K.length - 20) / 2 + 10 + var3 * t_1.j, 17, ca_1.a, 0);
+               LoadingPage.a(var1, (String)this.K[var3], (int)(t_1.b / 2), (t_1.c - t_1.j * this.K.length - 20) / 2 + 10 + var3 * t_1.j, 17, LoadingPage.a, 0);
             }
          }
       }
@@ -2179,22 +2179,22 @@ public final class bq_1 {
             MainCanvas.f.a(var1, ao_1.Z, (int[])null, var2 + 1, 0, 0, 1, t_1.c - 102 + (var2 << 4), 0, 0);
             if (var2 == this.e) {
                var1.setColor(16711680);
-               ca_1.d(var1, 1, t_1.c - 102 + (this.e << 4), 25, 15);
+               LoadingPage.d(var1, 1, t_1.c - 102 + (this.e << 4), 25, 15);
                switch (this.e) {
                   case 0:
-                     ca_1.a(var1, (String)"攻击", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
+                     LoadingPage.a(var1, (String)"攻击", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                      break;
                   case 1:
-                     ca_1.a(var1, (String)"防御", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
+                     LoadingPage.a(var1, (String)"防御", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                      break;
                   case 2:
-                     ca_1.a(var1, (String)"技能", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
+                     LoadingPage.a(var1, (String)"技能", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                      break;
                   case 3:
-                     ca_1.a(var1, (String)"道具", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
+                     LoadingPage.a(var1, (String)"道具", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                      break;
                   case 4:
-                     ca_1.a(var1, (String)"逃跑", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
+                     LoadingPage.a(var1, (String)"逃跑", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                }
             }
          }
@@ -2233,16 +2233,16 @@ public final class bq_1 {
             MainCanvas.f.a(var1, ao_1.Z, (int[])null, var2 + 1, 0, 0, 1, t_1.c - 70 + (var2 << 4), 0, 0);
             if (var2 == this.e) {
                var1.setColor(16711680);
-               ca_1.d(var1, 1, t_1.c - 70 + (var2 << 4), 25, 15);
+               LoadingPage.d(var1, 1, t_1.c - 70 + (var2 << 4), 25, 15);
                switch (this.e) {
                   case 0:
-                     ca_1.a(var1, (String)"攻击", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
+                     LoadingPage.a(var1, (String)"攻击", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                      break;
                   case 1:
-                     ca_1.a(var1, (String)"防御", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
+                     LoadingPage.a(var1, (String)"防御", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                      break;
                   case 2:
-                     ca_1.a(var1, (String)"技能", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
+                     LoadingPage.a(var1, (String)"技能", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                }
             }
          }
@@ -2322,7 +2322,7 @@ public final class bq_1 {
             for(byte var7 = 0; var7 < bt_1.ej.length; ++var7) {
                if (var7 == this.z.az) {
                   var1.setColor(16711680);
-                  ca_1.d(var1, 2 + var7 * 17, t_1.c - 20, 17, 17);
+                  LoadingPage.d(var1, 2 + var7 * 17, t_1.c - 20, 17, 17);
                   if (this.f == 0) {
                      switch (this.z.az) {
                         case 0:
@@ -2338,21 +2338,21 @@ public final class bq_1 {
                                  return;
                               }
 
-                              ca_1.a(var1, (String) bt_1.eo[this.z.az], (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
+                              LoadingPage.a(var1, (String) bt_1.eo[this.z.az], (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                            } else {
                               if (this.d != 2 || bt_1.et[this.z.az] == -1) {
                                  return;
                               }
 
-                              ca_1.a(var1, (String) bt_1.eu[this.z.az], (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
+                              LoadingPage.a(var1, (String) bt_1.eu[this.z.az], (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                            }
 
                            return;
                         case 8:
-                           ca_1.a(var1, (String)"聊天记录", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
+                           LoadingPage.a(var1, (String)"聊天记录", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                            return;
                         case 9:
-                           ca_1.a(var1, (String)"自动打怪", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
+                           LoadingPage.a(var1, (String)"自动打怪", (int)(t_1.b / 2), t_1.c - 22 - t_1.j, 17, 16776960, 0);
                            return;
                         default:
                            return;
@@ -2369,7 +2369,7 @@ public final class bq_1 {
    private void e(Graphics var1) {
       if (this.u != null) {
          for(byte var2 = 0; var2 < this.u.length; ++var2) {
-            ca_1.a(var1, (String)this.u[var2], (int)(t_1.b / 2), (t_1.c - this.u.length * t_1.j) / 2 + var2 * t_1.j, 17, 15849739, 0);
+            LoadingPage.a(var1, (String)this.u[var2], (int)(t_1.b / 2), (t_1.c - this.u.length * t_1.j) / 2 + var2 * t_1.j, 17, 15849739, 0);
          }
       }
 
@@ -2412,7 +2412,7 @@ public final class bq_1 {
    public final void a(String var1) {
       if (this.x != null) {
          synchronized(this.x) {
-            this.x.addElement(ca_1.a(var1, t_1.i, t_1.b * 5 / 7, "\t"));
+            this.x.addElement(LoadingPage.a(var1, t_1.i, t_1.b * 5 / 7, "\t"));
          }
       }
    }
@@ -2638,11 +2638,11 @@ public final class bq_1 {
          var13 = (var9 + 2) * 7;
       }
 
-      var1.drawRegion(ao_1.E.a, var2 >= 0 ? 8 : 0, var5 == 0 ? 0 : 10, 8, 10, 0, var3 - var13, var4, 0);
+      var1.drawRegion(ao_1.E.pngImage, var2 >= 0 ? 8 : 0, var5 == 0 ? 0 : 10, 8, 10, 0, var3 - var13, var4, 0);
       var6 = var2 >= 0 ? var2 : -var2;
 
       for(int var10 = var9; var10 >= 0; --var10) {
-         var1.drawRegion(ao_1.E.a, 16 + var6 / d(var10) * 7, var5 == 0 ? 0 : 10, 7, 10, 0, var3 + 8 + (var9 - var10) * 7 - var13, var4, 0);
+         var1.drawRegion(ao_1.E.pngImage, 16 + var6 / d(var10) * 7, var5 == 0 ? 0 : 10, 7, 10, 0, var3 + 8 + (var9 - var10) * 7 - var13, var4, 0);
          var6 %= d(var10);
       }
 

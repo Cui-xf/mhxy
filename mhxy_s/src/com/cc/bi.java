@@ -90,9 +90,9 @@ public final class bi extends bk {
 
    public final void a(Graphics var1) {
       var1.setClip(super.f, super.g, super.h, super.i);
-      ca_1.a(var1, super.f, super.g, super.h, super.i, 1);
+      LoadingPage.a(var1, super.f, super.g, super.h, super.i, 1);
       if (this.e) {
-         ca_1.a(var1);
+         LoadingPage.a(var1);
       }
 
       var1.setClip(super.f, super.g + 4, super.h, super.i - 6);
@@ -107,7 +107,7 @@ public final class bi extends bk {
 
       if (this.b > 0) {
          var1.setClip(super.f, super.g, super.h, super.i);
-         ca_1.a(var1, super.f + super.h - 2 - MainCanvas.C.b, super.g + 4, super.i - 6, this.b, this.a, this.l * this.d, super.i - 6);
+         LoadingPage.a(var1, super.f + super.h - 2 - MainCanvas.C.b, super.g + 4, super.i - 6, this.b, this.a, this.l * this.d, super.i - 6);
       }
 
    }

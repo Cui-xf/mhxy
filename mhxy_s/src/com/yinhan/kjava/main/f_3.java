@@ -25,7 +25,7 @@ public final class f_3 {
                var2 = var2;
                var1 = var1;
                if (this.a.k == 0 && this.a.J != null) {
-                  this.b.a = ca_1.b(var1, var2);
+                  this.b.a = LoadingPage.b(var1, var2);
                } else {
                   if (bt_1.t != null) {
                      for(int var37 = 0; var37 < bt_1.t.length; ++var37) {
@@ -179,8 +179,8 @@ public final class f_3 {
                            this.a.I.c.removeAllElements();
                            this.a.I.a(true);
                         }
-                     } else if (var1 >= t_1.b - 67 + 37 && var1 <= t_1.b - 67 + 37 + ao_1.v.a.getWidth() && var2 >= 8 && var2 <=
-                     ao_1.v.a.getHeight() + 8) {
+                     } else if (var1 >= t_1.b - 67 + 37 && var1 <= t_1.b - 67 + 37 + ao_1.v.pngImage.getWidth() && var2 >= 8 && var2 <=
+                     ao_1.v.pngImage.getHeight() + 8) {
                         this.b.a = 2048;
                      } else if (var1 >= t_1.b - 67 && var1 <= t_1.b - 67 + 33 && var2 >= 5 && var2 <= 18) {
                         this.b.a = 515;
@@ -247,24 +247,24 @@ public final class f_3 {
                                  return;
                               }
 
-                              this.b.a = ca_1.b(var1, var2);
+                              this.b.a = LoadingPage.b(var1, var2);
                            }
                         } else {
-                           this.b.a = ca_1.b(var1, var2);
+                           this.b.a = LoadingPage.b(var1, var2);
                         }
                      } else {
-                        this.b.a = ca_1.d(var1, var2);
-                        if (!ca_1.e(var1, var2)) {
+                        this.b.a = LoadingPage.d(var1, var2);
+                        if (!LoadingPage.e(var1, var2)) {
                            return;
                         }
 
                         this.b.a((String)"拍卖价格", (int)2);
                      }
                   } else {
-                     this.b.a = ca_1.d(var1, var2);
+                     this.b.a = LoadingPage.d(var1, var2);
                   }
                } else {
-                  this.b.a = ca_1.c(var1, var2);
+                  this.b.a = LoadingPage.c(var1, var2);
                }
                break;
             case 5:
@@ -279,13 +279,13 @@ public final class f_3 {
                      return;
                   }
 
-                  this.b.a = ca_1.c(var1, var2);
+                  this.b.a = LoadingPage.c(var1, var2);
                }
                break;
             case 6:
                if (this.a.l != 0 && this.a.l != 3) {
                   if (this.a.l == 1 || this.a.l == 2) {
-                     this.b.a = ca_1.c(var1, var2);
+                     this.b.a = LoadingPage.c(var1, var2);
                   }
 
                   return;
@@ -303,7 +303,7 @@ public final class f_3 {
             case 8:
                if (this.a.l != 0) {
                   if (this.a.l == 2) {
-                     this.b.a = ca_1.d(var1, var2);
+                     this.b.a = LoadingPage.d(var1, var2);
                   }
 
                   return;
@@ -319,7 +319,7 @@ public final class f_3 {
             case 9:
                if (this.a.l != 0) {
                   if (this.a.l == 2) {
-                     this.b.a = ca_1.d(var1, var2);
+                     this.b.a = LoadingPage.d(var1, var2);
                   }
 
                   return;
@@ -349,13 +349,13 @@ public final class f_3 {
                } else {
                   if (this.a.l != 2) {
                      if (this.a.l == 4) {
-                        this.b.a = ca_1.c(var1, var2);
+                        this.b.a = LoadingPage.c(var1, var2);
                      }
 
                      return;
                   }
 
-                  this.b.a = ca_1.d(var1, var2);
+                  this.b.a = LoadingPage.d(var1, var2);
                }
                break;
             case 12:
@@ -365,18 +365,18 @@ public final class f_3 {
                if (this.a.l != 0 && this.a.l != 10 && this.a.l != 5 && this.a.l != 6) {
                   if (this.a.l != 1 && this.a.l != 2 && this.a.l != 8 && this.a.l != 9) {
                      if (this.a.l == 3) {
-                        this.b.a = ca_1.d(var1, var2);
-                        if (!ca_1.e(var1, var2)) {
+                        this.b.a = LoadingPage.d(var1, var2);
+                        if (!LoadingPage.e(var1, var2)) {
                            return;
                         }
 
                         this.b.a((String)"请输入拍卖价格", (int)2);
                      } else if (this.a.l == 4) {
-                        this.b.a = ca_1.b(var1, var2);
+                        this.b.a = LoadingPage.b(var1, var2);
                      } else {
                         if (this.a.l != 7) {
                            if (this.a.l == 11) {
-                              this.b.a = ca_1.b(var1, var2);
+                              this.b.a = LoadingPage.b(var1, var2);
                            }
 
                            return;
@@ -385,7 +385,7 @@ public final class f_3 {
                         this.b.a = this.a.c(var1, var2);
                      }
                   } else {
-                     this.b.a = ca_1.c(var1, var2);
+                     this.b.a = LoadingPage.c(var1, var2);
                   }
                } else {
                   if (this.b.aq == null) {
@@ -442,7 +442,7 @@ public final class f_3 {
                this.p(var1, var2);
                return;
             case 20:
-               this.b.a = ca_1.a(var1, var2);
+               this.b.a = LoadingPage.a(var1, var2);
                return;
             case 21:
                this.o(var1, var2);
@@ -456,8 +456,8 @@ public final class f_3 {
                   this.b.a = this.b.aq.b(var1, var2);
                   this.b.a = this.a.e(this.b.a, var1, var2);
                } else if (this.a.l == 6) {
-                  this.b.a = ca_1.d(var1, var2);
-                  if (!ca_1.e(var1, var2)) {
+                  this.b.a = LoadingPage.d(var1, var2);
+                  if (!LoadingPage.e(var1, var2)) {
                      return;
                   }
 
@@ -465,13 +465,13 @@ public final class f_3 {
                } else {
                   if (this.a.l != 1 && this.a.l != 2 && this.a.l != 3) {
                      if (this.a.l == 5) {
-                        this.b.a = ca_1.b(var1, var2);
+                        this.b.a = LoadingPage.b(var1, var2);
                      }
 
                      return;
                   }
 
-                  this.b.a = ca_1.c(var1, var2);
+                  this.b.a = LoadingPage.c(var1, var2);
                }
                break;
             case 23:
@@ -482,17 +482,17 @@ public final class f_3 {
 
                   this.b.a = this.b.aq.b(var1, var2);
                } else if (this.a.l == 1) {
-                  this.b.a = ca_1.c(var1, var2);
+                  this.b.a = LoadingPage.c(var1, var2);
                } else {
                   if (this.a.l != 2) {
                      if (this.a.l == 3 || this.a.l == 4) {
-                        this.b.a = ca_1.b(var1, var2);
+                        this.b.a = LoadingPage.b(var1, var2);
                      }
 
                      return;
                   }
 
-                  this.b.a = ca_1.d(var1, var2);
+                  this.b.a = LoadingPage.d(var1, var2);
                }
                break;
             case 24:
@@ -505,13 +505,13 @@ public final class f_3 {
                } else {
                   if (this.a.l != 1) {
                      if (this.a.l == 2) {
-                        this.b.a = ca_1.b(var1, var2);
+                        this.b.a = LoadingPage.b(var1, var2);
                      }
 
                      return;
                   }
 
-                  this.b.a = ca_1.c(var1, var2);
+                  this.b.a = LoadingPage.c(var1, var2);
                }
                break;
             case 25:
@@ -607,13 +607,13 @@ public final class f_3 {
                } else {
                   if (this.a.l != 1) {
                      if (this.a.l == 2) {
-                        this.b.a = ca_1.c(var1, var2);
+                        this.b.a = LoadingPage.c(var1, var2);
                      }
 
                      return;
                   }
 
-                  this.b.a = ca_1.d(var1, var2);
+                  this.b.a = LoadingPage.d(var1, var2);
                }
                break;
             case 32:
@@ -633,8 +633,8 @@ public final class f_3 {
                } else if (this.a.l != 1 && this.a.l != 2) {
                   if (this.a.l != 3 && this.a.l != 5) {
                      if (this.a.l == 4) {
-                        this.b.a = ca_1.d(var1, var2);
-                        if (ca_1.e(var1, var2)) {
+                        this.b.a = LoadingPage.d(var1, var2);
+                        if (LoadingPage.e(var1, var2)) {
                            this.b.a((String)"请输入拍卖价格", (int)2);
                            return;
                         }
@@ -643,9 +643,9 @@ public final class f_3 {
                      return;
                   }
 
-                  this.b.a = ca_1.b(var1, var2);
+                  this.b.a = LoadingPage.b(var1, var2);
                } else {
-                  this.b.a = ca_1.c(var1, var2);
+                  this.b.a = LoadingPage.c(var1, var2);
                }
                break;
             case 35:
@@ -666,13 +666,13 @@ public final class f_3 {
                } else {
                   if (this.a.l != 1 && this.a.l != 3 && this.a.l != 5) {
                      if (this.a.l == 4) {
-                        this.b.a = ca_1.b(var1, var2);
+                        this.b.a = LoadingPage.b(var1, var2);
                      }
 
                      return;
                   }
 
-                  this.b.a = ca_1.c(var1, var2);
+                  this.b.a = LoadingPage.c(var1, var2);
                }
                break;
             case 37:
@@ -808,7 +808,7 @@ public final class f_3 {
 
                return;
             case 98:
-               this.b.a = ca_1.a(var1, var2);
+               this.b.a = LoadingPage.a(var1, var2);
                return;
             case 100:
                this.al(var1, var2);
@@ -875,7 +875,7 @@ public final class f_3 {
                }
 
                if (this.a.l == 1) {
-                  this.b.a = ca_1.c(var1, var2);
+                  this.b.a = LoadingPage.c(var1, var2);
                   return;
                }
                break;
@@ -915,7 +915,7 @@ public final class f_3 {
          this.b.a = this.b.aq.b(var1, var2);
       } else {
          if (this.a.l == 1) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
          }
 
       }
@@ -951,7 +951,7 @@ public final class f_3 {
          }
       } else {
          if (this.a.l == 1) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
             return;
          }
 
@@ -962,12 +962,12 @@ public final class f_3 {
             }
          } else {
             if (this.a.l == 3 || this.a.l == 6) {
-               this.b.a = ca_1.d(var1, var2);
+               this.b.a = LoadingPage.d(var1, var2);
                return;
             }
 
             if (this.a.l == 5 || this.a.l == 4) {
-               this.b.a = ca_1.b(var1, var2);
+               this.b.a = LoadingPage.b(var1, var2);
             }
          }
       }
@@ -990,7 +990,7 @@ public final class f_3 {
          this.b.a = this.b.av.a(var1, var2);
       } else {
          if (this.a.l == 2) {
-            this.b.a = ca_1.b(var1, var2);
+            this.b.a = LoadingPage.b(var1, var2);
          }
 
       }
@@ -1003,7 +1003,7 @@ public final class f_3 {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = ca_1.c(var1, var2);
+         this.b.a = LoadingPage.c(var1, var2);
       }
 
    }
@@ -1015,17 +1015,17 @@ public final class f_3 {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = ca_1.c(var1, var2);
+         this.b.a = LoadingPage.c(var1, var2);
       }
 
    }
 
    private void k(int var1, int var2) {
       if (this.a.l == 0) {
-         this.b.a = ca_1.a(var1, var2);
+         this.b.a = LoadingPage.a(var1, var2);
       } else {
          if (this.a.l == 1) {
-            this.b.a = ca_1.b(var1, var2);
+            this.b.a = LoadingPage.b(var1, var2);
          }
 
       }
@@ -1054,7 +1054,7 @@ public final class f_3 {
          }
 
          if (this.a.l == 1 || this.a.l == 7) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
          }
       }
 
@@ -1076,7 +1076,7 @@ public final class f_3 {
          }
       } else {
          if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
             return;
          }
 
@@ -1095,12 +1095,12 @@ public final class f_3 {
    private void p(int var1, int var2) {
       if (this.a.l != 0 && this.a.l != 10) {
          if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3 || this.a.l == 4 || this.a.l == 5 || this.a.l == 6 || this.a.l == 7 || this.a.l == 9) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
             return;
          }
 
          if (this.a.l == 8) {
-            this.b.a = ca_1.b(var1, var2);
+            this.b.a = LoadingPage.b(var1, var2);
          }
       } else if (this.b.aq != null) {
          this.b.a = this.b.aq.b(var1, var2);
@@ -1112,7 +1112,7 @@ public final class f_3 {
    private void q(int var1, int var2) {
       if (this.a.l != 0 && this.a.l != 1) {
          if (this.a.l == 2 || this.a.l == 3 || this.a.l == 4 || this.a.l == 5 || this.a.l == 6) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
          }
       } else if (this.b.aq != null) {
          this.b.a = this.b.aq.b(var1, var2);
@@ -1123,7 +1123,7 @@ public final class f_3 {
          }
       }
 
-      if (MainCanvas.u != null && var1 >= t_1.b - 4 - MainCanvas.u.a.getWidth() && var1 < t_1.b - 4 && var2 >= 4 && var2 <= MainCanvas.u.a.getHeight() + 4) {
+      if (MainCanvas.u != null && var1 >= t_1.b - 4 - MainCanvas.u.pngImage.getWidth() && var1 < t_1.b - 4 && var2 >= 4 && var2 <= MainCanvas.u.pngImage.getHeight() + 4) {
          this.b.a = 536870912;
       }
 
@@ -1132,12 +1132,12 @@ public final class f_3 {
    private void r(int var1, int var2) {
       if (this.a.l != 6 && this.a.l != 7) {
          if (this.a.l == 8) {
-            this.b.a = ca_1.d(var1, var2);
+            this.b.a = LoadingPage.d(var1, var2);
          } else {
             this.b.a = this.a.a(var1, var2);
          }
       } else {
-         this.b.a = ca_1.b(var1, var2);
+         this.b.a = LoadingPage.b(var1, var2);
       }
    }
 
@@ -1148,8 +1148,8 @@ public final class f_3 {
          }
 
          if (this.a.m == 1 || this.a.m == 2) {
-            this.b.a = ca_1.d(var1, var2);
-            if (ca_1.e(var1, var2)) {
+            this.b.a = LoadingPage.d(var1, var2);
+            if (LoadingPage.e(var1, var2)) {
                this.b.a((String)(this.a.m == 1 ? "请输入取出银两" : "请输入存入银两"), (int)2);
                return;
             }
@@ -1158,8 +1158,8 @@ public final class f_3 {
          }
 
          if (this.a.m == 3) {
-            this.b.a = ca_1.d(var1, var2);
-            if (ca_1.e(var1, var2)) {
+            this.b.a = LoadingPage.d(var1, var2);
+            if (LoadingPage.e(var1, var2)) {
                this.b.a((String)"请输入竞标银两", (int)2);
                return;
             }
@@ -1168,17 +1168,17 @@ public final class f_3 {
          }
 
          if (this.a.m == 4) {
-            this.b.a = ca_1.d(var1, var2);
+            this.b.a = LoadingPage.d(var1, var2);
             return;
          }
 
          if (this.a.m == 5 || this.a.m == 6) {
-            this.b.a = ca_1.b(var1, var2);
+            this.b.a = LoadingPage.b(var1, var2);
             return;
          }
       }
 
-      this.b.a = ca_1.a(var1, var2);
+      this.b.a = LoadingPage.a(var1, var2);
    }
 
    private void t(int var1, int var2) {
@@ -1212,7 +1212,7 @@ public final class f_3 {
          }
       } else if (this.a.l != 3 && this.a.l != 11) {
          if (this.a.l == 1 || this.a.l == 2 || this.a.l == 5 || this.a.l == 6 || this.a.l == 8 || this.a.l == 9 || this.a.l == 10) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
             return;
          }
 
@@ -1227,8 +1227,8 @@ public final class f_3 {
          }
 
          if (this.a.l == 7) {
-            this.b.a = ca_1.d(var1, var2);
-            if (ca_1.e(var1, var2)) {
+            this.b.a = LoadingPage.d(var1, var2);
+            if (LoadingPage.e(var1, var2)) {
                this.b.a((String)"请输入决斗金额", (int)2);
             }
          }
@@ -1254,12 +1254,12 @@ public final class f_3 {
          }
       } else {
          if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3 || this.a.l == 4 || this.a.l == 5 || this.a.l == 6 || this.a.l == 7 || this.a.l == 8 || this.a.l == 10) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
             return;
          }
 
          if (this.a.l == 9) {
-            this.b.a = ca_1.b(var1, var2);
+            this.b.a = LoadingPage.b(var1, var2);
          }
       }
 
@@ -1267,7 +1267,7 @@ public final class f_3 {
 
    private void y(int var1, int var2) {
       if (this.a.l == 0) {
-         this.b.a = ca_1.a(var1, var2);
+         this.b.a = LoadingPage.a(var1, var2);
       } else {
          if (this.a.l == 1) {
             this.b.a = this.b.aq.b(var1, var2);
@@ -1311,7 +1311,7 @@ public final class f_3 {
             return;
          }
       } else if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3) {
-         this.b.a = ca_1.b(var1, var2);
+         this.b.a = LoadingPage.b(var1, var2);
       }
 
    }
@@ -1323,7 +1323,7 @@ public final class f_3 {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = ca_1.c(var1, var2);
+         this.b.a = LoadingPage.c(var1, var2);
       }
 
    }
@@ -1335,7 +1335,7 @@ public final class f_3 {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = ca_1.c(var1, var2);
+         this.b.a = LoadingPage.c(var1, var2);
       }
 
    }
@@ -1355,7 +1355,7 @@ public final class f_3 {
          }
       } else {
          if (this.a.l == 1) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
             return;
          }
 
@@ -1374,7 +1374,7 @@ public final class f_3 {
          }
       } else {
          if (this.a.l == 1 || this.a.l == 2 || this.a.l == 5 || this.a.l == 6 || this.a.l == 7 || this.a.l == 8) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
             return;
          }
 
@@ -1394,7 +1394,7 @@ public final class f_3 {
                return;
             }
          } else if (this.a.l == 9) {
-            this.b.a = ca_1.b(var1, var2);
+            this.b.a = LoadingPage.b(var1, var2);
          }
       }
 
@@ -1408,7 +1408,7 @@ public final class f_3 {
          }
       } else {
          if (this.a.l == 1) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
             return;
          }
 
@@ -1418,7 +1418,7 @@ public final class f_3 {
                return;
             }
          } else if (this.a.l == 3) {
-            this.b.a = ca_1.b(var1, var2);
+            this.b.a = LoadingPage.b(var1, var2);
          }
       }
 
@@ -1438,20 +1438,20 @@ public final class f_3 {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = ca_1.d(var1, var2);
-         if (ca_1.e(var1, var2)) {
+         this.b.a = LoadingPage.d(var1, var2);
+         if (LoadingPage.e(var1, var2)) {
             this.b.a((String)"捐献银两数量", (int)2);
             return;
          }
       } else if (this.a.l == 2) {
-         this.b.a = ca_1.d(var1, var2);
-         if (ca_1.e(var1, var2)) {
+         this.b.a = LoadingPage.d(var1, var2);
+         if (LoadingPage.e(var1, var2)) {
             this.b.a((String)"捐献经验数量", (int)2);
             return;
          }
       } else if (this.a.l == 5) {
-         this.b.a = ca_1.d(var1, var2);
-         if (ca_1.e(var1, var2)) {
+         this.b.a = LoadingPage.d(var1, var2);
+         if (LoadingPage.e(var1, var2)) {
             this.b.a((String)"取出银两数量", (int)2);
             return;
          }
@@ -1462,7 +1462,7 @@ public final class f_3 {
             }
          } else {
             if (this.a.m == 0) {
-               this.b.a = ca_1.d(var1, var2);
+               this.b.a = LoadingPage.d(var1, var2);
                return;
             }
 
@@ -1471,7 +1471,7 @@ public final class f_3 {
             }
          }
 
-         this.b.a = ca_1.b(var1, var2);
+         this.b.a = LoadingPage.b(var1, var2);
       }
 
    }
@@ -1522,7 +1522,7 @@ public final class f_3 {
             return;
          }
       } else if (this.a.l == 1 || this.a.l == 2) {
-         this.b.a = ca_1.c(var1, var2);
+         this.b.a = LoadingPage.c(var1, var2);
       }
 
    }
@@ -1535,12 +1535,12 @@ public final class f_3 {
          }
       } else {
          if (this.a.l == 1) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
             return;
          }
 
          if (this.a.l == 2) {
-            this.b.a = ca_1.d(var1, var2);
+            this.b.a = LoadingPage.d(var1, var2);
          }
       }
 
@@ -1579,18 +1579,18 @@ public final class f_3 {
          }
       } else {
          if (this.a.l == 1 || this.a.l == 2) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
             return;
          }
 
          if (this.a.l == 3 || this.a.l == 5) {
-            this.b.a = ca_1.b(var1, var2);
+            this.b.a = LoadingPage.b(var1, var2);
             return;
          }
 
          if (this.a.l == 4) {
-            this.b.a = ca_1.d(var1, var2);
-            if (ca_1.e(var1, var2)) {
+            this.b.a = LoadingPage.d(var1, var2);
+            if (LoadingPage.e(var1, var2)) {
                this.b.a((String)"拍卖价格", (int)2);
             }
          }
@@ -1606,12 +1606,12 @@ public final class f_3 {
          }
       } else {
          if (this.a.l == 1 || this.a.l == 2) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
             return;
          }
 
          if (this.a.l == 3) {
-            this.b.a = ca_1.b(var1, var2);
+            this.b.a = LoadingPage.b(var1, var2);
          }
       }
 
@@ -1619,7 +1619,7 @@ public final class f_3 {
 
    private void R(int var1, int var2) {
       if (this.a.l == 0) {
-         this.b.a = ca_1.b(var1, var2);
+         this.b.a = LoadingPage.b(var1, var2);
       }
 
    }
@@ -1714,12 +1714,12 @@ public final class f_3 {
          }
       } else {
          if (this.a.l == 1 || this.a.l == 2) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
             return;
          }
 
          if (this.a.l == 3) {
-            this.b.a = ca_1.b(var1, var2);
+            this.b.a = LoadingPage.b(var1, var2);
          }
       }
 
@@ -1761,7 +1761,7 @@ public final class f_3 {
                         }
 
                         var5.b = var4;
-                        ca_1.l = 0;
+                        LoadingPage.l = 0;
                         var5.b();
                         break;
                      }
@@ -1775,7 +1775,7 @@ public final class f_3 {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = ca_1.c(var1, var2);
+         this.b.a = LoadingPage.c(var1, var2);
       }
 
    }
@@ -1788,7 +1788,7 @@ public final class f_3 {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = ca_1.c(var1, var2);
+         this.b.a = LoadingPage.c(var1, var2);
       }
 
    }
@@ -1817,7 +1817,7 @@ public final class f_3 {
                            }
 
                            var5.a = (byte)var4;
-                           ca_1.l = 0;
+                           LoadingPage.l = 0;
                            var5.a();
                         } else {
                            var5.b = 1;
@@ -1827,7 +1827,7 @@ public final class f_3 {
                            }
 
                            var5.a = (byte)(var4 - 2);
-                           ca_1.l = 0;
+                           LoadingPage.l = 0;
                            var5.a();
                         }
                         break;
@@ -1842,7 +1842,7 @@ public final class f_3 {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = ca_1.c(var1, var2);
+         this.b.a = LoadingPage.c(var1, var2);
       }
 
    }
@@ -1892,7 +1892,7 @@ public final class f_3 {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = ca_1.c(var1, var2);
+         this.b.a = LoadingPage.c(var1, var2);
       }
 
    }
@@ -1911,7 +1911,7 @@ public final class f_3 {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = ca_1.d(var1, var2);
+         this.b.a = LoadingPage.d(var1, var2);
       }
 
    }
@@ -1931,7 +1931,7 @@ public final class f_3 {
          }
       } else {
          if (this.a.l == 1) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
             return;
          }
 
@@ -1991,7 +1991,7 @@ public final class f_3 {
 
    private void ai(int var1, int var2) {
       if (this.a.l == 0) {
-         this.b.a = ca_1.a(var1, var2);
+         this.b.a = LoadingPage.a(var1, var2);
       }
 
    }
@@ -2012,10 +2012,10 @@ public final class f_3 {
 
    private void al(int var1, int var2) {
       if (this.a.l == 0) {
-         this.b.a = ca_1.c(var1, var2);
+         this.b.a = LoadingPage.c(var1, var2);
       } else {
          if (this.a.l == 1) {
-            this.b.a = ca_1.c(var1, var2);
+            this.b.a = LoadingPage.c(var1, var2);
          }
 
       }
@@ -2028,7 +2028,7 @@ public final class f_3 {
             return;
          }
       } else if (this.a.l == 1 || this.a.l == 2) {
-         this.b.a = ca_1.c(var1, var2);
+         this.b.a = LoadingPage.c(var1, var2);
       }
 
    }
@@ -2055,7 +2055,7 @@ public final class f_3 {
             return;
          }
       } else {
-         this.b.a = ca_1.c(var1, var2);
+         this.b.a = LoadingPage.c(var1, var2);
       }
 
    }
@@ -2063,7 +2063,7 @@ public final class f_3 {
    private void aq(int var1, int var2) {
       if (this.a.l != 0 && this.a.l != 1) {
          if (this.a.l == 2 || this.a.l == 3) {
-            this.b.a = ca_1.b(var1, var2);
+            this.b.a = LoadingPage.b(var1, var2);
          }
       } else if (this.b.aq != null) {
          this.b.a = this.b.aq.b(var1, var2);
@@ -2073,11 +2073,11 @@ public final class f_3 {
    }
 
    private void ar(int var1, int var2) {
-      this.b.a = ca_1.a(var1, var2);
+      this.b.a = LoadingPage.a(var1, var2);
    }
 
    private void as(int var1, int var2) {
-      this.b.a = ca_1.b(var1, var2);
+      this.b.a = LoadingPage.b(var1, var2);
    }
 
    private void at(int var1, int var2) {
@@ -2087,7 +2087,7 @@ public final class f_3 {
             return;
          }
       } else if (this.a.l == 1) {
-         this.b.a = ca_1.c(var1, var2);
+         this.b.a = LoadingPage.c(var1, var2);
       }
 
    }
@@ -2107,12 +2107,12 @@ public final class f_3 {
             }
          } else {
             if (this.a.l == 1) {
-               this.b.a = ca_1.c(var1, var2);
+               this.b.a = LoadingPage.c(var1, var2);
                return;
             }
 
             if (this.a.l == 2) {
-               this.b.a = ca_1.b(var1, var2);
+               this.b.a = LoadingPage.b(var1, var2);
                return;
             }
 

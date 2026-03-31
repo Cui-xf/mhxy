@@ -116,7 +116,7 @@ public final class as {
 
       this.a.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.b();
-      ca_1.l = 0;
+      LoadingPage.l = 0;
       this.b.l = 0;
       this.a.j = this.a.k;
       this.b.j = this.b.k = 102;
@@ -132,7 +132,7 @@ public final class as {
 
    private void b() {
       if (j != null) {
-         new bw_1(j, (short)t_1.i.stringWidth(j));
+         new TextRender(j, (short)t_1.i.stringWidth(j));
       }
 
    }

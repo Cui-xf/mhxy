@@ -24,7 +24,7 @@ public final class an_1 extends al {
    private int q;
    private boolean r = false;
    private String s;
-   private bw_1 t;
+   private TextRender t;
    private String u = "\t";
    private int v = 2176196;
    private int[][] w = new int[2][4];
@@ -61,13 +61,13 @@ public final class an_1 extends al {
                break label268;
             }
 
-            this.t = new bw_1(this.s, (short)(this.d - 8 - MainCanvas.C.b));
+            this.t = new TextRender(this.s, (short)(this.d - 8 - MainCanvas.C.b));
             var10000 = this;
             var10001 = this.t.a();
          } else {
             if (this.m != null && !this.m.equals("")) {
-               this.n = ca_1.a(this.m, this.l, this.d - 8 - MainCanvas.C.b, this.u);
-               this.v = ca_1.a(this.n[0]) != -1 ? ca_1.a(this.n[0]) : 2176196;
+               this.n = LoadingPage.a(this.m, this.l, this.d - 8 - MainCanvas.C.b, this.u);
+               this.v = LoadingPage.a(this.n[0]) != -1 ? LoadingPage.a(this.n[0]) : 2176196;
                if (this.v != 2176196) {
                   this.n[0] = this.n[0].substring(3, this.n[0].length());
                }
@@ -234,21 +234,21 @@ public final class an_1 extends al {
 
    public final void a(Graphics var1) {
       if (this.i) {
-         ca_1.a(var1, 6014420);
+         LoadingPage.a(var1, 6014420);
          var1.fillRect(this.b, this.c, this.d, this.e);
       }
 
       if (this.j) {
-         ca_1.a(var1, this.b, this.c, this.d, this.e, 1);
+         LoadingPage.a(var1, this.b, this.c, this.d, this.e, 1);
          if (this.f) {
-            ca_1.a(var1);
+            LoadingPage.a(var1);
          }
       }
 
       if (!this.r && this.n != null) {
          for(int var3 = this.a; var3 < this.n.length && var3 < this.a + this.p; ++var3) {
             if (var3 == this.h && this.k) {
-               ca_1.a(var1, 9);
+               LoadingPage.a(var1, 9);
                if (this.h >= this.p) {
                   var1.fillRect(this.b + 4, this.c + 4 + (this.p - 1) * this.y, this.d - MainCanvas.C.b - 8, this.y);
                } else {
@@ -257,14 +257,14 @@ public final class an_1 extends al {
             }
 
             if (var3 == this.h && this.g == 0) {
-               ca_1.a(var1, this.n[var3], this.b + 4, this.c + 4 + (var3 - this.a) * this.y, 20, 13500379);
+               LoadingPage.a(var1, this.n[var3], this.b + 4, this.c + 4 + (var3 - this.a) * this.y, 20, 13500379);
             } else {
-               ca_1.a(var1, this.n[var3], this.b + 4, this.c + 4 + (var3 - this.a) * this.y, 20, this.v);
+               LoadingPage.a(var1, this.n[var3], this.b + 4, this.c + 4 + (var3 - this.a) * this.y, 20, this.v);
             }
          }
 
          if (this.q > 0) {
-            ca_1.a(var1, this.b + this.d - 2 - MainCanvas.C.b, this.c + 3, this.e - 5, this.q, this.a, this.o, this.p);
+            LoadingPage.a(var1, this.b + this.d - 2 - MainCanvas.C.b, this.c + 3, this.e - 5, this.q, this.a, this.o, this.p);
             this.a(this.b + this.d - 2 - MainCanvas.C.b, this.c + 3, this.b + this.d - 2 - MainCanvas.C.b, this.c + 3 + this.e - 5 - MainCanvas.D.c, MainCanvas.D.b, MainCanvas.D.c);
             return;
          }
@@ -274,7 +274,7 @@ public final class an_1 extends al {
          }
 
          if (this.q > 0) {
-            ca_1.a(var1, this.b + this.d - 2 - MainCanvas.C.b, this.c + 3, this.e - 5, this.q, this.a, this.o, this.p);
+            LoadingPage.a(var1, this.b + this.d - 2 - MainCanvas.C.b, this.c + 3, this.e - 5, this.q, this.a, this.o, this.p);
             this.a(this.b + this.d - 2 - MainCanvas.C.b, this.c + 3, this.b + this.d - 2 - MainCanvas.C.b, this.c + 3 + this.e - 5 - MainCanvas.D.c, MainCanvas.D.b, MainCanvas.D.c);
          }
       }
