@@ -8,13 +8,13 @@ set -e
 DEMO=mhxy_s
 
 # TODO: 设置 JDK 8 路径
-JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_411.jdk/Contents/Home"  # e.com.cc.g. /Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
+#JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_411.jdk/Contents/Home"  # e.com.cc.g. /Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
+JAVA_HOME="/mhxy/jdk1.4/j2sdk1.4.2_19"  # e.com.cc.g. /Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
 
 # TODO: 设置 J2ME 工具路径（包含 lib/ 和 bin/preverify）
-J2ME_HOME="/Users/cxf/temp/mhxy/mhxy_s/idea_lib"  # e.com.cc.g. /opt/j2me
+J2ME_HOME="/mhxy/j2me/WTK2.5.2"  # e.com.cc.g. /opt/j2me
 
-#LIB_DIR="${J2ME_HOME}/lib"
-LIB_DIR="${J2ME_HOME}"
+LIB_DIR="${J2ME_HOME}/lib"
 CLDCAPI="${LIB_DIR}/cldcapi10.jar"
 # project: MIDP 1.0 (see mhxy_s.jad / project.properties)
 MIDPAPI="${LIB_DIR}/midpapi20.jar"
@@ -22,8 +22,6 @@ PREVERIFY="${J2ME_HOME}/bin/preverify"
 
 JAVAC="${JAVA_HOME}/bin/javac"
 JAR="${JAVA_HOME}/bin/jar"
-# JDK 8: java.lang.Override 等注解在 rt.jar；CLDC/MIDP stub 无此类，需追加在 bootclasspath 末尾供 javac 解析（仍以 CLDC 为先）
-RT_JAR="${JAVA_HOME}/jre/lib/rt.jar"
 
 # --- 检查工具是否存在 ---
 if [ ! -x "$JAVAC" ]; then
@@ -38,10 +36,11 @@ if [ ! -f "$MIDPAPI" ]; then
   echo "*** MIDP API jar not found: $MIDPAPI"
   exit 1
 fi
-#if [ ! -x "$PREVERIFY" ]; then
-#  echo "*** preverify not found: $PREVERIFY"
-#  exit 1
-#fi
+
+if [ ! -x "$PREVERIFY" ]; then
+  echo "*** preverify not found: $PREVERIFY"
+  exit 1
+fi
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
@@ -68,8 +67,8 @@ mkdir -p "${SCRIPT_DIR}/../classes"
 echo "*** Compiling source files ***"
 # Source files are UTF-8
 "$JAVAC" -encoding UTF-8 \
-  -bootclasspath "${CLDCAPI}:${MIDPAPI}:${RT_JAR}" \
-  -source 1.8 -target 1.8 \
+  -bootclasspath "${CLDCAPI}:${MIDPAPI}" \
+  -source 1.4 -target 1.4 \
   -d "${SCRIPT_DIR}/../tmpclasses" \
   -classpath "${SCRIPT_DIR}/../tmpclasses" \
   @"$SRC_LIST"
