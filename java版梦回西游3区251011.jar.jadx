@@ -26,6 +26,13 @@
       {
         "nodeRef": {
           "refType": "CLASS",
+          "declClass": "bu"
+        },
+        "newName": "Page"
+      },
+      {
+        "nodeRef": {
+          "refType": "CLASS",
           "declClass": "bz"
         },
         "newName": "bz_PayloadBuilder"
@@ -43,6 +50,13 @@
           "declClass": "q"
         },
         "newName": "NetReciveUtil"
+      },
+      {
+        "nodeRef": {
+          "refType": "CLASS",
+          "declClass": "t"
+        },
+        "newName": "t_1"
       },
       {
         "nodeRef": {
@@ -138,6 +152,14 @@
           "shortId": "o:I"
         },
         "newName": "clickIndex"
+      },
+      {
+        "nodeRef": {
+          "refType": "FIELD",
+          "declClass": "com.yinhan.kjava.main.a",
+          "shortId": "ac:Lbu;"
+        },
+        "newName": "ui"
       },
       {
         "nodeRef": {
@@ -326,6 +348,30 @@
       {
         "nodeRef": {
           "refType": "METHOD",
+          "declClass": "com.yinhan.kjava.main.a",
+          "shortId": "c(Lcom/yinhan/kjava/main/a;)V"
+        },
+        "codeRef": {
+          "attachType": "VAR",
+          "index": 0
+        },
+        "newName": "t"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
+          "declClass": "com.yinhan.kjava.main.a",
+          "shortId": "c(Lcom/yinhan/kjava/main/a;)V"
+        },
+        "codeRef": {
+          "attachType": "VAR",
+          "index": 3
+        },
+        "newName": "t"
+      },
+      {
+        "nodeRef": {
+          "refType": "METHOD",
           "declClass": "q",
           "shortId": "a(Lw;)V"
         },
@@ -400,7 +446,7 @@
       "previewTab": false
     }
   ],
-  "cacheDir": "C:\\Users\\qaq\\AppData\\Local\\skylot\\jadx\\cache\\projects\\java版梦回西游3区251011.jar-011e17ab57204171d63dbcc82ab61cc8",
+  "cacheDir": "/Users/cxf/Library/Caches/io.github.skylot.jadx/projects/java版梦回西游3区251011.jar-0f0cd2cba3ad178b1bd1f5a6bef51315",
   "enableLiveReload": false,
   "searchHistory": [
     "4142",

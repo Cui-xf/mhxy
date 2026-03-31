@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import javax.microedition.lcdui.Graphics;
 public final class r {
    private final String[] h = new String[]{"装备孔", "附魔符", "幸运材料"};
    private ao_1 i;
-   private a_MainCanvas j;
+   private MainCanvas j;
    public int a;
    public int b;
    public int c;
@@ -32,7 +32,7 @@ public final class r {
    private int w;
    private boolean x = false;
 
-   public r(ao_1 var1, a_MainCanvas var2, ai_1 var3) {
+   public r(ao_1 var1, MainCanvas var2, ai_1 var3) {
       this.i = var1;
       this.j = var2;
    }
@@ -345,7 +345,7 @@ public final class r {
                byte[] var4;
                if ((var4 = bz_1.a((short)4262, this.c, this.d, (byte)2, this.e, this.f, this.d(this.a), (byte)this.a, bt_1.ad)) != null) {
                   w var5 = new w((short)4262, var4);
-                  a_MainCanvas.i.a(var5);
+                  MainCanvas.i.a(var5);
                   this.j.a((String)null);
                } else {
                   this.j.b("获取上传指令数据错误!");
@@ -360,7 +360,7 @@ public final class r {
 
                if (var6 != null) {
                   w var7 = new w((short)4262, var6);
-                  a_MainCanvas.i.a(var7);
+                  MainCanvas.i.a(var7);
                   this.j.a((String)null);
                } else {
                   this.j.b("获取上传指令数据错误!");
@@ -449,7 +449,7 @@ public final class r {
       var1.drawString(this.h[0], this.g[0][0] - 2, this.g[0][1] + (var2 - t_1.j) / 2, 24);
       var1.drawString(this.h[1], this.g[1][0] - 2, this.g[1][1] + (var2 - t_1.j) / 2, 24);
       var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] + (var2 - t_1.j) / 2, 24);
-      bf_1 var11;
+      Frame0 var11;
       if (this.c != -1 && (var11 = ao_1.b(this.k)) != null) {
          var1.drawImage(var11.a, this.g[0][0], this.g[0][1], 20);
       }

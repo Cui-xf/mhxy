@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
@@ -58,8 +58,8 @@ public final class m_1 extends al {
       this.c = var3;
       this.d = var4;
       this.s = this.b + 5;
-      if (this.i != null && a_MainCanvas.v != null) {
-         var4 = a_MainCanvas.v.c;
+      if (this.i != null && MainCanvas.v != null) {
+         var4 = MainCanvas.v.c;
          var3 = this.c;
          var2 = this.s;
          var1 = this.a;
@@ -88,15 +88,15 @@ public final class m_1 extends al {
       }
 
       if (this.u != -1 && this.v == -1) {
-         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? t_1.j + 4 : 0) - (this.x != -1 ? a_MainCanvas.E.c : 0) - this.e;
+         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? t_1.j + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e;
          ((c_1)this.l.elementAt(this.u)).a(this.a + 5, this.s + this.e, this.c - 11, var1 - this.f);
          this.s += var1;
       } else if (this.u == -1 && this.v != -1) {
-         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? t_1.j + 4 : 0) - (this.x != -1 ? a_MainCanvas.E.c : 0) - this.r;
+         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? t_1.j + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.r;
          ((an_1)this.l.elementAt(this.v)).a(this.a + 5, this.s + this.r, this.c - 11, var1 - this.g);
          this.s += var1;
       } else if (this.u != -1 && this.v != -1) {
-         var2 = (var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? t_1.j + 4 : 0) - (this.x != -1 ? a_MainCanvas.E.c : 0) - this.e) / 2;
+         var2 = (var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? t_1.j + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e) / 2;
          this.s += this.e;
          ((c_1)this.l.elementAt(this.u)).a(this.a + 5, this.s, this.c - 11, var2);
          this.s += var2;
@@ -127,15 +127,15 @@ public final class m_1 extends al {
       }
 
       if (this.u != -1 && this.v == -1) {
-         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? t_1.j + 4 : 0) - (this.x != -1 ? a_MainCanvas.E.c : 0) - this.e;
+         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? t_1.j + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e;
          ((c_1)this.l.elementAt(this.u)).a(this.a + 5, this.s + this.e, this.c - 11, var1 - this.f);
          this.s += var1;
       } else if (this.u == -1 && this.v != -1) {
-         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? t_1.j + 4 : 0) - (this.x != -1 ? a_MainCanvas.E.c : 0) - this.r;
+         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? t_1.j + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.r;
          ((an_1)this.l.elementAt(this.v)).a(this.a + 5, this.s + this.r, this.c - 11, var1 - this.g);
          this.s += var1;
       } else if (this.u != -1 && this.v != -1) {
-         var2 = (var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? t_1.j + 4 : 0) - (this.x != -1 ? a_MainCanvas.E.c : 0) - this.e) * var5 / var6;
+         var2 = (var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? t_1.j + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e) * var5 / var6;
          this.s += this.e;
          if (var7) {
             ((an_1)this.l.elementAt(this.v)).a(this.a + 5, this.s, this.c - 11, var2);
@@ -236,12 +236,12 @@ public final class m_1 extends al {
 
       this.y = false;
       if (this.i != null && this.i != null) {
-         ca_1.a(var1, a_MainCanvas.v.a, a_MainCanvas.v.b, this.m, this.n, this.o, this.p);
-         var1.drawImage(a_MainCanvas.u.a, this.m + this.o - 5 - a_MainCanvas.u.b, this.n + 1, 20);
-         int var10001 = this.m + this.o - 5 - a_MainCanvas.u.b;
+         ca_1.a(var1, MainCanvas.v.a, MainCanvas.v.b, this.m, this.n, this.o, this.p);
+         var1.drawImage(MainCanvas.u.a, this.m + this.o - 5 - MainCanvas.u.b, this.n + 1, 20);
+         int var10001 = this.m + this.o - 5 - MainCanvas.u.b;
          int var10002 = this.n + 1;
-         short var8 = a_MainCanvas.u.c;
-         short var7 = a_MainCanvas.u.b;
+         short var8 = MainCanvas.u.c;
+         short var7 = MainCanvas.u.b;
          int var6 = var10002;
          int var5 = var10001;
          if (this.q != null) {
@@ -261,7 +261,7 @@ public final class m_1 extends al {
             }
          }
 
-         ca_1.a(var1, (String)var10, (int)(this.m + this.o / 2), this.n + t_1.a(a_MainCanvas.v.c), 17, var2, 0);
+         ca_1.a(var1, (String)var10, (int)(this.m + this.o / 2), this.n + t_1.a(MainCanvas.v.c), 17, var2, 0);
          ca_1.a(var1, this.m, this.n + this.p, this.o);
       }
 
@@ -293,16 +293,16 @@ public final class m_1 extends al {
       var1.drawRect(this.a + 3, this.b + 3, this.c - 7, this.d - 7);
       ca_1.a(var1, 4);
       var1.drawRect(this.a + 2, this.b + 2, this.c - 5, this.d - 5);
-      if (a_MainCanvas.r.a != null && this.k) {
-         var1.drawImage(a_MainCanvas.r.a, this.a, this.b, 20);
+      if (MainCanvas.r.a != null && this.k) {
+         var1.drawImage(MainCanvas.r.a, this.a, this.b, 20);
       }
 
-      if (a_MainCanvas.s.a != null) {
-         var1.drawImage(a_MainCanvas.s.a, this.a, this.b + this.d - a_MainCanvas.s.c, 20);
+      if (MainCanvas.s.a != null) {
+         var1.drawImage(MainCanvas.s.a, this.a, this.b + this.d - MainCanvas.s.c, 20);
       }
 
-      if (a_MainCanvas.t.a != null) {
-         var1.drawImage(a_MainCanvas.t.a, this.a + this.c - a_MainCanvas.t.b, this.b + this.d - a_MainCanvas.t.c, 20);
+      if (MainCanvas.t.a != null) {
+         var1.drawImage(MainCanvas.t.a, this.a + this.c - MainCanvas.t.b, this.b + this.d - MainCanvas.t.c, 20);
       }
 
       var1.setClip(this.a, this.b, this.c, this.d);

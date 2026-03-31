@@ -11,11 +11,11 @@ public final class y_1 extends bk {
    private int n;
    private int o;
    private boolean p = true;
-   public static bf_1 a;
-   public static bf_1 b;
-   public static bf_1 c;
-   public static bf_1 d;
-   public static bf_1 e;
+   public static Frame0 a;
+   public static Frame0 b;
+   public static Frame0 c;
+   public static Frame0 d;
+   public static Frame0 e;
    private int q;
    private int r;
    private int s;

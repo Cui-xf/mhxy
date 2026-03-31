@@ -3,7 +3,7 @@ package com.yinhan.kjava.main;
 import com.cc.*;
 public final class f_3 {
    public ao_1 a;
-   public a_MainCanvas b;
+   public MainCanvas b;
    public int c;
    public int d;
    private int g;
@@ -14,7 +14,7 @@ public final class f_3 {
    private int j = 0;
    private int k = 0;
 
-   public f_3(a_MainCanvas var1, ai_1 var2) {
+   public f_3(MainCanvas var1, ai_1 var2) {
       this.b = var1;
    }
 
@@ -141,7 +141,7 @@ public final class f_3 {
                      }
                   }
 
-                  if (ao_1.aW[6] == 0 && var1 >= 2 && var1 <= 2 + a_MainCanvas.f.e && var2 >= 2 + t_1.j && var2 <= 2 + t_1.j + a_MainCanvas.f.f) {
+                  if (ao_1.aW[6] == 0 && var1 >= 2 && var1 <= 2 + MainCanvas.f.e && var2 >= 2 + t_1.j && var2 <= 2 + t_1.j + MainCanvas.f.f) {
                      this.b.a = 519;
                      if (!this.a.I.c.isEmpty()) {
                         this.a.I.c.removeAllElements();
@@ -577,7 +577,7 @@ public final class f_3 {
                   }
                }
 
-               if (var1 >= t_1.b - a_MainCanvas.U.b && var1 <= t_1.b && var2 >= t_1.c - a_MainCanvas.U.c && var2 <= t_1.c) {
+               if (var1 >= t_1.b - MainCanvas.U.b && var1 <= t_1.b && var2 >= t_1.c - MainCanvas.U.c && var2 <= t_1.c) {
                   this.b.a = 536870912;
                }
 
@@ -866,7 +866,7 @@ public final class f_3 {
                this.aa(var1, var2);
                return;
             case 119:
-               this.b.a = a_MainCanvas.e.bc.a((byte)0, var1, var2);
+               this.b.a = MainCanvas.e.bc.a((byte)0, var1, var2);
                return;
             case 120:
                if (this.a.l == 0) {
@@ -889,13 +889,13 @@ public final class f_3 {
                this.b(var1, var2);
                return;
             case 125:
-               this.b.a = a_MainCanvas.e.g(var1, var2);
+               this.b.a = MainCanvas.e.g(var1, var2);
                return;
             case 126:
                this.l(var1, var2);
                return;
             case 127:
-               this.b.a = a_MainCanvas.e.h(var1, var2);
+               this.b.a = MainCanvas.e.h(var1, var2);
                return;
             case 128:
                this.at(var1, var2);
@@ -904,7 +904,7 @@ public final class f_3 {
                this.au(var1, var2);
                return;
             case 131:
-               this.b.a = a_MainCanvas.e.W.a(var1, var2);
+               this.b.a = MainCanvas.e.W.a(var1, var2);
          }
       }
 
@@ -1123,7 +1123,7 @@ public final class f_3 {
          }
       }
 
-      if (a_MainCanvas.u != null && var1 >= t_1.b - 4 - a_MainCanvas.u.a.getWidth() && var1 < t_1.b - 4 && var2 >= 4 && var2 <= a_MainCanvas.u.a.getHeight() + 4) {
+      if (MainCanvas.u != null && var1 >= t_1.b - 4 - MainCanvas.u.a.getWidth() && var1 < t_1.b - 4 && var2 >= 4 && var2 <= MainCanvas.u.a.getHeight() + 4) {
          this.b.a = 536870912;
       }
 
@@ -1478,7 +1478,7 @@ public final class f_3 {
 
    private void J(int var1, int var2) {
       if (this.a.l == 0 && this.b.aq != null) {
-         a_MainCanvas var10000;
+         MainCanvas var10000;
          int var10001;
          label54: {
             int var3 = this.b.aq.b(var1, var2);
@@ -1743,7 +1743,7 @@ public final class f_3 {
       if (this.a.l == 0) {
          if (this.b.aq != null) {
             int var8;
-            a_MainCanvas var10000;
+            MainCanvas var10000;
             label37: {
                this.b.a = this.b.aq.b(var1, var2);
                var10000 = this.b;
@@ -1797,7 +1797,7 @@ public final class f_3 {
       if (this.a.l == 0) {
          if (this.b.aq != null) {
             int var8;
-            a_MainCanvas var10000;
+            MainCanvas var10000;
             label44: {
                this.b.a = this.b.aq.b(var1, var2);
                var10000 = this.b;
@@ -1851,7 +1851,7 @@ public final class f_3 {
       if (this.a.l == 0) {
          if (this.b.aq != null) {
             int var8;
-            a_MainCanvas var10000;
+            MainCanvas var10000;
             label42: {
                this.b.a = this.b.aq.b(var1, var2);
                var10000 = this.b;

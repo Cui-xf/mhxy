@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
@@ -60,7 +60,7 @@ public final class u extends bk {
 
    public final void a(Graphics var1) {
       var1.setClip(super.f, super.g, super.h, super.i);
-      ca_1.a(var1, (Image) a_MainCanvas.E.a, (short) a_MainCanvas.E.b, super.f, super.g, super.h, a_MainCanvas.E.c);
+      ca_1.a(var1, (Image) MainCanvas.E.a, (short) MainCanvas.E.b, super.f, super.g, super.h, MainCanvas.E.c);
       if (this.d != null) {
          var1.setColor(this.a);
          var1.drawString(this.d, super.f + 3, super.g + (super.i - t_1.j) / 2, 20);

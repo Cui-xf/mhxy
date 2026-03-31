@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import javax.microedition.lcdui.Image;
 
 public final class o_1 {
     private ao_1 i;
-    private a_MainCanvas j;
+    private MainCanvas j;
     private ai_1 k;
     public byte a = 0;
     public byte b = 0;
@@ -43,15 +43,15 @@ public final class o_1 {
     private int H;
     private int I;
     private int J;
-    private bf_1 K;
-    private bf_1 L;
+    private Frame0 K;
+    private Frame0 L;
     private int M;
     public static byte h = 0;
     private boolean N;
     private boolean[] O;
     private String[] P;
 
-    public o_1(ao_1 var1, a_MainCanvas var2, ai_1 var3) {
+    public o_1(ao_1 var1, MainCanvas var2, ai_1 var3) {
         int[] var10000 = new int[]{15588137, 15531505, 955345, 6893779};
         this.M = 0;
         this.N = false;
@@ -207,7 +207,7 @@ public final class o_1 {
 
                             this.i.l = 0;
                             this.i.j = this.i.k = 0;
-                            a_MainCanvas.f.a(this.i.f, ao_1.h, ao_1.i, true, false, 1009050);
+                            MainCanvas.f.a(this.i.f, ao_1.h, ao_1.i, true, false, 1009050);
                             return;
                         }
                     } else if (bt_1.kr != null) {
@@ -253,7 +253,7 @@ public final class o_1 {
                     }
 
                     w var14 = new w((short) 4687, var6);
-                    a_MainCanvas.i.a(var14);
+                    MainCanvas.i.a(var14);
                     this.j.a((String) null);
                 }
             }
@@ -272,7 +272,7 @@ public final class o_1 {
                     }
 
                     w var15 = new w((short) 4687, var7);
-                    a_MainCanvas.i.a(var15);
+                    MainCanvas.i.a(var15);
                     this.j.a((String) null);
                 } else {
                     byte[] var8;
@@ -282,7 +282,7 @@ public final class o_1 {
                     }
 
                     w var16 = new w((short) 4647, var8);
-                    a_MainCanvas.i.a(var16);
+                    MainCanvas.i.a(var16);
                     this.j.a((String) null);
                 }
             } else if (ca_1.o == 1) {
@@ -295,7 +295,7 @@ public final class o_1 {
                     }
 
                     w var17 = new w((short) 4687, var9);
-                    a_MainCanvas.i.a(var17);
+                    MainCanvas.i.a(var17);
                     this.j.a((String) null);
                 } else {
                     byte[] var10;
@@ -305,7 +305,7 @@ public final class o_1 {
                     }
 
                     w var18 = new w((short) 4646, var10);
-                    a_MainCanvas.i.a(var18);
+                    MainCanvas.i.a(var18);
                     this.j.a((String) null);
                 }
             } else if (ca_1.o == 2) {
@@ -317,7 +317,7 @@ public final class o_1 {
                 }
 
                 w var19 = new w((short) 4687, var11);
-                a_MainCanvas.i.a(var19);
+                MainCanvas.i.a(var19);
                 this.j.a((String) null);
             }
         }
@@ -341,7 +341,7 @@ public final class o_1 {
                 }
 
                 if (bt_1.kr[var2] > 0) {
-                    a_MainCanvas.f.a(var1, ao_1.b(bt_1.kr[var2]), (int[]) null, (aj) null, 0, 0, this.j.aq.a + 10 + t_1.i.stringWidth("宝石:") + 2 + var2 * 17, this.j.aq.b + 39, 0, 0);
+                    MainCanvas.f.a(var1, ao_1.b(bt_1.kr[var2]), (int[]) null, (aj) null, 0, 0, this.j.aq.a + 10 + t_1.i.stringWidth("宝石:") + 2 + var2 * 17, this.j.aq.b + 39, 0, 0);
                 }
             }
 
@@ -666,8 +666,8 @@ public final class o_1 {
         }
 
         if (this.K == null) {
-            this.K = a_MainCanvas.ag.a("jianding_02");
-            this.L = a_MainCanvas.ag.a("jianding_01");
+            this.K = MainCanvas.publicUI.getFrame("jianding_02");
+            this.L = MainCanvas.publicUI.getFrame("jianding_01");
         }
 
         if (g != -1) {
@@ -822,7 +822,7 @@ public final class o_1 {
 
                 if (var4 != null) {
                     w var6 = new w((short) 4688, var4);
-                    a_MainCanvas.i.a(var6);
+                    MainCanvas.i.a(var6);
                     this.j.a((String) null);
                 } else {
                     this.j.b("获取上传指令数据错误!");
@@ -919,7 +919,7 @@ public final class o_1 {
             for (int var6 = 0; var6 < this.G.length; ++var6) {
                 ai_1 var10000;
                 Graphics var10001;
-                bf_1 var10002;
+                Frame0 var10002;
                 if (var6 < 2) {
                     var10000 = this.k;
                     var10001 = var1;

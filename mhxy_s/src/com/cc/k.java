@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import javax.microedition.lcdui.Graphics;
 public final class k {
    private final String[] h = new String[]{"主材料", "主材料二", "辅助材料"};
    private ao_1 i;
-   private a_MainCanvas j;
+   private MainCanvas j;
    public int a;
    public int b;
    public int c;
@@ -32,7 +32,7 @@ public final class k {
    private int w;
    private int x;
 
-   public k(ao_1 var1, a_MainCanvas var2, ai_1 var3) {
+   public k(ao_1 var1, MainCanvas var2, ai_1 var3) {
       this.i = var1;
       this.j = var2;
    }
@@ -360,7 +360,7 @@ public final class k {
                byte[] var2;
                if ((var2 = bz_1.a((byte)5, this.c, this.d, this.e, this.f, this.d(this.a), (byte)this.a, bt_1.ad)) != null) {
                   w var3 = new w((short)4266, var2);
-                  a_MainCanvas.i.a(var3);
+                  MainCanvas.i.a(var3);
                   this.j.a((String)null);
                } else {
                   this.j.b("获取上传指令数据错误!");
@@ -375,7 +375,7 @@ public final class k {
 
                if (var4 != null) {
                   w var5 = new w((short)4266, var4);
-                  a_MainCanvas.i.a(var5);
+                  MainCanvas.i.a(var5);
                   this.j.a((String)null);
                } else {
                   this.j.b("获取上传指令数据错误!");
@@ -435,7 +435,7 @@ public final class k {
       var1.setColor(255);
       var1.drawString(this.h[0], this.g[0][0] - 2, this.g[0][1] + (var2 - t_1.j) / 2, 24);
       var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] - var2 + (var2 - t_1.j) / 2, 20);
-      bf_1 var13;
+      Frame0 var13;
       if (this.c != -1 && (var13 = ao_1.b(this.k)) != null) {
          var1.drawImage(var13.a, this.g[0][0] + 1, this.g[0][1] + 1, 20);
       }

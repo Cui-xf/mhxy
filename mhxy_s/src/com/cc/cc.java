@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -9,10 +9,10 @@ import javax.microedition.lcdui.Image;
 
 public final class cc {
     private ao_1 b;
-    private a_MainCanvas c;
+    private MainCanvas c;
     private int[][] d = null;
     private int e;
-    private bc_1[] f = null;
+    private Frame1[] f = null;
     private int g = 0;
     public short a = 0;
     private short h = 0;
@@ -38,7 +38,7 @@ public final class cc {
     private int[] B = null;
     private String C = null;
 
-    public cc(ao_1 var1, a_MainCanvas var2) {
+    public cc(ao_1 var1, MainCanvas var2) {
         this.b = var1;
         this.c = var2;
     }
@@ -46,15 +46,15 @@ public final class cc {
     public final void a(short var1) {
         if (this.d == null) {
             this.d = new int[4][4];
-            this.f = new bc_1[4];
+            this.f = new Frame1[4];
         }
 
         if (this.p != null) {
             for (int var2 = 0; var2 < this.f.length && var2 < this.p.length; ++var2) {
-                this.f[var2] = a_MainCanvas.ab.a((String) this.s[var2], (short) 0, (short) 0, (short) 0);
+                this.f[var2] = MainCanvas.ab.a((String) this.s[var2], (short) 0, (short) 0, (short) 0);
                 if (this.f[var2] == null) {
-                    a_MainCanvas.a(this.t[var2], this.u[var2], (byte) 0, (byte) 0, this.s[var2], (short) 0, (short) 0, (short) 0);
-                    this.f[var2] = a_MainCanvas.ab.a((int) this.v[var2], (short) 0, (short) 0, (short) 0);
+                    MainCanvas.a(this.t[var2], this.u[var2], (byte) 0, (byte) 0, this.s[var2], (short) 0, (short) 0, (short) 0);
+                    this.f[var2] = MainCanvas.ab.a((int) this.v[var2], (short) 0, (short) 0, (short) 0);
                 }
             }
         }
@@ -157,7 +157,7 @@ public final class cc {
                 }
 
                 w var7 = new w((short) 4690, var11);
-                a_MainCanvas.i.a(var7);
+                MainCanvas.i.a(var7);
                 this.c.a((String) null);
             }
         } else if (this.b.l == 1) {
@@ -184,7 +184,7 @@ public final class cc {
                         return;
                     }
 
-                    a_MainCanvas.i.a(new w((short) 4110, var4));
+                    MainCanvas.i.a(new w((short) 4110, var4));
                     this.c.a((String) null);
                 } else {
                     this.a = (short) this.c.as.a;
@@ -195,7 +195,7 @@ public final class cc {
                         return;
                     }
 
-                    a_MainCanvas.i.a(new w((short) 4111, var3));
+                    MainCanvas.i.a(new w((short) 4111, var3));
                     this.c.a((String) null);
                 }
             }
@@ -214,7 +214,7 @@ public final class cc {
                 }
 
                 w var6 = new w((short) 4690, var5);
-                a_MainCanvas.i.a(var6);
+                MainCanvas.i.a(var6);
                 this.c.a((String) null);
             }
         } else if (this.b.l == 3) {
@@ -262,7 +262,7 @@ public final class cc {
                         var1.drawString(this.l[var2], this.d[var2][0] + (this.d[var2][2] - t_1.i.stringWidth(this.l[var2])) / 2, this.d[var2][1] + 4, 20);
                         var1.setColor(16777215);
                         var1.drawString(this.k[var2], this.d[var2][0] + (this.d[var2][2] - t_1.i.stringWidth(this.k[var2])) / 2, this.d[var2][1] + this.d[var2][3] - t_1.j - 4, 20);
-                        a_MainCanvas.f.a(var1, (bc_1) this.f[var2], (int[]) null, 0, 0, this.d[var2][0] + this.d[var2][2] / 2, this.d[var2][1] + this.d[var2][3] / 4 * 3, 20, 0);
+                        MainCanvas.f.a(var1, (Frame1) this.f[var2], (int[]) null, 0, 0, this.d[var2][0] + this.d[var2][2] / 2, this.d[var2][1] + this.d[var2][3] / 4 * 3, 20, 0);
                     }
                 }
             } else if (this.a != 1 && this.a == 2) {
@@ -334,7 +334,7 @@ public final class cc {
                 this.s[var3] = var1.readUTF();
                 this.t[var3] = var1.readByte();
                 this.u[var3] = var1.readByte();
-                this.v[var3] = bu_1.a((String) a_MainCanvas.a(this.t[var3], this.u[var3], (byte) 0, (byte) 0, false, this.s[var3]), (byte) 2);
+                this.v[var3] = Page.a((String) MainCanvas.a(this.t[var3], this.u[var3], (byte) 0, (byte) 0, false, this.s[var3]), (byte) 2);
             }
         } else {
             this.k = null;

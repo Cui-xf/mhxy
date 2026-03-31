@@ -60,7 +60,7 @@ public final class b {
       var5.removeAllElements();
    }
 
-   public final void a(Graphics var1, ai_1 var2, bf_1 var3, int var4, int var5) {
+   public final void a(Graphics var1, ai_1 var2, Frame0 var3, int var4, int var5) {
       var1.setColor(this.c);
       this.d = 0;
 

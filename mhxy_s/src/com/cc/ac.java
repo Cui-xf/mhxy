@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
@@ -40,14 +40,14 @@ public final class ac extends ar {
    }
 
    private void s() {
-      this.u[1] = bu_1.a((String) a_MainCanvas.a(bt_1.ax, bt_1.aj, (byte)1, bt_1.ay, false, bt_1.nn), (byte)2);
-      this.v[1] = bu_1.a((String) a_MainCanvas.a(bt_1.ax, bt_1.aj, (byte)1, bt_1.ay, true, bt_1.nn), (byte)2);
-      this.u[3] = bu_1.a((String) a_MainCanvas.a(bt_1.ax, bt_1.aj, (byte)3, bt_1.ay, false, bt_1.nn), (byte)2);
-      this.v[3] = bu_1.a((String) a_MainCanvas.a(bt_1.ax, bt_1.aj, (byte)3, bt_1.ay, true, bt_1.nn), (byte)2);
-      this.u[0] = bu_1.a((String) a_MainCanvas.a(bt_1.ax, bt_1.aj, (byte)0, bt_1.ay, false, bt_1.nn), (byte)2);
-      this.v[0] = bu_1.a((String) a_MainCanvas.a(bt_1.ax, bt_1.aj, (byte)0, bt_1.ay, true, bt_1.nn), (byte)2);
-      this.u[2] = bu_1.a((String) a_MainCanvas.a(bt_1.ax, bt_1.aj, (byte)2, bt_1.ay, false, bt_1.nn), (byte)2);
-      this.v[2] = bu_1.a((String) a_MainCanvas.a(bt_1.ax, bt_1.aj, (byte)2, bt_1.ay, true, bt_1.nn), (byte)2);
+      this.u[1] = Page.a((String) MainCanvas.a(bt_1.ax, bt_1.aj, (byte)1, bt_1.ay, false, bt_1.nn), (byte)2);
+      this.v[1] = Page.a((String) MainCanvas.a(bt_1.ax, bt_1.aj, (byte)1, bt_1.ay, true, bt_1.nn), (byte)2);
+      this.u[3] = Page.a((String) MainCanvas.a(bt_1.ax, bt_1.aj, (byte)3, bt_1.ay, false, bt_1.nn), (byte)2);
+      this.v[3] = Page.a((String) MainCanvas.a(bt_1.ax, bt_1.aj, (byte)3, bt_1.ay, true, bt_1.nn), (byte)2);
+      this.u[0] = Page.a((String) MainCanvas.a(bt_1.ax, bt_1.aj, (byte)0, bt_1.ay, false, bt_1.nn), (byte)2);
+      this.v[0] = Page.a((String) MainCanvas.a(bt_1.ax, bt_1.aj, (byte)0, bt_1.ay, true, bt_1.nn), (byte)2);
+      this.u[2] = Page.a((String) MainCanvas.a(bt_1.ax, bt_1.aj, (byte)2, bt_1.ay, false, bt_1.nn), (byte)2);
+      this.v[2] = Page.a((String) MainCanvas.a(bt_1.ax, bt_1.aj, (byte)2, bt_1.ay, true, bt_1.nn), (byte)2);
    }
 
    public final void a() {
@@ -66,7 +66,7 @@ public final class ac extends ar {
       short var2;
       short var3;
       short var4;
-      if (!bt_1.nn.equals("") && t_1.p) {
+      if (!bt_1.nn.equals("") && t_1.hasRideRes) {
          var2 = bt_1.no;
          var3 = bt_1.nq;
          var4 = bt_1.np;
@@ -76,17 +76,17 @@ public final class ac extends ar {
          var2 = 0;
       }
 
-      super.g = a_MainCanvas.ab.a(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
+      super.g = MainCanvas.ab.a(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
       if (super.g == null) {
-         a_MainCanvas.a(bt_1.ax, bt_1.aj, (byte)5, bt_1.ay, this.t, var2, var3, var4);
-         super.g = a_MainCanvas.ab.a(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
+         MainCanvas.a(bt_1.ax, bt_1.aj, (byte)5, bt_1.ay, this.t, var2, var3, var4);
+         super.g = MainCanvas.ab.a(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
          if (super.g == null) {
             bt_1.ay = 0;
             this.s();
-            super.g = a_MainCanvas.ab.c(var1 ? this.v[super.h] : this.u[super.h]);
+            super.g = MainCanvas.ab.c(var1 ? this.v[super.h] : this.u[super.h]);
             if (super.g == null) {
-               a_MainCanvas.a(bt_1.ax, bt_1.aj, (byte)5, bt_1.ay, this.t, var2, var3, var4);
-               super.g = a_MainCanvas.ab.c(var1 ? this.v[super.h] : this.u[super.h]);
+               MainCanvas.a(bt_1.ax, bt_1.aj, (byte)5, bt_1.ay, this.t, var2, var3, var4);
+               super.g = MainCanvas.ab.c(var1 ? this.v[super.h] : this.u[super.h]);
                return;
             }
          }
@@ -111,7 +111,7 @@ public final class ac extends ar {
          }
 
          if (var1.f != null) {
-            bc_1 var2 = var1.f;
+            Frame1 var2 = var1.f;
          }
 
          var1.f = null;
@@ -201,7 +201,7 @@ public final class ac extends ar {
 
    public final void a(Graphics var1, ai_1 var2, int var3, int var4, byte var5) {
       if (super.g != null) {
-         var2.a(var1, (bc_1)super.g, (int[])null, var3, var4, super.j + 8, super.k + 16, 20, 0);
+         var2.a(var1, (Frame1)super.g, (int[])null, var3, var4, super.j + 8, super.k + 16, 20, 0);
          if (bt_1.ag != null) {
             this.w = bt_1.ag;
            ca_1.a(var1, (String)this.w, (int)(super.j + 8 - var3), super.k - var4 - t_1.j- super.g.j() + 16, 17, bt_1.bs >= 0 ? '\uff00' : bt_1.ai, 0);
@@ -265,7 +265,7 @@ public final class ac extends ar {
 
    }
 
-   public final int a(a_MainCanvas var1) {
+   public final int a(MainCanvas var1) {
       if ((bt_1.bs != 0 || bt_1.bs == 0 && bt_1.s != 0) && bt_1.ab != null && var1.j != 1) {
          for(int var2 = 0; var2 < bt_1.ab.length; ++var2) {
             if (a(super.j, super.k, bt_1.ab[var2], bt_1.ac[var2]) || a(super.j + 8, super.k + 8, bt_1.ab[var2], bt_1.ac[var2])) {

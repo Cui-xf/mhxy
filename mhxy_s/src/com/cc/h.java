@@ -1,7 +1,7 @@
 package com.cc;
 
 import com.yinhan.kjava.main.MainMidlet;
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import javax.microedition.lcdui.Display;
 import javax.microedition.midlet.MIDlet;
@@ -36,15 +36,15 @@ public final class h {
    }
 
    public final void a(w var1) {
-      if (a_MainCanvas.i == null || bz_1.b != 72 || av_1.a("socket://120.78.151.213:20008")) {
+      if (MainCanvas.i == null || bz_1.b != 72 || av_1.a("socket://120.78.151.213:20008")) {
          bz_1.b = 72;
-         a_MainCanvas.a((String)"socket://120.78.151.213:20008", (byte)2);
+         MainCanvas.a((String)"socket://120.78.151.213:20008", (byte)2);
          this.a.a.a("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
       }
 
-      if (a_MainCanvas.i != null) {
+      if (MainCanvas.i != null) {
          var1.a = true;
-         a_MainCanvas.i.a(var1);
+         MainCanvas.i.a(var1);
       }
 
    }
@@ -89,6 +89,6 @@ public final class h {
    }
 
    public final void h() {
-      this.b.a(this.c, a_MainCanvas.am, a_MainCanvas.an, 0);
+      this.b.a(this.c, MainCanvas.am, MainCanvas.an, 0);
    }
 }

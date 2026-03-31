@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import javax.microedition.lcdui.ChoiceGroup;
 import javax.microedition.lcdui.Command;
@@ -132,11 +132,11 @@ public final class bg implements CommandListener {
 
       this.l = new Form("登录一哥哥通行证");
       this.m = new ChoiceGroup("方式:", 4, f, (Image[])null);
-      this.m.setSelectedIndex(a_MainCanvas.ao, true);
+      this.m.setSelectedIndex(MainCanvas.ao, true);
       this.l.append(this.m);
       this.n = new TextField(c, var2, 12, 0);
       if (var4 == 0) {
-         this.o = new TextField(d, a_MainCanvas.ap ? var3 : null, 12, 0);
+         this.o = new TextField(d, MainCanvas.ap ? var3 : null, 12, 0);
       } else if (var4 == 3) {
          this.o = new TextField(d, var3, 12, 0);
       } else {
@@ -146,7 +146,7 @@ public final class bg implements CommandListener {
       this.l.append(this.n);
       this.l.append(this.o);
       this.p = new ChoiceGroup((String)null, 2, g, (Image[])null);
-      this.p.setSelectedFlags(new boolean[]{a_MainCanvas.ap});
+      this.p.setSelectedFlags(new boolean[]{MainCanvas.ap});
       this.l.append(this.p);
       Command var6 = new Command("提交", 4, 0);
       Command var7 = new Command("返回", 2, 1);
@@ -723,18 +723,18 @@ public final class bg implements CommandListener {
                         (var12 = new StringBuffer()).append(var31);
                         var12.append(':');
                         var12.append(var41);
-                        a_MainCanvas.am = var31;
+                        MainCanvas.am = var31;
                         bb_1.m = var31;
-                        a_MainCanvas.an = var41;
+                        MainCanvas.an = var41;
                         bb_1.n = var41;
-                        a_MainCanvas.ao = 0;
+                        MainCanvas.ao = 0;
                         bb_1.l = 0;
-                        a_MainCanvas.ap = true;
+                        MainCanvas.ap = true;
                         bb_1.k = true;
                         w var57;
                         if ((var57 = bz_1.a((byte)1, (byte)2, var12.toString())) != null) {
                            var22.h.a(var57);
-                           var22.h.a.a();
+                           var22.h.a.start();
                            var22.h.a.a.a("请求中...");
                         }
 
@@ -833,8 +833,8 @@ public final class bg implements CommandListener {
                         var11.append(var54);
                         w var56;
                         if ((var56 = bz_1.a((byte)2, (byte)5, var11.toString())) != null) {
-                           a_MainCanvas.i.a(var56);
-                           var21.h.a.a();
+                           MainCanvas.i.a(var56);
+                           var21.h.a.start();
                            var21.h.a.a.a("请求中...");
                         }
 
@@ -937,8 +937,8 @@ public final class bg implements CommandListener {
                      var46.append(var37);
                      w var53;
                      if ((var53 = bz_1.a((byte)2, (byte)6, var46.toString())) != null) {
-                        a_MainCanvas.i.a(var53);
-                        this.h.a.a();
+                        MainCanvas.i.a(var53);
+                        this.h.a.start();
                         this.h.a.a.a("请求中...");
                      }
 
@@ -994,8 +994,8 @@ public final class bg implements CommandListener {
                         var52.append(var45);
                         w var10;
                         if ((var10 = bz_1.a((byte)2, (byte)7, var52.toString())) != null) {
-                           a_MainCanvas.i.a(var10);
-                           var18.h.a.a();
+                           MainCanvas.i.a(var10);
+                           var18.h.a.start();
                            var18.h.a.a.a("请求中...");
                         }
 
@@ -1060,8 +1060,8 @@ public final class bg implements CommandListener {
                         }
 
                         if (var9 != null) {
-                           a_MainCanvas.i.a(var9);
-                           var17.h.a.a();
+                           MainCanvas.i.a(var9);
+                           var17.h.a.start();
                            var17.h.a.a.a("请求中...");
                         }
 
@@ -1193,7 +1193,7 @@ public final class bg implements CommandListener {
                         w var6;
                         if ((var6 = bz_1.a((byte)1, (byte)4, var7.toString())) != null) {
                            var15.h.a(var6);
-                           var15.h.a.a();
+                           var15.h.a.start();
                            var15.h.a.a.a("请求中...");
                         }
 
@@ -1246,16 +1246,16 @@ public final class bg implements CommandListener {
                var5.append(var2);
                w var6;
                if ((var6 = bz_1.a((byte)1, (byte)1, var5.toString())) != null) {
-                  a_MainCanvas.am = var1;
+                  MainCanvas.am = var1;
                   bb_1.m = var1;
-                  a_MainCanvas.an = var2;
+                  MainCanvas.an = var2;
                   bb_1.n = var2;
-                  a_MainCanvas.ao = var3;
+                  MainCanvas.ao = var3;
                   bb_1.l = var3;
-                  bb_1.k = a_MainCanvas.ap = this.p.isSelected(0);
+                  bb_1.k = MainCanvas.ap = this.p.isSelected(0);
                   bb_1.b();
                   this.h.a(var6);
-                  this.h.a.a();
+                  this.h.a.start();
                   this.h.a.a.a("请求中...");
                }
 

@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import javax.microedition.lcdui.Graphics;
 
 public final class as {
    private ao_1 b;
-   public a_MainCanvas a;
+   public MainCanvas a;
    private static int c;
    private static short d;
    private static String e;
@@ -24,7 +24,7 @@ public final class as {
    private int o;
    private int[][] p;
 
-   public as(ao_1 var1, a_MainCanvas var2, ai_1 var3) {
+   public as(ao_1 var1, MainCanvas var2, ai_1 var3) {
       this.b = var1;
       this.a = var2;
    }

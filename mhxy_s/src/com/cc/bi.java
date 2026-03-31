@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import javax.microedition.lcdui.Graphics;
 
@@ -107,7 +107,7 @@ public final class bi extends bk {
 
       if (this.b > 0) {
          var1.setClip(super.f, super.g, super.h, super.i);
-         ca_1.a(var1, super.f + super.h - 2 - a_MainCanvas.C.b, super.g + 4, super.i - 6, this.b, this.a, this.l * this.d, super.i - 6);
+         ca_1.a(var1, super.f + super.h - 2 - MainCanvas.C.b, super.g + 4, super.i - 6, this.b, this.a, this.l * this.d, super.i - 6);
       }
 
    }

@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -57,28 +57,28 @@ public final class bp_1 extends ar {
    }
 
    private void a() {
-      this.z[1] = bu_1.a((String) a_MainCanvas.a(this.q, this.p, (byte)1, this.r, false, this.v), (byte)2);
-      this.A[1] = bu_1.a((String) a_MainCanvas.a(this.q, this.p, (byte)1, this.r, true, this.v), (byte)2);
-      this.z[3] = bu_1.a((String) a_MainCanvas.a(this.q, this.p, (byte)3, this.r, false, this.v), (byte)2);
-      this.A[3] = bu_1.a((String) a_MainCanvas.a(this.q, this.p, (byte)3, this.r, true, this.v), (byte)2);
-      this.z[0] = bu_1.a((String) a_MainCanvas.a(this.q, this.p, (byte)0, this.r, false, this.v), (byte)2);
-      this.A[0] = bu_1.a((String) a_MainCanvas.a(this.q, this.p, (byte)0, this.r, true, this.v), (byte)2);
-      this.z[2] = bu_1.a((String) a_MainCanvas.a(this.q, this.p, (byte)2, this.r, false, this.v), (byte)2);
-      this.A[2] = bu_1.a((String) a_MainCanvas.a(this.q, this.p, (byte)2, this.r, true, this.v), (byte)2);
+      this.z[1] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)1, this.r, false, this.v), (byte)2);
+      this.A[1] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)1, this.r, true, this.v), (byte)2);
+      this.z[3] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)3, this.r, false, this.v), (byte)2);
+      this.A[3] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)3, this.r, true, this.v), (byte)2);
+      this.z[0] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)0, this.r, false, this.v), (byte)2);
+      this.A[0] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)0, this.r, true, this.v), (byte)2);
+      this.z[2] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)2, this.r, false, this.v), (byte)2);
+      this.A[2] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)2, this.r, true, this.v), (byte)2);
    }
 
    private void a(boolean var1) {
-      super.g = a_MainCanvas.ab.a(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
+      super.g = MainCanvas.ab.a(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
       if (super.g == null) {
-         a_MainCanvas.a(this.q, this.p, (byte)5, this.r, this.v, this.w, this.x, this.y);
-         super.g = a_MainCanvas.ab.a(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
+         MainCanvas.a(this.q, this.p, (byte)5, this.r, this.v, this.w, this.x, this.y);
+         super.g = MainCanvas.ab.a(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
          if (super.g == null) {
             this.r = 0;
             this.a();
-            super.g = a_MainCanvas.ab.c(var1 ? this.A[super.h] : this.z[super.h]);
+            super.g = MainCanvas.ab.c(var1 ? this.A[super.h] : this.z[super.h]);
             if (super.g == null) {
-               a_MainCanvas.a(this.q, this.p, super.h, this.r, this.v, this.w, this.x, this.y);
-               super.g = a_MainCanvas.ab.c(var1 ? this.A[super.h] : this.z[super.h]);
+               MainCanvas.a(this.q, this.p, super.h, this.r, this.v, this.w, this.x, this.y);
+               super.g = MainCanvas.ab.c(var1 ? this.A[super.h] : this.z[super.h]);
             }
          }
       }

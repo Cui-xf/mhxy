@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
@@ -19,7 +19,7 @@ public final class ck {
    private byte v;
    public byte k;
    public byte l;
-   public bc_1 m;
+   public Frame1 m;
    public byte n;
    private int[] w;
    public boolean o = false;
@@ -45,15 +45,15 @@ public final class ck {
             t_1.ag.append("com.cc.f").append(this.j).append(1).append(this.v).append(var1);
          }
 
-         this.m = a_MainCanvas.ab.b(t_1.ag.toString());
+         this.m = MainCanvas.ab.b(t_1.ag.toString());
          if (this.m == null && var1 != 4) {
             t_1.ag.delete(0, t_1.ag.length());
             t_1.ag.append("com.cc.f").append(this.j).append(1).append(1).append(var1);
-            this.m = a_MainCanvas.ab.b(t_1.ag.toString());
+            this.m = MainCanvas.ab.b(t_1.ag.toString());
          }
       } else if (this.b == 1) {
          t_1.ag.append(this.j).append(var1 > 3 ? 3 : var1);
-         this.m = a_MainCanvas.ah.a(t_1.ag.toString(), this.r, this.s, this.t);
+         this.m = MainCanvas.ah.a(t_1.ag.toString(), this.r, this.s, this.t);
       }
 
       if (this.m != null) {
@@ -90,7 +90,7 @@ public final class ck {
             ai_1.a(this.m, this.w);
          }
 
-         var2.a(var1, (bc_1)this.m, (int[])null, 0, 0, var3, var4, 20, 0);
+         var2.a(var1, (Frame1)this.m, (int[])null, 0, 0, var3, var4, 20, 0);
       }
 
    }
@@ -103,7 +103,7 @@ public final class ck {
       this.d = null;
       this.w = null;
       if (this.m != null) {
-         bc_1 var1 = this.m;
+         Frame1 var1 = this.m;
       }
 
       this.m = null;

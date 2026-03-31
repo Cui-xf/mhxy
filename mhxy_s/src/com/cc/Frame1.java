@@ -4,7 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public final class bc_1 extends cf {
+public final class Frame1 extends Frame {
    public short a;
    public short b;
    public short c;
@@ -21,16 +21,16 @@ public final class bc_1 extends cf {
    public byte j;
    public bx[][] k;
 
-   public bc_1(short var1, short var2, short var3) {
+   public Frame1(short var1, short var2, short var3) {
       super((byte)2);
       this.a = var1;
       this.b = var2;
       this.c = var3;
    }
 
-   public final bc_1 b() {
-      bc_1 var1;
-      (var1 = new bc_1((short)0, (short)0, (short)0)).p = super.p;
+   public final Frame1 b() {
+      Frame1 var1;
+      (var1 = new Frame1((short)0, (short)0, (short)0)).info = super.info;
       var1.d = this.d;
       var1.e = System.currentTimeMillis();
       var1.k = this.k;
@@ -45,9 +45,9 @@ public final class bc_1 extends cf {
       return var1;
    }
 
-   public final bc_1 a(short var1, short var2, short var3) {
-      bc_1 var6;
-      (var6 = new bc_1(var1, var2, var3)).p = super.p;
+   public final Frame1 a(short var1, short var2, short var3) {
+      Frame1 var6;
+      (var6 = new Frame1(var1, var2, var3)).info = super.info;
       var6.d = this.d;
       var6.e = System.currentTimeMillis();
       var6.k = new bx[this.k.length][];

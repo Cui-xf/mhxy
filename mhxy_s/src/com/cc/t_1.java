@@ -20,7 +20,7 @@ public final class t_1 {
    public static boolean n;
    public static boolean o;
    private static boolean ai;
-   public static boolean p;
+   public static boolean hasRideRes;
    public static byte q;
    public static byte r;
    public static byte s;
@@ -66,11 +66,11 @@ public final class t_1 {
    public static StringBuffer ag;
    public static final String[] ah;
 
-   public static void a(MIDlet var0) {
+   public static void a(MIDlet midlet) {
       try {
          v = "";
          if (a == 1) {
-            if ((v = var0.getAppProperty("PopularizeChannel")) != null) {
+            if ((v = midlet.getAppProperty("PopularizeChannel")) != null) {
                if (v.equals("mhxy002")) {
                   x = true;
                } else if (!v.equals("mhxy003") && !v.equals("mhxy081") && !v.equals("mhxy084")) {
@@ -92,10 +92,10 @@ public final class t_1 {
                }
             }
 
-            if (var0.getAppProperty("hasRideRes").trim().equals("true")) {
-               p = true;
+            if (midlet.getAppProperty("hasRideRes").trim().equals("true")) {
+               hasRideRes = true;
             } else {
-               p = false;
+               hasRideRes = false;
             }
          } else if (a == 0) {
             if (r == 1) {
@@ -106,14 +106,14 @@ public final class t_1 {
                v = "mhxy_tx";
             }
 
-            if (Byte.parseByte(var0.getAppProperty("LargeClient").trim()) == 1) {
-               p = true;
+            if (Byte.parseByte(midlet.getAppProperty("LargeClient").trim()) == 1) {
+               hasRideRes = true;
             } else {
-               p = false;
+               hasRideRes = false;
             }
          }
 
-         if ((F = var0.getAppProperty("Model")) == null) {
+         if ((F = midlet.getAppProperty("Model")) == null) {
             F = "";
          }
 
@@ -191,7 +191,7 @@ public final class t_1 {
       n = false;
       o = true;
       ai = false;
-      p = true;
+      hasRideRes = true;
       q = 1;
       r = 1;
       s = 44;

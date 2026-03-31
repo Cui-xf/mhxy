@@ -6,44 +6,45 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Vector;
 
-public final class bu_1 {
-    private String a;
-    private String b;
-    private Vector c = new Vector();
+//public final class bu_1 {
+public final class Page {
+    private String name;
+    private String path;
+    private Vector frames = new Vector();
     private Vector d = new Vector();
-    private aa[] e;
+    private FrameInfo[] e;
 
-    public bu_1(String var1, String var2) {
-        this.a = var2;
-        this.b = var1;
-        this.e();
+    public Page(String path, String name) {
+        this.name = name;
+        this.path = path;
+        this.loadRule();
     }
 
-    public bu_1(String var1, byte[] var2) {
-        this.a = var1;
-        this.b = "/" + this.a + "/";
+    public Page(String var1, byte[] var2) {
+        this.name = var1;
+        this.path = "/" + this.name + "/";
         this.c(var2);
     }
 
     public final Vector a() {
-        return this.c;
+        return this.frames;
     }
 
-    public final short b() {
-        return (short) this.c.size();
+    public short framesNum() {
+        return (short) this.frames.size();
     }
 
     public final void c() {
-        this.c.removeAllElements();
+        this.frames.removeAllElements();
     }
 
     public final void a(int var1) {
         Object var2 = null;
 
-        for (int var3 = 0; var3 < this.c.size(); ++var3) {
-            cf var4;
-            if ((var4 = (cf) this.c.elementAt(var3)).p != null && var4.p.a == var1) {
-                this.c.removeElement(var4);
+        for (int var3 = 0; var3 < this.frames.size(); ++var3) {
+            Frame var4;
+            if ((var4 = (Frame) this.frames.elementAt(var3)).info != null && var4.info.key == var1) {
+                this.frames.removeElement(var4);
                 return;
             }
         }
@@ -53,9 +54,9 @@ public final class bu_1 {
     public final boolean b(int var1) {
         Object var2 = null;
 
-        for (int var3 = 0; var3 < this.c.size(); ++var3) {
-            cf var4;
-            if ((var4 = (cf) this.c.elementAt(var3)).p != null && var4.p.a == var1) {
+        for (int var3 = 0; var3 < this.frames.size(); ++var3) {
+            Frame var4;
+            if ((var4 = (Frame) this.frames.elementAt(var3)).info != null && var4.info.key == var1) {
                 return true;
             }
         }
@@ -63,29 +64,28 @@ public final class bu_1 {
         return false;
     }
 
-    public final bf_1 a(String var1) {
-        if (var1 == null) {
-            return null;
-        } else {
-            var1 = b(var1, (byte) 0);
-            int var6 = a(var1.toCharArray());
-            bf_1 var2 = null;
-
-            for (int var3 = 0; var3 < this.c.size(); ++var3) {
-                if (this.c.elementAt(var3) instanceof bf_1 && (var2 = (bf_1) this.c.elementAt(var3)).p != null && var2.p.a == var6) {
-                    return var2;
+    public Frame0 getFrame(String name) {
+        if (name != null) {
+            name = wrapName(name, (byte) 0);
+            int key = hashKey(name.toCharArray());
+            for (int i = 0; i < this.frames.size(); ++i) {
+                Object o = this.frames.elementAt(i);
+                if (o instanceof Frame0) {
+                    Frame0 frame0 = (Frame0) o;
+                    if (frame0.info != null && frame0.info.key == key) {
+                        return frame0;
+                    }
                 }
             }
-
-            return null;
         }
+        return null;
     }
 
-    private bf_1 a(short var1, short var2, short var3, short var4) {
-        bf_1 var5 = null;
+    private Frame0 a(short var1, short var2, short var3, short var4) {
+        Frame0 var5 = null;
 
-        for (int var6 = 0; var6 < this.c.size(); ++var6) {
-            if (this.c.elementAt(var6) instanceof bf_1 && (var5 = (bf_1) this.c.elementAt(var6)).p != null && var5.p.b == var1 && var5.e == var2 && var5.f == var3 && var5.g == var4) {
+        for (int var6 = 0; var6 < this.frames.size(); ++var6) {
+            if (this.frames.elementAt(var6) instanceof Frame0 && (var5 = (Frame0) this.frames.elementAt(var6)).info != null && var5.info.b == var1 && var5.e == var2 && var5.f == var3 && var5.g == var4) {
                 return var5;
             }
         }
@@ -93,25 +93,25 @@ public final class bu_1 {
         return null;
     }
 
-    public final bc_1 b(String var1) {
-        var1 = b(var1, (byte) 2);
-        return this.a((int) a(var1.toCharArray()), (short) 0, (short) 0, (short) 0);
+    public final Frame1 b(String var1) {
+        var1 = wrapName(var1, (byte) 2);
+        return this.a((int) hashKey(var1.toCharArray()), (short) 0, (short) 0, (short) 0);
     }
 
-    public final bc_1 a(String var1, short var2, short var3, short var4) {
-        var1 = b(var1, (byte) 2);
-        return this.a(a(var1.toCharArray()), var2, var3, var4);
+    public final Frame1 a(String var1, short var2, short var3, short var4) {
+        var1 = wrapName(var1, (byte) 2);
+        return this.a(hashKey(var1.toCharArray()), var2, var3, var4);
     }
 
-    public final bc_1 c(int var1) {
+    public final Frame1 c(int var1) {
         return this.a((int) var1, (short) 0, (short) 0, (short) 0);
     }
 
-    public final bc_1 a(int var1, short var2, short var3, short var4) {
-        bc_1 var5 = null;
+    public Frame1 a(int var1, short var2, short var3, short var4) {
+        Frame1 var5 = null;
 
-        for (int var6 = 0; var6 < this.c.size(); ++var6) {
-            if (this.c.elementAt(var6) instanceof bc_1 && (var5 = (bc_1) this.c.elementAt(var6)).p != null && var5.p.a == var1 && var5.a == var2 && var5.b == var3 && var5.c == var4) {
+        for (int var6 = 0; var6 < this.frames.size(); ++var6) {
+            if (this.frames.elementAt(var6) instanceof Frame1 && (var5 = (Frame1) this.frames.elementAt(var6)).info != null && var5.info.key == var1 && var5.a == var2 && var5.b == var3 && var5.c == var4) {
                 return var5;
             }
         }
@@ -119,66 +119,54 @@ public final class bu_1 {
         return null;
     }
 
-    public final void d() {
-        DataInputStream var1 = null;
-
+    public void loadRpg() {
+        InputStream resourceStream = null;
+        DataInputStream dataInputStream = null;
         try {
-            boolean var2 = false;
-            Object var16 = null;
-            var16 = null;
-            InputStream var18;
-            DataInputStream var10000;
-            if ((var18 = this.getClass().getResourceAsStream(this.b + this.a + ".rpg")) == null) {
-                var10000 = null;
-            } else {
-                DataInputStream var19;
-                (var19 = new DataInputStream(var18)).read(ai_1.d);
-                var10000 = var19;
-            }
-
-            var1 = var10000;
-
-            for (int var3 = 0; var3 < this.e.length; ++var3) {
-                byte var20 = var1.readByte();
-                byte var4;
-                byte[][] var5 = new byte[var4 = var1.readByte()][];
-
-                for (int var6 = 0; var6 < var4; ++var6) {
-                    int var7 = var1.readInt();
-                    var5[var6] = new byte[var7];
-                    var1.read(var5[var6]);
+            resourceStream = this.getClass().getResourceAsStream(this.path + this.name + ".rpg");
+            dataInputStream = new DataInputStream(resourceStream);
+            //skip前缀
+            dataInputStream.read(ai_1.skip);
+            for (int i = 0; i < this.e.length; ++i) {
+                byte type = dataInputStream.readByte();
+                byte len = dataInputStream.readByte();
+                byte[][] data = new byte[len][];
+                for (int j = 0; j < len; ++j) {
+                    int size = dataInputStream.readInt();
+                    data[j] = new byte[size];
+                    dataInputStream.read(data[j]);
                 }
 
-                if (var20 == 0) {
-                    bf_1 var21;
-                    (var21 = a((byte[][]) var5, (short) 0, (short) 0, (short) 0)).p = this.e[var3];
-                    this.c.addElement(var21);
+                if (type == 0) {
+                    Frame0 frame0 = buildFrame0(data, (short) 0, (short) 0, (short) 0);
+                    frame0.info = this.e[i];
+                    this.frames.addElement(frame0);
                 } else {
-                    bc_1 var22;
-                    (var22 = b((byte[][]) var5, (short) 0, (short) 0, (short) 0)).p = this.e[var3];
-                    this.c.addElement(var22);
+                    Frame1 frame1 = buildFrame1(data, (short) 0, (short) 0, (short) 0);
+                    frame1.info = this.e[i];
+                    this.frames.addElement(frame1);
                 }
             }
-
-            Object var23 = null;
-
-            for (int var25 = 0; var25 < this.c.size(); ++var25) {
-                cf var24;
-                if ((var24 = (cf) this.c.elementAt(var25)).o == 2) {
-                    this.a((bc_1) ((bc_1) var24), (short) 0, (short) 0, (short) 0);
+            for (int i = 0; i < this.frames.size(); ++i) {
+                Frame frame = (Frame) this.frames.elementAt(i);
+                if (frame.type == 2) {
+                    this.a(((Frame1) frame), (short) 0, (short) 0, (short) 0);
                 }
             }
-        } catch (Exception var14) {
-            ((Throwable) var14).printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("loadRpg error");
         } finally {
-            if (var1 != null) {
-                try {
-                    var1.close();
-                } catch (IOException var13) {
-                    ((Throwable) var13).printStackTrace();
+            try {
+                if (resourceStream != null) {
+                    resourceStream.close();
                 }
+                if (dataInputStream != null) {
+                    dataInputStream.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
         }
 
     }
@@ -194,22 +182,22 @@ public final class bu_1 {
     }
 
     public final aw c(String var1) {
-        int var20 = a(b(var1, (byte) 3).toCharArray());
+        int var20 = hashKey(wrapName(var1, (byte) 3).toCharArray());
         Object var2 = null;
         int var3 = var20;
-        bu_1 var24 = this;
+        Page var24 = this;
         Object var4 = null;
         int var5 = 0;
 
         aw var10000;
         while (true) {
-            if (var5 >= var24.c.size()) {
+            if (var5 >= var24.frames.size()) {
                 var10000 = null;
                 break;
             }
 
-            cf var28;
-            if ((var28 = (cf) var24.c.elementAt(var5)).o == 3 && var28.p != null && var28.p.a == var3) {
+            Frame var28;
+            if ((var28 = (Frame) var24.frames.elementAt(var5)).type == 3 && var28.info != null && var28.info.key == var3) {
                 var10000 = (aw) var28;
                 break;
             }
@@ -224,7 +212,7 @@ public final class bu_1 {
             DataInputStream var27 = null;
             var4 = null;
             try {
-                aa var30;
+                FrameInfo var30;
                 if ((var30 = this.d(var20)) == null) {
                     Object var23 = null;
                     return null;
@@ -242,7 +230,7 @@ public final class bu_1 {
                 short[] var21 = this.b(var25);
                 this.a((short[]) var21, (short[]) null, (short[]) null, (short[]) null);
                 this.c(var25);
-                var25.p = var30;
+                var25.info = var30;
                 return var25;
             } catch (IOException var17) {
                 ((Throwable) var17).printStackTrace();
@@ -279,7 +267,7 @@ public final class bu_1 {
     }
 
     private void a(int[] var1, short[] var2, short[] var3, short[] var4) {
-        aa var5 = null;
+        FrameInfo var5 = null;
         short[] var6 = new short[var1.length];
 
         for (int var7 = 0; var7 < var1.length; ++var7) {
@@ -416,21 +404,21 @@ public final class bu_1 {
         short var8 = var3;
         short var7 = var2;
         int var6 = var21;
-        bu_1 var5 = this;
+        Page var5 = this;
         Object var10 = null;
         var10 = null;
         int var11 = 0;
 
-        bc_1 var28;
+        Frame1 var28;
         while (true) {
-            if (var11 >= var5.c.size()) {
+            if (var11 >= var5.frames.size()) {
                 var28 = null;
                 break;
             }
 
-            cf var26;
-            bc_1 var27;
-            if ((var26 = (cf) var5.c.elementAt(var11)).o == 2 && var26.p != null && var26.p.a == var6 && (var27 = (bc_1) var26).a == var7 && var27.b == var8 && var27.c == var9) {
+            Frame var26;
+            Frame1 var27;
+            if ((var26 = (Frame) var5.frames.elementAt(var11)).type == 2 && var26.info != null && var26.info.key == var6 && (var27 = (Frame1) var26).a == var7 && var27.b == var8 && var27.c == var9) {
                 var28 = var27;
                 break;
             }
@@ -443,7 +431,7 @@ public final class bu_1 {
             Object var23 = null;
 
             try {
-                aa var24;
+                FrameInfo var24;
                 if ((var24 = this.d(var21)) == null) {
                     return;
                 }
@@ -469,14 +457,14 @@ public final class bu_1 {
         }
     }
 
-    private void a(aa var1, DataInputStream var2, short var3, short var4, short var5) throws IOException {
-        bc_1 var15 = b(a((DataInputStream) var2, (int) 0), var3, var4, var5);
+    private void a(FrameInfo var1, DataInputStream var2, short var3, short var4, short var5) throws IOException {
+        Frame1 var15 = buildFrame1(a((DataInputStream) var2, (int) 0), var3, var4, var5);
         short var10 = var5;
         short var9 = var4;
         short var8 = var3;
-        bu_1 var6 = this;
-        bc_1 var11 = var15;
-        bu_1 var7 = this;
+        Page var6 = this;
+        Frame1 var11 = var15;
+        Page var7 = this;
         this.d.removeAllElements();
         short[] var10000;
         if (var15 != null && var15.k != null) {
@@ -531,35 +519,35 @@ public final class bu_1 {
         }
 
         this.a(var15, var3, var4, var5);
-        var15.p = var1;
-        this.c.addElement(var15);
+        var15.info = var1;
+        this.frames.addElement(var15);
     }
 
     public final void e(String var1) {
         boolean var22 = false;
         boolean var23 = false;
         boolean var24 = false;
-        bu_1 var25 = this;
+        Page var25 = this;
         int var26 = a((String) var1, (byte) 0);
         byte var6 = 0;
         byte var5 = 0;
         byte var4 = 0;
         int var3 = var26;
-        bu_1 var2 = this;
+        Page var2 = this;
         Object var7 = null;
         var7 = null;
         int var8 = 0;
 
-        bf_1 var38;
+        Frame0 var38;
         while (true) {
-            if (var8 >= var2.c.size()) {
+            if (var8 >= var2.frames.size()) {
                 var38 = null;
                 break;
             }
 
-            cf var31;
-            bf_1 var32;
-            if ((var31 = (cf) var2.c.elementAt(var8)).o == 0 && var31.p != null && var31.p.a == var3 && (var32 = (bf_1) var31).e == var4 && var32.f == var5 && var32.g == var6) {
+            Frame var31;
+            Frame0 var32;
+            if ((var31 = (Frame) var2.frames.elementAt(var8)).type == 0 && var31.info != null && var31.info.key == var3 && (var32 = (Frame0) var31).e == var4 && var32.f == var5 && var32.g == var6) {
                 var38 = var32;
                 break;
             }
@@ -569,7 +557,7 @@ public final class bu_1 {
 
         if (var38 == null) {
             var2 = null;
-            aa var29;
+            FrameInfo var29;
             if ((var29 = this.d(var26)) != null) {
                 DataInputStream var27 = null;
                 boolean var15 = false;
@@ -693,7 +681,7 @@ public final class bu_1 {
 
     private void a(aw var1) {
         aw var3 = var1;
-        bu_1 var2 = this;
+        Page var2 = this;
         this.d.removeAllElements();
         Object var4 = null;
         if (var1.j != null) {
@@ -841,18 +829,18 @@ public final class bu_1 {
 //        }
     }
 
-    private void b(aa var1, DataInputStream var2, short var3, short var4, short var5) throws IOException {
-        bf_1 var6;
-        (var6 = a(a((DataInputStream) var2, (int) 0), var3, var4, var5)).p = var1;
-        this.c.addElement(var6);
+    private void b(FrameInfo var1, DataInputStream var2, short var3, short var4, short var5) throws IOException {
+        Frame0 var6;
+        (var6 = buildFrame0(a((DataInputStream) var2, (int) 0), var3, var4, var5)).info = var1;
+        this.frames.addElement(var6);
     }
 
-    private static bf_1 a(byte[][] var0, short var1, short var2, short var3) {
-        bf_1 var20;
-        bf_1 var10000 = var20 = new bf_1(var1, var2, var3);
+    private static Frame0 buildFrame0(byte[][] var0, short var1, short var2, short var3) {
+        Frame0 var20;
+        Frame0 var10000 = var20 = new Frame0(var1, var2, var3);
         boolean var18 = true;
         byte[][] var21 = var0;
-        bf_1 var19 = var10000;
+        Frame0 var19 = var10000;
         DataInputStream var22 = new DataInputStream(new ByteArrayInputStream(var0[1]));
         boolean var12 = false;
 
@@ -915,9 +903,9 @@ public final class bu_1 {
         return var20;
     }
 
-    private static bc_1 b(byte[][] var0, short var1, short var2, short var3) {
-        bc_1 var4;
-        (var4 = new bc_1(var1, var2, var3)).a(var0);
+    private static Frame1 buildFrame1(byte[][] var0, short var1, short var2, short var3) {
+        Frame1 var4;
+        (var4 = new Frame1(var1, var2, var3)).a(var0);
         return var4;
     }
 
@@ -1067,19 +1055,19 @@ public final class bu_1 {
         return var1;
     }
 
-    private DataInputStream a(aa var1) {
+    private DataInputStream a(FrameInfo var1) {
         byte[] var2 = null;
-        if (this.a.equals(bt_1.kX) && bt_1.kY != null) {
+        if (this.name.equals(bt_1.kX) && bt_1.kY != null) {
             g var3 = null;
 
             for (short var4 = 0; var4 < bt_1.kY.size(); ++var4) {
-                if ((var3 = (g) bt_1.kY.elementAt(var4)).a == var1.a) {
+                if ((var3 = (g) bt_1.kY.elementAt(var4)).a == var1.key) {
                     var2 = var3.b;
                     break;
                 }
             }
         } else {
-            this.a.equals((Object) null);
+            this.name.equals((Object) null);
         }
 
         DataInputStream var6 = null;
@@ -1089,12 +1077,12 @@ public final class bu_1 {
         } else {
             Object var8 = null;
             InputStream var9;
-            if (this.a.equals(bt_1.kX) && (var9 = this.getClass().getResourceAsStream(this.b + var1.a + ".rpg")) != null) {
+            if (this.name.equals(bt_1.kX) && (var9 = this.getClass().getResourceAsStream(this.path + var1.key + ".rpg")) != null) {
                 var6 = new DataInputStream(var9);
             }
 
             if (var6 == null) {
-                if ((var9 = this.getClass().getResourceAsStream(this.b + var1.b + ".rpg")) == null) {
+                if ((var9 = this.getClass().getResourceAsStream(this.path + var1.b + ".rpg")) == null) {
                     return null;
                 }
 
@@ -1105,9 +1093,9 @@ public final class bu_1 {
         return var6;
     }
 
-    private aa d(int var1) {
+    private FrameInfo d(int var1) {
         for (int var2 = 0; var2 < this.e.length; ++var2) {
-            if (this.e[var2] != null && this.e[var2].a == var1) {
+            if (this.e[var2] != null && this.e[var2].key == var1) {
                 return this.e[var2];
             }
         }
@@ -1115,7 +1103,7 @@ public final class bu_1 {
         return null;
     }
 
-    private aa a(short var1) {
+    private FrameInfo a(short var1) {
         for (int var2 = 0; var2 < this.e.length; ++var2) {
             if (this.e[var2] != null && this.e[var2].b == var1) {
                 return this.e[var2];
@@ -1135,10 +1123,10 @@ public final class bu_1 {
             try {
                 var9 = true;
                 short var2 = var16.readShort();
-                this.e = new aa[var2];
+                this.e = new FrameInfo[var2];
 
                 for (int var3 = 0; var3 < var2; ++var3) {
-                    this.e[var3] = new aa(var16.readInt(), var16.readShort());
+                    this.e[var3] = new FrameInfo(var16.readInt(), var16.readShort());
                 }
 
                 var9 = false;
@@ -1173,60 +1161,33 @@ public final class bu_1 {
         }
     }
 
-    private void e() {
-        InputStream var1 = this.getClass().getResourceAsStream("/" + this.a + ".rule");
-        DataInputStream var2 = new DataInputStream(var1);
-        boolean var10 = false;
-
-        label102:
-        {
-            try {
-                var10 = true;
-                short var3 = var2.readShort();
-                this.e = new aa[var3];
-
-                for (int var4 = 0; var4 < var3; ++var4) {
-                    this.e[var4] = new aa(var2.readInt(), var2.readShort());
-                }
-
-                var10 = false;
-                break label102;
-            } catch (IOException var14) {
-                ((Throwable) var14).printStackTrace();
-                var10 = false;
-            } finally {
-                if (var10) {
-                    try {
-                        if (var1 != null) {
-                            var1.close();
-                        }
-
-                        var2.close();
-                    } catch (IOException var11) {
-                    }
-
-                }
-            }
-
-            try {
-                if (var1 != null) {
-                    var1.close();
-                }
-
-                var2.close();
-                return;
-            } catch (IOException var12) {
-                return;
-            }
-        }
-
+    private void loadRule() {
+        InputStream resourceAsStream = null;
+        DataInputStream dataInputStream = null;
         try {
-            if (var1 != null) {
-                var1.close();
+            resourceAsStream = getClass().getResourceAsStream("/" + this.name + ".rule");
+            dataInputStream = new DataInputStream(resourceAsStream);
+            int size = dataInputStream.readShort();
+            this.e = new FrameInfo[size];
+            for (int i = 0; i < size; i++) {
+                this.e[i] = new FrameInfo(dataInputStream.readInt(), dataInputStream.readShort());
             }
-
-            var2.close();
-        } catch (IOException var13) {
+            resourceAsStream.close();
+            dataInputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("loadRule error");
+        } finally {
+            try {
+                if (resourceAsStream != null) {
+                    resourceAsStream.close();
+                }
+                if (dataInputStream != null) {
+                    dataInputStream.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -1254,24 +1215,24 @@ public final class bu_1 {
         return var6;
     }
 
-    private void a(bc_1 var1, short var2, short var3, short var4) {
-        if (var1.k != null) {
-            if (var1.g == null || var1.h == null) {
-                var1.g = new short[var1.k.length];
-                var1.h = new short[var1.k.length];
-                if (var1.k == null) {
+    private void a(Frame1 frame1, short var2, short var3, short var4) {
+        if (frame1.k != null) {
+            if (frame1.g == null || frame1.h == null) {
+                frame1.g = new short[frame1.k.length];
+                frame1.h = new short[frame1.k.length];
+                if (frame1.k == null) {
                     return;
                 }
 
-                for (int var5 = 0; var5 < var1.k.length; ++var5) {
-                    if (var1.k[var5] != null) {
-                        for (int var6 = 0; var6 < var1.k[var5].length; ++var6) {
-                            if (var1.k[var5][var6] != null && var1.k[var5][var6].a == null) {
-                                var1.k[var5][var6].a = this.a(var1.k[var5][var6].b, var2, var3, var4);
+                for (int var5 = 0; var5 < frame1.k.length; ++var5) {
+                    if (frame1.k[var5] != null) {
+                        for (int var6 = 0; var6 < frame1.k[var5].length; ++var6) {
+                            if (frame1.k[var5][var6] != null && frame1.k[var5][var6].a == null) {
+                                frame1.k[var5][var6].a = this.a(frame1.k[var5][var6].b, var2, var3, var4);
                             }
                         }
 
-                        bx[] var7 = var1.k[var5];
+                        bx[] var7 = frame1.k[var5];
                         int var9 = 0;
                         int var10 = 0;
                         int var11 = 0;
@@ -1280,8 +1241,8 @@ public final class bu_1 {
                         var13 = null;
                         if (var7 != null) {
                             if (var7.length > 0 && var7[0].a != null) {
-                                if (var7[0].a.o == 0) {
-                                    var13 = ((bf_1) var7[0].a).a(var7[0].d);
+                                if (var7[0].a.type == 0) {
+                                    var13 = ((Frame0) var7[0].a).a(var7[0].d);
                                 }
 
                                 var9 = var7[0].e;
@@ -1294,8 +1255,8 @@ public final class bu_1 {
 
                             for (int var15 = 0; var15 < var7.length; ++var15) {
                                 bx var17 = var7[var15];
-                                if (var7[0].a != null && var7[0].a.o == 0) {
-                                    var13 = ((bf_1) var17.a).a(var17.d);
+                                if (var7[0].a != null && var7[0].a.type == 0) {
+                                    var13 = ((Frame0) var17.a).a(var17.d);
                                 }
 
                                 var9 = Math.min(var17.e, var9);
@@ -1304,15 +1265,15 @@ public final class bu_1 {
                                 var12 = Math.max(var12, var17.f + (var13 == null ? 0 : var13.d));
                             }
 
-                            var1.g[var5] = (short) Math.abs(var11 - var9);
-                            var1.h[var5] = (short) Math.abs(var12 - var10);
+                            frame1.g[var5] = (short) Math.abs(var11 - var9);
+                            frame1.h[var5] = (short) Math.abs(var12 - var10);
                         }
                     }
                 }
 
-                if (var1.g != null) {
-                    var1.i = (byte) (var1.g[0] / 2);
-                    var1.j = (byte) var1.h[0];
+                if (frame1.g != null) {
+                    frame1.i = (byte) (frame1.g[0] / 2);
+                    frame1.j = (byte) frame1.h[0];
                 }
             }
 
@@ -1367,19 +1328,19 @@ public final class bu_1 {
 
                         var10000 = var1.l[var12];
                         short var13 = var1.l[var12].b;
-                        bu_1 var10 = this;
+                        Page var10 = this;
                         Object var5 = null;
                         int var6 = 0;
 
                         while (true) {
-                            if (var6 >= var10.c.size()) {
+                            if (var6 >= var10.frames.size()) {
                                 t_1.a("no resource " + var13);
                                 var10001 = null;
                                 break;
                             }
 
-                            bc_1 var14;
-                            if (var10.c.elementAt(var6) instanceof bc_1 && (var14 = (bc_1) var10.c.elementAt(var6)).p != null && var14.p.b == var13) {
+                            Frame1 var14;
+                            if (var10.frames.elementAt(var6) instanceof Frame1 && (var14 = (Frame1) var10.frames.elementAt(var6)).info != null && var14.info.b == var13) {
                                 var10001 = var14;
                                 break;
                             }
@@ -1388,18 +1349,18 @@ public final class bu_1 {
                         }
                     }
 
-                    var10000.a = (cf) var10001;
+                    var10000.a = (Frame) var10001;
                 }
             }
         }
 
     }
 
-    private bc_1 c(short s, short s2, short s3, short s4) {
-        for (int i = 0; i < this.c.size(); i++) {
-            cf cfVar = (cf) this.c.elementAt(i);
-            if (cfVar.o == 2 && cfVar.p != null && cfVar.p.b == s) {
-                bc_1 bcVar = (bc_1) cfVar;
+    private Frame1 c(short s, short s2, short s3, short s4) {
+        for (int i = 0; i < this.frames.size(); i++) {
+            Frame cfVar = (Frame) this.frames.elementAt(i);
+            if (cfVar.type == 2 && cfVar.info != null && cfVar.info.b == s) {
+                Frame1 bcVar = (Frame1) cfVar;
                 if (bcVar.a == s2 && bcVar.b == s3 && bcVar.c == s4) {
                     return bcVar;
                 }
@@ -1409,11 +1370,11 @@ public final class bu_1 {
     }
 
 
-    private bf_1 d(short s, short s2, short s3, short s4) {
-        for (int i = 0; i < this.c.size(); i++) {
-            cf cfVar = (cf) this.c.elementAt(i);
-            if (cfVar.o == 0 && cfVar.p != null && cfVar.p.b == s) {
-                bf_1 bfVar = (bf_1) cfVar;
+    private Frame0 d(short s, short s2, short s3, short s4) {
+        for (int i = 0; i < this.frames.size(); i++) {
+            Frame cfVar = (Frame) this.frames.elementAt(i);
+            if (cfVar.type == 0 && cfVar.info != null && cfVar.info.b == s) {
+                Frame0 bfVar = (Frame0) cfVar;
                 if (bfVar.e == s2 && bfVar.f == s3 && bfVar.g == s4) {
                     return bfVar;
                 }
@@ -1447,29 +1408,29 @@ public final class bu_1 {
         return var3;
     }
 
-    public static int a(char[] var0) {
-        int var1 = var0.length;
+    public static int hashKey(char[] name) {
+        int var1 = name.length;
         int var2 = 0;
         int var3 = 0;
 
         for (int var4 = 0; var4 < var1; ++var4) {
-            var3 = var3 * 31 + var0[var2++];
+            var3 = var3 * 31 + name[var2++];
         }
 
         return var3;
     }
 
     public static int a(String var0, byte var1) {
-        return a(b(var0, var1).toCharArray());
+        return hashKey(wrapName(var0, var1).toCharArray());
     }
 
-    public static String b(String str, byte b) {
+    public static String wrapName(String str, byte b) {
         if (b == 0) {
-            str = new StringBuffer().append(str).append("p").toString();
+            str = str + "p";
         } else if (b == 2) {
-            str = new StringBuffer().append(str).append("s").toString();
+            str = str + "s";
         } else if (b == 3) {
-            str = new StringBuffer().append(str).append("m").toString();
+            str = str + "m";
         }
         return str;
     }

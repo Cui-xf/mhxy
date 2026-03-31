@@ -4,3 +4,14 @@ MIDlet-Vendor: Unknown
 MIDlet-Version: 1.0
 MicroEdition-Configuration: CLDC-1.0
 MicroEdition-Profile: MIDP-2.0
+hasRideRes: true
+Model: touch
+PaymentServerId: 2
+hasRideRes: true
+CpId: 1
+LoginServerId: 1
+GameId: 1
+PopularizeChannel: egege
+LargeClient: 0
+ConfigServerURL: 3g.egege.com.cn/inf/config.do?cpId=1&gameId=1
+MIDlet-Icon: icon.png

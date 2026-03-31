@@ -1,20 +1,20 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import javax.microedition.lcdui.Graphics;
 
 public final class ba {
    private ao_1 a;
    private ai_1 b;
-   private a_MainCanvas c;
+   private MainCanvas c;
    private short d;
    private int e;
    private int f;
    private int g;
    private int h;
 
-   public ba(a_MainCanvas var1, ao_1 var2, ai_1 var3) {
+   public ba(MainCanvas var1, ao_1 var2, ai_1 var3) {
       this.c = var1;
       this.a = var2;
       this.b = var3;
@@ -58,7 +58,7 @@ public final class ba {
       }
 
       if (bt_1.mx != -1 && this.a.aI != null) {
-         this.b.a(var1, (bc_1)this.a.aI, (int[])null, 0, 0, this.e + 40 - this.a.aI.g() / 2, this.f + (this.h - 32) / 2 - this.a.aI.h() / 2, 0, 0);
+         this.b.a(var1, (Frame1)this.a.aI, (int[])null, 0, 0, this.e + 40 - this.a.aI.g() / 2, this.f + (this.h - 32) / 2 - this.a.aI.h() / 2, 0, 0);
       } else {
          var1.setColor(16776960);
          var1.drawString("主宠", this.e + 40, this.f + (this.h - 32) / 2, 65);
@@ -66,7 +66,7 @@ public final class ba {
 
       var1.setColor(255);
       var1.drawString("幸运材料", this.e + 80 + 4, this.f + 8, 0);
-      a_MainCanvas.f.a(var1, ao_1.x, (int[])null, (aj)null, 0, 0, this.e + 80 + 8 + 24, this.f + this.h - 32 - 44, 0, 0);
+      MainCanvas.f.a(var1, ao_1.x, (int[])null, (aj)null, 0, 0, this.e + 80 + 8 + 24, this.f + this.h - 32 - 44, 0, 0);
       if (bt_1.mK[0] > 0) {
          this.b.a(var1, ao_1.b(bt_1.mK[0]), (int[])null, (aj)null, 0, 0, this.e + 80 + 8 + 24, this.f + this.h - 32 - 44, 0, 0);
       }
@@ -81,7 +81,7 @@ public final class ba {
       var1.setColor(this.a.bf == 1 && this.a.be == 0 ? 16776960 : 9360850);
       var1.drawRect(this.e + this.g - 44, this.f + (this.h - 32 - 40) / 2, 39, 39);
       if (bt_1.mD != -1 && this.a.bd != null) {
-         this.b.a(var1, (bc_1)this.a.bd, (int[])null, 0, 0, this.e + this.g - 44 + 20 - this.a.bd.g() / 2, this.f + (this.h - 32) / 2 - this.a.bd.h() / 2, 0, 0);
+         this.b.a(var1, (Frame1)this.a.bd, (int[])null, 0, 0, this.e + this.g - 44 + 20 - this.a.bd.g() / 2, this.f + (this.h - 32) / 2 - this.a.bd.h() / 2, 0, 0);
       } else {
          var1.setColor(16776960);
          var1.drawString("副宠", this.e + this.g - 44 + 20, this.f + (this.h - 32) / 2, 65);

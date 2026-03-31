@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -172,9 +172,9 @@ public final class at implements Runnable {
 
             try {
                this.a();
-               if (a_MainCanvas.e != null && a_MainCanvas.e.k == 25) {
-                  if (a_MainCanvas.e.g != null) {
-                     a_MainCanvas.e.g.l();
+               if (MainCanvas.e != null && MainCanvas.e.k == 25) {
+                  if (MainCanvas.e.g != null) {
+                     MainCanvas.e.g.l();
                   }
                } else if (this.f.f.k != 3 && this.f.f.k != 9 && this.f.f.k != 4) {
                   this.f.b("数据更新失败:");

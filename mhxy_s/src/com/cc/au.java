@@ -1,13 +1,13 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
 
 public class au {
    public Vector e = new Vector();
-   public bc_1 f;
+   public Frame1 f;
    public short g;
    public short h;
    public short i;
@@ -43,12 +43,12 @@ public class au {
    private void f() {
       if (this.g == 701) {
          this.d = new int[1];
-         this.d[0] = bu_1.a((String)(this.g + "_" + 0), (byte)2);
+         this.d[0] = Page.a((String)(this.g + "_" + 0), (byte)2);
       } else {
          this.d = new int[4];
 
          for(int var1 = 0; var1 < 4; ++var1) {
-            this.d[var1] = bu_1.a((String)(this.g + "_" + (var1 / 2 << 1)), (byte)2);
+            this.d[var1] = Page.a((String)(this.g + "_" + (var1 / 2 << 1)), (byte)2);
          }
 
       }
@@ -118,17 +118,17 @@ public class au {
    public final void a(byte var1) {
       this.j = var1;
       if (this.g == 701) {
-         this.f = a_MainCanvas.ah.a(this.d[0], this.a, this.b, this.c);
+         this.f = MainCanvas.ah.a(this.d[0], this.a, this.b, this.c);
          if (this.f == null) {
             ao_1.a(this.g, this.a, this.b, this.c);
-            this.f = a_MainCanvas.ah.a(this.d[0], this.a, this.b, this.c);
+            this.f = MainCanvas.ah.a(this.d[0], this.a, this.b, this.c);
             return;
          }
       } else {
-         this.f = a_MainCanvas.ah.a(this.d[var1], this.a, this.b, this.c);
+         this.f = MainCanvas.ah.a(this.d[var1], this.a, this.b, this.c);
          if (this.f == null) {
             ao_1.a(this.g, this.a, this.b, this.c);
-            this.f = a_MainCanvas.ah.a(this.d[var1], this.a, this.b, this.c);
+            this.f = MainCanvas.ah.a(this.d[var1], this.a, this.b, this.c);
          }
       }
 
@@ -175,16 +175,16 @@ public class au {
       if (this.f != null) {
          switch (this.j) {
             case 0:
-               var2.a(var1, (bc_1)this.f, (int[])null, var3, var4, this.h + 16 - this.f.i() / 2, this.i + 16 - this.f.h(), 20, 0);
+               var2.a(var1, (Frame1)this.f, (int[])null, var3, var4, this.h + 16 - this.f.i() / 2, this.i + 16 - this.f.h(), 20, 0);
                return;
             case 1:
-               var2.a(var1, (bc_1)this.f, (int[])null, var3, var4, this.h + 8 - this.f.i() / 2, this.i, 20, 0);
+               var2.a(var1, (Frame1)this.f, (int[])null, var3, var4, this.h + 8 - this.f.i() / 2, this.i, 20, 0);
                return;
             case 2:
-               var2.a(var1, (bc_1)this.f, (int[])null, var3, var4, this.h - this.f.i() / 2, this.i + 16 - this.f.h(), 20, 0);
+               var2.a(var1, (Frame1)this.f, (int[])null, var3, var4, this.h - this.f.i() / 2, this.i + 16 - this.f.h(), 20, 0);
                break;
             case 3:
-               var2.a(var1, (bc_1)this.f, (int[])null, var3, var4, this.h + 8 - this.f.i() / 2, this.i + 8 - this.f.h(), 20, 0);
+               var2.a(var1, (Frame1)this.f, (int[])null, var3, var4, this.h + 8 - this.f.i() / 2, this.i + 8 - this.f.h(), 20, 0);
                return;
          }
       }

@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import javax.microedition.lcdui.Image;
 
 public final class v_1 {
    private ao_1 h;
-   private a_MainCanvas i;
+   private MainCanvas i;
    public static int[] a;
    private static String[] j;
    private static String[] k;
@@ -25,7 +25,7 @@ public final class v_1 {
    private static int[] o;
    private static String[] p;
 
-   public v_1(ao_1 var1, a_MainCanvas var2) {
+   public v_1(ao_1 var1, MainCanvas var2) {
       this.h = var1;
       this.i = var2;
    }
@@ -33,7 +33,7 @@ public final class v_1 {
    public final void a(String var1, String var2, long var3) {
       byte[] var5;
       if ((var5 = bz_1.a((short)4857, bt_1.ad, var1, var2, var3)) != null) {
-         a_MainCanvas.i.a(new w((short)4857, var5));
+         MainCanvas.i.a(new w((short)4857, var5));
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
@@ -44,7 +44,7 @@ public final class v_1 {
    public final void a() {
       byte[] var1;
       if ((var1 = bz_1.m((short)4858, bt_1.ad, (short) bt_1.gQ)) != null) {
-         a_MainCanvas.i.a(new w((short)4858, var1));
+         MainCanvas.i.a(new w((short)4858, var1));
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
@@ -181,7 +181,7 @@ public final class v_1 {
                return;
             }
 
-            a_MainCanvas.i.a(new w((short)4859, var3));
+            MainCanvas.i.a(new w((short)4859, var3));
             this.h.j = this.h.k = 0;
             this.i.a((String)null);
          }
@@ -219,7 +219,7 @@ public final class v_1 {
    public final void a(byte var1) {
       byte[] var2;
       if ((var2 = bz_1.m((short)4860, bt_1.ad, (byte)var1)) != null) {
-         a_MainCanvas.i.a(new w((short)4860, var2));
+         MainCanvas.i.a(new w((short)4860, var2));
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
@@ -232,7 +232,7 @@ public final class v_1 {
    }
 
    public final void c() {
-      this.i.d.a();
+      this.i.d.start();
       this.i.aq.j();
       this.i.aq.a("申请结婚");
       this.i.aq.a(false);
@@ -315,7 +315,7 @@ public final class v_1 {
    public final void b(byte var1) {
       byte[] var2;
       if ((var2 = bz_1.n((short)4861, bt_1.ad, (byte)var1)) != null) {
-         a_MainCanvas.i.a(new w((short)4861, var2));
+         MainCanvas.i.a(new w((short)4861, var2));
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
@@ -415,7 +415,7 @@ public final class v_1 {
    public final void e() {
       byte[] var1;
       if ((var1 = bz_1.n((short)4862, bt_1.ad, (short) bt_1.gQ)) != null) {
-         a_MainCanvas.i.a(new w((short)4862, var1));
+         MainCanvas.i.a(new w((short)4862, var1));
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
@@ -466,7 +466,7 @@ public final class v_1 {
             int var3 = o[this.i.ar.g()];
             byte[] var4;
             if ((var4 = bz_1.a((short)4863, bt_1.ad, bt_1.t[this.h.af].a, (int)var3, (short)this.h.I.j, (short)this.h.I.k)) != null) {
-               a_MainCanvas.i.a(new w((short)4863, var4));
+               MainCanvas.i.a(new w((short)4863, var4));
                this.h.j = this.h.k = 0;
                this.i.a((String)null);
             } else {

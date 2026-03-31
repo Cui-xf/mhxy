@@ -1,13 +1,13 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
 public final class aq {
    public ao_1 a;
-   public a_MainCanvas b;
+   public MainCanvas b;
    public String c;
    public String d;
    private long u;
@@ -38,7 +38,7 @@ public final class aq {
    public int s;
    public int t;
 
-   public aq(ao_1 var1, a_MainCanvas var2) {
+   public aq(ao_1 var1, MainCanvas var2) {
       this.a = var1;
       this.b = var2;
    }
@@ -141,7 +141,7 @@ public final class aq {
                return;
             }
 
-            a_MainCanvas.i.a(new w((short)4224, var2));
+            MainCanvas.i.a(new w((short)4224, var2));
             this.a.e.a((String)null);
          }
       }
@@ -151,7 +151,7 @@ public final class aq {
    private void z() {
       byte[] var1;
       if ((var1 = bz_1.g((short)4198, bt_1.ad, (short) bt_1.gQ)) != null) {
-         a_MainCanvas.i.a(new w((short)4198, var1));
+         MainCanvas.i.a(new w((short)4198, var1));
          this.a.e.a((String)null);
       } else {
          this.a.e.b("获取上传指令数据错误!");
@@ -172,7 +172,7 @@ public final class aq {
    private void A() {
       byte[] var1;
       if ((var1 = bz_1.j((short)4225, bt_1.ad, (short) bt_1.gQ)) != null) {
-         a_MainCanvas.i.a(new w((short)4225, var1));
+         MainCanvas.i.a(new w((short)4225, var1));
          this.a.e.a((String)null);
       } else {
          this.a.e.b("获取上传指令数据错误!");
@@ -274,7 +274,7 @@ public final class aq {
                byte[] var4;
                if ((var4 = bz_1.x((short)4243, bt_1.ad, bt_1.ik[this.b.ar.g()])) != null) {
                   w var5 = new w((short)4243, var4);
-                  a_MainCanvas.i.a(var5);
+                  MainCanvas.i.a(var5);
                } else {
                   this.b.b("获取上传指令数据错误!");
                }
@@ -286,7 +286,7 @@ public final class aq {
             byte[] var2;
             if ((var2 = bz_1.x((short)4199, bt_1.ad, bt_1.ik[this.b.ar.g()])) != null) {
                w var3 = new w((short)4199, var2);
-               a_MainCanvas.i.a(var3);
+               MainCanvas.i.a(var3);
             } else {
                this.b.b("获取上传指令数据错误!");
             }
@@ -390,7 +390,7 @@ public final class aq {
                   return;
                }
 
-               a_MainCanvas.i.a(new w((short)4242, var3));
+               MainCanvas.i.a(new w((short)4242, var3));
                this.b.a((String)null);
             } else {
                String var4 = bt_1.ip[this.b.ar.g()];
@@ -400,7 +400,7 @@ public final class aq {
                   return;
                }
 
-               a_MainCanvas.i.a(new w((short)4226, var5));
+               MainCanvas.i.a(new w((short)4226, var5));
                this.b.a((String)null);
             }
          }
@@ -411,7 +411,7 @@ public final class aq {
    public final void d() {
       byte[] var1;
       if ((var1 = bz_1.m((short)4209, bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w((short)4209, var1));
+         MainCanvas.i.a(new w((short)4209, var1));
          this.b.a((String)null);
       } else {
          this.b.b("获取上传指令数据错误!");
@@ -493,7 +493,7 @@ public final class aq {
    public final void e() {
       byte[] var1;
       if ((var1 = bz_1.i((short)4227, bt_1.ad, (short) bt_1.gQ)) != null) {
-         a_MainCanvas.i.a(new w((short)4227, var1));
+         MainCanvas.i.a(new w((short)4227, var1));
          this.b.a((String)null);
       } else {
          this.b.b("获取上传指令数据错误!");
@@ -598,7 +598,7 @@ public final class aq {
                return;
             }
 
-            a_MainCanvas.i.a(new w((short)4110, var2));
+            MainCanvas.i.a(new w((short)4110, var2));
             this.b.a((String)null);
          } else if (ca_1.o == 1) {
             byte[] var3;
@@ -607,7 +607,7 @@ public final class aq {
                return;
             }
 
-            a_MainCanvas.i.a(new w((short)4228, var3));
+            MainCanvas.i.a(new w((short)4228, var3));
             this.b.a((String)null);
          } else if (ca_1.o == 2) {
             byte[] var4;
@@ -616,7 +616,7 @@ public final class aq {
                return;
             }
 
-            a_MainCanvas.i.a(new w((short)4229, var4));
+            MainCanvas.i.a(new w((short)4229, var4));
             this.b.a((String)null);
          }
       } else if (this.a.l == 2) {
@@ -638,7 +638,7 @@ public final class aq {
          byte[] var1;
          if ((var1 = bz_1.j((short)4201, bt_1.ad, this.f)) != null) {
             w var2 = new w((short)4201, var1);
-            a_MainCanvas.i.a(var2);
+            MainCanvas.i.a(var2);
          } else {
             this.b.b("获取上传指令数据错误!");
          }
@@ -652,7 +652,7 @@ public final class aq {
       this.g = var1;
       byte[] var2;
       if ((var2 = bz_1.h((short)4212, bt_1.ad, (short) bt_1.gQ)) != null) {
-         a_MainCanvas.i.a(new w((short)4212, var2));
+         MainCanvas.i.a(new w((short)4212, var2));
          this.b.a((String)null);
       } else {
          this.b.b("获取上传指令数据错误!");
@@ -662,7 +662,7 @@ public final class aq {
    private void B() {
       byte[] var1;
       if ((var1 = bz_1.o((short)4211, bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w((short)4211, var1));
+         MainCanvas.i.a(new w((short)4211, var1));
          this.b.a((String)null);
       } else {
          this.b.b("获取上传指令数据错误!");
@@ -672,7 +672,7 @@ public final class aq {
    private void a(byte var1) {
       byte[] var2;
       if ((var2 = bz_1.k((short)4263, bt_1.ad, (byte)var1)) != null) {
-         a_MainCanvas.i.a(new w((short)4263, var2));
+         MainCanvas.i.a(new w((short)4263, var2));
          this.b.a((String)null);
       } else {
          this.b.b("获取上传指令数据错误!");
@@ -1025,7 +1025,7 @@ public final class aq {
                return;
             }
 
-            a_MainCanvas.i.a(new w((short)4110, var6));
+            MainCanvas.i.a(new w((short)4110, var6));
             this.b.a((String)null);
          } else if (ca_1.o == 1) {
             byte[] var7;
@@ -1034,7 +1034,7 @@ public final class aq {
                return;
             }
 
-            a_MainCanvas.i.a(new w((short)4111, var7));
+            MainCanvas.i.a(new w((short)4111, var7));
             this.b.a((String)null);
          }
       } else if (this.a.l == 3) {
@@ -1061,7 +1061,7 @@ public final class aq {
             ao_1.q = null;
             this.a.al = null;
             this.a.l = 2;
-            a_MainCanvas.f.a(this.a.f, ao_1.h, ao_1.i, true, false, 1009050);
+            MainCanvas.f.a(this.a.f, ao_1.h, ao_1.i, true, false, 1009050);
             return;
          }
       } else if (this.a.l == 5) {
@@ -1080,7 +1080,7 @@ public final class aq {
                return;
             }
 
-            a_MainCanvas.i.a(new w((short)4124, var8));
+            MainCanvas.i.a(new w((short)4124, var8));
             this.b.a((String)null);
          }
       } else if (this.a.l == 6) {
@@ -1106,7 +1106,7 @@ public final class aq {
                }
 
                w var5 = new w((short)4112, var4);
-               a_MainCanvas.i.a(var5);
+               MainCanvas.i.a(var5);
                this.a.l = 0;
             }
          }
@@ -1171,7 +1171,7 @@ public final class aq {
       this.g = var1;
       byte[] var2;
       if ((var2 = bz_1.h((short)4240, bt_1.ad, (short) bt_1.gQ)) != null) {
-         a_MainCanvas.i.a(new w((short)4240, var2));
+         MainCanvas.i.a(new w((short)4240, var2));
       } else {
          this.b.b("获取上传指令数据错误!");
       }
@@ -1282,7 +1282,7 @@ public final class aq {
                return;
             }
 
-            a_MainCanvas.i.a(new w((short)4241, var3));
+            MainCanvas.i.a(new w((short)4241, var3));
             this.b.a((String)null);
          } else if (ca_1.o == 1) {
             this.a.l = 3;
@@ -1314,7 +1314,7 @@ public final class aq {
                return;
             }
 
-            a_MainCanvas.i.a(new w((short)4217, var5));
+            MainCanvas.i.a(new w((short)4217, var5));
             this.b.a((String)null);
          }
       } else if (this.a.l == 3) {
@@ -1330,7 +1330,7 @@ public final class aq {
                return;
             }
 
-            a_MainCanvas.i.a(new w((short)4208, var7));
+            MainCanvas.i.a(new w((short)4208, var7));
             this.b.a((String)null);
          }
       }
@@ -1498,7 +1498,7 @@ public final class aq {
 
                      byte[] var4;
                      if ((var4 = bz_1.b((short)4264, (byte)2, this.a.n(), bt_1.ad)) != null) {
-                        a_MainCanvas.i.a(new w((short)4264, var4));
+                        MainCanvas.i.a(new w((short)4264, var4));
                         this.b.a((String)null);
                      } else {
                         this.b.b("获取上传指令数据错误!");
@@ -1578,7 +1578,7 @@ public final class aq {
 
             byte[] var3;
             if ((var3 = bz_1.a((short)4368, (int)this.a.ag, (byte)((byte)(this.a.l == 3 ? 1 : 2)), bt_1.ad)) != null) {
-               a_MainCanvas.i.a(new w((short)4368, var3));
+               MainCanvas.i.a(new w((short)4368, var3));
                this.b.a((String)null);
             } else {
                this.b.b("获取上传指令数据错误!");
@@ -1607,7 +1607,7 @@ public final class aq {
 
             byte[] var2;
             if ((var2 = bz_1.b((short)4264, (byte)(this.a.l == 1 ? 1 : 3), this.a.n(), bt_1.ad)) != null) {
-               a_MainCanvas.i.a(new w((short)4264, var2));
+               MainCanvas.i.a(new w((short)4264, var2));
                this.b.a((String)null);
             } else {
                this.b.b("获取上传指令数据错误!");
@@ -1626,7 +1626,7 @@ public final class aq {
    private void a(short var1) {
       byte[] var2;
       if ((var2 = bz_1.C(var1, bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w(var1, var2));
+         MainCanvas.i.a(new w(var1, var2));
          this.b.a((String)null);
       } else {
          this.b.b("获取上传指令数据错误!");
@@ -1636,7 +1636,7 @@ public final class aq {
    private void b(byte var1) {
       byte[] var2;
       if ((var2 = bz_1.a((short)4239, var1, this.i, bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w((short)4239, var2));
+         MainCanvas.i.a(new w((short)4239, var2));
          this.b.a((String)null);
       } else {
          this.b.b("获取上传指令数据错误!");
@@ -1654,7 +1654,7 @@ public final class aq {
       this.b.aq.a(false);
       String[] var1 = t_1.b <= 176 ? new String[]{"", "", "", "", ""} : t_1.ae;
       this.b.ar.a(ao_1.b(this.w), var1, (String[])null, (String[])null);
-      short var2 = a_MainCanvas.L.c;
+      short var2 = MainCanvas.L.c;
       this.b.aq.f = var2;
       this.b.ar.b(false);
       this.b.au.a(new String[]{"确定", "返回"});
@@ -1669,7 +1669,7 @@ public final class aq {
    public final void m() {
       byte[] var1;
       if ((var1 = bz_1.r((short)4221, bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w((short)4221, var1));
+         MainCanvas.i.a(new w((short)4221, var1));
          this.b.a((String)null);
       } else {
          this.b.b("获取上传指令数据错误!");
@@ -1967,7 +1967,7 @@ public final class aq {
                   return;
                }
 
-               a_MainCanvas.i.a(new w((short)4220, var2));
+               MainCanvas.i.a(new w((short)4220, var2));
                this.b.a((String)null);
             } else if (var1 == 536870912) {
                this.q();
@@ -2198,7 +2198,7 @@ public final class aq {
          this.b.aq.a(var1);
 
          for(int var2 = 0; var2 < this.b.ar.f(); ++var2) {
-            int var3 = this.b.ar.a() + this.b.ar.c() - a_MainCanvas.C.b - 126;
+            int var3 = this.b.ar.a() + this.b.ar.c() - MainCanvas.C.b - 126;
             int var4 = this.b.ar.b() + 4 + var2 * this.b.ar.e();
             ca_1.a(var1, var2 == 1 ? ao_1.a(this.b.l, (long)this.i[var2]) : this.i[var2] + "%", var3, var4, 122);
             var3 = 122;
@@ -2428,7 +2428,7 @@ public final class aq {
                case 3:
                   byte[] var6;
                   if ((var6 = bz_1.C((short)4366, bt_1.ad)) != null) {
-                     a_MainCanvas.i.a(new w((short)4366, var6));
+                     MainCanvas.i.a(new w((short)4366, var6));
                      this.a.e.a((String)null);
                   } else {
                      this.a.e.b("获取上传指令数据错误!");
@@ -2517,7 +2517,7 @@ public final class aq {
    private void c(byte var1) {
       byte[] var2;
       if ((var2 = bz_1.b((short)4246, bt_1.iN[(this.b.as.a << 5) + (this.a.ar << 3) + this.a.aq], (byte)var1, bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w((short)4246, var2));
+         MainCanvas.i.a(new w((short)4246, var2));
          this.a.e.a((String)null);
       } else {
          this.a.e.b("获取上传指令数据错误!");
@@ -2538,7 +2538,7 @@ public final class aq {
          int var7 = this.b.aq.b + 33 + this.b.as.b + var5;
 
          for(int var8 = 0; var8 < 32; ++var8) {
-            a_MainCanvas.f.a(var3, ao_1.x, (int[])null, (aj)null, 0, 0, var8 % 8 * (ao_1.x.b + var4) + var6, var8 / 8 * (ao_1.x.b + var5) + var7, 0, 0);
+            MainCanvas.f.a(var3, ao_1.x, (int[])null, (aj)null, 0, 0, var8 % 8 * (ao_1.x.b + var4) + var6, var8 / 8 * (ao_1.x.b + var5) + var7, 0, 0);
             var11.a.a((int)var8, var8 % 8 * (ao_1.x.b + var4) + var6, var8 / 8 * (ao_1.x.b + var5) + var7, (int) ao_1.x.b, (int) ao_1.x.c);
          }
 
@@ -2547,12 +2547,12 @@ public final class aq {
          if (bt_1.iR != null) {
             for(int var9 = var11.b.as.a << 5; var9 < (bt_1.iR.length > var11.b.as.a + 1 << 5 ? var11.b.as.a + 1 << 5 : bt_1.iR.length); ++var9) {
                int var10 = var9 % 32;
-               a_MainCanvas.f.a(var3, ao_1.b(bt_1.iR[var9]), (int[])null, (aj)null, 0, 0, var10 % 8 * (ao_1.x.b + var4) + var6 + 1, var10 / 8 * (ao_1.x.b + var5) + var7 + 1, 0, 0);
+               MainCanvas.f.a(var3, ao_1.b(bt_1.iR[var9]), (int[])null, (aj)null, 0, 0, var10 % 8 * (ao_1.x.b + var4) + var6 + 1, var10 / 8 * (ao_1.x.b + var5) + var7 + 1, 0, 0);
                if (bt_1.iQ[var9] > 9) {
-                  a_MainCanvas.f.a(var3, a_MainCanvas.n, (int[])null, bt_1.iQ[var9] / 10, 0, 0, 10 + var10 % 8 * (ao_1.x.b + var4) + var6, var10 / 8 * (ao_1.x.b + var5) + var7 + 12, 0, 0);
-                  a_MainCanvas.f.a(var3, a_MainCanvas.n, (int[])null, bt_1.iQ[var9] % 10, 0, 0, 14 + var10 % 8 * (ao_1.x.b + var4) + var6, var10 / 8 * (ao_1.x.b + var5) + var7 + 12, 0, 0);
+                  MainCanvas.f.a(var3, MainCanvas.n, (int[])null, bt_1.iQ[var9] / 10, 0, 0, 10 + var10 % 8 * (ao_1.x.b + var4) + var6, var10 / 8 * (ao_1.x.b + var5) + var7 + 12, 0, 0);
+                  MainCanvas.f.a(var3, MainCanvas.n, (int[])null, bt_1.iQ[var9] % 10, 0, 0, 14 + var10 % 8 * (ao_1.x.b + var4) + var6, var10 / 8 * (ao_1.x.b + var5) + var7 + 12, 0, 0);
                } else if (bt_1.iQ[var9] > 1) {
-                  a_MainCanvas.f.a(var3, a_MainCanvas.n, (int[])null, bt_1.iQ[var9] % 10, 0, 0, 14 + var10 % 8 * (ao_1.x.b + var4) + var6, var10 / 8 * (ao_1.x.b + var5) + var7 + 12, 0, 0);
+                  MainCanvas.f.a(var3, MainCanvas.n, (int[])null, bt_1.iQ[var9] % 10, 0, 0, 14 + var10 % 8 * (ao_1.x.b + var4) + var6, var10 / 8 * (ao_1.x.b + var5) + var7 + 12, 0, 0);
                }
 
                if (var9 == (var11.a.ar << 3) + var11.a.aq + 32 * var11.b.as.a) {
@@ -2593,7 +2593,7 @@ public final class aq {
    private void d(byte var1) {
       byte[] var2;
       if ((var2 = bz_1.b((short)4245, bt_1.iN[(this.b.as.a << 5) + (this.a.ar << 3) + this.a.aq], (byte)var1, bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w((short)4245, var2));
+         MainCanvas.i.a(new w((short)4245, var2));
          this.a.e.a((String)null);
       } else {
          this.a.e.b("获取上传指令数据错误!");
@@ -2610,11 +2610,11 @@ public final class aq {
 
    public final void c(Graphics var1) {
       if (this.a.l == 0 && this.b.aq != null) {
-         ca_1.a(var1, (Image) a_MainCanvas.L.a, (short) a_MainCanvas.L.b, this.b.aq.a + 5, this.b.aq.b + this.b.aq.d - 53, this.b.aq.c - 10, a_MainCanvas.L.c);
+         ca_1.a(var1, (Image) MainCanvas.L.a, (short) MainCanvas.L.b, this.b.aq.a + 5, this.b.aq.b + this.b.aq.d - 53, this.b.aq.c - 10, MainCanvas.L.c);
          this.b.aq.a(var1);
 
          for(int var2 = 0; var2 < this.b.ar.f(); ++var2) {
-            int var3 = this.b.ar.a() + this.b.ar.c() - a_MainCanvas.C.b - 130;
+            int var3 = this.b.ar.a() + this.b.ar.c() - MainCanvas.C.b - 130;
             int var4 = this.b.ar.b() + 4 + var2 * this.b.ar.e();
             ca_1.a(var1, var2 == 0 ? ao_1.a(this.b.l, this.j) : "" + this.k[var2], var3, var4, 124);
             var3 = 124;
@@ -2641,7 +2641,7 @@ public final class aq {
          }
 
          long var7 = (this.j + (long)this.B * bt_1.jg + (long)this.C * bt_1.ji + (long)this.D * bt_1.jk + (long)this.E * bt_1.jm) / 300L;
-         ca_1.a(var1, (String)("得到功勋：" + var7), (int)(this.b.aq.a + this.b.aq.c / 2), this.b.aq.b + this.b.aq.d - 51 + (a_MainCanvas.M.a.getHeight() - t_1.j) / 2, 17, 16776666, 0);
+         ca_1.a(var1, (String)("得到功勋：" + var7), (int)(this.b.aq.a + this.b.aq.c / 2), this.b.aq.b + this.b.aq.d - 51 + (MainCanvas.M.a.getHeight() - t_1.j) / 2, 17, 16776666, 0);
       }
 
    }
@@ -2649,7 +2649,7 @@ public final class aq {
    public final void r() {
       byte[] var1;
       if ((var1 = bz_1.s((short)4236, bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w((short)4236, var1));
+         MainCanvas.i.a(new w((short)4236, var1));
          this.b.a((String)null);
       } else {
          this.b.b("获取上传指令数据错误!");
@@ -2659,7 +2659,7 @@ public final class aq {
    public final void q(int var1) {
       byte[] var2;
       if ((var2 = bz_1.k((short)(var1 == 0 ? 4230 : 4232), bt_1.ad, (short) bt_1.gQ)) != null) {
-         a_MainCanvas.i.a(new w((short)(var1 == 0 ? 4230 : 4232), var2));
+         MainCanvas.i.a(new w((short)(var1 == 0 ? 4230 : 4232), var2));
          this.b.a((String)null);
       } else {
          this.b.b("获取上传指令数据错误!");
@@ -2800,7 +2800,7 @@ public final class aq {
                return;
             }
 
-            a_MainCanvas.i.a(new w((short)4233, var2));
+            MainCanvas.i.a(new w((short)4233, var2));
             this.b.a((String)null);
          }
       } else if (this.a.l == 2) {
@@ -2822,7 +2822,7 @@ public final class aq {
                   return;
                }
 
-               a_MainCanvas.i.a(new w((short)4237, var3));
+               MainCanvas.i.a(new w((short)4237, var3));
                this.b.a((String)null);
             }
          }
@@ -2833,7 +2833,7 @@ public final class aq {
    public final void a(String var1) {
       byte[] var2;
       if ((var2 = bz_1.d((short)4864, var1, bt_1.ad, (short) bt_1.gQ)) != null) {
-         a_MainCanvas.i.a(new w((short)4864, var2));
+         MainCanvas.i.a(new w((short)4864, var2));
          this.b.a((String)null);
       } else {
          this.b.b("获取上传指令数据错误!");
@@ -2843,7 +2843,7 @@ public final class aq {
    public final void a(byte var1, String var2) {
       byte[] var3;
       if ((var3 = bz_1.a((short)4865, var2, (byte)var1, (String) bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w((short)4865, var3));
+         MainCanvas.i.a(new w((short)4865, var3));
          this.b.a((String)null);
       } else {
          this.b.b("获取上传指令数据错误!");
@@ -3039,7 +3039,7 @@ public final class aq {
    public final void a(String var1, byte var2) {
       byte[] var3;
       if ((var3 = bz_1.b((short)4866, var1, var2, bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w((short)4866, var3));
+         MainCanvas.i.a(new w((short)4866, var3));
          this.b.a((String)null);
       } else {
          this.b.b("获取上传指令数据错误!");
@@ -3079,7 +3079,7 @@ public final class aq {
    private void b(String var1) {
       byte[] var2;
       if ((var2 = bz_1.o((short)4868, var1, bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w((short)4868, var2));
+         MainCanvas.i.a(new w((short)4868, var2));
       } else {
          this.b.b("获取上传指令数据错误!");
       }
@@ -3088,7 +3088,7 @@ public final class aq {
    private void C() {
       byte[] var1;
       if ((var1 = bz_1.l((short)4869, bt_1.ad, (short) bt_1.gQ)) != null) {
-         a_MainCanvas.i.a(new w((short)4869, var1));
+         MainCanvas.i.a(new w((short)4869, var1));
          this.b.a((String)null);
       } else {
          this.b.b("获取上传指令数据错误!");
@@ -3116,7 +3116,7 @@ public final class aq {
                return;
             }
 
-            a_MainCanvas.i.a(new w((short)4871, var2));
+            MainCanvas.i.a(new w((short)4871, var2));
             this.b.a((String)null);
          }
       }
@@ -3186,7 +3186,7 @@ public final class aq {
    public final void b(byte var1, String var2) {
       byte[] var3;
       if ((var3 = bz_1.c((short)4872, bt_1.ad, var1, var2)) != null) {
-         a_MainCanvas.i.a(new w((short)4872, var3));
+         MainCanvas.i.a(new w((short)4872, var3));
       } else {
          this.b.b("获取上传指令数据错误!");
       }

@@ -1,6 +1,6 @@
 package com.cc;
 
-public final class aw extends cf {
+public final class aw extends Frame {
    public short a;
    public short b;
    public byte c;

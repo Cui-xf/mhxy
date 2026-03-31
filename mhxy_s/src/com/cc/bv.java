@@ -8,7 +8,7 @@ public final class bv {
    public short a = 4;
    public short b = 4;
    public int c;
-   public bc_1 d;
+   public Frame1 d;
    public short e;
    public short f;
    public short g;
@@ -37,7 +37,7 @@ public final class bv {
       byte var2 = var1.readByte();
       this.j = new int[var2];
       this.k = new String[var2];
-      this.h = bu_1.a((String)String.valueOf(this.g), (byte)2);
+      this.h = Page.a((String)String.valueOf(this.g), (byte)2);
 
       for(int var3 = 0; var3 < var2; ++var3) {
          this.j[var3] = var1.readInt();

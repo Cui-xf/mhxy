@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -582,7 +582,7 @@ public final class bt_1 {
    public static short[] hE;
    public static String[] hF;
    public static short hG;
-   public static bf_1 hH;
+   public static Frame0 hH;
    public static byte hI;
    public static byte[] hJ;
    public static byte[] hK;
@@ -1026,7 +1026,7 @@ public final class bt_1 {
             if (q[var0] != null) {
                bp_1 var1;
                if ((var1 = q[var0]).g != null) {
-                  bc_1 var2 = var1.g;
+                  Frame1 var2 = var1.g;
                }
 
                var1.b = null;
@@ -1056,7 +1056,7 @@ public final class bt_1 {
                var1.e = null;
                var1.b = null;
                if (var1.g != null) {
-                  bc_1 var2 = var1.g;
+                  Frame1 var2 = var1.g;
                }
 
                var1.g = null;
@@ -1080,7 +1080,7 @@ public final class bt_1 {
             if (t[var0] != null) {
                az_1 var1;
                if ((var1 = t[var0]).w != null) {
-                  bc_1 var2 = var1.w;
+                  Frame1 var2 = var1.w;
                }
 
                var1.b = null;
@@ -4708,12 +4708,12 @@ public final class bt_1 {
          String var4 = var0.readUTF();
          String var3 = var0.readUTF();
          if (!"".equals(var4)) {
-            a_MainCanvas.am = var4;
+            MainCanvas.am = var4;
             bb_1.m = var4;
          }
 
          if (!"".equals(var3)) {
-            a_MainCanvas.an = var3;
+            MainCanvas.an = var3;
             bb_1.n = var3;
          }
 
@@ -4734,8 +4734,8 @@ public final class bt_1 {
             return;
          }
 
-         a_MainCanvas.ae.e(String.valueOf(var2));
-         hH = a_MainCanvas.ae.a(String.valueOf(var2));
+         MainCanvas.ae.e(String.valueOf(var2));
+         hH = MainCanvas.ae.getFrame(String.valueOf(var2));
          hJ = new byte[var1];
          hK = new byte[var1];
 
@@ -6991,7 +6991,7 @@ public final class bt_1 {
                try {
                   return ci_1.a(var4.b);
                } catch (Exception var3) {
-                  
+
                }
             }
          }

@@ -27,7 +27,7 @@ public final class az_1 {
    public byte t;
    public short u;
    public int v;
-   public bc_1 w = null;
+   public Frame1 w = null;
    public boolean x = false;
    public short y;
    public short z;
@@ -154,7 +154,7 @@ public final class az_1 {
          this.S = var1.readInt();
       }
 
-      this.v = bu_1.a(bu_1.b(String.valueOf(this.u), (byte)2).toCharArray());
+      this.v = Page.hashKey(Page.wrapName(String.valueOf(this.u), (byte)2).toCharArray());
       this.V = 1;
       if (this.V == 1 && this.U > 0) {
          int var10003 = t_1.b - 40;
@@ -190,13 +190,13 @@ public final class az_1 {
 
    public final void a(Graphics var1, ai_1 var2, int var3, int var4, byte var5) {
       if (this.t == -1 && ao_1.t_2 != null || this.I == 100 && ao_1.t_2 != null) {
-         var2.a(var1, (bc_1) ao_1.t_2, (int[])null, var3, var4, this.c - ao_1.t_2.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - t_1.j - ao_1.t_2.j(), 20, var5);
+         var2.a(var1, (Frame1) ao_1.t_2, (int[])null, var3, var4, this.c - ao_1.t_2.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - t_1.j - ao_1.t_2.j(), 20, var5);
       } else if (this.t == 1 && ao_1.s != null) {
-         var2.a(var1, (bc_1) ao_1.s, (int[])null, var3, var4, this.c - ao_1.s.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - t_1.j - ao_1.s.j(), 20, var5);
+         var2.a(var1, (Frame1) ao_1.s, (int[])null, var3, var4, this.c - ao_1.s.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - t_1.j - ao_1.s.j(), 20, var5);
       }
 
       if (this.x && ao_1.u != null) {
-         var2.a(var1, (bc_1) ao_1.u, (int[])null, var3, var4, this.c + (this.w == null ? 8 : this.w.i() / 2), this.d - (this.w == null ? 30 : this.w.j()), 20, var5);
+         var2.a(var1, (Frame1) ao_1.u, (int[])null, var3, var4, this.c + (this.w == null ? 8 : this.w.i() / 2), this.d - (this.w == null ? 30 : this.w.j()), 20, var5);
          if (this.X != null && this.Y != null && this.U != 0) {
             var1.setClip(0, 0, t_1.b, t_1.c);
             if (this.Z >= 0) {

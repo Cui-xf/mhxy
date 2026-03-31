@@ -1,7 +1,7 @@
 package com.cc;
 
 import com.yinhan.kjava.main.MainMidlet;
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 import com.yinhan.kjava.main.c_3;
 import com.yinhan.kjava.main.f_3;
 
@@ -17,7 +17,7 @@ public final class ao_1 {
    public boolean c = false;
    public byte d = -1;
    private byte bi = -1;
-   public a_MainCanvas e;
+   public MainCanvas e;
    public aw f;
    public bq_1 g;
    private Vector bj = new Vector();
@@ -33,29 +33,29 @@ public final class ao_1 {
    public boolean n = false;
    public static short o = 0;
    public static short p = 0;
-   public static bc_1 q;
-   private static bc_1 bn;
-   public static bc_1 r;
-   public static bc_1 s;
-   public static bc_1 t_2;
-   public static bc_1 u;
-   private static bc_1 bo;
-   private static bc_1 bp;
-   public static bf_1 v;
-   public static bf_1 w;
-   public static bf_1 x;
-   public static bf_1 y;
-   public static bf_1 z;
+   public static Frame1 q;
+   private static Frame1 bn;
+   public static Frame1 r;
+   public static Frame1 s;
+   public static Frame1 t_2;
+   public static Frame1 u;
+   private static Frame1 bo;
+   private static Frame1 bp;
+   public static Frame0 v;
+   public static Frame0 w;
+   public static Frame0 x;
+   public static Frame0 y;
+   public static Frame0 z;
    public static Image A;
-   public static bf_1 B;
-   private static bf_1 bq;
-   private static bf_1 br;
-   public static bf_1 C;
-   public static bf_1 D;
-   public static bf_1 E;
-   public static bf_1 F;
-   public static bf_1 G;
-   public static bf_1 H;
+   public static Frame0 B;
+   private static Frame0 bq;
+   private static Frame0 br;
+   public static Frame0 C;
+   public static Frame0 D;
+   public static Frame0 E;
+   public static Frame0 F;
+   public static Frame0 G;
+   public static Frame0 H;
    public ac I;
    public String J = null;
    private short bs = 0;
@@ -79,12 +79,12 @@ public final class ao_1 {
    public ab_1 X;
    private short bx = 0;
    public int Y = -1;
-   public static bf_1 Z;
-   public static bc_1 aa;
-   public static bc_1 ab;
-   public static bc_1 ac;
-   public static bc_1 ad;
-   public static bc_1 ae;
+   public static Frame0 Z;
+   public static Frame1 aa;
+   public static Frame1 ab;
+   public static Frame1 ac;
+   public static Frame1 ad;
+   public static Frame1 ae;
    public byte af;
    private byte by = 0;
    public int ag;
@@ -140,7 +140,7 @@ public final class ao_1 {
    private String[] cf = null;
    private boolean cg;
    public int ay;
-   private bc_1 ch;
+   private Frame1 ch;
    private int[] ci = null;
    public byte az;
    public int aA;
@@ -151,7 +151,7 @@ public final class ao_1 {
    public int aF;
    public int aG;
    public byte aH;
-   public bc_1 aI;
+   public Frame1 aI;
    public boolean aJ = false;
    private byte cj = 0;
    public String aK = " ";
@@ -223,14 +223,14 @@ public final class ao_1 {
    private String[] dg = new String[]{"确定", "取消"};
    public ba bc;
    private bh dh;
-   public bc_1 bd;
+   public Frame1 bd;
    public int be = 0;
    public int bf = 0;
    public int bg;
    public boolean bh;
    private an_1 di;
    private an_1 dj;
-   private bc_1[] dk;
+   private Frame1[] dk;
    private byte dl = 0;
    private int dm;
    private int dn;
@@ -243,7 +243,7 @@ public final class ao_1 {
    private boolean du;
    private bw_1 dv;
 
-   public ao_1(a_MainCanvas var1, ai_1 var2) {
+   public ao_1(MainCanvas var1, ai_1 var2) {
       this.e = var1;
       this.M = new aq(this, this.e);
       this.O = new o_1(this, this.e, var2);
@@ -275,8 +275,8 @@ public final class ao_1 {
       this.e.b();
       this.ao();
       this.e.b();
-      a_MainCanvas.af.e("-1000");
-      a_MainCanvas.af.e("103");
+      MainCanvas.af.e("-1000");
+      MainCanvas.af.e("103");
       this.e.b();
       this.aq();
       this.e.b();
@@ -285,7 +285,7 @@ public final class ao_1 {
       t_1.a(bt_1.ax, bt_1.aj, (byte)3, 1, false);
       this.I = new ac();
       this.I.a(bt_1.at, bt_1.au);
-      a_MainCanvas.f.a(this.g(), this.h(), t_1.b, t_1.c);
+      MainCanvas.f.a(this.g(), this.h(), t_1.b, t_1.c);
       this.e.b();
       this.as();
       if (this.I.d != null) {
@@ -357,13 +357,13 @@ public final class ao_1 {
                   }
 
                   if (!bt_1.bu) {
-                     if (bt_1.lt[0] != -1 && a_MainCanvas.e != null) {
-                        a_MainCanvas.e.e((byte)0);
+                     if (bt_1.lt[0] != -1 && MainCanvas.e != null) {
+                        MainCanvas.e.e((byte)0);
                         bt_1.lt[0] = -1;
                      }
 
-                     if (bt_1.lt[1] != -1 && a_MainCanvas.e != null) {
-                        a_MainCanvas.e.c((byte)0);
+                     if (bt_1.lt[1] != -1 && MainCanvas.e != null) {
+                        MainCanvas.e.c((byte)0);
                         bt_1.lt[1] = -1;
                      }
 
@@ -372,7 +372,7 @@ public final class ao_1 {
                         bt_1.Q.a(this.e.av);
                         bt_1.Q.a();
                         bt_1.Q.b();
-                        this.j = a_MainCanvas.e.k;
+                        this.j = MainCanvas.e.k;
                         this.k = 111;
                         this.e.j = this.e.k;
                      }
@@ -428,7 +428,7 @@ public final class ao_1 {
                         boolean var50 = true;
                         byte[] var25;
                         if ((var25 = bz_1.e((short)4352, bt_1.ad, (byte)1)) != null) {
-                           a_MainCanvas.i.a(new w((short)4352, var25));
+                           MainCanvas.i.a(new w((short)4352, var25));
                            this.N();
                            this.e.a((String)null);
                         } else {
@@ -625,7 +625,7 @@ public final class ao_1 {
                                              String var10 = bt_1.ad;
                                              byte[] var11;
                                              if ((var11 = bz_1.A((short)4254, var10)) != null) {
-                                                a_MainCanvas.i.a(new w((short)4254, var11));
+                                                MainCanvas.i.a(new w((short)4254, var11));
                                                 this.e.a((String)null);
                                              } else {
                                                 this.e.b("获取上传指令数据错误!");
@@ -635,7 +635,7 @@ public final class ao_1 {
                                              if (bt_1.bA > 0) {
                                                 byte[] var9;
                                                 if ((var9 = bz_1.w((short)4653, bt_1.ad)) != null) {
-                                                   a_MainCanvas.i.a(new w((short)4653, var9));
+                                                   MainCanvas.i.a(new w((short)4653, var9));
                                                    this.e.a((String)null);
                                                 } else {
                                                    this.e.b("获取上传指令数据错误!");
@@ -653,7 +653,7 @@ public final class ao_1 {
                                           this.c(var46);
                                           byte[] var24;
                                           if ((var24 = bz_1.a((short)4648, (byte)((byte)var46), bt_1.ad)) != null) {
-                                             a_MainCanvas.i.a(new w((short)4648, var24));
+                                             MainCanvas.i.a(new w((short)4648, var24));
                                              this.e.a((String)null);
                                           } else {
                                              this.e.b("获取上传指令数据错误!");
@@ -726,7 +726,7 @@ public final class ao_1 {
                                              byte[] var23;
                                              if ((var23 = bz_1.y((short)4659, bt_1.ad)) != null) {
                                                 w var8 = new w((short)4659, var23);
-                                                a_MainCanvas.i.a(var8);
+                                                MainCanvas.i.a(var8);
                                                 this.e.a((String)null);
                                              } else {
                                                 this.e.b("获取上传指令数据错误!");
@@ -737,19 +737,19 @@ public final class ao_1 {
                                                 this.e.b("队员不能使用");
                                              } else {
                                                boolean var20_t = true;
-                                                if (a_MainCanvas.f.a(this.f, this.I.j + 8, this.I.k + 16) == 0 && a_MainCanvas.f.a(this.f, this.I.j + 8, this.I.k + 16) == 0 && a_MainCanvas.f.a(this.f, this.I.j + 10, this.I.k + 16) == 0 && !a_MainCanvas.f.a(this.I.j + 8, this.I.k + 16) && !a_MainCanvas.f.a(this.I.j + 10, this.I.k + 16)) {
+                                                if (MainCanvas.f.a(this.f, this.I.j + 8, this.I.k + 16) == 0 && MainCanvas.f.a(this.f, this.I.j + 8, this.I.k + 16) == 0 && MainCanvas.f.a(this.f, this.I.j + 10, this.I.k + 16) == 0 && !MainCanvas.f.a(this.I.j + 8, this.I.k + 16) && !MainCanvas.f.a(this.I.j + 10, this.I.k + 16)) {
                                                    var20_t = false;
                                                 }
 
-                                                if (a_MainCanvas.f.a(this.f, this.I.j + 2, this.I.k + 16) == 0 && a_MainCanvas.f.a(this.f, this.I.j + 2, this.I.k + 16) == 0 && !a_MainCanvas.f.a(this.I.j + 2, this.I.k + 16) && !a_MainCanvas.f.a(this.I.j + 2, this.I.k + 16)) {
+                                                if (MainCanvas.f.a(this.f, this.I.j + 2, this.I.k + 16) == 0 && MainCanvas.f.a(this.f, this.I.j + 2, this.I.k + 16) == 0 && !MainCanvas.f.a(this.I.j + 2, this.I.k + 16) && !MainCanvas.f.a(this.I.j + 2, this.I.k + 16)) {
                                                    var20_t = false;
                                                 }
 
-                                                if (a_MainCanvas.f.a(this.f, this.I.j + 12, this.I.k + 16) == 0 && a_MainCanvas.f.a(this.f, this.I.j + 12, this.I.k + 16) == 0 && !a_MainCanvas.f.a(this.I.j + 12, this.I.k + 16) && !a_MainCanvas.f.a(this.I.j + 12, this.I.k + 16)) {
+                                                if (MainCanvas.f.a(this.f, this.I.j + 12, this.I.k + 16) == 0 && MainCanvas.f.a(this.f, this.I.j + 12, this.I.k + 16) == 0 && !MainCanvas.f.a(this.I.j + 12, this.I.k + 16) && !MainCanvas.f.a(this.I.j + 12, this.I.k + 16)) {
                                                    var20_t = false;
                                                 }
 
-                                                if (a_MainCanvas.f.a(this.f, this.I.j + 8, this.I.k + 16) == 0 && a_MainCanvas.f.a(this.f, this.I.j + 8, this.I.k + 16) == 0 && a_MainCanvas.f.a(this.f, this.I.j + 10, this.I.k + 16) == 0 && !a_MainCanvas.f.a(this.I.j + 8, this.I.k + 16) && !a_MainCanvas.f.a(this.I.j + 10, this.I.k + 16)) {
+                                                if (MainCanvas.f.a(this.f, this.I.j + 8, this.I.k + 16) == 0 && MainCanvas.f.a(this.f, this.I.j + 8, this.I.k + 16) == 0 && MainCanvas.f.a(this.f, this.I.j + 10, this.I.k + 16) == 0 && !MainCanvas.f.a(this.I.j + 8, this.I.k + 16) && !MainCanvas.f.a(this.I.j + 10, this.I.k + 16)) {
                                                    var20_t = false;
                                                 }
 
@@ -763,7 +763,7 @@ public final class ao_1 {
                                           case 4:
                                              byte[] var21;
                                              if ((var21 = bz_1.e((short)4352, bt_1.ad, (byte)0)) != null) {
-                                                a_MainCanvas.i.a(new w((short)4352, var21));
+                                                MainCanvas.i.a(new w((short)4352, var21));
                                                 this.N();
                                                 this.e.a((String)null);
                                              } else {
@@ -813,7 +813,7 @@ public final class ao_1 {
                                        switch (var43) {
                                           case 0:
                                              if (this.P == null) {
-                                                this.P = new r(this, this.e, a_MainCanvas.f);
+                                                this.P = new r(this, this.e, MainCanvas.f);
                                              }
 
                                              this.aw = false;
@@ -841,7 +841,7 @@ public final class ao_1 {
                                              break label986;
                                           case 5:
                                              if (this.Q == null) {
-                                                this.Q = new k(this, this.e, a_MainCanvas.f);
+                                                this.Q = new k(this, this.e, MainCanvas.f);
                                              }
 
                                              this.Q.a();
@@ -858,7 +858,7 @@ public final class ao_1 {
                                              byte[] var6;
                                              if ((var6 = bz_1.f((short)4168, bt_1.ad)) != null) {
                                                 w var7 = new w((short)4168, var6);
-                                                a_MainCanvas.i.a(var7);
+                                                MainCanvas.i.a(var7);
                                                 this.e.a((String)null);
                                              } else {
                                                 this.e.b("获取上传指令数据错误!");
@@ -907,7 +907,7 @@ public final class ao_1 {
                   } else if ((var18 == 1073741824 || var18 == 517 || var18 == 268435456) && this.e.ar.g() == 2) {
                      byte[] var31;
                      if ((var31 = bz_1.a((short)4194, bt_1.ad, (byte)bt_1.z)) != null) {
-                        a_MainCanvas.i.a(new w((short)4194, var31));
+                        MainCanvas.i.a(new w((short)4194, var31));
                      } else {
                         this.e.b("获取上传指令数据错误!");
                      }
@@ -915,7 +915,7 @@ public final class ao_1 {
                } else if (this.e.as.a == 3) {
                   byte[] var19;
                   if ((var19 = bz_1.u((short)4612, bt_1.ad)) != null) {
-                     a_MainCanvas.i.a(new w((short)4612, var19));
+                     MainCanvas.i.a(new w((short)4612, var19));
                      this.e.a((String)null);
                   } else {
                      this.e.b("获取上传指令数据错误!");
@@ -1002,7 +1002,7 @@ public final class ao_1 {
 
                      byte[] var34;
                      if ((var34 = bz_1.f((short)4136, bt_1.ad, (int)var27)) != null) {
-                        a_MainCanvas.i.a(new w((short)4136, var34));
+                        MainCanvas.i.a(new w((short)4136, var34));
                         var5.e.a((String)null);
                      } else {
                         var5.e.b("获取上传指令数据错误!");
@@ -1023,7 +1023,7 @@ public final class ao_1 {
                      byte[] var37;
                      if ((var37 = bz_1.a((short)4689, var28, (byte)0, (byte)-1, bt_1.ad)) != null) {
                         w var17 = new w((short)4689, var37);
-                        a_MainCanvas.i.a(var17);
+                        MainCanvas.i.a(var17);
                         var5.e.a((String)null);
                      } else {
                         var5.e.b("获取上传指令数据错误!");
@@ -1043,14 +1043,14 @@ public final class ao_1 {
                      o_1.h = 1;
                      byte[] var39;
                      if ((var39 = bz_1.a((short)4688, var29, -1L, (byte)0, o_1.h, 0, (byte[])null, bt_1.ad)) != null) {
-                        a_MainCanvas.i.a(new w((short)4688, var39));
+                        MainCanvas.i.a(new w((short)4688, var39));
                         var5.e.a((String)null);
                      } else {
                         var5.e.b("获取上传指令数据错误!");
                      }
                   } else if (ca_1.o == 5) {
                      if (this.P == null) {
-                        this.P = new r(this, this.e, a_MainCanvas.f);
+                        this.P = new r(this, this.e, MainCanvas.f);
                      }
 
                      this.P.b();
@@ -1066,7 +1066,7 @@ public final class ao_1 {
 
                      byte[] var41;
                      if ((var41 = bz_1.a((short)4262, var30, -1L, (byte)0, (int[])null, (byte[])null, -1, (byte)0, bt_1.ad)) != null) {
-                        a_MainCanvas.i.a(new w((short)4262, var41));
+                        MainCanvas.i.a(new w((short)4262, var41));
                         var5.e.a((String)null);
                      } else {
                         var5.e.b("获取上传指令数据错误!");
@@ -1498,7 +1498,7 @@ public final class ao_1 {
                      byte[] var4;
                      if ((var4 = var1.a((short)4375, bt_1.ad, var3)) != null) {
                         w var2 = new w((short)4375, var4);
-                        a_MainCanvas.i.a(var2);
+                        MainCanvas.i.a(var2);
                      } else {
                         var1.b.b("获取上传指令数据错误!");
                      }
@@ -1537,9 +1537,9 @@ public final class ao_1 {
 
       if (this.f != null) {
          if (this.k != 1 && this.k != 18 && this.k != 5 && this.k != 25 && this.k != 7 && this.k != 130) {
-            a_MainCanvas.f.a(var1, this.f, h, i, 0, 0, true, true);
+            MainCanvas.f.a(var1, this.f, h, i, 0, 0, true, true);
          } else {
-            a_MainCanvas.f.a(var1, this.f, h, i);
+            MainCanvas.f.a(var1, this.f, h, i);
          }
       }
 
@@ -1554,7 +1554,7 @@ public final class ao_1 {
             ao_1 var5 = this;
             if (bt_1.ab != null && bn != null && this.f.i != null) {
                for(int var6 = 0; var6 < bt_1.ab.length; ++var6) {
-                  a_MainCanvas.f.a(var4, (bc_1)bn, (int[])null, h - var5.g(), i - var5.h(), bt_1.ab[var6], bt_1.ac[var6] + 16 - bn.h(), 20, 0);
+                  MainCanvas.f.a(var4, (Frame1)bn, (int[])null, h - var5.g(), i - var5.h(), bt_1.ab[var6], bt_1.ac[var6] + 16 - bn.h(), 20, 0);
                }
             }
 
@@ -1566,9 +1566,9 @@ public final class ao_1 {
             ao_1 var25 = this;
             if (this.f != null && this.k == 0) {
                int var7 = 2 + t_1.j;
-               a_MainCanvas.f.a(var1, this.I.j / this.e.m, this.I.k / this.e.m, 2, var7, 17 / this.e.m, 25 / this.e.m, 0, 0);
+               MainCanvas.f.a(var1, this.I.j / this.e.m, this.I.k / this.e.m, 2, var7, 17 / this.e.m, 25 / this.e.m, 0, 0);
                var1.setColor(16711680);
-               ca_1.a(var1, (String)(this.I.j / 16 + "," + (this.I.k + 25) / 16), (int)2, var7 + a_MainCanvas.f.f, 20, 16777215, 0);
+               ca_1.a(var1, (String)(this.I.j / 16 + "," + (this.I.k + 25) / 16), (int)2, var7 + MainCanvas.f.f, 20, 16777215, 0);
                if (bt_1.ab != null) {
                   var1.setColor(16711680);
 
@@ -1592,7 +1592,7 @@ public final class ao_1 {
 
             if (bt_1.G()) {
                var1.setColor(16711680);
-               var1.drawString(bt_1.id + "/" + bt_1.ic, t_1.b, (t_1.j << 1) + 2 + a_MainCanvas.f.f + 30, 24);
+               var1.drawString(bt_1.id + "/" + bt_1.ic, t_1.b, (t_1.j << 1) + 2 + MainCanvas.f.f + 30, 24);
             }
          } else if (bt_1.G()) {
             var1.setColor(16711680);
@@ -1639,7 +1639,7 @@ public final class ao_1 {
       if (this.k != 25) {
          if (!bt_1.P.o && !bt_1.O.u) {
             if (this.n) {
-               var1.drawImage(a_MainCanvas.aa, t_1.b - 10, 40, 24);
+               var1.drawImage(MainCanvas.aa, t_1.b - 10, 40, 24);
                if (this.k == 18) {
                   this.n = false;
                }
@@ -1727,12 +1727,12 @@ public final class ao_1 {
                if (this.e.as.a == 0 && this.e.at.a == 0) {
                   int var24 = this.e.at.b + 5 + t_1.i.stringWidth("昵称：" + bt_1.af);
                   Image var31;
-                  if (bt_1.aC == 1 && (var31 = a_MainCanvas.d(bt_1.bA)) != null) {
+                  if (bt_1.aC == 1 && (var31 = MainCanvas.d(bt_1.bA)) != null) {
                      var1.drawImage(var31, var24, this.e.at.c + 5, 20);
                      var24 += var31.getWidth();
                   }
 
-                  if (bt_1.aH == 1 && (var31 = a_MainCanvas.c(bt_1.aI)) != null) {
+                  if (bt_1.aH == 1 && (var31 = MainCanvas.c(bt_1.aI)) != null) {
                      var1.drawImage(var31, var24, this.e.at.c + 5, 20);
                   }
                }
@@ -1931,7 +1931,7 @@ public final class ao_1 {
             this.e.aq.a(var1);
             if (this.e.ar.h() != 0) {
                if (this.e.ar.h() == 1) {
-                  int var23 = this.e.ar.a() + this.e.ar.c() - a_MainCanvas.C.b - 70;
+                  int var23 = this.e.ar.a() + this.e.ar.c() - MainCanvas.C.b - 70;
                   int var30 = this.e.ar.b() + 4;
                   ca_1.a(var1, "" + aW[1], var23, var30, 60);
                   this.b((int)1, (int)var23, (int)var30, (int)60);
@@ -1940,7 +1940,7 @@ public final class ao_1 {
                return;
             }
 
-            int var22 = this.e.ar.a() + this.e.ar.c() - a_MainCanvas.C.b - 70;
+            int var22 = this.e.ar.a() + this.e.ar.c() - MainCanvas.C.b - 70;
             int var29 = this.e.ar.b() + 4;
             ca_1.a(var1, "" + aW[0], var22, var29, 60);
             ca_1.a(var1, "" + aW[1], var22, var29 + t_1.j, 60);
@@ -1982,17 +1982,17 @@ public final class ao_1 {
             }
 
             if (bp != null) {
-               a_MainCanvas.f.a(var1, (bc_1)bp, (int[])null, 0, 0, this.e.aq.a + 5 + 30, this.e.aq.b + 35 + (this.bQ + bp.j()) / 2, 20, 0);
+               MainCanvas.f.a(var1, (Frame1)bp, (int[])null, 0, 0, this.e.aq.a + 5 + 30, this.e.aq.b + 35 + (this.bQ + bp.j()) / 2, 20, 0);
             }
 
             int var21 = this.e.aq.a + 8;
             Image var27;
-            if (bt_1.aC == 1 && (var27 = a_MainCanvas.d(bt_1.kU)) != null) {
+            if (bt_1.aC == 1 && (var27 = MainCanvas.d(bt_1.kU)) != null) {
                var1.drawImage(var27, var21, this.e.aq.b + 35, 20);
                var21 += var27.getWidth();
             }
 
-            if (bt_1.aH == 1 && (var27 = a_MainCanvas.c(bt_1.aI)) != null) {
+            if (bt_1.aH == 1 && (var27 = MainCanvas.c(bt_1.aI)) != null) {
                var1.drawImage(var27, var21, this.e.aq.b + 34, 20);
             }
 
@@ -2035,9 +2035,9 @@ public final class ao_1 {
          case 39:
             this.z(var1);
             if (this.cX == 5) {
-               this.ba.a(var1, a_MainCanvas.f, h - this.g() - this.ba.d.g() / 2 - 2, i - this.h() - this.ba.d.h(), (byte)0);
+               this.ba.a(var1, MainCanvas.f, h - this.g() - this.ba.d.g() / 2 - 2, i - this.h() - this.ba.d.h(), (byte)0);
             } else {
-               this.ba.a(var1, a_MainCanvas.f, h - this.g(), i - this.h(), (byte)0);
+               this.ba.a(var1, MainCanvas.f, h - this.g(), i - this.h(), (byte)0);
             }
 
             if (this.cY) {
@@ -2505,7 +2505,7 @@ public final class ao_1 {
       bt_1.b();
       bt_1.B();
       bt_1.F();
-      a_MainCanvas.af.c();
+      MainCanvas.af.c();
       bt_1.bs = -1;
       bt_1.s = -1;
       bt_1.k = null;
@@ -2525,7 +2525,7 @@ public final class ao_1 {
       }
 
       if (q != null) {
-         bc_1 var1 = q;
+         Frame1 var1 = q;
       }
 
       if (this.M != null) {
@@ -2573,8 +2573,8 @@ public final class ao_1 {
          bt_1.g = true;
          byte[] var2 = bz_1.a((short)4630);
          if (this.e != null) {
-            if (a_MainCanvas.i != null) {
-               a_MainCanvas.i.a(new w((short)4630, var2));
+            if (MainCanvas.i != null) {
+               MainCanvas.i.a(new w((short)4630, var2));
             } else {
                this.e.b("获取上传指令数据错误!");
             }
@@ -2613,7 +2613,7 @@ public final class ao_1 {
                short var11 = var10001;
                byte[] var12;
                if ((var12 = bz_1.a((short)4144, bt_1.ad, var11, var13, var14, var15)) != null) {
-                  a_MainCanvas.i.a(new w((short)4144, var12));
+                  MainCanvas.i.a(new w((short)4144, var12));
                } else {
                   this.e.b("获取上传指令数据错误!");
                }
@@ -2627,7 +2627,7 @@ public final class ao_1 {
          } else if (this.e.ak - this.bt >= 4700L) {
             if (!bt_1.a) {
                byte[] var9 = bz_1.d((short)4641, bt_1.ad);
-               a_MainCanvas.i.a(new w((short)4641, var9));
+               MainCanvas.i.a(new w((short)4641, var9));
             }
 
             var1.bt = var1.e.ak;
@@ -2637,8 +2637,8 @@ public final class ao_1 {
                short var10 = var1.I.j;
                byte[] var7 = bz_1.a((short)4101, bt_1.ad, (int)var10, (int)var3, (short)var4);
                if (var1.e != null) {
-                  if (a_MainCanvas.i != null) {
-                     a_MainCanvas.i.a(new w((short)4101, var7));
+                  if (MainCanvas.i != null) {
+                     MainCanvas.i.a(new w((short)4101, var7));
                      return;
                   }
 
@@ -2817,9 +2817,9 @@ public final class ao_1 {
          this.e.b();
          this.as();
          this.e.b();
-         a_MainCanvas.f.a(this.g(), this.h(), t_1.b, t_1.c);
+         MainCanvas.f.a(this.g(), this.h(), t_1.b, t_1.c);
          this.e.b();
-         a_MainCanvas.f.a(this.f, h, i, true, false, 1009050);
+         MainCanvas.f.a(this.f, h, i, true, false, 1009050);
          this.e.b();
          bm.removeAllElements();
          bt_1.p.removeAllElements();
@@ -2848,7 +2848,7 @@ public final class ao_1 {
 
          for(int var1 = 0; var1 < this.f.l.length; ++var1) {
             if (this.f.l[var1] != null) {
-               a_MainCanvas.f.a(this.f.l[var1], this.f.n[var1]);
+               MainCanvas.f.a(this.f.l[var1], this.f.n[var1]);
             }
          }
 
@@ -2873,7 +2873,7 @@ public final class ao_1 {
 
       this.U();
       ap();
-      a_MainCanvas.f.a(this.g(), this.h(), t_1.b, t_1.c);
+      MainCanvas.f.a(this.g(), this.h(), t_1.b, t_1.c);
       this.as();
       this.e.j = this.e.k = 7;
       this.j = this.k = 0;
@@ -2900,26 +2900,26 @@ public final class ao_1 {
          ((Throwable)var1).printStackTrace();
       }
 
-      y = a_MainCanvas.ac.a("leader");
-      z = a_MainCanvas.ac.a("member");
-      G = a_MainCanvas.ac.a("hotkeyicon");
-      F = a_MainCanvas.ac.a("fighticon");
-      E = a_MainCanvas.ac.a("fightnum");
-      bn = a_MainCanvas.ac.b("trans");
-      u = a_MainCanvas.ac.b("dialog");
-      s = a_MainCanvas.ac.b("?");
-      t_2 = a_MainCanvas.ac.b("!");
-      bo = a_MainCanvas.ac.b("mapnpc");
-      H = a_MainCanvas.ac.a("mystation");
-      v = a_MainCanvas.ag.a(t_1.N[bt_1.ax][bt_1.aj]);
-      B = a_MainCanvas.ag.a("lvl");
-      bq = a_MainCanvas.ag.a("board");
-      br = a_MainCanvas.ag.a("board+");
+      y = MainCanvas.ui.getFrame("leader");
+      z = MainCanvas.ui.getFrame("member");
+      G = MainCanvas.ui.getFrame("hotkeyicon");
+      F = MainCanvas.ui.getFrame("fighticon");
+      E = MainCanvas.ui.getFrame("fightnum");
+      bn = MainCanvas.ui.b("trans");
+      u = MainCanvas.ui.b("dialog");
+      s = MainCanvas.ui.b("?");
+      t_2 = MainCanvas.ui.b("!");
+      bo = MainCanvas.ui.b("mapnpc");
+      H = MainCanvas.ui.getFrame("mystation");
+      v = MainCanvas.publicUI.getFrame(t_1.N[bt_1.ax][bt_1.aj]);
+      B = MainCanvas.publicUI.getFrame("lvl");
+      bq = MainCanvas.publicUI.getFrame("board");
+      br = MainCanvas.publicUI.getFrame("board+");
    }
 
    public static void a(short var0, short var1, short var2, short var3) {
       for(int var4 = 0; var4 < (var0 == 701 ? 1 : 4); ++var4) {
-         a_MainCanvas.ah.b(var0 + "_" + var4, var1, var2, var3);
+         MainCanvas.ah.b(var0 + "_" + var4, var1, var2, var3);
       }
 
    }
@@ -2937,20 +2937,20 @@ public final class ao_1 {
          this.e.o = false;
          bt_1.as = bt_1.ar;
          if (t_1.l == 2) {
-            a_MainCanvas.ah.c();
-            a_MainCanvas.ah.c();
+            MainCanvas.ah.c();
+            MainCanvas.ah.c();
          }
 
          this.f = null;
          byte[] var1;
          if ((var1 = bt_1.a(bt_1.ar)) != null) {
-            this.f = a_MainCanvas.ae.a(var1);
+            this.f = MainCanvas.ae.a(var1);
          } else {
-            this.f = a_MainCanvas.ae.c(String.valueOf(bt_1.ar));
+            this.f = MainCanvas.ae.c(String.valueOf(bt_1.ar));
          }
 
-         a_MainCanvas.f.a();
-         a_MainCanvas.f.a(this.f, this.e.m);
+         MainCanvas.f.a();
+         MainCanvas.f.a(this.f, this.e.m);
       }
 
    }
@@ -2978,7 +2978,7 @@ public final class ao_1 {
       } else {
          bt_1.kj = 0;
          if (bk.size() > 0) {
-            a_MainCanvas.ab.d((String)bk.elementAt(0));
+            MainCanvas.ab.d((String)bk.elementAt(0));
             bk.removeElementAt(0);
          }
 
@@ -3041,7 +3041,7 @@ public final class ao_1 {
                   this.J = null;
                   byte[] var8;
                   if ((var8 = bz_1.C((short)4371, bt_1.ad)) != null) {
-                     a_MainCanvas.i.a(new w((short)4371, var8));
+                     MainCanvas.i.a(new w((short)4371, var8));
                   } else {
                      this.e.b("获取上传指令数据错误!");
                   }
@@ -3129,14 +3129,14 @@ public final class ao_1 {
                         this.aB = (t_1.b - this.f.a * this.aD / 16) / 2;
                         this.aC = (t_1.c - this.f.b * this.aD / 16) / 2;
                         this.e.j = this.e.k;
-                        a_MainCanvas.f.a(this.f, h, i, false, false, 1009050);
+                        MainCanvas.f.a(this.f, h, i, false, false, 1009050);
                         this.j = this.k = 30;
                      }
                   }
                } else if (var1 == 521) {
                   byte[] var11;
                   if ((var11 = bz_1.f((short)4168, bt_1.ad)) != null) {
-                     a_MainCanvas.i.a(new w((short)4168, var11));
+                     MainCanvas.i.a(new w((short)4168, var11));
                      this.by = 1;
                      this.e.a((String)null);
                   } else {
@@ -3157,7 +3157,7 @@ public final class ao_1 {
                if (this.af >= 0 && bt_1.t != null && this.af < bt_1.t.length && bt_1.t[this.af] != null && bt_1.t[this.af].e == 1) {
                   byte[] var10;
                   if ((var10 = bz_1.c((short)4106, bt_1.ad, (int)bt_1.t[this.af].a)) != null) {
-                     a_MainCanvas.i.a(new w((short)4106, var10));
+                     MainCanvas.i.a(new w((short)4106, var10));
                      aj = true;
                      this.e.a((String)null);
                      return;
@@ -3173,10 +3173,10 @@ public final class ao_1 {
                   this.m = 0;
                   this.an = L.k;
                   K = new bw_1("你想...", (short)(t_1.b - 20));
-                  ca_1.a(a_MainCanvas.F, K, this.an, (String[])null, true);
+                  ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
                   ca_1.g = 0;
                   this.e.j = this.e.k;
-                  a_MainCanvas.f.a(this.f, h, i, false, false, 1009050);
+                  MainCanvas.f.a(this.f, h, i, false, false, 1009050);
                   this.j = this.k = 40;
                }
             }
@@ -3302,7 +3302,7 @@ public final class ao_1 {
       this.j();
       this.c((int)0);
       this.l = 0;
-      a_MainCanvas.f.a(this.f, h, i, false, false, 1009050);
+      MainCanvas.f.a(this.f, h, i, false, false, 1009050);
       this.j = this.k = 1;
    }
 
@@ -3315,7 +3315,7 @@ public final class ao_1 {
       this.a(new String[]{"进入", "查看", "邀请", "任免", "弃帮"});
       this.c((int)0);
       this.l = 2;
-      a_MainCanvas.f.a(this.f, h, i, false, false, 1009050);
+      MainCanvas.f.a(this.f, h, i, false, false, 1009050);
       this.j = this.k = 1;
    }
 
@@ -3323,7 +3323,7 @@ public final class ao_1 {
       this.a(new String[]{"附魔", "升星-装", "洗炼-装", "传送", "升星-宠", "合成"});
       this.c((int)0);
       this.l = 19;
-      a_MainCanvas.f.a(this.f, h, i, false, false, 1009050);
+      MainCanvas.f.a(this.f, h, i, false, false, 1009050);
       this.j = this.k = 1;
    }
 
@@ -3331,7 +3331,7 @@ public final class ao_1 {
       this.a(new String[]{"好友", "聊天", "周围"});
       this.c((int)0);
       this.l = 20;
-      a_MainCanvas.f.a(this.f, h, i, false, false, 1009050);
+      MainCanvas.f.a(this.f, h, i, false, false, 1009050);
       this.j = this.k = 1;
    }
 
@@ -3343,7 +3343,7 @@ public final class ao_1 {
       }
 
       this.c((int)0);
-      a_MainCanvas.f.a(this.f, h, i, false, false, 1009050);
+      MainCanvas.f.a(this.f, h, i, false, false, 1009050);
       this.l = 3;
       this.j = this.k = 1;
    }
@@ -3357,7 +3357,7 @@ public final class ao_1 {
 
       this.c((int)0);
       this.l = 4;
-      a_MainCanvas.f.a(this.f, h, i, false, false, 1009050);
+      MainCanvas.f.a(this.f, h, i, false, false, 1009050);
       this.j = this.k = 1;
    }
 
@@ -3584,7 +3584,7 @@ public final class ao_1 {
          } else {
             byte[] var4 = bz_1.a((short)4184, bt_1.ad, var2, var1 == null ? "" : var1, var3);
             w var5 = new w((short)4184, var4);
-            a_MainCanvas.i.a(var5);
+            MainCanvas.i.a(var5);
             if (var2 == 4) {
                b(new ce("→" + this.aQ, var2, var3, (byte)21));
                this.a(new ce("→" + this.aQ, var2, var3, (byte)21));
@@ -3610,7 +3610,7 @@ public final class ao_1 {
 
    public final void m() {
       if (i()) {
-         a_MainCanvas.F = bt_1.t[this.af];
+         MainCanvas.F = bt_1.t[this.af];
          bH.removeAllElements();
          this.by = 0;
          if (bt_1.bI != null && bt_1.bI.length > 0) {
@@ -3814,7 +3814,7 @@ public final class ao_1 {
          }
 
          K = new bw_1(bt_1.bQ, (short)(t_1.b - 20));
-         ca_1.a(a_MainCanvas.F, K, this.am, (String[])null, true);
+         ca_1.a(MainCanvas.F, K, this.am, (String[])null, true);
          this.e.a = 0;
          this.e.b = 0;
          this.e.j = this.e.k;
@@ -3911,7 +3911,7 @@ public final class ao_1 {
                               this.m = 0;
                               this.an = new String[]{"取出物品", "存入物品"};
                               K = new bw_1(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
-                              ca_1.a(a_MainCanvas.F, K, this.an, (String[])null, true);
+                              ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
                               this.l = 3;
                               break;
                            case 5:
@@ -3921,7 +3921,7 @@ public final class ao_1 {
                               String var10 = bt_1.a(bt_1.aq);
                               t_1.a(this.e.l, bt_1.ap);
                               K = new bw_1(bt_1.t[this.af].b + ":已存入银两" + var10 + ",现有银两" + this.e.l.toString(), (short)(t_1.b - 20));
-                              ca_1.a(a_MainCanvas.F, K, this.an, (String[])null, true);
+                              ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
                               this.l = 4;
                               break;
                            case 6:
@@ -3929,7 +3929,7 @@ public final class ao_1 {
                               this.m = 0;
                               this.an = new String[]{"寄养宠物", "领回宠物"};
                               K = new bw_1(bt_1.t[this.af].b + ":宠物仓库已打开", (short)(t_1.b - 20));
-                              ca_1.a(a_MainCanvas.F, K, this.an, (String[])null, true);
+                              ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
                               this.l = 5;
                               break;
                            case 7:
@@ -3978,7 +3978,7 @@ public final class ao_1 {
                               } else if (bt_1.bI != null && this.ai < bt_1.bI.length) {
                                  byte[] var25;
                                  if ((var25 = bz_1.a((short)4107, bt_1.ad, (int)bt_1.t[this.af].a, (int)bt_1.bI[this.ai])) != null) {
-                                    a_MainCanvas.i.a(new w((short)4107, var25));
+                                    MainCanvas.i.a(new w((short)4107, var25));
                                     this.e.a((String)null);
                                  } else {
                                     this.e.b("获取上传指令数据错误!");
@@ -4004,7 +4004,7 @@ public final class ao_1 {
                               byte[] var35;
                               if ((var35 = bz_1.s((short)4145, bt_1.ad, bt_1.t[this.af].a)) != null) {
                                  w var9 = new w((short)4145, var35);
-                                 a_MainCanvas.i.a(var9);
+                                 MainCanvas.i.a(var9);
                                  this.N();
                                  this.e.a((String)null);
                               } else {
@@ -4055,7 +4055,7 @@ public final class ao_1 {
                               this.m = 0;
                               this.an = new String[]{"查看公告", "修改公告"};
                               K = new bw_1("查看和修改公告", (short)(t_1.b - 20));
-                              ca_1.a(a_MainCanvas.F, K, this.an, (String[])null, true);
+                              ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
                               ca_1.g = 0;
                               this.l = 9;
                               break;
@@ -4066,7 +4066,7 @@ public final class ao_1 {
                               aq var8 = this.M;
                               byte[] var24;
                               if ((var24 = bz_1.B((short)4222, bt_1.ad)) != null) {
-                                 a_MainCanvas.i.a(new w((short)4222, var24));
+                                 MainCanvas.i.a(new w((short)4222, var24));
                                  var8.b.a((String)null);
                               } else {
                                  var8.b.b("获取上传指令数据错误!");
@@ -4092,7 +4092,7 @@ public final class ao_1 {
                               aq var7 = this.M;
                               byte[] var23;
                               if ((var23 = bz_1.v((short)4870, bt_1.ad)) != null) {
-                                 a_MainCanvas.i.a(new w((short)4870, var23));
+                                 MainCanvas.i.a(new w((short)4870, var23));
                                  var7.b.a((String)null);
                               } else {
                                  var7.b.b("获取上传指令数据错误!");
@@ -4102,7 +4102,7 @@ public final class ao_1 {
                               aq var6 = this.M;
                               byte[] var22;
                               if ((var22 = bz_1.v((short)4873, bt_1.ad)) != null) {
-                                 a_MainCanvas.i.a(new w((short)4873, var22));
+                                 MainCanvas.i.a(new w((short)4873, var22));
                                  var6.b.a((String)null);
                               } else {
                                  var6.b.b("获取上传指令数据错误!");
@@ -4113,7 +4113,7 @@ public final class ao_1 {
                               this.m = 0;
                               this.an = new String[]{"查看", "发布"};
                               K = new bw_1("查看、发布“求爱宣言”", (short)(t_1.b - 20));
-                              ca_1.a(a_MainCanvas.F, K, this.an, (String[])null, true);
+                              ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
                               ca_1.g = 0;
                               this.l = 7;
                               break;
@@ -4142,7 +4142,7 @@ public final class ao_1 {
                            case 41:
                               byte[] var21;
                               if ((var21 = bz_1.a((short)4660, (short)bt_1.t[this.af].a, bt_1.ad)) != null) {
-                                 a_MainCanvas.i.a(new w((short)4660, var21));
+                                 MainCanvas.i.a(new w((short)4660, var21));
                                  this.e.a((String)null);
                               } else {
                                  this.e.b("获取上传指令数据错误!");
@@ -4151,7 +4151,7 @@ public final class ao_1 {
                            case 42:
                               byte[] var20;
                               if ((var20 = bz_1.a((short)4662, (short)bt_1.t[this.af].a, bt_1.ad)) != null) {
-                                 a_MainCanvas.i.a(new w((short)4662, var20));
+                                 MainCanvas.i.a(new w((short)4662, var20));
                                  this.e.a((String)null);
                               } else {
                                  this.e.b("获取上传指令数据错误!");
@@ -4173,7 +4173,7 @@ public final class ao_1 {
                               break;
                            case 47:
                               if (this.P == null) {
-                                 this.P = new r(this, this.e, a_MainCanvas.f);
+                                 this.P = new r(this, this.e, MainCanvas.f);
                               }
 
                               this.P.b();
@@ -4185,14 +4185,14 @@ public final class ao_1 {
                               this.an = new String[]{"银两竞标", "金豆竞标"};
                               t_1.a(this.e.l, bt_1.ap);
                               K = new bw_1(bt_1.t[this.af].b + ":选择银两竞标或金豆竞标，一金豆折合300万银两。", (short)(t_1.b - 20));
-                              ca_1.a(a_MainCanvas.F, K, this.an, (String[])null, true);
+                              ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
                               this.l = 10;
                               break;
                            case 49:
                               byte[] var32;
                               if ((var32 = bz_1.a((byte)0)) != null) {
                                  w var5 = new w((short)4683, var32);
-                                 a_MainCanvas.i.a(var5);
+                                 MainCanvas.i.a(var5);
                                  this.e.a((String)null);
                               } else {
                                  this.e.b("获取上传指令数据错误!");
@@ -4237,7 +4237,7 @@ public final class ao_1 {
                         if (bt_1.bE && bt_1.bG != -1) {
                            byte[] var14;
                            if ((var14 = bz_1.b((short)4108, bt_1.ad, (int)bt_1.bG, (int)bt_1.bF)) != null) {
-                              a_MainCanvas.i.a(new w((short)4108, var14));
+                              MainCanvas.i.a(new w((short)4108, var14));
                               bt_1.j();
                               this.N();
                               this.e.a((String)null);
@@ -4247,7 +4247,7 @@ public final class ao_1 {
                         } else if (bt_1.bK[this.ai] == -1) {
                            byte[] var12;
                            if ((var12 = bz_1.b((short)4108, bt_1.ad, (int)bt_1.bI[this.ai], (int)-1)) != null) {
-                              a_MainCanvas.i.a(new w((short)4108, var12));
+                              MainCanvas.i.a(new w((short)4108, var12));
                               bt_1.j();
                               this.N();
                               this.e.a((String)null);
@@ -4258,7 +4258,7 @@ public final class ao_1 {
                            this.N();
                            byte[] var13;
                            if ((var13 = bz_1.c((short)4109, bt_1.ad, (int)bt_1.t[this.af].a, (int)bt_1.bI[this.ai])) != null) {
-                              a_MainCanvas.i.a(new w((short)4109, var13));
+                              MainCanvas.i.a(new w((short)4109, var13));
                               bt_1.j();
                               this.e.a((String)null);
                            } else {
@@ -4358,7 +4358,7 @@ public final class ao_1 {
                      aq var19 = this.M;
                      byte[] var30;
                      if ((var30 = bz_1.q((short)4219, bt_1.ad)) != null) {
-                        a_MainCanvas.i.a(new w((short)4219, var30));
+                        MainCanvas.i.a(new w((short)4219, var30));
                         var19.b.a((String)null);
                      } else {
                         var19.b.b("获取上传指令数据错误!");
@@ -4452,7 +4452,7 @@ public final class ao_1 {
                byte[] var17;
                if ((var17 = bz_1.a((short)4676, (byte)1, this.n(), bt_1.ad)) != null) {
                   w var28 = new w((short)4676, var17);
-                  a_MainCanvas.i.a(var28);
+                  MainCanvas.i.a(var28);
                   this.e.a((String)null);
                } else {
                   this.e.b("获取上传指令数据错误!");
@@ -4469,7 +4469,7 @@ public final class ao_1 {
                byte[] var18;
                if ((var18 = bz_1.a((short)4676, (byte)2, (long)this.ag, bt_1.ad)) != null) {
                   w var29 = new w((short)4676, var18);
-                  a_MainCanvas.i.a(var29);
+                  MainCanvas.i.a(var29);
                   this.e.a((String)null);
                } else {
                   this.e.b("获取上传指令数据错误!");
@@ -4494,7 +4494,7 @@ public final class ao_1 {
             byte[] var15;
             if ((var15 = bz_1.a((short)4159, bt_1.ad, this.n(), (byte)0)) != null) {
                w var26 = new w((short)4159, var15);
-               a_MainCanvas.i.a(var26);
+               MainCanvas.i.a(var26);
                this.e.a((String)null);
             } else {
                this.e.b("获取上传指令数据错误!");
@@ -4503,7 +4503,7 @@ public final class ao_1 {
             byte[] var16;
             if ((var16 = bz_1.a((short)4159, bt_1.ad, this.n(), (byte)1)) != null) {
                w var27 = new w((short)4159, var16);
-               a_MainCanvas.i.a(var27);
+               MainCanvas.i.a(var27);
                this.e.a((String)null);
             } else {
                this.e.b("获取上传指令数据错误!");
@@ -4568,7 +4568,7 @@ public final class ao_1 {
             }
 
             w var3 = new w((short)4142, var2);
-            a_MainCanvas.i.a(var3);
+            MainCanvas.i.a(var3);
             this.e.a((String)null);
          }
       }
@@ -4750,7 +4750,7 @@ public final class ao_1 {
       this.e.aq.a("属性分配");
       this.e.aq.a(false);
       this.e.ar.a((Image[])null, this.bN, (String[])null, this.bO);
-      short var2 = a_MainCanvas.L.c;
+      short var2 = MainCanvas.L.c;
       this.e.aq.f = var2;
       this.e.au.a(new String[]{"确定", "取消"});
       this.e.aq.a((al)this.e.ar);
@@ -4894,7 +4894,7 @@ public final class ao_1 {
          }
 
          w var8 = new w((short)4186, var6);
-         a_MainCanvas.i.a(var8);
+         MainCanvas.i.a(var8);
          this.e.a((String)null);
       } else {
          if (var1 == 536870912) {
@@ -4948,12 +4948,12 @@ public final class ao_1 {
       }
 
       int var3 = 0;
-      var1.drawImage(a_MainCanvas.L.a, this.e.aq.a + 5, this.e.aq.b + this.e.aq.d - 53, 20);
-      var1.drawImage(a_MainCanvas.L.a, this.e.aq.a + this.e.aq.c - 5 - a_MainCanvas.L.b, this.e.aq.b + this.e.aq.d - 53, 20);
-      int var4 = Math.max(this.e.aq.c - (a_MainCanvas.L.b << 1), t_1.i.stringWidth(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE))));
+      var1.drawImage(MainCanvas.L.a, this.e.aq.a + 5, this.e.aq.b + this.e.aq.d - 53, 20);
+      var1.drawImage(MainCanvas.L.a, this.e.aq.a + this.e.aq.c - 5 - MainCanvas.L.b, this.e.aq.b + this.e.aq.d - 53, 20);
+      int var4 = Math.max(this.e.aq.c - (MainCanvas.L.b << 1), t_1.i.stringWidth(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE))));
       var3 = this.e.aq.a + (this.e.aq.c - var4) / 2;
       var1.setColor(79948);
-      var1.fillRect(var3, this.e.aq.b + this.e.aq.d - 53, var4, a_MainCanvas.L.c);
+      var1.fillRect(var3, this.e.aq.b + this.e.aq.d - 53, var4, MainCanvas.L.c);
       if (var2 == 0) {
          var1.setColor(this.aC() < bt_1.bf ? 16776960 : 16777215);
       } else {
@@ -4961,8 +4961,8 @@ public final class ao_1 {
       }
 
       var1.fillRect(var3 - 15, this.e.aq.b + this.e.aq.d - 42, 10, 2);
-      this.b(0, var3 - a_MainCanvas.N.b, this.e.aq.b + this.e.aq.d - 51, a_MainCanvas.N.b, a_MainCanvas.N.c);
-      var1.drawImage(a_MainCanvas.N.a, this.bP[0][0], this.bP[0][1], 20);
+      this.b(0, var3 - MainCanvas.N.b, this.e.aq.b + this.e.aq.d - 51, MainCanvas.N.b, MainCanvas.N.c);
+      var1.drawImage(MainCanvas.N.a, this.bP[0][0], this.bP[0][1], 20);
       if (var2 == 0) {
          var1.setColor(this.aC() > 0 ? 16776960 : 16777215);
       } else {
@@ -4970,10 +4970,10 @@ public final class ao_1 {
       }
 
       var1.fillRect(var3 + var4 + 5, this.e.aq.b + this.e.aq.d - 46, 10, 10);
-      this.b(1, var3 + var4, this.e.aq.b + this.e.aq.d - 51, a_MainCanvas.M.b, a_MainCanvas.M.c);
-      var1.drawImage(a_MainCanvas.M.a, this.bP[1][0], this.bP[1][1], 20);
+      this.b(1, var3 + var4, this.e.aq.b + this.e.aq.d - 51, MainCanvas.M.b, MainCanvas.M.c);
+      var1.drawImage(MainCanvas.M.a, this.bP[1][0], this.bP[1][1], 20);
       var1.setColor(16776960);
-      var1.drawString(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE)), t_1.b >> 1, this.e.aq.b + this.e.aq.d - 51 + (a_MainCanvas.M.a.getHeight() - t_1.j) / 2, 17);
+      var1.drawString(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE)), t_1.b >> 1, this.e.aq.b + this.e.aq.d - 51 + (MainCanvas.M.a.getHeight() - t_1.j) / 2, 17);
    }
 
    public final void e(int var1) {
@@ -5184,7 +5184,7 @@ public final class ao_1 {
                               this.aq = 0;
                               this.an = new String[]{"取出物品", "存入物品"};
                               K = new bw_1(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
-                              ca_1.a(a_MainCanvas.F, K, this.an, (String[])null, true);
+                              ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
                               this.l = 3;
                               return;
                            }
@@ -5301,7 +5301,7 @@ public final class ao_1 {
                byte[] var34;
                if ((var34 = bz_1.g((short)4173, bt_1.ad, bt_1.fA[this.e.ar.g()], (int)this.z((this.ar << 3) + this.aq))) != null) {
                   w var23 = new w((short)4173, var34);
-                  a_MainCanvas.i.a(var23);
+                  MainCanvas.i.a(var23);
                   this.e.a((String)null);
                   return;
                }
@@ -5318,7 +5318,7 @@ public final class ao_1 {
                byte[] var35;
                if ((var35 = bz_1.h((short)4174, bt_1.ad, bt_1.fA[this.e.ar.g()], this.z((this.ar << 3) + this.aq))) != null) {
                   w var24 = new w((short)4174, var35);
-                  a_MainCanvas.i.a(var24);
+                  MainCanvas.i.a(var24);
                   this.e.a((String)null);
                   return;
                }
@@ -5431,7 +5431,7 @@ public final class ao_1 {
 
                byte[] var36;
                if ((var36 = bz_1.b((short)4135, bt_1.ad, (int)var22.a, (byte)((byte)(0 + this.av)))) != null) {
-                  a_MainCanvas.i.a(new w((short)4135, var36));
+                  MainCanvas.i.a(new w((short)4135, var36));
                   this.e.a((String)null);
                   return;
                }
@@ -5475,7 +5475,7 @@ public final class ao_1 {
                   byte[] var37;
                   if ((var37 = bz_1.a((short)4687, bt_1.ko, (byte)3, bt_1.jG, var22.a, this.O.b, "", bt_1.ad)) != null) {
                      w var25 = new w((short)4687, var37);
-                     a_MainCanvas.i.a(var25);
+                     MainCanvas.i.a(var25);
                      this.e.a((String)null);
                      return;
                   }
@@ -5484,7 +5484,7 @@ public final class ao_1 {
                } else {
                   byte[] var38;
                   if ((var38 = bz_1.c((short)4645, bt_1.ad, bt_1.ko, var22.a, this.O.b)) != null) {
-                     a_MainCanvas.i.a(new w((short)4645, var38));
+                     MainCanvas.i.a(new w((short)4645, var38));
                      this.e.a((String)null);
                      return;
                   }
@@ -5495,7 +5495,7 @@ public final class ao_1 {
                byte[] var26;
                if ((var26 = bz_1.b((short)4856, bt_1.ad, bt_1.dK[this.e.ar.g() - 1], (int)this.z((this.ar << 3) + this.aq))) != null) {
                   w var27 = new w((short)4856, var26);
-                  a_MainCanvas.i.a(var27);
+                  MainCanvas.i.a(var27);
                   this.e.a((String)null);
                   return;
                }
@@ -5505,7 +5505,7 @@ public final class ao_1 {
                byte[] var39;
                if ((var39 = bz_1.h((short)4661, bt_1.ad, bt_1.fA[this.e.ar.g()], this.z((this.ar << 3) + this.aq))) != null) {
                   w var28 = new w((short)4661, var39);
-                  a_MainCanvas.i.a(var28);
+                  MainCanvas.i.a(var28);
                   this.e.a((String)null);
                   return;
                }
@@ -5570,7 +5570,7 @@ public final class ao_1 {
                   }
 
                   w var21 = new w((short)4105, var33);
-                  a_MainCanvas.i.a(var21);
+                  MainCanvas.i.a(var21);
                   this.e.a((String)null);
                   break;
                case 1:
@@ -5611,7 +5611,7 @@ public final class ao_1 {
                   byte[] var32;
                   if ((var32 = bz_1.j((short)4143, bt_1.ad)) != null) {
                      w var20 = new w((short)4143, var32);
-                     a_MainCanvas.i.a(var20);
+                     MainCanvas.i.a(var20);
                      this.e.a((String)null);
                      return;
                   }
@@ -5729,7 +5729,7 @@ public final class ao_1 {
             }
 
             w var15 = new w((short)4152, var30);
-            a_MainCanvas.i.a(var15);
+            MainCanvas.i.a(var15);
             this.e.a((String)null);
          }
       } else if (this.l == 6) {
@@ -5842,7 +5842,7 @@ public final class ao_1 {
             }
 
             w var29 = new w((short)4105, var11);
-            a_MainCanvas.i.a(var29);
+            MainCanvas.i.a(var29);
             this.e.a((String)null);
          }
       } else if (this.l == 11) {
@@ -5929,7 +5929,7 @@ public final class ao_1 {
                   return;
                }
 
-               a_MainCanvas.i.a(new w((short)4642, var2));
+               MainCanvas.i.a(new w((short)4642, var2));
                this.e.a((String)null);
             }
          }
@@ -6028,7 +6028,7 @@ public final class ao_1 {
       byte[] var2;
       if ((var2 = bz_1.b((short)4244, this.z((this.ar << 3) + this.aq), (int)var1, bt_1.ad)) != null) {
          w var3 = new w((short)4244, var2);
-         a_MainCanvas.i.a(var3);
+         MainCanvas.i.a(var3);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -6039,7 +6039,7 @@ public final class ao_1 {
       byte[] var3;
       if ((var3 = bz_1.a((short)4117, bt_1.ad, (byte)this.az, (byte)(var1 ? var2 : 0), (int)(var1 ? (var2 == 2 ? this.z((this.ar << 3) + this.aq) : bt_1.dl[this.e.ar.g()]) : -1))) != null) {
          w var4 = new w((short)4117, var3);
-         a_MainCanvas.i.a(var4);
+         MainCanvas.i.a(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -6050,7 +6050,7 @@ public final class ao_1 {
       byte[] var3;
       if ((var3 = bz_1.a((short)4193, bt_1.ad, bt_1.fA[this.ay], (byte)this.az, (byte)(var1 ? 1 : 0), (int)(var1 ? bt_1.dl[this.e.ar.g()] : -1))) != null) {
          w var4 = new w((short)4193, var3);
-         a_MainCanvas.i.a(var4);
+         MainCanvas.i.a(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -6082,7 +6082,7 @@ public final class ao_1 {
 
       byte[] var5;
       if ((var5 = bz_1.a((short)4126, bt_1.ad, (int)this.z((this.ar << 3) + this.aq), (int)(this.e.ax % 10), (int)var1)) != null) {
-         a_MainCanvas.i.a(new w((short)4126, var5));
+         MainCanvas.i.a(new w((short)4126, var5));
          this.bS = true;
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -6105,7 +6105,7 @@ public final class ao_1 {
       byte[] var2;
       if ((var2 = bz_1.a((short)4104, bt_1.ad, (int)this.z((this.ar << 3) + this.aq), (byte)((byte)var1))) != null) {
          w var3 = new w((short)4104, var2);
-         a_MainCanvas.i.a(var3);
+         MainCanvas.i.a(var3);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -6116,7 +6116,7 @@ public final class ao_1 {
       byte[] var2;
       if ((var2 = bz_1.e((short)4157, bt_1.ad, this.z((this.ar << 3) + this.aq), (int)var1)) != null) {
          w var3 = new w((short)4157, var2);
-         a_MainCanvas.i.a(var3);
+         MainCanvas.i.a(var3);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -6168,7 +6168,7 @@ public final class ao_1 {
          int var7 = this.e.aq.b + 33 + this.e.as.b + var5;
 
          for(int var8 = 0; var8 < 32; ++var8) {
-            a_MainCanvas.f.a(var3, x, (int[])null, (aj)null, 0, 0, var8 % 8 * (x.b + var4) + var6, var8 / 8 * (x.b + var5) + var7, 0, 0);
+            MainCanvas.f.a(var3, x, (int[])null, (aj)null, 0, 0, var8 % 8 * (x.b + var4) + var6, var8 / 8 * (x.b + var5) + var7, 0, 0);
             var13.a((int)var8, var8 % 8 * (x.b + var4) + var6, var8 / 8 * (x.b + var5) + var7, (int)x.b, (int)x.c);
          }
 
@@ -6188,12 +6188,12 @@ public final class ao_1 {
 
                   var9 = var13.bT.h % 32;
                   if (var13.bT.h / 32 == var13.e.as.a) {
-                     a_MainCanvas.f.a(var3, b(var13.bT.i), (int[])null, (aj)null, 0, 0, var9 % 8 * (x.b + var4) + var6 + 1, var9 / 8 * (x.b + var5) + var7 + 1, 0, 0);
+                     MainCanvas.f.a(var3, b(var13.bT.i), (int[])null, (aj)null, 0, 0, var9 % 8 * (x.b + var4) + var6 + 1, var9 / 8 * (x.b + var5) + var7 + 1, 0, 0);
                      if (var10 > 9) {
-                        a_MainCanvas.f.a(var3, a_MainCanvas.n, (int[])null, var10 / 10, 0, 0, 10 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
-                        a_MainCanvas.f.a(var3, a_MainCanvas.n, (int[])null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                        MainCanvas.f.a(var3, MainCanvas.n, (int[])null, var10 / 10, 0, 0, 10 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                        MainCanvas.f.a(var3, MainCanvas.n, (int[])null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
                      } else if (var10 > 1) {
-                        a_MainCanvas.f.a(var3, a_MainCanvas.n, (int[])null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                        MainCanvas.f.a(var3, MainCanvas.n, (int[])null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
                      }
 
                      if (var13.bT.h % 32 == (var13.ar << 3) + var13.aq) {
@@ -6210,8 +6210,8 @@ public final class ao_1 {
          }
 
          if (this.as != 18) {
-            this.a(var1, bt_1.ap, t_1.b / 2 + x.b, this.e.au.a() + t_1.a(a_MainCanvas.E.c));
-            a_MainCanvas.f.a(var1, w, (int[])null, (aj)null, 0, 0, t_1.a(t_1.b, this.e.l.toString()) - x.b, this.e.au.a() + 4, 0, 0);
+            this.a(var1, bt_1.ap, t_1.b / 2 + x.b, this.e.au.a() + t_1.a(MainCanvas.E.c));
+            MainCanvas.f.a(var1, w, (int[])null, (aj)null, 0, 0, t_1.a(t_1.b, this.e.l.toString()) - x.b, this.e.au.a() + 4, 0, 0);
          }
       }
 
@@ -6401,7 +6401,7 @@ public final class ao_1 {
                byte[] var5;
                if ((var5 = bz_1.a((short)4689, var2.a, (byte)0, (byte)-1, bt_1.ad)) != null) {
                   w var6 = new w((short)4689, var5);
-                  a_MainCanvas.i.a(var6);
+                  MainCanvas.i.a(var6);
                   this.e.a((String)null);
                   return;
                }
@@ -6421,7 +6421,7 @@ public final class ao_1 {
 
                if (var7 != null) {
                   w var8 = new w((short)4688, var7);
-                  a_MainCanvas.i.a(var8);
+                  MainCanvas.i.a(var8);
                   this.e.a((String)null);
                   return;
                }
@@ -6445,7 +6445,7 @@ public final class ao_1 {
 
                if (var9 != null) {
                   w var10 = new w((short)4262, var9);
-                  a_MainCanvas.i.a(var10);
+                  MainCanvas.i.a(var10);
                   this.e.a((String)null);
                   return;
                }
@@ -6469,7 +6469,7 @@ public final class ao_1 {
 
                if (var11 != null) {
                   w var12 = new w((short)4266, var11);
-                  a_MainCanvas.i.a(var12);
+                  MainCanvas.i.a(var12);
                   this.e.a((String)null);
                   return;
                }
@@ -6485,7 +6485,7 @@ public final class ao_1 {
                   byte[] var13;
                   if ((var13 = bz_1.a((short)4687, bt_1.ko, (byte)3, bt_1.jG, var2.a, this.O.b, "", bt_1.ad)) != null) {
                      w var14 = new w((short)4687, var13);
-                     a_MainCanvas.i.a(var14);
+                     MainCanvas.i.a(var14);
                      this.e.a((String)null);
                      return;
                   }
@@ -6498,7 +6498,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  a_MainCanvas.i.a(new w((short)4645, var15));
+                  MainCanvas.i.a(new w((short)4645, var15));
                   this.e.a((String)null);
                }
             }
@@ -6521,7 +6521,7 @@ public final class ao_1 {
          int var7 = this.e.aq.b + 33 + this.e.as.b + var5;
 
          for(int var8 = 0; var8 < 32; ++var8) {
-            a_MainCanvas.f.a(var3, x, (int[])null, (aj)null, 0, 0, var8 % 8 * (x.b + var4) + var6, var8 / 8 * (x.b + var5) + var7, 0, 0);
+            MainCanvas.f.a(var3, x, (int[])null, (aj)null, 0, 0, var8 % 8 * (x.b + var4) + var6, var8 / 8 * (x.b + var5) + var7, 0, 0);
             var12.a((int)var8, var8 % 8 * (x.b + var4) + var6, var8 / 8 * (x.b + var5) + var7, (int)x.b, (int)x.c);
          }
 
@@ -6536,12 +6536,12 @@ public final class ao_1 {
                   var10 = var12.bT.g - var12.bT.v;
                   var9 = var11 % 32;
                   if (var11 / 32 == var12.e.as.a) {
-                     a_MainCanvas.f.a(var3, b(var12.bT.i), (int[])null, (aj)null, 0, 0, var9 % 8 * (x.b + var4) + var6 + 1, var9 / 8 * (x.b + var5) + var7 + 1, 0, 0);
+                     MainCanvas.f.a(var3, b(var12.bT.i), (int[])null, (aj)null, 0, 0, var9 % 8 * (x.b + var4) + var6 + 1, var9 / 8 * (x.b + var5) + var7 + 1, 0, 0);
                      if (var10 > 9) {
-                        a_MainCanvas.f.a(var3, a_MainCanvas.n, (int[])null, var10 / 10, 0, 0, 10 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
-                        a_MainCanvas.f.a(var3, a_MainCanvas.n, (int[])null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                        MainCanvas.f.a(var3, MainCanvas.n, (int[])null, var10 / 10, 0, 0, 10 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                        MainCanvas.f.a(var3, MainCanvas.n, (int[])null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
                      } else if (var10 > 1) {
-                        a_MainCanvas.f.a(var3, a_MainCanvas.n, (int[])null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                        MainCanvas.f.a(var3, MainCanvas.n, (int[])null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
                      }
 
                      if (var11 % 32 == (var12.ar << 3) + var12.aq) {
@@ -6557,8 +6557,8 @@ public final class ao_1 {
             ca_1.a(var3, var13.b + "X" + (var13.g - var13.v), var13.q, var6 + var12.aq * (x.b + var4) + x.b / 2, var7 + var12.ar * (x.b + var5) + x.b / 2);
          }
 
-         this.a(var1, bt_1.ap, t_1.b / 2 + 15, this.e.au.a() + t_1.a(a_MainCanvas.E.c));
-         a_MainCanvas.f.a(var1, w, (int[])null, (aj)null, 0, 0, t_1.a(t_1.b, this.e.l.toString()) - 15, this.e.au.a() + 4, 0, 0);
+         this.a(var1, bt_1.ap, t_1.b / 2 + 15, this.e.au.a() + t_1.a(MainCanvas.E.c));
+         MainCanvas.f.a(var1, w, (int[])null, (aj)null, 0, 0, t_1.a(t_1.b, this.e.l.toString()) - 15, this.e.au.a() + 4, 0, 0);
       }
 
    }
@@ -6649,7 +6649,7 @@ public final class ao_1 {
       }
 
       this.e.j = this.e.k;
-      a_MainCanvas.f.a(this.f, h, i, false, true, 1009050);
+      MainCanvas.f.a(this.f, h, i, false, true, 1009050);
       this.j = this.k = 5;
    }
 
@@ -6657,26 +6657,26 @@ public final class ao_1 {
       if (this.l != 2) {
          int var6 = 0;
          int var7 = 0;
-         if (q != null && a_MainCanvas.O != null && a_MainCanvas.R != null) {
-            var6 = (t_1.b - a_MainCanvas.O.b) / 2;
-            var7 = (t_1.c - a_MainCanvas.O.c) / 2;
-            var1.drawImage(a_MainCanvas.O.a, var6, var7, 20);
-            this.a((int)var6, (int)var7, (int) a_MainCanvas.O.b, (int) a_MainCanvas.O.c);
+         if (q != null && MainCanvas.O != null && MainCanvas.R != null) {
+            var6 = (t_1.b - MainCanvas.O.b) / 2;
+            var7 = (t_1.c - MainCanvas.O.c) / 2;
+            var1.drawImage(MainCanvas.O.a, var6, var7, 20);
+            this.a((int)var6, (int)var7, (int) MainCanvas.O.b, (int) MainCanvas.O.c);
 
             for(int var4 = 0; var4 < this.bY.length; ++var4) {
-               if (var4 < a_MainCanvas.R.length) {
-                  this.bZ = a_MainCanvas.R[var4].a;
+               if (var4 < MainCanvas.R.length) {
+                  this.bZ = MainCanvas.R[var4].a;
                } else if (var4 == 8) {
-                  this.bZ = a_MainCanvas.R[1].a;
+                  this.bZ = MainCanvas.R[1].a;
                } else if (var4 == 9) {
-                  this.bZ = a_MainCanvas.R[7].a;
+                  this.bZ = MainCanvas.R[7].a;
                }
 
                var1.drawImage(this.bZ, var6 + this.bY[var4][0], var7 + this.bY[var4][1], 20);
-               this.c(var4, var6 + this.bY[var4][0], var7 + this.bY[var4][1], a_MainCanvas.R[0].b, a_MainCanvas.R[0].c);
+               this.c(var4, var6 + this.bY[var4][0], var7 + this.bY[var4][1], MainCanvas.R[0].b, MainCanvas.R[0].c);
             }
 
-            a_MainCanvas.f.a(var1, (bc_1)q, (int[])null, 0, 0, var6 + a_MainCanvas.O.b / 2, var7 + (a_MainCanvas.O.c - q.j()) / 2 + q.j(), 20, 0);
+            MainCanvas.f.a(var1, (Frame1)q, (int[])null, 0, 0, var6 + MainCanvas.O.b / 2, var7 + (MainCanvas.O.c - q.j()) / 2 + q.j(), 20, 0);
          }
 
          var1.setColor(10092544);
@@ -6684,7 +6684,7 @@ public final class ao_1 {
          int[] var8 = new int[]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
          if (bt_1.cz != null) {
             for(int var5 = 0; var5 < bt_1.cz.length; var8[bt_1.cB[var5]] = var5++) {
-               a_MainCanvas.f.a(var1, b(bt_1.cC[var5]), (int[])null, (aj)null, 0, 0, var6 + this.bY[bt_1.cB[var5]][0] + 1, var7 + this.bY[bt_1.cB[var5]][1] + 1, 0, 0);
+               MainCanvas.f.a(var1, b(bt_1.cC[var5]), (int[])null, (aj)null, 0, 0, var6 + this.bY[bt_1.cB[var5]][0] + 1, var7 + this.bY[bt_1.cB[var5]][1] + 1, 0, 0);
             }
          }
 
@@ -6732,7 +6732,7 @@ public final class ao_1 {
                         }
 
                         if (bt_1.cD[var2][var3] > 0) {
-                           a_MainCanvas.f.a(var1, b(bt_1.cD[var2][var3]), (int[])null, (aj)null, 0, 0, this.e.aq.a + 10 + t_1.i.stringWidth("宝石:") + 2 + var3 * 17, this.e.aq.b + 39, 0, 0);
+                           MainCanvas.f.a(var1, b(bt_1.cD[var2][var3]), (int[])null, (aj)null, 0, 0, this.e.aq.a + 10 + t_1.i.stringWidth("宝石:") + 2 + var3 * 17, this.e.aq.b + 39, 0, 0);
                         }
                      }
                   }
@@ -7366,7 +7366,7 @@ public final class ao_1 {
 
                q = null;
                this.al = null;
-               a_MainCanvas.f.a(this.f, h, i, true, false, 1009050);
+               MainCanvas.f.a(this.f, h, i, true, false, 1009050);
                this.l = 2;
                return;
             }
@@ -7398,7 +7398,7 @@ public final class ao_1 {
 
                byte[] var12;
                if ((var12 = bz_1.a((short)4185, bt_1.ad, bt_1.gH[this.e.ar.g()], this.n())) != null) {
-                  a_MainCanvas.i.a(new w((short)4185, var12));
+                  MainCanvas.i.a(new w((short)4185, var12));
                } else {
                   this.e.b("获取上传指令数据错误!");
                }
@@ -7428,7 +7428,7 @@ public final class ao_1 {
                         return;
                      }
 
-                     a_MainCanvas.i.a(new w((short)4114, var6));
+                     MainCanvas.i.a(new w((short)4114, var6));
                      this.e.b("剔除队员" + bt_1.q[this.e.ar.g()].e + "请求已发送!");
                   } else if (this.bz == 1) {
                      byte[] var7;
@@ -7437,7 +7437,7 @@ public final class ao_1 {
                         return;
                      }
 
-                     a_MainCanvas.i.a(new w((short)4119, var7));
+                     MainCanvas.i.a(new w((short)4119, var7));
                      this.e.b("任命" + bt_1.q[this.e.ar.g()].e + "为队长请求已发送!");
                   } else if (this.bz == 2) {
                      if (bt_1.bs == 1) {
@@ -7447,7 +7447,7 @@ public final class ao_1 {
                            return;
                         }
 
-                        a_MainCanvas.i.a(new w((short)4120, var8));
+                        MainCanvas.i.a(new w((short)4120, var8));
                         this.e.b("解散队伍请求已发送!");
                      } else if (bt_1.bs == 0) {
                         byte[] var9;
@@ -7456,7 +7456,7 @@ public final class ao_1 {
                            return;
                         }
 
-                        a_MainCanvas.i.a(new w((short)4121, var9));
+                        MainCanvas.i.a(new w((short)4121, var9));
                         this.e.b("脱离队伍请求已发送!");
                      }
                   }
@@ -7483,7 +7483,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  a_MainCanvas.i.a(new w((short)4110, var10));
+                  MainCanvas.i.a(new w((short)4110, var10));
                   this.e.a((String)null);
                } else if (ca_1.o == 1) {
                   byte[] var11;
@@ -7492,7 +7492,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  a_MainCanvas.i.a(new w((short)4111, var11));
+                  MainCanvas.i.a(new w((short)4111, var11));
                   this.e.a((String)null);
                }
             } else if (this.l == 11) {
@@ -7520,7 +7520,7 @@ public final class ao_1 {
 
                   q = null;
                   this.al = null;
-                  a_MainCanvas.f.a(this.f, h, i, true, false, 1009050);
+                  MainCanvas.f.a(this.f, h, i, true, false, 1009050);
                   this.l = 10;
                }
             }
@@ -7593,7 +7593,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  a_MainCanvas.i.a(new w((short)4115, var5));
+                  MainCanvas.i.a(new w((short)4115, var5));
                   if (bt_1.s == 0) {
                      this.e.b("队员自由活动请求已发送!");
                   } else {
@@ -7659,7 +7659,7 @@ public final class ao_1 {
                   return;
                }
 
-               a_MainCanvas.i.a(new w((short)4110, var3));
+               MainCanvas.i.a(new w((short)4110, var3));
                this.e.a((String)null);
             } else if (ca_1.o == 1) {
                byte[] var4;
@@ -7668,7 +7668,7 @@ public final class ao_1 {
                   return;
                }
 
-               a_MainCanvas.i.a(new w((short)4111, var4));
+               MainCanvas.i.a(new w((short)4111, var4));
                this.e.a((String)null);
             } else if (ca_1.o == 2) {
                this.df = bt_1.gH[this.e.ar.g()];
@@ -7757,7 +7757,7 @@ public final class ao_1 {
    private void e(String var1) {
       byte[] var2;
       if ((var2 = bz_1.b((short)4124, bt_1.ad, var1, (byte)((byte)ca_1.o))) != null) {
-         a_MainCanvas.i.a(new w((short)4124, var2));
+         MainCanvas.i.a(new w((short)4124, var2));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -7817,7 +7817,7 @@ public final class ao_1 {
       this.aq = 0;
       ca_1.l = 0;
       this.bV = new int[10][4];
-      a_MainCanvas.f.a(this.f, h, i, false, true, 1009050);
+      MainCanvas.f.a(this.f, h, i, false, true, 1009050);
       if (bt_1.cG != null) {
          for(byte var1 = 0; var1 < bt_1.cQ.length; ++var1) {
             this.a(bt_1.cQ[var1]);
@@ -7847,7 +7847,7 @@ public final class ao_1 {
       }
 
       if (this.l == 4 || this.l == 12) {
-         a_MainCanvas.f.a(this.f, h, i, false, true, 1009050);
+         MainCanvas.f.a(this.f, h, i, false, true, 1009050);
       }
 
       this.m = 0;
@@ -7928,33 +7928,33 @@ public final class ao_1 {
       }
    }
 
-   private void a(Graphics var1, bc_1 var2) {
+   private void a(Graphics var1, Frame1 var2) {
       int var3 = 0;
       int var4 = 0;
-      if (var2 != null && a_MainCanvas.O != null && a_MainCanvas.R != null) {
-         var3 = (t_1.b - a_MainCanvas.O.b) / 2;
-         var4 = (t_1.c - a_MainCanvas.O.c) / 2;
-         var1.drawImage(a_MainCanvas.O.a, var3, var4, 20);
-         this.a((int)var3, (int)var4, (int) a_MainCanvas.O.b, (int) a_MainCanvas.O.c);
-         var1.drawImage(a_MainCanvas.R[0].a, var3 + this.cc[0][0], var4 + this.cc[0][1], 20);
-         var1.drawImage(a_MainCanvas.R[1].a, var3 + this.cc[1][0], var4 + this.cc[1][1], 20);
-         var1.drawImage(a_MainCanvas.R[4].a, var3 + this.cc[2][0], var4 + this.cc[2][1], 20);
-         var1.drawImage(a_MainCanvas.R[3].a, var3 + this.cc[3][0], var4 + this.cc[3][1], 20);
-         var1.drawImage(a_MainCanvas.R[5].a, var3 + this.cc[4][0], var4 + this.cc[4][1], 20);
-         var1.drawImage(a_MainCanvas.R[6].a, var3 + this.cc[5][0], var4 + this.cc[5][1], 20);
+      if (var2 != null && MainCanvas.O != null && MainCanvas.R != null) {
+         var3 = (t_1.b - MainCanvas.O.b) / 2;
+         var4 = (t_1.c - MainCanvas.O.c) / 2;
+         var1.drawImage(MainCanvas.O.a, var3, var4, 20);
+         this.a((int)var3, (int)var4, (int) MainCanvas.O.b, (int) MainCanvas.O.c);
+         var1.drawImage(MainCanvas.R[0].a, var3 + this.cc[0][0], var4 + this.cc[0][1], 20);
+         var1.drawImage(MainCanvas.R[1].a, var3 + this.cc[1][0], var4 + this.cc[1][1], 20);
+         var1.drawImage(MainCanvas.R[4].a, var3 + this.cc[2][0], var4 + this.cc[2][1], 20);
+         var1.drawImage(MainCanvas.R[3].a, var3 + this.cc[3][0], var4 + this.cc[3][1], 20);
+         var1.drawImage(MainCanvas.R[5].a, var3 + this.cc[4][0], var4 + this.cc[4][1], 20);
+         var1.drawImage(MainCanvas.R[6].a, var3 + this.cc[5][0], var4 + this.cc[5][1], 20);
 
          for(int var5 = 0; var5 < 6; ++var5) {
-            this.c(var5, var3 + this.cc[var5][0], var4 + this.cc[var5][1], a_MainCanvas.R[0].b, a_MainCanvas.R[0].c);
+            this.c(var5, var3 + this.cc[var5][0], var4 + this.cc[var5][1], MainCanvas.R[0].b, MainCanvas.R[0].c);
          }
 
-         a_MainCanvas.f.a(var1, (bc_1)var2, (int[])null, 0, 0, var3 + (a_MainCanvas.O.b - var2.i()) / 2, var4 + (a_MainCanvas.O.c - var2.j()) / 2, 20, 0);
+         MainCanvas.f.a(var1, (Frame1)var2, (int[])null, 0, 0, var3 + (MainCanvas.O.b - var2.i()) / 2, var4 + (MainCanvas.O.c - var2.j()) / 2, 20, 0);
       }
 
       ca_1.d(var1, var3 + this.cc[this.aq][0], var4 + this.cc[this.aq][1], 17, 17);
       int[] var7 = new int[]{-1, -1, -1, -1, -1, -1};
       if (bt_1.jH != null) {
          for(int var6 = 0; var6 < bt_1.jH.length; var7[n(bt_1.jJ[var6])] = var6++) {
-            a_MainCanvas.f.a(var1, b(bt_1.jK[var6]), (int[])null, (aj)null, 0, 0, var3 + this.cc[n(bt_1.jJ[var6])][0] + 1, var4 + this.cc[n(bt_1.jJ[var6])][1] + 1, 0, 0);
+            MainCanvas.f.a(var1, b(bt_1.jK[var6]), (int[])null, (aj)null, 0, 0, var3 + this.cc[n(bt_1.jJ[var6])][0] + 1, var4 + this.cc[n(bt_1.jJ[var6])][1] + 1, 0, 0);
          }
       }
 
@@ -7979,31 +7979,31 @@ public final class ao_1 {
       }
    }
 
-   public final void a(Graphics var1, String var2, bc_1 var3) {
+   public final void a(Graphics var1, String var2, Frame1 var3) {
       if (this.m == 0) {
          int var4 = 0;
          int var5 = 0;
-         if (var3 != null && a_MainCanvas.O != null && a_MainCanvas.R != null) {
-            var4 = (t_1.b - a_MainCanvas.O.b) / 2;
-            var5 = (t_1.c - a_MainCanvas.O.c) / 2;
-            var1.drawImage(a_MainCanvas.O.a, var4, var5, 20);
-            this.a((int)var4, (int)var5, (int) a_MainCanvas.O.b, (int) a_MainCanvas.O.c);
+         if (var3 != null && MainCanvas.O != null && MainCanvas.R != null) {
+            var4 = (t_1.b - MainCanvas.O.b) / 2;
+            var5 = (t_1.c - MainCanvas.O.c) / 2;
+            var1.drawImage(MainCanvas.O.a, var4, var5, 20);
+            this.a((int)var4, (int)var5, (int) MainCanvas.O.b, (int) MainCanvas.O.c);
 
             for(int var6 = 0; var6 < this.bY.length; ++var6) {
-               if (var6 < a_MainCanvas.R.length) {
-                  this.bZ = a_MainCanvas.R[var6].a;
+               if (var6 < MainCanvas.R.length) {
+                  this.bZ = MainCanvas.R[var6].a;
                } else if (var6 == 8) {
-                  this.bZ = a_MainCanvas.R[1].a;
+                  this.bZ = MainCanvas.R[1].a;
                } else if (var6 == 9) {
-                  this.bZ = a_MainCanvas.R[7].a;
+                  this.bZ = MainCanvas.R[7].a;
                }
 
                var1.drawImage(this.bZ, var4 + this.bY[var6][0], var5 + this.bY[var6][1], 20);
-               this.c(var6, var4 + this.bY[var6][0], var5 + this.bY[var6][1], a_MainCanvas.R[0].b, a_MainCanvas.R[0].c);
+               this.c(var6, var4 + this.bY[var6][0], var5 + this.bY[var6][1], MainCanvas.R[0].b, MainCanvas.R[0].c);
             }
 
-            a_MainCanvas.f.a(var1, (bc_1)var3, (int[])null, 0, 0, var4 + a_MainCanvas.O.b / 2, var5 + (a_MainCanvas.O.c - var3.j()) / 2 + var3.j(), 20, 0);
-            ca_1.a(var1, (String)var2, (int)(var4 + a_MainCanvas.O.b / 2), var5 + 26, 17, 16776960, 0);
+            MainCanvas.f.a(var1, (Frame1)var3, (int[])null, 0, 0, var4 + MainCanvas.O.b / 2, var5 + (MainCanvas.O.c - var3.j()) / 2 + var3.j(), 20, 0);
+            ca_1.a(var1, (String)var2, (int)(var4 + MainCanvas.O.b / 2), var5 + 26, 17, 16776960, 0);
          }
 
          var1.setColor(10092544);
@@ -8011,7 +8011,7 @@ public final class ao_1 {
          int[] var10 = new int[]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
          if (bt_1.cG != null) {
             for(int var7 = 0; var7 < bt_1.cG.length; var10[bt_1.cI[var7]] = var7++) {
-               a_MainCanvas.f.a(var1, b(bt_1.cJ[var7]), (int[])null, (aj)null, 0, 0, var4 + this.bY[bt_1.cI[var7]][0] + 1, var5 + this.bY[bt_1.cI[var7]][1] + 1, 0, 0);
+               MainCanvas.f.a(var1, b(bt_1.cJ[var7]), (int[])null, (aj)null, 0, 0, var4 + this.bY[bt_1.cI[var7]][0] + 1, var5 + this.bY[bt_1.cI[var7]][1] + 1, 0, 0);
             }
          }
 
@@ -8048,7 +8048,7 @@ public final class ao_1 {
 
                   for(byte var9 = 0; var9 < bt_1.cQ[var8].length; ++var9) {
                      if (bt_1.cQ[var8][var9] > 0) {
-                        a_MainCanvas.f.a(var1, b(bt_1.cQ[var8][var9]), (int[])null, (aj)null, 0, 0, this.T.a + 10 + t_1.i.stringWidth("宝石:") + 2 + var9 * 17, this.T.b + 39, 0, 0);
+                        MainCanvas.f.a(var1, b(bt_1.cQ[var8][var9]), (int[])null, (aj)null, 0, 0, this.T.a + 10 + t_1.i.stringWidth("宝石:") + 2 + var9 * 17, this.T.b + 39, 0, 0);
                      }
                   }
                }
@@ -8148,7 +8148,7 @@ public final class ao_1 {
 
    private void a(short var1, byte[] var2, String var3) {
       if (var2 != null) {
-         a_MainCanvas.i.a(new w(var1, var2));
+         MainCanvas.i.a(new w(var1, var2));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -8506,7 +8506,7 @@ public final class ao_1 {
                return;
             }
 
-            a_MainCanvas.i.a(new w((short)4166, var5));
+            MainCanvas.i.a(new w((short)4166, var5));
             this.e.a((String)null);
          } else {
             if (ca_1.p.length == 3 && ca_1.o == 0 || ca_1.p.length == 4 && ca_1.o == 1) {
@@ -8544,7 +8544,7 @@ public final class ao_1 {
                   return;
                }
 
-               a_MainCanvas.i.a(new w((short)4663, var4));
+               MainCanvas.i.a(new w((short)4663, var4));
                this.e.a((String)null);
             }
          }
@@ -8615,7 +8615,7 @@ public final class ao_1 {
                   return;
                }
 
-               a_MainCanvas.i.a(new w((short)4166, var3));
+               MainCanvas.i.a(new w((short)4166, var3));
                this.e.a((String)null);
             } else if ((ca_1.p.length != 3 || ca_1.o != 1) && (ca_1.p.length != 2 || ca_1.o != 0)) {
                if (ca_1.p.length == 3 && ca_1.o == 2 || ca_1.p.length == 2 && ca_1.o == 1) {
@@ -8638,7 +8638,7 @@ public final class ao_1 {
                   return;
                }
 
-               a_MainCanvas.i.a(new w((short)4663, var2));
+               MainCanvas.i.a(new w((short)4663, var2));
                this.e.a((String)null);
             }
          }
@@ -8649,7 +8649,7 @@ public final class ao_1 {
    public final void y() {
       byte[] var1;
       if ((var1 = bz_1.m((short)4629, bt_1.ad, bt_1.fA[this.aE], bt_1.dl[this.e.ar.g()])) != null) {
-         a_MainCanvas.i.a(new w((short)4629, var1));
+         MainCanvas.i.a(new w((short)4629, var1));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -8697,11 +8697,11 @@ public final class ao_1 {
          this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
          this.e.ar.a(this.e.aq.a + this.e.aq.c / 2 - 2, this.e.ar.b(), this.e.aq.c / 2 - 4, this.e.ar.d());
          this.ci = new int[]{this.e.aq.a, this.e.ar.b(), this.e.aq.c / 2, this.e.ar.d()};
-         if (a_MainCanvas.ad == null) {
-            (a_MainCanvas.ad = new bu_1("/", "skill")).d();
+         if (MainCanvas.ad == null) {
+            (MainCanvas.ad = new Page("/", "skill")).loadRpg();
          }
 
-         this.ch = a_MainCanvas.ad.b(String.valueOf(bt_1.mR[this.e.ar.g()]));
+         this.ch = MainCanvas.ad.b(String.valueOf(bt_1.mR[this.e.ar.g()]));
          this.e.j = this.e.k;
          this.j = this.k = 123;
       }
@@ -8711,7 +8711,7 @@ public final class ao_1 {
       if (this.l == 0) {
          this.e.aq.b(var1);
          if (var1 == 1 || var1 == 4) {
-            this.ch = a_MainCanvas.ad.b("" + bt_1.mR[this.e.ar.g()]);
+            this.ch = MainCanvas.ad.b("" + bt_1.mR[this.e.ar.g()]);
             this.e.ar.a(bt_1.mS[this.e.ar.g()], 1);
             return;
          }
@@ -8753,7 +8753,7 @@ public final class ao_1 {
       if (this.l == 0) {
          if (this.ch != null) {
             ai_1.a(this.ch, this.e.ak);
-            a_MainCanvas.f.a(var1, (bc_1)this.ch, this.ci, 0, 0, this.e.aq.a + this.e.aq.c / 4, this.e.ar.b() + this.e.ar.d() / 2 + this.ch.h() / 2, 0, 0);
+            MainCanvas.f.a(var1, (Frame1)this.ch, this.ci, 0, 0, this.e.aq.a + this.e.aq.c / 4, this.e.ar.b() + this.e.ar.d() / 2 + this.ch.h() / 2, 0, 0);
             return;
          }
       } else if (this.l == 1) {
@@ -8858,7 +8858,7 @@ public final class ao_1 {
       byte[] var4;
       if ((var4 = bz_1.a(var1, var2, var3)) != null) {
          w var5 = new w((short)4374, var4);
-         a_MainCanvas.i.a(var5);
+         MainCanvas.i.a(var5);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -9056,7 +9056,7 @@ public final class ao_1 {
                   }
 
                   w var5 = new w((short)4167, var4);
-                  a_MainCanvas.i.a(var5);
+                  MainCanvas.i.a(var5);
                   this.e.a((String)null);
                }
             } else if (this.as == 3 && this.g != null && this.e.as.a != 2) {
@@ -9118,7 +9118,7 @@ public final class ao_1 {
             }
 
             w var3 = new w((short)4167, var2);
-            a_MainCanvas.i.a(var3);
+            MainCanvas.i.a(var3);
             this.e.a((String)null);
          } else {
             if (ca_1.p.length == 3 && ca_1.o == 1 || ca_1.p.length == 2 && ca_1.o == 0) {
@@ -9241,7 +9241,7 @@ public final class ao_1 {
          this.e.aq.a(true);
          if (bt_1.gw != null) {
             a(bt_1.gw[0], bt_1.gx[0], bt_1.gy[0], bt_1.gz[0]);
-            this.aI = a_MainCanvas.ah.a(String.valueOf(bt_1.gw[0] + "_0"), bt_1.gx[0], bt_1.gy[0], bt_1.gz[0]);
+            this.aI = MainCanvas.ah.a(String.valueOf(bt_1.gw[0] + "_0"), bt_1.gx[0], bt_1.gy[0], bt_1.gz[0]);
          }
 
          this.e.j = this.e.k;
@@ -9323,7 +9323,7 @@ public final class ao_1 {
                this.e.at.a(bt_1.a(this.e.l, this.e.ar.g(), this.e.as.a), t_1.i, (byte)2);
                this.e.at.a((byte)1);
                a(bt_1.gw[this.e.ar.g()], bt_1.gx[this.e.ar.g()], bt_1.gy[this.e.ar.g()], bt_1.gz[this.e.ar.g()]);
-               this.aI = a_MainCanvas.ah.a(String.valueOf(bt_1.gw[this.e.ar.g()] + "_0"), bt_1.gx[this.e.ar.g()], bt_1.gy[this.e.ar.g()], bt_1.gz[this.e.ar.g()]);
+               this.aI = MainCanvas.ah.a(String.valueOf(bt_1.gw[this.e.ar.g()] + "_0"), bt_1.gx[this.e.ar.g()], bt_1.gy[this.e.ar.g()], bt_1.gz[this.e.ar.g()]);
             }
 
             ai_1.a(this.aI, this.e.ak);
@@ -9374,7 +9374,7 @@ public final class ao_1 {
                }
 
                w var3 = new w((short)4151, var2);
-               a_MainCanvas.i.a(var3);
+               MainCanvas.i.a(var3);
                this.e.a((String)null);
             }
          }
@@ -9441,12 +9441,12 @@ public final class ao_1 {
             for(byte var3 = 0; var3 < var4.size(); ++var3) {
                if (bt_1.gG[this.e.ar.g()] > 11) {
                   if (var3 < 11) {
-                     a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                     MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                   } else {
-                     a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
+                     MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
                   }
                } else {
-                  a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                  MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                }
             }
          }
@@ -9470,7 +9470,7 @@ public final class ao_1 {
             var1.drawRect(var7 + 9, var5 + 7, 31, 3);
             var1.setColor(48127);
             var1.fillRect(var7 + 1 + 9, var5 + 1 + 7, 30 * bt_1.gF[this.e.ar.g()] / bt_1.gE[this.e.ar.g()], 2);
-            a_MainCanvas.f.a(var1, (bc_1)this.aI, (int[])null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 50 - this.aI.h() - 3, 20, 0);
+            MainCanvas.f.a(var1, (Frame1)this.aI, (int[])null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 50 - this.aI.h() - 3, 20, 0);
          }
       }
 
@@ -9513,7 +9513,7 @@ public final class ao_1 {
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       if (bt_1.gw != null) {
          a(bt_1.gw[0], bt_1.gx[0], bt_1.gy[0], bt_1.gz[0]);
-         this.aI = a_MainCanvas.ah.a(String.valueOf(bt_1.gw[0] + "_0"), bt_1.gx[0], bt_1.gy[0], bt_1.gz[0]);
+         this.aI = MainCanvas.ah.a(String.valueOf(bt_1.gw[0] + "_0"), bt_1.gx[0], bt_1.gy[0], bt_1.gz[0]);
       }
 
       this.j = this.k = 35;
@@ -9524,7 +9524,7 @@ public final class ao_1 {
       this.e.ar.a(this.aA, this.aE >= bt_1.gs.length ? bt_1.gs.length - 1 : this.aE);
       if (bt_1.gw != null) {
          a(bt_1.gw[this.e.ar.g()], bt_1.gx[this.e.ar.g()], bt_1.gy[this.e.ar.g()], bt_1.gz[this.e.ar.g()]);
-         this.aI = a_MainCanvas.ah.a(String.valueOf(bt_1.gw[this.e.ar.g()] + "_0"), bt_1.gx[this.e.ar.g()], bt_1.gy[this.e.ar.g()], bt_1.gz[this.e.ar.g()]);
+         this.aI = MainCanvas.ah.a(String.valueOf(bt_1.gw[this.e.ar.g()] + "_0"), bt_1.gx[this.e.ar.g()], bt_1.gy[this.e.ar.g()], bt_1.gz[this.e.ar.g()]);
       }
 
    }
@@ -9549,7 +9549,7 @@ public final class ao_1 {
                this.e.at.a(bt_1.g(this.e.l, this.e.ar.g()), t_1.i, (byte)2);
                this.e.at.a((byte)1);
                a(bt_1.gw[this.e.ar.g()], bt_1.gx[this.e.ar.g()], bt_1.gy[this.e.ar.g()], bt_1.gz[this.e.ar.g()]);
-               this.aI = a_MainCanvas.ah.a(String.valueOf(bt_1.gw[this.e.ar.g()] + "_0"), bt_1.gx[this.e.ar.g()], bt_1.gy[this.e.ar.g()], bt_1.gz[this.e.ar.g()]);
+               this.aI = MainCanvas.ah.a(String.valueOf(bt_1.gw[this.e.ar.g()] + "_0"), bt_1.gx[this.e.ar.g()], bt_1.gy[this.e.ar.g()], bt_1.gz[this.e.ar.g()]);
             }
 
             ai_1.a(this.aI, this.e.ak);
@@ -9569,7 +9569,7 @@ public final class ao_1 {
                }
 
                w var3 = new w((short)4162, var4);
-               a_MainCanvas.i.a(var3);
+               MainCanvas.i.a(var3);
                this.e.a((String)null);
             }
          }
@@ -9596,12 +9596,12 @@ public final class ao_1 {
             for(byte var3 = 0; var3 < var4.size(); ++var3) {
                if (bt_1.gG[this.e.ar.g()] > 11) {
                   if (var3 < 11) {
-                     a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                     MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                   } else {
-                     a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
+                     MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
                   }
                } else {
-                  a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                  MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                }
             }
          }
@@ -9625,7 +9625,7 @@ public final class ao_1 {
             var1.drawRect(var7 + 4, var5 + 7, 31, 3);
             var1.setColor(48127);
             var1.fillRect(var7 + 1 + 4, var5 + 1 + 7, 30 * bt_1.gF[this.e.ar.g()] / bt_1.gE[this.e.ar.g()], 2);
-            a_MainCanvas.f.a(var1, (bc_1)this.aI, (int[])null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 21 - this.aI.h() / 2 + 6, 20, 0);
+            MainCanvas.f.a(var1, (Frame1)this.aI, (int[])null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 21 - this.aI.h() / 2 + 6, 20, 0);
          }
 
       }
@@ -9689,7 +9689,7 @@ public final class ao_1 {
             }
 
             w var3 = new w((short)4167, var2);
-            a_MainCanvas.i.a(var3);
+            MainCanvas.i.a(var3);
             this.e.a((String)null);
          } else if (var1 == 536870912 || bt_1.dI == null) {
             this.m();
@@ -9715,11 +9715,11 @@ public final class ao_1 {
                }
 
                if (var7 != -1 && var6 >= 0 && var6 < 8) {
-                  a_MainCanvas.f.a(var1, b(var7), (int[])null, (aj)null, 0, 0, var2 + 3 + var5 * 17, var3 + 3, 0, 0);
+                  MainCanvas.f.a(var1, b(var7), (int[])null, (aj)null, 0, 0, var2 + 3 + var5 * 17, var3 + 3, 0, 0);
                }
 
                if (var6 >= 8) {
-                  a_MainCanvas.f.a(var1, F, (int[])null, var6 == 8 ? 0 : 2, 0, 0, var2 + 3 + var5 * 17, var3 + 3, 0, 0);
+                  MainCanvas.f.a(var1, F, (int[])null, var6 == 8 ? 0 : 2, 0, 0, var2 + 3 + var5 * 17, var3 + 3, 0, 0);
                }
             }
 
@@ -9761,9 +9761,9 @@ public final class ao_1 {
             for(int var5 = 0; var5 < bt_1.t.length; ++var5) {
                if (bt_1.t[var5] != null) {
                   if (bt_1.t[var5].t == -1 && t_2 != null) {
-                     a_MainCanvas.f.a(var1, (bc_1)t_2, (int[])null, 0, 0, this.aB + bt_1.t[var5].c * this.aD / 16 - 10, this.aC + bt_1.t[var5].d * this.aD / 16 - t_2.j() - 5, 0, 0);
+                     MainCanvas.f.a(var1, (Frame1)t_2, (int[])null, 0, 0, this.aB + bt_1.t[var5].c * this.aD / 16 - 10, this.aC + bt_1.t[var5].d * this.aD / 16 - t_2.j() - 5, 0, 0);
                   } else if (bt_1.t[var5].t == 1 && s != null) {
-                     a_MainCanvas.f.a(var1, (bc_1)s, (int[])null, 0, 0, this.aB + bt_1.t[var5].c * this.aD / 16 - 10, this.aC + bt_1.t[var5].d * this.aD / 16 - s.j() - 5, 0, 0);
+                     MainCanvas.f.a(var1, (Frame1)s, (int[])null, 0, 0, this.aB + bt_1.t[var5].c * this.aD / 16 - 10, this.aC + bt_1.t[var5].d * this.aD / 16 - s.j() - 5, 0, 0);
                   }
 
                   if (bt_1.t[var5].b.length() <= 2) {
@@ -9773,7 +9773,7 @@ public final class ao_1 {
                   }
 
                   if (bo != null) {
-                     a_MainCanvas.f.a(var1, (bc_1)bo, (int[])null, 0, 0, this.aB + bt_1.t[var5].c * this.aD / 16, this.aC + bt_1.t[var5].d * this.aD / 16, 0, 0);
+                     MainCanvas.f.a(var1, (Frame1)bo, (int[])null, 0, 0, this.aB + bt_1.t[var5].c * this.aD / 16, this.aC + bt_1.t[var5].d * this.aD / 16, 0, 0);
                   }
                }
             }
@@ -9812,7 +9812,7 @@ public final class ao_1 {
          this.e.at.a((byte)1);
          if (bt_1.fE != null) {
             a(bt_1.fE[0], bt_1.fF[0], bt_1.fG[0], bt_1.fH[0]);
-            this.aI = a_MainCanvas.ah.a(String.valueOf(bt_1.fE[0] + "_0"), bt_1.fF[0], bt_1.fG[0], bt_1.fH[0]);
+            this.aI = MainCanvas.ah.a(String.valueOf(bt_1.fE[0] + "_0"), bt_1.fF[0], bt_1.fG[0], bt_1.fH[0]);
          }
       } else {
          if (bt_1.fw != null && bt_1.fw.length > 0) {
@@ -9831,7 +9831,7 @@ public final class ao_1 {
             this.e.at.a(bt_1.e(this.e.l, var1), t_1.i, (byte)2);
             if (bt_1.fE != null) {
                a(bt_1.fE[var1], bt_1.fF[var1], bt_1.fG[var1], bt_1.fH[var1]);
-               this.aI = a_MainCanvas.ah.a(String.valueOf(bt_1.fE[var1] + "_0"), bt_1.fF[var1], bt_1.fG[var1], bt_1.fH[var1]);
+               this.aI = MainCanvas.ah.a(String.valueOf(bt_1.fE[var1] + "_0"), bt_1.fF[var1], bt_1.fG[var1], bt_1.fH[var1]);
             }
          } else {
             this.e.ar.a((Image[])null, (String[])null, (String[])null, (String[])null);
@@ -9864,7 +9864,7 @@ public final class ao_1 {
       this.e.at.a((byte)1);
       if (bt_1.fE != null) {
          a(bt_1.fE[var2], bt_1.fF[var2], bt_1.fG[var2], bt_1.fH[var2]);
-         this.aI = a_MainCanvas.ah.a(String.valueOf(bt_1.fE[var2] + "_0"), bt_1.fF[var2], bt_1.fG[var2], bt_1.fH[var2]);
+         this.aI = MainCanvas.ah.a(String.valueOf(bt_1.fE[var2] + "_0"), bt_1.fF[var2], bt_1.fG[var2], bt_1.fH[var2]);
       }
 
       this.j = this.k = 13;
@@ -9894,7 +9894,7 @@ public final class ao_1 {
       this.bL[8][0] = bt_1.fV[var1];
       this.bL[8][1] = -1;
       a(bt_1.fE[var1], bt_1.fF[var1], bt_1.fG[var1], bt_1.fH[var1]);
-      this.aI = a_MainCanvas.ah.a(bt_1.fE[var1] + "_0", bt_1.fF[var1], bt_1.fG[var1], bt_1.fH[var1]);
+      this.aI = MainCanvas.ah.a(bt_1.fE[var1] + "_0", bt_1.fF[var1], bt_1.fG[var1], bt_1.fH[var1]);
 
       for(byte var3 = 0; var3 < this.bO.length; ++var3) {
          this.bO[var3] = this.bL[var3][0] + (this.bL[var3][1] != -1 ? "/" + this.bL[var3][1] : "");
@@ -9904,7 +9904,7 @@ public final class ao_1 {
       this.e.aq.a("宠物属性分配");
       this.e.aq.a(false);
       this.e.ar.a((Image[])null, this.bN, (String[])null, this.bO);
-      short var2 = a_MainCanvas.L.c;
+      short var2 = MainCanvas.L.c;
       this.e.aq.f = var2;
       this.e.au.a(new String[]{"确定", "取消"});
       this.e.aq.a((al)this.e.ar);
@@ -9927,7 +9927,7 @@ public final class ao_1 {
       byte[] var7;
       if ((var7 = bz_1.a((short)4253, bt_1.ad, var1, var3, var2, var4, var5)) != null) {
          w var6 = new w((short)4253, var7);
-         a_MainCanvas.i.a(var6);
+         MainCanvas.i.a(var6);
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -9950,7 +9950,7 @@ public final class ao_1 {
       }
 
       this.e.j = this.e.k;
-      a_MainCanvas.f.a(this.f, h, i, false, true, 1009050);
+      MainCanvas.f.a(this.f, h, i, false, true, 1009050);
       this.j = this.k = 13;
       this.l = 7;
       ca_1.l = 0;
@@ -9965,7 +9965,7 @@ public final class ao_1 {
                byte[] var47;
                if ((var47 = bz_1.a((short)4188, bt_1.ad, (int)bt_1.fA[this.e.ar.g()], (String)var4)) != null) {
                   w var3 = new w((short)4188, var47);
-                  a_MainCanvas.i.a(var3);
+                  MainCanvas.i.a(var3);
                } else {
                   this.e.b("获取上传指令数据错误!");
                }
@@ -9996,7 +9996,7 @@ public final class ao_1 {
                   this.e.at.a(bt_1.e(this.e.l, var22), t_1.i, (byte)2);
                   this.e.at.a((byte)1);
                   a(bt_1.fE[var22], bt_1.fF[var22], bt_1.fG[var22], bt_1.fH[var22]);
-                  this.aI = a_MainCanvas.ah.a(String.valueOf(bt_1.fE[var22] + "_0"), bt_1.fF[var22], bt_1.fG[var22], bt_1.fH[var22]);
+                  this.aI = MainCanvas.ah.a(String.valueOf(bt_1.fE[var22] + "_0"), bt_1.fF[var22], bt_1.fG[var22], bt_1.fH[var22]);
                }
 
                ai_1.a(this.aI, this.e.ak);
@@ -10063,7 +10063,7 @@ public final class ao_1 {
                      this.l = 0;
                      byte[] var44;
                      if ((var44 = bz_1.v((short)4191, bt_1.ad, bt_1.fA[this.e.ar.g()])) != null) {
-                        a_MainCanvas.i.a(new w((short)4191, var44));
+                        MainCanvas.i.a(new w((short)4191, var44));
                         this.e.a((String)null);
                         return;
                      }
@@ -10083,7 +10083,7 @@ public final class ao_1 {
                         byte[] var45;
                         if ((var45 = bz_1.b((byte)1, cg_1.a, bt_1.fA[var22], 0)) != null) {
                            w var8 = new w((short)4691, var45);
-                           a_MainCanvas.i.a(var8);
+                           MainCanvas.i.a(var8);
                            this.e.a((String)null);
                            return;
                         }
@@ -10094,7 +10094,7 @@ public final class ao_1 {
                         byte[] var46;
                         if ((var46 = bz_1.b((byte)0, bt_1.fA[var22], -1, 0)) != null) {
                            w var9 = new w((short)4691, var46);
-                           a_MainCanvas.i.a(var9);
+                           MainCanvas.i.a(var9);
                            this.e.a((String)null);
                            return;
                         }
@@ -10151,7 +10151,7 @@ public final class ao_1 {
                      }
 
                      w var36 = new w((short)4691, var15);
-                     a_MainCanvas.i.a(var36);
+                     MainCanvas.i.a(var36);
                      this.e.a((String)null);
                   } else if (ca_1.o == 4) {
                      if (bt_1.fz[this.e.ar.g()] == 0) {
@@ -10162,7 +10162,7 @@ public final class ao_1 {
                         }
 
                         w var37 = new w((short)4163, var16);
-                        a_MainCanvas.i.a(var37);
+                        MainCanvas.i.a(var37);
                         this.e.a((String)null);
                      } else if (bt_1.fz[this.e.ar.g()] == 1) {
                         byte[] var17;
@@ -10172,7 +10172,7 @@ public final class ao_1 {
                         }
 
                         w var38 = new w((short)4164, var17);
-                        a_MainCanvas.i.a(var38);
+                        MainCanvas.i.a(var38);
                         this.e.a((String)null);
                      }
                   } else {
@@ -10206,7 +10206,7 @@ public final class ao_1 {
                         }
 
                         w var52 = new w((short)4148, var39);
-                        a_MainCanvas.i.a(var52);
+                        MainCanvas.i.a(var52);
                         this.e.a((String)null);
                      } else if (ca_1.o == 10) {
                         byte[] var18;
@@ -10216,7 +10216,7 @@ public final class ao_1 {
                         }
 
                         w var40 = new w((short)4686, var18);
-                        a_MainCanvas.i.a(var40);
+                        MainCanvas.i.a(var40);
                         this.e.a((String)null);
                      }
                   }
@@ -10241,7 +10241,7 @@ public final class ao_1 {
                         }
 
                         w var41 = new w((short)4161, var19);
-                        a_MainCanvas.i.a(var41);
+                        MainCanvas.i.a(var41);
                         this.e.a((String)null);
                      }
                   } else if (this.as == 4) {
@@ -10250,7 +10250,7 @@ public final class ao_1 {
                         if (bt_1.fz[var20] == 0) {
                            byte[] var53 = bz_1.i((short)4172, bt_1.ad, bt_1.fA[var20], this.e.ax % 10);
                            w var54 = new w((short)4172, var53);
-                           a_MainCanvas.i.a(var54);
+                           MainCanvas.i.a(var54);
                            this.b((byte)1, true);
                            this.ar = this.aU;
                            this.e.ax = this.aV;
@@ -10274,7 +10274,7 @@ public final class ao_1 {
                         }
 
                         w var42 = new w((short)4146, var21);
-                        a_MainCanvas.i.a(var42);
+                        MainCanvas.i.a(var42);
                         this.e.a((String)null);
                      } else if (ca_1.o == 1) {
                         this.l = 0;
@@ -10298,7 +10298,7 @@ public final class ao_1 {
                   }
 
                   w var35 = new w((short)4165, var14);
-                  a_MainCanvas.i.a(var35);
+                  MainCanvas.i.a(var35);
                   this.e.a((String)null);
                } else if (ca_1.o == 0) {
                   this.E();
@@ -10353,7 +10353,7 @@ public final class ao_1 {
                   }
 
                   w var34 = new w((short)4148, var13);
-                  a_MainCanvas.i.a(var34);
+                  MainCanvas.i.a(var34);
                   this.e.a((String)null);
                }
             } else if (this.l == 7) {
@@ -10417,7 +10417,7 @@ public final class ao_1 {
                         }
 
                         w var49 = new w((short)4614, var48);
-                        a_MainCanvas.i.a(var49);
+                        MainCanvas.i.a(var49);
                         this.e.a((String)null);
                      } else {
                         this.e.b("卸下失败");
@@ -10442,7 +10442,7 @@ public final class ao_1 {
                      }
 
                      w var6 = new w((short)4689, var27);
-                     a_MainCanvas.i.a(var6);
+                     MainCanvas.i.a(var6);
                      this.e.a((String)null);
                   } else if (ca_1.o == 4) {
                      this.aJ = true;
@@ -10463,11 +10463,11 @@ public final class ao_1 {
                         return;
                      }
 
-                     a_MainCanvas.i.a(new w((short)4688, var29));
+                     MainCanvas.i.a(new w((short)4688, var29));
                      this.e.a((String)null);
                   } else if (ca_1.o == 5) {
                      if (this.P == null) {
-                        this.P = new r(this, this.e, a_MainCanvas.f);
+                        this.P = new r(this, this.e, MainCanvas.f);
                      }
 
                      this.P.b();
@@ -10487,7 +10487,7 @@ public final class ao_1 {
                         return;
                      }
 
-                     a_MainCanvas.i.a(new w((short)4262, var31));
+                     MainCanvas.i.a(new w((short)4262, var31));
                      this.e.a((String)null);
                   }
                }
@@ -10506,7 +10506,7 @@ public final class ao_1 {
                   if (bt_1.fz[this.e.ar.g()] == 0) {
                      byte[] var32 = bz_1.u((short)4189, bt_1.ad, bt_1.fA[this.e.ar.g()]);
                      w var7 = new w((short)4189, var32);
-                     a_MainCanvas.i.a(var7);
+                     MainCanvas.i.a(var7);
                      this.e.a((String)null);
                   } else {
                      if (bt_1.cR != null && bt_1.cR.length > 0) {
@@ -10540,7 +10540,7 @@ public final class ao_1 {
                   }
 
                   w var51 = new w((short)4682, var50);
-                  a_MainCanvas.i.a(var51);
+                  MainCanvas.i.a(var51);
                   this.e.a((String)null);
                } else if (var1 == 536870912) {
                   this.l = 0;
@@ -10606,7 +10606,7 @@ public final class ao_1 {
          byte[] var3;
          if ((var3 = bz_1.b((short)4614, bt_1.ad, bt_1.jG, var1, (byte)var2)) != null) {
             w var4 = new w((short)4614, var3);
-            a_MainCanvas.i.a(var4);
+            MainCanvas.i.a(var4);
             this.e.a((String)null);
          } else {
             this.e.b("获取上传指令数据错误!");
@@ -10652,12 +10652,12 @@ public final class ao_1 {
                   for(byte var4 = 0; var4 < var5.size(); ++var4) {
                      if (bt_1.ge[var3] > 11) {
                         if (var4 < 11) {
-                           a_MainCanvas.f.a(var1, b(((Short)var5.elementAt(var4)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var4) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                           MainCanvas.f.a(var1, b(((Short)var5.elementAt(var4)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var4) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                         } else {
-                           a_MainCanvas.f.a(var1, b(((Short)var5.elementAt(var4)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.ge[var3] - var4) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
+                           MainCanvas.f.a(var1, b(((Short)var5.elementAt(var4)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.ge[var3] - var4) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
                         }
                      } else {
-                        a_MainCanvas.f.a(var1, b(((Short)var5.elementAt(var4)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.ge[var3] - var4) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                        MainCanvas.f.a(var1, b(((Short)var5.elementAt(var4)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.ge[var3] - var4) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                      }
                   }
                }
@@ -10689,7 +10689,7 @@ public final class ao_1 {
                var1.drawRect(var12 + 9, var6 + 7, 31, 3);
                var1.setColor(48127);
                var1.fillRect(var12 + 1 + 9, var6 + 1 + 7, 30 * bt_1.fK[var3] / bt_1.fL[var3], 2);
-               a_MainCanvas.f.a(var1, (bc_1)this.aI, (int[])null, 0, 0, var12 + 25 - this.aI.g() / 2, var6 + 50 - this.aI.h() - 3, 20, 0);
+               MainCanvas.f.a(var1, (Frame1)this.aI, (int[])null, 0, 0, var12 + 25 - this.aI.g() / 2, var6 + 50 - this.aI.h() - 3, 20, 0);
             }
 
             if (this.l != 1 && this.l != 2 && this.l != 9) {
@@ -10724,7 +10724,7 @@ public final class ao_1 {
                                  }
 
                                  if (bt_1.jM[var14][var9] > 0) {
-                                    a_MainCanvas.f.a(var1, b(bt_1.jM[var14][var9]), (int[])null, (aj)null, 0, 0, this.e.aq.a + 10 + t_1.i.stringWidth("宝石:") + 2 + var9 * 17, this.e.aq.b + 39, 0, 0);
+                                    MainCanvas.f.a(var1, b(bt_1.jM[var14][var9]), (int[])null, (aj)null, 0, 0, this.e.aq.a + 10 + t_1.i.stringWidth("宝石:") + 2 + var9 * 17, this.e.aq.b + 39, 0, 0);
                                  }
 
                                  var1.setColor(16776960);
@@ -10985,7 +10985,7 @@ public final class ao_1 {
       byte[] var3;
       if ((var3 = bz_1.a((short)4138, bt_1.ad, (int)var2, (int)bt_1.bY[(this.ar << 3) + this.aq], (byte)((byte)var1))) != null) {
          w var4 = new w((short)4138, var3);
-         a_MainCanvas.i.a(var4);
+         MainCanvas.i.a(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -11005,14 +11005,14 @@ public final class ao_1 {
          int var5 = this.e.aq.b + 33 + this.e.as.b + var3;
 
          for(int var6 = 0; var6 < 32; ++var6) {
-            a_MainCanvas.f.a(var1, x, (int[])null, (aj)null, 0, 0, var6 % 8 * (x.b + var2) + var4, var6 / 8 * (x.b + var3) + var5, 0, 0);
+            MainCanvas.f.a(var1, x, (int[])null, (aj)null, 0, 0, var6 % 8 * (x.b + var2) + var4, var6 / 8 * (x.b + var3) + var5, 0, 0);
             this.a((int)var6, var6 % 8 * (x.b + var2) + var4, var6 / 8 * (x.b + var3) + var5, (int)x.b, (int)x.c);
          }
 
          int var9 = -1;
 
          for(int var7 = 0; var7 < bt_1.cb.length; ++var7) {
-            a_MainCanvas.f.a(var1, b(bt_1.cb[var7]), (int[])null, (aj)null, 0, 0, var7 % 8 * (x.b + var2) + var4 + 1, var7 / 8 * (x.b + var3) + var5 + 1, 0, 0);
+            MainCanvas.f.a(var1, b(bt_1.cb[var7]), (int[])null, (aj)null, 0, 0, var7 % 8 * (x.b + var2) + var4 + 1, var7 / 8 * (x.b + var3) + var5 + 1, 0, 0);
             if (var7 == (this.ar << 3) + this.aq) {
                var9 = var7;
             }
@@ -11024,8 +11024,8 @@ public final class ao_1 {
             ca_1.a(var1, bt_1.bZ[var9], bt_1.cp[var9], var4 + this.aq * (x.b + var2) + x.b / 2, var5 + this.ar * (x.b + var3) + x.b / 2);
          }
 
-         this.a(var1, bt_1.ap, t_1.b / 2 + x.b, this.e.au.a() + t_1.a(a_MainCanvas.E.c));
-         a_MainCanvas.f.a(var1, w, (int[])null, (aj)null, 0, 0, t_1.a(t_1.b, this.e.l.toString()) - x.b, this.e.au.a() + 4, 0, 0);
+         this.a(var1, bt_1.ap, t_1.b / 2 + x.b, this.e.au.a() + t_1.a(MainCanvas.E.c));
+         MainCanvas.f.a(var1, w, (int[])null, (aj)null, 0, 0, t_1.a(t_1.b, this.e.l.toString()) - x.b, this.e.au.a() + 4, 0, 0);
       }
 
       if (this.l == 2) {
@@ -11139,7 +11139,7 @@ public final class ao_1 {
       byte[] var2;
       if ((var2 = bz_1.d((short)4139, bt_1.ad, this.z((this.ar << 3) + this.aq), (int)var1)) != null) {
          w var3 = new w((short)4139, var2);
-         a_MainCanvas.i.a(var3);
+         MainCanvas.i.a(var3);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -11190,12 +11190,12 @@ public final class ao_1 {
          if (this.as == 0) {
             this.an = new String[]{"取出物品", "存入物品"};
             K = new bw_1(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
-            ca_1.a(a_MainCanvas.F, K, this.an, (String[])null, true);
+            ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
             this.l = 3;
          } else if (this.as == 1) {
             this.an = new String[]{"拍卖物品", "拍卖场", "拍卖场仓库"};
             K = new bw_1(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
-            ca_1.a(a_MainCanvas.F, K, this.an, (String[])null, true);
+            ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
          }
       }
 
@@ -11218,7 +11218,7 @@ public final class ao_1 {
                if (this.as == 0) {
                   this.an = new String[]{"取出物品", "存入物品"};
                   K = new bw_1(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
-                  ca_1.a(a_MainCanvas.F, K, this.an, (String[])null, true);
+                  ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
                   this.l = 3;
                   return;
                }
@@ -11226,7 +11226,7 @@ public final class ao_1 {
                if (this.as == 1) {
                   this.an = new String[]{"拍卖物品", "拍卖场", "拍卖场仓库"};
                   K = new bw_1(bt_1.t[this.af].b + ":物品仓库已打开", (short)(t_1.b - 20));
-                  ca_1.a(a_MainCanvas.F, K, this.an, (String[])null, true);
+                  ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
                   return;
                }
             } else {
@@ -11363,7 +11363,7 @@ public final class ao_1 {
       byte[] var2;
       if ((var2 = bz_1.f((short)4158, bt_1.ad, bt_1.ct[(this.e.as.a << 5) + (this.ar << 3) + this.aq], (int)var1)) != null) {
          w var3 = new w((short)4158, var2);
-         a_MainCanvas.i.a(var3);
+         MainCanvas.i.a(var3);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -11374,7 +11374,7 @@ public final class ao_1 {
       byte[] var2;
       if ((var2 = bz_1.p((short)4155, bt_1.ad, var1)) != null) {
          w var3 = new w((short)4155, var2);
-         a_MainCanvas.i.a(var3);
+         MainCanvas.i.a(var3);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -11396,7 +11396,7 @@ public final class ao_1 {
             int var5 = this.e.aq.b + 33 + this.e.as.b + var3;
 
             for(int var6 = 0; var6 < 32; ++var6) {
-               a_MainCanvas.f.a(var1, x, (int[])null, (aj)null, 0, 0, var6 % 8 * (x.b + var2) + var4, var6 / 8 * (x.b + var3) + var5, 0, 0);
+               MainCanvas.f.a(var1, x, (int[])null, (aj)null, 0, 0, var6 % 8 * (x.b + var2) + var4, var6 / 8 * (x.b + var3) + var5, 0, 0);
                this.a((int)var6, var6 % 8 * (x.b + var2) + var4, var6 / 8 * (x.b + var3) + var5, (int)x.b, (int)x.c);
             }
 
@@ -11404,12 +11404,12 @@ public final class ao_1 {
 
             for(int var7 = this.e.as.a << 5; var7 < (bt_1.cx.length > this.e.as.a + 1 << 5 ? this.e.as.a + 1 << 5 : bt_1.cx.length); ++var7) {
                int var8 = var7 % 32;
-               a_MainCanvas.f.a(var1, b(bt_1.cx[var7]), (int[])null, (aj)null, 0, 0, var8 % 8 * (x.b + var2) + var4 + 1, var8 / 8 * (x.b + var3) + var5 + 1, 0, 0);
+               MainCanvas.f.a(var1, b(bt_1.cx[var7]), (int[])null, (aj)null, 0, 0, var8 % 8 * (x.b + var2) + var4 + 1, var8 / 8 * (x.b + var3) + var5 + 1, 0, 0);
                if (bt_1.cw[var7] > 9) {
-                  a_MainCanvas.f.a(var1, a_MainCanvas.n, (int[])null, bt_1.cw[var7] / 10, 0, 0, 10 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
-                  a_MainCanvas.f.a(var1, a_MainCanvas.n, (int[])null, bt_1.cw[var7] % 10, 0, 0, 14 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, bt_1.cw[var7] / 10, 0, 0, 10 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, bt_1.cw[var7] % 10, 0, 0, 14 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
                } else if (bt_1.cw[var7] > 1) {
-                  a_MainCanvas.f.a(var1, a_MainCanvas.n, (int[])null, bt_1.cw[var7] % 10, 0, 0, 14 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, bt_1.cw[var7] % 10, 0, 0, 14 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
                }
 
                if (var7 == (this.ar << 3) + this.aq + 32 * this.e.as.a) {
@@ -11479,7 +11479,7 @@ public final class ao_1 {
       byte[] var6;
       if ((var6 = bz_1.b((short)4153, bt_1.ad, var1, var2, var3, var4)) != null) {
          w var5 = new w((short)4153, var6);
-         a_MainCanvas.i.a(var5);
+         MainCanvas.i.a(var5);
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -11489,7 +11489,7 @@ public final class ao_1 {
       byte[] var6;
       if ((var6 = bz_1.a((short)4147, bt_1.ad, var1, var2, var3, var4)) != null) {
          w var5 = new w((short)4147, var6);
-         a_MainCanvas.i.a(var5);
+         MainCanvas.i.a(var5);
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -11634,7 +11634,7 @@ public final class ao_1 {
                   }
 
                   w var5 = new w((short)4154, var4);
-                  a_MainCanvas.i.a(var5);
+                  MainCanvas.i.a(var5);
                   this.e.a((String)null);
                }
             }
@@ -11750,7 +11750,7 @@ public final class ao_1 {
    public final void J() {
       if (bt_1.gw != null) {
          a(bt_1.gw[0], bt_1.gx[0], bt_1.gy[0], bt_1.gz[0]);
-         this.aI = a_MainCanvas.ah.a(String.valueOf(bt_1.gw[0] + "_0"), bt_1.gx[0], bt_1.gy[0], bt_1.gz[0]);
+         this.aI = MainCanvas.ah.a(String.valueOf(bt_1.gw[0] + "_0"), bt_1.gx[0], bt_1.gy[0], bt_1.gz[0]);
       }
 
       this.e.aq.b();
@@ -11799,7 +11799,7 @@ public final class ao_1 {
                this.e.at.a(bt_1.g(this.e.l, this.e.ar.g()), t_1.i, (byte)2);
                this.e.at.a((byte)1);
                a(bt_1.gw[this.e.ar.g()], bt_1.gx[this.e.ar.g()], bt_1.gy[this.e.ar.g()], bt_1.gz[this.e.ar.g()]);
-               this.aI = a_MainCanvas.ah.a(String.valueOf(bt_1.gw[this.e.ar.g()] + "_0"), bt_1.gx[this.e.ar.g()], bt_1.gy[this.e.ar.g()], bt_1.gz[this.e.ar.g()]);
+               this.aI = MainCanvas.ah.a(String.valueOf(bt_1.gw[this.e.ar.g()] + "_0"), bt_1.gx[this.e.ar.g()], bt_1.gy[this.e.ar.g()], bt_1.gz[this.e.ar.g()]);
                return;
             }
 
@@ -11880,7 +11880,7 @@ public final class ao_1 {
                }
 
                w var3 = new w((short)4149, var4);
-               a_MainCanvas.i.a(var3);
+               MainCanvas.i.a(var3);
                this.e.a((String)null);
             }
          }
@@ -11907,12 +11907,12 @@ public final class ao_1 {
             for(byte var3 = 0; var3 < var4.size(); ++var3) {
                if (bt_1.gG[this.e.ar.g()] > 11) {
                   if (var3 < 11) {
-                     a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                     MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (11 - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                   } else {
-                     a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
+                     MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
                   }
                } else {
-                  a_MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                  MainCanvas.f.a(var1, b(((Short)var4.elementAt(var3)).shortValue()), (int[])null, (aj)null, 0, 0, t_1.b - t_1.f - (bt_1.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
                }
             }
          }
@@ -11936,7 +11936,7 @@ public final class ao_1 {
             var1.drawRect(var7 + 9, var5 + 7, 31, 3);
             var1.setColor(48127);
             var1.fillRect(var7 + 1 + 9, var5 + 1 + 7, 30 * bt_1.gF[this.e.ar.g()] / bt_1.gE[this.e.ar.g()], 2);
-            a_MainCanvas.f.a(var1, (bc_1)this.aI, (int[])null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 50 - this.aI.h() - 3, 20, 0);
+            MainCanvas.f.a(var1, (Frame1)this.aI, (int[])null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 50 - this.aI.h() - 3, 20, 0);
          }
 
          if (this.l == 1) {
@@ -11982,14 +11982,14 @@ public final class ao_1 {
       }
 
       this.e.b();
-      a_MainCanvas.f.a(this.f, h, i, false);
+      MainCanvas.f.a(this.f, h, i, false);
       this.j = this.k = 25;
       this.e.j = this.e.k = 7;
       this.e.p = false;
       byte[] var5;
       if ((var5 = bz_1.z((short)4223, bt_1.ad)) != null) {
          w var4 = new w((short)4659, var5);
-         a_MainCanvas.i.a(var4);
+         MainCanvas.i.a(var4);
       }
 
    }
@@ -12008,7 +12008,7 @@ public final class ao_1 {
                this.e.m = 8;
             }
 
-            this.g.a(a_MainCanvas.f, var1);
+            this.g.a(MainCanvas.f, var1);
             if (this.k == 18) {
                ca_1.a(var1, 0, 159, 0, 0, t_1.b, t_1.c);
             }
@@ -12039,7 +12039,7 @@ public final class ao_1 {
       this.e.as.a(new String[]{"全", "系", "世", "帮", "区", "队", "私", "跨"});
       this.e.aq.a((al)this.e.as);
       this.e.aq.a(0, 0, t_1.b, t_1.c);
-      a_MainCanvas.f.a(this.f, h, i, false, true, 2109231);
+      MainCanvas.f.a(this.f, h, i, false, true, 2109231);
       this.j = this.k = 18;
    }
 
@@ -12129,7 +12129,7 @@ public final class ao_1 {
 
             if (var1 == 536870912) {
                if (this.c) {
-                  a_MainCanvas.f.a(this.f, h, i, false);
+                  MainCanvas.f.a(this.f, h, i, false);
                   this.j = this.k = 25;
                } else if (this.by == 1) {
                   this.N();
@@ -12170,7 +12170,7 @@ public final class ao_1 {
 
             if (var1 == 536870912) {
                if (this.c) {
-                  a_MainCanvas.f.a(this.f, h, i, false);
+                  MainCanvas.f.a(this.f, h, i, false);
                   this.j = this.k = 25;
                } else if (this.by == 1) {
                   this.N();
@@ -12385,7 +12385,7 @@ public final class ao_1 {
    public final void a(String var1, boolean var2) {
       byte[] var3;
       if ((var3 = bz_1.a((short)4628, bt_1.ad, var1, var2)) != null) {
-         a_MainCanvas.i.a(new w((short)4628, var3));
+         MainCanvas.i.a(new w((short)4628, var3));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -12394,7 +12394,7 @@ public final class ao_1 {
    public final void a(String var1) {
       byte[] var2;
       if ((var2 = bz_1.b((short)4122, bt_1.ad, var1, (short)this.k)) != null) {
-         a_MainCanvas.i.a(new w((short)4122, var2));
+         MainCanvas.i.a(new w((short)4122, var2));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -12403,7 +12403,7 @@ public final class ao_1 {
    public final void b(String var1) {
       byte[] var2;
       if ((var2 = bz_1.c((short)4123, bt_1.ad, var1, (short)this.k)) != null) {
-         a_MainCanvas.i.a(new w((short)4123, var2));
+         MainCanvas.i.a(new w((short)4123, var2));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -12615,7 +12615,7 @@ public final class ao_1 {
             }
 
             this.cq = (b)aP.elementAt(var2);
-            this.cq.a(var1, a_MainCanvas.f, C, ca_1.r + 2, ca_1.s + (var2 - ca_1.z) * var1.getFont().getHeight());
+            this.cq.a(var1, MainCanvas.f, C, ca_1.r + 2, ca_1.s + (var2 - ca_1.z) * var1.getFont().getHeight());
             int var10002 = ca_1.r + 2;
             int var10003 = ca_1.s + (var2 - ca_1.z) * var1.getFont().getHeight();
             int var10004 = ca_1.t - 20;
@@ -12631,13 +12631,13 @@ public final class ao_1 {
             }
          }
 
-         ca_1.a(var1, t_1.b - 5 - a_MainCanvas.C.b, t_1.j + 10, ca_1.u - 20, ca_1.y, ca_1.z, ca_1.v, ca_1.x);
-         int var10001 = t_1.b - 5 - a_MainCanvas.C.b;
+         ca_1.a(var1, t_1.b - 5 - MainCanvas.C.b, t_1.j + 10, ca_1.u - 20, ca_1.y, ca_1.z, ca_1.v, ca_1.x);
+         int var10001 = t_1.b - 5 - MainCanvas.C.b;
          int var15 = t_1.j + 10;
-         int var16 = t_1.b - 5 - a_MainCanvas.C.b;
-         int var17 = t_1.j - 10 + ca_1.u - a_MainCanvas.D.c;
-         short var10 = a_MainCanvas.D.c;
-         short var14 = a_MainCanvas.D.b;
+         int var16 = t_1.b - 5 - MainCanvas.C.b;
+         int var17 = t_1.j - 10 + ca_1.u - MainCanvas.D.c;
+         short var10 = MainCanvas.D.c;
+         short var14 = MainCanvas.D.b;
          int var13 = var17;
          int var12 = var16;
          int var11 = var15;
@@ -12655,8 +12655,8 @@ public final class ao_1 {
             ca_1.c(var1);
          }
 
-         if (t_1.o && this.e.aj != null && a_MainCanvas.u != null) {
-            var1.drawImage(a_MainCanvas.u.a, t_1.b - a_MainCanvas.u.b - 5, 5, 20);
+         if (t_1.o && this.e.aj != null && MainCanvas.u != null) {
+            var1.drawImage(MainCanvas.u.a, t_1.b - MainCanvas.u.b - 5, 5, 20);
          }
 
       } catch (Exception var9) {
@@ -12751,7 +12751,7 @@ public final class ao_1 {
                byte[] var8;
                if ((var8 = bz_1.f((short)4168, bt_1.ad)) != null) {
                   w var9 = new w((short)4168, var8);
-                  a_MainCanvas.i.a(var9);
+                  MainCanvas.i.a(var9);
                   this.e.a((String)null);
                } else {
                   this.e.b("获取上传指令数据错误!");
@@ -12760,7 +12760,7 @@ public final class ao_1 {
                byte[] var10;
                if ((var10 = bz_1.C((short)4202, bt_1.ad)) != null) {
                   w var11 = new w((short)4202, var10);
-                  a_MainCanvas.i.a(var11);
+                  MainCanvas.i.a(var11);
                } else {
                   this.e.b("获取上传指令数据错误!");
                }
@@ -12768,7 +12768,7 @@ public final class ao_1 {
                byte[] var12;
                if ((var12 = bz_1.g((short)4169, bt_1.ad)) != null) {
                   w var13 = new w((short)4169, var12);
-                  a_MainCanvas.i.a(var13);
+                  MainCanvas.i.a(var13);
                   this.e.a((String)null);
                } else {
                   this.e.b("获取上传指令数据错误!");
@@ -12921,7 +12921,7 @@ public final class ao_1 {
                }
 
                w var6 = new w((short)4171, var5);
-               a_MainCanvas.i.a(var6);
+               MainCanvas.i.a(var6);
                this.e.a((String)null);
             } else if (ca_1.o == 1 && (bt_1.dM[this.e.ar.g()] == 0 || bt_1.dM[this.e.ar.g()] == 1)) {
                ca_1.a(0 + t_1.f, 2 * t_1.j + 11 + this.e.ar.i() * t_1.j + t_1.g, new String[]{"删除", "加为好友"}, true);
@@ -12964,7 +12964,7 @@ public final class ao_1 {
                }
 
                w var3 = new w((short)4170, var2);
-               a_MainCanvas.i.a(var3);
+               MainCanvas.i.a(var3);
             }
          } else if (this.l == 9) {
             ca_1.b(var1);
@@ -12980,7 +12980,7 @@ public final class ao_1 {
                   return;
                }
 
-               a_MainCanvas.i.a(new w((short)4110, var4));
+               MainCanvas.i.a(new w((short)4110, var4));
                this.e.a((String)null);
             } else {
                if (ca_1.o == 1) {
@@ -13053,14 +13053,14 @@ public final class ao_1 {
 
    public final void a(short var1) {
       this.bb = var1;
-      this.e.d.a();
+      this.e.d.start();
       bt_1.dS = bt_1.dT;
       bt_1.dU = bt_1.dV;
       bt_1.dW = bt_1.dX;
       this.an = new String[]{bt_1.dS[2], bt_1.dS[3]};
       K = new bw_1(bt_1.dS[0], (short)(t_1.b - 20));
-      ca_1.a(a_MainCanvas.F, K, this.an, (String[])null, true);
-      a_MainCanvas.f.a(this.f, h, i, true, false, 1009050);
+      ca_1.a(MainCanvas.F, K, this.an, (String[])null, true);
+      MainCanvas.f.a(this.f, h, i, true, false, 1009050);
       this.e.az = false;
       this.e.j = this.e.k;
       this.j = this.k = 20;
@@ -13094,7 +13094,7 @@ public final class ao_1 {
 
                      if (this.bb == 64) {
                         this.bb = 0;
-                        this.O.a(a_MainCanvas.e.O.a, (short)this.O.c, this.O.d);
+                        this.O.a(MainCanvas.e.O.a, (short)this.O.c, this.O.d);
                      }
                   }
                } else {
@@ -13177,7 +13177,7 @@ public final class ao_1 {
                this.e.aq.j();
                this.c((int)0);
                this.l = 1;
-               a_MainCanvas.f.a(this.f, h, i, false, false, 1009050);
+               MainCanvas.f.a(this.f, h, i, false, false, 1009050);
                this.j = this.k = 1;
                return;
             }
@@ -13238,7 +13238,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  a_MainCanvas.i.a(new w((short)4115, var8));
+                  MainCanvas.i.a(new w((short)4115, var8));
                   if (bt_1.s == 0) {
                      this.e.b("队员自由活动请求已发送!");
                   } else {
@@ -13293,7 +13293,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  a_MainCanvas.i.a(new w((short)4114, var2));
+                  MainCanvas.i.a(new w((short)4114, var2));
                   this.e.b("剔除队员" + bt_1.q[this.e.ar.g()].e + "请求已发送!");
                } else if (this.bz == 1) {
                   byte[] var3;
@@ -13302,7 +13302,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  a_MainCanvas.i.a(new w((short)4119, var3));
+                  MainCanvas.i.a(new w((short)4119, var3));
                   this.e.b("任命" + bt_1.q[this.e.ar.g()].e + "为队长请求已发送!");
                } else if (this.bz == 2) {
                   if (bt_1.bs == 1) {
@@ -13312,7 +13312,7 @@ public final class ao_1 {
                         return;
                      }
 
-                     a_MainCanvas.i.a(new w((short)4120, var4));
+                     MainCanvas.i.a(new w((short)4120, var4));
                      this.e.b("解散队伍请求已发送!");
                   } else if (bt_1.bs == 0) {
                      byte[] var5;
@@ -13321,7 +13321,7 @@ public final class ao_1 {
                         return;
                      }
 
-                     a_MainCanvas.i.a(new w((short)4121, var5));
+                     MainCanvas.i.a(new w((short)4121, var5));
                      this.e.b("脱离队伍请求已发送!");
                   }
                }
@@ -13348,7 +13348,7 @@ public final class ao_1 {
                   return;
                }
 
-               a_MainCanvas.i.a(new w((short)4110, var6));
+               MainCanvas.i.a(new w((short)4110, var6));
                this.e.a((String)null);
             } else if (ca_1.o == 1) {
                byte[] var7;
@@ -13357,7 +13357,7 @@ public final class ao_1 {
                   return;
                }
 
-               a_MainCanvas.i.a(new w((short)4111, var7));
+               MainCanvas.i.a(new w((short)4111, var7));
                this.e.a((String)null);
             }
          } else if (this.l == 4) {
@@ -13508,7 +13508,7 @@ public final class ao_1 {
                            return;
                         }
 
-                        a_MainCanvas.i.a(new w((short)4128, var7));
+                        MainCanvas.i.a(new w((short)4128, var7));
                         this.e.a((String)null);
                      } else {
                         if (var1 == 2048) {
@@ -13535,7 +13535,7 @@ public final class ao_1 {
                               return;
                            }
 
-                           a_MainCanvas.i.a(new w((short)4129, var8));
+                           MainCanvas.i.a(new w((short)4129, var8));
                            this.e.a((String)null);
                            return;
                         }
@@ -13630,7 +13630,7 @@ public final class ao_1 {
 
                byte[] var6;
                if ((var6 = bz_1.a((short)4127, bt_1.ad, this.n(), (int)this.ct)) != null) {
-                  a_MainCanvas.i.a(new w((short)4127, var6));
+                  MainCanvas.i.a(new w((short)4127, var6));
                   this.e.a((String)null);
                } else {
                   this.e.b("获取上传指令数据错误!");
@@ -13736,7 +13736,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  a_MainCanvas.i.a(new w((short)4128, var4));
+                  MainCanvas.i.a(new w((short)4128, var4));
                   this.e.a((String)null);
                } else if (ca_1.o == 4) {
                   byte[] var5;
@@ -13745,7 +13745,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  a_MainCanvas.i.a(new w((short)4129, var5));
+                  MainCanvas.i.a(new w((short)4129, var5));
                   this.e.a((String)null);
                } else if (ca_1.o == 5) {
                   ca_1.h = 0;
@@ -13834,7 +13834,7 @@ public final class ao_1 {
                   return;
                }
 
-               a_MainCanvas.i.a(new w((short)4128, var2));
+               MainCanvas.i.a(new w((short)4128, var2));
                this.e.a((String)null);
             } else if (ca_1.o == 3) {
                byte[] var3;
@@ -13843,7 +13843,7 @@ public final class ao_1 {
                   return;
                }
 
-               a_MainCanvas.i.a(new w((short)4129, var3));
+               MainCanvas.i.a(new w((short)4129, var3));
                this.e.a((String)null);
             } else if (ca_1.o == 4) {
                ca_1.h = 0;
@@ -13858,7 +13858,7 @@ public final class ao_1 {
    private void b(byte var1, byte var2) {
       byte[] var3;
       if ((var3 = bz_1.c((short)4134, bt_1.ad, (byte)var1, (byte)var2)) != null) {
-         a_MainCanvas.i.a(new w((short)4134, var3));
+         MainCanvas.i.a(new w((short)4134, var3));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -13867,7 +13867,7 @@ public final class ao_1 {
    public final void g(byte var1) {
       byte[] var2;
       if ((var2 = bz_1.f((short)4125, bt_1.ad, (byte)var1)) != null) {
-         a_MainCanvas.i.a(new w((short)4125, var2));
+         MainCanvas.i.a(new w((short)4125, var2));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -13979,19 +13979,19 @@ public final class ao_1 {
    }
 
    private void a(Graphics var1, int var2, int var3, int var4, byte var5) {
-      a_MainCanvas.f.a(var1, a_MainCanvas.L, (int[])null, (aj)null, 0, 0, var2, var3, 0, 0);
-      a_MainCanvas.f.a(var1, a_MainCanvas.L, (int[])null, (aj)null, 0, 0, var2 + var4 - a_MainCanvas.L.b, var3, 0, 0);
+      MainCanvas.f.a(var1, MainCanvas.L, (int[])null, (aj)null, 0, 0, var2, var3, 0, 0);
+      MainCanvas.f.a(var1, MainCanvas.L, (int[])null, (aj)null, 0, 0, var2 + var4 - MainCanvas.L.b, var3, 0, 0);
       var1.setColor(79948);
       int var6 = 0;
-      if (var5 == 0 && bt_1.fn > 0L && t_1.i.stringWidth(t_1.a(this.e.l, bt_1.fn)) > var4 - (a_MainCanvas.L.b << 1)) {
+      if (var5 == 0 && bt_1.fn > 0L && t_1.i.stringWidth(t_1.a(this.e.l, bt_1.fn)) > var4 - (MainCanvas.L.b << 1)) {
          var6 = t_1.i.stringWidth(t_1.a(this.e.l, bt_1.fn));
-         var1.fillRect(var2 + (var4 - var6) / 2, var3, var6, a_MainCanvas.L.c);
-      } else if (var5 == 1 && bt_1.fg > 0L && t_1.i.stringWidth(t_1.a(this.e.l, bt_1.fg)) > var4 - (a_MainCanvas.L.b << 1)) {
+         var1.fillRect(var2 + (var4 - var6) / 2, var3, var6, MainCanvas.L.c);
+      } else if (var5 == 1 && bt_1.fg > 0L && t_1.i.stringWidth(t_1.a(this.e.l, bt_1.fg)) > var4 - (MainCanvas.L.b << 1)) {
          var6 = t_1.i.stringWidth(t_1.a(this.e.l, bt_1.fg));
-         var1.fillRect(var2 + (var4 - var6) / 2, var3, var6, a_MainCanvas.L.c);
+         var1.fillRect(var2 + (var4 - var6) / 2, var3, var6, MainCanvas.L.c);
       } else {
-         var6 = var4 - (a_MainCanvas.L.b << 1);
-         var1.fillRect(var2 + a_MainCanvas.L.b, var3, var4 - (a_MainCanvas.L.b << 1), a_MainCanvas.L.c);
+         var6 = var4 - (MainCanvas.L.b << 1);
+         var1.fillRect(var2 + MainCanvas.L.b, var3, var4 - (MainCanvas.L.b << 1), MainCanvas.L.c);
       }
 
       var1.setColor(16776917);
@@ -14001,7 +14001,7 @@ public final class ao_1 {
          var1.drawString(t_1.a(this.e.l, bt_1.fg), var2 + var4 / 2 + 2, var3, 17);
       }
 
-      a_MainCanvas.f.a(var1, w, (int[])null, (aj)null, 0, 0, var2 + (var4 - var6) / 2 - w.b - 2, var3 + 2, 0, 0);
+      MainCanvas.f.a(var1, w, (int[])null, (aj)null, 0, 0, var2 + (var4 - var6) / 2 - w.b - 2, var3 + 2, 0, 0);
    }
 
    private void d(int var1, int var2, int var3, int var4, int var5) {
@@ -14074,9 +14074,9 @@ public final class ao_1 {
       int var3 = this.e.aq.b + 32;
       int var4 = this.e.aq.c - 16;
       int var5;
-      int var6 = ((var5 = this.e.aq.d - 29 - 24 - 10) - (a_MainCanvas.L.c << 1) - a_MainCanvas.H.c - a_MainCanvas.G.c - (x.c << 1)) / 7;
+      int var6 = ((var5 = this.e.aq.d - 29 - 24 - 10) - (MainCanvas.L.c << 1) - MainCanvas.H.c - MainCanvas.G.c - (x.c << 1)) / 7;
       int var7 = 0;
-      var3 = var3 + (var5 - (a_MainCanvas.L.c << 1) - a_MainCanvas.H.c - a_MainCanvas.G.c - (x.c << 1)) % 7 / 2 + var6;
+      var3 = var3 + (var5 - (MainCanvas.L.c << 1) - MainCanvas.H.c - MainCanvas.G.c - (x.c << 1)) % 7 / 2 + var6;
 
       for(int var8 = 0; var8 < 8; ++var8) {
          int var10002 = var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (var8 + 1) + var8 * 18;
@@ -14090,18 +14090,18 @@ public final class ao_1 {
             this.cv[var8][3] = var14;
          }
 
-         a_MainCanvas.f.a(var1, x, (int[])null, (aj)null, 0, 0, this.cv[var8][0], this.cv[var8][1], 0, 0);
+         MainCanvas.f.a(var1, x, (int[])null, (aj)null, 0, 0, this.cv[var8][0], this.cv[var8][1], 0, 0);
       }
 
       if (this.ct == 0) {
          if (bt_1.fs != null && bt_1.fs.length > 0) {
             for(int var27 = 0; var27 < bt_1.fs.length; ++var27) {
-               a_MainCanvas.f.a(var1, b(bt_1.fs[var27]), (int[])null, (aj)null, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fr[var27] + 1) + bt_1.fr[var27] * 18 + 1, var3 + 1, 0, 0);
+               MainCanvas.f.a(var1, b(bt_1.fs[var27]), (int[])null, (aj)null, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fr[var27] + 1) + bt_1.fr[var27] * 18 + 1, var3 + 1, 0, 0);
                if (bt_1.fq[var27] > 9) {
-                  a_MainCanvas.f.a(var1, a_MainCanvas.n, (int[])null, bt_1.fq[var27] / 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fr[var27] + 1) + bt_1.fr[var27] * 18 + 1, var3 + 1, 0, 0);
-                  a_MainCanvas.f.a(var1, a_MainCanvas.n, (int[])null, bt_1.fq[var27] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fr[var27] + 1) + bt_1.fr[var27] * 18 + 5, var3 + 1, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, bt_1.fq[var27] / 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fr[var27] + 1) + bt_1.fr[var27] * 18 + 1, var3 + 1, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, bt_1.fq[var27] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fr[var27] + 1) + bt_1.fr[var27] * 18 + 5, var3 + 1, 0, 0);
                } else if (bt_1.fq[var27] > 1) {
-                  a_MainCanvas.f.a(var1, a_MainCanvas.n, (int[])null, bt_1.fq[var27] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fr[var27] + 1) + bt_1.fr[var27] * 18 + 1, var3 + 1, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, bt_1.fq[var27] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fr[var27] + 1) + bt_1.fr[var27] * 18 + 1, var3 + 1, 0, 0);
                }
             }
          }
@@ -14120,12 +14120,12 @@ public final class ao_1 {
 
       var3 = var3 + x.c + var6;
       this.a((Graphics)var1, var2, (int)var3, (int)var4, (byte)0);
-      var3 += a_MainCanvas.K.c;
+      var3 += MainCanvas.K.c;
       a(var1, var2, var3, var2 + var4, var3);
       var3 += 5;
       var3 += var6;
-      a_MainCanvas.f.a(var1, a_MainCanvas.G, (int[])null, (aj)null, 0, 0, var2 + var4 / 2 - a_MainCanvas.G.b / 2, var3, 0, 0);
-      var3 = var3 + a_MainCanvas.G.c + var6;
+      MainCanvas.f.a(var1, MainCanvas.G, (int[])null, (aj)null, 0, 0, var2 + var4 / 2 - MainCanvas.G.b / 2, var3, 0, 0);
+      var3 = var3 + MainCanvas.G.c + var6;
 
       for(int var29 = 0; var29 < 8; ++var29) {
          int var36 = var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (var29 + 1) + var29 * 18;
@@ -14139,18 +14139,18 @@ public final class ao_1 {
             this.cw[var29][3] = var35;
          }
 
-         a_MainCanvas.f.a(var1, x, (int[])null, (aj)null, 0, 0, this.cw[var29][0], this.cw[var29][1], 0, 0);
+         MainCanvas.f.a(var1, x, (int[])null, (aj)null, 0, 0, this.cw[var29][0], this.cw[var29][1], 0, 0);
       }
 
       if (this.ct == 0) {
          if (bt_1.fl != null && bt_1.fl.length > 0) {
             for(int var30 = 0; var30 < bt_1.fl.length; ++var30) {
-               a_MainCanvas.f.a(var1, b(bt_1.fl[var30]), (int[])null, (aj)null, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fk[var30] + 1) + bt_1.fk[var30] * 18 + 1, var3 + 1, 0, 0);
+               MainCanvas.f.a(var1, b(bt_1.fl[var30]), (int[])null, (aj)null, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fk[var30] + 1) + bt_1.fk[var30] * 18 + 1, var3 + 1, 0, 0);
                if (bt_1.fj[var30] > 9) {
-                  a_MainCanvas.f.a(var1, a_MainCanvas.n, (int[])null, bt_1.fj[var30] / 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fk[var30] + 1) + bt_1.fk[var30] * 18 + 1, var3 + 1, 0, 0);
-                  a_MainCanvas.f.a(var1, a_MainCanvas.n, (int[])null, bt_1.fj[var30] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fk[var30] + 1) + bt_1.fk[var30] * 18 + 5, var3 + 1, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, bt_1.fj[var30] / 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fk[var30] + 1) + bt_1.fk[var30] * 18 + 1, var3 + 1, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, bt_1.fj[var30] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fk[var30] + 1) + bt_1.fk[var30] * 18 + 5, var3 + 1, 0, 0);
                } else if (bt_1.fj[var30] > 1) {
-                  a_MainCanvas.f.a(var1, a_MainCanvas.n, (int[])null, bt_1.fj[var30] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fk[var30] + 1) + bt_1.fk[var30] * 18 + 1, var3 + 1, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, bt_1.fj[var30] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (bt_1.fk[var30] + 1) + bt_1.fk[var30] * 18 + 1, var3 + 1, 0, 0);
                }
             }
          }
@@ -14170,23 +14170,23 @@ public final class ao_1 {
       var3 += 18;
       var3 += var6;
       this.a((Graphics)var1, var2, (int)var3, (int)var4, (byte)1);
-      var3 += a_MainCanvas.K.c;
+      var3 += MainCanvas.K.c;
       a(var1, var2, var3, var2 + var4, var3);
       var3 += 5;
-      var3 = var3 + var6 + (var5 - (a_MainCanvas.L.c << 1) - a_MainCanvas.H.c - a_MainCanvas.G.c - (x.c << 1)) % 7 / 2;
-      this.d(0, var2 + var4 / 4 - a_MainCanvas.K.b / 2, var3, a_MainCanvas.H.b, a_MainCanvas.H.c);
+      var3 = var3 + var6 + (var5 - (MainCanvas.L.c << 1) - MainCanvas.H.c - MainCanvas.G.c - (x.c << 1)) % 7 / 2;
+      this.d(0, var2 + var4 / 4 - MainCanvas.K.b / 2, var3, MainCanvas.H.b, MainCanvas.H.c);
       if (bt_1.i == 0 && bt_1.j == -1) {
-         a_MainCanvas.f.a(var1, a_MainCanvas.I, (int[])null, (aj)null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
+         MainCanvas.f.a(var1, MainCanvas.I, (int[])null, (aj)null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
       } else if (bt_1.j == 0 && bt_1.i == -1) {
-         a_MainCanvas.f.a(var1, a_MainCanvas.I, (int[])null, (aj)null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
+         MainCanvas.f.a(var1, MainCanvas.I, (int[])null, (aj)null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
       } else if (bt_1.i == 0 && bt_1.j == 0) {
-         a_MainCanvas.f.a(var1, a_MainCanvas.J, (int[])null, (aj)null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
+         MainCanvas.f.a(var1, MainCanvas.J, (int[])null, (aj)null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
       } else {
-         a_MainCanvas.f.a(var1, a_MainCanvas.H, (int[])null, (aj)null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
+         MainCanvas.f.a(var1, MainCanvas.H, (int[])null, (aj)null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
       }
 
-      this.d(1, var2 + var4 * 3 / 4 - a_MainCanvas.K.b / 2, var3, a_MainCanvas.K.b, a_MainCanvas.K.c);
-      a_MainCanvas.f.a(var1, a_MainCanvas.K, (int[])null, (aj)null, 0, 0, this.cx[1][0], this.cx[1][1], 0, 0);
+      this.d(1, var2 + var4 * 3 / 4 - MainCanvas.K.b / 2, var3, MainCanvas.K.b, MainCanvas.K.c);
+      MainCanvas.f.a(var1, MainCanvas.K, (int[])null, (aj)null, 0, 0, this.cx[1][0], this.cx[1][1], 0, 0);
       if (this.cu != null) {
          var2 = var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (this.e.ax + 1) + this.e.ax * 18 + 16;
          ca_1.b(var1, this.cu, var2, var7 + 16, t_1.g + t_1.e, 1);
@@ -14302,7 +14302,7 @@ public final class ao_1 {
             }
 
             w var4 = new w((short)4178, var3);
-            a_MainCanvas.i.a(var4);
+            MainCanvas.i.a(var4);
             this.e.a((String)null);
          }
       } else if (this.l == 2) {
@@ -14326,7 +14326,7 @@ public final class ao_1 {
             }
 
             w var7 = new w((short)4178, var6);
-            a_MainCanvas.i.a(var7);
+            MainCanvas.i.a(var7);
             this.e.a((String)null);
          } else if (ca_1.o == 1) {
             this.e.b("没有此功能!");
@@ -14341,7 +14341,7 @@ public final class ao_1 {
       this.aq = this.ar = 0;
       this.aB = (t_1.b - C.b) / 2;
       this.aC = (t_1.c - C.c) / 2;
-      a_MainCanvas.f.a(this.f, h, i, false, true, 2109231);
+      MainCanvas.f.a(this.f, h, i, false, true, 2109231);
       this.e.j = this.e.k = 7;
       this.k = 32;
    }
@@ -14364,7 +14364,7 @@ public final class ao_1 {
                   } else {
                      String var2;
                      if ((var2 = this.e.aC.getString() + "<" + (this.ar * 6 + this.aq + 1) + ">").toCharArray().length <= 30) {
-                        a_MainCanvas.a(this.e.aC, var2);
+                        MainCanvas.a(this.e.aC, var2);
                         this.e.q.setCurrent(this.e.aD);
                         return;
                      }
@@ -14409,7 +14409,7 @@ public final class ao_1 {
    private void w(Graphics var1) {
       for(int var2 = 1; var2 < 7; ++var2) {
          for(int var3 = 0; var3 < 8; ++var3) {
-            a_MainCanvas.f.a(var1, C, (int[])null, var3 * 6 + var2, 0, 0, this.aB - 6 + (var2 - 1) * 19, this.aC + 2 + var3 * 19, 0, 0);
+            MainCanvas.f.a(var1, C, (int[])null, var3 * 6 + var2, 0, 0, this.aB - 6 + (var2 - 1) * 19, this.aC + 2 + var3 * 19, 0, 0);
             int var10001 = var3 * 6 + var2 - 1;
             int var10002 = this.aB - 6 + (var2 - 1) * 19;
             int var10003 = this.aC + 2 + var3 * 19;
@@ -14434,7 +14434,7 @@ public final class ao_1 {
    private void p(byte var1) {
       byte[] var2;
       if ((var2 = bz_1.b((short)4610, bt_1.ad, (byte)var1, (byte)bt_1.C[var1])) != null) {
-         a_MainCanvas.i.a(new w((short)4610, var2));
+         MainCanvas.i.a(new w((short)4610, var2));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -14443,7 +14443,7 @@ public final class ao_1 {
    private void q(byte var1) {
       byte[] var2;
       if ((var2 = bz_1.c((short)4611, bt_1.ad, (byte)var1)) != null) {
-         a_MainCanvas.i.a(new w((short)4611, var2));
+         MainCanvas.i.a(new w((short)4611, var2));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -14453,7 +14453,7 @@ public final class ao_1 {
    private void r(byte var1) {
       byte[] var2;
       if ((var2 = bz_1.c((short)4609, bt_1.ad, (byte)var1)) != null) {
-         a_MainCanvas.i.a(new w((short)4609, var2));
+         MainCanvas.i.a(new w((short)4609, var2));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -14463,7 +14463,7 @@ public final class ao_1 {
    private void s(byte var1) {
       byte[] var2;
       if ((var2 = bz_1.b((short)4608, bt_1.ad, (byte)var1)) != null) {
-         a_MainCanvas.i.a(new w((short)4608, var2));
+         MainCanvas.i.a(new w((short)4608, var2));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -14584,7 +14584,7 @@ public final class ao_1 {
 
                if (this.e.ar.g() == 3) {
                   aW[3] = (byte)(aW[3] == 0 ? 1 : 0);
-                  a_MainCanvas.f.a(this.f, h, i, true, true, 1009050);
+                  MainCanvas.f.a(this.f, h, i, true, true, 1009050);
                   this.aQ();
                   return;
                }
@@ -14650,7 +14650,7 @@ public final class ao_1 {
 
             if (this.e.ar.g() == 3) {
                aW[3] = (byte)(aW[3] == 0 ? 1 : 0);
-               a_MainCanvas.f.a(this.f, h, i, true, true, 1009050);
+               MainCanvas.f.a(this.f, h, i, true, true, 1009050);
                this.aQ();
                return;
             }
@@ -14747,7 +14747,7 @@ public final class ao_1 {
    public final void b(String var1, byte var2) {
       byte[] var3;
       if ((var3 = bz_1.c((short)4113, bt_1.ad, var1, (byte)var2)) != null) {
-         a_MainCanvas.i.a(new w((short)4113, var3));
+         MainCanvas.i.a(new w((short)4113, var3));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -14790,7 +14790,7 @@ public final class ao_1 {
 
          if (var2 != null) {
             ca_1.a(var1, 2109231, 175, 0, t_1.c - (var4 - var3) * var5, t_1.b, var5);
-            var2.a(var1, a_MainCanvas.f, C, 2, t_1.c - (var4 - var3) * var5);
+            var2.a(var1, MainCanvas.f, C, 2, t_1.c - (var4 - var3) * var5);
             ++var3;
          }
       }
@@ -14860,16 +14860,16 @@ public final class ao_1 {
             if ((var2 = (by)bl.elementAt(var5)).a && var2 != null) {
                if (var2.b == 6) {
                   bx var6 = (bx)var2.c;
-                  a_MainCanvas.f.a(var1, var6, ((cb)var2).d, var3, var4, var6.e, var6.f, 0);
+                  MainCanvas.f.a(var1, var6, ((cb)var2).d, var3, var4, var6.e, var6.f, 0);
                } else if (var2.b == 1) {
-                  this.I.a(var1, a_MainCanvas.f, var3, var4, (byte)0);
+                  this.I.a(var1, MainCanvas.f, var3, var4, (byte)0);
                } else if (var2.b == 2) {
                   bl var10000 = (bl)var2.c;
                   boolean var12 = false;
-                  ai_1 var7 = a_MainCanvas.f;
+                  ai_1 var7 = MainCanvas.f;
                   bl var13 = var10000;
                   if (var10000.g != null) {
-                     var7.a(var1, (bc_1)var13.g, (int[])null, var3, var4, var13.j + 8, var13.k + 16, 20, 0);
+                     var7.a(var1, (Frame1)var13.g, (int[])null, var3, var4, var13.j + 8, var13.k + 16, 20, 0);
                      if (var13.e != null && aW[2] == 0) {
                         if (var13.b != null && !var13.b.equals("")) {
                            ca_1.a(var1, var13.b, var13.j - var3 + 8, var13.k - var4 - (t_1.j << 1) - var13.g.j() + 16, 17, var13.a(var13.u, var13.p));
@@ -14887,10 +14887,10 @@ public final class ao_1 {
                } else if (var2.b == 3) {
                   bp_1 var27 = (bp_1)var2.c;
                   boolean var14 = false;
-                  ai_1 var22 = a_MainCanvas.f;
+                  ai_1 var22 = MainCanvas.f;
                   bp_1 var15 = var27;
                   if (var27.g != null) {
-                     var22.a(var1, (bc_1)var15.g, (int[])null, var3, var4, var15.j + 8, var15.k + 16, 20, 0);
+                     var22.a(var1, (Frame1)var15.g, (int[])null, var3, var4, var15.j + 8, var15.k + 16, 20, 0);
                      if (var15.e != null && (var15.b.equals(bt_1.ad) || aW[4] == 0)) {
                         if (var15.c != null && !var15.c.equals("")) {
                            ca_1.a(var1, var15.c, var15.j - var3 + 8, var15.k - var4 - (t_1.j << 1) - var15.g.j() + 16, 17, 65280);
@@ -14921,13 +14921,13 @@ public final class ao_1 {
                   }
 
                   boolean var17 = false;
-                  ai_1 var24 = a_MainCanvas.f;
+                  ai_1 var24 = MainCanvas.f;
                   if (aW[10] == 1) {
                      if (var20.w != null && var20.w.k != null) {
                         var24.a(var1, var20.w.k[var20.w.f], var20.w.g(), var20.w.h(), (int[])null, var3, var4, var20.c, var20.d, 20, 0);
                      }
                   } else if (var20.w != null && var20.w.k != null) {
-                     var24.a(var1, (bc_1)var20.w, (int[])null, var3, var4, var20.c, var20.d, 20, 0);
+                     var24.a(var1, (Frame1)var20.w, (int[])null, var3, var4, var20.c, var20.d, 20, 0);
                   }
 
                   if (var20.b != null && var20.x && aW[3] == 1) {
@@ -14936,11 +14936,11 @@ public final class ao_1 {
 
                   var20.a(var1, var24, var3, var4, (byte)0);
                } else if (var2.b == 4) {
-                  ((au)var2.c).a(var1, a_MainCanvas.f, var3, var4, (byte)0);
+                  ((au)var2.c).a(var1, MainCanvas.f, var3, var4, (byte)0);
                } else if (var2.b == 7) {
-                  ((s)var2.c).a(var1, a_MainCanvas.f, var3, var4, (byte)0);
+                  ((s)var2.c).a(var1, MainCanvas.f, var3, var4, (byte)0);
                } else if (var2.b == 8) {
-                  ((bv)var2.c).a(var1, a_MainCanvas.f, var3, var4, (byte)0);
+                  ((bv)var2.c).a(var1, MainCanvas.f, var3, var4, (byte)0);
                }
             }
          }
@@ -14959,7 +14959,7 @@ public final class ao_1 {
                      bt_1.t[var19].x = true;
                   }
 
-                  bt_1.t[var19].a(var1, a_MainCanvas.f, var3, var4, (byte)0);
+                  bt_1.t[var19].a(var1, MainCanvas.f, var3, var4, (byte)0);
                }
             }
          }
@@ -14991,14 +14991,14 @@ public final class ao_1 {
          var1.drawImage(bq.a, var2, 5, 20);
          var1.drawImage(v.a, var2 + 37, 8, 20);
          if (bt_1.ak < 10) {
-            a_MainCanvas.f.a(var1, B, (int[])null, bt_1.ak % 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
+            MainCanvas.f.a(var1, B, (int[])null, bt_1.ak % 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
          } else if (bt_1.ak >= 10 && bt_1.ak <= 99) {
-            a_MainCanvas.f.a(var1, B, (int[])null, bt_1.ak / 10 + 1, 0, 0, var2 + 20, 25, 0, 0);
-            a_MainCanvas.f.a(var1, B, (int[])null, bt_1.ak % 10 + 1, 0, 0, var2 + 25, 25, 0, 0);
+            MainCanvas.f.a(var1, B, (int[])null, bt_1.ak / 10 + 1, 0, 0, var2 + 20, 25, 0, 0);
+            MainCanvas.f.a(var1, B, (int[])null, bt_1.ak % 10 + 1, 0, 0, var2 + 25, 25, 0, 0);
          } else {
-            a_MainCanvas.f.a(var1, B, (int[])null, bt_1.ak % 10 + 1, 0, 0, var2 + 28, 25, 0, 0);
-            a_MainCanvas.f.a(var1, B, (int[])null, (bt_1.ak - bt_1.ak / 100 * 100) / 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
-            a_MainCanvas.f.a(var1, B, (int[])null, bt_1.ak / 100 + 1, 0, 0, var2 + 18, 25, 0, 0);
+            MainCanvas.f.a(var1, B, (int[])null, bt_1.ak % 10 + 1, 0, 0, var2 + 28, 25, 0, 0);
+            MainCanvas.f.a(var1, B, (int[])null, (bt_1.ak - bt_1.ak / 100 * 100) / 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
+            MainCanvas.f.a(var1, B, (int[])null, bt_1.ak / 100 + 1, 0, 0, var2 + 18, 25, 0, 0);
          }
 
          int var3 = bt_1.aN * 30 / bt_1.aM;
@@ -15058,7 +15058,7 @@ public final class ao_1 {
    public final void M() {
       if (!this.c) {
          try {
-            this.I.a(this.f, a_MainCanvas.f, this.e.ak);
+            this.I.a(this.f, MainCanvas.f, this.e.ak);
             bl.removeAllElements();
             ai_1.a(u, this.e.ak);
             ai_1.a(t_2, this.e.ak);
@@ -15279,7 +15279,7 @@ public final class ao_1 {
                            var30 = var2.cI[1] + var2.f.n[var7][1];
                            if (c(var2.cI[0], var2.cI[1], var2.cI[2], var2.cI[3]) && var4.a() < var30 && ai_1.a(var2.cH, var2.cI)) {
                               int[] var32 = new int[4];
-                              a_MainCanvas.f.a(var2.cH, var2.cI, var32);
+                              MainCanvas.f.a(var2.cH, var2.cI, var32);
                               bl.addElement(new cb((byte)6, var2.f.l[var7], (short)var2.f.n[var7][1], (short)var2.f.n[var7][0], var32));
                            }
                         }
@@ -15318,21 +15318,21 @@ public final class ao_1 {
                   by var16;
                   if ((var16 = (by)bl.elementAt(var19)) != null && var16.c != null && (var16.b != 1 || this.cK >= 0)) {
                      if (var16.b == 2) {
-                        ((bl)var16.c).a(this.f, a_MainCanvas.f, this.e.ak);
+                        ((bl)var16.c).a(this.f, MainCanvas.f, this.e.ak);
                      } else if (var16.b == 3) {
-                        ((bp_1)var16.c).a(a_MainCanvas.f, this.e.ak);
+                        ((bp_1)var16.c).a(MainCanvas.f, this.e.ak);
                      } else if (var16.b == 5) {
                         az_1 var37 = (az_1)var16.c;
                         long var28 = this.e.ak;
-                        ai_1 var24 = a_MainCanvas.f;
+                        ai_1 var24 = MainCanvas.f;
                         az_1 var17 = var37;
                         if (var37.w != null && aW[10] == 0) {
                            ai_1.a(var17.w, var28);
                         }
                      } else if (var16.b == 4) {
-                        ((au)var16.c).a(this.f, a_MainCanvas.f, this.e.ak);
+                        ((au)var16.c).a(this.f, MainCanvas.f, this.e.ak);
                      } else if (var16.b == 7) {
-                        ((s)var16.c).a(this.f, a_MainCanvas.f, this.e.ak);
+                        ((s)var16.c).a(this.f, MainCanvas.f, this.e.ak);
                      }
                   }
                }
@@ -15376,7 +15376,7 @@ public final class ao_1 {
    }
 
    public final void N() {
-      a_MainCanvas.f.a(this.f, h, i, true, false, 1009050);
+      MainCanvas.f.a(this.f, h, i, true, false, 1009050);
       this.e.j = this.e.k;
       this.j = this.k = 0;
    }
@@ -15391,7 +15391,7 @@ public final class ao_1 {
       byte[] var2;
       if ((var2 = bz_1.a((short)4195, bt_1.ad, (byte)var1, (short)this.I.j, (short)this.I.k)) != null) {
          w var3 = new w((short)4195, var2);
-         a_MainCanvas.i.a(var3);
+         MainCanvas.i.a(var3);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -15402,7 +15402,7 @@ public final class ao_1 {
       byte[] var1;
       if ((var1 = bz_1.a((short)4140, bt_1.ad, (short)bt_1.gQ)) != null) {
          w var2 = new w((short)4140, var1);
-         a_MainCanvas.i.a(var2);
+         MainCanvas.i.a(var2);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -15412,7 +15412,7 @@ public final class ao_1 {
    public final void O() {
       byte[] var1 = bz_1.j((short)4177, bt_1.ad, (int)(bt_1.bt ? 1 : 0));
       w var2 = new w((short)4177, var1);
-      a_MainCanvas.i.a(var2);
+      MainCanvas.i.a(var2);
       this.e.a((String)null);
    }
 
@@ -15454,7 +15454,7 @@ public final class ao_1 {
          ao_1 var6 = this;
          if (this.cV == 0 && bt_1.t != null) {
             if (t_1.l == 2) {
-               a_MainCanvas.ah.c();
+               MainCanvas.ah.c();
             }
 
             this.bj.removeAllElements();
@@ -15469,18 +15469,18 @@ public final class ao_1 {
                var4[var5] = bt_1.t[var5].A;
             }
 
-            a_MainCanvas.ah.a(var6.bj, var8, var9, var4);
+            MainCanvas.ah.a(var6.bj, var8, var9, var4);
             var6.bj.removeAllElements();
 
             for(int var10 = 0; var10 < bt_1.t.length; ++var10) {
-               bt_1.t[var10].w = a_MainCanvas.ah.a(bt_1.t[var10].v, bt_1.t[var10].y, bt_1.t[var10].z, bt_1.t[var10].A);
+               bt_1.t[var10].w = MainCanvas.ah.a(bt_1.t[var10].v, bt_1.t[var10].y, bt_1.t[var10].z, bt_1.t[var10].A);
             }
 
             var6.cV = 1;
          }
 
          if (this.f != null && this.f.i != null && i() && this.k != 1) {
-            a_MainCanvas.f.a(this.f, h, i, true, false, 1009050);
+            MainCanvas.f.a(this.f, h, i, true, false, 1009050);
          }
       }
 
@@ -15594,7 +15594,7 @@ public final class ao_1 {
          byte[] var3;
          if ((var3 = bz_1.a((short)4112, bt_1.ad, var2, (short)var1)) != null) {
             w var4 = new w((short)4112, var3);
-            a_MainCanvas.i.a(var4);
+            MainCanvas.i.a(var4);
             this.l = 0;
          } else {
             this.e.b("获取上传指令数据错误!");
@@ -15623,34 +15623,34 @@ public final class ao_1 {
    public final void S() {
       byte[] var1 = bz_1.t((short)4192, bt_1.ad, bq.g);
       w var2 = new w((short)4192, var1);
-      a_MainCanvas.i.a(var2);
+      MainCanvas.i.a(var2);
    }
 
    private void aT() {
       this.aU();
       this.T();
-      if (a_MainCanvas.ad == null) {
-         (a_MainCanvas.ad = new bu_1("/", "skill")).d();
+      if (MainCanvas.ad == null) {
+         (MainCanvas.ad = new Page("/", "skill")).loadRpg();
       }
 
       if (ab == null) {
-         ab = a_MainCanvas.ad.b("27");
+         ab = MainCanvas.ad.b("27");
       }
 
       if (aa == null) {
-         aa = a_MainCanvas.ad.b("quit");
+         aa = MainCanvas.ad.b("quit");
       }
 
       if (ac == null) {
-         ac = a_MainCanvas.ad.b("dead");
+         ac = MainCanvas.ad.b("dead");
       }
 
       if (ad == null) {
-         ad = a_MainCanvas.ad.b("dead2");
+         ad = MainCanvas.ad.b("dead2");
       }
 
       if (ae == null) {
-         ae = a_MainCanvas.ad.b("defence");
+         ae = MainCanvas.ad.b("defence");
       }
 
       c(bt_1.cb);
@@ -15663,7 +15663,7 @@ public final class ao_1 {
       this.a(bt_1.et);
       this.a(bt_1.cX);
       if (Z == null) {
-         Z = a_MainCanvas.ag.a("fightmenu");
+         Z = MainCanvas.publicUI.getFrame("fightmenu");
       }
 
       if (bt_1.N != null) {
@@ -15702,9 +15702,9 @@ public final class ao_1 {
          }
       }
 
-      a_MainCanvas.ab.a(this.cN);
-      a_MainCanvas.ah.a(this.cO, this.cP[0], this.cP[1], this.cP[2]);
-      a_MainCanvas.ah.a(this.cQ, this.cR[0], this.cR[1], this.cR[2]);
+      MainCanvas.ab.a(this.cN);
+      MainCanvas.ah.a(this.cO, this.cP[0], this.cP[1], this.cP[2]);
+      MainCanvas.ah.a(this.cQ, this.cR[0], this.cR[1], this.cR[2]);
    }
 
    private void a(short var1, byte var2, byte var3) {
@@ -15783,29 +15783,29 @@ public final class ao_1 {
 
    public static void a(byte var0, byte var1, byte var2, String var3, short var4, short var5, short var6) {
       bk.removeAllElements();
-      bk.addElement(a_MainCanvas.a(var0, var1, (byte)1, var2, false, var3));
-      bk.addElement(a_MainCanvas.a(var0, var1, (byte)3, var2, false, var3));
-      bk.addElement(a_MainCanvas.a(var0, var1, (byte)3, var2, true, var3));
-      bk.addElement(a_MainCanvas.a(var0, var1, (byte)0, var2, false, var3));
-      bk.addElement(a_MainCanvas.a(var0, var1, (byte)0, var2, true, var3));
-      bk.addElement(a_MainCanvas.a(var0, var1, (byte)2, var2, false, var3));
-      bk.addElement(a_MainCanvas.a(var0, var1, (byte)2, var2, true, var3));
+      bk.addElement(MainCanvas.a(var0, var1, (byte)1, var2, false, var3));
+      bk.addElement(MainCanvas.a(var0, var1, (byte)3, var2, false, var3));
+      bk.addElement(MainCanvas.a(var0, var1, (byte)3, var2, true, var3));
+      bk.addElement(MainCanvas.a(var0, var1, (byte)0, var2, false, var3));
+      bk.addElement(MainCanvas.a(var0, var1, (byte)0, var2, true, var3));
+      bk.addElement(MainCanvas.a(var0, var1, (byte)2, var2, false, var3));
+      bk.addElement(MainCanvas.a(var0, var1, (byte)2, var2, true, var3));
 
       for(int var7 = 0; var7 < bk.size(); ++var7) {
-         a_MainCanvas.ab.b((String)bk.elementAt(var7), var4, var5, var6);
+         MainCanvas.ab.b((String)bk.elementAt(var7), var4, var5, var6);
       }
 
       bk.removeAllElements();
    }
 
    private void aU() {
-      cf var1 = null;
+      Frame var1 = null;
 
-      for(int var2 = 0; var2 < a_MainCanvas.ab.a().size(); ++var2) {
-         if ((var1 = (cf) a_MainCanvas.ab.a().elementAt(var2)).p != null && var1.o == 2 && !a(var1.p.a, bt_1.ax, bt_1.aj, bt_1.ay)) {
+      for(int var2 = 0; var2 < MainCanvas.ab.a().size(); ++var2) {
+         if ((var1 = (Frame) MainCanvas.ab.a().elementAt(var2)).info != null && var1.type == 2 && !a(var1.info.key, bt_1.ax, bt_1.aj, bt_1.ay)) {
             boolean var10000;
             label63: {
-               int var4 = var1.p.a;
+               int var4 = var1.info.key;
                if (bt_1.o != null) {
                   for(int var3 = 0; var3 < bt_1.o.length; ++var3) {
                      if (bt_1.o[var3] != null && a(var4, bt_1.o[var3].c, bt_1.o[var3].n, bt_1.o[var3].o)) {
@@ -15820,7 +15820,7 @@ public final class ao_1 {
 
             if (!var10000) {
                label50: {
-                  int var7 = var1.p.a;
+                  int var7 = var1.info.key;
                   if (bt_1.q != null) {
                      for(int var6 = 0; var6 < bt_1.q.length; ++var6) {
                         if (bt_1.q[var6] != null && a(var7, bt_1.q[var6].q, bt_1.q[var6].p, bt_1.q[var6].r)) {
@@ -15835,7 +15835,7 @@ public final class ao_1 {
 
                if (!var10000) {
                   var1.a();
-                  a_MainCanvas.ab.a().removeElementAt(0);
+                  MainCanvas.ab.a().removeElementAt(0);
                   return;
                }
             }
@@ -15845,31 +15845,31 @@ public final class ao_1 {
    }
 
    private static boolean a(int var0, byte var1, byte var2, byte var3) {
-      int var4 = bu_1.a((String) a_MainCanvas.a(var1, var2, (byte)1, var3, false), (byte)2);
+      int var4 = Page.a((String) MainCanvas.a(var1, var2, (byte)1, var3, false), (byte)2);
       if (var0 == var4) {
          return true;
       } else {
-         var4 = bu_1.a((String) a_MainCanvas.a(var1, var2, (byte)3, var3, false), (byte)2);
+         var4 = Page.a((String) MainCanvas.a(var1, var2, (byte)3, var3, false), (byte)2);
          if (var0 == var4) {
             return true;
          } else {
-            var4 = bu_1.a((String) a_MainCanvas.a(var1, var2, (byte)3, var3, true), (byte)2);
+            var4 = Page.a((String) MainCanvas.a(var1, var2, (byte)3, var3, true), (byte)2);
             if (var0 == var4) {
                return true;
             } else {
-               var4 = bu_1.a((String) a_MainCanvas.a(var1, var2, (byte)0, var3, false), (byte)2);
+               var4 = Page.a((String) MainCanvas.a(var1, var2, (byte)0, var3, false), (byte)2);
                if (var0 == var4) {
                   return true;
                } else {
-                  var4 = bu_1.a((String) a_MainCanvas.a(var1, var2, (byte)0, var3, true), (byte)2);
+                  var4 = Page.a((String) MainCanvas.a(var1, var2, (byte)0, var3, true), (byte)2);
                   if (var0 == var4) {
                      return true;
                   } else {
-                     var4 = bu_1.a((String) a_MainCanvas.a(var1, var2, (byte)2, var3, false), (byte)2);
+                     var4 = Page.a((String) MainCanvas.a(var1, var2, (byte)2, var3, false), (byte)2);
                      if (var0 == var4) {
                         return true;
                      } else {
-                        var4 = bu_1.a((String) a_MainCanvas.a(var1, var2, (byte)2, var3, true), (byte)2);
+                        var4 = Page.a((String) MainCanvas.a(var1, var2, (byte)2, var3, true), (byte)2);
                         return var0 == var4;
                      }
                   }
@@ -15916,7 +15916,7 @@ public final class ao_1 {
                this.bj.addElement(String.valueOf(var1[var5]));
             }
 
-            a_MainCanvas.af.b(this.bj, (short[])null, (short[])null, (short[])null);
+            MainCanvas.af.b(this.bj, (short[])null, (short[])null, (short[])null);
             this.cW = var1;
             this.bj.removeAllElements();
          }
@@ -15935,16 +15935,16 @@ public final class ao_1 {
             }
          }
 
-         a_MainCanvas.af.b(this.bj, (short[])null, (short[])null, (short[])null);
+         MainCanvas.af.b(this.bj, (short[])null, (short[])null, (short[])null);
          this.bj.removeAllElements();
          bt_1.bD = false;
       }
    }
 
-   public static bf_1 b(short var0) {
-      bf_1 var1;
-      if ((var1 = a_MainCanvas.af.a(String.valueOf(var0))) == null) {
-         var1 = a_MainCanvas.af.a(String.valueOf(-1000));
+   public static Frame0 b(short var0) {
+      Frame0 var1;
+      if ((var1 = MainCanvas.af.getFrame(String.valueOf(var0))) == null) {
+         var1 = MainCanvas.af.getFrame(String.valueOf(-1000));
       }
 
       return var1;
@@ -15957,7 +15957,7 @@ public final class ao_1 {
             var1 = new Image[var0.length];
 
             for(int var2 = 0; var2 < var0.length; ++var2) {
-               bf_1 var3;
+               Frame0 var3;
                if ((var3 = b(var0[var2])) != null) {
                   var1[var2] = var3.a;
                } else {
@@ -16002,18 +16002,18 @@ public final class ao_1 {
    }
 
    public static void c(short[] var0) {
-      if (a_MainCanvas.af.b() > 70 && var0 != null) {
+      if (MainCanvas.af.framesNum() > 70 && var0 != null) {
          Object var1 = null;
          int var3 = 0;
 
          for(int var2 = 0; var2 < var0.length; ++var2) {
             if (var0[var2] != -1) {
-               var3 = bu_1.a(String.valueOf(var0[var2]).toCharArray());
-               if (a_MainCanvas.af.b(var3)) {
-                  a_MainCanvas.af.a(var3);
+               var3 = Page.hashKey(String.valueOf(var0[var2]).toCharArray());
+               if (MainCanvas.af.b(var3)) {
+                  MainCanvas.af.a(var3);
                }
 
-               if (a_MainCanvas.af.b() <= 70) {
+               if (MainCanvas.af.framesNum() <= 70) {
                   break;
                }
             }
@@ -16023,7 +16023,7 @@ public final class ao_1 {
    }
 
    private static void aW() {
-      if (a_MainCanvas.af.b() > 70 && bt_1.bC.size() > 0) {
+      if (MainCanvas.af.framesNum() > 70 && bt_1.bC.size() > 0) {
          Object var0 = null;
          var0 = null;
          boolean var3 = false;
@@ -16031,12 +16031,12 @@ public final class ao_1 {
          for(int var1 = 0; var1 < bt_1.bC.size(); ++var1) {
             bn var4;
             if ((var4 = (bn)bt_1.bC.elementAt(var1)) != null && var4.i != -1) {
-               int var5 = bu_1.a(String.valueOf(var4.i).toCharArray());
-               if (a_MainCanvas.af.b(var5)) {
-                  a_MainCanvas.af.a(var5);
+               int var5 = Page.hashKey(String.valueOf(var4.i).toCharArray());
+               if (MainCanvas.af.b(var5)) {
+                  MainCanvas.af.a(var5);
                }
 
-               if (a_MainCanvas.af.b() <= 70) {
+               if (MainCanvas.af.framesNum() <= 70) {
                   break;
                }
             }
@@ -16519,7 +16519,7 @@ public final class ao_1 {
       if ((var4 = bz_1.a(var1, bt_1.ad, (short)bt_1.hL[var2], (int)bt_1.t[var3].a)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         a_MainCanvas.i.a(new w(var1, var4));
+         MainCanvas.i.a(new w(var1, var4));
          this.e.a((String)null);
       }
    }
@@ -16527,7 +16527,7 @@ public final class ao_1 {
    private void b(short var1, byte var2) {
       byte[] var3;
       if ((var3 = bz_1.d(var1, bt_1.ad, bt_1.t[var2].a)) != null) {
-         a_MainCanvas.i.a(new w(var1, var3));
+         MainCanvas.i.a(new w(var1, var3));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -16537,7 +16537,7 @@ public final class ao_1 {
    private void c(short var1, byte var2, byte var3) {
       byte[] var4;
       if ((var4 = bz_1.a((short)4361, bt_1.ad, (short)bt_1.t[var2].a, (byte)var3)) != null) {
-         a_MainCanvas.i.a(new w((short)4361, var4));
+         MainCanvas.i.a(new w((short)4361, var4));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -16547,7 +16547,7 @@ public final class ao_1 {
    private void c(short var1, byte var2) {
       byte[] var3;
       if ((var3 = bz_1.e((short)4664, bt_1.ad, (short)bt_1.t[var2].a)) != null) {
-         a_MainCanvas.i.a(new w((short)4664, var3));
+         MainCanvas.i.a(new w((short)4664, var3));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -16557,7 +16557,7 @@ public final class ao_1 {
    private void d(short var1, byte var2) {
       byte[] var3;
       if ((var3 = bz_1.f((short)4666, bt_1.ad, (short)bt_1.t[var2].a)) != null) {
-         a_MainCanvas.i.a(new w((short)4666, var3));
+         MainCanvas.i.a(new w((short)4666, var3));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -16567,7 +16567,7 @@ public final class ao_1 {
    private void a(short var1, String var2, byte var3, String var4, int var5) {
       byte[] var6;
       if ((var6 = bz_1.a((short)4665, bt_1.ad, var2, var3, var4, var5)) != null) {
-         a_MainCanvas.i.a(new w((short)4665, var6));
+         MainCanvas.i.a(new w((short)4665, var6));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -16579,7 +16579,7 @@ public final class ao_1 {
       if ((var2 = bz_1.i((short)4355, bt_1.ad, (byte)var1)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         a_MainCanvas.i.a(new w((short)4354, var2));
+         MainCanvas.i.a(new w((short)4354, var2));
          this.e.a((String)null);
       }
    }
@@ -16589,7 +16589,7 @@ public final class ao_1 {
       if ((var5 = bz_1.a((short)4256, bt_1.ad, var1, var2, var3, var4)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         a_MainCanvas.i.a(new w((short)4256, var5));
+         MainCanvas.i.a(new w((short)4256, var5));
          this.e.a((String)null);
       }
    }
@@ -16599,7 +16599,7 @@ public final class ao_1 {
       if ((var4 = bz_1.a((short)4356, bt_1.ad, (byte)1, var2, var3, this.I.j, this.I.k)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         a_MainCanvas.i.a(new w((short)4356, var4));
+         MainCanvas.i.a(new w((short)4356, var4));
          this.e.a((String)null);
       }
    }
@@ -16609,7 +16609,7 @@ public final class ao_1 {
       if ((var2 = bz_1.j((short)4357, bt_1.ad, (byte)var1)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         a_MainCanvas.i.a(new w((short)4357, var2));
+         MainCanvas.i.a(new w((short)4357, var2));
          this.e.a((String)null);
       }
    }
@@ -16619,7 +16619,7 @@ public final class ao_1 {
       if ((var3 = bz_1.a((short)4360, bt_1.ad, (byte)var1, (bv)var2)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         a_MainCanvas.i.a(new w((short)4360, var3));
+         MainCanvas.i.a(new w((short)4360, var3));
       }
    }
 
@@ -16628,7 +16628,7 @@ public final class ao_1 {
       if ((var2 = bz_1.a((short)4671, bt_1.ad, var1, (int)bt_1.O.d)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         a_MainCanvas.i.a(new w((short)4671, var2));
+         MainCanvas.i.a(new w((short)4671, var2));
          this.e.a((String)null);
       }
    }
@@ -16638,7 +16638,7 @@ public final class ao_1 {
       if ((var2 = bz_1.w((short)4668, bt_1.ad, var1)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         a_MainCanvas.i.a(new w((short)4668, var2));
+         MainCanvas.i.a(new w((short)4668, var2));
          this.e.a((String)null);
       }
    }
@@ -16648,7 +16648,7 @@ public final class ao_1 {
       if ((var4 = bz_1.a((short)4670, bt_1.ad, var1, var2, var3)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         a_MainCanvas.i.a(new w((short)4670, var4));
+         MainCanvas.i.a(new w((short)4670, var4));
          this.e.a((String)null);
       }
    }
@@ -16658,7 +16658,7 @@ public final class ao_1 {
       if ((var5 = bz_1.a((short)4669, bt_1.ad, var1, var2, var4, var3)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         a_MainCanvas.i.a(new w((short)4669, var5));
+         MainCanvas.i.a(new w((short)4669, var5));
          this.e.a((String)null);
       }
    }
@@ -16689,20 +16689,20 @@ public final class ao_1 {
       this.cX = var5;
       this.ba = new bv(var2, this.I.j, this.I.k, var3, var4);
       if (this.cX == 5) {
-         a_MainCanvas.ah.a((String[])(new String[]{String.valueOf(var3)}), (short[])null, (short[])null, (short[])null);
+         MainCanvas.ah.a((String[])(new String[]{String.valueOf(var3)}), (short[])null, (short[])null, (short[])null);
          bv var10000 = this.ba;
-         bc_1 var6 = a_MainCanvas.ah.a((int)bu_1.a(bu_1.b(String.valueOf(var3), (byte)2).toCharArray()), (short)0, (short)0, (short)0);
+         Frame1 var6 = MainCanvas.ah.a((int) Page.hashKey(Page.wrapName(String.valueOf(var3), (byte)2).toCharArray()), (short)0, (short)0, (short)0);
          var10000.d = var6;
       } else {
-         a_MainCanvas.ae.d(String.valueOf(this.ba.g));
+         MainCanvas.ae.d(String.valueOf(this.ba.g));
          bv var8 = this.ba;
-         bc_1 var7 = a_MainCanvas.ae.b(String.valueOf(this.ba.g));
+         Frame1 var7 = MainCanvas.ae.b(String.valueOf(this.ba.g));
          var8.d = var7;
       }
 
       this.l = 0;
       this.e.j = this.e.k;
-      a_MainCanvas.f.a(this.f, h, i, false, false, 1009050);
+      MainCanvas.f.a(this.f, h, i, false, false, 1009050);
       this.j = this.k = 39;
       this.e.p = false;
    }
@@ -16716,13 +16716,13 @@ public final class ao_1 {
             this.bj.addElement(String.valueOf(this.ba.g));
          }
 
-         a_MainCanvas.ae.a((Vector)this.bj, (short[])null, (short[])null, (short[])null);
+         MainCanvas.ae.a((Vector)this.bj, (short[])null, (short[])null, (short[])null);
          this.bj.removeAllElements();
 
          for(int var4 = 0; var4 < bt_1.ij.size(); ++var4) {
             this.ba = (bv)bt_1.ij.elementAt(var4);
             bv var10000 = this.ba;
-            bc_1 var3 = a_MainCanvas.ae.c(this.ba.h);
+            Frame1 var3 = MainCanvas.ae.c(this.ba.h);
             var10000.d = var3;
          }
       }
@@ -16801,7 +16801,7 @@ public final class ao_1 {
             if ((var2 = bz_1.a((short)4234, bt_1.ad, (int)bt_1.jr[var8.b.ar.g()], (short)var8.a.ba.e, (short)var8.a.ba.f)) == null) {
                var8.b.b("获取上传指令数据错误!");
             } else {
-               a_MainCanvas.i.a(new w((short)4234, var2));
+               MainCanvas.i.a(new w((short)4234, var2));
             }
          } else {
             if (this.cX != 5) {
@@ -16819,7 +16819,7 @@ public final class ao_1 {
             if ((var6 = bz_1.b((short)4667, bt_1.ad, var10, var4, (int)var5)) == null) {
                this.e.b("获取上传指令数据错误!");
             } else {
-               a_MainCanvas.i.a(new w((short)4667, var6));
+               MainCanvas.i.a(new w((short)4667, var6));
             }
          }
 
@@ -16987,7 +16987,7 @@ public final class ao_1 {
          if (bt_1.ab != null) {
             for(int var8 = 0; var8 < bt_1.ab.length; ++var8) {
                if (bn != null) {
-                  bc_1 var13;
+                  Frame1 var13;
                   this.cI[0] = bt_1.ab[var8] + 8 - ((var13 = bn).k != null ? (short)var13.i : 0) / 2;
                   this.cI[1] = bt_1.ac[var8] + 16 - ((var13 = bn).k != null ? (short)var13.j : 0);
                   this.cI[2] = 16;
@@ -17055,7 +17055,7 @@ public final class ao_1 {
                      if ((var5 = bz_1.l((short)4238, bt_1.ad, var2, L.j[var3])) == null) {
                         var4.b.b("获取上传指令数据错误!");
                      } else {
-                        a_MainCanvas.i.a(new w((short)4238, var5));
+                        MainCanvas.i.a(new w((short)4238, var5));
                         var4.b.a((String)null);
                      }
                   } else {
@@ -17106,7 +17106,7 @@ public final class ao_1 {
       if ((var4 = bz_1.a((short)4363, bt_1.ad, (byte)var1, (int)var2, (byte)var3)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         a_MainCanvas.i.a(new w((short)4363, var4));
+         MainCanvas.i.a(new w((short)4363, var4));
          this.e.a((String)null);
       }
    }
@@ -17117,7 +17117,7 @@ public final class ao_1 {
          if ((var4 = bz_1.a((short)4364, bt_1.ad, (byte)var1, (int)var2, (int)L.j[var3])) == null) {
             this.e.b("获取上传指令数据错误!");
          } else {
-            a_MainCanvas.i.a(new w((short)4364, var4));
+            MainCanvas.i.a(new w((short)4364, var4));
             this.e.a((String)null);
          }
       } else {
@@ -17128,7 +17128,7 @@ public final class ao_1 {
    private void aX() {
       byte[] var1;
       if ((var1 = bz_1.t((short)4248, bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w((short)4248, var1));
+         MainCanvas.i.a(new w((short)4248, var1));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -17223,7 +17223,7 @@ public final class ao_1 {
                return;
             }
 
-            a_MainCanvas.i.a(new w((short)4249, var4));
+            MainCanvas.i.a(new w((short)4249, var4));
             this.e.a((String)null);
          }
       }
@@ -17234,7 +17234,7 @@ public final class ao_1 {
       if (this.e.ar.g() == 2 && (var1 == 1073741824 || var1 == 517)) {
          byte[] var2;
          if ((var2 = bz_1.a((short)4194, bt_1.ad, (byte)bt_1.z)) != null) {
-            a_MainCanvas.i.a(new w((short)4194, var2));
+            MainCanvas.i.a(new w((short)4194, var2));
             return;
          }
 
@@ -17315,7 +17315,7 @@ public final class ao_1 {
       byte[] var3;
       if ((var3 = bz_1.a((short)4631, bt_1.ad, (byte)var1, (short)var2)) != null) {
          w var4 = new w((short)4631, var3);
-         a_MainCanvas.i.a(var4);
+         MainCanvas.i.a(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -17326,7 +17326,7 @@ public final class ao_1 {
       byte[] var3;
       if ((var3 = bz_1.b((short)4632, bt_1.ad, (byte)var1, (short)var2)) != null) {
          w var4 = new w((short)4632, var3);
-         a_MainCanvas.i.a(var4);
+         MainCanvas.i.a(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -17337,7 +17337,7 @@ public final class ao_1 {
       byte[] var3;
       if ((var3 = bz_1.c((short)4150, bt_1.ad, (byte)var1, (short)var2)) != null) {
          w var4 = new w((short)4150, var3);
-         a_MainCanvas.i.a(var4);
+         MainCanvas.i.a(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -17348,7 +17348,7 @@ public final class ao_1 {
       byte[] var3;
       if ((var3 = bz_1.e((short)4633, bt_1.ad, var2, (byte)var1)) != null) {
          w var4 = new w((short)4633, var3);
-         a_MainCanvas.i.a(var4);
+         MainCanvas.i.a(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -17359,7 +17359,7 @@ public final class ao_1 {
       byte[] var5;
       if ((var5 = bz_1.a((short)4640, bt_1.ad, var2, (byte)var1, var3)) != null) {
          w var6 = new w((short)4640, var5);
-         a_MainCanvas.i.a(var6);
+         MainCanvas.i.a(var6);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -17708,7 +17708,7 @@ public final class ao_1 {
             return;
          }
 
-         a_MainCanvas.i.a(new w((short)4649, var2));
+         MainCanvas.i.a(new w((short)4649, var2));
          this.e.a((String)null);
       }
 
@@ -17794,7 +17794,7 @@ public final class ao_1 {
             }
 
             w var3 = new w((short)4650, var2);
-            a_MainCanvas.i.a(var3);
+            MainCanvas.i.a(var3);
             this.e.a((String)null);
          }
       }
@@ -17812,8 +17812,8 @@ public final class ao_1 {
 
       K = new bw_1(this.da, (short)(t_1.b - 20));
       this.am = bt_1.kR;
-      ca_1.a(a_MainCanvas.F, K, this.am, (String[])null, true);
-      a_MainCanvas.f.a(this.f, h, i, true, false, 1009050);
+      ca_1.a(MainCanvas.F, K, this.am, (String[])null, true);
+      MainCanvas.f.a(this.f, h, i, true, false, 1009050);
       this.e.j = this.e.k;
       this.j = this.k = 70;
    }
@@ -17837,7 +17837,7 @@ public final class ao_1 {
                if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                   byte[] var2;
                   if ((var2 = bz_1.a((short)4652, bt_1.ad, (int)bt_1.kO, (byte)bt_1.kP, (byte)((byte)ca_1.g))) != null) {
-                     a_MainCanvas.i.a(new w((short)4652, var2));
+                     MainCanvas.i.a(new w((short)4652, var2));
                      this.e.a((String)null);
                   } else {
                      this.e.b("获取上传指令数据错误!");
@@ -18050,7 +18050,7 @@ public final class ao_1 {
    private void aF(int var1) {
       byte[] var2;
       if ((var2 = bz_1.c((short)4106, bt_1.ad, (int)-1)) != null) {
-         a_MainCanvas.i.a(new w((short)4106, var2));
+         MainCanvas.i.a(new w((short)4106, var2));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -18061,7 +18061,7 @@ public final class ao_1 {
       byte[] var1;
       if ((var1 = bz_1.C((short)4680, bt_1.ad)) != null) {
          w var2 = new w((short)4680, var1);
-         a_MainCanvas.i.a(var2);
+         MainCanvas.i.a(var2);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -18194,7 +18194,7 @@ public final class ao_1 {
             if ((var6 = bz_1.r((short)4678, bt_1.ad, var3)) == null) {
                this.e.b("获取上传指令数据错误!");
             } else {
-               a_MainCanvas.i.a(new w((short)4678, var6));
+               MainCanvas.i.a(new w((short)4678, var6));
                this.e.a((String)null);
             }
          }
@@ -18292,7 +18292,7 @@ public final class ao_1 {
                            return;
                         }
 
-                        a_MainCanvas.i.a(new w((short)4668, var5));
+                        MainCanvas.i.a(new w((short)4668, var5));
                         this.e.a((String)null);
                      }
                   }
@@ -18313,7 +18313,7 @@ public final class ao_1 {
                         return;
                      }
 
-                     a_MainCanvas.i.a(new w((short)4673, var7));
+                     MainCanvas.i.a(new w((short)4673, var7));
                   } else if (f_1.b[1].equals(var3)) {
                      if (bt_1.S != null) {
                         this.e.b(bt_1.S);
@@ -18545,7 +18545,7 @@ public final class ao_1 {
       byte[] var1;
       if ((var1 = bz_1.y((short)4659, bt_1.ad)) != null) {
          w var2 = new w((short)4659, var1);
-         a_MainCanvas.i.a(var2);
+         MainCanvas.i.a(var2);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -18555,7 +18555,7 @@ public final class ao_1 {
    private void bb() {
       byte[] var1;
       if ((var1 = bz_1.b((short)4267)) != null) {
-         a_MainCanvas.i.a(new w((short)4267, var1));
+         MainCanvas.i.a(new w((short)4267, var1));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -18572,7 +18572,7 @@ public final class ao_1 {
          byte[] var5;
          if ((var5 = bz_1.a((short)4259, var1, var2, var3, var4, bt_1.ad)) != null) {
             w var6 = new w((short)4659, var5);
-            a_MainCanvas.i.a(var6);
+            MainCanvas.i.a(var6);
             this.e.a((String)null);
          } else {
             this.e.b("获取上传指令数据错误!");
@@ -18583,7 +18583,7 @@ public final class ao_1 {
    private void bc() {
       byte[] var1;
       if ((var1 = bz_1.h((short)4120, bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w((short)4120, var1));
+         MainCanvas.i.a(new w((short)4120, var1));
          this.e.b("解散队伍请求已发送!");
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -18593,7 +18593,7 @@ public final class ao_1 {
    private void bd() {
       byte[] var1;
       if ((var1 = bz_1.i((short)4121, bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w((short)4121, var1));
+         MainCanvas.i.a(new w((short)4121, var1));
          this.e.b("脱离队伍请求已发送!");
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -19040,7 +19040,7 @@ public final class ao_1 {
       byte[] var5 = bz_1.a((short)5121, var1, var2, (byte)1, var4, var3);
       bt_1.lo = var1;
       if (var5 != null) {
-         a_MainCanvas.i.a(new w((short)5121, var5));
+         MainCanvas.i.a(new w((short)5121, var5));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -19050,7 +19050,7 @@ public final class ao_1 {
    private void a(String var1, short var2, short var3) {
       byte[] var4;
       if ((var4 = bz_1.a((short)5122, var1, bt_1.la[this.e.ar.g()], var3, var2)) != null) {
-         a_MainCanvas.i.a(new w((short)5122, var4));
+         MainCanvas.i.a(new w((short)5122, var4));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -19060,7 +19060,7 @@ public final class ao_1 {
    private void x(byte var1) {
       byte[] var2;
       if ((var2 = bz_1.b((short)4881, var1, bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w((short)4881, var2));
+         MainCanvas.i.a(new w((short)4881, var2));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -19158,7 +19158,7 @@ public final class ao_1 {
    private void a(byte var1, String var2, byte var3) {
       byte[] var4;
       if ((var4 = bz_1.a((short)4882, var1, var2, var3, bt_1.ad)) != null) {
-         a_MainCanvas.i.a(new w((short)4882, var4));
+         MainCanvas.i.a(new w((short)4882, var4));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -19395,8 +19395,8 @@ public final class ao_1 {
    }
 
    public final void ah() {
-      a_MainCanvas.ah.d("3762");
-      bp = a_MainCanvas.ah.b("3762");
+      MainCanvas.ah.d("3762");
+      bp = MainCanvas.ah.b("3762");
       this.e.aq.j();
       this.e.aq.a("超Q精灵");
       this.e.aq.a(true);
@@ -19433,7 +19433,7 @@ public final class ao_1 {
             case 1:
                byte[] var2;
                if ((var2 = bz_1.x((short)4658, bt_1.ad)) != null) {
-                  a_MainCanvas.i.a(new w((short)4658, var2));
+                  MainCanvas.i.a(new w((short)4658, var2));
                   this.e.a((String)null);
                   break;
                } else {
@@ -19557,7 +19557,7 @@ public final class ao_1 {
       if ((var2 = bz_1.s((short)4675, bt_1.ad, var1)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         a_MainCanvas.i.a(new w((short)4675, var2));
+         MainCanvas.i.a(new w((short)4675, var2));
          this.e.a((String)null);
       }
    }
@@ -19567,7 +19567,7 @@ public final class ao_1 {
       if ((var3 = bz_1.c((short)4674, bt_1.ad, var2, var1)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         a_MainCanvas.i.a(new w((short)4674, var3));
+         MainCanvas.i.a(new w((short)4674, var3));
          this.e.a((String)null);
       }
    }
@@ -19594,7 +19594,7 @@ public final class ao_1 {
       } else {
          byte[] var2;
          if ((var2 = bz_1.D((short)4369, bt_1.ad)) != null) {
-            a_MainCanvas.i.a(new w((short)4369, var2));
+            MainCanvas.i.a(new w((short)4369, var2));
          }
 
          this.k = this.j;
@@ -19643,7 +19643,7 @@ public final class ao_1 {
                if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                   byte[] var2;
                   if ((var2 = bz_1.c((short)4370, (byte)ca_1.g, bt_1.ad)) != null) {
-                     a_MainCanvas.i.a(new w((short)4370, var2));
+                     MainCanvas.i.a(new w((short)4370, var2));
                      this.e.a((String)null);
                   } else {
                      this.e.b("获取上传指令数据错误!");
@@ -19699,7 +19699,7 @@ public final class ao_1 {
          bt_1.N();
          this.bf = 0;
          this.be = 0;
-         this.bc = new ba(this.e, this, a_MainCanvas.f);
+         this.bc = new ba(this.e, this, MainCanvas.f);
       }
 
       this.bc.a();
@@ -19721,7 +19721,7 @@ public final class ao_1 {
 
       if (bt_1.mx != -1 && bt_1.my != -1) {
          a(bt_1.my, bt_1.mz, bt_1.mA, bt_1.mB);
-         this.aI = a_MainCanvas.ah.a(String.valueOf(bt_1.my + "_0"), bt_1.mz, bt_1.mA, bt_1.mB);
+         this.aI = MainCanvas.ah.a(String.valueOf(bt_1.my + "_0"), bt_1.mz, bt_1.mA, bt_1.mB);
       } else if (this.aI != null) {
          this.aI.a();
          this.aI = null;
@@ -19729,7 +19729,7 @@ public final class ao_1 {
 
       if (bt_1.mD != -1 && bt_1.mE != -1) {
          a(bt_1.mE, bt_1.mF, bt_1.mG, bt_1.mH);
-         this.bd = a_MainCanvas.ah.a(String.valueOf(bt_1.mE + "_0"), bt_1.mF, bt_1.mG, bt_1.mH);
+         this.bd = MainCanvas.ah.a(String.valueOf(bt_1.mE + "_0"), bt_1.mF, bt_1.mG, bt_1.mH);
       } else if (this.bd != null) {
          this.bd.a();
          this.bd = null;
@@ -19745,7 +19745,7 @@ public final class ao_1 {
       }
 
       if (this.bj.size() > 0) {
-         a_MainCanvas.af.b(this.bj, (short[])null, (short[])null, (short[])null);
+         MainCanvas.af.b(this.bj, (short[])null, (short[])null, (short[])null);
       }
 
       this.ak();
@@ -19856,7 +19856,7 @@ public final class ao_1 {
                   byte[] var2;
                   if ((var2 = bz_1.a((byte)6, bt_1.mx, bt_1.mD, bt_1.mJ, -1, (byte)this.bf)) != null) {
                      w var3 = new w((short)4681, var2);
-                     a_MainCanvas.i.a(var3);
+                     MainCanvas.i.a(var3);
                      this.e.a((String)null);
                   } else {
                      this.e.b("获取上传指令数据错误!");
@@ -19888,7 +19888,7 @@ public final class ao_1 {
 
       if (var5 != null) {
          w var4 = new w((short)4681, var5);
-         a_MainCanvas.i.a(var4);
+         MainCanvas.i.a(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -19912,7 +19912,7 @@ public final class ao_1 {
 
       if (var5 != null) {
          w var4 = new w((short)4681, var5);
-         a_MainCanvas.i.a(var4);
+         MainCanvas.i.a(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -20102,7 +20102,7 @@ public final class ao_1 {
       byte[] var6;
       if ((var6 = bz_1.a(var1, var2, var3, var4, var5)) != null) {
          w var7 = new w((short)4684, var6);
-         a_MainCanvas.i.a(var7);
+         MainCanvas.i.a(var7);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -20124,23 +20124,23 @@ public final class ao_1 {
          }
       }
 
-      if (t_1.p) {
+      if (t_1.hasRideRes) {
          this.be();
          t_1.i.stringWidth(t_1.G[0]);
          if (bt_1.nv != null) {
-            this.dk = new bc_1[bt_1.nv.length];
+            this.dk = new Frame1[bt_1.nv.length];
 
             for(int var4 = 0; var4 < this.dk.length; ++var4) {
-               bc_1[] var10000 = this.dk;
+               Frame1[] var10000 = this.dk;
                String var10002 = bt_1.nv[var4];
                boolean var2 = false;
                var2 = false;
                var2 = false;
                String var7 = var10002;
                Object var3 = null;
-               int var8 = bu_1.a((String) a_MainCanvas.a(bt_1.ax, bt_1.aj, (byte)0, bt_1.ay, false, var7), (byte)2);
-               a_MainCanvas.ab.b((String) a_MainCanvas.a(bt_1.ax, bt_1.aj, (byte)0, bt_1.ay, false, var7), (short)0, (short)0, (short)0);
-               var10000[var4] = a_MainCanvas.ab.a((int)var8, (short)0, (short)0, (short)0);
+               int var8 = Page.a((String) MainCanvas.a(bt_1.ax, bt_1.aj, (byte)0, bt_1.ay, false, var7), (byte)2);
+               MainCanvas.ab.b((String) MainCanvas.a(bt_1.ax, bt_1.aj, (byte)0, bt_1.ay, false, var7), (short)0, (short)0, (short)0);
+               var10000[var4] = MainCanvas.ab.a((int)var8, (short)0, (short)0, (short)0);
             }
          }
       } else {
@@ -20247,14 +20247,14 @@ public final class ao_1 {
             var4 += 30;
          }
 
-         a_MainCanvas.f.a(var1, (bc_1)this.dk[this.dl], (int[])null, 0, 0, var3, var4, 20, 0);
+         MainCanvas.f.a(var1, (Frame1)this.dk[this.dl], (int[])null, 0, 0, var3, var4, 20, 0);
          if (this.dm == 0) {
             this.dm = var3;
             this.dn = var2 + t_1.j + 10;
          }
 
-         var1.drawImage(a_MainCanvas.X.a, this.dm - 30, this.dn, 20);
-         var1.drawImage(a_MainCanvas.Y.a, this.dm + 20, this.dn, 20);
+         var1.drawImage(MainCanvas.X.a, this.dm - 30, this.dn, 20);
+         var1.drawImage(MainCanvas.Y.a, this.dm + 20, this.dn, 20);
       }
 
    }
@@ -20290,7 +20290,7 @@ public final class ao_1 {
       byte[] var4;
       if ((var4 = bz_1.a(var1, var2, (short)0)) != null) {
          w var5 = new w((short)4685, var4);
-         a_MainCanvas.i.a(var5);
+         MainCanvas.i.a(var5);
          this.e.a("");
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -20336,7 +20336,7 @@ public final class ao_1 {
                byte[] var2;
                if ((var2 = bz_1.a((byte)1)) != null) {
                   w var3 = new w((short)4683, var2);
-                  a_MainCanvas.i.a(var3);
+                  MainCanvas.i.a(var3);
                   this.e.a((String)null);
                   return;
                }
@@ -20363,12 +20363,12 @@ public final class ao_1 {
       var1.drawString("可开出的珍贵物品", this.ds + 32, this.dt + 8, 0);
 
       for(int var2 = 0; var2 < 4; ++var2) {
-         a_MainCanvas.f.a(var1, x, (int[])null, (aj)null, 0, 0, this.ds + this.e.at.d / 2 - 76 + var2 * 40, this.dt + (this.e.at.e >> 1) - 24, 0, 0);
+         MainCanvas.f.a(var1, x, (int[])null, (aj)null, 0, 0, this.ds + this.e.at.d / 2 - 76 + var2 * 40, this.dt + (this.e.at.e >> 1) - 24, 0, 0);
          if (var2 < bt_1.ng.length) {
             if (!bt_1.ne[var2].equals("MONEY")) {
                short var3 = (short)Integer.parseInt(bt_1.ng[var2]);
-               a_MainCanvas.af.e(bt_1.ng[var2]);
-               a_MainCanvas.f.a(var1, b(var3), (int[])null, (aj)null, 0, 0, this.ds + this.e.at.d / 2 - 76 + var2 * 40, this.dt + (this.e.at.e >> 1) - 24, 0, 0);
+               MainCanvas.af.e(bt_1.ng[var2]);
+               MainCanvas.f.a(var1, b(var3), (int[])null, (aj)null, 0, 0, this.ds + this.e.at.d / 2 - 76 + var2 * 40, this.dt + (this.e.at.e >> 1) - 24, 0, 0);
             }
 
             if (var2 == this.aq) {
@@ -20383,9 +20383,9 @@ public final class ao_1 {
       var1.setColor(9360850);
       var1.drawRect(this.ds + -70 + (this.e.at.d >> 1) - 20, this.dt + (this.e.at.e >> 1) + (this.e.at.e >> 2) - 20, 39, 39);
       if (bt_1.nl != null) {
-         a_MainCanvas.af.e(bt_1.nl);
+         MainCanvas.af.e(bt_1.nl);
          short var5 = (short)Integer.parseInt(bt_1.nl);
-         a_MainCanvas.f.a(var1, b(var5), (int[])null, (aj)null, 0, 0, this.ds + -70 + (this.e.at.d >> 1) - 8, this.dt + (this.e.at.e >> 1) + (this.e.at.e >> 2) - 8, 0, 0);
+         MainCanvas.f.a(var1, b(var5), (int[])null, (aj)null, 0, 0, this.ds + -70 + (this.e.at.d >> 1) - 8, this.dt + (this.e.at.e >> 1) + (this.e.at.e >> 2) - 8, 0, 0);
       }
 
       this.dv.a(var1, this.ds + 40 + (this.e.at.d >> 1) - 40, this.dt + (this.e.at.e >> 1) + (this.e.at.e >> 2) - 20, 0);

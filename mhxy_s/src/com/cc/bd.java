@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -14,7 +14,7 @@ import javax.microedition.lcdui.TextField;
 
 public final class bd implements CommandListener {
    public ao_1 a;
-   public a_MainCanvas b;
+   public MainCanvas b;
    public byte c = 0;
    private String e;
    private String f;
@@ -30,7 +30,7 @@ public final class bd implements CommandListener {
    private Command o;
    private Command p;
 
-   public bd(ao_1 var1, a_MainCanvas var2, ai_1 var3) {
+   public bd(ao_1 var1, MainCanvas var2, ai_1 var3) {
       this.a = var1;
       this.b = var2;
    }
@@ -201,7 +201,7 @@ public final class bd implements CommandListener {
                this.a.R.c = 1;
             }
 
-            this.b.d.a();
+            this.b.d.start();
          }
       } else {
          if (var3.equals("返回")) {
@@ -209,7 +209,7 @@ public final class bd implements CommandListener {
                this.a.R.c = 2;
             }
 
-            this.b.d.a();
+            this.b.d.start();
             this.c();
          }
 

@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.util.Vector;
 
@@ -34,7 +34,7 @@ public final class ab_1 {
          int i2 = -1;
          for (int i3 = 0; i3 < this.c.aO.size(); i3++) {
             s sVar2 = (s) this.c.aO.elementAt(i3);
-            if (sVar2.a != this.a && sVar2 != null && ((sVar2 == null || sVar2.f != null) && a_MainCanvas.f.a(this.c.f, sVar2.h, sVar2.i) != 1)) {
+            if (sVar2.a != this.a && sVar2 != null && ((sVar2 == null || sVar2.f != null) && MainCanvas.f.a(this.c.f, sVar2.h, sVar2.i) != 1)) {
                int i4 = (sVar2.h - this.c.I.j) * (sVar2.h - this.c.I.j);
                int i5 = (sVar2.i - this.c.I.k) * (sVar2.i - this.c.I.k);
                if (i3 == 0) {
@@ -56,7 +56,7 @@ public final class ab_1 {
          if (sVar3 == null || sVar3.f != null) {
             int iG = sVar3.h - (sVar3.f.g() / 2);
             int iH = sVar3.i - sVar3.f.h();
-            if (a_MainCanvas.f.a(this.c.f, iG, iH) == 1) {
+            if (MainCanvas.f.a(this.c.f, iG, iH) == 1) {
                return;
             }
             this.c.e.b(iG, iH);

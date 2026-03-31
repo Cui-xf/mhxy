@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import javax.microedition.lcdui.Image;
 
-public final class bf_1 extends cf {
+public final class Frame0 extends Frame {
    public Image a;
    public short b;
    public short c;
@@ -17,11 +17,11 @@ public final class bf_1 extends cf {
    public int g;
    private int i;
 
-   public bf_1() {
+   public Frame0() {
       super((byte)0);
    }
 
-   public bf_1(int var1, int var2, int var3) {
+   public Frame0(int var1, int var2, int var3) {
       super((byte)0);
       this.e = var1;
       this.f = var2;

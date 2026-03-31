@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
@@ -16,7 +16,7 @@ public final class p {
    public int h;
    public short i;
    private byte t;
-   public bc_1 j;
+   public Frame1 j;
    public byte k;
    public boolean l = false;
    public boolean m = false;
@@ -85,32 +85,32 @@ public final class p {
             t_1.ag.append("com.cc.f").append(this.i).append(0).append(this.t).append(var1);
          }
 
-         this.j = a_MainCanvas.ab.b(t_1.ag.toString());
+         this.j = MainCanvas.ab.b(t_1.ag.toString());
          if (this.j == null && var1 != 4) {
             t_1.ag.delete(0, t_1.ag.length());
             t_1.ag.append("com.cc.f").append(this.i).append(0).append(1).append(var1);
-            this.j = a_MainCanvas.ab.b(t_1.ag.toString());
+            this.j = MainCanvas.ab.b(t_1.ag.toString());
             return;
          }
       } else if (this.b == 1) {
          t_1.ag.append(this.i).append(var1 > 3 ? 3 : var1);
-         this.j = a_MainCanvas.ah.a(t_1.ag.toString(), this.p, this.q, this.r);
+         this.j = MainCanvas.ah.a(t_1.ag.toString(), this.p, this.q, this.r);
          if (this.j == null) {
             t_1.ag.delete(0, t_1.ag.length());
             t_1.ag.append(100).append(var1 > 3 ? 3 : var1);
-            this.j = a_MainCanvas.ah.a(t_1.ag.toString(), this.p, this.q, this.r);
+            this.j = MainCanvas.ah.a(t_1.ag.toString(), this.p, this.q, this.r);
             return;
          }
       } else if (this.b == 2) {
          t_1.ag.append(this.i).append(var1 > 3 ? 3 : var1);
-         this.j = a_MainCanvas.ah.a(t_1.ag.toString(), this.p, this.q, this.r);
+         this.j = MainCanvas.ah.a(t_1.ag.toString(), this.p, this.q, this.r);
       }
 
    }
 
    public final void a(Graphics var1, ai_1 var2, int var3, int var4, byte var5) {
       if (!this.d() && this.j != null) {
-         var2.a(var1, (bc_1)this.j, (int[])null, 0, 0, var3, var4, 20, 0);
+         var2.a(var1, (Frame1)this.j, (int[])null, 0, 0, var3, var4, 20, 0);
       }
 
    }
@@ -123,7 +123,7 @@ public final class p {
       this.c = null;
       this.d = null;
       if (this.j != null) {
-         bc_1 var1 = this.j;
+         Frame1 var1 = this.j;
       }
 
       this.j = null;

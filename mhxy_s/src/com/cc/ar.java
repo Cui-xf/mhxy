@@ -6,7 +6,7 @@ public abstract class ar {
    public au d;
    public String e;
    public Vector f = new Vector();
-   public bc_1 g;
+   public Frame1 g;
    public byte h = 3;
    short[] i;
    public short j = -1;

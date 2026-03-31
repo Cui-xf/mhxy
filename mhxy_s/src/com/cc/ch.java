@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import javax.microedition.lcdui.Graphics;
 
 public final class ch {
    private ao_1 c;
-   private a_MainCanvas d;
+   private MainCanvas d;
    private ai_1 e;
    private String f;
    private bw_1 g;
@@ -31,11 +31,11 @@ public final class ch {
    private int v;
    private int w;
    private int x;
-   private bf_1 y;
-   private bf_1 z;
+   private Frame0 y;
+   private Frame0 z;
    private boolean A = false;
 
-   public ch(ao_1 var1, a_MainCanvas var2, ai_1 var3) {
+   public ch(ao_1 var1, MainCanvas var2, ai_1 var3) {
       this.c = var1;
       this.d = var2;
       this.e = var3;
@@ -157,8 +157,8 @@ public final class ch {
       }
 
       if (this.y == null) {
-         this.y = a_MainCanvas.ag.a("jianding_02");
-         this.z = a_MainCanvas.ag.a("jianding_01");
+         this.y = MainCanvas.publicUI.getFrame("jianding_02");
+         this.z = MainCanvas.publicUI.getFrame("jianding_01");
       }
 
       this.c();
@@ -336,7 +336,7 @@ public final class ch {
                byte[] var7;
                if ((var7 = bz_1.a((short)4689, h, (byte)1, p, bt_1.ad)) != null) {
                   w var12 = new w((short)4689, var7);
-                  a_MainCanvas.i.a(var12);
+                  MainCanvas.i.a(var12);
                   this.d.a((String)null);
                } else {
                   this.d.b("获取上传指令数据错误!");
@@ -351,7 +351,7 @@ public final class ch {
             }
 
             w var13 = new w((short)4689, var9);
-            a_MainCanvas.i.a(var13);
+            MainCanvas.i.a(var13);
             this.d.a((String)null);
          } else {
             if (ca_1.o == 1) {
@@ -421,19 +421,19 @@ public final class ch {
             } else if (var2 < 4) {
                this.e.a(var1, q[var2 - 1] ? this.y : this.z, (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
             } else {
-               a_MainCanvas.af.e(String.valueOf(1702));
-               a_MainCanvas.f.a(var1, ao_1.b((short)1702), (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
+               MainCanvas.af.e(String.valueOf(1702));
+               MainCanvas.f.a(var1, ao_1.b((short)1702), (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
                if (n[var2 - 4] > 99) {
-                  a_MainCanvas.f.a(var1, a_MainCanvas.n, (int[])null, n[var2 - 4] / 100, 0, 0, this.a[var2][0] + 13 - 8, this.a[var2][1] + 11, 0, 0);
-                  a_MainCanvas.f.a(var1, a_MainCanvas.n, (int[])null, n[var2 - 4] % 100 / 10, 0, 0, this.a[var2][0] + 13 - 4, this.a[var2][1] + 11, 0, 0);
-                  a_MainCanvas.f.a(var1, a_MainCanvas.n, (int[])null, n[var2 - 4] % 100, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, n[var2 - 4] / 100, 0, 0, this.a[var2][0] + 13 - 8, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, n[var2 - 4] % 100 / 10, 0, 0, this.a[var2][0] + 13 - 4, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, n[var2 - 4] % 100, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
                }
 
                if (n[var2 - 4] > 9) {
-                  a_MainCanvas.f.a(var1, a_MainCanvas.n, (int[])null, n[var2 - 4] / 10, 0, 0, this.a[var2][0] + 13 - 4, this.a[var2][1] + 11, 0, 0);
-                  a_MainCanvas.f.a(var1, a_MainCanvas.n, (int[])null, n[var2 - 4] % 10, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, n[var2 - 4] / 10, 0, 0, this.a[var2][0] + 13 - 4, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, n[var2 - 4] % 10, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
                } else if (n[var2 - 4] >= 0) {
-                  a_MainCanvas.f.a(var1, a_MainCanvas.n, (int[])null, n[var2 - 4] % 10, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, n[var2 - 4] % 10, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
                }
             }
          }

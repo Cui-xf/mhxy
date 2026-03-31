@@ -31,15 +31,15 @@ public final class c_3 {
         var4.append(':');
         var4.append(var3);
         w var5 = bz_1.a((byte) 1, (byte) 1, var4.toString());
-        if (a_MainCanvas.i == null || bz_1.b != 72 || av_1.a("socket://120.78.151.213:20008")) {
+        if (MainCanvas.i == null || bz_1.b != 72 || av_1.a("socket://120.78.151.213:20008")) {
             System.out.println("socket://120.78.151.213:20008");
             bz_1.b = 72;
             this.a.a.a("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
         }
 
-        if (a_MainCanvas.i != null) {
+        if (MainCanvas.i != null) {
             var5.a = true;
-            a_MainCanvas.i.a(var5);
+            MainCanvas.i.a(var5);
         }
 
     }
@@ -54,7 +54,7 @@ public final class c_3 {
 
     public final void d() {
         c.a(bz_1.a((byte) 1, (byte) 3, ""));
-        this.a.a();
+        this.a.start();
         this.a.a.a("请求中...");
     }
 

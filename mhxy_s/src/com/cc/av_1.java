@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -18,7 +18,7 @@ public final class av_1 {
    private static String j = "";
    public static byte d;
    public byte e;
-   public a_MainCanvas f;
+   public MainCanvas f;
    private q k = new q();
    private x l;
    public at g;
@@ -44,7 +44,7 @@ public final class av_1 {
       this.b();
    }
 
-   public final void a(a_MainCanvas var1) {
+   public final void a(MainCanvas var1) {
       this.f = var1;
       if (this.k != null) {
          this.k.a(var1);

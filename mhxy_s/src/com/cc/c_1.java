@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
@@ -196,9 +196,9 @@ public final class c_1 extends al {
    }
 
    public final int b(int var1, int var2) {
-      if (var1 >= this.a + this.c - 2 - a_MainCanvas.C.b && var1 <= this.a + this.c && var2 >= this.b + 3 && var2 <= this.b + 3 + a_MainCanvas.C.c) {
+      if (var1 >= this.a + this.c - 2 - MainCanvas.C.b && var1 <= this.a + this.c && var2 >= this.b + 3 && var2 <= this.b + 3 + MainCanvas.C.c) {
          return 1;
-      } else if (var1 >= this.a + this.c - 2 - a_MainCanvas.D.b && var1 <= this.a + this.c && var2 >= this.b + this.d - 2 - a_MainCanvas.D.c && var2 <= this.b + this.d) {
+      } else if (var1 >= this.a + this.c - 2 - MainCanvas.D.b && var1 <= this.a + this.c && var2 >= this.b + this.d - 2 - MainCanvas.D.c && var2 <= this.b + this.d) {
          return 4;
       } else {
          var2 = var2;
@@ -295,11 +295,11 @@ public final class c_1 extends al {
             }
 
             if (this.v != null && this.v[var6] > 0) {
-               this.a(var1, this.a + 4 + this.A + t_1.i.stringWidth(this.s[var6]) + 2, this.b + 4 + var5 * this.i, a_MainCanvas.d(this.v[var6]));
+               this.a(var1, this.a + 4 + this.A + t_1.i.stringWidth(this.s[var6]) + 2, this.b + 4 + var5 * this.i, MainCanvas.d(this.v[var6]));
             }
 
             if (this.w != null && this.w[var6] > 0) {
-               this.a(var1, this.a + 4 + var2 - 18, this.b + 4 + var5 * this.i, a_MainCanvas.c(this.w[var6]));
+               this.a(var1, this.a + 4 + var2 - 18, this.b + 4 + var5 * this.i, MainCanvas.c(this.w[var6]));
             }
 
             if (this.t != null && this.t[var6] != null) {
@@ -336,13 +336,13 @@ public final class c_1 extends al {
 
       if (this.g > 0) {
          var1.setClip(0, 0, t_1.b, t_1.c);
-         if (a_MainCanvas.C != null) {
+         if (MainCanvas.C != null) {
             this.j = 0;
             if (this.g < this.h && this.h != 0) {
                this.j = this.g * (this.d - 16) / this.h > 6 ? this.g * (this.d - 16) / this.h : 6;
             }
 
-             ca_1.a(var1, this.a + this.c - 2 - a_MainCanvas.C.b, this.b + 3, this.d - 5, this.j, this.e, this.h, this.g - this.z);
+             ca_1.a(var1, this.a + this.c - 2 - MainCanvas.C.b, this.b + 3, this.d - 5, this.j, this.e, this.h, this.g - this.z);
          }
 
           ca_1.b(var1, this.q, this.a + 5, this.b + (this.f - this.e + 1) * this.i, this.b + this.d, this.y);

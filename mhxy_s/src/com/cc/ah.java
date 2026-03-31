@@ -28,7 +28,7 @@ public final class ah {
             var1.drawString(this.c, var2, var3 + (var4 - t_1.j) / 2, var5);
             break;
          case 1:
-            bf_1 var6;
+            Frame0 var6;
             if ((var6 = ao_1.b(this.b)) != null) {
                var1.drawImage(var6.a, var2, var3 + (var4 - var6.c) / 2, var5);
                return;

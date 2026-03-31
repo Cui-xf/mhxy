@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.util.Vector;
 import javax.microedition.lcdui.Font;
@@ -89,8 +89,8 @@ public final class d_1 {
 
                var6 = (byte)(var5.length() > 0 ? var5.charAt(var5.length() - 1) - 48 : -1);
                if (var9 == 'f' || var9 == 'i') {
-                  a_MainCanvas.af.e(String.valueOf(var8));
-                  bf_1 var19;
+                  MainCanvas.af.e(String.valueOf(var8));
+                  Frame0 var19;
                   short var20 = (var19 = ao_1.b(var8)) == null ? 0 : var19.b;
                   if ((var7 += var20) > var1) {
                      var7 = var20;

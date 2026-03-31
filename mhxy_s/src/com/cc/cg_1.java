@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -8,10 +8,10 @@ import javax.microedition.lcdui.Graphics;
 
 public final class cg_1 {
    private ao_1 e;
-   private a_MainCanvas f;
+   private MainCanvas f;
    private ai_1 g;
-   private bc_1 h;
-   private bc_1 i;
+   private Frame1 h;
+   private Frame1 i;
    public static int a;
    private static String j;
    private static int k;
@@ -47,7 +47,7 @@ public final class cg_1 {
    private String L;
    private String M;
 
-   public cg_1(ao_1 var1, a_MainCanvas var2, ai_1 var3) {
+   public cg_1(ao_1 var1, MainCanvas var2, ai_1 var3) {
       this.e = var1;
       this.f = var2;
       this.g = var3;
@@ -240,7 +240,7 @@ public final class cg_1 {
       this.I.a(this.M, t_1.i, (byte)2);
       if (a != -1 && u != -1) {
          ao_1.a(u, v, w, x);
-         this.h = a_MainCanvas.ah.a(String.valueOf(u + "_0"), v, w, x);
+         this.h = MainCanvas.ah.a(String.valueOf(u + "_0"), v, w, x);
       } else if (this.h != null) {
          this.h.a();
          this.h = null;
@@ -248,7 +248,7 @@ public final class cg_1 {
 
       if (k != -1 && y != -1) {
          ao_1.a(y, z, A, B);
-         this.i = a_MainCanvas.ah.a(String.valueOf(y + "_0"), z, A, B);
+         this.i = MainCanvas.ah.a(String.valueOf(y + "_0"), z, A, B);
       } else if (this.i != null) {
          this.i.a();
          this.i = null;
@@ -366,7 +366,7 @@ public final class cg_1 {
                   }
 
                   w var4 = new w((short)4691, var3);
-                  a_MainCanvas.i.a(var4);
+                  MainCanvas.i.a(var4);
                   this.f.a((String)null);
                } else if (ca_1.o == 1) {
                   bt_1.fw = null;
@@ -432,11 +432,11 @@ public final class cg_1 {
       this.a(1, this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 50, 50);
       ca_1.d(var1, this.J[this.K][0], this.J[this.K][1], 50, 50);
       if (a != -1 && this.h != null) {
-         this.g.a(var1, (bc_1)this.h, (int[])null, 0, 0, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 0, 0);
+         this.g.a(var1, (Frame1)this.h, (int[])null, 0, 0, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 0, 0);
       }
 
       if (k != -1 && this.i != null) {
-         this.g.a(var1, (bc_1)this.i, (int[])null, 0, 0, this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 0, 0);
+         this.g.a(var1, (Frame1)this.i, (int[])null, 0, 0, this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 0, 0);
       } else {
          var1.setColor(16776960);
          var1.drawString("副宠", this.f.aq.a + 5 + 25 + this.f.aq.c / 2 + 25, this.f.aq.b + 32 + 10 + t_1.j / 4 + 25, 65);

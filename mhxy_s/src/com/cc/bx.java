@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 public final class bx {
-   public cf a;
+   public Frame a;
    public short b;
    public byte c;
    public short d;
@@ -14,8 +14,8 @@ public final class bx {
    private aj h;
 
    public final aj a() {
-      if (this.h == null && this.a != null && this.a.o == 0) {
-         this.h = ((bf_1)this.a).a(this.d);
+      if (this.h == null && this.a != null && this.a.type == 0) {
+         this.h = ((Frame0)this.a).a(this.d);
       }
 
       return this.h == null ? new aj((short)0, (short)0, (short)0, (short)0) : this.h;

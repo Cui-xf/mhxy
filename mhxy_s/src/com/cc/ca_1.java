@@ -1,6 +1,6 @@
 package com.cc;
 
-import com.yinhan.kjava.main.a_MainCanvas;
+import com.yinhan.kjava.main.MainCanvas;
 
 import java.util.Random;
 import java.util.Vector;
@@ -202,20 +202,20 @@ public final class ca_1 {
             var5.a(var0, 10, var2 + 12 + (var10 - e) * t_1.j, var10, 20);
          }
 
-         if (a_MainCanvas.A != null) {
+         if (MainCanvas.A != null) {
             if (e != 0) {
-               ai_1.a(a_MainCanvas.A, System.currentTimeMillis());
-               a_MainCanvas.f.a(var0, (bc_1) a_MainCanvas.A, (int[])null, 0, 0, 16, var2 + 5, 20, 0);
+               ai_1.a(MainCanvas.A, System.currentTimeMillis());
+               MainCanvas.f.a(var0, (Frame1) MainCanvas.A, (int[])null, 0, 0, 16, var2 + 5, 20, 0);
                a((int[])(E != null ? E[0] : null), 16, var2 + 5, 16, 9);
             } else {
                a((int[])(E != null ? E[0] : null), 0, 0, 0, 0);
             }
          }
 
-         if (a_MainCanvas.B != null) {
+         if (MainCanvas.B != null) {
             if (e + d < var5.a()) {
-               ai_1.a(a_MainCanvas.B, System.currentTimeMillis());
-               a_MainCanvas.f.a(var0, (bc_1) a_MainCanvas.B, (int[])null, 0, 0, var3 - 32, var2 + 5, 20, 0);
+               ai_1.a(MainCanvas.B, System.currentTimeMillis());
+               MainCanvas.f.a(var0, (Frame1) MainCanvas.B, (int[])null, 0, 0, var3 - 32, var2 + 5, 20, 0);
                a((int[])(E != null ? E[1] : null), var3 - 32, var2 + 5, 16, 9);
             } else {
                a((int[])(E != null ? E[1] : null), 0, 0, 0, 0);
@@ -313,20 +313,20 @@ public final class ca_1 {
       var0.drawRect(var1 + 3, var2 + 3, var3 - 7, var4 - 7);
       a(var0, 4);
       var0.drawRect(var1 + 2, var2 + 2, var3 - 5, var4 - 5);
-      if (a_MainCanvas.y != null) {
-         var0.drawImage(a_MainCanvas.y.a, var1, var2, 20);
+      if (MainCanvas.y != null) {
+         var0.drawImage(MainCanvas.y.a, var1, var2, 20);
       }
 
-      if (a_MainCanvas.z != null) {
-         var0.drawImage(a_MainCanvas.z.a, var1, var2 + var4 - a_MainCanvas.z.c, 20);
+      if (MainCanvas.z != null) {
+         var0.drawImage(MainCanvas.z.a, var1, var2 + var4 - MainCanvas.z.c, 20);
       }
 
-      if (a_MainCanvas.w != null) {
-         var0.drawImage(a_MainCanvas.w.a, var1 + var3 - a_MainCanvas.w.b, var2, 20);
+      if (MainCanvas.w != null) {
+         var0.drawImage(MainCanvas.w.a, var1 + var3 - MainCanvas.w.b, var2, 20);
       }
 
-      if (a_MainCanvas.x != null) {
-         var0.drawImage(a_MainCanvas.x.a, var1 + var3 - a_MainCanvas.x.b, var2 + var4 - a_MainCanvas.x.c, 20);
+      if (MainCanvas.x != null) {
+         var0.drawImage(MainCanvas.x.a, var1 + var3 - MainCanvas.x.b, var2 + var4 - MainCanvas.x.c, 20);
       }
 
    }
@@ -412,22 +412,22 @@ public final class ca_1 {
       var0.fillRect(var1 + 4, var2, 4, var3);
       var0.setColor(1152942);
       var0.fillRect(var1 + 5, var2, 2, var3);
-      var0.drawImage(a_MainCanvas.C.a, var1, var2, 20);
-      var0.drawImage(a_MainCanvas.D.a, var1, var2 + var3 - a_MainCanvas.D.c, 20);
+      var0.drawImage(MainCanvas.C.a, var1, var2, 20);
+      var0.drawImage(MainCanvas.D.a, var1, var2 + var3 - MainCanvas.D.c, 20);
       int var8 = 0;
       if (var6 == var7) {
          var4 = 0;
       }
 
       if (var4 > 0) {
-         var8 = var2 + a_MainCanvas.C.c + (var3 - a_MainCanvas.C.c - a_MainCanvas.D.c - var4) * var5 / (var6 - var7);
+         var8 = var2 + MainCanvas.C.c + (var3 - MainCanvas.C.c - MainCanvas.D.c - var4) * var5 / (var6 - var7);
       } else if (var4 <= 0) {
-         var8 = var2 + a_MainCanvas.C.c;
-         var4 = var3 - a_MainCanvas.C.c - a_MainCanvas.D.c;
+         var8 = var2 + MainCanvas.C.c;
+         var4 = var3 - MainCanvas.C.c - MainCanvas.D.c;
       }
 
       var0.setColor(11267556);
-      var0.fillRect(var1, var8, a_MainCanvas.C.b - 1, var4 - 1);
+      var0.fillRect(var1, var8, MainCanvas.C.b - 1, var4 - 1);
       var0.setColor(5555146);
       var0.fillRect(var1 + 2, var8 + 2, 8, var4 - 4);
       var0.setColor(1801628);
@@ -435,7 +435,7 @@ public final class ca_1 {
       var0.setColor(1464956);
       var0.fillRect(var1 + 6, var8 + 4, 2, var4 - 8);
       var0.setColor(150092);
-      var0.drawRect(var1, var8, a_MainCanvas.C.b - 1, var4 - 1);
+      var0.drawRect(var1, var8, MainCanvas.C.b - 1, var4 - 1);
    }
 
    public static void b(Graphics var0, int var1, int var2, int var3, int var4, int var5) {
@@ -1389,11 +1389,11 @@ public final class ca_1 {
          var0.drawString(p[var1], af[0] + q / 2, af[1] + 2 + (t_1.j + 3) * var1, 17);
       }
 
-      if (a_MainCanvas.S != null && a_MainCanvas.S.length == 4) {
-         var0.drawImage(a_MainCanvas.S[0].a, af[0], af[1], 20);
-         var0.drawImage(a_MainCanvas.S[1].a, af[0] + q - a_MainCanvas.S[1].b, af[1], 20);
-         var0.drawImage(a_MainCanvas.S[2].a, af[0], af[1] + ag - a_MainCanvas.S[2].c, 20);
-         var0.drawImage(a_MainCanvas.S[3].a, af[0] + q - a_MainCanvas.S[3].b, af[1] + ag - a_MainCanvas.S[3].c, 20);
+      if (MainCanvas.S != null && MainCanvas.S.length == 4) {
+         var0.drawImage(MainCanvas.S[0].a, af[0], af[1], 20);
+         var0.drawImage(MainCanvas.S[1].a, af[0] + q - MainCanvas.S[1].b, af[1], 20);
+         var0.drawImage(MainCanvas.S[2].a, af[0], af[1] + ag - MainCanvas.S[2].c, 20);
+         var0.drawImage(MainCanvas.S[3].a, af[0] + q - MainCanvas.S[3].b, af[1] + ag - MainCanvas.S[3].c, 20);
       }
 
    }
@@ -1424,22 +1424,22 @@ public final class ca_1 {
          a(var0, "" + var2, var5 + 70, var6 + 6 + t_1.j + 12, 17, 16711639);
       }
 
-      if (var3 && a_MainCanvas.X != null && a_MainCanvas.Y != null && a_MainCanvas.V != null && a_MainCanvas.W != null) {
-         var0.drawImage(a_MainCanvas.V.a, var5 + (140 - a_MainCanvas.V.b) / 2, var6 + 7 + t_1.j, 20);
-         a(aj[0], var5 + (140 - a_MainCanvas.V.b) / 2, var6 + 7 + t_1.j, a_MainCanvas.V.a.getWidth(), a_MainCanvas.V.a.getHeight());
-         var0.drawImage(a_MainCanvas.W.a, var5 + (140 - a_MainCanvas.V.b) / 2, var6 + 5 + (t_1.j << 1) + 14, 20);
-         a(aj[1], var5 + (140 - a_MainCanvas.V.b) / 2, var6 + 5 + (t_1.j << 1) + 14, a_MainCanvas.W.a.getWidth(), a_MainCanvas.W.a.getHeight());
-         var0.drawImage(a_MainCanvas.X.a, var5 + 5, var6 + 5 + t_1.j + 12, 20);
-         a(aj[2], var5 + 5, var6 + 5 + t_1.j + 12, a_MainCanvas.X.a.getWidth(), a_MainCanvas.X.a.getHeight());
-         var0.drawImage(a_MainCanvas.Y.a, var5 + 140 - 5 - a_MainCanvas.Y.b, var6 + 5 + t_1.j + 12, 20);
-         a(aj[3], var5 + 140 - 5 - a_MainCanvas.Y.b, var6 + 5 + t_1.j + 12, a_MainCanvas.Y.a.getWidth(), a_MainCanvas.Y.a.getHeight());
+      if (var3 && MainCanvas.X != null && MainCanvas.Y != null && MainCanvas.V != null && MainCanvas.W != null) {
+         var0.drawImage(MainCanvas.V.a, var5 + (140 - MainCanvas.V.b) / 2, var6 + 7 + t_1.j, 20);
+         a(aj[0], var5 + (140 - MainCanvas.V.b) / 2, var6 + 7 + t_1.j, MainCanvas.V.a.getWidth(), MainCanvas.V.a.getHeight());
+         var0.drawImage(MainCanvas.W.a, var5 + (140 - MainCanvas.V.b) / 2, var6 + 5 + (t_1.j << 1) + 14, 20);
+         a(aj[1], var5 + (140 - MainCanvas.V.b) / 2, var6 + 5 + (t_1.j << 1) + 14, MainCanvas.W.a.getWidth(), MainCanvas.W.a.getHeight());
+         var0.drawImage(MainCanvas.X.a, var5 + 5, var6 + 5 + t_1.j + 12, 20);
+         a(aj[2], var5 + 5, var6 + 5 + t_1.j + 12, MainCanvas.X.a.getWidth(), MainCanvas.X.a.getHeight());
+         var0.drawImage(MainCanvas.Y.a, var5 + 140 - 5 - MainCanvas.Y.b, var6 + 5 + t_1.j + 12, 20);
+         a(aj[3], var5 + 140 - 5 - MainCanvas.Y.b, var6 + 5 + t_1.j + 12, MainCanvas.Y.a.getWidth(), MainCanvas.Y.a.getHeight());
       }
 
-      if (a_MainCanvas.T != null && a_MainCanvas.U != null) {
-         var0.drawImage(a_MainCanvas.T.a, var5 + 5, var6 + var4 - 5 - a_MainCanvas.T.c, 20);
-         a(ak[0], var5 + 5, var6 + var4 - 5 - a_MainCanvas.T.c, a_MainCanvas.T.a.getWidth(), a_MainCanvas.T.a.getHeight());
-         var0.drawImage(a_MainCanvas.U.a, var5 + 140 - 5 - a_MainCanvas.U.b, var6 + var4 - 5 - a_MainCanvas.U.c, 20);
-         a(ak[1], var5 + 140 - 5 - a_MainCanvas.U.b, var6 + var4 - 5 - a_MainCanvas.U.c, a_MainCanvas.U.a.getWidth(), a_MainCanvas.U.a.getHeight());
+      if (MainCanvas.T != null && MainCanvas.U != null) {
+         var0.drawImage(MainCanvas.T.a, var5 + 5, var6 + var4 - 5 - MainCanvas.T.c, 20);
+         a(ak[0], var5 + 5, var6 + var4 - 5 - MainCanvas.T.c, MainCanvas.T.a.getWidth(), MainCanvas.T.a.getHeight());
+         var0.drawImage(MainCanvas.U.a, var5 + 140 - 5 - MainCanvas.U.b, var6 + var4 - 5 - MainCanvas.U.c, 20);
+         a(ak[1], var5 + 140 - 5 - MainCanvas.U.b, var6 + var4 - 5 - MainCanvas.U.c, MainCanvas.U.a.getWidth(), MainCanvas.U.a.getHeight());
       }
 
    }
@@ -1460,9 +1460,9 @@ public final class ca_1 {
    }
 
    public static void a(Graphics var0, String var1, int var2, int var3, int var4) {
-      var0.drawImage(a_MainCanvas.X.a, var2, var3 + 3, 20);
+      var0.drawImage(MainCanvas.X.a, var2, var3 + 3, 20);
       c(var0, var2 + 12, var3, var4 - 24, t_1.j, 1);
-      var0.drawImage(a_MainCanvas.Y.a, var2 + var4 - 9, var3 + 3, 20);
+      var0.drawImage(MainCanvas.Y.a, var2 + var4 - 9, var3 + 3, 20);
       a(var0, var1, var2 + var4 / 2, var3 + 3, 17, 16711639);
    }
 
@@ -1581,7 +1581,7 @@ public final class ca_1 {
       var0.fillRect(var1 + 1, var2 + 1, var3, 2);
       var0.setColor(var4 == 0 ? 10945027 : 230064);
       var0.fillRect(var1 + 1, var2 + 2, var3, 1);
-      var0.drawImage(a_MainCanvas.Z.a, var1, var2, 20);
+      var0.drawImage(MainCanvas.Z.a, var1, var2, 20);
    }
 
    private static void a(int[] var0, int var1, int var2, int var3, int var4) {
@@ -1637,20 +1637,20 @@ public final class ca_1 {
       var0.drawRect(var1 - 1, var2 - 1, var3 + 1, var4 + 1);
       a(var0, 4);
       var0.drawRect(var1 - 2, var2 - 2, var3 + 3, var4 + 3);
-      if (a_MainCanvas.y != null) {
-         var0.drawImage(a_MainCanvas.y.a, var1 - 4, var2 - 4, 20);
+      if (MainCanvas.y != null) {
+         var0.drawImage(MainCanvas.y.a, var1 - 4, var2 - 4, 20);
       }
 
-      if (a_MainCanvas.z != null) {
-         var0.drawImage(a_MainCanvas.z.a, var1 - 4, var2 + var4 + 4 - a_MainCanvas.z.c, 20);
+      if (MainCanvas.z != null) {
+         var0.drawImage(MainCanvas.z.a, var1 - 4, var2 + var4 + 4 - MainCanvas.z.c, 20);
       }
 
-      if (a_MainCanvas.w != null) {
-         var0.drawImage(a_MainCanvas.w.a, var1 + 4 + var3 - a_MainCanvas.w.b, var2 - 4, 20);
+      if (MainCanvas.w != null) {
+         var0.drawImage(MainCanvas.w.a, var1 + 4 + var3 - MainCanvas.w.b, var2 - 4, 20);
       }
 
-      if (a_MainCanvas.x != null) {
-         var0.drawImage(a_MainCanvas.x.a, var1 + 4 + var3 - a_MainCanvas.x.b, var2 + var4 + 4 - a_MainCanvas.x.c, 20);
+      if (MainCanvas.x != null) {
+         var0.drawImage(MainCanvas.x.a, var1 + 4 + var3 - MainCanvas.x.b, var2 + var4 + 4 - MainCanvas.x.c, 20);
       }
 
    }
