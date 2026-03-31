@@ -3,7 +3,6 @@ package com.cc;
 import javax.microedition.lcdui.Image;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 //bf
@@ -96,25 +95,25 @@ public final class Frame0 extends Frame {
     public void draw(byte[][] bArr, boolean z) throws IOException {
         if (this.e == 0 && this.f == 0 && this.g == 0) {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            byteArrayOutputStream.write(ai_1.pngHeader);
+            byteArrayOutputStream.write(PngUtil.pngHeader);
             int i = 1;
             while (i < bArr.length) {
                 if (bArr[i] != null && bArr[i].length > 4) {
-                    byteArrayOutputStream.write(buildPngData(ai_1.pngChunks[i > 4 ? 4 : i], bArr[i]));
+                    byteArrayOutputStream.write(buildPngData(PngUtil.pngChunks[i > 4 ? 4 : i], bArr[i]));
                 }
                 i++;
             }
-            byteArrayOutputStream.write(ai_1.pngEnd);
+            byteArrayOutputStream.write(PngUtil.pngEnd);
             this.pngImage = Image.createImage(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
             byteArrayOutputStream.close();
         } else {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            bos.write(ai_1.pngHeader);
+            bos.write(PngUtil.pngHeader);
             int i1 = 1;
             while (i1 < bArr.length) {
                 byte[] bytes = bArr[i1];
                 if (bytes != null && bytes.length > 4) {
-                    if (ai_1.pngChunks[i1 > 4 ? 4 : i1].equals("PLTE")) {
+                    if (PngUtil.pngChunks[i1 > 4 ? 4 : i1].equals("PLTE")) {
                         byte[] data = new byte[bytes.length - 4];
                         System.arraycopy(bytes, 0, data, 0, data.length);
                         int[] iArrA = a(toRGBA(data, (byte[]) null), this.e * 100000, this.f * 100000, this.g * 100000, 0L, false);
@@ -130,11 +129,11 @@ public final class Frame0 extends Frame {
                         bArr4[length + 2] = (byte) (i3 >>> 8);
                         bArr4[length + 3] = (byte) i3;
                     }
-                    bos.write(buildPngData(ai_1.pngChunks[i1 > 4 ? 4 : i1], bytes));
+                    bos.write(buildPngData(PngUtil.pngChunks[i1 > 4 ? 4 : i1], bytes));
                 }
                 i1++;
             }
-            bos.write(ai_1.pngEnd);
+            bos.write(PngUtil.pngEnd);
             byte[] byteArray = bos.toByteArray();
             try {
                 this.pngImage = Image.createImage(byteArray, 0, byteArray.length);

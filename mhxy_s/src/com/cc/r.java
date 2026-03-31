@@ -32,7 +32,7 @@ public final class r {
    private int w;
    private boolean x = false;
 
-   public r(ao_1 var1, MainCanvas var2, ai_1 var3) {
+   public r(ao_1 var1, MainCanvas var2, PngUtil var3) {
       this.i = var1;
       this.j = var2;
    }
@@ -247,7 +247,7 @@ public final class r {
       this.e();
       LoadingPage.l = 0;
       this.i.l = 0;
-      this.j.j = this.j.k;
+      this.j.touchPageCase = this.j.k;
       this.i.j = this.i.k = 110;
    }
 
@@ -410,7 +410,7 @@ public final class r {
          }
       }
 
-      this.j.a = 0;
+      this.j.touchAction = 0;
    }
 
    public final void a(Graphics var1) {

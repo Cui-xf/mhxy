@@ -32,7 +32,7 @@ public final class k {
    private int w;
    private int x;
 
-   public k(ao_1 var1, MainCanvas var2, ai_1 var3) {
+   public k(ao_1 var1, MainCanvas var2, PngUtil var3) {
       this.i = var1;
       this.j = var2;
    }
@@ -264,7 +264,7 @@ public final class k {
       this.f();
       LoadingPage.l = 0;
       this.i.l = 0;
-      this.j.j = this.j.k;
+      this.j.touchPageCase = this.j.k;
       this.i.j = this.i.k = 118;
    }
 
@@ -394,7 +394,7 @@ public final class k {
          }
       }
 
-      this.j.a = 0;
+      this.j.touchAction = 0;
    }
 
    public final void a(Graphics var1) {

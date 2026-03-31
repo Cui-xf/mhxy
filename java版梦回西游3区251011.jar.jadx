@@ -4,8 +4,8 @@
     "java版梦回西游3区251011.jar"
   ],
   "treeExpansionsV2": [
-    "c:bu",
-    "p:com.yinhan.kjava.main"
+    "p:com.yinhan.kjava.main",
+    "p:"
   ],
   "codeData": {
     "comments": [],
@@ -20,6 +20,13 @@
       {
         "nodeRef": {
           "refType": "CLASS",
+          "declClass": "bc"
+        },
+        "newName": "bc_Frame1"
+      },
+      {
+        "nodeRef": {
+          "refType": "CLASS",
           "declClass": "bt"
         },
         "newName": "bt_UserInfo"
@@ -29,7 +36,7 @@
           "refType": "CLASS",
           "declClass": "bu"
         },
-        "newName": "Page"
+        "newName": "bu_Page"
       },
       {
         "nodeRef": {
@@ -403,53 +410,54 @@
   "openTabs": [
     {
       "type": "class",
-      "tabPath": "com.yinhan.kjava.main.a",
-      "subPath": "java",
-      "caret": 22205,
-      "view": {
-        "x": 0,
-        "y": 10400
-      },
-      "active": false,
-      "pinned": false,
-      "bookmarked": false,
-      "hidden": false,
-      "previewTab": false
-    },
-    {
-      "type": "class",
       "tabPath": "bu",
       "subPath": "java",
-      "caret": 7482,
+      "caret": 17421,
       "view": {
         "x": 0,
-        "y": 2502
-      },
-      "active": false,
-      "pinned": false,
-      "bookmarked": false,
-      "hidden": false,
-      "previewTab": false
-    },
-    {
-      "type": "class",
-      "tabPath": "bf",
-      "subPath": "java",
-      "caret": 9410,
-      "view": {
-        "x": 0,
-        "y": 3714
+        "y": 6931
       },
       "active": true,
       "pinned": false,
       "bookmarked": false,
       "hidden": false,
       "previewTab": false
+    },
+    {
+      "type": "class",
+      "tabPath": "bc",
+      "subPath": "java",
+      "caret": 242,
+      "view": {
+        "x": 0,
+        "y": 0
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false,
+      "previewTab": false
+    },
+    {
+      "type": "class",
+      "tabPath": "aa",
+      "subPath": "java",
+      "caret": 104,
+      "view": {
+        "x": 0,
+        "y": 0
+      },
+      "active": false,
+      "pinned": false,
+      "bookmarked": false,
+      "hidden": false,
+      "previewTab": false
     }
   ],
-  "cacheDir": "/Users/cxf/Library/Caches/io.github.skylot.jadx/projects/java版梦回西游3区251011.jar-0f0cd2cba3ad178b1bd1f5a6bef51315",
+  "cacheDir": "C:\\Users\\qaq\\AppData\\Local\\skylot\\jadx\\cache\\projects\\java版梦回西游3区251011.jar-011e17ab57204171d63dbcc82ab61cc8",
   "enableLiveReload": false,
   "searchHistory": [
+    "\".rpg\"",
     "4142",
     "4106",
     "8227",

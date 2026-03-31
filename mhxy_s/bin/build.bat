@@ -22,7 +22,7 @@ set "PREVERIFY=%J2ME_HOME%\bin\preverify"
 set "JAVAC=%JAVA_HOME%\bin\javac.exe"
 set "JAR=%JAVA_HOME%\bin\jar"
 rem JDK 8: java.lang.Override 等注解在 rt.jar；CLDC/MIDP stub 无此类，需追加在 bootclasspath 末尾供 javac 解析（仍以 CLDC 为先）
-@REM set "RT_JAR=%JAVA_HOME%\jre\lib\rt.jar"
+set "RT_JAR=%JAVA_HOME%\jre\lib\rt.jar"
 
 if not exist "%JAVAC%" (
   echo *** JDK not found: %JAVAC%
@@ -67,7 +67,7 @@ if not exist ..\classes md ..\classes
 
 echo *** Compiling source files ***
 rem Source files are UTF-8; Windows javac defaults to GBK and fails on Chinese comments/strings.
-%JAVAC% -encoding UTF-8 -bootclasspath "%CLDCAPI%;%MIDPAPI%" -source 1.4 -target 1.4 -d ..\tmpclasses -classpath ..\tmpclasses @"%SRC_LIST%"
+%JAVAC% -encoding UTF-8 -bootclasspath "%CLDCAPI%;%MIDPAPI%";%RT_JAR% -source 1.4 -target 1.4 -d ..\tmpclasses -classpath ..\tmpclasses @"%SRC_LIST%"
 if errorlevel 1 (
   echo *** javac failed ***
   goto end
@@ -75,7 +75,7 @@ if errorlevel 1 (
 
 echo *** Preverifying class files ***
 
-%PREVERIFY% -classpath "%CLDCAPI%;%MIDPAPI%;..\tmpclasses" -d ..\classes ..\tmpclasses
+%PREVERIFY% -classpath "%CLDCAPI%;%MIDPAPI%;%RT_JAR%;..\tmpclasses" -d ..\classes ..\tmpclasses
 if errorlevel 1 (
   echo *** preverify failed ***
   goto end

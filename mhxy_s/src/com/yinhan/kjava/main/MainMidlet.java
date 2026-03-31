@@ -4,12 +4,12 @@ import javax.microedition.lcdui.Display;
 import javax.microedition.midlet.MIDlet;
 
 public class MainMidlet extends MIDlet {
-   public MainCanvas a;
-   public Display b = Display.getDisplay(this);
+   public MainCanvas mainCanvas;
+   public Display display = Display.getDisplay(this);
    public static long c = Runtime.getRuntime().totalMemory();
 
    public MainMidlet() {
-      this.a = new MainCanvas(this, this.b);
+      this.mainCanvas = new MainCanvas(this, this.display);
    }
 
    public void destroyApp(boolean var1) {
@@ -23,10 +23,10 @@ public class MainMidlet extends MIDlet {
    }
 
    public final void start() {
-      if (this.a != null) {
-         this.a.setFullScreenMode(true);
+      if (this.mainCanvas != null) {
+         this.mainCanvas.setFullScreenMode(true);
       }
 
-      this.b.setCurrent(this.a);
+      this.display.setCurrent(this.mainCanvas);
    }
 }

@@ -99,7 +99,7 @@ public final class cc {
             ao_1.K = new TextRender("当前排名：" + (this.h <= 0 ? "无" : "第" + this.h + "名") + "\t剩余挑战：" + this.i + "次\t当前积分：" + this.j, (short) (this.c.at.d - 20));
         }
 
-        this.c.j = this.c.k;
+        this.c.touchPageCase = this.c.k;
         this.b.j = this.b.k = 130;
     }
 
@@ -134,7 +134,7 @@ public final class cc {
 
             if (this.a == 0) {
                 for (int var10 = 0; var10 < this.f.length; ++var10) {
-                    ai_1.a(this.f[var10], this.c.ak);
+                    PngUtil.a(this.f[var10], this.c.ak);
                 }
 
                 if ((var1 == 1073741824 || var1 == 517 || var1 == 268435456) && this.g >= 0 && this.g <= 3 && this.p != null && this.g < this.p.length) {

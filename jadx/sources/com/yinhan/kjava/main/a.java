@@ -3425,6 +3425,189 @@ public final class a extends Canvas implements Runnable, CommandListener {
         fVar.b.a = ca.b(i7, i8);
     }
 
+    /**
+     * 手工梳理后的触屏按下逻辑。
+     * 保留原始 pointerPressed 不动，后续如果需要替换，可直接把本方法改名。
+     *
+     * 已修正的反编译问题：
+     * 1. case 5 命中角色格子后，结果不应在循环结束后被默认值覆盖。
+     * 2. case 6 最后两个按钮是确认动作，命中后不应再落回左右切换。
+     * 3. case 14 实际是遍历主菜单项；未命中时再检查右下角“退出”区域。
+     */
+    protected final void pointerPressed2(int x, int y) {
+        if (!t.o || this.aj == null) {
+            return;
+        }
+        // aj: 触屏输入控制器，负责保存当前触点坐标、拖动状态，并把点击分发到当前画面。
+        this.aj.e = x;
+        this.aj.f = y;
+        // aA: 当前触摸附带的临时状态位，这里按下时先清零。
+        this.aA = 0;
+        this.aj.a(this.aj.e, this.aj.f);
+        // canvas: 实际处理这次点击的主画布对象，也就是当前 this。
+        a canvas = this.aj.b;
+        int touchX = this.aj.e;
+        int touchY = this.aj.f;
+        // j: 当前主画布所处的大界面状态。
+        switch (canvas.j) {
+            case 2:
+                // case 2: 游戏主场景，点击地图/场景对象后直接换算成场景命令。
+                // a: 当前输入转换出的“命令码”，后续主循环会按这个值执行动作。
+                canvas.a = canvas.a(touchX, touchY);
+                return;
+            case 4:
+                // case 4: 服务器/分线/登录前选择类界面。
+                // c: 当前大界面下的子状态。
+                if (canvas.c == 0) {
+                    if (canvas.aq != null) {
+                        // aq: 通用弹窗/面板命中检测对象，负责把坐标转换成按钮/列表命令。
+                        canvas.a = canvas.aq.b(touchX, touchY);
+                    }
+                    return;
+                }
+                if (canvas.c == 2) {
+                    canvas.a = canvas.a(touchX, touchY);
+                }
+                return;
+            case 5:
+                // case 5: 角色列表界面。
+                if (canvas.aq != null) {
+                    // 先让通用面板逻辑处理一次，再叠加角色列表自己的格子命中逻辑。
+                    canvas.a = canvas.aq.b(touchX, touchY);
+                    int action = canvas.a;
+                    if (canvas.bC != null) {
+                        // bC: 角色列表 6 个格子的点击区域 [x, y, width, height]
+                        for (int slotIndex = 0; slotIndex < canvas.bC.length; slotIndex++) {
+                            int[] rect = canvas.bC[slotIndex];
+                            if (touchX >= rect[0] && touchX <= rect[0] + rect[2] && touchY >= rect[1] && touchY <= rect[1] + rect[3]) {
+                                byte col = (byte) (slotIndex % 2);
+                                byte row = (byte) (slotIndex / 2);
+                                // bz / bA: 当前角色列表选中的列、行
+                                if (col == canvas.bz && row == canvas.bA) {
+                                    // 再次点击当前已选角色，触发确认进入。
+                                    action = 1073741824;
+                                } else {
+                                    // 第一次点击只切换高亮，不直接进入。
+                                    canvas.bz = col;
+                                    canvas.bA = (byte) (row == 0 ? 1 : 0);
+                                    action = 4;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    canvas.a = action;
+                }
+                if (canvas.c == 1) {
+                    canvas.a = ca.c(touchX, touchY);
+                    return;
+                }
+                if (canvas.c != 2) {
+                    return;
+                }
+                break;
+            case 6:
+                // case 6: 创建角色界面。
+                if (canvas.aq != null) {
+                    // 创建角色界面同样先走通用面板命中，再补自己的热点区域判断。
+                    canvas.a = canvas.aq.b(touchX, touchY);
+                    int action = canvas.a;
+                    if (canvas.bC != null) {
+                        // bC: 创建角色界面的 6 个热点区域
+                        for (int hotAreaIndex = 0; hotAreaIndex < canvas.bC.length; hotAreaIndex++) {
+                            int[] rect = canvas.bC[hotAreaIndex];
+                            if (touchX >= rect[0] && touchX <= rect[0] + rect[2] && touchY >= rect[1] && touchY <= rect[1] + rect[3]) {
+                                if (hotAreaIndex < 2) {
+                                    // 第一组：头像/形象左右切换。
+                                    // bH: 当前创建角色界面的焦点组
+                                    canvas.bH = 0;
+                                    action = hotAreaIndex % 2 == 0 ? 8 : 2;
+                                } else if (hotAreaIndex < 4) {
+                                    // 第二组：性别左右切换。
+                                    canvas.bH = 1;
+                                    action = hotAreaIndex % 2 == 0 ? 8 : 2;
+                                } else {
+                                    // 第三组：名字输入框 / 随机名按钮，点击后是确认选中。
+                                    // bG: 第三组中的子选项，0=输入框，1=随机名按钮
+                                    canvas.bH = 2;
+                                    canvas.bG = hotAreaIndex % 2;
+                                    action = 1073741824;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    canvas.a = action;
+                    return;
+                }
+                return;
+            case 10:
+                // case 10: 只依赖通用面板命中的功能页。
+                if (canvas.aq != null) {
+                    // aq: 这里仅依赖通用面板返回命令，不额外叠加界面专属逻辑。
+                    canvas.a = canvas.aq.b(touchX, touchY);
+                }
+                return;
+            case 14:
+                // case 14: 标题/启动主菜单界面。
+                if (canvas.c != 0) {
+                    canvas.a = ca.b(touchX, touchY);
+                    return;
+                }
+                int action = 0;
+                // bo: 标题界面的主菜单文案数组；bs: 当前命中的菜单项索引
+                for (int menuIndex = 0; menuIndex < canvas.bo.length; menuIndex++) {
+                    int left = (t.b - canvas.bi.getWidth()) >> 1;
+                    int right = left + canvas.bi.getWidth();
+                    int top = (canvas.bt << 1) + canvas.bh.getHeight() + (canvas.bi.getHeight() * menuIndex);
+                    int bottom = (canvas.bt << 1) + canvas.bh.getHeight() + (canvas.bi.getHeight() * (menuIndex + 1));
+                    if (touchX > left && touchX < right && touchY > top && touchY < bottom) {
+                        canvas.bs = menuIndex;
+                        // al: 菜单项选中后的计时/节奏控制字段，点中后清零以便立即触发
+                        canvas.al = 0L;
+                        action = 1073741824;
+                        break;
+                    }
+                }
+                if (action == 0 && t.a == 1) {
+                    int left = (t.b - t.i.stringWidth("退出")) - 4;
+                    int right = t.b - 4;
+                    int top = (t.c - t.j) - 4;
+                    int bottom = t.c - 4;
+                    if (touchX >= left && touchX <= right && touchY >= top && touchY <= bottom) {
+                        action = 536870912;
+                    }
+                }
+                canvas.a = action;
+                return;
+            case 15:
+            case 16:
+            case 17:
+                // case 15/16/17: 使用 ca.b() 的通用确认/取消类界面。
+                canvas.a = ca.b(touchX, touchY);
+                return;
+            case 18:
+            case 19:
+                // case 18/19: 使用 ca.a() 的另一组通用弹框/菜单界面。
+                canvas.a = ca.a(touchX, touchY);
+                return;
+            case 20:
+                // case 20: 下载/提示类界面，走 switch 末尾的 ca.b() 默认处理。
+                break;
+            case 3:
+            case 7:
+            case 8:
+            case 9:
+            case 11:
+            case 12:
+            case 13:
+            default:
+                // 这些状态当前没有额外的 pointerPressed 逻辑，直接返回。
+                return;
+        }
+        canvas.a = ca.b(touchX, touchY);
+    }
+
     protected final void pointerReleased(int i2, int i3) {
         if (!t.o || this.aj == null) {
             return;

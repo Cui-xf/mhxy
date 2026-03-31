@@ -39,7 +39,7 @@ public final class h {
       if (MainCanvas.i == null || bz_1.b != 72 || av_1.a("socket://120.78.151.213:20008")) {
          bz_1.b = 72;
          MainCanvas.a((String)"socket://120.78.151.213:20008", (byte)2);
-         this.a.a.a("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
+         this.a.mainCanvas.a("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
       }
 
       if (MainCanvas.i != null) {
@@ -51,7 +51,7 @@ public final class h {
 
    public final void b() {
       if (this.a != null) {
-         this.a.a.r();
+         this.a.mainCanvas.r();
       }
    }
 

@@ -205,7 +205,7 @@ public final class LoadingPage {
 
          if (MainCanvas.A != null) {
             if (e != 0) {
-               ai_1.a(MainCanvas.A, System.currentTimeMillis());
+               PngUtil.a(MainCanvas.A, System.currentTimeMillis());
                MainCanvas.f.a(var0, (Frame1) MainCanvas.A, (int[])null, 0, 0, 16, var2 + 5, 20, 0);
                a((int[])(E != null ? E[0] : null), 16, var2 + 5, 16, 9);
             } else {
@@ -215,7 +215,7 @@ public final class LoadingPage {
 
          if (MainCanvas.B != null) {
             if (e + d < var5.a()) {
-               ai_1.a(MainCanvas.B, System.currentTimeMillis());
+               PngUtil.a(MainCanvas.B, System.currentTimeMillis());
                MainCanvas.f.a(var0, (Frame1) MainCanvas.B, (int[])null, 0, 0, var3 - 32, var2 + 5, 20, 0);
                a((int[])(E != null ? E[1] : null), var3 - 32, var2 + 5, 16, 9);
             } else {

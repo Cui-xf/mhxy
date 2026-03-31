@@ -34,7 +34,7 @@ public final class c_3 {
         if (MainCanvas.i == null || bz_1.b != 72 || av_1.a("socket://120.78.151.213:20008")) {
             System.out.println("socket://120.78.151.213:20008");
             bz_1.b = 72;
-            this.a.a.a("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
+            this.a.mainCanvas.a("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
         }
 
         if (MainCanvas.i != null) {
@@ -55,7 +55,7 @@ public final class c_3 {
     public final void d() {
         c.a(bz_1.a((byte) 1, (byte) 3, ""));
         this.a.start();
-        this.a.a.a("请求中...");
+        this.a.mainCanvas.a("请求中...");
     }
 
     public static void e() {

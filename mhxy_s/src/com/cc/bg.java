@@ -735,7 +735,7 @@ public final class bg implements CommandListener {
                         if ((var57 = bz_1.a((byte)1, (byte)2, var12.toString())) != null) {
                            var22.h.a(var57);
                            var22.h.a.start();
-                           var22.h.a.a.a("请求中...");
+                           var22.h.a.mainCanvas.a("请求中...");
                         }
 
                         var12.delete(0, var12.capacity());
@@ -753,7 +753,7 @@ public final class bg implements CommandListener {
 
                   if (var13.equals("返回")) {
                      this.d();
-                     this.h.a.a.c();
+                     this.h.a.mainCanvas.c();
                      this.a();
                      return;
                   }
@@ -835,7 +835,7 @@ public final class bg implements CommandListener {
                         if ((var56 = bz_1.a((byte)2, (byte)5, var11.toString())) != null) {
                            MainCanvas.i.a(var56);
                            var21.h.a.start();
-                           var21.h.a.a.a("请求中...");
+                           var21.h.a.mainCanvas.a("请求中...");
                         }
 
                         var11.delete(0, var11.capacity());
@@ -939,7 +939,7 @@ public final class bg implements CommandListener {
                      if ((var53 = bz_1.a((byte)2, (byte)6, var46.toString())) != null) {
                         MainCanvas.i.a(var53);
                         this.h.a.start();
-                        this.h.a.a.a("请求中...");
+                        this.h.a.mainCanvas.a("请求中...");
                      }
 
                      var46.delete(0, var46.capacity());
@@ -996,7 +996,7 @@ public final class bg implements CommandListener {
                         if ((var10 = bz_1.a((byte)2, (byte)7, var52.toString())) != null) {
                            MainCanvas.i.a(var10);
                            var18.h.a.start();
-                           var18.h.a.a.a("请求中...");
+                           var18.h.a.mainCanvas.a("请求中...");
                         }
 
                         var52.delete(0, var52.capacity());
@@ -1062,7 +1062,7 @@ public final class bg implements CommandListener {
                         if (var9 != null) {
                            MainCanvas.i.a(var9);
                            var17.h.a.start();
-                           var17.h.a.a.a("请求中...");
+                           var17.h.a.mainCanvas.a("请求中...");
                         }
 
                         var55.delete(0, var55.capacity());
@@ -1110,8 +1110,8 @@ public final class bg implements CommandListener {
             case 13:
                if (var13.equals("提交")) {
                   h var16;
-                  if ((var16 = this.h).a.a.j == 1) {
-                     var16.a.a.j = var16.a.a.k;
+                  if ((var16 = this.h).a.mainCanvas.touchPageCase == 1) {
+                     var16.a.mainCanvas.touchPageCase = var16.a.mainCanvas.k;
                   }
 
                   return;
@@ -1194,7 +1194,7 @@ public final class bg implements CommandListener {
                         if ((var6 = bz_1.a((byte)1, (byte)4, var7.toString())) != null) {
                            var15.h.a(var6);
                            var15.h.a.start();
-                           var15.h.a.a.a("请求中...");
+                           var15.h.a.mainCanvas.a("请求中...");
                         }
 
                         var7.delete(0, var7.capacity());
@@ -1256,7 +1256,7 @@ public final class bg implements CommandListener {
                   bb_1.b();
                   this.h.a(var6);
                   this.h.a.start();
-                  this.h.a.a.a("请求中...");
+                  this.h.a.mainCanvas.a("请求中...");
                }
 
                var5.delete(0, var5.capacity());

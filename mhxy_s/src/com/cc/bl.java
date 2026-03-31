@@ -89,7 +89,7 @@ public final class bl extends ar {
 
    }
 
-   public final void a(aw var1, ai_1 var2, long var3) {
+   public final void a(aw var1, PngUtil var2, long var3) {
       try {
          if (super.g != null) {
             if (super.f != null && super.f.size() > 3) {
@@ -137,10 +137,10 @@ public final class bl extends ar {
                   this.a(false);
                }
 
-               ai_1.a(super.g, var3);
+               PngUtil.a(super.g, var3);
             } else {
                this.a(true);
-               ai_1.a(super.g, var3);
+               PngUtil.a(super.g, var3);
             }
 
             if (super.d != null) {

@@ -9,7 +9,7 @@ import javax.microedition.lcdui.Graphics;
 public final class ch {
    private ao_1 c;
    private MainCanvas d;
-   private ai_1 e;
+   private PngUtil e;
    private String f;
    private TextRender g;
    private static int h;
@@ -35,7 +35,7 @@ public final class ch {
    private Frame0 z;
    private boolean A = false;
 
-   public ch(ao_1 var1, MainCanvas var2, ai_1 var3) {
+   public ch(ao_1 var1, MainCanvas var2, PngUtil var3) {
       this.c = var1;
       this.d = var2;
       this.e = var3;
@@ -207,7 +207,7 @@ public final class ch {
 
       LoadingPage.l = 0;
       this.c.l = 0;
-      this.d.j = this.d.k;
+      this.d.touchPageCase = this.d.k;
       this.c.j = this.c.k = 102;
    }
 

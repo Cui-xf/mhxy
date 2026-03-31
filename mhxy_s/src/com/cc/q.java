@@ -165,7 +165,7 @@ public final class q {
                   bt_1.l(this.b);
                   if (MainCanvas.e != null && MainCanvas.e.k == 5) {
                      MainCanvas.e.l = 0;
-                     this.a.j = this.a.k = 7;
+                     this.a.touchPageCase = this.a.k = 7;
                   }
 
                   return;
@@ -222,8 +222,8 @@ public final class q {
                   bt_1.t(this.b);
                   if (MainCanvas.e != null) {
                      if (MainCanvas.e.k == 12 && MainCanvas.e.l >= 6) {
-                        if (this.a.j != 2) {
-                           this.a.j = this.a.k;
+                        if (this.a.touchPageCase != 2) {
+                           this.a.touchPageCase = this.a.k;
                         }
 
                         MainCanvas.e.l = 6;
@@ -232,8 +232,8 @@ public final class q {
                      }
 
                      if (MainCanvas.e.k == 4 && MainCanvas.e.l >= 8) {
-                        if (this.a.j != 2) {
-                           this.a.j = this.a.k;
+                        if (this.a.touchPageCase != 2) {
+                           this.a.touchPageCase = this.a.k;
                         }
 
                         MainCanvas.e.a(bt_1.en);
@@ -248,15 +248,15 @@ public final class q {
                   bt_1.D(this.b);
                   MainCanvas.e.a(bt_1.fs);
                   MainCanvas.e.a(bt_1.fl);
-                  if (this.a.j == 1) {
-                     this.a.j = this.a.k;
+                  if (this.a.touchPageCase == 1) {
+                     this.a.touchPageCase = this.a.k;
                   }
 
                   return;
                case 8212:
                   bt_1.E(this.b);
-                  if (this.a.j == 1) {
-                     this.a.j = this.a.k;
+                  if (this.a.touchPageCase == 1) {
+                     this.a.touchPageCase = this.a.k;
                   }
 
                   return;
@@ -267,7 +267,7 @@ public final class q {
                   }
 
                   if (ao_1.i() && MainCanvas.e.k != 20) {
-                     if (this.a.j != 2) {
+                     if (this.a.touchPageCase != 2) {
                         MainCanvas.e.a(MainCanvas.e.k);
                      } else {
                         this.a.az = true;
@@ -420,7 +420,7 @@ public final class q {
                      this.a.aq.a((al)this.a.at);
                      this.a.aq.a((al)this.a.au);
                      this.a.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-                     this.a.j = this.a.k;
+                     this.a.touchPageCase = this.a.k;
                      MainCanvas.e.l = 3;
                   }
 
@@ -476,7 +476,7 @@ public final class q {
                         bt_1.t();
                      }
 
-                     this.a.j = this.a.k;
+                     this.a.touchPageCase = this.a.k;
                      this.a.b("找不到您搜索的宠物!");
                   }
 
@@ -498,7 +498,7 @@ public final class q {
                      if (MainCanvas.e.aM > 1) {
                         --MainCanvas.e.aM;
                         this.a.b("没有更多的物品了！");
-                        this.a.j = this.a.k;
+                        this.a.touchPageCase = this.a.k;
                      } else {
                         this.a.b("拍卖场没有对应物品!");
                         MainCanvas.e.j = 14;
@@ -522,8 +522,8 @@ public final class q {
                   if (MainCanvas.e.j == 35) {
                      if (bt_1.gs != null) {
                         MainCanvas.e.D();
-                        if (this.a.j != 2) {
-                           this.a.j = this.a.k;
+                        if (this.a.touchPageCase != 2) {
+                           this.a.touchPageCase = this.a.k;
                         }
                      } else {
                         this.a.b("没有寄养宠物!");
@@ -612,8 +612,8 @@ public final class q {
                   bt_1.u(this.b);
                   if (MainCanvas.e != null) {
                      if (MainCanvas.e.k == 36 && MainCanvas.e.l >= 2) {
-                        if (this.a.j != 2) {
-                           this.a.j = this.a.k;
+                        if (this.a.touchPageCase != 2) {
+                           this.a.touchPageCase = this.a.k;
                         }
 
                         MainCanvas.e.l = 2;
@@ -752,7 +752,7 @@ public final class q {
 
                   if (bt_1.bs == 0) {
                      this.a.n();
-                     this.a.a = 0;
+                     this.a.touchAction = 0;
                      this.a.b = 0;
                      this.a.d.start();
                   }
@@ -814,7 +814,7 @@ public final class q {
                      } else if (bt_1.mq == 5) {
                         MainCanvas.e.N();
                      } else if (bt_1.mq == 6) {
-                        this.a.j = this.a.k;
+                        this.a.touchPageCase = this.a.k;
                      }
                      break;
                   }
@@ -830,7 +830,7 @@ public final class q {
                   MainCanvas.e.J = this.b.readUTF();
                   LoadingPage.h = 0;
                   if (!MainCanvas.e.c && MainCanvas.e.k != 0 && MainCanvas.e.k != 25) {
-                     this.a.j = this.a.k = 7;
+                     this.a.touchPageCase = this.a.k = 7;
                      MainCanvas.e.N();
                   }
 
@@ -839,7 +839,7 @@ public final class q {
                   int var41 = this.b.readInt();
                   int var53 = this.b.readInt();
                   if (MainCanvas.e.k != 0 && MainCanvas.e.k != 25 && bt_1.H == null) {
-                     this.a.j = this.a.k = 7;
+                     this.a.touchPageCase = this.a.k = 7;
                      MainCanvas.e.N();
                   }
 
@@ -854,7 +854,7 @@ public final class q {
                      bt_1.G = this.b.readUTF();
                   }
 
-                  this.a.j = this.a.k = 7;
+                  this.a.touchPageCase = this.a.k = 7;
                   return;
                case 8277:
                   if (MainCanvas.e != null && MainCanvas.e.P != null) {
@@ -1051,7 +1051,7 @@ public final class q {
                   }
 
                   MainCanvas.e.j((byte)6);
-                  this.a.j = this.a.k;
+                  this.a.touchPageCase = this.a.k;
                   MainCanvas.e.j = MainCanvas.e.k = 38;
                   return;
                case 8455:
@@ -1297,15 +1297,15 @@ public final class q {
                      return;
                   }
 
-                  if (MainCanvas.e.e.j == 1) {
-                     MainCanvas.e.e.j = this.a.k;
+                  if (MainCanvas.e.e.touchPageCase == 1) {
+                     MainCanvas.e.e.touchPageCase = this.a.k;
                   }
 
                   return;
                case 8739:
                   bt_1.aN(this.b);
                   c_3.a("游客注册 第2步: ", "创建一哥哥通行证密码");
-                  this.a.j = 7;
+                  this.a.touchPageCase = 7;
                   return;
                case 8960:
                   bt_1.ao(this.b);
@@ -1374,7 +1374,7 @@ public final class q {
                         bt_1.Q.b();
                         MainCanvas.e.j = MainCanvas.e.k;
                         MainCanvas.e.k = 111;
-                        this.a.j = this.a.k;
+                        this.a.touchPageCase = this.a.k;
                      }
 
                      return;
@@ -1391,8 +1391,8 @@ public final class q {
                   }
 
                   if (MainCanvas.e.k == 111) {
-                     if (this.a.j == 1) {
-                        this.a.j = 7;
+                     if (this.a.touchPageCase == 1) {
+                        this.a.touchPageCase = 7;
                      }
 
                      if (MainCanvas.e.j == 76) {
@@ -1454,7 +1454,7 @@ public final class q {
                   bt_1.nC[2] = this.b.readUTF();
                   MainCanvas.e.l = 11;
                   LoadingPage.h = 0;
-                  this.a.j = this.a.k;
+                  this.a.touchPageCase = this.a.k;
                   return;
                case 9216:
                   v_1.a(this.b);
@@ -1488,7 +1488,7 @@ public final class q {
                   return;
                case 9221:
                   if (ao_1.i()) {
-                     this.a.j = this.a.k = 7;
+                     this.a.touchPageCase = this.a.k = 7;
                      MainCanvas.e.j = MainCanvas.e.k = 0;
                   }
 
@@ -1522,11 +1522,11 @@ public final class q {
                            return;
                         }
 
-                        this.a.k = this.a.j = 4;
-                        this.a.a = 0;
+                        this.a.k = this.a.touchPageCase = 4;
+                        this.a.touchAction = 0;
                         this.a.b = 0;
                         this.a.a((int)0);
-                        this.a.a = 0;
+                        this.a.touchAction = 0;
                         return;
                      }
 
@@ -1583,7 +1583,7 @@ public final class q {
                   t_1.a("exec 随机名称");
                   this.a.ay = this.b.readUTF();
                   if (this.a.k == 6) {
-                     this.a.j = this.a.k;
+                     this.a.touchPageCase = this.a.k;
                   }
 
                   return;
@@ -1826,19 +1826,19 @@ public final class q {
    private void b() throws IOException {
       bt_1.c(this.b);
       if (MainCanvas.e != null && MainCanvas.e.I != null) {
-         if (t_1.o && this.a.aj != null) {
+         if (t_1.o && this.a.touchController != null) {
             if (!MainCanvas.e.I.c.isEmpty()) {
                MainCanvas.e.I.c.removeAllElements();
                MainCanvas.e.I.b();
             }
 
-            if (this.a.aj != null) {
-               this.a.aj.c = 0;
-               this.a.aj.d = 0;
+            if (this.a.touchController != null) {
+               this.a.touchController.c = 0;
+               this.a.touchController.d = 0;
             }
 
             this.a.b = 0;
-            this.a.a = 0;
+            this.a.touchAction = 0;
          }
 
          MainCanvas.e.I.j = bt_1.at;
@@ -1975,7 +1975,7 @@ public final class q {
          }
 
          LoadingPage.a(MainCanvas.F, ao_1.K, MainCanvas.e.an, (String[])null, true);
-         this.a.j = this.a.k;
+         this.a.touchPageCase = this.a.k;
          MainCanvas.e.l = 1;
       } else {
          if (MainCanvas.e.k == 6) {
@@ -2005,19 +2005,19 @@ public final class q {
             }
 
             if (MainCanvas.e.l == 8) {
-               if (this.a.j != 2) {
-                  this.a.j = this.a.k;
+               if (this.a.touchPageCase != 2) {
+                  this.a.touchPageCase = this.a.k;
                   return;
                }
             } else if (o_1.e == 1) {
-               if (this.a.j != 2) {
-                  this.a.j = this.a.k;
+               if (this.a.touchPageCase != 2) {
+                  this.a.touchPageCase = this.a.k;
                   return;
                }
             } else {
                MainCanvas.e.j(MainCanvas.e.as);
-               if (this.a.j != 2) {
-                  this.a.j = this.a.k;
+               if (this.a.touchPageCase != 2) {
+                  this.a.touchPageCase = this.a.k;
                   return;
                }
             }
@@ -2176,7 +2176,7 @@ public final class q {
       MainCanvas.e.al = null;
       if (ao_1.i()) {
          MainCanvas.f.a(MainCanvas.e.f, ao_1.h, ao_1.i, true, false, 2109231);
-         this.a.j = this.a.k = 7;
+         this.a.touchPageCase = this.a.k = 7;
          MainCanvas.e.j = MainCanvas.e.k = 0;
       }
 

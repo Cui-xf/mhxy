@@ -137,7 +137,7 @@ public final class ac extends ar {
 
    }
 
-   public final void a(aw var1, ai_1 var2, long var3) {
+   public final void a(aw var1, PngUtil var2, long var3) {
       if (super.g != null && var1 != null) {
          if (!this.y && !this.A) {
             if (this.a == 0 && this.b < 0) {
@@ -165,7 +165,7 @@ public final class ac extends ar {
             }
          }
 
-         ai_1.a(super.g, var3);
+         PngUtil.a(super.g, var3);
          if (super.d != null) {
             super.d.a(var1, var2, var3);
          }
@@ -199,7 +199,7 @@ public final class ac extends ar {
 
    }
 
-   public final void a(Graphics var1, ai_1 var2, int var3, int var4, byte var5) {
+   public final void a(Graphics var1, PngUtil var2, int var3, int var4, byte var5) {
       if (super.g != null) {
          var2.a(var1, (Frame1)super.g, (int[])null, var3, var4, super.j + 8, super.k + 16, 20, 0);
          if (bt_1.ag != null) {
@@ -266,7 +266,7 @@ public final class ac extends ar {
    }
 
    public final int a(MainCanvas var1) {
-      if ((bt_1.bs != 0 || bt_1.bs == 0 && bt_1.s != 0) && bt_1.ab != null && var1.j != 1) {
+      if ((bt_1.bs != 0 || bt_1.bs == 0 && bt_1.s != 0) && bt_1.ab != null && var1.touchPageCase != 1) {
          for(int var2 = 0; var2 < bt_1.ab.length; ++var2) {
             if (a(super.j, super.k, bt_1.ab[var2], bt_1.ac[var2]) || a(super.j + 8, super.k + 8, bt_1.ab[var2], bt_1.ac[var2])) {
                this.B = this.B == 0 ? 1 : this.B;

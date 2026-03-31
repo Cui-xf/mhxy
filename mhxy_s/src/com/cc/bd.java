@@ -30,7 +30,7 @@ public final class bd implements CommandListener {
    private Command o;
    private Command p;
 
-   public bd(ao_1 var1, MainCanvas var2, ai_1 var3) {
+   public bd(ao_1 var1, MainCanvas var2, PngUtil var3) {
       this.a = var1;
       this.b = var2;
    }
@@ -110,9 +110,9 @@ public final class bd implements CommandListener {
       this.d = new TextField((String)null, "", var4, 0);
       this.n.append(this.d);
       this.b.q.setCurrent(this.n);
-      this.b.a = 0;
+      this.b.touchAction = 0;
       this.b.b = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.l = 0;
       this.a.k = 129;
    }

@@ -14,7 +14,7 @@ final class b_3 implements Runnable {
       if (this.a != MainCanvas.aB) {
          MainCanvas.c(this.mainCanvas);
       } else {
-         while(this.mainCanvas.j == 1 || this.mainCanvas.p) {
+         while(this.mainCanvas.touchPageCase == 1 || this.mainCanvas.p) {
             try {
                this.mainCanvas.b();
                Thread.sleep(30L);

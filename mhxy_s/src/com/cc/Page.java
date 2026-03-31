@@ -12,7 +12,7 @@ public final class Page {
     private String path;
     private Vector frames = new Vector();
     private Vector d = new Vector();
-    private FrameInfo[] e;
+    private FrameInfo[] frameInfos;
 
     public Page(String path, String name) {
         this.name = name;
@@ -85,7 +85,7 @@ public final class Page {
         Frame0 var5 = null;
 
         for (int var6 = 0; var6 < this.frames.size(); ++var6) {
-            if (this.frames.elementAt(var6) instanceof Frame0 && (var5 = (Frame0) this.frames.elementAt(var6)).info != null && var5.info.b == var1 && var5.e == var2 && var5.f == var3 && var5.g == var4) {
+            if (this.frames.elementAt(var6) instanceof Frame0 && (var5 = (Frame0) this.frames.elementAt(var6)).info != null && var5.info.id == var1 && var5.e == var2 && var5.f == var3 && var5.g == var4) {
                 return var5;
             }
         }
@@ -126,8 +126,8 @@ public final class Page {
             resourceStream = this.getClass().getResourceAsStream(this.path + this.name + ".rpg");
             dataInputStream = new DataInputStream(resourceStream);
             //skip前缀
-            dataInputStream.read(ai_1.skip);
-            for (int i = 0; i < this.e.length; ++i) {
+            dataInputStream.read(PngUtil.skip);
+            for (int i = 0; i < this.frameInfos.length; ++i) {
                 byte type = dataInputStream.readByte();
                 byte len = dataInputStream.readByte();
                 byte[][] data = new byte[len][];
@@ -139,11 +139,11 @@ public final class Page {
 
                 if (type == 0) {
                     Frame0 frame0 = buildFrame0(data, (short) 0, (short) 0, (short) 0);
-                    frame0.info = this.e[i];
+                    frame0.info = this.frameInfos[i];
                     this.frames.addElement(frame0);
                 } else {
                     Frame1 frame1 = buildFrame1(data, (short) 0, (short) 0, (short) 0);
-                    frame1.info = this.e[i];
+                    frame1.info = this.frameInfos[i];
                     this.frames.addElement(frame1);
                 }
             }
@@ -176,7 +176,7 @@ public final class Page {
         var2 = a(b(var1));
         this.a(var2);
         short[] var3 = this.b(var2);
-        this.a((short[]) var3, (short[]) null, (short[]) null, (short[]) null);
+        this.batchLoadFrame1((short[]) var3, (short[]) null, (short[]) null, (short[]) null);
         this.c(var2);
         return var2;
     }
@@ -218,7 +218,7 @@ public final class Page {
                     return null;
                 }
 
-                if ((var27 = this.a(var30)) == null) {
+                if ((var27 = this.getFrameStream(var30)) == null) {
                     Object var22 = null;
 
                     return null;
@@ -228,7 +228,7 @@ public final class Page {
                 var27.close();
                 this.a(var25);
                 short[] var21 = this.b(var25);
-                this.a((short[]) var21, (short[]) null, (short[]) null, (short[]) null);
+                this.batchLoadFrame1((short[]) var21, (short[]) null, (short[]) null, (short[]) null);
                 this.c(var25);
                 var25.info = var30;
                 return var25;
@@ -272,130 +272,79 @@ public final class Page {
 
         for (int var7 = 0; var7 < var1.length; ++var7) {
             if ((var5 = this.d(var1[var7])) != null) {
-                var6[var7] = var5.b;
+                var6[var7] = var5.id;
             } else {
                 var6[var7] = -1;
             }
         }
 
-        this.a(var6, var2, var3, var4);
+        this.batchLoadFrame1(var6, var2, var3, var4);
     }
 
-    private void a(short[] var1, short[] var2, short[] var3, short[] var4) {
-        throw new RuntimeException("未实现逻辑");
-//        boolean var5 = true;
-//        short var6 = 0;
-//        short var7 = 0;
-//        short var8 = 0;
-//        if (var2 == null || var3 == null || var4 == null) {
-//            var5 = false;
-//        }
-//
-//        for (int var9 = 0; var9 < var1.length; ++var9) {
-//            var6 = var5 ? var2[var9] : 0;
-//            var7 = var5 ? var3[var9] : 0;
-//            var8 = var5 ? var4[var9] : 0;
-//            if (var1[var9] >= 0) {
-//                if (this.c(var1[var9], var6, var7, var8) != null) {
-//                    var1[var9] = -1;
-//                } else {
-//                    for (int var10 = var9 + 1; var10 < var1.length; ++var10) {
-//                        if (var1[var10] >= 0 && var1[var9] == var1[var10] && var6 == (var5 ? var2[var10] : 0) && var7 == (var5 ? var3[var10] : 0) && var8 == (var5 ? var4[var10] : 0)) {
-//                            var1[var9] = -1;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//
-//        bc_1 var36 = null;
-//
-//        for (int var40 = 0; var40 < var1.length; ++var40) {
-//            var6 = var5 ? var2[var40] : 0;
-//            var7 = var5 ? var3[var40] : 0;
-//            var8 = var5 ? var4[var40] : 0;
-//            if (var1[var40] >= 0 || var6 != 0 || var7 != 0 || var8 != 0) {
-//                if ((var36 = this.c(var1[var40], var6, var7, var8)) == null) {
-//                    short var10001 = var1[var40];
-//                    short var11 = var8;
-//                    short var39 = var7;
-//                    var8 = var6;
-//                    var7 = var10001;
-//                    bu_1 var29 = this;
-//                    DataInputStream var12 = null;
-//                    Object var13 = null;
-//                    boolean var20 = false;
-//
-//                    label317:
-//                    {
-//                        label316:
-//                        {
-//                            try {
-//                                var20 = true;
-//                                aa var41;
-//                                if ((var41 = var29.a(var7)) == null) {
-//                                    var20 = false;
-//                                    continue;
-//                                }
-//
-//                                if ((var12 = var29.a(var41)) != null) {
-//                                    var29.a(var41, var12, var8, var39, var11);
-//                                    var20 = false;
-//                                    break label316;
-//                                }
-//
-//                                var20 = false;
-//                            } catch (IOException var25) {
-//                                ((Throwable) var25).printStackTrace();
-//                                var20 = false;
-//                                break label317;
-//                            } finally {
-//                                if (var20) {
-//                                    try {
-//                                        if (var12 != null) {
-//                                            var12.close();
-//                                        }
-//                                    } catch (IOException var21) {
-//                                        ((Throwable) var21).printStackTrace();
-//                                    }
-//
-//                                }
-//                            }
-//
-//                            try {
-//                                if (var12 != null) {
-//                                    var12.close();
-//                                }
-//                            } catch (IOException var24) {
-//                                ((Throwable) var24).printStackTrace();
-//                            }
-//                            continue;
-//                        }
-//
-//                        try {
-//                            if (var12 != null) {
-//                                var12.close();
-//                            }
-//                        } catch (IOException var23) {
-//                            ((Throwable) var23).printStackTrace();
-//                        }
-//                        continue;
-//                    }
-//
-//                    try {
-//                        if (var12 != null) {
-//                            var12.close();
-//                        }
-//                    } catch (IOException var22) {
-//                        ((Throwable) var22).printStackTrace();
-//                    }
-//                } else {
-//                    var36 = var36.a(var6, var7, var8);
-//                    this.c.addElement(var36);
-//                }
-//            }
-//        }
-
+    private void batchLoadFrame1(short[] resourceShortIds, short[] variantAList, short[] variantBList, short[] variantCList) {
+        boolean hasVariantParams = variantAList != null && variantBList != null && variantCList != null;
+        for (int index = 0; index < resourceShortIds.length; index++) {
+            short variantA = hasVariantParams ? variantAList[index] : (short) 0;
+            short variantB = hasVariantParams ? variantBList[index] : (short) 0;
+            short variantC = hasVariantParams ? variantCList[index] : (short) 0;
+            if (resourceShortIds[index] >= 0) {
+                // 通过 this.c 中已缓存的 bc 资源先做一次去重检查。
+                if (getFrame1FromCache(resourceShortIds[index], variantA, variantB, variantC) != null) {
+                    resourceShortIds[index] = -1;
+                } else {
+                    //如果后面还有参数完全相同的，就跳过当前资源
+                    for (int nextIndex = index + 1; nextIndex < resourceShortIds.length; nextIndex++) {
+                        short nextVariantA = hasVariantParams ? variantAList[nextIndex] : (short) 0;
+                        short nextVariantB = hasVariantParams ? variantBList[nextIndex] : (short) 0;
+                        short nextVariantC = hasVariantParams ? variantCList[nextIndex] : (short) 0;
+                        if (resourceShortIds[nextIndex] >= 0 && resourceShortIds[index] == resourceShortIds[nextIndex] && variantA == nextVariantA && variantB == nextVariantB && variantC == nextVariantC) {
+                            resourceShortIds[index] = -1;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        for (int index2 = 0; index2 < resourceShortIds.length; index2++) {
+            short resourceShortId = resourceShortIds[index2];
+            short variantA2 = hasVariantParams ? variantAList[index2] : (short) 0;
+            short variantB2 = hasVariantParams ? variantBList[index2] : (short) 0;
+            short variantC2 = hasVariantParams ? variantCList[index2] : (short) 0;
+            if (resourceShortId >= 0 || variantA2 != 0 || variantB2 != 0 || variantC2 != 0) {
+                // this.c 是已加载资源缓存；命中时直接从缓存资源派生一个新实例即可。
+                Frame1 cachedResource = getFrame1FromCache(resourceShortId, variantA2, variantB2, variantC2);
+                if (cachedResource == null) {
+                    DataInputStream resourceStream = null;
+                    try {
+                        // a(resourceShortId) 会从 this.e 资源索引表中找到对应的资源项。
+                        FrameInfo resourceEntry = getFrameInfoById(resourceShortId);
+                        if (resourceEntry == null) {
+                            continue;
+                        }
+                        // a(resourceEntry) 会结合 this.a / this.b 指向的资源包路径打开 .rpg 数据流。
+                        resourceStream = getFrameStream(resourceEntry);
+                        if (resourceStream == null) {
+                            continue;
+                        }
+                        a(resourceEntry, resourceStream, variantA2, variantB2, variantC2);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    } finally {
+                        if (resourceStream != null) {
+                            try {
+                                resourceStream.close();
+                            } catch (IOException closeException) {
+                                closeException.printStackTrace();
+                            }
+                        }
+                    }
+                } else {
+                    Frame1 clonedResource = cachedResource.a(variantA2, variantB2, variantC2);
+                    // 新派生出的资源实例同样要回写到 this.c 缓存中。
+                    this.frames.addElement(clonedResource);
+                }
+            }
+        }
     }
 
     public final void b(String var1, short var2, short var3, short var4) {
@@ -436,7 +385,7 @@ public final class Page {
                     return;
                 }
 
-                if ((var22 = this.a(var24)) != null) {
+                if ((var22 = this.getFrameStream(var24)) != null) {
                     this.a(var24, var22, var2, var3, var4);
                     return;
                 }
@@ -499,7 +448,7 @@ public final class Page {
         if (var10000 != null) {
             for (int var17 = 0; var17 < var16.length; ++var17) {
                 if (var16[var17] >= 0) {
-                    if (var6.d(var16[var17], var8, var9, var10) != null) {
+                    if (var6.getFrame0FromCache(var16[var17], var8, var9, var10) != null) {
                         var16[var17] = -1;
                     } else {
                         for (int var20 = var17 + 1; var20 < var16.length; ++var20) {
@@ -513,7 +462,7 @@ public final class Page {
 
             for (int var18 = 0; var18 < var16.length; ++var18) {
                 if (var16[var18] >= 0) {
-                    var6.b(var16[var18], var8, var9, var10);
+                    var6.loadFrame(var16[var18], var8, var9, var10);
                 }
             }
         }
@@ -568,8 +517,8 @@ public final class Page {
                     {
                         try {
                             var15 = true;
-                            if ((var27 = var25.a(var29)) != null) {
-                                var25.b(var29, var27, (short) 0, (short) 0, (short) 0);
+                            if ((var27 = var25.getFrameStream(var29)) != null) {
+                                var25.loadFrameAndCache(var29, var27, (short) 0, (short) 0, (short) 0);
                                 var15 = false;
                                 break label162;
                             }
@@ -732,7 +681,7 @@ public final class Page {
         for (int var15 = 0; var15 < var7.length; ++var15) {
             if (var7[var15] >= 0) {
                 var8 = var1.a(var7[var15]);
-                if (this.d(var7[var15], var8 < 0 ? 0 : var1.m[var8][1], var8 < 0 ? 0 : var1.m[var8][2], var8 < 0 ? 0 : var1.m[var8][3]) != null) {
+                if (this.getFrame0FromCache(var7[var15], var8 < 0 ? 0 : var1.m[var8][1], var8 < 0 ? 0 : var1.m[var8][2], var8 < 0 ? 0 : var1.m[var8][3]) != null) {
                     var7[var15] = -1;
                 } else {
                     for (int var10 = var15 + 1; var10 < var7.length; ++var10) {
@@ -747,91 +696,49 @@ public final class Page {
         for (int var16 = 0; var16 < var7.length; ++var16) {
             if (var7[var16] >= 0) {
                 if ((var8 = var1.a(var7[var16])) >= 0) {
-                    this.b(var7[var16], var1.m[var8][1], var1.m[var8][2], var1.m[var8][3]);
+                    this.loadFrame(var7[var16], var1.m[var8][1], var1.m[var8][2], var1.m[var8][3]);
                 } else {
-                    this.b(var7[var16], (short) 0, (short) 0, (short) 0);
+                    this.loadFrame(var7[var16], (short) 0, (short) 0, (short) 0);
                 }
             }
         }
 
     }
 
-    private void b(short var1, short var2, short var3, short var4) {
-        throw new RuntimeException("为实现");
-//        if (this.d(var1, var2, var3, var4) == null) {
-//            Object var5 = null;
-//            DataInputStream var6 = null;
-//            boolean var13 = false;
-//
-//            label127:
-//            {
-//                label126:
-//                {
-//                    try {
-//                        var13 = true;
-//                        aa var20;
-//                        if ((var20 = this.a(var1)) == null) {
-//                            return;
-//                        }
-//
-//                        if ((var6 = this.a(var20)) == null) {
-//                            var13 = false;
-//                            break label126;
-//                        }
-//
-//                        this.b(var20, var6, var2, var3, var4);
-//                        var13 = false;
-//                    } catch (IOException var18) {
-//                        ((Throwable) var18).printStackTrace();
-//                        var13 = false;
-//                        break label127;
-//                    } finally {
-//                        if (var13) {
-//                            try {
-//                                if (var6 != null) {
-//                                    var6.close();
-//                                }
-//                            } catch (IOException var14) {
-//                            }
-//
-//                        }
-//                    }
-//
-//                    try {
-//                        if (var6 != null) {
-//                            var6.close();
-//                        }
-//
-//                        return;
-//                    } catch (IOException var17) {
-//                        return;
-//                    }
-//                }
-//
-//                try {
-//                    if (var6 != null) {
-//                        var6.close();
-//                    }
-//
-//                    return;
-//                } catch (IOException var16) {
-//                    return;
-//                }
-//            }
-//
-//            try {
-//                if (var6 != null) {
-//                    var6.close();
-//                }
-//
-//            } catch (IOException var15) {
-//            }
-//        }
+    private void loadFrame(short id, short variantA, short variantB, short variantC) {
+        // 通过 this.c 中的已加载缓存检查，避免同一资源被重复反序列化。
+        if (getFrame0FromCache(id, variantA, variantB, variantC) != null) {
+            return;
+        }
+        DataInputStream resourceStream = null;
+        try {
+            // 从 this.e 资源索引表里按短整型资源 id 查到对应的资源项。
+            FrameInfo frameInfo = getFrameInfoById(id);
+            if (frameInfo == null) {
+                return;
+            }
+            // 基于 this.a / this.b 指向的资源包与路径前缀打开对应的 .rpg 数据流。
+            resourceStream = getFrameStream(frameInfo);
+            if (resourceStream == null) {
+                return;
+            }
+            // 解析资源内容，并在内部写回 this.c 缓存。
+            loadFrameAndCache(frameInfo, resourceStream, variantA, variantB, variantC);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        } finally {
+            if (resourceStream != null) {
+                try {
+                    resourceStream.close();
+                } catch (IOException closeException) {
+                }
+            }
+        }
     }
 
-    private void b(FrameInfo var1, DataInputStream var2, short var3, short var4, short var5) throws IOException {
+    private void loadFrameAndCache(FrameInfo frameInfo, DataInputStream inputStream, short var3, short var4, short var5) throws IOException {
         Frame0 var6;
-        (var6 = buildFrame0(a((DataInputStream) var2, (int) 0), var3, var4, var5)).info = var1;
+        (var6 = buildFrame0(a((DataInputStream) inputStream, (int) 0), var3, var4, var5)).info = frameInfo;
         this.frames.addElement(var6);
     }
 
@@ -1033,13 +940,13 @@ public final class Page {
         return var1;
     }
 
-    private DataInputStream a(FrameInfo var1) {
+    private DataInputStream getFrameStream(FrameInfo frameInfo) {
         byte[] var2 = null;
         if (this.name.equals(bt_1.kX) && bt_1.kY != null) {
             g var3 = null;
 
             for (short var4 = 0; var4 < bt_1.kY.size(); ++var4) {
-                if ((var3 = (g) bt_1.kY.elementAt(var4)).a == var1.key) {
+                if ((var3 = (g) bt_1.kY.elementAt(var4)).a == frameInfo.key) {
                     var2 = var3.b;
                     break;
                 }
@@ -1055,12 +962,12 @@ public final class Page {
         } else {
             Object var8 = null;
             InputStream var9;
-            if (this.name.equals(bt_1.kX) && (var9 = this.getClass().getResourceAsStream(this.path + var1.key + ".rpg")) != null) {
+            if (this.name.equals(bt_1.kX) && (var9 = this.getClass().getResourceAsStream(this.path + frameInfo.key + ".rpg")) != null) {
                 var6 = new DataInputStream(var9);
             }
 
             if (var6 == null) {
-                if ((var9 = this.getClass().getResourceAsStream(this.path + var1.b + ".rpg")) == null) {
+                if ((var9 = this.getClass().getResourceAsStream(this.path + frameInfo.id + ".rpg")) == null) {
                     return null;
                 }
 
@@ -1072,19 +979,19 @@ public final class Page {
     }
 
     private FrameInfo d(int var1) {
-        for (int var2 = 0; var2 < this.e.length; ++var2) {
-            if (this.e[var2] != null && this.e[var2].key == var1) {
-                return this.e[var2];
+        for (int var2 = 0; var2 < this.frameInfos.length; ++var2) {
+            if (this.frameInfos[var2] != null && this.frameInfos[var2].key == var1) {
+                return this.frameInfos[var2];
             }
         }
 
         return null;
     }
 
-    private FrameInfo a(short var1) {
-        for (int var2 = 0; var2 < this.e.length; ++var2) {
-            if (this.e[var2] != null && this.e[var2].b == var1) {
-                return this.e[var2];
+    private FrameInfo getFrameInfoById(short id) {
+        for (int var2 = 0; var2 < this.frameInfos.length; ++var2) {
+            if (this.frameInfos[var2] != null && this.frameInfos[var2].id == id) {
+                return this.frameInfos[var2];
             }
         }
 
@@ -1101,10 +1008,10 @@ public final class Page {
             try {
                 var9 = true;
                 short var2 = var16.readShort();
-                this.e = new FrameInfo[var2];
+                this.frameInfos = new FrameInfo[var2];
 
                 for (int var3 = 0; var3 < var2; ++var3) {
-                    this.e[var3] = new FrameInfo(var16.readInt(), var16.readShort());
+                    this.frameInfos[var3] = new FrameInfo(var16.readInt(), var16.readShort());
                 }
 
                 var9 = false;
@@ -1146,9 +1053,9 @@ public final class Page {
             resourceAsStream = getClass().getResourceAsStream("/" + this.name + ".rule");
             dataInputStream = new DataInputStream(resourceAsStream);
             int size = dataInputStream.readShort();
-            this.e = new FrameInfo[size];
+            this.frameInfos = new FrameInfo[size];
             for (int i = 0; i < size; i++) {
-                this.e[i] = new FrameInfo(dataInputStream.readInt(), dataInputStream.readShort());
+                this.frameInfos[i] = new FrameInfo(dataInputStream.readInt(), dataInputStream.readShort());
             }
             resourceAsStream.close();
             dataInputStream.close();
@@ -1318,7 +1225,7 @@ public final class Page {
                             }
 
                             Frame1 var14;
-                            if (var10.frames.elementAt(var6) instanceof Frame1 && (var14 = (Frame1) var10.frames.elementAt(var6)).info != null && var14.info.b == var13) {
+                            if (var10.frames.elementAt(var6) instanceof Frame1 && (var14 = (Frame1) var10.frames.elementAt(var6)).info != null && var14.info.id == var13) {
                                 var10001 = var14;
                                 break;
                             }
@@ -1334,10 +1241,10 @@ public final class Page {
 
     }
 
-    private Frame1 c(short s, short s2, short s3, short s4) {
+    private Frame1 getFrame1FromCache(short s, short s2, short s3, short s4) {
         for (int i = 0; i < this.frames.size(); i++) {
             Frame cfVar = (Frame) this.frames.elementAt(i);
-            if (cfVar.type == 2 && cfVar.info != null && cfVar.info.b == s) {
+            if (cfVar.type == 2 && cfVar.info != null && cfVar.info.id == s) {
                 Frame1 bcVar = (Frame1) cfVar;
                 if (bcVar.a == s2 && bcVar.b == s3 && bcVar.c == s4) {
                     return bcVar;
@@ -1348,10 +1255,10 @@ public final class Page {
     }
 
 
-    private Frame0 d(short s, short s2, short s3, short s4) {
+    private Frame0 getFrame0FromCache(short id, short s2, short s3, short s4) {
         for (int i = 0; i < this.frames.size(); i++) {
             Frame cfVar = (Frame) this.frames.elementAt(i);
-            if (cfVar.type == 0 && cfVar.info != null && cfVar.info.b == s) {
+            if (cfVar.type == 0 && cfVar.info != null && cfVar.info.id == id) {
                 Frame0 bfVar = (Frame0) cfVar;
                 if (bfVar.e == s2 && bfVar.f == s3 && bfVar.g == s4) {
                     return bfVar;

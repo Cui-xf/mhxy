@@ -57,7 +57,7 @@ public final class aq {
       this.b.aq.a((al)this.b.au);
       this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
-      this.a.e.j = this.a.e.k;
+      this.a.e.touchPageCase = this.a.e.k;
       this.a.j = this.a.k = 41;
    }
 
@@ -202,7 +202,7 @@ public final class aq {
       this.b.aq.a((al)this.b.au);
       this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 42;
    }
 
@@ -312,7 +312,7 @@ public final class aq {
       this.b.aq.a((al)this.b.au);
       this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 43;
    }
 
@@ -437,7 +437,7 @@ public final class aq {
       this.b.aq.a((al)this.b.au);
       this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 45;
    }
 
@@ -523,7 +523,7 @@ public final class aq {
       this.b.aq.a((al)this.b.au);
       this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 46;
    }
 
@@ -742,7 +742,7 @@ public final class aq {
       }
 
       this.a.l = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 47;
    }
 
@@ -1191,7 +1191,7 @@ public final class aq {
       this.b.aq.a((al)this.b.au);
       this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 48;
    }
 
@@ -1350,7 +1350,7 @@ public final class aq {
       this.b.aq.a((al)this.b.au);
       this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 2;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 48;
    }
 
@@ -1377,7 +1377,7 @@ public final class aq {
       this.b.aq.a((al)this.b.au);
       this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 49;
    }
 
@@ -1401,9 +1401,9 @@ public final class aq {
       this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       LoadingPage.h = 0;
       LoadingPage.g = 0;
-      this.b.a = 0;
+      this.b.touchAction = 0;
       this.a.l = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 50;
    }
 
@@ -1662,7 +1662,7 @@ public final class aq {
       this.b.aq.a((al)this.b.au);
       this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 51;
    }
 
@@ -1682,7 +1682,7 @@ public final class aq {
             this.b.aq.b(var1);
          }
 
-         if (this.b.aA > 40) {
+         if (this.b.tempTouchStatus > 40) {
             if (this.b.b != 2 && this.b.b != 518) {
                if (this.b.b == 8 || this.b.b == 516) {
                   switch (this.b.ar.g()) {
@@ -1951,7 +1951,7 @@ public final class aq {
                }
             }
 
-            ++this.b.aA;
+            ++this.b.tempTouchStatus;
          }
 
          if (var1 != 1073741824 && var1 != 517) {
@@ -1998,7 +1998,7 @@ public final class aq {
       this.b.aq.a((al)this.b.au);
       this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 114;
    }
 
@@ -2007,7 +2007,7 @@ public final class aq {
          this.b.aq.b(var1);
       }
 
-      if (this.b.aA > 40) {
+      if (this.b.tempTouchStatus > 40) {
          if (this.b.b != 2 && this.b.b != 518) {
             if (this.b.b == 8 || this.b.b == 516) {
                switch (this.b.ar.g()) {
@@ -2156,7 +2156,7 @@ public final class aq {
             }
          }
 
-         ++this.b.aA;
+         ++this.b.tempTouchStatus;
       }
 
       if (var1 != 1073741824 && var1 != 517) {
@@ -2167,7 +2167,7 @@ public final class aq {
             }
 
             this.b((byte)2);
-            this.b.a = 0;
+            this.b.touchAction = 0;
             return;
          }
 
@@ -2279,7 +2279,7 @@ public final class aq {
       this.b.aq.a((al)this.b.at);
       this.b.aq.a((al)this.b.au);
       this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 115;
    }
 
@@ -2682,7 +2682,7 @@ public final class aq {
       this.b.aq.a((al)this.b.au);
       this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 52;
    }
 
@@ -2693,7 +2693,7 @@ public final class aq {
       this.b.au.a("选择");
       this.b.au.a(true);
       this.a.l = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 52;
    }
 
@@ -2883,7 +2883,7 @@ public final class aq {
       this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       LoadingPage.l = 0;
       this.a.l = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 60;
    }
 
@@ -3071,7 +3071,7 @@ public final class aq {
          this.a.l = 0;
          this.a.j = this.a.k = 0;
          this.b.b = 0;
-         this.b.a = 0;
+         this.b.touchAction = 0;
       }
 
    }
@@ -3098,7 +3098,7 @@ public final class aq {
    public final void w() {
       LoadingPage.h = 0;
       this.a.l = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 62;
    }
 
@@ -3142,7 +3142,7 @@ public final class aq {
          int var3 = var1.e;
          this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
          this.a.l = 0;
-         this.b.j = this.b.k;
+         this.b.touchPageCase = this.b.k;
          this.a.j = this.a.k = 63;
       }
 
@@ -3206,7 +3206,7 @@ public final class aq {
 
       this.b.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.a.l = 0;
-      this.b.j = this.b.k;
+      this.b.touchPageCase = this.b.k;
       this.a.j = this.a.k = 113;
    }
 

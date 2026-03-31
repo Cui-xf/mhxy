@@ -10,7 +10,7 @@ import javax.microedition.lcdui.Image;
 public final class o_1 {
     private ao_1 i;
     private MainCanvas j;
-    private ai_1 k;
+    private PngUtil k;
     public byte a = 0;
     public byte b = 0;
     public short c = 0;
@@ -51,7 +51,7 @@ public final class o_1 {
     private boolean[] O;
     private String[] P;
 
-    public o_1(ao_1 var1, MainCanvas var2, ai_1 var3) {
+    public o_1(ao_1 var1, MainCanvas var2, PngUtil var3) {
         int[] var10000 = new int[]{15588137, 15531505, 955345, 6893779};
         this.M = 0;
         this.N = false;
@@ -102,7 +102,7 @@ public final class o_1 {
             }
         }
 
-        this.j.j = this.j.k;
+        this.j.touchPageCase = this.j.k;
         this.i.j = this.i.k = 64;
     }
 
@@ -394,7 +394,7 @@ public final class o_1 {
         }
 
         this.j.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-        this.j.j = this.j.k = 7;
+        this.j.touchPageCase = this.j.k = 7;
         this.i.j = this.i.k = 65;
     }
 
@@ -529,7 +529,7 @@ public final class o_1 {
         }
 
         this.j.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-        this.j.j = this.j.k = 7;
+        this.j.touchPageCase = this.j.k = 7;
         this.i.j = this.i.k = 67;
     }
 
@@ -713,7 +713,7 @@ public final class o_1 {
         this.g();
         LoadingPage.l = 0;
         this.i.l = 0;
-        this.j.j = this.j.k;
+        this.j.touchPageCase = this.j.k;
         this.i.j = this.i.k = 106;
     }
 
@@ -870,7 +870,7 @@ public final class o_1 {
             }
         }
 
-        this.j.a = 0;
+        this.j.touchAction = 0;
     }
 
     private void a(int var1, int var2, int var3, int var4, int var5) {
@@ -917,7 +917,7 @@ public final class o_1 {
 
         if (this.G != null) {
             for (int var6 = 0; var6 < this.G.length; ++var6) {
-                ai_1 var10000;
+                PngUtil var10000;
                 Graphics var10001;
                 Frame0 var10002;
                 if (var6 < 2) {

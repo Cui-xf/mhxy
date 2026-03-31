@@ -3,7 +3,7 @@ package com.cc;
 import com.yinhan.kjava.main.MainMidlet;
 import com.yinhan.kjava.main.MainCanvas;
 import com.yinhan.kjava.main.c_3;
-import com.yinhan.kjava.main.f_3;
+import com.yinhan.kjava.main.TouchController;
 
 
 import java.io.IOException;
@@ -243,7 +243,7 @@ public final class ao_1 {
    private boolean du;
    private TextRender dv;
 
-   public ao_1(MainCanvas var1, ai_1 var2) {
+   public ao_1(MainCanvas var1, PngUtil var2) {
       this.e = var1;
       this.M = new aq(this, this.e);
       this.O = new o_1(this, this.e, var2);
@@ -299,7 +299,7 @@ public final class ao_1 {
       this.Y = bt_1.ar;
       this.e.b();
       this.N();
-      this.e.j = this.e.k = 7;
+      this.e.touchPageCase = this.e.k = 7;
       this.e.p = false;
    }
 
@@ -332,10 +332,10 @@ public final class ao_1 {
          switch (this.k) {
             case 0:
                if (this.J == null) {
-                  if (t_1.o && this.e.aj != null) {
-                     this.e.aj.a();
-                     f_3 var12;
-                     if ((var12 = this.e.aj).d != 1 && var12.b.b == 0) {
+                  if (t_1.o && this.e.touchController != null) {
+                     this.e.touchController.a();
+                     TouchController var12;
+                     if ((var12 = this.e.touchController).d != 1 && var12.canvas.b == 0) {
                         if (!var12.a.I.c.isEmpty()) {
                            var12.a.I.j();
                         }
@@ -374,7 +374,7 @@ public final class ao_1 {
                         bt_1.Q.b();
                         this.j = MainCanvas.e.k;
                         this.k = 111;
-                        this.e.j = this.e.k;
+                        this.e.touchPageCase = this.e.k;
                      }
 
                      String var13;
@@ -384,10 +384,10 @@ public final class ao_1 {
                   }
                }
 
-               this.a(this.e.a);
+               this.a(this.e.touchAction);
                break;
             case 1:
-               int var20 = this.e.a;
+               int var20 = this.e.touchAction;
                if (this.l != 0 && this.l != 2 && this.l != 3 && this.l != 4 && this.l != 5 && this.l != 9 && this.l != 19 && this.l != 20) {
                   if (this.l == 1) {
                      if (var20 == 8) {
@@ -887,10 +887,10 @@ public final class ao_1 {
                }
                break;
             case 2:
-               this.v(this.e.a);
+               this.v(this.e.touchAction);
                break;
             case 3:
-               int var18 = this.e.a;
+               int var18 = this.e.touchAction;
                if (this.e.aq != null) {
                   this.e.aq.b(var18);
                }
@@ -929,10 +929,10 @@ public final class ao_1 {
                   this.o((int)-1);
                }
 
-               this.B(this.e.a);
+               this.B(this.e.touchAction);
                break;
             case 5:
-               int var16 = this.e.a;
+               int var16 = this.e.touchAction;
                ao_1 var5 = this;
                if (q != null) {
                   if (bt_1.ay != this.bX) {
@@ -940,7 +940,7 @@ public final class ao_1 {
                      this.bX = bt_1.ay;
                   }
 
-                  ai_1.a(q, this.e.ak);
+                  PngUtil.a(q, this.e.ak);
                }
 
                if (this.l == 0) {
@@ -1083,13 +1083,13 @@ public final class ao_1 {
                }
                break;
             case 6:
-               this.J(this.e.a);
+               this.J(this.e.touchAction);
                break;
             case 7:
-               this.H(this.e.a);
+               this.H(this.e.touchAction);
                break;
             case 8:
-               int var15 = this.e.a;
+               int var15 = this.e.touchAction;
                if (this.l == 0) {
                   this.a(bt_1.cb);
                   if (this.e.aq != null) {
@@ -1146,29 +1146,29 @@ public final class ao_1 {
                }
                break;
             case 9:
-               this.aa(this.e.a);
+               this.aa(this.e.touchAction);
                break;
             case 10:
-               this.w(this.e.a);
+               this.w(this.e.touchAction);
                break;
             case 11:
-               this.ab(this.e.a);
+               this.ab(this.e.touchAction);
                break;
             case 12:
                if (this.c) {
                   this.o((int)-1);
                }
 
-               this.O(this.e.a);
+               this.O(this.e.touchAction);
                break;
             case 13:
-               this.T(this.e.a);
+               this.T(this.e.touchAction);
                break;
             case 14:
-               this.ae(this.e.a);
+               this.ae(this.e.touchAction);
                break;
             case 15:
-               this.ah(this.e.a);
+               this.ah(this.e.touchAction);
             case 16:
             case 17:
             case 26:
@@ -1202,45 +1202,45 @@ public final class ao_1 {
                   this.o((int)-1);
                }
 
-               this.aj(this.e.a);
+               this.aj(this.e.touchAction);
                break;
             case 19:
-               this.ak(this.e.a);
+               this.ak(this.e.touchAction);
                break;
             case 20:
-               this.al(this.e.a);
+               this.al(this.e.touchAction);
                break;
             case 21:
-               this.am(this.e.a);
+               this.am(this.e.touchAction);
                break;
             case 22:
-               this.ao(this.e.a);
+               this.ao(this.e.touchAction);
                break;
             case 23:
-               this.ag(this.e.a);
+               this.ag(this.e.touchAction);
                break;
             case 24:
-               this.ai(this.e.a);
+               this.ai(this.e.touchAction);
                break;
             case 25:
-               this.o(this.e.a);
+               this.o(this.e.touchAction);
                this.f((short)-1);
                this.aA();
                break;
             case 28:
-               this.as(this.e.a);
+               this.as(this.e.touchAction);
                break;
             case 29:
-               this.R(this.e.a);
+               this.R(this.e.touchAction);
                break;
             case 30:
-               int var14 = this.e.a;
+               int var14 = this.e.touchAction;
                if (t_2 != null) {
-                  ai_1.a(t_2, this.e.ak);
+                  PngUtil.a(t_2, this.e.ak);
                }
 
                if (s != null) {
-                  ai_1.a(s, this.e.ak);
+                  PngUtil.a(s, this.e.ak);
                }
 
                if (var14 == 268435456 || var14 == 1073741824 || var14 == 536870912 || var14 == 517) {
@@ -1254,240 +1254,240 @@ public final class ao_1 {
                }
                break;
             case 31:
-               this.aq(this.e.a);
+               this.aq(this.e.touchAction);
                break;
             case 32:
-               this.ar(this.e.a);
+               this.ar(this.e.touchAction);
                break;
             case 33:
-               this.aS(this.e.a);
+               this.aS(this.e.touchAction);
                break;
             case 34:
-               this.P(this.e.a);
+               this.P(this.e.touchAction);
                break;
             case 35:
-               this.Q(this.e.a);
+               this.Q(this.e.touchAction);
                break;
             case 36:
                if (this.c) {
                   this.o((int)-1);
                }
 
-               this.K(this.e.a);
+               this.K(this.e.touchAction);
                break;
             case 37:
-               this.x(this.e.a);
+               this.x(this.e.touchAction);
                break;
             case 38:
-               this.at(this.e.a);
+               this.at(this.e.touchAction);
                break;
             case 39:
-               if (t_1.o && this.e.aj != null) {
-                  this.e.aj.a();
+               if (t_1.o && this.e.touchController != null) {
+                  this.e.touchController.a();
                }
 
                this.V();
                break;
             case 40:
-               this.aw(this.e.a);
+               this.aw(this.e.touchAction);
                break;
             case 41:
-               this.M.b(this.e.a);
+               this.M.b(this.e.touchAction);
                break;
             case 42:
-               this.M.c(this.e.a);
+               this.M.c(this.e.touchAction);
                break;
             case 43:
-               this.M.d(this.e.a);
+               this.M.d(this.e.touchAction);
                break;
             case 45:
-               this.M.e(this.e.a);
+               this.M.e(this.e.touchAction);
                break;
             case 46:
-               this.M.f(this.e.a);
+               this.M.f(this.e.touchAction);
                break;
             case 47:
-               this.M.i(this.e.a);
+               this.M.i(this.e.touchAction);
                break;
             case 48:
-               this.M.k(this.e.a);
+               this.M.k(this.e.touchAction);
                break;
             case 49:
-               this.M.l(this.e.a);
+               this.M.l(this.e.touchAction);
                break;
             case 50:
-               this.M.m(this.e.a);
+               this.M.m(this.e.touchAction);
                break;
             case 51:
-               this.M.n(this.e.a);
+               this.M.n(this.e.touchAction);
                break;
             case 52:
-               this.M.r(this.e.a);
+               this.M.r(this.e.touchAction);
                break;
             case 53:
-               this.ax(this.e.a);
+               this.ax(this.e.touchAction);
                break;
             case 57:
-               this.r(this.e.a);
+               this.r(this.e.touchAction);
                break;
             case 58:
-               this.q(this.e.a);
+               this.q(this.e.touchAction);
                break;
             case 59:
-               this.ay(this.e.a);
+               this.ay(this.e.touchAction);
                break;
             case 60:
-               this.M.s(this.e.a);
+               this.M.s(this.e.touchAction);
                break;
             case 61:
                this.M.v();
                break;
             case 62:
-               this.M.t(this.e.a);
+               this.M.t(this.e.touchAction);
                break;
             case 63:
-               this.M.u(this.e.a);
+               this.M.u(this.e.touchAction);
                break;
             case 64:
-               this.O.a(this.e.a);
+               this.O.a(this.e.touchAction);
                break;
             case 65:
-               this.O.b(this.e.a);
+               this.O.b(this.e.touchAction);
                break;
             case 66:
-               this.O.c(this.e.a);
+               this.O.c(this.e.touchAction);
                break;
             case 67:
-               this.O.d(this.e.a);
+               this.O.d(this.e.touchAction);
                break;
             case 68:
-               this.az(this.e.a);
+               this.az(this.e.touchAction);
                break;
             case 69:
-               this.aB(this.e.a);
+               this.aB(this.e.touchAction);
                break;
             case 70:
-               this.aC(this.e.a);
+               this.aC(this.e.touchAction);
                break;
             case 71:
-               this.aJ(this.e.a);
+               this.aJ(this.e.touchAction);
                break;
             case 72:
-               this.aG(this.e.a);
+               this.aG(this.e.touchAction);
                break;
             case 75:
-               this.aD(this.e.a);
+               this.aD(this.e.touchAction);
                break;
             case 76:
-               this.aI(this.e.a);
+               this.aI(this.e.touchAction);
                break;
             case 77:
-               this.aH(this.e.a);
+               this.aH(this.e.touchAction);
                break;
             case 90:
-               this.S.b(this.e.a);
+               this.S.b(this.e.touchAction);
                break;
             case 91:
-               this.S.c(this.e.a);
+               this.S.c(this.e.touchAction);
                break;
             case 92:
-               this.S.d(this.e.a);
+               this.S.d(this.e.touchAction);
                break;
             case 93:
-               this.S.e(this.e.a);
+               this.S.e(this.e.touchAction);
                break;
             case 94:
-               this.u(this.e.a);
+               this.u(this.e.touchAction);
                break;
             case 95:
-               this.X(this.e.a);
+               this.X(this.e.touchAction);
                break;
             case 96:
-               this.x(this.e.a);
+               this.x(this.e.touchAction);
                break;
             case 98:
-               this.aP(this.e.a);
+               this.aP(this.e.touchAction);
                break;
             case 100:
-               this.aE(this.e.a);
+               this.aE(this.e.touchAction);
                break;
             case 101:
-               this.U.a(this.e.a);
+               this.U.a(this.e.touchAction);
                break;
             case 102:
-               this.V.a(this.e.a);
+               this.V.a(this.e.touchAction);
                break;
             case 103:
-               this.aO(this.e.a);
+               this.aO(this.e.touchAction);
                break;
             case 104:
-               this.aM(this.e.a);
+               this.aM(this.e.touchAction);
                break;
             case 105:
-               this.aL(this.e.a);
+               this.aL(this.e.touchAction);
                break;
             case 106:
-               this.O.e(this.e.a);
+               this.O.e(this.e.touchAction);
                break;
             case 107:
-               this.aQ(this.e.a);
+               this.aQ(this.e.touchAction);
                break;
             case 108:
-               this.aR(this.e.a);
+               this.aR(this.e.touchAction);
                break;
             case 109:
-               this.aR(this.e.a);
+               this.aR(this.e.touchAction);
                break;
             case 110:
-               this.aU(this.e.a);
+               this.aU(this.e.touchAction);
                break;
             case 111:
-               this.aT(this.e.a);
+               this.aT(this.e.touchAction);
                break;
             case 113:
-               this.M.v(this.e.a);
+               this.M.v(this.e.touchAction);
                break;
             case 114:
-               this.M.o(this.e.a);
+               this.M.o(this.e.touchAction);
                break;
             case 115:
-               this.M.p(this.e.a);
+               this.M.p(this.e.touchAction);
                break;
             case 116:
-               this.aW(this.e.a);
+               this.aW(this.e.touchAction);
                break;
             case 117:
-               this.aX(this.e.a);
+               this.aX(this.e.touchAction);
                break;
             case 118:
-               this.aV(this.e.a);
+               this.aV(this.e.touchAction);
                break;
             case 119:
-               this.aY(this.e.a);
+               this.aY(this.e.touchAction);
                break;
             case 120:
-               this.aZ(this.e.a);
+               this.aZ(this.e.touchAction);
                break;
             case 121:
-               this.M(this.e.a);
+               this.M(this.e.touchAction);
                break;
             case 122:
-               this.N(this.e.a);
+               this.N(this.e.touchAction);
                break;
             case 123:
-               this.L(this.e.a);
+               this.L(this.e.touchAction);
                break;
             case 125:
-               this.ba(this.e.a);
+               this.ba(this.e.touchAction);
                break;
             case 126:
-               this.F(this.e.a);
+               this.F(this.e.touchAction);
                break;
             case 127:
-               this.bb(this.e.a);
+               this.bb(this.e.touchAction);
                break;
             case 128:
-               this.bc(this.e.a);
+               this.bc(this.e.touchAction);
                break;
             case 129:
                if (this.R != null) {
@@ -1515,13 +1515,13 @@ public final class ao_1 {
                }
                break;
             case 130:
-               this.N.a(this.e.a);
+               this.N.a(this.e.touchAction);
                break;
             case 131:
-               this.W.b(this.e.a);
+               this.W.b(this.e.touchAction);
          }
 
-         this.e.a = 0;
+         this.e.touchAction = 0;
       }
    }
 
@@ -2557,7 +2557,7 @@ public final class ao_1 {
    }
 
    public final void c() {
-      ai_1.a(bn, this.e.ak);
+      PngUtil.a(bn, this.e.ak);
       this.P();
       if (this.cM) {
          this.aR();
@@ -2672,7 +2672,7 @@ public final class ao_1 {
             this.f((byte)0);
             return;
          }
-      } else if (this.k == 0 && i() && this.e.j == 7 && !this.e.p) {
+      } else if (this.k == 0 && i() && this.e.touchPageCase == 7 && !this.e.p) {
          s var2;
          if ((bt_1.bs != 0 || bt_1.s != 0) && this.I != null && (var2 = this.I.a(this.aO)) != null && this.I.g()) {
             this.e.b = 0;
@@ -2831,10 +2831,10 @@ public final class ao_1 {
          this.M.t = i;
          this.m = 0;
          this.l = 0;
-         this.e.a = 0;
+         this.e.touchAction = 0;
          this.e.b = 0;
          this.N();
-         this.e.j = this.e.k = 7;
+         this.e.touchPageCase = this.e.k = 7;
       }
 
       this.e.p = false;
@@ -2859,7 +2859,7 @@ public final class ao_1 {
       this.e.p = true;
       this.m = 0;
       this.l = 0;
-      this.e.a = 0;
+      this.e.touchAction = 0;
       this.e.b = 0;
       this.aO.removeAllElements();
       bl.removeAllElements();
@@ -2875,7 +2875,7 @@ public final class ao_1 {
       ap();
       MainCanvas.f.a(this.g(), this.h(), t_1.b, t_1.c);
       this.as();
-      this.e.j = this.e.k = 7;
+      this.e.touchPageCase = this.e.k = 7;
       this.j = this.k = 0;
       this.e.p = false;
    }
@@ -2970,7 +2970,7 @@ public final class ao_1 {
       if (bt_1.bw == 2 && bt_1.kj > 0) {
          this.I.c.removeAllElements();
          this.e.b = 0;
-         this.e.a = 0;
+         this.e.touchAction = 0;
          aq var12 = this.M;
          var12.a.j = var12.a.k = 61;
          var12.s = h;
@@ -3068,7 +3068,7 @@ public final class ao_1 {
                LoadingPage.a((t_1.d - t_1.i.stringWidth("操作")) / 2, (t_1.e - t_1.j * var17.length) / 2, var17, true);
                this.l = 0;
                bt_1.gQ = 1;
-               this.e.j = this.e.k;
+               this.e.touchPageCase = this.e.k;
                this.j = this.k = 100;
             } else if (var1 == 1024) {
                this.by = 1;
@@ -3128,7 +3128,7 @@ public final class ao_1 {
 
                         this.aB = (t_1.b - this.f.a * this.aD / 16) / 2;
                         this.aC = (t_1.c - this.f.b * this.aD / 16) / 2;
-                        this.e.j = this.e.k;
+                        this.e.touchPageCase = this.e.k;
                         MainCanvas.f.a(this.f, h, i, false, false, 1009050);
                         this.j = this.k = 30;
                      }
@@ -3175,7 +3175,7 @@ public final class ao_1 {
                   K = new TextRender("你想...", (short)(t_1.b - 20));
                   LoadingPage.a(MainCanvas.F, K, this.an, (String[])null, true);
                   LoadingPage.g = 0;
-                  this.e.j = this.e.k;
+                  this.e.touchPageCase = this.e.k;
                   MainCanvas.f.a(this.f, h, i, false, false, 1009050);
                   this.j = this.k = 40;
                }
@@ -3815,9 +3815,9 @@ public final class ao_1 {
 
          K = new TextRender(bt_1.bQ, (short)(t_1.b - 20));
          LoadingPage.a(MainCanvas.F, K, this.am, (String[])null, true);
-         this.e.a = 0;
+         this.e.touchAction = 0;
          this.e.b = 0;
-         this.e.j = this.e.k;
+         this.e.touchPageCase = this.e.k;
          this.j = this.k = 2;
       }
    }
@@ -4522,7 +4522,7 @@ public final class ao_1 {
 
    public final void a(boolean var1) {
       this.bJ = var1;
-      this.e.a = 0;
+      this.e.touchAction = 0;
       this.e.b = 0;
       this.l = 0;
       this.e.aq.j();
@@ -4536,7 +4536,7 @@ public final class ao_1 {
       this.e.ar.a((Image[])null, var3, bt_1.cs, (String[])null);
       this.e.aq.a((al)this.e.ar);
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 10;
    }
 
@@ -4710,7 +4710,7 @@ public final class ao_1 {
       }
 
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 3;
    }
 
@@ -4826,7 +4826,7 @@ public final class ao_1 {
          this.e.aq.b(var1);
       }
 
-      if (this.e.aA > 40) {
+      if (this.e.tempTouchStatus > 40) {
          if (this.e.b != 8 && this.e.b != 516) {
             if (this.e.b == 2 || this.e.b == 518) {
                ++this.bM[this.e.ar.g()];
@@ -4879,7 +4879,7 @@ public final class ao_1 {
             this.a(this.e.ar.g(), (byte)-1);
          }
 
-         ++this.e.aA;
+         ++this.e.tempTouchStatus;
       }
 
       if (var1 == 268435456) {
@@ -5023,7 +5023,7 @@ public final class ao_1 {
       this.e.aq.a((al)this.e.at);
       this.e.aq.a((al)this.e.au);
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 4;
    }
 
@@ -5210,7 +5210,7 @@ public final class ao_1 {
                            }
 
                            if (this.as == 6) {
-                              this.e.j = this.e.k;
+                              this.e.touchPageCase = this.e.k;
                               this.j = this.k = 25;
                               return;
                            }
@@ -5600,8 +5600,8 @@ public final class ao_1 {
 
                   return;
                case 3:
-                  if (this.e.j != 2) {
-                     this.e.j = this.e.k;
+                  if (this.e.touchPageCase != 2) {
+                     this.e.touchPageCase = this.e.k;
                   }
 
                   this.az = 0;
@@ -6312,7 +6312,7 @@ public final class ao_1 {
       this.e.aq.a((al)this.e.at);
       this.e.aq.a((al)this.e.au);
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.k = 126;
    }
 
@@ -6648,7 +6648,7 @@ public final class ao_1 {
          }
       }
 
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       MainCanvas.f.a(this.f, h, i, false, true, 1009050);
       this.j = this.k = 5;
    }
@@ -6764,7 +6764,7 @@ public final class ao_1 {
 
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.df = null;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 7;
    }
 
@@ -6776,8 +6776,8 @@ public final class ao_1 {
       K = new TextRender(bt_1.lw, (short)(t_1.b - bt_1.ly));
       LoadingPage.a((az_1)null, K, bt_1.lz, (String[])null, bt_1.lx);
       LoadingPage.h = 0;
-      this.e.j = this.e.k;
-      this.e.a = 0;
+      this.e.touchPageCase = this.e.k;
+      this.e.touchAction = 0;
       this.e.b = 0;
       this.k = 72;
       this.as = 0;
@@ -6792,7 +6792,7 @@ public final class ao_1 {
       this.e.ar.a(bt_1.P.n);
       this.e.aq.a((al)this.e.ar);
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e, 0, 0, false);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k;
       this.k = 77;
    }
@@ -6837,7 +6837,7 @@ public final class ao_1 {
             this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e, 0, 0, false);
          }
 
-         this.e.j = this.e.k;
+         this.e.touchPageCase = this.e.k;
          this.j = this.k;
          this.k = 76;
          this.as = var1;
@@ -6969,7 +6969,7 @@ public final class ao_1 {
                this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e, bt_1.lG != null ? bt_1.lG[var1] : 66, bt_1.lH != null ? bt_1.lH[var1] : 100, bt_1.lI != null ? bt_1.lI[var1] == 1 : false);
          }
 
-         this.e.j = this.e.k;
+         this.e.touchPageCase = this.e.k;
          this.k = 71;
          this.as = var1;
       }
@@ -7790,7 +7790,7 @@ public final class ao_1 {
       (var1 = new an_1()).b(this.e.l.toString(), t_1.i, (byte)2);
       this.T.a((al)var1);
       this.T.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       if (this.k == 7) {
          if (this.l == 10) {
             this.l = 11;
@@ -7824,7 +7824,7 @@ public final class ao_1 {
          }
       }
 
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       if (this.k == 7) {
          q = this.e.a(q, bt_1.cE, bt_1.cF, (byte)3, (byte)1, false);
          if (this.l == 10) {
@@ -7902,7 +7902,7 @@ public final class ao_1 {
       if (this.m == 1) {
          this.T.b(var1);
       } else if (this.m == 0) {
-         ai_1.a(q, this.e.ak);
+         PngUtil.a(q, this.e.ak);
          if (var1 != 8 && var1 != 516) {
             if (var1 != 2 && var1 != 518) {
                if (var1 == 1073741824 || var1 == 268435456 || var1 == 517) {
@@ -8078,7 +8078,7 @@ public final class ao_1 {
          this.e.ar.a(bt_1.bV[0], 1);
       }
 
-      this.e.j = this.e.k = 7;
+      this.e.touchPageCase = this.e.k = 7;
       this.j = this.k = 6;
    }
 
@@ -8289,7 +8289,7 @@ public final class ao_1 {
       this.cg = var1;
       this.l = 0;
       this.b(var2);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 36;
    }
 
@@ -8397,7 +8397,7 @@ public final class ao_1 {
                return;
             }
 
-            this.e.a = 0;
+            this.e.touchAction = 0;
             return;
          }
 
@@ -8512,8 +8512,8 @@ public final class ao_1 {
             if (LoadingPage.p.length == 3 && LoadingPage.o == 0 || LoadingPage.p.length == 4 && LoadingPage.o == 1) {
                this.az = 0;
                if (bt_1.eq == null) {
-                  if (this.e.j != 2) {
-                     this.e.j = this.e.k;
+                  if (this.e.touchPageCase != 2) {
+                     this.e.touchPageCase = this.e.k;
                   }
 
                   this.l = 2;
@@ -8702,7 +8702,7 @@ public final class ao_1 {
          }
 
          this.ch = MainCanvas.ad.b(String.valueOf(bt_1.mR[this.e.ar.g()]));
-         this.e.j = this.e.k;
+         this.e.touchPageCase = this.e.k;
          this.j = this.k = 123;
       }
    }
@@ -8752,7 +8752,7 @@ public final class ao_1 {
       this.e.aq.a(var1);
       if (this.l == 0) {
          if (this.ch != null) {
-            ai_1.a(this.ch, this.e.ak);
+            PngUtil.a(this.ch, this.e.ak);
             MainCanvas.f.a(var1, (Frame1)this.ch, this.ci, 0, 0, this.e.aq.a + this.e.aq.c / 4, this.e.ar.b() + this.e.ar.d() / 2 + this.ch.h() / 2, 0, 0);
             return;
          }
@@ -8796,7 +8796,7 @@ public final class ao_1 {
       }
 
       this.l = 0;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 121;
    }
 
@@ -8834,7 +8834,7 @@ public final class ao_1 {
       }
 
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 122;
    }
 
@@ -8869,7 +8869,7 @@ public final class ao_1 {
       this.as = var1;
       this.l = 0;
       this.a((byte)1, false);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 12;
    }
 
@@ -9124,8 +9124,8 @@ public final class ao_1 {
             if (LoadingPage.p.length == 3 && LoadingPage.o == 1 || LoadingPage.p.length == 2 && LoadingPage.o == 0) {
                this.az = 0;
                if (bt_1.ek == null) {
-                  if (this.e.j != 2) {
-                     this.e.j = this.e.k;
+                  if (this.e.touchPageCase != 2) {
+                     this.e.touchPageCase = this.e.k;
                   }
 
                   this.l = 6;
@@ -9244,7 +9244,7 @@ public final class ao_1 {
             this.aI = MainCanvas.ah.a(String.valueOf(bt_1.gw[0] + "_0"), bt_1.gx[0], bt_1.gy[0], bt_1.gz[0]);
          }
 
-         this.e.j = this.e.k;
+         this.e.touchPageCase = this.e.k;
          this.j = this.k = 34;
       } else {
          this.e.aq.b();
@@ -9261,7 +9261,7 @@ public final class ao_1 {
          }
 
          this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-         this.e.j = this.e.k;
+         this.e.touchPageCase = this.e.k;
          this.j = this.k = 34;
       }
    }
@@ -9326,7 +9326,7 @@ public final class ao_1 {
                this.aI = MainCanvas.ah.a(String.valueOf(bt_1.gw[this.e.ar.g()] + "_0"), bt_1.gx[this.e.ar.g()], bt_1.gy[this.e.ar.g()], bt_1.gz[this.e.ar.g()]);
             }
 
-            ai_1.a(this.aI, this.e.ak);
+            PngUtil.a(this.aI, this.e.ak);
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                if (this.e.as.a == 0 && bt_1.gs != null) {
                   LoadingPage.a(35 + t_1.f, (3 + this.e.ar.i()) * t_1.j + t_1.g, new String[]{"取消拍卖"}, false);
@@ -9531,7 +9531,7 @@ public final class ao_1 {
 
    private void Q(int var1) {
       if (bt_1.gs == null) {
-         this.e.j = this.e.k;
+         this.e.touchPageCase = this.e.k;
          this.N();
       } else {
          if (this.l == 0) {
@@ -9552,7 +9552,7 @@ public final class ao_1 {
                this.aI = MainCanvas.ah.a(String.valueOf(bt_1.gw[this.e.ar.g()] + "_0"), bt_1.gx[this.e.ar.g()], bt_1.gy[this.e.ar.g()], bt_1.gz[this.e.ar.g()]);
             }
 
-            ai_1.a(this.aI, this.e.ak);
+            PngUtil.a(this.aI, this.e.ak);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                if (var1 == 536870912) {
                   this.al = null;
@@ -9949,7 +9949,7 @@ public final class ao_1 {
          }
       }
 
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       MainCanvas.f.a(this.f, h, i, false, true, 1009050);
       this.j = this.k = 13;
       this.l = 7;
@@ -9999,7 +9999,7 @@ public final class ao_1 {
                   this.aI = MainCanvas.ah.a(String.valueOf(bt_1.fE[var22] + "_0"), bt_1.fF[var22], bt_1.fG[var22], bt_1.fH[var22]);
                }
 
-               ai_1.a(this.aI, this.e.ak);
+               PngUtil.a(this.aI, this.e.ak);
                if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                   if (var1 != 536870912 && bt_1.fA != null) {
                      return;
@@ -10358,7 +10358,7 @@ public final class ao_1 {
                }
             } else if (this.l == 7) {
                this.a(bt_1.jK);
-               ai_1.a(this.aI, this.e.ak);
+               PngUtil.a(this.aI, this.e.ak);
                if (var1 != 8 && var1 != 516) {
                   if (var1 != 2 && var1 != 518) {
                      if (var1 == 536870912) {
@@ -10549,7 +10549,7 @@ public final class ao_1 {
 
          }
       } else {
-         this.e.j = this.e.k;
+         this.e.touchPageCase = this.e.k;
          this.N();
       }
    }
@@ -10869,7 +10869,7 @@ public final class ao_1 {
       this.e.aq.a((al)this.e.at);
       this.e.aq.a((al)this.e.au);
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 8;
    }
 
@@ -11175,7 +11175,7 @@ public final class ao_1 {
       }
 
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 11;
    }
 
@@ -11535,7 +11535,7 @@ public final class ao_1 {
 
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.l = 0;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 23;
    }
 
@@ -11575,7 +11575,7 @@ public final class ao_1 {
       if (bt_1.dY == null) {
          this.am = null;
          this.al = null;
-         this.e.j = this.e.k;
+         this.e.touchPageCase = this.e.k;
          this.N();
       } else {
          if (this.l != 0) {
@@ -11719,7 +11719,7 @@ public final class ao_1 {
       }
 
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 15;
    }
 
@@ -11775,7 +11775,7 @@ public final class ao_1 {
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.e.aq.a(true);
       this.l = 0;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 24;
    }
 
@@ -11783,7 +11783,7 @@ public final class ao_1 {
       if (bt_1.gs == null) {
          this.am = null;
          this.al = null;
-         this.e.j = this.e.k;
+         this.e.touchPageCase = this.e.k;
          this.N();
       } else {
          if (this.l == 0) {
@@ -11794,7 +11794,7 @@ public final class ao_1 {
                }
             }
 
-            ai_1.a(this.aI, this.e.ak);
+            PngUtil.a(this.aI, this.e.ak);
             if (var1 == 1 || var1 == 4 || var1 == 514 || var1 == 520) {
                this.e.at.a(bt_1.g(this.e.l, this.e.ar.g()), t_1.i, (byte)2);
                this.e.at.a((byte)1);
@@ -11984,7 +11984,7 @@ public final class ao_1 {
       this.e.b();
       MainCanvas.f.a(this.f, h, i, false);
       this.j = this.k = 25;
-      this.e.j = this.e.k = 7;
+      this.e.touchPageCase = this.e.k = 7;
       this.e.p = false;
       byte[] var5;
       if ((var5 = bz_1.z((short)4223, bt_1.ad)) != null) {
@@ -12112,11 +12112,11 @@ public final class ao_1 {
             this.cp = this.e.as.a;
          }
 
-         if (this.e.aA > 40) {
+         if (this.e.tempTouchStatus > 40) {
             LoadingPage.a(this.e.b, 1, 1);
          } else {
             LoadingPage.a(var1, 1, 1);
-            ++this.e.aA;
+            ++this.e.tempTouchStatus;
          }
 
          this.cn = LoadingPage.w;
@@ -12153,11 +12153,11 @@ public final class ao_1 {
             this.cp = this.e.as.a;
          }
 
-         if (this.e.aA > 40) {
+         if (this.e.tempTouchStatus > 40) {
             LoadingPage.a(this.e.b, 1, 1);
          } else {
             LoadingPage.a(var1, 1, 1);
-            ++this.e.aA;
+            ++this.e.tempTouchStatus;
          }
 
          this.cn = LoadingPage.w;
@@ -12655,7 +12655,7 @@ public final class ao_1 {
             LoadingPage.c(var1);
          }
 
-         if (t_1.o && this.e.aj != null && MainCanvas.u != null) {
+         if (t_1.o && this.e.touchController != null && MainCanvas.u != null) {
             var1.drawImage(MainCanvas.u.pngImage, t_1.b - MainCanvas.u.b - 5, 5, 20);
          }
 
@@ -12731,7 +12731,7 @@ public final class ao_1 {
          this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
          this.e.aq.a(true);
          this.de = null;
-         this.e.j = this.e.k;
+         this.e.touchPageCase = this.e.k;
          this.j = this.k = 19;
       }
    }
@@ -13062,7 +13062,7 @@ public final class ao_1 {
       LoadingPage.a(MainCanvas.F, K, this.an, (String[])null, true);
       MainCanvas.f.a(this.f, h, i, true, false, 1009050);
       this.e.az = false;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 20;
    }
 
@@ -13135,7 +13135,7 @@ public final class ao_1 {
          this.e.ar.a(var1, this.am, (String[])null, this.al);
          this.e.aq.a((al)this.e.ar);
          this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-         this.e.j = this.e.k;
+         this.e.touchPageCase = this.e.k;
          this.j = this.k = 21;
       } else {
          this.e.aq.a("队伍(" + (bt_1.s == 0 ? "跟随" : "自由") + ")信息");
@@ -13422,7 +13422,7 @@ public final class ao_1 {
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.e.aq.a(bt_1.ff);
       this.j = this.k = 22;
-      this.e.j = this.e.k = 7;
+      this.e.touchPageCase = this.e.k = 7;
    }
 
    private void ao(int var1) {
@@ -14229,7 +14229,7 @@ public final class ao_1 {
       }
 
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k = 7;
+      this.e.touchPageCase = this.e.k = 7;
       this.j = this.k = 31;
    }
 
@@ -14342,7 +14342,7 @@ public final class ao_1 {
       this.aB = (t_1.b - C.b) / 2;
       this.aC = (t_1.c - C.c) / 2;
       MainCanvas.f.a(this.f, h, i, false, true, 2109231);
-      this.e.j = this.e.k = 7;
+      this.e.touchPageCase = this.e.k = 7;
       this.k = 32;
    }
 
@@ -14487,7 +14487,7 @@ public final class ao_1 {
          this.e.ar.a((Image[])null, this.al, (String[])null, this.am);
          this.e.aq.a((al)this.e.ar);
          this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-         this.e.j = this.e.k;
+         this.e.touchPageCase = this.e.k;
          this.j = this.k = 28;
       } else {
          this.d(false);
@@ -14866,7 +14866,7 @@ public final class ao_1 {
                } else if (var2.b == 2) {
                   bl var10000 = (bl)var2.c;
                   boolean var12 = false;
-                  ai_1 var7 = MainCanvas.f;
+                  PngUtil var7 = MainCanvas.f;
                   bl var13 = var10000;
                   if (var10000.g != null) {
                      var7.a(var1, (Frame1)var13.g, (int[])null, var3, var4, var13.j + 8, var13.k + 16, 20, 0);
@@ -14887,7 +14887,7 @@ public final class ao_1 {
                } else if (var2.b == 3) {
                   bp_1 var27 = (bp_1)var2.c;
                   boolean var14 = false;
-                  ai_1 var22 = MainCanvas.f;
+                  PngUtil var22 = MainCanvas.f;
                   bp_1 var15 = var27;
                   if (var27.g != null) {
                      var22.a(var1, (Frame1)var15.g, (int[])null, var3, var4, var15.j + 8, var15.k + 16, 20, 0);
@@ -14921,7 +14921,7 @@ public final class ao_1 {
                   }
 
                   boolean var17 = false;
-                  ai_1 var24 = MainCanvas.f;
+                  PngUtil var24 = MainCanvas.f;
                   if (aW[10] == 1) {
                      if (var20.w != null && var20.w.k != null) {
                         var24.a(var1, var20.w.k[var20.w.f], var20.w.g(), var20.w.h(), (int[])null, var3, var4, var20.c, var20.d, 20, 0);
@@ -15060,9 +15060,9 @@ public final class ao_1 {
          try {
             this.I.a(this.f, MainCanvas.f, this.e.ak);
             bl.removeAllElements();
-            ai_1.a(u, this.e.ak);
-            ai_1.a(t_2, this.e.ak);
-            ai_1.a(s, this.e.ak);
+            PngUtil.a(u, this.e.ak);
+            PngUtil.a(t_2, this.e.ak);
+            PngUtil.a(s, this.e.ak);
             if (bt_1.s != 0 && this.I.d != null && this.I.d.f != null) {
                if (c((int)this.I.d.h, (int)this.I.d.i, (int)this.I.d.f.g(), (int)this.I.d.f.h())) {
                   bl.addElement(new by((byte)4, this.I.d, true));
@@ -15277,7 +15277,7 @@ public final class ao_1 {
                            var2.cI[0] = var2.f.l[var7].e;
                            var2.cI[1] = var2.f.l[var7].f;
                            var30 = var2.cI[1] + var2.f.n[var7][1];
-                           if (c(var2.cI[0], var2.cI[1], var2.cI[2], var2.cI[3]) && var4.a() < var30 && ai_1.a(var2.cH, var2.cI)) {
+                           if (c(var2.cI[0], var2.cI[1], var2.cI[2], var2.cI[3]) && var4.a() < var30 && PngUtil.a(var2.cH, var2.cI)) {
                               int[] var32 = new int[4];
                               MainCanvas.f.a(var2.cH, var2.cI, var32);
                               bl.addElement(new cb((byte)6, var2.f.l[var7], (short)var2.f.n[var7][1], (short)var2.f.n[var7][0], var32));
@@ -15324,10 +15324,10 @@ public final class ao_1 {
                      } else if (var16.b == 5) {
                         az_1 var37 = (az_1)var16.c;
                         long var28 = this.e.ak;
-                        ai_1 var24 = MainCanvas.f;
+                        PngUtil var24 = MainCanvas.f;
                         az_1 var17 = var37;
                         if (var37.w != null && aW[10] == 0) {
-                           ai_1.a(var17.w, var28);
+                           PngUtil.a(var17.w, var28);
                         }
                      } else if (var16.b == 4) {
                         ((au)var16.c).a(this.f, MainCanvas.f, this.e.ak);
@@ -15377,7 +15377,7 @@ public final class ao_1 {
 
    public final void N() {
       MainCanvas.f.a(this.f, h, i, true, false, 1009050);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 0;
    }
 
@@ -16100,7 +16100,7 @@ public final class ao_1 {
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.e.aw = 0;
       this.l = 0;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 38;
    }
 
@@ -16680,7 +16680,7 @@ public final class ao_1 {
          this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       }
 
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 38;
    }
 
@@ -16701,7 +16701,7 @@ public final class ao_1 {
       }
 
       this.l = 0;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       MainCanvas.f.a(this.f, h, i, false, false, 1009050);
       this.j = this.k = 39;
       this.e.p = false;
@@ -16748,10 +16748,10 @@ public final class ao_1 {
          this.ba.a((byte)0);
       }
 
-      if (this.e.a != 268435456 && this.e.a != 517 && this.e.a != 1073741824) {
-         if (this.e.a == 536870912) {
+      if (this.e.touchAction != 268435456 && this.e.touchAction != 517 && this.e.touchAction != 1073741824) {
+         if (this.e.touchAction == 536870912) {
             this.l = 0;
-            this.e.j = this.e.k;
+            this.e.touchPageCase = this.e.k;
             this.N();
          }
       } else if (this.ba != null) {
@@ -16824,12 +16824,12 @@ public final class ao_1 {
          }
 
          this.l = 0;
-         this.e.j = this.e.k;
+         this.e.touchPageCase = this.e.k;
          this.N();
       }
 
       this.aE = 0;
-      this.e.a = 0;
+      this.e.touchAction = 0;
       if (this.f.i != null) {
          short var11 = 0;
          short var14 = 0;
@@ -16977,7 +16977,7 @@ public final class ao_1 {
                   this.cI[1] = bt_1.t[var7].b();
                   this.cI[2] = bt_1.t[var7].w.g();
                   this.cI[3] = bt_1.t[var7].w.h();
-                  if (ai_1.a(this.cH, this.cI)) {
+                  if (PngUtil.a(this.cH, this.cI)) {
                      return 1;
                   }
                }
@@ -16992,7 +16992,7 @@ public final class ao_1 {
                   this.cI[1] = bt_1.ac[var8] + 16 - ((var13 = bn).k != null ? (short)var13.j : 0);
                   this.cI[2] = 16;
                   this.cI[3] = 16;
-                  if (ai_1.a(this.cH, this.cI)) {
+                  if (PngUtil.a(this.cH, this.cI)) {
                      return 2;
                   }
                }
@@ -17007,7 +17007,7 @@ public final class ao_1 {
                this.cI[1] = var9.f + (var9.d == null ? 0 : var9.d.d());
                this.cI[2] = var9.d == null ? 0 : var9.d.e();
                this.cI[3] = var9.d == null ? 0 : var9.d.f();
-               if (ai_1.a(this.cH, this.cI)) {
+               if (PngUtil.a(this.cH, this.cI)) {
                   return 3;
                }
             }
@@ -17018,7 +17018,7 @@ public final class ao_1 {
             this.cI[1] = this.I.k - (this.I.g.j() - 16);
             this.cI[2] = this.I.g.g();
             this.cI[3] = this.I.g.h();
-            if (ai_1.a(this.cH, this.cI)) {
+            if (PngUtil.a(this.cH, this.cI)) {
                return 6;
             }
          }
@@ -17035,7 +17035,7 @@ public final class ao_1 {
                   if (var1 == 536870912) {
                      this.l = 0;
                      this.j = this.k = 0;
-                     this.e.j = this.e.k = 7;
+                     this.e.touchPageCase = this.e.k = 7;
                      return;
                   }
 
@@ -17065,7 +17065,7 @@ public final class ao_1 {
 
                aj = false;
                this.N();
-               this.e.j = this.e.k = 7;
+               this.e.touchPageCase = this.e.k = 7;
                return;
             }
 
@@ -17097,7 +17097,7 @@ public final class ao_1 {
       this.e.aq.a((al)this.e.au);
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.k = 40;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.l = 1;
    }
 
@@ -17167,7 +17167,7 @@ public final class ao_1 {
       this.e.aq.a((al)this.e.at);
       this.e.aq.a((al)this.e.au);
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 53;
    }
 
@@ -17255,7 +17255,7 @@ public final class ao_1 {
 
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.l = 0;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 57;
    }
 
@@ -17421,7 +17421,7 @@ public final class ao_1 {
       this.e.aq.a((al)this.e.au);
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.e.aq.a(true);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 59;
    }
 
@@ -17684,7 +17684,7 @@ public final class ao_1 {
       }
 
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 68;
    }
 
@@ -17735,7 +17735,7 @@ public final class ao_1 {
       }
 
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 69;
    }
 
@@ -17814,7 +17814,7 @@ public final class ao_1 {
       this.am = bt_1.kR;
       LoadingPage.a(MainCanvas.F, K, this.am, (String[])null, true);
       MainCanvas.f.a(this.f, h, i, true, false, 1009050);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 70;
    }
 
@@ -17878,7 +17878,7 @@ public final class ao_1 {
       }
 
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 75;
    }
 
@@ -18633,7 +18633,7 @@ public final class ao_1 {
       }
 
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k;
       this.k = 104;
    }
@@ -18665,7 +18665,7 @@ public final class ao_1 {
       }
 
       this.T.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k;
       this.k = 105;
    }
@@ -18990,7 +18990,7 @@ public final class ao_1 {
                this.c((int)6);
             } else if (this.l == 4) {
                this.j = this.k = 0;
-               this.e.j = this.e.k = 7;
+               this.e.touchPageCase = this.e.k = 7;
             }
 
             bt_1.P();
@@ -19082,7 +19082,7 @@ public final class ao_1 {
       this.e.as.a = bt_1.mj;
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.l = 0;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 103;
    }
 
@@ -19225,7 +19225,7 @@ public final class ao_1 {
 
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.l = 0;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 107;
    }
 
@@ -19305,7 +19305,7 @@ public final class ao_1 {
       this.e.aq.a((al)this.e.au);
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.l = 0;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = var3;
    }
 
@@ -19408,7 +19408,7 @@ public final class ao_1 {
       this.e.aq.a((al)this.e.au);
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.l = 0;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 33;
    }
 
@@ -19575,10 +19575,10 @@ public final class ao_1 {
    public final void ai() {
       LoadingPage.g = 0;
       LoadingPage.h = 0;
-      this.e.a = 0;
+      this.e.touchAction = 0;
       this.e.b = 0;
       this.l = 0;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.k = 116;
    }
 
@@ -19613,10 +19613,10 @@ public final class ao_1 {
       LoadingPage.a((az_1)null, K, bt_1.eL, (String[])null, true);
       LoadingPage.h = 0;
       LoadingPage.g = 0;
-      this.e.a = 0;
+      this.e.touchAction = 0;
       this.e.b = 0;
       this.l = 0;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.k = 117;
    }
 
@@ -19751,18 +19751,18 @@ public final class ao_1 {
       this.ak();
       LoadingPage.l = 0;
       this.l = 0;
-      this.e.j = this.e.k = 7;
+      this.e.touchPageCase = this.e.k = 7;
       this.j = this.k = 119;
    }
 
    private void aY(int var1) {
       if (this.l == 0) {
          if (bt_1.mx != -1 && this.aI != null) {
-            ai_1.a(this.aI, this.e.ak);
+            PngUtil.a(this.aI, this.e.ak);
          }
 
          if (bt_1.mD != -1 && this.bd != null) {
-            ai_1.a(this.bd, this.e.ak);
+            PngUtil.a(this.bd, this.e.ak);
          }
 
          this.e.at.b(var1);
@@ -19870,7 +19870,7 @@ public final class ao_1 {
          }
       }
 
-      this.e.a = 0;
+      this.e.touchAction = 0;
    }
 
    private void S(Graphics var1) {
@@ -19950,7 +19950,7 @@ public final class ao_1 {
       this.e.at.a((byte)1);
       this.e.aq.a((al)this.e.at);
       this.e.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 120;
    }
 
@@ -20159,7 +20159,7 @@ public final class ao_1 {
       this.e.at.a(this.e.at.b, this.e.at.c, this.e.at.d, this.e.at.e / 3);
       this.di.a(this.e.at.b, this.e.at.c + this.e.at.e, this.e.at.d / 2, this.e.at.e << 1);
       this.dj.a(this.di.b + this.di.d, this.di.c, this.di.d, this.di.e);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 125;
    }
 
@@ -20183,7 +20183,7 @@ public final class ao_1 {
       this.dj.b(var1);
       if (this.dk != null && this.dk.length > 0) {
          for(int var2 = 0; var2 < this.dk.length; ++var2) {
-            ai_1.a(this.dk[var2], this.e.ak);
+            PngUtil.a(this.dk[var2], this.e.ak);
          }
       }
 
@@ -20315,7 +20315,7 @@ public final class ao_1 {
       this.ds = this.e.at.b;
       this.dt = this.e.at.c;
       this.e.at.a(this.e.at.b, this.e.at.c + (this.e.at.e >> 1), this.e.at.d, this.e.at.e >> 1);
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 127;
       LoadingPage.l = 0;
    }
@@ -20431,7 +20431,7 @@ public final class ao_1 {
       this.e.aq.a((al)this.e.at);
       this.e.aq.a(0, 0, t_1.b, t_1.c);
       this.l = 0;
-      this.e.j = this.e.k;
+      this.e.touchPageCase = this.e.k;
       this.j = this.k = 128;
    }
 

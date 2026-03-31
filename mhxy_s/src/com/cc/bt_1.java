@@ -6942,7 +6942,6 @@ public final class bt_1 {
    public static void aI(DataInputStream var0) throws IOException {
       short var1 = var0.readShort();
       short var2 = var0.readShort();
-      System.out.println(var1 + " | " + var2);
       if (rk == null) {
          rk = new Vector();
       }

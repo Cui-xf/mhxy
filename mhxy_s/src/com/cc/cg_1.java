@@ -9,7 +9,7 @@ import javax.microedition.lcdui.Graphics;
 public final class cg_1 {
    private ao_1 e;
    private MainCanvas f;
-   private ai_1 g;
+   private PngUtil g;
    private Frame1 h;
    private Frame1 i;
    public static int a;
@@ -47,7 +47,7 @@ public final class cg_1 {
    private String L;
    private String M;
 
-   public cg_1(ao_1 var1, MainCanvas var2, ai_1 var3) {
+   public cg_1(ao_1 var1, MainCanvas var2, PngUtil var3) {
       this.e = var1;
       this.f = var2;
       this.g = var3;
@@ -265,7 +265,7 @@ public final class cg_1 {
       this.I.a(this.f.aq.a + 5, this.f.aq.b + 32 + 2 * this.G + 10, this.f.aq.c - 11, this.G + 10);
       LoadingPage.l = 0;
       this.e.l = 0;
-      this.f.j = this.f.k;
+      this.f.touchPageCase = this.f.k;
       this.e.j = this.e.k = 131;
    }
 
@@ -288,11 +288,11 @@ public final class cg_1 {
          }
 
          if (a != -1 && this.h != null) {
-            ai_1.a(this.h, this.f.ak);
+            PngUtil.a(this.h, this.f.ak);
          }
 
          if (k != -1 && this.i != null) {
-            ai_1.a(this.i, this.f.ak);
+            PngUtil.a(this.i, this.f.ak);
          }
 
          if (var1 == 8 || var1 == 2) {

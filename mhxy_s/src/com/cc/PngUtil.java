@@ -6,7 +6,8 @@ import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 import java.io.UnsupportedEncodingException;
 
-public final class ai_1 {
+//public final class ai_1 {
+public final class PngUtil {
     public static final String[] pngChunks = new String[]{"sBIT", "IHDR", "PLTE", "tRNS", "IDAT"};
     public static byte[] pngHeader = new byte[]{-119, 80, 78, 71, 13, 10, 26, 10};
     public static byte[] pngEnd = new byte[]{0, 0, 0, 0, 73, 69, 78, 68, -82, 66, 96, -126};

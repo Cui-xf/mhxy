@@ -94,7 +94,7 @@ public final class v_1 {
       this.i.aq.a((al)this.i.au);
       this.i.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.h.l = 0;
-      this.i.j = this.i.k;
+      this.i.touchPageCase = this.i.k;
       this.h.j = this.h.k = 90;
    }
 
@@ -108,7 +108,7 @@ public final class v_1 {
       this.i.aq.a((al)this.i.au);
       this.i.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.h.l = 2;
-      this.i.j = this.i.k;
+      this.i.touchPageCase = this.i.k;
       this.h.j = this.h.k = 90;
    }
 
@@ -243,7 +243,7 @@ public final class v_1 {
       this.i.aq.g = var2;
       this.i.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.h.l = 0;
-      this.i.j = this.i.k;
+      this.i.touchPageCase = this.i.k;
       this.h.j = this.h.k = 91;
    }
 
@@ -338,7 +338,7 @@ public final class v_1 {
       this.i.aq.g = var2;
       this.i.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.h.l = 0;
-      this.i.j = this.i.k;
+      this.i.touchPageCase = this.i.k;
       this.h.j = this.h.k = 92;
    }
 
@@ -452,7 +452,7 @@ public final class v_1 {
       this.i.aq.a((al)this.i.au);
       this.i.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
       this.h.l = 0;
-      this.i.j = this.i.k;
+      this.i.touchPageCase = this.i.k;
       this.h.j = this.h.k = 93;
    }
 

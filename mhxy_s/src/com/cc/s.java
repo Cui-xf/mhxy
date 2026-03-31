@@ -33,14 +33,14 @@ public final class s extends au {
       super.i = this.l;
    }
 
-   public final void a(Graphics var1, ai_1 var2, int var3, int var4, byte var5) {
+   public final void a(Graphics var1, PngUtil var2, int var3, int var4, byte var5) {
       if (super.f != null) {
          var2.a(var1, (Frame1)super.f, (int[])null, var3, var4, super.h - super.f.g() / 2, super.i - super.f.h(), 20, 0);
       }
 
    }
 
-   public final void a(aw var1, ai_1 var2, long var3) {
+   public final void a(aw var1, PngUtil var2, long var3) {
       if (super.f != null) {
          if (super.e.size() != 0) {
             if (super.e.size() > 0 && var3 - this.n > 200L) {
@@ -55,7 +55,7 @@ public final class s extends au {
                this.n = var3;
             }
          } else {
-            ai_1 var6 = var2;
+            PngUtil var6 = var2;
             aw var5 = var1;
             s var14 = this;
             if (this.m != 0) {
@@ -97,7 +97,7 @@ public final class s extends au {
             this.n = var3;
          }
 
-         ai_1.a(super.f, var3);
+         PngUtil.a(super.f, var3);
       }
 
    }

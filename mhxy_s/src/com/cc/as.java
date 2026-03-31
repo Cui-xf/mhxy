@@ -24,7 +24,7 @@ public final class as {
    private int o;
    private int[][] p;
 
-   public as(ao_1 var1, MainCanvas var2, ai_1 var3) {
+   public as(ao_1 var1, MainCanvas var2, PngUtil var3) {
       this.b = var1;
       this.a = var2;
    }
@@ -118,7 +118,7 @@ public final class as {
       this.b();
       LoadingPage.l = 0;
       this.b.l = 0;
-      this.a.j = this.a.k;
+      this.a.touchPageCase = this.a.k;
       this.b.j = this.b.k = 102;
    }
 

@@ -24,7 +24,7 @@ public final class cj {
       this.c[var1] = var3;
    }
 
-   public final void a(Graphics var1, ai_1 var2, int var3, int var4) {
+   public final void a(Graphics var1, PngUtil var2, int var3, int var4) {
       if (this.a != null) {
          for(byte var5 = 0; var5 < this.b.length; ++var5) {
             if (this.b[var5] != 0 && this.c[var5] != 0) {

@@ -85,7 +85,7 @@ public final class bp_1 extends ar {
 
    }
 
-   public final void a(ai_1 var1, long var2) {
+   public final void a(PngUtil var1, long var2) {
       if (super.g != null) {
          if (bt_1.bs == 0) {
             if (this.a(this.a, 0)) {
@@ -129,22 +129,22 @@ public final class bp_1 extends ar {
                      this.a(true);
                   }
 
-                  ai_1.a(super.g, var2);
+                  PngUtil.a(super.g, var2);
                   return;
                }
 
                this.a(true);
-               ai_1.a(super.g, var2);
+               PngUtil.a(super.g, var2);
                return;
             }
 
             this.a(true);
-            ai_1.a(super.g, var2);
+            PngUtil.a(super.g, var2);
             return;
          }
 
          if (this.a(this.a, 1)) {
-            ai_1.a(super.g, var2);
+            PngUtil.a(super.g, var2);
             int var4;
             if ((var4 = super.f.size()) < 7) {
                this.a(true);
@@ -186,7 +186,7 @@ public final class bp_1 extends ar {
             }
          } else {
             this.a(true);
-            ai_1.a(super.g, var2);
+            PngUtil.a(super.g, var2);
          }
       }
 

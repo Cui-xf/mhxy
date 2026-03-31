@@ -435,7 +435,7 @@ public final class bu {
             aa aaVarD = d(iArr[i]);
             if (aaVarD != null) {
                 sArr4[i] = aaVarD.b;
-            } else {
+            } else {   
                 sArr4[i] = -1;
             }
         }
@@ -547,6 +547,71 @@ public final class bu {
         }
     }
 
+    private void a2(short[] resourceShortIds, short[] variantAList, short[] variantBList, short[] variantCList) {
+        boolean hasVariantParams = (variantAList == null || variantBList == null || variantCList == null) ? false : true;
+        for (int index = 0; index < resourceShortIds.length; index++) {
+            short variantA = hasVariantParams ? variantAList[index] : (short) 0;
+            short variantB = hasVariantParams ? variantBList[index] : (short) 0;
+            short variantC = hasVariantParams ? variantCList[index] : (short) 0;
+            if (resourceShortIds[index] >= 0) {
+                // 通过 this.c 中已缓存的 bc 资源先做一次去重检查。
+                if (c(resourceShortIds[index], variantA, variantB, variantC) != null) {
+                    resourceShortIds[index] = -1;
+                } else {
+                    for (int nextIndex = index + 1; nextIndex < resourceShortIds.length; nextIndex++) {
+                        short nextVariantA = hasVariantParams ? variantAList[nextIndex] : (short) 0;
+                        short nextVariantB = hasVariantParams ? variantBList[nextIndex] : (short) 0;
+                        short nextVariantC = hasVariantParams ? variantCList[nextIndex] : (short) 0;
+                        if (resourceShortIds[nextIndex] >= 0 && resourceShortIds[index] == resourceShortIds[nextIndex] && variantA == nextVariantA && variantB == nextVariantB && variantC == nextVariantC) {
+                            resourceShortIds[index] = -1;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        for (int index2 = 0; index2 < resourceShortIds.length; index2++) {
+            short resourceShortId = resourceShortIds[index2];
+            short variantA2 = hasVariantParams ? variantAList[index2] : (short) 0;
+            short variantB2 = hasVariantParams ? variantBList[index2] : (short) 0;
+            short variantC2 = hasVariantParams ? variantCList[index2] : (short) 0;
+            if (resourceShortId >= 0 || variantA2 != 0 || variantB2 != 0 || variantC2 != 0) {
+                // this.c 是已加载资源缓存；命中时直接从缓存资源派生一个新实例即可。
+                bc cachedResource = c(resourceShortId, variantA2, variantB2, variantC2);
+                if (cachedResource == null) {
+                    DataInputStream resourceStream = null;
+                    try {
+                        // a(resourceShortId) 会从 this.e 资源索引表中找到对应的资源项。
+                        aa resourceEntry = a(resourceShortId);
+                        if (resourceEntry == null) {
+                            continue;
+                        }
+                        // a(resourceEntry) 会结合 this.a / this.b 指向的资源包路径打开 .rpg 数据流。
+                        resourceStream = a(resourceEntry);
+                        if (resourceStream == null) {
+                            continue;
+                        }
+                        a(resourceEntry, resourceStream, variantA2, variantB2, variantC2);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    } finally {
+                        if (resourceStream != null) {
+                            try {
+                                resourceStream.close();
+                            } catch (IOException closeException) {
+                                closeException.printStackTrace();
+                            }
+                        }
+                    }
+                } else {
+                    bc clonedResource = cachedResource.a(variantA2, variantB2, variantC2);
+                    // 新派生出的资源实例同样要回写到 this.c 缓存中。
+                    this.c.addElement(clonedResource);
+                }
+            }
+        }
+    }
+
     private static int[] a(Vector vector, byte b) {
         int[] iArr = new int[vector.size()];
         int i = 0;
@@ -643,6 +708,37 @@ public final class bu {
                 }
             }
             throw th;
+        }
+    }
+
+    private void b2(short resourceShortId, short variantA, short variantB, short variantC) {
+        // 通过 this.c 中的已加载缓存检查，避免同一资源被重复反序列化。
+        if (d(resourceShortId, variantA, variantB, variantC) != null) {
+            return;
+        }
+        DataInputStream resourceStream = null;
+        try {
+            // 从 this.e 资源索引表里按短整型资源 id 查到对应的资源项。
+            aa resourceEntry = a(resourceShortId);
+            if (resourceEntry == null) {
+                return;
+            }
+            // 基于 this.a / this.b 指向的资源包与路径前缀打开对应的 .rpg 数据流。
+            resourceStream = a(resourceEntry);
+            if (resourceStream == null) {
+                return;
+            }
+            // 解析资源内容，并在内部写回 this.c 缓存。
+            b(resourceEntry, resourceStream, variantA, variantB, variantC);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        } finally {
+            if (resourceStream != null) {
+                try {
+                    resourceStream.close();
+                } catch (IOException closeException) {
+                }
+            }
         }
     }
 
