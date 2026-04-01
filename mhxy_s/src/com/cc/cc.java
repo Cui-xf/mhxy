@@ -334,7 +334,7 @@ public final class cc {
                 this.s[var3] = var1.readUTF();
                 this.t[var3] = var1.readByte();
                 this.u[var3] = var1.readByte();
-                this.v[var3] = Page.a((String) MainCanvas.a(this.t[var3], this.u[var3], (byte) 0, (byte) 0, false, this.s[var3]), (byte) 2);
+                this.v[var3] = Page.buildResourceId((String) MainCanvas.a(this.t[var3], this.u[var3], (byte) 0, (byte) 0, false, this.s[var3]), (byte) 2);
             }
         } else {
             this.k = null;

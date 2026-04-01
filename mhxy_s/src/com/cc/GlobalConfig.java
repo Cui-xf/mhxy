@@ -253,7 +253,7 @@ public final class GlobalConfig {
     /**
      * 全局复用的字符串缓冲区，避免 J2ME 环境下频繁创建对象
      */
-    public static StringBuffer ag;
+    public static StringBuffer sbTemp;
     /**
      * 超Q服务提示文字
      */
@@ -345,9 +345,9 @@ public final class GlobalConfig {
             var3 = 0;
         }
 
-        ag.delete(0, ag.length());
-        ag.append(V[var0]).append(W[var1]).append(var3).append(X[3]).append("");
-        return ag.toString();
+        sbTemp.delete(0, sbTemp.length());
+        sbTemp.append(V[var0]).append(W[var1]).append(var3).append(X[3]).append("");
+        return sbTemp.toString();
     }
 
     /**
@@ -477,7 +477,7 @@ public final class GlobalConfig {
         ad = new String[]{"查看宝库", "捐献物品", "捐献银两", "取出银两", "捐献经验", "贡献物资", "发布任务（资源）", "发布任务（金豆）", "宝库配置", "提升人气", "宝库扩容"};
         ae = new String[]{"银两", "金锭", "银锭", "铜锭", "铁锭"};
         af = new String[]{"物品掉率", "银两奖励", "经验加成"};
-        ag = new StringBuffer();
+        sbTemp = new StringBuffer();
         short[] var14 = new short[]{0};
         var14 = new short[]{0, 1, 2, 4, 7, 35, 6, 5, 14, 15, 17, 18, 19, 44, 8, 9, 12, 13, 30, 31, 36, 32, 33, 34, 37, 3, 10, 11, 16, 28};
         var14 = new short[]{29, 45, 47, 46, 25, 26, 27, 48, 50, 49, 51, 53, 52, 20, 21, 22, 23, 24, 54, 55, 56, 57, 63, 61, 62, 59, 60, 58, 70, 71};

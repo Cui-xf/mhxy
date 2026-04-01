@@ -36,24 +36,24 @@ public final class ck {
    }
 
    public final void b(byte var1) {
-      GlobalConfig.ag.delete(0, GlobalConfig.ag.length());
+      GlobalConfig.sbTemp.delete(0, GlobalConfig.sbTemp.length());
       this.n = var1;
       if (this.b == 0) {
          if (var1 == 4) {
-            GlobalConfig.ag.append("com.cc.f").append(this.j).append(1).append(var1);
+            GlobalConfig.sbTemp.append("f").append(this.j).append(1).append(var1);
          } else {
-            GlobalConfig.ag.append("com.cc.f").append(this.j).append(1).append(this.v).append(var1);
+            GlobalConfig.sbTemp.append("f").append(this.j).append(1).append(this.v).append(var1);
          }
 
-         this.m = MainCanvas.ab.b(GlobalConfig.ag.toString());
+         this.m = MainCanvas.ab.b(GlobalConfig.sbTemp.toString());
          if (this.m == null && var1 != 4) {
-            GlobalConfig.ag.delete(0, GlobalConfig.ag.length());
-            GlobalConfig.ag.append("com.cc.f").append(this.j).append(1).append(1).append(var1);
-            this.m = MainCanvas.ab.b(GlobalConfig.ag.toString());
+            GlobalConfig.sbTemp.delete(0, GlobalConfig.sbTemp.length());
+            GlobalConfig.sbTemp.append("f").append(this.j).append(1).append(1).append(var1);
+            this.m = MainCanvas.ab.b(GlobalConfig.sbTemp.toString());
          }
       } else if (this.b == 1) {
-         GlobalConfig.ag.append(this.j).append(var1 > 3 ? 3 : var1);
-         this.m = MainCanvas.ah.a(GlobalConfig.ag.toString(), this.r, this.s, this.t);
+         GlobalConfig.sbTemp.append(this.j).append(var1 > 3 ? 3 : var1);
+         this.m = MainCanvas.ah.a(GlobalConfig.sbTemp.toString(), this.r, this.s, this.t);
       }
 
       if (this.m != null) {

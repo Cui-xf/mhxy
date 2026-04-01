@@ -43,12 +43,12 @@ public class au {
    private void f() {
       if (this.g == 701) {
          this.d = new int[1];
-         this.d[0] = Page.a((String)(this.g + "_" + 0), (byte)2);
+         this.d[0] = Page.buildResourceId((String)(this.g + "_" + 0), (byte)2);
       } else {
          this.d = new int[4];
 
          for(int var1 = 0; var1 < 4; ++var1) {
-            this.d[var1] = Page.a((String)(this.g + "_" + (var1 / 2 << 1)), (byte)2);
+            this.d[var1] = Page.buildResourceId((String)(this.g + "_" + (var1 / 2 << 1)), (byte)2);
          }
 
       }

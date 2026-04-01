@@ -10,7 +10,7 @@ import java.util.Vector;
 public final class Page {
     private String name;
     private String path;
-    private Vector frames = new Vector();
+    private Vector frameCache = new Vector();
     private Vector d = new Vector();
     private FrameInfo[] frameInfos;
 
@@ -27,24 +27,24 @@ public final class Page {
     }
 
     public final Vector a() {
-        return this.frames;
+        return this.frameCache;
     }
 
     public short framesNum() {
-        return (short) this.frames.size();
+        return (short) this.frameCache.size();
     }
 
     public final void c() {
-        this.frames.removeAllElements();
+        this.frameCache.removeAllElements();
     }
 
     public final void a(int var1) {
         Object var2 = null;
 
-        for (int var3 = 0; var3 < this.frames.size(); ++var3) {
+        for (int var3 = 0; var3 < this.frameCache.size(); ++var3) {
             Frame var4;
-            if ((var4 = (Frame) this.frames.elementAt(var3)).info != null && var4.info.key == var1) {
-                this.frames.removeElement(var4);
+            if ((var4 = (Frame) this.frameCache.elementAt(var3)).info != null && var4.info.key == var1) {
+                this.frameCache.removeElement(var4);
                 return;
             }
         }
@@ -54,9 +54,9 @@ public final class Page {
     public final boolean b(int var1) {
         Object var2 = null;
 
-        for (int var3 = 0; var3 < this.frames.size(); ++var3) {
+        for (int var3 = 0; var3 < this.frameCache.size(); ++var3) {
             Frame var4;
-            if ((var4 = (Frame) this.frames.elementAt(var3)).info != null && var4.info.key == var1) {
+            if ((var4 = (Frame) this.frameCache.elementAt(var3)).info != null && var4.info.key == var1) {
                 return true;
             }
         }
@@ -68,8 +68,8 @@ public final class Page {
         if (name != null) {
             name = wrapName(name, (byte) 0);
             int key = hashKey(name.toCharArray());
-            for (int i = 0; i < this.frames.size(); ++i) {
-                Object o = this.frames.elementAt(i);
+            for (int i = 0; i < this.frameCache.size(); ++i) {
+                Object o = this.frameCache.elementAt(i);
                 if (o instanceof Frame0) {
                     Frame0 frame0 = (Frame0) o;
                     if (frame0.info != null && frame0.info.key == key) {
@@ -81,11 +81,11 @@ public final class Page {
         return null;
     }
 
-    private Frame0 a(short var1, short var2, short var3, short var4) {
+    private Frame0 getFrame0ByIdFromCache(short id, short var2, short var3, short var4) {
         Frame0 var5 = null;
 
-        for (int var6 = 0; var6 < this.frames.size(); ++var6) {
-            if (this.frames.elementAt(var6) instanceof Frame0 && (var5 = (Frame0) this.frames.elementAt(var6)).info != null && var5.info.id == var1 && var5.e == var2 && var5.f == var3 && var5.g == var4) {
+        for (int var6 = 0; var6 < this.frameCache.size(); ++var6) {
+            if (this.frameCache.elementAt(var6) instanceof Frame0 && (var5 = (Frame0) this.frameCache.elementAt(var6)).info != null && var5.info.id == id && var5.e == var2 && var5.f == var3 && var5.g == var4) {
                 return var5;
             }
         }
@@ -110,8 +110,8 @@ public final class Page {
     public Frame1 a(int var1, short var2, short var3, short var4) {
         Frame1 var5 = null;
 
-        for (int var6 = 0; var6 < this.frames.size(); ++var6) {
-            if (this.frames.elementAt(var6) instanceof Frame1 && (var5 = (Frame1) this.frames.elementAt(var6)).info != null && var5.info.key == var1 && var5.a == var2 && var5.b == var3 && var5.c == var4) {
+        for (int var6 = 0; var6 < this.frameCache.size(); ++var6) {
+            if (this.frameCache.elementAt(var6) instanceof Frame1 && (var5 = (Frame1) this.frameCache.elementAt(var6)).info != null && var5.info.key == var1 && var5.a == var2 && var5.b == var3 && var5.c == var4) {
                 return var5;
             }
         }
@@ -140,15 +140,15 @@ public final class Page {
                 if (type == 0) {
                     Frame0 frame0 = buildFrame0(data, (short) 0, (short) 0, (short) 0);
                     frame0.info = this.frameInfos[i];
-                    this.frames.addElement(frame0);
+                    this.frameCache.addElement(frame0);
                 } else {
                     Frame1 frame1 = buildFrame1(data, (short) 0, (short) 0, (short) 0);
                     frame1.info = this.frameInfos[i];
-                    this.frames.addElement(frame1);
+                    this.frameCache.addElement(frame1);
                 }
             }
-            for (int i = 0; i < this.frames.size(); ++i) {
-                Frame frame = (Frame) this.frames.elementAt(i);
+            for (int i = 0; i < this.frameCache.size(); ++i) {
+                Frame frame = (Frame) this.frameCache.elementAt(i);
                 if (frame.type == 2) {
                     this.a(((Frame1) frame), (short) 0, (short) 0, (short) 0);
                 }
@@ -176,7 +176,7 @@ public final class Page {
         var2 = a(b(var1));
         this.a(var2);
         short[] var3 = this.b(var2);
-        this.batchLoadFrame1((short[]) var3, (short[]) null, (short[]) null, (short[]) null);
+        this.batchLoadFrame1ToCache((short[]) var3, (short[]) null, (short[]) null, (short[]) null);
         this.c(var2);
         return var2;
     }
@@ -191,13 +191,13 @@ public final class Page {
 
         aw var10000;
         while (true) {
-            if (var5 >= var24.frames.size()) {
+            if (var5 >= var24.frameCache.size()) {
                 var10000 = null;
                 break;
             }
 
             Frame var28;
-            if ((var28 = (Frame) var24.frames.elementAt(var5)).type == 3 && var28.info != null && var28.info.key == var3) {
+            if ((var28 = (Frame) var24.frameCache.elementAt(var5)).type == 3 && var28.info != null && var28.info.key == var3) {
                 var10000 = (aw) var28;
                 break;
             }
@@ -213,7 +213,7 @@ public final class Page {
             var4 = null;
             try {
                 FrameInfo var30;
-                if ((var30 = this.d(var20)) == null) {
+                if ((var30 = this.getFrameInfoByKey(var20)) == null) {
                     Object var23 = null;
                     return null;
                 }
@@ -224,11 +224,11 @@ public final class Page {
                     return null;
                 }
 
-                var25 = a(a((DataInputStream) var27, (int) 0));
+                var25 = a(readFrame1Data((DataInputStream) var27, (int) 0));
                 var27.close();
                 this.a(var25);
                 short[] var21 = this.b(var25);
-                this.batchLoadFrame1((short[]) var21, (short[]) null, (short[]) null, (short[]) null);
+                this.batchLoadFrame1ToCache((short[]) var21, (short[]) null, (short[]) null, (short[]) null);
                 this.c(var25);
                 var25.info = var30;
                 return var25;
@@ -251,37 +251,37 @@ public final class Page {
         this.b((String) var1, (short) 0, (short) 0, (short) 0);
     }
 
-    public final void a(String[] var1) {
-        int[] var2 = a((String[]) var1, (byte) 2);
-        this.a((int[]) var2, (short[]) null, (short[]) null, (short[]) null);
+    public void loadFrame(String[] var1) {
+        int[] var2 = batchHashKey((String[]) var1, (byte) 2);
+        this.doLoadFrame((int[]) var2, (short[]) null, (short[]) null, (short[]) null);
     }
 
-    public final void a(String[] var1, short[] var2, short[] var3, short[] var4) {
-        int[] var5 = a((String[]) var1, (byte) 2);
-        this.a(var5, var2, var3, var4);
+    public final void loadFrame(String[] var1, short[] var2, short[] var3, short[] var4) {
+        int[] var5 = batchHashKey((String[]) var1, (byte) 2);
+        this.doLoadFrame(var5, var2, var3, var4);
     }
 
     public final void a(Vector var1, short[] var2, short[] var3, short[] var4) {
-        int[] var5 = a((Vector) var1, (byte) 2);
-        this.a(var5, var2, var3, var4);
+        int[] var5 = batchHashKey((Vector) var1, (byte) 2);
+        this.doLoadFrame(var5, var2, var3, var4);
     }
 
-    private void a(int[] var1, short[] var2, short[] var3, short[] var4) {
+    private void doLoadFrame(int[] keys, short[] var2, short[] var3, short[] var4) {
         FrameInfo var5 = null;
-        short[] var6 = new short[var1.length];
+        short[] ids = new short[keys.length];
 
-        for (int var7 = 0; var7 < var1.length; ++var7) {
-            if ((var5 = this.d(var1[var7])) != null) {
-                var6[var7] = var5.id;
+        for (int i = 0; i < keys.length; ++i) {
+            if ((var5 = this.getFrameInfoByKey(keys[i])) != null) {
+                ids[i] = var5.id;
             } else {
-                var6[var7] = -1;
+                ids[i] = -1;
             }
         }
 
-        this.batchLoadFrame1(var6, var2, var3, var4);
+        this.batchLoadFrame1ToCache(ids, var2, var3, var4);
     }
 
-    private void batchLoadFrame1(short[] resourceShortIds, short[] variantAList, short[] variantBList, short[] variantCList) {
+    private void batchLoadFrame1ToCache(short[] resourceShortIds, short[] variantAList, short[] variantBList, short[] variantCList) {
         boolean hasVariantParams = variantAList != null && variantBList != null && variantCList != null;
         for (int index = 0; index < resourceShortIds.length; index++) {
             short variantA = hasVariantParams ? variantAList[index] : (short) 0;
@@ -326,7 +326,7 @@ public final class Page {
                         if (resourceStream == null) {
                             continue;
                         }
-                        a(resourceEntry, resourceStream, variantA2, variantB2, variantC2);
+                        loadFrame1FromFile2Cache(resourceEntry, resourceStream, variantA2, variantB2, variantC2);
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     } finally {
@@ -341,14 +341,14 @@ public final class Page {
                 } else {
                     Frame1 clonedResource = cachedResource.a(variantA2, variantB2, variantC2);
                     // 新派生出的资源实例同样要回写到 this.c 缓存中。
-                    this.frames.addElement(clonedResource);
+                    this.frameCache.addElement(clonedResource);
                 }
             }
         }
     }
 
     public final void b(String var1, short var2, short var3, short var4) {
-        int var21 = a((String) var1, (byte) 2);
+        int var21 = buildResourceId((String) var1, (byte) 2);
         short var9 = var4;
         short var8 = var3;
         short var7 = var2;
@@ -360,14 +360,14 @@ public final class Page {
 
         Frame1 var28;
         while (true) {
-            if (var11 >= var5.frames.size()) {
+            if (var11 >= var5.frameCache.size()) {
                 var28 = null;
                 break;
             }
 
             Frame var26;
             Frame1 var27;
-            if ((var26 = (Frame) var5.frames.elementAt(var11)).type == 2 && var26.info != null && var26.info.key == var6 && (var27 = (Frame1) var26).a == var7 && var27.b == var8 && var27.c == var9) {
+            if ((var26 = (Frame) var5.frameCache.elementAt(var11)).type == 2 && var26.info != null && var26.info.key == var6 && (var27 = (Frame1) var26).a == var7 && var27.b == var8 && var27.c == var9) {
                 var28 = var27;
                 break;
             }
@@ -381,12 +381,12 @@ public final class Page {
 
             try {
                 FrameInfo var24;
-                if ((var24 = this.d(var21)) == null) {
+                if ((var24 = this.getFrameInfoByKey(var21)) == null) {
                     return;
                 }
 
                 if ((var22 = this.getFrameStream(var24)) != null) {
-                    this.a(var24, var22, var2, var3, var4);
+                    this.loadFrame1FromFile2Cache(var24, var22, var2, var3, var4);
                     return;
                 }
             } catch (Exception var19) {
@@ -406,8 +406,8 @@ public final class Page {
         }
     }
 
-    private void a(FrameInfo var1, DataInputStream var2, short var3, short var4, short var5) throws IOException {
-        Frame1 var15 = buildFrame1(a((DataInputStream) var2, (int) 0), var3, var4, var5);
+    private void loadFrame1FromFile2Cache(FrameInfo var1, DataInputStream var2, short var3, short var4, short var5) throws IOException {
+        Frame1 var15 = buildFrame1(readFrame1Data((DataInputStream) var2, (int) 0), var3, var4, var5);
         short var10 = var5;
         short var9 = var4;
         short var8 = var3;
@@ -469,7 +469,7 @@ public final class Page {
 
         this.a(var15, var3, var4, var5);
         var15.info = var1;
-        this.frames.addElement(var15);
+        this.frameCache.addElement(var15);
     }
 
     public final void e(String var1) {
@@ -477,7 +477,7 @@ public final class Page {
         boolean var23 = false;
         boolean var24 = false;
         Page var25 = this;
-        int var26 = a((String) var1, (byte) 0);
+        int var26 = buildResourceId((String) var1, (byte) 0);
         byte var6 = 0;
         byte var5 = 0;
         byte var4 = 0;
@@ -489,14 +489,14 @@ public final class Page {
 
         Frame0 var38;
         while (true) {
-            if (var8 >= var2.frames.size()) {
+            if (var8 >= var2.frameCache.size()) {
                 var38 = null;
                 break;
             }
 
             Frame var31;
             Frame0 var32;
-            if ((var31 = (Frame) var2.frames.elementAt(var8)).type == 0 && var31.info != null && var31.info.key == var3 && (var32 = (Frame0) var31).e == var4 && var32.f == var5 && var32.g == var6) {
+            if ((var31 = (Frame) var2.frameCache.elementAt(var8)).type == 0 && var31.info != null && var31.info.key == var3 && (var32 = (Frame0) var31).e == var4 && var32.f == var5 && var32.g == var6) {
                 var38 = var32;
                 break;
             }
@@ -507,7 +507,7 @@ public final class Page {
         if (var38 == null) {
             var2 = null;
             FrameInfo var29;
-            if ((var29 = this.d(var26)) != null) {
+            if ((var29 = this.getFrameInfoByKey(var26)) != null) {
                 DataInputStream var27 = null;
                 boolean var15 = false;
 
@@ -576,54 +576,68 @@ public final class Page {
 
     }
 
-    public final void b(Vector var1, short[] var2, short[] var3, short[] var4) {
-//        int[] var12 = a((Vector) var1, (byte) 0);
-//        aa var14 = null;
-//        var3 = new short[var12.length];
-//
-//        for (int var19 = 0; var19 < var12.length; ++var19) {
-//            if ((var14 = this.d(var12[var19])) != null) {
-//                var3[var19] = var14.b;
-//            } else {
-//                var3[var19] = -1;
-//            }
-//        }
-//
-//        Object var20 = null;
-//        Object var18 = null;
-//        var14 = null;
-//        short[] var13 = var3;
-//        boolean var5 = true;
-//        short var6 = 0;
-//        short var7 = 0;
-//        short var8 = 0;
-//        if (var14 == null || var18 == null || var20 == null) {
-//            var5 = false;
-//        }
-//
-//        for (int var9 = 0; var9 < var13.length; ++var9) {
-//            var6 = var5 ? ((Object[]) var14)[var9] : 0;
-//            var7 = var5 ? ((Object[]) var18)[var9] : 0;
-//            var8 = var5 ? ((Object[]) var20)[var9] : 0;
-//            if (var13[var9] >= 0) {
-//                if (this.d(var13[var9], var6, var7, var8) != null) {
-//                    var13[var9] = -1;
-//                } else {
-//                    for (int var10 = var9 + 1; var10 < var13.length; ++var10) {
-//                        if (var13[var10] >= 0 && var13[var9] == var13[var10] && var6 == (var5 ? ((Object[]) var14)[var10] : 0) && var7 == (var5 ? ((Object[]) var18)[var10] : 0) && var8 == (var5 ? ((Object[]) var20)[var10] : 0)) {
-//                            var13[var9] = -1;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//
-//        for (int var24 = 0; var24 < var13.length; ++var24) {
-//            if (var13[var24] >= 0) {
-//                this.b(var13[var24], var5 ? ((Object[]) var14)[var24] : 0, var5 ? ((Object[]) var18)[var24] : 0, var5 ? ((Object[]) var20)[var24] : 0);
-//            }
-//        }
+    /**
+     * 批量预加载 Frame0（图像帧）资源。
+     * 将一组资源名称（Vector）转换为资源 id，去重后逐一加载进 frames 缓存。
+     *
+     * @param var1 资源名称列表（每项会以 wrapName type=0 即追加"p"后取 hashKey，再查 frameInfos）
+     * @param var2 变体参数A数组（可为 null，null 时统一用 0）
+     * @param var3 变体参数B数组（可为 null，null 时统一用 0）
+     * @param var4 变体参数C数组（可为 null，null 时统一用 0）
+     */
+    public void batchLoadFrame0(Vector var1, short[] var2, short[] var3, short[] var4) {
+        // 把名称 Vector 按 type=0（"p"后缀）规则转成 int[] hashKey 数组
+        int[] hashKeys = batchHashKey((Vector) var1, (byte) 0);
 
+        // 将 hashKey 数组映射为 short[] resourceIds：
+        // 通过 d(int) 在 frameInfos 中按 key 查找 FrameInfo，取其 id（aa.b）；找不到填 -1
+        short[] resourceIds = new short[hashKeys.length];
+        for (int i = 0; i < hashKeys.length; i++) {
+            FrameInfo info = this.getFrameInfoByKey(hashKeys[i]);
+            if (info != null) {
+                resourceIds[i] = info.id;
+            } else {
+                resourceIds[i] = -1;
+            }
+        }
+
+        // 三个变体参数数组同时非 null 才启用变体模式，否则变体值统一取 0
+        boolean hasVariantParams = var2 != null && var3 != null && var4 != null;
+        short variantA = 0, variantB = 0, variantC = 0;
+
+        // 去重循环：对每个有效 resourceId，
+        // 若已在 frames 缓存中存在（getFrame0FromCache 不为 null），或后续列表中有完全相同的条目，则置 -1 跳过
+        for (int i = 0; i < resourceIds.length; i++) {
+            variantA = hasVariantParams ? var2[i] : 0;
+            variantB = hasVariantParams ? var3[i] : 0;
+            variantC = hasVariantParams ? var4[i] : 0;
+            if (resourceIds[i] >= 0) {
+                if (this.getFrame0ByIdFromCache(resourceIds[i], variantA, variantB, variantC) != null) {
+                    // 缓存中已有，跳过
+                    resourceIds[i] = -1;
+                } else {
+                    // 检查后续是否有参数完全相同的重复条目，有则当前跳过（让后面那个来加载）
+                    for (int j = i + 1; j < resourceIds.length; j++) {
+                        if (resourceIds[j] >= 0 && resourceIds[i] == resourceIds[j]
+                                && variantA == (hasVariantParams ? var2[j] : 0)
+                                && variantB == (hasVariantParams ? var3[j] : 0)
+                                && variantC == (hasVariantParams ? var4[j] : 0)) {
+                            resourceIds[i] = -1;
+                        }
+                    }
+                }
+            }
+        }
+
+        // 加载循环：对所有未被置 -1 的条目，调用 b(short,short,short,short) 执行实际的 Frame0 加载
+        for (int i = 0; i < resourceIds.length; i++) {
+            if (resourceIds[i] >= 0) {
+                this.loadFrame(resourceIds[i],
+                        hasVariantParams ? var2[i] : 0,
+                        hasVariantParams ? var3[i] : 0,
+                        hasVariantParams ? var4[i] : 0);
+            }
+        }
     }
 
     private void a(aw var1) {
@@ -736,8 +750,8 @@ public final class Page {
 
     private void loadFrameAndCache(FrameInfo frameInfo, DataInputStream inputStream, short var3, short var4, short var5) throws IOException {
         Frame0 var6;
-        (var6 = buildFrame0(a((DataInputStream) inputStream, (int) 0), var3, var4, var5)).info = frameInfo;
-        this.frames.addElement(var6);
+        (var6 = buildFrame0(readFrame1Data((DataInputStream) inputStream, (int) 0), var3, var4, var5)).info = frameInfo;
+        this.frameCache.addElement(var6);
     }
 
     //private static bf a(byte[][] bArr, short s, short s2, short s3) throws Throwable {
@@ -784,7 +798,6 @@ public final class Page {
             }
         }
     }
-
 
     private static Frame1 buildFrame1(byte[][] var0, short var1, short var2, short var3) {
         Frame1 var4;
@@ -871,7 +884,7 @@ public final class Page {
         return (aw) var1;
     }
 
-    private static byte[][] a(DataInputStream var0, int var1) throws IOException {
+    private static byte[][] readFrame1Data(DataInputStream var0, int var1) throws IOException {
         var0.skipBytes(0);
         var0.readShort();
         var0.readByte();
@@ -976,9 +989,9 @@ public final class Page {
         return var6;
     }
 
-    private FrameInfo d(int var1) {
+    private FrameInfo getFrameInfoByKey(int key) {
         for (int var2 = 0; var2 < this.frameInfos.length; ++var2) {
-            if (this.frameInfos[var2] != null && this.frameInfos[var2].key == var1) {
+            if (this.frameInfos[var2] != null && this.frameInfos[var2].key == key) {
                 return this.frameInfos[var2];
             }
         }
@@ -1111,7 +1124,7 @@ public final class Page {
                     if (frame1.k[var5] != null) {
                         for (int var6 = 0; var6 < frame1.k[var5].length; ++var6) {
                             if (frame1.k[var5][var6] != null && frame1.k[var5][var6].a == null) {
-                                frame1.k[var5][var6].a = this.a(frame1.k[var5][var6].b, var2, var3, var4);
+                                frame1.k[var5][var6].a = this.getFrame0ByIdFromCache(frame1.k[var5][var6].b, var2, var3, var4);
                             }
                         }
 
@@ -1170,9 +1183,9 @@ public final class Page {
                 for (int var4 = 0; var4 < var1.j[var3].length; ++var4) {
                     if (var1.j[var3][var4] != null) {
                         if ((var2 = var1.a(var1.j[var3][var4].b)) != -1) {
-                            var1.j[var3][var4].a = this.a(var1.j[var3][var4].b, var1.m[var2][1], var1.m[var2][2], var1.m[var2][3]);
+                            var1.j[var3][var4].a = this.getFrame0ByIdFromCache(var1.j[var3][var4].b, var1.m[var2][1], var1.m[var2][2], var1.m[var2][3]);
                         } else {
-                            var1.j[var3][var4].a = this.a((short) var1.j[var3][var4].b, (short) 0, (short) 0, (short) 0);
+                            var1.j[var3][var4].a = this.getFrame0ByIdFromCache((short) var1.j[var3][var4].b, (short) 0, (short) 0, (short) 0);
                         }
                     }
                 }
@@ -1183,9 +1196,9 @@ public final class Page {
             for (int var11 = 0; var11 < var1.k.length; ++var11) {
                 if (var1.k[var11] != null) {
                     if ((var2 = var1.a(var1.k[var11].b)) != -1) {
-                        var1.k[var11].a = this.a(var1.k[var11].b, var1.m[var2][1], var1.m[var2][2], var1.m[var2][3]);
+                        var1.k[var11].a = this.getFrame0ByIdFromCache(var1.k[var11].b, var1.m[var2][1], var1.m[var2][2], var1.m[var2][3]);
                     } else {
-                        var1.k[var11].a = this.a((short) var1.k[var11].b, (short) 0, (short) 0, (short) 0);
+                        var1.k[var11].a = this.getFrame0ByIdFromCache((short) var1.k[var11].b, (short) 0, (short) 0, (short) 0);
                     }
                 }
             }
@@ -1199,10 +1212,10 @@ public final class Page {
                     if (var1.l[var12].c == 0) {
                         if ((var2 = var1.a(var1.l[var12].b)) != -1) {
                             var10000 = var1.l[var12];
-                            var10001 = this.a(var1.l[var12].b, var1.m[var2][1], var1.m[var2][2], var1.m[var2][3]);
+                            var10001 = this.getFrame0ByIdFromCache(var1.l[var12].b, var1.m[var2][1], var1.m[var2][2], var1.m[var2][3]);
                         } else {
                             var10000 = var1.l[var12];
-                            var10001 = this.a((short) var1.l[var12].b, (short) 0, (short) 0, (short) 0);
+                            var10001 = this.getFrame0ByIdFromCache((short) var1.l[var12].b, (short) 0, (short) 0, (short) 0);
                         }
                     } else {
                         if (var1.l[var12].c != 2) {
@@ -1216,14 +1229,14 @@ public final class Page {
                         int var6 = 0;
 
                         while (true) {
-                            if (var6 >= var10.frames.size()) {
+                            if (var6 >= var10.frameCache.size()) {
                                 GlobalConfig.printStr("no resource " + var13);
                                 var10001 = null;
                                 break;
                             }
 
                             Frame1 var14;
-                            if (var10.frames.elementAt(var6) instanceof Frame1 && (var14 = (Frame1) var10.frames.elementAt(var6)).info != null && var14.info.id == var13) {
+                            if (var10.frameCache.elementAt(var6) instanceof Frame1 && (var14 = (Frame1) var10.frameCache.elementAt(var6)).info != null && var14.info.id == var13) {
                                 var10001 = var14;
                                 break;
                             }
@@ -1240,8 +1253,8 @@ public final class Page {
     }
 
     private Frame1 getFrame1FromCache(short s, short s2, short s3, short s4) {
-        for (int i = 0; i < this.frames.size(); i++) {
-            Frame cfVar = (Frame) this.frames.elementAt(i);
+        for (int i = 0; i < this.frameCache.size(); i++) {
+            Frame cfVar = (Frame) this.frameCache.elementAt(i);
             if (cfVar.type == 2 && cfVar.info != null && cfVar.info.id == s) {
                 Frame1 bcVar = (Frame1) cfVar;
                 if (bcVar.a == s2 && bcVar.b == s3 && bcVar.c == s4) {
@@ -1254,8 +1267,8 @@ public final class Page {
 
 
     private Frame0 getFrame0FromCache(short id, short s2, short s3, short s4) {
-        for (int i = 0; i < this.frames.size(); i++) {
-            Frame cfVar = (Frame) this.frames.elementAt(i);
+        for (int i = 0; i < this.frameCache.size(); i++) {
+            Frame cfVar = (Frame) this.frameCache.elementAt(i);
             if (cfVar.type == 0 && cfVar.info != null && cfVar.info.id == id) {
                 Frame0 bfVar = (Frame0) cfVar;
                 if (bfVar.e == s2 && bfVar.f == s3 && bfVar.g == s4) {
@@ -1267,28 +1280,27 @@ public final class Page {
     }
 
 
-    private static int[] a(Vector var0, byte var1) {
-        int[] var2 = new int[var0.size()];
+    private static int[] batchHashKey(Vector names, byte type) {
+        int[] ids = new int[names.size()];
 
-        for (int var3 = 0; var3 < var0.size(); ++var3) {
-            var2[var3] = a((String) var0.elementAt(var3), var1);
+        for (int i = 0; i < names.size(); ++i) {
+            ids[i] = buildResourceId((String) names.elementAt(i), type);
         }
 
-        return var2;
+        return ids;
     }
 
-    private static int[] a(String[] var0, byte var1) {
-        int[] var3 = new int[var0.length];
-
-        for (int var2 = 0; var2 < var0.length; ++var2) {
-            if (var0[var2].equals("")) {
-                var3[var2] = -1;
+    private static int[] batchHashKey(String[] names, byte type) {
+        int[] ids = new int[names.length];
+        for (int i = 0; i < names.length; ++i) {
+            if (names[i].equals("")) {
+                ids[i] = -1;
             } else {
-                var3[var2] = a((String) var0[var2], (byte) 2);
+                ids[i] = buildResourceId((String) names[i], type);
             }
         }
 
-        return var3;
+        return ids;
     }
 
     public static int hashKey(char[] name) {
@@ -1303,8 +1315,8 @@ public final class Page {
         return var3;
     }
 
-    public static int a(String var0, byte var1) {
-        return hashKey(wrapName(var0, var1).toCharArray());
+    public static int buildResourceId(String name, byte type) {
+        return hashKey(wrapName(name, type).toCharArray());
     }
 
     public static String wrapName(String str, byte b) {

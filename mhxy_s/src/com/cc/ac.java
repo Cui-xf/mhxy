@@ -40,14 +40,14 @@ public final class ac extends ar {
    }
 
    private void s() {
-      this.u[1] = Page.a((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)1, GlobalStatus.ay, false, GlobalStatus.nn), (byte)2);
-      this.v[1] = Page.a((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)1, GlobalStatus.ay, true, GlobalStatus.nn), (byte)2);
-      this.u[3] = Page.a((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)3, GlobalStatus.ay, false, GlobalStatus.nn), (byte)2);
-      this.v[3] = Page.a((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)3, GlobalStatus.ay, true, GlobalStatus.nn), (byte)2);
-      this.u[0] = Page.a((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)0, GlobalStatus.ay, false, GlobalStatus.nn), (byte)2);
-      this.v[0] = Page.a((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)0, GlobalStatus.ay, true, GlobalStatus.nn), (byte)2);
-      this.u[2] = Page.a((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)2, GlobalStatus.ay, false, GlobalStatus.nn), (byte)2);
-      this.v[2] = Page.a((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)2, GlobalStatus.ay, true, GlobalStatus.nn), (byte)2);
+      this.u[1] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)1, GlobalStatus.ay, false, GlobalStatus.nn), (byte)2);
+      this.v[1] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)1, GlobalStatus.ay, true, GlobalStatus.nn), (byte)2);
+      this.u[3] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)3, GlobalStatus.ay, false, GlobalStatus.nn), (byte)2);
+      this.v[3] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)3, GlobalStatus.ay, true, GlobalStatus.nn), (byte)2);
+      this.u[0] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)0, GlobalStatus.ay, false, GlobalStatus.nn), (byte)2);
+      this.v[0] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)0, GlobalStatus.ay, true, GlobalStatus.nn), (byte)2);
+      this.u[2] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)2, GlobalStatus.ay, false, GlobalStatus.nn), (byte)2);
+      this.v[2] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)2, GlobalStatus.ay, true, GlobalStatus.nn), (byte)2);
    }
 
    public final void a() {

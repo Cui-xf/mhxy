@@ -1562,9 +1562,9 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
     }
 
     public final Frame1 a(Frame1 var1, byte var2, byte var3, byte var4, byte var5, boolean var6) {
-        GlobalConfig.ag.delete(0, GlobalConfig.ag.length());
-        GlobalConfig.ag.append("f").append(GlobalConfig.V[var2]).append(GlobalConfig.W[var3]).append(var5).append(GlobalConfig.X[3]).append(var6 ? 1 : 2);
-        String var8 = GlobalConfig.ag.toString();
+        GlobalConfig.sbTemp.delete(0, GlobalConfig.sbTemp.length());
+        GlobalConfig.sbTemp.append("f").append(GlobalConfig.V[var2]).append(GlobalConfig.W[var3]).append(var5).append(GlobalConfig.X[3]).append(var6 ? 1 : 2);
+        String var8 = GlobalConfig.sbTemp.toString();
         ab.d(var8);
         if ((var1 = ab.b(var8)) != null) {
             var1 = var1.b();

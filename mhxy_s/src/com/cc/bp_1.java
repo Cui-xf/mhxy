@@ -57,14 +57,14 @@ public final class bp_1 extends ar {
    }
 
    private void a() {
-      this.z[1] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)1, this.r, false, this.v), (byte)2);
-      this.A[1] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)1, this.r, true, this.v), (byte)2);
-      this.z[3] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)3, this.r, false, this.v), (byte)2);
-      this.A[3] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)3, this.r, true, this.v), (byte)2);
-      this.z[0] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)0, this.r, false, this.v), (byte)2);
-      this.A[0] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)0, this.r, true, this.v), (byte)2);
-      this.z[2] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)2, this.r, false, this.v), (byte)2);
-      this.A[2] = Page.a((String) MainCanvas.a(this.q, this.p, (byte)2, this.r, true, this.v), (byte)2);
+      this.z[1] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)1, this.r, false, this.v), (byte)2);
+      this.A[1] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)1, this.r, true, this.v), (byte)2);
+      this.z[3] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)3, this.r, false, this.v), (byte)2);
+      this.A[3] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)3, this.r, true, this.v), (byte)2);
+      this.z[0] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)0, this.r, false, this.v), (byte)2);
+      this.A[0] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)0, this.r, true, this.v), (byte)2);
+      this.z[2] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)2, this.r, false, this.v), (byte)2);
+      this.A[2] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)2, this.r, true, this.v), (byte)2);
    }
 
    private void a(boolean var1) {
