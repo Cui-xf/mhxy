@@ -6,7 +6,7 @@ import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
 
 /* renamed from: bq */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class C0044bq {
 
     /* renamed from: c */
@@ -1266,14 +1266,77 @@ public final class C0044bq {
     /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public final void m744a(byte r17, int r18, byte r19, byte r20, byte r21, int r22, byte r23, byte r24) {
-        /*
-            Method dump skipped, instructions count: 275
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p000.C0044bq.m744a(byte, int, byte, byte, byte, int, byte, byte):void");
+    public final void m744a(byte b, int i, byte b2, byte b3, byte b4, int i2, byte b5, byte b6) {
+        boolean z;
+        boolean z2;
+        if (b != 4 && m711a(b2, b3) && b2 == 0) {
+            if (b == 2) {
+                int i3 = 0;
+                while (true) {
+                    int i4 = i3;
+                    if (i4 >= C0047bt.f891bC.size()) {
+                        break;
+                    }
+                    C0041bn c0041bn = (C0041bn) C0047bt.f891bC.elementAt(i4);
+                    if (c0041bn != null && i == c0041bn.f714a && c0041bn.f719f == 2) {
+                        z2 = true;
+                        break;
+                    }
+                    i3 = i4 + 1;
+                }
+                if (!z2) {
+                    this.f802y.m1442b("不能对死亡目标使用");
+                    return;
+                }
+            } else if (b == 0) {
+                z2 = C0047bt.f1084ek[i] == 2 ? true : C0047bt.f1084ek[i] == 6 && C0047bt.f1085el[i] == 1;
+                if (!z2) {
+                }
+            } else if (b == 1) {
+                for (int i5 = 0; i5 < C0047bt.f1045dy.length; i5++) {
+                    if (i == C0047bt.f1042dv[i5] && C0047bt.f1045dy[i5] == 1) {
+                        z2 = true;
+                        break;
+                    }
+                }
+                if (!z2) {
+                }
+            }
+        }
+        if (b4 != 4 && m711a(b5, b6) && b2 == 0) {
+            if (b4 == 2) {
+                z = false;
+                if (!z) {
+                    this.f802y.m1442b("不能对死亡目标使用");
+                    return;
+                }
+            } else if (b4 == 0) {
+                if (C0047bt.f1090eq != null && C0047bt.f1090eq[i2] == 2) {
+                    z = true;
+                }
+                if (!z) {
+                }
+            } else if (b4 == 1 && C0047bt.f962cU != null) {
+                for (int i6 = 0; i6 < C0047bt.f962cU.length; i6++) {
+                    if (i2 == C0047bt.f959cR[i6] && C0047bt.f962cU[i6] == 1) {
+                        z = true;
+                        break;
+                    }
+                }
+                z = false;
+                if (!z) {
+                }
+            }
+        }
+        byte[] bArrM1086a = C0053bz.m1086a((short) 4180, C0047bt.f865ad, C0047bt.f1768v, f765g, f768t, b, i, b2, b3, b4, i2, b5, b6);
+        if (bArrM1086a == null) {
+            this.f802y.m1442b("获取上传指令数据错误!");
+            return;
+        }
+        RunnableC0066a.f2115i.m600a(new C0091w((short) 4180, bArrM1086a));
+        this.f778J = false;
+        this.f785d = 0;
     }
 
     /* renamed from: a */
@@ -2584,11 +2647,7 @@ public final class C0044bq {
             return;
         }
         synchronized (this.f801x) {
-            try {
-                this.f801x.addElement(C0055ca.m1311a(str, C0088t.f2523i, (C0088t.f2516b * 5) / 7, "\t"));
-            } catch (Throwable th) {
-                throw th;
-            }
+            this.f801x.addElement(C0055ca.m1311a(str, C0088t.f2523i, (C0088t.f2516b * 5) / 7, "\t"));
         }
     }
 
@@ -2598,11 +2657,7 @@ public final class C0044bq {
             return;
         }
         synchronized (this.f800w) {
-            try {
-                this.f800w.addElement(c0005aeArr);
-            } catch (Throwable th) {
-                throw th;
-            }
+            this.f800w.addElement(c0005aeArr);
         }
     }
 
@@ -2618,11 +2673,7 @@ public final class C0044bq {
             }
         }
         synchronized (this.f799v) {
-            try {
-                this.f799v.addElement(c0077iArr);
-            } catch (Throwable th) {
-                throw th;
-            }
+            this.f799v.addElement(c0077iArr);
         }
     }
 

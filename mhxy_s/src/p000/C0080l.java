@@ -5,7 +5,7 @@ import java.lang.reflect.Array;
 import javax.microedition.lcdui.Graphics;
 
 /* renamed from: l */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class C0080l extends AbstractC0012al {
 
     /* renamed from: a */
@@ -194,14 +194,37 @@ public final class C0080l extends AbstractC0012al {
     /* renamed from: b */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public final int mo69b(int r7, int r8) {
-        /*
-            Method dump skipped, instructions count: 236
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p000.C0080l.mo69b(int, int):int");
+    public final int mo69b(int i, int i2) {
+        boolean z;
+        if (this.f2306a != null) {
+            z = i >= this.f2311f && i <= this.f2311f + this.f2313h && i2 >= this.f2312g && i2 <= this.f2312g + this.f2314i;
+        } else if (this.f2307b != null) {
+            if (i >= this.f2311f && i <= this.f2311f + this.f2313h && i2 >= this.f2312g && i2 <= this.f2312g + this.f2314i) {
+                z = true;
+            } else if (i >= this.f2319n && i <= this.f2319n + this.f2321p && i2 >= this.f2320o && i2 <= this.f2320o + this.f2322q) {
+                z = 2;
+            } else if (i >= this.f2315j && i <= this.f2315j + this.f2317l && i2 >= this.f2316k && i2 <= this.f2316k + this.f2318m) {
+                z = 3;
+            }
+        }
+        switch (z) {
+            case true:
+                break;
+            case true:
+                break;
+            case true:
+                break;
+            default:
+                if (this.f2326u) {
+                    if (i < this.f2327v[0][0] || i > this.f2327v[0][0] + this.f2327v[0][2] || i2 < this.f2327v[0][1] || i2 > this.f2327v[0][1] + this.f2327v[0][3]) {
+                        if (i < this.f2327v[1][0] || i > this.f2327v[1][0] + this.f2327v[1][2] || i2 < this.f2327v[1][1] || i2 > this.f2327v[1][1] + this.f2327v[1][3]) {
+                        }
+                    }
+                }
+                break;
+        }
+        return 0;
     }
 
     @Override // p000.AbstractC0012al

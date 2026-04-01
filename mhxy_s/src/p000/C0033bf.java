@@ -7,7 +7,7 @@ import java.lang.reflect.Array;
 import javax.microedition.lcdui.Image;
 
 /* renamed from: bf */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class C0033bf extends AbstractC0060cf {
 
     /* renamed from: h */
@@ -121,12 +121,9 @@ public final class C0033bf extends AbstractC0060cf {
     private boolean m646a(boolean z, byte[] bArr) {
         int iM643a = m643a(m643a(0, "PLTE".getBytes(), 0, 4) ^ (-1), bArr, 0, bArr.length) ^ (-1);
         try {
-            boolean z2 = this.f605i == iM643a;
+            return this.f605i == iM643a;
+        } finally {
             this.f605i = iM643a;
-            return z2;
-        } catch (Throwable th) {
-            this.f605i = iM643a;
-            throw th;
         }
     }
 
@@ -279,8 +276,9 @@ public final class C0033bf extends AbstractC0060cf {
 
     /* renamed from: a */
     public final void m651a(byte[][] bArr, boolean z) throws IOException {
+        ByteArrayOutputStream byteArrayOutputStream;
         if (this.f602e == 0 && this.f603f == 0 && this.f604g == 0) {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            byteArrayOutputStream = new ByteArrayOutputStream();
             byteArrayOutputStream.write(C0009ai.f69b);
             int i = 1;
             while (i < bArr.length) {
@@ -291,11 +289,10 @@ public final class C0033bf extends AbstractC0060cf {
             }
             byteArrayOutputStream.write(C0009ai.f70c);
             this.f598a = Image.createImage(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
-            byteArrayOutputStream.close();
             return;
         }
-        ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
-        byteArrayOutputStream2.write(C0009ai.f69b);
+        byteArrayOutputStream = new ByteArrayOutputStream();
+        byteArrayOutputStream.write(C0009ai.f69b);
         int i2 = 1;
         while (i2 < bArr.length) {
             if (bArr[i2] != null && bArr[i2].length > 4) {
@@ -315,20 +312,17 @@ public final class C0033bf extends AbstractC0060cf {
                     bArr4[length + 2] = (byte) (i3 >>> 8);
                     bArr4[length + 3] = (byte) i3;
                 }
-                byteArrayOutputStream2.write(m647a(C0009ai.f68a[i2 > 4 ? 4 : i2], bArr[i2]));
+                byteArrayOutputStream.write(m647a(C0009ai.f68a[i2 > 4 ? 4 : i2], bArr[i2]));
             }
             i2++;
         }
-        byteArrayOutputStream2.write(C0009ai.f70c);
-        byte[] byteArray = byteArrayOutputStream2.toByteArray();
+        byteArrayOutputStream.write(C0009ai.f70c);
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
         try {
             this.f598a = Image.createImage(byteArray, 0, byteArray.length);
-            byteArrayOutputStream2.close();
         } catch (Exception e) {
-            byteArrayOutputStream2.close();
-        } catch (Throwable th) {
-            byteArrayOutputStream2.close();
-            throw th;
+        } finally {
+            byteArrayOutputStream.close();
         }
     }
 }

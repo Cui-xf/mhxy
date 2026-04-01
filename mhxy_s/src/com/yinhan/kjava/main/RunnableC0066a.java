@@ -55,7 +55,7 @@ import p000.C0091w;
 import p000.C0093y;
 
 /* renamed from: com.yinhan.kjava.main.a */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class RunnableC0066a extends Canvas implements Runnable, CommandListener {
 
     /* renamed from: A */
@@ -3865,13 +3865,433 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
     @Override // java.lang.Runnable
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public final void run() throws java.lang.Throwable {
-        /*
-            Method dump skipped, instructions count: 2058
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: com.yinhan.kjava.main.RunnableC0066a.run():void");
+    public final void run() throws Throwable {
+        int length;
+        int i;
+        String str;
+        while (this.f2133aJ) {
+            this.f2147ak = System.currentTimeMillis();
+            try {
+                if (f2115i != null) {
+                    f2115i.m603c();
+                }
+                if (this.f2133aJ) {
+                    switch (this.f2216j) {
+                        case 1:
+                            this.f2148al++;
+                            if (this.f2147ak - this.f2135aP >= 60000) {
+                                m1442b("响应超时");
+                                break;
+                            }
+                            break;
+                        case 2:
+                            if (this.f2147ak - this.f2136aQ < 6600) {
+                                if (!(this.f2217k == 7 && f2113e.f356g != null && f2113e.f358k == 25) || this.f2147ak - this.f2136aQ < 2000) {
+                                }
+                            } else if (!this.f2137aR) {
+                                if (this.f2126a != 1073741824 && this.f2126a != 517 && this.f2126a != 536870912 && this.f2126a != 268435456 && !m1422u()) {
+                                    this.f2159b = 0;
+                                    this.f2126a = 0;
+                                    if (C0088t.f2529o) {
+                                        this.f2146aj.f2233c = 0;
+                                        this.f2146aj.f2234d = 0;
+                                    }
+                                } else if (this.f2138aS != null && this.f2138aS.startsWith("系统异常")) {
+                                    m1421t();
+                                    break;
+                                } else if (!C0047bt.f1050eC.startsWith("异常离线") && C0047bt.f1049eB != 0 && this.f2217k != 9) {
+                                    if (C0047bt.f1050eC != null && (C0047bt.f1050eC.startsWith("连接超时") || C0047bt.f1050eC.startsWith("响应超时"))) {
+                                        if (f2115i != null) {
+                                            f2115i.m604d();
+                                            f2115i = null;
+                                        }
+                                        m1426y();
+                                        break;
+                                    } else {
+                                        if (C0047bt.f1050eC != null && f2113e != null) {
+                                            if (C0047bt.f838aC == 1 && (C0047bt.f1050eC.endsWith("超Q用户才可兑换") || C0047bt.f1050eC.endsWith("超Q用户才可接取"))) {
+                                                f2113e.m407af();
+                                            }
+                                            if (C0047bt.f843aH == 1 && (C0047bt.f1050eC.endsWith("魔钻用户才可兑换") || C0047bt.f1050eC.endsWith("魔钻用户才可接取"))) {
+                                                f2113e.m408ag();
+                                            }
+                                        }
+                                        if (C0047bt.f1050eC != null && C0047bt.f1050eC.equals("您已短信申请开通VIP服务")) {
+                                            this.f2217k = (short) 7;
+                                            this.f2216j = (short) 7;
+                                        }
+                                        if (this.f2217k == 3 || C0047bt.f1049eB == -4) {
+                                            if (C0088t.f2506a != 1 || C0029bb.f553g == null) {
+                                                m1404b((String) null, C0022av.f446h);
+                                            } else {
+                                                this.f2133aJ = false;
+                                            }
+                                        } else if (this.f2217k == 4) {
+                                            if (C0088t.f2506a == 1 && C0047bt.f1255hw) {
+                                                m1444c();
+                                            } else {
+                                                m1447d();
+                                            }
+                                        } else if (this.f2217k == 5) {
+                                            m1440b(C0047bt.f833Y.length);
+                                        } else if (this.f2217k == 6) {
+                                            m1380C();
+                                        } else if (this.f2217k == 10) {
+                                            m1384G();
+                                        } else if (this.f2217k == 7) {
+                                            if (f2113e.f358k == 71) {
+                                                f2113e.m446e(this.f2151as.f2353a);
+                                                this.f2150ar.m1256a(f2113e.f200aE);
+                                            } else if (f2113e.f358k == 76) {
+                                                byte b = this.f2151as.f2353a;
+                                                int iM1275g = this.f2150ar.m1275g();
+                                                f2113e.m438d(b);
+                                                this.f2150ar.m1256a(Math.min(iM1275g, b == 0 ? C0047bt.f823O.f2252f.length : C0047bt.f824P.f48b.length));
+                                            } else if (f2113e.f358k == 77) {
+                                                f2113e.m488u();
+                                                this.f2150ar.m1256a(C0047bt.f824P.f55i);
+                                            } else {
+                                                m1455i();
+                                            }
+                                        } else if (this.f2217k == 9) {
+                                            m1384G();
+                                        } else if (this.f2217k == 14) {
+                                            m1444c();
+                                        }
+                                        this.f2159b = 0;
+                                        this.f2126a = 0;
+                                        if (C0088t.f2529o && this.f2146aj != null) {
+                                            this.f2146aj.f2233c = 0;
+                                            this.f2146aj.f2234d = 0;
+                                            break;
+                                        }
+                                    }
+                                } else {
+                                    m1384G();
+                                    break;
+                                }
+                            }
+                            break;
+                        case 3:
+                            if (this.f2145aZ) {
+                                m1436a("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
+                                C0088t.m1680a(this.f2218l);
+                                C0047bt.f888b = this.f2172bN.getString();
+                                C0047bt.f941c = this.f2173bO.getString();
+                                m1383F();
+                                byte[] bArrM1094a = C0053bz.m1094a((short) 5379, C0047bt.f888b, C0047bt.f941c, C0088t.f2536v);
+                                if (bArrM1094a != null) {
+                                    C0091w c0091w = new C0091w((short) 5379, bArrM1094a);
+                                    c0091w.f2563a = true;
+                                    f2115i.m600a(c0091w);
+                                    this.f2145aZ = false;
+                                    m1434a((String) null);
+                                } else {
+                                    m1442b("获取上传指令数据错误!");
+                                }
+                            }
+                            this.f2126a = 0;
+                            break;
+                        case 4:
+                            if (this.f2207c == 0) {
+                                if (C0088t.f2506a == 1 && this.f2203bw != C0029bb.f550d) {
+                                    this.f2203bw = C0029bb.f550d;
+                                    m1447d();
+                                }
+                                if (this.f2149aq != null) {
+                                    this.f2149aq.mo70b(this.f2126a);
+                                }
+                                if (this.f2126a == 268435456 || this.f2126a == 1073741824 || this.f2126a == 517) {
+                                    if (C0047bt.f1207hA != null || C0047bt.f1207hA.length > 0) {
+                                        if (C0088t.f2506a == 0) {
+                                            int iM1275g2 = this.f2150ar.m1275g();
+                                            m1420s();
+                                            if (C0022av.f446h == 1) {
+                                                if (C0047bt.f1208hB[iM1275g2].equals("")) {
+                                                    m1442b(new StringBuffer().append(C0047bt.f1207hA[iM1275g2]).append("繁忙,请选择其他服!").toString());
+                                                    str = null;
+                                                } else {
+                                                    str = C0047bt.f1208hB[iM1275g2];
+                                                    m1398a("http://117.135.138.130:7099", (byte) 1);
+                                                    C0053bz.f1806c = C0047bt.f1211hE[iM1275g2];
+                                                    m1401a(C0047bt.f1211hE[iM1275g2]);
+                                                }
+                                            } else if (C0047bt.f1209hC[iM1275g2].equals("")) {
+                                                m1442b(new StringBuffer().append(C0047bt.f1207hA[iM1275g2]).append("繁忙,请选择其他服!").toString());
+                                                str = null;
+                                            } else {
+                                                str = C0047bt.f1209hC[iM1275g2];
+                                                m1398a(str, (byte) 2);
+                                                m1401a(C0047bt.f1211hE[iM1275g2]);
+                                            }
+                                            m1436a(str, "http://117.135.138.130:7099");
+                                            C0053bz.f1806c = C0047bt.f1211hE[iM1275g2];
+                                            byte[] bArrM1180g = C0053bz.m1180g((short) 4196, C0047bt.f1257hy, C0047bt.f1258hz);
+                                            if (bArrM1180g != null) {
+                                                C0091w c0091w2 = new C0091w((short) 4196, bArrM1180g);
+                                                c0091w2.f2563a = true;
+                                                f2115i.m600a(c0091w2);
+                                                this.f2145aZ = false;
+                                                m1434a((String) null);
+                                            } else {
+                                                m1442b("获取上传指令数据错误!");
+                                            }
+                                        } else if (C0088t.f2537w || !C0047bt.f1255hw) {
+                                            m1432a(this.f2150ar.m1275g());
+                                        }
+                                    }
+                                } else if (this.f2126a == 536870912) {
+                                    m1444c();
+                                }
+                            }
+                            this.f2126a = 0;
+                            break;
+                        case 5:
+                            m1379B();
+                            break;
+                        case 6:
+                            if (this.f2149aq != null) {
+                                this.f2149aq.mo70b(this.f2126a);
+                            }
+                            if (this.f2126a == 1 || this.f2126a == 514) {
+                                this.f2167bH = this.f2167bH + (-1) < 0 ? 2 : this.f2167bH - 1;
+                            } else if (this.f2126a == 4 || this.f2126a == 520) {
+                                this.f2167bH = this.f2167bH + 1 > 2 ? 0 : this.f2167bH + 1;
+                            } else if (this.f2126a == 8 || this.f2126a == 516) {
+                                if (this.f2167bH == 0) {
+                                    this.f2164bE = (byte) (this.f2164bE + (-1) < 0 ? 2 : this.f2164bE - 1);
+                                    this.f2152at.m79b(C0088t.f2487H[this.f2164bE], C0088t.f2523i, (byte) 1);
+                                    this.f2152at.m75a((byte) 1);
+                                } else if (this.f2167bH == 1) {
+                                    this.f2165bF = (byte) (this.f2165bF + (-1) < 0 ? 1 : 0);
+                                } else {
+                                    this.f2166bG = this.f2166bG + (-1) < 0 ? 1 : 0;
+                                }
+                            } else if (this.f2126a == 2 || this.f2126a == 518) {
+                                if (this.f2167bH == 0) {
+                                    this.f2164bE = (byte) (this.f2164bE + 1 > 2 ? 0 : this.f2164bE + 1);
+                                    this.f2152at.m79b(C0088t.f2487H[this.f2164bE], C0088t.f2523i, (byte) 1);
+                                    this.f2152at.m75a((byte) 1);
+                                } else if (this.f2167bH == 1) {
+                                    this.f2165bF = (byte) (this.f2165bF + 1 > 1 ? 0 : 1);
+                                } else {
+                                    this.f2166bG = this.f2166bG + 1 > 1 ? 0 : 1;
+                                }
+                            } else if (this.f2126a == 268435456) {
+                                byte[] bArrM1056a = C0053bz.m1056a((short) 4099, this.f2157ay, this.f2165bF, this.f2164bE);
+                                if (bArrM1056a != null) {
+                                    f2115i.m600a(new C0091w((short) 4099, bArrM1056a));
+                                    m1434a((String) null);
+                                } else {
+                                    m1442b("获取上传指令数据错误!");
+                                }
+                            } else if (this.f2126a == 536870912) {
+                                if (C0047bt.f831W != null) {
+                                    m1440b(C0047bt.f831W.length);
+                                    break;
+                                } else {
+                                    byte[] bArrM1088a = C0053bz.m1088a((short) 4098, C0047bt.f994d, C0047bt.f888b);
+                                    if (bArrM1088a != null) {
+                                        f2115i.m600a(new C0091w((short) 4098, bArrM1088a));
+                                        m1434a((String) null);
+                                    } else {
+                                        m1442b("获取上传指令数据错误!");
+                                    }
+                                }
+                            } else if ((this.f2126a == 1073741824 || this.f2126a == 517) && this.f2167bH == 2) {
+                                if (this.f2166bG == 0) {
+                                    m1443b((String) null, (String) null);
+                                } else {
+                                    byte[] bArrM1038a = C0053bz.m1038a((short) 4372, this.f2165bF);
+                                    if (bArrM1038a != null) {
+                                        f2115i.m600a(new C0091w((short) 4372, bArrM1038a));
+                                        m1434a((String) null);
+                                    } else {
+                                        m1442b("获取上传指令数据错误!");
+                                    }
+                                }
+                            }
+                            if (this.f2204bx != null && (this.f2165bF * 3) + this.f2164bE < this.f2204bx.length) {
+                                C0009ai.m43a(this.f2204bx[(this.f2165bF * 3) + this.f2164bE], this.f2147ak);
+                            }
+                            this.f2126a = 0;
+                            break;
+                        case 7:
+                            m1382E();
+                            break;
+                        case 9:
+                            if (this.f2148al >= 520) {
+                                this.f2148al = 0L;
+                                this.f2189be = null;
+                                C0055ca.m1281a();
+                                this.f2216j = (short) 0;
+                                this.f2217k = (short) 0;
+                                new RunnableC0067b(this, f2108bK);
+                                break;
+                            }
+                            break;
+                        case 14:
+                            if (this.f2207c == 0) {
+                                if (this.f2126a == 1 || this.f2126a == 50 || this.f2126a == 8 || this.f2126a == 516) {
+                                    if (this.f2200bs > 0) {
+                                        length = this.f2200bs - 1;
+                                        this.f2200bs = length;
+                                    } else {
+                                        length = this.f2196bo.length - 1;
+                                    }
+                                    this.f2200bs = length;
+                                } else if (this.f2126a == 4 || this.f2126a == 520 || this.f2126a == 2 || this.f2126a == 518) {
+                                    if (this.f2200bs < this.f2196bo.length - 1) {
+                                        i = this.f2200bs + 1;
+                                        this.f2200bs = i;
+                                    } else {
+                                        i = 0;
+                                    }
+                                    this.f2200bs = i;
+                                } else if (this.f2126a == 268435456 || this.f2126a == 1073741824 || this.f2126a == 517) {
+                                    if (C0088t.f2506a != 0) {
+                                        switch (this.f2200bs) {
+                                            case 0:
+                                                if (!C0088t.f2538x) {
+                                                    C0068c.m1469c();
+                                                    break;
+                                                } else {
+                                                    m1423v();
+                                                    break;
+                                                }
+                                            case 1:
+                                                C0068c.m1470e();
+                                                break;
+                                            case 2:
+                                                C0068c.m1471f();
+                                                break;
+                                        }
+                                    } else {
+                                        switch (this.f2200bs) {
+                                            case 0:
+                                                if (C0088t.f2506a == 0) {
+                                                    m1436a("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
+                                                    byte[] bArrM1044a = C0053bz.m1044a((short) 5383, (byte) 0, (String) null, (String) null, false, C0088t.f2536v, C0088t.f2485F, (int) Runtime.getRuntime().totalMemory(), "");
+                                                    if (bArrM1044a == null) {
+                                                        m1442b("获取上传指令数据错误!");
+                                                        break;
+                                                    } else {
+                                                        f2115i.m600a(new C0091w((short) 5383, bArrM1044a));
+                                                        this.f2145aZ = false;
+                                                        m1434a("服务器列表");
+                                                        break;
+                                                    }
+                                                }
+                                                break;
+                                            case 2:
+                                                m1384G();
+                                                break;
+                                        }
+                                    }
+                                } else if (this.f2126a == 536870912 && C0088t.f2506a == 1) {
+                                    C0055ca.f1888h = 0;
+                                    this.f2216j = (short) 16;
+                                    this.f2217k = (short) 16;
+                                }
+                            } else if (this.f2207c == 1) {
+                                if (this.f2126a == 268435456 || this.f2126a == 1073741824) {
+                                    this.f2207c = (short) 0;
+                                    C0088t.f2537w = false;
+                                    f2103ai.m1476d();
+                                } else if (this.f2126a == 536870912) {
+                                    this.f2207c = (short) 0;
+                                }
+                            }
+                            this.f2126a = 0;
+                            break;
+                        case 15:
+                            if (this.f2126a == 268435456) {
+                                m1445c("http://3g.01234.com.cn/game/gameAction.do?m=gameIndex&sId=");
+                                this.f2133aJ = false;
+                            } else if (this.f2126a == 536870912) {
+                                m1444c();
+                                this.f2200bs = 1;
+                            }
+                            this.f2126a = 0;
+                            break;
+                        case 16:
+                            if (this.f2126a == 268435456) {
+                                if (C0088t.f2539y || C0088t.f2481B || C0088t.f2483D) {
+                                    this.f2133aJ = false;
+                                } else {
+                                    C0055ca.f1888h = 0;
+                                    this.f2216j = (short) 17;
+                                    this.f2217k = (short) 17;
+                                }
+                            } else if (this.f2126a == 536870912) {
+                                this.f2216j = (short) 14;
+                                this.f2217k = (short) 14;
+                            }
+                            this.f2126a = 0;
+                            break;
+                        case 17:
+                            if (this.f2126a == 268435456) {
+                                if (C0088t.f2538x) {
+                                    m1445c("http://zt.d.cn/a091111_netgame_forum_promotion/index.pih?fid=6724&cid=269");
+                                } else if (C0088t.f2540z) {
+                                    m1445c("http://9Game.CN/Url.Aspx?id=219");
+                                } else if (C0088t.f2480A) {
+                                    m1445c("http://g.uc.cn");
+                                } else if (C0088t.f2482C) {
+                                    m1445c("http://haxiang.cn");
+                                } else {
+                                    m1445c("http://3g.01234.com.cn/game/gameAction.do?m=gameIndex&sId=");
+                                }
+                                this.f2133aJ = false;
+                            } else if (this.f2126a == 536870912) {
+                                this.f2207c = (short) 0;
+                                m1384G();
+                            }
+                            this.f2126a = 0;
+                            break;
+                        case 20:
+                            if (this.f2126a == 8 || this.f2126a == 516) {
+                                C0055ca.f1885e = C0055ca.f1885e - C0055ca.f1884d >= 0 ? C0055ca.f1885e - C0055ca.f1884d : 0;
+                            } else if (this.f2126a == 2 || this.f2126a == 518) {
+                                C0055ca.f1885e = C0055ca.f1885e + C0055ca.f1884d < C0015ao.f140K.m1015a() ? C0055ca.f1885e + C0055ca.f1884d : C0055ca.f1885e;
+                            } else if (this.f2126a == 268435456 || this.f2126a == 1073741824) {
+                                m1445c(f2090aI);
+                            } else if (this.f2126a == 536870912) {
+                                m1444c();
+                                this.f2200bs = 0;
+                            }
+                            this.f2126a = 0;
+                            break;
+                    }
+                    if (f2113e != null) {
+                        f2113e.m437d();
+                        if (this.f2216j == 7) {
+                            f2113e.m428c();
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                m1433a(e, (byte) 1);
+                e.printStackTrace();
+            }
+            repaint();
+            serviceRepaints();
+            long jCurrentTimeMillis = 35 - (System.currentTimeMillis() - this.f2147ak);
+            if (jCurrentTimeMillis > 0) {
+                try {
+                    Thread.sleep(jCurrentTimeMillis);
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                }
+            } else {
+                Thread.sleep(1L);
+            }
+        }
+        if (f2115i != null) {
+            f2115i.m604d();
+        }
+        f2113e = null;
+        m1387J();
     }
 }

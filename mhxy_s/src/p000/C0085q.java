@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 /* renamed from: q */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class C0085q {
 
     /* renamed from: a */
@@ -69,14 +69,132 @@ public final class C0085q {
     /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private void m1649a(java.io.DataInputStream r14) throws java.io.IOException {
-        /*
-            Method dump skipped, instructions count: 774
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p000.C0085q.m1649a(java.io.DataInputStream):void");
+    private void m1649a(DataInputStream dataInputStream) throws IOException {
+        boolean z;
+        try {
+            if (RunnableC0066a.f2113e == null || RunnableC0066a.f2113e.f358k == 25 || RunnableC0066a.f2113e.f358k == 18) {
+                return;
+            }
+            byte b = dataInputStream.readByte();
+            int i = (b <= C0015ao.f145aW[0] || C0047bt.f937bw != 0) ? b : C0015ao.f145aW[0];
+            C0039bl[] c0039blArr = new C0039bl[i];
+            for (int i2 = 0; i2 < i; i2++) {
+                c0039blArr[i2] = new C0039bl();
+                c0039blArr[i2].m695a(dataInputStream);
+            }
+            if (C0047bt.f1577o != null) {
+                RunnableC0066a runnableC0066a = this.f2438a;
+                this.f2446i.removeAllElements();
+                if (this.f2447j == null) {
+                    this.f2447j = new C0039bl[3];
+                }
+                if (c0039blArr != null && RunnableC0066a.f2113e != null && RunnableC0066a.f2113e.f181I != null) {
+                    for (int i3 = 0; i3 < this.f2447j.length; i3++) {
+                        this.f2447j[i3] = null;
+                    }
+                    boolean z2 = c0039blArr.length <= 3;
+                    byte b2 = (byte) (RunnableC0066a.f2113e.f181I.f403k / 16);
+                    byte b3 = (byte) (RunnableC0066a.f2113e.f181I.f402j / 16);
+                    byte b4 = 0;
+                    for (int i4 = 0; i4 < c0039blArr.length; i4++) {
+                        if (c0039blArr[i4] != null) {
+                            C0039bl c0039bl = c0039blArr[i4];
+                            if (c0039bl != null) {
+                                for (int i5 = 0; i5 < C0047bt.f1577o.length; i5++) {
+                                    if (C0047bt.f1577o[i5] != null && C0047bt.f1577o[i5].f684a.equals(c0039bl.f684a)) {
+                                        c0039bl.f402j = C0047bt.f1577o[i5].f402j;
+                                        c0039bl.f403k = C0047bt.f1577o[i5].f403k;
+                                        c0039bl.f400h = C0047bt.f1577o[i5].f400h;
+                                        z = true;
+                                        break;
+                                    }
+                                }
+                                z = false;
+                                if (!z) {
+                                    byte b5 = (byte) (c0039blArr[i4].f403k / 16);
+                                    byte b6 = (byte) (c0039blArr[i4].f402j / 16);
+                                    if (((b6 >= b3 - 4 && b6 <= b3 + 4 && b5 >= b2 - 4 && b5 <= b2 + 4) || z2) && ((Math.abs(c0039blArr[i4].f404l - c0039blArr[i4].f402j) >= 32 || Math.abs(c0039blArr[i4].f405m - c0039blArr[i4].f403k) >= 32 || z2) && b4 < this.f2447j.length)) {
+                                        this.f2447j[b4] = c0039blArr[i4];
+                                        b4 = (byte) (b4 + 1);
+                                    }
+                                }
+                            } else {
+                                z = false;
+                                if (!z) {
+                                }
+                            }
+                        }
+                    }
+                }
+                if (this.f2447j != null) {
+                    for (int i6 = 0; i6 < this.f2447j.length; i6++) {
+                        if (this.f2447j[i6] != null) {
+                            this.f2442e = (this.f2447j[i6].f402j % 16 == 0 ? 0 : 1) + (this.f2447j[i6].f402j / 16);
+                            this.f2443f = (this.f2447j[i6].f403k % 16 == 0 ? 0 : 1) + (this.f2447j[i6].f403k / 16);
+                            this.f2444g = (this.f2447j[i6].f404l % 16 == 0 ? 0 : 1) + (this.f2447j[i6].f404l / 16);
+                            this.f2445h = (this.f2447j[i6].f405m % 16 == 0 ? 0 : 1) + (this.f2447j[i6].f405m / 16);
+                            if (this.f2442e != this.f2444g || this.f2443f != this.f2445h) {
+                                this.f2446i = m1659a(RunnableC0066a.f2113e.f355f, this.f2446i, new C0046bs(this.f2442e, this.f2443f), new C0046bs(this.f2444g, this.f2445h));
+                                if (this.f2446i != null) {
+                                    this.f2447j[i6].f398f.removeAllElements();
+                                    int size = this.f2446i.size();
+                                    int i7 = 0;
+                                    while (i7 < size) {
+                                        C0046bs c0046bs = (C0046bs) this.f2446i.elementAt(i7);
+                                        C0046bs c0046bs2 = i7 < size + (-1) ? (C0046bs) this.f2446i.elementAt(i7 + 1) : c0046bs;
+                                        if (c0046bs.f806a != c0046bs2.f806a) {
+                                            if (c0046bs.f806a > c0046bs2.f806a) {
+                                                for (int i8 = 0; i8 < 4; i8++) {
+                                                    this.f2447j[i6].f398f.addElement(new short[]{(short) ((c0046bs.f806a << 4) - (i8 << 2)), (short) (c0046bs.f807b << 4)});
+                                                }
+                                            } else {
+                                                for (int i9 = 0; i9 < 4; i9++) {
+                                                    this.f2447j[i6].f398f.addElement(new short[]{(short) ((c0046bs.f806a << 4) + (i9 << 2)), (short) (c0046bs.f807b << 4)});
+                                                }
+                                            }
+                                        } else if (c0046bs.f807b != c0046bs2.f807b) {
+                                            if (c0046bs.f807b > c0046bs2.f807b) {
+                                                for (int i10 = 0; i10 < 4; i10++) {
+                                                    this.f2447j[i6].f398f.addElement(new short[]{(short) (c0046bs.f806a << 4), (short) ((c0046bs.f807b << 4) - (i10 << 2))});
+                                                }
+                                            } else {
+                                                for (int i11 = 0; i11 < 4; i11++) {
+                                                    this.f2447j[i6].f398f.addElement(new short[]{(short) (c0046bs.f806a << 4), (short) ((c0046bs.f807b << 4) + (i11 << 2))});
+                                                }
+                                            }
+                                        }
+                                        i7++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                for (int i12 = 0; i12 < c0039blArr.length; i12++) {
+                    c0039blArr[i12].f402j = c0039blArr[i12].f404l;
+                    c0039blArr[i12].f403k = c0039blArr[i12].f405m;
+                }
+            }
+            if (i > 0) {
+                if (C0047bt.f937bw >= 1) {
+                    for (C0039bl c0039bl2 : c0039blArr) {
+                        c0039bl2.f694u = dataInputStream.readByte();
+                        c0039bl2.f695v = dataInputStream.readByte();
+                    }
+                } else {
+                    for (C0039bl c0039bl3 : c0039blArr) {
+                        c0039bl3.f694u = (byte) 0;
+                    }
+                }
+            }
+            C0015ao.m167a(c0039blArr);
+        } catch (Exception e) {
+            if (RunnableC0066a.f2113e != null) {
+                RunnableC0066a.f2113e.m432c("系统异常[8]");
+            }
+        }
     }
 
     /* renamed from: a */

@@ -2,13 +2,15 @@ package p000;
 
 import com.yinhan.kjava.main.RunnableC0066a;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Vector;
 
 /* renamed from: av */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class C0022av {
 
     /* renamed from: d */
@@ -230,82 +232,78 @@ public final class C0022av {
     /* renamed from: b */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public final void m602b(java.lang.String r6) throws java.lang.Throwable {
-        /*
-            r5 = this;
-            r2 = 0
-            java.io.ByteArrayOutputStream r3 = new java.io.ByteArrayOutputStream     // Catch: java.io.IOException -> L33 java.lang.Throwable -> L49
-            r3.<init>()     // Catch: java.io.IOException -> L33 java.lang.Throwable -> L49
-            java.io.DataOutputStream r1 = new java.io.DataOutputStream     // Catch: java.lang.Throwable -> L5c java.io.IOException -> L61
-            r1.<init>(r3)     // Catch: java.lang.Throwable -> L5c java.io.IOException -> L61
-            r0 = -10
-            r1.writeByte(r0)     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
-            r1.writeUTF(r6)     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
-            r1.flush()     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
-            r3.flush()     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
-            byte[] r0 = r3.toByteArray()     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
-            w r2 = new w     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
-            r4 = 8193(0x2001, float:1.1481E-41)
-            r2.<init>(r4, r0)     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
-            r5.m595b(r2)     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
-            r1.close()     // Catch: java.io.IOException -> L2e
-            r3.close()     // Catch: java.io.IOException -> L2e
-        L2d:
-            return
-        L2e:
-            r0 = move-exception
-            r0.printStackTrace()
-            goto L2d
-        L33:
-            r0 = move-exception
-            r1 = r2
-            r3 = r2
-        L36:
-            r0.printStackTrace()     // Catch: java.lang.Throwable -> L5f
-            if (r1 == 0) goto L3e
-            r1.close()     // Catch: java.io.IOException -> L44
-        L3e:
-            if (r3 == 0) goto L2d
-            r3.close()     // Catch: java.io.IOException -> L44
-            goto L2d
-        L44:
-            r0 = move-exception
-            r0.printStackTrace()
-            goto L2d
-        L49:
-            r0 = move-exception
-            r1 = r2
-            r3 = r2
-        L4c:
-            if (r1 == 0) goto L51
-            r1.close()     // Catch: java.io.IOException -> L57
-        L51:
-            if (r3 == 0) goto L56
-            r3.close()     // Catch: java.io.IOException -> L57
-        L56:
-            throw r0
-        L57:
-            r1 = move-exception
-            r1.printStackTrace()
-            goto L56
-        L5c:
-            r0 = move-exception
-            r1 = r2
-            goto L4c
-        L5f:
-            r0 = move-exception
-            goto L4c
-        L61:
-            r0 = move-exception
-            r1 = r2
-            goto L36
-        L64:
-            r0 = move-exception
-            goto L36
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p000.C0022av.m602b(java.lang.String):void");
+    public final void m602b(String str) throws Throwable {
+        DataOutputStream dataOutputStream;
+        ByteArrayOutputStream byteArrayOutputStream;
+        try {
+            byteArrayOutputStream = new ByteArrayOutputStream();
+            try {
+                dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+            } catch (IOException e) {
+                e = e;
+                dataOutputStream = null;
+            } catch (Throwable th) {
+                th = th;
+                dataOutputStream = null;
+                if (dataOutputStream != null) {
+                }
+                if (byteArrayOutputStream != null) {
+                }
+                throw th;
+            }
+        } catch (IOException e2) {
+            e = e2;
+            dataOutputStream = null;
+            byteArrayOutputStream = null;
+        } catch (Throwable th2) {
+            th = th2;
+            dataOutputStream = null;
+            byteArrayOutputStream = null;
+        }
+        try {
+            try {
+                dataOutputStream.writeByte(-10);
+                dataOutputStream.writeUTF(str);
+                dataOutputStream.flush();
+                byteArrayOutputStream.flush();
+                m595b(new C0091w((short) 8193, byteArrayOutputStream.toByteArray()));
+                try {
+                    dataOutputStream.close();
+                    byteArrayOutputStream.close();
+                } catch (IOException e3) {
+                    e3.printStackTrace();
+                }
+            } catch (Throwable th3) {
+                th = th3;
+                if (dataOutputStream != null) {
+                    try {
+                        dataOutputStream.close();
+                    } catch (IOException e4) {
+                        e4.printStackTrace();
+                        throw th;
+                    }
+                }
+                if (byteArrayOutputStream != null) {
+                    byteArrayOutputStream.close();
+                }
+                throw th;
+            }
+        } catch (IOException e5) {
+            e = e5;
+            e.printStackTrace();
+            if (dataOutputStream != null) {
+                try {
+                    dataOutputStream.close();
+                } catch (IOException e6) {
+                    e6.printStackTrace();
+                    return;
+                }
+            }
+            if (byteArrayOutputStream != null) {
+                byteArrayOutputStream.close();
+            }
+        }
     }
 
     /* renamed from: c */

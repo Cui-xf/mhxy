@@ -6,7 +6,7 @@ import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
 
 /* renamed from: an */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class C0014an extends AbstractC0012al {
 
     /* renamed from: b */
@@ -227,14 +227,139 @@ public final class C0014an extends AbstractC0012al {
     /* renamed from: b */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public final void mo70b(int r10) {
-        /*
-            Method dump skipped, instructions count: 758
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p000.C0014an.mo70b(int):void");
+    public final void mo70b(int i) {
+        int length;
+        C0014an c0014an;
+        if (!this.f124r) {
+            if (this.f119m == null || this.f119m.equals("")) {
+                this.f120n = null;
+            } else {
+                this.f120n = C0055ca.m1311a(this.f119m, this.f118l, (this.f110d - 8) - RunnableC0066a.f2064C.f599b, this.f127u);
+                this.f128v = C0055ca.m1280a(this.f120n[0]) != -1 ? C0055ca.m1280a(this.f120n[0]) : 2176196;
+                if (this.f128v != 2176196) {
+                    this.f120n[0] = this.f120n[0].substring(3, this.f120n[0].length());
+                }
+            }
+            if (this.f120n == null) {
+                length = 0;
+                c0014an = this;
+            } else {
+                length = this.f120n.length;
+                c0014an = this;
+            }
+        } else {
+            if (this.f125s == null || this.f125s.equals("")) {
+                this.f121o = 0;
+                this.f126t = null;
+                this.f122p = (this.f111e - 6) / this.f131y;
+                if (this.f121o <= this.f122p) {
+                    this.f123q = (this.f122p * (this.f111e + (-16))) / this.f121o > 6 ? (this.f122p * (this.f111e - 16)) / this.f121o : 6;
+                } else {
+                    this.f123q = 0;
+                }
+                if ((this.f130x == 0 || !(i == 1 || i == 514)) && !(this.f130x == 1 && i == 515)) {
+                    if ((this.f130x == 0 && (i == 4 || i == 520)) || (this.f130x == 1 && i == 521)) {
+                        if (this.f113g == 0) {
+                            if (this.f114h == this.f121o - 1) {
+                                this.f107a = 0;
+                            }
+                            this.f114h = this.f114h == this.f121o + (-1) ? 0 : this.f114h + 1;
+                            while (this.f107a < this.f114h && this.f123q != 0 && (this.f114h - this.f107a) + 1 > this.f122p) {
+                                this.f107a++;
+                            }
+                        } else if (this.f113g == 1) {
+                            if (this.f114h == this.f121o - 1) {
+                                this.f107a = 0;
+                            }
+                            this.f114h = this.f114h == this.f121o + (-1) ? this.f122p - 1 : this.f114h <= this.f122p + (-1) ? this.f122p : this.f114h + 1;
+                            while (this.f107a < this.f114h && this.f123q != 0 && (this.f114h - this.f107a) + 1 > this.f122p) {
+                                this.f107a++;
+                            }
+                        } else if (this.f113g == 2 && this.f121o > this.f122p) {
+                            if (this.f107a == this.f121o - this.f122p) {
+                                this.f107a = 0;
+                                this.f114h = this.f122p - 1;
+                            } else {
+                                this.f107a = this.f107a + this.f122p >= this.f121o - this.f122p ? this.f121o - this.f122p : this.f107a + this.f122p;
+                                if (this.f107a == this.f121o - this.f122p) {
+                                    this.f114h = this.f121o - 1;
+                                } else {
+                                    this.f114h = (this.f107a + this.f122p) - 1;
+                                }
+                            }
+                        }
+                    }
+                } else if (this.f113g == 0) {
+                    if (this.f114h == 0) {
+                        this.f107a = this.f121o % this.f122p == 0 ? this.f121o - this.f122p : this.f121o - (this.f121o % this.f122p);
+                    }
+                    this.f114h = this.f114h == 0 ? this.f121o - 1 : this.f114h - 1;
+                    while (this.f107a > 0 && this.f123q != 0 && (this.f114h - this.f107a) + 1 < this.f122p) {
+                        this.f107a--;
+                    }
+                } else if (this.f113g == 1) {
+                    if (this.f114h <= this.f122p - 1) {
+                        this.f107a = this.f121o % this.f122p == 0 ? this.f121o - this.f122p : this.f121o - (this.f121o % this.f122p);
+                    }
+                    this.f114h = this.f114h <= this.f122p + (-1) ? this.f121o - 1 : this.f114h - 1;
+                    while (this.f107a > 0 && this.f123q != 0 && (this.f114h - this.f107a) + 1 < this.f122p) {
+                        this.f107a--;
+                    }
+                } else if (this.f113g == 2 && this.f121o > this.f122p) {
+                    if (this.f107a == 0) {
+                        this.f107a = this.f121o - this.f122p;
+                        this.f114h = this.f121o - 1;
+                    } else {
+                        this.f107a = this.f107a - this.f122p <= 0 ? 0 : this.f107a - this.f122p;
+                        if (this.f107a == 0) {
+                            this.f114h = this.f122p - 1;
+                        } else {
+                            this.f114h = (this.f107a + this.f122p) - 1;
+                        }
+                    }
+                }
+                while (this.f114h > this.f121o - 1) {
+                    this.f114h--;
+                    this.f107a--;
+                }
+                while (this.f107a > 0 && this.f123q != 0 && (this.f114h - this.f107a) + 1 < this.f122p) {
+                    this.f107a--;
+                }
+                while (this.f107a < this.f114h && this.f123q != 0 && (this.f114h - this.f107a) + 1 > this.f122p) {
+                    this.f107a++;
+                }
+                if (this.f123q == 0 || this.f107a == 0) {
+                }
+                this.f107a = 0;
+                return;
+            }
+            this.f126t = new C0050bw(this.f125s, (short) ((this.f110d - 8) - RunnableC0066a.f2064C.f599b));
+            length = this.f126t.m1015a();
+            c0014an = this;
+        }
+        c0014an.f121o = length;
+        this.f122p = (this.f111e - 6) / this.f131y;
+        if (this.f121o <= this.f122p) {
+        }
+        if (this.f130x == 0) {
+            if (this.f130x == 0) {
+                if (this.f113g == 0) {
+                }
+            } else if (this.f113g == 0) {
+            }
+        } else if (this.f130x == 0) {
+        }
+        while (this.f114h > this.f121o - 1) {
+        }
+        while (this.f107a > 0) {
+            this.f107a--;
+        }
+        while (this.f107a < this.f114h) {
+            this.f107a++;
+        }
+        if (this.f123q == 0) {
+        }
     }
 
     /* renamed from: b */

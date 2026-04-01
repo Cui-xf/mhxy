@@ -4,7 +4,7 @@ import java.util.Random;
 import javax.microedition.lcdui.Graphics;
 
 /* renamed from: s */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class C0087s extends C0021au {
 
     /* renamed from: a */

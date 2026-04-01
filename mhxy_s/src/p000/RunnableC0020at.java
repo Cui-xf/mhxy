@@ -11,7 +11,7 @@ import javax.microedition.io.Connector;
 import javax.microedition.io.SocketConnection;
 
 /* renamed from: at */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class RunnableC0020at implements Runnable {
 
     /* renamed from: c */
@@ -121,46 +121,42 @@ public final class RunnableC0020at implements Runnable {
 
     /* renamed from: b */
     public final void m580b() {
+        if (C0022av.f445d == 3) {
+            return;
+        }
         try {
-            if (C0022av.f445d == 3) {
-                return;
+            if (this.f424c == null) {
+                this.f424c = Connector.open(C0022av.f444c);
+                this.f424c.setSocketOption((byte) 2, 1);
+                this.f424c.setSocketOption((byte) 1, 5);
+                this.f424c.setSocketOption((byte) 0, 10000);
+                this.f425d = this.f424c.openDataOutputStream();
+                this.f426e = this.f424c.openDataInputStream();
+                this.f430i = true;
             }
-            try {
-                if (this.f424c == null) {
-                    this.f424c = Connector.open(C0022av.f444c);
-                    this.f424c.setSocketOption((byte) 2, 1);
-                    this.f424c.setSocketOption((byte) 1, 5);
-                    this.f424c.setSocketOption((byte) 0, 10000);
-                    this.f425d = this.f424c.openDataOutputStream();
-                    this.f426e = this.f424c.openDataInputStream();
-                    this.f430i = true;
-                }
-                if (this.f424c != null) {
-                    if (this.f422a.size() > 0) {
-                        m578a(this.f422a);
-                        this.f428g = this.f427f.f450f.f2147ak;
-                    } else {
-                        if (this.f423b.size() <= 0 || this.f427f.f450f.f2147ak - this.f428g < 2000) {
-                            return;
-                        }
-                        m578a(this.f423b);
-                        this.f428g = this.f427f.f450f.f2147ak;
+            if (this.f424c != null) {
+                if (this.f422a.size() > 0) {
+                    m578a(this.f422a);
+                    this.f428g = this.f427f.f450f.f2147ak;
+                } else {
+                    if (this.f423b.size() <= 0 || this.f427f.f450f.f2147ak - this.f428g < 2000) {
+                        return;
                     }
+                    m578a(this.f423b);
+                    this.f428g = this.f427f.f450f.f2147ak;
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-                C0022av c0022av = this.f427f;
-                c0022av.f449e = (byte) (c0022av.f449e + 1);
-                new StringBuffer().append("数据发送异常，尝试重连|").append((int) this.f427f.f449e).toString();
-                if (this.f427f.f449e > 30) {
-                    this.f427f.m604d();
-                    this.f427f.m602b("连接超时,请尝试其他连接方式!");
-                }
-                m579a();
-                this.f428g = this.f427f.f450f.f2147ak;
             }
-        } catch (Throwable th) {
-            throw th;
+        } catch (IOException e) {
+            e.printStackTrace();
+            C0022av c0022av = this.f427f;
+            c0022av.f449e = (byte) (c0022av.f449e + 1);
+            new StringBuffer().append("数据发送异常，尝试重连|").append((int) this.f427f.f449e).toString();
+            if (this.f427f.f449e > 30) {
+                this.f427f.m604d();
+                this.f427f.m602b("连接超时,请尝试其他连接方式!");
+            }
+            m579a();
+            this.f428g = this.f427f.f450f.f2147ak;
         }
     }
 

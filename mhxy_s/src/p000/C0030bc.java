@@ -5,7 +5,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 /* renamed from: bc */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class C0030bc extends AbstractC0060cf {
 
     /* renamed from: a */
@@ -124,22 +124,17 @@ public final class C0030bc extends AbstractC0060cf {
                     this.f566f = (byte) 0;
                     this.f565e = System.currentTimeMillis();
                 }
+            } finally {
                 try {
                     dataInputStream.close();
                 } catch (IOException e) {
                 }
-            } catch (Throwable th) {
-                try {
-                    dataInputStream.close();
-                } catch (IOException e2) {
-                }
-                throw th;
             }
-        } catch (IOException e3) {
-            e3.printStackTrace();
+        } catch (IOException e2) {
+            e2.printStackTrace();
             try {
                 dataInputStream.close();
-            } catch (IOException e4) {
+            } catch (IOException e3) {
             }
         }
     }

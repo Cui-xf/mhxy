@@ -9,7 +9,7 @@ import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
 /* renamed from: ca */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class C0055ca {
 
     /* renamed from: E */
@@ -709,28 +709,506 @@ public final class C0055ca {
     /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static void m1301a(javax.microedition.lcdui.Graphics r12, java.lang.String r13, long r14, int r16, int r17, int r18) {
-        /*
-            Method dump skipped, instructions count: 1491
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p000.C0055ca.m1301a(javax.microedition.lcdui.Graphics, java.lang.String, long, int, int, int):void");
+    public static void m1301a(Graphics graphics, String str, long j, int i, int i2, int i3) {
+        if (f1892l >= 15) {
+            if (f1892l == 15) {
+                f1868ad = j >= 0 ? new StringBuffer().append("价格:").append(C0088t.m1677a(new StringBuffer(), j)).toString() : null;
+                if (str != null) {
+                    int iM1280a = m1280a(str) != -1 ? m1280a(str) : 15138723;
+                    f1866ab = iM1280a;
+                    if (iM1280a != 15138723) {
+                        if (str.charAt(2) == '>') {
+                            f1867ac = str.substring(3, str.length());
+                        } else {
+                            f1867ac = str.substring(4, str.length());
+                        }
+                    }
+                    f1861X = Math.max(C0088t.f2523i.stringWidth(f1867ac), f1868ad != null ? 0 : C0088t.f2523i.stringWidth(f1868ad)) + 8;
+                    f1862Y = ((f1868ad != null ? 1 : 2) * C0088t.f2524j) + 8;
+                    f1863Z = i;
+                    f1865aa = i2;
+                    if (i3 != 40) {
+                        if (f1863Z - f1861X < 0) {
+                            m1293a(graphics, 1009050, 210, f1863Z, i2 - (f1862Y / 4), f1861X / 4, f1862Y / 4);
+                        } else {
+                            m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 4), i2 - (f1862Y / 4), f1861X / 4, f1862Y / 4);
+                        }
+                    } else if (i3 == 36) {
+                        if (f1863Z + f1861X > C0088t.f2520f + C0088t.f2518d) {
+                            m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 4), i2 - (f1862Y / 4), f1861X / 4, f1862Y / 4);
+                        } else {
+                            m1293a(graphics, 1009050, 210, f1863Z, i2 - (f1862Y / 4), f1861X / 4, f1862Y / 4);
+                        }
+                    } else if (i3 == 24) {
+                        if (f1863Z - f1861X < 0) {
+                            m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X / 4, f1862Y / 4);
+                        } else {
+                            m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 4), i2, f1861X / 4, f1862Y / 4);
+                        }
+                    } else if (f1861X + i <= C0088t.f2520f + C0088t.f2518d) {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X / 4, f1862Y / 4);
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 4), i2, f1861X / 4, f1862Y / 4);
+                    }
+                } else {
+                    f1866ab = 15138723;
+                    str = "";
+                }
+                f1867ac = str;
+                f1861X = Math.max(C0088t.f2523i.stringWidth(f1867ac), f1868ad != null ? 0 : C0088t.f2523i.stringWidth(f1868ad)) + 8;
+                f1862Y = ((f1868ad != null ? 1 : 2) * C0088t.f2524j) + 8;
+                f1863Z = i;
+                f1865aa = i2;
+                if (i3 != 40) {
+                }
+            } else if (f1892l == 16) {
+                if (i3 == 40) {
+                    if (f1863Z - f1861X < 0) {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2 - (f1862Y / 4), f1861X / 4, f1862Y / 4);
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 2), i2 - (f1862Y / 2), f1861X / 2, f1862Y / 2);
+                    }
+                } else if (i3 == 36) {
+                    if (f1863Z + f1861X > C0088t.f2520f + C0088t.f2518d) {
+                        m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 2), i2 - (f1862Y / 2), f1861X / 2, f1862Y / 2);
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2 - (f1862Y / 2), f1861X / 2, f1862Y / 2);
+                    }
+                } else if (i3 == 24) {
+                    if (f1863Z - f1861X < 0) {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X / 2, f1862Y / 2);
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 2), i2, f1861X / 2, f1862Y / 2);
+                    }
+                } else if (f1861X + i <= C0088t.f2520f + C0088t.f2518d) {
+                    m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X / 2, f1862Y / 2);
+                } else {
+                    m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 2), i2, f1861X / 2, f1862Y / 4);
+                }
+            } else if (f1892l != 17) {
+                graphics.setColor(16230);
+                if (i3 == 40) {
+                    if (f1863Z - f1861X < 0) {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.drawRect(f1863Z, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.setColor(f1866ab);
+                        graphics.drawString(f1867ac, f1863Z + 4, (i2 - f1862Y) + 4, 20);
+                        if (f1868ad != null) {
+                            graphics.drawString(f1868ad, f1863Z + 4, (i2 - f1862Y) + 4 + C0088t.f2524j, 20);
+                        }
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z - f1861X, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.drawRect(f1863Z - f1861X, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.setColor(f1866ab);
+                        graphics.drawString(f1867ac, (f1863Z - f1861X) + 4, (i2 - f1862Y) + 4, 20);
+                        if (f1868ad != null) {
+                            graphics.drawString(f1868ad, (f1863Z - f1861X) + 4, (i2 - f1862Y) + 4 + C0088t.f2524j, 20);
+                        }
+                    }
+                } else if (i3 == 36) {
+                    if (f1863Z + f1861X > C0088t.f2520f + C0088t.f2518d) {
+                        m1293a(graphics, 1009050, 210, f1863Z - f1861X, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.drawRect(f1863Z - f1861X, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.setColor(f1866ab);
+                        graphics.drawString(f1867ac, (f1863Z - f1861X) + 4, (i2 - f1862Y) + 4, 20);
+                        if (f1868ad != null) {
+                            graphics.drawString(f1868ad, (f1863Z - f1861X) + 4, (i2 - f1862Y) + 4 + C0088t.f2524j, 20);
+                        }
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.drawRect(f1863Z, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.setColor(f1866ab);
+                        graphics.drawString(f1867ac, f1863Z + 4, (i2 - f1862Y) + 4, 20);
+                        if (f1868ad != null) {
+                            graphics.drawString(f1868ad, f1863Z + 4, (i2 - f1862Y) + 4 + C0088t.f2524j, 20);
+                        }
+                    }
+                } else if (i3 != 24) {
+                    int i4 = f1863Z;
+                    int i5 = f1865aa;
+                    if (f1861X + i > C0088t.f2520f + C0088t.f2518d && (i4 = i4 - f1861X) < 0) {
+                        i4 = 0;
+                    }
+                    m1293a(graphics, 1009050, 210, i4, i5, f1861X, f1862Y);
+                    graphics.drawRect(i4, i5, f1861X, f1862Y);
+                    graphics.setColor(f1866ab);
+                    graphics.drawString(f1867ac, i4 + 4, i5 + 4, 20);
+                    if (f1868ad != null) {
+                        graphics.drawString(f1868ad, i4 + 4, i5 + 4 + C0088t.f2524j, 20);
+                    }
+                } else if (f1863Z - f1861X < 0) {
+                    m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X, f1862Y);
+                    graphics.drawRect(f1863Z, i2, f1861X, f1862Y);
+                    graphics.setColor(f1866ab);
+                    graphics.drawString(f1867ac, f1863Z + 4, i2 + 4, 20);
+                    if (f1868ad != null) {
+                        graphics.drawString(f1868ad, f1863Z + 4, i2 + 4 + C0088t.f2524j, 20);
+                    }
+                } else {
+                    m1293a(graphics, 1009050, 210, f1863Z - f1861X, i2, f1861X, f1862Y);
+                    graphics.drawRect(f1863Z - f1861X, i2, f1861X, f1862Y);
+                    graphics.setColor(f1866ab);
+                    graphics.drawString(f1867ac, (f1863Z - f1861X) + 4, i2 + 4, 20);
+                    if (f1868ad != null) {
+                        graphics.drawString(f1868ad, (f1863Z - f1861X) + 4, i2 + 4 + C0088t.f2524j, 20);
+                    }
+                }
+            } else if (i3 == 40) {
+                if (f1863Z - f1861X < 0) {
+                    m1293a(graphics, 1009050, 210, f1863Z, i2 - (f1862Y / 2), f1861X / 2, f1862Y / 2);
+                } else {
+                    m1293a(graphics, 1009050, 210, f1863Z - ((f1861X / 4) * 3), i2 - ((f1862Y / 4) * 3), (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                }
+            } else if (i3 == 36) {
+                if (f1863Z + f1861X > C0088t.f2520f + C0088t.f2518d) {
+                    m1293a(graphics, 1009050, 210, f1863Z - ((f1861X / 4) * 3), i2 - ((f1862Y / 4) * 3), (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                } else {
+                    m1293a(graphics, 1009050, 210, f1863Z, i2 - ((f1862Y / 4) * 3), (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                }
+            } else if (i3 == 24) {
+                if (f1863Z - f1861X < 0) {
+                    m1293a(graphics, 1009050, 210, f1863Z, i2, (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                } else {
+                    m1293a(graphics, 1009050, 210, f1863Z - ((f1861X / 4) * 3), i2, (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                }
+            } else if (f1861X + i <= C0088t.f2520f + C0088t.f2518d) {
+                m1293a(graphics, 1009050, 210, f1863Z, i2, (f1861X / 4) * 3, (f1862Y / 4) * 3);
+            } else {
+                m1293a(graphics, 1009050, 210, f1863Z - ((f1861X / 4) * 3), i2, (f1861X / 4) * 3, (f1862Y / 4) * 3);
+            }
+        }
+        f1892l++;
     }
 
     /* JADX WARN: Removed duplicated region for block: B:85:0x023c  */
     /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static void m1302a(javax.microedition.lcdui.Graphics r9, java.lang.String r10, java.lang.String r11, int r12, int r13, int r14) {
-        /*
-            Method dump skipped, instructions count: 2754
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p000.C0055ca.m1302a(javax.microedition.lcdui.Graphics, java.lang.String, java.lang.String, int, int, int):void");
+    public static void m1302a(Graphics graphics, String str, String str2, int i, int i2, int i3) {
+        if (f1892l >= 15) {
+            if (f1892l == 15) {
+                f1861X = C0088t.f2516b - 30;
+                if (str2.equals("")) {
+                    f1869ae = null;
+                } else {
+                    f1869ae = new C0050bw(str2, (short) (f1861X - 8));
+                }
+                if (str != null) {
+                    int iM1280a = m1280a(str) != -1 ? m1280a(str) : 15138723;
+                    f1866ab = iM1280a;
+                    if (iM1280a != 15138723) {
+                        str = str.substring(3, str.length());
+                    }
+                    f1867ac = str;
+                } else {
+                    f1866ab = 15138723;
+                    f1867ac = "";
+                }
+                int iStringWidth = C0088t.f2523i.stringWidth(f1867ac) + 8;
+                if (f1869ae != null) {
+                    iStringWidth = f1869ae.f1789a <= 0 ? f1861X : Math.max(iStringWidth, f1869ae.f1789a + 8);
+                }
+                f1861X = iStringWidth;
+                f1862Y = ((f1869ae == null ? 1 : f1869ae.m1015a() + 1) * C0088t.f2524j) + 8;
+                if (f1861X + i > C0088t.f2516b) {
+                    i = C0088t.f2516b - f1861X;
+                } else if (i < 0) {
+                    i = 0;
+                }
+                int i4 = f1862Y + i2 > C0088t.f2517c ? C0088t.f2517c - f1862Y : i2 < 0 ? 0 : i2;
+                f1863Z = i;
+                if (i3 == 40) {
+                    if (f1863Z - f1861X < 0) {
+                        if (i4 < f1862Y) {
+                            m1293a(graphics, 1009050, 210, f1863Z, i4, f1861X / 4, f1862Y / 4);
+                        } else {
+                            m1293a(graphics, 1009050, 210, f1863Z, i4 - (f1862Y / 4), f1861X / 4, f1862Y / 4);
+                        }
+                    } else if (i4 < f1862Y) {
+                        m1293a(graphics, 1009050, 210, f1863Z, i4, f1861X / 4, f1862Y / 4);
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 4), i4 - (f1862Y / 4), f1861X / 4, f1862Y / 4);
+                    }
+                } else if (i3 == 36) {
+                    if (f1863Z + f1861X > C0088t.f2516b) {
+                        if (i4 >= f1862Y) {
+                            m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 4), i4 - (f1862Y / 4), f1861X / 4, f1862Y / 4);
+                        } else {
+                            m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 4), i4, f1861X / 4, f1862Y / 4);
+                        }
+                    } else if (i4 < f1862Y) {
+                        m1293a(graphics, 1009050, 210, f1863Z, i4, f1861X / 4, f1862Y / 4);
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z, i4 - (f1862Y / 4), f1861X / 4, f1862Y / 4);
+                    }
+                } else if (i3 == 24) {
+                    if (f1863Z - f1861X < 0) {
+                        if (f1862Y + i4 >= C0088t.f2517c) {
+                            m1293a(graphics, 1009050, 210, f1863Z, i4 - (f1862Y / 4), f1861X / 4, f1862Y / 4);
+                        } else {
+                            m1293a(graphics, 1009050, 210, f1863Z, i4, f1861X / 4, f1862Y / 4);
+                        }
+                    } else if (f1862Y + i4 >= C0088t.f2517c) {
+                        m1293a(graphics, 1009050, 210, f1863Z, i4 - (f1862Y / 4), f1861X / 4, f1862Y / 4);
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 4), i4, f1861X / 4, f1862Y / 4);
+                    }
+                } else if (f1861X + i <= C0088t.f2516b) {
+                    if (f1862Y + i4 >= C0088t.f2517c) {
+                        m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 4), i4 - (f1862Y / 4), f1861X / 4, f1862Y / 4);
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z, i4, f1861X / 4, f1862Y / 4);
+                    }
+                } else if (f1862Y + i4 >= C0088t.f2517c) {
+                    m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 4), i4 - (f1862Y / 4), f1861X / 4, f1862Y / 4);
+                }
+            } else if (f1892l == 16) {
+                if (i3 == 40) {
+                    if (f1863Z - f1861X < 0) {
+                        if (i2 < f1862Y) {
+                            m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X / 4, f1862Y / 4);
+                        } else {
+                            m1293a(graphics, 1009050, 210, f1863Z, i2 - (f1862Y / 4), f1861X / 4, f1862Y / 4);
+                        }
+                    } else if (i2 < f1862Y) {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X / 2, f1862Y / 2);
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 2), i2 - (f1862Y / 2), f1861X / 2, f1862Y / 2);
+                    }
+                } else if (i3 == 36) {
+                    if (f1863Z + f1861X > C0088t.f2516b) {
+                        if (i2 < f1862Y) {
+                            m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 2), i2, f1861X / 2, f1862Y / 2);
+                        } else {
+                            m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 2), i2 - (f1862Y / 2), f1861X / 2, f1862Y / 2);
+                        }
+                    } else if (i2 < f1862Y) {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X / 2, f1862Y / 2);
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2 - (f1862Y / 2), f1861X / 2, f1862Y / 2);
+                    }
+                } else if (i3 == 24) {
+                    if (f1863Z - f1861X < 0) {
+                        if (f1862Y + i2 >= C0088t.f2517c) {
+                            m1293a(graphics, 1009050, 210, f1863Z, i2 - (f1862Y / 2), f1861X / 2, f1862Y / 2);
+                        } else {
+                            m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X / 2, f1862Y / 2);
+                        }
+                    } else if (f1862Y + i2 >= C0088t.f2517c) {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2 - (f1862Y / 2), f1861X / 2, f1862Y / 2);
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 2), i2, f1861X / 2, f1862Y / 2);
+                    }
+                } else if (f1861X + i <= C0088t.f2516b) {
+                    if (f1862Y + i2 >= C0088t.f2517c) {
+                        m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 2), i2 - (f1862Y / 2), f1861X / 2, f1862Y / 2);
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X / 2, f1862Y / 2);
+                    }
+                } else if (f1862Y + i2 >= C0088t.f2517c) {
+                    m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 2), i2 - (f1862Y / 2), f1861X / 2, f1862Y / 4);
+                } else {
+                    m1293a(graphics, 1009050, 210, f1863Z - (f1861X / 2), i2, f1861X / 2, f1862Y / 4);
+                }
+            } else if (f1892l != 17) {
+                graphics.setColor(16230);
+                if (i3 == 40) {
+                    if (f1863Z - f1861X < 0) {
+                        if (i2 < f1862Y) {
+                            m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X, f1862Y);
+                            graphics.drawRect(f1863Z, i2, f1861X, f1862Y);
+                            graphics.setColor(f1866ab);
+                            graphics.drawString(f1867ac, f1863Z + 4, i2 + 4, 20);
+                            if (f1869ae != null) {
+                                f1869ae.m1017a(graphics, f1863Z + 4, i2 + 4 + C0088t.f2524j, 0);
+                            }
+                        } else {
+                            m1293a(graphics, 1009050, 210, f1863Z, i2 - f1862Y, f1861X, f1862Y);
+                            graphics.drawRect(f1863Z, i2 - f1862Y, f1861X, f1862Y);
+                            graphics.setColor(f1866ab);
+                            graphics.drawString(f1867ac, f1863Z + 4, (i2 - f1862Y) + 4, 20);
+                            if (f1869ae != null) {
+                                f1869ae.m1017a(graphics, f1863Z + 4, (i2 - f1862Y) + 4 + C0088t.f2524j, 0);
+                            }
+                        }
+                    } else if (i2 < f1862Y) {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X, f1862Y);
+                        graphics.drawRect(f1863Z, i2, f1861X, f1862Y);
+                        graphics.setColor(f1866ab);
+                        graphics.drawString(f1867ac, f1863Z + 4, i2 + 4, 20);
+                        if (f1869ae != null) {
+                            f1869ae.m1017a(graphics, f1863Z + 4, i2 + 4 + C0088t.f2524j, 0);
+                        }
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z - f1861X, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.drawRect(f1863Z - f1861X, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.setColor(f1866ab);
+                        graphics.drawString(f1867ac, (f1863Z - f1861X) + 4, (i2 - f1862Y) + 4, 20);
+                        if (f1869ae != null) {
+                            f1869ae.m1017a(graphics, (f1863Z - f1861X) + 4, (i2 - f1862Y) + 4 + C0088t.f2524j, 0);
+                        }
+                    }
+                } else if (i3 == 36) {
+                    if (f1863Z + f1861X > C0088t.f2516b) {
+                        if (i2 < f1862Y) {
+                            m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X, f1862Y);
+                            graphics.drawRect(f1863Z, i2, f1861X, f1862Y);
+                            graphics.setColor(f1866ab);
+                            graphics.drawString(f1867ac, f1863Z + 4, i2 + 4, 20);
+                            if (f1869ae != null) {
+                                f1869ae.m1017a(graphics, f1863Z + 4, i2 + 4 + C0088t.f2524j, 0);
+                            }
+                        } else {
+                            m1293a(graphics, 1009050, 210, f1863Z - f1861X, i2 - f1862Y, f1861X, f1862Y);
+                            graphics.drawRect(f1863Z - f1861X, i2 - f1862Y, f1861X, f1862Y);
+                            graphics.setColor(f1866ab);
+                            graphics.drawString(f1867ac, (f1863Z - f1861X) + 4, (i2 - f1862Y) + 4, 20);
+                            if (f1869ae != null) {
+                                f1869ae.m1017a(graphics, (f1863Z - f1861X) + 4, (i2 - f1862Y) + 4 + C0088t.f2524j, 0);
+                            }
+                        }
+                    } else if (i2 < f1862Y) {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X, f1862Y);
+                        graphics.drawRect(f1863Z, i2, f1861X, f1862Y);
+                        graphics.setColor(f1866ab);
+                        graphics.drawString(f1867ac, f1863Z + 4, i2 + 4, 20);
+                        if (f1869ae != null) {
+                            f1869ae.m1017a(graphics, f1863Z + 4, i2 + 4 + C0088t.f2524j, 0);
+                        }
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.drawRect(f1863Z, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.setColor(f1866ab);
+                        graphics.drawString(f1867ac, f1863Z + 4, (i2 - f1862Y) + 4, 20);
+                        if (f1869ae != null) {
+                            f1869ae.m1017a(graphics, f1863Z + 4, (i2 - f1862Y) + 4 + C0088t.f2524j, 0);
+                        }
+                    }
+                } else if (i3 == 24) {
+                    if (f1863Z - f1861X < 0) {
+                        if (f1862Y + i2 >= C0088t.f2517c) {
+                            m1293a(graphics, 1009050, 210, f1863Z, i2 - f1862Y, f1861X, f1862Y);
+                            graphics.drawRect(f1863Z, i2 - f1862Y, f1861X, f1862Y);
+                            graphics.setColor(f1866ab);
+                            graphics.drawString(f1867ac, f1863Z + 4, (i2 + 4) - f1862Y, 20);
+                            if (f1869ae != null) {
+                                f1869ae.m1017a(graphics, f1863Z + 4, ((i2 + 4) + C0088t.f2524j) - f1862Y, 0);
+                            }
+                        } else {
+                            m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X, f1862Y);
+                            graphics.drawRect(f1863Z, i2, f1861X, f1862Y);
+                            graphics.setColor(f1866ab);
+                            graphics.drawString(f1867ac, f1863Z + 4, i2 + 4, 20);
+                            if (f1869ae != null) {
+                                f1869ae.m1017a(graphics, f1863Z + 4, i2 + 4 + C0088t.f2524j, 0);
+                            }
+                        }
+                    } else if (f1862Y + i2 >= C0088t.f2517c) {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.drawRect(f1863Z, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.setColor(f1866ab);
+                        graphics.drawString(f1867ac, f1863Z + 4, (i2 + 4) - f1862Y, 20);
+                        if (f1869ae != null) {
+                            f1869ae.m1017a(graphics, f1863Z + 4, ((i2 + 4) + C0088t.f2524j) - f1862Y, 0);
+                        }
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z - f1861X, i2, f1861X, f1862Y);
+                        graphics.drawRect(f1863Z - f1861X, i2, f1861X, f1862Y);
+                        graphics.setColor(f1866ab);
+                        graphics.drawString(f1867ac, (f1863Z - f1861X) + 4, i2 + 4, 20);
+                        if (f1869ae != null) {
+                            f1869ae.m1017a(graphics, (f1863Z - f1861X) + 4, i2 + 4 + C0088t.f2524j, 0);
+                        }
+                    }
+                } else if (f1861X + i <= C0088t.f2516b) {
+                    if (f1862Y + i2 >= C0088t.f2517c) {
+                        m1293a(graphics, 1009050, 210, f1863Z - f1861X, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.drawRect(f1863Z - f1861X, i2 - f1862Y, f1861X, f1862Y);
+                        graphics.setColor(f1866ab);
+                        graphics.drawString(f1867ac, (f1863Z + 4) - f1861X, (i2 + 4) - f1862Y, 20);
+                        if (f1869ae != null) {
+                            f1869ae.m1017a(graphics, (f1863Z + 4) - f1861X, ((i2 + 4) + C0088t.f2524j) - f1862Y, 0);
+                        }
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X, f1862Y);
+                        graphics.drawRect(f1863Z, i2, f1861X, f1862Y);
+                        graphics.setColor(f1866ab);
+                        graphics.drawString(f1867ac, f1863Z + 4, i2 + 4, 20);
+                        if (f1869ae != null) {
+                            f1869ae.m1017a(graphics, f1863Z + 4, i2 + 4 + C0088t.f2524j, 0);
+                        }
+                    }
+                } else if (f1862Y + i2 >= C0088t.f2517c) {
+                    m1293a(graphics, 1009050, 210, f1863Z - f1861X, i2 - f1862Y, f1861X, f1862Y);
+                    if (f1863Z < f1861X) {
+                        f1863Z = f1861X;
+                    }
+                    graphics.drawRect(f1863Z - f1861X, i2 - f1862Y, f1861X, f1862Y);
+                    graphics.setColor(f1866ab);
+                    graphics.drawString(f1867ac, (f1863Z - f1861X) + 4, (i2 + 4) - f1862Y, 20);
+                    if (f1869ae != null) {
+                        f1869ae.m1017a(graphics, (f1863Z - f1861X) + 4, ((i2 + 4) + C0088t.f2524j) - f1862Y, 0);
+                    }
+                } else {
+                    m1293a(graphics, 1009050, 210, f1863Z - f1861X, i2, f1861X, f1862Y);
+                    graphics.drawRect(f1863Z - f1861X, i2, f1861X, f1862Y);
+                    graphics.setColor(f1866ab);
+                    graphics.drawString(f1867ac, (f1863Z - f1861X) + 4, i2 + 4, 20);
+                    if (f1869ae != null) {
+                        f1869ae.m1017a(graphics, (f1863Z - f1861X) + 4, i2 + 4 + C0088t.f2524j, 0);
+                    }
+                }
+            } else if (i3 == 40) {
+                if (f1863Z - f1861X < 0) {
+                    if (i2 < f1862Y) {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2, f1861X / 2, f1862Y / 2);
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2 - (f1862Y / 2), f1861X / 2, f1862Y / 2);
+                    }
+                } else if (i2 < f1862Y) {
+                    m1293a(graphics, 1009050, 210, f1863Z, i2, (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                } else {
+                    m1293a(graphics, 1009050, 210, f1863Z - ((f1861X / 4) * 3), i2 - ((f1862Y / 4) * 3), (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                }
+            } else if (i3 == 36) {
+                if (f1863Z + f1861X > C0088t.f2516b) {
+                    if (i2 < f1862Y) {
+                        m1293a(graphics, 1009050, 210, f1863Z - ((f1861X / 4) * 3), i2, (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z - ((f1861X / 4) * 3), i2 - ((f1862Y / 4) * 3), (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                    }
+                } else if (i2 < f1862Y) {
+                    m1293a(graphics, 1009050, 210, f1863Z, i2, (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                } else {
+                    m1293a(graphics, 1009050, 210, f1863Z, i2 - ((f1862Y / 4) * 3), (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                }
+            } else if (i3 == 24) {
+                if (f1863Z - f1861X < 0) {
+                    if (f1862Y + i2 >= C0088t.f2517c) {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2 - ((f1862Y / 4) * 3), (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                    } else {
+                        m1293a(graphics, 1009050, 210, f1863Z, i2, (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                    }
+                } else if (f1862Y + i2 >= C0088t.f2517c) {
+                    m1293a(graphics, 1009050, 210, f1863Z, i2 - ((f1862Y / 4) * 3), (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                } else {
+                    m1293a(graphics, 1009050, 210, f1863Z - ((f1861X / 4) * 3), i2, (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                }
+            } else if (f1861X + i <= C0088t.f2516b) {
+                if (f1862Y + i2 >= C0088t.f2517c) {
+                    m1293a(graphics, 1009050, 210, f1863Z - ((f1861X / 4) * 3), i2 - ((f1862Y / 4) * 3), (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                } else {
+                    m1293a(graphics, 1009050, 210, f1863Z, i2, (f1861X / 4) * 3, (f1862Y / 4) * 3);
+                }
+            } else if (f1862Y + i2 >= C0088t.f2517c) {
+                m1293a(graphics, 1009050, 210, f1863Z - ((f1861X / 4) * 3), i2 - ((f1862Y / 4) * 3), (f1861X / 4) * 3, (f1862Y / 4) * 3);
+            } else {
+                m1293a(graphics, 1009050, 210, f1863Z - ((f1861X / 4) * 3), i2, (f1861X / 4) * 3, (f1862Y / 4) * 3);
+            }
+        }
+        f1892l++;
     }
 
     /* renamed from: a */

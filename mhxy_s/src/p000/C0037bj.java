@@ -5,7 +5,7 @@ import javax.microedition.rms.RecordStoreException;
 import javax.microedition.rms.RecordStoreNotOpenException;
 
 /* renamed from: bj */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class C0037bj {
     /* renamed from: a */
     private static RecordStore m681a(String str, boolean z) {
@@ -67,86 +67,74 @@ public final class C0037bj {
     /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static byte[] m684a(java.lang.String r4) throws java.lang.Throwable {
-        /*
-            r0 = 0
-            r3 = 1
-            boolean r1 = m687d(r4)
-            if (r1 == 0) goto L1f
-            r1 = 0
-            javax.microedition.rms.RecordStore r2 = m681a(r4, r1)     // Catch: javax.microedition.rms.RecordStoreException -> L3a java.lang.Throwable -> L4f
-            int r1 = r2.getNumRecords()     // Catch: java.lang.Throwable -> L61 javax.microedition.rms.RecordStoreException -> L64
-            int r1 = r1 + 1
-            if (r1 <= r3) goto L2a
-            r1 = 1
-            byte[] r0 = r2.getRecord(r1)     // Catch: java.lang.Throwable -> L61 javax.microedition.rms.RecordStoreException -> L64
-            if (r2 == 0) goto L1f
-            r2.closeRecordStore()     // Catch: javax.microedition.rms.RecordStoreNotOpenException -> L20 javax.microedition.rms.RecordStoreException -> L25
-        L1f:
-            return r0
-        L20:
-            r1 = move-exception
-            r1.printStackTrace()
-            goto L1f
-        L25:
-            r1 = move-exception
-            r1.printStackTrace()
-            goto L1f
-        L2a:
-            if (r2 == 0) goto L1f
-            r2.closeRecordStore()     // Catch: javax.microedition.rms.RecordStoreNotOpenException -> L30 javax.microedition.rms.RecordStoreException -> L35
-            goto L1f
-        L30:
-            r1 = move-exception
-            r1.printStackTrace()
-            goto L1f
-        L35:
-            r1 = move-exception
-            r1.printStackTrace()
-            goto L1f
-        L3a:
-            r1 = move-exception
-            r2 = r0
-        L3c:
-            r1.printStackTrace()     // Catch: java.lang.Throwable -> L61
-            if (r2 == 0) goto L1f
-            r2.closeRecordStore()     // Catch: javax.microedition.rms.RecordStoreNotOpenException -> L45 javax.microedition.rms.RecordStoreException -> L4a
-            goto L1f
-        L45:
-            r1 = move-exception
-            r1.printStackTrace()
-            goto L1f
-        L4a:
-            r1 = move-exception
-            r1.printStackTrace()
-            goto L1f
-        L4f:
-            r1 = move-exception
-            r2 = r0
-        L51:
-            if (r2 == 0) goto L56
-            r2.closeRecordStore()     // Catch: javax.microedition.rms.RecordStoreNotOpenException -> L57 javax.microedition.rms.RecordStoreException -> L5c
-        L56:
-            throw r1
-        L57:
-            r0 = move-exception
-            r0.printStackTrace()
-            goto L56
-        L5c:
-            r0 = move-exception
-            r0.printStackTrace()
-            goto L56
-        L61:
-            r0 = move-exception
-            r1 = r0
-            goto L51
-        L64:
-            r1 = move-exception
-            goto L3c
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p000.C0037bj.m684a(java.lang.String):byte[]");
+    public static byte[] m684a(String str) throws Throwable {
+        RecordStore recordStoreM681a;
+        byte[] record = null;
+        if (m687d(str)) {
+            try {
+                try {
+                    recordStoreM681a = m681a(str, false);
+                } catch (RecordStoreException e) {
+                    e = e;
+                    recordStoreM681a = null;
+                } catch (Throwable th) {
+                    th = th;
+                    recordStoreM681a = null;
+                    if (recordStoreM681a != null) {
+                    }
+                    throw th;
+                }
+                try {
+                    if (recordStoreM681a.getNumRecords() + 1 > 1) {
+                        record = recordStoreM681a.getRecord(1);
+                        if (recordStoreM681a != null) {
+                            try {
+                                recordStoreM681a.closeRecordStore();
+                            } catch (RecordStoreNotOpenException e2) {
+                                e2.printStackTrace();
+                            } catch (RecordStoreException e3) {
+                                e3.printStackTrace();
+                            }
+                        }
+                    } else if (recordStoreM681a != null) {
+                        try {
+                            recordStoreM681a.closeRecordStore();
+                        } catch (RecordStoreNotOpenException e4) {
+                            e4.printStackTrace();
+                        } catch (RecordStoreException e5) {
+                            e5.printStackTrace();
+                        }
+                    }
+                } catch (RecordStoreException e6) {
+                    e = e6;
+                    e.printStackTrace();
+                    if (recordStoreM681a != null) {
+                        try {
+                            recordStoreM681a.closeRecordStore();
+                        } catch (RecordStoreException e7) {
+                            e7.printStackTrace();
+                        } catch (RecordStoreNotOpenException e8) {
+                            e8.printStackTrace();
+                        }
+                    }
+                    return record;
+                }
+            } catch (Throwable th2) {
+                th = th2;
+                if (recordStoreM681a != null) {
+                    try {
+                        recordStoreM681a.closeRecordStore();
+                    } catch (RecordStoreException e9) {
+                        e9.printStackTrace();
+                    } catch (RecordStoreNotOpenException e10) {
+                        e10.printStackTrace();
+                    }
+                }
+                throw th;
+            }
+        }
+        return record;
     }
 
     /* renamed from: b */

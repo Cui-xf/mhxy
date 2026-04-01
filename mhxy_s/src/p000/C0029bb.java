@@ -1,7 +1,12 @@
 package p000;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+
 /* renamed from: bb */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class C0029bb {
 
     /* renamed from: g */
@@ -51,92 +56,83 @@ public final class C0029bb {
     /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public static void m624a() throws java.lang.Throwable {
-        /*
-            r2 = 0
-            r0 = 1
-            java.lang.String r1 = "silver_kj"
-            byte[] r1 = p000.C0037bj.m684a(r1)
-            if (r1 != 0) goto Lb
-        La:
-            return
-        Lb:
-            java.io.ByteArrayInputStream r3 = new java.io.ByteArrayInputStream     // Catch: java.lang.Exception -> L43 java.lang.Throwable -> L59
-            r3.<init>(r1)     // Catch: java.lang.Exception -> L43 java.lang.Throwable -> L59
-            java.io.DataInputStream r1 = new java.io.DataInputStream     // Catch: java.lang.Throwable -> L6c java.lang.Exception -> L71
-            r1.<init>(r3)     // Catch: java.lang.Throwable -> L6c java.lang.Exception -> L71
-            byte r2 = r1.readByte()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            if (r2 != r0) goto L41
-        L1b:
-            p000.C0029bb.f557k = r0     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            byte r0 = r1.readByte()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            p000.C0029bb.f558l = r0     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            java.lang.String r0 = r1.readUTF()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            p000.C0029bb.f559m = r0     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            java.lang.String r0 = r1.readUTF()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            p000.C0029bb.f560n = r0     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            r3.close()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            r1.close()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            r3.close()     // Catch: java.lang.Exception -> L3c
-            r1.close()     // Catch: java.lang.Exception -> L3c
-            goto La
-        L3c:
-            r0 = move-exception
-            r0.printStackTrace()
-            goto La
-        L41:
-            r0 = 0
-            goto L1b
-        L43:
-            r0 = move-exception
-            r1 = r2
-            r3 = r2
-        L46:
-            r0.printStackTrace()     // Catch: java.lang.Throwable -> L6f
-            if (r3 == 0) goto L4e
-            r3.close()     // Catch: java.lang.Exception -> L54
-        L4e:
-            if (r1 == 0) goto La
-            r1.close()     // Catch: java.lang.Exception -> L54
-            goto La
-        L54:
-            r0 = move-exception
-            r0.printStackTrace()
-            goto La
-        L59:
-            r0 = move-exception
-            r1 = r2
-            r3 = r2
-        L5c:
-            if (r3 == 0) goto L61
-            r3.close()     // Catch: java.lang.Exception -> L67
-        L61:
-            if (r1 == 0) goto L66
-            r1.close()     // Catch: java.lang.Exception -> L67
-        L66:
-            throw r0
-        L67:
-            r1 = move-exception
-            r1.printStackTrace()
-            goto L66
-        L6c:
-            r0 = move-exception
-            r1 = r2
-            goto L5c
-        L6f:
-            r0 = move-exception
-            goto L5c
-        L71:
-            r0 = move-exception
-            r1 = r2
-            goto L46
-        L74:
-            r0 = move-exception
-            goto L46
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p000.C0029bb.m624a():void");
+    public static void m624a() throws Throwable {
+        DataInputStream dataInputStream;
+        ByteArrayInputStream byteArrayInputStream;
+        byte[] bArrM684a = C0037bj.m684a("silver_kj");
+        if (bArrM684a == null) {
+            return;
+        }
+        try {
+            byteArrayInputStream = new ByteArrayInputStream(bArrM684a);
+            try {
+                dataInputStream = new DataInputStream(byteArrayInputStream);
+            } catch (Exception e) {
+                e = e;
+                dataInputStream = null;
+            } catch (Throwable th) {
+                th = th;
+                dataInputStream = null;
+                if (byteArrayInputStream != null) {
+                }
+                if (dataInputStream != null) {
+                }
+                throw th;
+            }
+        } catch (Exception e2) {
+            e = e2;
+            dataInputStream = null;
+            byteArrayInputStream = null;
+        } catch (Throwable th2) {
+            th = th2;
+            dataInputStream = null;
+            byteArrayInputStream = null;
+        }
+        try {
+            try {
+                f557k = dataInputStream.readByte() == 1;
+                f558l = dataInputStream.readByte();
+                f559m = dataInputStream.readUTF();
+                f560n = dataInputStream.readUTF();
+                byteArrayInputStream.close();
+                dataInputStream.close();
+                try {
+                    byteArrayInputStream.close();
+                    dataInputStream.close();
+                } catch (Exception e3) {
+                    e3.printStackTrace();
+                }
+            } catch (Throwable th3) {
+                th = th3;
+                if (byteArrayInputStream != null) {
+                    try {
+                        byteArrayInputStream.close();
+                    } catch (Exception e4) {
+                        e4.printStackTrace();
+                        throw th;
+                    }
+                }
+                if (dataInputStream != null) {
+                    dataInputStream.close();
+                }
+                throw th;
+            }
+        } catch (Exception e5) {
+            e = e5;
+            e.printStackTrace();
+            if (byteArrayInputStream != null) {
+                try {
+                    byteArrayInputStream.close();
+                } catch (Exception e6) {
+                    e6.printStackTrace();
+                    return;
+                }
+            }
+            if (dataInputStream != null) {
+                dataInputStream.close();
+            }
+        }
     }
 
     /* JADX WARN: Removed duplicated region for block: B:34:0x0063 A[Catch: Exception -> 0x0067, TRY_LEAVE, TryCatch #1 {Exception -> 0x0067, blocks: (B:32:0x005e, B:34:0x0063), top: B:48:0x005e }] */
@@ -144,94 +140,78 @@ public final class C0029bb {
     /* renamed from: b */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
     public static void m625b() {
-        /*
-            r2 = 0
-            java.io.ByteArrayOutputStream r3 = new java.io.ByteArrayOutputStream     // Catch: java.lang.Exception -> L43 java.lang.Throwable -> L59
-            r3.<init>()     // Catch: java.lang.Exception -> L43 java.lang.Throwable -> L59
-            java.io.DataOutputStream r1 = new java.io.DataOutputStream     // Catch: java.lang.Throwable -> L6c java.lang.Exception -> L71
-            r1.<init>(r3)     // Catch: java.lang.Throwable -> L6c java.lang.Exception -> L71
-            boolean r0 = p000.C0029bb.f557k     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            if (r0 == 0) goto L39
-            r0 = 1
-        L10:
-            r1.writeByte(r0)     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            byte r0 = p000.C0029bb.f558l     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            r1.writeByte(r0)     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            java.lang.String r0 = p000.C0029bb.f559m     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            r1.writeUTF(r0)     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            boolean r0 = p000.C0029bb.f557k     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            if (r0 == 0) goto L3b
-            java.lang.String r0 = p000.C0029bb.f560n     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-        L23:
-            r1.writeUTF(r0)     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            r1.flush()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            byte[] r0 = r3.toByteArray()     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            java.lang.String r2 = "silver_kj"
-            p000.C0037bj.m682a(r0, r2)     // Catch: java.lang.Throwable -> L6f java.lang.Exception -> L74
-            r3.close()     // Catch: java.lang.Exception -> L3e
-            r1.close()     // Catch: java.lang.Exception -> L3e
-        L38:
-            return
-        L39:
-            r0 = 0
-            goto L10
-        L3b:
-            java.lang.String r0 = ""
-            goto L23
-        L3e:
-            r0 = move-exception
-            r0.printStackTrace()
-            goto L38
-        L43:
-            r0 = move-exception
-            r1 = r2
-            r3 = r2
-        L46:
-            r0.printStackTrace()     // Catch: java.lang.Throwable -> L6f
-            if (r3 == 0) goto L4e
-            r3.close()     // Catch: java.lang.Exception -> L54
-        L4e:
-            if (r1 == 0) goto L38
-            r1.close()     // Catch: java.lang.Exception -> L54
-            goto L38
-        L54:
-            r0 = move-exception
-            r0.printStackTrace()
-            goto L38
-        L59:
-            r0 = move-exception
-            r1 = r2
-            r3 = r2
-        L5c:
-            if (r3 == 0) goto L61
-            r3.close()     // Catch: java.lang.Exception -> L67
-        L61:
-            if (r1 == 0) goto L66
-            r1.close()     // Catch: java.lang.Exception -> L67
-        L66:
-            throw r0
-        L67:
-            r1 = move-exception
-            r1.printStackTrace()
-            goto L66
-        L6c:
-            r0 = move-exception
-            r1 = r2
-            goto L5c
-        L6f:
-            r0 = move-exception
-            goto L5c
-        L71:
-            r0 = move-exception
-            r1 = r2
-            goto L46
-        L74:
-            r0 = move-exception
-            goto L46
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p000.C0029bb.m625b():void");
+        DataOutputStream dataOutputStream;
+        ByteArrayOutputStream byteArrayOutputStream;
+        try {
+            byteArrayOutputStream = new ByteArrayOutputStream();
+            try {
+                dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+            } catch (Exception e) {
+                e = e;
+                dataOutputStream = null;
+            } catch (Throwable th) {
+                th = th;
+                dataOutputStream = null;
+                if (byteArrayOutputStream != null) {
+                }
+                if (dataOutputStream != null) {
+                }
+                throw th;
+            }
+        } catch (Exception e2) {
+            e = e2;
+            dataOutputStream = null;
+            byteArrayOutputStream = null;
+        } catch (Throwable th2) {
+            th = th2;
+            dataOutputStream = null;
+            byteArrayOutputStream = null;
+        }
+        try {
+            try {
+                dataOutputStream.writeByte(f557k ? 1 : 0);
+                dataOutputStream.writeByte(f558l);
+                dataOutputStream.writeUTF(f559m);
+                dataOutputStream.writeUTF(f557k ? f560n : "");
+                dataOutputStream.flush();
+                C0037bj.m682a(byteArrayOutputStream.toByteArray(), "silver_kj");
+                try {
+                    byteArrayOutputStream.close();
+                    dataOutputStream.close();
+                } catch (Exception e3) {
+                    e3.printStackTrace();
+                }
+            } catch (Throwable th3) {
+                th = th3;
+                if (byteArrayOutputStream != null) {
+                    try {
+                        byteArrayOutputStream.close();
+                    } catch (Exception e4) {
+                        e4.printStackTrace();
+                        throw th;
+                    }
+                }
+                if (dataOutputStream != null) {
+                    dataOutputStream.close();
+                }
+                throw th;
+            }
+        } catch (Exception e5) {
+            e = e5;
+            e.printStackTrace();
+            if (byteArrayOutputStream != null) {
+                try {
+                    byteArrayOutputStream.close();
+                } catch (Exception e6) {
+                    e6.printStackTrace();
+                    return;
+                }
+            }
+            if (dataOutputStream != null) {
+                dataOutputStream.close();
+            }
+        }
     }
 }

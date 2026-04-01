@@ -5,7 +5,7 @@ import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
 
 /* renamed from: bw */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class C0050bw {
 
     /* renamed from: a */
@@ -86,14 +86,138 @@ public final class C0050bw {
     /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    private void m1010a(java.lang.String r14) throws java.lang.NumberFormatException {
-        /*
-            Method dump skipped, instructions count: 324
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p000.C0050bw.m1010a(java.lang.String):void");
+    private void m1010a(String str) throws NumberFormatException {
+        int i;
+        int i2;
+        int i3;
+        int i4;
+        Vector vector = new Vector();
+        StringBuffer stringBuffer = new StringBuffer();
+        int i5 = 0;
+        C0016ap c0016ap = null;
+        int i6 = 0;
+        while (i5 < str.length()) {
+            char cCharAt = str.charAt(i5);
+            if (cCharAt != '<' || i5 + 1 >= str.length()) {
+                stringBuffer.append(cCharAt);
+                i = i5;
+                i2 = i6;
+            } else if (str.charAt(i5 + 1) == '/') {
+                int i7 = i5 + 2;
+                while (true) {
+                    if (i7 >= str.length()) {
+                        i4 = i7;
+                        i = i5;
+                        i2 = i6;
+                        break;
+                    }
+                    if (str.charAt(i7) == '>') {
+                        try {
+                            int i8 = Integer.parseInt(str.substring(i5 + 2, i7));
+                            if (c0016ap != null && i8 == c0016ap.f362a) {
+                                c0016ap.f364c = (short) (m1009a(stringBuffer) - 1);
+                                new C0016ap(this);
+                                c0016ap = null;
+                            }
+                            i4 = i7;
+                            i = i7;
+                            i2 = i6;
+                        } catch (Exception e) {
+                            stringBuffer.append(str.substring(i5, i6 + 1));
+                            i4 = 0;
+                            i = i7;
+                            i2 = i6;
+                        }
+                    } else {
+                        if (str.charAt(i7) == '<') {
+                            stringBuffer.append(str.substring(i5, i7 - 1));
+                            i4 = i7;
+                            i = i7;
+                            i2 = i7;
+                            break;
+                        }
+                        i7++;
+                    }
+                }
+                if (i4 == str.length()) {
+                    stringBuffer.append(str.substring(i5, i4));
+                }
+            } else {
+                int i9 = i5 + 1;
+                while (true) {
+                    if (i9 >= str.length()) {
+                        i3 = i9;
+                        i = i5;
+                        i2 = i6;
+                        break;
+                    }
+                    if (str.charAt(i9) == '>') {
+                        if (c0016ap != null) {
+                            try {
+                                c0016ap.f364c = (short) (m1009a(stringBuffer) - 1);
+                                try {
+                                    C0016ap c0016ap2 = new C0016ap(this, Integer.parseInt(str.substring(i5 + 1, i9)), m1009a(stringBuffer));
+                                    i = (str.charAt(i9 + 1) == '[' || str.charAt(i9 + 3) != ']') ? i9 : i9 + 3;
+                                    vector.addElement(c0016ap2);
+                                    i3 = i9;
+                                    c0016ap = c0016ap2;
+                                    i2 = i9;
+                                } catch (Exception e2) {
+                                    i6 = i9;
+                                    stringBuffer.append(str.substring(i5, i6 + 1));
+                                    i3 = 0;
+                                    i = i9;
+                                    i2 = i6;
+                                    if (i3 == str.length()) {
+                                    }
+                                    i5 = i + 1;
+                                    i6 = i2;
+                                }
+                            } catch (Exception e3) {
+                                stringBuffer.append(str.substring(i5, i6 + 1));
+                                i3 = 0;
+                                i = i9;
+                                i2 = i6;
+                                if (i3 == str.length()) {
+                                }
+                                i5 = i + 1;
+                                i6 = i2;
+                            }
+                        } else {
+                            C0016ap c0016ap22 = new C0016ap(this, Integer.parseInt(str.substring(i5 + 1, i9)), m1009a(stringBuffer));
+                            if (str.charAt(i9 + 1) == '[') {
+                                vector.addElement(c0016ap22);
+                                i3 = i9;
+                                c0016ap = c0016ap22;
+                                i2 = i9;
+                            }
+                        }
+                    } else {
+                        if (str.charAt(i9) == '<') {
+                            stringBuffer.append(str.substring(i5, i9 - 1));
+                            i3 = i9;
+                            i = i9;
+                            i2 = i9;
+                            break;
+                        }
+                        i9++;
+                    }
+                }
+                if (i3 == str.length()) {
+                    stringBuffer.append(str.substring(i5, i3));
+                }
+            }
+            i5 = i + 1;
+            i6 = i2;
+        }
+        if (c0016ap != null) {
+            c0016ap.f364c = (short) (m1009a(stringBuffer) - 1);
+        }
+        C0016ap[] c0016apArr = new C0016ap[vector.size()];
+        vector.copyInto(c0016apArr);
+        m1011a(stringBuffer.toString(), c0016apArr);
+        vector.removeAllElements();
     }
 
     /* renamed from: a */

@@ -8,7 +8,7 @@ import java.lang.reflect.Array;
 import java.util.Vector;
 
 /* renamed from: bu */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class C0048bu {
 
     /* renamed from: a */
@@ -121,27 +121,21 @@ public final class C0048bu {
                         c0023aw.f467l[i10].m1020a(dataInputStream, true);
                     }
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
                 try {
                     dataInputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } catch (IOException e2) {
-                e2.printStackTrace();
-                try {
-                    dataInputStream.close();
-                } catch (IOException e3) {
-                    e3.printStackTrace();
+                } catch (IOException e2) {
+                    e2.printStackTrace();
                 }
             }
             return c0023aw;
-        } catch (Throwable th) {
+        } finally {
             try {
                 dataInputStream.close();
-            } catch (IOException e4) {
-                e4.printStackTrace();
+            } catch (IOException e3) {
+                e3.printStackTrace();
             }
-            throw th;
         }
     }
 
@@ -711,24 +705,19 @@ public final class C0048bu {
                     bArr2[i2] = new byte[dataInputStream.readInt()];
                     dataInputStream.read(bArr2[i2]);
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
                 try {
                     dataInputStream.close();
-                } catch (IOException e) {
-                }
-            } catch (IOException e2) {
-                e2.printStackTrace();
-                try {
-                    dataInputStream.close();
-                } catch (IOException e3) {
+                } catch (IOException e2) {
                 }
             }
             return bArr2;
-        } catch (Throwable th) {
+        } finally {
             try {
                 dataInputStream.close();
-            } catch (IOException e4) {
+            } catch (IOException e3) {
             }
-            throw th;
         }
     }
 
@@ -831,26 +820,20 @@ public final class C0048bu {
                 for (int i2 = 0; i2 < i; i2++) {
                     this.f1777e[i2] = new C0001aa(dataInputStream.readInt(), dataInputStream.readShort());
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
                 try {
                     dataInputStream.close();
                     dataInputStream.close();
-                } catch (IOException e) {
-                }
-            } catch (IOException e2) {
-                e2.printStackTrace();
-                try {
-                    dataInputStream.close();
-                    dataInputStream.close();
-                } catch (IOException e3) {
+                } catch (IOException e2) {
                 }
             }
-        } catch (Throwable th) {
+        } finally {
             try {
                 dataInputStream.close();
                 dataInputStream.close();
-            } catch (IOException e4) {
+            } catch (IOException e3) {
             }
-            throw th;
         }
     }
 
@@ -894,31 +877,21 @@ public final class C0048bu {
                 for (int i2 = 0; i2 < i; i2++) {
                     this.f1777e[i2] = new C0001aa(dataInputStream.readInt(), dataInputStream.readShort());
                 }
+            } finally {
                 if (resourceAsStream != null) {
                     try {
                         resourceAsStream.close();
                     } catch (IOException e) {
-                        return;
                     }
                 }
                 dataInputStream.close();
-            } catch (Throwable th) {
-                if (resourceAsStream != null) {
-                    try {
-                        resourceAsStream.close();
-                    } catch (IOException e2) {
-                        throw th;
-                    }
-                }
-                dataInputStream.close();
-                throw th;
             }
-        } catch (IOException e3) {
-            e3.printStackTrace();
+        } catch (IOException e2) {
+            e2.printStackTrace();
             if (resourceAsStream != null) {
                 try {
                     resourceAsStream.close();
-                } catch (IOException e4) {
+                } catch (IOException e3) {
                     return;
                 }
             }
@@ -1154,111 +1127,91 @@ public final class C0048bu {
     /* renamed from: c */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public final p000.C0023aw m996c(java.lang.String r9) throws java.lang.Throwable {
-        /*
-            r8 = this;
-            r5 = 3
-            r0 = 0
-            r2 = 0
-            java.lang.String r1 = m971b(r9, r5)
-            char[] r1 = r1.toCharArray()
-            int r3 = m956a(r1)
-            r1 = r0
-        L10:
-            java.util.Vector r0 = r8.f1775c
-            int r0 = r0.size()
-            if (r1 >= r0) goto L37
-            java.util.Vector r0 = r8.f1775c
-            java.lang.Object r0 = r0.elementAt(r1)
-            cf r0 = (p000.AbstractC0060cf) r0
-            byte r4 = r0.f1956o
-            if (r4 != r5) goto L33
-            aa r4 = r0.f1957p
-            if (r4 == 0) goto L33
-            aa r4 = r0.f1957p
-            int r4 = r4.f0a
-            if (r4 != r3) goto L33
-            aw r0 = (p000.C0023aw) r0
-        L30:
-            if (r0 == 0) goto L39
-        L32:
-            return r0
-        L33:
-            int r0 = r1 + 1
-            r1 = r0
-            goto L10
-        L37:
-            r0 = r2
-            goto L30
-        L39:
-            aa r3 = r8.m979d(r3)     // Catch: java.io.IOException -> L74 java.lang.Throwable -> L80
-            if (r3 != 0) goto L41
-            r0 = r2
-            goto L32
-        L41:
-            java.io.DataInputStream r1 = r8.m961a(r3)     // Catch: java.io.IOException -> L74 java.lang.Throwable -> L80
-            if (r1 != 0) goto L4e
-            if (r1 == 0) goto L4c
-            r1.close()     // Catch: java.io.IOException -> L88
-        L4c:
-            r0 = r2
-            goto L32
-        L4e:
-            r0 = 0
-            byte[][] r0 = m969a(r1, r0)     // Catch: java.lang.Throwable -> L8e java.io.IOException -> L90
-            aw r0 = m958a(r0)     // Catch: java.lang.Throwable -> L8e java.io.IOException -> L90
-            r1.close()     // Catch: java.lang.Throwable -> L8e java.io.IOException -> L90
-            r8.m963a(r0)     // Catch: java.lang.Throwable -> L8e java.io.IOException -> L90
-            short[] r4 = r8.m974b(r0)     // Catch: java.lang.Throwable -> L8e java.io.IOException -> L90
-            r5 = 0
-            r6 = 0
-            r7 = 0
-            r8.m966a(r4, r5, r6, r7)     // Catch: java.lang.Throwable -> L8e java.io.IOException -> L90
-            r8.m977c(r0)     // Catch: java.lang.Throwable -> L8e java.io.IOException -> L90
-            r0.f1957p = r3     // Catch: java.lang.Throwable -> L8e java.io.IOException -> L90
-            if (r1 == 0) goto L32
-            r1.close()     // Catch: java.io.IOException -> L72
-            goto L32
-        L72:
-            r1 = move-exception
-            goto L32
-        L74:
-            r0 = move-exception
-            r1 = r2
-        L76:
-            r0.printStackTrace()     // Catch: java.lang.Throwable -> L8e
-            if (r1 == 0) goto L7e
-            r1.close()     // Catch: java.io.IOException -> L8a
-        L7e:
-            r0 = r2
-            goto L32
-        L80:
-            r0 = move-exception
-            r1 = r2
-        L82:
-            if (r1 == 0) goto L87
-            r1.close()     // Catch: java.io.IOException -> L8c
-        L87:
-            throw r0
-        L88:
-            r0 = move-exception
-            goto L4c
-        L8a:
-            r0 = move-exception
-            goto L7e
-        L8c:
-            r1 = move-exception
-            goto L87
-        L8e:
-            r0 = move-exception
-            goto L82
-        L90:
-            r0 = move-exception
-            goto L76
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p000.C0048bu.m996c(java.lang.String):aw");
+    public final C0023aw m996c(String str) throws Throwable {
+        C0023aw c0023aw;
+        DataInputStream dataInputStreamM961a;
+        int i = 0;
+        int iM956a = m956a(m971b(str, (byte) 3).toCharArray());
+        while (true) {
+            int i2 = i;
+            if (i2 >= this.f1775c.size()) {
+                c0023aw = null;
+                break;
+            }
+            AbstractC0060cf abstractC0060cf = (AbstractC0060cf) this.f1775c.elementAt(i2);
+            if (abstractC0060cf.f1956o == 3 && abstractC0060cf.f1957p != null && abstractC0060cf.f1957p.f0a == iM956a) {
+                c0023aw = (C0023aw) abstractC0060cf;
+                break;
+            }
+            i = i2 + 1;
+        }
+        if (c0023aw != null) {
+            return c0023aw;
+        }
+        try {
+            C0001aa c0001aaM979d = m979d(iM956a);
+            if (c0001aaM979d == null) {
+                return null;
+            }
+            dataInputStreamM961a = m961a(c0001aaM979d);
+            if (dataInputStreamM961a == null) {
+                if (dataInputStreamM961a != null) {
+                    try {
+                        dataInputStreamM961a.close();
+                    } catch (IOException e) {
+                    }
+                }
+                return null;
+            }
+            try {
+                try {
+                    C0023aw c0023awM958a = m958a(m969a(dataInputStreamM961a, 0));
+                    dataInputStreamM961a.close();
+                    m963a(c0023awM958a);
+                    m966a(m974b(c0023awM958a), (short[]) null, (short[]) null, (short[]) null);
+                    m977c(c0023awM958a);
+                    c0023awM958a.f1957p = c0001aaM979d;
+                    if (dataInputStreamM961a == null) {
+                        return c0023awM958a;
+                    }
+                    try {
+                        dataInputStreamM961a.close();
+                        return c0023awM958a;
+                    } catch (IOException e2) {
+                        return c0023awM958a;
+                    }
+                } catch (Throwable th) {
+                    th = th;
+                    if (dataInputStreamM961a != null) {
+                        try {
+                            dataInputStreamM961a.close();
+                        } catch (IOException e3) {
+                        }
+                    }
+                    throw th;
+                }
+            } catch (IOException e4) {
+                e = e4;
+                e.printStackTrace();
+                if (dataInputStreamM961a != null) {
+                    try {
+                        dataInputStreamM961a.close();
+                    } catch (IOException e5) {
+                    }
+                }
+                return null;
+            }
+        } catch (IOException e6) {
+            e = e6;
+            dataInputStreamM961a = null;
+        } catch (Throwable th2) {
+            th = th2;
+            dataInputStreamM961a = null;
+            if (dataInputStreamM961a != null) {
+            }
+            throw th;
+        }
     }
 
     /* renamed from: c */
@@ -1276,14 +1229,93 @@ public final class C0048bu {
     /* renamed from: d */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public final void m999d() throws java.lang.Throwable {
-        /*
-            Method dump skipped, instructions count: 215
-            To view this dump change 'Code comments level' option to 'DEBUG'
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p000.C0048bu.m999d():void");
+    public final void m999d() throws Throwable {
+        Throwable th;
+        DataInputStream dataInputStream;
+        Exception exc;
+        DataInputStream dataInputStream2;
+        try {
+            InputStream resourceAsStream = getClass().getResourceAsStream(new StringBuffer().append(this.f1774b).append(this.f1773a).append(".rpg").toString());
+            if (resourceAsStream == null) {
+                dataInputStream2 = null;
+            } else {
+                dataInputStream2 = new DataInputStream(resourceAsStream);
+                dataInputStream2.read(C0009ai.f71d);
+            }
+            for (int i = 0; i < this.f1777e.length; i++) {
+                try {
+                    byte b = dataInputStream2.readByte();
+                    int i2 = dataInputStream2.readByte();
+                    byte[][] bArr = new byte[i2][];
+                    for (int i3 = 0; i3 < i2; i3++) {
+                        bArr[i3] = new byte[dataInputStream2.readInt()];
+                        dataInputStream2.read(bArr[i3]);
+                    }
+                    if (b == 0) {
+                        C0033bf c0033bfM960a = m960a(bArr, (short) 0, (short) 0, (short) 0);
+                        c0033bfM960a.f1957p = this.f1777e[i];
+                        this.f1775c.addElement(c0033bfM960a);
+                    } else {
+                        C0030bc c0030bcM970b = m970b(bArr, (short) 0, (short) 0, (short) 0);
+                        c0030bcM970b.f1957p = this.f1777e[i];
+                        this.f1775c.addElement(c0030bcM970b);
+                    }
+                } catch (Exception e) {
+                    exc = e;
+                    dataInputStream = dataInputStream2;
+                    try {
+                        exc.printStackTrace();
+                        if (dataInputStream != null) {
+                            try {
+                                dataInputStream.close();
+                                return;
+                            } catch (IOException e2) {
+                                e2.printStackTrace();
+                                return;
+                            }
+                        }
+                        return;
+                    } catch (Throwable th2) {
+                        th = th2;
+                        if (dataInputStream != null) {
+                            throw th;
+                        }
+                        try {
+                            dataInputStream.close();
+                            throw th;
+                        } catch (IOException e3) {
+                            e3.printStackTrace();
+                            throw th;
+                        }
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                    dataInputStream = dataInputStream2;
+                    if (dataInputStream != null) {
+                    }
+                }
+            }
+            for (int i4 = 0; i4 < this.f1775c.size(); i4++) {
+                AbstractC0060cf abstractC0060cf = (AbstractC0060cf) this.f1775c.elementAt(i4);
+                if (abstractC0060cf.f1956o == 2) {
+                    m964a((C0030bc) abstractC0060cf, (short) 0, (short) 0, (short) 0);
+                }
+            }
+            if (dataInputStream2 != null) {
+                try {
+                    dataInputStream2.close();
+                } catch (IOException e4) {
+                    e4.printStackTrace();
+                }
+            }
+        } catch (Exception e5) {
+            exc = e5;
+            dataInputStream = null;
+        } catch (Throwable th4) {
+            th = th4;
+            dataInputStream = null;
+        }
     }
 
     /* renamed from: d */
@@ -1295,97 +1327,81 @@ public final class C0048bu {
     /* renamed from: e */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public final void m1001e(java.lang.String r7) {
-        /*
-            r6 = this;
-            r3 = 0
-            r2 = 0
-            int r4 = m955a(r7, r2)
-            r1 = r2
-        L7:
-            java.util.Vector r0 = r6.f1775c
-            int r0 = r0.size()
-            if (r1 >= r0) goto L4b
-            java.util.Vector r0 = r6.f1775c
-            java.lang.Object r0 = r0.elementAt(r1)
-            cf r0 = (p000.AbstractC0060cf) r0
-            byte r5 = r0.f1956o
-            if (r5 != 0) goto L47
-            aa r5 = r0.f1957p
-            if (r5 == 0) goto L47
-            aa r5 = r0.f1957p
-            int r5 = r5.f0a
-            if (r5 != r4) goto L47
-            bf r0 = (p000.C0033bf) r0
-            int r5 = r0.f602e
-            if (r5 != r2) goto L47
-            int r5 = r0.f603f
-            if (r5 != r2) goto L47
-            int r5 = r0.f604g
-            if (r5 != r2) goto L47
-        L33:
-            if (r0 != 0) goto L46
-            aa r1 = r6.m979d(r4)
-            if (r1 == 0) goto L46
-            java.io.DataInputStream r2 = r6.m961a(r1)     // Catch: java.io.IOException -> L5c java.lang.Throwable -> L69
-            if (r2 != 0) goto L4d
-            if (r2 == 0) goto L46
-            r2.close()     // Catch: java.io.IOException -> L71
-        L46:
-            return
-        L47:
-            int r0 = r1 + 1
-            r1 = r0
-            goto L7
-        L4b:
-            r0 = r3
-            goto L33
-        L4d:
-            r3 = 0
-            r4 = 0
-            r5 = 0
-            r0 = r6
-            r0.m972b(r1, r2, r3, r4, r5)     // Catch: java.lang.Throwable -> L75 java.io.IOException -> L77
-            if (r2 == 0) goto L46
-            r2.close()     // Catch: java.io.IOException -> L5a
-            goto L46
-        L5a:
-            r0 = move-exception
-            goto L46
-        L5c:
-            r0 = move-exception
-            r2 = r3
-        L5e:
-            r0.printStackTrace()     // Catch: java.lang.Throwable -> L75
-            if (r2 == 0) goto L46
-            r2.close()     // Catch: java.io.IOException -> L67
-            goto L46
-        L67:
-            r0 = move-exception
-            goto L46
-        L69:
-            r0 = move-exception
-            r2 = r3
-        L6b:
-            if (r2 == 0) goto L70
-            r2.close()     // Catch: java.io.IOException -> L73
-        L70:
-            throw r0
-        L71:
-            r0 = move-exception
-            goto L46
-        L73:
-            r1 = move-exception
-            goto L70
-        L75:
-            r0 = move-exception
-            goto L6b
-        L77:
-            r0 = move-exception
-            goto L5e
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p000.C0048bu.m1001e(java.lang.String):void");
+    public final void m1001e(String str) {
+        C0033bf c0033bf;
+        C0001aa c0001aaM979d;
+        DataInputStream dataInputStreamM961a;
+        int iM955a = m955a(str, (byte) 0);
+        int i = 0;
+        while (true) {
+            if (i >= this.f1775c.size()) {
+                c0033bf = null;
+                break;
+            }
+            AbstractC0060cf abstractC0060cf = (AbstractC0060cf) this.f1775c.elementAt(i);
+            if (abstractC0060cf.f1956o == 0 && abstractC0060cf.f1957p != null && abstractC0060cf.f1957p.f0a == iM955a) {
+                c0033bf = (C0033bf) abstractC0060cf;
+                if (c0033bf.f602e == 0 && c0033bf.f603f == 0 && c0033bf.f604g == 0) {
+                    break;
+                }
+            }
+            i++;
+        }
+        if (c0033bf != null || (c0001aaM979d = m979d(iM955a)) == null) {
+            return;
+        }
+        try {
+            dataInputStreamM961a = m961a(c0001aaM979d);
+            if (dataInputStreamM961a == null) {
+                if (dataInputStreamM961a != null) {
+                    try {
+                        dataInputStreamM961a.close();
+                        return;
+                    } catch (IOException e) {
+                        return;
+                    }
+                }
+                return;
+            }
+            try {
+                try {
+                    m972b(c0001aaM979d, dataInputStreamM961a, (short) 0, (short) 0, (short) 0);
+                    if (dataInputStreamM961a != null) {
+                        try {
+                            dataInputStreamM961a.close();
+                        } catch (IOException e2) {
+                        }
+                    }
+                } catch (Throwable th) {
+                    th = th;
+                    if (dataInputStreamM961a != null) {
+                        try {
+                            dataInputStreamM961a.close();
+                        } catch (IOException e3) {
+                        }
+                    }
+                    throw th;
+                }
+            } catch (IOException e4) {
+                e = e4;
+                e.printStackTrace();
+                if (dataInputStreamM961a != null) {
+                    try {
+                        dataInputStreamM961a.close();
+                    } catch (IOException e5) {
+                    }
+                }
+            }
+        } catch (IOException e6) {
+            e = e6;
+            dataInputStreamM961a = null;
+        } catch (Throwable th2) {
+            th = th2;
+            dataInputStreamM961a = null;
+            if (dataInputStreamM961a != null) {
+            }
+            throw th;
+        }
     }
 }

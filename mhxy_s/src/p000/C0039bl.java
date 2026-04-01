@@ -5,7 +5,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 /* renamed from: bl */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class C0039bl extends AbstractC0018ar {
 
     /* renamed from: A */
@@ -125,119 +125,59 @@ public final class C0039bl extends AbstractC0018ar {
     /* renamed from: a */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
-        To view partially-correct code enable 'Show inconsistent code' option in preferences
     */
-    public final void m694a(p000.C0023aw r6, p000.C0009ai r7, long r8) {
-        /*
-            r5 = this;
-            r1 = 3
-            r2 = -1
-            bc r0 = r5.f399g     // Catch: java.lang.Exception -> L76
-            if (r0 == 0) goto L71
-            java.util.Vector r0 = r5.f398f     // Catch: java.lang.Exception -> L76
-            if (r0 == 0) goto La4
-            java.util.Vector r0 = r5.f398f     // Catch: java.lang.Exception -> L76
-            int r0 = r0.size()     // Catch: java.lang.Exception -> L76
-            if (r0 <= r1) goto La4
-            java.util.Vector r0 = r5.f398f     // Catch: java.lang.Exception -> L76
-            java.util.Vector r1 = r5.f398f     // Catch: java.lang.Exception -> L76
-            int r1 = r1.size()     // Catch: java.lang.Exception -> L76
-            int r1 = r1 + (-1)
-            java.lang.Object r0 = r0.elementAt(r1)     // Catch: java.lang.Exception -> L76
-            short[] r0 = (short[]) r0     // Catch: java.lang.Exception -> L76
-            short[] r0 = (short[]) r0     // Catch: java.lang.Exception -> L76
-            short[] r1 = r5.f401i     // Catch: java.lang.Exception -> L76
-            if (r1 == 0) goto L9b
-            short[] r1 = r5.f401i     // Catch: java.lang.Exception -> L76
-            r3 = 0
-            short r1 = r1[r3]     // Catch: java.lang.Exception -> L76
-            r3 = 0
-            short r3 = r0[r3]     // Catch: java.lang.Exception -> L76
-            if (r1 != r3) goto L7b
-            r1 = 1
-            short r1 = r0[r1]     // Catch: java.lang.Exception -> L76
-            short[] r3 = r5.f401i     // Catch: java.lang.Exception -> L76
-            r4 = 1
-            short r3 = r3[r4]     // Catch: java.lang.Exception -> L76
-            if (r1 <= r3) goto L72
-            r1 = 3
-            r5.f400h = r1     // Catch: java.lang.Exception -> L76
-        L3f:
-            r5.f401i = r0     // Catch: java.lang.Exception -> L76
-            byte r1 = r5.f400h     // Catch: java.lang.Exception -> L76
-        L43:
-            if (r1 == r2) goto L9f
-            r1 = 0
-            r5.m692a(r1)     // Catch: java.lang.Exception -> L76
-            r1 = 0
-            short r1 = r0[r1]     // Catch: java.lang.Exception -> L76
-            r5.f402j = r1     // Catch: java.lang.Exception -> L76
-            r1 = 1
-            short r0 = r0[r1]     // Catch: java.lang.Exception -> L76
-            r5.f403k = r0     // Catch: java.lang.Exception -> L76
-            r5.m570r()     // Catch: java.lang.Exception -> L76
-            java.util.Vector r0 = r5.f398f     // Catch: java.lang.Exception -> L76
-            java.util.Vector r1 = r5.f398f     // Catch: java.lang.Exception -> L76
-            int r1 = r1.size()     // Catch: java.lang.Exception -> L76
-            int r1 = r1 + (-1)
-            r0.removeElementAt(r1)     // Catch: java.lang.Exception -> L76
-        L63:
-            bc r0 = r5.f399g     // Catch: java.lang.Exception -> L76
-            p000.C0009ai.m43a(r0, r8)     // Catch: java.lang.Exception -> L76
-        L68:
-            au r0 = r5.f396d     // Catch: java.lang.Exception -> L76
-            if (r0 == 0) goto L71
-            au r0 = r5.f396d     // Catch: java.lang.Exception -> L76
-            r0.mo584a(r6, r7, r8)     // Catch: java.lang.Exception -> L76
-        L71:
-            return
-        L72:
-            r1 = 1
-            r5.f400h = r1     // Catch: java.lang.Exception -> L76
-            goto L3f
-        L76:
-            r0 = move-exception
-            r0.printStackTrace()
-            goto L71
-        L7b:
-            short[] r1 = r5.f401i     // Catch: java.lang.Exception -> L76
-            r3 = 1
-            short r1 = r1[r3]     // Catch: java.lang.Exception -> L76
-            r3 = 1
-            short r3 = r0[r3]     // Catch: java.lang.Exception -> L76
-            if (r1 != r3) goto L9b
-            r1 = 0
-            short r1 = r0[r1]     // Catch: java.lang.Exception -> L76
-            short[] r3 = r5.f401i     // Catch: java.lang.Exception -> L76
-            r4 = 0
-            short r3 = r3[r4]     // Catch: java.lang.Exception -> L76
-            if (r1 <= r3) goto L97
-            r1 = 2
-            r5.f400h = r1     // Catch: java.lang.Exception -> L76
-        L92:
-            r5.f401i = r0     // Catch: java.lang.Exception -> L76
-            byte r1 = r5.f400h     // Catch: java.lang.Exception -> L76
-            goto L43
-        L97:
-            r1 = 0
-            r5.f400h = r1     // Catch: java.lang.Exception -> L76
-            goto L92
-        L9b:
-            r5.f401i = r0     // Catch: java.lang.Exception -> L76
-            r1 = r2
-            goto L43
-        L9f:
-            r0 = 0
-            r5.m692a(r0)     // Catch: java.lang.Exception -> L76
-            goto L63
-        La4:
-            r0 = 1
-            r5.m692a(r0)     // Catch: java.lang.Exception -> L76
-            bc r0 = r5.f399g     // Catch: java.lang.Exception -> L76
-            p000.C0009ai.m43a(r0, r8)     // Catch: java.lang.Exception -> L76
-            goto L68
-        */
-        throw new UnsupportedOperationException("Method not decompiled: p000.C0039bl.m694a(aw, ai, long):void");
+    public final void m694a(C0023aw c0023aw, C0009ai c0009ai, long j) {
+        byte b;
+        try {
+            if (this.f399g != null) {
+                if (this.f398f == null || this.f398f.size() <= 3) {
+                    m692a(true);
+                    C0009ai.m43a(this.f399g, j);
+                } else {
+                    short[] sArr = (short[]) this.f398f.elementAt(this.f398f.size() - 1);
+                    if (this.f401i == null) {
+                        this.f401i = sArr;
+                        b = -1;
+                        if (b == -1) {
+                            m692a(false);
+                            this.f402j = sArr[0];
+                            this.f403k = sArr[1];
+                            m570r();
+                            this.f398f.removeElementAt(this.f398f.size() - 1);
+                        } else {
+                            m692a(false);
+                        }
+                        C0009ai.m43a(this.f399g, j);
+                    } else {
+                        if (this.f401i[0] == sArr[0]) {
+                            if (sArr[1] > this.f401i[1]) {
+                                this.f400h = (byte) 3;
+                            } else {
+                                this.f400h = (byte) 1;
+                            }
+                            this.f401i = sArr;
+                            b = this.f400h;
+                        } else if (this.f401i[1] == sArr[1]) {
+                            if (sArr[0] > this.f401i[0]) {
+                                this.f400h = (byte) 2;
+                            } else {
+                                this.f400h = (byte) 0;
+                            }
+                            this.f401i = sArr;
+                            b = this.f400h;
+                        }
+                        if (b == -1) {
+                        }
+                        C0009ai.m43a(this.f399g, j);
+                    }
+                }
+                if (this.f396d != null) {
+                    this.f396d.mo584a(c0023aw, c0009ai, j);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /* renamed from: a */

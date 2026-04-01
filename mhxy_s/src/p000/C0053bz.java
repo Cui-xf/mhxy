@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 /* renamed from: bz */
-/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
 public final class C0053bz {
 
     /* renamed from: a */
@@ -851,16 +851,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
                 byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 byteArray = null;
             }
             return byteArray;
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
@@ -881,16 +879,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
                 byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 byteArray = null;
             }
             return byteArray;
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
@@ -913,16 +909,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
                 byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 byteArray = null;
             }
             return byteArray;
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
@@ -967,16 +961,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
                 byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 byteArray = null;
             }
             return byteArray;
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
@@ -1565,16 +1557,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
                 byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 byteArray = null;
             }
             return byteArray;
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
@@ -1675,16 +1665,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
                 byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 byteArray = null;
             }
             return byteArray;
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
@@ -1726,17 +1714,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(C0047bt.f994d);
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
-                byte[] byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
-                return byteArray;
+                return byteArrayOutputStream.toByteArray();
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 return null;
             }
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
@@ -1874,17 +1859,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(C0047bt.f994d);
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
-                byte[] byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
-                return byteArray;
+                return byteArrayOutputStream.toByteArray();
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 return null;
             }
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
@@ -1902,17 +1884,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(C0047bt.f994d);
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
-                byte[] byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
-                return byteArray;
+                return byteArrayOutputStream.toByteArray();
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 return null;
             }
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
@@ -1937,16 +1916,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
                 byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 byteArray = null;
             }
             return byteArray;
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
@@ -2345,16 +2322,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
                 byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 byteArray = null;
             }
             return byteArray;
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
@@ -3050,16 +3025,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
                 byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 byteArray = null;
             }
             return byteArray;
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
@@ -3194,16 +3167,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
                 byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 byteArray = null;
             }
             return byteArray;
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
@@ -3337,16 +3308,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
                 byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 byteArray = null;
             }
             return byteArray;
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
@@ -3629,17 +3598,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(C0047bt.f994d);
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
-                byte[] byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
-                return byteArray;
+                return byteArrayOutputStream.toByteArray();
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 return null;
             }
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
@@ -3751,17 +3717,14 @@ public final class C0053bz {
                 dataOutputStream.writeUTF(C0047bt.f994d);
                 dataOutputStream.writeUTF(str);
                 dataOutputStream.writeByte(-81);
-                byte[] byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
-                return byteArray;
+                return byteArrayOutputStream.toByteArray();
             } catch (IOException e) {
                 e.printStackTrace();
                 m1028a(byteArrayOutputStream, dataOutputStream);
                 return null;
             }
-        } catch (Throwable th) {
+        } finally {
             m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
         }
     }
 
