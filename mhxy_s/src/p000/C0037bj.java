@@ -9,11 +9,15 @@ import javax.microedition.rms.RecordStoreNotOpenException;
 public final class C0037bj {
     /* renamed from: a */
     private static RecordStore m681a(String str, boolean z) {
-        if (!z) {
-            return RecordStore.openRecordStore(str, !z);
+        try {
+            if (!z) {
+                return RecordStore.openRecordStore(str, !z);
+            }
+            RecordStore.deleteRecordStore(str);
+            return RecordStore.openRecordStore(str, z);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        RecordStore.deleteRecordStore(str);
-        return RecordStore.openRecordStore(str, z);
     }
 
     /* renamed from: a */
@@ -68,73 +72,30 @@ public final class C0037bj {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public static byte[] m684a(String str) throws Throwable {
-        RecordStore recordStoreM681a;
-        byte[] record = null;
+    public static byte[] m684a(String str) {
         if (m687d(str)) {
+            RecordStore recordStoreM681a = null;
             try {
-                try {
-                    recordStoreM681a = m681a(str, false);
-                } catch (RecordStoreException e) {
-                    e = e;
-                    recordStoreM681a = null;
-                } catch (Throwable th) {
-                    th = th;
-                    recordStoreM681a = null;
-                    if (recordStoreM681a != null) {
-                    }
-                    throw th;
+                recordStoreM681a = m681a(str, false);
+                if (recordStoreM681a.getNumRecords() + 1 <= 1) {
+                    return null;
                 }
-                try {
-                    if (recordStoreM681a.getNumRecords() + 1 > 1) {
-                        record = recordStoreM681a.getRecord(1);
-                        if (recordStoreM681a != null) {
-                            try {
-                                recordStoreM681a.closeRecordStore();
-                            } catch (RecordStoreNotOpenException e2) {
-                                e2.printStackTrace();
-                            } catch (RecordStoreException e3) {
-                                e3.printStackTrace();
-                            }
-                        }
-                    } else if (recordStoreM681a != null) {
-                        try {
-                            recordStoreM681a.closeRecordStore();
-                        } catch (RecordStoreNotOpenException e4) {
-                            e4.printStackTrace();
-                        } catch (RecordStoreException e5) {
-                            e5.printStackTrace();
-                        }
-                    }
-                } catch (RecordStoreException e6) {
-                    e = e6;
-                    e.printStackTrace();
-                    if (recordStoreM681a != null) {
-                        try {
-                            recordStoreM681a.closeRecordStore();
-                        } catch (RecordStoreException e7) {
-                            e7.printStackTrace();
-                        } catch (RecordStoreNotOpenException e8) {
-                            e8.printStackTrace();
-                        }
-                    }
-                    return record;
-                }
-            } catch (Throwable th2) {
-                th = th2;
+                return recordStoreM681a.getRecord(1);
+            } catch (RecordStoreException var14) {
+                var14.printStackTrace();
+                return null;
+            } finally {
                 if (recordStoreM681a != null) {
                     try {
                         recordStoreM681a.closeRecordStore();
-                    } catch (RecordStoreException e9) {
-                        e9.printStackTrace();
-                    } catch (RecordStoreNotOpenException e10) {
-                        e10.printStackTrace();
+                    } catch (RecordStoreException e) {
+                        e.printStackTrace();
                     }
                 }
-                throw th;
             }
+        } else {
+            return null;
         }
-        return record;
     }
 
     /* renamed from: b */

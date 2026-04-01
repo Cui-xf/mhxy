@@ -189,7 +189,8 @@ public final class C0003ac extends AbstractC0018ar {
     /* renamed from: a */
     public final C0039bl m9a(C0039bl[] c0039blArr) {
         if (c0039blArr != null) {
-            for (C0039bl c0039bl : c0039blArr) {
+            for (int i = 0; i < c0039blArr.length; i++) {
+                C0039bl c0039bl = c0039blArr[i];
                 this.f14H = c0039bl;
                 if (this.f399g == null) {
                     return null;

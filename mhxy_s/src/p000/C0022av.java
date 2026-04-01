@@ -1,12 +1,9 @@
 package p000;
 
+import com.cc.CloseUtil;
 import com.yinhan.kjava.main.RunnableC0066a;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+
+import java.io.*;
 import java.util.Vector;
 
 /* renamed from: av */
@@ -233,76 +230,19 @@ public final class C0022av {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public final void m602b(String str) throws Throwable {
-        DataOutputStream dataOutputStream;
-        ByteArrayOutputStream byteArrayOutputStream;
+    public final void m602b(String str) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         try {
-            byteArrayOutputStream = new ByteArrayOutputStream();
-            try {
-                dataOutputStream = new DataOutputStream(byteArrayOutputStream);
-            } catch (IOException e) {
-                e = e;
-                dataOutputStream = null;
-            } catch (Throwable th) {
-                th = th;
-                dataOutputStream = null;
-                if (dataOutputStream != null) {
-                }
-                if (byteArrayOutputStream != null) {
-                }
-                throw th;
-            }
-        } catch (IOException e2) {
-            e = e2;
-            dataOutputStream = null;
-            byteArrayOutputStream = null;
-        } catch (Throwable th2) {
-            th = th2;
-            dataOutputStream = null;
-            byteArrayOutputStream = null;
-        }
-        try {
-            try {
-                dataOutputStream.writeByte(-10);
-                dataOutputStream.writeUTF(str);
-                dataOutputStream.flush();
-                byteArrayOutputStream.flush();
-                m595b(new C0091w((short) 8193, byteArrayOutputStream.toByteArray()));
-                try {
-                    dataOutputStream.close();
-                    byteArrayOutputStream.close();
-                } catch (IOException e3) {
-                    e3.printStackTrace();
-                }
-            } catch (Throwable th3) {
-                th = th3;
-                if (dataOutputStream != null) {
-                    try {
-                        dataOutputStream.close();
-                    } catch (IOException e4) {
-                        e4.printStackTrace();
-                        throw th;
-                    }
-                }
-                if (byteArrayOutputStream != null) {
-                    byteArrayOutputStream.close();
-                }
-                throw th;
-            }
-        } catch (IOException e5) {
-            e = e5;
+            dataOutputStream.writeByte(-10);
+            dataOutputStream.writeUTF(str);
+            dataOutputStream.flush();
+            byteArrayOutputStream.flush();
+            m595b(new C0091w((short) 8193, byteArrayOutputStream.toByteArray()));
+        } catch (IOException e) {
             e.printStackTrace();
-            if (dataOutputStream != null) {
-                try {
-                    dataOutputStream.close();
-                } catch (IOException e6) {
-                    e6.printStackTrace();
-                    return;
-                }
-            }
-            if (byteArrayOutputStream != null) {
-                byteArrayOutputStream.close();
-            }
+        } finally {
+            CloseUtil.close(byteArrayOutputStream, dataOutputStream);
         }
     }
 

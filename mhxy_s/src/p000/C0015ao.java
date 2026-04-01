@@ -5173,7 +5173,8 @@ public final class C0015ao {
                     return;
                 }
                 m332u((byte) strArrM1310a.length);
-                for (String str : strArrM1310a) {
+                for (int i = 0; i < strArrM1310a.length; i++) {
+                    String str = strArrM1310a[i];
                     this.f286cD.insertElementAt(new C0027b(str, C0055ca.f1894n[c0059ce.f1951a]), this.f286cD.size());
                 }
             }
@@ -6574,7 +6575,8 @@ public final class C0015ao {
                 C0059ce c0059ce = (C0059ce) f166ck.elementAt(i);
                 String[] strArrM1310a = C0055ca.m1310a(new StringBuffer().append("[").append(c0059ce.f1954d).append("]").append(c0059ce.f1955e).toString(), C0088t.f2523i, C0088t.f2516b - 20);
                 if (strArrM1310a != null && strArrM1310a.length > 0) {
-                    for (String str : strArrM1310a) {
+                    for (int i1 = 0; i1 < strArrM1310a.length; i1++) {
+                        String str = strArrM1310a[i1];
                         f144aP.addElement(new C0027b(str, C0055ca.f1894n[c0059ce.f1951a]));
                     }
                 }
@@ -7499,7 +7501,9 @@ public final class C0015ao {
                 return null;
             }
             for (int i = 0; i < C0047bt.f1332jT.length; i++) {
-                for (String str : C0055ca.m1311a(new StringBuffer().append("<").append(C0047bt.f1331jS[i]).append(">以").append(C0088t.m1677a(this.f354e.f2218l, C0047bt.f1333jU[i])).append("购买了您的").append(C0047bt.f1332jT[i]).toString(), C0088t.f2523i, 155, "\t")) {
+                String[] strings = C0055ca.m1311a(new StringBuffer().append("<").append(C0047bt.f1331jS[i]).append(">以").append(C0088t.m1677a(this.f354e.f2218l, C0047bt.f1333jU[i])).append("购买了您的").append(C0047bt.f1332jT[i]).toString(), C0088t.f2523i, 155, "\t");
+                for (int i1 = 0; i1 < strings.length; i1++) {
+                    String str = strings[i1];
                     stringBuffer.append(str);
                     stringBuffer.append('\t');
                 }
@@ -7509,7 +7513,9 @@ public final class C0015ao {
                 return null;
             }
             for (int i2 = 0; i2 < C0047bt.f1335jW.length; i2++) {
-                for (String str2 : C0055ca.m1311a(new StringBuffer().append("<").append(C0047bt.f1334jV[i2]).append(">以").append(C0088t.m1677a(this.f354e.f2218l, C0047bt.f1336jX[i2])).append("购买了您的").append(C0047bt.f1335jW[i2]).toString(), C0088t.f2523i, 160, "\t")) {
+                String[] strings = C0055ca.m1311a(new StringBuffer().append("<").append(C0047bt.f1334jV[i2]).append(">以").append(C0088t.m1677a(this.f354e.f2218l, C0047bt.f1336jX[i2])).append("购买了您的").append(C0047bt.f1335jW[i2]).toString(), C0088t.f2523i, 160, "\t");
+                for (int i = 0; i < strings.length; i++) {
+                    String str2 = strings[i];
                     stringBuffer.append(str2);
                     stringBuffer.append('\t');
                 }
@@ -12496,7 +12502,8 @@ public final class C0015ao {
         for (int i = 0; i < f166ck.size(); i++) {
             C0059ce c0059ce = (C0059ce) f166ck.elementAt(i);
             if (c0059ce.f1952b == b && (strArrM1310a = C0055ca.m1310a(new StringBuffer().append("[").append(c0059ce.f1954d).append("]").append(c0059ce.f1955e).toString(), C0088t.f2523i, C0088t.f2516b - 20)) != null && strArrM1310a.length > 0) {
-                for (String str : strArrM1310a) {
+                for (int i1 = 0; i1 < strArrM1310a.length; i1++) {
+                    String str = strArrM1310a[i1];
                     f144aP.addElement(new C0027b(str, C0055ca.f1894n[c0059ce.f1951a]));
                 }
             }
@@ -14715,33 +14722,31 @@ public final class C0015ao {
     /* JADX WARN: Type inference failed for: r3v17 */
     /* renamed from: P */
     public final void m363P() {
-        short[][] sArr;
         if (f163cL && m310i()) {
             f163cL = false;
+            int[][] var1 = null;
             if (C0047bt.f1766t != null) {
-                ?? r0 = new int[C0047bt.f1766t.length][2];
+                var1 = new int[C0047bt.f1766t.length][2];
                 for (int i = 0; i < C0047bt.f1766t.length; i++) {
                     if (C0047bt.f1766t[i] != null) {
-                        r0[i][0] = C0047bt.f1766t[i].f508a;
-                        r0[i][1] = C0047bt.f1766t[i].f502U;
+                        var1[i][0] = C0047bt.f1766t[i].f508a;
+                        var1[i][1] = C0047bt.f1766t[i].f502U;
                         C0047bt.f1766t[i] = null;
                     }
                 }
                 C0047bt.f1766t = null;
-                sArr = r0;
-            } else {
-                sArr = null;
             }
+
             if (C0047bt.f1767u.size() > 0) {
                 C0047bt.f1766t = (C0026az[]) C0047bt.f1767u.elementAt(C0047bt.f1767u.size() - 1);
                 this.f303cV = 0;
                 C0047bt.f1767u.removeAllElements();
             }
-            if (C0047bt.f1766t != null && sArr != null && sArr.length > 0) {
+            if (C0047bt.f1766t != null && var1 != null && var1.length > 0) {
                 for (int i2 = 0; i2 < C0047bt.f1766t.length; i2++) {
-                    for (int i3 = 0; i3 < sArr.length; i3++) {
-                        if (sArr[i3] != null && C0047bt.f1766t[i2].f508a == sArr[i3][0]) {
-                            C0047bt.f1766t[i2].f502U = (byte) sArr[i3][1];
+                    for (int i3 = 0; i3 < var1.length; i3++) {
+                        if (var1[i3] != null && C0047bt.f1766t[i2].f508a == var1[i3][0]) {
+                            C0047bt.f1766t[i2].f502U = (byte) var1[i3][1];
                         }
                     }
                 }
@@ -16529,7 +16534,8 @@ public final class C0015ao {
         }
         this.f258bU.removeAllElements();
         if (b == 0) {
-            for (byte b2 : bArr) {
+            for (int ccc = 0; ccc < bArr.length; ccc++) {
+                byte b2 = bArr[ccc];
                 for (int i = 0; i < C0047bt.f891bC.size(); i++) {
                     C0041bn c0041bn = (C0041bn) C0047bt.f891bC.elementAt(i);
                     if (c0041bn != null && ((byte) ((c0041bn.f733t >>> b2) & 1)) == 1 && c0041bn.f720g - c0041bn.f735v > 0) {
@@ -16538,7 +16544,8 @@ public final class C0015ao {
                 }
             }
         } else {
-            for (byte b3 : bArr) {
+            for (int ccc1 = 0; ccc1 < bArr.length; ccc1++) {
+                byte b3 = bArr[ccc1];
                 for (int i2 = 0; i2 < C0047bt.f891bC.size(); i2++) {
                     C0041bn c0041bn2 = (C0041bn) C0047bt.f891bC.elementAt(i2);
                     if (c0041bn2 != null && b3 == c0041bn2.f717d && c0041bn2.f720g - c0041bn2.f735v > 0) {
@@ -18128,7 +18135,8 @@ public final class C0015ao {
 
     /* renamed from: a */
     public final void m400a(C0059ce[] c0059ceArr) {
-        for (C0059ce c0059ce : c0059ceArr) {
+        for (int i = 0; i < c0059ceArr.length; i++) {
+            C0059ce c0059ce = c0059ceArr[i];
             m270b(c0059ce);
             if (this.f358k == 0 || !m310i()) {
                 m152a(c0059ce);
@@ -18170,7 +18178,8 @@ public final class C0015ao {
         }
         if (z) {
             this.f273bj.removeAllElements();
-            for (short s : sArr) {
+            for (int i = 0; i < sArr.length; i++) {
+                short s = sArr[i];
                 this.f273bj.addElement(String.valueOf((int) s));
             }
             RunnableC0066a.f2100af.m994b(this.f273bj, (short[]) null, (short[]) null, (short[]) null);

@@ -577,7 +577,7 @@ public final class C0083o {
         m1614f();
         if (f2377B != null) {
             this.f2407O = new boolean[f2377B.length];
-            this.f2399G = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, f2377B.length + 2, 4);
+            this.f2399G = new int[f2377B.length + 2][4];// () Array.newInstance((Class<?>) Integer.TYPE, f2377B.length + 2, 4);
         } else {
             this.f2399G = new int[2][4];
         }

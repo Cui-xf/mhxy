@@ -1,5 +1,7 @@
 package p000;
 
+import com.cc.CloseUtil;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -57,81 +59,22 @@ public final class C0029bb {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public static void m624a() throws Throwable {
-        DataInputStream dataInputStream;
-        ByteArrayInputStream byteArrayInputStream;
+    public static void m624a() {
         byte[] bArrM684a = C0037bj.m684a("silver_kj");
         if (bArrM684a == null) {
             return;
         }
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bArrM684a);
+        DataInputStream dataInputStream = new DataInputStream(byteArrayInputStream);
         try {
-            byteArrayInputStream = new ByteArrayInputStream(bArrM684a);
-            try {
-                dataInputStream = new DataInputStream(byteArrayInputStream);
-            } catch (Exception e) {
-                e = e;
-                dataInputStream = null;
-            } catch (Throwable th) {
-                th = th;
-                dataInputStream = null;
-                if (byteArrayInputStream != null) {
-                }
-                if (dataInputStream != null) {
-                }
-                throw th;
-            }
-        } catch (Exception e2) {
-            e = e2;
-            dataInputStream = null;
-            byteArrayInputStream = null;
-        } catch (Throwable th2) {
-            th = th2;
-            dataInputStream = null;
-            byteArrayInputStream = null;
-        }
-        try {
-            try {
-                f557k = dataInputStream.readByte() == 1;
-                f558l = dataInputStream.readByte();
-                f559m = dataInputStream.readUTF();
-                f560n = dataInputStream.readUTF();
-                byteArrayInputStream.close();
-                dataInputStream.close();
-                try {
-                    byteArrayInputStream.close();
-                    dataInputStream.close();
-                } catch (Exception e3) {
-                    e3.printStackTrace();
-                }
-            } catch (Throwable th3) {
-                th = th3;
-                if (byteArrayInputStream != null) {
-                    try {
-                        byteArrayInputStream.close();
-                    } catch (Exception e4) {
-                        e4.printStackTrace();
-                        throw th;
-                    }
-                }
-                if (dataInputStream != null) {
-                    dataInputStream.close();
-                }
-                throw th;
-            }
-        } catch (Exception e5) {
-            e = e5;
+            f557k = dataInputStream.readByte() == 1;
+            f558l = dataInputStream.readByte();
+            f559m = dataInputStream.readUTF();
+            f560n = dataInputStream.readUTF();
+        } catch (Exception e) {
             e.printStackTrace();
-            if (byteArrayInputStream != null) {
-                try {
-                    byteArrayInputStream.close();
-                } catch (Exception e6) {
-                    e6.printStackTrace();
-                    return;
-                }
-            }
-            if (dataInputStream != null) {
-                dataInputStream.close();
-            }
+        } finally {
+            CloseUtil.close(byteArrayInputStream, dataInputStream);
         }
     }
 
@@ -142,76 +85,19 @@ public final class C0029bb {
         Code decompiled incorrectly, please refer to instructions dump.
     */
     public static void m625b() {
-        DataOutputStream dataOutputStream;
-        ByteArrayOutputStream byteArrayOutputStream;
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         try {
-            byteArrayOutputStream = new ByteArrayOutputStream();
-            try {
-                dataOutputStream = new DataOutputStream(byteArrayOutputStream);
-            } catch (Exception e) {
-                e = e;
-                dataOutputStream = null;
-            } catch (Throwable th) {
-                th = th;
-                dataOutputStream = null;
-                if (byteArrayOutputStream != null) {
-                }
-                if (dataOutputStream != null) {
-                }
-                throw th;
-            }
-        } catch (Exception e2) {
-            e = e2;
-            dataOutputStream = null;
-            byteArrayOutputStream = null;
-        } catch (Throwable th2) {
-            th = th2;
-            dataOutputStream = null;
-            byteArrayOutputStream = null;
-        }
-        try {
-            try {
-                dataOutputStream.writeByte(f557k ? 1 : 0);
-                dataOutputStream.writeByte(f558l);
-                dataOutputStream.writeUTF(f559m);
-                dataOutputStream.writeUTF(f557k ? f560n : "");
-                dataOutputStream.flush();
-                C0037bj.m682a(byteArrayOutputStream.toByteArray(), "silver_kj");
-                try {
-                    byteArrayOutputStream.close();
-                    dataOutputStream.close();
-                } catch (Exception e3) {
-                    e3.printStackTrace();
-                }
-            } catch (Throwable th3) {
-                th = th3;
-                if (byteArrayOutputStream != null) {
-                    try {
-                        byteArrayOutputStream.close();
-                    } catch (Exception e4) {
-                        e4.printStackTrace();
-                        throw th;
-                    }
-                }
-                if (dataOutputStream != null) {
-                    dataOutputStream.close();
-                }
-                throw th;
-            }
-        } catch (Exception e5) {
-            e = e5;
+            dataOutputStream.writeByte(f557k ? 1 : 0);
+            dataOutputStream.writeByte(f558l);
+            dataOutputStream.writeUTF(f559m);
+            dataOutputStream.writeUTF(f557k ? f560n : "");
+            dataOutputStream.flush();
+            C0037bj.m682a(byteArrayOutputStream.toByteArray(), "silver_kj");
+        } catch (Exception e) {
             e.printStackTrace();
-            if (byteArrayOutputStream != null) {
-                try {
-                    byteArrayOutputStream.close();
-                } catch (Exception e6) {
-                    e6.printStackTrace();
-                    return;
-                }
-            }
-            if (dataOutputStream != null) {
-                dataOutputStream.close();
-            }
+        } finally {
+            CloseUtil.close(byteArrayOutputStream, dataOutputStream);
         }
     }
 }

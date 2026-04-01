@@ -224,7 +224,8 @@ public final class C0063ci {
         int i2;
         int i3;
         int[] iArr = new int[17];
-        for (byte b : bArr) {
+        for (int i1 = 0; i1 < bArr.length; i1++) {
+            byte b = bArr[i1];
             iArr[b] = iArr[b] + 1;
         }
         iArr[0] = 0;

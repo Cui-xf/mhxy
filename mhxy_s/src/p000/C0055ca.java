@@ -1358,7 +1358,9 @@ public final class C0055ca {
             str = "";
         }
         Vector vector = new Vector();
-        for (String strSubstring : m1309a(str, str2)) {
+        String[] strings = m1309a(str, str2);
+        for (int i1 = 0; i1 < strings.length; i1++) {
+            String strSubstring = strings[i1];
             do {
                 String strM1316b = m1316b(strSubstring, font, i);
                 vector.addElement(strM1316b);
@@ -1532,7 +1534,8 @@ public final class C0055ca {
             }
             String[] strArrM1311a = m1311a(string.trim(), C0088t.f2523i, i5, "\t");
             int iMax = 0;
-            for (String str2 : strArrM1311a) {
+            for (int i1 = 0; i1 < strArrM1311a.length; i1++) {
+                String str2 = strArrM1311a[i1];
                 iMax = Math.max(iMax, C0088t.f2523i.stringWidth(str2) + 8);
             }
             f1861X = Math.min(iMax, i5);

@@ -17,7 +17,7 @@ public final class C0076h {
     /* renamed from: c */
     private Display f2274c;
 
-    public C0076h(MainMidlet mainMidlet, Display display) throws Throwable {
+    public C0076h(MainMidlet mainMidlet, Display display){
         String appProperty = mainMidlet.getAppProperty("CpId");
         appProperty = appProperty == null ? "" : appProperty;
         String appProperty2 = mainMidlet.getAppProperty("GameId");

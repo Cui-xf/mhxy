@@ -107,7 +107,8 @@ public final class C0033bf extends AbstractC0060cf {
             }
         }
         boolean z = false;
-        for (byte b : bArr3) {
+        for (int i = 0; i < bArr3.length; i++) {
+            byte b = bArr3[i];
             if (b != -1) {
                 z = true;
             }
@@ -131,7 +132,7 @@ public final class C0033bf extends AbstractC0060cf {
     private static byte[] m647a(String str, byte[] bArr) {
         byte[] bArr2 = new byte[bArr.length + 8];
         int length = bArr.length - 4;
-        bArr2[0] = length >> 24;
+        bArr2[0] = (byte) (length >> 24);
         bArr2[1] = (byte) (length >>> 16);
         bArr2[2] = (byte) (length >>> 8);
         bArr2[3] = (byte) length;
@@ -242,7 +243,7 @@ public final class C0033bf extends AbstractC0060cf {
             return null;
         }
         try {
-            long[][] jArr = (long[][]) Array.newInstance((Class<?>) Long.TYPE, bArr.length / 3, 4);
+            long[][] jArr = new long[bArr.length / 3][4];
             for (int i = 0; i < jArr.length; i++) {
                 jArr[i][0] = bArr[i * 3] & 255;
                 jArr[i][1] = bArr[(i * 3) + 1] & 255;
@@ -307,7 +308,7 @@ public final class C0033bf extends AbstractC0060cf {
                     byte[] bArr4 = bArr[i2];
                     int length = bArr3.length;
                     int i3 = this.f605i;
-                    bArr4[length] = i3 >> 24;
+                    bArr4[length] = (byte) (i3 >> 24);
                     bArr4[length + 1] = (byte) (i3 >>> 16);
                     bArr4[length + 2] = (byte) (i3 >>> 8);
                     bArr4[length + 3] = (byte) i3;

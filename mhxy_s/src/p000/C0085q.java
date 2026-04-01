@@ -179,12 +179,14 @@ public final class C0085q {
             }
             if (i > 0) {
                 if (C0047bt.f937bw >= 1) {
-                    for (C0039bl c0039bl2 : c0039blArr) {
+                    for (int i1 = 0; i1 < c0039blArr.length; i1++) {
+                        C0039bl c0039bl2 = c0039blArr[i1];
                         c0039bl2.f694u = dataInputStream.readByte();
                         c0039bl2.f695v = dataInputStream.readByte();
                     }
                 } else {
-                    for (C0039bl c0039bl3 : c0039blArr) {
+                    for (int i1 = 0; i1 < c0039blArr.length; i1++) {
+                        C0039bl c0039bl3 = c0039blArr[i1];
                         c0039bl3.f694u = (byte) 0;
                     }
                 }

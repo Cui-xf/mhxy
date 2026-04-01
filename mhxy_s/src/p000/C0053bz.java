@@ -133,7 +133,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static C0091w m1027a(byte b, byte b2, String str) throws IOException {
+    public static C0091w m1027a(byte b, byte b2, String str) {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -160,7 +160,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    private static void m1028a(ByteArrayOutputStream byteArrayOutputStream, DataOutputStream dataOutputStream) throws IOException {
+    private static void m1028a(ByteArrayOutputStream byteArrayOutputStream, DataOutputStream dataOutputStream) {
         if (byteArrayOutputStream != null) {
             try {
                 byteArrayOutputStream.close();
@@ -169,7 +169,11 @@ public final class C0053bz {
             }
         }
         if (dataOutputStream != null) {
-            dataOutputStream.close();
+            try {
+                dataOutputStream.close();
+            } catch (IOException e) {
+                return;
+            }
         }
     }
 
@@ -704,7 +708,8 @@ public final class C0053bz {
                     dataOutputStream.writeByte(0);
                 } else {
                     dataOutputStream.writeByte(bArr.length);
-                    for (byte b3 : bArr) {
+                    for (int i1 = 0; i1 < bArr.length; i1++) {
+                        byte b3 = bArr[i1];
                         dataOutputStream.writeByte(b3);
                     }
                 }
@@ -4559,54 +4564,22 @@ public final class C0053bz {
     }
 
     /* renamed from: u */
-    public static byte[] m1240u(short s, String str) throws Throwable {
-        DataOutputStream dataOutputStream;
-        ByteArrayOutputStream byteArrayOutputStream;
-        byte[] byteArray = null;
+    public static byte[] m1240u(short s, String str) {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        DataOutputStream outputStream = new DataOutputStream(out);
         try {
-            byteArrayOutputStream = new ByteArrayOutputStream();
-        } catch (IOException e) {
-            e = e;
-            dataOutputStream = null;
-            byteArrayOutputStream = null;
-        } catch (Throwable th) {
-            th = th;
-            dataOutputStream = null;
-            byteArrayOutputStream = null;
-        }
-        try {
-            dataOutputStream = new DataOutputStream(byteArrayOutputStream);
-        } catch (IOException e2) {
-            e = e2;
-            dataOutputStream = null;
-        } catch (Throwable th2) {
-            th = th2;
-            dataOutputStream = null;
-            m1028a(byteArrayOutputStream, dataOutputStream);
-            throw th;
-        }
-        try {
-            try {
-                dataOutputStream.writeByte(-82);
-                dataOutputStream.writeShort(4612);
-                dataOutputStream.writeUTF(C0047bt.f888b);
-                dataOutputStream.writeUTF(C0047bt.f994d);
-                dataOutputStream.writeUTF(str);
-                dataOutputStream.writeByte(-81);
-                byteArray = byteArrayOutputStream.toByteArray();
-                m1028a(byteArrayOutputStream, dataOutputStream);
-            } catch (Throwable th3) {
-                th = th3;
-                m1028a(byteArrayOutputStream, dataOutputStream);
-                throw th;
-            }
-        } catch (IOException e3) {
-            e = e3;
+            outputStream.writeByte(-82);
+            outputStream.writeShort(4612);
+            outputStream.writeUTF(C0047bt.f888b);
+            outputStream.writeUTF(C0047bt.f994d);
+            outputStream.writeUTF(str);
+            outputStream.writeByte(-81);
+            return out.toByteArray();
+        } catch (Exception e) {
             e.printStackTrace();
-            m1028a(byteArrayOutputStream, dataOutputStream);
-            return byteArray;
+            m1028a(out, outputStream);
+            return null;
         }
-        return byteArray;
     }
 
     /* renamed from: u */

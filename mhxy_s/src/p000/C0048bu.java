@@ -1,10 +1,11 @@
 package p000;
 
+import com.cc.CloseUtil;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.util.Vector;
 
 /* renamed from: bu */
@@ -89,14 +90,14 @@ public final class C0048bu {
                 c0023aw.f462g = (byte) ((c0023aw.f456a % c0023aw.f458c == 0 ? 0 : 1) + (c0023aw.f456a / c0023aw.f458c));
                 c0023aw.f463h = (byte) ((c0023aw.f457b % c0023aw.f459d == 0 ? 0 : 1) + (c0023aw.f457b / c0023aw.f459d));
                 int i2 = (c0023aw.f456a / c0023aw.f460e) + (c0023aw.f456a % c0023aw.f460e == 0 ? 0 : 1);
-                c0023aw.f464i = (byte[][]) Array.newInstance((Class<?>) Byte.TYPE, i2, (c0023aw.f457b % c0023aw.f461f == 0 ? 0 : 1) + (c0023aw.f457b / c0023aw.f461f));
+                c0023aw.f464i = new byte[i2][(c0023aw.f457b % c0023aw.f461f == 0 ? 0 : 1) + (c0023aw.f457b / c0023aw.f461f)];// () Array.newInstance((Class<?>) Byte.TYPE, i2, (c0023aw.f457b % c0023aw.f461f == 0 ? 0 : 1) + (c0023aw.f457b / c0023aw.f461f));
                 int i3 = dataInputStream.readShort();
                 short[] sArr = new short[i3];
                 for (int i4 = 0; i4 < i3; i4++) {
                     sArr[i4] = dataInputStream.readShort();
                     c0023aw.f464i[sArr[i4] % i2][sArr[i4] / i2] = 1;
                 }
-                c0023aw.f465j = (C0051bx[][]) Array.newInstance((Class<?>) C0051bx.class, c0023aw.f462g, c0023aw.f463h);
+                c0023aw.f465j = new C0051bx[c0023aw.f462g][c0023aw.f463h];// () Array.newInstance((Class<?>) C0051bx.class, c0023aw.f462g, c0023aw.f463h);
                 for (int i5 = 0; i5 < c0023aw.f465j.length; i5++) {
                     for (int i6 = 0; i6 < c0023aw.f465j[i5].length; i6++) {
                         if (dataInputStream.readByte() >= 0) {
@@ -159,63 +160,27 @@ public final class C0048bu {
 
     /* renamed from: a */
     private static C0033bf m960a(byte[][] bArr, short s, short s2, short s3) throws Throwable {
-        DataInputStream dataInputStream;
         C0033bf c0033bf = new C0033bf(s, s2, s3);
-        DataInputStream dataInputStream2 = new DataInputStream(new ByteArrayInputStream(bArr[1]));
-        try {
-            c0033bf.f599b = (short) dataInputStream2.readInt();
-            c0033bf.f600c = (short) dataInputStream2.readInt();
-            if (bArr[0] == null || bArr[0].length <= 4) {
+        DataInputStream dis = new DataInputStream(new ByteArrayInputStream(bArr[1]));
+        c0033bf.f599b = (short) dis.readInt();
+        c0033bf.f600c = (short) dis.readInt();
+        if (bArr[0] == null || bArr[0].length <= 4) {
+            c0033bf.f601d = new C0010aj[1];
+            c0033bf.f601d[0] = new C0010aj((short) 0, (short) 0, c0033bf.f599b, c0033bf.f600c);
+        } else {
+            dis = new DataInputStream(new ByteArrayInputStream(bArr[0], 2, bArr[0].length - 2));
+            int i = dis.readByte();
+            c0033bf.f601d = new C0010aj[i];
+            for (int i2 = 0; i2 < i; i2++) {
+                c0033bf.f601d[i2] = new C0010aj(dis.readShort(), dis.readShort(), dis.readShort(), dis.readShort());
+            }
+            if (i == 0) {
                 c0033bf.f601d = new C0010aj[1];
                 c0033bf.f601d[0] = new C0010aj((short) 0, (short) 0, c0033bf.f599b, c0033bf.f600c);
-                dataInputStream = dataInputStream2;
-            } else {
-                dataInputStream = new DataInputStream(new ByteArrayInputStream(bArr[0], 2, bArr[0].length - 2));
-                try {
-                    try {
-                        int i = dataInputStream.readByte();
-                        c0033bf.f601d = new C0010aj[i];
-                        for (int i2 = 0; i2 < i; i2++) {
-                            c0033bf.f601d[i2] = new C0010aj(dataInputStream.readShort(), dataInputStream.readShort(), dataInputStream.readShort(), dataInputStream.readShort());
-                        }
-                        if (i == 0) {
-                            c0033bf.f601d = new C0010aj[1];
-                            c0033bf.f601d[0] = new C0010aj((short) 0, (short) 0, c0033bf.f599b, c0033bf.f600c);
-                        }
-                        dataInputStream.close();
-                    } catch (Throwable th) {
-                        th = th;
-                        try {
-                            dataInputStream.close();
-                        } catch (IOException e) {
-                        }
-                        throw th;
-                    }
-                } catch (IOException e2) {
-                    e = e2;
-                    e.printStackTrace();
-                    try {
-                        dataInputStream.close();
-                    } catch (IOException e3) {
-                    }
-                    return c0033bf;
-                }
             }
-            dataInputStream.close();
-            c0033bf.m651a(bArr, true);
-            try {
-                dataInputStream.close();
-            } catch (IOException e4) {
-            }
-        } catch (IOException e5) {
-            e = e5;
-            dataInputStream = dataInputStream2;
-        } catch (Throwable th2) {
-            th = th2;
-            dataInputStream = dataInputStream2;
-            dataInputStream.close();
-            throw th;
         }
+        dis.close();
+        c0033bf.m651a(bArr, true);
         return c0033bf;
     }
 
@@ -257,7 +222,7 @@ public final class C0048bu {
     }
 
     /* renamed from: a */
-    private void m962a(C0001aa c0001aa, DataInputStream dataInputStream, short s, short s2, short s3) {
+    private void m962a(C0001aa c0001aa, DataInputStream dataInputStream, short s, short s2, short s3) throws IOException {
         short[] sArr;
         C0030bc c0030bcM970b = m970b(m969a(dataInputStream, 0), s, s2, s3);
         this.f1776d.removeAllElements();
@@ -385,61 +350,45 @@ public final class C0048bu {
         if (c0030bc.f567g == null || c0030bc.f568h == null) {
             c0030bc.f567g = new short[c0030bc.f571k.length];
             c0030bc.f568h = new short[c0030bc.f571k.length];
-            if (c0030bc.f571k != null) {
-                int i = 0;
-                while (true) {
-                    int i2 = i;
-                    if (i2 >= c0030bc.f571k.length) {
-                        break;
-                    }
-                    if (c0030bc.f571k[i2] != null) {
-                        for (int i3 = 0; i3 < c0030bc.f571k[i2].length; i3++) {
-                            if (c0030bc.f571k[i2][i3] != null && c0030bc.f571k[i2][i3].f1793a == null) {
-                                c0030bc.f571k[i2][i3].f1793a = m959a(c0030bc.f571k[i2][i3].f1794b, s, s2, s3);
-                            }
+            for (int i = 0; i < c0030bc.f571k.length; i++) {
+                if (c0030bc.f571k[i] != null) {
+                    for (int i2 = 0; i2 < c0030bc.f571k[i].length; i2++) {
+                        if (c0030bc.f571k[i][i2] != null && c0030bc.f571k[i][i2].f1793a == null) {
+                            c0030bc.f571k[i][i2].f1793a = m959a(c0030bc.f571k[i][i2].f1794b, s, s2, s3);
                         }
-                        C0051bx[] c0051bxArr = c0030bc.f571k[i2];
-                        short s4 = 0;
-                        short s5 = 0;
+                    }
+                    C0051bx[] c0051bxArr = c0030bc.f571k[i];
+                    if (c0051bxArr != null) {
+                        int i3 = 0;
                         int i4 = 0;
-                        short s6 = 0;
-                        s6 = 0;
-                        if (c0051bxArr != null) {
-                            if (c0051bxArr.length > 0 && c0051bxArr[0].f1793a != null) {
-                                c0010ajM650a = c0051bxArr[0].f1793a.f1956o == 0 ? ((C0033bf) c0051bxArr[0].f1793a).m650a(c0051bxArr[0].f1796d) : null;
-                                s4 = c0051bxArr[0].f1797e;
-                                s5 = c0051bxArr[0].f1798f;
-                                i4 = c0051bxArr[0].f1797e + (c0010ajM650a == null ? (short) 0 : c0010ajM650a.f97c);
-                                s6 = (c0010ajM650a == null ? (short) 0 : c0010ajM650a.f98d) + c0051bxArr[0].f1798f;
-                            }
-                            int i5 = 0;
-                            short sMax = s6;
-                            int i6 = i4;
-                            short s7 = s5;
-                            int iMin = s4;
-                            while (i5 < c0051bxArr.length) {
-                                C0051bx c0051bx = c0051bxArr[i5];
-                                if (c0051bxArr[0].f1793a != null && c0051bxArr[0].f1793a.f1956o == 0) {
-                                    c0010ajM650a = ((C0033bf) c0051bx.f1793a).m650a(c0051bx.f1796d);
-                                }
-                                iMin = Math.min((int) c0051bx.f1797e, iMin);
-                                ?? Min = Math.min((int) s7, (int) c0051bx.f1798f);
-                                int iMax = Math.max(i6, (c0010ajM650a == null ? (short) 0 : c0010ajM650a.f97c) + c0051bx.f1797e);
-                                i5++;
-                                sMax = Math.max((int) sMax, (c0010ajM650a == null ? (short) 0 : c0010ajM650a.f98d) + c0051bx.f1798f);
-                                i6 = iMax;
-                                s7 = Min;
-                            }
-                            c0030bc.f567g[i2] = (short) Math.abs(i6 - iMin);
-                            c0030bc.f568h[i2] = (short) Math.abs(sMax - s7);
+                        int i5 = 0;
+                        int i6 = 0;
+                        C0010aj c0010aj = null;
+                        if (c0051bxArr.length > 0 && c0051bxArr[0].f1793a != null) {
+                            c0010aj = c0051bxArr[0].f1793a.f1956o == 0 ? ((C0033bf) c0051bxArr[0].f1793a).m650a(c0051bxArr[0].f1796d) : null;
+                            i3 = c0051bxArr[0].f1797e;
+                            i4 = c0051bxArr[0].f1798f;
+                            i5 = c0051bxArr[0].f1797e + (c0010aj == null ? 0 : c0010aj.f97c);
+                            i6 = c0051bxArr[0].f1798f + (c0010aj == null ? 0 : c0010aj.f98d);
                         }
+                        for (int i7 = 0; i7 < c0051bxArr.length; i7++) {
+                            C0051bx c0051bx = c0051bxArr[i7];
+                            if (c0051bxArr[0].f1793a != null && c0051bxArr[0].f1793a.f1956o == 0) {
+                                c0010aj = ((C0033bf) c0051bx.f1793a).m650a(c0051bx.f1796d);
+                            }
+                            i3 = Math.min(i3, c0051bx.f1797e);
+                            i4 = Math.min(i4, c0051bx.f1798f);
+                            i5 = Math.max(i5, c0051bx.f1797e + (c0010aj == null ? 0 : c0010aj.f97c));
+                            i6 = Math.max(i6, c0051bx.f1798f + (c0010aj == null ? 0 : c0010aj.f98d));
+                        }
+                        c0030bc.f567g[i] = (short) Math.abs(i5 - i3);
+                        c0030bc.f568h[i] = (short) Math.abs(i6 - i4);
                     }
-                    i = i2 + 1;
                 }
-                if (c0030bc.f567g != null) {
-                    c0030bc.f569i = (byte) (c0030bc.f567g[0] / 2);
-                    c0030bc.f570j = (byte) c0030bc.f568h[0];
-                }
+            }
+            if (c0030bc.f567g != null) {
+                c0030bc.f569i = (byte) (c0030bc.f567g[0] / 2);
+                c0030bc.f570j = (byte) c0030bc.f568h[0];
             }
         }
     }
@@ -466,99 +415,47 @@ public final class C0048bu {
     /* JADX WARN: Type inference failed for: r2v8, types: [bc] */
     /* renamed from: a */
     private void m966a(short[] sArr, short[] sArr2, short[] sArr3, short[] sArr4) {
-        short sM976c;
-        boolean z = (sArr2 == null || sArr3 == null || sArr4 == null) ? false : true;
+        boolean z = sArr2 != null && sArr3 != null && sArr4 != null;
         for (int i = 0; i < sArr.length; i++) {
             short s = z ? sArr2[i] : (short) 0;
             short s2 = z ? sArr3[i] : (short) 0;
             short s3 = z ? sArr4[i] : (short) 0;
-            sM976c = sArr[i];
-            if (sM976c >= 0) {
-                sM976c = m976c(sArr[i], s, s2, s3);
-                if (sM976c != 0) {
+            if (sArr[i] >= 0) {
+                if (m976c(sArr[i], s, s2, s3) != null) {
                     sArr[i] = -1;
                 } else {
-                    sM976c = i + 1;
-                    while (sM976c < sArr.length) {
-                        if (sArr[sM976c] >= 0 && sArr[i] == sArr[sM976c]) {
-                            if (s == (z ? sArr2[sM976c] : (short) 0)) {
-                                if (s2 == (z ? sArr3[sM976c] : (short) 0)) {
-                                    if (s3 == (z ? sArr4[sM976c] : (short) 0)) {
-                                        sArr[i] = -1;
-                                    }
-                                }
+                    for (int j = i + 1; j < sArr.length; ++j) {
+                        if (sArr[j] >= 0 && sArr[j] == sArr[i]) {
+                            if ((s == (z ? sArr2[j] : (short) 0)) && (s2 == (z ? sArr3[j] : (short) 0)) && (s3 == (z ? sArr4[j] : (short) 0))) {
+                                sArr[i] = -1;
                             }
                         }
-                        sM976c++;
                     }
                 }
             }
         }
-        int i2 = 0;
-        while (i2 < sArr.length) {
-            short s4 = z ? sArr2[i2] : (short) 0;
-            short s5 = z ? sArr3[i2] : (short) 0;
-            short s6 = z ? sArr4[i2] : (short) 0;
-            sM976c = sM976c;
-            if (sArr[i2] >= 0 || s4 != 0 || s5 != 0 || s6 != 0) {
-                C0030bc c0030bcM976c = m976c(sArr[i2], s4, s5, s6);
+        for (int var40 = 0; var40 < sArr.length; ++var40) {
+            short s4 = z ? sArr2[var40] : (short) 0;
+            short s5 = z ? sArr3[var40] : (short) 0;
+            short s6 = z ? sArr4[var40] : (short) 0;
+            if (sArr[var40] >= 0 || s4 != 0 || s5 != 0 || s6 != 0) {
+                C0030bc c0030bcM976c = m976c(sArr[var40], s4, s5, s6);
                 if (c0030bcM976c == null) {
-                    sM976c = 0;
-                    C0001aa c0001aaM957a = m957a(sArr[i2]);
+                    C0001aa c0001aaM957a = m957a(sArr[var40]);
                     if (c0001aaM957a != null) {
                         DataInputStream dataInputStreamM961a = m961a(c0001aaM957a);
-                        sM976c = dataInputStreamM961a;
                         if (dataInputStreamM961a != null) {
-                            m962a(c0001aaM957a, dataInputStreamM961a, s4, s5, s6);
-                            sM976c = dataInputStreamM961a;
-                            if (dataInputStreamM961a != null) {
-                                try {
-                                    dataInputStreamM961a.close();
-                                    sM976c = dataInputStreamM961a;
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                    sM976c = dataInputStreamM961a;
-                                }
-                            }
-                        } else if (dataInputStreamM961a != null) {
                             try {
-                                dataInputStreamM961a.close();
-                                sM976c = dataInputStreamM961a;
-                            } catch (IOException e2) {
-                                e2.printStackTrace();
-                                sM976c = dataInputStreamM961a;
+                                m962a(c0001aaM957a, dataInputStreamM961a, s4, s5, s6);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            } finally {
+                                CloseUtil.close(null, dataInputStreamM961a);
                             }
                         }
                     }
                 } else {
                     this.f1775c.addElement(c0030bcM976c.m626a(s4, s5, s6));
-                    sM976c = sM976c;
-                }
-            }
-            while (true) {
-                try {
-                    try {
-                        i2++;
-                        break;
-                    } catch (IOException e3) {
-                        e3.printStackTrace();
-                        if (sM976c != 0) {
-                            try {
-                                sM976c.close();
-                            } catch (IOException e4) {
-                                e4.printStackTrace();
-                            }
-                        }
-                    }
-                } catch (Throwable th) {
-                    if (sM976c != 0) {
-                        try {
-                            sM976c.close();
-                        } catch (IOException e5) {
-                            e5.printStackTrace();
-                        }
-                    }
-                    throw th;
                 }
             }
         }
@@ -593,7 +490,7 @@ public final class C0048bu {
 
     /* renamed from: a */
     private static byte[][] m969a(DataInputStream dataInputStream, int i) throws IOException {
-        dataInputStream.skipBytes(0);
+        dataInputStream.skipBytes(i);
         dataInputStream.readShort();
         dataInputStream.readByte();
         int i2 = dataInputStream.readByte();
@@ -629,44 +526,18 @@ public final class C0048bu {
         if (m980d(s, s2, s3, s4) != null) {
             return;
         }
-        DataInputStream dataInputStreamM961a = null;
-        try {
-            try {
-                C0001aa c0001aaM957a = m957a(s);
-                if (c0001aaM957a != null) {
-                    dataInputStreamM961a = m961a(c0001aaM957a);
-                    if (dataInputStreamM961a != null) {
-                        m972b(c0001aaM957a, dataInputStreamM961a, s2, s3, s4);
-                        if (dataInputStreamM961a != null) {
-                            try {
-                                dataInputStreamM961a.close();
-                            } catch (IOException e) {
-                            }
-                        }
-                    } else if (dataInputStreamM961a != null) {
-                        try {
-                            dataInputStreamM961a.close();
-                        } catch (IOException e2) {
-                        }
-                    }
-                }
-            } catch (IOException e3) {
-                e3.printStackTrace();
-                if (0 != 0) {
-                    try {
-                        dataInputStreamM961a.close();
-                    } catch (IOException e4) {
-                    }
-                }
-            }
-        } catch (Throwable th) {
+        C0001aa c0001aaM957a = m957a(s);
+        if (c0001aaM957a != null) {
+            DataInputStream dataInputStreamM961a = m961a(c0001aaM957a);
             if (dataInputStreamM961a != null) {
                 try {
-                    dataInputStreamM961a.close();
-                } catch (IOException e5) {
+                    m972b(c0001aaM957a, dataInputStreamM961a, s2, s3, s4);
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                } finally {
+                    CloseUtil.close(null, dataInputStreamM961a);
                 }
             }
-            throw th;
         }
     }
 
@@ -742,8 +613,6 @@ public final class C0048bu {
 
     /* renamed from: c */
     private void m977c(C0023aw c0023aw) {
-        AbstractC0060cf abstractC0060cfM959a;
-        C0051bx c0051bx;
         if (c0023aw.f465j != null) {
             for (int i = 0; i < c0023aw.f465j.length; i++) {
                 for (int i2 = 0; i2 < c0023aw.f465j[i].length; i2++) {
@@ -773,38 +642,32 @@ public final class C0048bu {
         if (c0023aw.f467l != null) {
             for (int i4 = 0; i4 < c0023aw.f467l.length; i4++) {
                 if (c0023aw.f467l[i4] != null) {
-                    if (c0023aw.f467l[i4].f1795c == 0) {
-                        short sM605a3 = c0023aw.m605a(c0023aw.f467l[i4].f1794b);
+                    C0051bx c0051bx = c0023aw.f467l[i4];
+                    short s = c0051bx.f1794b;
+                    if (c0051bx.f1795c == 0) {
+                        short sM605a3 = c0023aw.m605a(s);
                         if (sM605a3 != -1) {
-                            c0051bx = c0023aw.f467l[i4];
-                            abstractC0060cfM959a = m959a(c0023aw.f467l[i4].f1794b, c0023aw.f468m[sM605a3][1], c0023aw.f468m[sM605a3][2], c0023aw.f468m[sM605a3][3]);
+                            c0051bx.f1793a = m959a(s, c0023aw.f468m[sM605a3][1], c0023aw.f468m[sM605a3][2], c0023aw.f468m[sM605a3][3]);
                         } else {
-                            c0051bx = c0023aw.f467l[i4];
-                            abstractC0060cfM959a = m959a(c0023aw.f467l[i4].f1794b, (short) 0, (short) 0, (short) 0);
+                            c0051bx.f1793a = m959a(s, (short) 0, (short) 0, (short) 0);
                         }
-                    } else if (c0023aw.f467l[i4].f1795c == 2) {
-                        C0051bx c0051bx2 = c0023aw.f467l[i4];
-                        short s = c0023aw.f467l[i4].f1794b;
-                        int i5 = 0;
-                        while (true) {
-                            if (i5 >= this.f1775c.size()) {
-                                C0088t.m1679a(new StringBuffer().append("no resource ").append((int) s).toString());
-                                abstractC0060cfM959a = null;
-                                c0051bx = c0051bx2;
-                                break;
-                            } else {
-                                if (this.f1775c.elementAt(i5) instanceof C0030bc) {
-                                    abstractC0060cfM959a = (C0030bc) this.f1775c.elementAt(i5);
-                                    if (abstractC0060cfM959a.f1957p != null && abstractC0060cfM959a.f1957p.f1b == s) {
-                                        c0051bx = c0051bx2;
-                                        break;
-                                    }
+                    } else if (c0051bx.f1795c == 2) {
+                        int i = 0;
+                        while (i < this.f1775c.size()) {
+                            if (this.f1775c.elementAt(i) instanceof C0030bc) {
+                                C0030bc t = (C0030bc) this.f1775c.elementAt(i);
+                                if (t.f1957p != null && t.f1957p.f1b == s) {
+                                    c0051bx.f1793a = t;
+                                    break;
                                 }
-                                i5++;
                             }
+                            i++;
+                        }
+                        if (i >= this.f1775c.size()) {
+                            C0088t.m1679a("no resource " + s);
+                            c0051bx.f1793a = null;
                         }
                     }
-                    c0051bx.f1793a = abstractC0060cfM959a;
                 }
             }
         }
@@ -1003,67 +866,31 @@ public final class C0048bu {
     /* renamed from: b */
     public final void m993b(String str, short s, short s2, short s3) {
         C0030bc c0030bc;
-        DataInputStream dataInputStreamM961a = null;
         int iM955a = m955a(str, (byte) 2);
-        int i = 0;
-        while (true) {
-            int i2 = i;
-            if (i2 >= this.f1775c.size()) {
-                c0030bc = null;
-                break;
-            }
-            AbstractC0060cf abstractC0060cf = (AbstractC0060cf) this.f1775c.elementAt(i2);
+        for (int i = 0; i < this.f1775c.size(); i++) {
+            AbstractC0060cf abstractC0060cf = (AbstractC0060cf) this.f1775c.elementAt(i);
             if (abstractC0060cf.f1956o == 2 && abstractC0060cf.f1957p != null && abstractC0060cf.f1957p.f0a == iM955a) {
                 c0030bc = (C0030bc) abstractC0060cf;
-                if (c0030bc.f561a != s || c0030bc.f562b != s2 || c0030bc.f563c != s3) {
+                if (c0030bc.f561a == s && c0030bc.f562b == s2 && c0030bc.f563c == s3) {
+                    return;
                 }
             }
-            i = i2 + 1;
+        }
+
+        C0001aa c0001aaM979d = m979d(iM955a);
+        if (c0001aaM979d == null) {
+            return;
+        }
+        DataInputStream dataInputStreamM961a = m961a(c0001aaM979d);
+        if (dataInputStreamM961a == null) {
+            return;
         }
         try {
-            if (c0030bc != null) {
-                return;
-            }
-            try {
-                C0001aa c0001aaM979d = m979d(iM955a);
-                if (c0001aaM979d != null) {
-                    dataInputStreamM961a = m961a(c0001aaM979d);
-                    if (dataInputStreamM961a != null) {
-                        m962a(c0001aaM979d, dataInputStreamM961a, s, s2, s3);
-                        if (dataInputStreamM961a != null) {
-                            try {
-                                dataInputStreamM961a.close();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    } else if (dataInputStreamM961a != null) {
-                        try {
-                            dataInputStreamM961a.close();
-                        } catch (IOException e2) {
-                            e2.printStackTrace();
-                        }
-                    }
-                }
-            } catch (IOException e3) {
-                e3.printStackTrace();
-                if (0 != 0) {
-                    try {
-                        dataInputStreamM961a.close();
-                    } catch (IOException e4) {
-                        e4.printStackTrace();
-                    }
-                }
-            }
-        } catch (Throwable th) {
-            if (dataInputStreamM961a != null) {
-                try {
-                    dataInputStreamM961a.close();
-                } catch (IOException e5) {
-                    e5.printStackTrace();
-                }
-            }
-            throw th;
+            m962a(c0001aaM979d, dataInputStreamM961a, s, s2, s3);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            CloseUtil.close(null, dataInputStreamM961a);
         }
     }
 
@@ -1128,90 +955,41 @@ public final class C0048bu {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public final C0023aw m996c(String str) throws Throwable {
-        C0023aw c0023aw;
-        DataInputStream dataInputStreamM961a;
-        int i = 0;
+    public final C0023aw m996c(String str) {
         int iM956a = m956a(m971b(str, (byte) 3).toCharArray());
-        while (true) {
-            int i2 = i;
-            if (i2 >= this.f1775c.size()) {
-                c0023aw = null;
-                break;
-            }
-            AbstractC0060cf abstractC0060cf = (AbstractC0060cf) this.f1775c.elementAt(i2);
+        for (int i = 0; i < this.f1775c.size(); i++) {
+            AbstractC0060cf abstractC0060cf = (AbstractC0060cf) this.f1775c.elementAt(i);
             if (abstractC0060cf.f1956o == 3 && abstractC0060cf.f1957p != null && abstractC0060cf.f1957p.f0a == iM956a) {
-                c0023aw = (C0023aw) abstractC0060cf;
-                break;
+                return (C0023aw) abstractC0060cf;
             }
-            i = i2 + 1;
         }
-        if (c0023aw != null) {
-            return c0023aw;
+
+        C0001aa c0001aaM979d = m979d(iM956a);
+        if (c0001aaM979d == null) {
+            return null;
         }
+        DataInputStream dataInputStreamM961a = m961a(c0001aaM979d);
+        if (dataInputStreamM961a == null) {
+            return null;
+        }
+
+        byte[][] bArr;
         try {
-            C0001aa c0001aaM979d = m979d(iM956a);
-            if (c0001aaM979d == null) {
-                return null;
-            }
-            dataInputStreamM961a = m961a(c0001aaM979d);
-            if (dataInputStreamM961a == null) {
-                if (dataInputStreamM961a != null) {
-                    try {
-                        dataInputStreamM961a.close();
-                    } catch (IOException e) {
-                    }
-                }
-                return null;
-            }
-            try {
-                try {
-                    C0023aw c0023awM958a = m958a(m969a(dataInputStreamM961a, 0));
-                    dataInputStreamM961a.close();
-                    m963a(c0023awM958a);
-                    m966a(m974b(c0023awM958a), (short[]) null, (short[]) null, (short[]) null);
-                    m977c(c0023awM958a);
-                    c0023awM958a.f1957p = c0001aaM979d;
-                    if (dataInputStreamM961a == null) {
-                        return c0023awM958a;
-                    }
-                    try {
-                        dataInputStreamM961a.close();
-                        return c0023awM958a;
-                    } catch (IOException e2) {
-                        return c0023awM958a;
-                    }
-                } catch (Throwable th) {
-                    th = th;
-                    if (dataInputStreamM961a != null) {
-                        try {
-                            dataInputStreamM961a.close();
-                        } catch (IOException e3) {
-                        }
-                    }
-                    throw th;
-                }
-            } catch (IOException e4) {
-                e = e4;
-                e.printStackTrace();
-                if (dataInputStreamM961a != null) {
-                    try {
-                        dataInputStreamM961a.close();
-                    } catch (IOException e5) {
-                    }
-                }
-                return null;
-            }
-        } catch (IOException e6) {
-            e = e6;
-            dataInputStreamM961a = null;
-        } catch (Throwable th2) {
-            th = th2;
-            dataInputStreamM961a = null;
-            if (dataInputStreamM961a != null) {
-            }
-            throw th;
+            bArr = m969a(dataInputStreamM961a, 0);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            CloseUtil.close(null, dataInputStreamM961a);
         }
+
+        C0023aw c0023awM958a = m958a(bArr);
+        m963a(c0023awM958a);
+        m966a(m974b(c0023awM958a), (short[]) null, (short[]) null, (short[]) null);
+        m977c(c0023awM958a);
+        c0023awM958a.f1957p = c0001aaM979d;
+        return c0023awM958a;
+
     }
 
     /* renamed from: c */
@@ -1331,7 +1109,6 @@ public final class C0048bu {
     public final void m1001e(String str) {
         C0033bf c0033bf;
         C0001aa c0001aaM979d;
-        DataInputStream dataInputStreamM961a;
         int iM955a = m955a(str, (byte) 0);
         int i = 0;
         while (true) {
@@ -1351,57 +1128,18 @@ public final class C0048bu {
         if (c0033bf != null || (c0001aaM979d = m979d(iM955a)) == null) {
             return;
         }
+
+        DataInputStream dataInputStreamM961a;
+        dataInputStreamM961a = m961a(c0001aaM979d);
+        if (dataInputStreamM961a == null) {
+            return;
+        }
         try {
-            dataInputStreamM961a = m961a(c0001aaM979d);
-            if (dataInputStreamM961a == null) {
-                if (dataInputStreamM961a != null) {
-                    try {
-                        dataInputStreamM961a.close();
-                        return;
-                    } catch (IOException e) {
-                        return;
-                    }
-                }
-                return;
-            }
-            try {
-                try {
-                    m972b(c0001aaM979d, dataInputStreamM961a, (short) 0, (short) 0, (short) 0);
-                    if (dataInputStreamM961a != null) {
-                        try {
-                            dataInputStreamM961a.close();
-                        } catch (IOException e2) {
-                        }
-                    }
-                } catch (Throwable th) {
-                    th = th;
-                    if (dataInputStreamM961a != null) {
-                        try {
-                            dataInputStreamM961a.close();
-                        } catch (IOException e3) {
-                        }
-                    }
-                    throw th;
-                }
-            } catch (IOException e4) {
-                e = e4;
-                e.printStackTrace();
-                if (dataInputStreamM961a != null) {
-                    try {
-                        dataInputStreamM961a.close();
-                    } catch (IOException e5) {
-                    }
-                }
-            }
-        } catch (IOException e6) {
-            e = e6;
-            dataInputStreamM961a = null;
-        } catch (Throwable th2) {
-            th = th2;
-            dataInputStreamM961a = null;
-            if (dataInputStreamM961a != null) {
-            }
-            throw th;
+            m972b(c0001aaM979d, dataInputStreamM961a, (short) 0, (short) 0, (short) 0);
+        } catch (Throwable e) {
+            e.printStackTrace();
+        } finally {
+            CloseUtil.close(null, dataInputStreamM961a);
         }
     }
 }

@@ -228,7 +228,9 @@ public final class C0050bw {
             str = "";
         }
         Vector vector = new Vector();
-        for (String strSubstring : m1012a(str, "\t")) {
+        String[] strings = m1012a(str, "\t");
+        for (int i1 = 0; i1 < strings.length; i1++) {
+            String strSubstring = strings[i1];
             do {
                 String strM1008a = m1008a(strSubstring, font, i);
                 vector.addElement(strM1008a);
