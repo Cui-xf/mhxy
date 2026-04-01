@@ -185,11 +185,11 @@ public final class C0082n extends AbstractC0012al {
         if (this.f2355c == null) {
             this.f2362j = null;
         } else {
-            this.f2362j = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, this.f2355c.length, 4);
+            this.f2362j = new int[this.f2355c.length][4];
         }
     }
 
-    @Override // p000.AbstractC0012al
+     // p000.AbstractC0012al
     /* renamed from: b */
     public final int mo69b(int i, int i2) {
         boolean z;
@@ -220,7 +220,7 @@ public final class C0082n extends AbstractC0012al {
         return 0;
     }
 
-    @Override // p000.AbstractC0012al
+     // p000.AbstractC0012al
     /* renamed from: b */
     public final void mo70b(int i) {
         byte b;
@@ -267,7 +267,7 @@ public final class C0082n extends AbstractC0012al {
         this.f2356d = (byte) 0;
     }
 
-    @Override // p000.AbstractC0012al
+     // p000.AbstractC0012al
     /* renamed from: j */
     public final void mo71j() {
         if (this.f2355c != null) {

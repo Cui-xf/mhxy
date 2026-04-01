@@ -70,7 +70,7 @@ public final class C0014an extends AbstractC0012al {
     private int f128v = 2176196;
 
     /* renamed from: w */
-    private int[][] f129w = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 2, 4);
+    private int[][] f129w = new int[2][4];
 
     /* renamed from: f */
     public boolean f112f = false;
@@ -204,7 +204,7 @@ public final class C0014an extends AbstractC0012al {
         }
     }
 
-    @Override // p000.AbstractC0012al
+     // p000.AbstractC0012al
     /* renamed from: b */
     public final int mo69b(int i, int i2) {
         if (m73a(i, i2, 0)) {
@@ -223,7 +223,7 @@ public final class C0014an extends AbstractC0012al {
     /* JADX WARN: Removed duplicated region for block: B:131:0x021b  */
     /* JADX WARN: Removed duplicated region for block: B:62:0x0115  */
     /* JADX WARN: Removed duplicated region for block: B:95:0x019c A[LOOP:1: B:93:0x0194->B:95:0x019c, LOOP_END] */
-    @Override // p000.AbstractC0012al
+     // p000.AbstractC0012al
     /* renamed from: b */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
@@ -377,7 +377,7 @@ public final class C0014an extends AbstractC0012al {
         this.f126t = null;
     }
 
-    @Override // p000.AbstractC0012al
+     // p000.AbstractC0012al
     /* renamed from: j */
     public final void mo71j() {
         if (this.f120n != null) {

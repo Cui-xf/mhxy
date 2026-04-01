@@ -325,7 +325,7 @@ public final class C0061cg {
             }
             this.f1988J = null;
         }
-        this.f1988J = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 2, 4);
+        this.f1988J = new int[2][4];
         this.f1986H = new C0014an();
         this.f1987I = new C0014an();
         this.f1990L = new StringBuffer().append("继承前\t").append(f1968j).append("\t").append("星级: \t").append("攻击：").append(f1970l).append("-").append(f1971m).append("\t").append("法功：").append(f1972n).append("-").append(f1973o).toString();

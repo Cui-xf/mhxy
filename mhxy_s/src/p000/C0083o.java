@@ -501,7 +501,7 @@ public final class C0083o {
         this.f2412d = i2;
         m1613e();
         if (C0047bt.f1409kr != null) {
-            this.f2417l = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, C0047bt.f1409kr.length, 4);
+            this.f2417l = new int[C0047bt.f1409kr.length][4];
         }
         this.f2414i.m401a(C0047bt.f1409kr);
         this.f2415j.f2149aq.m1604b();
@@ -579,7 +579,7 @@ public final class C0083o {
             this.f2407O = new boolean[f2377B.length];
             this.f2399G = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, f2377B.length + 2, 4);
         } else {
-            this.f2399G = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 2, 4);
+            this.f2399G = new int[2][4];
         }
         if (this.f2403K == null) {
             this.f2403K = RunnableC0066a.f2101ag.m985a("jianding_02");

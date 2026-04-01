@@ -463,7 +463,7 @@ public final class C0086r {
             this.f2456i.m401a(this.f2463p);
         }
         m1664c();
-        this.f2454g = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 5, 4);
+        this.f2454g = new int[5][4];
         this.f2457j.f2149aq.m1604b();
         this.f2457j.f2149aq.m1601a("装备附魔");
         this.f2457j.f2149aq.m1603a(false);

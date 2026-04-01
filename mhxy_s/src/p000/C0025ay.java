@@ -26,7 +26,7 @@ public final class C0025ay extends AbstractC0038bk {
     private InterfaceC0000a f481j;
 
     /* JADX WARN: Multi-variable type inference failed */
-    @Override // p000.AbstractC0038bk
+     // p000.AbstractC0038bk
     /* renamed from: a */
     public final int mo30a(int i, int i2) {
         if (m690b(i, i2)) {
@@ -49,7 +49,7 @@ public final class C0025ay extends AbstractC0038bk {
         return 0;
     }
 
-    @Override // p000.AbstractC0038bk
+     // p000.AbstractC0038bk
     /* renamed from: a */
     public final void mo31a() {
         this.f480e = 0;
@@ -60,7 +60,7 @@ public final class C0025ay extends AbstractC0038bk {
         }
     }
 
-    @Override // p000.AbstractC0038bk
+     // p000.AbstractC0038bk
     /* renamed from: a */
     public final void mo32a(int i) {
         if (i == 1 || i == 514) {
@@ -109,7 +109,7 @@ public final class C0025ay extends AbstractC0038bk {
         }
     }
 
-    @Override // p000.AbstractC0038bk
+     // p000.AbstractC0038bk
     /* renamed from: a */
     public final void mo33a(Graphics graphics) {
         graphics.setClip(this.f676f, this.f677g, this.f678h, this.f679i);
@@ -130,7 +130,7 @@ public final class C0025ay extends AbstractC0038bk {
         this.f476a = z;
     }
 
-    @Override // p000.AbstractC0038bk
+     // p000.AbstractC0038bk
     /* renamed from: b */
     public final void mo34b() {
         this.f481j = null;

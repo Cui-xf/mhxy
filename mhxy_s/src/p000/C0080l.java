@@ -72,7 +72,7 @@ public final class C0080l extends AbstractC0012al {
     private boolean f2326u = false;
 
     /* renamed from: v */
-    private int[][] f2327v = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 2, 4);
+    private int[][] f2327v = new int[2][4];
 
     /* renamed from: a */
     private void m1584a(Graphics graphics, int i, int i2, int i3) {
@@ -190,7 +190,7 @@ public final class C0080l extends AbstractC0012al {
     }
 
     /* JADX WARN: Removed duplicated region for block: B:55:0x00a4  */
-    @Override // p000.AbstractC0012al
+     // p000.AbstractC0012al
     /* renamed from: b */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
@@ -227,12 +227,12 @@ public final class C0080l extends AbstractC0012al {
         return 0;
     }
 
-    @Override // p000.AbstractC0012al
+     // p000.AbstractC0012al
     /* renamed from: b */
     public final void mo70b(int i) {
     }
 
-    @Override // p000.AbstractC0012al
+     // p000.AbstractC0012al
     /* renamed from: j */
     public final void mo71j() {
         if (this.f2306a != null) {

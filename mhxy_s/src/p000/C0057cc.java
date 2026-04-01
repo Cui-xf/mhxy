@@ -418,7 +418,7 @@ public final class C0057cc {
     /* renamed from: a */
     public final void m1338a(short s) {
         if (this.f1915d == null) {
-            this.f1915d = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 4, 4);
+            this.f1915d = new int[4][4];
             this.f1917f = new C0030bc[4];
         }
         if (this.f1927p != null) {

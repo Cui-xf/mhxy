@@ -21,7 +21,7 @@ final class RunnableC0070e implements Runnable {
         new Thread(this).start();
     }
 
-    @Override // java.lang.Runnable
+     // java.lang.Runnable
     public final void run() throws Throwable {
         Throwable th;
         Connection connection;

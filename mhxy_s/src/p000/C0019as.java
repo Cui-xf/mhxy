@@ -192,7 +192,7 @@ public final class C0019as {
             }
             this.f421p = null;
         }
-        this.f421p = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 4, 4);
+        this.f421p = new int[4][4];
         this.f415a.f2149aq.m1604b();
         this.f415a.f2149aq.m1601a("装备升星");
         this.f415a.f2149aq.m1603a(false);

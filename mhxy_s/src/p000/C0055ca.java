@@ -199,10 +199,10 @@ public final class C0055ca {
     private static int[][] f1873ai = null;
 
     /* renamed from: aj */
-    private static int[][] f1874aj = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 4, 4);
+    private static int[][] f1874aj = new int[4][4];
 
     /* renamed from: ak */
-    private static int[][] f1875ak = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 2, 4);
+    private static int[][] f1875ak = new int[2][4];
 
     /* renamed from: al */
     private static int[] f1876al = new int[4];
@@ -351,7 +351,7 @@ public final class C0055ca {
         f1872ah = null;
         f1895o = 0;
         f1896p = new String[strArr.length];
-        f1873ai = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, strArr.length, 4);
+        f1873ai = new int[strArr.length][4];
         for (int i4 = 0; i4 < strArr.length; i4++) {
             System.arraycopy(strArr, 0, f1896p, 0, strArr.length);
         }
@@ -384,7 +384,7 @@ public final class C0055ca {
         f1886f = 0;
         if (strArr != null) {
             length = strArr.length;
-            f1843F = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, strArr.length, 4);
+            f1843F = new int[strArr.length][4];
         } else {
             f1843F = null;
             length = 0;
@@ -427,7 +427,7 @@ public final class C0055ca {
                 f1884d = i;
             }
             if (f1840C > 1) {
-                f1842E = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 2, 4);
+                f1842E = new int[2][4];
             } else {
                 f1842E = null;
             }
@@ -1224,7 +1224,7 @@ public final class C0055ca {
                 f1845H = strArrM1311a;
                 f1846I = ((strArrM1311a.length + 1) * C0088t.f2524j) + 20;
                 m1291a(graphics, (C0088t.f2516b / 2) * 3, (C0088t.f2517c - (f1846I / 4)) / 2, C0088t.f2516b / 4, f1846I / 4);
-                f1847J = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, strArr.length, 4);
+                f1847J = new int[strArr.length][4];
             } else if (f1888h == 1) {
                 m1291a(graphics, C0088t.f2516b / 4, (C0088t.f2517c - (f1846I / 2)) / 2, C0088t.f2516b / 2, f1846I / 2);
             } else if (f1888h == 2) {

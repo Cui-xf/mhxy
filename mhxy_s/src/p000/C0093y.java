@@ -69,7 +69,7 @@ public final class C0093y extends AbstractC0038bk {
         return f2574v;
     }
 
-    @Override // p000.AbstractC0038bk
+     // p000.AbstractC0038bk
     /* renamed from: a */
     public final int mo30a(int i, int i2) {
         if (i > (this.f676f + this.f678h) - 30 && i < (this.f676f + this.f678h) - 5 && i2 > this.f677g && i2 < this.f677g + 30) {
@@ -84,12 +84,12 @@ public final class C0093y extends AbstractC0038bk {
         return 0;
     }
 
-    @Override // p000.AbstractC0038bk
+     // p000.AbstractC0038bk
     /* renamed from: a */
     public final void mo31a() {
     }
 
-    @Override // p000.AbstractC0038bk
+     // p000.AbstractC0038bk
     /* renamed from: a */
     public final void mo32a(int i) {
         int i2 = 0;
@@ -117,7 +117,7 @@ public final class C0093y extends AbstractC0038bk {
         this.f2578m = str;
     }
 
-    @Override // p000.AbstractC0038bk
+     // p000.AbstractC0038bk
     /* renamed from: a */
     public final void mo33a(Graphics graphics) {
         graphics.setClip(this.f676f, this.f677g, this.f678h, this.f679i);
@@ -150,7 +150,7 @@ public final class C0093y extends AbstractC0038bk {
         graphics.drawImage(f2573e.f598a, (this.f676f + this.f678h) - f2573e.f599b, (this.f677g + this.f679i) - f2573e.f600c, 20);
     }
 
-    @Override // p000.AbstractC0038bk
+     // p000.AbstractC0038bk
     /* renamed from: b */
     public final void mo34b() {
         int i = 0;

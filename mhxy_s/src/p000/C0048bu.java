@@ -73,7 +73,7 @@ public final class C0048bu {
         DataInputStream dataInputStream = new DataInputStream(new ByteArrayInputStream(bArr[0]));
         try {
             try {
-                c0023aw.f468m = (short[][]) Array.newInstance((Class<?>) Short.TYPE, dataInputStream.readByte(), 4);
+                c0023aw.f468m = new short[dataInputStream.readByte()][4];
                 for (int i = 0; i < c0023aw.f468m.length; i++) {
                     c0023aw.f468m[i][0] = dataInputStream.readShort();
                     c0023aw.f468m[i][1] = dataInputStream.readShort();

@@ -16,7 +16,7 @@ public final class C0056cb extends C0052by {
         this.f1908e = c0051bx.f1798f + iArr[3] + iArr[1];
     }
 
-    @Override // p000.C0052by
+     // p000.C0052by
     /* renamed from: a */
     public final short mo1021a() {
         switch (this.f1802b) {

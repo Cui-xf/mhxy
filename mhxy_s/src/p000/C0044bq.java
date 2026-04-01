@@ -124,13 +124,13 @@ public final class C0044bq {
     private boolean f778J = false;
 
     /* renamed from: L */
-    private int[][] f780L = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 5, 4);
+    private int[][] f780L = new int[5][4];
 
     /* renamed from: M */
-    private int[][] f781M = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 3, 4);
+    private int[][] f781M = new int[3][4];
 
     /* renamed from: N */
-    private int[][] f782N = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 10, 4);
+    private int[][] f782N = new int[10][4];
 
     /* renamed from: O */
     private int[] f783O = {513, 514, 515, 516, 517, 518, 519, 520, 1024, 2048};
@@ -1139,8 +1139,8 @@ public final class C0044bq {
     public final void m743a() {
         int i = (C0088t.f2516b - 176) / 4;
         int i2 = (C0088t.f2517c - 208) / 6;
-        C0088t.f2496Q = (short[][]) Array.newInstance((Class<?>) Short.TYPE, 6, 2);
-        short[][] sArr = (short[][]) Array.newInstance((Class<?>) Short.TYPE, 6, 2);
+        C0088t.f2496Q = new short[6][2];
+        short[][] sArr = new short[6][2];
         C0088t.f2497R = sArr;
         sArr[0][0] = (short) (C0088t.f2499T[0][0] + i);
         C0088t.f2497R[0][1] = (short) (C0088t.f2499T[0][1] + (i2 << 1));

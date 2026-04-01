@@ -408,7 +408,7 @@ public final class C0079k {
         int iStringWidth = this.f2291j.f2149aq.f2328a + C0088t.f2523i.stringWidth(this.f2289h[0]) + 10;
         int i = this.f2291j.f2149aq.f2329b + 40;
         if (this.f2288g == null) {
-            this.f2288g = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 5, 4);
+            this.f2288g = new int[5][4];
         }
         int i2 = 0;
         while (i2 < this.f2288g.length) {
@@ -487,7 +487,7 @@ public final class C0079k {
             this.f2290i.m401a(this.f2297p);
         }
         m1570b();
-        this.f2288g = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 5, 4);
+        this.f2288g = new int[5][4];
         this.f2291j.f2149aq.m1604b();
         this.f2291j.f2149aq.m1601a("物品合成");
         this.f2291j.f2149aq.m1603a(false);

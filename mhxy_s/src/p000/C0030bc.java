@@ -92,7 +92,7 @@ public final class C0030bc extends AbstractC0060cf {
         return c0030bc;
     }
 
-    @Override // p000.AbstractC0060cf
+     // p000.AbstractC0060cf
     /* renamed from: a */
     public final void mo606a() {
     }

@@ -461,7 +461,7 @@ public final class C0062ch {
             this.f2023z = RunnableC0066a.f2101ag.m985a("jianding_01");
         }
         m1354c();
-        this.f2012a = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 7, 4);
+        this.f2012a = new int[7][4];
         this.f2015d.f2149aq.m1604b();
         this.f2015d.f2149aq.m1601a("装备升星");
         this.f2015d.f2149aq.m1603a(false);

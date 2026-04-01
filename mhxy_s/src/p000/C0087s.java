@@ -50,7 +50,7 @@ public final class C0087s extends C0021au {
         this.f439i = this.f2477l;
     }
 
-    @Override // p000.C0021au
+     // p000.C0021au
     /* renamed from: a */
     public final void mo584a(C0023aw c0023aw, C0009ai c0009ai, long j) {
         int iNextInt;
@@ -106,7 +106,7 @@ public final class C0087s extends C0021au {
         }
     }
 
-    @Override // p000.C0021au
+     // p000.C0021au
     /* renamed from: a */
     public final void mo585a(Graphics graphics, C0009ai c0009ai, int i, int i2, byte b) {
         if (this.f436f != null) {

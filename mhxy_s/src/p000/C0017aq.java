@@ -1788,8 +1788,8 @@ public final class C0017aq {
     public final void m540l() {
         this.f370a.m401a(this.f392w);
         this.f380k = new int[5];
-        this.f381l = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 5, 4);
-        this.f382m = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 5, 4);
+        this.f381l = new int[5][4];
+        this.f382m = new int[5][4];
         this.f383n = new int[4];
         this.f371b.f2149aq.mo71j();
         this.f371b.f2149aq.m1601a("贡献物品");
@@ -2029,9 +2029,9 @@ public final class C0017aq {
         this.f378i[0] = C0047bt.f1270iK[0];
         this.f378i[1] = C0047bt.f1272iM[0];
         this.f378i[2] = C0047bt.f1271iL[0];
-        this.f393x = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 3, 4);
-        this.f394y = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 3, 4);
-        this.f395z = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 3, 4);
+        this.f393x = new int[3][4];
+        this.f394y = new int[3][4];
+        this.f395z = new int[3][4];
         this.f371b.f2149aq.mo71j();
         this.f371b.f2149aq.m1601a("宝库配置");
         this.f371b.f2149aq.m1603a(false);

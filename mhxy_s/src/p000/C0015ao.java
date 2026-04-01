@@ -519,7 +519,7 @@ public final class C0015ao {
     private String[] f252bO = null;
 
     /* renamed from: bP */
-    private int[][] f253bP = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 2, 4);
+    private int[][] f253bP = new int[2][4];
 
     /* renamed from: bQ */
     private int f254bQ = 0;
@@ -531,7 +531,7 @@ public final class C0015ao {
     private boolean f256bS = false;
 
     /* renamed from: au */
-    public int[][] f234au = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 32, 4);
+    public int[][] f234au = new int[32][4];
 
     /* renamed from: bT */
     private C0041bn f257bT = null;
@@ -591,7 +591,7 @@ public final class C0015ao {
     private int[][] f322cr = null;
 
     /* renamed from: cs */
-    private int[][] f323cs = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 2, 4);
+    private int[][] f323cs = new int[2][4];
 
     /* renamed from: ct */
     private byte f324ct = 0;
@@ -600,13 +600,13 @@ public final class C0015ao {
     private String f325cu = null;
 
     /* renamed from: cv */
-    private int[][] f326cv = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 8, 4);
+    private int[][] f326cv = new int[8][4];
 
     /* renamed from: cw */
-    private int[][] f327cw = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 8, 4);
+    private int[][] f327cw = new int[8][4];
 
     /* renamed from: cx */
-    private int[][] f328cx = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 2, 4);
+    private int[][] f328cx = new int[2][4];
 
     /* renamed from: cz */
     private int[][] f330cz = null;
@@ -621,7 +621,7 @@ public final class C0015ao {
     private long f287cE = 0;
 
     /* renamed from: cF */
-    private int[][] f288cF = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 15, 4);
+    private int[][] f288cF = new int[15][4];
 
     /* renamed from: cG */
     private int[] f289cG = new int[4];
@@ -642,13 +642,13 @@ public final class C0015ao {
     private String[] f296cO = new String[9];
 
     /* renamed from: cP */
-    private short[][] f297cP = (short[][]) Array.newInstance((Class<?>) Short.TYPE, 3, 9);
+    private short[][] f297cP = new short[3][9];
 
     /* renamed from: cQ */
     private String[] f298cQ = new String[18];
 
     /* renamed from: cR */
-    private short[][] f299cR = (short[][]) Array.newInstance((Class<?>) Short.TYPE, 3, 18);
+    private short[][] f299cR = new short[3][18];
 
     /* renamed from: cS */
     private byte f300cS = 0;
@@ -5492,7 +5492,7 @@ public final class C0015ao {
     private void m168a(String[] strArr) {
         if (strArr.length > 0) {
             this.f239bA = strArr;
-            this.f243bE = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, strArr.length, 4);
+            this.f243bE = new int[strArr.length][4];
         }
     }
 
@@ -6231,7 +6231,7 @@ public final class C0015ao {
         } else if (this.f354e.f2151as.f2353a == 7) {
             m319o((byte) 6);
         }
-        this.f322cr = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, f144aP.size(), 4);
+        this.f322cr = new int[f144aP.size()][4];
         C0055ca.m1283a(f144aP.size(), 4, this.f354e.f2151as.f2354b + 6, C0088t.f2516b - 8, (C0088t.f2517c - this.f354e.f2151as.f2354b) - 6, ((C0088t.f2517c - this.f354e.f2151as.f2354b) - 6) / C0088t.f2524j, false);
         if (this.f320cp == this.f354e.f2151as.f2353a) {
             C0055ca.f1903w = this.f318cn;
@@ -6978,8 +6978,8 @@ public final class C0015ao {
             return;
         }
         this.f283cA = 0;
-        this.f284cB = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 2, 4);
-        this.f285cC = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 2, 4);
+        this.f284cB = new int[2][4];
+        this.f285cC = new int[2][4];
         this.f354e.m1457k();
         m442d(true);
         this.f354e.f2149aq.mo71j();
@@ -9308,7 +9308,7 @@ public final class C0015ao {
             this.f355f.f469n = null;
             return;
         }
-        this.f355f.f469n = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, this.f355f.f467l.length, 2);
+        this.f355f.f469n = new int[this.f355f.f467l.length][2];
         for (int i = 0; i < this.f355f.f467l.length; i++) {
             if (this.f355f.f467l[i] != null) {
                 RunnableC0066a.f2114f.m58a(this.f355f.f467l[i], this.f355f.f469n[i]);
@@ -14391,7 +14391,7 @@ public final class C0015ao {
         this.f212aR = false;
         m198aM();
         C0055ca.m1283a(f144aP.size(), 4, this.f354e.f2151as.f2354b + 6, C0088t.f2516b - 8, (C0088t.f2517c - this.f354e.f2151as.f2354b) - 6, ((C0088t.f2517c - this.f354e.f2151as.f2354b) - 6) / C0088t.f2524j, false);
-        this.f322cr = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, f144aP.size(), 4);
+        this.f322cr = new int[f144aP.size()][4];
         this.f359l = (short) 1;
         this.f354e.f2149aq.mo71j();
         this.f354e.f2149aq.m1603a(false);
@@ -14407,7 +14407,7 @@ public final class C0015ao {
 
     /* renamed from: L */
     public final void m359L() {
-        this.f330cz = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 42, 4);
+        this.f330cz = new int[42][4];
         this.f231ar = 0;
         this.f230aq = 0;
         this.f197aB = (C0088t.f2516b - f134C.f599b) / 2;
@@ -14719,7 +14719,7 @@ public final class C0015ao {
         if (f163cL && m310i()) {
             f163cL = false;
             if (C0047bt.f1766t != null) {
-                ?? r0 = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, C0047bt.f1766t.length, 2);
+                ?? r0 = new int[C0047bt.f1766t.length][2];
                 for (int i = 0; i < C0047bt.f1766t.length; i++) {
                     if (C0047bt.f1766t[i] != null) {
                         r0[i][0] = C0047bt.f1766t[i].f508a;
@@ -18892,7 +18892,7 @@ public final class C0015ao {
 
     /* renamed from: c */
     public final void m434c(boolean z) {
-        this.f259bV = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 6, 4);
+        this.f259bV = new int[6][4];
         this.f230aq = this.f315cj;
         if (C0047bt.f1320jH != null) {
             for (byte b = 0; b < C0047bt.f1320jH.length; b = (byte) (b + 1)) {
@@ -20076,7 +20076,7 @@ public final class C0015ao {
 
     /* renamed from: k */
     public final void m470k(int i) {
-        this.f249bL = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 9, 2);
+        this.f249bL = new int[9][2];
         this.f250bM = new short[9];
         this.f252bO = new String[9];
         this.f249bL[0][0] = C0047bt.f1109fI[i];
@@ -20419,7 +20419,7 @@ public final class C0015ao {
 
     /* renamed from: p */
     public final void m479p() {
-        this.f249bL = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 9, 2);
+        this.f249bL = new int[9][2];
         this.f250bM = new short[9];
         this.f252bO = new String[9];
         this.f249bL[0][0] = C0047bt.f849aN;
@@ -20591,7 +20591,7 @@ public final class C0015ao {
 
     /* renamed from: t */
     public final void m486t() {
-        this.f259bV = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 10, 4);
+        this.f259bV = new int[10][4];
         this.f359l = (short) 0;
         this.f360m = (short) 0;
         C0055ca.f1892l = 0;
@@ -20725,7 +20725,7 @@ public final class C0015ao {
     public final void m490w() {
         this.f230aq = 0;
         C0055ca.f1892l = 0;
-        this.f259bV = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 10, 4);
+        this.f259bV = new int[10][4];
         RunnableC0066a.f2114f.m57a(this.f355f, f167h, f168i, false, true, 1009050);
         if (C0047bt.f948cG != null) {
             for (byte b = 0; b < C0047bt.f958cQ.length; b = (byte) (b + 1)) {
