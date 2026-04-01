@@ -1,1 +1,0 @@
-/Library/Java/JavaVirtualMachines/jdk1.8.0_411.jdk/Contents/Home/bin/java -jar /Users/cxf/temp/mhxy/mnq/kemnnx64/KEmulator.jar

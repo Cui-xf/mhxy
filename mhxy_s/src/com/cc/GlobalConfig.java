@@ -364,6 +364,7 @@ public final class GlobalConfig {
         var0.delete(0, var0.length());
     }
 
+
     /**
      * 将 V[var0] 和 W[var1] 拼接为字符串后解析为 short，用于编码转换
      */

@@ -2771,7 +2771,7 @@ public final class ao_1 {
 
                     this.d();
                     if (this.k == 25) {
-                        bq.g = var3.a;
+                        bq_1.g = var3.a;
                         if (GlobalStatus.K == 2 && GlobalStatus.bs == 1) {
                             this.S();
                         }
@@ -11976,6 +11976,7 @@ public final class ao_1 {
 
         this.aT();
         this.e.b();
+        GlobalConfig.printStr("[FIGHT] f(" + var1 + ") 创建bq_1前: v=" + GlobalStatus.v + " w=" + GlobalStatus.w);
         this.g = new bq_1(this.e, this, var1);
         this.e.b();
         if (GlobalStatus.bu && ab_1.b) {

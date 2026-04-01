@@ -161,7 +161,7 @@ public final class NetUtils {
         DataInputStream var4;
         if ((var4 = new DataInputStream(var1)).readByte() == 2) {
             short var2 = var4.readShort();
-            (new StringBuffer()).append("接收数据包|").append(var2).toString();
+            GlobalConfig.printStr("接收数据包|" + var2);
             if (var2 != 8192) {
                 byte[] var3 = new byte[var4.readInt()];
                 var4.readFully(var3);
@@ -175,7 +175,7 @@ public final class NetUtils {
             short var7 = (short) var4.readByte();
             int var11 = (short) var4.readByte();
             var11 = ((var7 < 0 ? var7 + 256 : var7) << 8) + (var11 < 0 ? var11 + 256 : var11);
-            (new StringBuffer()).append("接收压缩数据包大小|").append(var11).toString();
+            GlobalConfig.printStr("接收压缩数据包大小|" + var11);
             if (var11 > 0) {
                 byte[] var8 = new byte[var11];
                 var4.readFully(var8);
@@ -183,7 +183,7 @@ public final class NetUtils {
                 ByteArrayInputStream var5 = new ByteArrayInputStream(var8);
                 DataInputStream var6;
                 short var10 = (var6 = new DataInputStream(var5)).readShort();
-                (new StringBuffer()).append("接收压缩数据包|").append(var10).toString();
+                GlobalConfig.printStr("接收压缩数据包|" + var10);
                 if (var10 == 8192) {
                     var6.readInt();
                     this.a(var6);

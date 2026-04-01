@@ -333,6 +333,7 @@ public final class q {
                case 8218:
                   long var6 = this.b.readLong();
                   byte var44 = this.b.readByte();
+                  GlobalConfig.printStr("[FIGHT] 8218包: 服务器fightId=" + var6 + " 本地v=" + GlobalStatus.v + " bq_1.g=" + bq_1.g);
                   if (var6 == -1L) {
                      if (MainCanvas.e.g != null) {
                         GlobalStatus.v = -1L;
@@ -2048,6 +2049,7 @@ public final class q {
 
    private static void b(DataInputStream var0) throws IOException {
       long var1 = var0.readLong();
+      GlobalConfig.printStr("[FIGHT] 8206包 b(): 服务器fightId=" + var1 + " 本地v=" + GlobalStatus.v + " bq_1.g=" + bq_1.g);
       if (bq_1.g > 0 && GlobalStatus.v <= 0L) {
          GlobalStatus.v = var1;
          bq_1.g = -1;

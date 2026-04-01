@@ -55,7 +55,9 @@ public final class bq_1 {
       this.z = var2;
       t = (short)var3;
       var1.b();
+      GlobalConfig.printStr("[FIGHT] bq_1构造: w=" + GlobalStatus.w + " -> 设置v=w");
       GlobalStatus.v = GlobalStatus.w;
+      GlobalConfig.printStr("[FIGHT] bq_1构造后: v=" + GlobalStatus.v);
       this.a();
       var1.b();
    }
@@ -1952,6 +1954,7 @@ public final class bq_1 {
       }
 
       byte[] var12;
+      GlobalConfig.printStr("[FIGHT] 发送攻击包4180: v(fightId)=" + GlobalStatus.v + " g=" + g + " t=" + t);
       if ((var12 = NetPayloadBuilder.a((short)4180, GlobalStatus.ad, GlobalStatus.v, g, t, var1, var2, var3, var4, (short)var5, var6, var7, var8)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4180, var12));
          this.J = false;
