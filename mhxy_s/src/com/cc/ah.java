@@ -14,18 +14,18 @@ public final class ah {
    }
 
    public final int a() {
-      return this.a == 1 ? 16 : t_1.i.stringWidth(this.c);
+      return this.a == 1 ? 16 : GlobalConfig.i.stringWidth(this.c);
    }
 
    public final int b() {
-      return this.a == 1 ? 17 : t_1.j;
+      return this.a == 1 ? 17 : GlobalConfig.j;
    }
 
    public final void a(Graphics var1, int var2, int var3, int var4, int var5) {
       switch (this.a) {
          case 0:
             var1.setColor(LoadingPage.a(this.b));
-            var1.drawString(this.c, var2, var3 + (var4 - t_1.j) / 2, var5);
+            var1.drawString(this.c, var2, var3 + (var4 - GlobalConfig.j) / 2, var5);
             break;
          case 1:
             Frame0 var6;

@@ -28,16 +28,16 @@ public final class TouchController {
                if (this.a.k == 0 && this.a.J != null) {
                   this.canvas.touchAction = LoadingPage.b(var1, var2);
                } else {
-                  if (bt_1.t != null) {
-                     for(int var37 = 0; var37 < bt_1.t.length; ++var37) {
-                        if (bt_1.t[var37] != null && bt_1.t[var37].x && ao_1.u != null && (var1 >= bt_1.t[var37].c -
-                        ao_1.h + this.a.g() - bt_1.t[var37].c() / 2 && var1 <= bt_1.t[var37].c - ao_1.h + this.a.g() + bt_1.t[var37].c() / 2 && var2 >= bt_1.t[var37].d -
-                        ao_1.i + this.a.h() - bt_1.t[var37].d() && var2 <= bt_1.t[var37].d - ao_1.i + this.a.h() || var1 >= bt_1.t[var37].c -
-                        ao_1.h + this.a.g() + bt_1.t[var37].c() / 2 && var1 <= bt_1.t[var37].c - ao_1.h + this.a.g() + bt_1.t[var37].c() / 2 +
-                        ao_1.u.i() && var2 >= bt_1.t[var37].d - ao_1.i + this.a.h() - bt_1.t[var37].d() && var2 <= bt_1.t[var37].d -
-                        ao_1.i + this.a.h() - bt_1.t[var37].d() + ao_1.u.j() || var1 >= bt_1.t[var37].c - ao_1.h + this.a.g() -
-                        ao_1.s.i() / 2 && var1 <= bt_1.t[var37].c - ao_1.h + this.a.g() + ao_1.s.i() / 2 && var2 >= bt_1.t[var37].d -
-                        ao_1.i + this.a.h() - bt_1.t[var37].d() - t_1.j - ao_1.s.j() && var2 <= bt_1.t[var37].d - ao_1.i + this.a.h() - bt_1.t[var37].d() - t_1.j)) {
+                  if (GlobalStatus.t != null) {
+                     for(int var37 = 0; var37 < GlobalStatus.t.length; ++var37) {
+                        if (GlobalStatus.t[var37] != null && GlobalStatus.t[var37].x && ao_1.u != null && (var1 >= GlobalStatus.t[var37].c -
+                        ao_1.h + this.a.g() - GlobalStatus.t[var37].c() / 2 && var1 <= GlobalStatus.t[var37].c - ao_1.h + this.a.g() + GlobalStatus.t[var37].c() / 2 && var2 >= GlobalStatus.t[var37].d -
+                        ao_1.i + this.a.h() - GlobalStatus.t[var37].d() && var2 <= GlobalStatus.t[var37].d - ao_1.i + this.a.h() || var1 >= GlobalStatus.t[var37].c -
+                        ao_1.h + this.a.g() + GlobalStatus.t[var37].c() / 2 && var1 <= GlobalStatus.t[var37].c - ao_1.h + this.a.g() + GlobalStatus.t[var37].c() / 2 +
+                        ao_1.u.i() && var2 >= GlobalStatus.t[var37].d - ao_1.i + this.a.h() - GlobalStatus.t[var37].d() && var2 <= GlobalStatus.t[var37].d -
+                        ao_1.i + this.a.h() - GlobalStatus.t[var37].d() + ao_1.u.j() || var1 >= GlobalStatus.t[var37].c - ao_1.h + this.a.g() -
+                        ao_1.s.i() / 2 && var1 <= GlobalStatus.t[var37].c - ao_1.h + this.a.g() + ao_1.s.i() / 2 && var2 >= GlobalStatus.t[var37].d -
+                        ao_1.i + this.a.h() - GlobalStatus.t[var37].d() - GlobalConfig.j - ao_1.s.j() && var2 <= GlobalStatus.t[var37].d - ao_1.i + this.a.h() - GlobalStatus.t[var37].d() - GlobalConfig.j)) {
                            this.a.a(1073741824);
                            if (!this.a.I.c.isEmpty()) {
                               this.a.I.c.removeAllElements();
@@ -101,10 +101,10 @@ public final class TouchController {
                   int var5 = var2;
                   int var38 = var1;
                   TouchController var40 = this;
-                  if (bt_1.fz != null && bt_1.fz.length > 0 && bt_1.s != 0) {
+                  if (GlobalStatus.fz != null && GlobalStatus.fz.length > 0 && GlobalStatus.s != 0) {
                      label719:
-                     for(int var6 = 0; var6 < bt_1.fz.length; ++var6) {
-                        if (bt_1.fz[var6] == 1 && var40.a.I.d.f != null) {
+                     for(int var6 = 0; var6 < GlobalStatus.fz.length; ++var6) {
+                        if (GlobalStatus.fz[var6] == 1 && var40.a.I.d.f != null) {
                            switch (var40.a.I.d.j) {
                               case 0:
                                  if (var38 >= var40.a.I.d.h + 16 - var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var38 <= var40.a.I.d.h + 16 + var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var5 >= var40.a.I.d.i + 16 - var40.a.I.d.f.h() - (ao_1.i - var40.a.h()) && var5 <= var40.a.I.d.i + 16 - (ao_1.i - var40.a.h())) {
@@ -142,7 +142,7 @@ public final class TouchController {
                      }
                   }
 
-                  if (ao_1.aW[6] == 0 && var1 >= 2 && var1 <= 2 + MainCanvas.f.e && var2 >= 2 + t_1.j && var2 <= 2 + t_1.j + MainCanvas.f.f) {
+                  if (ao_1.aW[6] == 0 && var1 >= 2 && var1 <= 2 + MainCanvas.f.e && var2 >= 2 + GlobalConfig.j && var2 <= 2 + GlobalConfig.j + MainCanvas.f.f) {
                      this.canvas.touchAction = 519;
                      if (!this.a.I.c.isEmpty()) {
                         this.a.I.c.removeAllElements();
@@ -151,17 +151,17 @@ public final class TouchController {
                   } else {
                      if (this.a.k != 25) {
                        boolean var38_ = false;
-                        if (var1 >= t_1.b - bo_1.g[0].getWidth() - 10 && var1 <= t_1.b - 10 && var2 >= 40 && var2 <= 40 + bo_1.g[0].getHeight()) {
+                        if (var1 >= GlobalConfig.defaultWidth - bo_1.g[0].getWidth() - 10 && var1 <= GlobalConfig.defaultWidth - 10 && var2 >= 40 && var2 <= 40 + bo_1.g[0].getHeight()) {
                            var38_ = true;
                         }
 
                         if (var38_) {
-                           if (bt_1.P.o) {
+                           if (GlobalStatus.P.o) {
                               this.a.d((byte)1);
                               return;
                            }
 
-                           if (bt_1.O.u) {
+                           if (GlobalStatus.O.u) {
                               this.a.d((byte)0);
                               return;
                            }
@@ -180,27 +180,27 @@ public final class TouchController {
                            this.a.I.c.removeAllElements();
                            this.a.I.a(true);
                         }
-                     } else if (var1 >= t_1.b - 67 + 37 && var1 <= t_1.b - 67 + 37 + ao_1.v.pngImage.getWidth() && var2 >= 8 && var2 <=
+                     } else if (var1 >= GlobalConfig.defaultWidth - 67 + 37 && var1 <= GlobalConfig.defaultWidth - 67 + 37 + ao_1.v.pngImage.getWidth() && var2 >= 8 && var2 <=
                      ao_1.v.pngImage.getHeight() + 8) {
                         this.canvas.touchAction = 2048;
-                     } else if (var1 >= t_1.b - 67 && var1 <= t_1.b - 67 + 33 && var2 >= 5 && var2 <= 18) {
+                     } else if (var1 >= GlobalConfig.defaultWidth - 67 && var1 <= GlobalConfig.defaultWidth - 67 + 33 && var2 >= 5 && var2 <= 18) {
                         this.canvas.touchAction = 515;
-                     } else if (var1 >= 20 && var1 <= 20 + t_1.i.stringWidth(bt_1.ae) && var2 >= 2 && var2 <= 2 + t_1.j) {
+                     } else if (var1 >= 20 && var1 <= 20 + GlobalConfig.i.stringWidth(GlobalStatus.ae) && var2 >= 2 && var2 <= 2 + GlobalConfig.j) {
                         this.canvas.touchAction = 513;
-                     } else if (var1 >= t_1.b - 67 && var1 <= t_1.b - 67 + 16 && var2 >= 24 && var2 <= 34) {
-                        if (bt_1.bf == 0) {
+                     } else if (var1 >= GlobalConfig.defaultWidth - 67 && var1 <= GlobalConfig.defaultWidth - 67 + 16 && var2 >= 24 && var2 <= 34) {
+                        if (GlobalStatus.bf == 0) {
                            return;
                         }
 
                         this.a.p();
                      } else {
-                        if (var1 >= 1 && var1 <= 1 + t_1.i.stringWidth("菜单") && var2 >= t_1.c - t_1.j - 1 && var2 <= t_1.c - 1) {
+                        if (var1 >= 1 && var1 <= 1 + GlobalConfig.i.stringWidth("菜单") && var2 >= GlobalConfig.defaultHigh - GlobalConfig.j - 1 && var2 <= GlobalConfig.defaultHigh - 1) {
                            this.canvas.touchAction = 268435456;
                            break;
                         }
 
-                        if (var1 < t_1.b - t_1.i.stringWidth("聊天") || var1 > t_1.b || var2 < t_1.c - t_1.j - 1 || var2 > t_1.c - 1) {
-                           if (!bt_1.bu) {
+                        if (var1 < GlobalConfig.defaultWidth - GlobalConfig.i.stringWidth("聊天") || var1 > GlobalConfig.defaultWidth || var2 < GlobalConfig.defaultHigh - GlobalConfig.j - 1 || var2 > GlobalConfig.defaultHigh - 1) {
+                           if (!GlobalStatus.bu) {
                               this.a.d = -1;
                               this.canvas.b(var1 + ao_1.h - this.a.g(), var2 + ao_1.i - this.a.h());
                            }
@@ -539,9 +539,9 @@ public final class TouchController {
 
                if (this.a.g.d != 1 && this.a.g.d != 3) {
                   if (this.a.g.d == 4) {
-                     if (bt_1.H != null) {
-                        for(byte var36 = (byte)(bt_1.H.length - 1); var36 >= 0; --var36) {
-                           if (bt_1.H[var36].j != null && var1 >= t_1.Q[bt_1.H[var36].a][0] - bt_1.H[var36].f() / 2 && var1 <= t_1.Q[bt_1.H[var36].a][0] + bt_1.H[var36].f() / 2 && var2 >= t_1.Q[bt_1.H[var36].a][1] - bt_1.H[var36].g() && var2 <= t_1.Q[bt_1.H[var36].a][1]) {
+                     if (GlobalStatus.H != null) {
+                        for(byte var36 = (byte)(GlobalStatus.H.length - 1); var36 >= 0; --var36) {
+                           if (GlobalStatus.H[var36].j != null && var1 >= GlobalConfig.Q[GlobalStatus.H[var36].a][0] - GlobalStatus.H[var36].f() / 2 && var1 <= GlobalConfig.Q[GlobalStatus.H[var36].a][0] + GlobalStatus.H[var36].f() / 2 && var2 >= GlobalConfig.Q[GlobalStatus.H[var36].a][1] - GlobalStatus.H[var36].g() && var2 <= GlobalConfig.Q[GlobalStatus.H[var36].a][1]) {
                               if (bq_1.h()) {
                                  this.canvas.b("只能对自己使用复活道具");
                               } else if (this.a.g.i != var36) {
@@ -552,9 +552,9 @@ public final class TouchController {
                            }
                         }
                      }
-                  } else if ((this.a.g.d == 5 || this.a.g.d == 6 || this.a.g.d == 7 || this.a.g.d == 8) && bt_1.H != null) {
-                     for(byte var35 = (byte)(bt_1.H.length - 1); var35 >= 0; --var35) {
-                        if (bt_1.H[var35].j != null && var1 >= t_1.Q[bt_1.H[var35].a][0] - bt_1.H[var35].f() / 2 && var1 <= t_1.Q[bt_1.H[var35].a][0] + bt_1.H[var35].f() / 2 && var2 >= t_1.Q[bt_1.H[var35].a][1] - bt_1.H[var35].g() && var2 <= t_1.Q[bt_1.H[var35].a][1]) {
+                  } else if ((this.a.g.d == 5 || this.a.g.d == 6 || this.a.g.d == 7 || this.a.g.d == 8) && GlobalStatus.H != null) {
+                     for(byte var35 = (byte)(GlobalStatus.H.length - 1); var35 >= 0; --var35) {
+                        if (GlobalStatus.H[var35].j != null && var1 >= GlobalConfig.Q[GlobalStatus.H[var35].a][0] - GlobalStatus.H[var35].f() / 2 && var1 <= GlobalConfig.Q[GlobalStatus.H[var35].a][0] + GlobalStatus.H[var35].f() / 2 && var2 >= GlobalConfig.Q[GlobalStatus.H[var35].a][1] - GlobalStatus.H[var35].g() && var2 <= GlobalConfig.Q[GlobalStatus.H[var35].a][1]) {
                            if (bq_1.h()) {
                               this.canvas.b("只能对自己使用复活道具");
                            } else if (this.a.g.i != var35) {
@@ -565,10 +565,10 @@ public final class TouchController {
                         }
                      }
                   }
-               } else if (bt_1.M != null) {
-                  for(byte var3 = (byte)(bt_1.M.length - 1); var3 >= 0; --var3) {
+               } else if (GlobalStatus.M != null) {
+                  for(byte var3 = (byte)(GlobalStatus.M.length - 1); var3 >= 0; --var3) {
                      ck var4;
-                     if (bt_1.M[var3].m != null && !bt_1.M[var3].a() && (bt_1.M[var3].n == 1 || bt_1.M[var3].n == 4) && var1 >= t_1.R[bt_1.M[var3].a][0] - bt_1.M[var3].c() / 2 && var1 <= t_1.R[bt_1.M[var3].a][0] + bt_1.M[var3].c() / 2 && var2 >= t_1.R[bt_1.M[var3].a][1] - ((var4 = bt_1.M[var3]).m != null && var4.m.h != null ? var4.m.h[var4.m.f] : 0) && var2 <= t_1.R[bt_1.M[var3].a][1]) {
+                     if (GlobalStatus.M[var3].m != null && !GlobalStatus.M[var3].a() && (GlobalStatus.M[var3].n == 1 || GlobalStatus.M[var3].n == 4) && var1 >= GlobalConfig.R[GlobalStatus.M[var3].a][0] - GlobalStatus.M[var3].c() / 2 && var1 <= GlobalConfig.R[GlobalStatus.M[var3].a][0] + GlobalStatus.M[var3].c() / 2 && var2 >= GlobalConfig.R[GlobalStatus.M[var3].a][1] - ((var4 = GlobalStatus.M[var3]).m != null && var4.m.h != null ? var4.m.h[var4.m.f] : 0) && var2 <= GlobalConfig.R[GlobalStatus.M[var3].a][1]) {
                         if (this.a.g.h != var3) {
                            this.a.g.h = var3;
                         } else {
@@ -578,7 +578,7 @@ public final class TouchController {
                   }
                }
 
-               if (var1 >= t_1.b - MainCanvas.U.b && var1 <= t_1.b && var2 >= t_1.c - MainCanvas.U.c && var2 <= t_1.c) {
+               if (var1 >= GlobalConfig.defaultWidth - MainCanvas.U.b && var1 <= GlobalConfig.defaultWidth && var2 >= GlobalConfig.defaultHigh - MainCanvas.U.c && var2 <= GlobalConfig.defaultHigh) {
                   this.canvas.touchAction = 536870912;
                }
 
@@ -1124,7 +1124,7 @@ public final class TouchController {
          }
       }
 
-      if (MainCanvas.u != null && var1 >= t_1.b - 4 - MainCanvas.u.pngImage.getWidth() && var1 < t_1.b - 4 && var2 >= 4 && var2 <= MainCanvas.u.pngImage.getHeight() + 4) {
+      if (MainCanvas.u != null && var1 >= GlobalConfig.defaultWidth - 4 - MainCanvas.u.pngImage.getWidth() && var1 < GlobalConfig.defaultWidth - 4 && var2 >= 4 && var2 <= MainCanvas.u.pngImage.getHeight() + 4) {
          this.canvas.touchAction = 536870912;
       }
 
@@ -1947,15 +1947,15 @@ public final class TouchController {
       if (this.a.l == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
          int var3 = this.canvas.aq.a + 5;
-         int var4 = this.canvas.aq.b + this.canvas.aq.d - (2 * t_1.j + 16) - 6;
-         int var5 = t_1.i.stringWidth("同意(点击申请结婚)");
-         int var6 = t_1.i.stringWidth("拒绝");
-         if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + t_1.j) {
+         int var4 = this.canvas.aq.b + this.canvas.aq.d - (2 * GlobalConfig.j + 16) - 6;
+         int var5 = GlobalConfig.i.stringWidth("同意(点击申请结婚)");
+         int var6 = GlobalConfig.i.stringWidth("拒绝");
+         if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + GlobalConfig.j) {
             this.canvas.touchAction = this.a.S.d == 0 ? 1073741824 : this.canvas.touchAction;
             this.a.S.d = 0;
          }
 
-         if (var1 >= var3 + 4 && var2 >= var4 + 5 + t_1.j + 5 && var1 <= var3 + 4 + var6 && var2 <= var4 + 5 + t_1.j + 5 + t_1.j) {
+         if (var1 >= var3 + 4 && var2 >= var4 + 5 + GlobalConfig.j + 5 && var1 <= var3 + 4 + var6 && var2 <= var4 + 5 + GlobalConfig.j + 5 + GlobalConfig.j) {
             this.canvas.touchAction = this.a.S.d == 1 ? 1073741824 : this.canvas.touchAction;
             this.a.S.d = 1;
          }
@@ -1967,15 +1967,15 @@ public final class TouchController {
       if (this.a.l == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
          int var3 = this.canvas.aq.a + 5;
-         int var4 = this.canvas.aq.b + this.canvas.aq.d - (2 * t_1.j + 16) - 6;
-         int var5 = t_1.i.stringWidth("离婚(点击申请离婚)");
-         int var6 = t_1.i.stringWidth("取消离婚");
-         if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + t_1.j) {
+         int var4 = this.canvas.aq.b + this.canvas.aq.d - (2 * GlobalConfig.j + 16) - 6;
+         int var5 = GlobalConfig.i.stringWidth("离婚(点击申请离婚)");
+         int var6 = GlobalConfig.i.stringWidth("取消离婚");
+         if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + GlobalConfig.j) {
             this.canvas.touchAction = this.a.S.g == 0 ? 1073741824 : this.canvas.touchAction;
             this.a.S.g = 0;
          }
 
-         if (var1 >= var3 + 4 && var2 >= var4 + 5 + t_1.j + 5 && var1 <= var3 + 4 + var6 && var2 <= var4 + 5 + t_1.j + 5 + t_1.j) {
+         if (var1 >= var3 + 4 && var2 >= var4 + 5 + GlobalConfig.j + 5 && var1 <= var3 + 4 + var6 && var2 <= var4 + 5 + GlobalConfig.j + 5 + GlobalConfig.j) {
             this.canvas.touchAction = this.a.S.g == 1 ? 1073741824 : this.canvas.touchAction;
             this.a.S.g = 1;
          }

@@ -68,11 +68,11 @@ public final class cc {
         this.c.aq.a((al) this.c.as);
         this.c.aq.a(true);
         if (this.a == 0) {
-            this.c.at.b("", t_1.i, (byte) 1);
+            this.c.at.b("", GlobalConfig.i, (byte) 1);
             this.c.aq.a((al) this.c.at);
             this.c.au.a(new String[]{"操作", "返回"});
             this.c.aq.a((al) this.c.au);
-            this.c.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+            this.c.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
             this.e = this.c.at.e;
             int var5 = (this.c.aq.c - 16 - 2) / 2;
             int var1_t = (this.c.at.e - 6) / 2;
@@ -87,14 +87,14 @@ public final class cc {
             this.c.ar.a((Image[]) null, this.w, this.x, this.y);
             this.c.ar.a(this.B);
             this.c.aq.a((al) this.c.ar);
-            this.c.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+            this.c.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         } else if (this.a == 2) {
-            this.c.at.b(this.C, t_1.i, (byte) 1);
+            this.c.at.b(this.C, GlobalConfig.i, (byte) 1);
             this.c.aq.a((al) this.c.at);
             this.c.au.a(new String[]{"购买次数", "返回"});
             this.c.aq.a((al) this.c.au);
-            this.c.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
-            this.e = t_1.j * 3 + 4;
+            this.c.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.e = GlobalConfig.j * 3 + 4;
             this.c.at.a(this.c.at.b, this.c.at.c, this.c.at.d, this.c.at.e - this.e - 2);
             ao_1.K = new TextRender("当前排名：" + (this.h <= 0 ? "无" : "第" + this.h + "名") + "\t剩余挑战：" + this.i + "次\t当前积分：" + this.j, (short) (this.c.at.d - 20));
         }
@@ -144,20 +144,20 @@ public final class cc {
                 }
             } else if (this.a == 1) {
                 if ((var1 == 268435456 || var1 == 1073741824 || var1 == 517) && this.c.ar.g() > 0) {
-                    LoadingPage.a(t_1.d / 3, this.c.ar.b() + 40, new String[]{"挑战", "属性", "装备"}, false);
+                    LoadingPage.a(GlobalConfig.realWidth / 3, this.c.ar.b() + 40, new String[]{"挑战", "属性", "装备"}, false);
                     this.b.l = 1;
                     return;
                 }
             } else if (this.a == 2 && (var1 == 268435456 || var1 == 1073741824 || var1 == 517)) {
                 this.a = (short) this.c.as.a;
                 byte[] var11;
-                if ((var11 = bz_1.d((short) 4690, (byte) 2, "")) == null) {
+                if ((var11 = NetPayloadBuilder.d((short) 4690, (byte) 2, "")) == null) {
                     this.c.b("获取上传指令数据错误!");
                     return;
                 }
 
-                w var7 = new w((short) 4690, var11);
-                MainCanvas.i.a(var7);
+                NetPacket var7 = new NetPacket((short) 4690, var11);
+                MainCanvas.i.sendPacket(var7);
                 this.c.a((String) null);
             }
         } else if (this.b.l == 1) {
@@ -179,23 +179,23 @@ public final class cc {
                     this.a = (short) this.c.as.a;
                     String var8 = this.a == 0 ? this.p[this.g] : this.A[this.c.ar.g() - 1];
                     byte[] var4;
-                    if ((var4 = bz_1.a((short) 4110, bt_1.ad, var8, (byte) 0)) == null) {
+                    if ((var4 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, var8, (byte) 0)) == null) {
                         this.c.b("获取上传指令数据错误!");
                         return;
                     }
 
-                    MainCanvas.i.a(new w((short) 4110, var4));
+                    MainCanvas.i.sendPacket(new NetPacket((short) 4110, var4));
                     this.c.a((String) null);
                 } else {
                     this.a = (short) this.c.as.a;
                     String var2 = this.a == 0 ? this.p[this.g] : this.A[this.c.ar.g() - 1];
                     byte[] var3;
-                    if ((var3 = bz_1.b((short) 4111, bt_1.ad, var2)) == null) {
+                    if ((var3 = NetPayloadBuilder.b((short) 4111, GlobalStatus.ad, var2)) == null) {
                         this.c.b("获取上传指令数据错误!");
                         return;
                     }
 
-                    MainCanvas.i.a(new w((short) 4111, var3));
+                    MainCanvas.i.sendPacket(new NetPacket((short) 4111, var3));
                     this.c.a((String) null);
                 }
             }
@@ -208,13 +208,13 @@ public final class cc {
             } else {
                 String var9 = this.a == 0 ? this.o[this.g] : this.z[this.c.ar.g() - 1];
                 byte[] var5;
-                if ((var5 = bz_1.d((short) 4690, (byte) 1, var9)) == null) {
+                if ((var5 = NetPayloadBuilder.d((short) 4690, (byte) 1, var9)) == null) {
                     this.c.b("获取上传指令数据错误!");
                     return;
                 }
 
-                w var6 = new w((short) 4690, var5);
-                MainCanvas.i.a(var6);
+                NetPacket var6 = new NetPacket((short) 4690, var5);
+                MainCanvas.i.sendPacket(var6);
                 this.c.a((String) null);
             }
         } else if (this.b.l == 3) {
@@ -225,12 +225,12 @@ public final class cc {
                 return;
             }
         } else if (this.b.l == 4) {
-            this.b.a(bt_1.cJ);
+            this.b.a(GlobalStatus.cJ);
             this.b.g(var1);
             if (var1 == 536870912) {
                 if (this.b.m == 0) {
-                    if (bt_1.cJ != null) {
-                        bt_1.o();
+                    if (GlobalStatus.cJ != null) {
+                        GlobalStatus.o();
                     }
 
                     this.b.T.j();
@@ -259,9 +259,9 @@ public final class cc {
                     LoadingPage.a(var1, (Image) null, this.d[var2][0], this.d[var2][1], this.d[var2][2], this.d[var2][3], var2 == this.g);
                     if (this.p != null && var2 < this.p.length) {
                         var1.setColor(65535);
-                        var1.drawString(this.l[var2], this.d[var2][0] + (this.d[var2][2] - t_1.i.stringWidth(this.l[var2])) / 2, this.d[var2][1] + 4, 20);
+                        var1.drawString(this.l[var2], this.d[var2][0] + (this.d[var2][2] - GlobalConfig.i.stringWidth(this.l[var2])) / 2, this.d[var2][1] + 4, 20);
                         var1.setColor(16777215);
-                        var1.drawString(this.k[var2], this.d[var2][0] + (this.d[var2][2] - t_1.i.stringWidth(this.k[var2])) / 2, this.d[var2][1] + this.d[var2][3] - t_1.j - 4, 20);
+                        var1.drawString(this.k[var2], this.d[var2][0] + (this.d[var2][2] - GlobalConfig.i.stringWidth(this.k[var2])) / 2, this.d[var2][1] + this.d[var2][3] - GlobalConfig.j - 4, 20);
                         MainCanvas.f.a(var1, (Frame1) this.f[var2], (int[]) null, 0, 0, this.d[var2][0] + this.d[var2][2] / 2, this.d[var2][1] + this.d[var2][3] / 4 * 3, 20, 0);
                     }
                 }

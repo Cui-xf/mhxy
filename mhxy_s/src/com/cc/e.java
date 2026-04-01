@@ -19,7 +19,7 @@ final class e {
          short var1 = 0;
 
          for(int var2 = 0; var2 < this.a.length; ++var2) {
-            var1 = (short)(var1 + t_1.i.stringWidth(this.a[var2]));
+            var1 = (short)(var1 + GlobalConfig.i.stringWidth(this.a[var2]));
          }
 
          return var1;

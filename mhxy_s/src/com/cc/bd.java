@@ -123,8 +123,8 @@ public final class bd implements CommandListener {
          DataOutputStream var4;
          (var4 = new DataOutputStream(var6)).writeByte(-82);
          var4.writeShort(4375);
-         var4.writeUTF(bt_1.b);
-         var4.writeUTF(bt_1.d);
+         var4.writeUTF(GlobalStatus.b);
+         var4.writeUTF(GlobalStatus.d);
          var4.writeUTF(var2);
          var4.writeUTF(var3);
          var4.writeShort(this.h[0]);
@@ -201,7 +201,7 @@ public final class bd implements CommandListener {
                this.a.R.c = 1;
             }
 
-            this.b.d.start();
+            this.b.mainMidlet.start();
          }
       } else {
          if (var3.equals("返回")) {
@@ -209,7 +209,7 @@ public final class bd implements CommandListener {
                this.a.R.c = 2;
             }
 
-            this.b.d.start();
+            this.b.mainMidlet.start();
             this.c();
          }
 

@@ -60,7 +60,7 @@ public final class ch {
       i = "";
       s = "";
       r = "";
-      bt_1.N();
+      GlobalStatus.N();
    }
 
    public final void a(DataInputStream var1) throws IOException {
@@ -124,9 +124,9 @@ public final class ch {
 
    private void d() {
       if (r != null && !r.equals("")) {
-         this.d.at.a(m + "\t" + i + "\t" + s + "\t" + r, t_1.i, (byte)1);
+         this.d.at.a(m + "\t" + i + "\t" + s + "\t" + r, GlobalConfig.i, (byte)1);
       } else {
-         this.d.at.a((String)null, t_1.i, (byte)1);
+         this.d.at.a((String)null, GlobalConfig.i, (byte)1);
       }
    }
 
@@ -141,7 +141,7 @@ public final class ch {
    private void e() {
       this.g = null;
       if (u != null) {
-         this.g = new TextRender(u, (short)t_1.i.stringWidth(u));
+         this.g = new TextRender(u, (short) GlobalConfig.i.stringWidth(u));
       }
 
    }
@@ -166,18 +166,18 @@ public final class ch {
       this.d.aq.b();
       this.d.aq.a("装备升星");
       this.d.aq.a(false);
-      this.w = Math.max((t_1.j << 1) + 25, 59);
-      this.x = t_1.j + 13;
+      this.w = Math.max((GlobalConfig.j << 1) + 25, 59);
+      this.x = GlobalConfig.j + 13;
       this.d.aq.a(this.w + this.x);
       this.d();
       this.b();
       this.d.aq.a((al)this.d.at);
       this.d.au.a("确定");
-      if (t_1.c > 220) {
+      if (GlobalConfig.defaultHigh > 220) {
          this.d.aq.a((al)this.d.au);
       }
 
-      this.d.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+      this.d.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.d.at.a(this.d.at.b, this.d.at.c, this.d.aq.c / 2 - 6, this.d.at.e);
       int var1_t = 0;
       int var2 = 0;
@@ -334,9 +334,9 @@ public final class ch {
             } else {
                Object var6 = null;
                byte[] var7;
-               if ((var7 = bz_1.a((short)4689, h, (byte)1, p, bt_1.ad)) != null) {
-                  w var12 = new w((short)4689, var7);
-                  MainCanvas.i.a(var12);
+               if ((var7 = NetPayloadBuilder.a((short)4689, h, (byte)1, p, GlobalStatus.ad)) != null) {
+                  NetPacket var12 = new NetPacket((short)4689, var7);
+                  MainCanvas.i.sendPacket(var12);
                   this.d.a((String)null);
                } else {
                   this.d.b("获取上传指令数据错误!");
@@ -345,20 +345,20 @@ public final class ch {
 
             Object var8 = null;
             byte[] var9;
-            if ((var9 = bz_1.a((short)4689, h, (byte)1, p, bt_1.ad)) == null) {
+            if ((var9 = NetPayloadBuilder.a((short)4689, h, (byte)1, p, GlobalStatus.ad)) == null) {
                this.d.b("获取上传指令数据错误!");
                return;
             }
 
-            w var13 = new w((short)4689, var9);
-            MainCanvas.i.a(var13);
+            NetPacket var13 = new NetPacket((short)4689, var9);
+            MainCanvas.i.sendPacket(var13);
             this.d.a((String)null);
          } else {
             if (LoadingPage.o == 1) {
                if (this.c.aw && !this.A) {
-                  bt_1.a(this.c.av);
+                  GlobalStatus.a(this.c.av);
                } else if (this.c.aJ && !this.A) {
-                  bt_1.b((int) ao_1.l(this.c.aq));
+                  GlobalStatus.b((int) ao_1.l(this.c.aq));
                } else {
                   var1 = h;
                   Object var14 = null;
@@ -366,13 +366,13 @@ public final class ch {
 
                   bn var10000;
                   while(true) {
-                     if (var3 >= bt_1.bC.size()) {
+                     if (var3 >= GlobalStatus.bC.size()) {
                         var10000 = null;
                         break;
                      }
 
                      bn var15;
-                     if ((var15 = (bn) bt_1.bC.elementAt(var3)) != null && var15.a == var1) {
+                     if ((var15 = (bn) GlobalStatus.bC.elementAt(var3)) != null && var15.a == var1) {
                         var10000 = var15;
                         break;
                      }
@@ -382,7 +382,7 @@ public final class ch {
 
                   bn var11 = var10000;
                   if (var10000 != null) {
-                     bt_1.a(var11);
+                     GlobalStatus.a(var11);
                   } else {
                      this.d.b("装备不存在");
                   }
@@ -470,7 +470,7 @@ public final class ch {
 
       if (this.c.l == 0) {
          if (this.b == 0 && (this.f != null || this.f != "")) {
-            LoadingPage.b(var1, this.f, this.d.aq.a + 5 + 2, this.d.aq.b + 32 + 8 + ao_1.x.c, t_1.c - 5, 1);
+            LoadingPage.b(var1, this.f, this.d.aq.a + 5 + 2, this.d.aq.b + 32 + 8 + ao_1.x.c, GlobalConfig.defaultHigh - 5, 1);
             return;
          }
       } else if (this.c.l == 1) {

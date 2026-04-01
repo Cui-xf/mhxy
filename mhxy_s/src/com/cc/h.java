@@ -9,7 +9,7 @@ import javax.microedition.midlet.MIDlet;
 public final class h {
    public MainMidlet a;
    private Display c;
-   public bg b;
+   public LoginModel b;
 
    public h(MainMidlet var1, Display var2) {
       String var4;
@@ -27,7 +27,7 @@ public final class h {
       bb_1.a();
       this.a = var1;
       this.c = var2;
-      this.b = new bg(this);
+      this.b = new LoginModel(this);
       this.b.a();
    }
 
@@ -35,16 +35,16 @@ public final class h {
       return this.c;
    }
 
-   public final void a(w var1) {
-      if (MainCanvas.i == null || bz_1.b != 72 || av_1.a("socket://120.78.151.213:20008")) {
-         bz_1.b = 72;
+   public final void a(NetPacket var1) {
+      if (MainCanvas.i == null || NetPayloadBuilder.hands2 != 72 || NetUtils.a("socket://120.78.151.213:20008")) {
+         NetPayloadBuilder.hands2 = 72;
          MainCanvas.a((String)"socket://120.78.151.213:20008", (byte)2);
          this.a.mainCanvas.a("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
       }
 
       if (MainCanvas.i != null) {
-         var1.a = true;
-         MainCanvas.i.a(var1);
+         var1.firstPacket = true;
+         MainCanvas.i.sendPacket(var1);
       }
 
    }

@@ -71,7 +71,7 @@ public final class r {
 
       this.r = var1.readUTF();
       this.s = var1.readUTF();
-      bt_1.N();
+      GlobalStatus.N();
       b(this.c);
       b((int)this.d);
       if (this.e != null && this.e.length > 0) {
@@ -82,9 +82,9 @@ public final class r {
 
       if (var2) {
          if (this.s != null && !this.s.equals("")) {
-            this.j.at.a(this.s, t_1.i, (byte)1);
+            this.j.at.a(this.s, GlobalConfig.i, (byte)1);
          } else {
-            this.j.at.a((String)null, t_1.i, (byte)1);
+            this.j.at.a((String)null, GlobalConfig.i, (byte)1);
          }
       }
 
@@ -93,11 +93,11 @@ public final class r {
    }
 
    private static void b(int var0) {
-      if (bt_1.bC != null && bt_1.bC.size() > 0) {
+      if (GlobalStatus.bC != null && GlobalStatus.bC.size() > 0) {
          bn var1 = null;
 
-         for(int var2 = 0; var2 < bt_1.bC.size(); ++var2) {
-            if ((var1 = (bn) bt_1.bC.elementAt(var2)) != null && var1.a == var0) {
+         for(int var2 = 0; var2 < GlobalStatus.bC.size(); ++var2) {
+            if ((var1 = (bn) GlobalStatus.bC.elementAt(var2)) != null && var1.a == var0) {
                ++var1.v;
             }
          }
@@ -120,9 +120,9 @@ public final class r {
 
    private void d() {
       if (this.s != null && !this.s.equals("")) {
-         this.j.at.a(this.s, t_1.i, (byte)1);
+         this.j.at.a(this.s, GlobalConfig.i, (byte)1);
       } else {
-         this.j.at.a((String)null, t_1.i, (byte)1);
+         this.j.at.a((String)null, GlobalConfig.i, (byte)1);
       }
    }
 
@@ -165,7 +165,7 @@ public final class r {
          var1.append(this.o == null ? "" : this.o);
          var1.append("\t");
          var1.append(this.r == null ? "无幸运加成" : this.r);
-         this.t = new TextRender(var1.toString(), (short)(t_1.d - 20));
+         this.t = new TextRender(var1.toString(), (short)(GlobalConfig.realWidth - 20));
       }
 
    }
@@ -205,7 +205,7 @@ public final class r {
       this.r = null;
       this.s = null;
       this.x = false;
-      bt_1.N();
+      GlobalStatus.N();
    }
 
    public final void a(boolean var1) {
@@ -231,18 +231,18 @@ public final class r {
       this.j.aq.b();
       this.j.aq.a("装备附魔");
       this.j.aq.a(false);
-      this.v = Math.max((t_1.j << 1) + 25, 59);
-      this.w = t_1.j + 26 + 5;
+      this.v = Math.max((GlobalConfig.j << 1) + 25, 59);
+      this.w = GlobalConfig.j + 26 + 5;
       this.j.aq.a(this.v + this.w);
       this.d();
       this.j.aq.a((al)this.j.at);
       this.j.at.a((byte)1);
       this.j.au.a("确定");
-      if (t_1.c > 220) {
+      if (GlobalConfig.defaultHigh > 220) {
          this.j.aq.a((al)this.j.au);
       }
 
-      this.j.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+      this.j.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a();
       this.e();
       LoadingPage.l = 0;
@@ -301,7 +301,7 @@ public final class r {
                      this.x = true;
                      this.i.a((byte)0, (byte[])(new byte[]{0}));
                   } else {
-                     LoadingPage.a(this.j.aq.a + t_1.k * 3 + 29, this.j.aq.b + 49, new String[]{"附魔", "查看", "取出"}, false);
+                     LoadingPage.a(this.j.aq.a + GlobalConfig.k * 3 + 29, this.j.aq.b + 49, new String[]{"附魔", "查看", "取出"}, false);
                      this.i.l = 1;
                   }
                } else if (this.a == 1) {
@@ -343,9 +343,9 @@ public final class r {
          } else if (LoadingPage.o == 0) {
             if (this.b == 1) {
                byte[] var4;
-               if ((var4 = bz_1.a((short)4262, this.c, this.d, (byte)2, this.e, this.f, this.d(this.a), (byte)this.a, bt_1.ad)) != null) {
-                  w var5 = new w((short)4262, var4);
-                  MainCanvas.i.a(var5);
+               if ((var4 = NetPayloadBuilder.a((short)4262, this.c, this.d, (byte)2, this.e, this.f, this.d(this.a), (byte)this.a, GlobalStatus.ad)) != null) {
+                  NetPacket var5 = new NetPacket((short)4262, var4);
+                  MainCanvas.i.sendPacket(var5);
                   this.j.a((String)null);
                } else {
                   this.j.b("获取上传指令数据错误!");
@@ -353,14 +353,14 @@ public final class r {
             } else {
                byte[] var6 = null;
                if (this.a == 0) {
-                  var6 = bz_1.a((short)4262, this.c, this.d, (byte)3, this.e, this.f, -1, (byte)-1, bt_1.ad);
+                  var6 = NetPayloadBuilder.a((short)4262, this.c, this.d, (byte)3, this.e, this.f, -1, (byte)-1, GlobalStatus.ad);
                } else if (this.a == 1) {
-                  var6 = bz_1.a((short)4262, this.c, this.d, (byte)5, this.e, this.f, -1, (byte)-1, bt_1.ad);
+                  var6 = NetPayloadBuilder.a((short)4262, this.c, this.d, (byte)5, this.e, this.f, -1, (byte)-1, GlobalStatus.ad);
                }
 
                if (var6 != null) {
-                  w var7 = new w((short)4262, var6);
-                  MainCanvas.i.a(var7);
+                  NetPacket var7 = new NetPacket((short)4262, var6);
+                  MainCanvas.i.sendPacket(var7);
                   this.j.a((String)null);
                } else {
                   this.j.b("获取上传指令数据错误!");
@@ -368,9 +368,9 @@ public final class r {
             }
          } else if (LoadingPage.o == 1) {
             if (this.i.aw && !this.x) {
-               bt_1.a(this.i.av);
+               GlobalStatus.a(this.i.av);
             } else if (this.i.aJ && !this.x) {
-               bt_1.b((int) ao_1.l(this.i.aq));
+               GlobalStatus.b((int) ao_1.l(this.i.aq));
             } else {
                var1 = this.c;
                Object var2 = null;
@@ -378,13 +378,13 @@ public final class r {
 
                bn var10000;
                while(true) {
-                  if (var3 >= bt_1.bC.size()) {
+                  if (var3 >= GlobalStatus.bC.size()) {
                      var10000 = null;
                      break;
                   }
 
                   bn var10;
-                  if ((var10 = (bn) bt_1.bC.elementAt(var3)) != null && var10.a == var1) {
+                  if ((var10 = (bn) GlobalStatus.bC.elementAt(var3)) != null && var10.a == var1) {
                      var10000 = var10;
                      break;
                   }
@@ -394,7 +394,7 @@ public final class r {
 
                bn var9 = var10000;
                if (var10000 != null) {
-                  bt_1.a(var9);
+                  GlobalStatus.a(var9);
                } else {
                   this.j.b("装备不存在");
                }
@@ -421,7 +421,7 @@ public final class r {
          LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32 + this.v + 1, this.j.aq.c - 11, this.w - 2, 1);
       }
 
-      int var3 = this.j.aq.a + t_1.i.stringWidth("装备孔") + 10;
+      int var3 = this.j.aq.a + GlobalConfig.i.stringWidth("装备孔") + 10;
       int var4 = this.j.aq.b + 40;
 
       for(int var5 = 0; var5 < this.g.length; ++var5) {
@@ -446,9 +446,9 @@ public final class r {
       }
 
       var1.setColor(255);
-      var1.drawString(this.h[0], this.g[0][0] - 2, this.g[0][1] + (var2 - t_1.j) / 2, 24);
-      var1.drawString(this.h[1], this.g[1][0] - 2, this.g[1][1] + (var2 - t_1.j) / 2, 24);
-      var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] + (var2 - t_1.j) / 2, 24);
+      var1.drawString(this.h[0], this.g[0][0] - 2, this.g[0][1] + (var2 - GlobalConfig.j) / 2, 24);
+      var1.drawString(this.h[1], this.g[1][0] - 2, this.g[1][1] + (var2 - GlobalConfig.j) / 2, 24);
+      var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] + (var2 - GlobalConfig.j) / 2, 24);
       Frame0 var11;
       if (this.c != -1 && (var11 = ao_1.b(this.k)) != null) {
          var1.drawImage(var11.pngImage, this.g[0][0], this.g[0][1], 20);
@@ -477,16 +477,16 @@ public final class r {
       if (this.i.l == 0) {
          if (this.u != null || this.u != "") {
             if (this.b == 0 && this.a == 1) {
-               LoadingPage.b(var1, this.u, this.j.aq.c - 10 - ao_1.x.b - 2 * (ao_1.x.b + 10) - 6 - t_1.i.stringWidth("装备孔"), this.j.aq.b + 32 + 8 + ao_1.x.c, t_1.c - 5, 1);
+               LoadingPage.b(var1, this.u, this.j.aq.c - 10 - ao_1.x.b - 2 * (ao_1.x.b + 10) - 6 - GlobalConfig.i.stringWidth("装备孔"), this.j.aq.b + 32 + 8 + ao_1.x.c, GlobalConfig.defaultHigh - 5, 1);
                return;
             }
 
             if (this.b == 1) {
-               LoadingPage.b(var1, this.u, this.j.aq.c - (ao_1.x.b + 10) * 3, this.j.aq.b + 32 + 8 + 10 + (ao_1.x.c << 1), t_1.c - 5, 1);
+               LoadingPage.b(var1, this.u, this.j.aq.c - (ao_1.x.b + 10) * 3, this.j.aq.b + 32 + 8 + 10 + (ao_1.x.c << 1), GlobalConfig.defaultHigh - 5, 1);
                return;
             }
 
-            LoadingPage.b(var1, this.u, this.j.aq.a + 5 + 2, this.j.aq.b + 32 + 8 + ao_1.x.c, t_1.c - 5, 1);
+            LoadingPage.b(var1, this.u, this.j.aq.a + 5 + 2, this.j.aq.b + 32 + 8 + ao_1.x.c, GlobalConfig.defaultHigh - 5, 1);
             return;
          }
       } else if (this.i.l == 1) {

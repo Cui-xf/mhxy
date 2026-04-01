@@ -56,7 +56,7 @@ public final class y_1 extends bk {
 
    public final void d() {
       if (this.m != null) {
-         this.n = super.f + (super.h - t_1.i.stringWidth(this.m)) / 2;
+         this.n = super.f + (super.h - GlobalConfig.i.stringWidth(this.m)) / 2;
          this.o = super.g + 5;
       }
 
@@ -157,7 +157,7 @@ public final class y_1 extends bk {
       var1.setClip(super.f, super.g, super.h, super.i);
       var1.drawImage(b.pngImage, super.f + super.h - b.b - 5, super.g + 6, 20);
       if (this.m != null) {
-         LoadingPage.a(var1, (String)this.m, (int)this.n, this.o + (a.c - t_1.j) / 2, 0, this.l, 0);
+         LoadingPage.a(var1, (String)this.m, (int)this.n, this.o + (a.c - GlobalConfig.j) / 2, 0, this.l, 0);
       }
 
       var1.setColor(11267556);

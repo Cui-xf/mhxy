@@ -157,7 +157,7 @@ public final class az_1 {
       this.v = Page.hashKey(Page.wrapName(String.valueOf(this.u), (byte)2).toCharArray());
       this.V = 1;
       if (this.V == 1 && this.U > 0) {
-         int var10003 = t_1.b - 40;
+         int var10003 = GlobalConfig.defaultWidth - 40;
          byte var4 = this.U;
          short var15 = this.d;
          var2 = var10003;
@@ -174,11 +174,11 @@ public final class az_1 {
          this.Z = 0;
          this.X = new TextRender(var7, (short)(var2 - 10));
          if (this.X != null && this.X.a() != 0) {
-            int var8 = t_1.j;
+            int var8 = GlobalConfig.j;
             this.Y = new int[4];
             this.Y[2] = var2;
             this.Y[3] = this.X.a() * var8 + 10;
-            this.Y[0] = (t_1.b - this.Y[2]) / 2;
+            this.Y[0] = (GlobalConfig.defaultWidth - this.Y[2]) / 2;
             this.Y[1] = var15;
             return;
          }
@@ -190,19 +190,19 @@ public final class az_1 {
 
    public final void a(Graphics var1, PngUtil var2, int var3, int var4, byte var5) {
       if (this.t == -1 && ao_1.t_2 != null || this.I == 100 && ao_1.t_2 != null) {
-         var2.a(var1, (Frame1) ao_1.t_2, (int[])null, var3, var4, this.c - ao_1.t_2.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - t_1.j - ao_1.t_2.j(), 20, var5);
+         var2.a(var1, (Frame1) ao_1.t_2, (int[])null, var3, var4, this.c - ao_1.t_2.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - GlobalConfig.j - ao_1.t_2.j(), 20, var5);
       } else if (this.t == 1 && ao_1.s != null) {
-         var2.a(var1, (Frame1) ao_1.s, (int[])null, var3, var4, this.c - ao_1.s.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - t_1.j - ao_1.s.j(), 20, var5);
+         var2.a(var1, (Frame1) ao_1.s, (int[])null, var3, var4, this.c - ao_1.s.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - GlobalConfig.j - ao_1.s.j(), 20, var5);
       }
 
       if (this.x && ao_1.u != null) {
          var2.a(var1, (Frame1) ao_1.u, (int[])null, var3, var4, this.c + (this.w == null ? 8 : this.w.i() / 2), this.d - (this.w == null ? 30 : this.w.j()), 20, var5);
          if (this.X != null && this.Y != null && this.U != 0) {
-            var1.setClip(0, 0, t_1.b, t_1.c);
+            var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
             if (this.Z >= 0) {
                int var9;
-               if ((var9 = this.Y[1] - var4) + this.Y[3] > t_1.c) {
-                  var9 = t_1.c - this.Y[3] - 4;
+               if ((var9 = this.Y[1] - var4) + this.Y[3] > GlobalConfig.defaultHigh) {
+                  var9 = GlobalConfig.defaultHigh - this.Y[3] - 4;
                }
 
                int var10001 = this.Y[0];

@@ -39,18 +39,18 @@ public final class u extends bk {
 
    public final int a(int var1, int var2) {
       if (((bk)this).b(var1, var2)) {
-         if (this.d != null && var1 > super.f && var1 < super.f + t_1.i.stringWidth(this.d) + 5 && var2 > super.g && var2 < super.g + super.i) {
+         if (this.d != null && var1 > super.f && var1 < super.f + GlobalConfig.i.stringWidth(this.d) + 5 && var2 > super.g && var2 < super.g + super.i) {
             return 268435456;
          }
 
          if (this.e != null) {
-            int var3 = t_1.i.stringWidth(this.e) + 10;
+            int var3 = GlobalConfig.i.stringWidth(this.e) + 10;
             if (var1 > super.f + (super.h - var3) / 2 && var1 < super.f + (super.h + var3) / 2 && var2 > super.f && var2 < super.g + super.i) {
                return 1073741824;
             }
          }
 
-         if (this.j != null && var1 > super.f + super.h - t_1.i.stringWidth(this.j) - 5 && var1 < super.f + super.h && var2 > super.g && var2 < super.g + super.i) {
+         if (this.j != null && var1 > super.f + super.h - GlobalConfig.i.stringWidth(this.j) - 5 && var1 < super.f + super.h && var2 > super.g && var2 < super.g + super.i) {
             return 536870912;
          }
       }
@@ -63,17 +63,17 @@ public final class u extends bk {
       LoadingPage.a(var1, (Image) MainCanvas.E.pngImage, (short) MainCanvas.E.b, super.f, super.g, super.h, MainCanvas.E.c);
       if (this.d != null) {
          var1.setColor(this.a);
-         var1.drawString(this.d, super.f + 3, super.g + (super.i - t_1.j) / 2, 20);
+         var1.drawString(this.d, super.f + 3, super.g + (super.i - GlobalConfig.j) / 2, 20);
       }
 
       if (this.e != null) {
          var1.setColor(this.b);
-         var1.drawString(this.e, super.f + super.h / 2, super.g + (super.i - t_1.j) / 2, 17);
+         var1.drawString(this.e, super.f + super.h / 2, super.g + (super.i - GlobalConfig.j) / 2, 17);
       }
 
       if (this.j != null) {
          var1.setColor(this.c);
-         var1.drawString(this.j, super.f + super.h - 3, super.g + (super.i - t_1.j) / 2, 24);
+         var1.drawString(this.j, super.f + super.h - 3, super.g + (super.i - GlobalConfig.j) / 2, 24);
       }
 
    }

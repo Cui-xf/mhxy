@@ -942,11 +942,11 @@ public final class Page {
 
     private DataInputStream getFrameStream(FrameInfo frameInfo) {
         byte[] var2 = null;
-        if (this.name.equals(bt_1.kX) && bt_1.kY != null) {
+        if (this.name.equals(GlobalStatus.kX) && GlobalStatus.kY != null) {
             g var3 = null;
 
-            for (short var4 = 0; var4 < bt_1.kY.size(); ++var4) {
-                if ((var3 = (g) bt_1.kY.elementAt(var4)).a == frameInfo.key) {
+            for (short var4 = 0; var4 < GlobalStatus.kY.size(); ++var4) {
+                if ((var3 = (g) GlobalStatus.kY.elementAt(var4)).a == frameInfo.key) {
                     var2 = var3.b;
                     break;
                 }
@@ -962,7 +962,7 @@ public final class Page {
         } else {
             Object var8 = null;
             InputStream var9;
-            if (this.name.equals(bt_1.kX) && (var9 = this.getClass().getResourceAsStream(this.path + frameInfo.key + ".rpg")) != null) {
+            if (this.name.equals(GlobalStatus.kX) && (var9 = this.getClass().getResourceAsStream(this.path + frameInfo.key + ".rpg")) != null) {
                 var6 = new DataInputStream(var9);
             }
 
@@ -1219,7 +1219,7 @@ public final class Page {
 
                         while (true) {
                             if (var6 >= var10.frames.size()) {
-                                t_1.a("no resource " + var13);
+                                GlobalConfig.printStr("no resource " + var13);
                                 var10001 = null;
                                 break;
                             }

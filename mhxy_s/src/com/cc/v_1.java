@@ -32,8 +32,8 @@ public final class v_1 {
 
    public final void a(String var1, String var2, long var3) {
       byte[] var5;
-      if ((var5 = bz_1.a((short)4857, bt_1.ad, var1, var2, var3)) != null) {
-         MainCanvas.i.a(new w((short)4857, var5));
+      if ((var5 = NetPayloadBuilder.a((short)4857, GlobalStatus.ad, var1, var2, var3)) != null) {
+         MainCanvas.i.sendPacket(new NetPacket((short)4857, var5));
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
@@ -43,8 +43,8 @@ public final class v_1 {
 
    public final void a() {
       byte[] var1;
-      if ((var1 = bz_1.m((short)4858, bt_1.ad, (short) bt_1.gQ)) != null) {
-         MainCanvas.i.a(new w((short)4858, var1));
+      if ((var1 = NetPayloadBuilder.m((short)4858, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
+         MainCanvas.i.sendPacket(new NetPacket((short)4858, var1));
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
@@ -53,9 +53,9 @@ public final class v_1 {
    }
 
    public static void a(DataInputStream var0) throws IOException {
-      bt_1.gQ = var0.readShort();
+      GlobalStatus.gQ = var0.readShort();
       short var1 = var0.readShort();
-      bt_1.gR = var0.readByte();
+      GlobalStatus.gR = var0.readByte();
       if (var1 <= 0) {
          g();
       } else {
@@ -92,7 +92,7 @@ public final class v_1 {
       this.i.au.a(true);
       this.i.aq.a((al)this.i.ar);
       this.i.aq.a((al)this.i.au);
-      this.i.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+      this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.l = 0;
       this.i.touchPageCase = this.i.k;
       this.h.j = this.h.k = 90;
@@ -102,11 +102,11 @@ public final class v_1 {
       this.i.aq.j();
       this.i.aq.a("求爱宣言");
       this.i.aq.a(false);
-      this.i.at.a(b, t_1.i, (byte)2);
+      this.i.at.a(b, GlobalConfig.i, (byte)2);
       this.i.au.a("确定");
       this.i.aq.a((al)this.i.at);
       this.i.aq.a((al)this.i.au);
-      this.i.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+      this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.l = 2;
       this.i.touchPageCase = this.i.k;
       this.h.j = this.h.k = 90;
@@ -119,7 +119,7 @@ public final class v_1 {
          }
 
          if (a != null && (var1 == 268435456 || var1 == 1073741824 || var1 == 517)) {
-             LoadingPage.a(80 + t_1.f, t_1.j + 20 + this.i.ar.i() * t_1.j + t_1.g, new String[]{"查看"}, false);
+             LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.j + 20 + this.i.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"查看"}, false);
             this.h.l = 1;
             this.h.aA = this.i.ar.h();
             this.h.aE = this.i.ar.g();
@@ -132,36 +132,36 @@ public final class v_1 {
          }
 
          if (var1 == 1024) {
-            if (bt_1.gQ > 1 && bt_1.gR == 1) {
-               if (bt_1.gQ - 1 <= 1) {
-                  bt_1.gQ = 1;
+            if (GlobalStatus.gQ > 1 && GlobalStatus.gR == 1) {
+               if (GlobalStatus.gQ - 1 <= 1) {
+                  GlobalStatus.gQ = 1;
                } else {
-                  --bt_1.gQ;
+                  --GlobalStatus.gQ;
                }
 
                this.a();
                return;
             }
 
-            if (bt_1.gQ > 1 && bt_1.gR == 0) {
-               if (bt_1.gQ - 1 < 1) {
-                  bt_1.gQ = 1;
+            if (GlobalStatus.gQ > 1 && GlobalStatus.gR == 0) {
+               if (GlobalStatus.gQ - 1 < 1) {
+                  GlobalStatus.gQ = 1;
                } else {
-                  --bt_1.gQ;
+                  --GlobalStatus.gQ;
                }
 
                this.a();
                return;
             }
          } else if (var1 == 2048) {
-            if (bt_1.gQ <= 1 && bt_1.gR == 1) {
-               ++bt_1.gQ;
+            if (GlobalStatus.gQ <= 1 && GlobalStatus.gR == 1) {
+               ++GlobalStatus.gQ;
                this.a();
                return;
             }
 
-            if (bt_1.gQ > 1 && bt_1.gR == 1) {
-               ++bt_1.gQ;
+            if (GlobalStatus.gQ > 1 && GlobalStatus.gR == 1) {
+               ++GlobalStatus.gQ;
                this.a();
                return;
             }
@@ -176,12 +176,12 @@ public final class v_1 {
          } else if ( LoadingPage.o == 0) {
             var1 = a[this.i.ar.g()];
             byte[] var3;
-            if ((var3 = bz_1.A((short)4859, bt_1.ad, var1)) == null) {
+            if ((var3 = NetPayloadBuilder.A((short)4859, GlobalStatus.ad, var1)) == null) {
                this.i.b("获取上传指令数据错误!");
                return;
             }
 
-            MainCanvas.i.a(new w((short)4859, var3));
+            MainCanvas.i.sendPacket(new NetPacket((short)4859, var3));
             this.h.j = this.h.k = 0;
             this.i.a((String)null);
          }
@@ -218,8 +218,8 @@ public final class v_1 {
 
    public final void a(byte var1) {
       byte[] var2;
-      if ((var2 = bz_1.m((short)4860, bt_1.ad, (byte)var1)) != null) {
-         MainCanvas.i.a(new w((short)4860, var2));
+      if ((var2 = NetPayloadBuilder.m((short)4860, GlobalStatus.ad, (byte)var1)) != null) {
+         MainCanvas.i.sendPacket(new NetPacket((short)4860, var2));
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
@@ -232,16 +232,16 @@ public final class v_1 {
    }
 
    public final void c() {
-      this.i.d.start();
+      this.i.mainMidlet.start();
       this.i.aq.j();
       this.i.aq.a("申请结婚");
       this.i.aq.a(false);
-      this.i.at.b(c, t_1.i, (byte)2);
+      this.i.at.b(c, GlobalConfig.i, (byte)2);
       this.i.at.a((byte)1);
       this.i.aq.a((al)this.i.at);
-      int var2 = 2 * t_1.j + 16;
+      int var2 = 2 * GlobalConfig.j + 16;
       this.i.aq.g = var2;
-      this.i.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+      this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.l = 0;
       this.i.touchPageCase = this.i.k;
       this.h.j = this.h.k = 91;
@@ -290,8 +290,8 @@ public final class v_1 {
          int var3 = 0;
          if (this.i.aq != null) {
             var2 = this.i.aq.a + 5;
-            var3 = this.i.aq.b + this.i.aq.d - (2 * t_1.j + 16) - 6;
-             LoadingPage.a(var1, var2, var3, this.i.aq.c - 11, 2 * t_1.j + 16, 1);
+            var3 = this.i.aq.b + this.i.aq.d - (2 * GlobalConfig.j + 16) - 6;
+             LoadingPage.a(var1, var2, var3, this.i.aq.c - 11, 2 * GlobalConfig.j + 16, 1);
             this.i.aq.a(var1);
          }
 
@@ -306,7 +306,7 @@ public final class v_1 {
                this.m[0] = "同意(点击申请结婚)";
             }
 
-             LoadingPage.a(var1, (String)this.m[var5], (int)(var2 + 4), var3 + 5 + var5 * (t_1.j + 5), 20, this.d == var5 ? 16711680 : var4, 0);
+             LoadingPage.a(var1, (String)this.m[var5], (int)(var2 + 4), var3 + 5 + var5 * (GlobalConfig.j + 5), 20, this.d == var5 ? 16711680 : var4, 0);
          }
       }
 
@@ -314,8 +314,8 @@ public final class v_1 {
 
    public final void b(byte var1) {
       byte[] var2;
-      if ((var2 = bz_1.n((short)4861, bt_1.ad, (byte)var1)) != null) {
-         MainCanvas.i.a(new w((short)4861, var2));
+      if ((var2 = NetPayloadBuilder.n((short)4861, GlobalStatus.ad, (byte)var1)) != null) {
+         MainCanvas.i.sendPacket(new NetPacket((short)4861, var2));
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
@@ -331,12 +331,12 @@ public final class v_1 {
       this.i.aq.j();
       this.i.aq.a("申请离婚");
       this.i.aq.a(false);
-      this.i.at.b(f, t_1.i, (byte)2);
+      this.i.at.b(f, GlobalConfig.i, (byte)2);
       this.i.at.a((byte)1);
       this.i.aq.a((al)this.i.at);
-      int var2 = 2 * t_1.j + 16;
+      int var2 = 2 * GlobalConfig.j + 16;
       this.i.aq.g = var2;
-      this.i.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+      this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.l = 0;
       this.i.touchPageCase = this.i.k;
       this.h.j = this.h.k = 92;
@@ -390,8 +390,8 @@ public final class v_1 {
          int var3 = 0;
          if (this.i.aq != null) {
             var2 = this.i.aq.a + 5;
-            var3 = this.i.aq.b + this.i.aq.d - (2 * t_1.j + 16) - 6;
-             LoadingPage.a(var1, var2, var3, this.i.aq.c - 11, 2 * t_1.j + 16, 1);
+            var3 = this.i.aq.b + this.i.aq.d - (2 * GlobalConfig.j + 16) - 6;
+             LoadingPage.a(var1, var2, var3, this.i.aq.c - 11, 2 * GlobalConfig.j + 16, 1);
             this.i.aq.a(var1);
          }
 
@@ -406,7 +406,7 @@ public final class v_1 {
                this.n[0] = "离婚(点击申请离婚)";
             }
 
-             LoadingPage.a(var1, (String)this.n[var5], (int)(var2 + 4), var3 + 5 + var5 * (t_1.j + 5), 20, this.g == var5 ? 16711680 : var4, 0);
+             LoadingPage.a(var1, (String)this.n[var5], (int)(var2 + 4), var3 + 5 + var5 * (GlobalConfig.j + 5), 20, this.g == var5 ? 16711680 : var4, 0);
          }
       }
 
@@ -414,8 +414,8 @@ public final class v_1 {
 
    public final void e() {
       byte[] var1;
-      if ((var1 = bz_1.n((short)4862, bt_1.ad, (short) bt_1.gQ)) != null) {
-         MainCanvas.i.a(new w((short)4862, var1));
+      if ((var1 = NetPayloadBuilder.n((short)4862, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
+         MainCanvas.i.sendPacket(new NetPacket((short)4862, var1));
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
@@ -424,9 +424,9 @@ public final class v_1 {
    }
 
    public static void e(DataInputStream var0) throws IOException {
-      bt_1.gQ = var0.readShort();
+      GlobalStatus.gQ = var0.readShort();
       short var1 = var0.readShort();
-      bt_1.gR = var0.readByte();
+      GlobalStatus.gR = var0.readByte();
       if (var1 <= 0) {
          g();
       } else {
@@ -450,7 +450,7 @@ public final class v_1 {
       this.i.au.a(true);
       this.i.aq.a((al)this.i.ar);
       this.i.aq.a((al)this.i.au);
-      this.i.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+      this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.l = 0;
       this.i.touchPageCase = this.i.k;
       this.h.j = this.h.k = 93;
@@ -465,8 +465,8 @@ public final class v_1 {
          if (o != null && (var1 == 268435456 || var1 == 1073741824 || var1 == 517)) {
             int var3 = o[this.i.ar.g()];
             byte[] var4;
-            if ((var4 = bz_1.a((short)4863, bt_1.ad, bt_1.t[this.h.af].a, (int)var3, (short)this.h.I.j, (short)this.h.I.k)) != null) {
-               MainCanvas.i.a(new w((short)4863, var4));
+            if ((var4 = NetPayloadBuilder.a((short)4863, GlobalStatus.ad, GlobalStatus.t[this.h.af].a, (int)var3, (short)this.h.I.j, (short)this.h.I.k)) != null) {
+               MainCanvas.i.sendPacket(new NetPacket((short)4863, var4));
                this.h.j = this.h.k = 0;
                this.i.a((String)null);
             } else {
@@ -481,36 +481,36 @@ public final class v_1 {
          }
 
          if (var1 == 1024) {
-            if (bt_1.gQ > 1 && bt_1.gR == 1) {
-               if (bt_1.gQ - 1 <= 1) {
-                  bt_1.gQ = 1;
+            if (GlobalStatus.gQ > 1 && GlobalStatus.gR == 1) {
+               if (GlobalStatus.gQ - 1 <= 1) {
+                  GlobalStatus.gQ = 1;
                } else {
-                  --bt_1.gQ;
+                  --GlobalStatus.gQ;
                }
 
                this.e();
                return;
             }
 
-            if (bt_1.gQ > 1 && bt_1.gR == 0) {
-               if (bt_1.gQ - 1 < 1) {
-                  bt_1.gQ = 1;
+            if (GlobalStatus.gQ > 1 && GlobalStatus.gR == 0) {
+               if (GlobalStatus.gQ - 1 < 1) {
+                  GlobalStatus.gQ = 1;
                } else {
-                  --bt_1.gQ;
+                  --GlobalStatus.gQ;
                }
 
                this.e();
                return;
             }
          } else if (var1 == 2048) {
-            if (bt_1.gQ <= 1 && bt_1.gR == 1) {
-               ++bt_1.gQ;
+            if (GlobalStatus.gQ <= 1 && GlobalStatus.gR == 1) {
+               ++GlobalStatus.gQ;
                this.e();
                return;
             }
 
-            if (bt_1.gQ > 1 && bt_1.gR == 1) {
-               ++bt_1.gQ;
+            if (GlobalStatus.gQ > 1 && GlobalStatus.gR == 1) {
+               ++GlobalStatus.gQ;
                this.e();
             }
          }

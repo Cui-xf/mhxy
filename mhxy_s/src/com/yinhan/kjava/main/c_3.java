@@ -1,10 +1,10 @@
 package com.yinhan.kjava.main;
 
-import com.cc.av_1;
-import com.cc.bz_1;
+import com.cc.NetUtils;
+import com.cc.NetPayloadBuilder;
 import com.cc.h;
-import com.cc.t_1;
-import com.cc.w;
+import com.cc.GlobalConfig;
+import com.cc.NetPacket;
 
 import javax.microedition.lcdui.Display;
 import javax.microedition.lcdui.Displayable;
@@ -30,16 +30,16 @@ public final class c_3 {
         var4.append(var2);
         var4.append(':');
         var4.append(var3);
-        w var5 = bz_1.a((byte) 1, (byte) 1, var4.toString());
-        if (MainCanvas.i == null || bz_1.b != 72 || av_1.a("socket://120.78.151.213:20008")) {
+        NetPacket var5 = NetPayloadBuilder.login((byte) 1, (byte) 1, var4.toString());
+        if (MainCanvas.i == null || NetPayloadBuilder.hands2 != 72 || NetUtils.a("socket://120.78.151.213:20008")) {
             System.out.println("socket://120.78.151.213:20008");
-            bz_1.b = 72;
+            NetPayloadBuilder.hands2 = 72;
             this.a.mainCanvas.a("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
         }
 
         if (MainCanvas.i != null) {
-            var5.a = true;
-            MainCanvas.i.a(var5);
+            var5.firstPacket = true;
+            MainCanvas.i.sendPacket(var5);
         }
 
     }
@@ -53,7 +53,7 @@ public final class c_3 {
     }
 
     public final void d() {
-        c.a(bz_1.a((byte) 1, (byte) 3, ""));
+        c.a(NetPayloadBuilder.login((byte) 1, (byte) 3, ""));
         this.a.start();
         this.a.mainCanvas.a("请求中...");
     }
@@ -79,7 +79,7 @@ public final class c_3 {
     }
 
     public static void g() {
-        if (t_1.x) {
+        if (GlobalConfig.x) {
             c.e();
         } else {
             c.d();

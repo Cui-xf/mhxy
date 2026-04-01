@@ -58,7 +58,7 @@ public final class c_1 extends al {
       this.e = 0;
       this.f = 0;
       this.z = 0;
-      this.i = t_1.j;
+      this.i = GlobalConfig.j;
       this.h = var2 == null ? 0 : var2.length;
       this.g = Math.min(this.h + this.z, (this.d - 8) / this.i);
    }
@@ -234,7 +234,7 @@ public final class c_1 extends al {
    public final void a(Graphics var1) {
       this.g = Math.min(this.h + this.z, (this.d - 8) / this.i);
        LoadingPage.a(var1, 6014420);
-      var1.setClip(0, 0, t_1.b, t_1.c);
+      var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
       var1.fillRect(this.a, this.b, this.c, this.d);
        LoadingPage.a(var1, this.a, this.b, this.c, this.d, 1);
       if (this.E) {
@@ -269,15 +269,15 @@ public final class c_1 extends al {
 
             var2 = (var2 = 0 + this.A + (this.v != null && this.v[var6] > 0 ? 16 : 0)) + (this.w != null && this.w[var6] > 0 ? 18 : 0);
             if (this.s[var6] != null) {
-               var2 += t_1.i.stringWidth(this.s[var6]);
+               var2 += GlobalConfig.i.stringWidth(this.s[var6]);
             }
 
             if (this.t != null && this.t[var6] != null) {
-               var3 = t_1.i.stringWidth(this.t[var6]);
+               var3 = GlobalConfig.i.stringWidth(this.t[var6]);
             }
 
             if (this.u != null && this.u[var6] != null) {
-               var4 = t_1.i.stringWidth(this.u[var6]);
+               var4 = GlobalConfig.i.stringWidth(this.u[var6]);
             }
 
             this.m = (short)(this.a + 4 + var2 + Math.max(4, this.c - var2 - var3 - var4 - 20 >> 1));
@@ -295,7 +295,7 @@ public final class c_1 extends al {
             }
 
             if (this.v != null && this.v[var6] > 0) {
-               this.a(var1, this.a + 4 + this.A + t_1.i.stringWidth(this.s[var6]) + 2, this.b + 4 + var5 * this.i, MainCanvas.d(this.v[var6]));
+               this.a(var1, this.a + 4 + this.A + GlobalConfig.i.stringWidth(this.s[var6]) + 2, this.b + 4 + var5 * this.i, MainCanvas.d(this.v[var6]));
             }
 
             if (this.w != null && this.w[var6] > 0) {
@@ -335,7 +335,7 @@ public final class c_1 extends al {
       }
 
       if (this.g > 0) {
-         var1.setClip(0, 0, t_1.b, t_1.c);
+         var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
          if (MainCanvas.C != null) {
             this.j = 0;
             if (this.g < this.h && this.h != 0) {

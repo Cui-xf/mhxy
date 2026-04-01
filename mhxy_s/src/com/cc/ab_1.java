@@ -16,7 +16,7 @@ public final class ab_1 {
 
    public final void a() {
       s sVar;
-      if (this.c == null || this.c.I == null || !bt_1.bu || bt_1.bv <= 0) {
+      if (this.c == null || this.c.I == null || !GlobalStatus.bu || GlobalStatus.bv <= 0) {
          return;
       }
       if (this.c.I.c != null && this.c.I.c.size() > 0) {
@@ -75,21 +75,21 @@ public final class ab_1 {
    }
 
    public static boolean c() {
-      if (bt_1.q != null && bt_1.q.length > 0) {
-         if (bt_1.s == 1) {
-            return bt_1.bu;
+      if (GlobalStatus.q != null && GlobalStatus.q.length > 0) {
+         if (GlobalStatus.s == 1) {
+            return GlobalStatus.bu;
          } else {
-            for(int var0 = 0; var0 < bt_1.q.length; ++var0) {
-               if (bt_1.q[var0].b.equals(bt_1.ad)) {
-                  if (bt_1.q[var0].s == 1) {
-                     if (bt_1.bu) {
+            for(int var0 = 0; var0 < GlobalStatus.q.length; ++var0) {
+               if (GlobalStatus.q[var0].b.equals(GlobalStatus.ad)) {
+                  if (GlobalStatus.q[var0].s == 1) {
+                     if (GlobalStatus.bu) {
                         return true;
                      }
 
                      return false;
                   }
 
-                  if (bt_1.bx == 1) {
+                  if (GlobalStatus.bx == 1) {
                      return true;
                   }
 
@@ -100,7 +100,7 @@ public final class ab_1 {
             return false;
          }
       } else {
-         return bt_1.bu;
+         return GlobalStatus.bu;
       }
    }
 

@@ -24,59 +24,59 @@ public final class q {
       this.a = var1;
    }
 
-   public final void a(w var1) {
+   public final void a(NetPacket var1) {
       if (var1 != null) {
          try {
-            this.d = var1.a();
+            this.d = var1.getCode();
             if (this.d != 8192) {
-               if (var1.b == null) {
+               if (var1.payload == null) {
                   return;
                }
 
-               this.c = new ByteArrayInputStream(var1.b);
+               this.c = new ByteArrayInputStream(var1.payload);
                this.b = new DataInputStream(this.c);
             }
 
             switch (this.d) {
                case 8192:
-                  if (var1.c == null) {
+                  if (var1.child == null) {
                      return;
                   }
 
-                  while(var1.c.size() > 0) {
-                     this.a((w)var1.c.elementAt(0));
-                     var1.c.removeElementAt(0);
+                  while(var1.child.size() > 0) {
+                     this.a((NetPacket)var1.child.elementAt(0));
+                     var1.child.removeElementAt(0);
                   }
 
                   return;
                case 8193:
-                  bt_1.w(this.b);
-                  if (bt_1.eB == 53) {
+                  GlobalStatus.w(this.b);
+                  if (GlobalStatus.eB == 53) {
                      if (MainCanvas.e.g != null) {
                         MainCanvas.e.g.d();
                         MainCanvas.e.j = MainCanvas.e.k = 0;
-                        this.a.b(t_1.Y[bt_1.eB]);
+                        this.a.b(GlobalConfig.Y[GlobalStatus.eB]);
                      }
 
                      return;
                   }
 
-                  if (bt_1.eB == 48) {
+                  if (GlobalStatus.eB == 48) {
                      if (MainCanvas.e.g != null) {
                         MainCanvas.e.g.f = -2;
                      } else {
-                        this.a.b(t_1.Y[bt_1.eB]);
+                        this.a.b(GlobalConfig.Y[GlobalStatus.eB]);
                      }
 
                      return;
                   }
 
-                  if (bt_1.eB != -2) {
-                     if (MainCanvas.e == null || MainCanvas.e.g == null || MainCanvas.e.g.f != -1 || bt_1.eC == null || !bt_1.eC.startsWith("等待他人操作")) {
-                        if (bt_1.eC != null) {
-                           this.a.b(bt_1.eC);
+                  if (GlobalStatus.eB != -2) {
+                     if (MainCanvas.e == null || MainCanvas.e.g == null || MainCanvas.e.g.f != -1 || GlobalStatus.eC == null || !GlobalStatus.eC.startsWith("等待他人操作")) {
+                        if (GlobalStatus.eC != null) {
+                           this.a.b(GlobalStatus.eC);
                         } else {
-                           this.a.b(t_1.Y[bt_1.eB < 0 ? 0 : bt_1.eB]);
+                           this.a.b(GlobalConfig.Y[GlobalStatus.eB < 0 ? 0 : GlobalStatus.eB]);
                         }
                         break;
                      }
@@ -90,26 +90,26 @@ public final class q {
 
                   return;
                case 8194:
-                  bt_1.b = this.b.readUTF();
-                  bt_1.d = this.b.readUTF();
+                  GlobalStatus.b = this.b.readUTF();
+                  GlobalStatus.d = this.b.readUTF();
                   return;
                case 8195:
-                  t_1.a("exec角色列表:");
-                  bt_1.a(this.b);
-                  this.a.b(bt_1.W == null ? 0 : bt_1.W.length);
+                  GlobalConfig.printStr("exec角色列表:");
+                  GlobalStatus.a(this.b);
+                  this.a.b(GlobalStatus.W == null ? 0 : GlobalStatus.W.length);
                   return;
                case 8197:
-                  bt_1.d(this.b);
+                  GlobalStatus.d(this.b);
                   if (MainCanvas.e == null) {
                      return;
                   }
 
                   MainCanvas.e.aX = false;
                   if (MainCanvas.e.k == 2 && MainCanvas.e.l == 4) {
-                     String var48 = t_1.a(this.a.l, bt_1.aq);
-                     t_1.a(this.a.l, bt_1.ap);
-                     MainCanvas.e.am = LoadingPage.a(bt_1.t[MainCanvas.e.af].b + ":已存入银两" + var48 + "，现有银两" + this.a.l.toString(), t_1.i, t_1.b == 176 ? 118 : 152, "\t");
-                     MainCanvas.e.ah = MainCanvas.e.m == 1 ? bt_1.aq : bt_1.ap;
+                     String var48 = GlobalConfig.a(this.a.l, GlobalStatus.aq);
+                     GlobalConfig.a(this.a.l, GlobalStatus.ap);
+                     MainCanvas.e.am = LoadingPage.a(GlobalStatus.t[MainCanvas.e.af].b + ":已存入银两" + var48 + "，现有银两" + this.a.l.toString(), GlobalConfig.i, GlobalConfig.defaultWidth == 176 ? 118 : 152, "\t");
+                     MainCanvas.e.ah = MainCanvas.e.m == 1 ? GlobalStatus.aq : GlobalStatus.ap;
                   } else if (MainCanvas.e.k == 37 && MainCanvas.e.ao) {
                      MainCanvas.e.p();
                      MainCanvas.e.ao = false;
@@ -127,7 +127,7 @@ public final class q {
                         var57[var64].a(this.b);
                      }
 
-                     bt_1.u.addElement(var57);
+                     GlobalStatus.u.addElement(var57);
                   }
 
                   ao_1.Q();
@@ -140,11 +140,11 @@ public final class q {
                   this.b();
                   return;
                case 8200:
-                  bt_1.b(this.b);
+                  GlobalStatus.b(this.b);
                   return;
                case 8201:
                   byte var56 = this.b.readByte();
-                  bt_1.e(this.b);
+                  GlobalStatus.e(this.b);
                   if (var56 == 1) {
                      this.a.i();
                   } else if (var56 == 2 && MainCanvas.e != null) {
@@ -162,7 +162,7 @@ public final class q {
 
                   return;
                case 8202:
-                  bt_1.l(this.b);
+                  GlobalStatus.l(this.b);
                   if (MainCanvas.e != null && MainCanvas.e.k == 5) {
                      MainCanvas.e.l = 0;
                      this.a.touchPageCase = this.a.k = 7;
@@ -171,7 +171,7 @@ public final class q {
                   return;
                case 8203:
                   this.b.readByte();
-                  bt_1.n(this.b);
+                  GlobalStatus.n(this.b);
                   if (MainCanvas.e.k == 12) {
                      if (this.a.as.a == 0) {
                         MainCanvas.e.a((byte)1, true);
@@ -186,14 +186,14 @@ public final class q {
                   this.a(this.b);
                   return;
                case 8205:
-                  bt_1.A(this.b);
+                  GlobalStatus.A(this.b);
                   return;
                case 8206:
                   b(this.b);
                   return;
                case 8207:
                   if (ao_1.i()) {
-                     bt_1.g(this.b);
+                     GlobalStatus.g(this.b);
                      MainCanvas.e.l = 0;
                      MainCanvas.e.m();
                      return;
@@ -202,7 +202,7 @@ public final class q {
                   return;
                case 8208:
                   byte var46 = this.b.readByte();
-                  bt_1.b(this.b, var46);
+                  GlobalStatus.b(this.b, var46);
                   if (var46 == 1) {
                      MainCanvas.e.M.y();
                   } else {
@@ -219,7 +219,7 @@ public final class q {
 
                   return;
                case 8210:
-                  bt_1.t(this.b);
+                  GlobalStatus.t(this.b);
                   if (MainCanvas.e != null) {
                      if (MainCanvas.e.k == 12 && MainCanvas.e.l >= 6) {
                         if (this.a.touchPageCase != 2) {
@@ -227,7 +227,7 @@ public final class q {
                         }
 
                         MainCanvas.e.l = 6;
-                        MainCanvas.e.a(bt_1.en);
+                        MainCanvas.e.a(GlobalStatus.en);
                         return;
                      }
 
@@ -236,7 +236,7 @@ public final class q {
                            this.a.touchPageCase = this.a.k;
                         }
 
-                        MainCanvas.e.a(bt_1.en);
+                        MainCanvas.e.a(GlobalStatus.en);
                         MainCanvas.e.l = 8;
                      }
 
@@ -245,23 +245,23 @@ public final class q {
 
                   return;
                case 8211:
-                  bt_1.D(this.b);
-                  MainCanvas.e.a(bt_1.fs);
-                  MainCanvas.e.a(bt_1.fl);
+                  GlobalStatus.D(this.b);
+                  MainCanvas.e.a(GlobalStatus.fs);
+                  MainCanvas.e.a(GlobalStatus.fl);
                   if (this.a.touchPageCase == 1) {
                      this.a.touchPageCase = this.a.k;
                   }
 
                   return;
                case 8212:
-                  bt_1.E(this.b);
+                  GlobalStatus.E(this.b);
                   if (this.a.touchPageCase == 1) {
                      this.a.touchPageCase = this.a.k;
                   }
 
                   return;
                case 8213:
-                  bt_1.q(this.b);
+                  GlobalStatus.q(this.b);
                   if (MainCanvas.e == null) {
                      return;
                   }
@@ -277,7 +277,7 @@ public final class q {
                   }
 
                   this.a.az = false;
-                  MainCanvas.e.b(bt_1.dT[1], bt_1.dX);
+                  MainCanvas.e.b(GlobalStatus.dT[1], GlobalStatus.dX);
                   return;
                case 8214:
                   byte var45;
@@ -298,7 +298,7 @@ public final class q {
 
                   return;
                case 8215:
-                  bt_1.B(this.b);
+                  GlobalStatus.B(this.b);
                   if (ao_1.i()) {
                      MainCanvas.e.v();
                      return;
@@ -307,8 +307,8 @@ public final class q {
                   this.a.b("战斗中不能进行该操作");
                   return;
                case 8216:
-                  bt_1.m(this.b);
-                  if (bt_1.cG == null || bt_1.cG.length <= 0) {
+                  GlobalStatus.m(this.b);
+                  if (GlobalStatus.cG == null || GlobalStatus.cG.length <= 0) {
                      this.a.b("该玩家没有武器装备!");
                      return;
                   }
@@ -335,27 +335,27 @@ public final class q {
                   byte var44 = this.b.readByte();
                   if (var6 == -1L) {
                      if (MainCanvas.e.g != null) {
-                        bt_1.v = -1L;
-                        bt_1.x = -1;
+                        GlobalStatus.v = -1L;
+                        GlobalStatus.x = -1;
                         MainCanvas.e.g.l();
                      }
-                  } else if (bq_1.g <= 0 && var6 != bt_1.v) {
+                  } else if (bq_1.g <= 0 && var6 != GlobalStatus.v) {
                      if (MainCanvas.e.g != null) {
-                        bt_1.v = -1L;
-                        bt_1.x = -1;
+                        GlobalStatus.v = -1L;
+                        GlobalStatus.x = -1;
                         MainCanvas.e.g.l();
                      }
                   } else if (var44 == 0) {
                      MainCanvas.e.g.f = 7;
-                     bt_1.v = -1L;
-                     bt_1.x = -1;
+                     GlobalStatus.v = -1L;
+                     GlobalStatus.x = -1;
                   } else {
-                     bt_1.v = -1L;
-                     bt_1.x = -1;
+                     GlobalStatus.v = -1L;
+                     GlobalStatus.x = -1;
                   }
 
-                  bt_1.a();
-                  if (bt_1.bu) {
+                  GlobalStatus.a();
+                  if (GlobalStatus.bu) {
                      MainCanvas.e.X.b();
                   }
 
@@ -363,12 +363,12 @@ public final class q {
                case 8219:
                   byte var54 = this.b.readByte();
                   this.b.readLong();
-                  bt_1.C(this.b);
+                  GlobalStatus.C(this.b);
                   if (ao_1.i()) {
                      if (var54 == 0) {
-                        bt_1.N();
+                        GlobalStatus.N();
                      } else if (var54 == 1) {
-                        bt_1.x();
+                        GlobalStatus.x();
                      }
 
                      MainCanvas.e.b(var54, false);
@@ -381,10 +381,10 @@ public final class q {
                   this.f();
                   return;
                case 8221:
-                  bt_1.F(this.b);
+                  GlobalStatus.F(this.b);
                   return;
                case 8222:
-                  t_1.a("exec宠物列表:");
+                  GlobalConfig.printStr("exec宠物列表:");
                   this.d();
                   return;
                case 8223:
@@ -393,12 +393,12 @@ public final class q {
                         return;
                      }
 
-                     bt_1.h(this.b);
+                     GlobalStatus.h(this.b);
                      if (MainCanvas.e.k != 6) {
                         return;
                      }
 
-                     if (bt_1.bR == null && bt_1.bL == null) {
+                     if (GlobalStatus.bR == null && GlobalStatus.bL == null) {
                         this.a.b("当前没有任务");
                         return;
                      }
@@ -407,34 +407,34 @@ public final class q {
                      return;
                   }
 
-                  bt_1.h(this.b);
+                  GlobalStatus.h(this.b);
                   return;
                case 8224:
-                  bt_1.bH = this.b.readUTF();
+                  GlobalStatus.bH = this.b.readUTF();
                   if (MainCanvas.e.k == 6) {
                      this.a.aq.b();
                      this.a.aq.a("任务详细");
-                     this.a.at.a(bt_1.bH, t_1.i, (byte)2);
+                     this.a.at.a(GlobalStatus.bH, GlobalConfig.i, (byte)2);
                      this.a.at.a((byte)0);
                      this.a.au.a("确定");
                      this.a.aq.a((al)this.a.at);
                      this.a.aq.a((al)this.a.au);
-                     this.a.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+                     this.a.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
                      this.a.touchPageCase = this.a.k;
                      MainCanvas.e.l = 3;
                   }
 
                   return;
                case 8225:
-                  bt_1.i(this.b);
-                  if (bt_1.bW) {
+                  GlobalStatus.i(this.b);
+                  if (GlobalStatus.bW) {
                      MainCanvas.e.F();
                   }
 
                   return;
                case 8226:
-                  bt_1.J(this.b);
-                  if (bt_1.gS == null) {
+                  GlobalStatus.J(this.b);
+                  if (GlobalStatus.gS == null) {
                      this.a.b("附近没有玩家!");
                      return;
                   }
@@ -452,8 +452,8 @@ public final class q {
                   this.a.b("战斗中不能查看周围玩家");
                   return;
                case 8227:
-                  bt_1.j(this.b);
-                  if (bt_1.cs == null) {
+                  GlobalStatus.j(this.b);
+                  if (GlobalStatus.cs == null) {
                      this.a.b("没有可传送的目的地!");
                      return;
                   }
@@ -464,8 +464,8 @@ public final class q {
 
                   return;
                case 8228:
-                  bt_1.s(this.b);
-                  if (bt_1.gs != null) {
+                  GlobalStatus.s(this.b);
+                  if (GlobalStatus.gs != null) {
                      boolean var62 = false;
                      MainCanvas.e.J();
                   } else {
@@ -473,7 +473,7 @@ public final class q {
                         --MainCanvas.e.aM;
                         this.a.b("没有更多的宠物了！");
                      } else {
-                        bt_1.t();
+                        GlobalStatus.t();
                      }
 
                      this.a.touchPageCase = this.a.k;
@@ -485,12 +485,12 @@ public final class q {
                   c(this.b);
                   return;
                case 8230:
-                  bt_1.H(this.b);
+                  GlobalStatus.H(this.b);
                   MainCanvas.e.C();
                   return;
                case 8231:
-                  bt_1.r(this.b);
-                  if (bt_1.dY != null) {
+                  GlobalStatus.r(this.b);
+                  if (GlobalStatus.dY != null) {
                      boolean var61 = false;
                      MainCanvas.e.I();
                      return;
@@ -506,9 +506,9 @@ public final class q {
                      break;
                   }
                case 8232:
-                  bt_1.k(this.b);
+                  GlobalStatus.k(this.b);
                   if (MainCanvas.e.k == 11) {
-                     if (bt_1.ct == null) {
+                     if (GlobalStatus.ct == null) {
                         this.a.b("仓库没有物品");
                      } else {
                         MainCanvas.e.G();
@@ -518,9 +518,9 @@ public final class q {
 
                   return;
                case 8233:
-                  bt_1.G(this.b);
+                  GlobalStatus.G(this.b);
                   if (MainCanvas.e.j == 35) {
-                     if (bt_1.gs != null) {
+                     if (GlobalStatus.gs != null) {
                         MainCanvas.e.D();
                         if (this.a.touchPageCase != 2) {
                            this.a.touchPageCase = this.a.k;
@@ -533,20 +533,20 @@ public final class q {
 
                   return;
                case 8234:
-                  bt_1.o(this.b);
-                  if (MainCanvas.e.k == 29 && bt_1.dE != null) {
-                     MainCanvas.e.i(MainCanvas.e.aE > bt_1.dE.length - 1 ? bt_1.dE.length - 1 : MainCanvas.e.aE);
+                  GlobalStatus.o(this.b);
+                  if (MainCanvas.e.k == 29 && GlobalStatus.dE != null) {
+                     MainCanvas.e.i(MainCanvas.e.aE > GlobalStatus.dE.length - 1 ? GlobalStatus.dE.length - 1 : MainCanvas.e.aE);
                   }
 
                   return;
                case 8235:
                   if (ao_1.i()) {
-                     bt_1.p(this.b);
+                     GlobalStatus.p(this.b);
                   } else {
-                     bt_1.s();
+                     GlobalStatus.s();
                   }
 
-                  if (bt_1.dJ) {
+                  if (GlobalStatus.dJ) {
                      if (!ao_1.i()) {
                         return;
                      }
@@ -557,19 +557,19 @@ public final class q {
 
                   return;
                case 8236:
-                  bt_1.p(this.b);
+                  GlobalStatus.p(this.b);
                   if (MainCanvas.e.k != 7) {
                      MainCanvas.e.p((int)2);
                   }
 
                   return;
                case 8238:
-                  bt_1.v(this.b);
-                  if (!ao_1.aj || bt_1.ev) {
-                     if (bt_1.ew != null) {
+                  GlobalStatus.v(this.b);
+                  if (!ao_1.aj || GlobalStatus.ev) {
+                     if (GlobalStatus.ew != null) {
                         MainCanvas.e.a((short) MainCanvas.e.k, (byte)1);
                      } else {
-                        bt_1.u();
+                        GlobalStatus.u();
                      }
                      break;
                   }
@@ -577,9 +577,9 @@ public final class q {
                   return;
                case 8239:
                   if (this.b.readByte() == 0) {
-                     bt_1.bt = false;
+                     GlobalStatus.bt = false;
                   } else {
-                     bt_1.bt = true;
+                     GlobalStatus.bt = true;
                   }
 
                   bq_1.k();
@@ -589,27 +589,27 @@ public final class q {
 
                   return;
                case 8240:
-                  bt_1.z(this.b);
+                  GlobalStatus.z(this.b);
                   MainCanvas.e.f((byte)1);
                   return;
                case 8241:
-                  bt_1.L(this.b);
+                  GlobalStatus.L(this.b);
                   return;
                case 8242:
-                  bt_1.K(this.b);
+                  GlobalStatus.K(this.b);
                   return;
                case 8243:
                   byte var60 = this.b.readByte();
-                  bt_1.a(this.b, var60);
-                  if (bt_1.db != null && bt_1.db.length > 0) {
-                     MainCanvas.e.a(bt_1.fz[MainCanvas.e.ay] == 0, false);
+                  GlobalStatus.a(this.b, var60);
+                  if (GlobalStatus.db != null && GlobalStatus.db.length > 0) {
+                     MainCanvas.e.a(GlobalStatus.fz[MainCanvas.e.ay] == 0, false);
                      return;
                   }
 
                   this.a.b("宠物没有技能!");
                   return;
                case 8244:
-                  bt_1.u(this.b);
+                  GlobalStatus.u(this.b);
                   if (MainCanvas.e != null) {
                      if (MainCanvas.e.k == 36 && MainCanvas.e.l >= 2) {
                         if (this.a.touchPageCase != 2) {
@@ -617,7 +617,7 @@ public final class q {
                         }
 
                         MainCanvas.e.l = 2;
-                        MainCanvas.e.a(bt_1.et);
+                        MainCanvas.e.a(GlobalStatus.et);
                      }
 
                      return;
@@ -625,17 +625,17 @@ public final class q {
 
                   return;
                case 8245:
-                  bt_1.aI(this.b);
+                  GlobalStatus.aI(this.b);
                   if (this.b.readByte() == 1) {
                      this.a.e();
                   }
 
                   return;
                case 8246:
-                  bt_1.N(this.b);
+                  GlobalStatus.N(this.b);
                   return;
                case 8247:
-                  bt_1.z = this.b.readByte();
+                  GlobalStatus.z = this.b.readByte();
                   if (MainCanvas.e != null) {
                      if (MainCanvas.e.k == 3) {
                         MainCanvas.e.a((byte)2);
@@ -649,14 +649,14 @@ public final class q {
 
                   return;
                case 8248:
-                  bt_1.A = this.b.readByte();
+                  GlobalStatus.A = this.b.readByte();
                   if (MainCanvas.e != null) {
                      MainCanvas.e.d(false);
                   }
 
                   return;
                case 8249:
-                  bt_1.B = this.b.readByte();
+                  GlobalStatus.B = this.b.readByte();
                   if (MainCanvas.e != null) {
                      MainCanvas.e.d(false);
                   }
@@ -670,7 +670,7 @@ public final class q {
 
                   return;
                case 8251:
-                  bt_1.D = this.b.readByte();
+                  GlobalStatus.D = this.b.readByte();
                   if (MainCanvas.e != null) {
                      MainCanvas.e.d(false);
                   }
@@ -678,7 +678,7 @@ public final class q {
                   return;
                case 8252:
                   byte var59 = this.b.readByte();
-                  bt_1.f(this.b);
+                  GlobalStatus.f(this.b);
                   if (var59 == 1) {
                      this.a.i();
                   }
@@ -694,40 +694,40 @@ public final class q {
 
                   return;
                case 8253:
-                  bt_1.aD(this.b);
+                  GlobalStatus.aD(this.b);
                   if (MainCanvas.e.k != 20) {
                      MainCanvas.e.Y();
                   }
 
                   return;
                case 8254:
-                  bt_1.aE(this.b);
+                  GlobalStatus.aE(this.b);
                   MainCanvas.e.c(MainCanvas.e.k);
                   return;
                case 8255:
-                  bt_1.aG(this.b);
+                  GlobalStatus.aG(this.b);
                   MainCanvas.e.Z();
                   return;
                case 8257:
-                  bt_1.E = this.b.readByte();
+                  GlobalStatus.E = this.b.readByte();
                   if (MainCanvas.e != null) {
                      MainCanvas.e.d(false);
                   }
 
                   return;
                case 8258:
-                  bt_1.aH(this.b);
+                  GlobalStatus.aH(this.b);
                   if (MainCanvas.e.j != 4 && MainCanvas.e.j != 33) {
                      MainCanvas.e.ah();
                   }
 
                   return;
                case 8259:
-                  bt_1.Y(this.b);
+                  GlobalStatus.Y(this.b);
                   if (MainCanvas.e.k == 2) {
                      MainCanvas.e.M.b(false);
                   } else if (MainCanvas.e.k == 50) {
-                     this.a.at.b(bt_1.iI[this.a.ar.g()], t_1.i, (byte)2);
+                     this.a.at.b(GlobalStatus.iI[this.a.ar.g()], GlobalConfig.i, (byte)2);
                      this.a.at.a((byte)1);
                      break;
                   }
@@ -737,24 +737,24 @@ public final class q {
                   int var42;
                   if ((var42 = this.b.readInt()) > 0) {
                      byte[] var43 = new byte[var42];
-                     bt_1.kX = this.b.readUTF();
+                     GlobalStatus.kX = this.b.readUTF();
                      this.b.read(var43);
-                     MainCanvas.ae = new Page(bt_1.kX, var43);
+                     MainCanvas.ae = new Page(GlobalStatus.kX, var43);
                   }
 
-                  bt_1.aJ(this.b);
+                  GlobalStatus.aJ(this.b);
                   return;
                case 8261:
-                  bt_1.aK(this.b);
+                  GlobalStatus.aK(this.b);
                   if (this.b.readByte() == 1) {
                      this.a.f();
                   }
 
-                  if (bt_1.bs == 0) {
+                  if (GlobalStatus.bs == 0) {
                      this.a.n();
                      this.a.touchAction = 0;
                      this.a.b = 0;
-                     this.a.d.start();
+                     this.a.mainMidlet.start();
                   }
                   break;
                case 8262:
@@ -766,7 +766,7 @@ public final class q {
                default:
                   return;
                case 8264:
-                  if (bt_1.bu = this.b.readByte() != 0) {
+                  if (GlobalStatus.bu = this.b.readByte() != 0) {
                      ab_1.b = true;
                   }
 
@@ -780,11 +780,11 @@ public final class q {
 
                   return;
                case 8265:
-                  bt_1.bv = this.b.readInt();
+                  GlobalStatus.bv = this.b.readInt();
                   return;
                case 8267:
-                  bt_1.bz = this.b.readUTF();
-                  bt_1.by = this.b.readUTF();
+                  GlobalStatus.bz = this.b.readUTF();
+                  GlobalStatus.by = this.b.readUTF();
                   if (MainCanvas.e != null) {
                      MainCanvas.e.aa();
                   }
@@ -805,15 +805,15 @@ public final class q {
 
                   return;
                case 8271:
-                  bt_1.aR(this.b);
+                  GlobalStatus.aR(this.b);
                   if (MainCanvas.e != null) {
-                     if (bt_1.mq < 4) {
+                     if (GlobalStatus.mq < 4) {
                         MainCanvas.e.ae();
-                     } else if (bt_1.mq == 4) {
+                     } else if (GlobalStatus.mq == 4) {
                         MainCanvas.e.N();
-                     } else if (bt_1.mq == 5) {
+                     } else if (GlobalStatus.mq == 5) {
                         MainCanvas.e.N();
-                     } else if (bt_1.mq == 6) {
+                     } else if (GlobalStatus.mq == 6) {
                         this.a.touchPageCase = this.a.k;
                      }
                      break;
@@ -838,7 +838,7 @@ public final class q {
                case 8274:
                   int var41 = this.b.readInt();
                   int var53 = this.b.readInt();
-                  if (MainCanvas.e.k != 0 && MainCanvas.e.k != 25 && bt_1.H == null) {
+                  if (MainCanvas.e.k != 0 && MainCanvas.e.k != 25 && GlobalStatus.H == null) {
                      this.a.touchPageCase = this.a.k = 7;
                      MainCanvas.e.N();
                   }
@@ -847,11 +847,11 @@ public final class q {
                   return;
                case 8275:
                   byte var40 = this.b.readByte();
-                  bt_1.F = null;
-                  bt_1.G = null;
+                  GlobalStatus.F = null;
+                  GlobalStatus.G = null;
                   if (var40 == 1) {
-                     bt_1.F = this.b.readUTF();
-                     bt_1.G = this.b.readUTF();
+                     GlobalStatus.F = this.b.readUTF();
+                     GlobalStatus.G = this.b.readUTF();
                   }
 
                   this.a.touchPageCase = this.a.k = 7;
@@ -864,19 +864,19 @@ public final class q {
 
                   return;
                case 8278:
-                  bt_1.Z(this.b);
+                  GlobalStatus.Z(this.b);
                   MainCanvas.e.M.n();
                   return;
                case 8280:
-                  bt_1.p(this.b);
+                  GlobalStatus.p(this.b);
                   if (MainCanvas.e.k != 7) {
                      MainCanvas.e.p((int)1);
                   }
 
                   return;
                case 8286:
-                  bt_1.l = this.b.readByte();
-                  if ((bt_1.k = this.b.readUTF()) != null) {
+                  GlobalStatus.l = this.b.readByte();
+                  if ((GlobalStatus.k = this.b.readUTF()) != null) {
                      MainCanvas.e.ab();
                   }
 
@@ -887,17 +887,17 @@ public final class q {
                   this.a.q();
                   return;
                case 8290:
-                  bt_1.b = this.b.readUTF();
-                  bt_1.d = this.b.readUTF();
-                  if (t_1.a == 1) {
+                  GlobalStatus.b = this.b.readUTF();
+                  GlobalStatus.d = this.b.readUTF();
+                  if (GlobalConfig.channel == 1) {
                      this.b.readUTF();
-                     bt_1.m = this.b.readUTF();
+                     GlobalStatus.m = this.b.readUTF();
                   }
 
                   return;
                case 8291:
                   byte var39 = this.b.readByte();
-                  bt_1.aa(this.b);
+                  GlobalStatus.aa(this.b);
                   if (MainCanvas.e.k != 115) {
                      return;
                   }
@@ -921,11 +921,11 @@ public final class q {
                   return;
                case 8294:
                   if (MainCanvas.e != null) {
-                     if (t_1.a == 0) {
-                        if (bt_1.jy != 1) {
+                     if (GlobalConfig.channel == 0) {
+                        if (GlobalStatus.jy != 1) {
                            this.a.b("充值卡充值暂时关闭");
                         }
-                     } else if (bt_1.jy == 1) {
+                     } else if (GlobalStatus.jy == 1) {
                         c_3.g();
                      } else {
                         this.a.b("充值功能暂时关闭");
@@ -935,31 +935,31 @@ public final class q {
 
                   return;
                case 8295:
-                  t_1.a("exec宠物升星");
-                  bt_1.aS(this.b);
+                  GlobalConfig.printStr("exec宠物升星");
+                  GlobalStatus.aS(this.b);
                   if (MainCanvas.e != null) {
                      MainCanvas.e.e(false);
                   }
 
                   return;
                case 8296:
-                  t_1.a("exec抽奖");
-                  bt_1.aW(this.b);
+                  GlobalConfig.printStr("exec抽奖");
+                  GlobalStatus.aW(this.b);
                   MainCanvas.e.am();
                   return;
                case 8297:
-                  t_1.a("exec抽奖结果");
-                  bt_1.aX(this.b);
+                  GlobalConfig.printStr("exec抽奖结果");
+                  GlobalStatus.aX(this.b);
                   if (MainCanvas.e.k == 127) {
                      MainCanvas.e.am();
-                     this.a.b("恭喜您，抽中了" + bt_1.nj + "×" + bt_1.nk);
+                     this.a.b("恭喜您，抽中了" + GlobalStatus.nj + "×" + GlobalStatus.nk);
                   }
 
                   return;
                case 8298:
-                  t_1.a("exec宠物升星结果");
-                  bt_1.bc(this.b);
-                  if (bt_1.nB == 1) {
+                  GlobalConfig.printStr("exec宠物升星结果");
+                  GlobalStatus.bc(this.b);
+                  if (GlobalStatus.nB == 1) {
                      this.a.b("升星成功");
                   } else {
                      this.a.b("升星失败");
@@ -989,7 +989,7 @@ public final class q {
                   MainCanvas.e.N.a((short)0);
                   return;
                case 8303:
-                  t_1.a("宠物继承");
+                  GlobalConfig.printStr("宠物继承");
                   cg_1.a(cg_1.b);
                   cg_1.a(this.b);
                   MainCanvas.e.W.b();
@@ -1012,11 +1012,11 @@ public final class q {
 
                   return;
                case 8449:
-                  bt_1.O(this.b);
+                  GlobalStatus.O(this.b);
                   MainCanvas.e.i((byte)0);
                   return;
                case 8450:
-                  bt_1.P(this.b);
+                  GlobalStatus.P(this.b);
                   if (MainCanvas.e.k == 1) {
                      MainCanvas.e.X();
                   } else {
@@ -1025,22 +1025,22 @@ public final class q {
 
                   return;
                case 8451:
-                  bt_1.O(this.b);
+                  GlobalStatus.O(this.b);
                   MainCanvas.e.i((byte)2);
                   return;
                case 8452:
-                  bt_1.P(this.b);
+                  GlobalStatus.P(this.b);
                   MainCanvas.e.k((byte)3);
                   return;
                case 8453:
-                  bt_1.S(this.b);
+                  GlobalStatus.S(this.b);
                   if (MainCanvas.e != null) {
                      MainCanvas.e.U();
                   }
 
                   return;
                case 8454:
-                  bt_1.O(this.b);
+                  GlobalStatus.O(this.b);
                   if (MainCanvas.e.as != 5 && MainCanvas.e.aZ != 4 && MainCanvas.e.as != 9 && MainCanvas.e.as != 10) {
                      MainCanvas.e.i((byte)4);
                      return;
@@ -1055,7 +1055,7 @@ public final class q {
                   MainCanvas.e.j = MainCanvas.e.k = 38;
                   return;
                case 8455:
-                  bt_1.P(this.b);
+                  GlobalStatus.P(this.b);
                   MainCanvas.e.k((byte)5);
                   return;
                case 8456:
@@ -1066,8 +1066,8 @@ public final class q {
 
                   return;
                case 8704:
-                  bt_1.T(this.b);
-                  if (bt_1.ik != null && bt_1.ik.length > 0) {
+                  GlobalStatus.T(this.b);
+                  if (GlobalStatus.ik != null && GlobalStatus.ik.length > 0) {
                      MainCanvas.e.M.b();
                      return;
                   }
@@ -1075,16 +1075,16 @@ public final class q {
                   this.a.b("没有等待响应的帮派!");
                   return;
                case 8705:
-                  bt_1.W(this.b);
+                  GlobalStatus.W(this.b);
                   MainCanvas.e.M.h(0);
                   return;
                case 8706:
-                  bt_1.X(this.b);
+                  GlobalStatus.X(this.b);
                   MainCanvas.e.M.h(1);
                   return;
                case 8708:
-                  bt_1.U(this.b);
-                  if (bt_1.ip != null) {
+                  GlobalStatus.U(this.b);
+                  if (GlobalStatus.ip != null) {
                      MainCanvas.e.M.c();
                   } else {
                      this.a.b("没有帮派发布招募!");
@@ -1092,8 +1092,8 @@ public final class q {
 
                   return;
                case 8709:
-                  bt_1.V(this.b);
-                  if (bt_1.it != null) {
+                  GlobalStatus.V(this.b);
+                  if (GlobalStatus.it != null) {
                      MainCanvas.e.M.f();
                   } else {
                      this.a.b("没有申请入帮玩家!");
@@ -1101,8 +1101,8 @@ public final class q {
 
                   return;
                case 8710:
-                  bt_1.W(this.b);
-                  if (bt_1.iy != null) {
+                  GlobalStatus.W(this.b);
+                  if (GlobalStatus.iy != null) {
                      MainCanvas.e.M.i();
                      return;
                   } else {
@@ -1115,20 +1115,20 @@ public final class q {
                      break;
                   }
                case 8711:
-                  bt_1.ab(this.b);
+                  GlobalStatus.ab(this.b);
                   MainCanvas.e.M.j();
                   return;
                case 8712:
-                  bt_1.ac(this.b);
+                  GlobalStatus.ac(this.b);
                   MainCanvas.e.M.k();
                   return;
                case 8713:
-                  bt_1.ad(this.b);
+                  GlobalStatus.ad(this.b);
                   MainCanvas.e.M.l();
                   return;
                case 8714:
-                  bt_1.ae(this.b);
-                  if (bt_1.jo != null) {
+                  GlobalStatus.ae(this.b);
+                  if (GlobalStatus.jo != null) {
                      MainCanvas.e.M.s();
                   } else {
                      this.a.b("没有可购买的设施!");
@@ -1136,19 +1136,19 @@ public final class q {
 
                   return;
                case 8715:
-                  bt_1.ag(this.b);
+                  GlobalStatus.ag(this.b);
                   if (MainCanvas.e != null) {
                      MainCanvas.e.U();
                   }
 
                   return;
                case 8716:
-                  bt_1.af(this.b);
+                  GlobalStatus.af(this.b);
                   MainCanvas.e.M.t();
                   return;
                case 8717:
-                  bt_1.ah(this.b);
-                  if (bt_1.jz != null) {
+                  GlobalStatus.ah(this.b);
+                  if (GlobalStatus.jz != null) {
                      MainCanvas.e.W();
                   } else {
                      this.a.b("增值仓库没有物品!");
@@ -1156,31 +1156,31 @@ public final class q {
 
                   return;
                case 8718:
-                  bt_1.ai(this.b);
+                  GlobalStatus.ai(this.b);
                   MainCanvas.e.a((byte)3);
                   return;
                case 8722:
-                  bt_1.jv = this.b.readByte() == 1;
-                  bt_1.jw = this.b.readByte() == 1;
-                  bt_1.jx = this.b.readByte();
-                  bt_1.jy = this.b.readByte();
+                  GlobalStatus.jv = this.b.readByte() == 1;
+                  GlobalStatus.jw = this.b.readByte() == 1;
+                  GlobalStatus.jx = this.b.readByte();
+                  GlobalStatus.jy = this.b.readByte();
                   return;
                case 8723:
-                  bt_1.f = System.currentTimeMillis();
-                  bt_1.g = false;
-                  if (bt_1.f - bt_1.e <= 800L) {
-                     bt_1.h = 0;
+                  GlobalStatus.f = System.currentTimeMillis();
+                  GlobalStatus.g = false;
+                  if (GlobalStatus.f - GlobalStatus.lastSyncTime <= 800L) {
+                     GlobalStatus.h = 0;
                      return;
                   } else {
-                     if (bt_1.f - bt_1.e <= 2000L) {
-                        bt_1.h = 1;
+                     if (GlobalStatus.f - GlobalStatus.lastSyncTime <= 2000L) {
+                        GlobalStatus.h = 1;
                      } else {
-                        bt_1.h = 2;
+                        GlobalStatus.h = 2;
                      }
                      break;
                   }
                case 8724:
-                  bt_1.aj(this.b);
+                  GlobalStatus.aj(this.b);
                   if (!ao_1.i()) {
                      this.a.b("战斗中不能进行该操作");
                      return;
@@ -1193,32 +1193,32 @@ public final class q {
                   MainCanvas.e.c(false);
                   return;
                case 8725:
-                  bt_1.ak(this.b);
+                  GlobalStatus.ak(this.b);
                   MainCanvas.e.l((byte)0);
                   return;
                case 8726:
-                  bt_1.H(this.b);
+                  GlobalStatus.H(this.b);
                   MainCanvas.e.C();
                   return;
                case 8727:
-                  bt_1.al(this.b);
+                  GlobalStatus.al(this.b);
                   MainCanvas.e.l((byte)2);
                   return;
                case 8728:
-                  bt_1.an(this.b);
+                  GlobalStatus.an(this.b);
                   MainCanvas.e.C();
                   return;
                case 8729:
-                  bt_1.aF(this.b);
+                  GlobalStatus.aF(this.b);
                   return;
                case 8730:
-                  bt_1.at(this.b);
+                  GlobalStatus.at(this.b);
                   return;
                case 8731:
-                  bt_1.aw(this.b);
+                  GlobalStatus.aw(this.b);
                   return;
                case 8732:
-                  bt_1.av(this.b);
+                  GlobalStatus.av(this.b);
                   if (o_1.e == 1) {
                      MainCanvas.e.O.a(MainCanvas.e.O.a, (short) MainCanvas.e.O.c, MainCanvas.e.O.d);
                   } else {
@@ -1231,7 +1231,7 @@ public final class q {
                   MainCanvas.e.O.c();
                   return;
                case 8734:
-                  bt_1.Q(this.b);
+                  GlobalStatus.Q(this.b);
                   if (MainCanvas.e.as != 3 && MainCanvas.e.as != 8 && MainCanvas.e.as != 7 && MainCanvas.e.as != 2) {
                      if (MainCanvas.e.as == 4 || MainCanvas.e.as == 5 || MainCanvas.e.as == 6 || MainCanvas.e.as == 10) {
                         MainCanvas.e.i((byte)9);
@@ -1243,7 +1243,7 @@ public final class q {
                   MainCanvas.e.i((byte)7);
                   return;
                case 8735:
-                  bt_1.R(this.b);
+                  GlobalStatus.R(this.b);
                   if (MainCanvas.e.as != 7 && MainCanvas.e.as != 2 && MainCanvas.e.as != 3 && MainCanvas.e.as != 8) {
                      if (MainCanvas.e.as == 9 || MainCanvas.e.as == 4 || MainCanvas.e.as == 5 || MainCanvas.e.as == 6) {
                         MainCanvas.e.i((byte)10);
@@ -1255,25 +1255,25 @@ public final class q {
                   MainCanvas.e.i((byte)8);
                   return;
                case 8736:
-                  bt_1.aP(this.b);
+                  GlobalStatus.aP(this.b);
                   if (MainCanvas.e != null && MainCanvas.e.ad()) {
                      MainCanvas.e.e((byte)0);
-                     bt_1.lt[0] = -1;
+                     GlobalStatus.lt[0] = -1;
                      return;
                   }
 
-                  if (MainCanvas.e != null && (bt_1.lt[0] == 0 || bt_1.lt[0] == 1 || bt_1.lt[0] == 2)) {
+                  if (MainCanvas.e != null && (GlobalStatus.lt[0] == 0 || GlobalStatus.lt[0] == 1 || GlobalStatus.lt[0] == 2)) {
                      MainCanvas.e.e((byte)0);
-                     bt_1.lt[0] = -1;
+                     GlobalStatus.lt[0] = -1;
                   }
 
                   return;
                case 8737:
                   if (MainCanvas.e != null) {
                      byte[] var36;
-                     if ((var36 = bz_1.a((short)4255, (short[]) bt_1.lt, (String) bt_1.ad)) != null) {
-                        w var37 = new w((short)4255, var36);
-                        MainCanvas.i.a(var37);
+                     if ((var36 = NetPayloadBuilder.a((short)4255, (short[]) GlobalStatus.lt, (String) GlobalStatus.ad)) != null) {
+                        NetPacket var37 = new NetPacket((short)4255, var36);
+                        MainCanvas.i.sendPacket(var37);
                      } else {
                         this.a.b("获取上传指令数据错误!");
                      }
@@ -1282,18 +1282,18 @@ public final class q {
 
                   return;
                case 8738:
-                  bt_1.aO(this.b);
+                  GlobalStatus.aO(this.b);
                   if (MainCanvas.e != null && MainCanvas.e.ad()) {
                      MainCanvas.e.l = 0;
                      MainCanvas.e.c((byte)0);
-                     bt_1.lt[1] = -1;
+                     GlobalStatus.lt[1] = -1;
                      return;
                   }
 
-                  if (MainCanvas.e != null && bt_1.lt[1] == 1) {
+                  if (MainCanvas.e != null && GlobalStatus.lt[1] == 1) {
                      MainCanvas.e.l = 0;
                      MainCanvas.e.c((byte)0);
-                     bt_1.lt[1] = -1;
+                     GlobalStatus.lt[1] = -1;
                      return;
                   }
 
@@ -1303,12 +1303,12 @@ public final class q {
 
                   return;
                case 8739:
-                  bt_1.aN(this.b);
+                  GlobalStatus.aN(this.b);
                   c_3.a("游客注册 第2步: ", "创建一哥哥通行证密码");
                   this.a.touchPageCase = 7;
                   return;
                case 8960:
-                  bt_1.ao(this.b);
+                  GlobalStatus.ao(this.b);
                   if (MainCanvas.e.M.p == 0) {
                      MainCanvas.e.M.u();
                   } else {
@@ -1317,61 +1317,61 @@ public final class q {
 
                   return;
                case 8961:
-                  bt_1.ap(this.b);
+                  GlobalStatus.ap(this.b);
                   MainCanvas.e.f((byte)2);
                   return;
                case 8962:
-                  bt_1.aq(this.b);
+                  GlobalStatus.aq(this.b);
                   return;
                case 8963:
-                  bt_1.kj = this.b.readShort();
+                  GlobalStatus.kj = this.b.readShort();
                   return;
                case 8964:
-                  bt_1.ar(this.b);
-                  if (bt_1.kk != null) {
-                     this.a.b(bt_1.kk);
+                  GlobalStatus.ar(this.b);
+                  if (GlobalStatus.kk != null) {
+                     this.a.b(GlobalStatus.kk);
                      this.a.a(false);
                   }
 
                   return;
                case 8965:
-                  bt_1.as(this.b);
+                  GlobalStatus.as(this.b);
                   MainCanvas.e.M.h(3);
                   return;
                case 8966:
-                  bt_1.ax(this.b);
+                  GlobalStatus.ax(this.b);
                   MainCanvas.e.M.w();
                   return;
                case 8967:
-                  bt_1.ay(this.b);
+                  GlobalStatus.ay(this.b);
                   MainCanvas.e.M.x();
                   return;
                case 8968:
-                  bt_1.aC(this.b);
-                  bt_1.O.a();
+                  GlobalStatus.aC(this.b);
+                  GlobalStatus.O.a();
                   return;
                case 8969:
-                  bt_1.aB(this.b);
+                  GlobalStatus.aB(this.b);
                   if (MainCanvas.e.k == 76) {
                      int var34 = this.a.as.a;
                      int var52 = this.a.ar.g();
                      MainCanvas.e.d((byte)var34);
-                     var34 = var34 == 0 ? bt_1.O.f.length : bt_1.P.b.length;
+                     var34 = var34 == 0 ? GlobalStatus.O.f.length : GlobalStatus.P.b.length;
                      this.a.ar.a(Math.min(var52, var34));
                   }
 
                   return;
                case 8970:
-                  bt_1.a(this.b.readByte(), this.b);
+                  GlobalStatus.a(this.b.readByte(), this.b);
                   return;
                case 8971:
                   if (MainCanvas.e.k != 111) {
-                     bt_1.au(this.b);
-                     if (bt_1.Q.b != null && bt_1.Q.b.length() > 0) {
+                     GlobalStatus.au(this.b);
+                     if (GlobalStatus.Q.b != null && GlobalStatus.Q.b.length() > 0) {
                         this.a.av.b();
-                        bt_1.Q.a(this.a.av);
-                        bt_1.Q.a();
-                        bt_1.Q.b();
+                        GlobalStatus.Q.a(this.a.av);
+                        GlobalStatus.Q.a();
+                        GlobalStatus.Q.b();
                         MainCanvas.e.j = MainCanvas.e.k;
                         MainCanvas.e.k = 111;
                         this.a.touchPageCase = this.a.k;
@@ -1382,7 +1382,7 @@ public final class q {
 
                   return;
                case 8972:
-                  bt_1.aA(this.b);
+                  GlobalStatus.aA(this.b);
                   if (MainCanvas.e.k == 76) {
                      byte var50 = this.a.as.a;
                      int var32 = this.a.ar.g();
@@ -1406,52 +1406,52 @@ public final class q {
 
                   return;
                case 8973:
-                  bt_1.az(this.b);
-                  bt_1.P.c();
+                  GlobalStatus.az(this.b);
+                  GlobalStatus.P.c();
                   MainCanvas.e.u();
                   return;
                case 8974:
-                  t_1.a("exec特效查看");
-                  bt_1.aT(this.b);
+                  GlobalConfig.printStr("exec特效查看");
+                  GlobalStatus.aT(this.b);
                   MainCanvas.e.z();
                   return;
                case 8975:
-                  t_1.a("exec特效激活");
-                  bt_1.aU(this.b);
+                  GlobalConfig.printStr("exec特效激活");
+                  GlobalStatus.aU(this.b);
                   MainCanvas.e.B();
                   return;
                case 8976:
-                  t_1.a("exec特效消除");
-                  bt_1.aV(this.b);
+                  GlobalConfig.printStr("exec特效消除");
+                  GlobalStatus.aV(this.b);
                   MainCanvas.e.A();
                   return;
                case 8977:
-                  t_1.a("exec查看坐骑");
-                  bt_1.aY(this.b);
+                  GlobalConfig.printStr("exec查看坐骑");
+                  GlobalStatus.aY(this.b);
                   MainCanvas.e.al();
                   MainCanvas.e.I.a(true);
                   return;
                case 8978:
-                  t_1.a("exec坐骑升星");
-                  bt_1.aZ(this.b);
+                  GlobalConfig.printStr("exec坐骑升星");
+                  GlobalStatus.aZ(this.b);
                   MainCanvas.e.al();
                   return;
                case 8979:
-                  t_1.a("exec更换坐骑");
-                  bt_1.ba(this.b);
+                  GlobalConfig.printStr("exec更换坐骑");
+                  GlobalStatus.ba(this.b);
                   MainCanvas.e.al();
                   MainCanvas.e.I.a(true);
                   return;
                case 8981:
-                  t_1.a("exec特效技能");
-                  bt_1.bb(this.b);
+                  GlobalConfig.printStr("exec特效技能");
+                  GlobalStatus.bb(this.b);
                   MainCanvas.e.an();
                   return;
                case 8982:
-                  t_1.a("exec宠物炼化需 求");
-                  (bt_1.nC = new String[3])[0] = this.b.readUTF();
-                  bt_1.nC[1] = this.b.readUTF();
-                  bt_1.nC[2] = this.b.readUTF();
+                  GlobalConfig.printStr("exec宠物炼化需 求");
+                  (GlobalStatus.nC = new String[3])[0] = this.b.readUTF();
+                  GlobalStatus.nC[1] = this.b.readUTF();
+                  GlobalStatus.nC[2] = this.b.readUTF();
                   MainCanvas.e.l = 11;
                   LoadingPage.h = 0;
                   this.a.touchPageCase = this.a.k;
@@ -1495,7 +1495,7 @@ public final class q {
                   this.a.b(this.b.readUTF());
                   return;
                case 9222:
-                  bt_1.aQ(this.b);
+                  GlobalStatus.aQ(this.b);
                   if (MainCanvas.e != null) {
                      MainCanvas.e.ac();
                   }
@@ -1514,10 +1514,10 @@ public final class q {
 
                   return;
                case 9472:
-                  bt_1.M(this.b);
-                  if (t_1.a != 0 && !t_1.w) {
-                     if (bt_1.hw) {
-                        if (bt_1.hw && bt_1.hA.length <= 0) {
+                  GlobalStatus.M(this.b);
+                  if (GlobalConfig.channel != 0 && !GlobalConfig.w) {
+                     if (GlobalStatus.hw) {
+                        if (GlobalStatus.hw && GlobalStatus.hA.length <= 0) {
                            this.a.b("服务维护中，暂无可以进入的服务器");
                            return;
                         }
@@ -1530,7 +1530,7 @@ public final class q {
                         return;
                      }
 
-                     if (bt_1.hA != null && bt_1.hA.length > 0) {
+                     if (GlobalStatus.hA != null && GlobalStatus.hA.length > 0) {
                         this.a.d();
                         return;
                      }
@@ -1542,45 +1542,45 @@ public final class q {
                   this.a.d();
                   return;
                case 9473:
-                  bt_1.lq = this.b.readByte();
-                  bt_1.lp = this.b.readShort();
-                  bt_1.kZ = this.b.readShort();
-                  bt_1.lf = this.b.readUTF();
-                  bt_1.lg = this.b.readByte();
-                  if ((bt_1.le = this.b.readShort()) > 0) {
-                     bt_1.aL(this.b);
-                     MainCanvas.e.d(bt_1.kZ);
+                  GlobalStatus.lq = this.b.readByte();
+                  GlobalStatus.lp = this.b.readShort();
+                  GlobalStatus.kZ = this.b.readShort();
+                  GlobalStatus.lf = this.b.readUTF();
+                  GlobalStatus.lg = this.b.readByte();
+                  if ((GlobalStatus.le = this.b.readShort()) > 0) {
+                     GlobalStatus.aL(this.b);
+                     MainCanvas.e.d(GlobalStatus.kZ);
                   } else {
                      this.a.b("没有更多的成就!");
                   }
 
                   return;
                case 9474:
-                  bt_1.ls = this.b.readByte();
-                  bt_1.lr = this.b.readShort();
-                  bt_1.kZ = this.b.readShort();
+                  GlobalStatus.ls = this.b.readByte();
+                  GlobalStatus.lr = this.b.readShort();
+                  GlobalStatus.kZ = this.b.readShort();
                   this.b.readUTF();
                   this.b.readByte();
-                  bt_1.lm = this.b.readByte();
-                  bt_1.lh = this.b.readUTF();
-                  if ((bt_1.ll = this.b.readShort()) > 0) {
-                     bt_1.aM(this.b);
-                     MainCanvas.e.e(bt_1.kZ);
+                  GlobalStatus.lm = this.b.readByte();
+                  GlobalStatus.lh = this.b.readUTF();
+                  if ((GlobalStatus.ll = this.b.readShort()) > 0) {
+                     GlobalStatus.aM(this.b);
+                     MainCanvas.e.e(GlobalStatus.kZ);
                   } else {
                      this.a.b("没有更多的成就!");
                   }
 
                   return;
                case 9488:
-                  bt_1.x(this.b);
+                  GlobalStatus.x(this.b);
                   MainCanvas.e.ai();
                   return;
                case 9489:
-                  bt_1.y(this.b);
+                  GlobalStatus.y(this.b);
                   MainCanvas.e.aj();
                   return;
                case 9491:
-                  t_1.a("exec 随机名称");
+                  GlobalConfig.printStr("exec 随机名称");
                   this.a.ay = this.b.readUTF();
                   if (this.a.k == 6) {
                      this.a.touchPageCase = this.a.k;
@@ -1625,13 +1625,13 @@ public final class q {
                   return;
                case 12289:
                   byte var2 = this.b.readByte();
-                  bt_1.ke = -1;
-                  bt_1.kf = -1;
-                  bt_1.kg = -1;
+                  GlobalStatus.ke = -1;
+                  GlobalStatus.kf = -1;
+                  GlobalStatus.kg = -1;
                   if (var2 == 0) {
-                     bt_1.ke = this.b.readInt();
-                     bt_1.kf = this.b.readInt();
-                     bt_1.kg = this.b.readInt();
+                     GlobalStatus.ke = this.b.readInt();
+                     GlobalStatus.kf = this.b.readInt();
+                     GlobalStatus.kg = this.b.readInt();
                   }
 
                   return;
@@ -1642,7 +1642,7 @@ public final class q {
             return;
          } finally {
             if (var1 != null) {
-               this.d = var1.a();
+               this.d = var1.getCode();
             }
 
             try {
@@ -1663,10 +1663,10 @@ public final class q {
    }
 
    private void a() throws IOException {
-      bt_1.C = new byte[this.b.readByte()];
+      GlobalStatus.C = new byte[this.b.readByte()];
 
-      for(byte var1 = 0; var1 < bt_1.C.length; ++var1) {
-         bt_1.C[var1] = this.b.readByte();
+      for(byte var1 = 0; var1 < GlobalStatus.C.length; ++var1) {
+         GlobalStatus.C[var1] = this.b.readByte();
       }
 
    }
@@ -1675,7 +1675,7 @@ public final class q {
       try {
          if (MainCanvas.e != null && MainCanvas.e.k != 25 && MainCanvas.e.k != 18) {
             byte var2;
-            if ((var2 = var1.readByte()) > ao_1.aW[0] && bt_1.bw == 0) {
+            if ((var2 = var1.readByte()) > ao_1.aW[0] && GlobalStatus.bw == 0) {
                var2 = ao_1.aW[0];
             }
 
@@ -1686,7 +1686,7 @@ public final class q {
                var3[var4].a(var1);
             }
 
-            if (bt_1.o != null) {
+            if (GlobalStatus.o != null) {
                MainCanvas var5 = this.a;
                q var14 = this;
                this.i.removeAllElements();
@@ -1718,11 +1718,11 @@ public final class q {
                         label234: {
                            bl var31;
                            if ((var31 = var21[var12]) != null) {
-                              for(int var33 = 0; var33 < bt_1.o.length; ++var33) {
-                                 if (bt_1.o[var33] != null && bt_1.o[var33].a.equals(var31.a)) {
-                                    var31.j = bt_1.o[var33].j;
-                                    var31.k = bt_1.o[var33].k;
-                                    var31.h = bt_1.o[var33].h;
+                              for(int var33 = 0; var33 < GlobalStatus.o.length; ++var33) {
+                                 if (GlobalStatus.o[var33] != null && GlobalStatus.o[var33].a.equals(var31.a)) {
+                                    var31.j = GlobalStatus.o[var33].j;
+                                    var31.k = GlobalStatus.o[var33].k;
+                                    var31.h = GlobalStatus.o[var33].h;
                                     var35 = true;
                                     break label234;
                                  }
@@ -1800,7 +1800,7 @@ public final class q {
             }
 
             if (var2 > 0) {
-               if (bt_1.bw >= 1) {
+               if (GlobalStatus.bw >= 1) {
                   for(int var19 = 0; var19 < var3.length; ++var19) {
                      bl var15;
                      (var15 = var3[var19]).u = var1.readByte();
@@ -1824,9 +1824,9 @@ public final class q {
    }
 
    private void b() throws IOException {
-      bt_1.c(this.b);
+      GlobalStatus.c(this.b);
       if (MainCanvas.e != null && MainCanvas.e.I != null) {
-         if (t_1.o && this.a.touchController != null) {
+         if (GlobalConfig.o && this.a.touchController != null) {
             if (!MainCanvas.e.I.c.isEmpty()) {
                MainCanvas.e.I.c.removeAllElements();
                MainCanvas.e.I.b();
@@ -1841,20 +1841,20 @@ public final class q {
             this.a.touchAction = 0;
          }
 
-         MainCanvas.e.I.j = bt_1.at;
-         MainCanvas.e.I.k = bt_1.au;
+         MainCanvas.e.I.j = GlobalStatus.at;
+         MainCanvas.e.I.k = GlobalStatus.au;
       }
 
-      if (bt_1.bs == 0 && bt_1.q != null && bt_1.s == 0) {
-         for(int var1 = 0; var1 < bt_1.q.length; ++var1) {
-            bt_1.q[var1].f.removeAllElements();
-            if (bt_1.q[var1].j == -1 && bt_1.q[var1].k == -1) {
-               bt_1.q[var1].j = bt_1.at;
-               bt_1.q[var1].k = bt_1.au;
+      if (GlobalStatus.bs == 0 && GlobalStatus.q != null && GlobalStatus.s == 0) {
+         for(int var1 = 0; var1 < GlobalStatus.q.length; ++var1) {
+            GlobalStatus.q[var1].f.removeAllElements();
+            if (GlobalStatus.q[var1].j == -1 && GlobalStatus.q[var1].k == -1) {
+               GlobalStatus.q[var1].j = GlobalStatus.at;
+               GlobalStatus.q[var1].k = GlobalStatus.au;
             }
 
-            bt_1.q[var1].l = bt_1.at;
-            bt_1.q[var1].m = bt_1.au;
+            GlobalStatus.q[var1].l = GlobalStatus.at;
+            GlobalStatus.q[var1].m = GlobalStatus.au;
          }
       }
 
@@ -1863,27 +1863,27 @@ public final class q {
          MainCanvas.e.I.d();
       } else {
          if (MainCanvas.e != null) {
-            MainCanvas.e.I.a((int) bt_1.av);
+            MainCanvas.e.I.a((int) GlobalStatus.av);
          }
 
-         if (MainCanvas.e.Y == bt_1.ar && !MainCanvas.e.I.h()) {
-            if (bt_1.bs == 0 && bt_1.q != null && bt_1.s == 0) {
+         if (MainCanvas.e.Y == GlobalStatus.ar && !MainCanvas.e.I.h()) {
+            if (GlobalStatus.bs == 0 && GlobalStatus.q != null && GlobalStatus.s == 0) {
                MainCanvas var6 = this.a;
                Vector var9 = new Vector();
-               this.e = bt_1.q[0].j / 16 + (bt_1.q[0].j % 16 == 0 ? 0 : 1);
-               this.f = bt_1.q[0].k / 16 + (bt_1.q[0].k % 16 == 0 ? 0 : 1);
-               this.g = bt_1.q[0].l / 16 + (bt_1.q[0].l % 16 == 0 ? 0 : 1);
-               this.h = bt_1.q[0].m / 16 + (bt_1.q[0].m % 16 == 0 ? 0 : 1);
+               this.e = GlobalStatus.q[0].j / 16 + (GlobalStatus.q[0].j % 16 == 0 ? 0 : 1);
+               this.f = GlobalStatus.q[0].k / 16 + (GlobalStatus.q[0].k % 16 == 0 ? 0 : 1);
+               this.g = GlobalStatus.q[0].l / 16 + (GlobalStatus.q[0].l % 16 == 0 ? 0 : 1);
+               this.h = GlobalStatus.q[0].m / 16 + (GlobalStatus.q[0].m % 16 == 0 ? 0 : 1);
                if (this.e != this.g || this.f != this.h) {
-                  if (bt_1.q[0].f == null) {
-                     bt_1.q[0].f = new Vector();
+                  if (GlobalStatus.q[0].f == null) {
+                     GlobalStatus.q[0].f = new Vector();
                   }
 
                   Vector var10;
                   int var3 = (var10 = this.a(MainCanvas.e.f, var9, new bs(this.e, this.f), new bs(this.g, this.h))).size();
 
-                  for(int var4 = 0; var4 < bt_1.q.length; ++var4) {
-                     bt_1.q[var4].f.removeAllElements();
+                  for(int var4 = 0; var4 < GlobalStatus.q.length; ++var4) {
+                     GlobalStatus.q[var4].f.removeAllElements();
 
                      for(int var5 = 0; var5 < var3; ++var5) {
                         bs var8 = (bs)var10.elementAt(var5);
@@ -1897,21 +1897,21 @@ public final class q {
                         if (var8.a != var2.a) {
                            if (var8.a > var2.a) {
                               for(int var14 = 0; var14 < 4; ++var14) {
-                                 bt_1.q[var4].f.addElement(new short[]{(short)((var8.a << 4) - (var14 << 2)), (short)(var8.b << 4)});
+                                 GlobalStatus.q[var4].f.addElement(new short[]{(short)((var8.a << 4) - (var14 << 2)), (short)(var8.b << 4)});
                               }
                            } else {
                               for(int var13 = 0; var13 < 4; ++var13) {
-                                 bt_1.q[var4].f.addElement(new short[]{(short)((var8.a << 4) + (var13 << 2)), (short)(var8.b << 4)});
+                                 GlobalStatus.q[var4].f.addElement(new short[]{(short)((var8.a << 4) + (var13 << 2)), (short)(var8.b << 4)});
                               }
                            }
                         } else if (var8.b != var2.b) {
                            if (var8.b > var2.b) {
                               for(int var12 = 0; var12 < 4; ++var12) {
-                                 bt_1.q[var4].f.addElement(new short[]{(short)(var8.a << 4), (short)((var8.b << 4) - (var12 << 2))});
+                                 GlobalStatus.q[var4].f.addElement(new short[]{(short)(var8.a << 4), (short)((var8.b << 4) - (var12 << 2))});
                               }
                            } else {
                               for(int var11 = 0; var11 < 4; ++var11) {
-                                 bt_1.q[var4].f.addElement(new short[]{(short)(var8.a << 4), (short)((var8.b << 4) + (var11 << 2))});
+                                 GlobalStatus.q[var4].f.addElement(new short[]{(short)(var8.a << 4), (short)((var8.b << 4) + (var11 << 2))});
                               }
                            }
                         }
@@ -1921,27 +1921,27 @@ public final class q {
             }
 
          } else {
-            if (bt_1.bs == -1) {
+            if (GlobalStatus.bs == -1) {
                MainCanvas.e.aY = 0L;
             }
 
             if (MainCanvas.e.I.d != null) {
                MainCanvas.e.I.d.e.removeAllElements();
-               MainCanvas.e.I.d.h = bt_1.at;
-               MainCanvas.e.I.d.i = bt_1.au;
+               MainCanvas.e.I.d.h = GlobalStatus.at;
+               MainCanvas.e.I.d.i = GlobalStatus.au;
                MainCanvas.e.I.d.j = MainCanvas.e.I.h;
                MainCanvas.e.I.d.a(MainCanvas.e.I.h);
             }
 
             if (ao_1.i()) {
-               if (MainCanvas.e.Y != bt_1.ar) {
+               if (MainCanvas.e.Y != GlobalStatus.ar) {
                   MainCanvas.e.e();
                } else {
                   MainCanvas.e.f();
                }
 
                MainCanvas.e.I.i();
-               MainCanvas.e.Y = bt_1.ar;
+               MainCanvas.e.Y = GlobalStatus.ar;
             }
 
             MainCanvas.e.I.d();
@@ -1950,27 +1950,27 @@ public final class q {
    }
 
    private void c() throws IOException {
-      if (bt_1.bE = this.b.readByte() == 1) {
-         bt_1.bF = this.b.readInt();
+      if (GlobalStatus.bE = this.b.readByte() == 1) {
+         GlobalStatus.bF = this.b.readInt();
       } else {
-         bt_1.bF = -1;
+         GlobalStatus.bF = -1;
       }
 
-      bt_1.bG = this.b.readInt();
-      bt_1.bH = this.b.readUTF();
-      if (bt_1.bE) {
+      GlobalStatus.bG = this.b.readInt();
+      GlobalStatus.bH = this.b.readUTF();
+      if (GlobalStatus.bE) {
          MainCanvas.e.k = 2;
       }
 
       if (MainCanvas.e.k == 2) {
-         ao_1.K = new TextRender(bt_1.bH, (short)(t_1.b - 20));
-         if (bt_1.bE) {
+         ao_1.K = new TextRender(GlobalStatus.bH, (short)(GlobalConfig.defaultWidth - 20));
+         if (GlobalStatus.bE) {
             MainCanvas.e.an = new String[]{"接受", "返回"};
-         } else if (bt_1.bK[MainCanvas.e.ai] == -1) {
+         } else if (GlobalStatus.bK[MainCanvas.e.ai] == -1) {
             MainCanvas.e.an = new String[]{"接受", "返回"};
-         } else if (bt_1.bK[MainCanvas.e.ai] == 0) {
+         } else if (GlobalStatus.bK[MainCanvas.e.ai] == 0) {
             MainCanvas.e.an = new String[]{"确定", "返回"};
-         } else if (bt_1.bK[MainCanvas.e.ai] == 1) {
+         } else if (GlobalStatus.bK[MainCanvas.e.ai] == 1) {
             MainCanvas.e.an = new String[]{"提交", "返回"};
          }
 
@@ -1986,15 +1986,15 @@ public final class q {
    }
 
    private void d() throws IOException {
-      bt_1.I(this.b);
+      GlobalStatus.I(this.b);
       if (MainCanvas.e != null) {
          if (!ao_1.i()) {
             return;
          }
 
          if (MainCanvas.e.k == 13) {
-            if (bt_1.fA == null) {
-               bt_1.B();
+            if (GlobalStatus.fA == null) {
+               GlobalStatus.B();
                this.a.b("您没有宠物！");
                return;
             }
@@ -2048,8 +2048,8 @@ public final class q {
 
    private static void b(DataInputStream var0) throws IOException {
       long var1 = var0.readLong();
-      if (bq_1.g > 0 && bt_1.v <= 0L) {
-         bt_1.v = var1;
+      if (bq_1.g > 0 && GlobalStatus.v <= 0L) {
+         GlobalStatus.v = var1;
          bq_1.g = -1;
       }
 
@@ -2123,7 +2123,7 @@ public final class q {
          }
 
       } else {
-         bt_1.s = (short)this.b.readByte();
+         GlobalStatus.s = (short)this.b.readByte();
          bp_1[] var2 = new bp_1[var1];
          byte var3 = 1;
 
@@ -2159,19 +2159,19 @@ public final class q {
 
    private void f() throws IOException {
       byte var1 = this.b.readByte();
-      if (bt_1.fl != null) {
-         bt_1.v();
+      if (GlobalStatus.fl != null) {
+         GlobalStatus.v();
       }
 
-      if (bt_1.fs != null) {
-         bt_1.w();
+      if (GlobalStatus.fs != null) {
+         GlobalStatus.w();
       }
 
-      bt_1.fw = null;
-      bt_1.y();
-      bt_1.z();
-      bt_1.fg = 0L;
-      bt_1.fn = 0L;
+      GlobalStatus.fw = null;
+      GlobalStatus.y();
+      GlobalStatus.z();
+      GlobalStatus.fg = 0L;
+      GlobalStatus.fn = 0L;
       MainCanvas.e.am = null;
       MainCanvas.e.al = null;
       if (ao_1.i()) {
@@ -2193,7 +2193,7 @@ public final class q {
    }
 
    private static void c(DataInputStream var0) throws IOException {
-      bt_1.am(var0);
+      GlobalStatus.am(var0);
       MainCanvas.e.l((byte)1);
    }
 

@@ -62,10 +62,10 @@ public final class PngUtil {
     }
 
     private static boolean b(int var0, int var1) {
-        if (bt_1.hG != -1 && bt_1.hG == bt_1.ar) {
-            if (bt_1.hJ != null && bt_1.hK != null) {
-                for (short var2 = 0; var2 < bt_1.hJ.length; ++var2) {
-                    if (bt_1.hJ[var2] == var0 && bt_1.hK[var2] == var1) {
+        if (GlobalStatus.hG != -1 && GlobalStatus.hG == GlobalStatus.ar) {
+            if (GlobalStatus.hJ != null && GlobalStatus.hK != null) {
+                for (short var2 = 0; var2 < GlobalStatus.hJ.length; ++var2) {
+                    if (GlobalStatus.hJ[var2] == var0 && GlobalStatus.hK[var2] == var1) {
                         return true;
                     }
                 }
@@ -274,8 +274,8 @@ public final class PngUtil {
     }
 
     public final void a(Graphics var1, aw var2, int var3, int var4) {
-        if (t_1.b - var2.a > 0) {
-            var1.setClip((t_1.b - var2.a) / 2, this.q, var2.a, var2.b);
+        if (GlobalConfig.defaultWidth - var2.a > 0) {
+            var1.setClip((GlobalConfig.defaultWidth - var2.a) / 2, this.q, var2.a, var2.b);
         } else {
             var1.setClip(this.p, this.q, this.r, this.s);
         }
@@ -324,8 +324,8 @@ public final class PngUtil {
             for (int var7 = this.u; var7 < this.w; ++var7) {
                 for (int var8 = this.v; var8 < this.x; ++var8) {
                     if (var2.j[var7][var8] != null && var7 * var2.c - var3 + var2.c - var1.getClipX() > 0 && var7 * var2.c - var3 - var1.getClipX() < var1.getClipWidth() && var8 * var2.d - var4 + var2.d - var1.getClipY() > 0 && var8 * var2.d - var4 - var1.getClipY() < var1.getClipHeight()) {
-                        if (b(var7, var8) && bt_1.hH != null) {
-                            this.a(var1, bt_1.hH, (int[]) null, bt_1.hI, 0, 0, var7 * var2.c - var3, var8 * var2.d - var4, 0, var5);
+                        if (b(var7, var8) && GlobalStatus.hH != null) {
+                            this.a(var1, GlobalStatus.hH, (int[]) null, GlobalStatus.hI, 0, 0, var7 * var2.c - var3, var8 * var2.d - var4, 0, var5);
                         } else {
                             this.a(var1, var2.j[var7][var8], (int[]) null, 0, 0, var7 * var2.c - var3, var8 * var2.d - var4, var5);
                         }
@@ -356,17 +356,17 @@ public final class PngUtil {
             }
         }
 
-        if (bt_1.t != null && var6) {
-            for (int var11 = 0; var11 < bt_1.t.length; ++var11) {
-                if (bt_1.t[var11] != null) {
-                    if (ao_1.aW[3] == 0 && bt_1.t[var11].b != null) {
-                        var1.setFont(t_1.i);
-                        LoadingPage.a(var1, (String) bt_1.t[var11].b, (int) (bt_1.t[var11].c - var3), bt_1.t[var11].d - (bt_1.t[var11].w == null ? 30 : bt_1.t[var11].w.j()) - t_1.j - var4, 17, 255, 16777215);
+        if (GlobalStatus.t != null && var6) {
+            for (int var11 = 0; var11 < GlobalStatus.t.length; ++var11) {
+                if (GlobalStatus.t[var11] != null) {
+                    if (ao_1.aW[3] == 0 && GlobalStatus.t[var11].b != null) {
+                        var1.setFont(GlobalConfig.i);
+                        LoadingPage.a(var1, (String) GlobalStatus.t[var11].b, (int) (GlobalStatus.t[var11].c - var3), GlobalStatus.t[var11].d - (GlobalStatus.t[var11].w == null ? 30 : GlobalStatus.t[var11].w.j()) - GlobalConfig.j - var4, 17, 255, 16777215);
                     }
 
-                    if (bt_1.t[var11].w != null && bt_1.t[var11].w.k != null && ao_1.aW[10] == 1) {
-                        this.a(var1, bt_1.t[var11].w.k[bt_1.t[var11].w.f], bt_1.t[var11].w.g(), bt_1.t[var11].w.h(), (int[]) null, var3, var4, bt_1.t[var11].c, bt_1.t[var11].d, 20, var5);
-                        var1.setFont(t_1.i);
+                    if (GlobalStatus.t[var11].w != null && GlobalStatus.t[var11].w.k != null && ao_1.aW[10] == 1) {
+                        this.a(var1, GlobalStatus.t[var11].w.k[GlobalStatus.t[var11].w.f], GlobalStatus.t[var11].w.g(), GlobalStatus.t[var11].w.h(), (int[]) null, var3, var4, GlobalStatus.t[var11].c, GlobalStatus.t[var11].d, 20, var5);
+                        var1.setFont(GlobalConfig.i);
                     }
                 }
             }
@@ -609,9 +609,9 @@ public final class PngUtil {
     }
 
     public final boolean a(int var1, int var2) {
-        if (bt_1.ij != null) {
-            for (int var3 = 0; var3 < bt_1.ij.size(); ++var3) {
-                this.A = (bv) bt_1.ij.elementAt(var3);
+        if (GlobalStatus.ij != null) {
+            for (int var3 = 0; var3 < GlobalStatus.ij.size(); ++var3) {
+                this.A = (bv) GlobalStatus.ij.elementAt(var3);
                 if (this.A.d != null && var1 >= this.A.e + this.A.d.c() && var1 <= this.A.e + this.A.d.c() + this.A.d.e() && var2 >= this.A.f + this.A.d.d() && var2 <= this.A.f + this.A.d.d() + this.A.d.f()) {
                     return true;
                 }

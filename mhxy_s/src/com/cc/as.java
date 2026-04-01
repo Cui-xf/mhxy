@@ -60,7 +60,7 @@ public final class as {
 
       j = var1.readUTF();
       k = var1.readUTF();
-      bt_1.N();
+      GlobalStatus.N();
       b(c);
       if (f != null && f.length > 0) {
          for(int var5 = 0; var5 < f.length; ++var5) {
@@ -104,17 +104,17 @@ public final class as {
       this.a.aq.b();
       this.a.aq.a("装备升星");
       this.a.aq.a(false);
-      this.l = Math.max((t_1.j << 1) + 25, 59);
-      this.m = t_1.j + 13;
+      this.l = Math.max((GlobalConfig.j << 1) + 25, 59);
+      this.m = GlobalConfig.j + 13;
       this.a.aq.a(this.l + this.m);
       this.a();
       this.a.aq.a((al)this.a.at);
       this.a.au.a("确定");
-      if (t_1.c > 220) {
+      if (GlobalConfig.defaultHigh > 220) {
          this.a.aq.a((al)this.a.au);
       }
 
-      this.a.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+      this.a.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.b();
       LoadingPage.l = 0;
       this.b.l = 0;
@@ -124,15 +124,15 @@ public final class as {
 
    private void a() {
       if (k != null && !k.equals("")) {
-         this.a.at.a(k, t_1.i, (byte)1);
+         this.a.at.a(k, GlobalConfig.i, (byte)1);
       } else {
-         this.a.at.a((String)null, t_1.i, (byte)1);
+         this.a.at.a((String)null, GlobalConfig.i, (byte)1);
       }
    }
 
    private void b() {
       if (j != null) {
-         new TextRender(j, (short)t_1.i.stringWidth(j));
+         new TextRender(j, (short) GlobalConfig.i.stringWidth(j));
       }
 
    }
@@ -157,7 +157,7 @@ public final class as {
             j = null;
             k = null;
             h = null;
-            bt_1.N();
+            GlobalStatus.N();
             this.a(true);
          }
       }
@@ -171,11 +171,11 @@ public final class as {
    }
 
    private static void b(int var0) {
-      if (bt_1.bC != null && bt_1.bC.size() > 0) {
+      if (GlobalStatus.bC != null && GlobalStatus.bC.size() > 0) {
          bn var1 = null;
 
-         for(int var2 = 0; var2 < bt_1.bC.size(); ++var2) {
-            if ((var1 = (bn) bt_1.bC.elementAt(var2)) != null && var1.a == var0) {
+         for(int var2 = 0; var2 < GlobalStatus.bC.size(); ++var2) {
+            if ((var1 = (bn) GlobalStatus.bC.elementAt(var2)) != null && var1.a == var0) {
                ++var1.v;
             }
          }

@@ -6,12 +6,13 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.Vector;
 
-public final class bt_1 {
+//public final class bt_1 {
+public final class GlobalStatus {
    public static boolean a = false;
    public static String b;
    public static String c;
    public static String d;
-   public static long e;
+   public static long lastSyncTime;
    public static long f;
    public static boolean g;
    public static byte h;

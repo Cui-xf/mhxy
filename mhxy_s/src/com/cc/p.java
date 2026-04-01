@@ -76,34 +76,34 @@ public final class p {
    }
 
    public final void b(byte var1) {
-      t_1.ag.delete(0, t_1.ag.length());
+      GlobalConfig.ag.delete(0, GlobalConfig.ag.length());
       this.k = var1;
       if (this.b == 0) {
          if (var1 == 4) {
-            t_1.ag.append("com.cc.f").append(this.i).append(0).append(var1);
+            GlobalConfig.ag.append("com.cc.f").append(this.i).append(0).append(var1);
          } else {
-            t_1.ag.append("com.cc.f").append(this.i).append(0).append(this.t).append(var1);
+            GlobalConfig.ag.append("com.cc.f").append(this.i).append(0).append(this.t).append(var1);
          }
 
-         this.j = MainCanvas.ab.b(t_1.ag.toString());
+         this.j = MainCanvas.ab.b(GlobalConfig.ag.toString());
          if (this.j == null && var1 != 4) {
-            t_1.ag.delete(0, t_1.ag.length());
-            t_1.ag.append("com.cc.f").append(this.i).append(0).append(1).append(var1);
-            this.j = MainCanvas.ab.b(t_1.ag.toString());
+            GlobalConfig.ag.delete(0, GlobalConfig.ag.length());
+            GlobalConfig.ag.append("com.cc.f").append(this.i).append(0).append(1).append(var1);
+            this.j = MainCanvas.ab.b(GlobalConfig.ag.toString());
             return;
          }
       } else if (this.b == 1) {
-         t_1.ag.append(this.i).append(var1 > 3 ? 3 : var1);
-         this.j = MainCanvas.ah.a(t_1.ag.toString(), this.p, this.q, this.r);
+         GlobalConfig.ag.append(this.i).append(var1 > 3 ? 3 : var1);
+         this.j = MainCanvas.ah.a(GlobalConfig.ag.toString(), this.p, this.q, this.r);
          if (this.j == null) {
-            t_1.ag.delete(0, t_1.ag.length());
-            t_1.ag.append(100).append(var1 > 3 ? 3 : var1);
-            this.j = MainCanvas.ah.a(t_1.ag.toString(), this.p, this.q, this.r);
+            GlobalConfig.ag.delete(0, GlobalConfig.ag.length());
+            GlobalConfig.ag.append(100).append(var1 > 3 ? 3 : var1);
+            this.j = MainCanvas.ah.a(GlobalConfig.ag.toString(), this.p, this.q, this.r);
             return;
          }
       } else if (this.b == 2) {
-         t_1.ag.append(this.i).append(var1 > 3 ? 3 : var1);
-         this.j = MainCanvas.ah.a(t_1.ag.toString(), this.p, this.q, this.r);
+         GlobalConfig.ag.append(this.i).append(var1 > 3 ? 3 : var1);
+         this.j = MainCanvas.ah.a(GlobalConfig.ag.toString(), this.p, this.q, this.r);
       }
 
    }

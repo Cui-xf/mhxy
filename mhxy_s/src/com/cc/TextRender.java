@@ -52,8 +52,8 @@ public final class TextRender {
 
                     for (int var6 = 0; var6 < this.b[var5].a.length; ++var6) {
                         var1.setColor(this.b[var5].b[var6]);
-                        var1.drawString(this.b[var5].a[var6], var2 + this.d, var3 + var5 * t_1.j, var4);
-                        this.d += t_1.i.stringWidth(this.b[var5].a[var6]);
+                        var1.drawString(this.b[var5].a[var6], var2 + this.d, var3 + var5 * GlobalConfig.j, var4);
+                        this.d += GlobalConfig.i.stringWidth(this.b[var5].a[var6]);
                     }
                 }
             }
@@ -78,8 +78,8 @@ public final class TextRender {
 
                     for (int var6 = 0; var6 < this.b[var5].a.length; ++var6) {
                         var1.setColor(this.b[var5].b[var6]);
-                        var1.drawString(this.b[var5].a[var6], var2 - var4 / 2 + this.d, var3 + var5 * t_1.j, 20);
-                        this.d += t_1.i.stringWidth(this.b[var5].a[var6]);
+                        var1.drawString(this.b[var5].a[var6], var2 - var4 / 2 + this.d, var3 + var5 * GlobalConfig.j, 20);
+                        this.d += GlobalConfig.i.stringWidth(this.b[var5].a[var6]);
                     }
                 }
             }
@@ -98,7 +98,7 @@ public final class TextRender {
         for (int var6 = 0; var6 < this.b[var4].a.length; ++var6) {
             var1.setColor(this.b[var4].b[var6]);
             var1.drawString(this.b[var4].a[var6], var2 + this.d, var3, var5);
-            this.d += t_1.i.stringWidth(this.b[var4].a[var6]);
+            this.d += GlobalConfig.i.stringWidth(this.b[var4].a[var6]);
         }
 
     }
@@ -250,7 +250,7 @@ public final class TextRender {
      */
     private void a(String str, ap[] apVarArr) {
         String strSubstring;
-        Font font = t_1.i;
+        Font font = GlobalConfig.i;
         int i = this.c;           // 最大显示宽度
         String str2 = str;
         if (str2 == null) {

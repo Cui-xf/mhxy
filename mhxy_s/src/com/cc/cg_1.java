@@ -54,16 +54,16 @@ public final class cg_1 {
    }
 
    public static void a(int var0) {
-      a = bt_1.fA[var0];
-      j = bt_1.fB[var0];
-      l = bt_1.fM[var0];
-      m = bt_1.fN[var0];
-      n = bt_1.fO[var0];
-      o = bt_1.fP[var0];
-      u = bt_1.fE[var0];
-      v = bt_1.fF[var0];
-      w = bt_1.fG[var0];
-      x = bt_1.fH[var0];
+      a = GlobalStatus.fA[var0];
+      j = GlobalStatus.fB[var0];
+      l = GlobalStatus.fM[var0];
+      m = GlobalStatus.fN[var0];
+      n = GlobalStatus.fO[var0];
+      o = GlobalStatus.fP[var0];
+      u = GlobalStatus.fE[var0];
+      v = GlobalStatus.fF[var0];
+      w = GlobalStatus.fG[var0];
+      x = GlobalStatus.fH[var0];
       k = -1;
       p = "";
       y = -1;
@@ -99,7 +99,7 @@ public final class cg_1 {
    public static void a(DataInputStream var0) throws IOException {
       if ((C = var0.readByte()) != 0) {
          if (C == 1) {
-            k = bt_1.fA[c];
+            k = GlobalStatus.fA[c];
             var0.readUTF();
             p = var0.readUTF();
             q = var0.readInt();
@@ -108,12 +108,12 @@ public final class cg_1 {
             t = var0.readInt();
             E = var0.readInt();
 
-            for(int var4 = 0; var4 < bt_1.fA.length; ++var4) {
-               if (bt_1.fA[var4] == k) {
-                  y = bt_1.fE[var4];
-                  z = bt_1.fF[var4];
-                  A = bt_1.fG[var4];
-                  B = bt_1.fH[var4];
+            for(int var4 = 0; var4 < GlobalStatus.fA.length; ++var4) {
+               if (GlobalStatus.fA[var4] == k) {
+                  y = GlobalStatus.fE[var4];
+                  z = GlobalStatus.fF[var4];
+                  A = GlobalStatus.fG[var4];
+                  B = GlobalStatus.fH[var4];
                }
             }
 
@@ -133,34 +133,34 @@ public final class cg_1 {
          }
 
          int var3 = b;
-         a = bt_1.fA[var3];
-         j = bt_1.fB[var3];
-         l = bt_1.fM[var3];
-         m = bt_1.fN[var3];
-         n = bt_1.fO[var3];
-         o = bt_1.fP[var3];
-         u = bt_1.fE[var3];
-         v = bt_1.fF[var3];
-         w = bt_1.fG[var3];
-         x = bt_1.fH[var3];
+         a = GlobalStatus.fA[var3];
+         j = GlobalStatus.fB[var3];
+         l = GlobalStatus.fM[var3];
+         m = GlobalStatus.fN[var3];
+         n = GlobalStatus.fO[var3];
+         o = GlobalStatus.fP[var3];
+         u = GlobalStatus.fE[var3];
+         v = GlobalStatus.fF[var3];
+         w = GlobalStatus.fG[var3];
+         x = GlobalStatus.fH[var3];
       }
    }
 
    private static void c() {
-      bt_1.fw = null;
-      if (bt_1.fA != null && bt_1.fA.length > 0) {
+      GlobalStatus.fw = null;
+      if (GlobalStatus.fA != null && GlobalStatus.fA.length > 0) {
          int var0 = 0;
          if (k != -1) {
             ++var0;
          }
 
-         bt_1.fw = new int[D.length - var0];
+         GlobalStatus.fw = new int[D.length - var0];
          var0 = 0;
 
          for(int var1 = 0; var1 < D.length; ++var1) {
-            for(int var2 = 0; var2 < bt_1.fA.length; ++var2) {
-               if (bt_1.fA[var2] == D[var1] && bt_1.fA[var2] != k) {
-                  bt_1.fw[var0] = var2;
+            for(int var2 = 0; var2 < GlobalStatus.fA.length; ++var2) {
+               if (GlobalStatus.fA[var2] == D[var1] && GlobalStatus.fA[var2] != k) {
+                  GlobalStatus.fw[var0] = var2;
                   ++var0;
                }
             }
@@ -236,8 +236,8 @@ public final class cg_1 {
       this.f.aq.b();
       this.f.aq.a("星级继承");
       this.f.aq.a(true);
-      this.H.a(this.L, t_1.i, (byte)2);
-      this.I.a(this.M, t_1.i, (byte)2);
+      this.H.a(this.L, GlobalConfig.i, (byte)2);
+      this.I.a(this.M, GlobalConfig.i, (byte)2);
       if (a != -1 && u != -1) {
          ao_1.a(u, v, w, x);
          this.h = MainCanvas.ah.a(String.valueOf(u + "_0"), v, w, x);
@@ -254,13 +254,13 @@ public final class cg_1 {
          this.i = null;
       }
 
-      if (t_1.c > 220) {
+      if (GlobalConfig.defaultHigh > 220) {
          this.f.au.a("");
          this.f.aq.a((al)this.f.au);
       }
 
-      this.G = (this.f.aq.d - 32 - t_1.j) / 3 - 10;
-      this.f.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+      this.G = (this.f.aq.d - 32 - GlobalConfig.j) / 3 - 10;
+      this.f.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.H.a(this.f.aq.a + 5, this.f.aq.b + 32 + this.G, this.f.aq.c - 11, this.G + 10);
       this.I.a(this.f.aq.a + 5, this.f.aq.b + 32 + 2 * this.G + 10, this.f.aq.c - 11, this.G + 10);
       LoadingPage.l = 0;
@@ -312,7 +312,7 @@ public final class cg_1 {
          } else {
             if (this.K == 0) {
                if (a != -1) {
-                  LoadingPage.a(t_1.b / 2, t_1.c / 2, new String[]{"继承", "更换"}, true);
+                  LoadingPage.a(GlobalConfig.defaultWidth / 2, GlobalConfig.defaultHigh / 2, new String[]{"继承", "更换"}, true);
                   this.e.l = 1;
                   return;
                }
@@ -324,13 +324,13 @@ public final class cg_1 {
             if (this.K == 1) {
                if (a != -1) {
                   if (k != -1) {
-                     LoadingPage.a(t_1.b / 2, t_1.c / 2, new String[]{"更换"}, true);
+                     LoadingPage.a(GlobalConfig.defaultWidth / 2, GlobalConfig.defaultHigh / 2, new String[]{"更换"}, true);
                      this.e.l = 1;
                      return;
                   }
 
                   c();
-                  if (bt_1.fw != null && bt_1.fw.length > 0) {
+                  if (GlobalStatus.fw != null && GlobalStatus.fw.length > 0) {
                      d = true;
                      this.e.j((int)11);
                      return;
@@ -360,39 +360,39 @@ public final class cg_1 {
                   }
 
                   byte[] var3;
-                  if ((var3 = bz_1.b((byte)2, a, k, E)) == null) {
+                  if ((var3 = NetPayloadBuilder.b((byte)2, a, k, E)) == null) {
                      this.f.b("获取上传指令数据错误!");
                      return;
                   }
 
-                  w var4 = new w((short)4691, var3);
-                  MainCanvas.i.a(var4);
+                  NetPacket var4 = new NetPacket((short)4691, var3);
+                  MainCanvas.i.sendPacket(var4);
                   this.f.a((String)null);
                } else if (LoadingPage.o == 1) {
-                  bt_1.fw = null;
-                  if (bt_1.fA != null && bt_1.fA.length > 0) {
+                  GlobalStatus.fw = null;
+                  if (GlobalStatus.fA != null && GlobalStatus.fA.length > 0) {
                      var1 = 0;
 
-                     for(int var2 = 0; var2 < bt_1.fA.length; ++var2) {
-                        if (bt_1.gf[var2].equals("")) {
+                     for(int var2 = 0; var2 < GlobalStatus.fA.length; ++var2) {
+                        if (GlobalStatus.gf[var2].equals("")) {
                            ++var1;
                         }
                      }
 
                      if (var1 - 1 > 0) {
-                        bt_1.fw = new int[var1 - 1];
+                        GlobalStatus.fw = new int[var1 - 1];
                         int var7 = 0;
 
-                        for(int var6 = 0; var6 < bt_1.fA.length; ++var6) {
-                           if (bt_1.fA[var6] != a && bt_1.gf[var6].equals("")) {
-                              bt_1.fw[var7] = var6;
+                        for(int var6 = 0; var6 < GlobalStatus.fA.length; ++var6) {
+                           if (GlobalStatus.fA[var6] != a && GlobalStatus.gf[var6].equals("")) {
+                              GlobalStatus.fw[var7] = var6;
                               ++var7;
                            }
                         }
                      }
                   }
 
-                  if (bt_1.fw != null && bt_1.fw.length > 0) {
+                  if (GlobalStatus.fw != null && GlobalStatus.fw.length > 0) {
                      this.e.j((int)11);
                      return;
                   }
@@ -402,7 +402,7 @@ public final class cg_1 {
                }
             } else if (this.K == 1 && LoadingPage.o == 0) {
                c();
-               if (bt_1.fw == null || bt_1.fw.length <= 0) {
+               if (GlobalStatus.fw == null || GlobalStatus.fw.length <= 0) {
                   this.f.b("您没有符合要求的副宠");
                   return;
                }
@@ -439,7 +439,7 @@ public final class cg_1 {
          this.g.a(var1, (Frame1)this.i, (int[])null, 0, 0, this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 0, 0);
       } else {
          var1.setColor(16776960);
-         var1.drawString("副宠", this.f.aq.a + 5 + 25 + this.f.aq.c / 2 + 25, this.f.aq.b + 32 + 10 + t_1.j / 4 + 25, 65);
+         var1.drawString("副宠", this.f.aq.a + 5 + 25 + this.f.aq.c / 2 + 25, this.f.aq.b + 32 + 10 + GlobalConfig.j / 4 + 25, 65);
       }
 
       if (this.e.l == 1) {

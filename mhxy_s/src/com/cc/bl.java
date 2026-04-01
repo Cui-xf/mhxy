@@ -154,7 +154,7 @@ public final class bl extends ar {
    }
 
    public final int a(byte var1, byte var2) {
-      if (bt_1.bw >= 1) {
+      if (GlobalStatus.bw >= 1) {
          if (var1 == 2 || var1 == 3) {
             return 16711680;
          }

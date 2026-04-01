@@ -29,11 +29,11 @@ public final class bi extends bk {
    public final void a() {
       this.a = this.b = 0;
       if (this.m != null) {
-         this.n = d_1.a(this.m, super.h - 6, t_1.i, '\t');
+         this.n = d_1.a(this.m, super.h - 6, GlobalConfig.i, '\t');
       }
 
       this.d = this.n == null ? 0 : this.n.length;
-      this.l = t_1.j;
+      this.l = GlobalConfig.j;
 
       for(int var1 = 0; var1 < this.d; ++var1) {
          if (this.n[var1].a() > this.l) {
@@ -43,7 +43,7 @@ public final class bi extends bk {
 
       this.c = (super.i - 6) / this.l;
       if (this.d > this.c) {
-         this.n = d_1.a(this.m, super.h - 6 - 12, t_1.i, '\t');
+         this.n = d_1.a(this.m, super.h - 6 - 12, GlobalConfig.i, '\t');
          this.d = this.n.length;
          this.b = Math.max(6, this.c * (super.i - 6 - 10) / this.d);
       }

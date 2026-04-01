@@ -71,7 +71,7 @@ public final class k {
 
       this.r = var1.readUTF();
       this.s = var1.readUTF();
-      bt_1.N();
+      GlobalStatus.N();
       b(this.c);
       b(this.d);
       if (this.e != null && this.e.length > 0) {
@@ -82,9 +82,9 @@ public final class k {
 
       if (var2) {
          if (this.s != null && !this.s.equals("")) {
-            this.j.at.a(this.s, t_1.i, (byte)1);
+            this.j.at.a(this.s, GlobalConfig.i, (byte)1);
          } else {
-            this.j.at.a((String)null, t_1.i, (byte)1);
+            this.j.at.a((String)null, GlobalConfig.i, (byte)1);
          }
       }
 
@@ -94,11 +94,11 @@ public final class k {
    }
 
    private static void b(int var0) {
-      if (bt_1.bC != null && bt_1.bC.size() > 0) {
+      if (GlobalStatus.bC != null && GlobalStatus.bC.size() > 0) {
          bn var1 = null;
 
-         for(int var2 = 0; var2 < bt_1.bC.size(); ++var2) {
-            if ((var1 = (bn) bt_1.bC.elementAt(var2)) != null && var1.a == var0) {
+         for(int var2 = 0; var2 < GlobalStatus.bC.size(); ++var2) {
+            if ((var1 = (bn) GlobalStatus.bC.elementAt(var2)) != null && var1.a == var0) {
                ++var1.v;
             }
          }
@@ -121,9 +121,9 @@ public final class k {
 
    private void c() {
       if (this.s != null && !this.s.equals("")) {
-         this.j.at.a(this.s, t_1.i, (byte)1);
+         this.j.at.a(this.s, GlobalConfig.i, (byte)1);
       } else {
-         this.j.at.a((String)null, t_1.i, (byte)1);
+         this.j.at.a((String)null, GlobalConfig.i, (byte)1);
       }
    }
 
@@ -162,7 +162,7 @@ public final class k {
    private void e() {
       this.t = null;
       if (this.o != null && !this.o.equals("")) {
-         this.t = new TextRender("<0>银两：</0><5></5>" + this.o + (this.o.equals("0") ? "" : "万"), (short)(t_1.d - 20));
+         this.t = new TextRender("<0>银两：</0><5></5>" + this.o + (this.o.equals("0") ? "" : "万"), (short)(GlobalConfig.realWidth - 20));
       }
 
    }
@@ -170,7 +170,7 @@ public final class k {
    private void f() {
       this.u = null;
       if (this.r != null) {
-         this.u = new TextRender(this.r, (short)(t_1.d - 20));
+         this.u = new TextRender(this.r, (short)(GlobalConfig.realWidth - 20));
       }
 
    }
@@ -192,8 +192,8 @@ public final class k {
    private static bn e(int var0) {
       bn var1 = null;
 
-      for(int var2 = 0; var2 < bt_1.bC.size(); ++var2) {
-         if ((var1 = (bn) bt_1.bC.elementAt(var2)) != null && var1.a == var0) {
+      for(int var2 = 0; var2 < GlobalStatus.bC.size(); ++var2) {
+         if ((var1 = (bn) GlobalStatus.bC.elementAt(var2)) != null && var1.a == var0) {
             return var1;
          }
       }
@@ -221,7 +221,7 @@ public final class k {
       this.f = null;
       this.r = null;
       this.s = null;
-      bt_1.N();
+      GlobalStatus.N();
    }
 
    public final void a(boolean var1) {
@@ -247,18 +247,18 @@ public final class k {
       this.j.aq.b();
       this.j.aq.a("物品合成");
       this.j.aq.a(false);
-      this.w = (Math.max(t_1.j, 17) << 1) + 10;
-      this.x = t_1.j + 26 + 5;
+      this.w = (Math.max(GlobalConfig.j, 17) << 1) + 10;
+      this.x = GlobalConfig.j + 26 + 5;
       this.j.aq.a(this.w + this.x);
       this.c();
       this.j.aq.a((al)this.j.at);
       this.j.at.a((byte)1);
       this.j.au.a("确定");
-      if (t_1.c > 220) {
+      if (GlobalConfig.defaultHigh > 220) {
          this.j.aq.a((al)this.j.au);
       }
 
-      this.j.aq.a(t_1.f, t_1.g, t_1.d, t_1.e);
+      this.j.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.d();
       this.e();
       this.f();
@@ -358,9 +358,9 @@ public final class k {
          } else if (LoadingPage.o == 0) {
             if (this.b == 1) {
                byte[] var2;
-               if ((var2 = bz_1.a((byte)5, this.c, this.d, this.e, this.f, this.d(this.a), (byte)this.a, bt_1.ad)) != null) {
-                  w var3 = new w((short)4266, var2);
-                  MainCanvas.i.a(var3);
+               if ((var2 = NetPayloadBuilder.a((byte)5, this.c, this.d, this.e, this.f, this.d(this.a), (byte)this.a, GlobalStatus.ad)) != null) {
+                  NetPacket var3 = new NetPacket((short)4266, var2);
+                  MainCanvas.i.sendPacket(var3);
                   this.j.a((String)null);
                } else {
                   this.j.b("获取上传指令数据错误!");
@@ -368,21 +368,21 @@ public final class k {
             } else {
                byte[] var4 = null;
                if (this.a == 0) {
-                  var4 = bz_1.a((byte)0, this.c, this.d, this.e, this.f, -1, (byte)-1, bt_1.ad);
+                  var4 = NetPayloadBuilder.a((byte)0, this.c, this.d, this.e, this.f, -1, (byte)-1, GlobalStatus.ad);
                } else if (this.a == 1) {
-                  var4 = bz_1.a((byte)3, this.c, this.d, this.e, this.f, -1, (byte)-1, bt_1.ad);
+                  var4 = NetPayloadBuilder.a((byte)3, this.c, this.d, this.e, this.f, -1, (byte)-1, GlobalStatus.ad);
                }
 
                if (var4 != null) {
-                  w var5 = new w((short)4266, var4);
-                  MainCanvas.i.a(var5);
+                  NetPacket var5 = new NetPacket((short)4266, var4);
+                  MainCanvas.i.sendPacket(var5);
                   this.j.a((String)null);
                } else {
                   this.j.b("获取上传指令数据错误!");
                }
             }
          } else if (LoadingPage.o == 1) {
-            bt_1.a(e(this.c));
+            GlobalStatus.a(e(this.c));
             this.i.O.a(0, (short)this.i.k, -1);
          } else if (LoadingPage.o == 2) {
             this.a();
@@ -405,7 +405,7 @@ public final class k {
          LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32 + this.w + 1, this.j.aq.c - 11, this.x - 2, 1);
       }
 
-      int var3 = this.j.aq.a + t_1.i.stringWidth(this.h[0]) + 10;
+      int var3 = this.j.aq.a + GlobalConfig.i.stringWidth(this.h[0]) + 10;
       int var4 = this.j.aq.b + 40;
       if (this.g == null) {
          this.g = new int[5][4];
@@ -433,8 +433,8 @@ public final class k {
       }
 
       var1.setColor(255);
-      var1.drawString(this.h[0], this.g[0][0] - 2, this.g[0][1] + (var2 - t_1.j) / 2, 24);
-      var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] - var2 + (var2 - t_1.j) / 2, 20);
+      var1.drawString(this.h[0], this.g[0][0] - 2, this.g[0][1] + (var2 - GlobalConfig.j) / 2, 24);
+      var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] - var2 + (var2 - GlobalConfig.j) / 2, 20);
       Frame0 var13;
       if (this.c != -1 && (var13 = ao_1.b(this.k)) != null) {
          var1.drawImage(var13.pngImage, this.g[0][0] + 1, this.g[0][1] + 1, 20);
@@ -474,9 +474,9 @@ public final class k {
 
       if (this.i.l == 0 && (this.v != null || this.v != "")) {
          if ((this.b != 0 || this.a != 1) && this.b == 1) {
-            LoadingPage.b(var1, this.v, this.g[this.a + 2][0] + ao_1.x.b / 2, this.g[this.a + 2][1] + ao_1.x.b / 2, t_1.c - 5, 1);
+            LoadingPage.b(var1, this.v, this.g[this.a + 2][0] + ao_1.x.b / 2, this.g[this.a + 2][1] + ao_1.x.b / 2, GlobalConfig.defaultHigh - 5, 1);
          } else {
-            LoadingPage.b(var1, this.v, this.g[this.a][0] + ao_1.x.b / 2, this.g[this.a][1] + ao_1.x.b / 2, t_1.c - 5, 1);
+            LoadingPage.b(var1, this.v, this.g[this.a][0] + ao_1.x.b / 2, this.g[this.a][1] + ao_1.x.b / 2, GlobalConfig.defaultHigh - 5, 1);
          }
       }
 
