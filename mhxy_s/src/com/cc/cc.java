@@ -157,7 +157,7 @@ public final class cc {
                 }
 
                 NetPacket var7 = new NetPacket((short) 4690, var11);
-                MainCanvas.i.sendPacket(var7);
+                MainCanvas.netUtils.sendPacket(var7);
                 this.c.a((String) null);
             }
         } else if (this.b.l == 1) {
@@ -184,7 +184,7 @@ public final class cc {
                         return;
                     }
 
-                    MainCanvas.i.sendPacket(new NetPacket((short) 4110, var4));
+                    MainCanvas.netUtils.sendPacket(new NetPacket((short) 4110, var4));
                     this.c.a((String) null);
                 } else {
                     this.a = (short) this.c.as.a;
@@ -195,7 +195,7 @@ public final class cc {
                         return;
                     }
 
-                    MainCanvas.i.sendPacket(new NetPacket((short) 4111, var3));
+                    MainCanvas.netUtils.sendPacket(new NetPacket((short) 4111, var3));
                     this.c.a((String) null);
                 }
             }
@@ -214,7 +214,7 @@ public final class cc {
                 }
 
                 NetPacket var6 = new NetPacket((short) 4690, var5);
-                MainCanvas.i.sendPacket(var6);
+                MainCanvas.netUtils.sendPacket(var6);
                 this.c.a((String) null);
             }
         } else if (this.b.l == 3) {

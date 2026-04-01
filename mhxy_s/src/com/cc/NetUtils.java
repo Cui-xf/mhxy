@@ -15,7 +15,7 @@ import java.util.Vector;
 public final class NetUtils {
     public static String httpUrl = "http://117.135.138.130:7099";
     public static String socketUrl = "socket://120.78.151.213:20008";
-    public static String c = "";
+    public static String realSocketUrl = "";
     private static String j = "";
     public static byte status;
     public byte e;
@@ -26,12 +26,12 @@ public final class NetUtils {
     private Vector receivePacketQueue = new Vector();
     private NetPacket n = null;
     public static byte h = -1;
-    public static byte i = 2;
+    public static byte xieyiType = 2;
 
     public NetUtils() {
         NetPayloadBuilder.channelFlag = GlobalConfig.channel == 0 ? 162 : 40;
         h = -1;
-        i = 2;
+        xieyiType = 2;
         if (httpUrl == null) {
             httpUrl = "http://117.135.138.130:7099";
         }
@@ -40,12 +40,12 @@ public final class NetUtils {
             socketUrl = "socket://120.78.151.213:20008";
         }
 
-        c = "";
+        realSocketUrl = "";
         j = "";
         this.b();
     }
 
-    public final void a(MainCanvas mainCanvas) {
+    public final void setMainCanvas(MainCanvas mainCanvas) {
         this.mainCanvas = mainCanvas;
         if (this.k != null) {
             this.k.a(mainCanvas);
@@ -56,7 +56,7 @@ public final class NetUtils {
     private void e() {
         if (h == 2) {
             status = 1;
-            c = socketUrl;
+            realSocketUrl = socketUrl;
             if (this.socketReadLooper != null) {
                 this.socketReadLooper.stop();
             }
@@ -73,31 +73,31 @@ public final class NetUtils {
         return this.k;
     }
 
-    public static boolean a(String var0) {
-        return !c.equals(var0);
+    public static boolean sockerUrlNotEq(String var0) {
+        return !realSocketUrl.equals(var0);
     }
 
     public final void b() {
         if (GlobalConfig.channel == 0) {
             if (h == -1) {
-                i = 2;
+                xieyiType = 2;
                 j = null;
                 socketUrl = null;
-                c = null;
-                h = i;
+                realSocketUrl = null;
+                h = xieyiType;
                 this.e();
             }
 
         } else {
-            j = i == 2 ? socketUrl : httpUrl;
-            h = i;
-            c = j;
+            j = xieyiType == 2 ? socketUrl : httpUrl;
+            h = xieyiType;
+            realSocketUrl = j;
             status = 3;
             if (h == 2) {
                 this.e();
             }
 
-            GlobalConfig.printStr("当前服务地址-->" + c);
+            GlobalConfig.printStr("当前服务地址-->" + realSocketUrl);
         }
     }
 

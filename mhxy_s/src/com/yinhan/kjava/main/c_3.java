@@ -31,21 +31,21 @@ public final class c_3 {
         var4.append(':');
         var4.append(var3);
         NetPacket var5 = NetPayloadBuilder.login((byte) 1, (byte) 1, var4.toString());
-        if (MainCanvas.i == null || NetPayloadBuilder.hands2 != 72 || NetUtils.a("socket://120.78.151.213:20008")) {
+        if (MainCanvas.netUtils == null || NetPayloadBuilder.hands2 != 72 || NetUtils.sockerUrlNotEq("socket://120.78.151.213:20008")) {
             System.out.println("socket://120.78.151.213:20008");
             NetPayloadBuilder.hands2 = 72;
-            this.a.mainCanvas.a("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
+            this.a.mainCanvas.init("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
         }
 
-        if (MainCanvas.i != null) {
+        if (MainCanvas.netUtils != null) {
             var5.firstPacket = true;
-            MainCanvas.i.sendPacket(var5);
+            MainCanvas.netUtils.sendPacket(var5);
         }
 
     }
 
     public static void b() {
-        c.b.b();
+        c.loginModel.b();
     }
 
     public static void c() {
@@ -53,7 +53,7 @@ public final class c_3 {
     }
 
     public final void d() {
-        c.a(NetPayloadBuilder.login((byte) 1, (byte) 3, ""));
+        c.sendFirstPacket(NetPayloadBuilder.login((byte) 1, (byte) 3, ""));
         this.a.start();
         this.a.mainCanvas.a("请求中...");
     }

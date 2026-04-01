@@ -336,7 +336,7 @@ public final class ch {
                byte[] var7;
                if ((var7 = NetPayloadBuilder.a((short)4689, h, (byte)1, p, GlobalStatus.ad)) != null) {
                   NetPacket var12 = new NetPacket((short)4689, var7);
-                  MainCanvas.i.sendPacket(var12);
+                  MainCanvas.netUtils.sendPacket(var12);
                   this.d.a((String)null);
                } else {
                   this.d.b("获取上传指令数据错误!");
@@ -351,7 +351,7 @@ public final class ch {
             }
 
             NetPacket var13 = new NetPacket((short)4689, var9);
-            MainCanvas.i.sendPacket(var13);
+            MainCanvas.netUtils.sendPacket(var13);
             this.d.a((String)null);
          } else {
             if (LoadingPage.o == 1) {

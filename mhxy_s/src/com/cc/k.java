@@ -360,7 +360,7 @@ public final class k {
                byte[] var2;
                if ((var2 = NetPayloadBuilder.a((byte)5, this.c, this.d, this.e, this.f, this.d(this.a), (byte)this.a, GlobalStatus.ad)) != null) {
                   NetPacket var3 = new NetPacket((short)4266, var2);
-                  MainCanvas.i.sendPacket(var3);
+                  MainCanvas.netUtils.sendPacket(var3);
                   this.j.a((String)null);
                } else {
                   this.j.b("获取上传指令数据错误!");
@@ -375,7 +375,7 @@ public final class k {
 
                if (var4 != null) {
                   NetPacket var5 = new NetPacket((short)4266, var4);
-                  MainCanvas.i.sendPacket(var5);
+                  MainCanvas.netUtils.sendPacket(var5);
                   this.j.a((String)null);
                } else {
                   this.j.b("获取上传指令数据错误!");

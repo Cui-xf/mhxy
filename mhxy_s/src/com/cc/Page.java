@@ -577,8 +577,6 @@ public final class Page {
     }
 
     public final void b(Vector var1, short[] var2, short[] var3, short[] var4) {
-        throw new RuntimeException("为实现");
-
 //        int[] var12 = a((Vector) var1, (byte) 0);
 //        aa var14 = null;
 //        var3 = new short[var12.length];

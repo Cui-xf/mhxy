@@ -366,7 +366,7 @@ public final class cg_1 {
                   }
 
                   NetPacket var4 = new NetPacket((short)4691, var3);
-                  MainCanvas.i.sendPacket(var4);
+                  MainCanvas.netUtils.sendPacket(var4);
                   this.f.a((String)null);
                } else if (LoadingPage.o == 1) {
                   GlobalStatus.fw = null;

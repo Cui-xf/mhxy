@@ -3,7 +3,7 @@ package com.cc;
 import java.util.Enumeration;
 import java.util.Vector;
 
-public final class z_1 {
+public final class ZhangHaoUtils {
    public static boolean a(String var0) {
       return var0 == null || "".equals(var0.trim());
    }

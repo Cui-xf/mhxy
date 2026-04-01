@@ -1953,7 +1953,7 @@ public final class bq_1 {
 
       byte[] var12;
       if ((var12 = NetPayloadBuilder.a((short)4180, GlobalStatus.ad, GlobalStatus.v, g, t, var1, var2, var3, var4, (short)var5, var6, var7, var8)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4180, var12));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4180, var12));
          this.J = false;
          this.d = 0;
       } else {

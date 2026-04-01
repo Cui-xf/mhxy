@@ -428,7 +428,7 @@ public final class ao_1 {
                         boolean var50 = true;
                         byte[] var25;
                         if ((var25 = NetPayloadBuilder.e((short)4352, GlobalStatus.ad, (byte)1)) != null) {
-                           MainCanvas.i.sendPacket(new NetPacket((short)4352, var25));
+                           MainCanvas.netUtils.sendPacket(new NetPacket((short)4352, var25));
                            this.N();
                            this.e.a((String)null);
                         } else {
@@ -625,7 +625,7 @@ public final class ao_1 {
                                              String var10 = GlobalStatus.ad;
                                              byte[] var11;
                                              if ((var11 = NetPayloadBuilder.A((short)4254, var10)) != null) {
-                                                MainCanvas.i.sendPacket(new NetPacket((short)4254, var11));
+                                                MainCanvas.netUtils.sendPacket(new NetPacket((short)4254, var11));
                                                 this.e.a((String)null);
                                              } else {
                                                 this.e.b("获取上传指令数据错误!");
@@ -635,7 +635,7 @@ public final class ao_1 {
                                              if (GlobalStatus.bA > 0) {
                                                 byte[] var9;
                                                 if ((var9 = NetPayloadBuilder.w((short)4653, GlobalStatus.ad)) != null) {
-                                                   MainCanvas.i.sendPacket(new NetPacket((short)4653, var9));
+                                                   MainCanvas.netUtils.sendPacket(new NetPacket((short)4653, var9));
                                                    this.e.a((String)null);
                                                 } else {
                                                    this.e.b("获取上传指令数据错误!");
@@ -653,7 +653,7 @@ public final class ao_1 {
                                           this.c(var46);
                                           byte[] var24;
                                           if ((var24 = NetPayloadBuilder.a((short)4648, (byte)((byte)var46), GlobalStatus.ad)) != null) {
-                                             MainCanvas.i.sendPacket(new NetPacket((short)4648, var24));
+                                             MainCanvas.netUtils.sendPacket(new NetPacket((short)4648, var24));
                                              this.e.a((String)null);
                                           } else {
                                              this.e.b("获取上传指令数据错误!");
@@ -726,7 +726,7 @@ public final class ao_1 {
                                              byte[] var23;
                                              if ((var23 = NetPayloadBuilder.y((short)4659, GlobalStatus.ad)) != null) {
                                                 NetPacket var8 = new NetPacket((short)4659, var23);
-                                                MainCanvas.i.sendPacket(var8);
+                                                MainCanvas.netUtils.sendPacket(var8);
                                                 this.e.a((String)null);
                                              } else {
                                                 this.e.b("获取上传指令数据错误!");
@@ -763,7 +763,7 @@ public final class ao_1 {
                                           case 4:
                                              byte[] var21;
                                              if ((var21 = NetPayloadBuilder.e((short)4352, GlobalStatus.ad, (byte)0)) != null) {
-                                                MainCanvas.i.sendPacket(new NetPacket((short)4352, var21));
+                                                MainCanvas.netUtils.sendPacket(new NetPacket((short)4352, var21));
                                                 this.N();
                                                 this.e.a((String)null);
                                              } else {
@@ -858,7 +858,7 @@ public final class ao_1 {
                                              byte[] var6;
                                              if ((var6 = NetPayloadBuilder.f((short)4168, GlobalStatus.ad)) != null) {
                                                 NetPacket var7 = new NetPacket((short)4168, var6);
-                                                MainCanvas.i.sendPacket(var7);
+                                                MainCanvas.netUtils.sendPacket(var7);
                                                 this.e.a((String)null);
                                              } else {
                                                 this.e.b("获取上传指令数据错误!");
@@ -907,7 +907,7 @@ public final class ao_1 {
                   } else if ((var18 == 1073741824 || var18 == 517 || var18 == 268435456) && this.e.ar.g() == 2) {
                      byte[] var31;
                      if ((var31 = NetPayloadBuilder.a((short)4194, GlobalStatus.ad, (byte) GlobalStatus.z)) != null) {
-                        MainCanvas.i.sendPacket(new NetPacket((short)4194, var31));
+                        MainCanvas.netUtils.sendPacket(new NetPacket((short)4194, var31));
                      } else {
                         this.e.b("获取上传指令数据错误!");
                      }
@@ -915,7 +915,7 @@ public final class ao_1 {
                } else if (this.e.as.a == 3) {
                   byte[] var19;
                   if ((var19 = NetPayloadBuilder.u((short)4612, GlobalStatus.ad)) != null) {
-                     MainCanvas.i.sendPacket(new NetPacket((short)4612, var19));
+                     MainCanvas.netUtils.sendPacket(new NetPacket((short)4612, var19));
                      this.e.a((String)null);
                   } else {
                      this.e.b("获取上传指令数据错误!");
@@ -1002,7 +1002,7 @@ public final class ao_1 {
 
                      byte[] var34;
                      if ((var34 = NetPayloadBuilder.f((short)4136, GlobalStatus.ad, (int)var27)) != null) {
-                        MainCanvas.i.sendPacket(new NetPacket((short)4136, var34));
+                        MainCanvas.netUtils.sendPacket(new NetPacket((short)4136, var34));
                         var5.e.a((String)null);
                      } else {
                         var5.e.b("获取上传指令数据错误!");
@@ -1023,7 +1023,7 @@ public final class ao_1 {
                      byte[] var37;
                      if ((var37 = NetPayloadBuilder.a((short)4689, var28, (byte)0, (byte)-1, GlobalStatus.ad)) != null) {
                         NetPacket var17 = new NetPacket((short)4689, var37);
-                        MainCanvas.i.sendPacket(var17);
+                        MainCanvas.netUtils.sendPacket(var17);
                         var5.e.a((String)null);
                      } else {
                         var5.e.b("获取上传指令数据错误!");
@@ -1043,7 +1043,7 @@ public final class ao_1 {
                      o_1.h = 1;
                      byte[] var39;
                      if ((var39 = NetPayloadBuilder.a((short)4688, var29, -1L, (byte)0, o_1.h, 0, (byte[])null, GlobalStatus.ad)) != null) {
-                        MainCanvas.i.sendPacket(new NetPacket((short)4688, var39));
+                        MainCanvas.netUtils.sendPacket(new NetPacket((short)4688, var39));
                         var5.e.a((String)null);
                      } else {
                         var5.e.b("获取上传指令数据错误!");
@@ -1066,7 +1066,7 @@ public final class ao_1 {
 
                      byte[] var41;
                      if ((var41 = NetPayloadBuilder.a((short)4262, var30, -1L, (byte)0, (int[])null, (byte[])null, -1, (byte)0, GlobalStatus.ad)) != null) {
-                        MainCanvas.i.sendPacket(new NetPacket((short)4262, var41));
+                        MainCanvas.netUtils.sendPacket(new NetPacket((short)4262, var41));
                         var5.e.a((String)null);
                      } else {
                         var5.e.b("获取上传指令数据错误!");
@@ -1498,7 +1498,7 @@ public final class ao_1 {
                      byte[] var4;
                      if ((var4 = var1.a((short)4375, GlobalStatus.ad, var3)) != null) {
                         NetPacket var2 = new NetPacket((short)4375, var4);
-                        MainCanvas.i.sendPacket(var2);
+                        MainCanvas.netUtils.sendPacket(var2);
                      } else {
                         var1.b.b("获取上传指令数据错误!");
                      }
@@ -2573,8 +2573,8 @@ public final class ao_1 {
          GlobalStatus.g = true;
          byte[] var2 = NetPayloadBuilder.a((short)4630);
          if (this.e != null) {
-            if (MainCanvas.i != null) {
-               MainCanvas.i.sendPacket(new NetPacket((short)4630, var2));
+            if (MainCanvas.netUtils != null) {
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4630, var2));
             } else {
                this.e.b("获取上传指令数据错误!");
             }
@@ -2613,7 +2613,7 @@ public final class ao_1 {
                short var11 = var10001;
                byte[] var12;
                if ((var12 = NetPayloadBuilder.a((short)4144, GlobalStatus.ad, var11, var13, var14, var15)) != null) {
-                  MainCanvas.i.sendPacket(new NetPacket((short)4144, var12));
+                  MainCanvas.netUtils.sendPacket(new NetPacket((short)4144, var12));
                } else {
                   this.e.b("获取上传指令数据错误!");
                }
@@ -2627,7 +2627,7 @@ public final class ao_1 {
          } else if (this.e.ak - this.bt >= 4700L) {
             if (!GlobalStatus.a) {
                byte[] var9 = NetPayloadBuilder.d((short)4641, GlobalStatus.ad);
-               MainCanvas.i.sendPacket(new NetPacket((short)4641, var9));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4641, var9));
             }
 
             var1.bt = var1.e.ak;
@@ -2637,8 +2637,8 @@ public final class ao_1 {
                short var10 = var1.I.j;
                byte[] var7 = NetPayloadBuilder.a((short)4101, GlobalStatus.ad, (int)var10, (int)var3, (short)var4);
                if (var1.e != null) {
-                  if (MainCanvas.i != null) {
-                     MainCanvas.i.sendPacket(new NetPacket((short)4101, var7));
+                  if (MainCanvas.netUtils != null) {
+                     MainCanvas.netUtils.sendPacket(new NetPacket((short)4101, var7));
                      return;
                   }
 
@@ -3041,7 +3041,7 @@ public final class ao_1 {
                   this.J = null;
                   byte[] var8;
                   if ((var8 = NetPayloadBuilder.C((short)4371, GlobalStatus.ad)) != null) {
-                     MainCanvas.i.sendPacket(new NetPacket((short)4371, var8));
+                     MainCanvas.netUtils.sendPacket(new NetPacket((short)4371, var8));
                   } else {
                      this.e.b("获取上传指令数据错误!");
                   }
@@ -3136,7 +3136,7 @@ public final class ao_1 {
                } else if (var1 == 521) {
                   byte[] var11;
                   if ((var11 = NetPayloadBuilder.f((short)4168, GlobalStatus.ad)) != null) {
-                     MainCanvas.i.sendPacket(new NetPacket((short)4168, var11));
+                     MainCanvas.netUtils.sendPacket(new NetPacket((short)4168, var11));
                      this.by = 1;
                      this.e.a((String)null);
                   } else {
@@ -3157,7 +3157,7 @@ public final class ao_1 {
                if (this.af >= 0 && GlobalStatus.t != null && this.af < GlobalStatus.t.length && GlobalStatus.t[this.af] != null && GlobalStatus.t[this.af].e == 1) {
                   byte[] var10;
                   if ((var10 = NetPayloadBuilder.c((short)4106, GlobalStatus.ad, (int) GlobalStatus.t[this.af].a)) != null) {
-                     MainCanvas.i.sendPacket(new NetPacket((short)4106, var10));
+                     MainCanvas.netUtils.sendPacket(new NetPacket((short)4106, var10));
                      aj = true;
                      this.e.a((String)null);
                      return;
@@ -3584,7 +3584,7 @@ public final class ao_1 {
          } else {
             byte[] var4 = NetPayloadBuilder.a((short)4184, GlobalStatus.ad, var2, var1 == null ? "" : var1, var3);
             NetPacket var5 = new NetPacket((short)4184, var4);
-            MainCanvas.i.sendPacket(var5);
+            MainCanvas.netUtils.sendPacket(var5);
             if (var2 == 4) {
                b(new ce("→" + this.aQ, var2, var3, (byte)21));
                this.a(new ce("→" + this.aQ, var2, var3, (byte)21));
@@ -3978,7 +3978,7 @@ public final class ao_1 {
                               } else if (GlobalStatus.bI != null && this.ai < GlobalStatus.bI.length) {
                                  byte[] var25;
                                  if ((var25 = NetPayloadBuilder.a((short)4107, GlobalStatus.ad, (int) GlobalStatus.t[this.af].a, (int) GlobalStatus.bI[this.ai])) != null) {
-                                    MainCanvas.i.sendPacket(new NetPacket((short)4107, var25));
+                                    MainCanvas.netUtils.sendPacket(new NetPacket((short)4107, var25));
                                     this.e.a((String)null);
                                  } else {
                                     this.e.b("获取上传指令数据错误!");
@@ -4004,7 +4004,7 @@ public final class ao_1 {
                               byte[] var35;
                               if ((var35 = NetPayloadBuilder.s((short)4145, GlobalStatus.ad, GlobalStatus.t[this.af].a)) != null) {
                                  NetPacket var9 = new NetPacket((short)4145, var35);
-                                 MainCanvas.i.sendPacket(var9);
+                                 MainCanvas.netUtils.sendPacket(var9);
                                  this.N();
                                  this.e.a((String)null);
                               } else {
@@ -4066,7 +4066,7 @@ public final class ao_1 {
                               aq var8 = this.M;
                               byte[] var24;
                               if ((var24 = NetPayloadBuilder.B((short)4222, GlobalStatus.ad)) != null) {
-                                 MainCanvas.i.sendPacket(new NetPacket((short)4222, var24));
+                                 MainCanvas.netUtils.sendPacket(new NetPacket((short)4222, var24));
                                  var8.b.a((String)null);
                               } else {
                                  var8.b.b("获取上传指令数据错误!");
@@ -4092,7 +4092,7 @@ public final class ao_1 {
                               aq var7 = this.M;
                               byte[] var23;
                               if ((var23 = NetPayloadBuilder.v((short)4870, GlobalStatus.ad)) != null) {
-                                 MainCanvas.i.sendPacket(new NetPacket((short)4870, var23));
+                                 MainCanvas.netUtils.sendPacket(new NetPacket((short)4870, var23));
                                  var7.b.a((String)null);
                               } else {
                                  var7.b.b("获取上传指令数据错误!");
@@ -4102,7 +4102,7 @@ public final class ao_1 {
                               aq var6 = this.M;
                               byte[] var22;
                               if ((var22 = NetPayloadBuilder.v((short)4873, GlobalStatus.ad)) != null) {
-                                 MainCanvas.i.sendPacket(new NetPacket((short)4873, var22));
+                                 MainCanvas.netUtils.sendPacket(new NetPacket((short)4873, var22));
                                  var6.b.a((String)null);
                               } else {
                                  var6.b.b("获取上传指令数据错误!");
@@ -4142,7 +4142,7 @@ public final class ao_1 {
                            case 41:
                               byte[] var21;
                               if ((var21 = NetPayloadBuilder.a((short)4660, (short) GlobalStatus.t[this.af].a, GlobalStatus.ad)) != null) {
-                                 MainCanvas.i.sendPacket(new NetPacket((short)4660, var21));
+                                 MainCanvas.netUtils.sendPacket(new NetPacket((short)4660, var21));
                                  this.e.a((String)null);
                               } else {
                                  this.e.b("获取上传指令数据错误!");
@@ -4151,7 +4151,7 @@ public final class ao_1 {
                            case 42:
                               byte[] var20;
                               if ((var20 = NetPayloadBuilder.a((short)4662, (short) GlobalStatus.t[this.af].a, GlobalStatus.ad)) != null) {
-                                 MainCanvas.i.sendPacket(new NetPacket((short)4662, var20));
+                                 MainCanvas.netUtils.sendPacket(new NetPacket((short)4662, var20));
                                  this.e.a((String)null);
                               } else {
                                  this.e.b("获取上传指令数据错误!");
@@ -4192,7 +4192,7 @@ public final class ao_1 {
                               byte[] var32;
                               if ((var32 = NetPayloadBuilder.a((byte)0)) != null) {
                                  NetPacket var5 = new NetPacket((short)4683, var32);
-                                 MainCanvas.i.sendPacket(var5);
+                                 MainCanvas.netUtils.sendPacket(var5);
                                  this.e.a((String)null);
                               } else {
                                  this.e.b("获取上传指令数据错误!");
@@ -4237,7 +4237,7 @@ public final class ao_1 {
                         if (GlobalStatus.bE && GlobalStatus.bG != -1) {
                            byte[] var14;
                            if ((var14 = NetPayloadBuilder.b((short)4108, GlobalStatus.ad, (int) GlobalStatus.bG, (int) GlobalStatus.bF)) != null) {
-                              MainCanvas.i.sendPacket(new NetPacket((short)4108, var14));
+                              MainCanvas.netUtils.sendPacket(new NetPacket((short)4108, var14));
                               GlobalStatus.j();
                               this.N();
                               this.e.a((String)null);
@@ -4247,7 +4247,7 @@ public final class ao_1 {
                         } else if (GlobalStatus.bK[this.ai] == -1) {
                            byte[] var12;
                            if ((var12 = NetPayloadBuilder.b((short)4108, GlobalStatus.ad, (int) GlobalStatus.bI[this.ai], (int)-1)) != null) {
-                              MainCanvas.i.sendPacket(new NetPacket((short)4108, var12));
+                              MainCanvas.netUtils.sendPacket(new NetPacket((short)4108, var12));
                               GlobalStatus.j();
                               this.N();
                               this.e.a((String)null);
@@ -4258,7 +4258,7 @@ public final class ao_1 {
                            this.N();
                            byte[] var13;
                            if ((var13 = NetPayloadBuilder.c((short)4109, GlobalStatus.ad, (int) GlobalStatus.t[this.af].a, (int) GlobalStatus.bI[this.ai])) != null) {
-                              MainCanvas.i.sendPacket(new NetPacket((short)4109, var13));
+                              MainCanvas.netUtils.sendPacket(new NetPacket((short)4109, var13));
                               GlobalStatus.j();
                               this.e.a((String)null);
                            } else {
@@ -4358,7 +4358,7 @@ public final class ao_1 {
                      aq var19 = this.M;
                      byte[] var30;
                      if ((var30 = NetPayloadBuilder.q((short)4219, GlobalStatus.ad)) != null) {
-                        MainCanvas.i.sendPacket(new NetPacket((short)4219, var30));
+                        MainCanvas.netUtils.sendPacket(new NetPacket((short)4219, var30));
                         var19.b.a((String)null);
                      } else {
                         var19.b.b("获取上传指令数据错误!");
@@ -4452,7 +4452,7 @@ public final class ao_1 {
                byte[] var17;
                if ((var17 = NetPayloadBuilder.a((short)4676, (byte)1, this.n(), GlobalStatus.ad)) != null) {
                   NetPacket var28 = new NetPacket((short)4676, var17);
-                  MainCanvas.i.sendPacket(var28);
+                  MainCanvas.netUtils.sendPacket(var28);
                   this.e.a((String)null);
                } else {
                   this.e.b("获取上传指令数据错误!");
@@ -4469,7 +4469,7 @@ public final class ao_1 {
                byte[] var18;
                if ((var18 = NetPayloadBuilder.a((short)4676, (byte)2, (long)this.ag, GlobalStatus.ad)) != null) {
                   NetPacket var29 = new NetPacket((short)4676, var18);
-                  MainCanvas.i.sendPacket(var29);
+                  MainCanvas.netUtils.sendPacket(var29);
                   this.e.a((String)null);
                } else {
                   this.e.b("获取上传指令数据错误!");
@@ -4494,7 +4494,7 @@ public final class ao_1 {
             byte[] var15;
             if ((var15 = NetPayloadBuilder.a((short)4159, GlobalStatus.ad, this.n(), (byte)0)) != null) {
                NetPacket var26 = new NetPacket((short)4159, var15);
-               MainCanvas.i.sendPacket(var26);
+               MainCanvas.netUtils.sendPacket(var26);
                this.e.a((String)null);
             } else {
                this.e.b("获取上传指令数据错误!");
@@ -4503,7 +4503,7 @@ public final class ao_1 {
             byte[] var16;
             if ((var16 = NetPayloadBuilder.a((short)4159, GlobalStatus.ad, this.n(), (byte)1)) != null) {
                NetPacket var27 = new NetPacket((short)4159, var16);
-               MainCanvas.i.sendPacket(var27);
+               MainCanvas.netUtils.sendPacket(var27);
                this.e.a((String)null);
             } else {
                this.e.b("获取上传指令数据错误!");
@@ -4568,7 +4568,7 @@ public final class ao_1 {
             }
 
             NetPacket var3 = new NetPacket((short)4142, var2);
-            MainCanvas.i.sendPacket(var3);
+            MainCanvas.netUtils.sendPacket(var3);
             this.e.a((String)null);
          }
       }
@@ -4894,7 +4894,7 @@ public final class ao_1 {
          }
 
          NetPacket var8 = new NetPacket((short)4186, var6);
-         MainCanvas.i.sendPacket(var8);
+         MainCanvas.netUtils.sendPacket(var8);
          this.e.a((String)null);
       } else {
          if (var1 == 536870912) {
@@ -5301,7 +5301,7 @@ public final class ao_1 {
                byte[] var34;
                if ((var34 = NetPayloadBuilder.g((short)4173, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()], (int)this.z((this.ar << 3) + this.aq))) != null) {
                   NetPacket var23 = new NetPacket((short)4173, var34);
-                  MainCanvas.i.sendPacket(var23);
+                  MainCanvas.netUtils.sendPacket(var23);
                   this.e.a((String)null);
                   return;
                }
@@ -5318,7 +5318,7 @@ public final class ao_1 {
                byte[] var35;
                if ((var35 = NetPayloadBuilder.h((short)4174, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()], this.z((this.ar << 3) + this.aq))) != null) {
                   NetPacket var24 = new NetPacket((short)4174, var35);
-                  MainCanvas.i.sendPacket(var24);
+                  MainCanvas.netUtils.sendPacket(var24);
                   this.e.a((String)null);
                   return;
                }
@@ -5431,7 +5431,7 @@ public final class ao_1 {
 
                byte[] var36;
                if ((var36 = NetPayloadBuilder.b((short)4135, GlobalStatus.ad, (int)var22.a, (byte)((byte)(0 + this.av)))) != null) {
-                  MainCanvas.i.sendPacket(new NetPacket((short)4135, var36));
+                  MainCanvas.netUtils.sendPacket(new NetPacket((short)4135, var36));
                   this.e.a((String)null);
                   return;
                }
@@ -5475,7 +5475,7 @@ public final class ao_1 {
                   byte[] var37;
                   if ((var37 = NetPayloadBuilder.a((short)4687, GlobalStatus.ko, (byte)3, GlobalStatus.jG, var22.a, this.O.b, "", GlobalStatus.ad)) != null) {
                      NetPacket var25 = new NetPacket((short)4687, var37);
-                     MainCanvas.i.sendPacket(var25);
+                     MainCanvas.netUtils.sendPacket(var25);
                      this.e.a((String)null);
                      return;
                   }
@@ -5484,7 +5484,7 @@ public final class ao_1 {
                } else {
                   byte[] var38;
                   if ((var38 = NetPayloadBuilder.c((short)4645, GlobalStatus.ad, GlobalStatus.ko, var22.a, this.O.b)) != null) {
-                     MainCanvas.i.sendPacket(new NetPacket((short)4645, var38));
+                     MainCanvas.netUtils.sendPacket(new NetPacket((short)4645, var38));
                      this.e.a((String)null);
                      return;
                   }
@@ -5495,7 +5495,7 @@ public final class ao_1 {
                byte[] var26;
                if ((var26 = NetPayloadBuilder.b((short)4856, GlobalStatus.ad, GlobalStatus.dK[this.e.ar.g() - 1], (int)this.z((this.ar << 3) + this.aq))) != null) {
                   NetPacket var27 = new NetPacket((short)4856, var26);
-                  MainCanvas.i.sendPacket(var27);
+                  MainCanvas.netUtils.sendPacket(var27);
                   this.e.a((String)null);
                   return;
                }
@@ -5505,7 +5505,7 @@ public final class ao_1 {
                byte[] var39;
                if ((var39 = NetPayloadBuilder.h((short)4661, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()], this.z((this.ar << 3) + this.aq))) != null) {
                   NetPacket var28 = new NetPacket((short)4661, var39);
-                  MainCanvas.i.sendPacket(var28);
+                  MainCanvas.netUtils.sendPacket(var28);
                   this.e.a((String)null);
                   return;
                }
@@ -5570,7 +5570,7 @@ public final class ao_1 {
                   }
 
                   NetPacket var21 = new NetPacket((short)4105, var33);
-                  MainCanvas.i.sendPacket(var21);
+                  MainCanvas.netUtils.sendPacket(var21);
                   this.e.a((String)null);
                   break;
                case 1:
@@ -5611,7 +5611,7 @@ public final class ao_1 {
                   byte[] var32;
                   if ((var32 = NetPayloadBuilder.j((short)4143, GlobalStatus.ad)) != null) {
                      NetPacket var20 = new NetPacket((short)4143, var32);
-                     MainCanvas.i.sendPacket(var20);
+                     MainCanvas.netUtils.sendPacket(var20);
                      this.e.a((String)null);
                      return;
                   }
@@ -5729,7 +5729,7 @@ public final class ao_1 {
             }
 
             NetPacket var15 = new NetPacket((short)4152, var30);
-            MainCanvas.i.sendPacket(var15);
+            MainCanvas.netUtils.sendPacket(var15);
             this.e.a((String)null);
          }
       } else if (this.l == 6) {
@@ -5842,7 +5842,7 @@ public final class ao_1 {
             }
 
             NetPacket var29 = new NetPacket((short)4105, var11);
-            MainCanvas.i.sendPacket(var29);
+            MainCanvas.netUtils.sendPacket(var29);
             this.e.a((String)null);
          }
       } else if (this.l == 11) {
@@ -5929,7 +5929,7 @@ public final class ao_1 {
                   return;
                }
 
-               MainCanvas.i.sendPacket(new NetPacket((short)4642, var2));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4642, var2));
                this.e.a((String)null);
             }
          }
@@ -6028,7 +6028,7 @@ public final class ao_1 {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.b((short)4244, this.z((this.ar << 3) + this.aq), (int)var1, GlobalStatus.ad)) != null) {
          NetPacket var3 = new NetPacket((short)4244, var2);
-         MainCanvas.i.sendPacket(var3);
+         MainCanvas.netUtils.sendPacket(var3);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -6039,7 +6039,7 @@ public final class ao_1 {
       byte[] var3;
       if ((var3 = NetPayloadBuilder.a((short)4117, GlobalStatus.ad, (byte)this.az, (byte)(var1 ? var2 : 0), (int)(var1 ? (var2 == 2 ? this.z((this.ar << 3) + this.aq) : GlobalStatus.dl[this.e.ar.g()]) : -1))) != null) {
          NetPacket var4 = new NetPacket((short)4117, var3);
-         MainCanvas.i.sendPacket(var4);
+         MainCanvas.netUtils.sendPacket(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -6050,7 +6050,7 @@ public final class ao_1 {
       byte[] var3;
       if ((var3 = NetPayloadBuilder.a((short)4193, GlobalStatus.ad, GlobalStatus.fA[this.ay], (byte)this.az, (byte)(var1 ? 1 : 0), (int)(var1 ? GlobalStatus.dl[this.e.ar.g()] : -1))) != null) {
          NetPacket var4 = new NetPacket((short)4193, var3);
-         MainCanvas.i.sendPacket(var4);
+         MainCanvas.netUtils.sendPacket(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -6082,7 +6082,7 @@ public final class ao_1 {
 
       byte[] var5;
       if ((var5 = NetPayloadBuilder.a((short)4126, GlobalStatus.ad, (int)this.z((this.ar << 3) + this.aq), (int)(this.e.ax % 10), (int)var1)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4126, var5));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4126, var5));
          this.bS = true;
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -6105,7 +6105,7 @@ public final class ao_1 {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.a((short)4104, GlobalStatus.ad, (int)this.z((this.ar << 3) + this.aq), (byte)((byte)var1))) != null) {
          NetPacket var3 = new NetPacket((short)4104, var2);
-         MainCanvas.i.sendPacket(var3);
+         MainCanvas.netUtils.sendPacket(var3);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -6116,7 +6116,7 @@ public final class ao_1 {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.e((short)4157, GlobalStatus.ad, this.z((this.ar << 3) + this.aq), (int)var1)) != null) {
          NetPacket var3 = new NetPacket((short)4157, var2);
-         MainCanvas.i.sendPacket(var3);
+         MainCanvas.netUtils.sendPacket(var3);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -6401,7 +6401,7 @@ public final class ao_1 {
                byte[] var5;
                if ((var5 = NetPayloadBuilder.a((short)4689, var2.a, (byte)0, (byte)-1, GlobalStatus.ad)) != null) {
                   NetPacket var6 = new NetPacket((short)4689, var5);
-                  MainCanvas.i.sendPacket(var6);
+                  MainCanvas.netUtils.sendPacket(var6);
                   this.e.a((String)null);
                   return;
                }
@@ -6421,7 +6421,7 @@ public final class ao_1 {
 
                if (var7 != null) {
                   NetPacket var8 = new NetPacket((short)4688, var7);
-                  MainCanvas.i.sendPacket(var8);
+                  MainCanvas.netUtils.sendPacket(var8);
                   this.e.a((String)null);
                   return;
                }
@@ -6445,7 +6445,7 @@ public final class ao_1 {
 
                if (var9 != null) {
                   NetPacket var10 = new NetPacket((short)4262, var9);
-                  MainCanvas.i.sendPacket(var10);
+                  MainCanvas.netUtils.sendPacket(var10);
                   this.e.a((String)null);
                   return;
                }
@@ -6469,7 +6469,7 @@ public final class ao_1 {
 
                if (var11 != null) {
                   NetPacket var12 = new NetPacket((short)4266, var11);
-                  MainCanvas.i.sendPacket(var12);
+                  MainCanvas.netUtils.sendPacket(var12);
                   this.e.a((String)null);
                   return;
                }
@@ -6485,7 +6485,7 @@ public final class ao_1 {
                   byte[] var13;
                   if ((var13 = NetPayloadBuilder.a((short)4687, GlobalStatus.ko, (byte)3, GlobalStatus.jG, var2.a, this.O.b, "", GlobalStatus.ad)) != null) {
                      NetPacket var14 = new NetPacket((short)4687, var13);
-                     MainCanvas.i.sendPacket(var14);
+                     MainCanvas.netUtils.sendPacket(var14);
                      this.e.a((String)null);
                      return;
                   }
@@ -6498,7 +6498,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  MainCanvas.i.sendPacket(new NetPacket((short)4645, var15));
+                  MainCanvas.netUtils.sendPacket(new NetPacket((short)4645, var15));
                   this.e.a((String)null);
                }
             }
@@ -7398,7 +7398,7 @@ public final class ao_1 {
 
                byte[] var12;
                if ((var12 = NetPayloadBuilder.a((short)4185, GlobalStatus.ad, GlobalStatus.gH[this.e.ar.g()], this.n())) != null) {
-                  MainCanvas.i.sendPacket(new NetPacket((short)4185, var12));
+                  MainCanvas.netUtils.sendPacket(new NetPacket((short)4185, var12));
                } else {
                   this.e.b("获取上传指令数据错误!");
                }
@@ -7428,7 +7428,7 @@ public final class ao_1 {
                         return;
                      }
 
-                     MainCanvas.i.sendPacket(new NetPacket((short)4114, var6));
+                     MainCanvas.netUtils.sendPacket(new NetPacket((short)4114, var6));
                      this.e.b("剔除队员" + GlobalStatus.q[this.e.ar.g()].e + "请求已发送!");
                   } else if (this.bz == 1) {
                      byte[] var7;
@@ -7437,7 +7437,7 @@ public final class ao_1 {
                         return;
                      }
 
-                     MainCanvas.i.sendPacket(new NetPacket((short)4119, var7));
+                     MainCanvas.netUtils.sendPacket(new NetPacket((short)4119, var7));
                      this.e.b("任命" + GlobalStatus.q[this.e.ar.g()].e + "为队长请求已发送!");
                   } else if (this.bz == 2) {
                      if (GlobalStatus.bs == 1) {
@@ -7447,7 +7447,7 @@ public final class ao_1 {
                            return;
                         }
 
-                        MainCanvas.i.sendPacket(new NetPacket((short)4120, var8));
+                        MainCanvas.netUtils.sendPacket(new NetPacket((short)4120, var8));
                         this.e.b("解散队伍请求已发送!");
                      } else if (GlobalStatus.bs == 0) {
                         byte[] var9;
@@ -7456,7 +7456,7 @@ public final class ao_1 {
                            return;
                         }
 
-                        MainCanvas.i.sendPacket(new NetPacket((short)4121, var9));
+                        MainCanvas.netUtils.sendPacket(new NetPacket((short)4121, var9));
                         this.e.b("脱离队伍请求已发送!");
                      }
                   }
@@ -7483,7 +7483,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  MainCanvas.i.sendPacket(new NetPacket((short)4110, var10));
+                  MainCanvas.netUtils.sendPacket(new NetPacket((short)4110, var10));
                   this.e.a((String)null);
                } else if (LoadingPage.o == 1) {
                   byte[] var11;
@@ -7492,7 +7492,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  MainCanvas.i.sendPacket(new NetPacket((short)4111, var11));
+                  MainCanvas.netUtils.sendPacket(new NetPacket((short)4111, var11));
                   this.e.a((String)null);
                }
             } else if (this.l == 11) {
@@ -7593,7 +7593,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  MainCanvas.i.sendPacket(new NetPacket((short)4115, var5));
+                  MainCanvas.netUtils.sendPacket(new NetPacket((short)4115, var5));
                   if (GlobalStatus.s == 0) {
                      this.e.b("队员自由活动请求已发送!");
                   } else {
@@ -7659,7 +7659,7 @@ public final class ao_1 {
                   return;
                }
 
-               MainCanvas.i.sendPacket(new NetPacket((short)4110, var3));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4110, var3));
                this.e.a((String)null);
             } else if (LoadingPage.o == 1) {
                byte[] var4;
@@ -7668,7 +7668,7 @@ public final class ao_1 {
                   return;
                }
 
-               MainCanvas.i.sendPacket(new NetPacket((short)4111, var4));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4111, var4));
                this.e.a((String)null);
             } else if (LoadingPage.o == 2) {
                this.df = GlobalStatus.gH[this.e.ar.g()];
@@ -7757,7 +7757,7 @@ public final class ao_1 {
    private void e(String var1) {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.b((short)4124, GlobalStatus.ad, var1, (byte)((byte) LoadingPage.o))) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4124, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4124, var2));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -8148,7 +8148,7 @@ public final class ao_1 {
 
    private void a(short var1, byte[] var2, String var3) {
       if (var2 != null) {
-         MainCanvas.i.sendPacket(new NetPacket(var1, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket(var1, var2));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -8506,7 +8506,7 @@ public final class ao_1 {
                return;
             }
 
-            MainCanvas.i.sendPacket(new NetPacket((short)4166, var5));
+            MainCanvas.netUtils.sendPacket(new NetPacket((short)4166, var5));
             this.e.a((String)null);
          } else {
             if (LoadingPage.p.length == 3 && LoadingPage.o == 0 || LoadingPage.p.length == 4 && LoadingPage.o == 1) {
@@ -8544,7 +8544,7 @@ public final class ao_1 {
                   return;
                }
 
-               MainCanvas.i.sendPacket(new NetPacket((short)4663, var4));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4663, var4));
                this.e.a((String)null);
             }
          }
@@ -8615,7 +8615,7 @@ public final class ao_1 {
                   return;
                }
 
-               MainCanvas.i.sendPacket(new NetPacket((short)4166, var3));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4166, var3));
                this.e.a((String)null);
             } else if ((LoadingPage.p.length != 3 || LoadingPage.o != 1) && (LoadingPage.p.length != 2 || LoadingPage.o != 0)) {
                if (LoadingPage.p.length == 3 && LoadingPage.o == 2 || LoadingPage.p.length == 2 && LoadingPage.o == 1) {
@@ -8638,7 +8638,7 @@ public final class ao_1 {
                   return;
                }
 
-               MainCanvas.i.sendPacket(new NetPacket((short)4663, var2));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4663, var2));
                this.e.a((String)null);
             }
          }
@@ -8649,7 +8649,7 @@ public final class ao_1 {
    public final void y() {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.m((short)4629, GlobalStatus.ad, GlobalStatus.fA[this.aE], GlobalStatus.dl[this.e.ar.g()])) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4629, var1));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4629, var1));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -8858,7 +8858,7 @@ public final class ao_1 {
       byte[] var4;
       if ((var4 = NetPayloadBuilder.a(var1, var2, var3)) != null) {
          NetPacket var5 = new NetPacket((short)4374, var4);
-         MainCanvas.i.sendPacket(var5);
+         MainCanvas.netUtils.sendPacket(var5);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -9056,7 +9056,7 @@ public final class ao_1 {
                   }
 
                   NetPacket var5 = new NetPacket((short)4167, var4);
-                  MainCanvas.i.sendPacket(var5);
+                  MainCanvas.netUtils.sendPacket(var5);
                   this.e.a((String)null);
                }
             } else if (this.as == 3 && this.g != null && this.e.as.a != 2) {
@@ -9118,7 +9118,7 @@ public final class ao_1 {
             }
 
             NetPacket var3 = new NetPacket((short)4167, var2);
-            MainCanvas.i.sendPacket(var3);
+            MainCanvas.netUtils.sendPacket(var3);
             this.e.a((String)null);
          } else {
             if (LoadingPage.p.length == 3 && LoadingPage.o == 1 || LoadingPage.p.length == 2 && LoadingPage.o == 0) {
@@ -9374,7 +9374,7 @@ public final class ao_1 {
                }
 
                NetPacket var3 = new NetPacket((short)4151, var2);
-               MainCanvas.i.sendPacket(var3);
+               MainCanvas.netUtils.sendPacket(var3);
                this.e.a((String)null);
             }
          }
@@ -9569,7 +9569,7 @@ public final class ao_1 {
                }
 
                NetPacket var3 = new NetPacket((short)4162, var4);
-               MainCanvas.i.sendPacket(var3);
+               MainCanvas.netUtils.sendPacket(var3);
                this.e.a((String)null);
             }
          }
@@ -9689,7 +9689,7 @@ public final class ao_1 {
             }
 
             NetPacket var3 = new NetPacket((short)4167, var2);
-            MainCanvas.i.sendPacket(var3);
+            MainCanvas.netUtils.sendPacket(var3);
             this.e.a((String)null);
          } else if (var1 == 536870912 || GlobalStatus.dI == null) {
             this.m();
@@ -9927,7 +9927,7 @@ public final class ao_1 {
       byte[] var7;
       if ((var7 = NetPayloadBuilder.a((short)4253, GlobalStatus.ad, var1, var3, var2, var4, var5)) != null) {
          NetPacket var6 = new NetPacket((short)4253, var7);
-         MainCanvas.i.sendPacket(var6);
+         MainCanvas.netUtils.sendPacket(var6);
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -9965,7 +9965,7 @@ public final class ao_1 {
                byte[] var47;
                if ((var47 = NetPayloadBuilder.a((short)4188, GlobalStatus.ad, (int) GlobalStatus.fA[this.e.ar.g()], (String)var4)) != null) {
                   NetPacket var3 = new NetPacket((short)4188, var47);
-                  MainCanvas.i.sendPacket(var3);
+                  MainCanvas.netUtils.sendPacket(var3);
                } else {
                   this.e.b("获取上传指令数据错误!");
                }
@@ -10063,7 +10063,7 @@ public final class ao_1 {
                      this.l = 0;
                      byte[] var44;
                      if ((var44 = NetPayloadBuilder.v((short)4191, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()])) != null) {
-                        MainCanvas.i.sendPacket(new NetPacket((short)4191, var44));
+                        MainCanvas.netUtils.sendPacket(new NetPacket((short)4191, var44));
                         this.e.a((String)null);
                         return;
                      }
@@ -10083,7 +10083,7 @@ public final class ao_1 {
                         byte[] var45;
                         if ((var45 = NetPayloadBuilder.b((byte)1, cg_1.a, GlobalStatus.fA[var22], 0)) != null) {
                            NetPacket var8 = new NetPacket((short)4691, var45);
-                           MainCanvas.i.sendPacket(var8);
+                           MainCanvas.netUtils.sendPacket(var8);
                            this.e.a((String)null);
                            return;
                         }
@@ -10094,7 +10094,7 @@ public final class ao_1 {
                         byte[] var46;
                         if ((var46 = NetPayloadBuilder.b((byte)0, GlobalStatus.fA[var22], -1, 0)) != null) {
                            NetPacket var9 = new NetPacket((short)4691, var46);
-                           MainCanvas.i.sendPacket(var9);
+                           MainCanvas.netUtils.sendPacket(var9);
                            this.e.a((String)null);
                            return;
                         }
@@ -10151,7 +10151,7 @@ public final class ao_1 {
                      }
 
                      NetPacket var36 = new NetPacket((short)4691, var15);
-                     MainCanvas.i.sendPacket(var36);
+                     MainCanvas.netUtils.sendPacket(var36);
                      this.e.a((String)null);
                   } else if (LoadingPage.o == 4) {
                      if (GlobalStatus.fz[this.e.ar.g()] == 0) {
@@ -10162,7 +10162,7 @@ public final class ao_1 {
                         }
 
                         NetPacket var37 = new NetPacket((short)4163, var16);
-                        MainCanvas.i.sendPacket(var37);
+                        MainCanvas.netUtils.sendPacket(var37);
                         this.e.a((String)null);
                      } else if (GlobalStatus.fz[this.e.ar.g()] == 1) {
                         byte[] var17;
@@ -10172,7 +10172,7 @@ public final class ao_1 {
                         }
 
                         NetPacket var38 = new NetPacket((short)4164, var17);
-                        MainCanvas.i.sendPacket(var38);
+                        MainCanvas.netUtils.sendPacket(var38);
                         this.e.a((String)null);
                      }
                   } else {
@@ -10206,7 +10206,7 @@ public final class ao_1 {
                         }
 
                         NetPacket var52 = new NetPacket((short)4148, var39);
-                        MainCanvas.i.sendPacket(var52);
+                        MainCanvas.netUtils.sendPacket(var52);
                         this.e.a((String)null);
                      } else if (LoadingPage.o == 10) {
                         byte[] var18;
@@ -10216,7 +10216,7 @@ public final class ao_1 {
                         }
 
                         NetPacket var40 = new NetPacket((short)4686, var18);
-                        MainCanvas.i.sendPacket(var40);
+                        MainCanvas.netUtils.sendPacket(var40);
                         this.e.a((String)null);
                      }
                   }
@@ -10241,7 +10241,7 @@ public final class ao_1 {
                         }
 
                         NetPacket var41 = new NetPacket((short)4161, var19);
-                        MainCanvas.i.sendPacket(var41);
+                        MainCanvas.netUtils.sendPacket(var41);
                         this.e.a((String)null);
                      }
                   } else if (this.as == 4) {
@@ -10250,7 +10250,7 @@ public final class ao_1 {
                         if (GlobalStatus.fz[var20] == 0) {
                            byte[] var53 = NetPayloadBuilder.i((short)4172, GlobalStatus.ad, GlobalStatus.fA[var20], this.e.ax % 10);
                            NetPacket var54 = new NetPacket((short)4172, var53);
-                           MainCanvas.i.sendPacket(var54);
+                           MainCanvas.netUtils.sendPacket(var54);
                            this.b((byte)1, true);
                            this.ar = this.aU;
                            this.e.ax = this.aV;
@@ -10274,7 +10274,7 @@ public final class ao_1 {
                         }
 
                         NetPacket var42 = new NetPacket((short)4146, var21);
-                        MainCanvas.i.sendPacket(var42);
+                        MainCanvas.netUtils.sendPacket(var42);
                         this.e.a((String)null);
                      } else if (LoadingPage.o == 1) {
                         this.l = 0;
@@ -10298,7 +10298,7 @@ public final class ao_1 {
                   }
 
                   NetPacket var35 = new NetPacket((short)4165, var14);
-                  MainCanvas.i.sendPacket(var35);
+                  MainCanvas.netUtils.sendPacket(var35);
                   this.e.a((String)null);
                } else if (LoadingPage.o == 0) {
                   this.E();
@@ -10353,7 +10353,7 @@ public final class ao_1 {
                   }
 
                   NetPacket var34 = new NetPacket((short)4148, var13);
-                  MainCanvas.i.sendPacket(var34);
+                  MainCanvas.netUtils.sendPacket(var34);
                   this.e.a((String)null);
                }
             } else if (this.l == 7) {
@@ -10417,7 +10417,7 @@ public final class ao_1 {
                         }
 
                         NetPacket var49 = new NetPacket((short)4614, var48);
-                        MainCanvas.i.sendPacket(var49);
+                        MainCanvas.netUtils.sendPacket(var49);
                         this.e.a((String)null);
                      } else {
                         this.e.b("卸下失败");
@@ -10442,7 +10442,7 @@ public final class ao_1 {
                      }
 
                      NetPacket var6 = new NetPacket((short)4689, var27);
-                     MainCanvas.i.sendPacket(var6);
+                     MainCanvas.netUtils.sendPacket(var6);
                      this.e.a((String)null);
                   } else if (LoadingPage.o == 4) {
                      this.aJ = true;
@@ -10463,7 +10463,7 @@ public final class ao_1 {
                         return;
                      }
 
-                     MainCanvas.i.sendPacket(new NetPacket((short)4688, var29));
+                     MainCanvas.netUtils.sendPacket(new NetPacket((short)4688, var29));
                      this.e.a((String)null);
                   } else if (LoadingPage.o == 5) {
                      if (this.P == null) {
@@ -10487,7 +10487,7 @@ public final class ao_1 {
                         return;
                      }
 
-                     MainCanvas.i.sendPacket(new NetPacket((short)4262, var31));
+                     MainCanvas.netUtils.sendPacket(new NetPacket((short)4262, var31));
                      this.e.a((String)null);
                   }
                }
@@ -10506,7 +10506,7 @@ public final class ao_1 {
                   if (GlobalStatus.fz[this.e.ar.g()] == 0) {
                      byte[] var32 = NetPayloadBuilder.u((short)4189, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()]);
                      NetPacket var7 = new NetPacket((short)4189, var32);
-                     MainCanvas.i.sendPacket(var7);
+                     MainCanvas.netUtils.sendPacket(var7);
                      this.e.a((String)null);
                   } else {
                      if (GlobalStatus.cR != null && GlobalStatus.cR.length > 0) {
@@ -10540,7 +10540,7 @@ public final class ao_1 {
                   }
 
                   NetPacket var51 = new NetPacket((short)4682, var50);
-                  MainCanvas.i.sendPacket(var51);
+                  MainCanvas.netUtils.sendPacket(var51);
                   this.e.a((String)null);
                } else if (var1 == 536870912) {
                   this.l = 0;
@@ -10606,7 +10606,7 @@ public final class ao_1 {
          byte[] var3;
          if ((var3 = NetPayloadBuilder.b((short)4614, GlobalStatus.ad, GlobalStatus.jG, var1, (byte)var2)) != null) {
             NetPacket var4 = new NetPacket((short)4614, var3);
-            MainCanvas.i.sendPacket(var4);
+            MainCanvas.netUtils.sendPacket(var4);
             this.e.a((String)null);
          } else {
             this.e.b("获取上传指令数据错误!");
@@ -10985,7 +10985,7 @@ public final class ao_1 {
       byte[] var3;
       if ((var3 = NetPayloadBuilder.a((short)4138, GlobalStatus.ad, (int)var2, (int) GlobalStatus.bY[(this.ar << 3) + this.aq], (byte)((byte)var1))) != null) {
          NetPacket var4 = new NetPacket((short)4138, var3);
-         MainCanvas.i.sendPacket(var4);
+         MainCanvas.netUtils.sendPacket(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -11139,7 +11139,7 @@ public final class ao_1 {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.d((short)4139, GlobalStatus.ad, this.z((this.ar << 3) + this.aq), (int)var1)) != null) {
          NetPacket var3 = new NetPacket((short)4139, var2);
-         MainCanvas.i.sendPacket(var3);
+         MainCanvas.netUtils.sendPacket(var3);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -11363,7 +11363,7 @@ public final class ao_1 {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.f((short)4158, GlobalStatus.ad, GlobalStatus.ct[(this.e.as.a << 5) + (this.ar << 3) + this.aq], (int)var1)) != null) {
          NetPacket var3 = new NetPacket((short)4158, var2);
-         MainCanvas.i.sendPacket(var3);
+         MainCanvas.netUtils.sendPacket(var3);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -11374,7 +11374,7 @@ public final class ao_1 {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.p((short)4155, GlobalStatus.ad, var1)) != null) {
          NetPacket var3 = new NetPacket((short)4155, var2);
-         MainCanvas.i.sendPacket(var3);
+         MainCanvas.netUtils.sendPacket(var3);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -11479,7 +11479,7 @@ public final class ao_1 {
       byte[] var6;
       if ((var6 = NetPayloadBuilder.b((short)4153, GlobalStatus.ad, var1, var2, var3, var4)) != null) {
          NetPacket var5 = new NetPacket((short)4153, var6);
-         MainCanvas.i.sendPacket(var5);
+         MainCanvas.netUtils.sendPacket(var5);
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -11489,7 +11489,7 @@ public final class ao_1 {
       byte[] var6;
       if ((var6 = NetPayloadBuilder.a((short)4147, GlobalStatus.ad, var1, var2, var3, var4)) != null) {
          NetPacket var5 = new NetPacket((short)4147, var6);
-         MainCanvas.i.sendPacket(var5);
+         MainCanvas.netUtils.sendPacket(var5);
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -11634,7 +11634,7 @@ public final class ao_1 {
                   }
 
                   NetPacket var5 = new NetPacket((short)4154, var4);
-                  MainCanvas.i.sendPacket(var5);
+                  MainCanvas.netUtils.sendPacket(var5);
                   this.e.a((String)null);
                }
             }
@@ -11880,7 +11880,7 @@ public final class ao_1 {
                }
 
                NetPacket var3 = new NetPacket((short)4149, var4);
-               MainCanvas.i.sendPacket(var3);
+               MainCanvas.netUtils.sendPacket(var3);
                this.e.a((String)null);
             }
          }
@@ -11989,7 +11989,7 @@ public final class ao_1 {
       byte[] var5;
       if ((var5 = NetPayloadBuilder.z((short)4223, GlobalStatus.ad)) != null) {
          NetPacket var4 = new NetPacket((short)4659, var5);
-         MainCanvas.i.sendPacket(var4);
+         MainCanvas.netUtils.sendPacket(var4);
       }
 
    }
@@ -12385,7 +12385,7 @@ public final class ao_1 {
    public final void a(String var1, boolean var2) {
       byte[] var3;
       if ((var3 = NetPayloadBuilder.a((short)4628, GlobalStatus.ad, var1, var2)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4628, var3));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4628, var3));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -12394,7 +12394,7 @@ public final class ao_1 {
    public final void a(String var1) {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.b((short)4122, GlobalStatus.ad, var1, (short)this.k)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4122, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4122, var2));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -12403,7 +12403,7 @@ public final class ao_1 {
    public final void b(String var1) {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.c((short)4123, GlobalStatus.ad, var1, (short)this.k)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4123, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4123, var2));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -12751,7 +12751,7 @@ public final class ao_1 {
                byte[] var8;
                if ((var8 = NetPayloadBuilder.f((short)4168, GlobalStatus.ad)) != null) {
                   NetPacket var9 = new NetPacket((short)4168, var8);
-                  MainCanvas.i.sendPacket(var9);
+                  MainCanvas.netUtils.sendPacket(var9);
                   this.e.a((String)null);
                } else {
                   this.e.b("获取上传指令数据错误!");
@@ -12760,7 +12760,7 @@ public final class ao_1 {
                byte[] var10;
                if ((var10 = NetPayloadBuilder.C((short)4202, GlobalStatus.ad)) != null) {
                   NetPacket var11 = new NetPacket((short)4202, var10);
-                  MainCanvas.i.sendPacket(var11);
+                  MainCanvas.netUtils.sendPacket(var11);
                } else {
                   this.e.b("获取上传指令数据错误!");
                }
@@ -12768,7 +12768,7 @@ public final class ao_1 {
                byte[] var12;
                if ((var12 = NetPayloadBuilder.g((short)4169, GlobalStatus.ad)) != null) {
                   NetPacket var13 = new NetPacket((short)4169, var12);
-                  MainCanvas.i.sendPacket(var13);
+                  MainCanvas.netUtils.sendPacket(var13);
                   this.e.a((String)null);
                } else {
                   this.e.b("获取上传指令数据错误!");
@@ -12921,7 +12921,7 @@ public final class ao_1 {
                }
 
                NetPacket var6 = new NetPacket((short)4171, var5);
-               MainCanvas.i.sendPacket(var6);
+               MainCanvas.netUtils.sendPacket(var6);
                this.e.a((String)null);
             } else if (LoadingPage.o == 1 && (GlobalStatus.dM[this.e.ar.g()] == 0 || GlobalStatus.dM[this.e.ar.g()] == 1)) {
                LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"删除", "加为好友"}, true);
@@ -12964,7 +12964,7 @@ public final class ao_1 {
                }
 
                NetPacket var3 = new NetPacket((short)4170, var2);
-               MainCanvas.i.sendPacket(var3);
+               MainCanvas.netUtils.sendPacket(var3);
             }
          } else if (this.l == 9) {
             LoadingPage.b(var1);
@@ -12980,7 +12980,7 @@ public final class ao_1 {
                   return;
                }
 
-               MainCanvas.i.sendPacket(new NetPacket((short)4110, var4));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4110, var4));
                this.e.a((String)null);
             } else {
                if (LoadingPage.o == 1) {
@@ -13238,7 +13238,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  MainCanvas.i.sendPacket(new NetPacket((short)4115, var8));
+                  MainCanvas.netUtils.sendPacket(new NetPacket((short)4115, var8));
                   if (GlobalStatus.s == 0) {
                      this.e.b("队员自由活动请求已发送!");
                   } else {
@@ -13293,7 +13293,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  MainCanvas.i.sendPacket(new NetPacket((short)4114, var2));
+                  MainCanvas.netUtils.sendPacket(new NetPacket((short)4114, var2));
                   this.e.b("剔除队员" + GlobalStatus.q[this.e.ar.g()].e + "请求已发送!");
                } else if (this.bz == 1) {
                   byte[] var3;
@@ -13302,7 +13302,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  MainCanvas.i.sendPacket(new NetPacket((short)4119, var3));
+                  MainCanvas.netUtils.sendPacket(new NetPacket((short)4119, var3));
                   this.e.b("任命" + GlobalStatus.q[this.e.ar.g()].e + "为队长请求已发送!");
                } else if (this.bz == 2) {
                   if (GlobalStatus.bs == 1) {
@@ -13312,7 +13312,7 @@ public final class ao_1 {
                         return;
                      }
 
-                     MainCanvas.i.sendPacket(new NetPacket((short)4120, var4));
+                     MainCanvas.netUtils.sendPacket(new NetPacket((short)4120, var4));
                      this.e.b("解散队伍请求已发送!");
                   } else if (GlobalStatus.bs == 0) {
                      byte[] var5;
@@ -13321,7 +13321,7 @@ public final class ao_1 {
                         return;
                      }
 
-                     MainCanvas.i.sendPacket(new NetPacket((short)4121, var5));
+                     MainCanvas.netUtils.sendPacket(new NetPacket((short)4121, var5));
                      this.e.b("脱离队伍请求已发送!");
                   }
                }
@@ -13348,7 +13348,7 @@ public final class ao_1 {
                   return;
                }
 
-               MainCanvas.i.sendPacket(new NetPacket((short)4110, var6));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4110, var6));
                this.e.a((String)null);
             } else if (LoadingPage.o == 1) {
                byte[] var7;
@@ -13357,7 +13357,7 @@ public final class ao_1 {
                   return;
                }
 
-               MainCanvas.i.sendPacket(new NetPacket((short)4111, var7));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4111, var7));
                this.e.a((String)null);
             }
          } else if (this.l == 4) {
@@ -13508,7 +13508,7 @@ public final class ao_1 {
                            return;
                         }
 
-                        MainCanvas.i.sendPacket(new NetPacket((short)4128, var7));
+                        MainCanvas.netUtils.sendPacket(new NetPacket((short)4128, var7));
                         this.e.a((String)null);
                      } else {
                         if (var1 == 2048) {
@@ -13535,7 +13535,7 @@ public final class ao_1 {
                               return;
                            }
 
-                           MainCanvas.i.sendPacket(new NetPacket((short)4129, var8));
+                           MainCanvas.netUtils.sendPacket(new NetPacket((short)4129, var8));
                            this.e.a((String)null);
                            return;
                         }
@@ -13630,7 +13630,7 @@ public final class ao_1 {
 
                byte[] var6;
                if ((var6 = NetPayloadBuilder.a((short)4127, GlobalStatus.ad, this.n(), (int)this.ct)) != null) {
-                  MainCanvas.i.sendPacket(new NetPacket((short)4127, var6));
+                  MainCanvas.netUtils.sendPacket(new NetPacket((short)4127, var6));
                   this.e.a((String)null);
                } else {
                   this.e.b("获取上传指令数据错误!");
@@ -13736,7 +13736,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  MainCanvas.i.sendPacket(new NetPacket((short)4128, var4));
+                  MainCanvas.netUtils.sendPacket(new NetPacket((short)4128, var4));
                   this.e.a((String)null);
                } else if (LoadingPage.o == 4) {
                   byte[] var5;
@@ -13745,7 +13745,7 @@ public final class ao_1 {
                      return;
                   }
 
-                  MainCanvas.i.sendPacket(new NetPacket((short)4129, var5));
+                  MainCanvas.netUtils.sendPacket(new NetPacket((short)4129, var5));
                   this.e.a((String)null);
                } else if (LoadingPage.o == 5) {
                   LoadingPage.h = 0;
@@ -13834,7 +13834,7 @@ public final class ao_1 {
                   return;
                }
 
-               MainCanvas.i.sendPacket(new NetPacket((short)4128, var2));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4128, var2));
                this.e.a((String)null);
             } else if (LoadingPage.o == 3) {
                byte[] var3;
@@ -13843,7 +13843,7 @@ public final class ao_1 {
                   return;
                }
 
-               MainCanvas.i.sendPacket(new NetPacket((short)4129, var3));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4129, var3));
                this.e.a((String)null);
             } else if (LoadingPage.o == 4) {
                LoadingPage.h = 0;
@@ -13858,7 +13858,7 @@ public final class ao_1 {
    private void b(byte var1, byte var2) {
       byte[] var3;
       if ((var3 = NetPayloadBuilder.c((short)4134, GlobalStatus.ad, (byte)var1, (byte)var2)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4134, var3));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4134, var3));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -13867,7 +13867,7 @@ public final class ao_1 {
    public final void g(byte var1) {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.f((short)4125, GlobalStatus.ad, (byte)var1)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4125, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4125, var2));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -14302,7 +14302,7 @@ public final class ao_1 {
             }
 
             NetPacket var4 = new NetPacket((short)4178, var3);
-            MainCanvas.i.sendPacket(var4);
+            MainCanvas.netUtils.sendPacket(var4);
             this.e.a((String)null);
          }
       } else if (this.l == 2) {
@@ -14326,7 +14326,7 @@ public final class ao_1 {
             }
 
             NetPacket var7 = new NetPacket((short)4178, var6);
-            MainCanvas.i.sendPacket(var7);
+            MainCanvas.netUtils.sendPacket(var7);
             this.e.a((String)null);
          } else if (LoadingPage.o == 1) {
             this.e.b("没有此功能!");
@@ -14434,7 +14434,7 @@ public final class ao_1 {
    private void p(byte var1) {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.b((short)4610, GlobalStatus.ad, (byte)var1, (byte) GlobalStatus.C[var1])) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4610, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4610, var2));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -14443,7 +14443,7 @@ public final class ao_1 {
    private void q(byte var1) {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.c((short)4611, GlobalStatus.ad, (byte)var1)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4611, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4611, var2));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -14453,7 +14453,7 @@ public final class ao_1 {
    private void r(byte var1) {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.c((short)4609, GlobalStatus.ad, (byte)var1)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4609, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4609, var2));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -14463,7 +14463,7 @@ public final class ao_1 {
    private void s(byte var1) {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.b((short)4608, GlobalStatus.ad, (byte)var1)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4608, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4608, var2));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -14747,7 +14747,7 @@ public final class ao_1 {
    public final void b(String var1, byte var2) {
       byte[] var3;
       if ((var3 = NetPayloadBuilder.c((short)4113, GlobalStatus.ad, var1, (byte)var2)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4113, var3));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4113, var3));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -15391,7 +15391,7 @@ public final class ao_1 {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.a((short)4195, GlobalStatus.ad, (byte)var1, (short)this.I.j, (short)this.I.k)) != null) {
          NetPacket var3 = new NetPacket((short)4195, var2);
-         MainCanvas.i.sendPacket(var3);
+         MainCanvas.netUtils.sendPacket(var3);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -15402,7 +15402,7 @@ public final class ao_1 {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.a((short)4140, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
          NetPacket var2 = new NetPacket((short)4140, var1);
-         MainCanvas.i.sendPacket(var2);
+         MainCanvas.netUtils.sendPacket(var2);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -15412,7 +15412,7 @@ public final class ao_1 {
    public final void O() {
       byte[] var1 = NetPayloadBuilder.j((short)4177, GlobalStatus.ad, (int)(GlobalStatus.bt ? 1 : 0));
       NetPacket var2 = new NetPacket((short)4177, var1);
-      MainCanvas.i.sendPacket(var2);
+      MainCanvas.netUtils.sendPacket(var2);
       this.e.a((String)null);
    }
 
@@ -15594,7 +15594,7 @@ public final class ao_1 {
          byte[] var3;
          if ((var3 = NetPayloadBuilder.a((short)4112, GlobalStatus.ad, var2, (short)var1)) != null) {
             NetPacket var4 = new NetPacket((short)4112, var3);
-            MainCanvas.i.sendPacket(var4);
+            MainCanvas.netUtils.sendPacket(var4);
             this.l = 0;
          } else {
             this.e.b("获取上传指令数据错误!");
@@ -15623,7 +15623,7 @@ public final class ao_1 {
    public final void S() {
       byte[] var1 = NetPayloadBuilder.t((short)4192, GlobalStatus.ad, bq.g);
       NetPacket var2 = new NetPacket((short)4192, var1);
-      MainCanvas.i.sendPacket(var2);
+      MainCanvas.netUtils.sendPacket(var2);
    }
 
    private void aT() {
@@ -16519,7 +16519,7 @@ public final class ao_1 {
       if ((var4 = NetPayloadBuilder.a(var1, GlobalStatus.ad, (short) GlobalStatus.hL[var2], (int) GlobalStatus.t[var3].a)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         MainCanvas.i.sendPacket(new NetPacket(var1, var4));
+         MainCanvas.netUtils.sendPacket(new NetPacket(var1, var4));
          this.e.a((String)null);
       }
    }
@@ -16527,7 +16527,7 @@ public final class ao_1 {
    private void b(short var1, byte var2) {
       byte[] var3;
       if ((var3 = NetPayloadBuilder.d(var1, GlobalStatus.ad, GlobalStatus.t[var2].a)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket(var1, var3));
+         MainCanvas.netUtils.sendPacket(new NetPacket(var1, var3));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -16537,7 +16537,7 @@ public final class ao_1 {
    private void c(short var1, byte var2, byte var3) {
       byte[] var4;
       if ((var4 = NetPayloadBuilder.a((short)4361, GlobalStatus.ad, (short) GlobalStatus.t[var2].a, (byte)var3)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4361, var4));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4361, var4));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -16547,7 +16547,7 @@ public final class ao_1 {
    private void c(short var1, byte var2) {
       byte[] var3;
       if ((var3 = NetPayloadBuilder.e((short)4664, GlobalStatus.ad, (short) GlobalStatus.t[var2].a)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4664, var3));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4664, var3));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -16557,7 +16557,7 @@ public final class ao_1 {
    private void d(short var1, byte var2) {
       byte[] var3;
       if ((var3 = NetPayloadBuilder.f((short)4666, GlobalStatus.ad, (short) GlobalStatus.t[var2].a)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4666, var3));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4666, var3));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -16567,7 +16567,7 @@ public final class ao_1 {
    private void a(short var1, String var2, byte var3, String var4, int var5) {
       byte[] var6;
       if ((var6 = NetPayloadBuilder.a((short)4665, GlobalStatus.ad, var2, var3, var4, var5)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4665, var6));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4665, var6));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -16579,7 +16579,7 @@ public final class ao_1 {
       if ((var2 = NetPayloadBuilder.i((short)4355, GlobalStatus.ad, (byte)var1)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         MainCanvas.i.sendPacket(new NetPacket((short)4354, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4354, var2));
          this.e.a((String)null);
       }
    }
@@ -16589,7 +16589,7 @@ public final class ao_1 {
       if ((var5 = NetPayloadBuilder.a((short)4256, GlobalStatus.ad, var1, var2, var3, var4)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         MainCanvas.i.sendPacket(new NetPacket((short)4256, var5));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4256, var5));
          this.e.a((String)null);
       }
    }
@@ -16599,7 +16599,7 @@ public final class ao_1 {
       if ((var4 = NetPayloadBuilder.a((short)4356, GlobalStatus.ad, (byte)1, var2, var3, this.I.j, this.I.k)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         MainCanvas.i.sendPacket(new NetPacket((short)4356, var4));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4356, var4));
          this.e.a((String)null);
       }
    }
@@ -16609,7 +16609,7 @@ public final class ao_1 {
       if ((var2 = NetPayloadBuilder.j((short)4357, GlobalStatus.ad, (byte)var1)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         MainCanvas.i.sendPacket(new NetPacket((short)4357, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4357, var2));
          this.e.a((String)null);
       }
    }
@@ -16619,7 +16619,7 @@ public final class ao_1 {
       if ((var3 = NetPayloadBuilder.a((short)4360, GlobalStatus.ad, (byte)var1, (bv)var2)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         MainCanvas.i.sendPacket(new NetPacket((short)4360, var3));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4360, var3));
       }
    }
 
@@ -16628,7 +16628,7 @@ public final class ao_1 {
       if ((var2 = NetPayloadBuilder.a((short)4671, GlobalStatus.ad, var1, (int) GlobalStatus.O.d)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         MainCanvas.i.sendPacket(new NetPacket((short)4671, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4671, var2));
          this.e.a((String)null);
       }
    }
@@ -16638,7 +16638,7 @@ public final class ao_1 {
       if ((var2 = NetPayloadBuilder.w((short)4668, GlobalStatus.ad, var1)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         MainCanvas.i.sendPacket(new NetPacket((short)4668, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4668, var2));
          this.e.a((String)null);
       }
    }
@@ -16648,7 +16648,7 @@ public final class ao_1 {
       if ((var4 = NetPayloadBuilder.a((short)4670, GlobalStatus.ad, var1, var2, var3)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         MainCanvas.i.sendPacket(new NetPacket((short)4670, var4));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4670, var4));
          this.e.a((String)null);
       }
    }
@@ -16658,7 +16658,7 @@ public final class ao_1 {
       if ((var5 = NetPayloadBuilder.a((short)4669, GlobalStatus.ad, var1, var2, var4, var3)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         MainCanvas.i.sendPacket(new NetPacket((short)4669, var5));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4669, var5));
          this.e.a((String)null);
       }
    }
@@ -16801,7 +16801,7 @@ public final class ao_1 {
             if ((var2 = NetPayloadBuilder.a((short)4234, GlobalStatus.ad, (int) GlobalStatus.jr[var8.b.ar.g()], (short)var8.a.ba.e, (short)var8.a.ba.f)) == null) {
                var8.b.b("获取上传指令数据错误!");
             } else {
-               MainCanvas.i.sendPacket(new NetPacket((short)4234, var2));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4234, var2));
             }
          } else {
             if (this.cX != 5) {
@@ -16819,7 +16819,7 @@ public final class ao_1 {
             if ((var6 = NetPayloadBuilder.b((short)4667, GlobalStatus.ad, var10, var4, (int)var5)) == null) {
                this.e.b("获取上传指令数据错误!");
             } else {
-               MainCanvas.i.sendPacket(new NetPacket((short)4667, var6));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4667, var6));
             }
          }
 
@@ -17055,7 +17055,7 @@ public final class ao_1 {
                      if ((var5 = NetPayloadBuilder.l((short)4238, GlobalStatus.ad, var2, L.j[var3])) == null) {
                         var4.b.b("获取上传指令数据错误!");
                      } else {
-                        MainCanvas.i.sendPacket(new NetPacket((short)4238, var5));
+                        MainCanvas.netUtils.sendPacket(new NetPacket((short)4238, var5));
                         var4.b.a((String)null);
                      }
                   } else {
@@ -17106,7 +17106,7 @@ public final class ao_1 {
       if ((var4 = NetPayloadBuilder.a((short)4363, GlobalStatus.ad, (byte)var1, (int)var2, (byte)var3)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         MainCanvas.i.sendPacket(new NetPacket((short)4363, var4));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4363, var4));
          this.e.a((String)null);
       }
    }
@@ -17117,7 +17117,7 @@ public final class ao_1 {
          if ((var4 = NetPayloadBuilder.a((short)4364, GlobalStatus.ad, (byte)var1, (int)var2, (int)L.j[var3])) == null) {
             this.e.b("获取上传指令数据错误!");
          } else {
-            MainCanvas.i.sendPacket(new NetPacket((short)4364, var4));
+            MainCanvas.netUtils.sendPacket(new NetPacket((short)4364, var4));
             this.e.a((String)null);
          }
       } else {
@@ -17128,7 +17128,7 @@ public final class ao_1 {
    private void aX() {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.t((short)4248, GlobalStatus.ad)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4248, var1));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4248, var1));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -17223,7 +17223,7 @@ public final class ao_1 {
                return;
             }
 
-            MainCanvas.i.sendPacket(new NetPacket((short)4249, var4));
+            MainCanvas.netUtils.sendPacket(new NetPacket((short)4249, var4));
             this.e.a((String)null);
          }
       }
@@ -17234,7 +17234,7 @@ public final class ao_1 {
       if (this.e.ar.g() == 2 && (var1 == 1073741824 || var1 == 517)) {
          byte[] var2;
          if ((var2 = NetPayloadBuilder.a((short)4194, GlobalStatus.ad, (byte) GlobalStatus.z)) != null) {
-            MainCanvas.i.sendPacket(new NetPacket((short)4194, var2));
+            MainCanvas.netUtils.sendPacket(new NetPacket((short)4194, var2));
             return;
          }
 
@@ -17315,7 +17315,7 @@ public final class ao_1 {
       byte[] var3;
       if ((var3 = NetPayloadBuilder.a((short)4631, GlobalStatus.ad, (byte)var1, (short)var2)) != null) {
          NetPacket var4 = new NetPacket((short)4631, var3);
-         MainCanvas.i.sendPacket(var4);
+         MainCanvas.netUtils.sendPacket(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -17326,7 +17326,7 @@ public final class ao_1 {
       byte[] var3;
       if ((var3 = NetPayloadBuilder.b((short)4632, GlobalStatus.ad, (byte)var1, (short)var2)) != null) {
          NetPacket var4 = new NetPacket((short)4632, var3);
-         MainCanvas.i.sendPacket(var4);
+         MainCanvas.netUtils.sendPacket(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -17337,7 +17337,7 @@ public final class ao_1 {
       byte[] var3;
       if ((var3 = NetPayloadBuilder.c((short)4150, GlobalStatus.ad, (byte)var1, (short)var2)) != null) {
          NetPacket var4 = new NetPacket((short)4150, var3);
-         MainCanvas.i.sendPacket(var4);
+         MainCanvas.netUtils.sendPacket(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -17348,7 +17348,7 @@ public final class ao_1 {
       byte[] var3;
       if ((var3 = NetPayloadBuilder.e((short)4633, GlobalStatus.ad, var2, (byte)var1)) != null) {
          NetPacket var4 = new NetPacket((short)4633, var3);
-         MainCanvas.i.sendPacket(var4);
+         MainCanvas.netUtils.sendPacket(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -17359,7 +17359,7 @@ public final class ao_1 {
       byte[] var5;
       if ((var5 = NetPayloadBuilder.a((short)4640, GlobalStatus.ad, var2, (byte)var1, var3)) != null) {
          NetPacket var6 = new NetPacket((short)4640, var5);
-         MainCanvas.i.sendPacket(var6);
+         MainCanvas.netUtils.sendPacket(var6);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -17708,7 +17708,7 @@ public final class ao_1 {
             return;
          }
 
-         MainCanvas.i.sendPacket(new NetPacket((short)4649, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4649, var2));
          this.e.a((String)null);
       }
 
@@ -17794,7 +17794,7 @@ public final class ao_1 {
             }
 
             NetPacket var3 = new NetPacket((short)4650, var2);
-            MainCanvas.i.sendPacket(var3);
+            MainCanvas.netUtils.sendPacket(var3);
             this.e.a((String)null);
          }
       }
@@ -17837,7 +17837,7 @@ public final class ao_1 {
                if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                   byte[] var2;
                   if ((var2 = NetPayloadBuilder.a((short)4652, GlobalStatus.ad, (int) GlobalStatus.kO, (byte) GlobalStatus.kP, (byte)((byte) LoadingPage.g))) != null) {
-                     MainCanvas.i.sendPacket(new NetPacket((short)4652, var2));
+                     MainCanvas.netUtils.sendPacket(new NetPacket((short)4652, var2));
                      this.e.a((String)null);
                   } else {
                      this.e.b("获取上传指令数据错误!");
@@ -18050,7 +18050,7 @@ public final class ao_1 {
    private void aF(int var1) {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.c((short)4106, GlobalStatus.ad, (int)-1)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4106, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4106, var2));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -18061,7 +18061,7 @@ public final class ao_1 {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.C((short)4680, GlobalStatus.ad)) != null) {
          NetPacket var2 = new NetPacket((short)4680, var1);
-         MainCanvas.i.sendPacket(var2);
+         MainCanvas.netUtils.sendPacket(var2);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -18194,7 +18194,7 @@ public final class ao_1 {
             if ((var6 = NetPayloadBuilder.r((short)4678, GlobalStatus.ad, var3)) == null) {
                this.e.b("获取上传指令数据错误!");
             } else {
-               MainCanvas.i.sendPacket(new NetPacket((short)4678, var6));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4678, var6));
                this.e.a((String)null);
             }
          }
@@ -18292,7 +18292,7 @@ public final class ao_1 {
                            return;
                         }
 
-                        MainCanvas.i.sendPacket(new NetPacket((short)4668, var5));
+                        MainCanvas.netUtils.sendPacket(new NetPacket((short)4668, var5));
                         this.e.a((String)null);
                      }
                   }
@@ -18313,7 +18313,7 @@ public final class ao_1 {
                         return;
                      }
 
-                     MainCanvas.i.sendPacket(new NetPacket((short)4673, var7));
+                     MainCanvas.netUtils.sendPacket(new NetPacket((short)4673, var7));
                   } else if (f_1.b[1].equals(var3)) {
                      if (GlobalStatus.S != null) {
                         this.e.b(GlobalStatus.S);
@@ -18545,7 +18545,7 @@ public final class ao_1 {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.y((short)4659, GlobalStatus.ad)) != null) {
          NetPacket var2 = new NetPacket((short)4659, var1);
-         MainCanvas.i.sendPacket(var2);
+         MainCanvas.netUtils.sendPacket(var2);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -18555,7 +18555,7 @@ public final class ao_1 {
    private void bb() {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.b((short)4267)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4267, var1));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4267, var1));
       } else {
          this.e.b("获取上传指令数据错误!");
       }
@@ -18572,7 +18572,7 @@ public final class ao_1 {
          byte[] var5;
          if ((var5 = NetPayloadBuilder.a((short)4259, var1, var2, var3, var4, GlobalStatus.ad)) != null) {
             NetPacket var6 = new NetPacket((short)4659, var5);
-            MainCanvas.i.sendPacket(var6);
+            MainCanvas.netUtils.sendPacket(var6);
             this.e.a((String)null);
          } else {
             this.e.b("获取上传指令数据错误!");
@@ -18583,7 +18583,7 @@ public final class ao_1 {
    private void bc() {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.h((short)4120, GlobalStatus.ad)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4120, var1));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4120, var1));
          this.e.b("解散队伍请求已发送!");
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -18593,7 +18593,7 @@ public final class ao_1 {
    private void bd() {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.i((short)4121, GlobalStatus.ad)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4121, var1));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4121, var1));
          this.e.b("脱离队伍请求已发送!");
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -19040,7 +19040,7 @@ public final class ao_1 {
       byte[] var5 = NetPayloadBuilder.a((short)5121, var1, var2, (byte)1, var4, var3);
       GlobalStatus.lo = var1;
       if (var5 != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)5121, var5));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)5121, var5));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -19050,7 +19050,7 @@ public final class ao_1 {
    private void a(String var1, short var2, short var3) {
       byte[] var4;
       if ((var4 = NetPayloadBuilder.a((short)5122, var1, GlobalStatus.la[this.e.ar.g()], var3, var2)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)5122, var4));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)5122, var4));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -19060,7 +19060,7 @@ public final class ao_1 {
    private void x(byte var1) {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.b((short)4881, var1, GlobalStatus.ad)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4881, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4881, var2));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -19158,7 +19158,7 @@ public final class ao_1 {
    private void a(byte var1, String var2, byte var3) {
       byte[] var4;
       if ((var4 = NetPayloadBuilder.a((short)4882, var1, var2, var3, GlobalStatus.ad)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4882, var4));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4882, var4));
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -19433,7 +19433,7 @@ public final class ao_1 {
             case 1:
                byte[] var2;
                if ((var2 = NetPayloadBuilder.x((short)4658, GlobalStatus.ad)) != null) {
-                  MainCanvas.i.sendPacket(new NetPacket((short)4658, var2));
+                  MainCanvas.netUtils.sendPacket(new NetPacket((short)4658, var2));
                   this.e.a((String)null);
                   break;
                } else {
@@ -19557,7 +19557,7 @@ public final class ao_1 {
       if ((var2 = NetPayloadBuilder.s((short)4675, GlobalStatus.ad, var1)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         MainCanvas.i.sendPacket(new NetPacket((short)4675, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4675, var2));
          this.e.a((String)null);
       }
    }
@@ -19567,7 +19567,7 @@ public final class ao_1 {
       if ((var3 = NetPayloadBuilder.c((short)4674, GlobalStatus.ad, var2, var1)) == null) {
          this.e.b("获取上传指令数据错误!");
       } else {
-         MainCanvas.i.sendPacket(new NetPacket((short)4674, var3));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4674, var3));
          this.e.a((String)null);
       }
    }
@@ -19594,7 +19594,7 @@ public final class ao_1 {
       } else {
          byte[] var2;
          if ((var2 = NetPayloadBuilder.D((short)4369, GlobalStatus.ad)) != null) {
-            MainCanvas.i.sendPacket(new NetPacket((short)4369, var2));
+            MainCanvas.netUtils.sendPacket(new NetPacket((short)4369, var2));
          }
 
          this.k = this.j;
@@ -19643,7 +19643,7 @@ public final class ao_1 {
                if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                   byte[] var2;
                   if ((var2 = NetPayloadBuilder.c((short)4370, (byte) LoadingPage.g, GlobalStatus.ad)) != null) {
-                     MainCanvas.i.sendPacket(new NetPacket((short)4370, var2));
+                     MainCanvas.netUtils.sendPacket(new NetPacket((short)4370, var2));
                      this.e.a((String)null);
                   } else {
                      this.e.b("获取上传指令数据错误!");
@@ -19856,7 +19856,7 @@ public final class ao_1 {
                   byte[] var2;
                   if ((var2 = NetPayloadBuilder.a((byte)6, GlobalStatus.mx, GlobalStatus.mD, GlobalStatus.mJ, -1, (byte)this.bf)) != null) {
                      NetPacket var3 = new NetPacket((short)4681, var2);
-                     MainCanvas.i.sendPacket(var3);
+                     MainCanvas.netUtils.sendPacket(var3);
                      this.e.a((String)null);
                   } else {
                      this.e.b("获取上传指令数据错误!");
@@ -19888,7 +19888,7 @@ public final class ao_1 {
 
       if (var5 != null) {
          NetPacket var4 = new NetPacket((short)4681, var5);
-         MainCanvas.i.sendPacket(var4);
+         MainCanvas.netUtils.sendPacket(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -19912,7 +19912,7 @@ public final class ao_1 {
 
       if (var5 != null) {
          NetPacket var4 = new NetPacket((short)4681, var5);
-         MainCanvas.i.sendPacket(var4);
+         MainCanvas.netUtils.sendPacket(var4);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -20102,7 +20102,7 @@ public final class ao_1 {
       byte[] var6;
       if ((var6 = NetPayloadBuilder.a(var1, var2, var3, var4, var5)) != null) {
          NetPacket var7 = new NetPacket((short)4684, var6);
-         MainCanvas.i.sendPacket(var7);
+         MainCanvas.netUtils.sendPacket(var7);
          this.e.a((String)null);
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -20290,7 +20290,7 @@ public final class ao_1 {
       byte[] var4;
       if ((var4 = NetPayloadBuilder.a(var1, var2, (short)0)) != null) {
          NetPacket var5 = new NetPacket((short)4685, var4);
-         MainCanvas.i.sendPacket(var5);
+         MainCanvas.netUtils.sendPacket(var5);
          this.e.a("");
       } else {
          this.e.b("获取上传指令数据错误!");
@@ -20336,7 +20336,7 @@ public final class ao_1 {
                byte[] var2;
                if ((var2 = NetPayloadBuilder.a((byte)1)) != null) {
                   NetPacket var3 = new NetPacket((short)4683, var2);
-                  MainCanvas.i.sendPacket(var3);
+                  MainCanvas.netUtils.sendPacket(var3);
                   this.e.a((String)null);
                   return;
                }

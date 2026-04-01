@@ -33,7 +33,7 @@ public final class v_1 {
    public final void a(String var1, String var2, long var3) {
       byte[] var5;
       if ((var5 = NetPayloadBuilder.a((short)4857, GlobalStatus.ad, var1, var2, var3)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4857, var5));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4857, var5));
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
@@ -44,7 +44,7 @@ public final class v_1 {
    public final void a() {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.m((short)4858, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4858, var1));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4858, var1));
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
@@ -181,7 +181,7 @@ public final class v_1 {
                return;
             }
 
-            MainCanvas.i.sendPacket(new NetPacket((short)4859, var3));
+            MainCanvas.netUtils.sendPacket(new NetPacket((short)4859, var3));
             this.h.j = this.h.k = 0;
             this.i.a((String)null);
          }
@@ -219,7 +219,7 @@ public final class v_1 {
    public final void a(byte var1) {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.m((short)4860, GlobalStatus.ad, (byte)var1)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4860, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4860, var2));
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
@@ -315,7 +315,7 @@ public final class v_1 {
    public final void b(byte var1) {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.n((short)4861, GlobalStatus.ad, (byte)var1)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4861, var2));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4861, var2));
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
@@ -415,7 +415,7 @@ public final class v_1 {
    public final void e() {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.n((short)4862, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
-         MainCanvas.i.sendPacket(new NetPacket((short)4862, var1));
+         MainCanvas.netUtils.sendPacket(new NetPacket((short)4862, var1));
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
@@ -466,7 +466,7 @@ public final class v_1 {
             int var3 = o[this.i.ar.g()];
             byte[] var4;
             if ((var4 = NetPayloadBuilder.a((short)4863, GlobalStatus.ad, GlobalStatus.t[this.h.af].a, (int)var3, (short)this.h.I.j, (short)this.h.I.k)) != null) {
-               MainCanvas.i.sendPacket(new NetPacket((short)4863, var4));
+               MainCanvas.netUtils.sendPacket(new NetPacket((short)4863, var4));
                this.h.j = this.h.k = 0;
                this.i.a((String)null);
             } else {

@@ -253,7 +253,7 @@ public final class o_1 {
                     }
 
                     NetPacket var14 = new NetPacket((short) 4687, var6);
-                    MainCanvas.i.sendPacket(var14);
+                    MainCanvas.netUtils.sendPacket(var14);
                     this.j.a((String) null);
                 }
             }
@@ -272,7 +272,7 @@ public final class o_1 {
                     }
 
                     NetPacket var15 = new NetPacket((short) 4687, var7);
-                    MainCanvas.i.sendPacket(var15);
+                    MainCanvas.netUtils.sendPacket(var15);
                     this.j.a((String) null);
                 } else {
                     byte[] var8;
@@ -282,7 +282,7 @@ public final class o_1 {
                     }
 
                     NetPacket var16 = new NetPacket((short) 4647, var8);
-                    MainCanvas.i.sendPacket(var16);
+                    MainCanvas.netUtils.sendPacket(var16);
                     this.j.a((String) null);
                 }
             } else if (LoadingPage.o == 1) {
@@ -295,7 +295,7 @@ public final class o_1 {
                     }
 
                     NetPacket var17 = new NetPacket((short) 4687, var9);
-                    MainCanvas.i.sendPacket(var17);
+                    MainCanvas.netUtils.sendPacket(var17);
                     this.j.a((String) null);
                 } else {
                     byte[] var10;
@@ -305,7 +305,7 @@ public final class o_1 {
                     }
 
                     NetPacket var18 = new NetPacket((short) 4646, var10);
-                    MainCanvas.i.sendPacket(var18);
+                    MainCanvas.netUtils.sendPacket(var18);
                     this.j.a((String) null);
                 }
             } else if (LoadingPage.o == 2) {
@@ -317,7 +317,7 @@ public final class o_1 {
                 }
 
                 NetPacket var19 = new NetPacket((short) 4687, var11);
-                MainCanvas.i.sendPacket(var19);
+                MainCanvas.netUtils.sendPacket(var19);
                 this.j.a((String) null);
             }
         }
@@ -822,7 +822,7 @@ public final class o_1 {
 
                 if (var4 != null) {
                     NetPacket var6 = new NetPacket((short) 4688, var4);
-                    MainCanvas.i.sendPacket(var6);
+                    MainCanvas.netUtils.sendPacket(var6);
                     this.j.a((String) null);
                 } else {
                     this.j.b("获取上传指令数据错误!");

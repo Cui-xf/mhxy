@@ -59,7 +59,7 @@ public final class SocketReadLooper implements Runnable {
         if (NetUtils.status != 3) {
             try {
                 if (this.socketConnection == null) {
-                    this.socketConnection = (SocketConnection) Connector.open(NetUtils.c);
+                    this.socketConnection = (SocketConnection) Connector.open(NetUtils.realSocketUrl);
                     this.socketConnection.setSocketOption((byte) 2, 1);
                     this.socketConnection.setSocketOption((byte) 1, 5);
                     this.socketConnection.setSocketOption((byte) 0, 10000);

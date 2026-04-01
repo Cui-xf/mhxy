@@ -69,10 +69,10 @@ public final class LoginModel implements CommandListener {
     private ChoiceGroup Z;
     private TextField aa;
     private TextField ab;
-    private static String ac = "通行证用户名输入错误，请重新输入!";
-    private static String ad = "通行证请输入11位手机号码，请重新输入!";
-    private static String ae = "通行证ID号输入长度错误，请重新输入";
-    private static String af = "密码错误，请重新输入";
+    private static String tips1 = "通行证用户名输入错误，请重新输入!";
+    private static String tips2 = "通行证请输入11位手机号码，请重新输入!";
+    private static String tips3 = "通行证ID号输入长度错误，请重新输入";
+    private static String tips4 = "密码错误，请重新输入";
 
     public LoginModel(h var1) {
         this.h = var1;
@@ -113,7 +113,7 @@ public final class LoginModel implements CommandListener {
         }
 
         this.j.setCommandListener(this);
-        this.h.a().setCurrent(this.j);
+        this.h.getDisplay().setCurrent(this.j);
         if (this.a != 2) {
             this.b = this.a;
         }
@@ -523,12 +523,12 @@ public final class LoginModel implements CommandListener {
                     }
 
                     if (var13.equals("返回") && this.b == 12) {
-                        this.a(this.h.a(), bb_1.m, bb_1.n, 0);
+                        this.a(this.h.getDisplay(), bb_1.m, bb_1.n, 0);
                         return;
                     }
 
                     if (var13.equals("返回") && this.b == 13) {
-                        this.a(this.h.a(), "游客注册 第2步: ", "创建一哥哥通行证密码");
+                        this.a(this.h.getDisplay(), "游客注册 第2步: ", "创建一哥哥通行证密码");
                         return;
                     }
 
@@ -551,7 +551,7 @@ public final class LoginModel implements CommandListener {
                         default:
                             if (var13.equals("返回")) {
                                 if (this.b == 3) {
-                                    this.a(this.h.a(), bb_1.m, bb_1.n, 0);
+                                    this.a(this.h.getDisplay(), bb_1.m, bb_1.n, 0);
                                     return;
                                 } else {
                                     if (this.b == 11) {
@@ -559,17 +559,17 @@ public final class LoginModel implements CommandListener {
                                     }
 
                                     if (this.b == 4) {
-                                        this.a(this.h.a(), bb_1.c);
+                                        this.a(this.h.getDisplay(), bb_1.c);
                                         return;
                                     } else {
                                         if (this.b == 6) {
-                                            this.e(this.h.a());
+                                            this.e(this.h.getDisplay());
                                         } else {
                                             if (this.b != 10) {
                                                 return;
                                             }
 
-                                            this.b(this.h.a());
+                                            this.b(this.h.getDisplay());
                                         }
 
                                         return;
@@ -577,7 +577,7 @@ public final class LoginModel implements CommandListener {
                                 }
                             } else {
                                 if (var13.equals("登录")) {
-                                    this.a(this.h.a(), bb_1.m, bb_1.n, 0);
+                                    this.a(this.h.getDisplay(), bb_1.m, bb_1.n, 0);
                                 } else {
                                     if (!var13.equals("注册")) {
                                         if (!var13.equals("短信注册") && var13.equals("退出")) {
@@ -587,7 +587,7 @@ public final class LoginModel implements CommandListener {
                                         return;
                                     }
 
-                                    this.a(this.h.a(), bb_1.c);
+                                    this.a(this.h.getDisplay(), bb_1.c);
                                 }
 
                                 return;
@@ -597,16 +597,16 @@ public final class LoginModel implements CommandListener {
                             if (this.b == -1) {
                                 this.h.c();
                             } else {
-                                this.a(this.h.a(), bb_1.m, bb_1.n, 0);
+                                this.a(this.h.getDisplay(), bb_1.m, bb_1.n, 0);
                             }
 
                             return;
                         case 4:
                             this.c();
                             if (var13.equals("登录")) {
-                                this.a(this.h.a(), bb_1.m, bb_1.n, 2);
+                                this.a(this.h.getDisplay(), bb_1.m, bb_1.n, 2);
                             } else {
-                                this.a(this.h.a(), bb_1.c);
+                                this.a(this.h.getDisplay(), bb_1.c);
                             }
 
                             return;
@@ -618,7 +618,7 @@ public final class LoginModel implements CommandListener {
                             if (var13.equals("返回游戏")) {
                                 this.a();
                             } else {
-                                this.a((Display) this.h.a(), (int) 1);
+                                this.a((Display) this.h.getDisplay(), (int) 1);
                             }
 
                             return;
@@ -629,7 +629,7 @@ public final class LoginModel implements CommandListener {
                             }
 
                             if (var13.equals("返回")) {
-                                this.a((Display) this.h.a(), (int) 1);
+                                this.a((Display) this.h.getDisplay(), (int) 1);
                             } else {
                                 this.a();
                             }
@@ -637,11 +637,11 @@ public final class LoginModel implements CommandListener {
                             return;
                         case 9:
                             this.c();
-                            this.c(this.h.a());
+                            this.c(this.h.getDisplay());
                             return;
                         case 15:
                             this.c();
-                            this.a(this.h.a());
+                            this.a(this.h.getDisplay());
                             return;
                     }
                 case 3:
@@ -704,22 +704,22 @@ public final class LoginModel implements CommandListener {
                         var41 = this.z.getString();
                         var48 = this.A.getString();
                         this.B.getString();
-                        if (z_1.a(var31)) {
+                        if (ZhangHaoUtils.a(var31)) {
                             this.a((String) "用户名不能为空！", (byte) 0);
-                        } else if (!z_1.a(var31, 4, 10)) {
+                        } else if (!ZhangHaoUtils.a(var31, 4, 10)) {
                             this.a((String) "用户名只允许4～10位字母和数字！", (byte) 0);
                         } else if (!bj.c(var31)) {
                             this.a((String) "用户名只允许字母和数字！", (byte) 0);
-                        } else if (z_1.a(var41)) {
+                        } else if (ZhangHaoUtils.a(var41)) {
                             this.a((String) "密码不能为空", (byte) 2);
-                        } else if (!z_1.c(var41)) {
+                        } else if (!ZhangHaoUtils.c(var41)) {
                             this.a((String) "密码不是数字和字母的组合", (byte) 2);
-                        } else if (!z_1.a(var41, 6, 12)) {
+                        } else if (!ZhangHaoUtils.a(var41, 6, 12)) {
                             this.a((String) "密码为6-12 的数字和字母的组合形式", (byte) 2);
                         } else if (!bj.c(var41)) {
                             this.a((String) "密码只允许字母和数字！", (byte) 0);
                         } else {
-                            if (z_1.b(var41) && z_1.b(var48) && var41.trim().equals(var48.trim())) {
+                            if (ZhangHaoUtils.b(var41) && ZhangHaoUtils.b(var48) && var41.trim().equals(var48.trim())) {
                                 StringBuffer var12;
                                 (var12 = new StringBuffer()).append(var31);
                                 var12.append(':');
@@ -734,9 +734,9 @@ public final class LoginModel implements CommandListener {
                                 bb_1.k = true;
                                 NetPacket var57;
                                 if ((var57 = NetPayloadBuilder.login((byte) 1, (byte) 2, var12.toString())) != null) {
-                                    var22.h.a(var57);
-                                    var22.h.a.start();
-                                    var22.h.a.mainCanvas.a("请求中...");
+                                    var22.h.sendFirstPacket(var57);
+                                    var22.h.mainMidlet.start();
+                                    var22.h.mainMidlet.mainCanvas.a("请求中...");
                                 }
 
                                 var12.delete(0, var12.capacity());
@@ -754,7 +754,7 @@ public final class LoginModel implements CommandListener {
 
                         if (var13.equals("返回")) {
                             this.d();
-                            this.h.a.mainCanvas.c();
+                            this.h.mainMidlet.mainCanvas.c();
                             this.a();
                             return;
                         }
@@ -764,34 +764,34 @@ public final class LoginModel implements CommandListener {
                     this.e();
                     if (var13.equals("返回")) {
                         if (this.b == 3) {
-                            this.a(this.h.a(), bb_1.j, bb_1.i, 0);
+                            this.a(this.h.getDisplay(), bb_1.j, bb_1.i, 0);
                             return;
                         }
 
                         if (this.b != 11) {
                             if (this.b == 4) {
-                                this.a(this.h.a(), bb_1.c);
+                                this.a(this.h.getDisplay(), bb_1.c);
                                 return;
                             }
 
                             if (this.b == 6) {
-                                this.e(this.h.a());
+                                this.e(this.h.getDisplay());
                                 return;
                             }
 
                             if (this.b == 10) {
-                                this.b(this.h.a());
+                                this.b(this.h.getDisplay());
                                 return;
                             }
                         }
                     } else {
                         if (var13.equals("登录")) {
-                            this.a(this.h.a(), bb_1.j, bb_1.i, 0);
+                            this.a(this.h.getDisplay(), bb_1.j, bb_1.i, 0);
                             return;
                         }
 
                         if (var13.equals("注册")) {
-                            this.a(this.h.a(), bb_1.c);
+                            this.a(this.h.getDisplay(), bb_1.c);
                             return;
                         }
 
@@ -812,11 +812,11 @@ public final class LoginModel implements CommandListener {
                         String var40 = this.S.getString();
                         String var47 = this.T.getString();
                         int var54 = Integer.parseInt(X[this.U.getSelectedIndex()].trim());
-                        if (z_1.a(var40)) {
+                        if (ZhangHaoUtils.a(var40)) {
                             this.a((String) "您没有输入卡号，请返回重新输入", (byte) 2);
                         } else if (!bj.b(var40)) {
                             this.a((String) "充值卡序号有误！", (byte) 2);
-                        } else if (z_1.a(var47)) {
+                        } else if (ZhangHaoUtils.a(var47)) {
                             this.a((String) "您没有输入充值卡密码，请返回重新输入", (byte) 2);
                         } else {
                             if (bj.b(var47)) {
@@ -834,9 +834,9 @@ public final class LoginModel implements CommandListener {
                                 var11.append(var54);
                                 NetPacket var56;
                                 if ((var56 = NetPayloadBuilder.login((byte) 2, (byte) 5, var11.toString())) != null) {
-                                    MainCanvas.i.sendPacket(var56);
-                                    var21.h.a.start();
-                                    var21.h.a.mainCanvas.a("请求中...");
+                                    MainCanvas.netUtils.sendPacket(var56);
+                                    var21.h.mainMidlet.start();
+                                    var21.h.mainMidlet.mainCanvas.a("请求中...");
                                 }
 
                                 var11.delete(0, var11.capacity());
@@ -848,13 +848,13 @@ public final class LoginModel implements CommandListener {
                     } else {
                         if (var13.equals("余额查询")) {
                             this.h();
-                            this.c(this.h.a());
+                            this.c(this.h.getDisplay());
                             return;
                         }
 
                         if (var13.equals("充值帮助")) {
                             this.f();
-                            this.a(this.h.a(), "充值帮助", (String[]) null, bb_1.e);
+                            this.a(this.h.getDisplay(), "充值帮助", (String[]) null, bb_1.e);
                             return;
                         }
 
@@ -869,7 +869,7 @@ public final class LoginModel implements CommandListener {
                     if (!var13.equals("提交")) {
                         if (var13.equals("余额查询")) {
                             this.f();
-                            this.c(this.h.a());
+                            this.c(this.h.getDisplay());
                             return;
                         }
 
@@ -879,19 +879,19 @@ public final class LoginModel implements CommandListener {
                     }
 
                     boolean var28;
-                    if (!(var28 = z_1.d(var13 = this.I.getString()))) {
+                    if (!(var28 = ZhangHaoUtils.d(var13 = this.I.getString()))) {
                         this.f();
                         this.a((String) "金额输入错误！", (byte) 0);
                         return;
                     }
 
-                    int var38 = z_1.f(var13);
+                    int var38 = ZhangHaoUtils.f(var13);
                     if (var28 && var38 <= 0 || var38 > 100) {
                         this.a((String) "购买数量必须在1~100之间！", (byte) 0);
                         return;
                     }
 
-                    Display var10001 = this.h.a();
+                    Display var10001 = this.h.getDisplay();
                     String var39 = "确认支付？";
                     Display var29 = var10001;
                     if (this.N != null) {
@@ -917,17 +917,17 @@ public final class LoginModel implements CommandListener {
                         if (!var13.equals("提交")) {
                             this.f();
                             this.g();
-                            this.a((Display) this.h.a(), (int) 1);
+                            this.a((Display) this.h.getDisplay(), (int) 1);
                             return;
                         }
 
                         var13 = this.I.getString();
                         String var37 = this.J.getString();
-                        if (z_1.a(var13)) {
+                        if (ZhangHaoUtils.a(var13)) {
                             this.a((String) "购买数量不能为空", (byte) 0);
                         } else if (!bj.b(var13)) {
                             this.a((String) "购买数量必须为数字", (byte) 0);
-                        } else if (z_1.f(var13) > 0 && z_1.f(var13) <= 100) {
+                        } else if (ZhangHaoUtils.f(var13) > 0 && ZhangHaoUtils.f(var13) <= 100) {
                             StringBuffer var46;
                             (var46 = new StringBuffer()).append(bb_1.g);
                             var46.append(':');
@@ -938,9 +938,9 @@ public final class LoginModel implements CommandListener {
                             var46.append(var37);
                             NetPacket var53;
                             if ((var53 = NetPayloadBuilder.login((byte) 2, (byte) 6, var46.toString())) != null) {
-                                MainCanvas.i.sendPacket(var53);
-                                this.h.a.start();
-                                this.h.a.mainCanvas.a("请求中...");
+                                MainCanvas.netUtils.sendPacket(var53);
+                                this.h.mainMidlet.start();
+                                this.h.mainMidlet.mainCanvas.a("请求中...");
                             }
 
                             var46.delete(0, var46.capacity());
@@ -967,22 +967,22 @@ public final class LoginModel implements CommandListener {
 
                         String var36 = this.aa.getString();
                         String var45 = this.ab.getString();
-                        if (z_1.a(var36)) {
+                        if (ZhangHaoUtils.a(var36)) {
                             this.a((String) "帐号不能为空！", (byte) 2);
-                        } else if (var26 == 1 && !z_1.c(var36)) {
+                        } else if (var26 == 1 && !ZhangHaoUtils.c(var36)) {
                             this.a((String) "用户名只能为数字和字母的组合形式", (byte) 2);
-                        } else if (var26 == 1 && !z_1.a(var36, 4, 10)) {
+                        } else if (var26 == 1 && !ZhangHaoUtils.a(var36, 4, 10)) {
                             this.a((String) "用户名为4-10 的数字和字母的组合", (byte) 2);
-                        } else if (var26 == 2 && !z_1.e(var36)) {
+                        } else if (var26 == 2 && !ZhangHaoUtils.e(var36)) {
                             this.a((String) "手机号不合符规范，应为11位数字", (byte) 2);
-                        } else if (var26 == 3 && !z_1.d(var36)) {
+                        } else if (var26 == 3 && !ZhangHaoUtils.d(var36)) {
                             this.a((String) "ID 应为数字", (byte) 2);
-                        } else if (z_1.a(var45)) {
+                        } else if (ZhangHaoUtils.a(var45)) {
                             this.a((String) "密码不能为空", (byte) 2);
-                        } else if (!z_1.c(var45)) {
+                        } else if (!ZhangHaoUtils.c(var45)) {
                             this.a((String) "密码只能为数字和字母的组合", (byte) 0);
                         } else {
-                            if (z_1.a(var45, 6, 12)) {
+                            if (ZhangHaoUtils.a(var45, 6, 12)) {
                                 StringBuffer var52;
                                 (var52 = new StringBuffer()).append(bb_1.g);
                                 var52.append(':');
@@ -995,9 +995,9 @@ public final class LoginModel implements CommandListener {
                                 var52.append(var45);
                                 NetPacket var10;
                                 if ((var10 = NetPayloadBuilder.login((byte) 2, (byte) 7, var52.toString())) != null) {
-                                    MainCanvas.i.sendPacket(var10);
-                                    var18.h.a.start();
-                                    var18.h.a.mainCanvas.a("请求中...");
+                                    MainCanvas.netUtils.sendPacket(var10);
+                                    var18.h.mainMidlet.start();
+                                    var18.h.mainMidlet.mainCanvas.a("请求中...");
                                 }
 
                                 var52.delete(0, var52.capacity());
@@ -1009,7 +1009,7 @@ public final class LoginModel implements CommandListener {
                     } else {
                         if (var13.equals("充值")) {
                             this.j();
-                            this.e(this.h.a());
+                            this.e(this.h.getDisplay());
                             return;
                         }
 
@@ -1030,13 +1030,13 @@ public final class LoginModel implements CommandListener {
 
                         String var35 = this.S.getString();
                         String var44 = this.T.getString();
-                        int var51 = z_1.f(X[this.U.getSelectedIndex()].trim());
+                        int var51 = ZhangHaoUtils.f(X[this.U.getSelectedIndex()].trim());
                         this.V.getString();
-                        if (z_1.a(var35)) {
+                        if (ZhangHaoUtils.a(var35)) {
                             this.a((String) "您没有输入卡号，请返回重新输入", (byte) 2);
                         } else if (!bj.b(var35)) {
                             this.a((String) "充值卡序号有误！", (byte) 2);
-                        } else if (z_1.a(var44)) {
+                        } else if (ZhangHaoUtils.a(var44)) {
                             this.a((String) "您没有输入充值卡密码，请返回重新输入", (byte) 2);
                         } else {
                             if (bj.b(var44)) {
@@ -1061,9 +1061,9 @@ public final class LoginModel implements CommandListener {
                                 }
 
                                 if (var9 != null) {
-                                    MainCanvas.i.sendPacket(var9);
-                                    var17.h.a.start();
-                                    var17.h.a.mainCanvas.a("请求中...");
+                                    MainCanvas.netUtils.sendPacket(var9);
+                                    var17.h.mainMidlet.start();
+                                    var17.h.mainMidlet.mainCanvas.a("请求中...");
                                 }
 
                                 var55.delete(0, var55.capacity());
@@ -1075,7 +1075,7 @@ public final class LoginModel implements CommandListener {
                     } else {
                         if (var13.equals("充值帮助")) {
                             this.f();
-                            this.a(this.h.a(), "充值帮助", (String[]) null, bb_1.f);
+                            this.a(this.h.getDisplay(), "充值帮助", (String[]) null, bb_1.f);
                             return;
                         }
 
@@ -1091,7 +1091,7 @@ public final class LoginModel implements CommandListener {
                 case 12:
                     if (var13.equals("返回")) {
                         this.b();
-                        this.a(this.h.a(), bb_1.m, bb_1.n, 0);
+                        this.a(this.h.getDisplay(), bb_1.m, bb_1.n, 0);
                         return;
                     }
 
@@ -1104,15 +1104,15 @@ public final class LoginModel implements CommandListener {
                         this.q = null;
                         this.r = null;
                         this.s = null;
-                        this.d(this.h.a());
+                        this.d(this.h.getDisplay());
                         return;
                     }
                     break;
                 case 13:
                     if (var13.equals("提交")) {
                         h var16;
-                        if ((var16 = this.h).a.mainCanvas.touchPageCase == 1) {
-                            var16.a.mainCanvas.touchPageCase = var16.a.mainCanvas.k;
+                        if ((var16 = this.h).mainMidlet.mainCanvas.touchPageCase == 1) {
+                            var16.mainMidlet.mainCanvas.touchPageCase = var16.mainMidlet.mainCanvas.k;
                         }
 
                         return;
@@ -1122,39 +1122,39 @@ public final class LoginModel implements CommandListener {
                 default:
                     if (var13.equals("返回")) {
                         if (this.b == 3) {
-                            this.a(this.h.a(), bb_1.m, bb_1.n, 0);
+                            this.a(this.h.getDisplay(), bb_1.m, bb_1.n, 0);
                             return;
                         }
 
                         if (this.b == 12) {
-                            this.d(this.h.a());
+                            this.d(this.h.getDisplay());
                             return;
                         }
 
                         if (this.b != 11) {
                             if (this.b == 4) {
-                                this.a(this.h.a(), bb_1.c);
+                                this.a(this.h.getDisplay(), bb_1.c);
                                 return;
                             }
 
                             if (this.b == 6) {
-                                this.e(this.h.a());
+                                this.e(this.h.getDisplay());
                                 return;
                             }
 
                             if (this.b == 10) {
-                                this.b(this.h.a());
+                                this.b(this.h.getDisplay());
                                 return;
                             }
                         }
                     } else {
                         if (var13.equals("登录")) {
-                            this.a(this.h.a(), bb_1.m, bb_1.n, 0);
+                            this.a(this.h.getDisplay(), bb_1.m, bb_1.n, 0);
                             return;
                         }
 
                         if (var13.equals("注册")) {
-                            this.a(this.h.a(), bb_1.c);
+                            this.a(this.h.getDisplay(), bb_1.c);
                             return;
                         }
 
@@ -1172,13 +1172,13 @@ public final class LoginModel implements CommandListener {
                         var3 = var23;
                         var23 = var13;
                         LoginModel var15 = this;
-                        if (z_1.a(var3)) {
+                        if (ZhangHaoUtils.a(var3)) {
                             this.a((String) "旧密码不能为空", (byte) 0);
-                        } else if (z_1.a(var4)) {
+                        } else if (ZhangHaoUtils.a(var4)) {
                             this.a((String) "新密码不能为空", (byte) 0);
-                        } else if (!z_1.c(var4)) {
+                        } else if (!ZhangHaoUtils.c(var4)) {
                             this.a((String) "新密码须为数字和字母的组合", (byte) 0);
-                        } else if (!z_1.a(var4, 6, 12)) {
+                        } else if (!ZhangHaoUtils.a(var4, 6, 12)) {
                             this.a((String) "新密码须为6-12的数字和字母的组合形式", (byte) 0);
                         } else {
                             if (bj.c(var4)) {
@@ -1193,9 +1193,9 @@ public final class LoginModel implements CommandListener {
                                 var7.append(var4);
                                 NetPacket var6;
                                 if ((var6 = NetPayloadBuilder.login((byte) 1, (byte) 4, var7.toString())) != null) {
-                                    var15.h.a(var6);
-                                    var15.h.a.start();
-                                    var15.h.a.mainCanvas.a("请求中...");
+                                    var15.h.sendFirstPacket(var6);
+                                    var15.h.mainMidlet.start();
+                                    var15.h.mainMidlet.mainCanvas.a("请求中...");
                                 }
 
                                 var7.delete(0, var7.capacity());
@@ -1221,19 +1221,19 @@ public final class LoginModel implements CommandListener {
         String zhanghao = this.zhanghaoTF.getString();
         String pwd = this.pwdTF.getString();
         byte var3 = a(this.m);
-        if (z_1.a(zhanghao)) {
+        if (ZhangHaoUtils.a(zhanghao)) {
             bb_1.m = zhanghao;
-            this.a((String) ac, (byte) 0);
-        } else if (a(this.m) == 0 && !z_1.a(zhanghao, 4, 12)) {
+            this.a((String) tips1, (byte) 0);
+        } else if (a(this.m) == 0 && !ZhangHaoUtils.a(zhanghao, 4, 12)) {
             bb_1.m = zhanghao;
-            this.a((String) ac, (byte) 0);
-        } else if (a(this.m) == 1 && !z_1.e(zhanghao.trim())) {
+            this.a((String) tips1, (byte) 0);
+        } else if (a(this.m) == 1 && !ZhangHaoUtils.e(zhanghao.trim())) {
             bb_1.m = zhanghao;
-            this.a((String) ad, (byte) 0);
-        } else if (a(this.m) != 2 || z_1.d(zhanghao.trim()) && z_1.a(zhanghao, 4, 12)) {
-            if (z_1.a(pwd)) {
+            this.a((String) tips2, (byte) 0);
+        } else if (a(this.m) != 2 || ZhangHaoUtils.d(zhanghao.trim()) && ZhangHaoUtils.a(zhanghao, 4, 12)) {
+            if (ZhangHaoUtils.a(pwd)) {
                 bb_1.m = zhanghao;
-                this.a((String) af, (byte) 0);
+                this.a((String) tips4, (byte) 0);
             } else {
                 if (a(this.m) == 2 || a(this.m) == 1 || a(this.m) == 0) {
                     bb_1.n = pwd;
@@ -1245,8 +1245,8 @@ public final class LoginModel implements CommandListener {
                     zhanghaoPwd.append(zhanghao);
                     zhanghaoPwd.append(':');
                     zhanghaoPwd.append(pwd);
-                    NetPacket var6 = NetPayloadBuilder.login((byte) 1, (byte) 1, zhanghaoPwd.toString());
-                    if (var6 != null) {
+                    NetPacket netPacket = NetPayloadBuilder.login((byte) 1, (byte) 1, zhanghaoPwd.toString());
+                    if (netPacket != null) {
                         MainCanvas.am = zhanghao;
                         bb_1.m = zhanghao;
                         MainCanvas.an = pwd;
@@ -1255,9 +1255,9 @@ public final class LoginModel implements CommandListener {
                         bb_1.l = var3;
                         bb_1.k = MainCanvas.ap = this.p.isSelected(0);
                         bb_1.b();
-                        this.h.a(var6);
-                        this.h.a.start();
-                        this.h.a.mainCanvas.a("请求中...");
+                        this.h.sendFirstPacket(netPacket);
+                        this.h.mainMidlet.start();
+                        this.h.mainMidlet.mainCanvas.a("请求中...");
                     }
 
                     zhanghaoPwd.delete(0, zhanghaoPwd.capacity());
@@ -1266,7 +1266,7 @@ public final class LoginModel implements CommandListener {
             }
         } else {
             bb_1.m = zhanghao;
-            this.a((String) ae, (byte) 0);
+            this.a((String) tips3, (byte) 0);
         }
     }
 

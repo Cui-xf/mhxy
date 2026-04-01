@@ -1273,7 +1273,7 @@ public final class q {
                      byte[] var36;
                      if ((var36 = NetPayloadBuilder.a((short)4255, (short[]) GlobalStatus.lt, (String) GlobalStatus.ad)) != null) {
                         NetPacket var37 = new NetPacket((short)4255, var36);
-                        MainCanvas.i.sendPacket(var37);
+                        MainCanvas.netUtils.sendPacket(var37);
                      } else {
                         this.a.b("获取上传指令数据错误!");
                      }
@@ -1603,7 +1603,7 @@ public final class q {
                   this.b.readByte();
                   if (var30 == 4) {
                      String[] var3;
-                     bb_1.j = (var3 = z_1.a(this.b.readUTF(), ':'))[0].trim();
+                     bb_1.j = (var3 = ZhangHaoUtils.a(this.b.readUTF(), ':'))[0].trim();
                      bb_1.i = var3[1].trim();
                      bb_1.m = bb_1.j;
                      bb_1.n = bb_1.i;
@@ -1612,7 +1612,7 @@ public final class q {
                      this.a.b(var4);
                   } else if (var30 == 2) {
                      String[] var49;
-                     bb_1.j = (var49 = z_1.a(this.b.readUTF(), ':'))[0].trim();
+                     bb_1.j = (var49 = ZhangHaoUtils.a(this.b.readUTF(), ':'))[0].trim();
                      bb_1.i = var49[1].trim();
                      bb_1.m = bb_1.j;
                      bb_1.n = bb_1.i;

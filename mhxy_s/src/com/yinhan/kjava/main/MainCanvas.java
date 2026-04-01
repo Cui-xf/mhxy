@@ -1,14 +1,57 @@
 package com.yinhan.kjava.main;
 
-import com.cc.*;
+import com.cc.Frame0;
+import com.cc.Frame1;
+import com.cc.GlobalConfig;
+import com.cc.GlobalStatus;
+import com.cc.LoadingPage;
+import com.cc.NetPacket;
+import com.cc.NetPayloadBuilder;
+import com.cc.NetUtils;
+import com.cc.Page;
+import com.cc.PngUtil;
+import com.cc.TextRender;
+import com.cc.ag_1;
+import com.cc.aj;
+import com.cc.al;
+import com.cc.an_1;
+import com.cc.ao_1;
+import com.cc.aq;
+import com.cc.az_1;
+import com.cc.bb_1;
+import com.cc.be_1;
+import com.cc.bo_1;
+import com.cc.bs;
+import com.cc.c_1;
+import com.cc.l_1;
+import com.cc.m_1;
+import com.cc.n_1;
+import com.cc.v_1;
+import com.cc.y_1;
 
 import javax.microedition.io.ConnectionNotFoundException;
-import javax.microedition.lcdui.*;
+import javax.microedition.lcdui.Alert;
+import javax.microedition.lcdui.AlertType;
+import javax.microedition.lcdui.Canvas;
+import javax.microedition.lcdui.ChoiceGroup;
+import javax.microedition.lcdui.Command;
+import javax.microedition.lcdui.CommandListener;
+import javax.microedition.lcdui.Display;
+import javax.microedition.lcdui.Displayable;
+import javax.microedition.lcdui.Form;
+import javax.microedition.lcdui.Graphics;
+import javax.microedition.lcdui.Image;
+import javax.microedition.lcdui.StringItem;
+import javax.microedition.lcdui.TextField;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.rms.RecordStore;
 import javax.microedition.rms.RecordStoreException;
 import javax.microedition.rms.RecordStoreNotOpenException;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.Vector;
 
 //public final class a_MainCanvas extends Canvas implements Runnable, CommandListener {
@@ -22,7 +65,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
     private boolean aJ;
     public boolean g = false;
     public boolean h = false;
-    public static NetUtils i;
+    public static NetUtils netUtils;
     public short touchPageCase;
     public short k;
     public StringBuffer l;
@@ -247,21 +290,21 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
         this.at = new an_1();
     }
 
-    public final void a(String var1, String var2) {
-        if (i == null) {
-            i = new NetUtils();
+    public void init(String socket, String http) {
+        if (netUtils == null) {
+            netUtils = new NetUtils();
         } else {
-            a((String) var1, (byte) 2);
-            i.b();
+            setUrl(socket, (byte) 2);
+            netUtils.b();
         }
 
-        i.a(this);
+        netUtils.setMainCanvas(this);
     }
 
     private static void s() {
-        if (i != null) {
-            i.d();
-            i = null;
+        if (netUtils != null) {
+            netUtils.d();
+            netUtils = null;
         }
 
     }
@@ -271,8 +314,8 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
             this.ak = System.currentTimeMillis();
 
             try {
-                if (i != null) {
-                    i.c();
+                if (netUtils != null) {
+                    netUtils.c();
                 }
 
                 if (this.aJ) {
@@ -306,9 +349,9 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                                 }
 
                                 if (GlobalStatus.eC != null && (GlobalStatus.eC.startsWith("连接超时") || GlobalStatus.eC.startsWith("响应超时"))) {
-                                    if (i != null) {
-                                        i.d();
-                                        i = null;
+                                    if (netUtils != null) {
+                                        netUtils.d();
+                                        netUtils = null;
                                     }
 
                                     this.y();
@@ -387,7 +430,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                             break;
                         case 3:
                             if (this.aZ) {
-                                this.a("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
+                                this.init("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
                                 GlobalConfig.clearStr(this.l);
                                 GlobalStatus.b = this.bN.getString();
                                 GlobalStatus.c = this.bO.getString();
@@ -396,7 +439,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                                 if ((var16 = NetPayloadBuilder.buildLogin((short) 5379, GlobalStatus.b, GlobalStatus.c, GlobalConfig.PopularizeChannel)) != null) {
                                     NetPacket var21;
                                     (var21 = new NetPacket((short) 5379, var16)).firstPacket = true;
-                                    i.sendPacket(var21);
+                                    netUtils.sendPacket(var21);
                                     this.aZ = false;
                                     this.a((String) null);
                                 } else {
@@ -431,24 +474,24 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                                                 this.b(GlobalStatus.hA[var13] + "繁忙,请选择其他服!");
                                             } else {
                                                 var20 = GlobalStatus.hB[var13];
-                                                a((String) "http://117.135.138.130:7099", (byte) 1);
+                                                setUrl((String) "http://117.135.138.130:7099", (byte) 1);
                                                 NetPayloadBuilder.channelFlag = GlobalStatus.hE[var13];
                                                 this.a(GlobalStatus.hE[var13]);
                                             }
                                         } else if (GlobalStatus.hC[var13].equals("")) {
                                             this.b(GlobalStatus.hA[var13] + "繁忙,请选择其他服!");
                                         } else {
-                                            a((String) (var20 = GlobalStatus.hC[var13]), (byte) 2);
+                                            setUrl((String) (var20 = GlobalStatus.hC[var13]), (byte) 2);
                                             this.a(GlobalStatus.hE[var13]);
                                         }
 
-                                        this.a(var20, "http://117.135.138.130:7099");
+                                        this.init(var20, "http://117.135.138.130:7099");
                                         NetPayloadBuilder.channelFlag = GlobalStatus.hE[var13];
                                         byte[] var14;
                                         if ((var14 = NetPayloadBuilder.g((short) 4196, GlobalStatus.hy, GlobalStatus.hz)) != null) {
                                             NetPacket var15;
                                             (var15 = new NetPacket((short) 4196, var14)).firstPacket = true;
-                                            i.sendPacket(var15);
+                                            netUtils.sendPacket(var15);
                                             this.aZ = false;
                                             this.a((String) null);
                                         } else {
@@ -482,7 +525,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                                                 Object var3 = null;
                                                 byte[] var8;
                                                 if ((var8 = NetPayloadBuilder.a((short) 4099, var18, (byte) this.bF, (byte) this.bE)) != null) {
-                                                    i.sendPacket(new NetPacket((short) 4099, var8));
+                                                    netUtils.sendPacket(new NetPacket((short) 4099, var8));
                                                     this.a((String) null);
                                                 } else {
                                                     this.b("获取上传指令数据错误!");
@@ -495,7 +538,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
 
                                                 byte[] var19;
                                                 if ((var19 = NetPayloadBuilder.a((short) 4098, (String) GlobalStatus.d, (String) GlobalStatus.b)) != null) {
-                                                    i.sendPacket(new NetPacket((short) 4098, var19));
+                                                    netUtils.sendPacket(new NetPacket((short) 4098, var19));
                                                     this.a((String) null);
                                                 } else {
                                                     this.b("获取上传指令数据错误!");
@@ -506,7 +549,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                                                 } else {
                                                     byte[] var9;
                                                     if ((var9 = NetPayloadBuilder.a((short) 4372, this.bF)) != null) {
-                                                        i.sendPacket(new NetPacket((short) 4372, var9));
+                                                        netUtils.sendPacket(new NetPacket((short) 4372, var9));
                                                         this.a((String) null);
                                                     } else {
                                                         this.b("获取上传指令数据错误!");
@@ -570,11 +613,11 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                                                 case 0:
                                                     if (GlobalConfig.channel == 0) {
                                                         Object var4 = null;
-                                                        this.a("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
+                                                        this.init("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
                                                         int var5 = (int) Runtime.getRuntime().totalMemory();
                                                         byte[] var11;
                                                         if ((var11 = NetPayloadBuilder.a((short) 5383, (byte) 0, (String) null, (String) null, false, GlobalConfig.PopularizeChannel, GlobalConfig.F, var5, "")) != null) {
-                                                            i.sendPacket(new NetPacket((short) 5383, var11));
+                                                            netUtils.sendPacket(new NetPacket((short) 5383, var11));
                                                             this.aZ = false;
                                                             this.a("服务器列表");
                                                         } else {
@@ -718,8 +761,8 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
             }
         }
 
-        if (i != null) {
-            i.d();
+        if (netUtils != null) {
+            netUtils.d();
         }
 
         e = null;
@@ -1061,17 +1104,17 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
         return GlobalStatus.eC != null && GlobalStatus.eC.equals("数据更新失败:");
     }
 
-    public static void a(String var0, byte var1) {
-        NetUtils.i = var1;
-        if (var1 == 2) {
-            NetUtils.socketUrl = var0;
+    public static void setUrl(String url, byte type) {
+        NetUtils.xieyiType = type;
+        if (type == 2) {
+            NetUtils.socketUrl = url;
         } else {
-            NetUtils.httpUrl = var0;
+            NetUtils.httpUrl = url;
         }
     }
 
     private void b(String var1, byte var2) {
-        a(var1 == null ? (var2 == 2 ? "socket://120.78.151.213:20008" : "http://117.135.138.130:7099") : var1, var2);
+        setUrl(var1 == null ? (var2 == 2 ? "socket://120.78.151.213:20008" : "http://117.135.138.130:7099") : var1, var2);
         if (GlobalConfig.w) {
             this.v();
         } else {
@@ -1271,7 +1314,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
 
             if (NetPayloadBuilder.hands2 != 72) {
                 s();
-                i = null;
+                netUtils = null;
             }
         } else if (NetPayloadBuilder.channelFlag != 162) {
             NetPayloadBuilder.channelFlag = 162;
@@ -1443,7 +1486,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                 this.b(GlobalStatus.hA[var1] + "繁忙,请选择其他服!");
             } else {
                 var2 = GlobalStatus.hB[var1];
-                a((String) "http://117.135.138.130:7099", (byte) 1);
+                setUrl((String) "http://117.135.138.130:7099", (byte) 1);
                 NetPayloadBuilder.hands1 = (byte) GlobalStatus.hD[var1];
                 NetPayloadBuilder.hands2 = (byte) GlobalStatus.hE[var1];
                 this.a(GlobalStatus.hE[var1]);
@@ -1451,18 +1494,18 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
         } else if (GlobalStatus.hC[var1].equals("")) {
             this.b(GlobalStatus.hA[var1] + "繁忙,请选择其他服!");
         } else {
-            a((String) (var2 = GlobalStatus.hC[var1]), (byte) 2);
+            setUrl((String) (var2 = GlobalStatus.hC[var1]), (byte) 2);
             NetPayloadBuilder.hands1 = (byte) GlobalStatus.hD[var1];
             NetPayloadBuilder.hands2 = (byte) GlobalStatus.hE[var1];
             this.a(GlobalStatus.hE[var1]);
         }
 
-        this.a(var2, "http://117.135.138.130:7099");
+        this.init(var2, "http://117.135.138.130:7099");
         byte[] var3;
         if ((var3 = NetPayloadBuilder.a((short) 4096, GlobalStatus.hy, GlobalStatus.hz, GlobalConfig.PopularizeChannel, GlobalStatus.hw)) != null) {
             NetPacket var4;
             (var4 = new NetPacket((short) 4096, var3)).firstPacket = true;
-            i.sendPacket(var4);
+            netUtils.sendPacket(var4);
             this.aZ = false;
             this.a((String) null);
         } else {
@@ -1519,11 +1562,8 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
     }
 
     public final Frame1 a(Frame1 var1, byte var2, byte var3, byte var4, byte var5, boolean var6) {
-        byte var10000 = var2;
-        var2 = 3;
-        byte var7 = var10000;
         GlobalConfig.ag.delete(0, GlobalConfig.ag.length());
-        GlobalConfig.ag.append("com.cc.f").append(GlobalConfig.V[var7]).append(GlobalConfig.W[var3]).append(var5).append(GlobalConfig.X[var2]).append(var6 ? 1 : 2);
+        GlobalConfig.ag.append("f").append(GlobalConfig.V[var2]).append(GlobalConfig.W[var3]).append(var5).append(GlobalConfig.X[3]).append(var6 ? 1 : 2);
         String var8 = GlobalConfig.ag.toString();
         ab.d(var8);
         if ((var1 = ab.b(var8)) != null) {
@@ -1752,7 +1792,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
         byte[] var2;
         if ((var2 = NetPayloadBuilder.c((short) 4250, var1)) != null) {
             NetPacket var3 = new NetPacket((short) 4250, var2);
-            i.sendPacket(var3);
+            netUtils.sendPacket(var3);
             this.a((String) null);
         } else {
             this.b("获取上传指令数据错误!");
@@ -1763,7 +1803,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
         byte[] var2;
         if ((var2 = NetPayloadBuilder.c((short) 4251, var1)) != null) {
             NetPacket var3 = new NetPacket((short) 4251, var2);
-            i.sendPacket(var3);
+            netUtils.sendPacket(var3);
             this.a((String) null);
         } else {
             this.b("获取上传指令数据错误!");
@@ -1775,7 +1815,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
         byte[] var2;
         if ((var2 = NetPayloadBuilder.b((short) 4103, var1)) != null) {
             NetPacket var3 = new NetPacket((short) 4103, var2);
-            i.sendPacket(var3);
+            netUtils.sendPacket(var3);
             this.a((String) null);
         } else {
             this.b("获取上传指令数据错误!");
@@ -2800,7 +2840,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                                 byte[] var87;
                                 if ((var87 = NetPayloadBuilder.b((short) 4197, GlobalStatus.ad, var42.c, var42.d)) != null) {
                                     NetPacket var92 = new NetPacket((short) 4197, var87);
-                                    i.sendPacket(var92);
+                                    netUtils.sendPacket(var92);
                                 } else {
                                     var42.a.e.b("获取上传指令数据错误!");
                                 }
@@ -2834,7 +2874,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                                 byte[] var86;
                                 if ((var86 = NetPayloadBuilder.i((short) 4216, GlobalStatus.ad, var40.e)) != null) {
                                     NetPacket var91 = new NetPacket((short) 4216, var86);
-                                    i.sendPacket(var91);
+                                    netUtils.sendPacket(var91);
                                 } else {
                                     var40.b.b("获取上传指令数据错误!");
                                 }
@@ -3023,7 +3063,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                             aq var32 = e.M;
                             byte[] var85;
                             if ((var85 = NetPayloadBuilder.n((short) 4218, GlobalStatus.ad, var32.h)) != null) {
-                                i.sendPacket(new NetPacket((short) 4218, var85));
+                                netUtils.sendPacket(new NetPacket((short) 4218, var85));
                                 var32.b.a((String) null);
                             } else {
                                 var32.b.b("获取上传指令数据错误!");
@@ -3046,7 +3086,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                         if (var69.equals("OK")) {
                             byte[] var84;
                             if ((var84 = NetPayloadBuilder.a((short) 4100, GlobalStatus.W[this.aw])) != null) {
-                                i.sendPacket(new NetPacket((short) 4100, var84));
+                                netUtils.sendPacket(new NetPacket((short) 4100, var84));
                                 this.a((String) null);
                             } else {
                                 this.b("获取上传指令数据错误!");
@@ -3121,7 +3161,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                             aq var27 = e.M;
                             byte[] var83;
                             if ((var83 = NetPayloadBuilder.n((short) 4214, GlobalStatus.ad)) != null) {
-                                i.sendPacket(new NetPacket((short) 4214, var83));
+                                netUtils.sendPacket(new NetPacket((short) 4214, var83));
                                 var27.b.a((String) null);
                             } else {
                                 var27.b.b("获取上传指令数据错误!");
@@ -3335,7 +3375,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
 
                         byte[] var81;
                         if ((var81 = NetPayloadBuilder.q((short) 4880, GlobalStatus.ad, this.aC.getString())) != null) {
-                            i.sendPacket(new NetPacket((short) 4880, var81));
+                            netUtils.sendPacket(new NetPacket((short) 4880, var81));
                             this.a((String) null);
                             return;
                         }
@@ -3498,13 +3538,13 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                     String var90 = var3 == 1 ? var5 : "";
                     String var80 = var98;
                     byte[] var97 = NetPayloadBuilder.a((short) 5392, GlobalConfig.s, bb_1.a, bb_1.b, var80, var90, var8, GlobalConfig.PopularizeChannel, GlobalConfig.F, (int) Runtime.getRuntime().totalMemory(), GlobalConfig.u);
-                    this.a("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
+                    this.init("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
                     if (var97 == null) {
                         this.b("获取上传指令数据错误!");
                         return;
                     }
 
-                    i.sendPacket(new NetPacket((short) 5392, var97));
+                    netUtils.sendPacket(new NetPacket((short) 5392, var97));
                     this.mainMidlet.start();
                     this.a("正在登录...");
                 } else {
@@ -3520,7 +3560,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
 
     private void J() {
         this.aJ = false;
-        i = null;
+        netUtils = null;
 
         this.mainMidlet.destroyApp(true);
         this.mainMidlet.notifyDestroyed();
@@ -3529,7 +3569,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
     /**
      * 手工梳理后的触屏按下逻辑。
      * 保留原始 pointerPressed 不动，后续如果需要替换，可直接把本方法改名。
-     *
+     * <p>
      * 已修正的反编译问题：
      * 1. case 5 命中角色格子后，结果不应在循环结束后被默认值覆盖。
      * 2. case 6 最后两个按钮是确认动作，命中后不应再落回左右切换。
@@ -3761,7 +3801,7 @@ public final class MainCanvas extends Canvas implements Runnable, CommandListene
                 }
             }
 
-            if ((var3 = i.a().a(e.f, var3, new bs(this.ca, this.cb), new bs(this.cc, this.cd))).isEmpty()) {
+            if ((var3 = netUtils.a().a(e.f, var3, new bs(this.ca, this.cb), new bs(this.cc, this.cd))).isEmpty()) {
                 return;
             }
 
