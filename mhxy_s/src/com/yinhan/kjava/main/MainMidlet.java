@@ -3,30 +3,33 @@ package com.yinhan.kjava.main;
 import javax.microedition.lcdui.Display;
 import javax.microedition.midlet.MIDlet;
 
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
 public class MainMidlet extends MIDlet {
-   public MainCanvas mainCanvas;
-   public Display display = Display.getDisplay(this);
-   public static long c = Runtime.getRuntime().totalMemory();
 
-   public MainMidlet() {
-      this.mainCanvas = new MainCanvas(this, this.display);
-   }
+    /* renamed from: c */
+    public static long f2059c = Runtime.getRuntime().totalMemory();
 
-   public void destroyApp(boolean var1) {
-   }
+    /* renamed from: b */
+    public Display f2061b = Display.getDisplay(this);
 
-   public void pauseApp() {
-   }
+    /* renamed from: a */
+    public RunnableC0066a f2060a = new RunnableC0066a(this, this.f2061b);
 
-   public void startApp() {
-      this.start();
-   }
+    /* renamed from: a */
+    public final void m1377a() {
+        if (this.f2060a != null) {
+            this.f2060a.setFullScreenMode(true);
+        }
+        this.f2061b.setCurrent(this.f2060a);
+    }
 
-   public final void start() {
-      if (this.mainCanvas != null) {
-         this.mainCanvas.setFullScreenMode(true);
-      }
+    public void destroyApp(boolean z) {
+    }
 
-      this.display.setCurrent(this.mainCanvas);
-   }
+    public void pauseApp() {
+    }
+
+    public void startApp() {
+        m1377a();
+    }
 }

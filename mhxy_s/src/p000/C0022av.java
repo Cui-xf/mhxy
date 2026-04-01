@@ -1,0 +1,349 @@
+package p000;
+
+import com.yinhan.kjava.main.RunnableC0066a;
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Vector;
+
+/* renamed from: av */
+/* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-5080095226433994817/classes.dex */
+public final class C0022av {
+
+    /* renamed from: d */
+    public static byte f445d;
+
+    /* renamed from: e */
+    public byte f449e;
+
+    /* renamed from: f */
+    public RunnableC0066a f450f;
+
+    /* renamed from: g */
+    public RunnableC0020at f451g;
+
+    /* renamed from: l */
+    private RunnableC0092x f453l;
+
+    /* renamed from: a */
+    public static String f442a = "http://117.135.138.130:7099";
+
+    /* renamed from: b */
+    public static String f443b = "socket://120.78.151.213:20008";
+
+    /* renamed from: c */
+    public static String f444c = "";
+
+    /* renamed from: j */
+    private static String f448j = "";
+
+    /* renamed from: h */
+    public static byte f446h = -1;
+
+    /* renamed from: i */
+    public static byte f447i = 2;
+
+    /* renamed from: m */
+    private Vector f454m = new Vector();
+
+    /* renamed from: n */
+    private C0091w f455n = null;
+
+    /* renamed from: k */
+    private C0085q f452k = new C0085q();
+
+    public C0022av() {
+        C0053bz.f1806c = C0088t.f2506a == 0 ? 162 : 40;
+        f446h = (byte) -1;
+        f447i = (byte) 2;
+        if (f442a == null) {
+            f442a = "http://117.135.138.130:7099";
+        }
+        if (f443b == null) {
+            f443b = "socket://120.78.151.213:20008";
+        }
+        f444c = "";
+        f448j = "";
+        m601b();
+    }
+
+    /* renamed from: a */
+    public static void m591a(int i) throws InterruptedException {
+        try {
+            Thread.sleep(15);
+        } catch (Exception e) {
+        }
+    }
+
+    /* renamed from: a */
+    private void m592a(DataInputStream dataInputStream) throws IOException {
+        byte b = dataInputStream.readByte();
+        if (b > 0) {
+            C0091w c0091w = new C0091w((short) 8192);
+            for (int i = 0; i < b; i++) {
+                short s = dataInputStream.readShort();
+                new StringBuffer().append("接收子数据包_|").append((int) s).toString();
+                byte[] bArr = new byte[dataInputStream.readInt()];
+                dataInputStream.readFully(bArr);
+                c0091w.f2565c.addElement(new C0091w(s, bArr));
+            }
+            m595b(c0091w);
+        }
+    }
+
+    /* renamed from: a */
+    public static boolean m593a(String str) {
+        return !f444c.equals(str);
+    }
+
+    /* renamed from: a */
+    public static boolean m594a(Vector vector, C0091w c0091w) {
+        for (int i = 0; i < vector.size(); i++) {
+            if (c0091w.m1709a() == ((C0091w) vector.elementAt(i)).m1709a()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /* renamed from: b */
+    private void m595b(C0091w c0091w) {
+        this.f454m.addElement(c0091w);
+    }
+
+    /* renamed from: e */
+    private void m596e() {
+        if (f446h == 2) {
+            f445d = (byte) 1;
+            f444c = f443b;
+            if (this.f451g != null) {
+                this.f451g.m579a();
+            }
+            this.f451g = new RunnableC0020at(this);
+            if (this.f453l == null) {
+                this.f453l = new RunnableC0092x(this);
+            }
+        }
+    }
+
+    /* renamed from: a */
+    public final C0085q m597a() {
+        return this.f452k;
+    }
+
+    /* renamed from: a */
+    public final void m598a(RunnableC0066a runnableC0066a) {
+        this.f450f = runnableC0066a;
+        if (this.f452k != null) {
+            this.f452k.m1660a(runnableC0066a);
+        }
+    }
+
+    /* renamed from: a */
+    public final void m599a(InputStream inputStream) throws IOException {
+        DataInputStream dataInputStream = new DataInputStream(inputStream);
+        if (dataInputStream.readByte() == 2) {
+            short s = dataInputStream.readShort();
+            new StringBuffer().append("接收数据包|").append((int) s).toString();
+            if (s == 8192) {
+                dataInputStream.readInt();
+                m592a(dataInputStream);
+                return;
+            } else {
+                byte[] bArr = new byte[dataInputStream.readInt()];
+                dataInputStream.readFully(bArr);
+                m595b(new C0091w(s, bArr));
+                return;
+            }
+        }
+        int i = dataInputStream.readByte();
+        int i2 = dataInputStream.readByte();
+        if (i < 0) {
+            i += 256;
+        }
+        int i3 = i << 8;
+        if (i2 < 0) {
+            i2 += 256;
+        }
+        int i4 = i2 + i3;
+        new StringBuffer().append("接收压缩数据包大小|").append(i4).toString();
+        if (i4 > 0) {
+            byte[] bArr2 = new byte[i4];
+            dataInputStream.readFully(bArr2);
+            DataInputStream dataInputStream2 = new DataInputStream(new ByteArrayInputStream(C0063ci.m1364a(bArr2)));
+            short s2 = dataInputStream2.readShort();
+            new StringBuffer().append("接收压缩数据包|").append((int) s2).toString();
+            if (s2 == 8192) {
+                dataInputStream2.readInt();
+                m592a(dataInputStream2);
+            } else {
+                byte[] bArr3 = new byte[dataInputStream2.readInt()];
+                dataInputStream2.readFully(bArr3);
+                m595b(new C0091w(s2, bArr3));
+            }
+        }
+    }
+
+    /* renamed from: a */
+    public final void m600a(C0091w c0091w) {
+        C0088t.m1679a(new StringBuffer().append("sendPacket:").append(Integer.toHexString(c0091w.m1709a())).toString());
+        RunnableC0020at runnableC0020at = this.f451g;
+        if (c0091w.m1709a() == 4101) {
+            if (runnableC0020at.f423b.size() == 0) {
+                runnableC0020at.f423b.addElement(c0091w);
+            }
+        } else {
+            if (m594a(runnableC0020at.f422a, c0091w)) {
+                return;
+            }
+            new StringBuffer().append("添加发送数据包: ").append((int) c0091w.m1709a()).toString();
+            runnableC0020at.f422a.addElement(c0091w);
+        }
+    }
+
+    /* renamed from: b */
+    public final void m601b() {
+        if (C0088t.f2506a != 0) {
+            f448j = f447i == 2 ? f443b : f442a;
+            f446h = f447i;
+            f444c = f448j;
+            f445d = (byte) 3;
+            if (f446h == 2) {
+                m596e();
+            }
+            C0088t.m1679a(new StringBuffer().append("当前服务地址-->").append(f444c).toString());
+            return;
+        }
+        if (f446h == -1) {
+            f447i = (byte) 2;
+            f448j = null;
+            f443b = null;
+            f444c = null;
+            f446h = f447i;
+            m596e();
+        }
+    }
+
+    /* JADX WARN: Removed duplicated region for block: B:26:0x0053 A[Catch: IOException -> 0x0057, TRY_LEAVE, TryCatch #0 {IOException -> 0x0057, blocks: (B:24:0x004e, B:26:0x0053), top: B:38:0x004e }] */
+    /* JADX WARN: Removed duplicated region for block: B:38:0x004e A[EXC_TOP_SPLITTER, SYNTHETIC] */
+    /* renamed from: b */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    public final void m602b(java.lang.String r6) throws java.lang.Throwable {
+        /*
+            r5 = this;
+            r2 = 0
+            java.io.ByteArrayOutputStream r3 = new java.io.ByteArrayOutputStream     // Catch: java.io.IOException -> L33 java.lang.Throwable -> L49
+            r3.<init>()     // Catch: java.io.IOException -> L33 java.lang.Throwable -> L49
+            java.io.DataOutputStream r1 = new java.io.DataOutputStream     // Catch: java.lang.Throwable -> L5c java.io.IOException -> L61
+            r1.<init>(r3)     // Catch: java.lang.Throwable -> L5c java.io.IOException -> L61
+            r0 = -10
+            r1.writeByte(r0)     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
+            r1.writeUTF(r6)     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
+            r1.flush()     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
+            r3.flush()     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
+            byte[] r0 = r3.toByteArray()     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
+            w r2 = new w     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
+            r4 = 8193(0x2001, float:1.1481E-41)
+            r2.<init>(r4, r0)     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
+            r5.m595b(r2)     // Catch: java.lang.Throwable -> L5f java.io.IOException -> L64
+            r1.close()     // Catch: java.io.IOException -> L2e
+            r3.close()     // Catch: java.io.IOException -> L2e
+        L2d:
+            return
+        L2e:
+            r0 = move-exception
+            r0.printStackTrace()
+            goto L2d
+        L33:
+            r0 = move-exception
+            r1 = r2
+            r3 = r2
+        L36:
+            r0.printStackTrace()     // Catch: java.lang.Throwable -> L5f
+            if (r1 == 0) goto L3e
+            r1.close()     // Catch: java.io.IOException -> L44
+        L3e:
+            if (r3 == 0) goto L2d
+            r3.close()     // Catch: java.io.IOException -> L44
+            goto L2d
+        L44:
+            r0 = move-exception
+            r0.printStackTrace()
+            goto L2d
+        L49:
+            r0 = move-exception
+            r1 = r2
+            r3 = r2
+        L4c:
+            if (r1 == 0) goto L51
+            r1.close()     // Catch: java.io.IOException -> L57
+        L51:
+            if (r3 == 0) goto L56
+            r3.close()     // Catch: java.io.IOException -> L57
+        L56:
+            throw r0
+        L57:
+            r1 = move-exception
+            r1.printStackTrace()
+            goto L56
+        L5c:
+            r0 = move-exception
+            r1 = r2
+            goto L4c
+        L5f:
+            r0 = move-exception
+            goto L4c
+        L61:
+            r0 = move-exception
+            r1 = r2
+            goto L36
+        L64:
+            r0 = move-exception
+            goto L36
+        */
+        throw new UnsupportedOperationException("Method not decompiled: p000.C0022av.m602b(java.lang.String):void");
+    }
+
+    /* renamed from: c */
+    public final void m603c() {
+        if (this.f454m.size() > 0) {
+            for (int i = 0; i < this.f454m.size(); i++) {
+                this.f455n = (C0091w) this.f454m.elementAt(0);
+                if (this.f455n != null) {
+                    try {
+                        C0091w c0091w = this.f455n;
+                        if (this.f452k != null) {
+                            this.f452k.m1661a(c0091w);
+                        } else {
+                            this.f450f.m1442b("网络数据包处理器未启动");
+                        }
+                    } catch (Exception e) {
+                        if (this.f450f != null) {
+                            this.f450f.m1433a(e, (byte) 6);
+                            e.printStackTrace();
+                        }
+                    }
+                    this.f454m.removeElementAt(0);
+                    return;
+                }
+            }
+        }
+    }
+
+    /* renamed from: d */
+    public final void m604d() {
+        f445d = (byte) 3;
+        if (this.f453l != null) {
+            this.f453l.m1710a();
+        }
+        if (this.f451g != null) {
+            this.f451g.m579a();
+        }
+        this.f453l = null;
+        this.f451g = null;
+    }
+}
