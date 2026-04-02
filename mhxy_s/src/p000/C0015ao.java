@@ -4702,11 +4702,7 @@ public final class C0015ao {
                         this.f291cI[1] = C0047bt.f1291if[var4];
                         this.f291cI[2] = C0047bt.f1292ig[var4];
                         this.f291cI[3] = C0047bt.f1293ih[var4];
-                        if (this.f290cH[0] >= this.f291cI[0]
-                                && this.f290cH[0] + this.f290cH[2] <= this.f291cI[0] + this.f291cI[2]
-                                && this.f290cH[1] >= this.f291cI[1]
-                                && this.f290cH[1] + this.f290cH[3] <= this.f291cI[1] + this.f291cI[3]
-                        ) {
+                        if (this.f290cH[0] >= this.f291cI[0] && this.f290cH[0] + this.f290cH[2] <= this.f291cI[0] + this.f291cI[2] && this.f290cH[1] >= this.f291cI[1] && this.f290cH[1] + this.f290cH[3] <= this.f291cI[1] + this.f291cI[3]) {
                             //选中角色
                             var2 = true;
                         } else {
@@ -15683,17 +15679,14 @@ public final class C0015ao {
                             m447e(7);
                             break;
                         } else if (C0055ca.f1895o == 2) {
-                            int i20 = 0;
-                            while (true) {
-                                if (i20 >= C0047bt.f993cz.length) {
-                                    i6 = -1;
-                                } else if (C0047bt.f943cB[i20] == this.f235av) {
-                                    i6 = C0047bt.f993cz[i20];
-                                } else {
-                                    i20++;
+                            int var27 = -1;
+                            for (int var33 = 0; var33 < C0047bt.f993cz.length; ++var33) {
+                                if (C0047bt.f943cB[var33] == this.f235av) {
+                                    var27 = C0047bt.f993cz[var33];
+                                    break;
                                 }
                             }
-                            byte[] bArrM1170f = C0053bz.m1170f((short) 4136, C0047bt.f865ad, i6);
+                            byte[] bArrM1170f = C0053bz.m1170f((short) 4136, C0047bt.f865ad, var27);
                             if (bArrM1170f != null) {
                                 RunnableC0066a.f2115i.m600a(new C0091w((short) 4136, bArrM1170f));
                                 this.f354e.m1434a((String) null);
@@ -15705,17 +15698,14 @@ public final class C0015ao {
                         } else if (C0055ca.f1895o == 3) {
                             this.f236aw = true;
                             C0062ch.m1353a();
-                            int i21 = 0;
-                            while (true) {
-                                if (i21 >= C0047bt.f993cz.length) {
-                                    i5 = -1;
-                                } else if (C0047bt.f943cB[i21] == this.f235av) {
-                                    i5 = C0047bt.f993cz[i21];
-                                } else {
-                                    i21++;
+                            int var28 = -1;
+                            for (int var35 = 0; var35 < C0047bt.f993cz.length; ++var35) {
+                                if (C0047bt.f943cB[var35] == this.f235av) {
+                                    var28 = C0047bt.f993cz[var35];
+                                    break;
                                 }
                             }
-                            byte[] bArrM1047a = C0053bz.m1047a((short) 4689, i5, (byte) 0, (byte) -1, C0047bt.f865ad);
+                            byte[] bArrM1047a = C0053bz.m1047a((short) 4689, var28, (byte) 0, (byte) -1, C0047bt.f865ad);
                             if (bArrM1047a != null) {
                                 RunnableC0066a.f2115i.m600a(new C0091w((short) 4689, bArrM1047a));
                                 this.f354e.m1434a((String) null);
@@ -15728,14 +15718,10 @@ public final class C0015ao {
                             this.f236aw = true;
                             this.f185O.m1631d();
                             int i22 = -1;
-                            int i23 = 0;
-                            while (true) {
-                                if (i23 < C0047bt.f993cz.length) {
-                                    if (C0047bt.f943cB[i23] == this.f235av) {
-                                        i22 = C0047bt.f993cz[i23];
-                                    } else {
-                                        i23++;
-                                    }
+                            for (int var38 = 0; var38 < C0047bt.f993cz.length; ++var38) {
+                                if (C0047bt.f943cB[var38] == this.f235av) {
+                                    i22 = C0047bt.f993cz[var38];
+                                    break;
                                 }
                             }
                             C0083o.f2383h = (byte) 1;
@@ -15754,18 +15740,13 @@ public final class C0015ao {
                             }
                             this.f186P.m1673b();
                             this.f236aw = true;
-                            int i24 = -1;
-                            int i25 = 0;
-                            while (true) {
-                                if (i25 < C0047bt.f993cz.length) {
-                                    if (C0047bt.f943cB[i25] == this.f235av) {
-                                        i24 = C0047bt.f993cz[i25];
-                                    } else {
-                                        i25++;
-                                    }
+                            int var30 = -1;
+                            for (int var40 = 0; var40 < C0047bt.f993cz.length; ++var40) {
+                                if (C0047bt.f943cB[var40] == this.f235av) {
+                                    var30 = C0047bt.f993cz[var40];
                                 }
                             }
-                            byte[] bArrM1053a = C0053bz.m1053a((short) 4262, i24, -1L, (byte) 0, (int[]) null, (byte[]) null, -1, (byte) 0, C0047bt.f865ad);
+                            byte[] bArrM1053a = C0053bz.m1053a((short) 4262, var30, -1L, (byte) 0, (int[]) null, (byte[]) null, -1, (byte) 0, C0047bt.f865ad);
                             if (bArrM1053a != null) {
                                 RunnableC0066a.f2115i.m600a(new C0091w((short) 4262, bArrM1053a));
                                 this.f354e.m1434a((String) null);
@@ -15798,75 +15779,43 @@ public final class C0015ao {
                         if (this.f354e.f2149aq != null) {
                             this.f354e.f2149aq.mo70b(i26);
                         }
-                        if (i26 != 268435456 && i26 != 1073741824 && i26 != 517) {
-                            if (i26 != 268435456 && i26 != 536870912) {
-                                if (i26 != 8 && i26 != 516) {
-                                    if (i26 != 2 && i26 != 518) {
-                                        if (i26 != 1 && i26 != 514) {
-                                            if (i26 == 4 || i26 == 520) {
-                                                if (this.f231ar >= 3) {
-                                                    i4 = 0;
-                                                } else {
-                                                    i4 = this.f231ar + 1;
-                                                    this.f231ar = i4;
-                                                }
-                                                this.f231ar = i4;
-                                                m186aG();
-                                                break;
-                                            }
-                                        } else {
-                                            if (this.f231ar <= 0) {
-                                                i3 = 3;
-                                            } else {
-                                                i3 = this.f231ar - 1;
-                                                this.f231ar = i3;
-                                            }
-                                            this.f231ar = i3;
-                                            m186aG();
-                                            break;
-                                        }
-                                    } else {
-                                        if (this.f230aq >= 7) {
-                                            i2 = 0;
-                                        } else {
-                                            i2 = this.f230aq + 1;
-                                            this.f230aq = i2;
-                                        }
-                                        this.f230aq = i2;
-                                        m186aG();
-                                        break;
-                                    }
-                                } else {
-                                    if (this.f230aq <= 0) {
-                                        i = 7;
-                                    } else {
-                                        i = this.f230aq - 1;
-                                        this.f230aq = i;
-                                    }
-                                    this.f230aq = i;
-                                    m186aG();
-                                    break;
-                                }
-                            } else {
-                                this.f225al = null;
-                                if (C0047bt.f911bW) {
-                                    m361N();
-                                    C0047bt.f911bW = false;
+                        if (i26 == 268435456 || i26 == 1073741824 || i26 == 517) {
+                            if (C0047bt.f913bY != null && (this.f231ar << 3) + this.f230aq < C0047bt.f913bY.length) {
+                                if (C0047bt.f968ca[(this.f231ar << 3) + this.f230aq] == 1) {
+                                    m380a(99L);
+                                    this.f359l = (short) 2;
                                     break;
                                 } else {
-                                    m473m();
+                                    m130Z(1);
                                     break;
                                 }
                             }
-                        } else if (C0047bt.f913bY != null && (this.f231ar << 3) + this.f230aq < C0047bt.f913bY.length) {
-                            if (C0047bt.f968ca[(this.f231ar << 3) + this.f230aq] == 1) {
-                                m380a(99L);
-                                this.f359l = (short) 2;
+                        } else if (i26 == 268435456 || i26 == 536870912) {
+                            this.f225al = null;
+                            if (C0047bt.f911bW) {
+                                m361N();
+                                C0047bt.f911bW = false;
                                 break;
                             } else {
-                                m130Z(1);
+                                m473m();
                                 break;
                             }
+                        } else if (i26 == 8 || i26 == 516) {
+                            this.f230aq = this.f230aq <= 0 ? 7 : this.f230aq - 1;
+                            m186aG();
+                            break;
+                        } else if (i26 == 2 || i26 == 518) {
+                            this.f230aq = this.f230aq >= 7 ? 0 : this.f230aq + 1;
+                            m186aG();
+                            break;
+                        } else if (i26 == 1 || i26 == 514) {
+                            this.f231ar = this.f231ar <= 0 ? 3 : this.f231ar - 1;
+                            m186aG();
+                            break;
+                        } else if (i26 == 4 || i26 == 520) {
+                            this.f231ar = this.f231ar >= 3 ? 0 : this.f231ar + 1;
+                            m186aG();
+                            break;
                         }
                     } else if (this.f359l == 2) {
                         m421b(i26);
@@ -17449,7 +17398,6 @@ public final class C0015ao {
                     C0055ca.m1303a(graphics, c0017aq10.f370a.f233at, new String[]{"确定", "取消"});
                     break;
                 }
-                break;
             case 51:
                 this.f183M.m522c(graphics);
                 break;
@@ -18039,11 +17987,11 @@ public final class C0015ao {
         Code decompiled incorrectly, please refer to instructions dump.
     */
     public final void m401a(short[] sArr) {
-        boolean z;
         if (sArr == null) {
             return;
         }
         short[] sArr2 = this.f304cW;
+        boolean z = false;
         if (sArr == null) {
             z = false;
         } else if (sArr2 == null) {
@@ -19117,52 +19065,39 @@ public final class C0015ao {
 
     /* renamed from: d */
     public final void m442d(boolean z) {
-        String[] strArr;
-        String str;
-        byte b;
         if (this.f358k == 28 || z) {
             this.f225al = new String[]{"玩家数量", "聊天记录", "玩家名字", "NPC名字", "队员名字", "弹出信息", "迷你地图", "世界频道", "区域频道", "玩家宠物", "动态NPC", "战斗信息", "界面样式", "组队开关", "交易开关", "自动打怪", "PK开关", "帮派频道", "滚动提示", "任务自动"};
             this.f226am = new String[f145aW.length];
+
             for (byte b2 = 0; b2 < f145aW.length; b2 = (byte) (b2 + 1)) {
+//                String[] strArr;
+//                String str;
+//                byte b;
                 if (b2 == 0 || !(f145aW[b2] == 0 || f145aW[b2] == 1)) {
-                    strArr = this.f226am;
-                    str = "";
-                    b = b2;
+                    this.f226am[b2] = "";
                 } else if (b2 == 12) {
-                    strArr = this.f226am;
-                    str = "<无>";
-                    b = b2;
-                } else {
-                    if (b2 == 13 || b2 == 14 || b2 == 15 || b2 == 16 || b2 == 19) {
-                        if (b2 == 13) {
-                            this.f226am[b2] = C0047bt.f810B == 1 ? "<开>" : "<关>";
-                        } else if (b2 == 16) {
-                            this.f226am[b2] = C0047bt.f812D == 1 ? "<开>" : "<关>";
-                        } else if (b2 == 14) {
-                            this.f226am[b2] = C0047bt.f809A == 1 ? "<开>" : "<关>";
-                        } else if (b2 == 15) {
-                            this.f226am[b2] = C0047bt.f934bt ? "<开>" : "<关>";
-                        } else if (b2 == 19) {
-                            this.f226am[b2] = C0047bt.f813E == 1 ? "<开>" : "<关>";
-                        }
-                    } else if (b2 != 7 && b2 != 8 && b2 != 17) {
-                        strArr = this.f226am;
-                        if (f145aW[b2] == 0) {
-                            str = "<开>";
-                            b = b2;
-                        } else {
-                            str = "<关>";
-                            b = b2;
-                        }
-                    } else if (b2 == 7) {
-                        this.f226am[b2] = C0047bt.f811C[0] == 0 ? "<开>" : "<关>";
-                    } else if (b2 == 8) {
-                        this.f226am[b2] = C0047bt.f811C[1] == 0 ? "<开>" : "<关>";
-                    } else if (b2 == 17) {
-                        this.f226am[b2] = C0047bt.f811C[3] == 0 ? "<开>" : "<关>";
+                    this.f226am[b2] = "<无>";
+                } else if (b2 == 13 || b2 == 14 || b2 == 15 || b2 == 16 || b2 == 19) {
+                    if (b2 == 13) {
+                        this.f226am[b2] = C0047bt.f810B == 1 ? "<开>" : "<关>";
+                    } else if (b2 == 16) {
+                        this.f226am[b2] = C0047bt.f812D == 1 ? "<开>" : "<关>";
+                    } else if (b2 == 14) {
+                        this.f226am[b2] = C0047bt.f809A == 1 ? "<开>" : "<关>";
+                    } else if (b2 == 15) {
+                        this.f226am[b2] = C0047bt.f934bt ? "<开>" : "<关>";
+                    } else if (b2 == 19) {
+                        this.f226am[b2] = C0047bt.f813E == 1 ? "<开>" : "<关>";
                     }
+                } else if (b2 != 7 && b2 != 8 && b2 != 17) {
+                    this.f226am[b2] = f145aW[b2] == 0 ? "<开>" : "<关>";
+                } else if (b2 == 7) {
+                    this.f226am[b2] = C0047bt.f811C[0] == 0 ? "<开>" : "<关>";
+                } else if (b2 == 8) {
+                    this.f226am[b2] = C0047bt.f811C[1] == 0 ? "<开>" : "<关>";
+                } else if (b2 == 17) {
+                    this.f226am[b2] = C0047bt.f811C[3] == 0 ? "<开>" : "<关>";
                 }
-                strArr[b] = str;
             }
             this.f354e.f2150ar.m1266a((Image[]) null, this.f225al, (String[]) null, this.f226am);
             this.f354e.f2150ar.m1257a(this.f196aA, this.f283cA);
@@ -19280,8 +19215,6 @@ public final class C0015ao {
 
     /* renamed from: e */
     public final void m446e(byte b) {
-        int i;
-        int i2;
         if (C0047bt.f1424lF == null) {
             return;
         }
@@ -19292,11 +19225,15 @@ public final class C0015ao {
         this.f354e.f2151as.m1610a(C0047bt.f1428lJ);
         this.f354e.f2151as.m1607a((byte) 0);
         this.f354e.f2151as.f2353a = b;
+
+        boolean var2 = false;
+        boolean var3 = false;
+        int var4 = 0;
         switch (b) {
             case 0:
-                boolean z = (C0047bt.f1429lK == null && C0047bt.f1430lL == null && C0047bt.f1431lM == null) ? false : true;
-                boolean z2 = C0047bt.f1432lN != null;
-                if (z) {
+                var2 = C0047bt.f1429lK != null || C0047bt.f1430lL != null || C0047bt.f1431lM != null;
+                var3 = C0047bt.f1432lN != null;
+                if (var2) {
                     this.f354e.f2150ar.m1266a((Image[]) null, C0047bt.f1429lK, C0047bt.f1430lL, C0047bt.f1431lM);
                     this.f354e.f2150ar.m1263a(C0047bt.f1436lR);
                     this.f354e.f2150ar.m1269b(false);
@@ -19304,33 +19241,26 @@ public final class C0015ao {
                 if (C0047bt.f1433lO != null) {
                     this.f354e.f2150ar.m1260a(C0047bt.f1433lO[this.f354e.f2150ar.m1275g()], 1);
                 }
-                if (z2) {
+                if (var3) {
                     this.f354e.f2152at.m77a(C0047bt.f1432lN[C0047bt.f1432lN.length == 1 ? 0 : this.f354e.f2150ar.m1275g()], C0088t.f2523i, (byte) 1);
-                    if (z) {
+                    if (var2) {
                         this.f354e.f2152at.m75a((byte) 1);
                     }
                 }
                 this.f354e.f2149aq.m1600a(this.f354e.f2151as);
-                if (z) {
+                if (var2) {
                     this.f354e.f2149aq.m1600a(this.f354e.f2150ar);
                 }
-                if (z2) {
+                if (var3) {
                     this.f354e.f2149aq.m1600a(this.f354e.f2152at);
                 }
-                C0081m c0081m = this.f354e.f2149aq;
-                short s = C0088t.f2520f;
-                short s2 = C0088t.f2521g;
-                short s3 = C0088t.f2518d;
-                short s4 = C0088t.f2519e;
-                i = C0047bt.f1425lG != null ? C0047bt.f1425lG[b] : 66;
-                i2 = C0047bt.f1426lH != null ? C0047bt.f1426lH[b] : 100;
-                if (C0047bt.f1427lI != null && C0047bt.f1427lI[b] == 1) {
-                    z = true;
-                }
-                c0081m.m1599a(s, s2, s3, s4, i, i2, z);
+
+                this.f354e.f2149aq.m1599a(C0088t.f2520f, C0088t.f2521g, C0088t.f2518d, C0088t.f2519e,
+                        C0047bt.f1425lG != null ? C0047bt.f1425lG[b] : 66, C0047bt.f1426lH != null ? C0047bt.f1426lH[b] : 100,
+                        C0047bt.f1427lI != null ? C0047bt.f1427lI[b] == 1 : false);
                 break;
             case 1:
-                boolean z3 = (C0047bt.f1437lS == null && C0047bt.f1438lT == null && C0047bt.f1439lU == null) ? false : true;
+                boolean z3 = C0047bt.f1437lS != null || C0047bt.f1438lT != null || C0047bt.f1439lU != null;
                 boolean z4 = C0047bt.f1440lV != null;
                 if (z3) {
                     this.f354e.f2150ar.m1266a((Image[]) null, C0047bt.f1437lS, C0047bt.f1438lT, C0047bt.f1439lU);
@@ -19379,17 +19309,10 @@ public final class C0015ao {
                 if (z6) {
                     this.f354e.f2149aq.m1600a(this.f354e.f2152at);
                 }
-                C0081m c0081m2 = this.f354e.f2149aq;
-                short s5 = C0088t.f2520f;
-                short s6 = C0088t.f2521g;
-                short s7 = C0088t.f2518d;
-                short s8 = C0088t.f2519e;
-                i = C0047bt.f1425lG != null ? C0047bt.f1425lG[b] : 66;
-                i2 = C0047bt.f1426lH != null ? C0047bt.f1426lH[b] : 100;
-                if (C0047bt.f1427lI != null && C0047bt.f1427lI[b] == 1) {
-                    z = true;
-                }
-                c0081m2.m1599a(s5, s6, s7, s8, i, i2, z);
+
+                this.f354e.f2149aq.m1599a(C0088t.f2520f, C0088t.f2521g, C0088t.f2518d, C0088t.f2519e,
+                        C0047bt.f1425lG != null ? C0047bt.f1425lG[b] : 66, C0047bt.f1426lH != null ? C0047bt.f1426lH[b] : 100,
+                        C0047bt.f1427lI != null ? C0047bt.f1427lI[b] == 1 : false);
                 break;
         }
         this.f354e.f2216j = this.f354e.f2217k;
@@ -19580,7 +19503,7 @@ public final class C0015ao {
     }
 
     /* renamed from: f */
-    public final void m453f(byte b) throws Throwable {
+    public final void m453f(byte b) {
         this.f282c = true;
         this.f354e.f2221p = true;
         if (this.f239bA != null) {
@@ -19761,44 +19684,39 @@ public final class C0015ao {
         Code decompiled incorrectly, please refer to instructions dump.
     */
     public final void m463i(byte b) {
-        String[] strArr;
-        String str;
         this.f232as = b;
         String str2 = C0047bt.f1287ib == 1 ? "房屋管理" : C0047bt.f1287ib == 2 ? "家具管理" : "住宅管理";
-        String[] strArr2 = b == 0 ? new String[]{"购买", "查看", "拍卖"} : (b == 2 || this.f232as == 7 || this.f232as == 8) ? new String[]{"购买", "仓库", "招募", "家属"} : (b == 4 || this.f232as == 9 || this.f232as == 10) ? new String[]{"购买", "仓库", "升级", "招募", "家属"} : null;
+        String[] strArr2;
+        if (b == 0) {
+            strArr2 = new String[]{"购买", "查看", "拍卖"};
+        } else if (b == 2 || this.f232as == 7 || this.f232as == 8) {
+            strArr2 = new String[]{"购买", "仓库", "招募", "家属"};
+        } else if (b == 4 || this.f232as == 9 || this.f232as == 10) {
+            strArr2 = new String[]{"购买", "仓库", "升级", "招募", "家属"};
+        } else {
+            strArr2 = null;
+        }
         this.f354e.f2149aq.m1604b();
         this.f354e.f2149aq.m1601a(str2);
         this.f354e.f2149aq.m1603a(true);
         this.f354e.f2151as.m1610a(strArr2);
         this.f354e.f2149aq.m1600a(this.f354e.f2151as);
         if (this.f232as == 7 || this.f232as == 8 || this.f232as == 9 || this.f232as == 10) {
-            this.f232as = this.f232as;
-            if (this.f232as == 7 || this.f232as == 9) {
-                if (C0047bt.f1227hU != null) {
-                    strArr = C0047bt.f1227hU;
-                    str = C0047bt.f1229hW[0];
-                } else {
-                    str = null;
-                    strArr = null;
-                }
-                this.f354e.f2150ar.m1266a((Image[]) null, strArr, (String[]) null, (String[]) null);
-                if (str != null && !str.equals("")) {
-                    this.f354e.f2150ar.m1260a(str, 1);
-                }
-                this.f354e.f2151as.f2353a = (byte) this.f215aU;
-                this.f354e.f2149aq.m1600a(this.f354e.f2150ar);
-            } else {
-                if ((this.f232as == 8 || this.f232as == 10) && C0047bt.f1230hX != null) {
-                    strArr = C0047bt.f1231hY;
-                    str = C0047bt.f1232hZ[0];
-                }
-                this.f354e.f2150ar.m1266a((Image[]) null, strArr, (String[]) null, (String[]) null);
-                if (str != null) {
-                    this.f354e.f2150ar.m1260a(str, 1);
-                }
-                this.f354e.f2151as.f2353a = (byte) this.f215aU;
-                this.f354e.f2149aq.m1600a(this.f354e.f2150ar);
+            String[] var5 = null;
+            String var3 = null;
+            if ((this.f232as == 7 || this.f232as == 9) && C0047bt.f1227hU != null) {
+                var5 = C0047bt.f1227hU;
+                var3 = C0047bt.f1229hW[0];
+            } else if ((this.f232as == 8 || this.f232as == 10) && C0047bt.f1230hX != null) {
+                var5 = C0047bt.f1231hY;
+                var3 = C0047bt.f1232hZ[0];
             }
+            this.f354e.f2150ar.m1266a((Image[]) null, var5, (String[]) null, (String[]) null);
+            if (var3 != null && !var3.equals("")) {
+                this.f354e.f2150ar.m1260a(var3, 1);
+            }
+            this.f354e.f2151as.f2353a = (byte) this.f215aU;
+            this.f354e.f2149aq.m1600a(this.f354e.f2150ar);
         } else {
             m466j((byte) this.f232as);
             this.f354e.f2149aq.m1600a(this.f354e.f2150ar);

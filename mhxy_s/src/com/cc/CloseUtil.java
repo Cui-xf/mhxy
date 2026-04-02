@@ -8,7 +8,7 @@ public class CloseUtil {
             try {
                 bis.close();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException(e.getMessage());
             }
         }
 
@@ -16,7 +16,7 @@ public class CloseUtil {
             try {
                 dis.close();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException(e.getMessage());
             }
         }
     }
@@ -26,7 +26,7 @@ public class CloseUtil {
             try {
                 bos.close();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException(e.getMessage());
             }
         }
 
@@ -34,7 +34,7 @@ public class CloseUtil {
             try {
                 dos.close();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException(e.getMessage());
             }
         }
     }

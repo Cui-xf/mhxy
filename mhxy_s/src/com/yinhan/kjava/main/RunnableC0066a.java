@@ -1,58 +1,14 @@
 package com.yinhan.kjava.main;
 
 import com.cc.CloseUtil;
-import p000.C0007ag;
-import p000.C0009ai;
-import p000.C0010aj;
-import p000.C0014an;
-import p000.C0015ao;
-import p000.C0017aq;
-import p000.C0022av;
-import p000.C0026az;
-import p000.C0029bb;
-import p000.C0030bc;
-import p000.C0032be;
-import p000.C0033bf;
-import p000.C0042bo;
-import p000.C0044bq;
-import p000.C0046bs;
-import p000.C0047bt;
-import p000.C0048bu;
-import p000.C0050bw;
-import p000.C0053bz;
-import p000.C0054c;
-import p000.C0055ca;
-import p000.C0080l;
-import p000.C0081m;
-import p000.C0082n;
-import p000.C0088t;
-import p000.C0090v;
-import p000.C0091w;
-import p000.C0093y;
+import p000.*;
 
 import javax.microedition.io.ConnectionNotFoundException;
-import javax.microedition.lcdui.Alert;
-import javax.microedition.lcdui.AlertType;
-import javax.microedition.lcdui.Canvas;
-import javax.microedition.lcdui.ChoiceGroup;
-import javax.microedition.lcdui.Command;
-import javax.microedition.lcdui.CommandListener;
-import javax.microedition.lcdui.Display;
-import javax.microedition.lcdui.Displayable;
-import javax.microedition.lcdui.Form;
-import javax.microedition.lcdui.Graphics;
-import javax.microedition.lcdui.Image;
-import javax.microedition.lcdui.StringItem;
-import javax.microedition.lcdui.TextField;
-import javax.microedition.midlet.MIDletStateChangeException;
+import javax.microedition.lcdui.*;
 import javax.microedition.rms.RecordStore;
 import javax.microedition.rms.RecordStoreException;
 import javax.microedition.rms.RecordStoreNotOpenException;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Vector;
 
 /* renamed from: com.yinhan.kjava.main.a */
@@ -591,7 +547,7 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
     }
 
     /* renamed from: B */
-    private void m1379B() throws Throwable {
+    private void m1379B() {
         if (this.f2207c != 0) {
             if (this.f2207c != 1) {
                 if (this.f2207c == 2) {
@@ -668,7 +624,7 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
     }
 
     /* renamed from: C */
-    private void m1380C() throws Throwable {
+    private void m1380C(){
         m1424w();
         this.f2163bD = m1419k("/images/logo_btn_random.png");
         this.f2204bx = new C0030bc[6];
@@ -775,56 +731,37 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
     private void m1387J() {
         this.f2133aJ = false;
         f2115i = null;
-        try {
-            this.f2213d.destroyApp(true);
-        } catch (MIDletStateChangeException e) {
-        }
+
+        this.f2213d.destroyApp(true);
         this.f2213d.notifyDestroyed();
     }
 
     /* renamed from: K */
     private void m1388K() {
-        DataInputStream dataInputStreamM1389a;
-        RecordStore recordStoreM1395a = null;
         try {
-            if (m1418j("S") && (dataInputStreamM1389a = m1389a((recordStoreM1395a = m1395a("S", false)))) != null) {
+            RecordStore recordStoreM1395a = m1395a("S", false);
+            DataInputStream dataInputStreamM1389a = m1389a(recordStoreM1395a);
+            if (m1418j("S") && dataInputStreamM1389a != null) {
                 this.f2212ce = (short) 0;
                 this.f2212ce = dataInputStreamM1389a.readShort();
                 dataInputStreamM1389a.close();
+                recordStoreM1395a.closeRecordStore();
             }
-            if (recordStoreM1395a != null) {
-                try {
-                    recordStoreM1395a.closeRecordStore();
-                } catch (RecordStoreException e) {
-                } catch (RecordStoreNotOpenException e2) {
-                }
-            }
-        } catch (Exception e3) {
-            if (recordStoreM1395a != null) {
-                try {
-                    recordStoreM1395a.closeRecordStore();
-                } catch (RecordStoreException e4) {
-                } catch (RecordStoreNotOpenException e5) {
-                }
-            }
-        } catch (Throwable th) {
-            if (recordStoreM1395a != null) {
-                try {
-                    recordStoreM1395a.closeRecordStore();
-                } catch (RecordStoreNotOpenException e6) {
-                } catch (RecordStoreException e7) {
-                }
-            }
-            throw th;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     /* renamed from: a */
     private static DataInputStream m1389a(RecordStore recordStore) {
-        if (1 < recordStore.getNumRecords() + 1) {
+        try {
+            if (recordStore.getNumRecords() <= 0) {
+                return null;
+            }
             return new DataInputStream(new ByteArrayInputStream(recordStore.getRecord(1)));
+        } catch (RecordStoreException e) {
+            throw new RuntimeException(e.getMessage());
         }
-        return null;
     }
 
     /* renamed from: a */
@@ -872,11 +809,15 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
 
     /* renamed from: a */
     private static RecordStore m1395a(String str, boolean z) {
-        if (!z) {
-            return RecordStore.openRecordStore(str, !z);
+        try {
+            if (!z) {
+                return RecordStore.openRecordStore(str, !z);
+            }
+            RecordStore.deleteRecordStore(str);
+            return RecordStore.openRecordStore(str, z);
+        } catch (RecordStoreException e) {
+            throw new RuntimeException(e.getMessage());
         }
-        RecordStore.deleteRecordStore(str);
-        return RecordStore.openRecordStore(str, z);
     }
 
     /* renamed from: a */
@@ -969,35 +910,18 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
     private void m1402a(byte[] bArr, String str) {
         RecordStore recordStoreM1395a = null;
         try {
-            try {
-                recordStoreM1395a = m1395a(str, m1418j(str));
-                recordStoreM1395a.addRecord(bArr, 0, bArr.length);
-                if (recordStoreM1395a != null) {
-                    try {
-                        recordStoreM1395a.closeRecordStore();
-                    } catch (RecordStoreException e) {
-                    } catch (RecordStoreNotOpenException e2) {
-                    }
-                }
-            } catch (RecordStoreException e3) {
-                e3.printStackTrace();
-                if (recordStoreM1395a != null) {
-                    try {
-                        recordStoreM1395a.closeRecordStore();
-                    } catch (RecordStoreNotOpenException e4) {
-                    } catch (RecordStoreException e5) {
-                    }
-                }
-            }
-        } catch (Throwable th) {
+            recordStoreM1395a = m1395a(str, m1418j(str));
+            recordStoreM1395a.addRecord(bArr, 0, bArr.length);
+        } catch (RecordStoreException e) {
+            e.printStackTrace();
+        } finally {
             if (recordStoreM1395a != null) {
                 try {
                     recordStoreM1395a.closeRecordStore();
-                } catch (RecordStoreNotOpenException e6) {
-                } catch (RecordStoreException e7) {
+                } catch (RecordStoreException e) {
+                    e.printStackTrace();
                 }
             }
-            throw th;
         }
     }
 
@@ -1296,22 +1220,11 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
             C0055ca.m1292a(graphics, this.f2149aq.f2328a + 5, this.f2149aq.f2329b + 32, this.f2149aq.f2330c - 11, this.f2149aq.m1597a((this.f2161bB << 1) + 6), 1);
             int i = ((this.f2149aq.f2330c - (this.f2161bB << 1)) - 16) / 3;
             int iM1597a = ((this.f2149aq.m1597a(C0088t.f2519e <= 240 ? (this.f2161bB << 1) + 6 : 111) - (this.f2161bB << 1)) - 6) / 3;
-            int i2 = 0;
-            while (true) {
-                int i3 = i2;
-                if (i3 >= 2) {
-                    break;
+            for (int i3 = 0; i3 < 2; ++i3) {
+                for (int i5 = 0; i5 < 2; ++i5) {
+                    m1397a((i3 << 1) + i5, ((this.f2161bB + i) * i5) + this.f2149aq.f2328a + 8 + i, ((this.f2161bB + iM1597a) * i3) + this.f2149aq.f2329b + 35 + iM1597a, this.f2161bB, this.f2161bB);
+                    C0055ca.m1305a(graphics, (Image) null, this.f2162bC[(i3 << 1) + i5][0], this.f2162bC[(i3 << 1) + i5][1], this.f2161bB, this.f2161bB, i3 == this.f2160bA && i5 == this.f2206bz);
                 }
-                int i4 = 0;
-                while (true) {
-                    int i5 = i4;
-                    if (i5 < 2) {
-                        m1397a((i3 << 1) + i5, ((this.f2161bB + i) * i5) + this.f2149aq.f2328a + 8 + i, ((this.f2161bB + iM1597a) * i3) + this.f2149aq.f2329b + 35 + iM1597a, this.f2161bB, this.f2161bB);
-                        C0055ca.m1305a(graphics, (Image) null, this.f2162bC[(i3 << 1) + i5][0], this.f2162bC[(i3 << 1) + i5][1], this.f2161bB, this.f2161bB, i3 == this.f2160bA && i5 == this.f2206bz);
-                        i4 = i5 + 1;
-                    }
-                }
-                i2 = i3 + 1;
             }
             if (this.f2204bx != null && C0047bt.f862aa != null && C0047bt.f862aa.length > 0) {
                 int i6 = 0;
@@ -1353,7 +1266,7 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
     }
 
     /* renamed from: g */
-    private void m1415g(String str) throws IOException {
+    private void m1415g(String str) {
         byte[] bArrM1137c = C0053bz.m1137c((short) 4250, str);
         if (bArrM1137c == null) {
             m1442b("获取上传指令数据错误!");
@@ -1489,7 +1402,7 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
     }
 
     /* renamed from: w */
-    private void m1424w() throws Throwable {
+    private void m1424w() {
         if (f2112bv) {
             return;
         }
@@ -1804,7 +1717,7 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
     }
 
     /* renamed from: b */
-    public final void m1440b(int i) throws Throwable {
+    public final void m1440b(int i)  {
         m1424w();
         this.f2162bC = new int[6][4];
         C0055ca.f1892l = 0;
@@ -1963,7 +1876,7 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
     }
 
     /* renamed from: c */
-    public final void m1444c() throws Throwable {
+    public final void m1444c() {
         C0053bz.f1804a = (byte) 90;
         m1424w();
         if (C0088t.f2506a == 0) {
@@ -2022,7 +1935,7 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
         new RunnableC0070e(this, str, str2);
     }
 
-    public final void commandAction(Command command, Displayable displayable) throws Throwable {
+    public final void commandAction(Command command, Displayable displayable) {
         if (this.f2129aD == null) {
             return;
         }
@@ -3243,43 +3156,22 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
     }
 
     /* renamed from: k */
-    public final void m1457k() {
-        if (m1418j(C0047bt.f865ad)) {
-            RecordStore recordStoreM1395a = null;
-            try {
-                recordStoreM1395a = m1395a(C0047bt.f865ad, false);
-                DataInputStream dataInputStreamM1389a = m1389a(recordStoreM1395a);
-                for (int i = 0; i < C0015ao.f145aW.length; i++) {
-                    if (i != 15) {
-                        C0015ao.f145aW[i] = dataInputStreamM1389a.readByte();
-                    }
+    public final void m1457k(){
+        if (!m1418j(C0047bt.f865ad)) {
+            return;
+        }
+        RecordStore recordStoreM1395a = m1395a(C0047bt.f865ad, false);
+        DataInputStream dataInputStreamM1389a = m1389a(recordStoreM1395a);
+        for (int i = 0; i < C0015ao.f145aW.length; i++) {
+            if (i != 15) {
+                try {
+                    C0015ao.f145aW[i] = dataInputStreamM1389a.readByte();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                if (recordStoreM1395a != null) {
-                    try {
-                        recordStoreM1395a.closeRecordStore();
-                    } catch (RecordStoreNotOpenException e) {
-                    } catch (RecordStoreException e2) {
-                    }
-                }
-            } catch (Exception e3) {
-                if (recordStoreM1395a != null) {
-                    try {
-                        recordStoreM1395a.closeRecordStore();
-                    } catch (RecordStoreNotOpenException e4) {
-                    } catch (RecordStoreException e5) {
-                    }
-                }
-            } catch (Throwable th) {
-                if (recordStoreM1395a != null) {
-                    try {
-                        recordStoreM1395a.closeRecordStore();
-                    } catch (RecordStoreNotOpenException e6) {
-                    } catch (RecordStoreException e7) {
-                    }
-                }
-                throw th;
             }
         }
+
     }
 
     protected final void keyPressed(int i) {
@@ -3544,7 +3436,6 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
                             m1399a(graphics);
                             break;
                         }
-                        break;
                     case 3:
                         m1410d(graphics);
                         break;
@@ -3684,7 +3575,6 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
     protected final void pointerPressed(int i, int i2) {
         int i3;
         int i4;
-        int i5;
         if (!C0088t.f2529o || this.f2146aj == null) {
             return;
         }
@@ -3800,16 +3690,24 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
                 RunnableC0066a runnableC0066a5 = c0071f.f2232b;
                 RunnableC0066a runnableC0066a6 = c0071f.f2232b;
                 int i12 = 0;
+                int i5;
                 while (true) {
                     if (i12 >= runnableC0066a6.f2196bo.length) {
-                        i5 = (C0088t.f2506a != 1 || i6 < (C0088t.f2516b - C0088t.f2523i.stringWidth("退出")) + (-4) || i6 > C0088t.f2516b + (-4) || i7 < (C0088t.f2517c - C0088t.f2524j) + (-4) || i7 > C0088t.f2517c + (-4)) ? 0 : 536870912;
-                    } else if (i6 <= ((C0088t.f2516b - runnableC0066a6.f2193bi.getWidth()) >> 1) || i6 >= ((C0088t.f2516b - runnableC0066a6.f2193bi.getWidth()) >> 1) + runnableC0066a6.f2193bi.getWidth() || i7 <= (runnableC0066a6.f2201bt << 1) + runnableC0066a6.f2192bh.getHeight() + (runnableC0066a6.f2193bi.getHeight() * i12) || i7 >= (runnableC0066a6.f2201bt << 1) + runnableC0066a6.f2192bh.getHeight() + ((i12 + 1) * runnableC0066a6.f2193bi.getHeight())) {
-                        i12++;
-                    } else {
+                        if (C0088t.f2506a != 1 || i6 < C0088t.f2516b - C0088t.f2523i.stringWidth("退出") + -4 || i6 > C0088t.f2516b + -4 || i7 < C0088t.f2517c - C0088t.f2524j + -4 || i7 > C0088t.f2517c + -4) {
+                            i5 = 0;
+                            break;
+                        } else {
+                            i5 = 536870912;
+                            break;
+                        }
+                    }
+                    if (i6 > C0088t.f2516b - runnableC0066a6.f2193bi.getWidth() >> 1 && i6 < ((C0088t.f2516b - runnableC0066a6.f2193bi.getWidth()) >> 1) + runnableC0066a6.f2193bi.getWidth() && i7 > (runnableC0066a6.f2201bt << 1) + runnableC0066a6.f2192bh.getHeight() + (runnableC0066a6.f2193bi.getHeight() * i12) && i7 < (runnableC0066a6.f2201bt << 1) + runnableC0066a6.f2192bh.getHeight() + ((i12 + 1) * runnableC0066a6.f2193bi.getHeight())) {
                         runnableC0066a6.f2200bs = i12;
                         runnableC0066a6.f2148al = 0L;
                         i5 = 1073741824;
+                        break;
                     }
+                    i12++;
                 }
                 runnableC0066a5.f2126a = i5;
                 return;
@@ -3866,7 +3764,7 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public final void run() throws Throwable {
+    public final void run() {
         int length;
         int i;
         String str;
@@ -4281,11 +4179,13 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
             if (jCurrentTimeMillis > 0) {
                 try {
                     Thread.sleep(jCurrentTimeMillis);
-                } catch (Exception e2) {
-                    e2.printStackTrace();
+                } catch (InterruptedException ignored) {
                 }
             } else {
-                Thread.sleep(1L);
+                try {
+                    Thread.sleep(1L);
+                } catch (InterruptedException e) {
+                }
             }
         }
         if (f2115i != null) {
