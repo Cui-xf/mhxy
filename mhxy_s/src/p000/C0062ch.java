@@ -148,7 +148,7 @@ public final class C0062ch {
     }
 
     /* renamed from: a */
-    public final void m1357a(int i) throws IOException {
+    public final void m1357a(int i){
         C0041bn c0041bn;
         byte b = 2;
         if (f2009t == 1) {

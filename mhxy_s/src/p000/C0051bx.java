@@ -1,6 +1,7 @@
 package p000;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 
 /* renamed from: bx */
 /* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
@@ -39,7 +40,7 @@ public final class C0051bx {
     }
 
     /* renamed from: a */
-    public final void m1020a(DataInputStream dataInputStream, boolean z) {
+    public final void m1020a(DataInputStream dataInputStream, boolean z) throws IOException {
         this.f1794b = dataInputStream.readShort();
         this.f1795c = dataInputStream.readByte();
         this.f1797e = dataInputStream.readShort();

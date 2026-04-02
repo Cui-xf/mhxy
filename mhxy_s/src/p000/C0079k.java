@@ -232,7 +232,7 @@ public final class C0079k {
     }
 
     /* renamed from: a */
-    public final void m1580a(int i) throws IOException {
+    public final void m1580a(int i)  {
         if (this.f2290i.f359l == 0) {
             if (this.f2291j.f2149aq != null) {
                 this.f2291j.f2149aq.mo70b(i);

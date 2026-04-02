@@ -143,7 +143,7 @@ public final class C0031bd implements CommandListener {
     }
 
     /* renamed from: a */
-    public final byte[] m639a(short s, String str, String str2) throws IOException {
+    public final byte[] m639a(short s, String str, String str2){
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);

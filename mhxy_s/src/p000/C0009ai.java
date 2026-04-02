@@ -1,9 +1,10 @@
 package p000;
 
 import com.yinhan.kjava.main.RunnableC0066a;
-import java.io.UnsupportedEncodingException;
+
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
+import java.io.UnsupportedEncodingException;
 
 /* renamed from: ai */
 /* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
@@ -188,81 +189,58 @@ public final class C0009ai {
         this.f91w = Math.min((int) c0023aw.f462g, this.f89u + (graphics.getClipWidth() / c0023aw.f458c) + 1);
         this.f92x = Math.min((int) c0023aw.f463h, this.f90v + (graphics.getClipHeight() / c0023aw.f459d) + 1);
         if (c0023aw.f465j != null) {
-            int i4 = this.f89u;
-            while (true) {
-                int i5 = i4;
-                if (i5 >= this.f91w) {
-                    break;
-                }
-                int i6 = this.f90v;
-                while (true) {
-                    int i7 = i6;
-                    if (i7 < this.f92x) {
-                        if (c0023aw.f465j[i5][i7] != null && (((c0023aw.f458c * i5) - i) + c0023aw.f458c) - graphics.getClipX() > 0 && ((c0023aw.f458c * i5) - i) - graphics.getClipX() < graphics.getClipWidth() && (((c0023aw.f459d * i7) - i2) + c0023aw.f459d) - graphics.getClipY() > 0 && ((c0023aw.f459d * i7) - i2) - graphics.getClipY() < graphics.getClipHeight()) {
-                            if (!m50b(i5, i7) || C0047bt.f1214hH == null) {
-                                m65a(graphics, c0023aw.f465j[i5][i7], (int[]) null, 0, 0, (c0023aw.f458c * i5) - i, (c0023aw.f459d * i7) - i2, i3);
-                            } else {
-                                m63a(graphics, C0047bt.f1214hH, (int[]) null, C0047bt.f1215hI, 0, 0, (c0023aw.f458c * i5) - i, (c0023aw.f459d * i7) - i2, 0, i3);
-                            }
+            for (int var7 = this.f89u; var7 < this.f91w; var7++) {
+                for (int var8 = this.f90v; var8 < this.f92x; var8++) {
+                    if (c0023aw.f465j[var7][var8] != null
+                            && (((c0023aw.f458c * var7) - i) + c0023aw.f458c) - graphics.getClipX() > 0
+                            && ((c0023aw.f458c * var7) - i) - graphics.getClipX() < graphics.getClipWidth()
+                            && (((c0023aw.f459d * var8) - i2) + c0023aw.f459d) - graphics.getClipY() > 0
+                            && ((c0023aw.f459d * var8) - i2) - graphics.getClipY() < graphics.getClipHeight()
+                    ) {
+                        if (m50b(var7, var8) && C0047bt.f1214hH != null) {
+                            m63a(graphics, C0047bt.f1214hH, (int[]) null, C0047bt.f1215hI, 0, 0, (c0023aw.f458c * var7) - i, (c0023aw.f459d * var8) - i2, 0, i3);
+                        } else {
+                            m65a(graphics, c0023aw.f465j[var7][var8], (int[]) null, 0, 0, (c0023aw.f458c * var7) - i, (c0023aw.f459d * var8) - i2, i3);
                         }
-                        i6 = i7 + 1;
                     }
                 }
-                i4 = i5 + 1;
             }
         }
+
         if (c0023aw.f466k != null) {
-            int i8 = 0;
-            while (true) {
-                int i9 = i8;
-                if (i9 >= c0023aw.f466k.length) {
-                    break;
-                }
-                if (c0023aw.f466k[i9] != null) {
-                    m58a(c0023aw.f466k[i9], this.f76g);
-                    if (((c0023aw.f466k[i9].f1797e - i) + this.f76g[0]) - graphics.getClipX() > 0 && (c0023aw.f466k[i9].f1797e - i) - graphics.getClipX() < graphics.getClipWidth() && ((c0023aw.f466k[i9].f1798f - i2) + this.f76g[1]) - graphics.getClipY() > 0 && (c0023aw.f466k[i9].f1798f - i2) - graphics.getClipY() < graphics.getClipHeight()) {
-                        m65a(graphics, c0023aw.f466k[i9], (int[]) null, i, i2, c0023aw.f466k[i9].f1797e, c0023aw.f466k[i9].f1798f, i3);
+            for (int var9 = 0; var9 < c0023aw.f466k.length; var9++) {
+                if (c0023aw.f466k[var9] != null) {
+                    m58a(c0023aw.f466k[var9], this.f76g);
+                    if (((c0023aw.f466k[var9].f1797e - i) + this.f76g[0]) - graphics.getClipX() > 0 && (c0023aw.f466k[var9].f1797e - i) - graphics.getClipX() < graphics.getClipWidth() && ((c0023aw.f466k[var9].f1798f - i2) + this.f76g[1]) - graphics.getClipY() > 0 && (c0023aw.f466k[var9].f1798f - i2) - graphics.getClipY() < graphics.getClipHeight()) {
+                        m65a(graphics, c0023aw.f466k[var9], (int[]) null, i, i2, c0023aw.f466k[var9].f1797e, c0023aw.f466k[var9].f1798f, i3);
                     }
                 }
-                i8 = i9 + 1;
             }
         }
+
         if (c0023aw.f467l != null) {
-            int i10 = 0;
-            while (true) {
-                int i11 = i10;
-                if (i11 >= c0023aw.f467l.length) {
-                    break;
-                }
-                if (c0023aw.f467l[i11] != null && c0023aw.f467l[i11].f1793a != null && (c0023aw.f467l[i11].f1793a.f1956o != 2 || ((C0030bc) c0023aw.f467l[i11].f1793a).f571k == null || ((C0030bc) c0023aw.f467l[i11].f1793a).f571k.length <= 1)) {
-                    m58a(c0023aw.f467l[i11], this.f76g);
-                    if (((c0023aw.f467l[i11].f1797e - i) + this.f76g[0]) - graphics.getClipX() > 0 && (c0023aw.f467l[i11].f1797e - i) - graphics.getClipX() < graphics.getClipWidth() && ((c0023aw.f467l[i11].f1798f - i2) + this.f76g[1]) - graphics.getClipY() > 0 && (c0023aw.f467l[i11].f1798f - i2) - graphics.getClipY() < graphics.getClipHeight()) {
-                        m65a(graphics, c0023aw.f467l[i11], (int[]) null, i, i2, c0023aw.f467l[i11].f1797e, c0023aw.f467l[i11].f1798f, i3);
+            for (int var10 = 0; var10 < c0023aw.f467l.length; var10++) {
+                if (c0023aw.f467l[var10] != null && c0023aw.f467l[var10].f1793a != null && (c0023aw.f467l[var10].f1793a.f1956o != 2 || ((C0030bc) c0023aw.f467l[var10].f1793a).f571k == null || ((C0030bc) c0023aw.f467l[var10].f1793a).f571k.length <= 1)) {
+                    m58a(c0023aw.f467l[var10], this.f76g);
+                    if (((c0023aw.f467l[var10].f1797e - i) + this.f76g[0]) - graphics.getClipX() > 0 && (c0023aw.f467l[var10].f1797e - i) - graphics.getClipX() < graphics.getClipWidth() && ((c0023aw.f467l[var10].f1798f - i2) + this.f76g[1]) - graphics.getClipY() > 0 && (c0023aw.f467l[var10].f1798f - i2) - graphics.getClipY() < graphics.getClipHeight()) {
+                        m65a(graphics, c0023aw.f467l[var10], (int[]) null, i, i2, c0023aw.f467l[var10].f1797e, c0023aw.f467l[var10].f1798f, i3);
                     }
                 }
-                i10 = i11 + 1;
             }
         }
-        if (C0047bt.f1766t == null || !z) {
-            return;
-        }
-        int i12 = 0;
-        while (true) {
-            int i13 = i12;
-            if (i13 >= C0047bt.f1766t.length) {
-                return;
-            }
-            if (C0047bt.f1766t[i13] != null) {
-                if (C0015ao.f145aW[3] == 0 && C0047bt.f1766t[i13].f510b != null) {
-                    graphics.setFont(C0088t.f2523i);
-                    C0055ca.m1298a(graphics, C0047bt.f1766t[i13].f510b, C0047bt.f1766t[i13].f511c - i, ((C0047bt.f1766t[i13].f512d - (C0047bt.f1766t[i13].f531w == null ? (short) 30 : C0047bt.f1766t[i13].f531w.m636j())) - C0088t.f2524j) - i2, 17, 255, 16777215);
-                }
-                if (C0047bt.f1766t[i13].f531w != null && C0047bt.f1766t[i13].f531w.f571k != null && C0015ao.f145aW[10] == 1) {
-                    m66a(graphics, C0047bt.f1766t[i13].f531w.f571k[C0047bt.f1766t[i13].f531w.f566f], C0047bt.f1766t[i13].f531w.m633g(), C0047bt.f1766t[i13].f531w.m634h(), null, i, i2, C0047bt.f1766t[i13].f511c, C0047bt.f1766t[i13].f512d, 20, i3);
-                    graphics.setFont(C0088t.f2523i);
+        if (C0047bt.f1766t != null && z) {
+            for (int var11 = 0; var11 < C0047bt.f1766t.length; var11++) {
+                if (C0047bt.f1766t[var11] != null) {
+                    if (C0015ao.f145aW[3] == 0 && C0047bt.f1766t[var11].f510b != null) {
+                        graphics.setFont(C0088t.f2523i);
+                        C0055ca.m1298a(graphics, C0047bt.f1766t[var11].f510b, C0047bt.f1766t[var11].f511c - i, ((C0047bt.f1766t[var11].f512d - (C0047bt.f1766t[var11].f531w == null ? (short) 30 : C0047bt.f1766t[var11].f531w.m636j())) - C0088t.f2524j) - i2, 17, 255, 16777215);
+                    }
+                    if (C0047bt.f1766t[var11].f531w != null && C0047bt.f1766t[var11].f531w.f571k != null && C0015ao.f145aW[10] == 1) {
+                        m66a(graphics, C0047bt.f1766t[var11].f531w.f571k[C0047bt.f1766t[var11].f531w.f566f], C0047bt.f1766t[var11].f531w.m633g(), C0047bt.f1766t[var11].f531w.m634h(), null, i, i2, C0047bt.f1766t[var11].f511c, C0047bt.f1766t[var11].f512d, 20, i3);
+                        graphics.setFont(C0088t.f2523i);
+                    }
                 }
             }
-            i12 = i13 + 1;
         }
     }
 

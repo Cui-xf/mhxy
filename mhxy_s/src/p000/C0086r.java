@@ -189,7 +189,7 @@ public final class C0086r {
     }
 
     /* renamed from: a */
-    public final void m1669a(int i) throws IOException {
+    public final void m1669a(int i) {
         C0041bn c0041bn;
         if (this.f2456i.f359l == 0) {
             if (this.f2457j.f2149aq != null) {

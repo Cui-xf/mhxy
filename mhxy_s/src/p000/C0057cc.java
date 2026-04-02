@@ -154,7 +154,7 @@ public final class C0057cc {
     }
 
     /* renamed from: a */
-    public final void m1335a(int i) throws IOException {
+    public final void m1335a(int i)  {
         if (this.f1913b.f359l == 0) {
             if (this.f1914c.f2149aq != null) {
                 this.f1914c.f2149aq.mo70b(i);

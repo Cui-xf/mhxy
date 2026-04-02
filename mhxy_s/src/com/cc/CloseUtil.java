@@ -3,7 +3,7 @@ package com.cc;
 import java.io.*;
 
 public class CloseUtil {
-    public static void close(ByteArrayInputStream bis, DataInputStream dis) {
+    public static void close(InputStream bis, DataInputStream dis) {
         if (bis != null) {
             try {
                 bis.close();

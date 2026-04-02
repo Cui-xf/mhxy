@@ -370,7 +370,7 @@ public final class C0061cg {
     }
 
     /* renamed from: b */
-    public final void m1352b(int i) throws IOException {
+    public final void m1352b(int i) {
         if (f1963F == 1) {
             f1963F = 0;
             this.f1993f.m1442b("宠物星级继承成功");

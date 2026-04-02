@@ -27,7 +27,7 @@ public final class C0048bu {
     /* renamed from: e */
     private C0001aa[] f1777e;
 
-    public C0048bu(String str, String str2) throws IOException {
+    public C0048bu(String str, String str2) {
         this.f1773a = str2;
         this.f1774b = str;
         m981e();
@@ -730,7 +730,7 @@ public final class C0048bu {
     }
 
     /* renamed from: e */
-    private void m981e() throws IOException {
+    private void m981e() {
         InputStream resourceAsStream = getClass().getResourceAsStream(new StringBuffer().append("/").append(this.f1773a).append(".rule").toString());
         DataInputStream dataInputStream = new DataInputStream(resourceAsStream);
         try {
@@ -751,14 +751,7 @@ public final class C0048bu {
             }
         } catch (IOException e2) {
             e2.printStackTrace();
-            if (resourceAsStream != null) {
-                try {
-                    resourceAsStream.close();
-                } catch (IOException e3) {
-                    return;
-                }
-            }
-            dataInputStream.close();
+            CloseUtil.close(resourceAsStream, dataInputStream);
         }
     }
 
@@ -1008,7 +1001,7 @@ public final class C0048bu {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public final void m999d() throws Throwable {
+    public final void m999d() {
         Throwable th;
         DataInputStream dataInputStream;
         Exception exc;

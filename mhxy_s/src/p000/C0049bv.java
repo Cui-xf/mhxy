@@ -1,6 +1,7 @@
 package p000;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
 /* renamed from: bv */
@@ -94,7 +95,7 @@ public final class C0049bv {
     }
 
     /* renamed from: a */
-    public final void m1004a(DataInputStream dataInputStream) {
+    public final void m1004a(DataInputStream dataInputStream) throws IOException {
         this.f1780c = dataInputStream.readInt();
         dataInputStream.readUTF();
         this.f1782e = dataInputStream.readShort();

@@ -1,10 +1,9 @@
 package p000;
 
+import javax.microedition.lcdui.Image;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import javax.microedition.lcdui.Image;
 
 /* renamed from: bf */
 /* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
@@ -106,15 +105,11 @@ public final class C0033bf extends AbstractC0060cf {
                 bArr3[i] = (byte) (iArr[i] >>> 24);
             }
         }
-        boolean z = false;
         for (int i = 0; i < bArr3.length; i++) {
             byte b = bArr3[i];
             if (b != -1) {
-                z = true;
+                throw new RuntimeException("崩溃检测?");
             }
-        }
-        if (z) {
-            new byte[1][0] = 0;
         }
     }
 
@@ -270,60 +265,52 @@ public final class C0033bf extends AbstractC0060cf {
         return this.f601d[i];
     }
 
-     // p000.AbstractC0060cf
+    // p000.AbstractC0060cf
     /* renamed from: a */
     public final void mo606a() {
     }
 
     /* renamed from: a */
     public final void m651a(byte[][] bArr, boolean z) throws IOException {
-        ByteArrayOutputStream byteArrayOutputStream;
         if (this.f602e == 0 && this.f603f == 0 && this.f604g == 0) {
-            byteArrayOutputStream = new ByteArrayOutputStream();
-            byteArrayOutputStream.write(C0009ai.f69b);
-            int i = 1;
-            while (i < bArr.length) {
-                if (bArr[i] != null && bArr[i].length > 4) {
-                    byteArrayOutputStream.write(m647a(C0009ai.f68a[i > 4 ? 4 : i], bArr[i]));
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            bos.write(C0009ai.f69b);
+            for (int var11 = 1; var11 < bArr.length; var11++) {
+                if (bArr[var11] != null && bArr[var11].length > 4) {
+                    bos.write(m647a(C0009ai.f68a[var11 > 4 ? 4 : var11], bArr[var11]));
                 }
-                i++;
             }
-            byteArrayOutputStream.write(C0009ai.f70c);
-            this.f598a = Image.createImage(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
-            return;
-        }
-        byteArrayOutputStream = new ByteArrayOutputStream();
-        byteArrayOutputStream.write(C0009ai.f69b);
-        int i2 = 1;
-        while (i2 < bArr.length) {
-            if (bArr[i2] != null && bArr[i2].length > 4) {
-                if (C0009ai.f68a[i2 > 4 ? 4 : i2].equals("PLTE")) {
-                    byte[] bArr2 = new byte[r1.length - 4];
-                    System.arraycopy(bArr[i2], 0, bArr2, 0, bArr2.length);
-                    int[] iArrM648a = m648a(m649a(bArr2, (byte[]) null), this.f602e * 100000, this.f603f * 100000, this.f604g * 100000, 0L, false);
-                    byte[] bArr3 = new byte[bArr2.length];
-                    m645a(bArr3, (byte[]) null, iArrM648a);
-                    System.arraycopy(bArr3, 0, bArr[i2], 0, bArr3.length);
-                    m646a(true, bArr3);
-                    byte[] bArr4 = bArr[i2];
-                    int length = bArr3.length;
-                    int i3 = this.f605i;
-                    bArr4[length] = (byte) (i3 >> 24);
-                    bArr4[length + 1] = (byte) (i3 >>> 16);
-                    bArr4[length + 2] = (byte) (i3 >>> 8);
-                    bArr4[length + 3] = (byte) i3;
+            bos.write(C0009ai.f70c);
+            this.f598a = Image.createImage(new ByteArrayInputStream(bos.toByteArray()));
+            bos.close();
+        } else {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            bos.write(C0009ai.f69b);
+            for (int var3 = 1; var3 < bArr.length; var3++) {
+                byte[] bytes = bArr[var3];
+                if (bytes != null && bytes.length > 4) {
+                    if (C0009ai.f68a[var3 > 4 ? 4 : var3].equals("PLTE")) {
+                        int length = bytes.length - 4;
+                        byte[] bArr2 = new byte[length];
+                        System.arraycopy(bytes, 0, bArr2, 0, bArr2.length);
+                        int[] iArrM648a = m648a(m649a(bArr2, (byte[]) null), this.f602e * 100000L, this.f603f * 100000L, this.f604g * 100000L, 0L, false);
+                        byte[] bArr3 = new byte[length];
+                        m645a(bArr3, (byte[]) null, iArrM648a);
+                        System.arraycopy(bArr3, 0, bytes, 0, bArr3.length);
+                        m646a(true, bArr3);
+                        int i3 = this.f605i;
+                        bytes[length] = (byte) (i3 >> 24);
+                        bytes[length + 1] = (byte) (i3 >>> 16);
+                        bytes[length + 2] = (byte) (i3 >>> 8);
+                        bytes[length + 3] = (byte) i3;
+                    }
+                    bos.write(m647a(C0009ai.f68a[var3 > 4 ? 4 : var3], bytes));
                 }
-                byteArrayOutputStream.write(m647a(C0009ai.f68a[i2 > 4 ? 4 : i2], bArr[i2]));
             }
-            i2++;
-        }
-        byteArrayOutputStream.write(C0009ai.f70c);
-        byte[] byteArray = byteArrayOutputStream.toByteArray();
-        try {
+            bos.write(C0009ai.f70c);
+            byte[] byteArray = bos.toByteArray();
             this.f598a = Image.createImage(byteArray, 0, byteArray.length);
-        } catch (Exception e) {
-        } finally {
-            byteArrayOutputStream.close();
+            bos.close();
         }
     }
 }

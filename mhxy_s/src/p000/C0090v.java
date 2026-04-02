@@ -98,7 +98,7 @@ public final class C0090v {
     }
 
     /* renamed from: e */
-    public static void m1689e(DataInputStream dataInputStream) throws IOException {
+    public static void m1689e(DataInputStream dataInputStream) {
         C0047bt.f1170gQ = dataInputStream.readShort();
         int i = dataInputStream.readShort();
         C0047bt.f1171gR = dataInputStream.readByte();
@@ -122,7 +122,7 @@ public final class C0090v {
     }
 
     /* renamed from: a */
-    public final void m1691a() throws IOException {
+    public final void m1691a() {
         byte[] bArrM1217m = C0053bz.m1217m((short) 4858, C0047bt.f865ad, C0047bt.f1170gQ);
         if (bArrM1217m == null) {
             this.f2560i.m1442b("获取上传指令数据错误!");
@@ -136,7 +136,7 @@ public final class C0090v {
     }
 
     /* renamed from: a */
-    public final void m1692a(byte b) throws IOException {
+    public final void m1692a(byte b) {
         byte[] bArrM1213m = C0053bz.m1213m((short) 4860, C0047bt.f865ad, b);
         if (bArrM1213m == null) {
             this.f2560i.m1442b("获取上传指令数据错误!");
@@ -231,7 +231,7 @@ public final class C0090v {
     }
 
     /* renamed from: b */
-    public final void m1698b(int i) throws IOException {
+    public final void m1698b(int i) {
         if (this.f2559h.f359l != 0) {
             if (this.f2559h.f359l != 1) {
                 if (this.f2559h.f359l == 2) {
@@ -373,7 +373,7 @@ public final class C0090v {
     }
 
     /* renamed from: c */
-    public final void m1701c(int i) throws IOException {
+    public final void m1701c(int i) {
         if (this.f2559h.f359l == 0) {
             if (this.f2560i.f2149aq != null) {
                 this.f2560i.f2149aq.mo70b(i);
@@ -508,7 +508,7 @@ public final class C0090v {
     }
 
     /* renamed from: e */
-    public final void m1706e() throws IOException {
+    public final void m1706e() {
         byte[] bArrM1222n = C0053bz.m1222n((short) 4862, C0047bt.f865ad, C0047bt.f1170gQ);
         if (bArrM1222n == null) {
             this.f2560i.m1442b("获取上传指令数据错误!");
@@ -522,7 +522,7 @@ public final class C0090v {
     }
 
     /* renamed from: e */
-    public final void m1707e(int i) throws IOException {
+    public final void m1707e(int i) {
         if (this.f2559h.f359l == 0) {
             if (this.f2560i.f2149aq != null) {
                 this.f2560i.f2149aq.mo70b(i);

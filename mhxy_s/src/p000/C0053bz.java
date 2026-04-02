@@ -1,5 +1,7 @@
 package p000;
 
+import com.cc.CloseUtil;
+
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -18,7 +20,7 @@ public final class C0053bz {
     public static int f1806c = 162;
 
     /* renamed from: A */
-    public static byte[] m1022A(short s, String str) throws IOException {
+    public static byte[] m1022A(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -36,7 +38,7 @@ public final class C0053bz {
     }
 
     /* renamed from: A */
-    public static byte[] m1023A(short s, String str, int i) throws IOException {
+    public static byte[] m1023A(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -55,7 +57,7 @@ public final class C0053bz {
     }
 
     /* renamed from: B */
-    public static byte[] m1024B(short s, String str) throws IOException {
+    public static byte[] m1024B(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -91,7 +93,7 @@ public final class C0053bz {
     }
 
     /* renamed from: D */
-    public static byte[] m1026D(short s, String str) throws IOException {
+    public static byte[] m1026D(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -161,24 +163,11 @@ public final class C0053bz {
 
     /* renamed from: a */
     private static void m1028a(ByteArrayOutputStream byteArrayOutputStream, DataOutputStream dataOutputStream) {
-        if (byteArrayOutputStream != null) {
-            try {
-                byteArrayOutputStream.close();
-            } catch (IOException e) {
-                return;
-            }
-        }
-        if (dataOutputStream != null) {
-            try {
-                dataOutputStream.close();
-            } catch (IOException e) {
-                return;
-            }
-        }
+        CloseUtil.close(byteArrayOutputStream, dataOutputStream);
     }
 
     /* renamed from: a */
-    public static byte[] m1029a(byte b) throws IOException {
+    public static byte[] m1029a(byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -197,7 +186,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1030a(byte b, byte b2, short s) throws IOException {
+    public static byte[] m1030a(byte b, byte b2, short s)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -221,7 +210,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1031a(byte b, int i, int i2, byte b2, byte b3) throws IOException {
+    public static byte[] m1031a(byte b, int i, int i2, byte b2, byte b3)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -244,7 +233,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1032a(byte b, int i, int i2, int i3) throws IOException {
+    public static byte[] m1032a(byte b, int i, int i2, int i3)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -261,7 +250,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1033a(byte b, int i, int i2, int[] iArr, int i3, byte b2) throws IOException {
+    public static byte[] m1033a(byte b, int i, int i2, int[] iArr, int i3, byte b2) {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -293,7 +282,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1034a(byte b, int i, int i2, int[] iArr, byte[] bArr, int i3, byte b2, String str) throws IOException {
+    public static byte[] m1034a(byte b, int i, int i2, int[] iArr, byte[] bArr, int i3, byte b2, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -329,7 +318,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1035a(byte b, String str, int i) throws IOException {
+    public static byte[] m1035a(byte b, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -354,7 +343,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1036a(int i) throws IOException {
+    public static byte[] m1036a(int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -373,7 +362,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1037a(short s) throws IOException {
+    public static byte[] m1037a(short s)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -388,7 +377,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1038a(short s, byte b) throws IOException {
+    public static byte[] m1038a(short s, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -406,7 +395,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1039a(short s, byte b, byte b2, byte b3, byte b4, String str) throws IOException {
+    public static byte[] m1039a(short s, byte b, byte b2, byte b3, byte b4, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -428,7 +417,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1040a(short s, byte b, int i, int i2, String str, String str2, String str3, String str4, String str5, int i3, int i4) throws IOException {
+    public static byte[] m1040a(short s, byte b, int i, int i2, String str, String str2, String str3, String str4, String str5, int i3, int i4)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -453,7 +442,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1041a(short s, byte b, long j, String str) throws IOException {
+    public static byte[] m1041a(short s, byte b, long j, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -473,7 +462,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1042a(short s, byte b, String str) throws IOException {
+    public static byte[] m1042a(short s, byte b, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -492,7 +481,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1043a(short s, byte b, String str, byte b2, String str2) throws IOException {
+    public static byte[] m1043a(short s, byte b, String str, byte b2, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -513,7 +502,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1044a(short s, byte b, String str, String str2, boolean z, String str3, String str4, int i, String str5) throws IOException {
+    public static byte[] m1044a(short s, byte b, String str, String str2, boolean z, String str3, String str4, int i, String str5)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -542,7 +531,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1045a(short s, byte b, short s2, String str) throws IOException {
+    public static byte[] m1045a(short s, byte b, short s2, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -586,7 +575,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1047a(short s, int i, byte b, byte b2, String str) throws IOException {
+    public static byte[] m1047a(short s, int i, byte b, byte b2, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -607,7 +596,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1048a(short s, int i, byte b, int i2, int i3, byte b2, String str, String str2) throws IOException {
+    public static byte[] m1048a(short s, int i, byte b, int i2, int i3, byte b2, String str, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -651,7 +640,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1050a(short s, int i, int i2, byte b, String str) throws IOException {
+    public static byte[] m1050a(short s, int i, int i2, byte b, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -672,7 +661,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1051a(short s, int i, int i2, String str) throws IOException {
+    public static byte[] m1051a(short s, int i, int i2, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -692,7 +681,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1052a(short s, int i, long j, byte b, byte b2, int i2, byte[] bArr, String str) throws IOException {
+    public static byte[] m1052a(short s, int i, long j, byte b, byte b2, int i2, byte[] bArr, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -726,7 +715,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1053a(short s, int i, long j, byte b, int[] iArr, byte[] bArr, int i2, byte b2, String str) throws IOException {
+    public static byte[] m1053a(short s, int i, long j, byte b, int[] iArr, byte[] bArr, int i2, byte b2, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -762,7 +751,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1054a(short s, String str) throws IOException {
+    public static byte[] m1054a(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -780,7 +769,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1055a(short s, String str, byte b) throws IOException {
+    public static byte[] m1055a(short s, String str, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -799,7 +788,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1056a(short s, String str, byte b, byte b2) throws IOException {
+    public static byte[] m1056a(short s, String str, byte b, byte b2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -819,7 +808,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1057a(short s, String str, byte b, byte b2, int i) throws IOException {
+    public static byte[] m1057a(short s, String str, byte b, byte b2, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -840,7 +829,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1058a(short s, String str, byte b, int i, byte b2) throws IOException {
+    public static byte[] m1058a(short s, String str, byte b, int i, byte b2)  {
         byte[] byteArray;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -868,7 +857,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1059a(short s, String str, byte b, int i, int i2) throws IOException {
+    public static byte[] m1059a(short s, String str, byte b, int i, int i2)  {
         byte[] byteArray;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -896,7 +885,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1060a(short s, String str, byte b, int i, String str2, short s2, short s3) throws IOException {
+    public static byte[] m1060a(short s, String str, byte b, int i, String str2, short s2, short s3)  {
         byte[] byteArray;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -926,7 +915,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1061a(short s, String str, byte b, int i, short s2, short s3, String str2) throws IOException {
+    public static byte[] m1061a(short s, String str, byte b, int i, short s2, short s3, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -949,31 +938,26 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1062a(short s, String str, byte b, C0049bv c0049bv) throws IOException {
-        byte[] byteArray;
+    public static byte[] m1062a(short s, String str, byte b, C0049bv c0049bv) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         try {
-            try {
-                dataOutputStream.writeByte(-82);
-                dataOutputStream.writeShort(4360);
-                dataOutputStream.writeByte(b);
-                dataOutputStream.writeInt(c0049bv.f1780c);
-                dataOutputStream.writeShort(c0049bv.f1782e);
-                dataOutputStream.writeShort(c0049bv.f1783f);
-                dataOutputStream.writeUTF(C0047bt.f888b);
-                dataOutputStream.writeUTF(C0047bt.f994d);
-                dataOutputStream.writeUTF(str);
-                dataOutputStream.writeByte(-81);
-                byteArray = byteArrayOutputStream.toByteArray();
-            } catch (IOException e) {
-                e.printStackTrace();
-                m1028a(byteArrayOutputStream, dataOutputStream);
-                byteArray = null;
-            }
-            return byteArray;
+            dataOutputStream.writeByte(-82);
+            dataOutputStream.writeShort(4360);
+            dataOutputStream.writeByte(b);
+            dataOutputStream.writeInt(c0049bv.f1780c);
+            dataOutputStream.writeShort(c0049bv.f1782e);
+            dataOutputStream.writeShort(c0049bv.f1783f);
+            dataOutputStream.writeUTF(C0047bt.f888b);
+            dataOutputStream.writeUTF(C0047bt.f994d);
+            dataOutputStream.writeUTF(str);
+            dataOutputStream.writeByte(-81);
+            return byteArrayOutputStream.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         } finally {
-            m1028a(byteArrayOutputStream, dataOutputStream);
+            CloseUtil.close(byteArrayOutputStream, dataOutputStream);
         }
     }
 
@@ -998,7 +982,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1064a(short s, String str, byte b, String str2, String str3) throws IOException {
+    public static byte[] m1064a(short s, String str, byte b, String str2, String str3)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1019,7 +1003,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1065a(short s, String str, byte b, short s2) throws IOException {
+    public static byte[] m1065a(short s, String str, byte b, short s2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1039,7 +1023,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1066a(short s, String str, byte b, short s2, short s3) throws IOException {
+    public static byte[] m1066a(short s, String str, byte b, short s2, short s3)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1060,7 +1044,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1067a(short s, String str, int i) throws IOException {
+    public static byte[] m1067a(short s, String str, int i) {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1079,7 +1063,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1068a(short s, String str, int i, byte b) throws IOException {
+    public static byte[] m1068a(short s, String str, int i, byte b) {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1099,7 +1083,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1069a(short s, String str, int i, byte b, byte b2) throws IOException {
+    public static byte[] m1069a(short s, String str, int i, byte b, byte b2) {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1120,7 +1104,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1070a(short s, String str, int i, byte b, byte b2, int i2) throws IOException {
+    public static byte[] m1070a(short s, String str, int i, byte b, byte b2, int i2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1142,7 +1126,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1071a(short s, String str, int i, byte b, long j) throws IOException {
+    public static byte[] m1071a(short s, String str, int i, byte b, long j)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1163,7 +1147,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1072a(short s, String str, int i, int i2) throws IOException {
+    public static byte[] m1072a(short s, String str, int i, int i2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1183,7 +1167,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1073a(short s, String str, int i, int i2, byte b) throws IOException {
+    public static byte[] m1073a(short s, String str, int i, int i2, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1204,7 +1188,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1074a(short s, String str, int i, int i2, int i3) throws IOException {
+    public static byte[] m1074a(short s, String str, int i, int i2, int i3)  {
         if (str == null || str.equals("") || i < 0 || i2 < 0 || i2 > 9 || i3 < 0) {
             return null;
         }
@@ -1228,7 +1212,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1075a(short s, String str, int i, int i2, long j) throws IOException {
+    public static byte[] m1075a(short s, String str, int i, int i2, long j)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1249,7 +1233,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1076a(short s, String str, int i, int i2, short s2) throws IOException {
+    public static byte[] m1076a(short s, String str, int i, int i2, short s2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1270,7 +1254,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1077a(short s, String str, int i, int i2, short s2, long j) throws IOException {
+    public static byte[] m1077a(short s, String str, int i, int i2, short s2, long j)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1292,7 +1276,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1078a(short s, String str, int i, int i2, short s2, short s3) throws IOException {
+    public static byte[] m1078a(short s, String str, int i, int i2, short s2, short s3)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1314,7 +1298,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1079a(short s, String str, int i, String str2) throws IOException {
+    public static byte[] m1079a(short s, String str, int i, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1334,7 +1318,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1080a(short s, String str, int i, short s2) throws IOException {
+    public static byte[] m1080a(short s, String str, int i, short s2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1354,7 +1338,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1081a(short s, String str, int i, short s2, short s3) throws IOException {
+    public static byte[] m1081a(short s, String str, int i, short s2, short s3)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1375,7 +1359,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1082a(short s, String str, int i, short[] sArr) throws IOException {
+    public static byte[] m1082a(short s, String str, int i, short[] sArr)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1416,7 +1400,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1084a(short s, String str, long j, byte b) throws IOException {
+    public static byte[] m1084a(short s, String str, long j, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1436,7 +1420,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1085a(short s, String str, long j, int i) throws IOException {
+    public static byte[] m1085a(short s, String str, long j, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1508,7 +1492,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1088a(short s, String str, String str2) throws IOException {
+    public static byte[] m1088a(short s, String str, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1545,7 +1529,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1090a(short s, String str, String str2, byte b, String str3, int i) throws IOException {
+    public static byte[] m1090a(short s, String str, String str2, byte b, String str3, int i)  {
         byte[] byteArray;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1574,7 +1558,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1091a(short s, String str, String str2, byte b, short s2, short s3) throws IOException {
+    public static byte[] m1091a(short s, String str, String str2, byte b, short s2, short s3)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1594,7 +1578,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1092a(short s, String str, String str2, int i) throws IOException {
+    public static byte[] m1092a(short s, String str, String str2, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1614,7 +1598,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1093a(short s, String str, String str2, long j) throws IOException {
+    public static byte[] m1093a(short s, String str, String str2, long j)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1634,7 +1618,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1094a(short s, String str, String str2, String str3) throws IOException {
+    public static byte[] m1094a(short s, String str, String str2, String str3)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1654,7 +1638,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1095a(short s, String str, String str2, String str3, int i) throws IOException {
+    public static byte[] m1095a(short s, String str, String str2, String str3, int i)  {
         byte[] byteArray;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1682,7 +1666,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1096a(short s, String str, String str2, String str3, int i, int i2) throws IOException {
+    public static byte[] m1096a(short s, String str, String str2, String str3, int i, int i2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1704,7 +1688,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1097a(short s, String str, String str2, String str3, int i, String str4) throws IOException {
+    public static byte[] m1097a(short s, String str, String str2, String str3, int i, String str4)  {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         try {
@@ -1731,7 +1715,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1098a(short s, String str, String str2, String str3, long j) throws IOException {
+    public static byte[] m1098a(short s, String str, String str2, String str3, long j)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1752,7 +1736,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1099a(short s, String str, String str2, String str3, boolean z) throws IOException {
+    public static byte[] m1099a(short s, String str, String str2, String str3, boolean z)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1793,7 +1777,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1101a(short s, String str, String str2, short s2, short s3) throws IOException {
+    public static byte[] m1101a(short s, String str, String str2, short s2, short s3)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1812,7 +1796,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1102a(short s, String str, String str2, boolean z) throws IOException {
+    public static byte[] m1102a(short s, String str, String str2, boolean z)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1832,7 +1816,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1103a(short s, String str, short s2) throws IOException {
+    public static byte[] m1103a(short s, String str, short s2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1851,7 +1835,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1104a(short s, String str, short s2, byte b) throws IOException {
+    public static byte[] m1104a(short s, String str, short s2, byte b)  {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         try {
@@ -1876,7 +1860,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1105a(short s, String str, short s2, int i) throws IOException {
+    public static byte[] m1105a(short s, String str, short s2, int i)  {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         try {
@@ -1901,7 +1885,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1106a(short s, String str, short s2, int i, String str2, String str3) throws IOException {
+    public static byte[] m1106a(short s, String str, short s2, int i, String str2, String str3)  {
         byte[] byteArray;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1933,7 +1917,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1107a(short s, String str, short[] sArr) throws IOException {
+    public static byte[] m1107a(short s, String str, short[] sArr)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1954,7 +1938,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1108a(short s, short s2, String str) throws IOException {
+    public static byte[] m1108a(short s, short s2, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1973,7 +1957,7 @@ public final class C0053bz {
     }
 
     /* renamed from: a */
-    public static byte[] m1109a(short s, short[] sArr, String str) throws IOException {
+    public static byte[] m1109a(short s, short[] sArr, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -1994,7 +1978,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1110b(byte b, int i, int i2, int i3) throws IOException {
+    public static byte[] m1110b(byte b, int i, int i2, int i3)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2016,7 +2000,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1111b(int i) throws IOException {
+    public static byte[] m1111b(int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2035,7 +2019,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1112b(short s) throws IOException {
+    public static byte[] m1112b(short s)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2073,7 +2057,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1114b(short s, byte b, String str) throws IOException {
+    public static byte[] m1114b(short s, byte b, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2112,7 +2096,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1116b(short s, int i, int i2, String str) throws IOException {
+    public static byte[] m1116b(short s, int i, int i2, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2132,7 +2116,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1117b(short s, String str) throws IOException {
+    public static byte[] m1117b(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2152,7 +2136,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1118b(short s, String str, byte b) throws IOException {
+    public static byte[] m1118b(short s, String str, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2171,7 +2155,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1119b(short s, String str, byte b, byte b2) throws IOException {
+    public static byte[] m1119b(short s, String str, byte b, byte b2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2211,7 +2195,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1121b(short s, String str, byte b, short s2) throws IOException {
+    public static byte[] m1121b(short s, String str, byte b, short s2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2231,7 +2215,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1122b(short s, String str, int i) throws IOException {
+    public static byte[] m1122b(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2250,7 +2234,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1123b(short s, String str, int i, byte b) throws IOException {
+    public static byte[] m1123b(short s, String str, int i, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2270,7 +2254,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1124b(short s, String str, int i, int i2) throws IOException {
+    public static byte[] m1124b(short s, String str, int i, int i2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2290,7 +2274,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1125b(short s, String str, int i, int i2, byte b) throws IOException {
+    public static byte[] m1125b(short s, String str, int i, int i2, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2311,7 +2295,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1126b(short s, String str, int i, int i2, int i3) throws IOException {
+    public static byte[] m1126b(short s, String str, int i, int i2, int i3) {
         byte[] byteArray;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2339,7 +2323,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1127b(short s, String str, int i, int i2, long j) throws IOException {
+    public static byte[] m1127b(short s, String str, int i, int i2, long j)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2360,7 +2344,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1128b(short s, String str, int i, int i2, short s2) throws IOException {
+    public static byte[] m1128b(short s, String str, int i, int i2, short s2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2420,7 +2404,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1131b(short s, String str, String str2, int i) throws IOException {
+    public static byte[] m1131b(short s, String str, String str2, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2440,7 +2424,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1132b(short s, String str, String str2, String str3) throws IOException {
+    public static byte[] m1132b(short s, String str, String str2, String str3)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2460,7 +2444,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1133b(short s, String str, String str2, String str3, int i, int i2) throws IOException {
+    public static byte[] m1133b(short s, String str, String str2, String str3, int i, int i2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2482,7 +2466,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1134b(short s, String str, String str2, short s2) throws IOException {
+    public static byte[] m1134b(short s, String str, String str2, short s2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2502,7 +2486,7 @@ public final class C0053bz {
     }
 
     /* renamed from: b */
-    public static byte[] m1135b(short s, String str, short s2) throws IOException {
+    public static byte[] m1135b(short s, String str, short s2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2521,7 +2505,7 @@ public final class C0053bz {
     }
 
     /* renamed from: c */
-    public static byte[] m1136c(short s, byte b, String str) throws IOException {
+    public static byte[] m1136c(short s, byte b, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2564,7 +2548,7 @@ public final class C0053bz {
     }
 
     /* renamed from: c */
-    public static byte[] m1137c(short s, String str) throws IOException {
+    public static byte[] m1137c(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2582,7 +2566,7 @@ public final class C0053bz {
     }
 
     /* renamed from: c */
-    public static byte[] m1138c(short s, String str, byte b) throws IOException {
+    public static byte[] m1138c(short s, String str, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2601,7 +2585,7 @@ public final class C0053bz {
     }
 
     /* renamed from: c */
-    public static byte[] m1139c(short s, String str, byte b, byte b2) throws IOException {
+    public static byte[] m1139c(short s, String str, byte b, byte b2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2643,7 +2627,7 @@ public final class C0053bz {
     }
 
     /* renamed from: c */
-    public static byte[] m1141c(short s, String str, byte b, short s2) throws IOException {
+    public static byte[] m1141c(short s, String str, byte b, short s2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2663,7 +2647,7 @@ public final class C0053bz {
     }
 
     /* renamed from: c */
-    public static byte[] m1142c(short s, String str, int i) throws IOException {
+    public static byte[] m1142c(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2682,7 +2666,7 @@ public final class C0053bz {
     }
 
     /* renamed from: c */
-    public static byte[] m1143c(short s, String str, int i, byte b) throws IOException {
+    public static byte[] m1143c(short s, String str, int i, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2702,7 +2686,7 @@ public final class C0053bz {
     }
 
     /* renamed from: c */
-    public static byte[] m1144c(short s, String str, int i, int i2) throws IOException {
+    public static byte[] m1144c(short s, String str, int i, int i2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2722,7 +2706,7 @@ public final class C0053bz {
     }
 
     /* renamed from: c */
-    public static byte[] m1145c(short s, String str, int i, int i2, byte b) throws IOException {
+    public static byte[] m1145c(short s, String str, int i, int i2, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2743,7 +2727,7 @@ public final class C0053bz {
     }
 
     /* renamed from: c */
-    public static byte[] m1146c(short s, String str, String str2) throws IOException {
+    public static byte[] m1146c(short s, String str, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2762,7 +2746,7 @@ public final class C0053bz {
     }
 
     /* renamed from: c */
-    public static byte[] m1147c(short s, String str, String str2, byte b) throws IOException {
+    public static byte[] m1147c(short s, String str, String str2, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2782,7 +2766,7 @@ public final class C0053bz {
     }
 
     /* renamed from: c */
-    public static byte[] m1148c(short s, String str, String str2, String str3) throws IOException {
+    public static byte[] m1148c(short s, String str, String str2, String str3)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2802,7 +2786,7 @@ public final class C0053bz {
     }
 
     /* renamed from: c */
-    public static byte[] m1149c(short s, String str, String str2, short s2) throws IOException {
+    public static byte[] m1149c(short s, String str, String str2, short s2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2822,7 +2806,7 @@ public final class C0053bz {
     }
 
     /* renamed from: c */
-    public static byte[] m1150c(short s, String str, short s2) throws IOException {
+    public static byte[] m1150c(short s, String str, short s2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2841,7 +2825,7 @@ public final class C0053bz {
     }
 
     /* renamed from: d */
-    public static byte[] m1151d(short s, byte b, String str) throws IOException {
+    public static byte[] m1151d(short s, byte b, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2861,7 +2845,7 @@ public final class C0053bz {
     }
 
     /* renamed from: d */
-    public static byte[] m1152d(short s, String str) throws IOException {
+    public static byte[] m1152d(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2879,7 +2863,7 @@ public final class C0053bz {
     }
 
     /* renamed from: d */
-    public static byte[] m1153d(short s, String str, byte b) throws IOException {
+    public static byte[] m1153d(short s, String str, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2898,7 +2882,7 @@ public final class C0053bz {
     }
 
     /* renamed from: d */
-    public static byte[] m1154d(short s, String str, int i) throws IOException {
+    public static byte[] m1154d(short s, String str, int i) {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2917,7 +2901,7 @@ public final class C0053bz {
     }
 
     /* renamed from: d */
-    public static byte[] m1155d(short s, String str, int i, byte b) throws IOException {
+    public static byte[] m1155d(short s, String str, int i, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2937,7 +2921,7 @@ public final class C0053bz {
     }
 
     /* renamed from: d */
-    public static byte[] m1156d(short s, String str, int i, int i2) throws IOException {
+    public static byte[] m1156d(short s, String str, int i, int i2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -2957,7 +2941,7 @@ public final class C0053bz {
     }
 
     /* renamed from: d */
-    public static byte[] m1157d(short s, String str, String str2) throws IOException {
+    public static byte[] m1157d(short s, String str, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3016,7 +3000,7 @@ public final class C0053bz {
     }
 
     /* renamed from: d */
-    public static byte[] m1160d(short s, String str, short s2) throws IOException {
+    public static byte[] m1160d(short s, String str, short s2)  {
         byte[] byteArray;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3042,7 +3026,7 @@ public final class C0053bz {
     }
 
     /* renamed from: e */
-    public static byte[] m1161e(short s, String str) throws IOException {
+    public static byte[] m1161e(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3061,7 +3045,7 @@ public final class C0053bz {
     }
 
     /* renamed from: e */
-    public static byte[] m1162e(short s, String str, byte b) throws IOException {
+    public static byte[] m1162e(short s, String str, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3080,7 +3064,7 @@ public final class C0053bz {
     }
 
     /* renamed from: e */
-    public static byte[] m1163e(short s, String str, int i) throws IOException {
+    public static byte[] m1163e(short s, String str, int i) {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3099,7 +3083,7 @@ public final class C0053bz {
     }
 
     /* renamed from: e */
-    public static byte[] m1164e(short s, String str, int i, byte b) throws IOException {
+    public static byte[] m1164e(short s, String str, int i, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3119,7 +3103,7 @@ public final class C0053bz {
     }
 
     /* renamed from: e */
-    public static byte[] m1165e(short s, String str, int i, int i2) throws IOException {
+    public static byte[] m1165e(short s, String str, int i, int i2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3139,7 +3123,7 @@ public final class C0053bz {
     }
 
     /* renamed from: e */
-    public static byte[] m1166e(short s, String str, String str2) throws IOException {
+    public static byte[] m1166e(short s, String str, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3158,7 +3142,7 @@ public final class C0053bz {
     }
 
     /* renamed from: e */
-    public static byte[] m1167e(short s, String str, short s2) throws IOException {
+    public static byte[] m1167e(short s, String str, short s2)  {
         byte[] byteArray;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3184,7 +3168,7 @@ public final class C0053bz {
     }
 
     /* renamed from: f */
-    public static byte[] m1168f(short s, String str) throws IOException {
+    public static byte[] m1168f(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3202,7 +3186,7 @@ public final class C0053bz {
     }
 
     /* renamed from: f */
-    public static byte[] m1169f(short s, String str, byte b) throws IOException {
+    public static byte[] m1169f(short s, String str, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3221,7 +3205,7 @@ public final class C0053bz {
     }
 
     /* renamed from: f */
-    public static byte[] m1170f(short s, String str, int i) throws IOException {
+    public static byte[] m1170f(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3240,7 +3224,7 @@ public final class C0053bz {
     }
 
     /* renamed from: f */
-    public static byte[] m1171f(short s, String str, int i, byte b) throws IOException {
+    public static byte[] m1171f(short s, String str, int i, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3260,7 +3244,7 @@ public final class C0053bz {
     }
 
     /* renamed from: f */
-    public static byte[] m1172f(short s, String str, int i, int i2) throws IOException {
+    public static byte[] m1172f(short s, String str, int i, int i2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3280,7 +3264,7 @@ public final class C0053bz {
     }
 
     /* renamed from: f */
-    public static byte[] m1173f(short s, String str, String str2) throws IOException {
+    public static byte[] m1173f(short s, String str, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3299,7 +3283,7 @@ public final class C0053bz {
     }
 
     /* renamed from: f */
-    public static byte[] m1174f(short s, String str, short s2) throws IOException {
+    public static byte[] m1174f(short s, String str, short s2)  {
         byte[] byteArray;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3325,7 +3309,7 @@ public final class C0053bz {
     }
 
     /* renamed from: g */
-    public static byte[] m1175g(short s, String str) throws IOException {
+    public static byte[] m1175g(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3343,7 +3327,7 @@ public final class C0053bz {
     }
 
     /* renamed from: g */
-    public static byte[] m1176g(short s, String str, byte b) throws IOException {
+    public static byte[] m1176g(short s, String str, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3362,7 +3346,7 @@ public final class C0053bz {
     }
 
     /* renamed from: g */
-    public static byte[] m1177g(short s, String str, int i) throws IOException {
+    public static byte[] m1177g(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3381,7 +3365,7 @@ public final class C0053bz {
     }
 
     /* renamed from: g */
-    public static byte[] m1178g(short s, String str, int i, byte b) throws IOException {
+    public static byte[] m1178g(short s, String str, int i, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3401,7 +3385,7 @@ public final class C0053bz {
     }
 
     /* renamed from: g */
-    public static byte[] m1179g(short s, String str, int i, int i2) throws IOException {
+    public static byte[] m1179g(short s, String str, int i, int i2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3421,7 +3405,7 @@ public final class C0053bz {
     }
 
     /* renamed from: g */
-    public static byte[] m1180g(short s, String str, String str2) throws IOException {
+    public static byte[] m1180g(short s, String str, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3459,7 +3443,7 @@ public final class C0053bz {
     }
 
     /* renamed from: h */
-    public static byte[] m1182h(short s, String str) throws IOException {
+    public static byte[] m1182h(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3477,7 +3461,7 @@ public final class C0053bz {
     }
 
     /* renamed from: h */
-    public static byte[] m1183h(short s, String str, byte b) throws IOException {
+    public static byte[] m1183h(short s, String str, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3496,7 +3480,7 @@ public final class C0053bz {
     }
 
     /* renamed from: h */
-    public static byte[] m1184h(short s, String str, int i) throws IOException {
+    public static byte[] m1184h(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3515,7 +3499,7 @@ public final class C0053bz {
     }
 
     /* renamed from: h */
-    public static byte[] m1185h(short s, String str, int i, int i2) throws IOException {
+    public static byte[] m1185h(short s, String str, int i, int i2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3535,7 +3519,7 @@ public final class C0053bz {
     }
 
     /* renamed from: h */
-    public static byte[] m1186h(short s, String str, String str2) throws IOException {
+    public static byte[] m1186h(short s, String str, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3573,7 +3557,7 @@ public final class C0053bz {
     }
 
     /* renamed from: i */
-    public static byte[] m1188i(short s, String str) throws IOException {
+    public static byte[] m1188i(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3591,7 +3575,7 @@ public final class C0053bz {
     }
 
     /* renamed from: i */
-    public static byte[] m1189i(short s, String str, byte b) throws IOException {
+    public static byte[] m1189i(short s, String str, byte b)  {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         try {
@@ -3615,7 +3599,7 @@ public final class C0053bz {
     }
 
     /* renamed from: i */
-    public static byte[] m1190i(short s, String str, int i) throws IOException {
+    public static byte[] m1190i(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3634,7 +3618,7 @@ public final class C0053bz {
     }
 
     /* renamed from: i */
-    public static byte[] m1191i(short s, String str, int i, int i2) throws IOException {
+    public static byte[] m1191i(short s, String str, int i, int i2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3654,7 +3638,7 @@ public final class C0053bz {
     }
 
     /* renamed from: i */
-    public static byte[] m1192i(short s, String str, String str2) throws IOException {
+    public static byte[] m1192i(short s, String str, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3692,7 +3676,7 @@ public final class C0053bz {
     }
 
     /* renamed from: j */
-    public static byte[] m1194j(short s, String str) throws IOException {
+    public static byte[] m1194j(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3710,7 +3694,7 @@ public final class C0053bz {
     }
 
     /* renamed from: j */
-    public static byte[] m1195j(short s, String str, byte b) throws IOException {
+    public static byte[] m1195j(short s, String str, byte b)  {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         try {
@@ -3734,7 +3718,7 @@ public final class C0053bz {
     }
 
     /* renamed from: j */
-    public static byte[] m1196j(short s, String str, int i) throws IOException {
+    public static byte[] m1196j(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3753,7 +3737,7 @@ public final class C0053bz {
     }
 
     /* renamed from: j */
-    public static byte[] m1197j(short s, String str, int i, int i2) throws IOException {
+    public static byte[] m1197j(short s, String str, int i, int i2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3811,7 +3795,7 @@ public final class C0053bz {
     }
 
     /* renamed from: k */
-    public static byte[] m1200k(short s, String str) throws IOException {
+    public static byte[] m1200k(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3848,7 +3832,7 @@ public final class C0053bz {
     }
 
     /* renamed from: k */
-    public static byte[] m1202k(short s, String str, int i) throws IOException {
+    public static byte[] m1202k(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3867,7 +3851,7 @@ public final class C0053bz {
     }
 
     /* renamed from: k */
-    public static byte[] m1203k(short s, String str, int i, int i2) throws IOException {
+    public static byte[] m1203k(short s, String str, int i, int i2) {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3925,7 +3909,7 @@ public final class C0053bz {
     }
 
     /* renamed from: l */
-    public static byte[] m1206l(short s, String str) throws IOException {
+    public static byte[] m1206l(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3962,7 +3946,7 @@ public final class C0053bz {
     }
 
     /* renamed from: l */
-    public static byte[] m1208l(short s, String str, int i) throws IOException {
+    public static byte[] m1208l(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -3981,7 +3965,7 @@ public final class C0053bz {
     }
 
     /* renamed from: l */
-    public static byte[] m1209l(short s, String str, int i, int i2) throws IOException {
+    public static byte[] m1209l(short s, String str, int i, int i2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4057,7 +4041,7 @@ public final class C0053bz {
     }
 
     /* renamed from: m */
-    public static byte[] m1213m(short s, String str, byte b) throws IOException {
+    public static byte[] m1213m(short s, String str, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4076,7 +4060,7 @@ public final class C0053bz {
     }
 
     /* renamed from: m */
-    public static byte[] m1214m(short s, String str, int i) throws IOException {
+    public static byte[] m1214m(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4095,7 +4079,7 @@ public final class C0053bz {
     }
 
     /* renamed from: m */
-    public static byte[] m1215m(short s, String str, int i, int i2) throws IOException {
+    public static byte[] m1215m(short s, String str, int i, int i2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4134,7 +4118,7 @@ public final class C0053bz {
     }
 
     /* renamed from: m */
-    public static byte[] m1217m(short s, String str, short s2) throws IOException {
+    public static byte[] m1217m(short s, String str, short s2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4153,7 +4137,7 @@ public final class C0053bz {
     }
 
     /* renamed from: n */
-    public static byte[] m1218n(short s, String str) throws IOException {
+    public static byte[] m1218n(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4171,7 +4155,7 @@ public final class C0053bz {
     }
 
     /* renamed from: n */
-    public static byte[] m1219n(short s, String str, byte b) throws IOException {
+    public static byte[] m1219n(short s, String str, byte b)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4190,7 +4174,7 @@ public final class C0053bz {
     }
 
     /* renamed from: n */
-    public static byte[] m1220n(short s, String str, int i) throws IOException {
+    public static byte[] m1220n(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4209,7 +4193,7 @@ public final class C0053bz {
     }
 
     /* renamed from: n */
-    public static byte[] m1221n(short s, String str, String str2) throws IOException {
+    public static byte[] m1221n(short s, String str, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4228,7 +4212,7 @@ public final class C0053bz {
     }
 
     /* renamed from: n */
-    public static byte[] m1222n(short s, String str, short s2) throws IOException {
+    public static byte[] m1222n(short s, String str, short s2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4265,7 +4249,7 @@ public final class C0053bz {
     }
 
     /* renamed from: o */
-    public static byte[] m1224o(short s, String str, int i) throws IOException {
+    public static byte[] m1224o(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4321,7 +4305,7 @@ public final class C0053bz {
     }
 
     /* renamed from: p */
-    public static byte[] m1227p(short s, String str, int i) throws IOException {
+    public static byte[] m1227p(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4340,7 +4324,7 @@ public final class C0053bz {
     }
 
     /* renamed from: p */
-    public static byte[] m1228p(short s, String str, String str2) throws IOException {
+    public static byte[] m1228p(short s, String str, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4359,7 +4343,7 @@ public final class C0053bz {
     }
 
     /* renamed from: q */
-    public static byte[] m1229q(short s, String str) throws IOException {
+    public static byte[] m1229q(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4377,7 +4361,7 @@ public final class C0053bz {
     }
 
     /* renamed from: q */
-    public static byte[] m1230q(short s, String str, int i) throws IOException {
+    public static byte[] m1230q(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4396,7 +4380,7 @@ public final class C0053bz {
     }
 
     /* renamed from: q */
-    public static byte[] m1231q(short s, String str, String str2) throws IOException {
+    public static byte[] m1231q(short s, String str, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4433,7 +4417,7 @@ public final class C0053bz {
     }
 
     /* renamed from: r */
-    public static byte[] m1233r(short s, String str, int i) throws IOException {
+    public static byte[] m1233r(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4452,7 +4436,7 @@ public final class C0053bz {
     }
 
     /* renamed from: r */
-    public static byte[] m1234r(short s, String str, String str2) throws IOException {
+    public static byte[] m1234r(short s, String str, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4489,7 +4473,7 @@ public final class C0053bz {
     }
 
     /* renamed from: s */
-    public static byte[] m1236s(short s, String str, int i) throws IOException {
+    public static byte[] m1236s(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4508,7 +4492,7 @@ public final class C0053bz {
     }
 
     /* renamed from: s */
-    public static byte[] m1237s(short s, String str, String str2) throws IOException {
+    public static byte[] m1237s(short s, String str, String str2)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4527,7 +4511,7 @@ public final class C0053bz {
     }
 
     /* renamed from: t */
-    public static byte[] m1238t(short s, String str) throws IOException {
+    public static byte[] m1238t(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4545,7 +4529,7 @@ public final class C0053bz {
     }
 
     /* renamed from: t */
-    public static byte[] m1239t(short s, String str, int i) throws IOException {
+    public static byte[] m1239t(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4583,7 +4567,7 @@ public final class C0053bz {
     }
 
     /* renamed from: u */
-    public static byte[] m1241u(short s, String str, int i) throws IOException {
+    public static byte[] m1241u(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4620,7 +4604,7 @@ public final class C0053bz {
     }
 
     /* renamed from: v */
-    public static byte[] m1243v(short s, String str, int i) throws IOException {
+    public static byte[] m1243v(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4639,7 +4623,7 @@ public final class C0053bz {
     }
 
     /* renamed from: w */
-    public static byte[] m1244w(short s, String str) throws IOException {
+    public static byte[] m1244w(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4657,7 +4641,7 @@ public final class C0053bz {
     }
 
     /* renamed from: w */
-    public static byte[] m1245w(short s, String str, int i) throws IOException {
+    public static byte[] m1245w(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4676,7 +4660,7 @@ public final class C0053bz {
     }
 
     /* renamed from: x */
-    public static byte[] m1246x(short s, String str) throws IOException {
+    public static byte[] m1246x(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4713,7 +4697,7 @@ public final class C0053bz {
     }
 
     /* renamed from: y */
-    public static byte[] m1248y(short s, String str) throws IOException {
+    public static byte[] m1248y(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4750,7 +4734,7 @@ public final class C0053bz {
     }
 
     /* renamed from: z */
-    public static byte[] m1250z(short s, String str) throws IOException {
+    public static byte[] m1250z(short s, String str)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -4768,7 +4752,7 @@ public final class C0053bz {
     }
 
     /* renamed from: z */
-    public static byte[] m1251z(short s, String str, int i) throws IOException {
+    public static byte[] m1251z(short s, String str, int i)  {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);

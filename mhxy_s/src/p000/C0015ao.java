@@ -4,14 +4,16 @@ import com.yinhan.kjava.main.C0068c;
 import com.yinhan.kjava.main.C0071f;
 import com.yinhan.kjava.main.MainMidlet;
 import com.yinhan.kjava.main.RunnableC0066a;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.Vector;
+
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
+import java.io.IOException;
+import java.util.Vector;
 
 /* renamed from: ao */
+
 /* loaded from: /var/folders/v7/k_cf95q978x1_d3dh120r_f40000gn/T/jadx-4234804660425969496/classes.dex */
+
 public final class C0015ao {
 
     /* renamed from: A */
@@ -863,7 +865,7 @@ public final class C0015ao {
     }
 
     /* renamed from: B */
-    private void m82B(int i) throws IOException {
+    private void m82B(int i) {
         byte b;
         int i2;
         int i3;
@@ -875,504 +877,495 @@ public final class C0015ao {
             if (this.f354e.f2149aq != null) {
                 this.f354e.f2149aq.mo70b(i);
             }
-            if (i != 268435456 && i != 1073741824 && i != 517) {
-                if (i == 1024 || i == 2048) {
-                    m481q();
+            if (i == 268435456 || i == 1073741824 || i == 517) {
+                C0041bn c0041bnM344y = m344y((this.f231ar << 3) + this.f230aq);
+                if (c0041bnM344y == null || c0041bnM344y.f714a <= 0 || m80A((this.f231ar << 3) + this.f230aq) == null) {
                     return;
                 }
-                if (i == 8 || i == 516) {
-                    if (this.f230aq <= 0) {
-                        i2 = 7;
+                if (this.f232as == 0) {
+                    C0055ca.m1285a(this.f234au[(this.f231ar << 3) + this.f230aq][0] - 17, this.f234au[(this.f231ar << 3) + this.f230aq][1] + 17, this.f226am, false);
+                    this.f359l = (short) 1;
+                    return;
+                }
+                if (this.f232as == 1) {
+                    byte[] bArrM1179g = C0053bz.m1179g((short) 4173, C0047bt.f865ad, C0047bt.f1101fA[this.f354e.f2150ar.m1275g()], m346z((this.f231ar << 3) + this.f230aq));
+                    if (bArrM1179g == null) {
+                        this.f354e.m1442b("获取上传指令数据错误!");
                     } else {
-                        i2 = this.f230aq - 1;
-                        this.f230aq = i2;
+                        RunnableC0066a.f2115i.m600a(new C0091w((short) 4173, bArrM1179g));
+                        this.f354e.m1434a((String) null);
                     }
-                    this.f230aq = i2;
-                    m484s();
                     return;
                 }
-                if (i == 2 || i == 518) {
-                    if (this.f230aq < 7) {
-                        i5 = this.f230aq + 1;
-                        this.f230aq = i5;
-                    }
-                    this.f230aq = i5;
-                    m484s();
-                    return;
-                }
-                if (i == 1 || i == 514) {
-                    if (this.f231ar <= 0) {
-                        i3 = 3;
+                if (this.f232as == 2) {
+                    if (c0041bnM344y.f720g <= 1) {
+                        m88E(c0041bnM344y.f720g);
+                        return;
                     } else {
-                        i3 = this.f231ar - 1;
-                        this.f231ar = i3;
+                        m380a(c0041bnM344y.f720g);
+                        this.f359l = (short) 2;
+                        return;
                     }
-                    this.f231ar = i3;
-                    m484s();
-                    return;
                 }
-                if (i == 4 || i == 520) {
-                    if (this.f231ar < 3) {
-                        i4 = this.f231ar + 1;
-                        this.f231ar = i4;
+                if (this.f232as == 3) {
+                    byte[] bArrM1185h = C0053bz.m1185h((short) 4174, C0047bt.f865ad, C0047bt.f1101fA[this.f354e.f2150ar.m1275g()], m346z((this.f231ar << 3) + this.f230aq));
+                    if (bArrM1185h == null) {
+                        this.f354e.m1442b("获取上传指令数据错误!");
+                        return;
+                    } else {
+                        RunnableC0066a.f2115i.m600a(new C0091w((short) 4174, bArrM1185h));
+                        this.f354e.m1434a((String) null);
+                        return;
                     }
-                    this.f231ar = i4;
-                    m484s();
-                    return;
                 }
-                if (i == 536870912) {
-                    this.f225al = null;
-                    this.f226am = null;
-                    this.f233at = null;
-                    this.f201aF = 0;
-                    this.f202aG = 0;
-                    this.f203aH = (byte) 0;
-                    if (this.f232as == 0) {
-                        if (this.f280by == 1) {
-                            m361N();
-                            this.f280by = (byte) 0;
-                            return;
-                        } else {
-                            m250at();
-                            m430c(2);
+                if (this.f232as == 4) {
+                    if (c0041bnM344y.f720g - c0041bnM344y.f735v > 0) {
+                        if (C0047bt.m825a(c0041bnM344y.f717d)) {
+                            C0055ca.m1285a(this.f234au[(this.f231ar << 3) + this.f230aq][0] - 17, this.f234au[(this.f231ar << 3) + this.f230aq][1] + 17, new String[]{"查看", "交易"}, false);
+                            this.f359l = (short) 15;
                             return;
                         }
-                    }
-                    if (this.f232as == 1) {
-                        m431c(0, this.f200aE, this.f196aA);
-                        m352E();
-                        C0055ca.f1895o = 0;
-                        this.f359l = (short) 1;
-                        return;
-                    }
-                    if (this.f232as == 2) {
-                        m473m();
-                        this.f230aq = 0;
-                        this.f227an = new String[]{"取出物品", "存入物品"};
-                        f140K = new C0050bw(new StringBuffer().append(C0047bt.f1766t[this.f220af].f510b).append(":物品仓库已打开").toString(), (short) (C0088t.f2516b - 20));
-                        C0055ca.m1286a(RunnableC0066a.f2067F, f140K, this.f227an, (String[]) null, true);
-                        this.f359l = (short) 3;
-                        return;
-                    }
-                    if (this.f232as == 3) {
-                        m431c(0, this.f200aE, this.f196aA);
-                        C0055ca.f1895o = 2;
-                        this.f359l = (short) 1;
-                        return;
-                    }
-                    if (this.f232as == 4) {
+                        if (c0041bnM344y.f720g - c0041bnM344y.f735v > 1) {
+                            if (c0041bnM344y.f720g - c0041bnM344y.f735v > 1) {
+                                m380a(c0041bnM344y.f720g - c0041bnM344y.f735v);
+                                this.f359l = (short) 4;
+                                return;
+                            }
+                            return;
+                        }
+                        m86D(1);
                         m420b((byte) 0, true);
                         this.f231ar = this.f215aU;
                         this.f354e.f2156ax = this.f216aV;
+                        this.f232as = 0;
+                        this.f354e.m1434a((String) null);
                         return;
                     }
-                    if (this.f232as == 5 || this.f232as == 8) {
-                        m473m();
-                        C0055ca.f1895o = this.f223ai;
+                    return;
+                }
+                if (this.f232as == 5) {
+                    if (C0047bt.m825a(c0041bnM344y.f717d)) {
+                        C0055ca.m1285a(this.f234au[(this.f231ar << 3) + this.f230aq][0] - 17, this.f234au[(this.f231ar << 3) + this.f230aq][1] + 17, new String[]{"查看", "拍卖"}, false);
+                        this.f359l = (short) 16;
+                        return;
+                    } else if (c0041bnM344y.f720g > 1) {
+                        m380a(c0041bnM344y.f720g);
+                        this.f359l = (short) 7;
+                        return;
+                    } else {
+                        this.f221ag = 1;
+                        this.f359l = (short) 6;
+                        m477o();
                         return;
                     }
-                    if (this.f232as == 6) {
-                        this.f354e.f2216j = this.f354e.f2217k;
+                }
+                if (this.f232as == 6) {
+                    if (c0041bnM344y.f717d != 10 && c0041bnM344y.f717d != 15 && c0041bnM344y.f717d != 16) {
+                        this.f354e.m1442b("战斗中你不能使用该物品!");
+                        return;
+                    }
+                    if (this.f356g != null) {
+                        if (C0044bq.m726h() && c0041bnM344y.f719f != 2) {
+                            this.f354e.m1442b("你只能使用复活道具");
+                            return;
+                        }
+                        if (c0041bnM344y.f717d == 16) {
+                            if (c0041bnM344y.f719f == 3) {
+                                if (this.f356g.m753j()) {
+                                    this.f356g.m744a((byte) 2, c0041bnM344y.f714a, (byte) 0, C0044bq.m727i(), (byte) 1, 1, (byte) 1, (byte) -1);
+                                    this.f356g.f787f = (short) -1;
+                                    this.f356g.f786e = 5;
+                                } else {
+                                    this.f356g.f790j = (byte) 2;
+                                    this.f356g.f796p = c0041bnM344y.f714a;
+                                    this.f356g.f794n = (byte) 0;
+                                    this.f356g.f785d = 4;
+                                }
+                            } else if (c0041bnM344y.f719f == 4) {
+                                if (C0044bq.m713b() <= 1) {
+                                    this.f356g.m744a((byte) 2, c0041bnM344y.f714a, (byte) 0, C0044bq.m727i(), (byte) 1, 1, (byte) 1, (byte) -1);
+                                    this.f356g.f787f = (short) -1;
+                                    this.f356g.f786e = 5;
+                                } else {
+                                    this.f356g.f790j = (byte) 2;
+                                    this.f356g.f796p = c0041bnM344y.f714a;
+                                    this.f356g.f794n = (byte) 0;
+                                    this.f356g.f785d = 4;
+                                }
+                            } else if (c0041bnM344y.f719f == 5) {
+                                if (C0044bq.m717c() <= 1) {
+                                    this.f356g.m744a((byte) 2, c0041bnM344y.f714a, (byte) 1, C0047bt.f821M[this.f356g.f788h].f2035a, (byte) 2, -1, (byte) -1, (byte) -1);
+                                    this.f356g.f787f = (short) -1;
+                                    this.f356g.f786e = 5;
+                                } else {
+                                    this.f356g.f790j = (byte) 2;
+                                    this.f356g.f796p = c0041bnM344y.f714a;
+                                    this.f356g.f794n = (byte) 1;
+                                    this.f356g.f785d = 9;
+                                }
+                            }
+                        } else if (C0047bt.f816H.length <= 1 || C0044bq.m726h()) {
+                            if (C0044bq.m726h()) {
+                                this.f356g.m755m();
+                            }
+                            this.f356g.m744a((byte) 2, c0041bnM344y.f714a, (byte) 0, C0047bt.f816H[this.f356g.f789i].f2418a, (byte) 2, -1, (byte) -1, (byte) -1);
+                            this.f356g.f787f = (short) -1;
+                            this.f356g.f786e = 5;
+                        } else {
+                            this.f356g.f790j = (byte) 2;
+                            this.f356g.f796p = c0041bnM344y.f714a;
+                            this.f356g.f794n = (byte) 0;
+                            this.f356g.f785d = 4;
+                        }
                         this.f358k = (short) 25;
                         this.f357j = (short) 25;
                         return;
                     }
-                    if (this.f232as == 7) {
-                        m486t();
-                        return;
-                    }
-                    if (this.f232as == 9) {
-                        this.f232as = 0;
-                        m434c(false);
-                        return;
-                    }
-                    if (this.f232as == 10) {
-                        this.f185O.m1618a();
-                        this.f354e.f2150ar.m1256a(0);
-                        return;
-                    }
-                    if (this.f232as == 11) {
-                        this.f203aH = this.f354e.f2151as.f2353a;
-                        this.f185O.m1620a((int) this.f185O.f2409a, this.f185O.f2411c, this.f185O.f2412d);
-                        return;
-                    }
-                    if (this.f232as == 13) {
-                        m480p(0);
-                        return;
-                    }
-                    if (this.f232as == 14) {
-                        m431c(0, this.f200aE, this.f196aA);
-                        m352E();
-                        C0055ca.f1895o = 8;
-                        this.f359l = (short) 1;
-                        return;
-                    }
-                    if (this.f232as == 18) {
-                        this.f183M.m519b(true);
-                        return;
-                    }
-                    if (this.f232as == 20) {
-                        m449e(false);
-                        return;
-                    } else {
-                        if (this.f232as == 21 || this.f232as == 22) {
-                            m485s(this.f270bg);
-                            return;
-                        }
-                        return;
-                    }
-                }
-                return;
-            }
-            C0041bn c0041bnM344y = m344y((this.f231ar << 3) + this.f230aq);
-            if (c0041bnM344y == null || c0041bnM344y.f714a <= 0 || m80A((this.f231ar << 3) + this.f230aq) == null) {
-                return;
-            }
-            if (this.f232as == 0) {
-                C0055ca.m1285a(this.f234au[(this.f231ar << 3) + this.f230aq][0] - 17, this.f234au[(this.f231ar << 3) + this.f230aq][1] + 17, this.f226am, false);
-                this.f359l = (short) 1;
-                return;
-            }
-            if (this.f232as == 1) {
-                byte[] bArrM1179g = C0053bz.m1179g((short) 4173, C0047bt.f865ad, C0047bt.f1101fA[this.f354e.f2150ar.m1275g()], m346z((this.f231ar << 3) + this.f230aq));
-                if (bArrM1179g == null) {
-                    this.f354e.m1442b("获取上传指令数据错误!");
-                    return;
-                } else {
-                    RunnableC0066a.f2115i.m600a(new C0091w((short) 4173, bArrM1179g));
-                    this.f354e.m1434a((String) null);
                     return;
                 }
-            }
-            if (this.f232as == 2) {
-                if (c0041bnM344y.f720g <= 1) {
-                    m88E(c0041bnM344y.f720g);
-                    return;
-                } else {
-                    m380a(c0041bnM344y.f720g);
-                    this.f359l = (short) 2;
-                    return;
-                }
-            }
-            if (this.f232as == 3) {
-                byte[] bArrM1185h = C0053bz.m1185h((short) 4174, C0047bt.f865ad, C0047bt.f1101fA[this.f354e.f2150ar.m1275g()], m346z((this.f231ar << 3) + this.f230aq));
-                if (bArrM1185h == null) {
-                    this.f354e.m1442b("获取上传指令数据错误!");
-                    return;
-                } else {
-                    RunnableC0066a.f2115i.m600a(new C0091w((short) 4174, bArrM1185h));
-                    this.f354e.m1434a((String) null);
-                    return;
-                }
-            }
-            if (this.f232as == 4) {
-                if (c0041bnM344y.f720g - c0041bnM344y.f735v > 0) {
-                    if (C0047bt.m825a(c0041bnM344y.f717d)) {
-                        C0055ca.m1285a(this.f234au[(this.f231ar << 3) + this.f230aq][0] - 17, this.f234au[(this.f231ar << 3) + this.f230aq][1] + 17, new String[]{"查看", "交易"}, false);
-                        this.f359l = (short) 15;
-                        return;
-                    }
-                    if (c0041bnM344y.f720g - c0041bnM344y.f735v > 1) {
-                        if (c0041bnM344y.f720g - c0041bnM344y.f735v > 1) {
-                            m380a(c0041bnM344y.f720g - c0041bnM344y.f735v);
-                            this.f359l = (short) 4;
-                            return;
-                        }
-                        return;
-                    }
-                    m86D(1);
-                    m420b((byte) 0, true);
-                    this.f231ar = this.f215aU;
-                    this.f354e.f2156ax = this.f216aV;
-                    this.f232as = 0;
-                    this.f354e.m1434a((String) null);
-                    return;
-                }
-                return;
-            }
-            if (this.f232as == 5) {
-                if (C0047bt.m825a(c0041bnM344y.f717d)) {
-                    C0055ca.m1285a(this.f234au[(this.f231ar << 3) + this.f230aq][0] - 17, this.f234au[(this.f231ar << 3) + this.f230aq][1] + 17, new String[]{"查看", "拍卖"}, false);
-                    this.f359l = (short) 16;
-                    return;
-                } else if (c0041bnM344y.f720g > 1) {
-                    m380a(c0041bnM344y.f720g);
-                    this.f359l = (short) 7;
-                    return;
-                } else {
-                    this.f221ag = 1;
-                    this.f359l = (short) 6;
-                    m477o();
-                    return;
-                }
-            }
-            if (this.f232as == 6) {
-                if (c0041bnM344y.f717d != 10 && c0041bnM344y.f717d != 15 && c0041bnM344y.f717d != 16) {
-                    this.f354e.m1442b("战斗中你不能使用该物品!");
-                    return;
-                }
-                if (this.f356g != null) {
-                    if (C0044bq.m726h() && c0041bnM344y.f719f != 2) {
-                        this.f354e.m1442b("你只能使用复活道具");
-                        return;
-                    }
-                    if (c0041bnM344y.f717d == 16) {
-                        if (c0041bnM344y.f719f == 3) {
-                            if (this.f356g.m753j()) {
-                                this.f356g.m744a((byte) 2, c0041bnM344y.f714a, (byte) 0, C0044bq.m727i(), (byte) 1, 1, (byte) 1, (byte) -1);
-                                this.f356g.f787f = (short) -1;
-                                this.f356g.f786e = 5;
-                            } else {
-                                this.f356g.f790j = (byte) 2;
-                                this.f356g.f796p = c0041bnM344y.f714a;
-                                this.f356g.f794n = (byte) 0;
-                                this.f356g.f785d = 4;
-                            }
-                        } else if (c0041bnM344y.f719f == 4) {
-                            if (C0044bq.m713b() <= 1) {
-                                this.f356g.m744a((byte) 2, c0041bnM344y.f714a, (byte) 0, C0044bq.m727i(), (byte) 1, 1, (byte) 1, (byte) -1);
-                                this.f356g.f787f = (short) -1;
-                                this.f356g.f786e = 5;
-                            } else {
-                                this.f356g.f790j = (byte) 2;
-                                this.f356g.f796p = c0041bnM344y.f714a;
-                                this.f356g.f794n = (byte) 0;
-                                this.f356g.f785d = 4;
-                            }
-                        } else if (c0041bnM344y.f719f == 5) {
-                            if (C0044bq.m717c() <= 1) {
-                                this.f356g.m744a((byte) 2, c0041bnM344y.f714a, (byte) 1, C0047bt.f821M[this.f356g.f788h].f2035a, (byte) 2, -1, (byte) -1, (byte) -1);
-                                this.f356g.f787f = (short) -1;
-                                this.f356g.f786e = 5;
-                            } else {
-                                this.f356g.f790j = (byte) 2;
-                                this.f356g.f796p = c0041bnM344y.f714a;
-                                this.f356g.f794n = (byte) 1;
-                                this.f356g.f785d = 9;
-                            }
-                        }
-                    } else if (C0047bt.f816H.length <= 1 || C0044bq.m726h()) {
-                        if (C0044bq.m726h()) {
-                            this.f356g.m755m();
-                        }
-                        this.f356g.m744a((byte) 2, c0041bnM344y.f714a, (byte) 0, C0047bt.f816H[this.f356g.f789i].f2418a, (byte) 2, -1, (byte) -1, (byte) -1);
-                        this.f356g.f787f = (short) -1;
-                        this.f356g.f786e = 5;
-                    } else {
-                        this.f356g.f790j = (byte) 2;
-                        this.f356g.f796p = c0041bnM344y.f714a;
-                        this.f356g.f794n = (byte) 0;
-                        this.f356g.f785d = 4;
-                    }
-                    this.f358k = (short) 25;
-                    this.f357j = (short) 25;
-                    return;
-                }
-                return;
-            }
-            if (this.f232as == 7) {
-                if (C0047bt.m887b(c0041bnM344y.f717d)) {
-                    byte[] bArrM1123b = C0053bz.m1123b((short) 4135, C0047bt.f865ad, c0041bnM344y.f714a, (byte) (this.f235av + 0));
-                    if (bArrM1123b == null) {
-                        this.f354e.m1442b("获取上传指令数据错误!");
-                        return;
-                    } else {
-                        RunnableC0066a.f2115i.m600a(new C0091w((short) 4135, bArrM1123b));
-                        this.f354e.m1434a((String) null);
-                        return;
-                    }
-                }
-                return;
-            }
-            if (this.f232as == 8) {
-                if (c0041bnM344y.f720g > 1) {
-                    m380a(c0041bnM344y.f720g);
-                    this.f359l = (short) 12;
-                    return;
-                } else {
-                    this.f221ag = 1;
-                    this.f359l = (short) 11;
-                    m477o();
-                    return;
-                }
-            }
-            if (this.f232as == 9) {
-                if (C0047bt.m896c(c0041bnM344y.f717d)) {
-                    if (c0041bnM344y.f718e == 2) {
-                        this.f359l = (short) 13;
-                        C0055ca.f1888h = 0;
-                        return;
-                    } else {
-                        this.f232as = 0;
-                        m124V(c0041bnM344y.f714a);
-                        return;
-                    }
-                }
-                return;
-            }
-            if (this.f232as == 10) {
-                if (C0047bt.m825a(c0041bnM344y.f717d)) {
-                    C0055ca.m1285a(this.f234au[(this.f231ar << 3) + this.f230aq][0] - 17, this.f234au[(this.f231ar << 3) + this.f230aq][1] + 17, new String[]{"查看", "打孔"}, false);
-                    this.f359l = (short) 14;
-                    return;
-                }
-                return;
-            }
-            if (this.f232as == 11) {
-                if (c0041bnM344y.f717d == 30) {
-                    C0083o.f2381e = (byte) 1;
-                    if (this.f185O.f2411c == 13) {
-                        byte[] bArrM1048a = C0053bz.m1048a((short) 4687, C0047bt.f1406ko, (byte) 3, C0047bt.f1319jG, c0041bnM344y.f714a, this.f185O.f2410b, "", C0047bt.f865ad);
-                        if (bArrM1048a == null) {
+                if (this.f232as == 7) {
+                    if (C0047bt.m887b(c0041bnM344y.f717d)) {
+                        byte[] bArrM1123b = C0053bz.m1123b((short) 4135, C0047bt.f865ad, c0041bnM344y.f714a, (byte) (this.f235av + 0));
+                        if (bArrM1123b == null) {
                             this.f354e.m1442b("获取上传指令数据错误!");
                             return;
                         } else {
-                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4687, bArrM1048a));
+                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4135, bArrM1123b));
                             this.f354e.m1434a((String) null);
                             return;
                         }
                     }
-                    byte[] bArrM1145c = C0053bz.m1145c((short) 4645, C0047bt.f865ad, C0047bt.f1406ko, c0041bnM344y.f714a, this.f185O.f2410b);
-                    if (bArrM1145c == null) {
+                    return;
+                }
+                if (this.f232as == 8) {
+                    if (c0041bnM344y.f720g > 1) {
+                        m380a(c0041bnM344y.f720g);
+                        this.f359l = (short) 12;
+                        return;
+                    } else {
+                        this.f221ag = 1;
+                        this.f359l = (short) 11;
+                        m477o();
+                        return;
+                    }
+                }
+                if (this.f232as == 9) {
+                    if (C0047bt.m896c(c0041bnM344y.f717d)) {
+                        if (c0041bnM344y.f718e == 2) {
+                            this.f359l = (short) 13;
+                            C0055ca.f1888h = 0;
+                            return;
+                        } else {
+                            this.f232as = 0;
+                            m124V(c0041bnM344y.f714a);
+                            return;
+                        }
+                    }
+                    return;
+                }
+                if (this.f232as == 10) {
+                    if (C0047bt.m825a(c0041bnM344y.f717d)) {
+                        C0055ca.m1285a(this.f234au[(this.f231ar << 3) + this.f230aq][0] - 17, this.f234au[(this.f231ar << 3) + this.f230aq][1] + 17, new String[]{"查看", "打孔"}, false);
+                        this.f359l = (short) 14;
+                        return;
+                    }
+                    return;
+                }
+                if (this.f232as == 11) {
+                    if (c0041bnM344y.f717d == 30) {
+                        C0083o.f2381e = (byte) 1;
+                        if (this.f185O.f2411c == 13) {
+                            byte[] bArrM1048a = C0053bz.m1048a((short) 4687, C0047bt.f1406ko, (byte) 3, C0047bt.f1319jG, c0041bnM344y.f714a, this.f185O.f2410b, "", C0047bt.f865ad);
+                            if (bArrM1048a == null) {
+                                this.f354e.m1442b("获取上传指令数据错误!");
+                                return;
+                            } else {
+                                RunnableC0066a.f2115i.m600a(new C0091w((short) 4687, bArrM1048a));
+                                this.f354e.m1434a((String) null);
+                                return;
+                            }
+                        }
+                        byte[] bArrM1145c = C0053bz.m1145c((short) 4645, C0047bt.f865ad, C0047bt.f1406ko, c0041bnM344y.f714a, this.f185O.f2410b);
+                        if (bArrM1145c == null) {
+                            this.f354e.m1442b("获取上传指令数据错误!");
+                            return;
+                        } else {
+                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4645, bArrM1145c));
+                            this.f354e.m1434a((String) null);
+                            return;
+                        }
+                    }
+                    return;
+                }
+                if (this.f232as == 13) {
+                    byte[] bArrM1131b = C0053bz.m1131b((short) 4856, C0047bt.f865ad, C0047bt.f1005dK[this.f354e.f2150ar.m1275g() - 1], m346z((this.f231ar << 3) + this.f230aq));
+                    if (bArrM1131b == null) {
                         this.f354e.m1442b("获取上传指令数据错误!");
                         return;
                     } else {
-                        RunnableC0066a.f2115i.m600a(new C0091w((short) 4645, bArrM1145c));
+                        RunnableC0066a.f2115i.m600a(new C0091w((short) 4856, bArrM1131b));
                         this.f354e.m1434a((String) null);
                         return;
                     }
                 }
-                return;
-            }
-            if (this.f232as == 13) {
-                byte[] bArrM1131b = C0053bz.m1131b((short) 4856, C0047bt.f865ad, C0047bt.f1005dK[this.f354e.f2150ar.m1275g() - 1], m346z((this.f231ar << 3) + this.f230aq));
-                if (bArrM1131b == null) {
-                    this.f354e.m1442b("获取上传指令数据错误!");
-                    return;
-                } else {
-                    RunnableC0066a.f2115i.m600a(new C0091w((short) 4856, bArrM1131b));
-                    this.f354e.m1434a((String) null);
+                if (this.f232as == 14) {
+                    byte[] bArrM1185h2 = C0053bz.m1185h((short) 4661, C0047bt.f865ad, C0047bt.f1101fA[this.f354e.f2150ar.m1275g()], m346z((this.f231ar << 3) + this.f230aq));
+                    if (bArrM1185h2 == null) {
+                        this.f354e.m1442b("获取上传指令数据错误!");
+                        return;
+                    } else {
+                        RunnableC0066a.f2115i.m600a(new C0091w((short) 4661, bArrM1185h2));
+                        this.f354e.m1434a((String) null);
+                        return;
+                    }
+                }
+                if (this.f232as == 18) {
+                    if (c0041bnM344y.f720g > 1) {
+                        m380a(c0041bnM344y.f720g);
+                        this.f359l = (short) 2;
+                        return;
+                    } else {
+                        C0055ca.f1888h = 0;
+                        this.f233at = new StringBuffer().append("您确定向你的帮派捐献").append((C0055ca.m1280a(c0041bnM344y.f715b) != -1 ? C0055ca.m1280a(c0041bnM344y.f715b) : 15138723) != 15138723 ? c0041bnM344y.f715b.substring(3, c0041bnM344y.f715b.length()) : c0041bnM344y.f715b).append("X").append((int) c0041bnM344y.f720g).append("？").toString();
+                        this.f359l = (short) 18;
+                        return;
+                    }
+                }
+                if (this.f232as == 20) {
+                    C0088t.m1679a("升星 选择物品");
+                    if (c0041bnM344y.f720g - c0041bnM344y.f735v > 0) {
+                        m267b(c0041bnM344y.f714a, (byte) 0);
+                        return;
+                    }
                     return;
                 }
-            }
-            if (this.f232as == 14) {
-                byte[] bArrM1185h2 = C0053bz.m1185h((short) 4661, C0047bt.f865ad, C0047bt.f1101fA[this.f354e.f2150ar.m1275g()], m346z((this.f231ar << 3) + this.f230aq));
-                if (bArrM1185h2 == null) {
-                    this.f354e.m1442b("获取上传指令数据错误!");
-                    return;
-                } else {
-                    RunnableC0066a.f2115i.m600a(new C0091w((short) 4661, bArrM1185h2));
-                    this.f354e.m1434a((String) null);
+                if (this.f232as == 21) {
+                    m142a((byte) 0, C0047bt.f1101fA[this.f270bg], c0041bnM344y.f714a, (byte) 34, (byte) this.f354e.f2150ar.m1275g());
                     return;
                 }
-            }
-            if (this.f232as == 18) {
-                if (c0041bnM344y.f720g > 1) {
-                    m380a(c0041bnM344y.f720g);
-                    this.f359l = (short) 2;
-                    return;
-                } else {
-                    C0055ca.f1888h = 0;
-                    this.f233at = new StringBuffer().append("您确定向你的帮派捐献").append((C0055ca.m1280a(c0041bnM344y.f715b) != -1 ? C0055ca.m1280a(c0041bnM344y.f715b) : 15138723) != 15138723 ? c0041bnM344y.f715b.substring(3, c0041bnM344y.f715b.length()) : c0041bnM344y.f715b).append("X").append((int) c0041bnM344y.f720g).append("？").toString();
-                    this.f359l = (short) 18;
-                    return;
-                }
-            }
-            if (this.f232as == 20) {
-                C0088t.m1679a("升星 选择物品");
-                if (c0041bnM344y.f720g - c0041bnM344y.f735v > 0) {
-                    m267b(c0041bnM344y.f714a, (byte) 0);
-                    return;
-                }
-                return;
-            }
-            if (this.f232as == 21) {
-                m142a((byte) 0, C0047bt.f1101fA[this.f270bg], c0041bnM344y.f714a, (byte) 34, (byte) this.f354e.f2150ar.m1275g());
-                return;
-            } else {
                 if (this.f232as == 22) {
                     m142a((byte) 0, C0047bt.f1101fA[this.f270bg], c0041bnM344y.f714a, (byte) 35, (byte) (this.f354e.f2150ar.m1275g() - 5));
                     return;
                 }
                 return;
             }
-        }
-        if (this.f359l == 1) {
-            m401a(C0047bt.f1087en);
-            C0055ca.m1317b(i);
-            if (i != 268435456 && i != 1073741824 && i != 517) {
-                if (i == 536870912) {
-                    this.f359l = (short) 0;
+            if (i == 1024 || i == 2048) {
+                m481q();
+                return;
+            }
+            if (i == 8 || i == 516) {
+                if (this.f230aq <= 0) {
+                    i2 = 7;
+                } else {
+                    i2 = this.f230aq - 1;
+                    this.f230aq = i2;
+                }
+                this.f230aq = i2;
+                m484s();
+                return;
+            }
+            if (i == 2 || i == 518) {
+                if (this.f230aq < 7) {
+                    i5 = this.f230aq + 1;
+                    this.f230aq = i5;
+                }
+                this.f230aq = i5;
+                m484s();
+                return;
+            }
+            if (i == 1 || i == 514) {
+                if (this.f231ar <= 0) {
+                    i3 = 3;
+                } else {
+                    i3 = this.f231ar - 1;
+                    this.f231ar = i3;
+                }
+                this.f231ar = i3;
+                m484s();
+                return;
+            }
+            if (i == 4 || i == 520) {
+                if (this.f231ar < 3) {
+                    i4 = this.f231ar + 1;
+                    this.f231ar = i4;
+                }
+                this.f231ar = i4;
+                m484s();
+                return;
+            }
+            if (i == 536870912) {
+                this.f225al = null;
+                this.f226am = null;
+                this.f233at = null;
+                this.f201aF = 0;
+                this.f202aG = 0;
+                this.f203aH = (byte) 0;
+                if (this.f232as == 0) {
+                    if (this.f280by == 1) {
+                        m361N();
+                        this.f280by = (byte) 0;
+                        return;
+                    } else {
+                        m250at();
+                        m430c(2);
+                        return;
+                    }
+                }
+                if (this.f232as == 1) {
+                    m431c(0, this.f200aE, this.f196aA);
+                    m352E();
+                    C0055ca.f1895o = 0;
+                    this.f359l = (short) 1;
+                    return;
+                }
+                if (this.f232as == 2) {
+                    m473m();
+                    this.f230aq = 0;
+                    this.f227an = new String[]{"取出物品", "存入物品"};
+                    f140K = new C0050bw(new StringBuffer().append(C0047bt.f1766t[this.f220af].f510b).append(":物品仓库已打开").toString(), (short) (C0088t.f2516b - 20));
+                    C0055ca.m1286a(RunnableC0066a.f2067F, f140K, this.f227an, (String[]) null, true);
+                    this.f359l = (short) 3;
+                    return;
+                }
+                if (this.f232as == 3) {
+                    m431c(0, this.f200aE, this.f196aA);
+                    C0055ca.f1895o = 2;
+                    this.f359l = (short) 1;
+                    return;
+                }
+                if (this.f232as == 4) {
+                    m420b((byte) 0, true);
+                    this.f231ar = this.f215aU;
+                    this.f354e.f2156ax = this.f216aV;
+                    return;
+                }
+                if (this.f232as == 5 || this.f232as == 8) {
+                    m473m();
+                    C0055ca.f1895o = this.f223ai;
+                    return;
+                }
+                if (this.f232as == 6) {
+                    this.f354e.f2216j = this.f354e.f2217k;
+                    this.f358k = (short) 25;
+                    this.f357j = (short) 25;
+                    return;
+                }
+                if (this.f232as == 7) {
+                    m486t();
+                    return;
+                }
+                if (this.f232as == 9) {
+                    this.f232as = 0;
+                    m434c(false);
+                    return;
+                }
+                if (this.f232as == 10) {
+                    this.f185O.m1618a();
+                    this.f354e.f2150ar.m1256a(0);
+                    return;
+                }
+                if (this.f232as == 11) {
+                    this.f203aH = this.f354e.f2151as.f2353a;
+                    this.f185O.m1620a((int) this.f185O.f2409a, this.f185O.f2411c, this.f185O.f2412d);
+                    return;
+                }
+                if (this.f232as == 13) {
+                    m480p(0);
+                    return;
+                }
+                if (this.f232as == 14) {
+                    m431c(0, this.f200aE, this.f196aA);
+                    m352E();
+                    C0055ca.f1895o = 8;
+                    this.f359l = (short) 1;
+                    return;
+                }
+                if (this.f232as == 18) {
+                    this.f183M.m519b(true);
+                    return;
+                }
+                if (this.f232as == 20) {
+                    m449e(false);
+                    return;
+                }
+                if (this.f232as == 21 || this.f232as == 22) {
+                    m485s(this.f270bg);
                     return;
                 }
                 return;
             }
-            C0041bn c0041bnM344y2 = m344y((this.f231ar << 3) + this.f230aq);
-            if (c0041bnM344y2 == null || c0041bnM344y2.f714a <= 0 || c0041bnM344y2.f720g <= 0) {
-                this.f359l = (short) 0;
+            return;
+        }
+        if (this.f359l == 1) {
+            m401a(C0047bt.f1087en);
+            C0055ca.m1317b(i);
+            if (i == 268435456 || i == 1073741824 || i == 517) {
+                C0041bn c0041bnM344y2 = m344y((this.f231ar << 3) + this.f230aq);
+                if (c0041bnM344y2 == null || c0041bnM344y2.f714a <= 0 || c0041bnM344y2.f720g <= 0) {
+                    this.f359l = (short) 0;
+                    return;
+                }
+                switch (C0055ca.f1895o) {
+                    case 0:
+                        if (!C0047bt.m825a(c0041bnM344y2.f717d) || c0041bnM344y2.f718e != 2) {
+                            byte[] bArrM1122b = C0053bz.m1122b((short) 4105, C0047bt.f865ad, c0041bnM344y2.f714a);
+                            if (bArrM1122b == null) {
+                                this.f354e.m1442b("获取上传指令数据错误!");
+                            } else {
+                                RunnableC0066a.f2115i.m600a(new C0091w((short) 4105, bArrM1122b));
+                                this.f354e.m1434a((String) null);
+                            }
+                        } else {
+                            this.f359l = (short) 10;
+                            C0055ca.f1888h = 0;
+                        }
+                        break;
+                    case 1:
+                        this.f203aH = this.f354e.f2151as.f2353a;
+                        if (!C0047bt.m825a(c0041bnM344y2.f717d)) {
+                            this.f354e.f2149aq.mo71j();
+                            this.f354e.f2149aq.m1604b();
+                            this.f354e.f2149aq.m1601a("物品详情");
+                            this.f354e.f2152at.m77a(m80A((this.f231ar << 3) + this.f230aq), C0088t.f2523i, (byte) 1);
+                            this.f354e.f2149aq.m1600a(this.f354e.f2152at);
+                            this.f354e.f2149aq.m1598a(C0088t.f2520f, C0088t.f2521g, C0088t.f2518d, C0088t.f2519e);
+                            this.f359l = (short) 17;
+                        } else {
+                            C0047bt.m819a(c0041bnM344y2);
+                            this.f185O.m1620a(0, this.f358k, this.f232as);
+                        }
+                        break;
+                    case 2:
+                        if (c0041bnM344y2.f720g <= 1) {
+                            C0055ca.m1285a(this.f234au[(this.f231ar << 3) + this.f230aq][0] - 17, this.f234au[(this.f231ar << 3) + this.f230aq][1] + 17, new String[]{"取消", "确认"}, false);
+                            this.f359l = (short) 3;
+                        } else {
+                            m380a(c0041bnM344y2.f720g);
+                            this.f359l = (short) 2;
+                        }
+                        break;
+                    case 3:
+                        if (this.f354e.f2216j != 2) {
+                            this.f354e.f2216j = this.f354e.f2217k;
+                        }
+                        this.f238az = (byte) 0;
+                        this.f359l = (short) 8;
+                        break;
+                    case 4:
+                        byte[] bArrM1194j = C0053bz.m1194j((short) 4143, C0047bt.f865ad);
+                        if (bArrM1194j == null) {
+                            this.f354e.m1442b("获取上传指令数据错误!");
+                        } else {
+                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4143, bArrM1194j));
+                            this.f354e.m1434a((String) null);
+                        }
+                        break;
+                }
                 return;
             }
-            switch (C0055ca.f1895o) {
-                case 0:
-                    if (!C0047bt.m825a(c0041bnM344y2.f717d) || c0041bnM344y2.f718e != 2) {
-                        byte[] bArrM1122b = C0053bz.m1122b((short) 4105, C0047bt.f865ad, c0041bnM344y2.f714a);
-                        if (bArrM1122b == null) {
-                            this.f354e.m1442b("获取上传指令数据错误!");
-                            break;
-                        } else {
-                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4105, bArrM1122b));
-                            this.f354e.m1434a((String) null);
-                            break;
-                        }
-                    } else {
-                        this.f359l = (short) 10;
-                        C0055ca.f1888h = 0;
-                        break;
-                    }
-                    break;
-                case 1:
-                    this.f203aH = this.f354e.f2151as.f2353a;
-                    if (!C0047bt.m825a(c0041bnM344y2.f717d)) {
-                        this.f354e.f2149aq.mo71j();
-                        this.f354e.f2149aq.m1604b();
-                        this.f354e.f2149aq.m1601a("物品详情");
-                        this.f354e.f2152at.m77a(m80A((this.f231ar << 3) + this.f230aq), C0088t.f2523i, (byte) 1);
-                        this.f354e.f2149aq.m1600a(this.f354e.f2152at);
-                        this.f354e.f2149aq.m1598a(C0088t.f2520f, C0088t.f2521g, C0088t.f2518d, C0088t.f2519e);
-                        this.f359l = (short) 17;
-                        break;
-                    } else {
-                        C0047bt.m819a(c0041bnM344y2);
-                        this.f185O.m1620a(0, this.f358k, this.f232as);
-                        break;
-                    }
-                case 2:
-                    if (c0041bnM344y2.f720g <= 1) {
-                        C0055ca.m1285a(this.f234au[(this.f231ar << 3) + this.f230aq][0] - 17, this.f234au[(this.f231ar << 3) + this.f230aq][1] + 17, new String[]{"取消", "确认"}, false);
-                        this.f359l = (short) 3;
-                        break;
-                    } else {
-                        m380a(c0041bnM344y2.f720g);
-                        this.f359l = (short) 2;
-                        break;
-                    }
-                case 3:
-                    if (this.f354e.f2216j != 2) {
-                        this.f354e.f2216j = this.f354e.f2217k;
-                    }
-                    this.f238az = (byte) 0;
-                    this.f359l = (short) 8;
-                    break;
-                case 4:
-                    byte[] bArrM1194j = C0053bz.m1194j((short) 4143, C0047bt.f865ad);
-                    if (bArrM1194j == null) {
-                        this.f354e.m1442b("获取上传指令数据错误!");
-                        break;
-                    } else {
-                        RunnableC0066a.f2115i.m600a(new C0091w((short) 4143, bArrM1194j));
-                        this.f354e.m1434a((String) null);
-                        break;
-                    }
+            if (i == 536870912) {
+                this.f359l = (short) 0;
+                return;
             }
             return;
         }
@@ -1807,7 +1800,7 @@ public final class C0015ao {
     }
 
     /* renamed from: C */
-    private void m84C(int i) throws IOException {
+    private void m84C(int i) {
         byte[] bArrM1116b = C0053bz.m1116b((short) 4244, m346z((this.f231ar << 3) + this.f230aq), i, C0047bt.f865ad);
         if (bArrM1116b == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -1837,7 +1830,7 @@ public final class C0015ao {
     /* JADX WARN: Multi-variable type inference failed */
     /* JADX WARN: Type inference failed for: r0v9, types: [int] */
     /* renamed from: D */
-    private void m86D(int i) throws IOException {
+    private void m86D(int i) {
         if (this.f256bS) {
             if (C0047bt.f1134fh.length >= 10) {
                 this.f354e.m1442b("交易物品栏已满");
@@ -1881,7 +1874,7 @@ public final class C0015ao {
     }
 
     /* renamed from: E */
-    private void m88E(int i) throws IOException {
+    private void m88E(int i) {
         byte[] bArrM1165e = C0053bz.m1165e((short) 4157, C0047bt.f865ad, m346z((this.f231ar << 3) + this.f230aq), i);
         if (bArrM1165e == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -1902,7 +1895,7 @@ public final class C0015ao {
     }
 
     /* renamed from: F */
-    private void m90F(int i) throws IOException {
+    private void m90F(int i) {
         int i2;
         int i3;
         int i4;
@@ -2125,7 +2118,7 @@ public final class C0015ao {
     }
 
     /* renamed from: H */
-    private void m94H(int i) throws IOException {
+    private void m94H(int i) {
         boolean z = false;
         if (this.f359l == 0) {
             if (this.f354e.f2149aq != null) {
@@ -2906,7 +2899,7 @@ public final class C0015ao {
     }
 
     /* renamed from: K */
-    private void m100K(int i) throws IOException {
+    private void m100K(int i) {
         byte b;
         byte b2;
         String[] strArr;
@@ -3194,7 +3187,7 @@ public final class C0015ao {
     }
 
     /* renamed from: L */
-    private void m102L(int i) throws IOException {
+    private void m102L(int i) {
         if (this.f359l == 0) {
             this.f354e.f2149aq.mo70b(i);
             if (i == 1 || i == 4) {
@@ -3237,7 +3230,7 @@ public final class C0015ao {
     }
 
     /* renamed from: M */
-    private void m104M(int i) throws Throwable {
+    private void m104M(int i) {
         this.f354e.f2149aq.mo70b(i);
         if (i == 268435456 || i == 1073741824 || i == 517) {
             if (C0047bt.f1552nb != null) {
@@ -3262,7 +3255,7 @@ public final class C0015ao {
     }
 
     /* renamed from: N */
-    private void m106N(int i) throws Throwable {
+    private void m106N(int i) {
         this.f354e.f2149aq.mo70b(i);
         if (i == 268435456 || i == 1073741824 || i == 517) {
             m147a((byte) 2, C0047bt.f1491mT, C0047bt.f1493mV[this.f354e.f2150ar.m1275g()]);
@@ -3279,7 +3272,7 @@ public final class C0015ao {
     }
 
     /* renamed from: O */
-    private void m108O(int i) throws IOException {
+    private void m108O(int i) {
         byte b;
         byte b2;
         if (this.f359l != 0) {
@@ -3491,7 +3484,7 @@ public final class C0015ao {
     }
 
     /* renamed from: P */
-    private void m110P(int i) throws IOException {
+    private void m110P(int i) {
         if (this.f359l == 0) {
             if (this.f354e.f2149aq != null) {
                 this.f354e.f2149aq.mo70b(i);
@@ -3667,7 +3660,7 @@ public final class C0015ao {
     }
 
     /* renamed from: Q */
-    private void m113Q(int i) throws IOException {
+    private void m113Q(int i) {
         if (C0047bt.f1198gs == null) {
             this.f354e.f2216j = this.f354e.f2217k;
             m361N();
@@ -3723,7 +3716,7 @@ public final class C0015ao {
     }
 
     /* renamed from: R */
-    private void m116R(int i) throws IOException {
+    private void m116R(int i) {
         if (this.f359l == 0) {
             m401a(C0047bt.f1002dH);
             if (this.f354e.f2149aq != null) {
@@ -3774,7 +3767,7 @@ public final class C0015ao {
     }
 
     /* renamed from: T */
-    private void m120T(int i) throws IOException {
+    private void m120T(int i) {
         int i2;
         if (C0047bt.f1101fA == null || C0047bt.f1101fA.length <= 0) {
             this.f354e.f2216j = this.f354e.f2217k;
@@ -4433,7 +4426,7 @@ public final class C0015ao {
     }
 
     /* renamed from: V */
-    private void m124V(int i) throws IOException {
+    private void m124V(int i) {
         byte bM313l = m313l((int) this.f315cj);
         if (bM313l < 0 || bM313l > 6) {
             this.f354e.m1442b("装备失败");
@@ -4662,7 +4655,7 @@ public final class C0015ao {
     }
 
     /* renamed from: Z */
-    private void m130Z(int i) throws IOException {
+    private void m130Z(int i) {
         byte[] bArrM1073a = C0053bz.m1073a((short) 4138, C0047bt.f865ad, C0047bt.f911bW ? C0047bt.f912bX : C0047bt.f1766t[this.f220af].f508a, C0047bt.f913bY[(this.f231ar << 3) + this.f230aq], (byte) i);
         if (bArrM1073a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -4681,10 +4674,10 @@ public final class C0015ao {
         Code decompiled incorrectly, please refer to instructions dump.
     */
     private byte m131a(C0049bv c0049bv) {
-        boolean z;
         if (c0049bv == null) {
             return (byte) -1;
         }
+
         if (this.f305cX == 5) {
             this.f290cH[0] = c0049bv.f1782e;
             this.f290cH[1] = c0049bv.f1783f;
@@ -4696,68 +4689,76 @@ public final class C0015ao {
             this.f290cH[2] = c0049bv.f1781d == null ? (short) 0 : c0049bv.f1781d.m631e();
             this.f290cH[3] = c0049bv.f1781d == null ? (short) 0 : c0049bv.f1781d.m632f();
         }
-        if (C0047bt.m771G() && this.f305cX != 5 && C0047bt.f1293ih != null) {
-            boolean z2 = false;
-            boolean z3 = false;
-            for (int i = 0; i < C0047bt.f1293ih.length; i++) {
-                if (z3) {
-                    z = z3;
-                } else {
-                    this.f291cI[0] = C0047bt.f1290ie[i];
-                    this.f291cI[1] = C0047bt.f1291if[i];
-                    this.f291cI[2] = C0047bt.f1292ig[i];
-                    this.f291cI[3] = C0047bt.f1293ih[i];
-                    z = this.f290cH[0] >= this.f291cI[0] && this.f290cH[0] + this.f290cH[2] <= this.f291cI[0] + this.f291cI[2] && this.f290cH[1] >= this.f291cI[1] && this.f290cH[1] + this.f290cH[3] <= this.f291cI[1] + this.f291cI[3];
-                }
-                if (!z || z2 || C0047bt.f1294ii[i] == null) {
-                    z3 = z;
-                } else {
-                    int i2 = 0;
-                    boolean z4 = z2;
-                    while (true) {
-                        if (i2 >= C0047bt.f1294ii[i].length) {
-                            z2 = z4;
-                            break;
+
+        if (C0047bt.m771G() && this.f305cX != 5) {
+            //角色是否被选中
+            boolean var2 = false;
+            //确认角色
+            boolean var3 = false;
+            if (C0047bt.f1293ih != null) {
+                for (int var4 = 0; var4 < C0047bt.f1293ih.length; var4++) {
+                    if (!var2) {
+                        this.f291cI[0] = C0047bt.f1290ie[var4];
+                        this.f291cI[1] = C0047bt.f1291if[var4];
+                        this.f291cI[2] = C0047bt.f1292ig[var4];
+                        this.f291cI[3] = C0047bt.f1293ih[var4];
+                        if (this.f290cH[0] >= this.f291cI[0]
+                                && this.f290cH[0] + this.f290cH[2] <= this.f291cI[0] + this.f291cI[2]
+                                && this.f290cH[1] >= this.f291cI[1]
+                                && this.f290cH[1] + this.f290cH[3] <= this.f291cI[1] + this.f291cI[3]
+                        ) {
+                            //选中角色
+                            var2 = true;
+                        } else {
+                            var2 = false;
                         }
-                        if (C0047bt.f1294ii[i][i2] == c0049bv.f1786i) {
-                            z2 = true;
-                            break;
-                        }
-                        i2++;
-                        z4 = false;
                     }
-                    if (!z2) {
-                        z3 = false;
+                    if (var2 && !var3 && C0047bt.f1294ii[var4] != null) {
+                        for (int var5 = 0; var5 < C0047bt.f1294ii[var4].length; var5++) {
+                            if (C0047bt.f1294ii[var4][var5] == c0049bv.f1786i) {
+                                var3 = true;
+                                break;
+                            }
+                            var3 = false;
+                        }
+                        if (!var3) {
+                            var2 = false;
+                        }
                     }
                 }
-            }
-            if (!z2) {
-                return (byte) 4;
-            }
-            if (!z3) {
-                return (byte) 5;
+                if (!var3) {
+                    return (byte) 4;
+                }
+                if (!var2) {
+                    return (byte) 5;
+                }
             }
         }
-        byte b = (byte) (this.f290cH[0] / 16);
-        int length = (byte) (((this.f290cH[1] + this.f290cH[3]) - 1) / 16);
-        if (length >= this.f355f.f464i[0].length) {
-            length = this.f355f.f464i[0].length - 1;
+
+        byte var11 = (byte) (this.f290cH[1] / 16);
+        byte var16 = (byte) (this.f290cH[0] / 16);
+
+        int var17 = (byte) (((this.f290cH[1] + this.f290cH[3]) - 1) / 16);
+        if (var17 >= this.f355f.f464i[0].length) {
+            var17 = this.f355f.f464i[0].length - 1;
         }
-        byte b2 = (byte) length;
-        int length2 = (byte) (((this.f290cH[0] + this.f290cH[2]) - 1) / 16);
-        if (length2 >= this.f355f.f464i.length) {
-            length2 = this.f355f.f464i.length - 1;
+
+        int var19 = (byte) (((this.f290cH[0] + this.f290cH[2]) - 1) / 16);
+        if (var19 >= this.f355f.f464i.length) {
+            var19 = this.f355f.f464i.length - 1;
         }
-        byte b3 = (byte) length2;
+
         if (this.f355f.f464i != null) {
-            for (byte b4 = (byte) (this.f290cH[1] / 16); b4 <= b2; b4++) {
-                for (int i3 = b; i3 <= b3; i3++) {
-                    if (this.f355f.f464i[i3][b4] == 1) {
-                        return (byte) 0;
+            for (int var6 = var11; var6 <= var17; var6++) {
+                for (int var12 = var16; var12 <= var19; var12++) {
+                    if (this.f355f.f464i[var12][var6] == 1) {
+                        return 0;
                     }
                 }
             }
         }
+
+
         if (C0047bt.f1766t != null) {
             for (int i4 = 0; i4 < C0047bt.f1766t.length; i4++) {
                 if (C0047bt.f1766t[i4] != null && C0047bt.f1766t[i4].f531w != null) {
@@ -4771,11 +4772,12 @@ public final class C0015ao {
                 }
             }
         }
+
         if (C0047bt.f863ab != null) {
             for (int i5 = 0; i5 < C0047bt.f863ab.length; i5++) {
                 if (f158bn != null) {
-                    this.f291cI[0] = (C0047bt.f863ab[i5] + 8) - ((f158bn.f571k != null ? r0.f569i : (short) 0) / 2);
-                    this.f291cI[1] = (C0047bt.f864ac[i5] + 16) - (f158bn.f571k != null ? r0.f570j : (short) 0);
+                    this.f291cI[0] = (C0047bt.f863ab[i5] + 8) - (f158bn.f571k != null ? f158bn.f569i : 0) / 2;
+                    this.f291cI[1] = (C0047bt.f864ac[i5] + 16) - (f158bn.f571k != null ? f158bn.f570j : 0);
                     this.f291cI[2] = 16;
                     this.f291cI[3] = 16;
                     if (C0009ai.m49a(this.f290cH, this.f291cI)) {
@@ -4784,6 +4786,7 @@ public final class C0015ao {
                 }
             }
         }
+
         if (C0047bt.f1295ij != null) {
             for (int i6 = 0; i6 < C0047bt.f1295ij.size(); i6++) {
                 C0049bv c0049bv2 = (C0049bv) C0047bt.f1295ij.elementAt(i6);
@@ -4907,7 +4910,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m136a(byte b, byte b2, byte b3, byte b4) throws IOException {
+    private void m136a(byte b, byte b2, byte b3, byte b4) {
         if (C0047bt.f933bs == 0) {
             this.f354e.m1442b("队员不能发随机送组队邀请");
             return;
@@ -4953,7 +4956,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m138a(byte b, byte b2, short s) throws IOException {
+    private void m138a(byte b, byte b2, short s) {
         byte[] bArrM1030a = C0053bz.m1030a(b, b2, (short) 0);
         if (bArrM1030a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -4964,7 +4967,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m139a(byte b, int i) throws IOException {
+    private void m139a(byte b, int i) {
         byte[] bArrM1164e = C0053bz.m1164e((short) 4633, C0047bt.f865ad, i, b);
         if (bArrM1164e == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -4975,7 +4978,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m140a(byte b, int i, byte b2) throws IOException {
+    private void m140a(byte b, int i, byte b2) {
         byte[] bArrM1058a = C0053bz.m1058a((short) 4363, C0047bt.f865ad, b, i, b2);
         if (bArrM1058a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -4986,7 +4989,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m141a(byte b, int i, int i2) throws IOException {
+    private void m141a(byte b, int i, int i2) {
         if (f141L.f1787j == null || f141L.f1787j.length <= i2) {
             this.f354e.m1442b("获取上传指令数据错误!");
             return;
@@ -5001,7 +5004,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m142a(byte b, int i, int i2, byte b2, byte b3) throws IOException {
+    private void m142a(byte b, int i, int i2, byte b2, byte b3) {
         byte[] bArrM1031a = C0053bz.m1031a(b, i, i2, b2, b3);
         if (bArrM1031a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -5012,7 +5015,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m143a(byte b, int i, long j) throws IOException {
+    private void m143a(byte b, int i, long j) {
         byte[] bArrM1071a = C0053bz.m1071a((short) 4640, C0047bt.f865ad, i, b, j);
         if (bArrM1071a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -5023,7 +5026,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m144a(byte b, int i, String str) throws IOException {
+    private void m144a(byte b, int i, String str) {
         byte[] bArrM1060a = C0053bz.m1060a((short) 4356, C0047bt.f865ad, (byte) 1, i, str, this.f181I.f402j, this.f181I.f403k);
         if (bArrM1060a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -5034,7 +5037,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m145a(byte b, C0049bv c0049bv) throws IOException {
+    private void m145a(byte b, C0049bv c0049bv) {
         byte[] bArrM1062a = C0053bz.m1062a((short) 4360, C0047bt.f865ad, b, c0049bv);
         if (bArrM1062a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -5044,7 +5047,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m146a(byte b, String str, byte b2) throws IOException {
+    private void m146a(byte b, String str, byte b2) {
         byte[] bArrM1043a = C0053bz.m1043a((short) 4882, b, str, b2, C0047bt.f865ad);
         if (bArrM1043a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -5055,7 +5058,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m147a(byte b, String str, int i) throws IOException {
+    private void m147a(byte b, String str, int i) {
         byte[] bArrM1035a = C0053bz.m1035a(b, str, i);
         if (bArrM1035a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -5066,7 +5069,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m148a(byte b, short s) throws IOException {
+    private void m148a(byte b, short s) {
         byte[] bArrM1065a = C0053bz.m1065a((short) 4631, C0047bt.f865ad, b, s);
         if (bArrM1065a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -5077,7 +5080,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m149a(byte b, short s, int i, short s2, String str) throws IOException {
+    private void m149a(byte b, short s, int i, short s2, String str) {
         byte[] bArrM1061a = C0053bz.m1061a((short) 4253, C0047bt.f865ad, b, i, s, s2, str);
         if (bArrM1061a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -5198,7 +5201,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m154a(String str, String str2, short s, short s2) throws IOException {
+    private void m154a(String str, String str2, short s, short s2) {
         byte[] bArrM1091a = C0053bz.m1091a((short) 5121, str, str2, (byte) 1, s2, s);
         C0047bt.f1459lo = str;
         if (bArrM1091a == null) {
@@ -5210,7 +5213,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m155a(String str, short s, short s2) throws IOException {
+    private void m155a(String str, short s, short s2) {
         byte[] bArrM1101a = C0053bz.m1101a((short) 5122, str, C0047bt.f1445la[this.f354e.f2150ar.m1275g()], s2, s);
         if (bArrM1101a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -5390,7 +5393,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m162a(short s, int i, String str, String str2) throws IOException {
+    private void m162a(short s, int i, String str, String str2) {
         byte[] bArrM1106a = C0053bz.m1106a((short) 4256, C0047bt.f865ad, s, i, str, str2);
         if (bArrM1106a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -5401,7 +5404,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m163a(short s, String str, byte b, String str2, int i) throws IOException {
+    private void m163a(short s, String str, byte b, String str2, int i) {
         byte[] bArrM1090a = C0053bz.m1090a((short) 4665, C0047bt.f865ad, str, b, str2, i);
         if (bArrM1090a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -5435,7 +5438,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    private void m166a(boolean z, byte b) throws IOException {
+    private void m166a(boolean z, byte b) {
         byte[] bArrM1057a = C0053bz.m1057a((short) 4117, C0047bt.f865ad, this.f238az, z ? b : (byte) 0, z ? b == 2 ? m346z((this.f231ar << 3) + this.f230aq) : C0047bt.f1032dl[this.f354e.f2150ar.m1275g()] : -1);
         if (bArrM1057a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -5598,7 +5601,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aB */
-    private void m177aB(int i) throws IOException {
+    private void m177aB(int i) {
         if (this.f359l != 0) {
             if (this.f359l == 1) {
                 m421b(i);
@@ -5655,7 +5658,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aC */
-    private void m179aC(int i) throws IOException {
+    private void m179aC(int i) {
         if (this.f359l == 0) {
             if (i == 8 || i == 516) {
                 C0055ca.f1885e = C0055ca.f1885e - C0055ca.f1884d >= 0 ? C0055ca.f1885e - C0055ca.f1884d : 0;
@@ -5714,7 +5717,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aE */
-    private void m183aE(int i) throws IOException {
+    private void m183aE(int i) {
         if (this.f359l == 0) {
             C0055ca.m1317b(i);
             if (i != 268435456 && i != 1073741824 && i != 517) {
@@ -5882,7 +5885,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aF */
-    private void m185aF(int i) throws IOException {
+    private void m185aF(int i) {
         byte[] bArrM1142c = C0053bz.m1142c((short) 4106, C0047bt.f865ad, -1);
         if (bArrM1142c == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -5904,7 +5907,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aG */
-    private void m187aG(int i) throws IOException {
+    private void m187aG(int i) {
         int iM36a;
         if (this.f359l != 0) {
             if (this.f359l == 1) {
@@ -5984,7 +5987,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aH */
-    private void m189aH(int i) throws IOException {
+    private void m189aH(int i) {
         if (this.f359l == 0) {
             if (i != 268435456 && i != 1073741824 && i != 517) {
                 if (this.f354e.f2149aq != null) {
@@ -6060,7 +6063,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aI */
-    private void m191aI(int i) throws IOException {
+    private void m191aI(int i) {
         if (this.f359l == 0) {
             if (this.f354e.f2149aq != null) {
                 this.f354e.f2149aq.mo70b(i);
@@ -6241,7 +6244,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aJ */
-    private void m193aJ(int i) throws IOException {
+    private void m193aJ(int i) {
         String str;
         int iM36a;
         if (this.f359l != 0) {
@@ -6409,7 +6412,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aL */
-    private void m197aL(int i) throws IOException {
+    private void m197aL(int i) {
         if (this.f359l == 0 || this.f359l == 4) {
             if (this.f190T != null) {
                 this.f190T.mo70b(i);
@@ -6586,7 +6589,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aM */
-    private void m199aM(int i) throws IOException {
+    private void m199aM(int i) {
         if (this.f359l == 0 || this.f359l == 4) {
             if (this.f354e.f2149aq != null) {
                 this.f354e.f2149aq.mo70b(i);
@@ -6804,7 +6807,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aO */
-    private void m202aO(int i) throws IOException {
+    private void m202aO(int i) {
         if (this.f359l != 0) {
             if (this.f359l == 1) {
                 C0055ca.m1317b(i);
@@ -6995,7 +6998,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aQ */
-    private void m207aQ(int i) throws IOException {
+    private void m207aQ(int i) {
         if (this.f359l == 0) {
             if (this.f354e.f2149aq != null) {
                 this.f354e.f2149aq.mo70b(i);
@@ -7115,7 +7118,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aS */
-    private void m210aS() throws IOException {
+    private void m210aS() {
         byte[] bArrM1103a = C0053bz.m1103a((short) 4140, C0047bt.f865ad, C0047bt.f1170gQ);
         if (bArrM1103a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -7126,7 +7129,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aS */
-    private void m211aS(int i) throws IOException {
+    private void m211aS(int i) {
         this.f354e.f2149aq.mo70b(i);
         if (i != 268435456 && i != 1073741824) {
             if (i == 536870912) {
@@ -7160,7 +7163,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aT */
-    private void m212aT() throws Throwable {
+    private void m212aT() {
         m214aU();
         m365T();
         if (RunnableC0066a.f2098ad == null) {
@@ -7243,8 +7246,7 @@ public final class C0015ao {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    private void m213aT(int i) throws IOException {
-        int i2;
+    private void m213aT(int i) {
         if (this.f354e.f2154av != null) {
             this.f354e.f2154av.mo32a(i);
         }
@@ -7265,6 +7267,7 @@ public final class C0015ao {
             C0047bt.f825Q = null;
             return;
         }
+        int i2 = -1;
         C0058cd c0058cd = C0047bt.f825Q;
         if (c0058cd.f1947j != null) {
             for (int i3 = 0; i3 < c0058cd.f1947j.length; i3++) {
@@ -7273,34 +7276,26 @@ public final class C0015ao {
                     break;
                 }
             }
-            if (c0058cd.f1948k == null) {
-                for (int i4 = 0; i4 < c0058cd.f1948k.length; i4++) {
-                    if (c0058cd.f1948k[i4] == i) {
-                        i2 = 1;
-                        break;
-                    }
+        } else if (c0058cd.f1948k != null) {
+            for (int i4 = 0; i4 < c0058cd.f1948k.length; i4++) {
+                if (c0058cd.f1948k[i4] == i) {
+                    i2 = 1;
+                    break;
                 }
-                if (c0058cd.f1949l == null) {
-                    for (int i5 = 0; i5 < c0058cd.f1949l.length; i5++) {
-                        if (c0058cd.f1949l[i5] == i) {
-                            i2 = 2;
-                            break;
-                        }
-                    }
-                    i2 = -1;
-                } else {
-                    i2 = -1;
-                }
-            } else if (c0058cd.f1949l == null) {
             }
-        } else if (c0058cd.f1948k == null) {
+        } else if (c0058cd.f1949l != null) {
+            for (int i5 = 0; i5 < c0058cd.f1949l.length; i5++) {
+                if (c0058cd.f1949l[i5] == i) {
+                    i2 = 2;
+                    break;
+                }
+            }
         }
-        if (i2 == -1 || C0047bt.f825Q.f1946i[i2] == null) {
-            return;
+        if (i2 != -1 && C0047bt.f825Q.f1946i[i2] != null) {
+            m149a((byte) 3, this.f357j, C0047bt.f825Q.f1938a, (short) i2, C0047bt.f825Q.f1939b);
+            this.f354e.m1434a((String) null);
+            C0047bt.f825Q = null;
         }
-        m149a((byte) 3, this.f357j, C0047bt.f825Q.f1938a, (short) i2, C0047bt.f825Q.f1939b);
-        this.f354e.m1434a((String) null);
-        C0047bt.f825Q = null;
     }
 
     /* JADX WARN: Removed duplicated region for block: B:22:0x0063  */
@@ -7359,7 +7354,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aU */
-    private void m215aU(int i) throws IOException {
+    private void m215aU(int i) {
         if (this.f186P != null) {
             this.f186P.m1669a(i);
         }
@@ -7386,7 +7381,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aV */
-    private void m217aV(int i) throws IOException {
+    private void m217aV(int i) {
         if (this.f187Q != null) {
             this.f187Q.m1580a(i);
         }
@@ -7421,7 +7416,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aW */
-    private void m219aW(int i) throws IOException {
+    private void m219aW(int i) {
         if (i != 268435456 && i != 1073741824 && i != 517) {
             if (i == 536870912) {
                 this.f358k = this.f357j;
@@ -7443,7 +7438,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aX */
-    private void m220aX() throws IOException {
+    private void m220aX() {
         byte[] bArrM1238t = C0053bz.m1238t((short) 4248, C0047bt.f865ad);
         if (bArrM1238t == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -7454,7 +7449,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aX */
-    private void m221aX(int i) throws IOException {
+    private void m221aX(int i) {
         if ((C0047bt.f1059eL.length > 0 && i == 536870912) || (C0047bt.f1059eL.length <= 0 && (i == 536870912 || i == 268435456 || i == 517 || i == 1073741824))) {
             this.f358k = this.f357j;
             this.f359l = (short) 0;
@@ -7525,7 +7520,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aY */
-    private void m223aY(int i) throws IOException {
+    private void m223aY(int i) {
         if (this.f359l == 0) {
             if (C0047bt.f1521mx != -1 && this.f204aI != null) {
                 C0009ai.m43a(this.f204aI, this.f354e.f2147ak);
@@ -7642,7 +7637,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aZ */
-    private void m225aZ(int i) throws IOException {
+    private void m225aZ(int i) {
         if (this.f359l != 0) {
             if (this.f359l == 1) {
                 if (i != 268435456 && i != 1073741824 && i != 517) {
@@ -7839,7 +7834,7 @@ public final class C0015ao {
     }
 
     /* renamed from: ab */
-    private void m227ab(int i) throws IOException {
+    private void m227ab(int i) {
         int i2;
         int i3;
         int i4 = 0;
@@ -8024,7 +8019,7 @@ public final class C0015ao {
     }
 
     /* renamed from: ac */
-    private void m228ac(int i) throws IOException {
+    private void m228ac(int i) {
         byte[] bArrM1172f = C0053bz.m1172f((short) 4158, C0047bt.f865ad, C0047bt.f987ct[(this.f354e.f2151as.f2353a << 5) + (this.f231ar << 3) + this.f230aq], i);
         if (bArrM1172f == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -8035,7 +8030,7 @@ public final class C0015ao {
     }
 
     /* renamed from: ad */
-    private void m229ad(int i) throws IOException {
+    private void m229ad(int i) {
         byte[] bArrM1227p = C0053bz.m1227p((short) 4155, C0047bt.f865ad, i);
         if (bArrM1227p == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -8102,7 +8097,7 @@ public final class C0015ao {
     }
 
     /* renamed from: ag */
-    private void m232ag(int i) throws IOException {
+    private void m232ag(int i) {
         if (C0047bt.f1019dY == null) {
             this.f226am = null;
             this.f225al = null;
@@ -8251,7 +8246,7 @@ public final class C0015ao {
     }
 
     /* renamed from: ai */
-    private void m234ai(int i) throws IOException {
+    private void m234ai(int i) {
         if (C0047bt.f1198gs == null) {
             this.f226am = null;
             this.f225al = null;
@@ -8651,7 +8646,7 @@ public final class C0015ao {
     }
 
     /* renamed from: ak */
-    private void m236ak(int i) throws IOException {
+    private void m236ak(int i) {
         if (this.f354e.f2128aC != null && this.f354e.f2214g && this.f354e.f2150ar.m1275g() - 1 >= 0) {
             m382a(C0047bt.f1005dK[this.f354e.f2150ar.m1275g() - 1], (byte) 4);
         }
@@ -8974,7 +8969,7 @@ public final class C0015ao {
     }
 
     /* renamed from: al */
-    private void m237al(int i) throws IOException {
+    private void m237al(int i) {
         if (i == 1 || i == 514) {
             if (this.f227an != null) {
                 C0055ca.f1887g = C0055ca.f1887g + (-1) >= 0 ? C0055ca.f1887g - 1 : this.f227an.length - 1;
@@ -9014,7 +9009,7 @@ public final class C0015ao {
     }
 
     /* renamed from: am */
-    private void m238am(int i) throws IOException {
+    private void m238am(int i) {
         if (C0047bt.f1683q == null) {
             this.f225al = null;
             m361N();
@@ -9323,7 +9318,7 @@ public final class C0015ao {
     }
 
     /* renamed from: ao */
-    private void m241ao(int i) throws IOException {
+    private void m241ao(int i) {
         int i2;
         int i3;
         int i4 = 0;
@@ -10014,37 +10009,87 @@ public final class C0015ao {
     }
 
     /* renamed from: as */
-    private void m249as(int i) throws IOException {
-        byte b;
-        byte b2;
-        byte b3;
+    private void m249as(int i) {
         if (this.f355f.f464i == null) {
             return;
         }
         this.f354e.f2149aq.mo70b(i);
-        if (i == 516 || i == 8) {
+        if (i != 516 && i != 8) {
+            if (i != 518 && i != 2) {
+                if (i == 536870912) {
+                    this.f354e.m1456j();
+                    this.f354e.f2149aq.mo71j();
+                    m258ax();
+                    this.f284cB = null;
+                    this.f285cC = null;
+                    return;
+                }
+            } else {
+                this.f196aA = this.f354e.f2150ar.m1276h();
+                this.f283cA = this.f354e.f2150ar.m1275g();
+                if (this.f354e.f2150ar.m1275g() == 0) {
+                    f145aW[0] = f145aW[0] >= 50 ? 50 : ++f145aW[0];
+                    m206aQ();
+                    return;
+                }
+                if (this.f354e.f2150ar.m1275g() == 1) {
+                    f145aW[1] = f145aW[1] >= 50 ? 50 : ++f145aW[1];
+                    m206aQ();
+                    return;
+                }
+                if (this.f354e.f2150ar.m1275g() == 3) {
+                    f145aW[3] = f145aW[3] == 0 ? (byte) 1 : (byte) 0;
+                    RunnableC0066a.f2114f.m57a(this.f355f, f167h, f168i, true, true, 1009050);
+                    m206aQ();
+                    return;
+                }
+
+                if (this.f354e.f2150ar.m1275g() == 7) {
+                    m321p((byte) 0);
+                    return;
+                }
+                if (this.f354e.f2150ar.m1275g() == 8) {
+                    m321p((byte) 1);
+                    return;
+                }
+                if (this.f354e.f2150ar.m1275g() == 17) {
+                    m321p((byte) 3);
+                    return;
+                }
+
+
+                if (this.f354e.f2150ar.m1275g() == 13) {
+                    m325r(C0047bt.f810B);
+                    return;
+                }
+                if (this.f354e.f2150ar.m1275g() == 14) {
+                    m328s(C0047bt.f809A);
+                    return;
+                }
+                if (this.f354e.f2150ar.m1275g() == 15) {
+                    m362O();
+                    return;
+                }
+                if (this.f354e.f2150ar.m1275g() == 16) {
+                    m323q(C0047bt.f812D);
+                    return;
+                }
+                if (this.f354e.f2150ar.m1275g() == 19) {
+                    m330t(C0047bt.f813E);
+                    return;
+                }
+                f145aW[this.f354e.f2150ar.m1275g()] = f145aW[this.f354e.f2150ar.m1275g()] != 1 ? (byte) 1 : (byte) 0;
+                m206aQ();
+            }
+        } else {
             this.f196aA = this.f354e.f2150ar.m1276h();
             this.f283cA = this.f354e.f2150ar.m1275g();
             if (this.f354e.f2150ar.m1275g() == 0 || this.f354e.f2150ar.m1275g() == 12) {
-                byte[] bArr = f145aW;
-                int iM1275g = this.f354e.f2150ar.m1275g();
-                if (f145aW[this.f354e.f2150ar.m1275g()] > 0) {
-                    b = (byte) (r3[r4] - 1);
-                    f145aW[this.f354e.f2150ar.m1275g()] = b;
-                }
-                bArr[iM1275g] = b;
+                f145aW[this.f354e.f2150ar.m1275g()] = f145aW[this.f354e.f2150ar.m1275g()] <= 0 ? 0 : --f145aW[this.f354e.f2150ar.m1275g()];
                 return;
             }
             if (this.f354e.f2150ar.m1275g() == 1) {
-                byte[] bArr2 = f145aW;
-                int iM1275g2 = this.f354e.f2150ar.m1275g();
-                if (f145aW[this.f354e.f2150ar.m1275g()] <= 10) {
-                    b = 10;
-                } else {
-                    b = (byte) (r3[r4] - 1);
-                    f145aW[this.f354e.f2150ar.m1275g()] = b;
-                }
-                bArr2[iM1275g2] = b;
+                f145aW[this.f354e.f2150ar.m1275g()] = f145aW[this.f354e.f2150ar.m1275g()] <= 10 ? 10 : --f145aW[this.f354e.f2150ar.m1275g()];
                 return;
             }
             if (this.f354e.f2150ar.m1275g() == 3) {
@@ -10053,21 +10098,19 @@ public final class C0015ao {
                 m206aQ();
                 return;
             }
-            if (this.f354e.f2150ar.m1275g() == 7 || this.f354e.f2150ar.m1275g() == 8 || this.f354e.f2150ar.m1275g() == 17) {
-                if (this.f354e.f2150ar.m1275g() == 7) {
-                    m321p((byte) 0);
-                    return;
-                } else if (this.f354e.f2150ar.m1275g() == 8) {
-                    m321p((byte) 1);
-                    return;
-                } else {
-                    if (this.f354e.f2150ar.m1275g() == 17) {
-                        m321p((byte) 3);
-                        return;
-                    }
-                    return;
-                }
+            if (this.f354e.f2150ar.m1275g() == 7) {
+                m321p((byte) 0);
+                return;
             }
+            if (this.f354e.f2150ar.m1275g() == 8) {
+                m321p((byte) 1);
+                return;
+            }
+            if (this.f354e.f2150ar.m1275g() == 17) {
+                m321p((byte) 3);
+                return;
+            }
+
             if (this.f354e.f2150ar.m1275g() == 13) {
                 m325r(C0047bt.f810B);
                 return;
@@ -10094,90 +10137,8 @@ public final class C0015ao {
             if (this.f354e.f2150ar.m1275g() == 19) {
                 m330t(C0047bt.f813E);
                 return;
-            } else {
-                f145aW[this.f354e.f2150ar.m1275g()] = f145aW[this.f354e.f2150ar.m1275g()] != 0 ? (byte) 0 : (byte) 1;
-                m206aQ();
-                return;
             }
-        }
-        if (i != 518 && i != 2) {
-            if (i == 536870912) {
-                this.f354e.m1456j();
-                this.f354e.f2149aq.mo71j();
-                m258ax();
-                this.f284cB = null;
-                this.f285cC = null;
-                return;
-            }
-            return;
-        }
-        this.f196aA = this.f354e.f2150ar.m1276h();
-        this.f283cA = this.f354e.f2150ar.m1275g();
-        if (this.f354e.f2150ar.m1275g() == 0) {
-            byte[] bArr3 = f145aW;
-            if (f145aW[0] >= 50) {
-                b3 = 50;
-            } else {
-                byte[] bArr4 = f145aW;
-                b3 = (byte) (bArr4[0] + 1);
-                bArr4[0] = b3;
-            }
-            bArr3[0] = b3;
-            m206aQ();
-            return;
-        }
-        if (this.f354e.f2150ar.m1275g() == 1) {
-            byte[] bArr5 = f145aW;
-            if (f145aW[1] >= 50) {
-                b2 = 50;
-            } else {
-                byte[] bArr6 = f145aW;
-                b2 = (byte) (bArr6[1] + 1);
-                bArr6[1] = b2;
-            }
-            bArr5[1] = b2;
-            m206aQ();
-            return;
-        }
-        if (this.f354e.f2150ar.m1275g() == 3) {
-            f145aW[3] = f145aW[3] == 0 ? (byte) 1 : (byte) 0;
-            RunnableC0066a.f2114f.m57a(this.f355f, f167h, f168i, true, true, 1009050);
-            m206aQ();
-            return;
-        }
-        if (this.f354e.f2150ar.m1275g() == 7 || this.f354e.f2150ar.m1275g() == 8 || this.f354e.f2150ar.m1275g() == 17) {
-            if (this.f354e.f2150ar.m1275g() == 7) {
-                m321p((byte) 0);
-                return;
-            } else if (this.f354e.f2150ar.m1275g() == 8) {
-                m321p((byte) 1);
-                return;
-            } else {
-                if (this.f354e.f2150ar.m1275g() == 17) {
-                    m321p((byte) 3);
-                    return;
-                }
-                return;
-            }
-        }
-        if (this.f354e.f2150ar.m1275g() == 13) {
-            m325r(C0047bt.f810B);
-            return;
-        }
-        if (this.f354e.f2150ar.m1275g() == 14) {
-            m328s(C0047bt.f809A);
-            return;
-        }
-        if (this.f354e.f2150ar.m1275g() == 15) {
-            m362O();
-            return;
-        }
-        if (this.f354e.f2150ar.m1275g() == 16) {
-            m323q(C0047bt.f812D);
-        } else if (this.f354e.f2150ar.m1275g() == 19) {
-            m330t(C0047bt.f813E);
-        } else {
-            f145aW[this.f354e.f2150ar.m1275g()] = f145aW[this.f354e.f2150ar.m1275g()] != 1 ? (byte) 1 : (byte) 0;
+            f145aW[this.f354e.f2150ar.m1275g()] = f145aW[this.f354e.f2150ar.m1275g()] != 0 ? (byte) 0 : (byte) 1;
             m206aQ();
         }
     }
@@ -10193,7 +10154,7 @@ public final class C0015ao {
     }
 
     /* renamed from: at */
-    private void m251at(int i) throws IOException {
+    private void m251at(int i) {
         if (this.f359l == 0) {
             if (this.f354e.f2149aq != null) {
                 this.f354e.f2149aq.mo70b(i);
@@ -10594,7 +10555,7 @@ public final class C0015ao {
     }
 
     /* renamed from: av */
-    private void m255av(int i) throws IOException {
+    private void m255av(int i) {
         byte[] bArrM1245w = C0053bz.m1245w((short) 4668, C0047bt.f865ad, i);
         if (bArrM1245w == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -10619,7 +10580,7 @@ public final class C0015ao {
     }
 
     /* renamed from: aw */
-    private void m257aw(int i) throws IOException {
+    private void m257aw(int i) {
         byte[] bArrM1209l;
         if (this.f359l != 0) {
             if (this.f359l == 1) {
@@ -10686,7 +10647,7 @@ public final class C0015ao {
     }
 
     /* renamed from: ax */
-    private void m259ax(int i) throws IOException {
+    private void m259ax(int i) {
         if (this.f359l == 0) {
             if (this.f354e.f2149aq != null) {
                 this.f354e.f2149aq.mo70b(i);
@@ -10745,7 +10706,7 @@ public final class C0015ao {
     }
 
     /* renamed from: ay */
-    private void m260ay(int i) throws IOException {
+    private void m260ay(int i) {
         if (this.f359l == 0) {
             this.f354e.f2149aq.mo70b(i);
             if (i == 4 || i == 1) {
@@ -10982,7 +10943,7 @@ public final class C0015ao {
     }
 
     /* renamed from: az */
-    private void m263az(int i) throws IOException {
+    private void m263az(int i) {
         if (this.f354e.f2149aq != null) {
             this.f354e.f2149aq.mo70b(i);
         }
@@ -11013,7 +10974,7 @@ public final class C0015ao {
     }
 
     /* renamed from: b */
-    private void m265b(byte b, byte b2) throws IOException {
+    private void m265b(byte b, byte b2) {
         byte[] bArrM1139c = C0053bz.m1139c((short) 4134, C0047bt.f865ad, b, b2);
         if (bArrM1139c != null) {
             RunnableC0066a.f2115i.m600a(new C0091w((short) 4134, bArrM1139c));
@@ -11023,7 +10984,7 @@ public final class C0015ao {
     }
 
     /* renamed from: b */
-    private void m266b(byte b, short s) throws IOException {
+    private void m266b(byte b, short s) {
         byte[] bArrM1121b = C0053bz.m1121b((short) 4632, C0047bt.f865ad, b, s);
         if (bArrM1121b == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -11138,7 +11099,7 @@ public final class C0015ao {
     }
 
     /* renamed from: b */
-    private void m272b(short s, byte b) throws IOException {
+    private void m272b(short s, byte b) {
         byte[] bArrM1160d = C0053bz.m1160d(s, C0047bt.f865ad, C0047bt.f1766t[b].f508a);
         if (bArrM1160d == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -11149,7 +11110,7 @@ public final class C0015ao {
     }
 
     /* renamed from: b */
-    private void m273b(short s, byte b, byte b2) throws IOException {
+    private void m273b(short s, byte b, byte b2) {
         byte[] bArrM1105a = C0053bz.m1105a(s, C0047bt.f865ad, C0047bt.f1218hL[b], (int) C0047bt.f1766t[b2].f508a);
         if (bArrM1105a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -11173,7 +11134,7 @@ public final class C0015ao {
     }
 
     /* renamed from: b */
-    private void m275b(boolean z, byte b) throws IOException {
+    private void m275b(boolean z, byte b) {
         byte[] bArrM1070a = C0053bz.m1070a((short) 4193, C0047bt.f865ad, C0047bt.f1101fA[this.f237ay], this.f238az, z ? (byte) 1 : (byte) 0, z ? C0047bt.f1032dl[this.f354e.f2150ar.m1275g()] : -1);
         if (bArrM1070a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -11204,7 +11165,7 @@ public final class C0015ao {
     }
 
     /* renamed from: ba */
-    private void m277ba() throws IOException {
+    private void m277ba() {
         byte[] bArrM1248y = C0053bz.m1248y((short) 4659, C0047bt.f865ad);
         if (bArrM1248y == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -11215,7 +11176,7 @@ public final class C0015ao {
     }
 
     /* renamed from: ba */
-    private void m278ba(int i) throws IOException {
+    private void m278ba(int i) {
         this.f354e.f2149aq.mo70b(i);
         this.f340di.mo70b(i);
         this.f341dj.mo70b(i);
@@ -11276,7 +11237,7 @@ public final class C0015ao {
     }
 
     /* renamed from: bb */
-    private void m279bb() throws IOException {
+    private void m279bb() {
         byte[] bArrM1112b = C0053bz.m1112b((short) 4267);
         if (bArrM1112b != null) {
             RunnableC0066a.f2115i.m600a(new C0091w((short) 4267, bArrM1112b));
@@ -11286,7 +11247,7 @@ public final class C0015ao {
     }
 
     /* renamed from: bb */
-    private void m280bb(int i) throws IOException {
+    private void m280bb(int i) {
         this.f354e.f2149aq.mo70b(i);
         if (i == 536870912) {
             if (this.f352du) {
@@ -11321,7 +11282,7 @@ public final class C0015ao {
     }
 
     /* renamed from: bc */
-    private void m281bc() throws IOException {
+    private void m281bc() {
         byte[] bArrM1182h = C0053bz.m1182h((short) 4120, C0047bt.f865ad);
         if (bArrM1182h == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -11332,7 +11293,7 @@ public final class C0015ao {
     }
 
     /* renamed from: bc */
-    private void m282bc(int i) throws IOException {
+    private void m282bc(int i) {
         this.f354e.f2149aq.mo70b(i);
         if (this.f359l != 0) {
             if (this.f359l == 1) {
@@ -11367,7 +11328,7 @@ public final class C0015ao {
     }
 
     /* renamed from: bd */
-    private void m283bd() throws IOException {
+    private void m283bd() {
         byte[] bArrM1188i = C0053bz.m1188i((short) 4121, C0047bt.f865ad);
         if (bArrM1188i == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -11392,7 +11353,7 @@ public final class C0015ao {
     }
 
     /* renamed from: c */
-    private void m285c(byte b, short s) throws IOException {
+    private void m285c(byte b, short s) {
         byte[] bArrM1141c = C0053bz.m1141c((short) 4150, C0047bt.f865ad, b, s);
         if (bArrM1141c == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -11437,8 +11398,6 @@ public final class C0015ao {
         Code decompiled incorrectly, please refer to instructions dump.
     */
     private void m289c(Graphics graphics, String str) {
-        C0041bn c0041bn;
-        int i;
         if (this.f354e.f2149aq != null) {
             this.f354e.f2149aq.m1601a(str);
             int i2 = C0088t.f2519e <= 240 ? 79 : 120;
@@ -11449,50 +11408,38 @@ public final class C0015ao {
             int i4 = (((C0088t.f2519e <= 240 ? 79 : 120) - 6) - (f178x.f599b << 2)) / 5;
             int i5 = this.f354e.f2149aq.f2328a + 8 + i3;
             int i6 = this.f354e.f2149aq.f2329b + 33 + this.f354e.f2151as.f2354b + i4;
-            int i7 = 0;
-            while (true) {
-                int i8 = i7;
-                if (i8 >= 32) {
-                    break;
-                }
+            for (int i8 = 0; i8 < 32; i8++) {
                 RunnableC0066a.f2114f.m64a(graphics, f178x, (int[]) null, (C0010aj) null, 0, 0, ((i8 % 8) * (f178x.f599b + i3)) + i5, ((i8 / 8) * (f178x.f599b + i4)) + i6, 0, 0);
                 m379a(i8, ((i8 % 8) * (f178x.f599b + i3)) + i5, ((i8 / 8) * (f178x.f599b + i4)) + i6, f178x.f599b, f178x.f600c);
-                i7 = i8 + 1;
             }
             C0041bn c0041bn2 = null;
             if (C0047bt.f891bC.size() > 0) {
-                int i9 = 0;
-                while (i9 < C0047bt.f891bC.size()) {
+                for (int i9 = 0; i9 < C0047bt.f891bC.size(); i9++) {
                     this.f257bT = (C0041bn) C0047bt.f891bC.elementAt(i9);
-                    if (this.f257bT == null || this.f257bT.f714a < 0) {
-                        c0041bn = c0041bn2;
-                    } else {
-                        if (this.f232as == 4 || this.f232as == 15 || this.f232as == 16) {
-                            int i10 = this.f257bT.f720g - this.f257bT.f735v;
-                            if (i10 <= 0) {
-                                c0041bn = c0041bn2;
-                            } else {
-                                i = i10;
-                            }
+                    if (this.f257bT != null && this.f257bT.f714a >= 0) {
+                        int var10;
+                        if (this.f232as != 4 && this.f232as != 15 && this.f232as != 16) {
+                            var10 = this.f257bT.f720g;
                         } else {
-                            i = this.f257bT.f720g;
+                            var10 = this.f257bT.f720g - this.f257bT.f735v;
+                            if (var10 <= 0) {
+                                continue;
+                            }
                         }
                         int i11 = this.f257bT.f721h % 32;
                         if (this.f257bT.f721h / 32 == this.f354e.f2151as.f2353a) {
                             RunnableC0066a.f2114f.m64a(graphics, m264b(this.f257bT.f722i), (int[]) null, (C0010aj) null, 0, 0, ((i11 % 8) * (f178x.f599b + i3)) + i5 + 1, ((i11 / 8) * (f178x.f599b + i4)) + i6 + 1, 0, 0);
-                            if (i > 9) {
-                                RunnableC0066a.f2114f.m63a(graphics, RunnableC0066a.f2116n, (int[]) null, i / 10, 0, 0, ((i11 % 8) * (f178x.f599b + i3)) + 10 + i5, ((i11 / 8) * (f178x.f599b + i4)) + 12 + i6, 0, 0);
-                                RunnableC0066a.f2114f.m63a(graphics, RunnableC0066a.f2116n, (int[]) null, i % 10, 0, 0, ((i11 % 8) * (f178x.f599b + i3)) + 14 + i5, ((i11 / 8) * (f178x.f599b + i4)) + 12 + i6, 0, 0);
-                            } else if (i > 1) {
-                                RunnableC0066a.f2114f.m63a(graphics, RunnableC0066a.f2116n, (int[]) null, i % 10, 0, 0, ((i11 % 8) * (f178x.f599b + i3)) + 14 + i5, ((i11 / 8) * (f178x.f599b + i4)) + 12 + i6, 0, 0);
+                            if (var10 > 9) {
+                                RunnableC0066a.f2114f.m63a(graphics, RunnableC0066a.f2116n, (int[]) null, var10 / 10, 0, 0, ((i11 % 8) * (f178x.f599b + i3)) + 10 + i5, ((i11 / 8) * (f178x.f599b + i4)) + 12 + i6, 0, 0);
+                                RunnableC0066a.f2114f.m63a(graphics, RunnableC0066a.f2116n, (int[]) null, var10 % 10, 0, 0, ((i11 % 8) * (f178x.f599b + i3)) + 14 + i5, ((i11 / 8) * (f178x.f599b + i4)) + 12 + i6, 0, 0);
+                            } else if (var10 > 1) {
+                                RunnableC0066a.f2114f.m63a(graphics, RunnableC0066a.f2116n, (int[]) null, var10 % 10, 0, 0, ((i11 % 8) * (f178x.f599b + i3)) + 14 + i5, ((i11 / 8) * (f178x.f599b + i4)) + 12 + i6, 0, 0);
                             }
                             if (this.f257bT.f721h % 32 == (this.f231ar << 3) + this.f230aq) {
-                                c0041bn = this.f257bT;
+                                c0041bn2 = this.f257bT;
                             }
                         }
                     }
-                    i9++;
-                    c0041bn2 = c0041bn;
                 }
             }
             C0055ca.m1328d(graphics, (this.f230aq * (f178x.f599b + i3)) + i5, (this.f231ar * (f178x.f599b + i4)) + i6, 17, 17);
@@ -11547,7 +11494,7 @@ public final class C0015ao {
     }
 
     /* renamed from: c */
-    private void m290c(short s, byte b) throws IOException {
+    private void m290c(short s, byte b) {
         byte[] bArrM1167e = C0053bz.m1167e((short) 4664, C0047bt.f865ad, C0047bt.f1766t[b].f508a);
         if (bArrM1167e == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -11558,7 +11505,7 @@ public final class C0015ao {
     }
 
     /* renamed from: c */
-    private void m291c(short s, byte b, byte b2) throws IOException {
+    private void m291c(short s, byte b, byte b2) {
         byte[] bArrM1104a = C0053bz.m1104a((short) 4361, C0047bt.f865ad, C0047bt.f1766t[b].f508a, b2);
         if (bArrM1104a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -11623,36 +11570,29 @@ public final class C0015ao {
         Code decompiled incorrectly, please refer to instructions dump.
     */
     private void m296d(Graphics graphics) {
-        C0041bn c0041bn;
         if (this.f354e.f2149aq != null) {
             this.f354e.f2149aq.m1602a(graphics);
             C0055ca.m1292a(graphics, this.f354e.f2149aq.f2328a + 5, this.f354e.f2151as.f2354b + this.f354e.f2149aq.f2329b + 29, this.f354e.f2149aq.f2330c - 11, C0088t.f2519e <= 240 ? 79 : 120, 1);
             C0055ca.m1288a(graphics);
+
             int i = ((this.f354e.f2149aq.f2330c - 11) - (f178x.f599b << 3)) / 9;
             int i2 = (((C0088t.f2519e <= 240 ? 79 : 120) - 6) - (f178x.f599b << 2)) / 5;
             int i3 = this.f354e.f2149aq.f2328a + 8 + i;
             int i4 = this.f354e.f2149aq.f2329b + 33 + this.f354e.f2151as.f2354b + i2;
-            int i5 = 0;
-            while (true) {
-                int i6 = i5;
-                if (i6 >= 32) {
-                    break;
-                }
-                RunnableC0066a.f2114f.m64a(graphics, f178x, (int[]) null, (C0010aj) null, 0, 0, ((i6 % 8) * (f178x.f599b + i)) + i3, ((i6 / 8) * (f178x.f599b + i2)) + i4, 0, 0);
-                m379a(i6, ((i6 % 8) * (f178x.f599b + i)) + i3, ((i6 / 8) * (f178x.f599b + i2)) + i4, f178x.f599b, f178x.f600c);
-                i5 = i6 + 1;
+
+            for (int var8 = 0; var8 < 32; var8++) {
+                RunnableC0066a.f2114f.m64a(graphics, f178x, (int[]) null, (C0010aj) null, 0, 0, ((var8 % 8) * (f178x.f599b + i)) + i3, ((var8 / 8) * (f178x.f599b + i2)) + i4, 0, 0);
+                m379a(var8, ((var8 % 8) * (f178x.f599b + i)) + i3, ((var8 / 8) * (f178x.f599b + i2)) + i4, f178x.f599b, f178x.f600c);
             }
+
             C0041bn c0041bn2 = null;
             if (this.f258bU.size() > 0) {
-                int i7 = 0;
-                while (i7 < this.f258bU.size()) {
-                    this.f257bT = (C0041bn) this.f258bU.elementAt(i7);
-                    if (this.f257bT == null || this.f257bT.f714a < 0 || this.f257bT.f720g - this.f257bT.f735v < 1) {
-                        c0041bn = c0041bn2;
-                    } else {
+                for (int var11 = 0; var11 < this.f258bU.size(); var11++) {
+                    this.f257bT = (C0041bn) this.f258bU.elementAt(var11);
+                    if (this.f257bT != null && this.f257bT.f714a >= 0 && this.f257bT.f720g - this.f257bT.f735v >= 1) {
                         int i8 = this.f257bT.f720g - this.f257bT.f735v;
-                        int i9 = i7 % 32;
-                        if (i7 / 32 == this.f354e.f2151as.f2353a) {
+                        int i9 = var11 % 32;
+                        if (var11 / 32 == this.f354e.f2151as.f2353a) {
                             RunnableC0066a.f2114f.m64a(graphics, m264b(this.f257bT.f722i), (int[]) null, (C0010aj) null, 0, 0, ((i9 % 8) * (f178x.f599b + i)) + i3 + 1, ((i9 / 8) * (f178x.f599b + i2)) + i4 + 1, 0, 0);
                             if (i8 > 9) {
                                 RunnableC0066a.f2114f.m63a(graphics, RunnableC0066a.f2116n, (int[]) null, i8 / 10, 0, 0, ((i9 % 8) * (f178x.f599b + i)) + 10 + i3, ((i9 / 8) * (f178x.f599b + i2)) + 12 + i4, 0, 0);
@@ -11660,13 +11600,11 @@ public final class C0015ao {
                             } else if (i8 > 1) {
                                 RunnableC0066a.f2114f.m63a(graphics, RunnableC0066a.f2116n, (int[]) null, i8 % 10, 0, 0, ((i9 % 8) * (f178x.f599b + i)) + 14 + i3, ((i9 / 8) * (f178x.f599b + i2)) + 12 + i4, 0, 0);
                             }
-                            if (i7 % 32 == (this.f231ar << 3) + this.f230aq) {
-                                c0041bn = this.f257bT;
+                            if (var11 % 32 == (this.f231ar << 3) + this.f230aq) {
+                                c0041bn2 = this.f257bT;
                             }
                         }
                     }
-                    i7++;
-                    c0041bn2 = c0041bn;
                 }
             }
             C0055ca.m1328d(graphics, (this.f230aq * (f178x.f599b + i)) + i3, (this.f231ar * (f178x.f599b + i2)) + i4, 17, 17);
@@ -11679,7 +11617,7 @@ public final class C0015ao {
     }
 
     /* renamed from: d */
-    private void m297d(short s, byte b) throws IOException {
+    private void m297d(short s, byte b) {
         byte[] bArrM1174f = C0053bz.m1174f((short) 4666, C0047bt.f865ad, C0047bt.f1766t[b].f508a);
         if (bArrM1174f == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -11830,7 +11768,7 @@ public final class C0015ao {
     }
 
     /* renamed from: f */
-    private void m302f(String str) throws IOException {
+    private void m302f(String str) {
         byte[] bArrM1092a = C0053bz.m1092a((short) 4671, C0047bt.f865ad, str, C0047bt.f823O.f2250d);
         if (bArrM1092a == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -11977,7 +11915,7 @@ public final class C0015ao {
     }
 
     /* renamed from: g */
-    private void m305g(String str) throws IOException {
+    private void m305g(String str) {
         byte[] bArrM1237s = C0053bz.m1237s((short) 4675, C0047bt.f865ad, str);
         if (bArrM1237s == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -12642,7 +12580,7 @@ public final class C0015ao {
     }
 
     /* renamed from: p */
-    private void m321p(byte b) throws IOException {
+    private void m321p(byte b) {
         byte[] bArrM1119b = C0053bz.m1119b((short) 4610, C0047bt.f865ad, b, C0047bt.f811C[b]);
         if (bArrM1119b != null) {
             RunnableC0066a.f2115i.m600a(new C0091w((short) 4610, bArrM1119b));
@@ -12659,7 +12597,7 @@ public final class C0015ao {
     }
 
     /* renamed from: q */
-    private void m323q(byte b) throws IOException {
+    private void m323q(byte b) {
         byte[] bArrM1138c = C0053bz.m1138c((short) 4611, C0047bt.f865ad, b);
         if (bArrM1138c == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -12718,7 +12656,7 @@ public final class C0015ao {
     }
 
     /* renamed from: r */
-    private void m325r(byte b) throws IOException {
+    private void m325r(byte b) {
         byte[] bArrM1138c = C0053bz.m1138c((short) 4609, C0047bt.f865ad, b);
         if (bArrM1138c == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -12798,7 +12736,7 @@ public final class C0015ao {
     }
 
     /* renamed from: s */
-    private void m328s(byte b) throws IOException {
+    private void m328s(byte b) {
         byte[] bArrM1118b = C0053bz.m1118b((short) 4608, C0047bt.f865ad, b);
         if (bArrM1118b == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -12966,7 +12904,7 @@ public final class C0015ao {
     }
 
     /* renamed from: v */
-    private void m335v(byte b) throws IOException {
+    private void m335v(byte b) {
         byte[] bArrM1189i = C0053bz.m1189i((short) 4355, C0047bt.f865ad, b);
         if (bArrM1189i == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -12977,7 +12915,7 @@ public final class C0015ao {
     }
 
     /* renamed from: v */
-    private void m336v(int i) throws IOException {
+    private void m336v(int i) {
         if (this.f359l == 0) {
             if (this.f360m == 0) {
                 if ((f154bH.size() <= 0 || i != 536870912) && (f154bH.size() > 0 || !(i == 536870912 || i == 268435456 || i == 517 || i == 1073741824))) {
@@ -13036,10 +12974,8 @@ public final class C0015ao {
                                     case 3:
                                         if (C0047bt.f985cr != null && C0047bt.f985cr.length > 0) {
                                             m397a(true);
-                                            break;
                                         } else {
                                             this.f354e.m1442b("传送列表为空!");
-                                            break;
                                         }
                                         break;
                                     case 4:
@@ -13151,10 +13087,8 @@ public final class C0015ao {
                                     case 15:
                                         if (C0047bt.f1096ew != null && C0047bt.f1096ew.length > 0) {
                                             m395a(this.f358k, (byte) 1);
-                                            break;
                                         } else {
                                             this.f354e.m1442b("兑换列表为空");
-                                            break;
                                         }
                                         break;
                                     case 16:
@@ -13294,10 +13228,8 @@ public final class C0015ao {
                                     case 39:
                                         if (C0047bt.f1096ew != null && C0047bt.f1096ew.length > 0) {
                                             m395a(this.f358k, (byte) 2);
-                                            break;
                                         } else {
                                             this.f354e.m1442b("锻造列表为空");
-                                            break;
                                         }
                                         break;
                                     case 41:
@@ -13799,7 +13731,7 @@ public final class C0015ao {
     }
 
     /* renamed from: w */
-    private void m338w(byte b) throws IOException {
+    private void m338w(byte b) {
         byte[] bArrM1195j = C0053bz.m1195j((short) 4357, C0047bt.f865ad, b);
         if (bArrM1195j == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -13810,7 +13742,7 @@ public final class C0015ao {
     }
 
     /* renamed from: w */
-    private void m339w(int i) throws IOException {
+    private void m339w(int i) {
         if (this.f354e.f2149aq != null) {
             this.f354e.f2149aq.mo70b(i);
             if (i == 268435456 || i == 1073741824 || i == 517) {
@@ -13841,37 +13773,27 @@ public final class C0015ao {
 
     /* renamed from: w */
     private void m340w(Graphics graphics) {
-        int i = 1;
-        while (true) {
-            int i2 = i;
-            if (i2 >= 7) {
-                C0055ca.m1328d(graphics, (this.f197aB - 7) + (this.f230aq * 19), this.f198aC + 1 + (this.f231ar * 19), 17, 17);
-                graphics.setClip(0, 0, C0088t.f2516b, C0088t.f2517c);
-                return;
-            }
-            int i3 = 0;
-            while (true) {
-                int i4 = i3;
-                if (i4 < 8) {
-                    RunnableC0066a.f2114f.m63a(graphics, f134C, (int[]) null, (i4 * 6) + i2, 0, 0, ((i2 - 1) * 19) + (this.f197aB - 6), (i4 * 19) + this.f198aC + 2, 0, 0);
-                    int i5 = ((i4 * 6) + i2) - 1;
-                    int i6 = (this.f197aB - 6) + ((i2 - 1) * 19);
-                    int i7 = this.f198aC + 2 + (i4 * 19);
-                    if (this.f330cz != null && this.f330cz.length > i5) {
-                        this.f330cz[i5][0] = i6;
-                        this.f330cz[i5][1] = i7;
-                        this.f330cz[i5][2] = 17;
-                        this.f330cz[i5][3] = 17;
-                    }
-                    i3 = i4 + 1;
+        for (int var2 = 1; var2 < 7; var2++) {
+            for (int var3 = 0; var3 < 8; ++var3) {
+                RunnableC0066a.f2114f.m63a(graphics, f134C, (int[]) null, (var3 * 6) + var2, 0, 0, ((var2 - 1) * 19) + (this.f197aB - 6), (var3 * 19) + this.f198aC + 2, 0, 0);
+                int i5 = ((var3 * 6) + var2) - 1;
+                int i6 = (this.f197aB - 6) + ((var2 - 1) * 19);
+                int i7 = this.f198aC + 2 + (var3 * 19);
+                if (this.f330cz != null && this.f330cz.length > i5) {
+                    this.f330cz[i5][0] = i6;
+                    this.f330cz[i5][1] = i7;
+                    this.f330cz[i5][2] = 17;
+                    this.f330cz[i5][3] = 17;
                 }
             }
-            i = i2 + 1;
         }
+        C0055ca.m1328d(graphics, (this.f197aB - 7) + (this.f230aq * 19), this.f198aC + 1 + (this.f231ar * 19), 17, 17);
+        graphics.setClip(0, 0, C0088t.f2516b, C0088t.f2517c);
     }
 
+
     /* renamed from: x */
-    private void m341x(byte b) throws IOException {
+    private void m341x(byte b) {
         byte[] bArrM1114b = C0053bz.m1114b((short) 4881, b, C0047bt.f865ad);
         if (bArrM1114b == null) {
             this.f354e.m1442b("获取上传指令数据错误!");
@@ -13882,60 +13804,55 @@ public final class C0015ao {
     }
 
     /* renamed from: x */
-    private void m342x(int i) throws IOException {
-        byte[] bArrM1082a;
+    private void m342x(int i) {
         if (this.f354e.f2149aq != null) {
             this.f354e.f2149aq.mo70b(i);
         }
-        if (this.f354e.f2127aA <= 40) {
-            if (i == 8 || i == 516) {
-                this.f250bM[this.f354e.f2150ar.m1275g()] = (short) (r0[r2] - 1);
+
+        if (this.f354e.f2127aA > 40) {
+            if (this.f354e.f2159b == 8 || this.f354e.f2159b == 516) {
+                --this.f250bM[this.f354e.f2150ar.m1275g()];
                 if (this.f250bM[this.f354e.f2150ar.m1275g()] < 0) {
-                    short[] sArr = this.f250bM;
-                    int iM1275g = this.f354e.f2150ar.m1275g();
-                    sArr[iM1275g] = (short) (sArr[iM1275g] + 1);
+                    ++this.f250bM[this.f354e.f2150ar.m1275g()];
+                    return;
+                }
+                m150a(this.f354e.f2150ar.m1275g(), (byte) -1);
+            } else if (this.f354e.f2159b == 2 || this.f354e.f2159b == 518) {
+                ++this.f250bM[this.f354e.f2150ar.m1275g()];
+                int i4 = 0;
+                for (int i5 = 0; i5 < this.f250bM.length; i5++) {
+                    i4 += this.f250bM[i5];
+                }
+                if (i4 > (this.f358k == 37 ? C0047bt.f920bf : C0047bt.f1123fW[this.f200aE])) {
+                    --this.f250bM[this.f354e.f2150ar.m1275g()];
+                    return;
+                }
+                m150a(this.f354e.f2150ar.m1275g(), (byte) 1);
+            }
+        } else {
+            if (i == 8 || i == 516) {
+                --this.f250bM[this.f354e.f2150ar.m1275g()];
+                if (this.f250bM[this.f354e.f2150ar.m1275g()] < 0) {
+                    ++this.f250bM[this.f354e.f2150ar.m1275g()];
                     return;
                 }
                 m150a(this.f354e.f2150ar.m1275g(), (byte) -1);
             } else if (i == 2 || i == 518) {
-                short[] sArr2 = this.f250bM;
-                int iM1275g2 = this.f354e.f2150ar.m1275g();
-                sArr2[iM1275g2] = (short) (sArr2[iM1275g2] + 1);
+                ++this.f250bM[this.f354e.f2150ar.m1275g()];
                 int i2 = 0;
                 for (int i3 = 0; i3 < this.f250bM.length; i3++) {
                     i2 += this.f250bM[i3];
                 }
                 if (i2 > (this.f358k == 37 ? C0047bt.f920bf : C0047bt.f1123fW[this.f200aE])) {
-                    this.f250bM[this.f354e.f2150ar.m1275g()] = (short) (r0[r1] - 1);
+                    --this.f250bM[this.f354e.f2150ar.m1275g()];
                     return;
                 }
                 m150a(this.f354e.f2150ar.m1275g(), (byte) 1);
             }
             this.f354e.f2127aA++;
-        } else if (this.f354e.f2159b == 8 || this.f354e.f2159b == 516) {
-            this.f250bM[this.f354e.f2150ar.m1275g()] = (short) (r0[r2] - 1);
-            if (this.f250bM[this.f354e.f2150ar.m1275g()] < 0) {
-                short[] sArr3 = this.f250bM;
-                int iM1275g3 = this.f354e.f2150ar.m1275g();
-                sArr3[iM1275g3] = (short) (sArr3[iM1275g3] + 1);
-                return;
-            }
-            m150a(this.f354e.f2150ar.m1275g(), (byte) -1);
-        } else if (this.f354e.f2159b == 2 || this.f354e.f2159b == 518) {
-            short[] sArr4 = this.f250bM;
-            int iM1275g4 = this.f354e.f2150ar.m1275g();
-            sArr4[iM1275g4] = (short) (sArr4[iM1275g4] + 1);
-            int i4 = 0;
-            for (int i5 = 0; i5 < this.f250bM.length; i5++) {
-                i4 += this.f250bM[i5];
-            }
-            if (i4 > (this.f358k == 37 ? C0047bt.f920bf : C0047bt.f1123fW[this.f200aE])) {
-                this.f250bM[this.f354e.f2150ar.m1275g()] = (short) (r0[r1] - 1);
-                return;
-            }
-            m150a(this.f354e.f2150ar.m1275g(), (byte) 1);
         }
         if (i == 268435456) {
+            byte[] bArrM1082a;
             if (this.f358k == 37) {
                 this.f228ao = true;
                 bArrM1082a = C0053bz.m1107a((short) 4186, C0047bt.f865ad, this.f250bM);
@@ -13948,18 +13865,19 @@ public final class C0015ao {
             return;
         }
         if (i == 536870912) {
-            if (this.f358k != 37) {
+            if (this.f358k == 37) {
+                this.f225al = null;
+                if (this.f357j == 1) {
+                    m254av();
+                    m430c(4);
+                } else {
+                    m361N();
+                }
+                return;
+            } else {
                 m431c(0, this.f200aE, this.f196aA);
                 C0055ca.f1895o = 7;
                 this.f359l = (short) 1;
-            } else {
-                this.f225al = null;
-                if (this.f357j != 1) {
-                    m361N();
-                } else {
-                    m254av();
-                    m430c(4);
-                }
             }
         }
     }
@@ -14428,277 +14346,271 @@ public final class C0015ao {
 
     /* renamed from: M */
     public final void m360M() {
-        short sM588c;
-        short sM587b;
-        short sM1002a;
-        short sM1006b;
-        if (this.f282c) {
-            return;
-        }
-        try {
-            this.f181I.m14a(this.f355f, RunnableC0066a.f2114f, this.f354e.f2147ak);
-            f156bl.removeAllElements();
-            C0009ai.m43a(f175u, this.f354e.f2147ak);
-            C0009ai.m43a(f174t, this.f354e.f2147ak);
-            C0009ai.m43a(f173s, this.f354e.f2147ak);
-            if (C0047bt.f1765s != 0 && this.f181I.f396d != null && this.f181I.f396d.f436f != null) {
-                if (m294c((int) this.f181I.f396d.f438h, (int) this.f181I.f396d.f439i, (int) this.f181I.f396d.f436f.m633g(), (int) this.f181I.f396d.f436f.m634h())) {
-                    f156bl.addElement(new C0052by((byte) 4, this.f181I.f396d, true));
-                } else {
-                    f156bl.addElement(new C0052by((byte) 4, this.f181I.f396d, false));
-                }
-            }
-            for (int i = 0; i < f157bm.size(); i++) {
-                C0021au c0021au = (C0021au) f157bm.elementAt(i);
-                if (c0021au.f436f != null) {
-                    if (m294c((int) c0021au.f438h, (int) c0021au.f439i, (int) c0021au.f436f.m633g(), (int) c0021au.f436f.m634h())) {
-                        f156bl.addElement(new C0052by((byte) 4, c0021au, true));
+        if (!this.f282c) {
+            try {
+                this.f181I.m14a(this.f355f, RunnableC0066a.f2114f, this.f354e.f2147ak);
+                f156bl.removeAllElements();
+                C0009ai.m43a(f175u, this.f354e.f2147ak);
+                C0009ai.m43a(f174t, this.f354e.f2147ak);
+                C0009ai.m43a(f173s, this.f354e.f2147ak);
+                if (C0047bt.f1765s != 0 && this.f181I.f396d != null && this.f181I.f396d.f436f != null) {
+                    if (m294c((int) this.f181I.f396d.f438h, (int) this.f181I.f396d.f439i, (int) this.f181I.f396d.f436f.m633g(), (int) this.f181I.f396d.f436f.m634h())) {
+                        f156bl.addElement(new C0052by((byte) 4, this.f181I.f396d, true));
                     } else {
-                        f156bl.addElement(new C0052by((byte) 4, c0021au, false));
+                        f156bl.addElement(new C0052by((byte) 4, this.f181I.f396d, false));
                     }
                 }
-            }
-            if (C0047bt.f1766t != null) {
-                for (int i2 = 0; i2 < C0047bt.f1766t.length; i2++) {
-                    if (C0047bt.f1766t[i2] != null) {
-                        if (m294c(C0047bt.f1766t[i2].f511c, C0047bt.f1766t[i2].f512d - C0047bt.f1766t[i2].m617d(), C0047bt.f1766t[i2].m616c() / 2, C0047bt.f1766t[i2].m617d())) {
-                            f156bl.addElement(new C0052by((byte) 5, C0047bt.f1766t[i2], true));
+                for (int i = 0; i < f157bm.size(); i++) {
+                    C0021au c0021au = (C0021au) f157bm.elementAt(i);
+                    if (c0021au.f436f != null) {
+                        if (m294c((int) c0021au.f438h, (int) c0021au.f439i, (int) c0021au.f436f.m633g(), (int) c0021au.f436f.m634h())) {
+                            f156bl.addElement(new C0052by((byte) 4, c0021au, true));
                         } else {
-                            f156bl.addElement(new C0052by((byte) 5, C0047bt.f1766t[i2], false));
+                            f156bl.addElement(new C0052by((byte) 4, c0021au, false));
                         }
                     }
                 }
-            }
-            if (C0047bt.f1577o != null) {
-                for (int i3 = 0; i3 < C0047bt.f1577o.length; i3++) {
-                    if (C0047bt.f1577o[i3] != null && C0047bt.f1577o[i3].f399g != null) {
-                        if (m294c((int) C0047bt.f1577o[i3].f402j, (int) C0047bt.f1577o[i3].f403k, (int) C0047bt.f1577o[i3].f399g.m633g(), (int) C0047bt.f1577o[i3].f399g.m634h())) {
-                            f156bl.addElement(new C0052by((byte) 2, C0047bt.f1577o[i3], true));
-                        } else {
-                            f156bl.addElement(new C0052by((byte) 2, C0047bt.f1577o[i3], false));
-                        }
-                    }
-                }
-            }
-            if (C0047bt.f933bs != -1 && C0047bt.f1765s == 0 && C0047bt.f1683q != null) {
-                for (int i4 = 0; i4 < C0047bt.f1683q.length; i4++) {
-                    if (C0047bt.f1683q[i4] != null && C0047bt.f1683q[i4].f399g != null && (C0047bt.f933bs != 1 || !C0047bt.f1683q[i4].f746b.equals(C0047bt.f865ad))) {
-                        if (m294c((int) C0047bt.f1683q[i4].f402j, (int) C0047bt.f1683q[i4].f403k, (int) C0047bt.f1683q[i4].f399g.m633g(), (int) C0047bt.f1683q[i4].f399g.m634h())) {
-                            f156bl.addElement(new C0052by((byte) 3, C0047bt.f1683q[i4], true));
-                        } else {
-                            f156bl.addElement(new C0052by((byte) 3, C0047bt.f1683q[i4], false));
-                        }
-                    }
-                }
-            }
-            if (C0047bt.f933bs != 0 || (C0047bt.f1765s == 1 && C0047bt.f933bs == 0)) {
-                f156bl.addElement(new C0052by((byte) 1, this.f181I, true));
-            }
-            for (int i5 = 0; i5 < this.f210aO.size(); i5++) {
-                C0087s c0087s = (C0087s) this.f210aO.elementAt(i5);
-                if (m294c((int) c0087s.f438h, (int) c0087s.f439i, (int) c0087s.m589d(), (int) c0087s.m590e())) {
-                    f156bl.addElement(new C0052by((byte) 7, c0087s, true));
-                } else {
-                    f156bl.addElement(new C0052by((byte) 7, c0087s, false));
-                }
-            }
-            if (C0047bt.f1295ij != null) {
-                for (int i6 = 0; i6 < C0047bt.f1295ij.size(); i6++) {
-                    C0049bv c0049bv = (C0049bv) C0047bt.f1295ij.elementAt(i6);
-                    if (m294c((int) c0049bv.f1782e, (int) c0049bv.f1783f, (int) c0049bv.m1002a(), (int) c0049bv.m1006b())) {
-                        f156bl.addElement(new C0052by((byte) 8, c0049bv, true));
-                    }
-                }
-            }
-            if (this.f355f != null && this.f355f.f467l != null) {
-                int size = f156bl.size();
-                for (int i7 = 0; i7 < size; i7++) {
-                    C0052by c0052by = (C0052by) f156bl.elementAt(i7);
-                    if (c0052by.f1801a && this.f355f.f467l != null) {
-                        int[] iArr = this.f290cH;
-                        switch (c0052by.f1802b) {
-                            case 1:
-                                sM588c = ((AbstractC0018ar) c0052by.f1803c).m567o();
-                                break;
-                            case 2:
-                                sM588c = ((C0039bl) c0052by.f1803c).m567o();
-                                break;
-                            case 3:
-                                sM588c = ((C0043bp) c0052by.f1803c).m567o();
-                                break;
-                            case 4:
-                                sM588c = ((C0021au) c0052by.f1803c).m588c();
-                                break;
-                            case 5:
-                                sM588c = ((C0026az) c0052by.f1803c).m612a();
-                                break;
-                            case 6:
-                            default:
-                                sM588c = 0;
-                                break;
-                            case 7:
-                                sM588c = ((C0087s) c0052by.f1803c).m588c();
-                                break;
-                            case 8:
-                                sM588c = ((C0049bv) c0052by.f1803c).f1782e;
-                                break;
-                        }
-                        iArr[0] = sM588c;
-                        int[] iArr2 = this.f290cH;
-                        switch (c0052by.f1802b) {
-                            case 1:
-                                sM587b = ((AbstractC0018ar) c0052by.f1803c).m566n();
-                                break;
-                            case 2:
-                                sM587b = ((C0039bl) c0052by.f1803c).m566n();
-                                break;
-                            case 3:
-                                sM587b = ((C0043bp) c0052by.f1803c).m566n();
-                                break;
-                            case 4:
-                                sM587b = ((C0021au) c0052by.f1803c).m587b();
-                                break;
-                            case 5:
-                                sM587b = ((C0026az) c0052by.f1803c).m615b();
-                                break;
-                            case 6:
-                            default:
-                                sM587b = 0;
-                                break;
-                            case 7:
-                                sM587b = ((C0087s) c0052by.f1803c).m587b();
-                                break;
-                            case 8:
-                                sM587b = ((C0049bv) c0052by.f1803c).f1783f;
-                                break;
-                        }
-                        iArr2[1] = sM587b;
-                        int[] iArr3 = this.f290cH;
-                        switch (c0052by.f1802b) {
-                            case 1:
-                                sM1002a = ((AbstractC0018ar) c0052by.f1803c).m568p();
-                                break;
-                            case 2:
-                                sM1002a = ((C0039bl) c0052by.f1803c).m568p();
-                                break;
-                            case 3:
-                                sM1002a = ((C0043bp) c0052by.f1803c).m568p();
-                                break;
-                            case 4:
-                                sM1002a = ((C0021au) c0052by.f1803c).m589d();
-                                break;
-                            case 5:
-                                sM1002a = ((C0026az) c0052by.f1803c).m616c();
-                                break;
-                            case 6:
-                            default:
-                                sM1002a = 0;
-                                break;
-                            case 7:
-                                sM1002a = ((C0087s) c0052by.f1803c).m589d();
-                                break;
-                            case 8:
-                                sM1002a = ((C0049bv) c0052by.f1803c).m1002a();
-                                break;
-                        }
-                        iArr3[2] = sM1002a;
-                        int[] iArr4 = this.f290cH;
-                        switch (c0052by.f1802b) {
-                            case 1:
-                                sM1006b = ((AbstractC0018ar) c0052by.f1803c).m569q();
-                                break;
-                            case 2:
-                                sM1006b = ((C0039bl) c0052by.f1803c).m569q();
-                                break;
-                            case 3:
-                                sM1006b = ((C0043bp) c0052by.f1803c).m569q();
-                                break;
-                            case 4:
-                                sM1006b = ((C0021au) c0052by.f1803c).m590e();
-                                break;
-                            case 5:
-                                sM1006b = ((C0026az) c0052by.f1803c).m617d();
-                                break;
-                            case 6:
-                            default:
-                                sM1006b = 0;
-                                break;
-                            case 7:
-                                sM1006b = ((C0087s) c0052by.f1803c).m590e();
-                                break;
-                            case 8:
-                                sM1006b = ((C0049bv) c0052by.f1803c).m1006b();
-                                break;
-                        }
-                        iArr4[3] = sM1006b;
-                        for (int i8 = 0; i8 < this.f355f.f467l.length; i8++) {
-                            this.f291cI[2] = this.f355f.f469n[i8][0];
-                            this.f291cI[3] = this.f355f.f469n[i8][1];
-                            this.f291cI[0] = this.f355f.f467l[i8].f1797e;
-                            this.f291cI[1] = this.f355f.f467l[i8].f1798f;
-                            int i9 = this.f291cI[1] + this.f355f.f469n[i8][1];
-                            if (m294c(this.f291cI[0], this.f291cI[1], this.f291cI[2], this.f291cI[3]) && c0052by.mo1021a() < i9 && C0009ai.m49a(this.f290cH, this.f291cI)) {
-                                int[] iArr5 = new int[4];
-                                RunnableC0066a.f2114f.m67a(this.f290cH, this.f291cI, iArr5);
-                                f156bl.addElement(new C0056cb((byte) 6, this.f355f.f467l[i8], (short) this.f355f.f469n[i8][1], (short) this.f355f.f469n[i8][0], iArr5));
+                if (C0047bt.f1766t != null) {
+                    for (int i2 = 0; i2 < C0047bt.f1766t.length; i2++) {
+                        if (C0047bt.f1766t[i2] != null) {
+                            if (m294c(C0047bt.f1766t[i2].f511c, C0047bt.f1766t[i2].f512d - C0047bt.f1766t[i2].m617d(), C0047bt.f1766t[i2].m616c() / 2, C0047bt.f1766t[i2].m617d())) {
+                                f156bl.addElement(new C0052by((byte) 5, C0047bt.f1766t[i2], true));
+                            } else {
+                                f156bl.addElement(new C0052by((byte) 5, C0047bt.f1766t[i2], false));
                             }
                         }
                     }
                 }
-            }
-            try {
-                if (!f156bl.isEmpty() && f156bl.size() > 1) {
-                    int i10 = 0;
-                    while (true) {
-                        int i11 = i10;
-                        if (i11 < f156bl.size() - 1) {
-                            int i12 = 0;
-                            while (true) {
-                                int i13 = i12;
-                                if (i13 < f156bl.size()) {
-                                    if (i13 < f156bl.size() - 1) {
-                                        C0052by c0052by2 = (C0052by) f156bl.elementAt(i13);
-                                        C0052by c0052by3 = i13 + 1 <= f156bl.size() ? (C0052by) f156bl.elementAt(i13 + 1) : null;
-                                        if (c0052by2 != null && c0052by3 != null && c0052by2.mo1021a() > c0052by3.mo1021a()) {
-                                            f156bl.setElementAt(c0052by2, i13 + 1);
-                                            f156bl.setElementAt(c0052by3, i13);
-                                        }
-                                    }
-                                    i12 = i13 + 1;
+                if (C0047bt.f1577o != null) {
+                    for (int i3 = 0; i3 < C0047bt.f1577o.length; i3++) {
+                        if (C0047bt.f1577o[i3] != null && C0047bt.f1577o[i3].f399g != null) {
+                            if (m294c((int) C0047bt.f1577o[i3].f402j, (int) C0047bt.f1577o[i3].f403k, (int) C0047bt.f1577o[i3].f399g.m633g(), (int) C0047bt.f1577o[i3].f399g.m634h())) {
+                                f156bl.addElement(new C0052by((byte) 2, C0047bt.f1577o[i3], true));
+                            } else {
+                                f156bl.addElement(new C0052by((byte) 2, C0047bt.f1577o[i3], false));
+                            }
+                        }
+                    }
+                }
+                if (C0047bt.f933bs != -1 && C0047bt.f1765s == 0 && C0047bt.f1683q != null) {
+                    for (int i4 = 0; i4 < C0047bt.f1683q.length; i4++) {
+                        if (C0047bt.f1683q[i4] != null && C0047bt.f1683q[i4].f399g != null && (C0047bt.f933bs != 1 || !C0047bt.f1683q[i4].f746b.equals(C0047bt.f865ad))) {
+                            if (m294c((int) C0047bt.f1683q[i4].f402j, (int) C0047bt.f1683q[i4].f403k, (int) C0047bt.f1683q[i4].f399g.m633g(), (int) C0047bt.f1683q[i4].f399g.m634h())) {
+                                f156bl.addElement(new C0052by((byte) 3, C0047bt.f1683q[i4], true));
+                            } else {
+                                f156bl.addElement(new C0052by((byte) 3, C0047bt.f1683q[i4], false));
+                            }
+                        }
+                    }
+                }
+                if (C0047bt.f933bs != 0 || (C0047bt.f1765s == 1 && C0047bt.f933bs == 0)) {
+                    f156bl.addElement(new C0052by((byte) 1, this.f181I, true));
+                }
+                for (int i5 = 0; i5 < this.f210aO.size(); i5++) {
+                    C0087s c0087s = (C0087s) this.f210aO.elementAt(i5);
+                    if (m294c((int) c0087s.f438h, (int) c0087s.f439i, (int) c0087s.m589d(), (int) c0087s.m590e())) {
+                        f156bl.addElement(new C0052by((byte) 7, c0087s, true));
+                    } else {
+                        f156bl.addElement(new C0052by((byte) 7, c0087s, false));
+                    }
+                }
+                if (C0047bt.f1295ij != null) {
+                    for (int i6 = 0; i6 < C0047bt.f1295ij.size(); i6++) {
+                        C0049bv c0049bv = (C0049bv) C0047bt.f1295ij.elementAt(i6);
+                        if (m294c((int) c0049bv.f1782e, (int) c0049bv.f1783f, (int) c0049bv.m1002a(), (int) c0049bv.m1006b())) {
+                            f156bl.addElement(new C0052by((byte) 8, c0049bv, true));
+                        }
+                    }
+                }
+
+                if (this.f355f != null && this.f355f.f467l != null) {
+                    int size = f156bl.size();
+                    for (int i7 = 0; i7 < size; i7++) {
+                        C0052by c0052by = (C0052by) f156bl.elementAt(i7);
+                        if (c0052by.f1801a && this.f355f.f467l != null) {
+                            int[] iArr = this.f290cH;
+
+                            short sM588c;
+                            switch (c0052by.f1802b) {
+                                case 1:
+                                    sM588c = ((AbstractC0018ar) c0052by.f1803c).m567o();
+                                    break;
+                                case 2:
+                                    sM588c = ((C0039bl) c0052by.f1803c).m567o();
+                                    break;
+                                case 3:
+                                    sM588c = ((C0043bp) c0052by.f1803c).m567o();
+                                    break;
+                                case 4:
+                                    sM588c = ((C0021au) c0052by.f1803c).m588c();
+                                    break;
+                                case 5:
+                                    sM588c = ((C0026az) c0052by.f1803c).m612a();
+                                    break;
+                                case 6:
+                                default:
+                                    sM588c = 0;
+                                    break;
+                                case 7:
+                                    sM588c = ((C0087s) c0052by.f1803c).m588c();
+                                    break;
+                                case 8:
+                                    sM588c = ((C0049bv) c0052by.f1803c).f1782e;
+                                    break;
+                            }
+                            iArr[0] = sM588c;
+
+                            int[] iArr2 = this.f290cH;
+                            switch (c0052by.f1802b) {
+                                case 1:
+                                    sM588c = ((AbstractC0018ar) c0052by.f1803c).m566n();
+                                    break;
+                                case 2:
+                                    sM588c = ((C0039bl) c0052by.f1803c).m566n();
+                                    break;
+                                case 3:
+                                    sM588c = ((C0043bp) c0052by.f1803c).m566n();
+                                    break;
+                                case 4:
+                                    sM588c = ((C0021au) c0052by.f1803c).m587b();
+                                    break;
+                                case 5:
+                                    sM588c = ((C0026az) c0052by.f1803c).m615b();
+                                    break;
+                                case 6:
+                                default:
+                                    sM588c = 0;
+                                    break;
+                                case 7:
+                                    sM588c = ((C0087s) c0052by.f1803c).m587b();
+                                    break;
+                                case 8:
+                                    sM588c = ((C0049bv) c0052by.f1803c).f1783f;
+                                    break;
+                            }
+                            iArr2[1] = sM588c;
+
+                            int[] iArr3 = this.f290cH;
+                            switch (c0052by.f1802b) {
+                                case 1:
+                                    sM588c = ((AbstractC0018ar) c0052by.f1803c).m568p();
+                                    break;
+                                case 2:
+                                    sM588c = ((C0039bl) c0052by.f1803c).m568p();
+                                    break;
+                                case 3:
+                                    sM588c = ((C0043bp) c0052by.f1803c).m568p();
+                                    break;
+                                case 4:
+                                    sM588c = ((C0021au) c0052by.f1803c).m589d();
+                                    break;
+                                case 5:
+                                    sM588c = ((C0026az) c0052by.f1803c).m616c();
+                                    break;
+                                case 6:
+                                default:
+                                    sM588c = 0;
+                                    break;
+                                case 7:
+                                    sM588c = ((C0087s) c0052by.f1803c).m589d();
+                                    break;
+                                case 8:
+                                    sM588c = ((C0049bv) c0052by.f1803c).m1002a();
+                                    break;
+                            }
+                            iArr3[2] = sM588c;
+
+                            int[] iArr4 = this.f290cH;
+                            switch (c0052by.f1802b) {
+                                case 1:
+                                    sM588c = ((AbstractC0018ar) c0052by.f1803c).m569q();
+                                    break;
+                                case 2:
+                                    sM588c = ((C0039bl) c0052by.f1803c).m569q();
+                                    break;
+                                case 3:
+                                    sM588c = ((C0043bp) c0052by.f1803c).m569q();
+                                    break;
+                                case 4:
+                                    sM588c = ((C0021au) c0052by.f1803c).m590e();
+                                    break;
+                                case 5:
+                                    sM588c = ((C0026az) c0052by.f1803c).m617d();
+                                    break;
+                                case 6:
+                                default:
+                                    sM588c = 0;
+                                    break;
+                                case 7:
+                                    sM588c = ((C0087s) c0052by.f1803c).m590e();
+                                    break;
+                                case 8:
+                                    sM588c = ((C0049bv) c0052by.f1803c).m1006b();
+                                    break;
+                            }
+                            iArr4[3] = sM588c;
+
+                            for (int i8 = 0; i8 < this.f355f.f467l.length; i8++) {
+                                this.f291cI[2] = this.f355f.f469n[i8][0];
+                                this.f291cI[3] = this.f355f.f469n[i8][1];
+                                this.f291cI[0] = this.f355f.f467l[i8].f1797e;
+                                this.f291cI[1] = this.f355f.f467l[i8].f1798f;
+                                int i9 = this.f291cI[1] + this.f355f.f469n[i8][1];
+                                if (m294c(this.f291cI[0], this.f291cI[1], this.f291cI[2], this.f291cI[3]) && c0052by.mo1021a() < i9 && C0009ai.m49a(this.f290cH, this.f291cI)) {
+                                    int[] iArr5 = new int[4];
+                                    RunnableC0066a.f2114f.m67a(this.f290cH, this.f291cI, iArr5);
+                                    f156bl.addElement(new C0056cb((byte) 6, this.f355f.f467l[i8], (short) this.f355f.f469n[i8][1], (short) this.f355f.f469n[i8][0], iArr5));
                                 }
                             }
-                            i10 = i11 + 1;
                         }
                     }
                 }
-            } catch (Exception e) {
-            }
-            if (f156bl != null) {
-                for (int i14 = 0; i14 < f156bl.size(); i14++) {
-                    C0052by c0052by4 = (C0052by) f156bl.elementAt(i14);
-                    if (c0052by4 != null && c0052by4.f1803c != null && (c0052by4.f1802b != 1 || this.f293cK >= 0)) {
-                        if (c0052by4.f1802b == 2) {
-                            ((C0039bl) c0052by4.f1803c).m694a(this.f355f, RunnableC0066a.f2114f, this.f354e.f2147ak);
-                        } else if (c0052by4.f1802b == 3) {
-                            ((C0043bp) c0052by4.f1803c).m703a(RunnableC0066a.f2114f, this.f354e.f2147ak);
-                        } else if (c0052by4.f1802b == 5) {
-                            C0026az c0026az = (C0026az) c0052by4.f1803c;
-                            C0009ai c0009ai = RunnableC0066a.f2114f;
-                            long j = this.f354e.f2147ak;
-                            if (c0026az.f531w != null && f145aW[10] == 0) {
-                                C0009ai.m43a(c0026az.f531w, j);
+                try {
+                    if (!f156bl.isEmpty() && f156bl.size() > 1) {
+                        for (int var33 = 0; var33 < (f156bl.size() - 1); var33++) {
+                            for (int var18 = 0; var18 < f156bl.size(); var18++) {
+                                if (var18 < f156bl.size() - 1) {
+                                    C0052by c0052by2 = (C0052by) f156bl.elementAt(var18);
+                                    C0052by c0052by3 = var18 + 1 <= f156bl.size() ? (C0052by) f156bl.elementAt(var18 + 1) : null;
+                                    if (c0052by2 != null && c0052by3 != null && c0052by2.mo1021a() > c0052by3.mo1021a()) {
+                                        f156bl.setElementAt(c0052by2, var18 + 1);
+                                        f156bl.setElementAt(c0052by3, var18);
+                                    }
+                                }
+
                             }
-                        } else if (c0052by4.f1802b == 4) {
-                            ((C0021au) c0052by4.f1803c).mo584a(this.f355f, RunnableC0066a.f2114f, this.f354e.f2147ak);
-                        } else if (c0052by4.f1802b == 7) {
-                            ((C0087s) c0052by4.f1803c).mo584a(this.f355f, RunnableC0066a.f2114f, this.f354e.f2147ak);
+                        }
+
+                    }
+                } catch (Exception e) {
+                }
+                if (f156bl != null) {
+                    for (int i14 = 0; i14 < f156bl.size(); i14++) {
+                        C0052by c0052by4 = (C0052by) f156bl.elementAt(i14);
+                        if (c0052by4 != null && c0052by4.f1803c != null && (c0052by4.f1802b != 1 || this.f293cK >= 0)) {
+                            if (c0052by4.f1802b == 2) {
+                                ((C0039bl) c0052by4.f1803c).m694a(this.f355f, RunnableC0066a.f2114f, this.f354e.f2147ak);
+                            } else if (c0052by4.f1802b == 3) {
+                                ((C0043bp) c0052by4.f1803c).m703a(RunnableC0066a.f2114f, this.f354e.f2147ak);
+                            } else if (c0052by4.f1802b == 5) {
+                                C0026az c0026az = (C0026az) c0052by4.f1803c;
+                                C0009ai c0009ai = RunnableC0066a.f2114f;
+                                long j = this.f354e.f2147ak;
+                                if (c0026az.f531w != null && f145aW[10] == 0) {
+                                    C0009ai.m43a(c0026az.f531w, j);
+                                }
+                            } else if (c0052by4.f1802b == 4) {
+                                ((C0021au) c0052by4.f1803c).mo584a(this.f355f, RunnableC0066a.f2114f, this.f354e.f2147ak);
+                            } else if (c0052by4.f1802b == 7) {
+                                ((C0087s) c0052by4.f1803c).mo584a(this.f355f, RunnableC0066a.f2114f, this.f354e.f2147ak);
+                            }
                         }
                     }
                 }
+            } catch (Exception e2) {
+                f156bl.removeAllElements();
+                m432c("系统异常[7]");
             }
-        } catch (Exception e2) {
-            f156bl.removeAllElements();
-            m432c("系统异常[7]");
         }
     }
 
@@ -15083,139 +14995,779 @@ public final class C0015ao {
         Code decompiled incorrectly, please refer to instructions dump.
     */
     public final void m374a() {
-        int i;
-        int i2;
-        int i3;
-        int i4;
-        int i5;
-        int i6;
-        int length;
-        int i7;
-        boolean z;
-        String strM37a;
-        if (this.f354e.f2221p) {
-            return;
-        }
-        if (this.f358k == 25 && f145aW[5] != 0) {
-            this.f287cE = 0L;
-        } else if (this.f358k != 0 && this.f358k != 25) {
-            this.f287cE = 0L;
-        } else if (this.f287cE == 0 || this.f286cD.size() == 0) {
-            this.f287cE = System.currentTimeMillis();
-        } else if (System.currentTimeMillis() - this.f287cE > 1000) {
-            this.f287cE = 0L;
-            if (this.f286cD.size() > 0) {
-                this.f286cD.removeElementAt(0);
-            }
-        }
-        if (this.f358k != 0) {
-            this.f331d = (byte) -1;
-        }
-        if (this.f358k != this.f279bx) {
-            this.f279bx = this.f358k;
-        }
-        switch (this.f358k) {
-            case 0:
-                if (this.f182J == null) {
-                    if (C0088t.f2529o && this.f354e.f2146aj != null) {
-                        this.f354e.f2146aj.m1549a();
-                        C0071f c0071f = this.f354e.f2146aj;
-                        if (c0071f.f2234d == 1 || c0071f.f2232b.f2159b != 0) {
-                            if (!c0071f.f2231a.f181I.f17c.isEmpty()) {
-                                c0071f.f2231a.f181I.f17c.removeAllElements();
-                                c0071f.f2231a.f181I.m17a(false);
-                            }
-                        } else if (!c0071f.f2231a.f181I.f17c.isEmpty()) {
-                            c0071f.f2231a.f181I.m27j();
-                        }
-                    } else if (C0047bt.f813E == 1) {
-                        if (this.f181I != null && this.f181I.f17c != null && !this.f181I.f17c.isEmpty()) {
-                            if (this.f354e.f2159b != 0) {
-                                this.f181I.f17c.removeAllElements();
-                                this.f181I.m17a(false);
-                            } else {
-                                this.f181I.m27j();
-                            }
-                        }
-                    } else if (C0047bt.f935bu && this.f181I != null && this.f181I.f17c != null && !this.f181I.f17c.isEmpty()) {
-                        this.f181I.m27j();
-                    }
-                    if (!C0047bt.f935bu) {
-                        if (C0047bt.f1464lt[0] != -1 && RunnableC0066a.f2113e != null) {
-                            RunnableC0066a.f2113e.m446e((byte) 0);
-                            C0047bt.f1464lt[0] = -1;
-                        }
-                        if (C0047bt.f1464lt[1] != -1 && RunnableC0066a.f2113e != null) {
-                            RunnableC0066a.f2113e.m429c((byte) 0);
-                            C0047bt.f1464lt[1] = -1;
-                        }
-                        if (this.f358k != 18 && !this.f282c && C0047bt.f825Q != null && C0047bt.f825Q.f1939b.length() > 0) {
-                            this.f354e.f2154av.mo34b();
-                            C0047bt.f825Q.m1341a(this.f354e.f2154av);
-                            C0047bt.f825Q.m1340a();
-                            C0047bt.f825Q.m1342b();
-                            this.f357j = RunnableC0066a.f2113e.f358k;
-                            this.f358k = (short) 111;
-                            this.f354e.f2216j = this.f354e.f2217k;
-                        }
-                        if (C0047bt.f824P.f61o && (strM37a = C0047bt.f824P.m37a()) != null) {
-                            m305g(strM37a);
-                        }
-                    }
+        if (!this.f354e.f2221p) {
+            if (this.f358k == 25 && f145aW[5] != 0) {
+                this.f287cE = 0L;
+            } else if (this.f358k != 0 && this.f358k != 25) {
+                this.f287cE = 0L;
+            } else if (this.f287cE == 0 || this.f286cD.size() == 0) {
+                this.f287cE = System.currentTimeMillis();
+            } else if (System.currentTimeMillis() - this.f287cE > 1000) {
+                this.f287cE = 0L;
+                if (this.f286cD.size() > 0) {
+                    this.f286cD.removeElementAt(0);
                 }
-                m378a(this.f354e.f2126a);
-                break;
-            case 1:
-                int i8 = this.f354e.f2126a;
-                if (this.f359l != 0 && this.f359l != 2 && this.f359l != 3 && this.f359l != 4 && this.f359l != 5 && this.f359l != 9 && this.f359l != 19 && this.f359l != 20) {
-                    if (this.f359l == 1) {
-                        if (i8 == 8) {
-                            m430c(this.f240bB - 1);
-                            break;
-                        } else if (i8 == 2) {
-                            m430c(this.f240bB + 1);
-                            break;
-                        } else if (i8 != 268435456 && i8 != 1073741824) {
-                            if (i8 == 536870912) {
-                                m250at();
+            }
+
+            if (this.f358k != 0) {
+                this.f331d = (byte) -1;
+            }
+            if (this.f358k != this.f279bx) {
+                this.f279bx = this.f358k;
+            }
+
+            switch (this.f358k) {
+                case 0:
+                    if (this.f182J == null) {
+                        if (C0088t.f2529o && this.f354e.f2146aj != null) {
+                            this.f354e.f2146aj.m1549a();
+                            C0071f c0071f = this.f354e.f2146aj;
+                            if (c0071f.f2234d == 1 || c0071f.f2232b.f2159b != 0) {
+                                if (!c0071f.f2231a.f181I.f17c.isEmpty()) {
+                                    c0071f.f2231a.f181I.f17c.removeAllElements();
+                                    c0071f.f2231a.f181I.m17a(false);
+                                }
+                            } else if (!c0071f.f2231a.f181I.f17c.isEmpty()) {
+                                c0071f.f2231a.f181I.m27j();
+                            }
+                        } else if (C0047bt.f813E == 1) {
+                            if (this.f181I != null && this.f181I.f17c != null && !this.f181I.f17c.isEmpty()) {
+                                if (this.f354e.f2159b != 0) {
+                                    this.f181I.f17c.removeAllElements();
+                                    this.f181I.m17a(false);
+                                } else {
+                                    this.f181I.m27j();
+                                }
+                            }
+                        } else if (C0047bt.f935bu && this.f181I != null && this.f181I.f17c != null && !this.f181I.f17c.isEmpty()) {
+                            this.f181I.m27j();
+                        }
+                        if (!C0047bt.f935bu) {
+                            if (C0047bt.f1464lt[0] != -1 && RunnableC0066a.f2113e != null) {
+                                RunnableC0066a.f2113e.m446e((byte) 0);
+                                C0047bt.f1464lt[0] = -1;
+                            }
+                            if (C0047bt.f1464lt[1] != -1 && RunnableC0066a.f2113e != null) {
+                                RunnableC0066a.f2113e.m429c((byte) 0);
+                                C0047bt.f1464lt[1] = -1;
+                            }
+                            if (this.f358k != 18 && !this.f282c && C0047bt.f825Q != null && C0047bt.f825Q.f1939b.length() > 0) {
+                                this.f354e.f2154av.mo34b();
+                                C0047bt.f825Q.m1341a(this.f354e.f2154av);
+                                C0047bt.f825Q.m1340a();
+                                C0047bt.f825Q.m1342b();
+                                this.f357j = RunnableC0066a.f2113e.f358k;
+                                this.f358k = (short) 111;
+                                this.f354e.f2216j = this.f354e.f2217k;
+                            }
+                            String strM37a = C0047bt.f824P.m37a();
+                            if (C0047bt.f824P.f61o && strM37a != null) {
+                                m305g(strM37a);
+                            }
+                        }
+                    }
+                    m378a(this.f354e.f2126a);
+                    break;
+                case 1:
+                    int i8 = this.f354e.f2126a;
+                    if (this.f359l != 0 && this.f359l != 2 && this.f359l != 3 && this.f359l != 4 && this.f359l != 5 && this.f359l != 9 && this.f359l != 19 && this.f359l != 20) {
+                        if (this.f359l == 1) {
+                            if (i8 == 8) {
+                                m430c(this.f240bB - 1);
+                                break;
+                            } else if (i8 == 2) {
+                                m430c(this.f240bB + 1);
+                                break;
+                            } else if (i8 != 268435456 && i8 != 1073741824) {
+                                if (i8 == 536870912) {
+                                    m250at();
+                                    break;
+                                }
+                            } else {
+                                switch (this.f240bB) {
+                                    case 0:
+                                        if (C0047bt.f1683q != null) {
+                                            m201aN();
+                                            break;
+                                        } else {
+                                            this.f354e.m1442b("没有加入队伍");
+                                            break;
+                                        }
+                                    case 1:
+                                        m210aS();
+                                        break;
+                                }
+                            }
+                        } else if (this.f359l == 6) {
+                            if (i8 != 268435456 && i8 != 1073741824) {
+                                if (i8 == 536870912) {
+                                    this.f359l = (short) 2;
+                                    break;
+                                }
+                            } else {
+                                this.f183M.m523d();
+                                break;
+                            }
+                        } else if (this.f359l == 7) {
+                            if (i8 != 268435456 && i8 != 1073741824) {
+                                if (i8 == 536870912) {
+                                    this.f359l = (short) 5;
+                                    break;
+                                }
+                            } else {
+                                byte[] bArrM1162e = C0053bz.m1162e((short) 4352, C0047bt.f865ad, (byte) 1);
+                                if (bArrM1162e != null) {
+                                    RunnableC0066a.f2115i.m600a(new C0091w((short) 4352, bArrM1162e));
+                                    m361N();
+                                    this.f354e.m1434a((String) null);
+                                    break;
+                                } else {
+                                    this.f354e.m1442b("获取上传指令数据错误!");
+                                    break;
+                                }
+                            }
+                        } else if (this.f359l == 8) {
+                            m421b(i8);
+                            if (i8 == 268435456 || i8 == 1073741824 || i8 == 517 || i8 == 536870912) {
+                                this.f359l = (short) 9;
+                                break;
+                            }
+                        }
+                    } else if (i8 != 1 && i8 != 514) {
+                        if (i8 != 4 && i8 != 520) {
+                            if (i8 != 8 && i8 != 516) {
+                                if (i8 != 2 && i8 != 518) {
+                                    if (i8 != 268435456 && i8 != 1073741824 && i8 != 517) {
+                                        if (i8 == 536870912) {
+                                            switch (this.f359l) {
+                                                case 0:
+                                                    m361N();
+                                                    break;
+                                                case 2:
+                                                    m250at();
+                                                    m430c(4);
+                                                    break;
+                                                case 3:
+                                                    m250at();
+                                                    m430c(0);
+                                                    break;
+                                                case 4:
+                                                    m250at();
+                                                    m430c(1);
+                                                    break;
+                                                case 5:
+                                                    m250at();
+                                                    m430c(10);
+                                                    break;
+                                                case 9:
+                                                    m256aw();
+                                                    m430c(3);
+                                                    break;
+                                                case 19:
+                                                    m250at();
+                                                    m430c(8);
+                                                    break;
+                                                case 20:
+                                                    m250at();
+                                                    m430c(9);
+                                                    break;
+                                            }
+                                        }
+                                    } else {
+                                        switch (this.f359l) {
+                                            case 0:
+                                                int i9 = this.f240bB;
+                                                if (this.f359l == 0) {
+                                                    m430c(i9);
+                                                    switch (i9) {
+                                                        case 0:
+                                                            m254av();
+                                                            break;
+                                                        case 1:
+                                                            if (C0047bt.f1360jv) {
+                                                                m256aw();
+                                                                break;
+                                                            } else {
+                                                                this.f354e.m1442b("商城暂时关闭");
+                                                                break;
+                                                            }
+                                                        case 2:
+                                                            m447e(0);
+                                                            break;
+                                                        case 3:
+                                                            if (C0047bt.f906bR != null || C0047bt.f900bL != null) {
+                                                                m491x();
+                                                            } else {
+                                                                this.f354e.m1442b("当前没有任务");
+                                                            }
+                                                            break;
+                                                        case 4:
+                                                            m468k();
+                                                            break;
+                                                        case 5:
+                                                            m335v((byte) 1);
+                                                            break;
+                                                        case 6:
+                                                            m138a((byte) 0, (byte) 0, (short) 0);
+                                                            break;
+                                                        case 7:
+                                                            if (C0047bt.f1101fA != null) {
+                                                                m467j(0);
+                                                                break;
+                                                            } else {
+                                                                this.f354e.m1442b("您没有宠物！");
+                                                                break;
+                                                            }
+                                                        case 8:
+                                                            m471l();
+                                                            break;
+                                                        case 9:
+                                                            m253au();
+                                                            break;
+                                                        case 10:
+                                                            m258ax();
+                                                            break;
+                                                    }
+                                                }
+                                                break;
+                                            case 2:
+                                                int i10 = this.f240bB;
+                                                if (this.f359l == 2) {
+                                                    m430c(i10);
+                                                    switch (i10) {
+                                                        case 0:
+                                                            this.f183M.m552r();
+                                                            break;
+                                                        case 1:
+                                                            C0047bt.f1170gQ = (short) 1;
+                                                            this.f183M.m531g(0);
+                                                            break;
+                                                        case 2:
+                                                            this.f183M.m530g();
+                                                            break;
+                                                        case 3:
+                                                            C0047bt.f1170gQ = (short) 1;
+                                                            this.f183M.m537j(0);
+                                                            break;
+                                                        case 4:
+                                                            this.f359l = (short) 6;
+                                                            C0055ca.f1888h = 0;
+                                                            break;
+                                                    }
+                                                }
+                                                break;
+                                            case 3:
+                                                int i11 = this.f240bB;
+                                                if (this.f359l == 3) {
+                                                    m430c(i11);
+                                                    switch (i11) {
+                                                        case 0:
+                                                            m375a((byte) 0);
+                                                            break;
+                                                        case 1:
+                                                            if (C0047bt.f1042dv == null || C0047bt.f1042dv.length <= 0) {
+                                                                this.f354e.m1442b("没有技能");
+                                                            } else {
+                                                                m462h(0);
+                                                            }
+                                                            break;
+                                                        case 2:
+                                                            m147a((byte) 0, (String) null, 0);
+                                                            break;
+                                                        case 3:
+                                                            m486t();
+                                                            break;
+                                                        case 4:
+                                                            m479p();
+                                                            break;
+                                                        case 5:
+                                                            m341x((byte) 0);
+                                                            break;
+                                                        case 6:
+                                                            m154a(C0047bt.f865ad, C0047bt.f865ad, (short) 0, (short) 1);
+                                                            break;
+                                                        case 7:
+                                                            byte[] bArrM1022A = C0053bz.m1022A((short) 4254, C0047bt.f865ad);
+                                                            if (bArrM1022A != null) {
+                                                                RunnableC0066a.f2115i.m600a(new C0091w((short) 4254, bArrM1022A));
+                                                                this.f354e.m1434a((String) null);
+                                                                break;
+                                                            } else {
+                                                                this.f354e.m1442b("获取上传指令数据错误!");
+                                                                break;
+                                                            }
+                                                        case 8:
+                                                            if (C0047bt.f889bA > 0) {
+                                                                byte[] bArrM1244w = C0053bz.m1244w((short) 4653, C0047bt.f865ad);
+                                                                if (bArrM1244w != null) {
+                                                                    RunnableC0066a.f2115i.m600a(new C0091w((short) 4653, bArrM1244w));
+                                                                    this.f354e.m1434a((String) null);
+                                                                    break;
+                                                                } else {
+                                                                    this.f354e.m1442b("获取上传指令数据错误!");
+                                                                    break;
+                                                                }
+                                                            } else {
+                                                                m407af();
+                                                                break;
+                                                            }
+                                                    }
+                                                }
+                                                break;
+                                            case 4:
+                                                int i12 = this.f240bB;
+                                                if (this.f359l == 4) {
+                                                    if (i12 == 0) {
+                                                        m430c(i12);
+                                                        byte[] bArrM1042a = C0053bz.m1042a((short) 4648, (byte) i12, C0047bt.f865ad);
+                                                        if (bArrM1042a != null) {
+                                                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4648, bArrM1042a));
+                                                            this.f354e.m1434a((String) null);
+                                                            break;
+                                                        } else {
+                                                            this.f354e.m1442b("获取上传指令数据错误!");
+                                                            break;
+                                                        }
+                                                    } else if (C0088t.f2506a == 0) {
+                                                        m430c(i12);
+                                                        switch (i12) {
+                                                            case 1:
+                                                                this.f354e.m1442b("此功能暂时不开放！");
+                                                                break;
+                                                            case 2:
+                                                                m220aX();
+                                                                break;
+                                                            case 3:
+                                                                if (C0088t.f2506a == 0) {
+                                                                    m168a(new String[]{"充值卡", "Q币", "Q卡", "短信"});
+                                                                }
+                                                                m430c(0);
+                                                                this.f359l = (short) 9;
+                                                                this.f358k = (short) 1;
+                                                                this.f357j = (short) 1;
+                                                                break;
+                                                            case 4:
+                                                                m262az();
+                                                                break;
+                                                        }
+                                                    } else {
+                                                        m430c(i12);
+                                                        switch (i12) {
+                                                            case 1:
+                                                                m220aX();
+                                                                break;
+                                                            case 2:
+                                                                if (C0047bt.f1363jy == 1) {
+                                                                    C0068c.m1472g();
+                                                                    break;
+                                                                } else {
+                                                                    this.f354e.m1442b("充值功能暂时关闭");
+                                                                    break;
+                                                                }
+                                                            case 3:
+                                                                if (m261ay()) {
+                                                                    if (C0047bt.f1362jx == 1) {
+                                                                        C0068c.m1466a(this.f354e, "1", (short) 101, 1);
+                                                                        break;
+                                                                    } else {
+                                                                        this.f354e.m1442b("换豆功能暂时关闭");
+                                                                        break;
+                                                                    }
+                                                                }
+                                                                break;
+                                                            case 4:
+                                                                if (m261ay()) {
+                                                                    C0068c.m1473h();
+                                                                    break;
+                                                                }
+                                                                break;
+                                                            case 5:
+                                                                m262az();
+                                                                break;
+                                                        }
+                                                    }
+                                                }
+                                                break;
+                                            case 5:
+                                                int i13 = this.f240bB;
+                                                if (this.f359l == 5) {
+                                                    m430c(i13);
+                                                    switch (i13) {
+                                                        case 0:
+                                                            m206aQ();
+                                                            break;
+                                                        case 2:
+                                                            byte[] bArrM1248y = C0053bz.m1248y((short) 4659, C0047bt.f865ad);
+                                                            if (bArrM1248y != null) {
+                                                                RunnableC0066a.f2115i.m600a(new C0091w((short) 4659, bArrM1248y));
+                                                                this.f354e.m1434a((String) null);
+                                                                break;
+                                                            } else {
+                                                                this.f354e.m1442b("获取上传指令数据错误!");
+                                                                break;
+                                                            }
+                                                        case 3:
+                                                            if (C0047bt.f933bs == 0) {
+                                                                this.f354e.m1442b("队员不能使用");
+                                                                break;
+                                                            } else {
+                                                                boolean z2 = true;
+                                                                if (RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 8, this.f181I.f403k + 16) == 0 && RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 8, this.f181I.f403k + 16) == 0 && RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 10, this.f181I.f403k + 16) == 0 && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 8, this.f181I.f403k + 16) && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 10, this.f181I.f403k + 16)) {
+                                                                    z2 = false;
+                                                                }
+                                                                if (RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 2, this.f181I.f403k + 16) == 0 && RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 2, this.f181I.f403k + 16) == 0 && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 2, this.f181I.f403k + 16) && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 2, this.f181I.f403k + 16)) {
+                                                                    z2 = false;
+                                                                }
+                                                                if (RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 12, this.f181I.f403k + 16) == 0 && RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 12, this.f181I.f403k + 16) == 0 && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 12, this.f181I.f403k + 16) && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 12, this.f181I.f403k + 16)) {
+                                                                    z2 = false;
+                                                                }
+                                                                if (RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 8, this.f181I.f403k + 16) == 0 && RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 8, this.f181I.f403k + 16) == 0 && RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 10, this.f181I.f403k + 16) == 0 && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 8, this.f181I.f403k + 16) && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 10, this.f181I.f403k + 16)) {
+                                                                    z2 = false;
+                                                                }
+                                                                if (z2) {
+                                                                    m461h((byte) 0);
+                                                                    break;
+                                                                } else {
+                                                                    this.f354e.m1442b("您没有卡死");
+                                                                    break;
+                                                                }
+                                                            }
+                                                        case 4:
+                                                            byte[] bArrM1162e2 = C0053bz.m1162e((short) 4352, C0047bt.f865ad, (byte) 0);
+                                                            if (bArrM1162e2 != null) {
+                                                                RunnableC0066a.f2115i.m600a(new C0091w((short) 4352, bArrM1162e2));
+                                                                m361N();
+                                                                this.f354e.m1434a((String) null);
+                                                                break;
+                                                            } else {
+                                                                this.f354e.m1442b("获取上传指令数据错误!");
+                                                                break;
+                                                            }
+                                                        case 5:
+                                                            this.f359l = (short) 7;
+                                                            C0055ca.f1888h = 0;
+                                                            break;
+                                                    }
+                                                }
+                                                break;
+                                            case 9:
+                                                int i14 = this.f240bB;
+                                                if (this.f359l == 9 && C0088t.f2506a == 0) {
+                                                    m430c(i14);
+                                                    switch (i14) {
+                                                        case 0:
+                                                            if (C0047bt.f1363jy != 1) {
+                                                                this.f354e.m1442b("充值卡充值暂时关闭");
+                                                                break;
+                                                            }
+                                                            break;
+                                                        case 1:
+                                                            if (C0047bt.f1362jx == 1) {
+                                                                m380a(99L);
+                                                                this.f359l = (short) 8;
+                                                                break;
+                                                            } else {
+                                                                this.f354e.m1442b("QB直充暂时关闭");
+                                                                break;
+                                                            }
+                                                        case 2:
+                                                            if (C0047bt.f1372kG != 1) {
+                                                                this.f354e.m1442b("QB卡直充暂时关闭");
+                                                                break;
+                                                            }
+                                                            break;
+                                                        case 3:
+                                                            if (!C0047bt.f1361jw) {
+                                                                this.f354e.m1442b("短信支付暂时关闭");
+                                                                break;
+                                                            }
+                                                            break;
+                                                    }
+                                                }
+                                                break;
+                                            case 19:
+                                                int i15 = this.f240bB;
+                                                if (this.f359l == 19) {
+                                                    m430c(i15);
+                                                    switch (i15) {
+                                                        case 0:
+                                                            if (this.f186P == null) {
+                                                                this.f186P = new C0086r(this, this.f354e, RunnableC0066a.f2114f);
+                                                            }
+                                                            this.f236aw = false;
+                                                            this.f205aJ = false;
+                                                            this.f186P.m1673b();
+                                                            this.f186P.m1672a(true);
+                                                            break;
+                                                        case 1:
+                                                            this.f236aw = false;
+                                                            this.f205aJ = false;
+                                                            C0062ch.m1353a();
+                                                            this.f192V.m1360a(true);
+                                                            break;
+                                                        case 2:
+                                                            this.f236aw = false;
+                                                            this.f205aJ = false;
+                                                            this.f185O.m1631d();
+                                                            this.f185O.m1622a(true);
+                                                            break;
+                                                        case 3:
+                                                            m185aF(-1);
+                                                            break;
+                                                        case 4:
+                                                            m449e(true);
+                                                            break;
+                                                        case 5:
+                                                            if (this.f187Q == null) {
+                                                                this.f187Q = new C0079k(this, this.f354e, RunnableC0066a.f2114f);
+                                                            }
+                                                            this.f187Q.m1579a();
+                                                            this.f187Q.m1583a(true);
+                                                            break;
+                                                    }
+                                                }
+                                                break;
+                                            case 20:
+                                                int i16 = this.f240bB;
+                                                if (this.f359l == 20) {
+                                                    m430c(i16);
+                                                    switch (i16) {
+                                                        case 0:
+                                                            byte[] bArrM1168f = C0053bz.m1168f((short) 4168, C0047bt.f865ad);
+                                                            if (bArrM1168f != null) {
+                                                                RunnableC0066a.f2115i.m600a(new C0091w((short) 4168, bArrM1168f));
+                                                                this.f354e.m1434a((String) null);
+                                                                break;
+                                                            } else {
+                                                                this.f354e.m1442b("获取上传指令数据错误!");
+                                                                break;
+                                                            }
+                                                        case 1:
+                                                            m358K();
+                                                            break;
+                                                        case 2:
+                                                            m210aS();
+                                                            break;
+                                                    }
+                                                }
+                                                break;
+                                        }
+                                    }
+                                } else {
+                                    m430c(this.f240bB >= this.f239bA.length + (-1) ? 0 : this.f240bB + 1);
+                                    break;
+                                }
+                            } else {
+                                m430c(this.f240bB <= 0 ? this.f239bA.length - 1 : this.f240bB - 1);
                                 break;
                             }
                         } else {
-                            switch (this.f240bB) {
-                                case 0:
-                                    if (C0047bt.f1683q != null) {
-                                        m201aN();
-                                        break;
-                                    } else {
-                                        this.f354e.m1442b("没有加入队伍");
+                            m430c(this.f240bB + this.f241bC >= this.f239bA.length ? (this.f240bB + this.f241bC) - this.f239bA.length : this.f240bB + this.f241bC);
+                            break;
+                        }
+                    } else {
+                        m430c(this.f240bB - this.f241bC < 0 ? (this.f240bB - this.f241bC) + this.f239bA.length : this.f240bB - this.f241bC);
+                        break;
+                    }
+                    break;
+                case 2:
+                    m336v(this.f354e.f2126a);
+                    break;
+                case 3:
+                    int i17 = this.f354e.f2126a;
+                    if (this.f354e.f2149aq != null) {
+                        this.f354e.f2149aq.mo70b(i17);
+                    }
+                    if (i17 != 8 && i17 != 2 && i17 != 518 && i17 != 516) {
+                        if (i17 == 536870912) {
+                            if (this.f280by == 1) {
+                                m361N();
+                                this.f280by = (byte) 0;
+                                break;
+                            } else {
+                                m254av();
+                                m430c(0);
+                                break;
+                            }
+                        } else if ((i17 == 1073741824 || i17 == 517 || i17 == 268435456) && this.f354e.f2150ar.m1275g() == 2) {
+                            byte[] bArrM1055a = C0053bz.m1055a((short) 4194, C0047bt.f865ad, C0047bt.f1772z);
+                            if (bArrM1055a != null) {
+                                RunnableC0066a.f2115i.m600a(new C0091w((short) 4194, bArrM1055a));
+                                break;
+                            } else {
+                                this.f354e.m1442b("获取上传指令数据错误!");
+                                break;
+                            }
+                        }
+                    } else if (this.f354e.f2151as.f2353a == 3) {
+                        byte[] bArrM1240u = C0053bz.m1240u((short) 4612, C0047bt.f865ad);
+                        if (bArrM1240u != null) {
+                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4612, bArrM1240u));
+                            this.f354e.m1434a((String) null);
+                            break;
+                        } else {
+                            this.f354e.m1442b("获取上传指令数据错误!");
+                            break;
+                        }
+                    } else {
+                        m375a(this.f354e.f2151as.f2353a);
+                        break;
+                    }
+                    break;
+                case 4:
+                    if (this.f282c) {
+                        m478o(-1);
+                    }
+                    m82B(this.f354e.f2126a);
+                    break;
+                case 5:
+                    int i18 = this.f354e.f2126a;
+                    if (f171q != null) {
+                        if (C0047bt.f886ay != this.f261bX) {
+                            f171q = this.f354e.m1429a(f171q, C0047bt.f885ax, C0047bt.f871aj, (byte) 3, (byte) 1, false);
+                            this.f261bX = C0047bt.f886ay;
+                        }
+                        C0009ai.m43a(f171q, this.f354e.f2147ak);
+                    }
+                    if (this.f359l == 0) {
+                        m401a(C0047bt.f944cC);
+                        if (i18 != 8 && i18 != 516) {
+                            if (i18 != 2 && i18 != 518) {
+                                if (i18 != 268435456 && i18 != 1073741824 && i18 != 517) {
+                                    if (i18 != 1024 && i18 == 536870912) {
+                                        m254av();
+                                        m430c(3);
                                         break;
                                     }
-                                case 1:
-                                    m210aS();
-                                    break;
-                            }
-                        }
-                    } else if (this.f359l == 6) {
-                        if (i8 != 268435456 && i8 != 1073741824) {
-                            if (i8 == 536870912) {
-                                this.f359l = (short) 2;
+                                } else {
+                                    boolean var26 = false;
+                                    if (C0047bt.f993cz != null) {
+                                        for (int i19 = 0; i19 < C0047bt.f993cz.length; i19++) {
+                                            if (C0047bt.f943cB[i19] == this.f235av) {
+                                                var26 = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if (var26) {
+                                        C0055ca.m1285a(((((this.f235av >= 1 ? 1 : 0) + 0) % 2) * 80) + f169o + 28, (C0088t.f2517c - ((C0088t.f2524j + 3) * 6)) / 2, new String[]{"查看", "装备", "卸下", "升星", "洗炼", "附魔"}, true);
+                                        this.f359l = (short) 1;
+                                    } else {
+                                        m447e(7);
+                                        break;
+                                    }
+                                }
+                            } else {
+                                this.f235av = this.f235av >= this.f262bY.length - 1 ? 0 : this.f235av + 1;
+                                C0055ca.f1892l = 0;
                                 break;
                             }
                         } else {
-                            this.f183M.m523d();
+                            this.f235av = this.f235av <= 0 ? (this.f262bY.length - 1) : this.f235av - 1;
+                            C0055ca.f1892l = 0;
                             break;
                         }
-                    } else if (this.f359l == 7) {
-                        if (i8 != 268435456 && i8 != 1073741824) {
-                            if (i8 == 536870912) {
-                                this.f359l = (short) 5;
+                    } else if (this.f359l == 1) {
+                        C0055ca.m1317b(i18);
+                        if (i18 != 268435456 && i18 != 1073741824 && i18 != 517) {
+                            if (i18 == 536870912) {
+                                this.f236aw = false;
+                                this.f359l = (short) 0;
                                 break;
                             }
-                        } else {
-                            byte[] bArrM1162e = C0053bz.m1162e((short) 4352, C0047bt.f865ad, (byte) 1);
-                            if (bArrM1162e != null) {
-                                RunnableC0066a.f2115i.m600a(new C0091w((short) 4352, bArrM1162e));
-                                m361N();
+                        } else if (C0055ca.f1895o == 0) {
+                            C0047bt.m817a(this.f235av);
+                            this.f185O.m1620a(0, this.f358k, this.f232as);
+                            break;
+                        } else if (C0055ca.f1895o == 1) {
+                            m447e(7);
+                            break;
+                        } else if (C0055ca.f1895o == 2) {
+                            int i20 = 0;
+                            while (true) {
+                                if (i20 >= C0047bt.f993cz.length) {
+                                    i6 = -1;
+                                } else if (C0047bt.f943cB[i20] == this.f235av) {
+                                    i6 = C0047bt.f993cz[i20];
+                                } else {
+                                    i20++;
+                                }
+                            }
+                            byte[] bArrM1170f = C0053bz.m1170f((short) 4136, C0047bt.f865ad, i6);
+                            if (bArrM1170f != null) {
+                                RunnableC0066a.f2115i.m600a(new C0091w((short) 4136, bArrM1170f));
+                                this.f354e.m1434a((String) null);
+                                break;
+                            } else {
+                                this.f354e.m1442b("获取上传指令数据错误!");
+                                break;
+                            }
+                        } else if (C0055ca.f1895o == 3) {
+                            this.f236aw = true;
+                            C0062ch.m1353a();
+                            int i21 = 0;
+                            while (true) {
+                                if (i21 >= C0047bt.f993cz.length) {
+                                    i5 = -1;
+                                } else if (C0047bt.f943cB[i21] == this.f235av) {
+                                    i5 = C0047bt.f993cz[i21];
+                                } else {
+                                    i21++;
+                                }
+                            }
+                            byte[] bArrM1047a = C0053bz.m1047a((short) 4689, i5, (byte) 0, (byte) -1, C0047bt.f865ad);
+                            if (bArrM1047a != null) {
+                                RunnableC0066a.f2115i.m600a(new C0091w((short) 4689, bArrM1047a));
+                                this.f354e.m1434a((String) null);
+                                break;
+                            } else {
+                                this.f354e.m1442b("获取上传指令数据错误!");
+                                break;
+                            }
+                        } else if (C0055ca.f1895o == 4) {
+                            this.f236aw = true;
+                            this.f185O.m1631d();
+                            int i22 = -1;
+                            int i23 = 0;
+                            while (true) {
+                                if (i23 < C0047bt.f993cz.length) {
+                                    if (C0047bt.f943cB[i23] == this.f235av) {
+                                        i22 = C0047bt.f993cz[i23];
+                                    } else {
+                                        i23++;
+                                    }
+                                }
+                            }
+                            C0083o.f2383h = (byte) 1;
+                            byte[] bArrM1052a = C0053bz.m1052a((short) 4688, i22, -1L, (byte) 0, C0083o.f2383h, 0, (byte[]) null, C0047bt.f865ad);
+                            if (bArrM1052a != null) {
+                                RunnableC0066a.f2115i.m600a(new C0091w((short) 4688, bArrM1052a));
+                                this.f354e.m1434a((String) null);
+                                break;
+                            } else {
+                                this.f354e.m1442b("获取上传指令数据错误!");
+                                break;
+                            }
+                        } else if (C0055ca.f1895o == 5) {
+                            if (this.f186P == null) {
+                                this.f186P = new C0086r(this, this.f354e, RunnableC0066a.f2114f);
+                            }
+                            this.f186P.m1673b();
+                            this.f236aw = true;
+                            int i24 = -1;
+                            int i25 = 0;
+                            while (true) {
+                                if (i25 < C0047bt.f993cz.length) {
+                                    if (C0047bt.f943cB[i25] == this.f235av) {
+                                        i24 = C0047bt.f993cz[i25];
+                                    } else {
+                                        i25++;
+                                    }
+                                }
+                            }
+                            byte[] bArrM1053a = C0053bz.m1053a((short) 4262, i24, -1L, (byte) 0, (int[]) null, (byte[]) null, -1, (byte) 0, C0047bt.f865ad);
+                            if (bArrM1053a != null) {
+                                RunnableC0066a.f2115i.m600a(new C0091w((short) 4262, bArrM1053a));
                                 this.f354e.m1434a((String) null);
                                 break;
                             } else {
@@ -15223,1125 +15775,458 @@ public final class C0015ao {
                                 break;
                             }
                         }
-                    } else if (this.f359l == 8) {
-                        m421b(i8);
-                        if (i8 == 268435456 || i8 == 1073741824 || i8 == 517 || i8 == 536870912) {
-                            this.f359l = (short) 9;
+                    } else if (this.f359l == 2) {
+                        if (this.f354e.f2149aq != null) {
+                            this.f354e.f2149aq.mo70b(i18);
+                        }
+                        if (i18 == 536870912) {
+                            this.f359l = (short) 1;
                             break;
                         }
                     }
-                } else if (i8 != 1 && i8 != 514) {
-                    if (i8 != 4 && i8 != 520) {
-                        if (i8 != 8 && i8 != 516) {
-                            if (i8 != 2 && i8 != 518) {
-                                if (i8 != 268435456 && i8 != 1073741824 && i8 != 517) {
-                                    if (i8 == 536870912) {
-                                        switch (this.f359l) {
-                                            case 0:
-                                                m361N();
+                    break;
+                case 6:
+                    m98J(this.f354e.f2126a);
+                    break;
+                case 7:
+                    m94H(this.f354e.f2126a);
+                    break;
+                case 8:
+                    int i26 = this.f354e.f2126a;
+                    if (this.f359l == 0) {
+                        m401a(C0047bt.f969cb);
+                        if (this.f354e.f2149aq != null) {
+                            this.f354e.f2149aq.mo70b(i26);
+                        }
+                        if (i26 != 268435456 && i26 != 1073741824 && i26 != 517) {
+                            if (i26 != 268435456 && i26 != 536870912) {
+                                if (i26 != 8 && i26 != 516) {
+                                    if (i26 != 2 && i26 != 518) {
+                                        if (i26 != 1 && i26 != 514) {
+                                            if (i26 == 4 || i26 == 520) {
+                                                if (this.f231ar >= 3) {
+                                                    i4 = 0;
+                                                } else {
+                                                    i4 = this.f231ar + 1;
+                                                    this.f231ar = i4;
+                                                }
+                                                this.f231ar = i4;
+                                                m186aG();
                                                 break;
-                                            case 2:
-                                                m250at();
-                                                m430c(4);
-                                                break;
-                                            case 3:
-                                                m250at();
-                                                m430c(0);
-                                                break;
-                                            case 4:
-                                                m250at();
-                                                m430c(1);
-                                                break;
-                                            case 5:
-                                                m250at();
-                                                m430c(10);
-                                                break;
-                                            case 9:
-                                                m256aw();
-                                                m430c(3);
-                                                break;
-                                            case 19:
-                                                m250at();
-                                                m430c(8);
-                                                break;
-                                            case 20:
-                                                m250at();
-                                                m430c(9);
-                                                break;
+                                            }
+                                        } else {
+                                            if (this.f231ar <= 0) {
+                                                i3 = 3;
+                                            } else {
+                                                i3 = this.f231ar - 1;
+                                                this.f231ar = i3;
+                                            }
+                                            this.f231ar = i3;
+                                            m186aG();
+                                            break;
                                         }
+                                    } else {
+                                        if (this.f230aq >= 7) {
+                                            i2 = 0;
+                                        } else {
+                                            i2 = this.f230aq + 1;
+                                            this.f230aq = i2;
+                                        }
+                                        this.f230aq = i2;
+                                        m186aG();
+                                        break;
                                     }
                                 } else {
-                                    switch (this.f359l) {
-                                        case 0:
-                                            int i9 = this.f240bB;
-                                            if (this.f359l == 0) {
-                                                m430c(i9);
-                                                switch (i9) {
-                                                    case 0:
-                                                        m254av();
-                                                        break;
-                                                    case 1:
-                                                        if (C0047bt.f1360jv) {
-                                                            m256aw();
-                                                            break;
-                                                        } else {
-                                                            this.f354e.m1442b("商城暂时关闭");
-                                                            break;
-                                                        }
-                                                    case 2:
-                                                        m447e(0);
-                                                        break;
-                                                    case 3:
-                                                        if (C0047bt.f906bR != null || C0047bt.f900bL != null) {
-                                                            m491x();
-                                                            break;
-                                                        } else {
-                                                            this.f354e.m1442b("当前没有任务");
-                                                            break;
-                                                        }
-                                                        break;
-                                                    case 4:
-                                                        m468k();
-                                                        break;
-                                                    case 5:
-                                                        m335v((byte) 1);
-                                                        break;
-                                                    case 6:
-                                                        m138a((byte) 0, (byte) 0, (short) 0);
-                                                        break;
-                                                    case 7:
-                                                        if (C0047bt.f1101fA != null) {
-                                                            m467j(0);
-                                                            break;
-                                                        } else {
-                                                            this.f354e.m1442b("您没有宠物！");
-                                                            break;
-                                                        }
-                                                    case 8:
-                                                        m471l();
-                                                        break;
-                                                    case 9:
-                                                        m253au();
-                                                        break;
-                                                    case 10:
-                                                        m258ax();
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                        case 2:
-                                            int i10 = this.f240bB;
-                                            if (this.f359l == 2) {
-                                                m430c(i10);
-                                                switch (i10) {
-                                                    case 0:
-                                                        this.f183M.m552r();
-                                                        break;
-                                                    case 1:
-                                                        C0047bt.f1170gQ = (short) 1;
-                                                        this.f183M.m531g(0);
-                                                        break;
-                                                    case 2:
-                                                        this.f183M.m530g();
-                                                        break;
-                                                    case 3:
-                                                        C0047bt.f1170gQ = (short) 1;
-                                                        this.f183M.m537j(0);
-                                                        break;
-                                                    case 4:
-                                                        this.f359l = (short) 6;
-                                                        C0055ca.f1888h = 0;
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                        case 3:
-                                            int i11 = this.f240bB;
-                                            if (this.f359l == 3) {
-                                                m430c(i11);
-                                                switch (i11) {
-                                                    case 0:
-                                                        m375a((byte) 0);
-                                                        break;
-                                                    case 1:
-                                                        if (C0047bt.f1042dv == null || C0047bt.f1042dv.length <= 0) {
-                                                            this.f354e.m1442b("没有技能");
-                                                            break;
-                                                        } else {
-                                                            m462h(0);
-                                                            break;
-                                                        }
-                                                        break;
-                                                    case 2:
-                                                        m147a((byte) 0, (String) null, 0);
-                                                        break;
-                                                    case 3:
-                                                        m486t();
-                                                        break;
-                                                    case 4:
-                                                        m479p();
-                                                        break;
-                                                    case 5:
-                                                        m341x((byte) 0);
-                                                        break;
-                                                    case 6:
-                                                        m154a(C0047bt.f865ad, C0047bt.f865ad, (short) 0, (short) 1);
-                                                        break;
-                                                    case 7:
-                                                        byte[] bArrM1022A = C0053bz.m1022A((short) 4254, C0047bt.f865ad);
-                                                        if (bArrM1022A != null) {
-                                                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4254, bArrM1022A));
-                                                            this.f354e.m1434a((String) null);
-                                                            break;
-                                                        } else {
-                                                            this.f354e.m1442b("获取上传指令数据错误!");
-                                                            break;
-                                                        }
-                                                    case 8:
-                                                        if (C0047bt.f889bA > 0) {
-                                                            byte[] bArrM1244w = C0053bz.m1244w((short) 4653, C0047bt.f865ad);
-                                                            if (bArrM1244w != null) {
-                                                                RunnableC0066a.f2115i.m600a(new C0091w((short) 4653, bArrM1244w));
-                                                                this.f354e.m1434a((String) null);
-                                                                break;
-                                                            } else {
-                                                                this.f354e.m1442b("获取上传指令数据错误!");
-                                                                break;
-                                                            }
-                                                        } else {
-                                                            m407af();
-                                                            break;
-                                                        }
-                                                }
-                                            }
-                                            break;
-                                        case 4:
-                                            int i12 = this.f240bB;
-                                            if (this.f359l == 4) {
-                                                if (i12 == 0) {
-                                                    m430c(i12);
-                                                    byte[] bArrM1042a = C0053bz.m1042a((short) 4648, (byte) i12, C0047bt.f865ad);
-                                                    if (bArrM1042a != null) {
-                                                        RunnableC0066a.f2115i.m600a(new C0091w((short) 4648, bArrM1042a));
-                                                        this.f354e.m1434a((String) null);
-                                                        break;
-                                                    } else {
-                                                        this.f354e.m1442b("获取上传指令数据错误!");
-                                                        break;
-                                                    }
-                                                } else if (C0088t.f2506a == 0) {
-                                                    m430c(i12);
-                                                    switch (i12) {
-                                                        case 1:
-                                                            this.f354e.m1442b("此功能暂时不开放！");
-                                                            break;
-                                                        case 2:
-                                                            m220aX();
-                                                            break;
-                                                        case 3:
-                                                            if (C0088t.f2506a == 0) {
-                                                                m168a(new String[]{"充值卡", "Q币", "Q卡", "短信"});
-                                                            }
-                                                            m430c(0);
-                                                            this.f359l = (short) 9;
-                                                            this.f358k = (short) 1;
-                                                            this.f357j = (short) 1;
-                                                            break;
-                                                        case 4:
-                                                            m262az();
-                                                            break;
-                                                    }
-                                                } else {
-                                                    m430c(i12);
-                                                    switch (i12) {
-                                                        case 1:
-                                                            m220aX();
-                                                            break;
-                                                        case 2:
-                                                            if (C0047bt.f1363jy == 1) {
-                                                                C0068c.m1472g();
-                                                                break;
-                                                            } else {
-                                                                this.f354e.m1442b("充值功能暂时关闭");
-                                                                break;
-                                                            }
-                                                        case 3:
-                                                            if (m261ay()) {
-                                                                if (C0047bt.f1362jx == 1) {
-                                                                    C0068c.m1466a(this.f354e, "1", (short) 101, 1);
-                                                                    break;
-                                                                } else {
-                                                                    this.f354e.m1442b("换豆功能暂时关闭");
-                                                                    break;
-                                                                }
-                                                            }
-                                                            break;
-                                                        case 4:
-                                                            if (m261ay()) {
-                                                                C0068c.m1473h();
-                                                                break;
-                                                            }
-                                                            break;
-                                                        case 5:
-                                                            m262az();
-                                                            break;
-                                                    }
-                                                }
-                                            }
-                                            break;
-                                        case 5:
-                                            int i13 = this.f240bB;
-                                            if (this.f359l == 5) {
-                                                m430c(i13);
-                                                switch (i13) {
-                                                    case 0:
-                                                        m206aQ();
-                                                        break;
-                                                    case 2:
-                                                        byte[] bArrM1248y = C0053bz.m1248y((short) 4659, C0047bt.f865ad);
-                                                        if (bArrM1248y != null) {
-                                                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4659, bArrM1248y));
-                                                            this.f354e.m1434a((String) null);
-                                                            break;
-                                                        } else {
-                                                            this.f354e.m1442b("获取上传指令数据错误!");
-                                                            break;
-                                                        }
-                                                    case 3:
-                                                        if (C0047bt.f933bs == 0) {
-                                                            this.f354e.m1442b("队员不能使用");
-                                                            break;
-                                                        } else {
-                                                            boolean z2 = true;
-                                                            if (RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 8, this.f181I.f403k + 16) == 0 && RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 8, this.f181I.f403k + 16) == 0 && RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 10, this.f181I.f403k + 16) == 0 && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 8, this.f181I.f403k + 16) && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 10, this.f181I.f403k + 16)) {
-                                                                z2 = false;
-                                                            }
-                                                            if (RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 2, this.f181I.f403k + 16) == 0 && RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 2, this.f181I.f403k + 16) == 0 && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 2, this.f181I.f403k + 16) && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 2, this.f181I.f403k + 16)) {
-                                                                z2 = false;
-                                                            }
-                                                            if (RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 12, this.f181I.f403k + 16) == 0 && RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 12, this.f181I.f403k + 16) == 0 && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 12, this.f181I.f403k + 16) && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 12, this.f181I.f403k + 16)) {
-                                                                z2 = false;
-                                                            }
-                                                            if (RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 8, this.f181I.f403k + 16) == 0 && RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 8, this.f181I.f403k + 16) == 0 && RunnableC0066a.f2114f.m52a(this.f355f, this.f181I.f402j + 10, this.f181I.f403k + 16) == 0 && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 8, this.f181I.f403k + 16) && !RunnableC0066a.f2114f.m68a(this.f181I.f402j + 10, this.f181I.f403k + 16)) {
-                                                                z2 = false;
-                                                            }
-                                                            if (z2) {
-                                                                m461h((byte) 0);
-                                                                break;
-                                                            } else {
-                                                                this.f354e.m1442b("您没有卡死");
-                                                                break;
-                                                            }
-                                                        }
-                                                        break;
-                                                    case 4:
-                                                        byte[] bArrM1162e2 = C0053bz.m1162e((short) 4352, C0047bt.f865ad, (byte) 0);
-                                                        if (bArrM1162e2 != null) {
-                                                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4352, bArrM1162e2));
-                                                            m361N();
-                                                            this.f354e.m1434a((String) null);
-                                                            break;
-                                                        } else {
-                                                            this.f354e.m1442b("获取上传指令数据错误!");
-                                                            break;
-                                                        }
-                                                    case 5:
-                                                        this.f359l = (short) 7;
-                                                        C0055ca.f1888h = 0;
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                        case 9:
-                                            int i14 = this.f240bB;
-                                            if (this.f359l == 9 && C0088t.f2506a == 0) {
-                                                m430c(i14);
-                                                switch (i14) {
-                                                    case 0:
-                                                        if (C0047bt.f1363jy != 1) {
-                                                            this.f354e.m1442b("充值卡充值暂时关闭");
-                                                            break;
-                                                        }
-                                                        break;
-                                                    case 1:
-                                                        if (C0047bt.f1362jx == 1) {
-                                                            m380a(99L);
-                                                            this.f359l = (short) 8;
-                                                            break;
-                                                        } else {
-                                                            this.f354e.m1442b("QB直充暂时关闭");
-                                                            break;
-                                                        }
-                                                    case 2:
-                                                        if (C0047bt.f1372kG != 1) {
-                                                            this.f354e.m1442b("QB卡直充暂时关闭");
-                                                            break;
-                                                        }
-                                                        break;
-                                                    case 3:
-                                                        if (!C0047bt.f1361jw) {
-                                                            this.f354e.m1442b("短信支付暂时关闭");
-                                                            break;
-                                                        }
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                        case 19:
-                                            int i15 = this.f240bB;
-                                            if (this.f359l == 19) {
-                                                m430c(i15);
-                                                switch (i15) {
-                                                    case 0:
-                                                        if (this.f186P == null) {
-                                                            this.f186P = new C0086r(this, this.f354e, RunnableC0066a.f2114f);
-                                                        }
-                                                        this.f236aw = false;
-                                                        this.f205aJ = false;
-                                                        this.f186P.m1673b();
-                                                        this.f186P.m1672a(true);
-                                                        break;
-                                                    case 1:
-                                                        this.f236aw = false;
-                                                        this.f205aJ = false;
-                                                        C0062ch.m1353a();
-                                                        this.f192V.m1360a(true);
-                                                        break;
-                                                    case 2:
-                                                        this.f236aw = false;
-                                                        this.f205aJ = false;
-                                                        this.f185O.m1631d();
-                                                        this.f185O.m1622a(true);
-                                                        break;
-                                                    case 3:
-                                                        m185aF(-1);
-                                                        break;
-                                                    case 4:
-                                                        m449e(true);
-                                                        break;
-                                                    case 5:
-                                                        if (this.f187Q == null) {
-                                                            this.f187Q = new C0079k(this, this.f354e, RunnableC0066a.f2114f);
-                                                        }
-                                                        this.f187Q.m1579a();
-                                                        this.f187Q.m1583a(true);
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                        case 20:
-                                            int i16 = this.f240bB;
-                                            if (this.f359l == 20) {
-                                                m430c(i16);
-                                                switch (i16) {
-                                                    case 0:
-                                                        byte[] bArrM1168f = C0053bz.m1168f((short) 4168, C0047bt.f865ad);
-                                                        if (bArrM1168f != null) {
-                                                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4168, bArrM1168f));
-                                                            this.f354e.m1434a((String) null);
-                                                            break;
-                                                        } else {
-                                                            this.f354e.m1442b("获取上传指令数据错误!");
-                                                            break;
-                                                        }
-                                                    case 1:
-                                                        m358K();
-                                                        break;
-                                                    case 2:
-                                                        m210aS();
-                                                        break;
-                                                }
-                                            }
-                                            break;
+                                    if (this.f230aq <= 0) {
+                                        i = 7;
+                                    } else {
+                                        i = this.f230aq - 1;
+                                        this.f230aq = i;
                                     }
+                                    this.f230aq = i;
+                                    m186aG();
+                                    break;
                                 }
                             } else {
-                                m430c(this.f240bB >= this.f239bA.length + (-1) ? 0 : this.f240bB + 1);
+                                this.f225al = null;
+                                if (C0047bt.f911bW) {
+                                    m361N();
+                                    C0047bt.f911bW = false;
+                                    break;
+                                } else {
+                                    m473m();
+                                    break;
+                                }
+                            }
+                        } else if (C0047bt.f913bY != null && (this.f231ar << 3) + this.f230aq < C0047bt.f913bY.length) {
+                            if (C0047bt.f968ca[(this.f231ar << 3) + this.f230aq] == 1) {
+                                m380a(99L);
+                                this.f359l = (short) 2;
+                                break;
+                            } else {
+                                m130Z(1);
+                                break;
+                            }
+                        }
+                    } else if (this.f359l == 2) {
+                        m421b(i26);
+                        if (i26 != 268435456 && i26 != 1073741824 && i26 != 517) {
+                            if (i26 == 536870912) {
+                                this.f359l = (short) 0;
                                 break;
                             }
                         } else {
-                            m430c(this.f240bB <= 0 ? this.f239bA.length - 1 : this.f240bB - 1);
+                            m130Z(this.f221ag);
                             break;
                         }
-                    } else {
-                        m430c(this.f240bB + this.f241bC >= this.f239bA.length ? (this.f240bB + this.f241bC) - this.f239bA.length : this.f240bB + this.f241bC);
-                        break;
                     }
-                } else {
-                    m430c(this.f240bB - this.f241bC < 0 ? (this.f240bB - this.f241bC) + this.f239bA.length : this.f240bB - this.f241bC);
                     break;
-                }
-                break;
-            case 2:
-                m336v(this.f354e.f2126a);
-                break;
-            case 3:
-                int i17 = this.f354e.f2126a;
-                if (this.f354e.f2149aq != null) {
-                    this.f354e.f2149aq.mo70b(i17);
-                }
-                if (i17 != 8 && i17 != 2 && i17 != 518 && i17 != 516) {
-                    if (i17 == 536870912) {
+                case 9:
+                    m226aa(this.f354e.f2126a);
+                    break;
+                case 10:
+                    m339w(this.f354e.f2126a);
+                    break;
+                case 11:
+                    m227ab(this.f354e.f2126a);
+                    break;
+                case 12:
+                    if (this.f282c) {
+                        m478o(-1);
+                    }
+                    m108O(this.f354e.f2126a);
+                    break;
+                case 13:
+                    m120T(this.f354e.f2126a);
+                    break;
+                case 14:
+                    m230ae(this.f354e.f2126a);
+                    break;
+                case 15:
+                    m233ah(this.f354e.f2126a);
+                    break;
+                case 18:
+                    if (this.f282c) {
+                        m478o(-1);
+                    }
+                    m235aj(this.f354e.f2126a);
+                    break;
+                case 19:
+                    m236ak(this.f354e.f2126a);
+                    break;
+                case 20:
+                    m237al(this.f354e.f2126a);
+                    break;
+                case 21:
+                    m238am(this.f354e.f2126a);
+                    break;
+                case 22:
+                    m241ao(this.f354e.f2126a);
+                    break;
+                case 23:
+                    m232ag(this.f354e.f2126a);
+                    break;
+                case 24:
+                    m234ai(this.f354e.f2126a);
+                    break;
+                case 25:
+                    m478o(this.f354e.f2126a);
+                    m304f((short) -1);
+                    m175aA();
+                    break;
+                case 28:
+                    m249as(this.f354e.f2126a);
+                    break;
+                case 29:
+                    m116R(this.f354e.f2126a);
+                    break;
+                case 30:
+                    int i27 = this.f354e.f2126a;
+                    if (f174t != null) {
+                        C0009ai.m43a(f174t, this.f354e.f2147ak);
+                    }
+                    if (f173s != null) {
+                        C0009ai.m43a(f173s, this.f354e.f2147ak);
+                    }
+                    if (i27 == 268435456 || i27 == 1073741824 || i27 == 536870912 || i27 == 517) {
                         if (this.f280by == 1) {
                             m361N();
                             this.f280by = (byte) 0;
                             break;
                         } else {
-                            m254av();
-                            m430c(0);
-                            break;
-                        }
-                    } else if ((i17 == 1073741824 || i17 == 517 || i17 == 268435456) && this.f354e.f2150ar.m1275g() == 2) {
-                        byte[] bArrM1055a = C0053bz.m1055a((short) 4194, C0047bt.f865ad, C0047bt.f1772z);
-                        if (bArrM1055a != null) {
-                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4194, bArrM1055a));
-                            break;
-                        } else {
-                            this.f354e.m1442b("获取上传指令数据错误!");
+                            m250at();
+                            m430c(7);
                             break;
                         }
                     }
-                } else if (this.f354e.f2151as.f2353a == 3) {
-                    byte[] bArrM1240u = C0053bz.m1240u((short) 4612, C0047bt.f865ad);
-                    if (bArrM1240u != null) {
-                        RunnableC0066a.f2115i.m600a(new C0091w((short) 4612, bArrM1240u));
-                        this.f354e.m1434a((String) null);
-                        break;
-                    } else {
-                        this.f354e.m1442b("获取上传指令数据错误!");
-                        break;
-                    }
-                } else {
-                    m375a(this.f354e.f2151as.f2353a);
                     break;
-                }
-                break;
-            case 4:
-                if (this.f282c) {
-                    m478o(-1);
-                }
-                m82B(this.f354e.f2126a);
-                break;
-            case 5:
-                int i18 = this.f354e.f2126a;
-                if (f171q != null) {
-                    if (C0047bt.f886ay != this.f261bX) {
-                        f171q = this.f354e.m1429a(f171q, C0047bt.f885ax, C0047bt.f871aj, (byte) 3, (byte) 1, false);
-                        this.f261bX = C0047bt.f886ay;
+                case 31:
+                    m245aq(this.f354e.f2126a);
+                    break;
+                case 32:
+                    m247ar(this.f354e.f2126a);
+                    break;
+                case 33:
+                    m211aS(this.f354e.f2126a);
+                    break;
+                case 34:
+                    m110P(this.f354e.f2126a);
+                    break;
+                case 35:
+                    m113Q(this.f354e.f2126a);
+                    break;
+                case 36:
+                    if (this.f282c) {
+                        m478o(-1);
                     }
-                    C0009ai.m43a(f171q, this.f354e.f2147ak);
-                }
-                if (this.f359l == 0) {
-                    m401a(C0047bt.f944cC);
-                    if (i18 != 8 && i18 != 516) {
-                        if (i18 == 2 || i18 == 518) {
-                            if (this.f235av >= this.f262bY.length - 1) {
-                                i7 = 0;
+                    m100K(this.f354e.f2126a);
+                    break;
+                case 37:
+                    m342x(this.f354e.f2126a);
+                    break;
+                case 38:
+                    m251at(this.f354e.f2126a);
+                    break;
+                case 39:
+                    if (C0088t.f2529o && this.f354e.f2146aj != null) {
+                        this.f354e.f2146aj.m1549a();
+                    }
+                    m367V();
+                    break;
+                case 40:
+                    m257aw(this.f354e.f2126a);
+                    break;
+                case 41:
+                    this.f183M.m517b(this.f354e.f2126a);
+                    break;
+                case 42:
+                    this.f183M.m521c(this.f354e.f2126a);
+                    break;
+                case 43:
+                    this.f183M.m524d(this.f354e.f2126a);
+                    break;
+                case 45:
+                    this.f183M.m527e(this.f354e.f2126a);
+                    break;
+                case 46:
+                    this.f183M.m529f(this.f354e.f2126a);
+                    break;
+                case 47:
+                    this.f183M.m535i(this.f354e.f2126a);
+                    break;
+                case 48:
+                    this.f183M.m539k(this.f354e.f2126a);
+                    break;
+                case 49:
+                    this.f183M.m541l(this.f354e.f2126a);
+                    break;
+                case 50:
+                    this.f183M.m543m(this.f354e.f2126a);
+                    break;
+                case 51:
+                    this.f183M.m545n(this.f354e.f2126a);
+                    break;
+                case 52:
+                    this.f183M.m553r(this.f354e.f2126a);
+                    break;
+                case 53:
+                    m259ax(this.f354e.f2126a);
+                    break;
+                case 57:
+                    m483r(this.f354e.f2126a);
+                    break;
+                case 58:
+                    m482q(this.f354e.f2126a);
+                    break;
+                case 59:
+                    m260ay(this.f354e.f2126a);
+                    break;
+                case 60:
+                    this.f183M.m555s(this.f354e.f2126a);
+                    break;
+                case 61:
+                    this.f183M.m560v();
+                    break;
+                case 62:
+                    this.f183M.m557t(this.f354e.f2126a);
+                    break;
+                case 63:
+                    this.f183M.m559u(this.f354e.f2126a);
+                    break;
+                case 64:
+                    this.f185O.m1619a(this.f354e.f2126a);
+                    break;
+                case 65:
+                    this.f185O.m1625b(this.f354e.f2126a);
+                    break;
+                case 66:
+                    this.f185O.m1629c(this.f354e.f2126a);
+                    break;
+                case 67:
+                    this.f185O.m1632d(this.f354e.f2126a);
+                    break;
+                case 68:
+                    m263az(this.f354e.f2126a);
+                    break;
+                case 69:
+                    m177aB(this.f354e.f2126a);
+                    break;
+                case 70:
+                    m179aC(this.f354e.f2126a);
+                    break;
+                case 71:
+                    m193aJ(this.f354e.f2126a);
+                    break;
+                case 72:
+                    m187aG(this.f354e.f2126a);
+                    break;
+                case 75:
+                    m180aD(this.f354e.f2126a);
+                    break;
+                case 76:
+                    m191aI(this.f354e.f2126a);
+                    break;
+                case 77:
+                    m189aH(this.f354e.f2126a);
+                    break;
+                case 90:
+                    this.f189S.m1698b(this.f354e.f2126a);
+                    break;
+                case 91:
+                    this.f189S.m1701c(this.f354e.f2126a);
+                    break;
+                case 92:
+                    this.f189S.m1704d(this.f354e.f2126a);
+                    break;
+                case 93:
+                    this.f189S.m1707e(this.f354e.f2126a);
+                    break;
+                case 94:
+                    m333u(this.f354e.f2126a);
+                    break;
+                case 95:
+                    m128X(this.f354e.f2126a);
+                    break;
+                case 96:
+                    m342x(this.f354e.f2126a);
+                    break;
+                case 98:
+                    m205aP(this.f354e.f2126a);
+                    break;
+                case 100:
+                    m183aE(this.f354e.f2126a);
+                    break;
+                case 101:
+                    this.f191U.m574a(this.f354e.f2126a);
+                    break;
+                case 102:
+                    this.f192V.m1357a(this.f354e.f2126a);
+                    break;
+                case 103:
+                    m202aO(this.f354e.f2126a);
+                    break;
+                case 104:
+                    m199aM(this.f354e.f2126a);
+                    break;
+                case 105:
+                    m197aL(this.f354e.f2126a);
+                    break;
+                case 106:
+                    this.f185O.m1634e(this.f354e.f2126a);
+                    break;
+                case 107:
+                    m207aQ(this.f354e.f2126a);
+                    break;
+                case 108:
+                    m209aR(this.f354e.f2126a);
+                    break;
+                case 109:
+                    m209aR(this.f354e.f2126a);
+                    break;
+                case 110:
+                    m215aU(this.f354e.f2126a);
+                    break;
+                case 111:
+                    m213aT(this.f354e.f2126a);
+                    break;
+                case 113:
+                    this.f183M.m561v(this.f354e.f2126a);
+                    break;
+                case 114:
+                    this.f183M.m547o(this.f354e.f2126a);
+                    break;
+                case 115:
+                    this.f183M.m549p(this.f354e.f2126a);
+                    break;
+                case 116:
+                    m219aW(this.f354e.f2126a);
+                    break;
+                case 117:
+                    m221aX(this.f354e.f2126a);
+                    break;
+                case 118:
+                    m217aV(this.f354e.f2126a);
+                    break;
+                case 119:
+                    m223aY(this.f354e.f2126a);
+                    break;
+                case 120:
+                    m225aZ(this.f354e.f2126a);
+                    break;
+                case 121:
+                    m104M(this.f354e.f2126a);
+                    break;
+                case 122:
+                    m106N(this.f354e.f2126a);
+                    break;
+                case 123:
+                    m102L(this.f354e.f2126a);
+                    break;
+                case 125:
+                    m278ba(this.f354e.f2126a);
+                    break;
+                case 126:
+                    m90F(this.f354e.f2126a);
+                    break;
+                case 127:
+                    m280bb(this.f354e.f2126a);
+                    break;
+                case 128:
+                    m282bc(this.f354e.f2126a);
+                    break;
+                case 129:
+                    if (this.f188R != null) {
+                        C0031bd c0031bd = this.f188R;
+                        if (c0031bd.f578c == 1) {
+                            c0031bd.f578c = (byte) 0;
+                            byte[] bArrM639a = c0031bd.m639a((short) 4375, C0047bt.f865ad, c0031bd.f579d.getString());
+                            if (bArrM639a != null) {
+                                RunnableC0066a.f2115i.m600a(new C0091w((short) 4375, bArrM639a));
                             } else {
-                                i7 = this.f235av + 1;
-                                this.f235av = i7;
+                                c0031bd.f577b.m1442b("获取上传指令数据错误!");
                             }
-                            this.f235av = i7;
-                            C0055ca.f1892l = 0;
+                            c0031bd.f577b.m1434a((String) null);
+                            c0031bd.m641c();
+                            c0031bd.m640b();
+                            c0031bd.f576a.f358k = (short) 0;
                             break;
-                        } else if (i18 != 268435456 && i18 != 1073741824 && i18 != 517) {
-                            if (i18 != 1024 && i18 == 536870912) {
-                                m254av();
-                                m430c(3);
-                                break;
-                            }
-                        } else if (C0047bt.f993cz != null) {
-                            for (int i19 = 0; i19 < C0047bt.f993cz.length; i19++) {
-                                if (C0047bt.f943cB[i19] == this.f235av) {
-                                    z = true;
-                                    if (z) {
-                                        C0055ca.m1285a(((((this.f235av >= 1 ? 1 : 0) + 0) % 2) * 80) + f169o + 28, (C0088t.f2517c - ((C0088t.f2524j + 3) * 6)) / 2, new String[]{"查看", "装备", "卸下", "升星", "洗炼", "附魔"}, true);
-                                        this.f359l = (short) 1;
-                                        break;
-                                    } else {
-                                        m447e(7);
-                                        break;
-                                    }
-                                }
-                            }
-                            z = false;
-                            if (z) {
-                            }
-                        } else {
-                            z = false;
-                            if (z) {
-                            }
-                        }
-                    } else {
-                        if (this.f235av <= 0) {
-                            length = this.f262bY.length - 1;
-                        } else {
-                            length = this.f235av - 1;
-                            this.f235av = length;
-                        }
-                        this.f235av = length;
-                        C0055ca.f1892l = 0;
-                        break;
-                    }
-                } else if (this.f359l == 1) {
-                    C0055ca.m1317b(i18);
-                    if (i18 != 268435456 && i18 != 1073741824 && i18 != 517) {
-                        if (i18 == 536870912) {
-                            this.f236aw = false;
-                            this.f359l = (short) 0;
-                            break;
-                        }
-                    } else if (C0055ca.f1895o == 0) {
-                        C0047bt.m817a(this.f235av);
-                        this.f185O.m1620a(0, this.f358k, this.f232as);
-                        break;
-                    } else if (C0055ca.f1895o == 1) {
-                        m447e(7);
-                        break;
-                    } else if (C0055ca.f1895o == 2) {
-                        int i20 = 0;
-                        while (true) {
-                            if (i20 >= C0047bt.f993cz.length) {
-                                i6 = -1;
-                            } else if (C0047bt.f943cB[i20] == this.f235av) {
-                                i6 = C0047bt.f993cz[i20];
-                            } else {
-                                i20++;
-                            }
-                        }
-                        byte[] bArrM1170f = C0053bz.m1170f((short) 4136, C0047bt.f865ad, i6);
-                        if (bArrM1170f != null) {
-                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4136, bArrM1170f));
-                            this.f354e.m1434a((String) null);
-                            break;
-                        } else {
-                            this.f354e.m1442b("获取上传指令数据错误!");
-                            break;
-                        }
-                    } else if (C0055ca.f1895o == 3) {
-                        this.f236aw = true;
-                        C0062ch.m1353a();
-                        int i21 = 0;
-                        while (true) {
-                            if (i21 >= C0047bt.f993cz.length) {
-                                i5 = -1;
-                            } else if (C0047bt.f943cB[i21] == this.f235av) {
-                                i5 = C0047bt.f993cz[i21];
-                            } else {
-                                i21++;
-                            }
-                        }
-                        byte[] bArrM1047a = C0053bz.m1047a((short) 4689, i5, (byte) 0, (byte) -1, C0047bt.f865ad);
-                        if (bArrM1047a != null) {
-                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4689, bArrM1047a));
-                            this.f354e.m1434a((String) null);
-                            break;
-                        } else {
-                            this.f354e.m1442b("获取上传指令数据错误!");
-                            break;
-                        }
-                    } else if (C0055ca.f1895o == 4) {
-                        this.f236aw = true;
-                        this.f185O.m1631d();
-                        int i22 = -1;
-                        int i23 = 0;
-                        while (true) {
-                            if (i23 < C0047bt.f993cz.length) {
-                                if (C0047bt.f943cB[i23] == this.f235av) {
-                                    i22 = C0047bt.f993cz[i23];
-                                } else {
-                                    i23++;
-                                }
-                            }
-                        }
-                        C0083o.f2383h = (byte) 1;
-                        byte[] bArrM1052a = C0053bz.m1052a((short) 4688, i22, -1L, (byte) 0, C0083o.f2383h, 0, (byte[]) null, C0047bt.f865ad);
-                        if (bArrM1052a != null) {
-                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4688, bArrM1052a));
-                            this.f354e.m1434a((String) null);
-                            break;
-                        } else {
-                            this.f354e.m1442b("获取上传指令数据错误!");
-                            break;
-                        }
-                    } else if (C0055ca.f1895o == 5) {
-                        if (this.f186P == null) {
-                            this.f186P = new C0086r(this, this.f354e, RunnableC0066a.f2114f);
-                        }
-                        this.f186P.m1673b();
-                        this.f236aw = true;
-                        int i24 = -1;
-                        int i25 = 0;
-                        while (true) {
-                            if (i25 < C0047bt.f993cz.length) {
-                                if (C0047bt.f943cB[i25] == this.f235av) {
-                                    i24 = C0047bt.f993cz[i25];
-                                } else {
-                                    i25++;
-                                }
-                            }
-                        }
-                        byte[] bArrM1053a = C0053bz.m1053a((short) 4262, i24, -1L, (byte) 0, (int[]) null, (byte[]) null, -1, (byte) 0, C0047bt.f865ad);
-                        if (bArrM1053a != null) {
-                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4262, bArrM1053a));
-                            this.f354e.m1434a((String) null);
-                            break;
-                        } else {
-                            this.f354e.m1442b("获取上传指令数据错误!");
+                        } else if (c0031bd.f578c == 2) {
+                            c0031bd.f578c = (byte) 0;
+                            c0031bd.m640b();
+                            c0031bd.f576a.f358k = (short) 0;
                             break;
                         }
                     }
-                } else if (this.f359l == 2) {
-                    if (this.f354e.f2149aq != null) {
-                        this.f354e.f2149aq.mo70b(i18);
-                    }
-                    if (i18 == 536870912) {
-                        this.f359l = (short) 1;
-                        break;
-                    }
-                }
-                break;
-            case 6:
-                m98J(this.f354e.f2126a);
-                break;
-            case 7:
-                m94H(this.f354e.f2126a);
-                break;
-            case 8:
-                int i26 = this.f354e.f2126a;
-                if (this.f359l == 0) {
-                    m401a(C0047bt.f969cb);
-                    if (this.f354e.f2149aq != null) {
-                        this.f354e.f2149aq.mo70b(i26);
-                    }
-                    if (i26 != 268435456 && i26 != 1073741824 && i26 != 517) {
-                        if (i26 != 268435456 && i26 != 536870912) {
-                            if (i26 != 8 && i26 != 516) {
-                                if (i26 != 2 && i26 != 518) {
-                                    if (i26 != 1 && i26 != 514) {
-                                        if (i26 == 4 || i26 == 520) {
-                                            if (this.f231ar >= 3) {
-                                                i4 = 0;
-                                            } else {
-                                                i4 = this.f231ar + 1;
-                                                this.f231ar = i4;
-                                            }
-                                            this.f231ar = i4;
-                                            m186aG();
-                                            break;
-                                        }
-                                    } else {
-                                        if (this.f231ar <= 0) {
-                                            i3 = 3;
-                                        } else {
-                                            i3 = this.f231ar - 1;
-                                            this.f231ar = i3;
-                                        }
-                                        this.f231ar = i3;
-                                        m186aG();
-                                        break;
-                                    }
-                                } else {
-                                    if (this.f230aq >= 7) {
-                                        i2 = 0;
-                                    } else {
-                                        i2 = this.f230aq + 1;
-                                        this.f230aq = i2;
-                                    }
-                                    this.f230aq = i2;
-                                    m186aG();
-                                    break;
-                                }
-                            } else {
-                                if (this.f230aq <= 0) {
-                                    i = 7;
-                                } else {
-                                    i = this.f230aq - 1;
-                                    this.f230aq = i;
-                                }
-                                this.f230aq = i;
-                                m186aG();
-                                break;
-                            }
-                        } else {
-                            this.f225al = null;
-                            if (C0047bt.f911bW) {
-                                m361N();
-                                C0047bt.f911bW = false;
-                                break;
-                            } else {
-                                m473m();
-                                break;
-                            }
-                        }
-                    } else if (C0047bt.f913bY != null && (this.f231ar << 3) + this.f230aq < C0047bt.f913bY.length) {
-                        if (C0047bt.f968ca[(this.f231ar << 3) + this.f230aq] == 1) {
-                            m380a(99L);
-                            this.f359l = (short) 2;
-                            break;
-                        } else {
-                            m130Z(1);
-                            break;
-                        }
-                    }
-                } else if (this.f359l == 2) {
-                    m421b(i26);
-                    if (i26 != 268435456 && i26 != 1073741824 && i26 != 517) {
-                        if (i26 == 536870912) {
-                            this.f359l = (short) 0;
-                            break;
-                        }
-                    } else {
-                        m130Z(this.f221ag);
-                        break;
-                    }
-                }
-                break;
-            case 9:
-                m226aa(this.f354e.f2126a);
-                break;
-            case 10:
-                m339w(this.f354e.f2126a);
-                break;
-            case 11:
-                m227ab(this.f354e.f2126a);
-                break;
-            case 12:
-                if (this.f282c) {
-                    m478o(-1);
-                }
-                m108O(this.f354e.f2126a);
-                break;
-            case 13:
-                m120T(this.f354e.f2126a);
-                break;
-            case 14:
-                m230ae(this.f354e.f2126a);
-                break;
-            case 15:
-                m233ah(this.f354e.f2126a);
-                break;
-            case 18:
-                if (this.f282c) {
-                    m478o(-1);
-                }
-                m235aj(this.f354e.f2126a);
-                break;
-            case 19:
-                m236ak(this.f354e.f2126a);
-                break;
-            case 20:
-                m237al(this.f354e.f2126a);
-                break;
-            case 21:
-                m238am(this.f354e.f2126a);
-                break;
-            case 22:
-                m241ao(this.f354e.f2126a);
-                break;
-            case 23:
-                m232ag(this.f354e.f2126a);
-                break;
-            case 24:
-                m234ai(this.f354e.f2126a);
-                break;
-            case 25:
-                m478o(this.f354e.f2126a);
-                m304f((short) -1);
-                m175aA();
-                break;
-            case 28:
-                m249as(this.f354e.f2126a);
-                break;
-            case 29:
-                m116R(this.f354e.f2126a);
-                break;
-            case 30:
-                int i27 = this.f354e.f2126a;
-                if (f174t != null) {
-                    C0009ai.m43a(f174t, this.f354e.f2147ak);
-                }
-                if (f173s != null) {
-                    C0009ai.m43a(f173s, this.f354e.f2147ak);
-                }
-                if (i27 == 268435456 || i27 == 1073741824 || i27 == 536870912 || i27 == 517) {
-                    if (this.f280by == 1) {
-                        m361N();
-                        this.f280by = (byte) 0;
-                        break;
-                    } else {
-                        m250at();
-                        m430c(7);
-                        break;
-                    }
-                }
-                break;
-            case 31:
-                m245aq(this.f354e.f2126a);
-                break;
-            case 32:
-                m247ar(this.f354e.f2126a);
-                break;
-            case 33:
-                m211aS(this.f354e.f2126a);
-                break;
-            case 34:
-                m110P(this.f354e.f2126a);
-                break;
-            case 35:
-                m113Q(this.f354e.f2126a);
-                break;
-            case 36:
-                if (this.f282c) {
-                    m478o(-1);
-                }
-                m100K(this.f354e.f2126a);
-                break;
-            case 37:
-                m342x(this.f354e.f2126a);
-                break;
-            case 38:
-                m251at(this.f354e.f2126a);
-                break;
-            case 39:
-                if (C0088t.f2529o && this.f354e.f2146aj != null) {
-                    this.f354e.f2146aj.m1549a();
-                }
-                m367V();
-                break;
-            case 40:
-                m257aw(this.f354e.f2126a);
-                break;
-            case 41:
-                this.f183M.m517b(this.f354e.f2126a);
-                break;
-            case 42:
-                this.f183M.m521c(this.f354e.f2126a);
-                break;
-            case 43:
-                this.f183M.m524d(this.f354e.f2126a);
-                break;
-            case 45:
-                this.f183M.m527e(this.f354e.f2126a);
-                break;
-            case 46:
-                this.f183M.m529f(this.f354e.f2126a);
-                break;
-            case 47:
-                this.f183M.m535i(this.f354e.f2126a);
-                break;
-            case 48:
-                this.f183M.m539k(this.f354e.f2126a);
-                break;
-            case 49:
-                this.f183M.m541l(this.f354e.f2126a);
-                break;
-            case 50:
-                this.f183M.m543m(this.f354e.f2126a);
-                break;
-            case 51:
-                this.f183M.m545n(this.f354e.f2126a);
-                break;
-            case 52:
-                this.f183M.m553r(this.f354e.f2126a);
-                break;
-            case 53:
-                m259ax(this.f354e.f2126a);
-                break;
-            case 57:
-                m483r(this.f354e.f2126a);
-                break;
-            case 58:
-                m482q(this.f354e.f2126a);
-                break;
-            case 59:
-                m260ay(this.f354e.f2126a);
-                break;
-            case 60:
-                this.f183M.m555s(this.f354e.f2126a);
-                break;
-            case 61:
-                this.f183M.m560v();
-                break;
-            case 62:
-                this.f183M.m557t(this.f354e.f2126a);
-                break;
-            case 63:
-                this.f183M.m559u(this.f354e.f2126a);
-                break;
-            case 64:
-                this.f185O.m1619a(this.f354e.f2126a);
-                break;
-            case 65:
-                this.f185O.m1625b(this.f354e.f2126a);
-                break;
-            case 66:
-                this.f185O.m1629c(this.f354e.f2126a);
-                break;
-            case 67:
-                this.f185O.m1632d(this.f354e.f2126a);
-                break;
-            case 68:
-                m263az(this.f354e.f2126a);
-                break;
-            case 69:
-                m177aB(this.f354e.f2126a);
-                break;
-            case 70:
-                m179aC(this.f354e.f2126a);
-                break;
-            case 71:
-                m193aJ(this.f354e.f2126a);
-                break;
-            case 72:
-                m187aG(this.f354e.f2126a);
-                break;
-            case 75:
-                m180aD(this.f354e.f2126a);
-                break;
-            case 76:
-                m191aI(this.f354e.f2126a);
-                break;
-            case 77:
-                m189aH(this.f354e.f2126a);
-                break;
-            case 90:
-                this.f189S.m1698b(this.f354e.f2126a);
-                break;
-            case 91:
-                this.f189S.m1701c(this.f354e.f2126a);
-                break;
-            case 92:
-                this.f189S.m1704d(this.f354e.f2126a);
-                break;
-            case 93:
-                this.f189S.m1707e(this.f354e.f2126a);
-                break;
-            case 94:
-                m333u(this.f354e.f2126a);
-                break;
-            case 95:
-                m128X(this.f354e.f2126a);
-                break;
-            case 96:
-                m342x(this.f354e.f2126a);
-                break;
-            case 98:
-                m205aP(this.f354e.f2126a);
-                break;
-            case 100:
-                m183aE(this.f354e.f2126a);
-                break;
-            case 101:
-                this.f191U.m574a(this.f354e.f2126a);
-                break;
-            case 102:
-                this.f192V.m1357a(this.f354e.f2126a);
-                break;
-            case 103:
-                m202aO(this.f354e.f2126a);
-                break;
-            case 104:
-                m199aM(this.f354e.f2126a);
-                break;
-            case 105:
-                m197aL(this.f354e.f2126a);
-                break;
-            case 106:
-                this.f185O.m1634e(this.f354e.f2126a);
-                break;
-            case 107:
-                m207aQ(this.f354e.f2126a);
-                break;
-            case 108:
-                m209aR(this.f354e.f2126a);
-                break;
-            case 109:
-                m209aR(this.f354e.f2126a);
-                break;
-            case 110:
-                m215aU(this.f354e.f2126a);
-                break;
-            case 111:
-                m213aT(this.f354e.f2126a);
-                break;
-            case 113:
-                this.f183M.m561v(this.f354e.f2126a);
-                break;
-            case 114:
-                this.f183M.m547o(this.f354e.f2126a);
-                break;
-            case 115:
-                this.f183M.m549p(this.f354e.f2126a);
-                break;
-            case 116:
-                m219aW(this.f354e.f2126a);
-                break;
-            case 117:
-                m221aX(this.f354e.f2126a);
-                break;
-            case 118:
-                m217aV(this.f354e.f2126a);
-                break;
-            case 119:
-                m223aY(this.f354e.f2126a);
-                break;
-            case 120:
-                m225aZ(this.f354e.f2126a);
-                break;
-            case 121:
-                m104M(this.f354e.f2126a);
-                break;
-            case 122:
-                m106N(this.f354e.f2126a);
-                break;
-            case 123:
-                m102L(this.f354e.f2126a);
-                break;
-            case 125:
-                m278ba(this.f354e.f2126a);
-                break;
-            case 126:
-                m90F(this.f354e.f2126a);
-                break;
-            case 127:
-                m280bb(this.f354e.f2126a);
-                break;
-            case 128:
-                m282bc(this.f354e.f2126a);
-                break;
-            case 129:
-                if (this.f188R != null) {
-                    C0031bd c0031bd = this.f188R;
-                    if (c0031bd.f578c == 1) {
-                        c0031bd.f578c = (byte) 0;
-                        byte[] bArrM639a = c0031bd.m639a((short) 4375, C0047bt.f865ad, c0031bd.f579d.getString());
-                        if (bArrM639a != null) {
-                            RunnableC0066a.f2115i.m600a(new C0091w((short) 4375, bArrM639a));
-                        } else {
-                            c0031bd.f577b.m1442b("获取上传指令数据错误!");
-                        }
-                        c0031bd.f577b.m1434a((String) null);
-                        c0031bd.m641c();
-                        c0031bd.m640b();
-                        c0031bd.f576a.f358k = (short) 0;
-                        break;
-                    } else if (c0031bd.f578c == 2) {
-                        c0031bd.f578c = (byte) 0;
-                        c0031bd.m640b();
-                        c0031bd.f576a.f358k = (short) 0;
-                        break;
-                    }
-                }
-                break;
-            case 130:
-                this.f184N.m1335a(this.f354e.f2126a);
-                break;
-            case 131:
-                this.f193W.m1352b(this.f354e.f2126a);
-                break;
+                    break;
+                case 130:
+                    this.f184N.m1335a(this.f354e.f2126a);
+                    break;
+                case 131:
+                    this.f193W.m1352b(this.f354e.f2126a);
+                    break;
+            }
+            this.f354e.f2126a = 0;
         }
-        this.f354e.f2126a = 0;
     }
 
     /* renamed from: a */
@@ -16578,7 +16463,7 @@ public final class C0015ao {
     }
 
     /* renamed from: a */
-    public final void m378a(int i) throws IOException {
+    public final void m378a(int i) {
         int i2;
         byte b;
         if (this.f181I.m25h()) {
@@ -18631,7 +18516,7 @@ public final class C0015ao {
     }
 
     /* renamed from: b */
-    public final void m423b(String str, byte b) throws IOException {
+    public final void m423b(String str, byte b) {
         byte[] bArrM1147c = C0053bz.m1147c((short) 4113, C0047bt.f865ad, str, b);
         if (bArrM1147c != null) {
             RunnableC0066a.f2115i.m600a(new C0091w((short) 4113, bArrM1147c));
@@ -19783,7 +19668,7 @@ public final class C0015ao {
     }
 
     /* renamed from: g */
-    public final void m457g(byte b) throws IOException {
+    public final void m457g(byte b) {
         byte[] bArrM1169f = C0053bz.m1169f((short) 4125, C0047bt.f865ad, b);
         if (bArrM1169f != null) {
             RunnableC0066a.f2115i.m600a(new C0091w((short) 4125, bArrM1169f));
@@ -20802,7 +20687,7 @@ public final class C0015ao {
     }
 
     /* renamed from: z */
-    public final void m493z() throws Throwable {
+    public final void m493z() {
         if (C0047bt.f1486mO == null) {
             this.f354e.m1442b("没有特效");
             return;

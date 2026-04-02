@@ -272,7 +272,7 @@ public final class C0083o {
     }
 
     /* renamed from: a */
-    public final void m1619a(int i) throws IOException {
+    public final void m1619a(int i)  {
         byte length;
         byte b = 0;
         if (this.f2414i.f359l != 0) {
@@ -940,7 +940,7 @@ public final class C0083o {
     }
 
     /* renamed from: e */
-    public final void m1634e(int i) throws IOException {
+    public final void m1634e(int i){
         C0041bn c0041bn;
         byte[] bArrM1052a;
         byte[] bArr;
