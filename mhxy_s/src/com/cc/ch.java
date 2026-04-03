@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
 public final class ch {
-   private ao_1 c;
+   private UISceneController c;
    private MainCanvas d;
    private PngUtil e;
    private String f;
@@ -35,7 +35,7 @@ public final class ch {
    private Frame0 z;
    private boolean A = false;
 
-   public ch(ao_1 var1, MainCanvas var2, PngUtil var3) {
+   public ch(UISceneController var1, MainCanvas var2, PngUtil var3) {
       this.c = var1;
       this.d = var2;
       this.e = var3;
@@ -206,9 +206,9 @@ public final class ch {
       }
 
       LoadingPage.l = 0;
-      this.c.l = 0;
+      this.c.sceneSubState = 0;
       this.d.touchPageCase = this.d.k;
-      this.c.j = this.c.k = 102;
+      this.c.sceneStateShadow = this.c.currentSceneModeId = 102;
    }
 
    public final void a(int var1) {
@@ -217,7 +217,7 @@ public final class ch {
          this.d.processException("升星成功");
       }
 
-      if (this.c.l == 0) {
+      if (this.c.sceneSubState == 0) {
          if (this.d.aq != null) {
             this.d.aq.b(var1);
          }
@@ -277,7 +277,7 @@ public final class ch {
                }
 
                LoadingPage.a(this.d.aq.a + 24, this.d.aq.b + 49, new String[]{"升星", "查看", "取出"}, false);
-               this.c.l = 1;
+               this.c.sceneSubState = 1;
                return;
             }
 
@@ -309,11 +309,11 @@ public final class ch {
                }
             }
          }
-      } else if (this.c.l == 1) {
+      } else if (this.c.sceneSubState == 1) {
          LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824) {
             if (var1 == 536870912) {
-               this.c.l = 0;
+               this.c.sceneSubState = 0;
             }
          } else if (LoadingPage.o == 0) {
             if (q[0]) {
@@ -358,7 +358,7 @@ public final class ch {
                if (this.c.aw && !this.A) {
                   GlobalStatus.a(this.c.av);
                } else if (this.c.aJ && !this.A) {
-                  GlobalStatus.b((int) ao_1.l(this.c.aq));
+                  GlobalStatus.b((int) UISceneController.l(this.c.aq));
                } else {
                   var1 = h;
                   Object var14 = null;
@@ -388,8 +388,8 @@ public final class ch {
                   }
                }
 
-               this.c.k = 102;
-               this.c.O.a(0, (short)this.c.k, -1);
+               this.c.currentSceneModeId = 102;
+               this.c.O.a(0, (short)this.c.currentSceneModeId, -1);
                return;
             }
 
@@ -398,7 +398,7 @@ public final class ch {
                this.d();
                this.b();
                this.e();
-               this.c.l = 0;
+               this.c.sceneSubState = 0;
                return;
             }
          }
@@ -417,23 +417,23 @@ public final class ch {
       if (this.a != null) {
          for(int var2 = 0; var2 < this.a.length; ++var2) {
             if (var2 == 0) {
-               this.e.a(var1, ao_1.x, (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
+               this.e.a(var1, UISceneController.x, (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
             } else if (var2 < 4) {
                this.e.a(var1, q[var2 - 1] ? this.y : this.z, (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
             } else {
                MainCanvas.af.e(String.valueOf(1702));
-               MainCanvas.f.a(var1, ao_1.b((short)1702), (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
+               MainCanvas.pngUtil.a(var1, UISceneController.b((short)1702), (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
                if (n[var2 - 4] > 99) {
-                  MainCanvas.f.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] / 100, 0, 0, this.a[var2][0] + 13 - 8, this.a[var2][1] + 11, 0, 0);
-                  MainCanvas.f.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] % 100 / 10, 0, 0, this.a[var2][0] + 13 - 4, this.a[var2][1] + 11, 0, 0);
-                  MainCanvas.f.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] % 100, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] / 100, 0, 0, this.a[var2][0] + 13 - 8, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] % 100 / 10, 0, 0, this.a[var2][0] + 13 - 4, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] % 100, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
                }
 
                if (n[var2 - 4] > 9) {
-                  MainCanvas.f.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] / 10, 0, 0, this.a[var2][0] + 13 - 4, this.a[var2][1] + 11, 0, 0);
-                  MainCanvas.f.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] % 10, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] / 10, 0, 0, this.a[var2][0] + 13 - 4, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] % 10, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
                } else if (n[var2 - 4] >= 0) {
-                  MainCanvas.f.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] % 10, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] % 10, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
                }
             }
          }
@@ -446,7 +446,7 @@ public final class ch {
       var1.drawString("+50%", this.a[5][0] + 42, this.a[5][1] + 18, 33);
       var1.drawString("+100%", this.a[6][0] + 42, this.a[6][1] + 18, 33);
       if (h != -1) {
-         this.e.a(var1, ao_1.b(j), (int[])null, (aj)null, 0, 0, this.a[0][0], this.a[0][1], 0, 0);
+         this.e.a(var1, UISceneController.b(j), (int[])null, (aj)null, 0, 0, this.a[0][0], this.a[0][1], 0, 0);
       }
 
       LoadingPage.d(var1, this.a[this.b][0], this.a[this.b][1], 17, 17);
@@ -468,12 +468,12 @@ public final class ch {
          }
       }
 
-      if (this.c.l == 0) {
+      if (this.c.sceneSubState == 0) {
          if (this.b == 0 && (this.f != null || this.f != "")) {
-            LoadingPage.b(var1, this.f, this.d.aq.a + 5 + 2, this.d.aq.b + 32 + 8 + ao_1.x.c, GlobalConfig.defaultHigh - 5, 1);
+            LoadingPage.b(var1, this.f, this.d.aq.a + 5 + 2, this.d.aq.b + 32 + 8 + UISceneController.x.c, GlobalConfig.defaultHigh - 5, 1);
             return;
          }
-      } else if (this.c.l == 1) {
+      } else if (this.c.sceneSubState == 1) {
          LoadingPage.c(var1);
       }
 

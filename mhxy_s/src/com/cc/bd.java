@@ -13,7 +13,7 @@ import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.TextField;
 
 public final class bd implements CommandListener {
-   public ao_1 a;
+   public UISceneController a;
    public MainCanvas b;
    public byte c = 0;
    private String e;
@@ -30,7 +30,7 @@ public final class bd implements CommandListener {
    private Command o;
    private Command p;
 
-   public bd(ao_1 var1, MainCanvas var2, PngUtil var3) {
+   public bd(UISceneController var1, MainCanvas var2, PngUtil var3) {
       this.a = var1;
       this.b = var2;
    }
@@ -109,12 +109,12 @@ public final class bd implements CommandListener {
       this.n.append(var3);
       this.d = new TextField((String)null, "", var4, 0);
       this.n.append(this.d);
-      this.b.q.setCurrent(this.n);
+      this.b.display.setCurrent(this.n);
       this.b.touchAction = 0;
       this.b.b = 0;
       this.b.touchPageCase = this.b.k;
-      this.a.l = 0;
-      this.a.k = 129;
+      this.a.sceneSubState = 0;
+      this.a.currentSceneModeId = 129;
    }
 
    public final byte[] a(short var1, String var2, String var3) {

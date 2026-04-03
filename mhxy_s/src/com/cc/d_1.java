@@ -91,7 +91,7 @@ public final class d_1 {
                if (var9 == 'f' || var9 == 'i') {
                   MainCanvas.af.e(String.valueOf(var8));
                   Frame0 var19;
-                  short var20 = (var19 = ao_1.b(var8)) == null ? 0 : var19.b;
+                  short var20 = (var19 = UISceneController.b(var8)) == null ? 0 : var19.b;
                   if ((var7 += var20) > var1) {
                      var7 = var20;
                      var11.addElement(new d_1(var10));

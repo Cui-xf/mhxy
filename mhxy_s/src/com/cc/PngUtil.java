@@ -293,8 +293,8 @@ public final class PngUtil {
         }
 
         this.a(var1, var2, var3, 0, 0, false);
-        if (ao_1.A != null) {
-            MainCanvas.f.m.drawImage(ao_1.A, this.j - ao_1.A.getWidth() >> 1, this.k - ao_1.A.getHeight() - 16 >> 1, 20);
+        if (UISceneController.A != null) {
+            MainCanvas.pngUtil.m.drawImage(UISceneController.A, this.j - UISceneController.A.getWidth() >> 1, this.k - UISceneController.A.getHeight() - 16 >> 1, 20);
         }
 
         LoadingPage.a(this.m, 4017771, 159, 0, 0, this.j, this.k);
@@ -359,12 +359,12 @@ public final class PngUtil {
         if (GlobalStatus.t != null && var6) {
             for (int var11 = 0; var11 < GlobalStatus.t.length; ++var11) {
                 if (GlobalStatus.t[var11] != null) {
-                    if (ao_1.aW[3] == 0 && GlobalStatus.t[var11].b != null) {
+                    if (UISceneController.aW[3] == 0 && GlobalStatus.t[var11].b != null) {
                         var1.setFont(GlobalConfig.i);
                         LoadingPage.a(var1, (String) GlobalStatus.t[var11].b, (int) (GlobalStatus.t[var11].c - var3), GlobalStatus.t[var11].d - (GlobalStatus.t[var11].w == null ? 30 : GlobalStatus.t[var11].w.j()) - GlobalConfig.j - var4, 17, 255, 16777215);
                     }
 
-                    if (GlobalStatus.t[var11].w != null && GlobalStatus.t[var11].w.k != null && ao_1.aW[10] == 1) {
+                    if (GlobalStatus.t[var11].w != null && GlobalStatus.t[var11].w.k != null && UISceneController.aW[10] == 1) {
                         this.a(var1, GlobalStatus.t[var11].w.k[GlobalStatus.t[var11].w.f], GlobalStatus.t[var11].w.g(), GlobalStatus.t[var11].w.h(), (int[]) null, var3, var4, GlobalStatus.t[var11].c, GlobalStatus.t[var11].d, 20, var5);
                         var1.setFont(GlobalConfig.i);
                     }

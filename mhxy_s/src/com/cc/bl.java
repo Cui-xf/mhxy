@@ -73,9 +73,9 @@ public final class bl extends ar {
 
       if (super.g == null && !this.B) {
          if (!this.x.equals("")) {
-            ao_1.a(this.c, this.n, this.o, this.x, this.y, this.z, this.A);
+            UISceneController.a(this.c, this.n, this.o, this.x, this.y, this.z, this.A);
          } else {
-            ao_1.a(this.c, this.n, this.o, "", (short)0, (short)0, (short)0);
+            UISceneController.a(this.c, this.n, this.o, "", (short)0, (short)0, (short)0);
          }
 
          if (!this.x.equals("")) {

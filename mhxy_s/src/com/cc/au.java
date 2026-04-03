@@ -120,14 +120,14 @@ public class au {
       if (this.g == 701) {
          this.f = MainCanvas.ah.a(this.d[0], this.a, this.b, this.c);
          if (this.f == null) {
-            ao_1.a(this.g, this.a, this.b, this.c);
+            UISceneController.a(this.g, this.a, this.b, this.c);
             this.f = MainCanvas.ah.a(this.d[0], this.a, this.b, this.c);
             return;
          }
       } else {
          this.f = MainCanvas.ah.a(this.d[var1], this.a, this.b, this.c);
          if (this.f == null) {
-            ao_1.a(this.g, this.a, this.b, this.c);
+            UISceneController.a(this.g, this.a, this.b, this.c);
             this.f = MainCanvas.ah.a(this.d[var1], this.a, this.b, this.c);
          }
       }

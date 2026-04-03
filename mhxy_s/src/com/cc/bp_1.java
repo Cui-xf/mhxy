@@ -24,7 +24,7 @@ public final class bp_1 extends ar {
    private int[] z = new int[4];
    private int[] A = new int[4];
 
-   public final void a(ao_1 var1, DataInputStream var2) throws IOException {
+   public final void a(UISceneController var1, DataInputStream var2) throws IOException {
       var2.readByte();
       this.b = var2.readUTF();
       super.e = var2.readUTF();
@@ -48,10 +48,10 @@ public final class bp_1 extends ar {
          GlobalStatus.bs = (short)this.s;
       }
 
-      super.l = var1.I.j;
-      super.m = var1.I.k;
-      super.j = var1.I.j;
-      super.k = var1.I.k;
+      super.l = var1.sceneRefreshCoordinator.j;
+      super.m = var1.sceneRefreshCoordinator.k;
+      super.j = var1.sceneRefreshCoordinator.j;
+      super.k = var1.sceneRefreshCoordinator.k;
       this.a();
       this.a(true);
    }

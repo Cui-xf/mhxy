@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
 public final class cg_1 {
-   private ao_1 e;
+   private UISceneController e;
    private MainCanvas f;
    private PngUtil g;
    private Frame1 h;
@@ -47,7 +47,7 @@ public final class cg_1 {
    private String L;
    private String M;
 
-   public cg_1(ao_1 var1, MainCanvas var2, PngUtil var3) {
+   public cg_1(UISceneController var1, MainCanvas var2, PngUtil var3) {
       this.e = var1;
       this.f = var2;
       this.g = var3;
@@ -180,7 +180,7 @@ public final class cg_1 {
    }
 
    public final int a(int var1, int var2) {
-      if (this.e.l == 1) {
+      if (this.e.sceneSubState == 1) {
          return LoadingPage.c(var1, var2);
       } else {
          int var3 = 0;
@@ -239,7 +239,7 @@ public final class cg_1 {
       this.H.a(this.L, GlobalConfig.i, (byte)2);
       this.I.a(this.M, GlobalConfig.i, (byte)2);
       if (a != -1 && u != -1) {
-         ao_1.a(u, v, w, x);
+         UISceneController.a(u, v, w, x);
          this.h = MainCanvas.ah.a(String.valueOf(u + "_0"), v, w, x);
       } else if (this.h != null) {
          this.h.a();
@@ -247,7 +247,7 @@ public final class cg_1 {
       }
 
       if (k != -1 && y != -1) {
-         ao_1.a(y, z, A, B);
+         UISceneController.a(y, z, A, B);
          this.i = MainCanvas.ah.a(String.valueOf(y + "_0"), z, A, B);
       } else if (this.i != null) {
          this.i.a();
@@ -264,9 +264,9 @@ public final class cg_1 {
       this.H.a(this.f.aq.a + 5, this.f.aq.b + 32 + this.G, this.f.aq.c - 11, this.G + 10);
       this.I.a(this.f.aq.a + 5, this.f.aq.b + 32 + 2 * this.G + 10, this.f.aq.c - 11, this.G + 10);
       LoadingPage.l = 0;
-      this.e.l = 0;
+      this.e.sceneSubState = 0;
       this.f.touchPageCase = this.f.k;
-      this.e.j = this.e.k = 131;
+      this.e.sceneStateShadow = this.e.currentSceneModeId = 131;
    }
 
    public final void b(int var1) {
@@ -277,10 +277,10 @@ public final class cg_1 {
          this.e.c((int)0, (int)this.e.aE, (int)this.e.aA);
          this.e.E();
          LoadingPage.o = 3;
-         this.e.l = 1;
+         this.e.sceneSubState = 1;
       }
 
-      if (this.e.l == 0) {
+      if (this.e.sceneSubState == 0) {
          if (this.f.aq != null) {
             this.f.aq.b(var1);
             this.H.b(var1);
@@ -306,14 +306,14 @@ public final class cg_1 {
                this.e.c((int)0, (int)this.e.aE, (int)this.e.aA);
                this.e.E();
                LoadingPage.o = 3;
-               this.e.l = 1;
+               this.e.sceneSubState = 1;
                return;
             }
          } else {
             if (this.K == 0) {
                if (a != -1) {
                   LoadingPage.a(GlobalConfig.defaultWidth / 2, GlobalConfig.defaultHigh / 2, new String[]{"继承", "更换"}, true);
-                  this.e.l = 1;
+                  this.e.sceneSubState = 1;
                   return;
                }
 
@@ -325,7 +325,7 @@ public final class cg_1 {
                if (a != -1) {
                   if (k != -1) {
                      LoadingPage.a(GlobalConfig.defaultWidth / 2, GlobalConfig.defaultHigh / 2, new String[]{"更换"}, true);
-                     this.e.l = 1;
+                     this.e.sceneSubState = 1;
                      return;
                   }
 
@@ -344,10 +344,10 @@ public final class cg_1 {
                return;
             }
          }
-      } else if (this.e.l == 1) {
+      } else if (this.e.sceneSubState == 1) {
          LoadingPage.b(var1);
          if (var1 == 536870912) {
-            this.e.l = 0;
+            this.e.sceneSubState = 0;
             return;
          }
 
@@ -442,7 +442,7 @@ public final class cg_1 {
          var1.drawString("副宠", this.f.aq.a + 5 + 25 + this.f.aq.c / 2 + 25, this.f.aq.b + 32 + 10 + GlobalConfig.j / 4 + 25, 65);
       }
 
-      if (this.e.l == 1) {
+      if (this.e.sceneSubState == 1) {
          LoadingPage.c(var1);
       }
 

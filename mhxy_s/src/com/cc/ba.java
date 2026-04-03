@@ -5,7 +5,7 @@ import com.yinhan.kjava.main.MainCanvas;
 import javax.microedition.lcdui.Graphics;
 
 public final class ba {
-   private ao_1 a;
+   private UISceneController a;
    private PngUtil b;
    private MainCanvas c;
    private short d;
@@ -14,7 +14,7 @@ public final class ba {
    private int g;
    private int h;
 
-   public ba(MainCanvas var1, ao_1 var2, PngUtil var3) {
+   public ba(MainCanvas var1, UISceneController var2, PngUtil var3) {
       this.c = var1;
       this.a = var2;
       this.b = var3;
@@ -66,9 +66,9 @@ public final class ba {
 
       var1.setColor(255);
       var1.drawString("幸运材料", this.e + 80 + 4, this.f + 8, 0);
-      MainCanvas.f.a(var1, ao_1.x, (int[])null, (aj)null, 0, 0, this.e + 80 + 8 + 24, this.f + this.h - 32 - 44, 0, 0);
+      MainCanvas.pngUtil.a(var1, UISceneController.x, (int[])null, (aj)null, 0, 0, this.e + 80 + 8 + 24, this.f + this.h - 32 - 44, 0, 0);
       if (GlobalStatus.mK[0] > 0) {
-         this.b.a(var1, ao_1.b(GlobalStatus.mK[0]), (int[])null, (aj)null, 0, 0, this.e + 80 + 8 + 24, this.f + this.h - 32 - 44, 0, 0);
+         this.b.a(var1, UISceneController.b(GlobalStatus.mK[0]), (int[])null, (aj)null, 0, 0, this.e + 80 + 8 + 24, this.f + this.h - 32 - 44, 0, 0);
       }
 
       if (this.a.bf == 0 && this.a.be == 1) {
@@ -93,14 +93,14 @@ public final class ba {
          var1.drawString(GlobalStatus.mM, GlobalConfig.defaultWidth / 2, this.f + this.h - 25 + 2, 17);
       }
 
-      if (this.a.l == 1) {
+      if (this.a.sceneSubState == 1) {
          LoadingPage.c(var1);
       }
 
    }
 
    public final int a(byte var1, int var2, int var3) {
-      if (this.a.l == 1) {
+      if (this.a.sceneSubState == 1) {
          return LoadingPage.c(var2, var3);
       } else if (this.c.aq.b(var2, var3) > 0) {
          return this.c.aq.b(var2, var3);

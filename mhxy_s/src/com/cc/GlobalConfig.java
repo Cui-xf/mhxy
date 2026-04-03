@@ -86,14 +86,7 @@ public final class GlobalConfig {
      * 平台标识（1=默认）
      */
     public static byte q;
-    /**
-     * 渠道子类型（1=common, 17=v3, 其他=tx）
-     */
-    public static byte r;
-    /**
-     * 服务器编号（初始44）
-     */
-    public static byte s;
+
     /**
      * 版本号字符串，如 "v1.4.4"
      */
@@ -293,9 +286,9 @@ public final class GlobalConfig {
 
                 hasRideRes = midlet.getAppProperty("hasRideRes").trim().equals("true");
             } else if (channel == 0) {
-                if (r == 1) {
+                if (true) {
                     PopularizeChannel = "mhxy_common";
-                } else if (r == 17) {
+                } else if (true) {
                     PopularizeChannel = "mhxy_v3";
                 } else {
                     PopularizeChannel = "mhxy_tx";
@@ -422,8 +415,8 @@ public final class GlobalConfig {
         ai = false;
         hasRideRes = true;
         q = 1;
-        r = 1;
-        s = 44;
+//        r = 1;
+//        s = 44;
         t = "v1.4.4";
         u = 4;
         PopularizeChannel = "";

@@ -54,8 +54,8 @@ public final class NetPayloadBuilder {
             var4.writeUTF(GlobalConfig.PopularizeChannel);
             var4.writeUTF(GlobalConfig.F);
             var4.writeInt(-1);
-            var4.writeByte(GlobalConfig.r);
-            var4.writeByte(GlobalConfig.s);
+            var4.writeByte(1);
+            var4.writeByte(1);
             var4.writeByte(GlobalConfig.u);
             var4.writeInt((int) Runtime.getRuntime().totalMemory());
             var4.writeByte(var1);
@@ -98,8 +98,8 @@ public final class NetPayloadBuilder {
             DataOutputStream var5;
             (var5 = new DataOutputStream(var4)).writeByte(-82);
             var5.writeShort(var0);
-            var5.writeByte(GlobalConfig.r);
-            var5.writeByte(GlobalConfig.s);
+            var5.writeByte(1);
+            var5.writeByte(1);
             var5.writeUTF(var1);
             var5.writeUTF(var2);
             var5.writeUTF(var3);
@@ -1945,8 +1945,8 @@ public final class NetPayloadBuilder {
             DataOutputStream var3;
             (var3 = new DataOutputStream(var5)).writeByte(-82);
             var3.writeShort(4196);
-            var3.writeByte(GlobalConfig.r);
-            var3.writeByte(GlobalConfig.s);
+            var3.writeByte(1);
+            var3.writeByte(1);
             var3.writeUTF(var1);
             var3.writeUTF(var2);
             var3.writeByte(-81);
@@ -1963,8 +1963,8 @@ public final class NetPayloadBuilder {
             DataOutputStream var5;
             (var5 = new DataOutputStream(var7)).writeByte(-82);
             var5.writeShort(4096);
-            var5.writeByte(GlobalConfig.r);
-            var5.writeByte(GlobalConfig.s);
+            var5.writeByte(1);
+            var5.writeByte(1);
             var5.writeUTF(var1);
             var5.writeUTF(var2);
             var5.writeByte(var4 ? 1 : 0);
@@ -4054,34 +4054,6 @@ public final class NetPayloadBuilder {
             return var13.toByteArray();
         } catch (IOException var12) {
             ((Throwable) var12).printStackTrace();
-            return null;
-        }
-    }
-
-    public static byte[] a(short var0, byte var1, String var2, String var3, boolean var4, String var5, String var6, int var7, String var8) {
-        try {
-            ByteArrayOutputStream var10 = new ByteArrayOutputStream();
-            DataOutputStream var11;
-            (var11 = new DataOutputStream(var10)).writeByte(-82);
-            var11.writeShort(5383);
-            var11.writeByte(GlobalConfig.r);
-            var11.writeByte(GlobalConfig.s);
-            var11.writeByte(0);
-            var11.writeInt(1);
-            var11.writeInt(1);
-            var11.writeUTF(var2);
-            var11.writeUTF(var3);
-            var11.writeByte(0);
-            var11.writeUTF(var5);
-            var11.writeUTF(var6);
-            var11.writeInt(-1);
-            var11.writeInt(var7);
-            var11.writeInt(-1);
-            var11.writeUTF(var8);
-            var11.writeByte(-81);
-            return var10.toByteArray();
-        } catch (IOException var9) {
-            ((Throwable) var9).printStackTrace();
             return null;
         }
     }

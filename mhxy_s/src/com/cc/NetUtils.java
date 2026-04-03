@@ -13,8 +13,8 @@ import java.util.Vector;
 //public final class av_1 {
 
 public final class NetUtils {
-//    public static String socketUrl = "socket://120.78.151.213:20008";
-        public static String socketUrl = "socket://127.0.0.1:20008";
+    public static String socketUrl = "socket://120.78.151.213:20008";
+//        public static String socketUrl = "socket://127.0.0.1:20008";
     public static byte status;
     public byte retryCount;
     public MainCanvas mainCanvas;

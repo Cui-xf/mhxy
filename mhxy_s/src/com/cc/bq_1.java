@@ -15,7 +15,7 @@ public final class bq_1 {
    private Vector w = new Vector();
    private Vector x = new Vector();
    private MainCanvas y;
-   private ao_1 z;
+   private UISceneController z;
    private cj A;
    public int d;
    public int e;
@@ -50,7 +50,7 @@ public final class bq_1 {
    private static short P;
    private boolean Q = true;
 
-   public bq_1(MainCanvas var1, ao_1 var2, byte var3) {
+   public bq_1(MainCanvas var1, UISceneController var2, byte var3) {
       this.y = var1;
       this.z = var2;
       t = (short)var3;
@@ -196,16 +196,16 @@ public final class bq_1 {
       } else {
          if (this.f != 10) {
             bq_1 var2 = this;
-            if (ao_1.ac != null) {
-               PngUtil.a(ao_1.ac, this.y.ak);
+            if (UISceneController.ac != null) {
+               PngUtil.a(UISceneController.ac, this.y.ak);
             }
 
-            if (ao_1.ad != null) {
-               PngUtil.a(ao_1.ad, this.y.ak);
+            if (UISceneController.ad != null) {
+               PngUtil.a(UISceneController.ad, this.y.ak);
             }
 
-            if (ao_1.ae != null) {
-               PngUtil.a(ao_1.ae, this.y.ak);
+            if (UISceneController.ae != null) {
+               PngUtil.a(UISceneController.ae, this.y.ak);
             }
 
             if (GlobalStatus.H != null) {
@@ -213,7 +213,7 @@ public final class bq_1 {
                   if (GlobalStatus.H[var3].k == 1) {
                      p var10000 = GlobalStatus.H[var3];
                      long var10 = var2.y.ak;
-                     PngUtil var7 = MainCanvas.f;
+                     PngUtil var7 = MainCanvas.pngUtil;
                      p var6 = var10000;
                      if (var10000.j != null && !var6.d()) {
                         PngUtil.a(var6.j, var10);
@@ -285,7 +285,7 @@ public final class bq_1 {
             if (GlobalStatus.M != null) {
                for(byte var24 = 0; var24 < GlobalStatus.M.length; ++var24) {
                   if (GlobalStatus.M[var24].n == 1) {
-                     GlobalStatus.M[var24].a(MainCanvas.f, var2.y.ak);
+                     GlobalStatus.M[var24].a(MainCanvas.pngUtil, var2.y.ak);
                   } else if (GlobalStatus.M[var24].n == 2) {
                      if (GlobalStatus.M[var24].m == null || PngUtil.a(GlobalStatus.M[var24].m, var2.y.ak) == 2) {
                         GlobalStatus.M[var24].b((byte)1);
@@ -394,7 +394,7 @@ public final class bq_1 {
 
          if (this.f == 0) {
             this.I = System.currentTimeMillis();
-            if (h() && this.f != -1 && !ao_1.r()) {
+            if (h() && this.f != -1 && !UISceneController.r()) {
                this.j = 0;
                this.p = GlobalStatus.ej[this.z.az];
                this.n = 1;
@@ -1111,7 +1111,7 @@ public final class bq_1 {
             } else {
                this.E = null;
                if (h()) {
-                  if (ao_1.r()) {
+                  if (UISceneController.r()) {
                      this.f = 0;
                      s = b;
                   } else {
@@ -1165,7 +1165,7 @@ public final class bq_1 {
             }
 
             this.d();
-            this.z.j = this.z.k = 0;
+            this.z.sceneStateShadow = this.z.currentSceneModeId = 0;
          } else if (this.f == 5) {
             if (this.s() == 2) {
                for(byte var18 = 0; var18 < GlobalStatus.H.length; ++var18) {
@@ -1194,17 +1194,17 @@ public final class bq_1 {
                this.f = 3;
             }
          } else if (this.f == 6) {
-            if (PngUtil.a(ao_1.ab, this.y.ak) == 2) {
+            if (PngUtil.a(UISceneController.ab, this.y.ak) == 2) {
                this.f = 1;
             }
          } else if (this.f == 7) {
-            if (PngUtil.a(ao_1.aa, this.y.ak) == 2) {
+            if (PngUtil.a(UISceneController.aa, this.y.ak) == 2) {
                this.f = 8;
             }
          } else if (this.f == 8) {
             this.y.mainMidlet.start();
             this.d();
-            this.z.j = this.z.k = 0;
+            this.z.sceneStateShadow = this.z.currentSceneModeId = 0;
          }
 
          if (this.f == 0 || this.f == 1) {
@@ -1234,16 +1234,16 @@ public final class bq_1 {
             for(byte var6 = (byte)(GlobalStatus.H.length - 1); var6 >= 0; --var6) {
                if (GlobalStatus.H[var6].j != null) {
                   if (GlobalStatus.H[var6].d()) {
-                     MainCanvas.f.a(var5, (Frame1) ao_1.ad, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var6].a][0], GlobalConfig.Q[GlobalStatus.H[var6].a][1], 0, 0);
+                     MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ad, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var6].a][0], GlobalConfig.Q[GlobalStatus.H[var6].a][1], 0, 0);
                   } else if (GlobalStatus.H[var6].b != 0 && GlobalStatus.H[var6].j != null) {
                      if (GlobalStatus.H[var6].k == 1 || GlobalStatus.H[var6].k == 4) {
-                        GlobalStatus.H[var6].a(var5, MainCanvas.f, GlobalConfig.Q[GlobalStatus.H[var6].a][0], GlobalConfig.Q[GlobalStatus.H[var6].a][1], (byte)0);
+                        GlobalStatus.H[var6].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.H[var6].a][0], GlobalConfig.Q[GlobalStatus.H[var6].a][1], (byte)0);
                      }
 
                      if (var4.f != -1 && var4.f != 0 && var4.f != 7 && GlobalStatus.H[var6].m) {
-                        MainCanvas.f.a(var5, (Frame1) ao_1.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var6].a][0], GlobalConfig.Q[GlobalStatus.H[var6].a][1], 0, 0);
+                        MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var6].a][0], GlobalConfig.Q[GlobalStatus.H[var6].a][1], 0, 0);
                      } else if (var4.f == 6 && GlobalStatus.H[var6].l) {
-                        MainCanvas.f.a(var5, (Frame1) ao_1.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var6].a][0], GlobalConfig.Q[GlobalStatus.H[var6].a][1], 0, 0);
+                        MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var6].a][0], GlobalConfig.Q[GlobalStatus.H[var6].a][1], 0, 0);
                      }
                   }
                }
@@ -1252,54 +1252,54 @@ public final class bq_1 {
             for(byte var17 = 0; var17 < GlobalStatus.H.length; ++var17) {
                if (GlobalStatus.H[var17].b == 0 && GlobalStatus.H[var17].j != null) {
                   if (GlobalStatus.H[var17].c.equals(GlobalStatus.ad)) {
-                     var5.drawImage(ao_1.H.pngImage, GlobalConfig.Q[GlobalStatus.H[var17].a][0] - ao_1.H.b / 2, GlobalConfig.Q[GlobalStatus.H[var17].a][1] - ao_1.H.c / 2, 20);
+                     var5.drawImage(UISceneController.H.pngImage, GlobalConfig.Q[GlobalStatus.H[var17].a][0] - UISceneController.H.b / 2, GlobalConfig.Q[GlobalStatus.H[var17].a][1] - UISceneController.H.c / 2, 20);
                      if ((var4.f != 7 || GlobalStatus.bs != 1) && (var4.f != 7 || GlobalStatus.bs != -1) && (var4.f != 7 || GlobalStatus.s != 1)) {
                         if (!GlobalStatus.H[var17].d()) {
                            if (GlobalStatus.H[var17].k == 1 || GlobalStatus.H[var17].k == 4) {
-                              GlobalStatus.H[var17].a(var5, MainCanvas.f, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], (byte)0);
+                              GlobalStatus.H[var17].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], (byte)0);
                            }
 
                            if (var4.f != -1 && var4.f != 0 && GlobalStatus.H[var17].m) {
-                              MainCanvas.f.a(var5, (Frame1) ao_1.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
                            } else if (var4.f == 6 && GlobalStatus.H[var17].l) {
-                              MainCanvas.f.a(var5, (Frame1) ao_1.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
                            }
                         }
                      } else {
-                        MainCanvas.f.a(var5, (Frame1) ao_1.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
+                        MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
                      }
                   } else if (var4.f == 7) {
                      for(int var7 = 0; var7 < GlobalStatus.q.length; ++var7) {
                         if (GlobalStatus.q[var7].e.equals(GlobalStatus.H[var17].d) && GlobalStatus.q[var7].s == 1) {
-                           MainCanvas.f.a(var5, (Frame1) ao_1.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
+                           MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
                         } else if (GlobalStatus.q[var7].e.equals(GlobalStatus.H[var17].d) && GlobalStatus.q[var7].s == 0 && !GlobalStatus.H[var17].d()) {
                            if (GlobalStatus.H[var17].k == 1 || GlobalStatus.H[var17].k == 4) {
-                              GlobalStatus.H[var17].a(var5, MainCanvas.f, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], (byte)0);
+                              GlobalStatus.H[var17].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], (byte)0);
                            }
 
                            if (var4.f != -1 && var4.f != 0 && GlobalStatus.H[var17].m) {
-                              MainCanvas.f.a(var5, (Frame1) ao_1.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
                            } else if (var4.f == 6 && GlobalStatus.H[var17].l) {
-                              MainCanvas.f.a(var5, (Frame1) ao_1.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
                            }
                         }
                      }
                   } else if (!GlobalStatus.H[var17].d()) {
                      if (GlobalStatus.H[var17].k == 1 || GlobalStatus.H[var17].k == 4) {
-                        GlobalStatus.H[var17].a(var5, MainCanvas.f, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], (byte)0);
+                        GlobalStatus.H[var17].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], (byte)0);
                      }
 
                      if (var4.f != -1 && var4.f != 0 && GlobalStatus.H[var17].m) {
-                        MainCanvas.f.a(var5, (Frame1) ao_1.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
+                        MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
                      } else if (var4.f == 6 && GlobalStatus.H[var17].l) {
-                        MainCanvas.f.a(var5, (Frame1) ao_1.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
+                        MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
                      }
                   }
                }
 
                if (GlobalStatus.H[var17].s.size() > 0 && GlobalStatus.H[var17].j != null) {
                   for(byte var22 = 0; var22 < GlobalStatus.H[var17].s.size(); ++var22) {
-                     MainCanvas.f.a(var5, (Frame0) GlobalStatus.H[var17].s.elementAt(var22), (int[])null, 0, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0] - GlobalStatus.H[var17].h() / 2, GlobalConfig.Q[GlobalStatus.H[var17].a][1] + var22 * 11 - GlobalStatus.H[var17].i(), 0, 0);
+                     MainCanvas.pngUtil.a(var5, (Frame0) GlobalStatus.H[var17].s.elementAt(var22), (int[])null, 0, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0] - GlobalStatus.H[var17].h() / 2, GlobalConfig.Q[GlobalStatus.H[var17].a][1] + var22 * 11 - GlobalStatus.H[var17].i(), 0, 0);
                   }
                }
             }
@@ -1312,34 +1312,34 @@ public final class bq_1 {
                if (GlobalStatus.M[var18].m != null) {
                   if (GlobalStatus.M[var18].a()) {
                      if (t == 1 || t == 2) {
-                        MainCanvas.f.a(var5, (Frame1) ao_1.ac, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
+                        MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ac, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
                      }
                   } else {
                      if (GlobalStatus.M[var18].n != 1 && GlobalStatus.M[var18].n != 4) {
                         if (GlobalStatus.M[var18].n == 2) {
                            if (var4.A != null && var4.A.b.length > 0) {
-                              GlobalStatus.M[var18].a(var5, MainCanvas.f, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], (byte)0);
+                              GlobalStatus.M[var18].a(var5, MainCanvas.pngUtil, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], (byte)0);
                            } else if (GlobalStatus.M[var18].q) {
                               if (c((int)var4.E[0].c) >= 0 && c((int)var4.E[0].c) < GlobalStatus.M.length) {
-                                 GlobalStatus.M[var18].a(var5, MainCanvas.f, GlobalConfig.R[GlobalStatus.M[c((int)var4.E[0].c)].a][0], GlobalConfig.R[GlobalStatus.M[c((int)var4.E[0].c)].a][1], (byte)0);
+                                 GlobalStatus.M[var18].a(var5, MainCanvas.pngUtil, GlobalConfig.R[GlobalStatus.M[c((int)var4.E[0].c)].a][0], GlobalConfig.R[GlobalStatus.M[c((int)var4.E[0].c)].a][1], (byte)0);
                               }
                            } else if (a(var4.E[0].c) >= 0 && a(var4.E[0].c) < GlobalStatus.H.length) {
-                              GlobalStatus.M[var18].a(var5, MainCanvas.f, GlobalConfig.Q[GlobalStatus.H[a(var4.E[0].c)].a][0] - GlobalStatus.H[a(var4.E[0].c)].h() / 2, GlobalConfig.Q[GlobalStatus.H[a(var4.E[0].c)].a][1], (byte)0);
+                              GlobalStatus.M[var18].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.H[a(var4.E[0].c)].a][0] - GlobalStatus.H[a(var4.E[0].c)].h() / 2, GlobalConfig.Q[GlobalStatus.H[a(var4.E[0].c)].a][1], (byte)0);
                            }
                         }
                      } else {
-                        GlobalStatus.M[var18].a(var5, MainCanvas.f, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], (byte)0);
+                        GlobalStatus.M[var18].a(var5, MainCanvas.pngUtil, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], (byte)0);
                         if (var4.f != -1 && var4.f != 0 && GlobalStatus.M[var18].p) {
-                           MainCanvas.f.a(var5, (Frame1) ao_1.ae, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
+                           MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ae, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
                         } else if (var4.f == 6 && GlobalStatus.M[var18].o) {
-                           MainCanvas.f.a(var5, (Frame1) ao_1.ab, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
+                           MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ab, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
                         }
                      }
 
                      if (GlobalStatus.M[var18].u.size() > 0) {
                         for(byte var23 = 0; var23 < GlobalStatus.M[var18].u.size(); ++var23) {
                            ck var8;
-                           MainCanvas.f.a(var5, (Frame0) GlobalStatus.M[var18].u.elementAt(var23), (int[])null, 0, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0] - ((var8 = GlobalStatus.M[var18]).m != null && var8.m.g != null ? var8.m.g[0] : 0) / 2, GlobalConfig.R[GlobalStatus.M[var18].a][1] + var23 * 11 - GlobalStatus.M[var18].d(), 0, 0);
+                           MainCanvas.pngUtil.a(var5, (Frame0) GlobalStatus.M[var18].u.elementAt(var23), (int[])null, 0, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0] - ((var8 = GlobalStatus.M[var18]).m != null && var8.m.g != null ? var8.m.g[0] : 0) / 2, GlobalConfig.R[GlobalStatus.M[var18].a][1] + var23 * 11 - GlobalStatus.M[var18].d(), 0, 0);
                         }
                      }
                   }
@@ -1353,15 +1353,15 @@ public final class bq_1 {
             for(byte var19 = 0; var19 < GlobalStatus.H.length; ++var19) {
                if (!GlobalStatus.H[var19].d() && GlobalStatus.H[var19].k == 2 && var4.E[0].c >= 0) {
                   if (var4.A != null && var4.A.b.length > 0) {
-                     GlobalStatus.H[var19].a(var5, MainCanvas.f, GlobalConfig.Q[GlobalStatus.H[var19].a][0], GlobalConfig.Q[GlobalStatus.H[var19].a][1], (byte)0);
+                     GlobalStatus.H[var19].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.H[var19].a][0], GlobalConfig.Q[GlobalStatus.H[var19].a][1], (byte)0);
                   } else {
                      byte var24 = 0;
                      if (GlobalStatus.H[var19].n) {
                         if ((var24 = (byte)a(var4.E[0].c)) >= 0 && var24 <= GlobalStatus.H.length - 1) {
-                           GlobalStatus.H[var19].a(var5, MainCanvas.f, GlobalConfig.Q[GlobalStatus.H[a(var4.E[0].c)].a][0], GlobalConfig.Q[GlobalStatus.H[a(var4.E[0].c)].a][1], (byte)0);
+                           GlobalStatus.H[var19].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.H[a(var4.E[0].c)].a][0], GlobalConfig.Q[GlobalStatus.H[a(var4.E[0].c)].a][1], (byte)0);
                         }
                      } else if ((var24 = (byte)c((int)var4.E[0].c)) >= 0 && var24 <= GlobalStatus.M.length - 1) {
-                        GlobalStatus.H[var19].a(var5, MainCanvas.f, GlobalConfig.R[GlobalStatus.M[c((int)var4.E[0].c)].a][0] + GlobalStatus.M[c((int)var4.E[0].c)].c() / 2, GlobalConfig.R[GlobalStatus.M[c((int)var4.E[0].c)].a][1], (byte)0);
+                        GlobalStatus.H[var19].a(var5, MainCanvas.pngUtil, GlobalConfig.R[GlobalStatus.M[c((int)var4.E[0].c)].a][0] + GlobalStatus.M[c((int)var4.E[0].c)].c() / 2, GlobalConfig.R[GlobalStatus.M[c((int)var4.E[0].c)].a][1], (byte)0);
                      }
                   }
                }
@@ -1429,18 +1429,18 @@ public final class bq_1 {
                }
 
                if (GlobalStatus.M[var13].i > 99) {
-                  MainCanvas.f.a(var3, ao_1.B, (int[])null, GlobalStatus.M[var13].i / 100 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 15, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
-                  MainCanvas.f.a(var3, ao_1.B, (int[])null, (GlobalStatus.M[var13].i - 100) / 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
-                  MainCanvas.f.a(var3, ao_1.B, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 7, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, UISceneController.B, (int[])null, GlobalStatus.M[var13].i / 100 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 15, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, UISceneController.B, (int[])null, (GlobalStatus.M[var13].i - 100) / 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, UISceneController.B, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 7, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
                } else if (GlobalStatus.M[var13].i > 9) {
-                  MainCanvas.f.a(var3, ao_1.B, (int[])null, GlobalStatus.M[var13].i / 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
-                  MainCanvas.f.a(var3, ao_1.B, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 7, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, UISceneController.B, (int[])null, GlobalStatus.M[var13].i / 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, UISceneController.B, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 7, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
                } else if (GlobalStatus.M[var13].i > 1) {
-                  MainCanvas.f.a(var3, ao_1.B, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, UISceneController.B, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
                }
 
                if (var9.h == var13 && GlobalStatus.M[var13].l == 1) {
-                  MainCanvas.f.a(var3, ao_1.D, (int[])null, -1, 0, 0, 4 + GlobalConfig.i.stringWidth(GlobalStatus.M[var13].d), 6, 0, 0);
+                  MainCanvas.pngUtil.a(var3, UISceneController.D, (int[])null, -1, 0, 0, 4 + GlobalConfig.i.stringWidth(GlobalStatus.M[var13].d), 6, 0, 0);
                }
             }
          }
@@ -1449,12 +1449,12 @@ public final class bq_1 {
       if (this.f == 0 || this.f == 1) {
          if (this.d != 4 && this.d != 5 && this.d != 6 && this.d != 7 && this.d != 8) {
             if (this.h >= 0 && this.h <= GlobalStatus.M.length - 1) {
-               PngUtil.a(ao_1.r, this.y.ak);
-               MainCanvas.f.a(var2, (Frame1) ao_1.r, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[this.h].a][0], GlobalConfig.R[GlobalStatus.M[this.h].a][1] - 10 - GlobalStatus.M[this.h].d(), 20, 0);
+               PngUtil.a(UISceneController.r, this.y.ak);
+               MainCanvas.pngUtil.a(var2, (Frame1) UISceneController.r, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[this.h].a][0], GlobalConfig.R[GlobalStatus.M[this.h].a][1] - 10 - GlobalStatus.M[this.h].d(), 20, 0);
             }
          } else if (this.i >= 0 && this.i <= GlobalStatus.H.length - 1 && GlobalStatus.H[this.i].j != null) {
-            PngUtil.a(ao_1.r, this.y.ak);
-            MainCanvas.f.a(var2, (Frame1) ao_1.r, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[this.i].a][0], GlobalConfig.Q[GlobalStatus.H[this.i].a][1] - 10 - GlobalStatus.H[this.i].i(), 20, 0);
+            PngUtil.a(UISceneController.r, this.y.ak);
+            MainCanvas.pngUtil.a(var2, (Frame1) UISceneController.r, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[this.i].a][0], GlobalConfig.Q[GlobalStatus.H[this.i].a][1] - 10 - GlobalStatus.H[this.i].i(), 20, 0);
          }
       }
 
@@ -1474,7 +1474,7 @@ public final class bq_1 {
       } else if (this.f != 4) {
          if (this.f == 5) {
             if (this.F != null && this.A != null) {
-               this.A.a(var2, MainCanvas.f, 0, 0);
+               this.A.a(var2, MainCanvas.pngUtil, 0, 0);
             }
          } else if (this.f == 6) {
             this.a(var2);
@@ -2103,7 +2103,7 @@ public final class bq_1 {
       this.y.clear();
       GlobalStatus.g();
       this.y.clear();
-      MainCanvas.f.a(this.z.f, ao_1.h, ao_1.i, true, false, 1283472);
+      MainCanvas.pngUtil.a(this.z.f, UISceneController.h, UISceneController.i, true, false, 1283472);
       this.y.clear();
       this.z.j();
       this.y.clear();
@@ -2165,10 +2165,10 @@ public final class bq_1 {
    }
 
    private void b(Graphics var1) {
-      if (ao_1.Z != null) {
+      if (UISceneController.Z != null) {
          for(byte var2 = 0; var2 < 5; ++var2) {
             int var10003 = GlobalConfig.defaultHigh - 102 + (var2 << 4);
-            short var6 = ao_1.Z.c;
+            short var6 = UISceneController.Z.c;
             boolean var3 = true;
             int var5 = var10003;
             var3 = true;
@@ -2179,7 +2179,7 @@ public final class bq_1 {
                this.L[var2][3] = var6;
             }
 
-            MainCanvas.f.a(var1, ao_1.Z, (int[])null, var2 + 1, 0, 0, 1, GlobalConfig.defaultHigh - 102 + (var2 << 4), 0, 0);
+            MainCanvas.pngUtil.a(var1, UISceneController.Z, (int[])null, var2 + 1, 0, 0, 1, GlobalConfig.defaultHigh - 102 + (var2 << 4), 0, 0);
             if (var2 == this.e) {
                var1.setColor(16711680);
                LoadingPage.d(var1, 1, GlobalConfig.defaultHigh - 102 + (this.e << 4), 25, 15);
@@ -2219,10 +2219,10 @@ public final class bq_1 {
    }
 
    private void c(Graphics var1) {
-      if (ao_1.Z != null) {
+      if (UISceneController.Z != null) {
          for(byte var2 = 0; var2 < 3; ++var2) {
             int var10003 = GlobalConfig.defaultHigh - 70 + (var2 << 4);
-            short var6 = ao_1.Z.c;
+            short var6 = UISceneController.Z.c;
             boolean var3 = true;
             int var5 = var10003;
             var3 = true;
@@ -2233,7 +2233,7 @@ public final class bq_1 {
                this.M[var2][3] = var6;
             }
 
-            MainCanvas.f.a(var1, ao_1.Z, (int[])null, var2 + 1, 0, 0, 1, GlobalConfig.defaultHigh - 70 + (var2 << 4), 0, 0);
+            MainCanvas.pngUtil.a(var1, UISceneController.Z, (int[])null, var2 + 1, 0, 0, 1, GlobalConfig.defaultHigh - 70 + (var2 << 4), 0, 0);
             if (var2 == this.e) {
                var1.setColor(16711680);
                LoadingPage.d(var1, 1, GlobalConfig.defaultHigh - 70 + (var2 << 4), 25, 15);
@@ -2292,16 +2292,16 @@ public final class bq_1 {
             Object var10003;
             int var10004;
             if (var2 >= 0 && var2 < 8) {
-               var10000 = MainCanvas.f;
+               var10000 = MainCanvas.pngUtil;
                var10001 = var1;
                var10002 = MainCanvas.num;
                var10003 = null;
                var10004 = var2 + 1;
             } else {
-               MainCanvas.f.a(var1, ao_1.F, (int[])null, var2 == 8 ? 0 : 2, 0, 0, 3 + GlobalStatus.ej[var2] * 17, GlobalConfig.defaultHigh - 19, 0, 0);
-               var10000 = MainCanvas.f;
+               MainCanvas.pngUtil.a(var1, UISceneController.F, (int[])null, var2 == 8 ? 0 : 2, 0, 0, 3 + GlobalStatus.ej[var2] * 17, GlobalConfig.defaultHigh - 19, 0, 0);
+               var10000 = MainCanvas.pngUtil;
                var10001 = var1;
-               var10002 = ao_1.G;
+               var10002 = UISceneController.G;
                var10003 = null;
                var10004 = var2 == 8 ? 0 : 1;
             }
@@ -2382,7 +2382,7 @@ public final class bq_1 {
       if (this.A != null) {
          cj var10000 = this.A;
          long var3 = this.y.ak;
-         PngUtil var5 = MainCanvas.f;
+         PngUtil var5 = MainCanvas.pngUtil;
          return PngUtil.a(var10000.a, var3);
       } else {
          return 0;
@@ -2594,12 +2594,12 @@ public final class bq_1 {
       b = var10000;
       s = var10000;
       c = (short)(GlobalStatus.bt ? 25 : 0);
-      ao_1.aW[15] = (byte)(GlobalStatus.bt ? 0 : 1);
+      UISceneController.aW[15] = (byte)(GlobalStatus.bt ? 0 : 1);
    }
 
    public final void l() {
       this.d();
-      this.z.j = this.z.k = 0;
+      this.z.sceneStateShadow = this.z.currentSceneModeId = 0;
    }
 
    public final void m() {
@@ -2641,11 +2641,11 @@ public final class bq_1 {
          var13 = (var9 + 2) * 7;
       }
 
-      var1.drawRegion(ao_1.E.pngImage, var2 >= 0 ? 8 : 0, var5 == 0 ? 0 : 10, 8, 10, 0, var3 - var13, var4, 0);
+      var1.drawRegion(UISceneController.E.pngImage, var2 >= 0 ? 8 : 0, var5 == 0 ? 0 : 10, 8, 10, 0, var3 - var13, var4, 0);
       var6 = var2 >= 0 ? var2 : -var2;
 
       for(int var10 = var9; var10 >= 0; --var10) {
-         var1.drawRegion(ao_1.E.pngImage, 16 + var6 / d(var10) * 7, var5 == 0 ? 0 : 10, 7, 10, 0, var3 + 8 + (var9 - var10) * 7 - var13, var4, 0);
+         var1.drawRegion(UISceneController.E.pngImage, 16 + var6 / d(var10) * 7, var5 == 0 ? 0 : 10, 7, 10, 0, var3 + 8 + (var9 - var10) * 7 - var13, var4, 0);
          var6 %= d(var10);
       }
 

@@ -8,7 +8,7 @@ import javax.microedition.lcdui.Graphics;
 
 public final class r {
    private final String[] h = new String[]{"装备孔", "附魔符", "幸运材料"};
-   private ao_1 i;
+   private UISceneController i;
    private MainCanvas j;
    public int a;
    public int b;
@@ -32,7 +32,7 @@ public final class r {
    private int w;
    private boolean x = false;
 
-   public r(ao_1 var1, MainCanvas var2, PngUtil var3) {
+   public r(UISceneController var1, MainCanvas var2, PngUtil var3) {
       this.i = var1;
       this.j = var2;
    }
@@ -246,13 +246,13 @@ public final class r {
       this.a();
       this.e();
       LoadingPage.l = 0;
-      this.i.l = 0;
+      this.i.sceneSubState = 0;
       this.j.touchPageCase = this.j.k;
-      this.i.j = this.i.k = 110;
+      this.i.sceneStateShadow = this.i.currentSceneModeId = 110;
    }
 
    public final void a(int var1) {
-      if (this.i.l == 0) {
+      if (this.i.sceneSubState == 0) {
          if (this.j.aq != null) {
             this.j.aq.b(var1);
          }
@@ -302,7 +302,7 @@ public final class r {
                      this.i.a((byte)0, (byte[])(new byte[]{0}));
                   } else {
                      LoadingPage.a(this.j.aq.a + GlobalConfig.k * 3 + 29, this.j.aq.b + 49, new String[]{"附魔", "查看", "取出"}, false);
-                     this.i.l = 1;
+                     this.i.sceneSubState = 1;
                   }
                } else if (this.a == 1) {
                   if (this.c == -1) {
@@ -310,14 +310,14 @@ public final class r {
                   } else if (this.d == -1L) {
                      this.i.a((byte)0, (byte[])(new byte[]{3}));
                   } else {
-                     LoadingPage.a(this.j.aq.c - 3 * ao_1.x.b - 21, this.j.aq.b + 49, new String[]{"取出"}, false);
-                     this.i.l = 1;
+                     LoadingPage.a(this.j.aq.c - 3 * UISceneController.x.b - 21, this.j.aq.b + 49, new String[]{"取出"}, false);
+                     this.i.sceneSubState = 1;
                   }
                }
             } else if (this.b == 1) {
                if (this.d(this.a) != -1) {
-                  LoadingPage.a(this.j.aq.c - 10 - ao_1.x.b - (this.a + 2 * (1 - this.a)) * (ao_1.x.b + 10) - LoadingPage.q / 2 + 9, this.j.aq.b + ao_1.x.c + 69, new String[]{"取出"}, false);
-                  this.i.l = 1;
+                  LoadingPage.a(this.j.aq.c - 10 - UISceneController.x.b - (this.a + 2 * (1 - this.a)) * (UISceneController.x.b + 10) - LoadingPage.q / 2 + 9, this.j.aq.b + UISceneController.x.c + 69, new String[]{"取出"}, false);
+                  this.i.sceneSubState = 1;
                } else if (this.c != -1 && this.d != -1L) {
                   this.i.a((byte)0, (byte[])(new byte[]{4}));
                } else {
@@ -331,14 +331,14 @@ public final class r {
             this.a();
             this.e();
          }
-      } else if (this.i.l == 1) {
+      } else if (this.i.sceneSubState == 1) {
          LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824) {
             if (var1 == 536870912) {
                LoadingPage.l = 0;
                this.a();
                this.e();
-               this.i.l = 0;
+               this.i.sceneSubState = 0;
             }
          } else if (LoadingPage.o == 0) {
             if (this.b == 1) {
@@ -370,7 +370,7 @@ public final class r {
             if (this.i.aw && !this.x) {
                GlobalStatus.a(this.i.av);
             } else if (this.i.aJ && !this.x) {
-               GlobalStatus.b((int) ao_1.l(this.i.aq));
+               GlobalStatus.b((int) UISceneController.l(this.i.aq));
             } else {
                var1 = this.c;
                Object var2 = null;
@@ -400,13 +400,13 @@ public final class r {
                }
             }
 
-            this.i.O.a(0, (short)this.i.k, -1);
+            this.i.O.a(0, (short)this.i.currentSceneModeId, -1);
          } else if (LoadingPage.o == 2) {
             this.b();
             this.a();
             this.d();
             this.e();
-            this.i.l = 0;
+            this.i.sceneSubState = 0;
          }
       }
 
@@ -414,7 +414,7 @@ public final class r {
    }
 
    public final void a(Graphics var1) {
-      short var2 = ao_1.x.b;
+      short var2 = UISceneController.x.b;
       if (this.j.aq != null) {
          this.j.aq.a(var1);
          LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, this.v, 1);
@@ -442,7 +442,7 @@ public final class r {
             this.g[var5][3] = 17;
          }
 
-         var1.drawImage(ao_1.x.pngImage, this.g[var5][0], this.g[var5][1], 20);
+         var1.drawImage(UISceneController.x.pngImage, this.g[var5][0], this.g[var5][1], 20);
       }
 
       var1.setColor(255);
@@ -450,11 +450,11 @@ public final class r {
       var1.drawString(this.h[1], this.g[1][0] - 2, this.g[1][1] + (var2 - GlobalConfig.j) / 2, 24);
       var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] + (var2 - GlobalConfig.j) / 2, 24);
       Frame0 var11;
-      if (this.c != -1 && (var11 = ao_1.b(this.k)) != null) {
+      if (this.c != -1 && (var11 = UISceneController.b(this.k)) != null) {
          var1.drawImage(var11.pngImage, this.g[0][0], this.g[0][1], 20);
       }
 
-      if (this.d != -1L && (var11 = ao_1.b(this.n)) != null) {
+      if (this.d != -1L && (var11 = UISceneController.b(this.n)) != null) {
          var1.drawImage(var11.pngImage, this.g[1][0], this.g[1][1], 20);
       }
 
@@ -462,7 +462,7 @@ public final class r {
          var11 = null;
 
          for(int var10 = 0; var10 < this.p.length; ++var10) {
-            if ((var11 = ao_1.b(this.p[var10])) != null) {
+            if ((var11 = UISceneController.b(this.p[var10])) != null) {
                var1.drawImage(var11.pngImage, this.g[2 + this.f[var10]][0], this.g[2 + this.f[var10]][1], 20);
             }
          }
@@ -474,22 +474,22 @@ public final class r {
          this.t.a(var1, this.j.aq.a + 5 + 6, this.j.aq.b + 32 + this.v + 1 + 3, 0);
       }
 
-      if (this.i.l == 0) {
+      if (this.i.sceneSubState == 0) {
          if (this.u != null || this.u != "") {
             if (this.b == 0 && this.a == 1) {
-               LoadingPage.b(var1, this.u, this.j.aq.c - 10 - ao_1.x.b - 2 * (ao_1.x.b + 10) - 6 - GlobalConfig.i.stringWidth("装备孔"), this.j.aq.b + 32 + 8 + ao_1.x.c, GlobalConfig.defaultHigh - 5, 1);
+               LoadingPage.b(var1, this.u, this.j.aq.c - 10 - UISceneController.x.b - 2 * (UISceneController.x.b + 10) - 6 - GlobalConfig.i.stringWidth("装备孔"), this.j.aq.b + 32 + 8 + UISceneController.x.c, GlobalConfig.defaultHigh - 5, 1);
                return;
             }
 
             if (this.b == 1) {
-               LoadingPage.b(var1, this.u, this.j.aq.c - (ao_1.x.b + 10) * 3, this.j.aq.b + 32 + 8 + 10 + (ao_1.x.c << 1), GlobalConfig.defaultHigh - 5, 1);
+               LoadingPage.b(var1, this.u, this.j.aq.c - (UISceneController.x.b + 10) * 3, this.j.aq.b + 32 + 8 + 10 + (UISceneController.x.c << 1), GlobalConfig.defaultHigh - 5, 1);
                return;
             }
 
-            LoadingPage.b(var1, this.u, this.j.aq.a + 5 + 2, this.j.aq.b + 32 + 8 + ao_1.x.c, GlobalConfig.defaultHigh - 5, 1);
+            LoadingPage.b(var1, this.u, this.j.aq.a + 5 + 2, this.j.aq.b + 32 + 8 + UISceneController.x.c, GlobalConfig.defaultHigh - 5, 1);
             return;
          }
-      } else if (this.i.l == 1) {
+      } else if (this.i.sceneSubState == 1) {
          LoadingPage.c(var1);
       }
 

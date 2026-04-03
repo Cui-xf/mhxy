@@ -29,7 +29,7 @@ public final class ah {
             break;
          case 1:
             Frame0 var6;
-            if ((var6 = ao_1.b(this.b)) != null) {
+            if ((var6 = UISceneController.b(this.b)) != null) {
                var1.drawImage(var6.pngImage, var2, var3 + (var4 - var6.c) / 2, var5);
                return;
             }

@@ -3,7 +3,7 @@ package com.yinhan.kjava.main;
 import com.cc.*;
 //public final class f_3 {
 public final class TouchController {
-   public ao_1 a;
+   public UISceneController a;
    public MainCanvas canvas;
    public int c;
    public int d;
@@ -21,27 +21,27 @@ public final class TouchController {
 
    public final void a(int var1, int var2) {
       if (this.a != null && this.canvas.touchPageCase == 7) {
-         switch (this.a.k) {
+         switch (this.a.currentSceneModeId) {
             case 0:
                var2 = var2;
                var1 = var1;
-               if (this.a.k == 0 && this.a.J != null) {
+               if (this.a.currentSceneModeId == 0 && this.a.J != null) {
                   this.canvas.touchAction = LoadingPage.b(var1, var2);
                } else {
                   if (GlobalStatus.t != null) {
                      for(int var37 = 0; var37 < GlobalStatus.t.length; ++var37) {
-                        if (GlobalStatus.t[var37] != null && GlobalStatus.t[var37].x && ao_1.u != null && (var1 >= GlobalStatus.t[var37].c -
-                        ao_1.h + this.a.g() - GlobalStatus.t[var37].c() / 2 && var1 <= GlobalStatus.t[var37].c - ao_1.h + this.a.g() + GlobalStatus.t[var37].c() / 2 && var2 >= GlobalStatus.t[var37].d -
-                        ao_1.i + this.a.h() - GlobalStatus.t[var37].d() && var2 <= GlobalStatus.t[var37].d - ao_1.i + this.a.h() || var1 >= GlobalStatus.t[var37].c -
-                        ao_1.h + this.a.g() + GlobalStatus.t[var37].c() / 2 && var1 <= GlobalStatus.t[var37].c - ao_1.h + this.a.g() + GlobalStatus.t[var37].c() / 2 +
-                        ao_1.u.i() && var2 >= GlobalStatus.t[var37].d - ao_1.i + this.a.h() - GlobalStatus.t[var37].d() && var2 <= GlobalStatus.t[var37].d -
-                        ao_1.i + this.a.h() - GlobalStatus.t[var37].d() + ao_1.u.j() || var1 >= GlobalStatus.t[var37].c - ao_1.h + this.a.g() -
-                        ao_1.s.i() / 2 && var1 <= GlobalStatus.t[var37].c - ao_1.h + this.a.g() + ao_1.s.i() / 2 && var2 >= GlobalStatus.t[var37].d -
-                        ao_1.i + this.a.h() - GlobalStatus.t[var37].d() - GlobalConfig.j - ao_1.s.j() && var2 <= GlobalStatus.t[var37].d - ao_1.i + this.a.h() - GlobalStatus.t[var37].d() - GlobalConfig.j)) {
+                        if (GlobalStatus.t[var37] != null && GlobalStatus.t[var37].x && UISceneController.u != null && (var1 >= GlobalStatus.t[var37].c -
+                        UISceneController.h + this.a.g() - GlobalStatus.t[var37].c() / 2 && var1 <= GlobalStatus.t[var37].c - UISceneController.h + this.a.g() + GlobalStatus.t[var37].c() / 2 && var2 >= GlobalStatus.t[var37].d -
+                        UISceneController.i + this.a.h() - GlobalStatus.t[var37].d() && var2 <= GlobalStatus.t[var37].d - UISceneController.i + this.a.h() || var1 >= GlobalStatus.t[var37].c -
+                        UISceneController.h + this.a.g() + GlobalStatus.t[var37].c() / 2 && var1 <= GlobalStatus.t[var37].c - UISceneController.h + this.a.g() + GlobalStatus.t[var37].c() / 2 +
+                        UISceneController.u.i() && var2 >= GlobalStatus.t[var37].d - UISceneController.i + this.a.h() - GlobalStatus.t[var37].d() && var2 <= GlobalStatus.t[var37].d -
+                        UISceneController.i + this.a.h() - GlobalStatus.t[var37].d() + UISceneController.u.j() || var1 >= GlobalStatus.t[var37].c - UISceneController.h + this.a.g() -
+                        UISceneController.s.i() / 2 && var1 <= GlobalStatus.t[var37].c - UISceneController.h + this.a.g() + UISceneController.s.i() / 2 && var2 >= GlobalStatus.t[var37].d -
+                        UISceneController.i + this.a.h() - GlobalStatus.t[var37].d() - GlobalConfig.j - UISceneController.s.j() && var2 <= GlobalStatus.t[var37].d - UISceneController.i + this.a.h() - GlobalStatus.t[var37].d() - GlobalConfig.j)) {
                            this.a.a(1073741824);
-                           if (!this.a.I.c.isEmpty()) {
-                              this.a.I.c.removeAllElements();
-                              this.a.I.a(true);
+                           if (!this.a.sceneRefreshCoordinator.c.isEmpty()) {
+                              this.a.sceneRefreshCoordinator.c.removeAllElements();
+                              this.a.sceneRefreshCoordinator.a(true);
                            }
 
                            return;
@@ -51,40 +51,40 @@ public final class TouchController {
 
                   boolean var42;
                   label749: {
-                     if (ao_1.i() && this.a.I.g != null) {
-                        switch (this.a.I.h) {
+                     if (UISceneController.i() && this.a.sceneRefreshCoordinator.g != null) {
+                        switch (this.a.sceneRefreshCoordinator.h) {
                            case 0:
-                              if (var1 >= this.a.I.j + 16 - this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) - 3 && var1 <= this.a.I.j + 16 + this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) - 5 && var2 >= this.a.I.k + 16 - this.a.I.g.h() - (ao_1.i - this.a.h()) && var2 <= this.a.I.k + 16 - (ao_1.i - this.a.h())) {
+                              if (var1 >= this.a.sceneRefreshCoordinator.j + 16 - this.a.sceneRefreshCoordinator.g.g() / 2 - (UISceneController.h - this.a.g()) - 3 && var1 <= this.a.sceneRefreshCoordinator.j + 16 + this.a.sceneRefreshCoordinator.g.g() / 2 - (UISceneController.h - this.a.g()) - 5 && var2 >= this.a.sceneRefreshCoordinator.k + 16 - this.a.sceneRefreshCoordinator.g.h() - (UISceneController.i - this.a.h()) && var2 <= this.a.sceneRefreshCoordinator.k + 16 - (UISceneController.i - this.a.h())) {
                                  this.canvas.touchAction = 536870912;
-                                 this.a.I.c.removeAllElements();
-                                 this.a.I.a(true);
+                                 this.a.sceneRefreshCoordinator.c.removeAllElements();
+                                 this.a.sceneRefreshCoordinator.a(true);
                                  var42 = true;
                                  break label749;
                               }
                               break;
                            case 1:
-                              if (var1 >= this.a.I.j + 8 - this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) && var1 <= this.a.I.j + 8 + this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) && var2 >= this.a.I.k - (ao_1.i - this.a.h()) - 12 && var2 <= this.a.I.k + this.a.I.g.h() - (ao_1.i - this.a.h()) - 5) {
+                              if (var1 >= this.a.sceneRefreshCoordinator.j + 8 - this.a.sceneRefreshCoordinator.g.g() / 2 - (UISceneController.h - this.a.g()) && var1 <= this.a.sceneRefreshCoordinator.j + 8 + this.a.sceneRefreshCoordinator.g.g() / 2 - (UISceneController.h - this.a.g()) && var2 >= this.a.sceneRefreshCoordinator.k - (UISceneController.i - this.a.h()) - 12 && var2 <= this.a.sceneRefreshCoordinator.k + this.a.sceneRefreshCoordinator.g.h() - (UISceneController.i - this.a.h()) - 5) {
                                  this.canvas.touchAction = 536870912;
-                                 this.a.I.c.removeAllElements();
-                                 this.a.I.a(true);
+                                 this.a.sceneRefreshCoordinator.c.removeAllElements();
+                                 this.a.sceneRefreshCoordinator.a(true);
                                  var42 = true;
                                  break label749;
                               }
                               break;
                            case 2:
-                              if (var1 >= this.a.I.j - this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) + 4 && var1 <= this.a.I.j + this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) + 4 && var2 >= this.a.I.k + 16 - this.a.I.g.h() - (ao_1.i - this.a.h()) && var2 <= this.a.I.k + 16 - (ao_1.i - this.a.h())) {
+                              if (var1 >= this.a.sceneRefreshCoordinator.j - this.a.sceneRefreshCoordinator.g.g() / 2 - (UISceneController.h - this.a.g()) + 4 && var1 <= this.a.sceneRefreshCoordinator.j + this.a.sceneRefreshCoordinator.g.g() / 2 - (UISceneController.h - this.a.g()) + 4 && var2 >= this.a.sceneRefreshCoordinator.k + 16 - this.a.sceneRefreshCoordinator.g.h() - (UISceneController.i - this.a.h()) && var2 <= this.a.sceneRefreshCoordinator.k + 16 - (UISceneController.i - this.a.h())) {
                                  this.canvas.touchAction = 536870912;
-                                 this.a.I.c.removeAllElements();
-                                 this.a.I.a(true);
+                                 this.a.sceneRefreshCoordinator.c.removeAllElements();
+                                 this.a.sceneRefreshCoordinator.a(true);
                                  var42 = true;
                                  break label749;
                               }
                               break;
                            case 3:
-                              if (var1 >= this.a.I.j + 8 - this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) && var1 <= this.a.I.j + 8 + this.a.I.g.g() / 2 - (ao_1.h - this.a.g()) && var2 >= this.a.I.k + 8 - this.a.I.g.h() - (ao_1.i - this.a.h()) - 4 && var2 <= this.a.I.k + 8 - (ao_1.i - this.a.h()) + 4) {
+                              if (var1 >= this.a.sceneRefreshCoordinator.j + 8 - this.a.sceneRefreshCoordinator.g.g() / 2 - (UISceneController.h - this.a.g()) && var1 <= this.a.sceneRefreshCoordinator.j + 8 + this.a.sceneRefreshCoordinator.g.g() / 2 - (UISceneController.h - this.a.g()) && var2 >= this.a.sceneRefreshCoordinator.k + 8 - this.a.sceneRefreshCoordinator.g.h() - (UISceneController.i - this.a.h()) - 4 && var2 <= this.a.sceneRefreshCoordinator.k + 8 - (UISceneController.i - this.a.h()) + 4) {
                                  this.canvas.touchAction = 536870912;
-                                 this.a.I.c.removeAllElements();
-                                 this.a.I.a(true);
+                                 this.a.sceneRefreshCoordinator.c.removeAllElements();
+                                 this.a.sceneRefreshCoordinator.a(true);
                                  var42 = true;
                                  break label749;
                               }
@@ -104,37 +104,37 @@ public final class TouchController {
                   if (GlobalStatus.fz != null && GlobalStatus.fz.length > 0 && GlobalStatus.s != 0) {
                      label719:
                      for(int var6 = 0; var6 < GlobalStatus.fz.length; ++var6) {
-                        if (GlobalStatus.fz[var6] == 1 && var40.a.I.d.f != null) {
-                           switch (var40.a.I.d.j) {
+                        if (GlobalStatus.fz[var6] == 1 && var40.a.sceneRefreshCoordinator.d.f != null) {
+                           switch (var40.a.sceneRefreshCoordinator.d.j) {
                               case 0:
-                                 if (var38 >= var40.a.I.d.h + 16 - var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var38 <= var40.a.I.d.h + 16 + var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var5 >= var40.a.I.d.i + 16 - var40.a.I.d.f.h() - (ao_1.i - var40.a.h()) && var5 <= var40.a.I.d.i + 16 - (ao_1.i - var40.a.h())) {
+                                 if (var38 >= var40.a.sceneRefreshCoordinator.d.h + 16 - var40.a.sceneRefreshCoordinator.d.f.g() / 2 - (UISceneController.h - var40.a.g()) && var38 <= var40.a.sceneRefreshCoordinator.d.h + 16 + var40.a.sceneRefreshCoordinator.d.f.g() / 2 - (UISceneController.h - var40.a.g()) && var5 >= var40.a.sceneRefreshCoordinator.d.i + 16 - var40.a.sceneRefreshCoordinator.d.f.h() - (UISceneController.i - var40.a.h()) && var5 <= var40.a.sceneRefreshCoordinator.d.i + 16 - (UISceneController.i - var40.a.h())) {
                                     var40.canvas.touchAction = 48;
-                                    var40.a.I.c.removeAllElements();
-                                    var40.a.I.a(true);
+                                    var40.a.sceneRefreshCoordinator.c.removeAllElements();
+                                    var40.a.sceneRefreshCoordinator.a(true);
                                     break label719;
                                  }
                                  break;
                               case 1:
-                                 if (var38 >= var40.a.I.d.h + 8 - var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var38 <= var40.a.I.d.h + 8 + var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var5 >= var40.a.I.d.i - (ao_1.i - var40.a.h()) && var5 <= var40.a.I.d.i + var40.a.I.d.f.h() - (ao_1.i - var40.a.h())) {
+                                 if (var38 >= var40.a.sceneRefreshCoordinator.d.h + 8 - var40.a.sceneRefreshCoordinator.d.f.g() / 2 - (UISceneController.h - var40.a.g()) && var38 <= var40.a.sceneRefreshCoordinator.d.h + 8 + var40.a.sceneRefreshCoordinator.d.f.g() / 2 - (UISceneController.h - var40.a.g()) && var5 >= var40.a.sceneRefreshCoordinator.d.i - (UISceneController.i - var40.a.h()) && var5 <= var40.a.sceneRefreshCoordinator.d.i + var40.a.sceneRefreshCoordinator.d.f.h() - (UISceneController.i - var40.a.h())) {
                                     var40.canvas.touchAction = 48;
-                                    var40.a.I.c.removeAllElements();
-                                    var40.a.I.a(true);
+                                    var40.a.sceneRefreshCoordinator.c.removeAllElements();
+                                    var40.a.sceneRefreshCoordinator.a(true);
                                     break label719;
                                  }
                                  break;
                               case 2:
-                                 if (var38 >= var40.a.I.d.h - var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var38 <= var40.a.I.d.h + var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var5 >= var40.a.I.d.i + 16 - var40.a.I.d.f.h() - (ao_1.i - var40.a.h()) && var5 <= var40.a.I.d.i + 16 - (ao_1.i - var40.a.h())) {
+                                 if (var38 >= var40.a.sceneRefreshCoordinator.d.h - var40.a.sceneRefreshCoordinator.d.f.g() / 2 - (UISceneController.h - var40.a.g()) && var38 <= var40.a.sceneRefreshCoordinator.d.h + var40.a.sceneRefreshCoordinator.d.f.g() / 2 - (UISceneController.h - var40.a.g()) && var5 >= var40.a.sceneRefreshCoordinator.d.i + 16 - var40.a.sceneRefreshCoordinator.d.f.h() - (UISceneController.i - var40.a.h()) && var5 <= var40.a.sceneRefreshCoordinator.d.i + 16 - (UISceneController.i - var40.a.h())) {
                                     var40.canvas.touchAction = 48;
-                                    var40.a.I.c.removeAllElements();
-                                    var40.a.I.a(true);
+                                    var40.a.sceneRefreshCoordinator.c.removeAllElements();
+                                    var40.a.sceneRefreshCoordinator.a(true);
                                     break label719;
                                  }
                                  break;
                               case 3:
-                                 if (var38 >= var40.a.I.d.h + 8 - var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var38 <= var40.a.I.d.h + 8 + var40.a.I.d.f.g() / 2 - (ao_1.h - var40.a.g()) && var5 >= var40.a.I.d.i + 8 - var40.a.I.d.f.h() - (ao_1.i - var40.a.h()) && var5 <= var40.a.I.d.i + 8 - (ao_1.i - var40.a.h())) {
+                                 if (var38 >= var40.a.sceneRefreshCoordinator.d.h + 8 - var40.a.sceneRefreshCoordinator.d.f.g() / 2 - (UISceneController.h - var40.a.g()) && var38 <= var40.a.sceneRefreshCoordinator.d.h + 8 + var40.a.sceneRefreshCoordinator.d.f.g() / 2 - (UISceneController.h - var40.a.g()) && var5 >= var40.a.sceneRefreshCoordinator.d.i + 8 - var40.a.sceneRefreshCoordinator.d.f.h() - (UISceneController.i - var40.a.h()) && var5 <= var40.a.sceneRefreshCoordinator.d.i + 8 - (UISceneController.i - var40.a.h())) {
                                     var40.canvas.touchAction = 48;
-                                    var40.a.I.c.removeAllElements();
-                                    var40.a.I.a(true);
+                                    var40.a.sceneRefreshCoordinator.c.removeAllElements();
+                                    var40.a.sceneRefreshCoordinator.a(true);
                                     break label719;
                                  }
                            }
@@ -142,14 +142,14 @@ public final class TouchController {
                      }
                   }
 
-                  if (ao_1.aW[6] == 0 && var1 >= 2 && var1 <= 2 + MainCanvas.f.e && var2 >= 2 + GlobalConfig.j && var2 <= 2 + GlobalConfig.j + MainCanvas.f.f) {
+                  if (UISceneController.aW[6] == 0 && var1 >= 2 && var1 <= 2 + MainCanvas.pngUtil.e && var2 >= 2 + GlobalConfig.j && var2 <= 2 + GlobalConfig.j + MainCanvas.pngUtil.f) {
                      this.canvas.touchAction = 519;
-                     if (!this.a.I.c.isEmpty()) {
-                        this.a.I.c.removeAllElements();
-                        this.a.I.a(true);
+                     if (!this.a.sceneRefreshCoordinator.c.isEmpty()) {
+                        this.a.sceneRefreshCoordinator.c.removeAllElements();
+                        this.a.sceneRefreshCoordinator.a(true);
                      }
                   } else {
-                     if (this.a.k != 25) {
+                     if (this.a.currentSceneModeId != 25) {
                        boolean var38_ = false;
                         if (var1 >= GlobalConfig.defaultWidth - bo_1.g[0].getWidth() - 10 && var1 <= GlobalConfig.defaultWidth - 10 && var2 >= 40 && var2 <= 40 + bo_1.g[0].getHeight()) {
                            var38_ = true;
@@ -166,22 +166,22 @@ public final class TouchController {
                               return;
                            }
 
-                           if (this.a.n && ao_1.i()) {
+                           if (this.a.n && UISceneController.i()) {
                               this.canvas.touchAction = 1024;
                            }
                            break;
                         }
                      }
 
-                     if (ao_1.L != null && var1 >= ao_1.L.e - ao_1.h && var1 <= ao_1.L.e - ao_1.h + ao_1.L.d.g() && var2 >=
-                     ao_1.L.f - ao_1.i && var2 <= ao_1.L.f - ao_1.i + ao_1.L.d.h()) {
+                     if (UISceneController.L != null && var1 >= UISceneController.L.e - UISceneController.h && var1 <= UISceneController.L.e - UISceneController.h + UISceneController.L.d.g() && var2 >=
+                     UISceneController.L.f - UISceneController.i && var2 <= UISceneController.L.f - UISceneController.i + UISceneController.L.d.h()) {
                         this.canvas.touchAction = 1073741824;
-                        if (!this.a.I.c.isEmpty()) {
-                           this.a.I.c.removeAllElements();
-                           this.a.I.a(true);
+                        if (!this.a.sceneRefreshCoordinator.c.isEmpty()) {
+                           this.a.sceneRefreshCoordinator.c.removeAllElements();
+                           this.a.sceneRefreshCoordinator.a(true);
                         }
-                     } else if (var1 >= GlobalConfig.defaultWidth - 67 + 37 && var1 <= GlobalConfig.defaultWidth - 67 + 37 + ao_1.v.pngImage.getWidth() && var2 >= 8 && var2 <=
-                     ao_1.v.pngImage.getHeight() + 8) {
+                     } else if (var1 >= GlobalConfig.defaultWidth - 67 + 37 && var1 <= GlobalConfig.defaultWidth - 67 + 37 + UISceneController.v.pngImage.getWidth() && var2 >= 8 && var2 <=
+                     UISceneController.v.pngImage.getHeight() + 8) {
                         this.canvas.touchAction = 2048;
                      } else if (var1 >= GlobalConfig.defaultWidth - 67 && var1 <= GlobalConfig.defaultWidth - 67 + 33 && var2 >= 5 && var2 <= 18) {
                         this.canvas.touchAction = 515;
@@ -202,7 +202,7 @@ public final class TouchController {
                         if (var1 < GlobalConfig.defaultWidth - GlobalConfig.i.stringWidth("聊天") || var1 > GlobalConfig.defaultWidth || var2 < GlobalConfig.defaultHigh - GlobalConfig.j - 1 || var2 > GlobalConfig.defaultHigh - 1) {
                            if (!GlobalStatus.bu) {
                               this.a.d = -1;
-                              this.canvas.b(var1 + ao_1.h - this.a.g(), var2 + ao_1.i - this.a.h());
+                              this.canvas.b(var1 + UISceneController.h - this.a.g(), var2 + UISceneController.i - this.a.h());
                            }
 
                            return;
@@ -226,22 +226,22 @@ public final class TouchController {
 
                return;
             case 4:
-               if (this.a.l == 0) {
+               if (this.a.sceneSubState == 0) {
                   if (this.canvas.aq == null) {
                      return;
                   }
 
                   this.canvas.touchAction = this.canvas.aq.b(var1, var2);
                   this.canvas.touchAction = this.a.b(this.canvas.touchAction, var1, var2);
-               } else if (this.a.l != 1 && this.a.l != 3 && this.a.l != 9 && this.a.l != 14 && this.a.l != 15 && this.a.l != 16) {
-                  if (this.a.l != 2 && this.a.l != 4 && this.a.l != 7 && this.a.l != 12) {
-                     if (this.a.l != 6 && this.a.l != 11) {
-                        if (this.a.l != 5 && this.a.l != 18) {
-                           if (this.a.l == 8) {
+               } else if (this.a.sceneSubState != 1 && this.a.sceneSubState != 3 && this.a.sceneSubState != 9 && this.a.sceneSubState != 14 && this.a.sceneSubState != 15 && this.a.sceneSubState != 16) {
+                  if (this.a.sceneSubState != 2 && this.a.sceneSubState != 4 && this.a.sceneSubState != 7 && this.a.sceneSubState != 12) {
+                     if (this.a.sceneSubState != 6 && this.a.sceneSubState != 11) {
+                        if (this.a.sceneSubState != 5 && this.a.sceneSubState != 18) {
+                           if (this.a.sceneSubState == 8) {
                               this.canvas.touchAction = this.a.e(var1, var2);
                            } else {
-                              if (this.a.l != 10 && this.a.l != 13) {
-                                 if (this.a.l == 17) {
+                              if (this.a.sceneSubState != 10 && this.a.sceneSubState != 13) {
+                                 if (this.a.sceneSubState == 17) {
                                     this.canvas.touchAction = this.canvas.aq.b(var1, var2);
                                  }
 
@@ -269,11 +269,11 @@ public final class TouchController {
                }
                break;
             case 5:
-               if (this.a.l == 0) {
+               if (this.a.sceneSubState == 0) {
                   this.canvas.touchAction = this.a.b(var1, var2);
                } else {
-                  if (this.a.l != 1) {
-                     if (this.a.l == 2 && this.canvas.aq != null) {
+                  if (this.a.sceneSubState != 1) {
+                     if (this.a.sceneSubState == 2 && this.canvas.aq != null) {
                         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
                      }
 
@@ -284,8 +284,8 @@ public final class TouchController {
                }
                break;
             case 6:
-               if (this.a.l != 0 && this.a.l != 3) {
-                  if (this.a.l == 1 || this.a.l == 2) {
+               if (this.a.sceneSubState != 0 && this.a.sceneSubState != 3) {
+                  if (this.a.sceneSubState == 1 || this.a.sceneSubState == 2) {
                      this.canvas.touchAction = LoadingPage.c(var1, var2);
                   }
 
@@ -302,8 +302,8 @@ public final class TouchController {
                this.v(var1, var2);
                return;
             case 8:
-               if (this.a.l != 0) {
-                  if (this.a.l == 2) {
+               if (this.a.sceneSubState != 0) {
+                  if (this.a.sceneSubState == 2) {
                      this.canvas.touchAction = LoadingPage.d(var1, var2);
                   }
 
@@ -318,8 +318,8 @@ public final class TouchController {
                this.canvas.touchAction = this.a.b(this.canvas.touchAction, var1, var2);
                break;
             case 9:
-               if (this.a.l != 0) {
-                  if (this.a.l == 2) {
+               if (this.a.sceneSubState != 0) {
+                  if (this.a.sceneSubState == 2) {
                      this.canvas.touchAction = LoadingPage.d(var1, var2);
                   }
 
@@ -340,7 +340,7 @@ public final class TouchController {
 
                return;
             case 11:
-               if (this.a.l == 0) {
+               if (this.a.sceneSubState == 0) {
                   if (this.canvas.aq == null) {
                      return;
                   }
@@ -348,8 +348,8 @@ public final class TouchController {
                   this.canvas.touchAction = this.canvas.aq.b(var1, var2);
                   this.canvas.touchAction = this.a.b(this.canvas.touchAction, var1, var2);
                } else {
-                  if (this.a.l != 2) {
-                     if (this.a.l == 4) {
+                  if (this.a.sceneSubState != 2) {
+                     if (this.a.sceneSubState == 4) {
                         this.canvas.touchAction = LoadingPage.c(var1, var2);
                      }
 
@@ -363,20 +363,20 @@ public final class TouchController {
                this.m(var1, var2);
                return;
             case 13:
-               if (this.a.l != 0 && this.a.l != 10 && this.a.l != 5 && this.a.l != 6) {
-                  if (this.a.l != 1 && this.a.l != 2 && this.a.l != 8 && this.a.l != 9) {
-                     if (this.a.l == 3) {
+               if (this.a.sceneSubState != 0 && this.a.sceneSubState != 10 && this.a.sceneSubState != 5 && this.a.sceneSubState != 6) {
+                  if (this.a.sceneSubState != 1 && this.a.sceneSubState != 2 && this.a.sceneSubState != 8 && this.a.sceneSubState != 9) {
+                     if (this.a.sceneSubState == 3) {
                         this.canvas.touchAction = LoadingPage.d(var1, var2);
                         if (!LoadingPage.e(var1, var2)) {
                            return;
                         }
 
                         this.canvas.a((String)"请输入拍卖价格", (int)2);
-                     } else if (this.a.l == 4) {
+                     } else if (this.a.sceneSubState == 4) {
                         this.canvas.touchAction = LoadingPage.b(var1, var2);
                      } else {
-                        if (this.a.l != 7) {
-                           if (this.a.l == 11) {
+                        if (this.a.sceneSubState != 7) {
+                           if (this.a.sceneSubState == 11) {
                               this.canvas.touchAction = LoadingPage.b(var1, var2);
                            }
 
@@ -449,14 +449,14 @@ public final class TouchController {
                this.o(var1, var2);
                return;
             case 22:
-               if (this.a.l == 0) {
+               if (this.a.sceneSubState == 0) {
                   if (this.canvas.aq == null) {
                      return;
                   }
 
                   this.canvas.touchAction = this.canvas.aq.b(var1, var2);
                   this.canvas.touchAction = this.a.e(this.canvas.touchAction, var1, var2);
-               } else if (this.a.l == 6) {
+               } else if (this.a.sceneSubState == 6) {
                   this.canvas.touchAction = LoadingPage.d(var1, var2);
                   if (!LoadingPage.e(var1, var2)) {
                      return;
@@ -464,8 +464,8 @@ public final class TouchController {
 
                   this.canvas.a((String)"输入交易银两", (int)2);
                } else {
-                  if (this.a.l != 1 && this.a.l != 2 && this.a.l != 3) {
-                     if (this.a.l == 5) {
+                  if (this.a.sceneSubState != 1 && this.a.sceneSubState != 2 && this.a.sceneSubState != 3) {
+                     if (this.a.sceneSubState == 5) {
                         this.canvas.touchAction = LoadingPage.b(var1, var2);
                      }
 
@@ -476,17 +476,17 @@ public final class TouchController {
                }
                break;
             case 23:
-               if (this.a.l == 0) {
+               if (this.a.sceneSubState == 0) {
                   if (this.canvas.aq == null) {
                      return;
                   }
 
                   this.canvas.touchAction = this.canvas.aq.b(var1, var2);
-               } else if (this.a.l == 1) {
+               } else if (this.a.sceneSubState == 1) {
                   this.canvas.touchAction = LoadingPage.c(var1, var2);
                } else {
-                  if (this.a.l != 2) {
-                     if (this.a.l == 3 || this.a.l == 4) {
+                  if (this.a.sceneSubState != 2) {
+                     if (this.a.sceneSubState == 3 || this.a.sceneSubState == 4) {
                         this.canvas.touchAction = LoadingPage.b(var1, var2);
                      }
 
@@ -497,15 +497,15 @@ public final class TouchController {
                }
                break;
             case 24:
-               if (this.a.l == 0) {
+               if (this.a.sceneSubState == 0) {
                   if (this.canvas.aq == null) {
                      return;
                   }
 
                   this.canvas.touchAction = this.canvas.aq.b(var1, var2);
                } else {
-                  if (this.a.l != 1) {
-                     if (this.a.l == 2) {
+                  if (this.a.sceneSubState != 1) {
+                     if (this.a.sceneSubState == 2) {
                         this.canvas.touchAction = LoadingPage.b(var1, var2);
                      }
 
@@ -518,18 +518,18 @@ public final class TouchController {
             case 25:
                var2 = var2;
                var1 = var1;
-               if (this.a.g.d == 0 || this.a.g.d == 2 || this.a.g.f > 1) {
-                  this.canvas.touchAction = this.a.g.a(this.a.g.d, var1, var2);
+               if (this.a.overlayDialogController.d == 0 || this.a.overlayDialogController.d == 2 || this.a.overlayDialogController.f > 1) {
+                  this.canvas.touchAction = this.a.overlayDialogController.a(this.a.overlayDialogController.d, var1, var2);
                   if (this.canvas.touchAction != 0) {
                      return;
                   }
                }
 
-               if (this.a.g.f == 0) {
-                  if (this.a.g.d == 0) {
-                     this.canvas.touchAction = this.a.g.a(var1, var2);
-                  } else if (this.a.g.d == 2) {
-                     this.canvas.touchAction = this.a.g.b(var1, var2);
+               if (this.a.overlayDialogController.f == 0) {
+                  if (this.a.overlayDialogController.d == 0) {
+                     this.canvas.touchAction = this.a.overlayDialogController.a(var1, var2);
+                  } else if (this.a.overlayDialogController.d == 2) {
+                     this.canvas.touchAction = this.a.overlayDialogController.b(var1, var2);
                   }
 
                   if (this.canvas.touchAction != 0) {
@@ -537,28 +537,28 @@ public final class TouchController {
                   }
                }
 
-               if (this.a.g.d != 1 && this.a.g.d != 3) {
-                  if (this.a.g.d == 4) {
+               if (this.a.overlayDialogController.d != 1 && this.a.overlayDialogController.d != 3) {
+                  if (this.a.overlayDialogController.d == 4) {
                      if (GlobalStatus.H != null) {
                         for(byte var36 = (byte)(GlobalStatus.H.length - 1); var36 >= 0; --var36) {
                            if (GlobalStatus.H[var36].j != null && var1 >= GlobalConfig.Q[GlobalStatus.H[var36].a][0] - GlobalStatus.H[var36].f() / 2 && var1 <= GlobalConfig.Q[GlobalStatus.H[var36].a][0] + GlobalStatus.H[var36].f() / 2 && var2 >= GlobalConfig.Q[GlobalStatus.H[var36].a][1] - GlobalStatus.H[var36].g() && var2 <= GlobalConfig.Q[GlobalStatus.H[var36].a][1]) {
                               if (bq_1.h()) {
                                  this.canvas.processException("只能对自己使用复活道具");
-                              } else if (this.a.g.i != var36) {
-                                 this.a.g.i = var36;
+                              } else if (this.a.overlayDialogController.i != var36) {
+                                 this.a.overlayDialogController.i = var36;
                               } else {
                                  this.canvas.touchAction = 1073741824;
                               }
                            }
                         }
                      }
-                  } else if ((this.a.g.d == 5 || this.a.g.d == 6 || this.a.g.d == 7 || this.a.g.d == 8) && GlobalStatus.H != null) {
+                  } else if ((this.a.overlayDialogController.d == 5 || this.a.overlayDialogController.d == 6 || this.a.overlayDialogController.d == 7 || this.a.overlayDialogController.d == 8) && GlobalStatus.H != null) {
                      for(byte var35 = (byte)(GlobalStatus.H.length - 1); var35 >= 0; --var35) {
                         if (GlobalStatus.H[var35].j != null && var1 >= GlobalConfig.Q[GlobalStatus.H[var35].a][0] - GlobalStatus.H[var35].f() / 2 && var1 <= GlobalConfig.Q[GlobalStatus.H[var35].a][0] + GlobalStatus.H[var35].f() / 2 && var2 >= GlobalConfig.Q[GlobalStatus.H[var35].a][1] - GlobalStatus.H[var35].g() && var2 <= GlobalConfig.Q[GlobalStatus.H[var35].a][1]) {
                            if (bq_1.h()) {
                               this.canvas.processException("只能对自己使用复活道具");
-                           } else if (this.a.g.i != var35) {
-                              this.a.g.i = var35;
+                           } else if (this.a.overlayDialogController.i != var35) {
+                              this.a.overlayDialogController.i = var35;
                            } else {
                               this.canvas.touchAction = 1073741824;
                            }
@@ -569,8 +569,8 @@ public final class TouchController {
                   for(byte var3 = (byte)(GlobalStatus.M.length - 1); var3 >= 0; --var3) {
                      ck var4;
                      if (GlobalStatus.M[var3].m != null && !GlobalStatus.M[var3].a() && (GlobalStatus.M[var3].n == 1 || GlobalStatus.M[var3].n == 4) && var1 >= GlobalConfig.R[GlobalStatus.M[var3].a][0] - GlobalStatus.M[var3].c() / 2 && var1 <= GlobalConfig.R[GlobalStatus.M[var3].a][0] + GlobalStatus.M[var3].c() / 2 && var2 >= GlobalConfig.R[GlobalStatus.M[var3].a][1] - ((var4 = GlobalStatus.M[var3]).m != null && var4.m.h != null ? var4.m.h[var4.m.f] : 0) && var2 <= GlobalConfig.R[GlobalStatus.M[var3].a][1]) {
-                        if (this.a.g.h != var3) {
-                           this.a.g.h = var3;
+                        if (this.a.overlayDialogController.h != var3) {
+                           this.a.overlayDialogController.h = var3;
                         } else {
                            this.canvas.touchAction = 1073741824;
                         }
@@ -590,7 +590,7 @@ public final class TouchController {
                this.t(var1, var2);
                return;
             case 29:
-               if (this.a.l == 0 && this.canvas.aq != null) {
+               if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
                   this.canvas.touchAction = this.canvas.aq.b(var1, var2);
                }
 
@@ -599,15 +599,15 @@ public final class TouchController {
                this.w(var1, var2);
                return;
             case 31:
-               if (this.a.l == 0) {
+               if (this.a.sceneSubState == 0) {
                   if (this.canvas.aq == null) {
                      return;
                   }
 
                   this.canvas.touchAction = this.canvas.aq.b(var1, var2);
                } else {
-                  if (this.a.l != 1) {
-                     if (this.a.l == 2) {
+                  if (this.a.sceneSubState != 1) {
+                     if (this.a.sceneSubState == 2) {
                         this.canvas.touchAction = LoadingPage.c(var1, var2);
                      }
 
@@ -625,15 +625,15 @@ public final class TouchController {
                this.ap(var1, var2);
                return;
             case 34:
-               if (this.a.l == 0) {
+               if (this.a.sceneSubState == 0) {
                   if (this.canvas.aq == null) {
                      return;
                   }
 
                   this.canvas.touchAction = this.canvas.aq.b(var1, var2);
-               } else if (this.a.l != 1 && this.a.l != 2) {
-                  if (this.a.l != 3 && this.a.l != 5) {
-                     if (this.a.l == 4) {
+               } else if (this.a.sceneSubState != 1 && this.a.sceneSubState != 2) {
+                  if (this.a.sceneSubState != 3 && this.a.sceneSubState != 5) {
+                     if (this.a.sceneSubState == 4) {
                         this.canvas.touchAction = LoadingPage.d(var1, var2);
                         if (LoadingPage.e(var1, var2)) {
                            this.canvas.a((String)"请输入拍卖价格", (int)2);
@@ -650,23 +650,23 @@ public final class TouchController {
                }
                break;
             case 35:
-               if (this.a.l == 0 && this.canvas.aq != null) {
+               if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
                   this.canvas.touchAction = this.canvas.aq.b(var1, var2);
                }
 
                return;
             case 36:
-               if (this.a.l == 0) {
+               if (this.a.sceneSubState == 0) {
                   if (this.canvas.aq == null) {
                      return;
                   }
 
                   this.canvas.touchAction = this.canvas.aq.b(var1, var2);
-               } else if (this.a.l == 2) {
+               } else if (this.a.sceneSubState == 2) {
                   this.canvas.touchAction = this.a.e(var1, var2);
                } else {
-                  if (this.a.l != 1 && this.a.l != 3 && this.a.l != 5) {
-                     if (this.a.l == 4) {
+                  if (this.a.sceneSubState != 1 && this.a.sceneSubState != 3 && this.a.sceneSubState != 5) {
+                     if (this.a.sceneSubState == 4) {
                         this.canvas.touchAction = LoadingPage.b(var1, var2);
                      }
 
@@ -867,15 +867,15 @@ public final class TouchController {
                this.aa(var1, var2);
                return;
             case 119:
-               this.canvas.touchAction = MainCanvas.e.bc.a((byte)0, var1, var2);
+               this.canvas.touchAction = MainCanvas.uiSceneController.bc.a((byte)0, var1, var2);
                return;
             case 120:
-               if (this.a.l == 0) {
+               if (this.a.sceneSubState == 0) {
                   this.canvas.touchAction = this.canvas.aq.b(var1, var2);
                   return;
                }
 
-               if (this.a.l == 1) {
+               if (this.a.sceneSubState == 1) {
                   this.canvas.touchAction = LoadingPage.c(var1, var2);
                   return;
                }
@@ -890,13 +890,13 @@ public final class TouchController {
                this.b(var1, var2);
                return;
             case 125:
-               this.canvas.touchAction = MainCanvas.e.g(var1, var2);
+               this.canvas.touchAction = MainCanvas.uiSceneController.g(var1, var2);
                return;
             case 126:
                this.l(var1, var2);
                return;
             case 127:
-               this.canvas.touchAction = MainCanvas.e.h(var1, var2);
+               this.canvas.touchAction = MainCanvas.uiSceneController.h(var1, var2);
                return;
             case 128:
                this.at(var1, var2);
@@ -905,17 +905,17 @@ public final class TouchController {
                this.au(var1, var2);
                return;
             case 131:
-               this.canvas.touchAction = MainCanvas.e.W.a(var1, var2);
+               this.canvas.touchAction = MainCanvas.uiSceneController.W.a(var1, var2);
          }
       }
 
    }
 
    private void b(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
       } else {
-         if (this.a.l == 1) {
+         if (this.a.sceneSubState == 1) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
          }
 
@@ -923,51 +923,51 @@ public final class TouchController {
    }
 
    private void c(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
       }
 
    }
 
    private void d(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
       }
 
    }
 
    private void e(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
       }
 
    }
 
    private void f(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             this.canvas.touchAction = this.a.b(this.canvas.touchAction, var1, var2);
             return;
          }
       } else {
-         if (this.a.l == 1) {
+         if (this.a.sceneSubState == 1) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
             return;
          }
 
-         if (this.a.l == 2) {
+         if (this.a.sceneSubState == 2) {
             if (this.canvas.aq != null) {
                this.canvas.touchAction = this.canvas.aq.b(var1, var2);
                return;
             }
          } else {
-            if (this.a.l == 3 || this.a.l == 6) {
+            if (this.a.sceneSubState == 3 || this.a.sceneSubState == 6) {
                this.canvas.touchAction = LoadingPage.d(var1, var2);
                return;
             }
 
-            if (this.a.l == 5 || this.a.l == 4) {
+            if (this.a.sceneSubState == 5 || this.a.sceneSubState == 4) {
                this.canvas.touchAction = LoadingPage.b(var1, var2);
             }
          }
@@ -985,12 +985,12 @@ public final class TouchController {
    }
 
    private void h(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
-      } else if (this.a.l == 1 && this.canvas.av != null) {
+      } else if (this.a.sceneSubState == 1 && this.canvas.av != null) {
          this.canvas.touchAction = this.canvas.av.a(var1, var2);
       } else {
-         if (this.a.l == 2) {
+         if (this.a.sceneSubState == 2) {
             this.canvas.touchAction = LoadingPage.b(var1, var2);
          }
 
@@ -998,34 +998,34 @@ public final class TouchController {
    }
 
    private void i(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
-      } else if (this.a.l == 1) {
+      } else if (this.a.sceneSubState == 1) {
          this.canvas.touchAction = LoadingPage.c(var1, var2);
       }
 
    }
 
    private void j(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
-      } else if (this.a.l == 1) {
+      } else if (this.a.sceneSubState == 1) {
          this.canvas.touchAction = LoadingPage.c(var1, var2);
       }
 
    }
 
    private void k(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          this.canvas.touchAction = LoadingPage.a(var1, var2);
       } else {
-         if (this.a.l == 1) {
+         if (this.a.sceneSubState == 1) {
             this.canvas.touchAction = LoadingPage.b(var1, var2);
          }
 
@@ -1033,7 +1033,7 @@ public final class TouchController {
    }
 
    private void l(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
          if (this.canvas.touchAction == 0) {
             this.canvas.touchAction = this.a.b(this.canvas.touchAction, var1, var2);
@@ -1043,18 +1043,18 @@ public final class TouchController {
    }
 
    private void m(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
       } else {
-         if (this.a.l == 6) {
+         if (this.a.sceneSubState == 6) {
             this.canvas.touchAction = this.a.e(var1, var2);
             return;
          }
 
-         if (this.a.l == 1 || this.a.l == 7) {
+         if (this.a.sceneSubState == 1 || this.a.sceneSubState == 7) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
          }
       }
@@ -1070,23 +1070,23 @@ public final class TouchController {
    }
 
    private void o(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
       } else {
-         if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3) {
+         if (this.a.sceneSubState == 1 || this.a.sceneSubState == 2 || this.a.sceneSubState == 3) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
             return;
          }
 
-         if (this.a.l == 4) {
+         if (this.a.sceneSubState == 4) {
             if (this.canvas.aq != null) {
                this.canvas.touchAction = this.canvas.aq.b(var1, var2);
                return;
             }
-         } else if (this.a.l == 5) {
+         } else if (this.a.sceneSubState == 5) {
             this.canvas.touchAction = this.a.c(var1, var2);
          }
       }
@@ -1094,13 +1094,13 @@ public final class TouchController {
    }
 
    private void p(int var1, int var2) {
-      if (this.a.l != 0 && this.a.l != 10) {
-         if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3 || this.a.l == 4 || this.a.l == 5 || this.a.l == 6 || this.a.l == 7 || this.a.l == 9) {
+      if (this.a.sceneSubState != 0 && this.a.sceneSubState != 10) {
+         if (this.a.sceneSubState == 1 || this.a.sceneSubState == 2 || this.a.sceneSubState == 3 || this.a.sceneSubState == 4 || this.a.sceneSubState == 5 || this.a.sceneSubState == 6 || this.a.sceneSubState == 7 || this.a.sceneSubState == 9) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
             return;
          }
 
-         if (this.a.l == 8) {
+         if (this.a.sceneSubState == 8) {
             this.canvas.touchAction = LoadingPage.b(var1, var2);
          }
       } else if (this.canvas.aq != null) {
@@ -1111,15 +1111,15 @@ public final class TouchController {
    }
 
    private void q(int var1, int var2) {
-      if (this.a.l != 0 && this.a.l != 1) {
-         if (this.a.l == 2 || this.a.l == 3 || this.a.l == 4 || this.a.l == 5 || this.a.l == 6) {
+      if (this.a.sceneSubState != 0 && this.a.sceneSubState != 1) {
+         if (this.a.sceneSubState == 2 || this.a.sceneSubState == 3 || this.a.sceneSubState == 4 || this.a.sceneSubState == 5 || this.a.sceneSubState == 6) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
          }
       } else if (this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
          this.canvas.aw = this.canvas.as.a;
          this.canvas.touchAction = this.a.d(this.canvas.touchAction, var1, var2);
-         if (this.canvas.touchAction == 0 && ao_1.aP.size() == 0) {
+         if (this.canvas.touchAction == 0 && UISceneController.aP.size() == 0) {
             this.canvas.touchAction = 1073741824;
          }
       }
@@ -1131,8 +1131,8 @@ public final class TouchController {
    }
 
    private void r(int var1, int var2) {
-      if (this.a.l != 6 && this.a.l != 7) {
-         if (this.a.l == 8) {
+      if (this.a.sceneSubState != 6 && this.a.sceneSubState != 7) {
+         if (this.a.sceneSubState == 8) {
             this.canvas.touchAction = LoadingPage.d(var1, var2);
          } else {
             this.canvas.touchAction = this.a.a(var1, var2);
@@ -1143,22 +1143,22 @@ public final class TouchController {
    }
 
    private void s(int var1, int var2) {
-      if (this.a.l != 0) {
-         if (this.a.l != 1 && this.a.l != 3 && this.a.l != 4 && this.a.l != 5 && this.a.l != 7 && this.a.l != 9 && this.a.l != 10) {
+      if (this.a.sceneSubState != 0) {
+         if (this.a.sceneSubState != 1 && this.a.sceneSubState != 3 && this.a.sceneSubState != 4 && this.a.sceneSubState != 5 && this.a.sceneSubState != 7 && this.a.sceneSubState != 9 && this.a.sceneSubState != 10) {
             return;
          }
 
-         if (this.a.m == 1 || this.a.m == 2) {
+         if (this.a.sceneSubMode == 1 || this.a.sceneSubMode == 2) {
             this.canvas.touchAction = LoadingPage.d(var1, var2);
             if (LoadingPage.e(var1, var2)) {
-               this.canvas.a((String)(this.a.m == 1 ? "请输入取出银两" : "请输入存入银两"), (int)2);
+               this.canvas.a((String)(this.a.sceneSubMode == 1 ? "请输入取出银两" : "请输入存入银两"), (int)2);
                return;
             }
 
             return;
          }
 
-         if (this.a.m == 3) {
+         if (this.a.sceneSubMode == 3) {
             this.canvas.touchAction = LoadingPage.d(var1, var2);
             if (LoadingPage.e(var1, var2)) {
                this.canvas.a((String)"请输入竞标银两", (int)2);
@@ -1168,12 +1168,12 @@ public final class TouchController {
             return;
          }
 
-         if (this.a.m == 4) {
+         if (this.a.sceneSubMode == 4) {
             this.canvas.touchAction = LoadingPage.d(var1, var2);
             return;
          }
 
-         if (this.a.m == 5 || this.a.m == 6) {
+         if (this.a.sceneSubMode == 5 || this.a.sceneSubMode == 6) {
             this.canvas.touchAction = LoadingPage.b(var1, var2);
             return;
          }
@@ -1199,26 +1199,26 @@ public final class TouchController {
    }
 
    private void u(int var1, int var2) {
-      if ((this.a.l == 0 || this.a.l == 1) && this.canvas.aq != null) {
+      if ((this.a.sceneSubState == 0 || this.a.sceneSubState == 1) && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
       }
 
    }
 
    private void v(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
-      } else if (this.a.l != 3 && this.a.l != 11) {
-         if (this.a.l == 1 || this.a.l == 2 || this.a.l == 5 || this.a.l == 6 || this.a.l == 8 || this.a.l == 9 || this.a.l == 10) {
+      } else if (this.a.sceneSubState != 3 && this.a.sceneSubState != 11) {
+         if (this.a.sceneSubState == 1 || this.a.sceneSubState == 2 || this.a.sceneSubState == 5 || this.a.sceneSubState == 6 || this.a.sceneSubState == 8 || this.a.sceneSubState == 9 || this.a.sceneSubState == 10) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
             return;
          }
 
-         if (this.a.l == 4 || this.a.l == 12) {
-            if (this.a.m == 1) {
+         if (this.a.sceneSubState == 4 || this.a.sceneSubState == 12) {
+            if (this.a.sceneSubMode == 1) {
                this.canvas.touchAction = this.a.T.b(var1, var2);
                return;
             }
@@ -1227,7 +1227,7 @@ public final class TouchController {
             return;
          }
 
-         if (this.a.l == 7) {
+         if (this.a.sceneSubState == 7) {
             this.canvas.touchAction = LoadingPage.d(var1, var2);
             if (LoadingPage.e(var1, var2)) {
                this.canvas.a((String)"请输入决斗金额", (int)2);
@@ -1248,18 +1248,18 @@ public final class TouchController {
    }
 
    private void x(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
       } else {
-         if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3 || this.a.l == 4 || this.a.l == 5 || this.a.l == 6 || this.a.l == 7 || this.a.l == 8 || this.a.l == 10) {
+         if (this.a.sceneSubState == 1 || this.a.sceneSubState == 2 || this.a.sceneSubState == 3 || this.a.sceneSubState == 4 || this.a.sceneSubState == 5 || this.a.sceneSubState == 6 || this.a.sceneSubState == 7 || this.a.sceneSubState == 8 || this.a.sceneSubState == 10) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
             return;
          }
 
-         if (this.a.l == 9) {
+         if (this.a.sceneSubState == 9) {
             this.canvas.touchAction = LoadingPage.b(var1, var2);
          }
       }
@@ -1267,10 +1267,10 @@ public final class TouchController {
    }
 
    private void y(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          this.canvas.touchAction = LoadingPage.a(var1, var2);
       } else {
-         if (this.a.l == 1) {
+         if (this.a.sceneSubState == 1) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
          }
 
@@ -1278,8 +1278,8 @@ public final class TouchController {
    }
 
    private void z(int var1, int var2) {
-      if (var1 >= this.a.ba.e - ao_1.h + this.a.g() && var1 <= this.a.ba.e - ao_1.h + this.a.g() + this.a.ba.a() && var2 >= this.a.ba.f -
-      ao_1.i + this.a.h() && var2 <= this.a.ba.f - ao_1.i + this.a.h() + this.a.ba.b()) {
+      if (var1 >= this.a.ba.e - UISceneController.h + this.a.g() && var1 <= this.a.ba.e - UISceneController.h + this.a.g() + this.a.ba.a() && var2 >= this.a.ba.f -
+      UISceneController.i + this.a.h() && var2 <= this.a.ba.f - UISceneController.i + this.a.h() + this.a.ba.b()) {
          this.c = 1;
          ++this.i;
          if (this.i >= 2 && this.k <= 30) {
@@ -1306,61 +1306,61 @@ public final class TouchController {
    }
 
    private void A(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
-      } else if (this.a.l == 1 || this.a.l == 2 || this.a.l == 3) {
+      } else if (this.a.sceneSubState == 1 || this.a.sceneSubState == 2 || this.a.sceneSubState == 3) {
          this.canvas.touchAction = LoadingPage.b(var1, var2);
       }
 
    }
 
    private void B(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
-      } else if (this.a.l == 1) {
+      } else if (this.a.sceneSubState == 1) {
          this.canvas.touchAction = LoadingPage.c(var1, var2);
       }
 
    }
 
    private void C(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
-      } else if (this.a.l == 1) {
+      } else if (this.a.sceneSubState == 1) {
          this.canvas.touchAction = LoadingPage.c(var1, var2);
       }
 
    }
 
    private void D(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
       }
 
    }
 
    private void E(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
       } else {
-         if (this.a.l == 1) {
+         if (this.a.sceneSubState == 1) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
             return;
          }
 
-         if (this.a.l == 2 && this.a.T != null) {
+         if (this.a.sceneSubState == 2 && this.a.T != null) {
             this.canvas.touchAction = this.a.T.b(var1, var2);
          }
       }
@@ -1368,33 +1368,33 @@ public final class TouchController {
    }
 
    private void F(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
       } else {
-         if (this.a.l == 1 || this.a.l == 2 || this.a.l == 5 || this.a.l == 6 || this.a.l == 7 || this.a.l == 8) {
+         if (this.a.sceneSubState == 1 || this.a.sceneSubState == 2 || this.a.sceneSubState == 5 || this.a.sceneSubState == 6 || this.a.sceneSubState == 7 || this.a.sceneSubState == 8) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
             return;
          }
 
-         if (this.a.l == 3) {
+         if (this.a.sceneSubState == 3) {
             this.canvas.touchAction = this.a.T.b(var1, var2);
             return;
          }
 
-         if (this.a.l == 4) {
-            if (this.a.m == 0) {
+         if (this.a.sceneSubState == 4) {
+            if (this.a.sceneSubMode == 0) {
                this.canvas.touchAction = this.a.c(var1, var2);
                return;
             }
 
-            if (this.a.m == 1) {
+            if (this.a.sceneSubMode == 1) {
                this.canvas.touchAction = this.a.T.b(var1, var2);
                return;
             }
-         } else if (this.a.l == 9) {
+         } else if (this.a.sceneSubState == 9) {
             this.canvas.touchAction = LoadingPage.b(var1, var2);
          }
       }
@@ -1402,23 +1402,23 @@ public final class TouchController {
    }
 
    private void G(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
       } else {
-         if (this.a.l == 1) {
+         if (this.a.sceneSubState == 1) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
             return;
          }
 
-         if (this.a.l == 2) {
+         if (this.a.sceneSubState == 2) {
             if (this.canvas.aq != null) {
                this.canvas.touchAction = this.canvas.aq.b(var1, var2);
                return;
             }
-         } else if (this.a.l == 3) {
+         } else if (this.a.sceneSubState == 3) {
             this.canvas.touchAction = LoadingPage.b(var1, var2);
          }
       }
@@ -1426,48 +1426,48 @@ public final class TouchController {
    }
 
    private void H(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
       }
 
    }
 
    private void I(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
-      } else if (this.a.l == 1) {
+      } else if (this.a.sceneSubState == 1) {
          this.canvas.touchAction = LoadingPage.d(var1, var2);
          if (LoadingPage.e(var1, var2)) {
             this.canvas.a((String)"捐献银两数量", (int)2);
             return;
          }
-      } else if (this.a.l == 2) {
+      } else if (this.a.sceneSubState == 2) {
          this.canvas.touchAction = LoadingPage.d(var1, var2);
          if (LoadingPage.e(var1, var2)) {
             this.canvas.a((String)"捐献经验数量", (int)2);
             return;
          }
-      } else if (this.a.l == 5) {
+      } else if (this.a.sceneSubState == 5) {
          this.canvas.touchAction = LoadingPage.d(var1, var2);
          if (LoadingPage.e(var1, var2)) {
             this.canvas.a((String)"取出银两数量", (int)2);
             return;
          }
       } else {
-         if (this.a.l != 3 && this.a.l != 4) {
-            if (this.a.l != 6 && this.a.l != 7) {
+         if (this.a.sceneSubState != 3 && this.a.sceneSubState != 4) {
+            if (this.a.sceneSubState != 6 && this.a.sceneSubState != 7) {
                return;
             }
          } else {
-            if (this.a.m == 0) {
+            if (this.a.sceneSubMode == 0) {
                this.canvas.touchAction = LoadingPage.d(var1, var2);
                return;
             }
 
-            if (this.a.m != 1) {
+            if (this.a.sceneSubMode != 1) {
                return;
             }
          }
@@ -1478,7 +1478,7 @@ public final class TouchController {
    }
 
    private void J(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          MainCanvas var10000;
          int var10001;
          label54: {
@@ -1517,30 +1517,30 @@ public final class TouchController {
    }
 
    private void K(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
-      } else if (this.a.l == 1 || this.a.l == 2) {
+      } else if (this.a.sceneSubState == 1 || this.a.sceneSubState == 2) {
          this.canvas.touchAction = LoadingPage.c(var1, var2);
       }
 
    }
 
    private void L(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
       } else {
-         if (this.a.l == 1) {
+         if (this.a.sceneSubState == 1) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
             return;
          }
 
-         if (this.a.l == 2) {
+         if (this.a.sceneSubState == 2) {
             this.canvas.touchAction = LoadingPage.d(var1, var2);
          }
       }
@@ -1548,14 +1548,14 @@ public final class TouchController {
    }
 
    private void M(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
       }
 
    }
 
    private void N(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
          this.a.r(this.canvas.touchAction);
          this.canvas.touchAction = 0;
@@ -1564,7 +1564,7 @@ public final class TouchController {
    }
 
    private void O(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
          this.a.q(this.canvas.touchAction);
          this.canvas.touchAction = 0;
@@ -1573,23 +1573,23 @@ public final class TouchController {
    }
 
    private void P(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
       } else {
-         if (this.a.l == 1 || this.a.l == 2) {
+         if (this.a.sceneSubState == 1 || this.a.sceneSubState == 2) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
             return;
          }
 
-         if (this.a.l == 3 || this.a.l == 5) {
+         if (this.a.sceneSubState == 3 || this.a.sceneSubState == 5) {
             this.canvas.touchAction = LoadingPage.b(var1, var2);
             return;
          }
 
-         if (this.a.l == 4) {
+         if (this.a.sceneSubState == 4) {
             this.canvas.touchAction = LoadingPage.d(var1, var2);
             if (LoadingPage.e(var1, var2)) {
                this.canvas.a((String)"拍卖价格", (int)2);
@@ -1600,18 +1600,18 @@ public final class TouchController {
    }
 
    private void Q(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
       } else {
-         if (this.a.l == 1 || this.a.l == 2) {
+         if (this.a.sceneSubState == 1 || this.a.sceneSubState == 2) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
             return;
          }
 
-         if (this.a.l == 3) {
+         if (this.a.sceneSubState == 3) {
             this.canvas.touchAction = LoadingPage.b(var1, var2);
          }
       }
@@ -1619,14 +1619,14 @@ public final class TouchController {
    }
 
    private void R(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          this.canvas.touchAction = LoadingPage.b(var1, var2);
       }
 
    }
 
    private void S(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
       }
 
@@ -1634,11 +1634,11 @@ public final class TouchController {
 
    public final void a() {
       if (this.a != null) {
-         switch (this.a.k) {
+         switch (this.a.currentSceneModeId) {
             case 0:
                if (this.d != 0) {
-                  this.g = this.a.I.j - ao_1.h + this.a.g() + 8;
-                  this.h = this.a.I.k - ao_1.i + this.a.h() + 16;
+                  this.g = this.a.sceneRefreshCoordinator.j - UISceneController.h + this.a.g() + 8;
+                  this.h = this.a.sceneRefreshCoordinator.k - UISceneController.i + this.a.h() + 16;
                   if ((this.canvas.aF > this.g ? this.canvas.aF - this.g : this.g - this.canvas.aF) > 4) {
                      if (this.canvas.aF >= this.g) {
                         this.canvas.b = 2;
@@ -1661,8 +1661,8 @@ public final class TouchController {
                break;
             case 39:
                if (this.d == 1) {
-                  this.g = this.a.ba.e - ao_1.h + this.a.g() + this.a.ba.a() / 2;
-                  this.h = this.a.ba.f - ao_1.i + this.a.h() + this.a.ba.b() / 2;
+                  this.g = this.a.ba.e - UISceneController.h + this.a.g() + this.a.ba.a() / 2;
+                  this.h = this.a.ba.f - UISceneController.i + this.a.h() + this.a.ba.b() / 2;
                   if ((this.canvas.aF > this.g ? this.canvas.aF - this.g : this.g - this.canvas.aF) > 4) {
                      if (this.canvas.aF >= this.g) {
                         this.canvas.b = 2;
@@ -1700,26 +1700,26 @@ public final class TouchController {
    }
 
    private void T(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
       }
 
    }
 
    private void U(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             this.canvas.touchAction = this.a.O.a(this.canvas.touchAction, var1, var2);
             return;
          }
       } else {
-         if (this.a.l == 1 || this.a.l == 2) {
+         if (this.a.sceneSubState == 1 || this.a.sceneSubState == 2) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
             return;
          }
 
-         if (this.a.l == 3) {
+         if (this.a.sceneSubState == 3) {
             this.canvas.touchAction = LoadingPage.b(var1, var2);
          }
       }
@@ -1734,14 +1734,14 @@ public final class TouchController {
    }
 
    private void W(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
       }
 
    }
 
    private void X(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             int var8;
             MainCanvas var10000;
@@ -1775,27 +1775,27 @@ public final class TouchController {
             var10000.touchAction = var8;
             return;
          }
-      } else if (this.a.l == 1) {
+      } else if (this.a.sceneSubState == 1) {
          this.canvas.touchAction = LoadingPage.c(var1, var2);
       }
 
    }
 
    private void Y(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             this.canvas.touchAction = this.a.O.b(this.canvas.touchAction, var1, var2);
             return;
          }
-      } else if (this.a.l == 1) {
+      } else if (this.a.sceneSubState == 1) {
          this.canvas.touchAction = LoadingPage.c(var1, var2);
       }
 
    }
 
    private void Z(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             int var8;
             MainCanvas var10000;
@@ -1842,14 +1842,14 @@ public final class TouchController {
             var10000.touchAction = var8;
             return;
          }
-      } else if (this.a.l == 1) {
+      } else if (this.a.sceneSubState == 1) {
          this.canvas.touchAction = LoadingPage.c(var1, var2);
       }
 
    }
 
    private void aa(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             int var8;
             MainCanvas var10000;
@@ -1892,26 +1892,26 @@ public final class TouchController {
             var10000.touchAction = var8;
             return;
          }
-      } else if (this.a.l == 1) {
+      } else if (this.a.sceneSubState == 1) {
          this.canvas.touchAction = LoadingPage.c(var1, var2);
       }
 
    }
 
    private void ab(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
       }
 
    }
 
    private void ac(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
-      } else if (this.a.l == 1) {
+      } else if (this.a.sceneSubState == 1) {
          this.canvas.touchAction = LoadingPage.d(var1, var2);
       }
 
@@ -1925,18 +1925,18 @@ public final class TouchController {
    }
 
    private void ae(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
       } else {
-         if (this.a.l == 1) {
+         if (this.a.sceneSubState == 1) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
             return;
          }
 
-         if (this.a.l == 2 && this.canvas.aq != null) {
+         if (this.a.sceneSubState == 2 && this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
          }
       }
@@ -1944,7 +1944,7 @@ public final class TouchController {
    }
 
    private void af(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
          int var3 = this.canvas.aq.a + 5;
          int var4 = this.canvas.aq.b + this.canvas.aq.d - (2 * GlobalConfig.j + 16) - 6;
@@ -1964,7 +1964,7 @@ public final class TouchController {
    }
 
    private void ag(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
          int var3 = this.canvas.aq.a + 5;
          int var4 = this.canvas.aq.b + this.canvas.aq.d - (2 * GlobalConfig.j + 16) - 6;
@@ -1984,14 +1984,14 @@ public final class TouchController {
    }
 
    private void ah(int var1, int var2) {
-      if (this.a.l == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
       }
 
    }
 
    private void ai(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          this.canvas.touchAction = LoadingPage.a(var1, var2);
       }
 
@@ -2012,10 +2012,10 @@ public final class TouchController {
    }
 
    private void al(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          this.canvas.touchAction = LoadingPage.c(var1, var2);
       } else {
-         if (this.a.l == 1) {
+         if (this.a.sceneSubState == 1) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
          }
 
@@ -2023,12 +2023,12 @@ public final class TouchController {
    }
 
    private void am(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
-      } else if (this.a.l == 1 || this.a.l == 2) {
+      } else if (this.a.sceneSubState == 1 || this.a.sceneSubState == 2) {
          this.canvas.touchAction = LoadingPage.c(var1, var2);
       }
 
@@ -2049,7 +2049,7 @@ public final class TouchController {
    }
 
    private void ap(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          this.canvas.touchAction = this.a.f(var1, var2);
          if (this.canvas.touchAction == 0) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
@@ -2062,8 +2062,8 @@ public final class TouchController {
    }
 
    private void aq(int var1, int var2) {
-      if (this.a.l != 0 && this.a.l != 1) {
-         if (this.a.l == 2 || this.a.l == 3) {
+      if (this.a.sceneSubState != 0 && this.a.sceneSubState != 1) {
+         if (this.a.sceneSubState == 2 || this.a.sceneSubState == 3) {
             this.canvas.touchAction = LoadingPage.b(var1, var2);
          }
       } else if (this.canvas.aq != null) {
@@ -2082,12 +2082,12 @@ public final class TouchController {
    }
 
    private void at(int var1, int var2) {
-      if (this.a.l == 0) {
+      if (this.a.sceneSubState == 0) {
          if (this.canvas.aq != null) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             return;
          }
-      } else if (this.a.l == 1) {
+      } else if (this.a.sceneSubState == 1) {
          this.canvas.touchAction = LoadingPage.c(var1, var2);
       }
 
@@ -2095,7 +2095,7 @@ public final class TouchController {
 
    private void au(int var1, int var2) {
       if (this.canvas.aq != null) {
-         if (this.a.l == 0) {
+         if (this.a.sceneSubState == 0) {
             this.canvas.touchAction = this.canvas.aq.b(var1, var2);
             if (this.a.N.a == 0) {
                this.canvas.touchAction = this.a.N.a(this.canvas.touchAction, var1, var2);
@@ -2107,17 +2107,17 @@ public final class TouchController {
                return;
             }
          } else {
-            if (this.a.l == 1) {
+            if (this.a.sceneSubState == 1) {
                this.canvas.touchAction = LoadingPage.c(var1, var2);
                return;
             }
 
-            if (this.a.l == 2) {
+            if (this.a.sceneSubState == 2) {
                this.canvas.touchAction = LoadingPage.b(var1, var2);
                return;
             }
 
-            if (this.a.l == 3) {
+            if (this.a.sceneSubState == 3) {
                this.canvas.touchAction = this.a.T.b(var1, var2);
             }
          }

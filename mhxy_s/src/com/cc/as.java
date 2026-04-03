@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
 public final class as {
-   private ao_1 b;
+   private UISceneController b;
    public MainCanvas a;
    private static int c;
    private static short d;
@@ -24,7 +24,7 @@ public final class as {
    private int o;
    private int[][] p;
 
-   public as(ao_1 var1, MainCanvas var2, PngUtil var3) {
+   public as(UISceneController var1, MainCanvas var2, PngUtil var3) {
       this.b = var1;
       this.a = var2;
    }
@@ -117,9 +117,9 @@ public final class as {
       this.a.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.b();
       LoadingPage.l = 0;
-      this.b.l = 0;
+      this.b.sceneSubState = 0;
       this.a.touchPageCase = this.a.k;
-      this.b.j = this.b.k = 102;
+      this.b.sceneStateShadow = this.b.currentSceneModeId = 102;
    }
 
    private void a() {
@@ -138,7 +138,7 @@ public final class as {
    }
 
    public final void a(int var1) {
-      if (this.b.l == 0 && this.a.aq != null) {
+      if (this.b.sceneSubState == 0 && this.a.aq != null) {
          this.a.aq.b(var1);
       }
 
@@ -164,7 +164,7 @@ public final class as {
    }
 
    public final void a(Graphics var1) {
-      if (this.b.l == 0 && this.a.aq != null) {
+      if (this.b.sceneSubState == 0 && this.a.aq != null) {
          this.a.aq.a(var1);
       }
 

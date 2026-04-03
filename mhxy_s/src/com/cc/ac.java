@@ -212,12 +212,12 @@ public final class ac extends ar {
          }
 
          if (GlobalStatus.bs == 1) {
-            var2.a(var1, ao_1.y, (int[])null, (aj)null, var3, var4, super.j + 8 - GlobalConfig.i.stringWidth(this.w) / 2 - ao_1.y.b, super.k - GlobalConfig.j- 18, 20, 0);
+            var2.a(var1, UISceneController.y, (int[])null, (aj)null, var3, var4, super.j + 8 - GlobalConfig.i.stringWidth(this.w) / 2 - UISceneController.y.b, super.k - GlobalConfig.j- 18, 20, 0);
             return;
          }
 
          if (GlobalStatus.bs == 0) {
-            var2.a(var1, ao_1.z, (int[])null, (aj)null, var3, var4, super.j + 8 - GlobalConfig.i.stringWidth(this.w) / 2 - ao_1.z.b, super.k - GlobalConfig.j- 18, 20, 0);
+            var2.a(var1, UISceneController.z, (int[])null, (aj)null, var3, var4, super.j + 8 - GlobalConfig.i.stringWidth(this.w) / 2 - UISceneController.z.b, super.k - GlobalConfig.j- 18, 20, 0);
          }
       }
 

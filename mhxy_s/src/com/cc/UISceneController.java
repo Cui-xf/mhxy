@@ -10,25 +10,37 @@ import javax.microedition.lcdui.Image;
 import java.io.IOException;
 import java.util.Vector;
 
-public final class ao_1 {
-    public static short a = 176;
-    public static short b = 208;
+/**
+ * 核心游戏场景与界面状态机：地图/战斗/商店/对话等子界面均在此调度，并与 {@link MainCanvas}、{@link GlobalStatus}、网络包联动。
+ * English: core gameplay & UI scene controller (world/battle/menus).
+ */
+public final class UISceneController {
+    /** 逻辑绘制区宽度（随分辨率缩放） | English: gameViewportWidth */
+    public static short gameViewportWidth = 176;
+    /** 逻辑绘制区高度（随分辨率缩放） | English: gameViewportHeight */
+    public static short gameViewportHeight = 208;
     public boolean c = false;
     public byte d = -1;
     private byte bi = -1;
-    public MainCanvas e;
+    /** 所属主画布引用 | English: mainCanvasRef */
+    public MainCanvas mainCanvasRef;
     public aw f;
-    public bq_1 g;
+    /** 顶层弹层/对话控制器（如异常提示、等待他人操作） | English: overlayDialogController */
+    public bq_1 overlayDialogController;
     private Vector bj = new Vector();
     private static Vector bk = new Vector();
     private static Vector bl = new Vector();
     private static Vector bm = new Vector();
     public static int h;
     public static int i;
-    public short j;
-    public short k;
-    public short l;
-    public short m;
+    /** 子界面状态，常与 {@link #currentSceneModeId} 同步（网络/切场景时成对赋值） | English: sceneStateShadow */
+    public short sceneStateShadow;
+    /** 当前子界面/玩法状态码（0 大地图、2 某功能页、25 战斗相关、37 存银两等，需结合分支阅读） | English: currentSceneModeId */
+    public short currentSceneModeId;
+    /** 子状态或分页（与具体界面实现绑定） | English: sceneSubState */
+    public short sceneSubState;
+    /** 子状态或分页（与具体界面实现绑定） | English: sceneSubMode */
+    public short sceneSubMode;
     public boolean n = false;
     public static short o = 0;
     public static short p = 0;
@@ -55,7 +67,8 @@ public final class ao_1 {
     public static Frame0 F;
     public static Frame0 G;
     public static Frame0 H;
-    public ac I;
+    /** 战斗/场景内刷新与绘制调度（调用其 {@code a()} 触发重算或重绘） | English: sceneRefreshCoordinator */
+    public ac sceneRefreshCoordinator;
     public String J = null;
     private short bs = 0;
     private long bt;
@@ -242,14 +255,14 @@ public final class ao_1 {
     private boolean du;
     private TextRender dv;
 
-    public ao_1(MainCanvas var1, PngUtil var2) {
-        this.e = var1;
-        this.M = new aq(this, this.e);
-        this.O = new o_1(this, this.e, var2);
-        this.S = new v_1(this, this.e);
-        this.U = new as(this, this.e, var2);
-        this.V = new ch(this, this.e, var2);
-        this.W = new cg_1(this, this.e, var2);
+    public UISceneController(MainCanvas var1, PngUtil var2) {
+        this.mainCanvasRef = var1;
+        this.M = new aq(this, this.mainCanvasRef);
+        this.O = new o_1(this, this.mainCanvasRef, var2);
+        this.S = new v_1(this, this.mainCanvasRef);
+        this.U = new as(this, this.mainCanvasRef, var2);
+        this.V = new ch(this, this.mainCanvasRef, var2);
+        this.W = new cg_1(this, this.mainCanvasRef, var2);
         this.X = new ab_1(this);
         if (GlobalStatus.bu) {
             GlobalStatus.bu = false;
@@ -263,50 +276,50 @@ public final class ao_1 {
         this.bw = new l_1();
         this.j();
         GlobalStatus.a = false;
-        this.e.p = true;
+        this.mainCanvasRef.p = true;
         this.d = -1;
-        this.e.clear();
-        this.e.k();
-        this.e.clear();
+        this.mainCanvasRef.clear();
+        this.mainCanvasRef.k();
+        this.mainCanvasRef.clear();
         this.aY = 0L;
         GlobalStatus.as = -1;
         this.ar();
-        this.e.clear();
+        this.mainCanvasRef.clear();
         this.ao();
-        this.e.clear();
+        this.mainCanvasRef.clear();
         MainCanvas.af.e("-1000");
         MainCanvas.af.e("103");
-        this.e.clear();
+        this.mainCanvasRef.clear();
         this.aq();
-        this.e.clear();
+        this.mainCanvasRef.clear();
         this.U();
-        this.e.clear();
+        this.mainCanvasRef.clear();
         GlobalConfig.a(GlobalStatus.ax, GlobalStatus.aj, (byte) 3, 1, false);
-        this.I = new ac();
-        this.I.a(GlobalStatus.at, GlobalStatus.au);
-        MainCanvas.f.a(this.g(), this.h(), GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-        this.e.clear();
+        this.sceneRefreshCoordinator = new ac();
+        this.sceneRefreshCoordinator.a(GlobalStatus.at, GlobalStatus.au);
+        MainCanvas.pngUtil.a(this.g(), this.h(), GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
+        this.mainCanvasRef.clear();
         this.as();
-        if (this.I.d != null) {
-            this.I.d.h = this.I.j;
-            this.I.d.i = this.I.k;
+        if (this.sceneRefreshCoordinator.d != null) {
+            this.sceneRefreshCoordinator.d.h = this.sceneRefreshCoordinator.j;
+            this.sceneRefreshCoordinator.d.i = this.sceneRefreshCoordinator.k;
         }
 
-        this.e.clear();
+        this.mainCanvasRef.clear();
         GlobalStatus.E();
         this.aO.removeAllElements();
         this.Y = GlobalStatus.ar;
-        this.e.clear();
+        this.mainCanvasRef.clear();
         this.N();
-        this.e.touchPageCase = this.e.k = 7;
-        this.e.p = false;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k = 7;
+        this.mainCanvasRef.p = false;
     }
 
     public final void a() {
-        if (!this.e.p) {
-            if (this.k == 25 && aW[5] != 0) {
+        if (!this.mainCanvasRef.p) {
+            if (this.currentSceneModeId == 25 && aW[5] != 0) {
                 this.cE = 0L;
-            } else if (this.k != 0 && this.k != 25) {
+            } else if (this.currentSceneModeId != 0 && this.currentSceneModeId != 25) {
                 this.cE = 0L;
             } else if (this.cE != 0L && this.cD.size() != 0) {
                 if (System.currentTimeMillis() - this.cE > 1000L) {
@@ -319,61 +332,61 @@ public final class ao_1 {
                 this.cE = System.currentTimeMillis();
             }
 
-            if (this.k != 0) {
+            if (this.currentSceneModeId != 0) {
                 this.d = -1;
             }
 
-            if (this.k != this.bx) {
-                this.bx = this.k;
+            if (this.currentSceneModeId != this.bx) {
+                this.bx = this.currentSceneModeId;
             }
 
             label986:
-            switch (this.k) {
+            switch (this.currentSceneModeId) {
                 case 0:
                     if (this.J == null) {
-                        if (GlobalConfig.o && this.e.touchController != null) {
-                            this.e.touchController.a();
+                        if (GlobalConfig.o && this.mainCanvasRef.touchController != null) {
+                            this.mainCanvasRef.touchController.a();
                             TouchController var12;
-                            if ((var12 = this.e.touchController).d != 1 && var12.canvas.b == 0) {
-                                if (!var12.a.I.c.isEmpty()) {
-                                    var12.a.I.j();
+                            if ((var12 = this.mainCanvasRef.touchController).d != 1 && var12.canvas.b == 0) {
+                                if (!var12.a.sceneRefreshCoordinator.c.isEmpty()) {
+                                    var12.a.sceneRefreshCoordinator.j();
                                 }
-                            } else if (!var12.a.I.c.isEmpty()) {
-                                var12.a.I.c.removeAllElements();
-                                var12.a.I.a(false);
+                            } else if (!var12.a.sceneRefreshCoordinator.c.isEmpty()) {
+                                var12.a.sceneRefreshCoordinator.c.removeAllElements();
+                                var12.a.sceneRefreshCoordinator.a(false);
                             }
                         } else if (GlobalStatus.E == 1) {
-                            if (this.I != null && this.I.c != null && !this.I.c.isEmpty()) {
-                                if (this.e.b != 0) {
-                                    this.I.c.removeAllElements();
-                                    this.I.a(false);
+                            if (this.sceneRefreshCoordinator != null && this.sceneRefreshCoordinator.c != null && !this.sceneRefreshCoordinator.c.isEmpty()) {
+                                if (this.mainCanvasRef.b != 0) {
+                                    this.sceneRefreshCoordinator.c.removeAllElements();
+                                    this.sceneRefreshCoordinator.a(false);
                                 } else {
-                                    this.I.j();
+                                    this.sceneRefreshCoordinator.j();
                                 }
                             }
-                        } else if (GlobalStatus.bu && this.I != null && this.I.c != null && !this.I.c.isEmpty()) {
-                            this.I.j();
+                        } else if (GlobalStatus.bu && this.sceneRefreshCoordinator != null && this.sceneRefreshCoordinator.c != null && !this.sceneRefreshCoordinator.c.isEmpty()) {
+                            this.sceneRefreshCoordinator.j();
                         }
 
                         if (!GlobalStatus.bu) {
-                            if (GlobalStatus.lt[0] != -1 && MainCanvas.e != null) {
-                                MainCanvas.e.e((byte) 0);
+                            if (GlobalStatus.lt[0] != -1 && MainCanvas.uiSceneController != null) {
+                                MainCanvas.uiSceneController.e((byte) 0);
                                 GlobalStatus.lt[0] = -1;
                             }
 
-                            if (GlobalStatus.lt[1] != -1 && MainCanvas.e != null) {
-                                MainCanvas.e.c((byte) 0);
+                            if (GlobalStatus.lt[1] != -1 && MainCanvas.uiSceneController != null) {
+                                MainCanvas.uiSceneController.c((byte) 0);
                                 GlobalStatus.lt[1] = -1;
                             }
 
-                            if (this.k != 18 && !this.c && GlobalStatus.Q != null && GlobalStatus.Q.b.length() > 0) {
-                                this.e.av.b();
-                                GlobalStatus.Q.a(this.e.av);
+                            if (this.currentSceneModeId != 18 && !this.c && GlobalStatus.Q != null && GlobalStatus.Q.b.length() > 0) {
+                                this.mainCanvasRef.av.b();
+                                GlobalStatus.Q.a(this.mainCanvasRef.av);
                                 GlobalStatus.Q.a();
                                 GlobalStatus.Q.b();
-                                this.j = MainCanvas.e.k;
-                                this.k = 111;
-                                this.e.touchPageCase = this.e.k;
+                                this.sceneStateShadow = MainCanvas.uiSceneController.currentSceneModeId;
+                                this.currentSceneModeId = 111;
+                                this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
                             }
 
                             String var13;
@@ -383,12 +396,12 @@ public final class ao_1 {
                         }
                     }
 
-                    this.a(this.e.touchAction);
+                    this.a(this.mainCanvasRef.touchAction);
                     break;
                 case 1:
-                    int var20 = this.e.touchAction;
-                    if (this.l != 0 && this.l != 2 && this.l != 3 && this.l != 4 && this.l != 5 && this.l != 9 && this.l != 19 && this.l != 20) {
-                        if (this.l == 1) {
+                    int var20 = this.mainCanvasRef.touchAction;
+                    if (this.sceneSubState != 0 && this.sceneSubState != 2 && this.sceneSubState != 3 && this.sceneSubState != 4 && this.sceneSubState != 5 && this.sceneSubState != 9 && this.sceneSubState != 19 && this.sceneSubState != 20) {
+                        if (this.sceneSubState == 1) {
                             if (var20 == 8) {
                                 this.c(this.bB - 1);
                             } else if (var20 == 2) {
@@ -403,25 +416,25 @@ public final class ao_1 {
                                         if (GlobalStatus.q != null) {
                                             this.aN();
                                         } else {
-                                            this.e.processException("没有加入队伍");
+                                            this.mainCanvasRef.processException("没有加入队伍");
                                         }
                                         break label986;
                                     case 1:
                                         this.aS();
                                 }
                             }
-                        } else if (this.l == 6) {
+                        } else if (this.sceneSubState == 6) {
                             if (var20 != 268435456 && var20 != 1073741824) {
                                 if (var20 == 536870912) {
-                                    this.l = 2;
+                                    this.sceneSubState = 2;
                                 }
                             } else {
                                 this.M.d();
                             }
-                        } else if (this.l == 7) {
+                        } else if (this.sceneSubState == 7) {
                             if (var20 != 268435456 && var20 != 1073741824) {
                                 if (var20 == 536870912) {
-                                    this.l = 5;
+                                    this.sceneSubState = 5;
                                 }
                             } else {
                                 boolean var50 = true;
@@ -429,19 +442,19 @@ public final class ao_1 {
                                 if ((var25 = NetPayloadBuilder.e((short) 4352, GlobalStatus.ad, (byte) 1)) != null) {
                                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4352, var25));
                                     this.N();
-                                    this.e.a((String) null);
+                                    this.mainCanvasRef.a((String) null);
                                 } else {
-                                    this.e.processException("获取上传指令数据错误!");
+                                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                                 }
                             }
-                        } else if (this.l == 8) {
+                        } else if (this.sceneSubState == 8) {
                             this.b(var20);
                             if (var20 != 268435456 && var20 != 1073741824 && var20 != 517) {
                                 if (var20 == 536870912) {
-                                    this.l = 9;
+                                    this.sceneSubState = 9;
                                 }
                             } else {
-                                this.l = 9;
+                                this.sceneSubState = 9;
                             }
                         }
                     } else if (var20 != 1 && var20 != 514) {
@@ -450,7 +463,7 @@ public final class ao_1 {
                                 if (var20 != 2 && var20 != 518) {
                                     if (var20 != 268435456 && var20 != 1073741824 && var20 != 517) {
                                         if (var20 == 536870912) {
-                                            switch (this.l) {
+                                            switch (this.sceneSubState) {
                                                 case 0:
                                                     this.N();
                                                 case 1:
@@ -498,10 +511,10 @@ public final class ao_1 {
                                             }
                                         }
                                     } else {
-                                        switch (this.l) {
+                                        switch (this.sceneSubState) {
                                             case 0:
                                                 int var49 = this.bB;
-                                                if (this.l == 0) {
+                                                if (this.sceneSubState == 0) {
                                                     this.c(var49);
                                                     switch (var49) {
                                                         case 0:
@@ -509,7 +522,7 @@ public final class ao_1 {
                                                             break label986;
                                                         case 1:
                                                             if (!GlobalStatus.jv) {
-                                                                this.e.processException("商城暂时关闭");
+                                                                this.mainCanvasRef.processException("商城暂时关闭");
                                                             } else {
                                                                 this.aw();
                                                             }
@@ -519,7 +532,7 @@ public final class ao_1 {
                                                             break label986;
                                                         case 3:
                                                             if (GlobalStatus.bR == null && GlobalStatus.bL == null) {
-                                                                this.e.processException("当前没有任务");
+                                                                this.mainCanvasRef.processException("当前没有任务");
                                                             } else {
                                                                 this.x();
                                                             }
@@ -537,7 +550,7 @@ public final class ao_1 {
                                                             if (GlobalStatus.fA != null) {
                                                                 this.j((int) 0);
                                                             } else {
-                                                                this.e.processException("您没有宠物！");
+                                                                this.mainCanvasRef.processException("您没有宠物！");
                                                             }
                                                             break label986;
                                                         case 8:
@@ -567,7 +580,7 @@ public final class ao_1 {
                                                 break label986;
                                             case 2:
                                                 int var48 = this.bB;
-                                                if (this.l == 2) {
+                                                if (this.sceneSubState == 2) {
                                                     this.c(var48);
                                                     switch (var48) {
                                                         case 0:
@@ -585,14 +598,14 @@ public final class ao_1 {
                                                             this.M.j(0);
                                                             break label986;
                                                         case 4:
-                                                            this.l = 6;
+                                                            this.sceneSubState = 6;
                                                             LoadingPage.h = 0;
                                                     }
                                                 }
                                                 break label986;
                                             case 3:
                                                 int var47 = this.bB;
-                                                if (this.l == 3) {
+                                                if (this.sceneSubState == 3) {
                                                     this.c(var47);
                                                     switch (var47) {
                                                         case 0:
@@ -602,7 +615,7 @@ public final class ao_1 {
                                                             if (GlobalStatus.dv != null && GlobalStatus.dv.length > 0) {
                                                                 this.h((int) 0);
                                                             } else {
-                                                                this.e.processException("没有技能");
+                                                                this.mainCanvasRef.processException("没有技能");
                                                             }
                                                             break label986;
                                                         case 2:
@@ -625,9 +638,9 @@ public final class ao_1 {
                                                             byte[] var11;
                                                             if ((var11 = NetPayloadBuilder.A((short) 4254, var10)) != null) {
                                                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4254, var11));
-                                                                this.e.a((String) null);
+                                                                this.mainCanvasRef.a((String) null);
                                                             } else {
-                                                                this.e.processException("获取上传指令数据错误!");
+                                                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                                                             }
                                                             break label986;
                                                         case 8:
@@ -635,9 +648,9 @@ public final class ao_1 {
                                                                 byte[] var9;
                                                                 if ((var9 = NetPayloadBuilder.w((short) 4653, GlobalStatus.ad)) != null) {
                                                                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4653, var9));
-                                                                    this.e.a((String) null);
+                                                                    this.mainCanvasRef.a((String) null);
                                                                 } else {
-                                                                    this.e.processException("获取上传指令数据错误!");
+                                                                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                                                                 }
                                                             } else {
                                                                 this.af();
@@ -647,21 +660,21 @@ public final class ao_1 {
                                                 break label986;
                                             case 4:
                                                 int var46 = this.bB;
-                                                if (this.l == 4) {
+                                                if (this.sceneSubState == 4) {
                                                     if (var46 == 0) {
                                                         this.c(var46);
                                                         byte[] var24;
                                                         if ((var24 = NetPayloadBuilder.a((short) 4648, (byte) ((byte) var46), GlobalStatus.ad)) != null) {
                                                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4648, var24));
-                                                            this.e.a((String) null);
+                                                            this.mainCanvasRef.a((String) null);
                                                         } else {
-                                                            this.e.processException("获取上传指令数据错误!");
+                                                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                                                         }
                                                     } else if (GlobalConfig.channel == 0) {
                                                         this.c(var46);
                                                         switch (var46) {
                                                             case 1:
-                                                                this.e.processException("此功能暂时不开放！");
+                                                                this.mainCanvasRef.processException("此功能暂时不开放！");
                                                                 break label986;
                                                             case 2:
                                                                 this.aX();
@@ -672,8 +685,8 @@ public final class ao_1 {
                                                                 }
 
                                                                 this.c((int) 0);
-                                                                this.l = 9;
-                                                                this.j = this.k = 1;
+                                                                this.sceneSubState = 9;
+                                                                this.sceneStateShadow = this.currentSceneModeId = 1;
                                                                 break label986;
                                                             case 4:
                                                                 this.az();
@@ -688,15 +701,15 @@ public final class ao_1 {
                                                                 if (GlobalStatus.jy == 1) {
                                                                     c_3.g();
                                                                 } else {
-                                                                    this.e.processException("充值功能暂时关闭");
+                                                                    this.mainCanvasRef.processException("充值功能暂时关闭");
                                                                 }
                                                                 break label986;
                                                             case 3:
                                                                 if (this.ay()) {
                                                                     if (GlobalStatus.jx == 1) {
-                                                                        c_3.a(this.e, "1", (short) 101, 1);
+                                                                        c_3.a(this.mainCanvasRef, "1", (short) 101, 1);
                                                                     } else {
-                                                                        this.e.processException("换豆功能暂时关闭");
+                                                                        this.mainCanvasRef.processException("换豆功能暂时关闭");
                                                                     }
                                                                 }
                                                                 break label986;
@@ -713,7 +726,7 @@ public final class ao_1 {
                                                 break label986;
                                             case 5:
                                                 int var45 = this.bB;
-                                                if (this.l == 5) {
+                                                if (this.sceneSubState == 5) {
                                                     this.c(var45);
                                                     switch (var45) {
                                                         case 0:
@@ -726,36 +739,36 @@ public final class ao_1 {
                                                             if ((var23 = NetPayloadBuilder.y((short) 4659, GlobalStatus.ad)) != null) {
                                                                 NetPacket var8 = new NetPacket((short) 4659, var23);
                                                                 MainCanvas.netUtils.sendPacket(var8);
-                                                                this.e.a((String) null);
+                                                                this.mainCanvasRef.a((String) null);
                                                             } else {
-                                                                this.e.processException("获取上传指令数据错误!");
+                                                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                                                             }
                                                             break label986;
                                                         case 3:
                                                             if (GlobalStatus.bs == 0) {
-                                                                this.e.processException("队员不能使用");
+                                                                this.mainCanvasRef.processException("队员不能使用");
                                                             } else {
                                                                 boolean var20_t = true;
-                                                                if (MainCanvas.f.a(this.f, this.I.j + 8, this.I.k + 16) == 0 && MainCanvas.f.a(this.f, this.I.j + 8, this.I.k + 16) == 0 && MainCanvas.f.a(this.f, this.I.j + 10, this.I.k + 16) == 0 && !MainCanvas.f.a(this.I.j + 8, this.I.k + 16) && !MainCanvas.f.a(this.I.j + 10, this.I.k + 16)) {
+                                                                if (MainCanvas.pngUtil.a(this.f, this.sceneRefreshCoordinator.j + 8, this.sceneRefreshCoordinator.k + 16) == 0 && MainCanvas.pngUtil.a(this.f, this.sceneRefreshCoordinator.j + 8, this.sceneRefreshCoordinator.k + 16) == 0 && MainCanvas.pngUtil.a(this.f, this.sceneRefreshCoordinator.j + 10, this.sceneRefreshCoordinator.k + 16) == 0 && !MainCanvas.pngUtil.a(this.sceneRefreshCoordinator.j + 8, this.sceneRefreshCoordinator.k + 16) && !MainCanvas.pngUtil.a(this.sceneRefreshCoordinator.j + 10, this.sceneRefreshCoordinator.k + 16)) {
                                                                     var20_t = false;
                                                                 }
 
-                                                                if (MainCanvas.f.a(this.f, this.I.j + 2, this.I.k + 16) == 0 && MainCanvas.f.a(this.f, this.I.j + 2, this.I.k + 16) == 0 && !MainCanvas.f.a(this.I.j + 2, this.I.k + 16) && !MainCanvas.f.a(this.I.j + 2, this.I.k + 16)) {
+                                                                if (MainCanvas.pngUtil.a(this.f, this.sceneRefreshCoordinator.j + 2, this.sceneRefreshCoordinator.k + 16) == 0 && MainCanvas.pngUtil.a(this.f, this.sceneRefreshCoordinator.j + 2, this.sceneRefreshCoordinator.k + 16) == 0 && !MainCanvas.pngUtil.a(this.sceneRefreshCoordinator.j + 2, this.sceneRefreshCoordinator.k + 16) && !MainCanvas.pngUtil.a(this.sceneRefreshCoordinator.j + 2, this.sceneRefreshCoordinator.k + 16)) {
                                                                     var20_t = false;
                                                                 }
 
-                                                                if (MainCanvas.f.a(this.f, this.I.j + 12, this.I.k + 16) == 0 && MainCanvas.f.a(this.f, this.I.j + 12, this.I.k + 16) == 0 && !MainCanvas.f.a(this.I.j + 12, this.I.k + 16) && !MainCanvas.f.a(this.I.j + 12, this.I.k + 16)) {
+                                                                if (MainCanvas.pngUtil.a(this.f, this.sceneRefreshCoordinator.j + 12, this.sceneRefreshCoordinator.k + 16) == 0 && MainCanvas.pngUtil.a(this.f, this.sceneRefreshCoordinator.j + 12, this.sceneRefreshCoordinator.k + 16) == 0 && !MainCanvas.pngUtil.a(this.sceneRefreshCoordinator.j + 12, this.sceneRefreshCoordinator.k + 16) && !MainCanvas.pngUtil.a(this.sceneRefreshCoordinator.j + 12, this.sceneRefreshCoordinator.k + 16)) {
                                                                     var20_t = false;
                                                                 }
 
-                                                                if (MainCanvas.f.a(this.f, this.I.j + 8, this.I.k + 16) == 0 && MainCanvas.f.a(this.f, this.I.j + 8, this.I.k + 16) == 0 && MainCanvas.f.a(this.f, this.I.j + 10, this.I.k + 16) == 0 && !MainCanvas.f.a(this.I.j + 8, this.I.k + 16) && !MainCanvas.f.a(this.I.j + 10, this.I.k + 16)) {
+                                                                if (MainCanvas.pngUtil.a(this.f, this.sceneRefreshCoordinator.j + 8, this.sceneRefreshCoordinator.k + 16) == 0 && MainCanvas.pngUtil.a(this.f, this.sceneRefreshCoordinator.j + 8, this.sceneRefreshCoordinator.k + 16) == 0 && MainCanvas.pngUtil.a(this.f, this.sceneRefreshCoordinator.j + 10, this.sceneRefreshCoordinator.k + 16) == 0 && !MainCanvas.pngUtil.a(this.sceneRefreshCoordinator.j + 8, this.sceneRefreshCoordinator.k + 16) && !MainCanvas.pngUtil.a(this.sceneRefreshCoordinator.j + 10, this.sceneRefreshCoordinator.k + 16)) {
                                                                     var20_t = false;
                                                                 }
 
                                                                 if (var20_t) {
                                                                     this.h((byte) 0);
                                                                 } else {
-                                                                    this.e.processException("您没有卡死");
+                                                                    this.mainCanvasRef.processException("您没有卡死");
                                                                 }
                                                             }
                                                             break label986;
@@ -764,55 +777,55 @@ public final class ao_1 {
                                                             if ((var21 = NetPayloadBuilder.e((short) 4352, GlobalStatus.ad, (byte) 0)) != null) {
                                                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4352, var21));
                                                                 this.N();
-                                                                this.e.a((String) null);
+                                                                this.mainCanvasRef.a((String) null);
                                                             } else {
-                                                                this.e.processException("获取上传指令数据错误!");
+                                                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                                                             }
                                                             break label986;
                                                         case 5:
-                                                            this.l = 7;
+                                                            this.sceneSubState = 7;
                                                             LoadingPage.h = 0;
                                                     }
                                                 }
                                                 break label986;
                                             case 9:
                                                 int var44 = this.bB;
-                                                if (this.l == 9 && GlobalConfig.channel == 0) {
+                                                if (this.sceneSubState == 9 && GlobalConfig.channel == 0) {
                                                     this.c(var44);
                                                     switch (var44) {
                                                         case 0:
                                                             if (GlobalStatus.jy != 1) {
-                                                                this.e.processException("充值卡充值暂时关闭");
+                                                                this.mainCanvasRef.processException("充值卡充值暂时关闭");
                                                             }
                                                             break label986;
                                                         case 1:
                                                             if (GlobalStatus.jx == 1) {
                                                                 this.a(99L);
-                                                                this.l = 8;
+                                                                this.sceneSubState = 8;
                                                             } else {
-                                                                this.e.processException("QB直充暂时关闭");
+                                                                this.mainCanvasRef.processException("QB直充暂时关闭");
                                                             }
                                                             break label986;
                                                         case 2:
                                                             if (GlobalStatus.kG != 1) {
-                                                                this.e.processException("QB卡直充暂时关闭");
+                                                                this.mainCanvasRef.processException("QB卡直充暂时关闭");
                                                             }
                                                             break label986;
                                                         case 3:
                                                             if (!GlobalStatus.jw) {
-                                                                this.e.processException("短信支付暂时关闭");
+                                                                this.mainCanvasRef.processException("短信支付暂时关闭");
                                                             }
                                                     }
                                                 }
                                                 break label986;
                                             case 19:
                                                 int var43 = this.bB;
-                                                if (this.l == 19) {
+                                                if (this.sceneSubState == 19) {
                                                     this.c(var43);
                                                     switch (var43) {
                                                         case 0:
                                                             if (this.P == null) {
-                                                                this.P = new r(this, this.e, MainCanvas.f);
+                                                                this.P = new r(this, this.mainCanvasRef, MainCanvas.pngUtil);
                                                             }
 
                                                             this.aw = false;
@@ -840,7 +853,7 @@ public final class ao_1 {
                                                             break label986;
                                                         case 5:
                                                             if (this.Q == null) {
-                                                                this.Q = new k(this, this.e, MainCanvas.f);
+                                                                this.Q = new k(this, this.mainCanvasRef, MainCanvas.pngUtil);
                                                             }
 
                                                             this.Q.a();
@@ -850,7 +863,7 @@ public final class ao_1 {
                                                 break label986;
                                             case 20:
                                                 int var42 = this.bB;
-                                                if (this.l == 20) {
+                                                if (this.sceneSubState == 20) {
                                                     this.c(var42);
                                                     switch (var42) {
                                                         case 0:
@@ -858,9 +871,9 @@ public final class ao_1 {
                                                             if ((var6 = NetPayloadBuilder.f((short) 4168, GlobalStatus.ad)) != null) {
                                                                 NetPacket var7 = new NetPacket((short) 4168, var6);
                                                                 MainCanvas.netUtils.sendPacket(var7);
-                                                                this.e.a((String) null);
+                                                                this.mainCanvasRef.a((String) null);
                                                             } else {
-                                                                this.e.processException("获取上传指令数据错误!");
+                                                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                                                             }
                                                             break label986;
                                                         case 1:
@@ -886,12 +899,12 @@ public final class ao_1 {
                     }
                     break;
                 case 2:
-                    this.v(this.e.touchAction);
+                    this.v(this.mainCanvasRef.touchAction);
                     break;
                 case 3:
-                    int var18 = this.e.touchAction;
-                    if (this.e.aq != null) {
-                        this.e.aq.b(var18);
+                    int var18 = this.mainCanvasRef.touchAction;
+                    if (this.mainCanvasRef.aq != null) {
+                        this.mainCanvasRef.aq.b(var18);
                     }
 
                     if (var18 != 8 && var18 != 2 && var18 != 518 && var18 != 516) {
@@ -903,24 +916,24 @@ public final class ao_1 {
                                 this.av();
                                 this.c((int) 0);
                             }
-                        } else if ((var18 == 1073741824 || var18 == 517 || var18 == 268435456) && this.e.ar.g() == 2) {
+                        } else if ((var18 == 1073741824 || var18 == 517 || var18 == 268435456) && this.mainCanvasRef.ar.g() == 2) {
                             byte[] var31;
                             if ((var31 = NetPayloadBuilder.a((short) 4194, GlobalStatus.ad, (byte) GlobalStatus.z)) != null) {
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4194, var31));
                             } else {
-                                this.e.processException("获取上传指令数据错误!");
+                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                             }
                         }
-                    } else if (this.e.as.a == 3) {
+                    } else if (this.mainCanvasRef.as.a == 3) {
                         byte[] var19;
                         if ((var19 = NetPayloadBuilder.u((short) 4612, GlobalStatus.ad)) != null) {
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4612, var19));
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                         } else {
-                            this.e.processException("获取上传指令数据错误!");
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                         }
                     } else {
-                        this.a(this.e.as.a);
+                        this.a(this.mainCanvasRef.as.a);
                     }
                     break;
                 case 4:
@@ -928,21 +941,21 @@ public final class ao_1 {
                         this.o((int) -1);
                     }
 
-                    this.B(this.e.touchAction);
+                    this.B(this.mainCanvasRef.touchAction);
                     break;
                 case 5:
-                    int var16 = this.e.touchAction;
-                    ao_1 var5 = this;
+                    int var16 = this.mainCanvasRef.touchAction;
+                    UISceneController var5 = this;
                     if (q != null) {
                         if (GlobalStatus.ay != this.bX) {
-                            q = this.e.a(q, GlobalStatus.ax, GlobalStatus.aj, (byte) 3, (byte) 1, false);
+                            q = this.mainCanvasRef.a(q, GlobalStatus.ax, GlobalStatus.aj, (byte) 3, (byte) 1, false);
                             this.bX = GlobalStatus.ay;
                         }
 
-                        PngUtil.a(q, this.e.ak);
+                        PngUtil.a(q, this.mainCanvasRef.ak);
                     }
 
-                    if (this.l == 0) {
+                    if (this.sceneSubState == 0) {
                         this.a(GlobalStatus.cC);
                         if (var16 != 8 && var16 != 516) {
                             if (var16 != 2 && var16 != 518) {
@@ -964,7 +977,7 @@ public final class ao_1 {
 
                                     if (var26) {
                                         LoadingPage.a(28 + o + (0 + (var5.av >= 1 ? 1 : 0)) % 2 * 80, (GlobalConfig.defaultHigh - (GlobalConfig.j + 3) * 6) / 2, new String[]{"查看", "装备", "卸下", "升星", "洗炼", "附魔"}, true);
-                                        var5.l = 1;
+                                        var5.sceneSubState = 1;
                                     } else {
                                         var5.e((int) 7);
                                     }
@@ -977,16 +990,16 @@ public final class ao_1 {
                             this.av = this.av <= 0 ? this.bY.length - 1 : --this.av;
                             LoadingPage.l = 0;
                         }
-                    } else if (this.l == 1) {
+                    } else if (this.sceneSubState == 1) {
                         LoadingPage.b(var16);
                         if (var16 != 268435456 && var16 != 1073741824 && var16 != 517) {
                             if (var16 == 536870912) {
                                 this.aw = false;
-                                this.l = 0;
+                                this.sceneSubState = 0;
                             }
                         } else if (LoadingPage.o == 0) {
                             GlobalStatus.a(this.av);
-                            this.O.a(0, (short) this.k, this.as);
+                            this.O.a(0, (short) this.currentSceneModeId, this.as);
                         } else if (LoadingPage.o == 1) {
                             this.e((int) 7);
                         } else if (LoadingPage.o == 2) {
@@ -1002,9 +1015,9 @@ public final class ao_1 {
                             byte[] var34;
                             if ((var34 = NetPayloadBuilder.f((short) 4136, GlobalStatus.ad, (int) var27)) != null) {
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4136, var34));
-                                var5.e.a((String) null);
+                                var5.mainCanvasRef.a((String) null);
                             } else {
-                                var5.e.processException("获取上传指令数据错误!");
+                                var5.mainCanvasRef.processException("获取上传指令数据错误!");
                             }
                         } else if (LoadingPage.o == 3) {
                             this.aw = true;
@@ -1023,9 +1036,9 @@ public final class ao_1 {
                             if ((var37 = NetPayloadBuilder.a((short) 4689, var28, (byte) 0, (byte) -1, GlobalStatus.ad)) != null) {
                                 NetPacket var17 = new NetPacket((short) 4689, var37);
                                 MainCanvas.netUtils.sendPacket(var17);
-                                var5.e.a((String) null);
+                                var5.mainCanvasRef.a((String) null);
                             } else {
-                                var5.e.processException("获取上传指令数据错误!");
+                                var5.mainCanvasRef.processException("获取上传指令数据错误!");
                             }
                         } else if (LoadingPage.o == 4) {
                             this.aw = true;
@@ -1043,13 +1056,13 @@ public final class ao_1 {
                             byte[] var39;
                             if ((var39 = NetPayloadBuilder.a((short) 4688, var29, -1L, (byte) 0, o_1.h, 0, (byte[]) null, GlobalStatus.ad)) != null) {
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4688, var39));
-                                var5.e.a((String) null);
+                                var5.mainCanvasRef.a((String) null);
                             } else {
-                                var5.e.processException("获取上传指令数据错误!");
+                                var5.mainCanvasRef.processException("获取上传指令数据错误!");
                             }
                         } else if (LoadingPage.o == 5) {
                             if (this.P == null) {
-                                this.P = new r(this, this.e, MainCanvas.f);
+                                this.P = new r(this, this.mainCanvasRef, MainCanvas.pngUtil);
                             }
 
                             this.P.b();
@@ -1066,33 +1079,33 @@ public final class ao_1 {
                             byte[] var41;
                             if ((var41 = NetPayloadBuilder.a((short) 4262, var30, -1L, (byte) 0, (int[]) null, (byte[]) null, -1, (byte) 0, GlobalStatus.ad)) != null) {
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4262, var41));
-                                var5.e.a((String) null);
+                                var5.mainCanvasRef.a((String) null);
                             } else {
-                                var5.e.processException("获取上传指令数据错误!");
+                                var5.mainCanvasRef.processException("获取上传指令数据错误!");
                             }
                         }
-                    } else if (this.l == 2) {
-                        if (this.e.aq != null) {
-                            this.e.aq.b(var16);
+                    } else if (this.sceneSubState == 2) {
+                        if (this.mainCanvasRef.aq != null) {
+                            this.mainCanvasRef.aq.b(var16);
                         }
 
                         if (var16 == 536870912) {
-                            this.l = 1;
+                            this.sceneSubState = 1;
                         }
                     }
                     break;
                 case 6:
-                    this.J(this.e.touchAction);
+                    this.J(this.mainCanvasRef.touchAction);
                     break;
                 case 7:
-                    this.H(this.e.touchAction);
+                    this.H(this.mainCanvasRef.touchAction);
                     break;
                 case 8:
-                    int var15 = this.e.touchAction;
-                    if (this.l == 0) {
+                    int var15 = this.mainCanvasRef.touchAction;
+                    if (this.sceneSubState == 0) {
                         this.a(GlobalStatus.cb);
-                        if (this.e.aq != null) {
-                            this.e.aq.b(var15);
+                        if (this.mainCanvasRef.aq != null) {
+                            this.mainCanvasRef.aq.b(var15);
                         }
 
                         if (var15 != 268435456 && var15 != 1073741824 && var15 != 517) {
@@ -1128,16 +1141,16 @@ public final class ao_1 {
                         } else if (GlobalStatus.bY != null && (this.ar << 3) + this.aq < GlobalStatus.bY.length) {
                             if (GlobalStatus.ca[(this.ar << 3) + this.aq] == 1) {
                                 this.a(99L);
-                                this.l = 2;
+                                this.sceneSubState = 2;
                             } else {
                                 this.Z(1);
                             }
                         }
-                    } else if (this.l == 2) {
+                    } else if (this.sceneSubState == 2) {
                         this.b(var15);
                         if (var15 != 268435456 && var15 != 1073741824 && var15 != 517) {
                             if (var15 == 536870912) {
-                                this.l = 0;
+                                this.sceneSubState = 0;
                             }
                         } else {
                             this.Z(this.ag);
@@ -1145,29 +1158,29 @@ public final class ao_1 {
                     }
                     break;
                 case 9:
-                    this.aa(this.e.touchAction);
+                    this.aa(this.mainCanvasRef.touchAction);
                     break;
                 case 10:
-                    this.w(this.e.touchAction);
+                    this.w(this.mainCanvasRef.touchAction);
                     break;
                 case 11:
-                    this.ab(this.e.touchAction);
+                    this.ab(this.mainCanvasRef.touchAction);
                     break;
                 case 12:
                     if (this.c) {
                         this.o((int) -1);
                     }
 
-                    this.O(this.e.touchAction);
+                    this.O(this.mainCanvasRef.touchAction);
                     break;
                 case 13:
-                    this.T(this.e.touchAction);
+                    this.T(this.mainCanvasRef.touchAction);
                     break;
                 case 14:
-                    this.ae(this.e.touchAction);
+                    this.ae(this.mainCanvasRef.touchAction);
                     break;
                 case 15:
-                    this.ah(this.e.touchAction);
+                    this.ah(this.mainCanvasRef.touchAction);
                 case 16:
                 case 17:
                 case 26:
@@ -1201,45 +1214,45 @@ public final class ao_1 {
                         this.o((int) -1);
                     }
 
-                    this.aj(this.e.touchAction);
+                    this.aj(this.mainCanvasRef.touchAction);
                     break;
                 case 19:
-                    this.ak(this.e.touchAction);
+                    this.ak(this.mainCanvasRef.touchAction);
                     break;
                 case 20:
-                    this.al(this.e.touchAction);
+                    this.al(this.mainCanvasRef.touchAction);
                     break;
                 case 21:
-                    this.am(this.e.touchAction);
+                    this.am(this.mainCanvasRef.touchAction);
                     break;
                 case 22:
-                    this.ao(this.e.touchAction);
+                    this.ao(this.mainCanvasRef.touchAction);
                     break;
                 case 23:
-                    this.ag(this.e.touchAction);
+                    this.ag(this.mainCanvasRef.touchAction);
                     break;
                 case 24:
-                    this.ai(this.e.touchAction);
+                    this.ai(this.mainCanvasRef.touchAction);
                     break;
                 case 25:
-                    this.o(this.e.touchAction);
+                    this.o(this.mainCanvasRef.touchAction);
                     this.f((short) -1);
                     this.aA();
                     break;
                 case 28:
-                    this.as(this.e.touchAction);
+                    this.as(this.mainCanvasRef.touchAction);
                     break;
                 case 29:
-                    this.R(this.e.touchAction);
+                    this.R(this.mainCanvasRef.touchAction);
                     break;
                 case 30:
-                    int var14 = this.e.touchAction;
+                    int var14 = this.mainCanvasRef.touchAction;
                     if (t_2 != null) {
-                        PngUtil.a(t_2, this.e.ak);
+                        PngUtil.a(t_2, this.mainCanvasRef.ak);
                     }
 
                     if (s != null) {
-                        PngUtil.a(s, this.e.ak);
+                        PngUtil.a(s, this.mainCanvasRef.ak);
                     }
 
                     if (var14 == 268435456 || var14 == 1073741824 || var14 == 536870912 || var14 == 517) {
@@ -1253,240 +1266,240 @@ public final class ao_1 {
                     }
                     break;
                 case 31:
-                    this.aq(this.e.touchAction);
+                    this.aq(this.mainCanvasRef.touchAction);
                     break;
                 case 32:
-                    this.ar(this.e.touchAction);
+                    this.ar(this.mainCanvasRef.touchAction);
                     break;
                 case 33:
-                    this.aS(this.e.touchAction);
+                    this.aS(this.mainCanvasRef.touchAction);
                     break;
                 case 34:
-                    this.P(this.e.touchAction);
+                    this.P(this.mainCanvasRef.touchAction);
                     break;
                 case 35:
-                    this.Q(this.e.touchAction);
+                    this.Q(this.mainCanvasRef.touchAction);
                     break;
                 case 36:
                     if (this.c) {
                         this.o((int) -1);
                     }
 
-                    this.K(this.e.touchAction);
+                    this.K(this.mainCanvasRef.touchAction);
                     break;
                 case 37:
-                    this.x(this.e.touchAction);
+                    this.x(this.mainCanvasRef.touchAction);
                     break;
                 case 38:
-                    this.at(this.e.touchAction);
+                    this.at(this.mainCanvasRef.touchAction);
                     break;
                 case 39:
-                    if (GlobalConfig.o && this.e.touchController != null) {
-                        this.e.touchController.a();
+                    if (GlobalConfig.o && this.mainCanvasRef.touchController != null) {
+                        this.mainCanvasRef.touchController.a();
                     }
 
                     this.V();
                     break;
                 case 40:
-                    this.aw(this.e.touchAction);
+                    this.aw(this.mainCanvasRef.touchAction);
                     break;
                 case 41:
-                    this.M.b(this.e.touchAction);
+                    this.M.b(this.mainCanvasRef.touchAction);
                     break;
                 case 42:
-                    this.M.c(this.e.touchAction);
+                    this.M.c(this.mainCanvasRef.touchAction);
                     break;
                 case 43:
-                    this.M.d(this.e.touchAction);
+                    this.M.d(this.mainCanvasRef.touchAction);
                     break;
                 case 45:
-                    this.M.e(this.e.touchAction);
+                    this.M.e(this.mainCanvasRef.touchAction);
                     break;
                 case 46:
-                    this.M.f(this.e.touchAction);
+                    this.M.f(this.mainCanvasRef.touchAction);
                     break;
                 case 47:
-                    this.M.i(this.e.touchAction);
+                    this.M.i(this.mainCanvasRef.touchAction);
                     break;
                 case 48:
-                    this.M.k(this.e.touchAction);
+                    this.M.k(this.mainCanvasRef.touchAction);
                     break;
                 case 49:
-                    this.M.l(this.e.touchAction);
+                    this.M.l(this.mainCanvasRef.touchAction);
                     break;
                 case 50:
-                    this.M.m(this.e.touchAction);
+                    this.M.m(this.mainCanvasRef.touchAction);
                     break;
                 case 51:
-                    this.M.n(this.e.touchAction);
+                    this.M.n(this.mainCanvasRef.touchAction);
                     break;
                 case 52:
-                    this.M.r(this.e.touchAction);
+                    this.M.r(this.mainCanvasRef.touchAction);
                     break;
                 case 53:
-                    this.ax(this.e.touchAction);
+                    this.ax(this.mainCanvasRef.touchAction);
                     break;
                 case 57:
-                    this.r(this.e.touchAction);
+                    this.r(this.mainCanvasRef.touchAction);
                     break;
                 case 58:
-                    this.q(this.e.touchAction);
+                    this.q(this.mainCanvasRef.touchAction);
                     break;
                 case 59:
-                    this.ay(this.e.touchAction);
+                    this.ay(this.mainCanvasRef.touchAction);
                     break;
                 case 60:
-                    this.M.s(this.e.touchAction);
+                    this.M.s(this.mainCanvasRef.touchAction);
                     break;
                 case 61:
                     this.M.v();
                     break;
                 case 62:
-                    this.M.t(this.e.touchAction);
+                    this.M.t(this.mainCanvasRef.touchAction);
                     break;
                 case 63:
-                    this.M.u(this.e.touchAction);
+                    this.M.u(this.mainCanvasRef.touchAction);
                     break;
                 case 64:
-                    this.O.a(this.e.touchAction);
+                    this.O.a(this.mainCanvasRef.touchAction);
                     break;
                 case 65:
-                    this.O.b(this.e.touchAction);
+                    this.O.b(this.mainCanvasRef.touchAction);
                     break;
                 case 66:
-                    this.O.c(this.e.touchAction);
+                    this.O.c(this.mainCanvasRef.touchAction);
                     break;
                 case 67:
-                    this.O.d(this.e.touchAction);
+                    this.O.d(this.mainCanvasRef.touchAction);
                     break;
                 case 68:
-                    this.az(this.e.touchAction);
+                    this.az(this.mainCanvasRef.touchAction);
                     break;
                 case 69:
-                    this.aB(this.e.touchAction);
+                    this.aB(this.mainCanvasRef.touchAction);
                     break;
                 case 70:
-                    this.aC(this.e.touchAction);
+                    this.aC(this.mainCanvasRef.touchAction);
                     break;
                 case 71:
-                    this.aJ(this.e.touchAction);
+                    this.aJ(this.mainCanvasRef.touchAction);
                     break;
                 case 72:
-                    this.aG(this.e.touchAction);
+                    this.aG(this.mainCanvasRef.touchAction);
                     break;
                 case 75:
-                    this.aD(this.e.touchAction);
+                    this.aD(this.mainCanvasRef.touchAction);
                     break;
                 case 76:
-                    this.aI(this.e.touchAction);
+                    this.aI(this.mainCanvasRef.touchAction);
                     break;
                 case 77:
-                    this.aH(this.e.touchAction);
+                    this.aH(this.mainCanvasRef.touchAction);
                     break;
                 case 90:
-                    this.S.b(this.e.touchAction);
+                    this.S.b(this.mainCanvasRef.touchAction);
                     break;
                 case 91:
-                    this.S.c(this.e.touchAction);
+                    this.S.c(this.mainCanvasRef.touchAction);
                     break;
                 case 92:
-                    this.S.d(this.e.touchAction);
+                    this.S.d(this.mainCanvasRef.touchAction);
                     break;
                 case 93:
-                    this.S.e(this.e.touchAction);
+                    this.S.e(this.mainCanvasRef.touchAction);
                     break;
                 case 94:
-                    this.u(this.e.touchAction);
+                    this.u(this.mainCanvasRef.touchAction);
                     break;
                 case 95:
-                    this.X(this.e.touchAction);
+                    this.X(this.mainCanvasRef.touchAction);
                     break;
                 case 96:
-                    this.x(this.e.touchAction);
+                    this.x(this.mainCanvasRef.touchAction);
                     break;
                 case 98:
-                    this.aP(this.e.touchAction);
+                    this.aP(this.mainCanvasRef.touchAction);
                     break;
                 case 100:
-                    this.aE(this.e.touchAction);
+                    this.aE(this.mainCanvasRef.touchAction);
                     break;
                 case 101:
-                    this.U.a(this.e.touchAction);
+                    this.U.a(this.mainCanvasRef.touchAction);
                     break;
                 case 102:
-                    this.V.a(this.e.touchAction);
+                    this.V.a(this.mainCanvasRef.touchAction);
                     break;
                 case 103:
-                    this.aO(this.e.touchAction);
+                    this.aO(this.mainCanvasRef.touchAction);
                     break;
                 case 104:
-                    this.aM(this.e.touchAction);
+                    this.aM(this.mainCanvasRef.touchAction);
                     break;
                 case 105:
-                    this.aL(this.e.touchAction);
+                    this.aL(this.mainCanvasRef.touchAction);
                     break;
                 case 106:
-                    this.O.e(this.e.touchAction);
+                    this.O.e(this.mainCanvasRef.touchAction);
                     break;
                 case 107:
-                    this.aQ(this.e.touchAction);
+                    this.aQ(this.mainCanvasRef.touchAction);
                     break;
                 case 108:
-                    this.aR(this.e.touchAction);
+                    this.aR(this.mainCanvasRef.touchAction);
                     break;
                 case 109:
-                    this.aR(this.e.touchAction);
+                    this.aR(this.mainCanvasRef.touchAction);
                     break;
                 case 110:
-                    this.aU(this.e.touchAction);
+                    this.aU(this.mainCanvasRef.touchAction);
                     break;
                 case 111:
-                    this.aT(this.e.touchAction);
+                    this.aT(this.mainCanvasRef.touchAction);
                     break;
                 case 113:
-                    this.M.v(this.e.touchAction);
+                    this.M.v(this.mainCanvasRef.touchAction);
                     break;
                 case 114:
-                    this.M.o(this.e.touchAction);
+                    this.M.o(this.mainCanvasRef.touchAction);
                     break;
                 case 115:
-                    this.M.p(this.e.touchAction);
+                    this.M.p(this.mainCanvasRef.touchAction);
                     break;
                 case 116:
-                    this.aW(this.e.touchAction);
+                    this.aW(this.mainCanvasRef.touchAction);
                     break;
                 case 117:
-                    this.aX(this.e.touchAction);
+                    this.aX(this.mainCanvasRef.touchAction);
                     break;
                 case 118:
-                    this.aV(this.e.touchAction);
+                    this.aV(this.mainCanvasRef.touchAction);
                     break;
                 case 119:
-                    this.aY(this.e.touchAction);
+                    this.aY(this.mainCanvasRef.touchAction);
                     break;
                 case 120:
-                    this.aZ(this.e.touchAction);
+                    this.aZ(this.mainCanvasRef.touchAction);
                     break;
                 case 121:
-                    this.M(this.e.touchAction);
+                    this.M(this.mainCanvasRef.touchAction);
                     break;
                 case 122:
-                    this.N(this.e.touchAction);
+                    this.N(this.mainCanvasRef.touchAction);
                     break;
                 case 123:
-                    this.L(this.e.touchAction);
+                    this.L(this.mainCanvasRef.touchAction);
                     break;
                 case 125:
-                    this.ba(this.e.touchAction);
+                    this.ba(this.mainCanvasRef.touchAction);
                     break;
                 case 126:
-                    this.F(this.e.touchAction);
+                    this.F(this.mainCanvasRef.touchAction);
                     break;
                 case 127:
-                    this.bb(this.e.touchAction);
+                    this.bb(this.mainCanvasRef.touchAction);
                     break;
                 case 128:
-                    this.bc(this.e.touchAction);
+                    this.bc(this.mainCanvasRef.touchAction);
                     break;
                 case 129:
                     if (this.R != null) {
@@ -1505,55 +1518,55 @@ public final class ao_1 {
                             var1.b.a((String) null);
                             var1.c();
                             var1.b();
-                            var1.a.k = 0;
+                            var1.a.currentSceneModeId = 0;
                         } else if (var1.c == 2) {
                             var1.c = 0;
                             var1.b();
-                            var1.a.k = 0;
+                            var1.a.currentSceneModeId = 0;
                         }
                     }
                     break;
                 case 130:
-                    this.N.a(this.e.touchAction);
+                    this.N.a(this.mainCanvasRef.touchAction);
                     break;
                 case 131:
-                    this.W.b(this.e.touchAction);
+                    this.W.b(this.mainCanvasRef.touchAction);
             }
 
-            this.e.touchAction = 0;
+            this.mainCanvasRef.touchAction = 0;
         }
     }
 
     public final void a(Graphics var1) {
-        if (!this.e.o) {
+        if (!this.mainCanvasRef.o) {
             var1.setColor(0);
             var1.fillRect(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-            this.e.o = true;
+            this.mainCanvasRef.o = true;
         } else if (this.f != null && (this.f.a < GlobalConfig.defaultWidth || this.f.b < GlobalConfig.defaultHigh)) {
             var1.setColor(0);
             var1.fillRect(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
         }
 
         if (this.f != null) {
-            if (this.k != 1 && this.k != 18 && this.k != 5 && this.k != 25 && this.k != 7 && this.k != 130) {
-                MainCanvas.f.a(var1, this.f, h, i, 0, 0, true, true);
+            if (this.currentSceneModeId != 1 && this.currentSceneModeId != 18 && this.currentSceneModeId != 5 && this.currentSceneModeId != 25 && this.currentSceneModeId != 7 && this.currentSceneModeId != 130) {
+                MainCanvas.pngUtil.a(var1, this.f, h, i, 0, 0, true, true);
             } else {
-                MainCanvas.f.a(var1, this.f, h, i);
+                MainCanvas.pngUtil.a(var1, this.f, h, i);
             }
         }
 
-        if (this.k != 25 && this.k != 18 && !this.c) {
+        if (this.currentSceneModeId != 25 && this.currentSceneModeId != 18 && !this.c) {
             if (L != null && L.d != null) {
                 var1.setColor(16776960);
                 var1.drawRect(L.e - h + this.g(), L.f - i + this.h(), L.d.g(), L.d.h());
             }
 
-            if (this.k != 5 && (this.k != 7 || this.l != 10) && (this.k != 7 || this.l != 4) && (this.k != 7 || this.l != 12) && (this.k != 21 || this.l != 5) && (this.k != 47 || this.l != 4) && this.k != 13 && this.k != 32 && (this.k != 130 || this.l != 4)) {
+            if (this.currentSceneModeId != 5 && (this.currentSceneModeId != 7 || this.sceneSubState != 10) && (this.currentSceneModeId != 7 || this.sceneSubState != 4) && (this.currentSceneModeId != 7 || this.sceneSubState != 12) && (this.currentSceneModeId != 21 || this.sceneSubState != 5) && (this.currentSceneModeId != 47 || this.sceneSubState != 4) && this.currentSceneModeId != 13 && this.currentSceneModeId != 32 && (this.currentSceneModeId != 130 || this.sceneSubState != 4)) {
                 Graphics var4 = var1;
-                ao_1 var5 = this;
+                UISceneController var5 = this;
                 if (GlobalStatus.ab != null && bn != null && this.f.i != null) {
                     for (int var6 = 0; var6 < GlobalStatus.ab.length; ++var6) {
-                        MainCanvas.f.a(var4, (Frame1) bn, (int[]) null, h - var5.g(), i - var5.h(), GlobalStatus.ab[var6], GlobalStatus.ac[var6] + 16 - bn.h(), 20, 0);
+                        MainCanvas.pngUtil.a(var4, (Frame1) bn, (int[]) null, h - var5.g(), i - var5.h(), GlobalStatus.ab[var6], GlobalStatus.ac[var6] + 16 - bn.h(), 20, 0);
                     }
                 }
 
@@ -1562,18 +1575,18 @@ public final class ao_1 {
 
             if (aW[6] == 0 && !GlobalStatus.G()) {
                 Graphics var19 = var1;
-                ao_1 var25 = this;
-                if (this.f != null && this.k == 0) {
+                UISceneController var25 = this;
+                if (this.f != null && this.currentSceneModeId == 0) {
                     int var7 = 2 + GlobalConfig.j;
-                    MainCanvas.f.a(var1, this.I.j / this.e.m, this.I.k / this.e.m, 2, var7, 17 / this.e.m, 25 / this.e.m, 0, 0);
+                    MainCanvas.pngUtil.a(var1, this.sceneRefreshCoordinator.j / this.mainCanvasRef.m, this.sceneRefreshCoordinator.k / this.mainCanvasRef.m, 2, var7, 17 / this.mainCanvasRef.m, 25 / this.mainCanvasRef.m, 0, 0);
                     var1.setColor(16711680);
-                    LoadingPage.a(var1, (String) (this.I.j / 16 + "," + (this.I.k + 25) / 16), (int) 2, var7 + MainCanvas.f.f, 20, 16777215, 0);
+                    LoadingPage.a(var1, (String) (this.sceneRefreshCoordinator.j / 16 + "," + (this.sceneRefreshCoordinator.k + 25) / 16), (int) 2, var7 + MainCanvas.pngUtil.f, 20, 16777215, 0);
                     if (GlobalStatus.ab != null) {
                         var1.setColor(16711680);
 
                         for (int var33 = 0; var33 < GlobalStatus.ab.length; ++var33) {
-                            if (var25.e.ak % 8L == 0L) {
-                                var19.fillRect(2 + GlobalStatus.ab[var33] / var25.e.m, var7 + GlobalStatus.ac[var33] / var25.e.m, 2, 2);
+                            if (var25.mainCanvasRef.ak % 8L == 0L) {
+                                var19.fillRect(2 + GlobalStatus.ab[var33] / var25.mainCanvasRef.m, var7 + GlobalStatus.ac[var33] / var25.mainCanvasRef.m, 2, 2);
                             }
                         }
                     }
@@ -1582,8 +1595,8 @@ public final class ao_1 {
                         var19.setColor(13883606);
 
                         for (int var34 = 0; var34 < GlobalStatus.t.length && GlobalStatus.t[var34] != null; ++var34) {
-                            if (GlobalStatus.t[var34].t != -1 && GlobalStatus.t[var34].t != 1 || var25.e.ak % 5L == 0L) {
-                                var19.fillRect(2 + GlobalStatus.t[var34].c / var25.e.m, var7 + GlobalStatus.t[var34].d / var25.e.m, 2, 2);
+                            if (GlobalStatus.t[var34].t != -1 && GlobalStatus.t[var34].t != 1 || var25.mainCanvasRef.ak % 5L == 0L) {
+                                var19.fillRect(2 + GlobalStatus.t[var34].c / var25.mainCanvasRef.m, var7 + GlobalStatus.t[var34].d / var25.mainCanvasRef.m, 2, 2);
                             }
                         }
                     }
@@ -1591,14 +1604,14 @@ public final class ao_1 {
 
                 if (GlobalStatus.G()) {
                     var1.setColor(16711680);
-                    var1.drawString(GlobalStatus.id + "/" + GlobalStatus.ic, GlobalConfig.defaultWidth, (GlobalConfig.j << 1) + 2 + MainCanvas.f.f + 30, 24);
+                    var1.drawString(GlobalStatus.id + "/" + GlobalStatus.ic, GlobalConfig.defaultWidth, (GlobalConfig.j << 1) + 2 + MainCanvas.pngUtil.f + 30, 24);
                 }
             } else if (GlobalStatus.G()) {
                 var1.setColor(16711680);
                 var1.drawString(GlobalStatus.id + "/" + GlobalStatus.ic, GlobalConfig.defaultWidth, GlobalConfig.j + 30, 24);
             }
 
-            if (this.k != 1) {
+            if (this.currentSceneModeId != 1) {
                 var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
                 this.A(var1);
                 var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
@@ -1606,7 +1619,7 @@ public final class ao_1 {
             }
         }
 
-        if (this.k == 0 || this.k == 25) {
+        if (this.currentSceneModeId == 0 || this.currentSceneModeId == 25) {
             if (aW[5] == 0) {
                 this.x(var1);
             } else if (aW[11] == 0) {
@@ -1618,12 +1631,12 @@ public final class ao_1 {
         int var36 = GlobalStatus.ki;
         int var35 = GlobalStatus.kh;
         aq var26 = var10000;
-        if (var10000.a.k == 0 && GlobalStatus.bw == 2 && var35 != 0 && var36 != 0) {
+        if (var10000.a.currentSceneModeId == 0 && GlobalStatus.bw == 2 && var35 != 0 && var36 != 0) {
             LoadingPage.a(var1, (String) "阵营", (int) (GlobalConfig.defaultWidth >> 1), 2, 17, 1017663, 0);
             LoadingPage.a(var1, (String) ("" + var35), (int) (GlobalConfig.defaultWidth / 2 - 4), 2 + GlobalConfig.j, 24, 16776960, 0);
             LoadingPage.a(var1, (String) ":", (int) (GlobalConfig.defaultWidth >> 1), 2 + GlobalConfig.j, 17, 16776960, 0);
             LoadingPage.a(var1, (String) ("" + var36), (int) (GlobalConfig.defaultWidth / 2 + 5), 2 + GlobalConfig.j, 20, 16776960, 0);
-        } else if (var26.a.k == 0 && GlobalStatus.ke != -1 && GlobalStatus.kf != -1 && GlobalStatus.kg != -1) {
+        } else if (var26.a.currentSceneModeId == 0 && GlobalStatus.ke != -1 && GlobalStatus.kf != -1 && GlobalStatus.kg != -1) {
             LoadingPage.a(var1, (String) "阵营", (int) (GlobalConfig.defaultWidth >> 1), 2, 17, 16776960, 0);
             LoadingPage.a(var1, (String) ("" + GlobalStatus.ke), (int) (GlobalConfig.defaultWidth / 2 - 4), 2 + GlobalConfig.j, 24, 16776960, 0);
             LoadingPage.a(var1, (String) ":", (int) (GlobalConfig.defaultWidth >> 1), 2 + GlobalConfig.j, 17, 16776960, 0);
@@ -1635,11 +1648,11 @@ public final class ao_1 {
             LoadingPage.a(var1, (String) String.valueOf(GlobalStatus.bv), (int) (GlobalConfig.defaultWidth / 2), 0, 17, 0, 16711680);
         }
 
-        if (this.k != 25) {
+        if (this.currentSceneModeId != 25) {
             if (!GlobalStatus.P.o && !GlobalStatus.O.u) {
                 if (this.n) {
                     var1.drawImage(MainCanvas.aa, GlobalConfig.defaultWidth - 10, 40, 24);
-                    if (this.k == 18) {
+                    if (this.currentSceneModeId == 18) {
                         this.n = false;
                     }
                 }
@@ -1653,11 +1666,11 @@ public final class ao_1 {
             }
         }
 
-        if (this.k == 0 && this.J != null) {
+        if (this.currentSceneModeId == 0 && this.J != null) {
             LoadingPage.a(var1, this.J, new String[]{"确定", "取消"});
         }
 
-        switch (this.k) {
+        switch (this.currentSceneModeId) {
             case 0:
                 if (GlobalStatus.k != null && this.dd != null && aW[18] == 0) {
                     LoadingPage.a(var1, 873078, 191, 0, this.dc, GlobalConfig.defaultWidth, GlobalConfig.j + 2);
@@ -1693,20 +1706,20 @@ public final class ao_1 {
                 this.b(var1);
                 return;
             case 2:
-                if (this.l == 0) {
+                if (this.sceneSubState == 0) {
                     LoadingPage.a(var1, 0, GlobalConfig.defaultHigh - LoadingPage.f, GlobalConfig.defaultWidth, LoadingPage.f, K, this.am, (String[]) null);
                 } else {
-                    if (this.l != 1 && this.l != 3 && this.l != 4 && this.l != 5 && this.l != 7 && this.l != 9 && this.l != 10) {
+                    if (this.sceneSubState != 1 && this.sceneSubState != 3 && this.sceneSubState != 4 && this.sceneSubState != 5 && this.sceneSubState != 7 && this.sceneSubState != 9 && this.sceneSubState != 10) {
                         return;
                     }
 
                     LoadingPage.a(var1, 0, GlobalConfig.defaultHigh - LoadingPage.f, GlobalConfig.defaultWidth, LoadingPage.f, K, this.an, (String[]) null);
-                    if (this.m != 1 && this.m != 2) {
-                        if (this.m == 3) {
+                    if (this.sceneSubMode != 1 && this.sceneSubMode != 2) {
+                        if (this.sceneSubMode == 3) {
                             this.b(var1, "请输入竞标银两");
                         } else {
-                            if (this.m != 4) {
-                                if (this.m == 5 || this.m == 6) {
+                            if (this.sceneSubMode != 4) {
+                                if (this.sceneSubMode == 5 || this.sceneSubMode == 6) {
                                     LoadingPage.a(var1, this.at, new String[]{"确定", "取消"});
                                 }
 
@@ -1716,23 +1729,23 @@ public final class ao_1 {
                             this.a(var1, "请输入竞标金豆");
                         }
                     } else {
-                        this.b(var1, this.m == 1 ? "请输入取出银两" : "请输入存入银两");
+                        this.b(var1, this.sceneSubMode == 1 ? "请输入取出银两" : "请输入存入银两");
                     }
                 }
                 break;
             case 3:
-                if (this.e.aq != null) {
-                    this.e.aq.a(var1);
-                    if (this.e.as.a == 0 && this.e.at.a == 0) {
-                        int var24 = this.e.at.b + 5 + GlobalConfig.i.stringWidth("昵称：" + GlobalStatus.af);
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.a(var1);
+                    if (this.mainCanvasRef.as.a == 0 && this.mainCanvasRef.at.a == 0) {
+                        int var24 = this.mainCanvasRef.at.b + 5 + GlobalConfig.i.stringWidth("昵称：" + GlobalStatus.af);
                         Image var31;
                         if (GlobalStatus.aC == 1 && (var31 = MainCanvas.d(GlobalStatus.bA)) != null) {
-                            var1.drawImage(var31, var24, this.e.at.c + 5, 20);
+                            var1.drawImage(var31, var24, this.mainCanvasRef.at.c + 5, 20);
                             var24 += var31.getWidth();
                         }
 
                         if (GlobalStatus.aH == 1 && (var31 = MainCanvas.c(GlobalStatus.aI)) != null) {
-                            var1.drawImage(var31, var24, this.e.at.c + 5, 20);
+                            var1.drawImage(var31, var24, this.mainCanvasRef.at.c + 5, 20);
                         }
                     }
                 }
@@ -1755,11 +1768,11 @@ public final class ao_1 {
                 return;
             case 6:
                 if (GlobalStatus.bR != null || GlobalStatus.bL != null) {
-                    if (this.e.aq != null) {
-                        this.e.aq.a(var1);
+                    if (this.mainCanvasRef.aq != null) {
+                        this.mainCanvasRef.aq.a(var1);
                     }
 
-                    if (this.l == 1 || this.l == 2) {
+                    if (this.sceneSubState == 1 || this.sceneSubState == 2) {
                         LoadingPage.c(var1);
                     }
                 }
@@ -1775,8 +1788,8 @@ public final class ao_1 {
                 this.c(var1, "卖东西");
                 return;
             case 10:
-                if (this.e.aq != null) {
-                    this.e.aq.a(var1);
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.a(var1);
                 }
 
                 return;
@@ -1794,14 +1807,14 @@ public final class ao_1 {
                 this.o(var1);
                 return;
             case 14:
-                if (this.e.aq != null) {
-                    this.e.aq.a(var1);
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.a(var1);
                 }
 
                 return;
             case 15:
-                if (this.e.aq != null) {
-                    this.e.aq.a(var1);
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.a(var1);
                 }
 
                 return;
@@ -1841,13 +1854,13 @@ public final class ao_1 {
                 this.u(var1);
                 return;
             case 19:
-                if (this.e.aq != null) {
-                    this.e.aq.a(var1);
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.a(var1);
                 }
 
-                if (this.l != 1 && this.l != 2 && this.l != 3 && this.l != 4 && this.l != 5 && this.l != 6 && this.l != 7 && this.l != 9) {
-                    if (this.l != 8) {
-                        if (this.l == 10) {
+                if (this.sceneSubState != 1 && this.sceneSubState != 2 && this.sceneSubState != 3 && this.sceneSubState != 4 && this.sceneSubState != 5 && this.sceneSubState != 6 && this.sceneSubState != 7 && this.sceneSubState != 9) {
+                    if (this.sceneSubState != 8) {
+                        if (this.sceneSubState == 10) {
                             this.T.a(var1);
                         }
 
@@ -1870,14 +1883,14 @@ public final class ao_1 {
                     return;
                 }
 
-                if (this.l != 5) {
-                    this.e.aq.a(var1);
+                if (this.sceneSubState != 5) {
+                    this.mainCanvasRef.aq.a(var1);
                 }
 
-                if (this.l != 1 && this.l != 2 && this.l != 3) {
-                    if (this.l != 4) {
-                        if (this.l == 5 && GlobalStatus.q != null && this.e.ar.g() < GlobalStatus.q.length) {
-                            this.a(var1, GlobalStatus.q[this.e.ar.g()].e, q);
+                if (this.sceneSubState != 1 && this.sceneSubState != 2 && this.sceneSubState != 3) {
+                    if (this.sceneSubState != 4) {
+                        if (this.sceneSubState == 5 && GlobalStatus.q != null && this.mainCanvasRef.ar.g() < GlobalStatus.q.length) {
+                            this.a(var1, GlobalStatus.q[this.mainCanvasRef.ar.g()].e, q);
                         }
 
                         return;
@@ -1897,21 +1910,21 @@ public final class ao_1 {
                     return;
                 }
 
-                this.e.aq.a(var1);
-                if (this.l == 1) {
+                this.mainCanvasRef.aq.a(var1);
+                if (this.sceneSubState == 1) {
                     LoadingPage.c(var1);
-                } else if (this.l == 2) {
+                } else if (this.sceneSubState == 2) {
                     this.a(var1, "购买个数");
                 } else {
-                    if (this.l != 3) {
-                        if (this.l == 4) {
-                            LoadingPage.a(var1, "您确认以" + GlobalStatus.a(GlobalStatus.eg[this.e.ar.g()]) + "两的价格购买该物品" + this.ag + "个", new String[]{"确定", "取消"});
+                    if (this.sceneSubState != 3) {
+                        if (this.sceneSubState == 4) {
+                            LoadingPage.a(var1, "您确认以" + GlobalStatus.a(GlobalStatus.eg[this.mainCanvasRef.ar.g()]) + "两的价格购买该物品" + this.ag + "个", new String[]{"确定", "取消"});
                         }
 
                         return;
                     }
 
-                    LoadingPage.a(var1, "您确认以" + GlobalStatus.eg[this.e.ar.g()] + "两的价格购买该物品" + GlobalStatus.eb[this.e.ar.g()] + "个", new String[]{"确定", "取消"});
+                    LoadingPage.a(var1, "您确认以" + GlobalStatus.eg[this.mainCanvasRef.ar.g()] + "两的价格购买该物品" + GlobalStatus.eb[this.mainCanvasRef.ar.g()] + "个", new String[]{"确定", "取消"});
                 }
                 break;
             case 24:
@@ -1923,15 +1936,15 @@ public final class ao_1 {
             case 27:
                 return;
             case 28:
-                if (this.e.aq == null) {
+                if (this.mainCanvasRef.aq == null) {
                     return;
                 }
 
-                this.e.aq.a(var1);
-                if (this.e.ar.h() != 0) {
-                    if (this.e.ar.h() == 1) {
-                        int var23 = this.e.ar.a() + this.e.ar.c() - MainCanvas.C.b - 70;
-                        int var30 = this.e.ar.b() + 4;
+                this.mainCanvasRef.aq.a(var1);
+                if (this.mainCanvasRef.ar.h() != 0) {
+                    if (this.mainCanvasRef.ar.h() == 1) {
+                        int var23 = this.mainCanvasRef.ar.a() + this.mainCanvasRef.ar.c() - MainCanvas.C.b - 70;
+                        int var30 = this.mainCanvasRef.ar.b() + 4;
                         LoadingPage.a(var1, "" + aW[1], var23, var30, 60);
                         this.b((int) 1, (int) var23, (int) var30, (int) 60);
                     }
@@ -1939,16 +1952,16 @@ public final class ao_1 {
                     return;
                 }
 
-                int var22 = this.e.ar.a() + this.e.ar.c() - MainCanvas.C.b - 70;
-                int var29 = this.e.ar.b() + 4;
+                int var22 = this.mainCanvasRef.ar.a() + this.mainCanvasRef.ar.c() - MainCanvas.C.b - 70;
+                int var29 = this.mainCanvasRef.ar.b() + 4;
                 LoadingPage.a(var1, "" + aW[0], var22, var29, 60);
                 LoadingPage.a(var1, "" + aW[1], var22, var29 + GlobalConfig.j, 60);
                 this.b((int) 0, (int) var22, (int) var29, (int) 60);
                 this.b((int) 1, (int) var22, (int) (var29 + GlobalConfig.j), (int) 60);
                 break;
             case 29:
-                if (GlobalStatus.dF != null && this.e.aq != null) {
-                    this.e.aq.a(var1);
+                if (GlobalStatus.dF != null && this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.a(var1);
                 }
 
                 return;
@@ -1956,12 +1969,12 @@ public final class ao_1 {
                 this.n(var1);
                 return;
             case 31:
-                if (this.l != 3 && this.e.aq != null) {
-                    this.e.aq.a(var1);
+                if (this.sceneSubState != 3 && this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.a(var1);
                 }
 
-                if (this.l != 1) {
-                    if (this.l == 2) {
+                if (this.sceneSubState != 1) {
+                    if (this.sceneSubState == 2) {
                         LoadingPage.c(var1);
                     }
 
@@ -1974,33 +1987,33 @@ public final class ao_1 {
                 this.w(var1);
                 return;
             case 33:
-                if (this.e.aq != null) {
-                    this.e.aq.a(var1);
-                    LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 32, this.e.aq.c - 11, this.bQ, 1);
-                    LoadingPage.c(var1, this.e.aq.a + 62, this.e.aq.b + 35, this.e.aq.a + 62, this.e.aq.b + 29 + this.bQ);
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.a(var1);
+                    LoadingPage.a(var1, this.mainCanvasRef.aq.a + 5, this.mainCanvasRef.aq.b + 32, this.mainCanvasRef.aq.c - 11, this.bQ, 1);
+                    LoadingPage.c(var1, this.mainCanvasRef.aq.a + 62, this.mainCanvasRef.aq.b + 35, this.mainCanvasRef.aq.a + 62, this.mainCanvasRef.aq.b + 29 + this.bQ);
                 }
 
                 if (bp != null) {
-                    MainCanvas.f.a(var1, (Frame1) bp, (int[]) null, 0, 0, this.e.aq.a + 5 + 30, this.e.aq.b + 35 + (this.bQ + bp.j()) / 2, 20, 0);
+                    MainCanvas.pngUtil.a(var1, (Frame1) bp, (int[]) null, 0, 0, this.mainCanvasRef.aq.a + 5 + 30, this.mainCanvasRef.aq.b + 35 + (this.bQ + bp.j()) / 2, 20, 0);
                 }
 
-                int var21 = this.e.aq.a + 8;
+                int var21 = this.mainCanvasRef.aq.a + 8;
                 Image var27;
                 if (GlobalStatus.aC == 1 && (var27 = MainCanvas.d(GlobalStatus.kU)) != null) {
-                    var1.drawImage(var27, var21, this.e.aq.b + 35, 20);
+                    var1.drawImage(var27, var21, this.mainCanvasRef.aq.b + 35, 20);
                     var21 += var27.getWidth();
                 }
 
                 if (GlobalStatus.aH == 1 && (var27 = MainCanvas.c(GlobalStatus.aI)) != null) {
-                    var1.drawImage(var27, var21, this.e.aq.b + 34, 20);
+                    var1.drawImage(var27, var21, this.mainCanvasRef.aq.b + 34, 20);
                 }
 
                 var1.setColor(1539988);
-                var1.fillRect(this.e.aq.a + 68, this.e.aq.b + 30 + this.bQ / 2, this.e.aq.c - 80, GlobalConfig.j);
+                var1.fillRect(this.mainCanvasRef.aq.a + 68, this.mainCanvasRef.aq.b + 30 + this.bQ / 2, this.mainCanvasRef.aq.c - 80, GlobalConfig.j);
                 var1.setColor(16776960);
-                var1.drawString("超Q等级：" + GlobalStatus.kU, this.e.aq.a + 70, this.e.aq.b + 30 + this.bQ / 2 - GlobalConfig.j, 20);
-                var1.drawString("超Q特权礼包：" + (GlobalStatus.kV == 1 ? "领取" : "未领取"), this.e.aq.a + 70, this.e.aq.b + 30 + this.bQ / 2, 20);
-                if (this.l == 1) {
+                var1.drawString("超Q等级：" + GlobalStatus.kU, this.mainCanvasRef.aq.a + 70, this.mainCanvasRef.aq.b + 30 + this.bQ / 2 - GlobalConfig.j, 20);
+                var1.drawString("超Q特权礼包：" + (GlobalStatus.kV == 1 ? "领取" : "未领取"), this.mainCanvasRef.aq.a + 70, this.mainCanvasRef.aq.b + 30 + this.bQ / 2, 20);
+                if (this.sceneSubState == 1) {
                     LoadingPage.c(var1);
                 }
 
@@ -2018,29 +2031,29 @@ public final class ao_1 {
                 this.a((Graphics) var1, (int) 0);
                 return;
             case 38:
-                if (this.e.aq != null) {
-                    this.e.aq.a(var1);
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.a(var1);
                 }
 
-                if (this.l == 1 || this.l == 2 || this.l == 3 || this.l == 4 || this.l == 5 || this.l == 6 || this.l == 7 || this.l == 8 || this.l == 10) {
+                if (this.sceneSubState == 1 || this.sceneSubState == 2 || this.sceneSubState == 3 || this.sceneSubState == 4 || this.sceneSubState == 5 || this.sceneSubState == 6 || this.sceneSubState == 7 || this.sceneSubState == 8 || this.sceneSubState == 10) {
                     LoadingPage.c(var1);
                 }
 
-                if (this.l == 9) {
-                    LoadingPage.a(var1, "您确定招募" + GlobalStatus.hU[this.e.ar.g()] + "？", new String[]{"确定", "返回"});
+                if (this.sceneSubState == 9) {
+                    LoadingPage.a(var1, "您确定招募" + GlobalStatus.hU[this.mainCanvasRef.ar.g()] + "？", new String[]{"确定", "返回"});
                 }
 
                 return;
             case 39:
                 this.z(var1);
                 if (this.cX == 5) {
-                    this.ba.a(var1, MainCanvas.f, h - this.g() - this.ba.d.g() / 2 - 2, i - this.h() - this.ba.d.h(), (byte) 0);
+                    this.ba.a(var1, MainCanvas.pngUtil, h - this.g() - this.ba.d.g() / 2 - 2, i - this.h() - this.ba.d.h(), (byte) 0);
                 } else {
-                    this.ba.a(var1, MainCanvas.f, h - this.g(), i - this.h(), (byte) 0);
+                    this.ba.a(var1, MainCanvas.pngUtil, h - this.g(), i - this.h(), (byte) 0);
                 }
 
                 if (this.cY) {
-                    if (this.e.ak % 5L == 0L) {
+                    if (this.mainCanvasRef.ak % 5L == 0L) {
                         var1.setColor(65280);
                     } else {
                         var1.setColor(2162687);
@@ -2059,9 +2072,9 @@ public final class ao_1 {
                 var1.drawRect(this.ba.e - h + this.g() + this.ba.d.g() / 7, this.ba.f - i + this.h(), this.ba.d.g(), this.ba.d.h());
                 break;
             case 40:
-                if (this.l != 0) {
-                    if (this.l == 1 && this.e.aq != null) {
-                        this.e.aq.a(var1);
+                if (this.sceneSubState != 0) {
+                    if (this.sceneSubState == 1 && this.mainCanvasRef.aq != null) {
+                        this.mainCanvasRef.aq.a(var1);
                     }
 
                     return;
@@ -2075,15 +2088,15 @@ public final class ao_1 {
                     var18.b.aq.a(var1);
                 }
 
-                if (var18.a.l == 0) {
+                if (var18.a.sceneSubState == 0) {
                     return;
                 }
 
-                if (var18.a.l == 1) {
+                if (var18.a.sceneSubState == 1) {
                     LoadingPage.a(var1, "您真的要退出帮派吗？", new String[]{"确定", "返回"});
                 } else {
-                    if (var18.a.l != 2) {
-                        if (var18.a.l == 3) {
+                    if (var18.a.sceneSubState != 2) {
+                        if (var18.a.sceneSubState == 3) {
                             LoadingPage.a(var1, "您真的要发布招募吗？", new String[]{"确定", "返回"});
                         }
 
@@ -2095,12 +2108,12 @@ public final class ao_1 {
                 break;
             case 42:
                 aq var17;
-                if ((var17 = this.M).a.l == 0 || var17.a.l == 1) {
+                if ((var17 = this.M).a.sceneSubState == 0 || var17.a.sceneSubState == 1) {
                     if (var17.b.aq != null) {
                         var17.b.aq.a(var1);
                     }
 
-                    if (var17.a.l == 1) {
+                    if (var17.a.sceneSubState == 1) {
                         LoadingPage.c(var1);
                     }
                 }
@@ -2108,12 +2121,12 @@ public final class ao_1 {
                 return;
             case 43:
                 aq var16;
-                if ((var16 = this.M).a.l == 0 || var16.a.l == 1) {
+                if ((var16 = this.M).a.sceneSubState == 0 || var16.a.sceneSubState == 1) {
                     if (var16.b.aq != null) {
                         var16.b.aq.a(var1);
                     }
 
-                    if (var16.a.l == 1) {
+                    if (var16.a.sceneSubState == 1) {
                         LoadingPage.c(var1);
                     }
                 }
@@ -2121,15 +2134,15 @@ public final class ao_1 {
                 return;
             case 45:
                 aq var15;
-                if ((var15 = this.M).a.l == 0 && var15.b.aq != null) {
+                if ((var15 = this.M).a.sceneSubState == 0 && var15.b.aq != null) {
                     var15.b.aq.a(var1);
                 }
 
                 return;
             case 46:
                 aq var14;
-                if ((var14 = this.M).a.l != 0 && var14.a.l != 1) {
-                    if (var14.a.l == 2) {
+                if ((var14 = this.M).a.sceneSubState != 0 && var14.a.sceneSubState != 1) {
+                    if (var14.a.sceneSubState == 2) {
                         var14.a.T.a(var1);
                     }
 
@@ -2140,7 +2153,7 @@ public final class ao_1 {
                     var14.b.aq.a(var1);
                 }
 
-                if (var14.a.l != 1) {
+                if (var14.a.sceneSubState != 1) {
                     return;
                 }
 
@@ -2148,16 +2161,16 @@ public final class ao_1 {
                 break;
             case 47:
                 aq var13;
-                if ((var13 = this.M).a.l != 4 && var13.b.aq != null) {
+                if ((var13 = this.M).a.sceneSubState != 4 && var13.b.aq != null) {
                     var13.b.aq.a(var1);
                 }
 
-                if (var13.a.l != 1 && var13.a.l != 2 && var13.a.l != 5 && var13.a.l != 6 && var13.a.l != 7 && var13.a.l != 8) {
-                    if (var13.a.l == 3) {
+                if (var13.a.sceneSubState != 1 && var13.a.sceneSubState != 2 && var13.a.sceneSubState != 5 && var13.a.sceneSubState != 6 && var13.a.sceneSubState != 7 && var13.a.sceneSubState != 8) {
+                    if (var13.a.sceneSubState == 3) {
                         var13.a.T.a(var1);
                     } else {
-                        if (var13.a.l != 4) {
-                            if (var13.a.l == 9) {
+                        if (var13.a.sceneSubState != 4) {
+                            if (var13.a.sceneSubState == 9) {
                                 LoadingPage.a(var1, "需要消耗基金300万和20点军力，一旦宣战必须等到战争结束后才能再次宣战！", new String[]{"确定", "取消"});
                             }
 
@@ -2172,8 +2185,8 @@ public final class ao_1 {
                 break;
             case 48:
                 aq var12;
-                if ((var12 = this.M).a.l != 0 && var12.a.l != 1 && var12.a.l != 3) {
-                    if (var12.a.l == 2 && var12.b.aq != null) {
+                if ((var12 = this.M).a.sceneSubState != 0 && var12.a.sceneSubState != 1 && var12.a.sceneSubState != 3) {
+                    if (var12.a.sceneSubState == 2 && var12.b.aq != null) {
                         var12.b.aq.a(var1);
                     }
 
@@ -2184,10 +2197,10 @@ public final class ao_1 {
                     var12.b.aq.a(var1);
                 }
 
-                if (var12.a.l == 1) {
+                if (var12.a.sceneSubState == 1) {
                     LoadingPage.c(var1);
                 } else {
-                    if (var12.a.l != 3) {
+                    if (var12.a.sceneSubState != 3) {
                         return;
                     }
 
@@ -2196,7 +2209,7 @@ public final class ao_1 {
                 break;
             case 49:
                 aq var11;
-                if ((var11 = this.M).a.l == 0 && var11.b.aq != null) {
+                if ((var11 = this.M).a.sceneSubState == 0 && var11.b.aq != null) {
                     var11.b.aq.a(var1);
                 }
 
@@ -2207,23 +2220,23 @@ public final class ao_1 {
                     var10.b.aq.a(var1);
                 }
 
-                if (var10.a.l == 1) {
+                if (var10.a.sceneSubState == 1) {
                     var10.a.b(var1, "捐献银两数量");
-                } else if (var10.a.l == 2) {
+                } else if (var10.a.sceneSubState == 2) {
                     var10.a.b(var1, "捐献经验数量");
                 } else {
-                    if (var10.a.l != 3 && var10.a.l != 4) {
-                        if (var10.a.l == 5) {
+                    if (var10.a.sceneSubState != 3 && var10.a.sceneSubState != 4) {
+                        if (var10.a.sceneSubState == 5) {
                             var10.a.b(var1, "取出银两数量");
                             break;
                         }
 
-                        if (var10.a.l != 6 && var10.a.l != 7) {
+                        if (var10.a.sceneSubState != 6 && var10.a.sceneSubState != 7) {
                             return;
                         }
                     } else {
                         var10.a.a(var1, "请选择发布天数");
-                        if (var10.a.m != 1) {
+                        if (var10.a.sceneSubMode != 1) {
                             return;
                         }
                     }
@@ -2241,18 +2254,18 @@ public final class ao_1 {
                     var9.b.aq.a(var1);
                 }
 
-                if (var9.a.l == 1 || var9.a.l == 2) {
+                if (var9.a.sceneSubState == 1 || var9.a.sceneSubState == 2) {
                     LoadingPage.c(var1);
                 }
 
                 return;
             case 53:
-                if (this.e.aq != null) {
-                    this.e.aq.a(var1);
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.a(var1);
                 }
 
-                if (this.l != 1) {
-                    if (this.l == 2) {
+                if (this.sceneSubState != 1) {
+                    if (this.sceneSubState == 2) {
                         this.a(var1, "取回个数");
                     }
 
@@ -2262,29 +2275,29 @@ public final class ao_1 {
                 LoadingPage.c(var1);
                 break;
             case 57:
-                if (this.l == 0) {
-                    this.e.aq.a(var1);
+                if (this.sceneSubState == 0) {
+                    this.mainCanvasRef.aq.a(var1);
                 }
 
                 return;
             case 58:
-                if (this.l == 0) {
-                    this.e.aq.a(var1);
+                if (this.sceneSubState == 0) {
+                    this.mainCanvasRef.aq.a(var1);
                 }
 
                 return;
             case 59:
-                this.e.aq.a(var1);
-                if (this.l != 1 && this.l != 2) {
-                    if (this.l == 3) {
-                        if (LoadingPage.a(GlobalStatus.jO[this.e.ar.g()]) != -1) {
-                            LoadingPage.a(var1, "是否将" + GlobalStatus.jO[this.e.ar.g()].substring(3, GlobalStatus.jO[this.e.ar.g()].length()) + "从拍卖场中撤下？", new String[]{"确定", "取消"});
+                this.mainCanvasRef.aq.a(var1);
+                if (this.sceneSubState != 1 && this.sceneSubState != 2) {
+                    if (this.sceneSubState == 3) {
+                        if (LoadingPage.a(GlobalStatus.jO[this.mainCanvasRef.ar.g()]) != -1) {
+                            LoadingPage.a(var1, "是否将" + GlobalStatus.jO[this.mainCanvasRef.ar.g()].substring(3, GlobalStatus.jO[this.mainCanvasRef.ar.g()].length()) + "从拍卖场中撤下？", new String[]{"确定", "取消"});
                         } else {
-                            LoadingPage.a(var1, "是否将" + GlobalStatus.jO[this.e.ar.g()] + "从拍卖场中撤下？", new String[]{"确定", "取消"});
+                            LoadingPage.a(var1, "是否将" + GlobalStatus.jO[this.mainCanvasRef.ar.g()] + "从拍卖场中撤下？", new String[]{"确定", "取消"});
                         }
                     } else {
-                        if (this.l != 5) {
-                            if (this.l == 4) {
+                        if (this.sceneSubState != 5) {
+                            if (this.sceneSubState == 4) {
                                 this.b(var1, "拍卖价格");
                             }
 
@@ -2303,8 +2316,8 @@ public final class ao_1 {
                     var8.b.aq.a(var1);
                 }
 
-                if (var8.a.l != 1 && var8.a.l != 2) {
-                    if (var8.a.l == 3) {
+                if (var8.a.sceneSubState != 1 && var8.a.sceneSubState != 2) {
+                    if (var8.a.sceneSubState == 3) {
                         LoadingPage.a(var1, "需要消耗基金300万和20点军力，一旦宣战必须等到战争结束后才能再次宣战！", new String[]{"确定", "取消"});
                     }
 
@@ -2322,7 +2335,7 @@ public final class ao_1 {
                 return;
             case 63:
                 aq var2;
-                if ((var2 = this.M).a.l == 0 && var2.b.aq != null) {
+                if ((var2 = this.M).a.sceneSubState == 0 && var2.b.aq != null) {
                     LoadingPage.a(var1, var2.b.aq.a + 5, var2.b.aq.a(), var2.b.aq.c - 11, 2 * GlobalConfig.j + 8, 1);
                     var1.setColor(16711680);
                     var1.drawString("处置战败方：", GlobalConfig.f + GlobalConfig.realWidth / 2, var2.b.aq.a() + 2, 17);
@@ -2343,17 +2356,17 @@ public final class ao_1 {
                 this.O.c(var1);
                 return;
             case 68:
-                if (this.e.aq != null) {
-                    this.e.aq.a(var1);
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.a(var1);
                 }
 
                 return;
             case 69:
-                if (this.e.aq != null) {
-                    this.e.aq.a(var1);
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.a(var1);
                 }
 
-                if (this.l == 1) {
+                if (this.sceneSubState == 1) {
                     this.a(var1, "兑换数量");
                 }
 
@@ -2368,8 +2381,8 @@ public final class ao_1 {
                 this.F(var1);
                 return;
             case 75:
-                if (this.e.aq != null) {
-                    this.e.aq.a(var1);
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.a(var1);
                 }
 
                 return;
@@ -2492,7 +2505,7 @@ public final class ao_1 {
     }
 
     public final void b() {
-        this.e.a();
+        this.mainCanvasRef.a();
         GlobalStatus.f();
         GlobalStatus.j();
         GlobalStatus.d();
@@ -2514,8 +2527,8 @@ public final class ao_1 {
         GlobalStatus.ke = -1;
         GlobalStatus.kf = -1;
         GlobalStatus.kg = -1;
-        if (this.I != null) {
-            this.I = null;
+        if (this.sceneRefreshCoordinator != null) {
+            this.sceneRefreshCoordinator = null;
         }
 
         if (this.f != null) {
@@ -2545,7 +2558,7 @@ public final class ao_1 {
         aP.removeAllElements();
         bH.removeAllElements();
         this.c = false;
-        this.e.az = false;
+        this.mainCanvasRef.az = false;
         GlobalStatus.H = null;
         GlobalStatus.M = null;
         GlobalStatus.as = -1;
@@ -2556,14 +2569,14 @@ public final class ao_1 {
     }
 
     public final void c() {
-        PngUtil.a(bn, this.e.ak);
+        PngUtil.a(bn, this.mainCanvasRef.ak);
         this.P();
         if (this.cM) {
             this.aR();
             this.cM = false;
         }
 
-        ao_1 var1 = this;
+        UISceneController var1 = this;
         if (GlobalStatus.g && System.currentTimeMillis() - GlobalStatus.lastSyncTime >= 180000L) {
             GlobalStatus.h = 3;
         }
@@ -2571,11 +2584,11 @@ public final class ao_1 {
         if (!GlobalStatus.g && System.currentTimeMillis() - GlobalStatus.f > 60000L) {
             GlobalStatus.g = true;
             byte[] var2 = NetPayloadBuilder.a((short) 4630);
-            if (this.e != null) {
+            if (this.mainCanvasRef != null) {
                 if (MainCanvas.netUtils != null) {
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4630, var2));
                 } else {
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                 }
             }
         }
@@ -2585,7 +2598,7 @@ public final class ao_1 {
             if (!i()) {
                 this.cK = -2;
             } else {
-                this.cK = this.I.a(this.e);
+                this.cK = this.sceneRefreshCoordinator.a(this.mainCanvasRef);
             }
         } else {
             this.cK = -2;
@@ -2593,56 +2606,55 @@ public final class ao_1 {
 
         label95:
         {
-            if (this.cK >= 0 && this.I.e()) {
-                this.e.b = 0;
-                this.I.a = this.I.b = 0;
-                if (GlobalStatus.bs == 1 && GlobalStatus.s == 0 && this.e.ak - this.aY < 5000L) {
+            if (this.cK >= 0 && this.sceneRefreshCoordinator.e()) {
+                this.mainCanvasRef.b = 0;
+                this.sceneRefreshCoordinator.a = this.sceneRefreshCoordinator.b = 0;
+                if (GlobalStatus.bs == 1 && GlobalStatus.s == 0 && this.mainCanvasRef.ak - this.aY < 5000L) {
                     if (!this.cJ) {
                         this.cJ = !this.cJ;
-                        this.e.processException("组队时的传送间隔为5秒!");
+                        this.mainCanvasRef.processException("组队时的传送间隔为5秒!");
                     }
                     break label95;
                 }
 
-                if (this.k != 25) {
+                if (this.currentSceneModeId != 25) {
                     short var10001 = GlobalStatus.ab[this.cK];
                     short var10002 = GlobalStatus.ac[this.cK];
-                    long var15 = MainMidlet.c;
-                    short var14 = this.k;
+                    short var14 = this.currentSceneModeId;
                     short var13 = var10002;
                     short var11 = var10001;
                     byte[] var12;
-                    if ((var12 = NetPayloadBuilder.a((short) 4144, GlobalStatus.ad, var11, var13, var14, var15)) != null) {
+                    if ((var12 = NetPayloadBuilder.a((short) 4144, GlobalStatus.ad, var11, var13, var14, MainMidlet.totalMemoryAtStartup)) != null) {
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4144, var12));
                     } else {
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                     }
 
                     this.aX = true;
                     this.cJ = false;
-                    this.aY = this.e.ak;
-                    this.e.a((String) null);
+                    this.aY = this.mainCanvasRef.ak;
+                    this.mainCanvasRef.a((String) null);
                     break label95;
                 }
-            } else if (this.e.ak - this.bt >= 4700L) {
+            } else if (this.mainCanvasRef.ak - this.bt >= 4700L) {
                 if (!GlobalStatus.a) {
                     byte[] var9 = NetPayloadBuilder.d((short) 4641, GlobalStatus.ad);
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4641, var9));
                 }
 
-                var1.bt = var1.e.ak;
+                var1.bt = var1.mainCanvasRef.ak;
                 if (!var1.aX) {
-                    short var4 = var1.k;
-                    short var3 = var1.I.k;
-                    short var10 = var1.I.j;
+                    short var4 = var1.currentSceneModeId;
+                    short var3 = var1.sceneRefreshCoordinator.k;
+                    short var10 = var1.sceneRefreshCoordinator.j;
                     byte[] var7 = NetPayloadBuilder.a((short) 4101, GlobalStatus.ad, (int) var10, (int) var3, (short) var4);
-                    if (var1.e != null) {
+                    if (var1.mainCanvasRef != null) {
                         if (MainCanvas.netUtils != null) {
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4101, var7));
                             return;
                         }
 
-                        var1.e.processException("获取上传指令数据错误!");
+                        var1.mainCanvasRef.processException("获取上传指令数据错误!");
                     }
                 }
             }
@@ -2650,33 +2662,33 @@ public final class ao_1 {
             return;
         }
 
-        this.I.d();
+        this.sceneRefreshCoordinator.d();
     }
 
     public final void d() {
         if (!i()) {
-            if (this.g != null && GlobalStatus.L == 1) {
+            if (this.overlayDialogController != null && GlobalStatus.L == 1) {
                 if (GlobalStatus.K == 2) {
                     bq_1.e();
                     this.aT();
-                    this.g.a();
+                    this.overlayDialogController.a();
                     return;
                 }
 
-                this.g.l();
+                this.overlayDialogController.l();
                 GlobalStatus.y = System.currentTimeMillis();
                 return;
             }
         } else if (GlobalStatus.I != null && GlobalStatus.N != null) {
-            if (!this.c && this.k != 25) {
+            if (!this.c && this.currentSceneModeId != 25) {
                 this.f((byte) 0);
                 return;
             }
-        } else if (this.k == 0 && i() && this.e.touchPageCase == 7 && !this.e.p) {
+        } else if (this.currentSceneModeId == 0 && i() && this.mainCanvasRef.touchPageCase == 7 && !this.mainCanvasRef.p) {
             s var2;
-            if ((GlobalStatus.bs != 0 || GlobalStatus.s != 0) && this.I != null && (var2 = this.I.a(this.aO)) != null && this.I.g()) {
-                this.e.b = 0;
-                this.I.a = this.I.b = 0;
+            if ((GlobalStatus.bs != 0 || GlobalStatus.s != 0) && this.sceneRefreshCoordinator != null && (var2 = this.sceneRefreshCoordinator.a(this.aO)) != null && this.sceneRefreshCoordinator.g()) {
+                this.mainCanvasRef.b = 0;
+                this.sceneRefreshCoordinator.a = this.sceneRefreshCoordinator.b = 0;
                 s var3 = var2;
                 if (var2 != null && var2.b != null && var2.b.length != 0 && GlobalStatus.hl != null) {
                     GlobalStatus.x = 0;
@@ -2770,7 +2782,7 @@ public final class ao_1 {
                     }
 
                     this.d();
-                    if (this.k == 25) {
+                    if (this.currentSceneModeId == 25) {
                         bq_1.g = var3.a;
                         if (GlobalStatus.K == 2 && GlobalStatus.bs == 1) {
                             this.S();
@@ -2782,46 +2794,46 @@ public final class ao_1 {
                     }
                 }
 
-                this.I.f();
+                this.sceneRefreshCoordinator.f();
             }
 
             aq var1 = this.M;
             bl var9;
-            if ((GlobalStatus.bs != 0 || GlobalStatus.s != 0) && (var9 = var1.a.I.a(GlobalStatus.o)) != null && var1.a.I.l() && var9.v == 0 && System.currentTimeMillis() - GlobalStatus.y > (GlobalStatus.bw == 1 ? var1.q : (GlobalStatus.bw == 2 ? var1.r : 0L))) {
+            if ((GlobalStatus.bs != 0 || GlobalStatus.s != 0) && (var9 = var1.a.sceneRefreshCoordinator.a(GlobalStatus.o)) != null && var1.a.sceneRefreshCoordinator.l() && var9.v == 0 && System.currentTimeMillis() - GlobalStatus.y > (GlobalStatus.bw == 1 ? var1.q : (GlobalStatus.bw == 2 ? var1.r : 0L))) {
                 var1.a(var9.a, (byte) 0);
-                var1.a.I.k();
+                var1.a.sceneRefreshCoordinator.k();
             }
         }
 
     }
 
     public final void e() {
-        this.e.p = true;
+        this.mainCanvasRef.p = true;
         this.d = -1;
         this.aU();
-        this.e.h();
-        if (this.k != 25) {
-            this.e.clear();
+        this.mainCanvasRef.h();
+        if (this.currentSceneModeId != 25) {
+            this.mainCanvasRef.clear();
             if (GlobalStatus.aw == 1) {
                 GlobalStatus.d();
                 GlobalStatus.aw = 0;
             }
 
             this.ar();
-            this.e.clear();
+            this.mainCanvasRef.clear();
             this.ao();
-            this.e.clear();
+            this.mainCanvasRef.clear();
             this.U();
-            this.e.clear();
-            this.I.a(GlobalStatus.at, GlobalStatus.au);
+            this.mainCanvasRef.clear();
+            this.sceneRefreshCoordinator.a(GlobalStatus.at, GlobalStatus.au);
             ap();
-            this.e.clear();
+            this.mainCanvasRef.clear();
             this.as();
-            this.e.clear();
-            MainCanvas.f.a(this.g(), this.h(), GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-            this.e.clear();
-            MainCanvas.f.a(this.f, h, i, true, false, 1009050);
-            this.e.clear();
+            this.mainCanvasRef.clear();
+            MainCanvas.pngUtil.a(this.g(), this.h(), GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
+            this.mainCanvasRef.clear();
+            MainCanvas.pngUtil.a(this.f, h, i, true, false, 1009050);
+            this.mainCanvasRef.clear();
             bm.removeAllElements();
             GlobalStatus.p.removeAllElements();
             GlobalStatus.o = null;
@@ -2830,15 +2842,15 @@ public final class ao_1 {
             bl.removeAllElements();
             this.M.s = h;
             this.M.t = i;
-            this.m = 0;
-            this.l = 0;
-            this.e.touchAction = 0;
-            this.e.b = 0;
+            this.sceneSubMode = 0;
+            this.sceneSubState = 0;
+            this.mainCanvasRef.touchAction = 0;
+            this.mainCanvasRef.b = 0;
             this.N();
-            this.e.touchPageCase = this.e.k = 7;
+            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k = 7;
         }
 
-        this.e.p = false;
+        this.mainCanvasRef.p = false;
     }
 
     private void ao() {
@@ -2849,7 +2861,7 @@ public final class ao_1 {
 
             for (int var1 = 0; var1 < this.f.l.length; ++var1) {
                 if (this.f.l[var1] != null) {
-                    MainCanvas.f.a(this.f.l[var1], this.f.n[var1]);
+                    MainCanvas.pngUtil.a(this.f.l[var1], this.f.n[var1]);
                 }
             }
 
@@ -2857,11 +2869,11 @@ public final class ao_1 {
     }
 
     public final void f() {
-        this.e.p = true;
-        this.m = 0;
-        this.l = 0;
-        this.e.touchAction = 0;
-        this.e.b = 0;
+        this.mainCanvasRef.p = true;
+        this.sceneSubMode = 0;
+        this.sceneSubState = 0;
+        this.mainCanvasRef.touchAction = 0;
+        this.mainCanvasRef.b = 0;
         this.aO.removeAllElements();
         bl.removeAllElements();
         if (GlobalStatus.t != null) {
@@ -2874,11 +2886,11 @@ public final class ao_1 {
 
         this.U();
         ap();
-        MainCanvas.f.a(this.g(), this.h(), GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
+        MainCanvas.pngUtil.a(this.g(), this.h(), GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
         this.as();
-        this.e.touchPageCase = this.e.k = 7;
-        this.j = this.k = 0;
-        this.e.p = false;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k = 7;
+        this.sceneStateShadow = this.currentSceneModeId = 0;
+        this.mainCanvasRef.p = false;
     }
 
     private static void ap() {
@@ -2935,7 +2947,7 @@ public final class ao_1 {
 
     private void ar() {
         if (GlobalStatus.as != GlobalStatus.ar) {
-            this.e.o = false;
+            this.mainCanvasRef.o = false;
             GlobalStatus.as = GlobalStatus.ar;
             if (GlobalConfig.l == 2) {
                 MainCanvas.ah.c();
@@ -2950,14 +2962,14 @@ public final class ao_1 {
                 this.f = MainCanvas.ae.c(String.valueOf(GlobalStatus.ar));
             }
 
-            MainCanvas.f.a();
-            MainCanvas.f.a(this.f, this.e.m);
+            MainCanvas.pngUtil.a();
+            MainCanvas.pngUtil.a(this.f, this.mainCanvasRef.m);
         }
 
     }
 
     public final void a(int var1) {
-        if (this.I.h()) {
+        if (this.sceneRefreshCoordinator.h()) {
             if (this.Y != GlobalStatus.ar) {
                 this.Y = GlobalStatus.ar;
                 this.e();
@@ -2965,15 +2977,15 @@ public final class ao_1 {
                 this.f();
             }
 
-            this.I.i();
+            this.sceneRefreshCoordinator.i();
         }
 
         if (GlobalStatus.bw == 2 && GlobalStatus.kj > 0) {
-            this.I.c.removeAllElements();
-            this.e.b = 0;
-            this.e.touchAction = 0;
+            this.sceneRefreshCoordinator.c.removeAllElements();
+            this.mainCanvasRef.b = 0;
+            this.mainCanvasRef.touchAction = 0;
             aq var12 = this.M;
-            var12.a.j = var12.a.k = 61;
+            var12.a.sceneStateShadow = var12.a.currentSceneModeId = 61;
             var12.s = h;
             var12.t = i;
         } else {
@@ -2983,7 +2995,7 @@ public final class ao_1 {
                 bk.removeElementAt(0);
             }
 
-            ao_1 var2 = this;
+            UISceneController var2 = this;
             if (GlobalStatus.hb != null) {
                 for (int var3 = 0; var3 < var2.aO.size(); ++var3) {
                     s var4;
@@ -3033,7 +3045,7 @@ public final class ao_1 {
             c(GlobalStatus.dB);
             this.f((short) -1);
             this.aA();
-            if (GlobalStatus.H == null && this.e.b == 0) {
+            if (GlobalStatus.H == null && this.mainCanvasRef.b == 0) {
                 if (this.J != null) {
                     if (var1 == 268435456) {
                         this.J = null;
@@ -3045,7 +3057,7 @@ public final class ao_1 {
                         if ((var8 = NetPayloadBuilder.C((short) 4371, GlobalStatus.ad)) != null) {
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4371, var8));
                         } else {
-                            this.e.processException("获取上传指令数据错误!");
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                         }
                     }
                 } else if (var1 == 268435456) {
@@ -3068,16 +3080,16 @@ public final class ao_1 {
                     String[] var17 = new String[var14.size()];
                     var14.copyInto(var17);
                     LoadingPage.a((GlobalConfig.realWidth - GlobalConfig.i.stringWidth("操作")) / 2, (GlobalConfig.realHigh - GlobalConfig.j * var17.length) / 2, var17, true);
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     GlobalStatus.gQ = 1;
-                    this.e.touchPageCase = this.e.k;
-                    this.j = this.k = 100;
+                    this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+                    this.sceneStateShadow = this.currentSceneModeId = 100;
                 } else if (var1 == 1024) {
                     this.by = 1;
                     this.K();
                 } else if (var1 == 2048) {
                     if (GlobalStatus.bR == null && GlobalStatus.bL == null) {
-                        this.e.processException("当前没有任务");
+                        this.mainCanvasRef.processException("当前没有任务");
                     } else {
                         this.by = 1;
                         this.x();
@@ -3088,7 +3100,7 @@ public final class ao_1 {
                             this.by = 1;
                             this.j((int) 0);
                         } else {
-                            this.e.processException("您没有宠物！");
+                            this.mainCanvasRef.processException("您没有宠物！");
                         }
                     } else if (var1 == 513) {
                         this.aS();
@@ -3130,9 +3142,9 @@ public final class ao_1 {
 
                                 this.aB = (GlobalConfig.defaultWidth - this.f.a * this.aD / 16) / 2;
                                 this.aC = (GlobalConfig.defaultHigh - this.f.b * this.aD / 16) / 2;
-                                this.e.touchPageCase = this.e.k;
-                                MainCanvas.f.a(this.f, h, i, false, false, 1009050);
-                                this.j = this.k = 30;
+                                this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+                                MainCanvas.pngUtil.a(this.f, h, i, false, false, 1009050);
+                                this.sceneStateShadow = this.currentSceneModeId = 30;
                             }
                         }
                     } else if (var1 == 521) {
@@ -3140,9 +3152,9 @@ public final class ao_1 {
                         if ((var11 = NetPayloadBuilder.f((short) 4168, GlobalStatus.ad)) != null) {
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4168, var11));
                             this.by = 1;
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                         } else {
-                            this.e.processException("获取上传指令数据错误!");
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                         }
                     }
                 } else {
@@ -3161,25 +3173,25 @@ public final class ao_1 {
                         if ((var10 = NetPayloadBuilder.c((short) 4106, GlobalStatus.ad, (int) GlobalStatus.t[this.af].a)) != null) {
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4106, var10));
                             aj = true;
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                             return;
                         }
 
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     if (L != null) {
-                        this.l = 0;
+                        this.sceneSubState = 0;
                         this.ar = 0;
-                        this.m = 0;
+                        this.sceneSubMode = 0;
                         this.an = L.k;
                         K = new TextRender("你想...", (short) (GlobalConfig.defaultWidth - 20));
                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
                         LoadingPage.g = 0;
-                        this.e.touchPageCase = this.e.k;
-                        MainCanvas.f.a(this.f, h, i, false, false, 1009050);
-                        this.j = this.k = 40;
+                        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+                        MainCanvas.pngUtil.a(this.f, h, i, false, false, 1009050);
+                        this.sceneStateShadow = this.currentSceneModeId = 40;
                     }
                 }
             }
@@ -3187,41 +3199,41 @@ public final class ao_1 {
             if (this.J == null) {
                 if (!GlobalStatus.bu) {
                     if (this.d != -1) {
-                        this.I.a(this.d);
-                    } else if (this.e.b != 8 && this.e.b != 516) {
-                        if (this.e.b != 2 && this.e.b != 518) {
-                            if (this.e.b != 1 && this.e.b != 514) {
-                                if (this.e.b != 4 && this.e.b != 520) {
-                                    this.I.c();
+                        this.sceneRefreshCoordinator.a(this.d);
+                    } else if (this.mainCanvasRef.b != 8 && this.mainCanvasRef.b != 516) {
+                        if (this.mainCanvasRef.b != 2 && this.mainCanvasRef.b != 518) {
+                            if (this.mainCanvasRef.b != 1 && this.mainCanvasRef.b != 514) {
+                                if (this.mainCanvasRef.b != 4 && this.mainCanvasRef.b != 520) {
+                                    this.sceneRefreshCoordinator.c();
                                 } else {
-                                    this.I.a((byte) 3);
+                                    this.sceneRefreshCoordinator.a((byte) 3);
                                 }
                             } else {
-                                this.I.a((byte) 1);
+                                this.sceneRefreshCoordinator.a((byte) 1);
                             }
                         } else {
-                            this.I.a((byte) 2);
+                            this.sceneRefreshCoordinator.a((byte) 2);
                         }
                     } else {
-                        this.I.a((byte) 0);
+                        this.sceneRefreshCoordinator.a((byte) 0);
                     }
                 } else if (this.aO != null && this.aO.size() > 0) {
-                    if (this.e.ak - bq_1.r > 2200L) {
+                    if (this.mainCanvasRef.ak - bq_1.r > 2200L) {
                         this.X.a();
                     } else {
-                        if (this.I.c != null) {
-                            this.I.c.removeAllElements();
+                        if (this.sceneRefreshCoordinator.c != null) {
+                            this.sceneRefreshCoordinator.c.removeAllElements();
                         }
 
-                        this.I.c();
+                        this.sceneRefreshCoordinator.c();
                     }
                 } else {
-                    this.I.c();
+                    this.sceneRefreshCoordinator.c();
                 }
             }
 
             this.aE = 0;
-            L = this.I.b(GlobalStatus.ij);
+            L = this.sceneRefreshCoordinator.b(GlobalStatus.ij);
             this.M();
             this.as();
         }
@@ -3259,8 +3271,8 @@ public final class ao_1 {
                     i = var6 - var4 < 0 ? 0 : (var6 + var4 > this.f.b ? this.f.b - var2 : var6 - var4);
                 }
             } else {
-                h = this.I.j - var3 < 0 ? 0 : (this.I.j + var3 > this.f.a ? this.f.a - var1 : this.I.j - var3);
-                i = this.I.k - var4 < 0 ? 0 : (this.I.k + var4 > this.f.b ? this.f.b - var2 : this.I.k - var4);
+                h = this.sceneRefreshCoordinator.j - var3 < 0 ? 0 : (this.sceneRefreshCoordinator.j + var3 > this.f.a ? this.f.a - var1 : this.sceneRefreshCoordinator.j - var3);
+                i = this.sceneRefreshCoordinator.k - var4 < 0 ? 0 : (this.sceneRefreshCoordinator.k + var4 > this.f.b ? this.f.b - var2 : this.sceneRefreshCoordinator.k - var4);
             }
         }
     }
@@ -3303,9 +3315,9 @@ public final class ao_1 {
     private void at() {
         this.j();
         this.c((int) 0);
-        this.l = 0;
-        MainCanvas.f.a(this.f, h, i, false, false, 1009050);
-        this.j = this.k = 1;
+        this.sceneSubState = 0;
+        MainCanvas.pngUtil.a(this.f, h, i, false, false, 1009050);
+        this.sceneStateShadow = this.currentSceneModeId = 1;
     }
 
     public final void j() {
@@ -3316,25 +3328,25 @@ public final class ao_1 {
     public final void k() {
         this.a(new String[]{"进入", "查看", "邀请", "任免", "弃帮"});
         this.c((int) 0);
-        this.l = 2;
-        MainCanvas.f.a(this.f, h, i, false, false, 1009050);
-        this.j = this.k = 1;
+        this.sceneSubState = 2;
+        MainCanvas.pngUtil.a(this.f, h, i, false, false, 1009050);
+        this.sceneStateShadow = this.currentSceneModeId = 1;
     }
 
     public final void l() {
         this.a(new String[]{"附魔", "升星-装", "洗炼-装", "传送", "升星-宠", "合成"});
         this.c((int) 0);
-        this.l = 19;
-        MainCanvas.f.a(this.f, h, i, false, false, 1009050);
-        this.j = this.k = 1;
+        this.sceneSubState = 19;
+        MainCanvas.pngUtil.a(this.f, h, i, false, false, 1009050);
+        this.sceneStateShadow = this.currentSceneModeId = 1;
     }
 
     private void au() {
         this.a(new String[]{"好友", "聊天", "周围"});
         this.c((int) 0);
-        this.l = 20;
-        MainCanvas.f.a(this.f, h, i, false, false, 1009050);
-        this.j = this.k = 1;
+        this.sceneSubState = 20;
+        MainCanvas.pngUtil.a(this.f, h, i, false, false, 1009050);
+        this.sceneStateShadow = this.currentSceneModeId = 1;
     }
 
     private void av() {
@@ -3345,9 +3357,9 @@ public final class ao_1 {
         }
 
         this.c((int) 0);
-        MainCanvas.f.a(this.f, h, i, false, false, 1009050);
-        this.l = 3;
-        this.j = this.k = 1;
+        MainCanvas.pngUtil.a(this.f, h, i, false, false, 1009050);
+        this.sceneSubState = 3;
+        this.sceneStateShadow = this.currentSceneModeId = 1;
     }
 
     private void aw() {
@@ -3358,16 +3370,16 @@ public final class ao_1 {
         }
 
         this.c((int) 0);
-        this.l = 4;
-        MainCanvas.f.a(this.f, h, i, false, false, 1009050);
-        this.j = this.k = 1;
+        this.sceneSubState = 4;
+        MainCanvas.pngUtil.a(this.f, h, i, false, false, 1009050);
+        this.sceneStateShadow = this.currentSceneModeId = 1;
     }
 
     private void ax() {
         this.a(new String[]{"设置", "帮助", "自动", "脱离", "角色", "退出"});
         this.c((int) 0);
-        this.l = 5;
-        this.j = this.k = 1;
+        this.sceneSubState = 5;
+        this.sceneStateShadow = this.currentSceneModeId = 1;
     }
 
     private void a(String[] var1) {
@@ -3399,7 +3411,7 @@ public final class ao_1 {
 
     private boolean ay() {
         if (GlobalConfig.x) {
-            this.e.processException("该功能暂不支持");
+            this.mainCanvasRef.processException("该功能暂不支持");
             return false;
         } else {
             return true;
@@ -3456,35 +3468,35 @@ public final class ao_1 {
         }
 
         LoadingPage.f(var1, var4, var5, this.bC * var2, this.bD * var3);
-        if (this.l == 6) {
+        if (this.sceneSubState == 6) {
             LoadingPage.a(var1, "您真的要退出帮派吗？", new String[]{"确定", "返回"});
-        } else if (this.l == 7) {
+        } else if (this.sceneSubState == 7) {
             LoadingPage.a(var1, "您确定要退出游戏吗？", new String[]{"确定", "返回"});
         }
 
-        if (this.l == 8) {
+        if (this.sceneSubState == 8) {
             this.a(var1, "输入数量");
         }
 
     }
 
     private void az() {
-        this.e.aq.b();
-        this.e.aq.a("商城必看");
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("商城必看");
         if (GlobalStatus.n != null && !GlobalStatus.n.equals("")) {
-            this.e.at.b(GlobalStatus.n, GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.b(GlobalStatus.n, GlobalConfig.i, (byte) 2);
         } else {
-            this.e.at.b("正在同步数据，请稍候！", GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.b("正在同步数据，请稍候！", GlobalConfig.i, (byte) 2);
         }
 
-        this.e.aq.a((al) this.e.at);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.j = this.k = 94;
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.sceneStateShadow = this.currentSceneModeId = 94;
     }
 
     private void u(int var1) {
-        if (this.e.aq != null) {
-            this.e.aq.b(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.b(var1);
         }
 
         if (var1 == 536870912) {
@@ -3495,83 +3507,83 @@ public final class ao_1 {
     }
 
     private void c(Graphics var1) {
-        if (this.e.aq != null) {
-            this.e.aq.a(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.a(var1);
         }
 
     }
 
     private void aA() {
-        if (this.e.aC != null && this.e.g) {
+        if (this.mainCanvasRef.aC != null && this.mainCanvasRef.g) {
             if (this.aT == 4 || this.aR) {
                 this.a((String) this.aS, (byte) 4);
-                this.e.n();
+                this.mainCanvasRef.n();
                 return;
             }
 
             this.a(this.aS, (byte) this.aT);
-            this.e.n();
+            this.mainCanvasRef.n();
         }
 
     }
 
     private void f(short var1) {
-        if (this.e.aC != null && this.e.aE != null && this.e.g) {
-            if ((var1 = (byte) this.e.aE.getSelectedIndex()) == 0) {
+        if (this.mainCanvasRef.aC != null && this.mainCanvasRef.aE != null && this.mainCanvasRef.g) {
+            if ((var1 = (byte) this.mainCanvasRef.aE.getSelectedIndex()) == 0) {
                 if (GlobalStatus.ak < 9) {
-                    this.e.g = false;
-                    this.e.n();
-                    this.e.processException("需要九级才能使用世界频道!");
+                    this.mainCanvasRef.g = false;
+                    this.mainCanvasRef.n();
+                    this.mainCanvasRef.processException("需要九级才能使用世界频道!");
                     return;
                 }
 
                 this.a((String) null, (byte) var1);
-                this.e.n();
-                if (this.l >= 0) {
-                    this.l = -1;
+                this.mainCanvasRef.n();
+                if (this.sceneSubState >= 0) {
+                    this.sceneSubState = -1;
                     return;
                 }
             } else if (var1 == 2) {
                 if (GlobalStatus.bs == -1) {
-                    this.e.g = false;
-                    this.e.n();
-                    this.e.processException("没有队伍,不能使用队伍频道!");
+                    this.mainCanvasRef.g = false;
+                    this.mainCanvasRef.n();
+                    this.mainCanvasRef.processException("没有队伍,不能使用队伍频道!");
                     return;
                 }
 
                 this.a((String) null, (byte) var1);
-                this.e.n();
-                if (this.l >= 0) {
-                    this.l = -1;
+                this.mainCanvasRef.n();
+                if (this.sceneSubState >= 0) {
+                    this.sceneSubState = -1;
                     return;
                 }
             } else if (var1 == 3) {
                 if (GlobalStatus.az.equals("无")) {
-                    this.e.g = false;
-                    this.e.n();
-                    this.e.processException("没有帮派,不能使用帮派频道!");
+                    this.mainCanvasRef.g = false;
+                    this.mainCanvasRef.n();
+                    this.mainCanvasRef.processException("没有帮派,不能使用帮派频道!");
                     return;
                 }
 
                 this.a((String) null, (byte) var1);
-                this.e.n();
-                if (this.l >= 0) {
-                    this.l = -1;
+                this.mainCanvasRef.n();
+                if (this.sceneSubState >= 0) {
+                    this.sceneSubState = -1;
                     return;
                 }
             } else if (var1 == 4) {
                 var1 = (byte) (var1 + 2);
                 this.a((String) null, (byte) var1);
-                this.e.n();
-                if (this.l >= 0) {
-                    this.l = -1;
+                this.mainCanvasRef.n();
+                if (this.sceneSubState >= 0) {
+                    this.sceneSubState = -1;
                     return;
                 }
             } else {
                 this.a((String) null, (byte) var1);
-                this.e.n();
-                if (this.l >= 0) {
-                    this.l = -1;
+                this.mainCanvasRef.n();
+                if (this.sceneSubState >= 0) {
+                    this.sceneSubState = -1;
                 }
             }
         }
@@ -3580,9 +3592,9 @@ public final class ao_1 {
 
     public final void a(String var1, byte var2) {
         String var3;
-        if ((var3 = this.e.aC.getString()) != null) {
+        if ((var3 = this.mainCanvasRef.aC.getString()) != null) {
             if (this.bG != null && this.bG.equals(var3)) {
-                this.e.processException("不能发送相同信息");
+                this.mainCanvasRef.processException("不能发送相同信息");
             } else {
                 byte[] var4 = NetPayloadBuilder.a((short) 4184, GlobalStatus.ad, var2, var1 == null ? "" : var1, var3);
                 NetPacket var5 = new NetPacket((short) 4184, var4);
@@ -3590,18 +3602,18 @@ public final class ao_1 {
                 if (var2 == 4) {
                     b(new ce("→" + this.aQ, var2, var3, (byte) 21));
                     this.a(new ce("→" + this.aQ, var2, var3, (byte) 21));
-                    if (this.e.as.a == 6) {
+                    if (this.mainCanvasRef.as.a == 6) {
                         o(var2);
                     } else {
                         this.aR();
                     }
                 }
 
-                this.e.processException("聊天消息已发送!");
+                this.mainCanvasRef.processException("聊天消息已发送!");
             }
 
-            this.e.n();
-            this.e.g = false;
+            this.mainCanvasRef.n();
+            this.mainCanvasRef.g = false;
             this.aR = false;
             this.bG = var3;
             this.aS = null;
@@ -3804,7 +3816,7 @@ public final class ao_1 {
                 this.as = 257;
             }
 
-            this.m = 0;
+            this.sceneSubMode = 0;
             if (bH.size() > 0) {
                 this.am = new String[bH.size()];
 
@@ -3817,10 +3829,10 @@ public final class ao_1 {
 
             K = new TextRender(GlobalStatus.bQ, (short) (GlobalConfig.defaultWidth - 20));
             LoadingPage.a(MainCanvas.F, K, this.am, (String[]) null, true);
-            this.e.touchAction = 0;
-            this.e.b = 0;
-            this.e.touchPageCase = this.e.k;
-            this.j = this.k = 2;
+            this.mainCanvasRef.touchAction = 0;
+            this.mainCanvasRef.b = 0;
+            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+            this.sceneStateShadow = this.currentSceneModeId = 2;
         }
     }
 
@@ -3839,8 +3851,8 @@ public final class ao_1 {
     }
 
     private void v(int var1) {
-        if (this.l == 0) {
-            if (this.m == 0) {
+        if (this.sceneSubState == 0) {
+            if (this.sceneSubMode == 0) {
                 if ((bH.size() <= 0 || var1 != 536870912) && (bH.size() > 0 || var1 != 536870912 && var1 != 268435456 && var1 != 517 && var1 != 1073741824)) {
                     if (var1 != 8 && var1 != 516) {
                         if (var1 == 2 || var1 == 518) {
@@ -3880,7 +3892,7 @@ public final class ao_1 {
                                         if (GlobalStatus.bY != null) {
                                             this.F();
                                         } else {
-                                            this.e.processException("npc商店没有商品!");
+                                            this.mainCanvasRef.processException("npc商店没有商品!");
                                         }
                                         break;
                                     case 1:
@@ -3891,48 +3903,48 @@ public final class ao_1 {
                                         }
 
                                         this.e((int) 0);
-                                        this.j = this.k = 9;
+                                        this.sceneStateShadow = this.currentSceneModeId = 9;
                                         break;
                                     case 2:
                                         if (GlobalStatus.aM > 0) {
                                             byte[] var36 = NetPayloadBuilder.c((short) 4118, GlobalStatus.ad, (short) GlobalStatus.t[this.af].a);
                                             this.a((short) 4118, var36, (String) null);
                                         } else {
-                                            this.e.processException("生命值为0,不能战斗!");
+                                            this.mainCanvasRef.processException("生命值为0,不能战斗!");
                                         }
                                         break;
                                     case 3:
                                         if (GlobalStatus.cr != null && GlobalStatus.cr.length > 0) {
                                             this.a(true);
                                         } else {
-                                            this.e.processException("传送列表为空!");
+                                            this.mainCanvasRef.processException("传送列表为空!");
                                         }
                                         break;
                                     case 4:
                                         this.ar = 0;
-                                        this.m = 0;
+                                        this.sceneSubMode = 0;
                                         this.an = new String[]{"取出物品", "存入物品"};
                                         K = new TextRender(GlobalStatus.t[this.af].b + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
                                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
-                                        this.l = 3;
+                                        this.sceneSubState = 3;
                                         break;
                                     case 5:
                                         this.ar = 0;
-                                        this.m = 0;
+                                        this.sceneSubMode = 0;
                                         this.an = new String[]{"取出银两", "存入银两"};
                                         String var10 = GlobalStatus.a(GlobalStatus.aq);
-                                        GlobalConfig.a(this.e.l, GlobalStatus.ap);
-                                        K = new TextRender(GlobalStatus.t[this.af].b + ":已存入银两" + var10 + ",现有银两" + this.e.l.toString(), (short) (GlobalConfig.defaultWidth - 20));
+                                        GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.ap);
+                                        K = new TextRender(GlobalStatus.t[this.af].b + ":已存入银两" + var10 + ",现有银两" + this.mainCanvasRef.l.toString(), (short) (GlobalConfig.defaultWidth - 20));
                                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
-                                        this.l = 4;
+                                        this.sceneSubState = 4;
                                         break;
                                     case 6:
                                         this.ar = 0;
-                                        this.m = 0;
+                                        this.sceneSubMode = 0;
                                         this.an = new String[]{"寄养宠物", "领回宠物"};
                                         K = new TextRender(GlobalStatus.t[this.af].b + ":宠物仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
                                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
-                                        this.l = 5;
+                                        this.sceneSubState = 5;
                                         break;
                                     case 7:
                                         this.e((int) 5);
@@ -3941,7 +3953,7 @@ public final class ao_1 {
                                         if (GlobalStatus.fA != null) {
                                             this.j((int) 1);
                                         } else {
-                                            this.e.processException("您没有宠物!");
+                                            this.mainCanvasRef.processException("您没有宠物!");
                                         }
                                         break;
                                     case 9:
@@ -3964,7 +3976,7 @@ public final class ao_1 {
                                         if (GlobalStatus.dE != null) {
                                             this.i((int) 0);
                                         } else {
-                                            this.e.processException("当前没有可升级技能");
+                                            this.mainCanvasRef.processException("当前没有可升级技能");
                                         }
                                         break;
                                     case 12:
@@ -3981,9 +3993,9 @@ public final class ao_1 {
                                             byte[] var25;
                                             if ((var25 = NetPayloadBuilder.a((short) 4107, GlobalStatus.ad, (int) GlobalStatus.t[this.af].a, (int) GlobalStatus.bI[this.ai])) != null) {
                                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4107, var25));
-                                                this.e.a((String) null);
+                                                this.mainCanvasRef.a((String) null);
                                             } else {
-                                                this.e.processException("获取上传指令数据错误!");
+                                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                                             }
                                         }
                                         break;
@@ -3991,15 +4003,15 @@ public final class ao_1 {
                                         if (GlobalStatus.fA != null) {
                                             this.j((int) 5);
                                         } else {
-                                            this.e.processException("您没有宠物");
+                                            this.mainCanvasRef.processException("您没有宠物");
                                         }
                                     case 14:
                                         break;
                                     case 15:
                                         if (GlobalStatus.ew != null && GlobalStatus.ew.length > 0) {
-                                            this.a((short) this.k, (byte) 1);
+                                            this.a((short) this.currentSceneModeId, (byte) 1);
                                         } else {
-                                            this.e.processException("兑换列表为空");
+                                            this.mainCanvasRef.processException("兑换列表为空");
                                         }
                                         break;
                                     case 16:
@@ -4008,9 +4020,9 @@ public final class ao_1 {
                                             NetPacket var9 = new NetPacket((short) 4145, var35);
                                             MainCanvas.netUtils.sendPacket(var9);
                                             this.N();
-                                            this.e.a((String) null);
+                                            this.mainCanvasRef.a((String) null);
                                         } else {
-                                            this.e.processException("获取上传指令数据错误!");
+                                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                                         }
                                         break;
                                     case 17:
@@ -4019,7 +4031,7 @@ public final class ao_1 {
                                         break;
                                     case 18:
                                         if (GlobalStatus.fA == null) {
-                                            this.e.processException("您没有宠物");
+                                            this.mainCanvasRef.processException("您没有宠物");
                                             return;
                                         }
 
@@ -4030,7 +4042,7 @@ public final class ao_1 {
                                         break;
                                     case 20:
                                         if (GlobalStatus.bs != -1) {
-                                            this.e.processException("队伍状态下不能进行住宅操作");
+                                            this.mainCanvasRef.processException("队伍状态下不能进行住宅操作");
                                             return;
                                         }
 
@@ -4054,12 +4066,12 @@ public final class ao_1 {
                                         break;
                                     case 26:
                                         this.ar = 0;
-                                        this.m = 0;
+                                        this.sceneSubMode = 0;
                                         this.an = new String[]{"查看公告", "修改公告"};
                                         K = new TextRender("查看和修改公告", (short) (GlobalConfig.defaultWidth - 20));
                                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
                                         LoadingPage.g = 0;
-                                        this.l = 9;
+                                        this.sceneSubState = 9;
                                         break;
                                     case 27:
                                         this.M.a(false);
@@ -4087,7 +4099,7 @@ public final class ao_1 {
                                         if (GlobalStatus.kB != null) {
                                             this.O.b();
                                         } else {
-                                            this.e.processException("无可开孔装备");
+                                            this.mainCanvasRef.processException("无可开孔装备");
                                         }
                                         break;
                                     case 32:
@@ -4112,12 +4124,12 @@ public final class ao_1 {
                                         break;
                                     case 34:
                                         this.ar = 0;
-                                        this.m = 0;
+                                        this.sceneSubMode = 0;
                                         this.an = new String[]{"查看", "发布"};
                                         K = new TextRender("查看、发布“求爱宣言”", (short) (GlobalConfig.defaultWidth - 20));
                                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
                                         LoadingPage.g = 0;
-                                        this.l = 7;
+                                        this.sceneSubState = 7;
                                         break;
                                     case 35:
                                         this.S.a((byte) 0);
@@ -4136,38 +4148,38 @@ public final class ao_1 {
                                         break;
                                     case 39:
                                         if (GlobalStatus.ew != null && GlobalStatus.ew.length > 0) {
-                                            this.a((short) this.k, (byte) 2);
+                                            this.a((short) this.currentSceneModeId, (byte) 2);
                                         } else {
-                                            this.e.processException("锻造列表为空");
+                                            this.mainCanvasRef.processException("锻造列表为空");
                                         }
                                         break;
                                     case 41:
                                         byte[] var21;
                                         if ((var21 = NetPayloadBuilder.a((short) 4660, (short) GlobalStatus.t[this.af].a, GlobalStatus.ad)) != null) {
                                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4660, var21));
-                                            this.e.a((String) null);
+                                            this.mainCanvasRef.a((String) null);
                                         } else {
-                                            this.e.processException("获取上传指令数据错误!");
+                                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                                         }
                                         break;
                                     case 42:
                                         byte[] var20;
                                         if ((var20 = NetPayloadBuilder.a((short) 4662, (short) GlobalStatus.t[this.af].a, GlobalStatus.ad)) != null) {
                                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4662, var20));
-                                            this.e.a((String) null);
+                                            this.mainCanvasRef.a((String) null);
                                         } else {
-                                            this.e.processException("获取上传指令数据错误!");
+                                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                                         }
                                         break;
                                     case 43:
-                                        this.e.a((String) "输入兑换码", (int) 0);
+                                        this.mainCanvasRef.a((String) "输入兑换码", (int) 0);
                                         break;
                                     case 44:
                                         this.U.a.processException("装备暂不能升星");
                                         break;
                                     case 45:
                                         this.a((short) 4665, String.valueOf(GlobalStatus.t[this.af].a), (byte) 2, "", GlobalStatus.t[this.af].S);
-                                        this.j = this.k = 0;
+                                        this.sceneStateShadow = this.currentSceneModeId = 0;
                                         break;
                                     case 46:
                                         this.O.d();
@@ -4175,7 +4187,7 @@ public final class ao_1 {
                                         break;
                                     case 47:
                                         if (this.P == null) {
-                                            this.P = new r(this, this.e, MainCanvas.f);
+                                            this.P = new r(this, this.mainCanvasRef, MainCanvas.pngUtil);
                                         }
 
                                         this.P.b();
@@ -4183,21 +4195,21 @@ public final class ao_1 {
                                         break;
                                     case 48:
                                         this.ar = 0;
-                                        this.m = 0;
+                                        this.sceneSubMode = 0;
                                         this.an = new String[]{"银两竞标", "金豆竞标"};
-                                        GlobalConfig.a(this.e.l, GlobalStatus.ap);
+                                        GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.ap);
                                         K = new TextRender(GlobalStatus.t[this.af].b + ":选择银两竞标或金豆竞标，一金豆折合300万银两。", (short) (GlobalConfig.defaultWidth - 20));
                                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
-                                        this.l = 10;
+                                        this.sceneSubState = 10;
                                         break;
                                     case 49:
                                         byte[] var32;
                                         if ((var32 = NetPayloadBuilder.a((byte) 0)) != null) {
                                             NetPacket var5 = new NetPacket((short) 4683, var32);
                                             MainCanvas.netUtils.sendPacket(var5);
-                                            this.e.a((String) null);
+                                            this.mainCanvasRef.a((String) null);
                                         } else {
-                                            this.e.processException("获取上传指令数据错误!");
+                                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                                         }
                                 }
                             }
@@ -4222,7 +4234,7 @@ public final class ao_1 {
                     this.N();
                 }
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             if (var1 != 1 && var1 != 514) {
                 if (var1 != 4 && var1 != 520) {
                     if (var1 != 8 && var1 != 516) {
@@ -4232,7 +4244,7 @@ public final class ao_1 {
                                     GlobalStatus.bH = null;
                                     this.am = null;
                                     K = null;
-                                    this.l = 0;
+                                    this.sceneSubState = 0;
                                     this.m();
                                 }
                             } else if (LoadingPage.g == 0) {
@@ -4242,9 +4254,9 @@ public final class ao_1 {
                                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4108, var14));
                                         GlobalStatus.j();
                                         this.N();
-                                        this.e.a((String) null);
+                                        this.mainCanvasRef.a((String) null);
                                     } else {
-                                        this.e.processException("获取上传指令数据错误!");
+                                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                                     }
                                 } else if (GlobalStatus.bK[this.ai] == -1) {
                                     byte[] var12;
@@ -4252,9 +4264,9 @@ public final class ao_1 {
                                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4108, var12));
                                         GlobalStatus.j();
                                         this.N();
-                                        this.e.a((String) null);
+                                        this.mainCanvasRef.a((String) null);
                                     } else {
-                                        this.e.processException("获取上传指令数据错误!");
+                                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                                     }
                                 } else if (GlobalStatus.bK[this.ai] == 1) {
                                     this.N();
@@ -4262,24 +4274,24 @@ public final class ao_1 {
                                     if ((var13 = NetPayloadBuilder.c((short) 4109, GlobalStatus.ad, (int) GlobalStatus.t[this.af].a, (int) GlobalStatus.bI[this.ai])) != null) {
                                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4109, var13));
                                         GlobalStatus.j();
-                                        this.e.a((String) null);
+                                        this.mainCanvasRef.a((String) null);
                                     } else {
-                                        this.e.processException("获取上传指令数据错误!");
+                                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                                     }
                                 } else {
                                     GlobalStatus.bH = null;
                                     this.am = null;
                                     K = null;
-                                    this.l = 0;
+                                    this.sceneSubState = 0;
                                     this.m();
                                 }
 
-                                this.l = 0;
+                                this.sceneSubState = 0;
                             } else if (LoadingPage.g == 1) {
                                 GlobalStatus.bH = null;
                                 this.am = null;
                                 K = null;
-                                this.l = 0;
+                                this.sceneSubState = 0;
                                 if (GlobalStatus.bE && GlobalStatus.bG != -1) {
                                     this.N();
                                     GlobalStatus.bE = false;
@@ -4300,26 +4312,26 @@ public final class ao_1 {
             } else if (this.an != null) {
                 LoadingPage.g = LoadingPage.g - 1 >= 0 ? LoadingPage.g - 1 : this.an.length - 1;
             }
-        } else if (this.l != 3 && this.l != 4 && this.l != 10) {
-            if (this.l == 5) {
+        } else if (this.sceneSubState != 3 && this.sceneSubState != 4 && this.sceneSubState != 10) {
+            if (this.sceneSubState == 5) {
                 if (var1 != 1 && var1 != 514) {
                     if (var1 != 4 && var1 != 520) {
                         if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                             if (var1 == 536870912) {
-                                this.l = 0;
+                                this.sceneSubState = 0;
                                 this.m();
                             }
                         } else if (LoadingPage.g == 0) {
                             if (GlobalStatus.fA != null) {
                                 this.j((int) 2);
                             } else {
-                                this.e.processException("您没有宠物!");
+                                this.mainCanvasRef.processException("您没有宠物!");
                             }
                         } else if (LoadingPage.g == 1) {
                             if (GlobalStatus.gs != null) {
                                 this.aF();
                             } else {
-                                this.e.processException("没有寄养宠物!");
+                                this.mainCanvasRef.processException("没有寄养宠物!");
                             }
                         }
                     } else if (this.an != null) {
@@ -4328,19 +4340,19 @@ public final class ao_1 {
                 } else if (this.an != null) {
                     LoadingPage.g = LoadingPage.g - 1 >= 0 ? LoadingPage.g - 1 : this.an.length - 1;
                 }
-            } else if (this.l == 7) {
+            } else if (this.sceneSubState == 7) {
                 if (var1 != 514 && var1 != 1) {
                     if (var1 != 520 && var1 != 4) {
                         if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                             if (var1 == 536870912) {
-                                this.l = 0;
+                                this.sceneSubState = 0;
                                 this.m();
                             }
                         } else if (LoadingPage.g == 0) {
                             GlobalStatus.gQ = 1;
                             this.S.a();
                         } else if (LoadingPage.g == 1) {
-                            this.e.p();
+                            this.mainCanvasRef.p();
                         }
                     } else {
                         LoadingPage.g = LoadingPage.g == 1 ? 0 : 1;
@@ -4348,12 +4360,12 @@ public final class ao_1 {
                 } else {
                     LoadingPage.g = LoadingPage.g == 0 ? 1 : 0;
                 }
-            } else if (this.l == 9) {
+            } else if (this.sceneSubState == 9) {
                 if (var1 != 514 && var1 != 1) {
                     if (var1 != 520 && var1 != 4) {
                         if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                             if (var1 == 536870912) {
-                                this.l = 0;
+                                this.sceneSubState = 0;
                                 this.m();
                             }
                         } else if (LoadingPage.g == 0) {
@@ -4366,7 +4378,7 @@ public final class ao_1 {
                                 var19.b.processException("获取上传指令数据错误!");
                             }
                         } else if (LoadingPage.g == 1) {
-                            this.e.a((String) "输入公告", (int) 0);
+                            this.mainCanvasRef.a((String) "输入公告", (int) 0);
                         }
                     } else {
                         LoadingPage.g = LoadingPage.g == 1 ? 0 : 1;
@@ -4375,54 +4387,54 @@ public final class ao_1 {
                     LoadingPage.g = LoadingPage.g == 0 ? 1 : 0;
                 }
             }
-        } else if (this.m == 0) {
+        } else if (this.sceneSubMode == 0) {
             if (var1 != 1 && var1 != 514) {
                 if (var1 != 4 && var1 != 520) {
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                         if (var1 == 536870912) {
-                            this.l = 0;
+                            this.sceneSubState = 0;
                             this.m();
                         }
                     } else if (LoadingPage.g == 0) {
-                        if (this.l == 3) {
+                        if (this.sceneSubState == 3) {
                             if (GlobalStatus.ct != null) {
-                                if (this.k == 2) {
+                                if (this.currentSceneModeId == 2) {
                                     this.n((int) 0);
                                 }
                             } else {
                                 GlobalStatus.m();
-                                this.e.processException("仓库中没有物品");
+                                this.mainCanvasRef.processException("仓库中没有物品");
                             }
-                        } else if (this.l == 4) {
+                        } else if (this.sceneSubState == 4) {
                             if (GlobalStatus.aq > 0L) {
                                 this.ah = GlobalStatus.aq;
-                                this.m = 1;
+                                this.sceneSubMode = 1;
                                 this.o();
                             } else {
-                                this.e.processException("银库中没有银两");
+                                this.mainCanvasRef.processException("银库中没有银两");
                             }
                         } else if (GlobalStatus.ap > 0L) {
                             this.a(GlobalStatus.ap);
-                            this.m = 3;
+                            this.sceneSubMode = 3;
                             this.o();
                         } else {
-                            this.e.processException("身上没有银两");
+                            this.mainCanvasRef.processException("身上没有银两");
                         }
                     } else if (LoadingPage.g == 1) {
-                        if (this.l == 3) {
+                        if (this.sceneSubState == 3) {
                             this.e((int) 2);
-                        } else if (this.l == 4) {
+                        } else if (this.sceneSubState == 4) {
                             if (GlobalStatus.ap > 0L) {
                                 this.ah = GlobalStatus.ap;
-                                this.m = 2;
+                                this.sceneSubMode = 2;
                                 this.o();
                             } else {
-                                this.e.processException("身上没有银两");
+                                this.mainCanvasRef.processException("身上没有银两");
                             }
                         } else {
                             this.o();
                             this.a(99L);
-                            this.m = 4;
+                            this.sceneSubMode = 4;
                         }
                     }
                 } else if (this.an != null) {
@@ -4431,22 +4443,22 @@ public final class ao_1 {
             } else if (this.an != null) {
                 LoadingPage.g = LoadingPage.g - 1 >= 0 ? LoadingPage.g - 1 : this.an.length - 1;
             }
-        } else if (this.m != 1 && this.m != 2 && this.m != 3) {
-            if (this.m == 4) {
+        } else if (this.sceneSubMode != 1 && this.sceneSubMode != 2 && this.sceneSubMode != 3) {
+            if (this.sceneSubMode == 4) {
                 this.b(var1);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        this.m = 0;
+                        this.sceneSubMode = 0;
                     }
                 } else {
                     this.at = "确定消耗" + this.ag + "金豆进行攻城竞标？";
                     LoadingPage.h = 0;
-                    this.m = 6;
+                    this.sceneSubMode = 6;
                 }
-            } else if (this.m == 5) {
+            } else if (this.sceneSubMode == 5) {
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        this.m = 0;
+                        this.sceneSubMode = 0;
                         LoadingPage.h = 0;
                         this.at = null;
                     }
@@ -4455,15 +4467,15 @@ public final class ao_1 {
                     if ((var17 = NetPayloadBuilder.a((short) 4676, (byte) 1, this.n(), GlobalStatus.ad)) != null) {
                         NetPacket var28 = new NetPacket((short) 4676, var17);
                         MainCanvas.netUtils.sendPacket(var28);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     } else {
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                     }
                 }
-            } else if (this.m == 6) {
+            } else if (this.sceneSubMode == 6) {
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        this.m = 0;
+                        this.sceneSubMode = 0;
                         LoadingPage.h = 0;
                         this.at = null;
                     }
@@ -4472,79 +4484,79 @@ public final class ao_1 {
                     if ((var18 = NetPayloadBuilder.a((short) 4676, (byte) 2, (long) this.ag, GlobalStatus.ad)) != null) {
                         NetPacket var29 = new NetPacket((short) 4676, var18);
                         MainCanvas.netUtils.sendPacket(var29);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     } else {
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                     }
                 }
             }
         } else if (var1 != 268435456 && var1 != 1073741824) {
             if (var1 == 536870912) {
-                this.e.o();
-                this.m = 0;
+                this.mainCanvasRef.o();
+                this.sceneSubMode = 0;
             } else {
                 this.d(var1);
             }
         } else if (this.n() != -1L) {
             if (this.n() > this.ah) {
-                if (this.m == 1) {
-                    this.e.processException("超出最大值,请重新输入");
+                if (this.sceneSubMode == 1) {
+                    this.mainCanvasRef.processException("超出最大值,请重新输入");
                 } else {
-                    this.e.processException("您的银两不足,请重新输入");
+                    this.mainCanvasRef.processException("您的银两不足,请重新输入");
                 }
-            } else if (this.m == 1) {
+            } else if (this.sceneSubMode == 1) {
                 byte[] var15;
                 if ((var15 = NetPayloadBuilder.a((short) 4159, GlobalStatus.ad, this.n(), (byte) 0)) != null) {
                     NetPacket var26 = new NetPacket((short) 4159, var15);
                     MainCanvas.netUtils.sendPacket(var26);
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 } else {
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                 }
-            } else if (this.m == 2) {
+            } else if (this.sceneSubMode == 2) {
                 byte[] var16;
                 if ((var16 = NetPayloadBuilder.a((short) 4159, GlobalStatus.ad, this.n(), (byte) 1)) != null) {
                     NetPacket var27 = new NetPacket((short) 4159, var16);
                     MainCanvas.netUtils.sendPacket(var27);
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 } else {
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                 }
-            } else if (this.m == 3) {
+            } else if (this.sceneSubMode == 3) {
                 this.at = "确定消耗" + GlobalStatus.a(this.n()) + "进行攻城竞标？";
                 LoadingPage.h = 0;
-                this.m = 5;
+                this.sceneSubMode = 5;
             }
         } else {
-            this.e.processException("输入有误,请重新输入");
+            this.mainCanvasRef.processException("输入有误,请重新输入");
         }
 
-        this.e.b = 0;
+        this.mainCanvasRef.b = 0;
     }
 
     public final void a(boolean var1) {
         this.bJ = var1;
-        this.e.touchAction = 0;
-        this.e.b = 0;
-        this.l = 0;
-        this.e.aq.j();
-        this.e.aq.a("传送目的地");
+        this.mainCanvasRef.touchAction = 0;
+        this.mainCanvasRef.b = 0;
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aq.j();
+        this.mainCanvasRef.aq.a("传送目的地");
         String[] var3 = new String[GlobalStatus.cs.length];
 
         for (int var2 = 0; var2 < var3.length; ++var2) {
             var3[var2] = "";
         }
 
-        this.e.ar.a((Image[]) null, var3, GlobalStatus.cs, (String[]) null);
-        this.e.aq.a((al) this.e.ar);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 10;
+        this.mainCanvasRef.ar.a((Image[]) null, var3, GlobalStatus.cs, (String[]) null);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 10;
     }
 
     private void w(int var1) {
-        if (this.e.aq != null) {
-            this.e.aq.b(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
                     if (this.bJ) {
@@ -4564,14 +4576,14 @@ public final class ao_1 {
                 }
             } else {
                 byte[] var2;
-                if ((var2 = NetPayloadBuilder.a((short) 4142, GlobalStatus.ad, (int) (this.bJ ? GlobalStatus.t[this.af].a : -1), (short) GlobalStatus.cr[this.e.ar.g()])) == null) {
-                    this.e.processException("获取上传指令数据错误!");
+                if ((var2 = NetPayloadBuilder.a((short) 4142, GlobalStatus.ad, (int) (this.bJ ? GlobalStatus.t[this.af].a : -1), (short) GlobalStatus.cr[this.mainCanvasRef.ar.g()])) == null) {
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                     return;
                 }
 
                 NetPacket var3 = new NetPacket((short) 4142, var2);
                 MainCanvas.netUtils.sendPacket(var3);
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
             }
         }
 
@@ -4629,55 +4641,55 @@ public final class ao_1 {
     }
 
     public final void a(byte var1) {
-        GlobalConfig.clearStr(this.e.l);
-        this.e.aq.j();
-        this.e.aq.a("人物属性-战力" + GlobalStatus.ao);
-        this.e.aq.a(true);
-        this.e.as.a(new String[]{"状态", "属性", "修炼", "声望", "加成", "记录"});
-        this.e.aq.a((al) this.e.as);
-        this.e.as.a = (byte) var1;
+        GlobalConfig.clearStr(this.mainCanvasRef.l);
+        this.mainCanvasRef.aq.j();
+        this.mainCanvasRef.aq.a("人物属性-战力" + GlobalStatus.ao);
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.as.a(new String[]{"状态", "属性", "修炼", "声望", "加成", "记录"});
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+        this.mainCanvasRef.as.a = (byte) var1;
         switch (var1) {
             case 0:
-                this.e.l.append("昵称：" + GlobalStatus.af + '\t');
+                this.mainCanvasRef.l.append("昵称：" + GlobalStatus.af + '\t');
                 if (GlobalConfig.channel == 0) {
-                    this.e.l.append("ID：" + GlobalStatus.ad + '\t');
+                    this.mainCanvasRef.l.append("ID：" + GlobalStatus.ad + '\t');
                 }
 
-                this.e.l.append("门派：" + GlobalConfig.G[GlobalStatus.ax] + '\t');
-                this.e.l.append("级别：" + GlobalStatus.ak + '\t');
-                this.e.l.append("称号：" + GlobalStatus.ah + '\t');
-                this.e.l.append("配偶：" + GlobalStatus.bl + '\t');
-                this.e.l.append("师傅：" + GlobalStatus.bm + '\t');
-                this.e.l.append("帮派：" + GlobalStatus.az + '\t');
-                this.e.l.append("职务：" + GlobalStatus.aA + '\t');
-                this.e.l.append("功勋：" + GlobalStatus.aB + '\t');
-                this.e.l.append("经验：" + GlobalStatus.al + (GlobalStatus.z == 0 ? "" : "<暂停>") + '\t');
-                this.e.l.append("修炼：" + GlobalStatus.am + (GlobalStatus.z == 1 ? "<开启>" : "<关闭>") + '\t');
+                this.mainCanvasRef.l.append("门派：" + GlobalConfig.G[GlobalStatus.ax] + '\t');
+                this.mainCanvasRef.l.append("级别：" + GlobalStatus.ak + '\t');
+                this.mainCanvasRef.l.append("称号：" + GlobalStatus.ah + '\t');
+                this.mainCanvasRef.l.append("配偶：" + GlobalStatus.bl + '\t');
+                this.mainCanvasRef.l.append("师傅：" + GlobalStatus.bm + '\t');
+                this.mainCanvasRef.l.append("帮派：" + GlobalStatus.az + '\t');
+                this.mainCanvasRef.l.append("职务：" + GlobalStatus.aA + '\t');
+                this.mainCanvasRef.l.append("功勋：" + GlobalStatus.aB + '\t');
+                this.mainCanvasRef.l.append("经验：" + GlobalStatus.al + (GlobalStatus.z == 0 ? "" : "<暂停>") + '\t');
+                this.mainCanvasRef.l.append("修炼：" + GlobalStatus.am + (GlobalStatus.z == 1 ? "<开启>" : "<关闭>") + '\t');
                 this.aB();
                 break;
             case 1:
-                this.e.l.append("生命：" + GlobalStatus.aN + "/" + GlobalStatus.aM + '\t');
-                this.e.l.append("内力：" + GlobalStatus.aP + "/" + GlobalStatus.aO + '\t');
-                this.e.l.append("物攻：[" + GlobalStatus.aR + "," + GlobalStatus.aQ + "]" + '\t');
-                this.e.l.append("法伤：" + GlobalStatus.aW + '\t');
-                this.e.l.append("法攻：[" + GlobalStatus.aY + "," + GlobalStatus.aX + "]" + '\t');
-                this.e.l.append("物防：[" + GlobalStatus.aT + "," + GlobalStatus.aS + "]" + '\t');
-                this.e.l.append("速度：" + GlobalStatus.aZ + '\t');
-                this.e.l.append("冰抗：" + GlobalStatus.bc + '\t');
-                this.e.l.append("火抗：" + GlobalStatus.ba + '\t');
-                this.e.l.append("雷抗：" + GlobalStatus.bb + '\t');
-                this.e.l.append(GlobalStatus.bd);
+                this.mainCanvasRef.l.append("生命：" + GlobalStatus.aN + "/" + GlobalStatus.aM + '\t');
+                this.mainCanvasRef.l.append("内力：" + GlobalStatus.aP + "/" + GlobalStatus.aO + '\t');
+                this.mainCanvasRef.l.append("物攻：[" + GlobalStatus.aR + "," + GlobalStatus.aQ + "]" + '\t');
+                this.mainCanvasRef.l.append("法伤：" + GlobalStatus.aW + '\t');
+                this.mainCanvasRef.l.append("法攻：[" + GlobalStatus.aY + "," + GlobalStatus.aX + "]" + '\t');
+                this.mainCanvasRef.l.append("物防：[" + GlobalStatus.aT + "," + GlobalStatus.aS + "]" + '\t');
+                this.mainCanvasRef.l.append("速度：" + GlobalStatus.aZ + '\t');
+                this.mainCanvasRef.l.append("冰抗：" + GlobalStatus.bc + '\t');
+                this.mainCanvasRef.l.append("火抗：" + GlobalStatus.ba + '\t');
+                this.mainCanvasRef.l.append("雷抗：" + GlobalStatus.bb + '\t');
+                this.mainCanvasRef.l.append(GlobalStatus.bd);
                 this.aB();
                 break;
             case 2:
-                this.e.ar.a((Image[]) null, new String[]{"经验", "上限", "开关"}, (String[]) null, new String[]{String.valueOf(GlobalStatus.am), String.valueOf(GlobalStatus.an), GlobalStatus.z == 1 ? "<开>" : "<关>"});
-                this.e.at.b("开启经验修炼模式后，杀怪、任务、使用道具获得的经验将会全部转入修炼经验，修炼经验可用于学习心法技能", GlobalConfig.i, (byte) 2);
-                this.e.at.a((byte) 1);
-                this.e.au.a("确定");
-                this.e.aq.a((al) this.e.ar);
-                this.e.aq.a((al) this.e.at);
+                this.mainCanvasRef.ar.a((Image[]) null, new String[]{"经验", "上限", "开关"}, (String[]) null, new String[]{String.valueOf(GlobalStatus.am), String.valueOf(GlobalStatus.an), GlobalStatus.z == 1 ? "<开>" : "<关>"});
+                this.mainCanvasRef.at.b("开启经验修炼模式后，杀怪、任务、使用道具获得的经验将会全部转入修炼经验，修炼经验可用于学习心法技能", GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.a((byte) 1);
+                this.mainCanvasRef.au.a("确定");
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
                 if (GlobalConfig.defaultHigh > 220) {
-                    this.e.aq.a((al) this.e.au);
+                    this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
                 }
                 break;
             case 3:
@@ -4690,35 +4702,35 @@ public final class ao_1 {
                     }
                 }
 
-                this.e.ar.a((Image[]) null, GlobalStatus.jE, (String[]) null, var4);
-                this.e.aq.a((al) this.e.ar);
+                this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.jE, (String[]) null, var4);
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
                 break;
             case 4:
-                this.e.l.append("住宅：" + GlobalStatus.bi + '\t');
-                this.e.l.append("帮派：" + GlobalStatus.bj + '\t');
-                this.e.l.append("称号：" + GlobalStatus.bB + '\t');
-                this.e.l.append("装备：" + GlobalStatus.bk + '\t');
-                this.e.l.append("祝福：\t" + GlobalStatus.bh + '\t');
-                this.e.l.append("成就: " + GlobalStatus.bo + '\t');
+                this.mainCanvasRef.l.append("住宅：" + GlobalStatus.bi + '\t');
+                this.mainCanvasRef.l.append("帮派：" + GlobalStatus.bj + '\t');
+                this.mainCanvasRef.l.append("称号：" + GlobalStatus.bB + '\t');
+                this.mainCanvasRef.l.append("装备：" + GlobalStatus.bk + '\t');
+                this.mainCanvasRef.l.append("祝福：\t" + GlobalStatus.bh + '\t');
+                this.mainCanvasRef.l.append("成就: " + GlobalStatus.bo + '\t');
                 if (GlobalStatus.s == 1 && GlobalStatus.bg >= 1) {
-                    this.e.l.append(new StringBuffer().append("队伍加成：").append(GlobalStatus.q != null ? new StringBuffer().append("属性+").append(GlobalStatus.bg * 5).append("%\n").append("经验+").append(GlobalStatus.bg * 5).append("%").toString() : "").append('\t').toString());
+                    this.mainCanvasRef.l.append(new StringBuffer().append("队伍加成：").append(GlobalStatus.q != null ? new StringBuffer().append("属性+").append(GlobalStatus.bg * 5).append("%\n").append("经验+").append(GlobalStatus.bg * 5).append("%").toString() : "").append('\t').toString());
                 }
 
                 this.aB();
                 break;
             case 5:
-                this.e.l.append("" + GlobalStatus.bn + '\t');
+                this.mainCanvasRef.l.append("" + GlobalStatus.bn + '\t');
                 this.aB();
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 3;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 3;
     }
 
     private void aB() {
-        this.e.at.b(this.e.l.toString(), GlobalConfig.i, (byte) 2);
-        this.e.aq.a((al) this.e.at);
+        this.mainCanvasRef.at.b(this.mainCanvasRef.l.toString(), GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
     }
 
     public final void p() {
@@ -4748,18 +4760,18 @@ public final class ao_1 {
             this.bO[var1] = this.bL[var1][0] + (this.bL[var1][1] != -1 ? "/" + this.bL[var1][1] : "");
         }
 
-        this.e.aq.b();
-        this.e.aq.a("属性分配");
-        this.e.aq.a(false);
-        this.e.ar.a((Image[]) null, this.bN, (String[]) null, this.bO);
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("属性分配");
+        this.mainCanvasRef.aq.a(false);
+        this.mainCanvasRef.ar.a((Image[]) null, this.bN, (String[]) null, this.bO);
         short var2 = MainCanvas.L.c;
-        this.e.aq.f = var2;
-        this.e.au.a(new String[]{"确定", "取消"});
-        this.e.aq.a((al) this.e.ar);
-        this.e.aq.a((al) this.e.au);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.j = this.k;
-        this.k = 37;
+        this.mainCanvasRef.aq.f = var2;
+        this.mainCanvasRef.au.a(new String[]{"确定", "取消"});
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.sceneStateShadow = this.currentSceneModeId;
+        this.currentSceneModeId = 37;
     }
 
     private short aC() {
@@ -4818,76 +4830,76 @@ public final class ao_1 {
         }
 
         this.bO[var1] = this.bL[var1][0] + (this.bL[var1][1] != -1 ? "/" + this.bL[var1][1] : "");
-        int var2_ = this.e.ar.h();
-        this.e.ar.a((Image[]) null, this.bN, (String[]) null, this.bO);
-        this.e.ar.a(var2_, var1);
+        int var2_ = this.mainCanvasRef.ar.h();
+        this.mainCanvasRef.ar.a((Image[]) null, this.bN, (String[]) null, this.bO);
+        this.mainCanvasRef.ar.a(var2_, var1);
     }
 
     private void x(int var1) {
-        if (this.e.aq != null) {
-            this.e.aq.b(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.b(var1);
         }
 
-        if (this.e.tempTouchStatus > 40) {
-            if (this.e.b != 8 && this.e.b != 516) {
-                if (this.e.b == 2 || this.e.b == 518) {
-                    ++this.bM[this.e.ar.g()];
+        if (this.mainCanvasRef.tempTouchStatus > 40) {
+            if (this.mainCanvasRef.b != 8 && this.mainCanvasRef.b != 516) {
+                if (this.mainCanvasRef.b == 2 || this.mainCanvasRef.b == 518) {
+                    ++this.bM[this.mainCanvasRef.ar.g()];
                     int var2 = 0;
 
                     for (int var3 = 0; var3 < this.bM.length; ++var3) {
                         var2 += this.bM[var3];
                     }
 
-                    if (var2 > (this.k == 37 ? GlobalStatus.bf : GlobalStatus.fW[this.aE])) {
-                        --this.bM[this.e.ar.g()];
+                    if (var2 > (this.currentSceneModeId == 37 ? GlobalStatus.bf : GlobalStatus.fW[this.aE])) {
+                        --this.bM[this.mainCanvasRef.ar.g()];
                         return;
                     }
 
-                    this.a((int) this.e.ar.g(), (byte) 1);
+                    this.a((int) this.mainCanvasRef.ar.g(), (byte) 1);
                 }
             } else {
-                --this.bM[this.e.ar.g()];
-                if (this.bM[this.e.ar.g()] < 0) {
-                    ++this.bM[this.e.ar.g()];
+                --this.bM[this.mainCanvasRef.ar.g()];
+                if (this.bM[this.mainCanvasRef.ar.g()] < 0) {
+                    ++this.bM[this.mainCanvasRef.ar.g()];
                     return;
                 }
 
-                this.a(this.e.ar.g(), (byte) -1);
+                this.a(this.mainCanvasRef.ar.g(), (byte) -1);
             }
         } else {
             if (var1 != 8 && var1 != 516) {
                 if (var1 == 2 || var1 == 518) {
-                    ++this.bM[this.e.ar.g()];
+                    ++this.bM[this.mainCanvasRef.ar.g()];
                     int var4 = 0;
 
                     for (int var7 = 0; var7 < this.bM.length; ++var7) {
                         var4 += this.bM[var7];
                     }
 
-                    if (var4 > (this.k == 37 ? GlobalStatus.bf : GlobalStatus.fW[this.aE])) {
-                        --this.bM[this.e.ar.g()];
+                    if (var4 > (this.currentSceneModeId == 37 ? GlobalStatus.bf : GlobalStatus.fW[this.aE])) {
+                        --this.bM[this.mainCanvasRef.ar.g()];
                         return;
                     }
 
-                    this.a((int) this.e.ar.g(), (byte) 1);
+                    this.a((int) this.mainCanvasRef.ar.g(), (byte) 1);
                 }
             } else {
-                --this.bM[this.e.ar.g()];
-                if (this.bM[this.e.ar.g()] < 0) {
-                    ++this.bM[this.e.ar.g()];
+                --this.bM[this.mainCanvasRef.ar.g()];
+                if (this.bM[this.mainCanvasRef.ar.g()] < 0) {
+                    ++this.bM[this.mainCanvasRef.ar.g()];
                     return;
                 }
 
-                this.a(this.e.ar.g(), (byte) -1);
+                this.a(this.mainCanvasRef.ar.g(), (byte) -1);
             }
 
-            ++this.e.tempTouchStatus;
+            ++this.mainCanvasRef.tempTouchStatus;
         }
 
         if (var1 == 268435456) {
             Object var5 = null;
             byte[] var6;
-            if (this.k == 37) {
+            if (this.currentSceneModeId == 37) {
                 this.ao = true;
                 var6 = NetPayloadBuilder.a((short) 4186, (String) GlobalStatus.ad, (short[]) this.bM);
             } else {
@@ -4897,12 +4909,12 @@ public final class ao_1 {
 
             NetPacket var8 = new NetPacket((short) 4186, var6);
             MainCanvas.netUtils.sendPacket(var8);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
             if (var1 == 536870912) {
-                if (this.k == 37) {
+                if (this.currentSceneModeId == 37) {
                     this.al = null;
-                    if (this.j == 1) {
+                    if (this.sceneStateShadow == 1) {
                         this.av();
                         this.c((int) 4);
                         return;
@@ -4914,7 +4926,7 @@ public final class ao_1 {
 
                 this.c((int) 0, (int) this.aE, (int) this.aA);
                 LoadingPage.o = 7;
-                this.l = 1;
+                this.sceneSubState = 1;
             }
 
         }
@@ -4945,25 +4957,25 @@ public final class ao_1 {
     }
 
     private void a(Graphics var1, int var2) {
-        if (this.e.aq != null) {
-            this.e.aq.a(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.a(var1);
         }
 
         int var3 = 0;
-        var1.drawImage(MainCanvas.L.pngImage, this.e.aq.a + 5, this.e.aq.b + this.e.aq.d - 53, 20);
-        var1.drawImage(MainCanvas.L.pngImage, this.e.aq.a + this.e.aq.c - 5 - MainCanvas.L.b, this.e.aq.b + this.e.aq.d - 53, 20);
-        int var4 = Math.max(this.e.aq.c - (MainCanvas.L.b << 1), GlobalConfig.i.stringWidth(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE))));
-        var3 = this.e.aq.a + (this.e.aq.c - var4) / 2;
+        var1.drawImage(MainCanvas.L.pngImage, this.mainCanvasRef.aq.a + 5, this.mainCanvasRef.aq.b + this.mainCanvasRef.aq.d - 53, 20);
+        var1.drawImage(MainCanvas.L.pngImage, this.mainCanvasRef.aq.a + this.mainCanvasRef.aq.c - 5 - MainCanvas.L.b, this.mainCanvasRef.aq.b + this.mainCanvasRef.aq.d - 53, 20);
+        int var4 = Math.max(this.mainCanvasRef.aq.c - (MainCanvas.L.b << 1), GlobalConfig.i.stringWidth(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE))));
+        var3 = this.mainCanvasRef.aq.a + (this.mainCanvasRef.aq.c - var4) / 2;
         var1.setColor(79948);
-        var1.fillRect(var3, this.e.aq.b + this.e.aq.d - 53, var4, MainCanvas.L.c);
+        var1.fillRect(var3, this.mainCanvasRef.aq.b + this.mainCanvasRef.aq.d - 53, var4, MainCanvas.L.c);
         if (var2 == 0) {
             var1.setColor(this.aC() < GlobalStatus.bf ? 16776960 : 16777215);
         } else {
             var1.setColor(this.S(this.aE) < GlobalStatus.fW[this.aE] ? 16776960 : 16777215);
         }
 
-        var1.fillRect(var3 - 15, this.e.aq.b + this.e.aq.d - 42, 10, 2);
-        this.b(0, var3 - MainCanvas.N.b, this.e.aq.b + this.e.aq.d - 51, MainCanvas.N.b, MainCanvas.N.c);
+        var1.fillRect(var3 - 15, this.mainCanvasRef.aq.b + this.mainCanvasRef.aq.d - 42, 10, 2);
+        this.b(0, var3 - MainCanvas.N.b, this.mainCanvasRef.aq.b + this.mainCanvasRef.aq.d - 51, MainCanvas.N.b, MainCanvas.N.c);
         var1.drawImage(MainCanvas.N.pngImage, this.bP[0][0], this.bP[0][1], 20);
         if (var2 == 0) {
             var1.setColor(this.aC() > 0 ? 16776960 : 16777215);
@@ -4971,77 +4983,77 @@ public final class ao_1 {
             var1.setColor(this.S(this.aE) > 0 ? 16776960 : 16777215);
         }
 
-        var1.fillRect(var3 + var4 + 5, this.e.aq.b + this.e.aq.d - 46, 10, 10);
-        this.b(1, var3 + var4, this.e.aq.b + this.e.aq.d - 51, MainCanvas.M.b, MainCanvas.M.c);
+        var1.fillRect(var3 + var4 + 5, this.mainCanvasRef.aq.b + this.mainCanvasRef.aq.d - 46, 10, 10);
+        this.b(1, var3 + var4, this.mainCanvasRef.aq.b + this.mainCanvasRef.aq.d - 51, MainCanvas.M.b, MainCanvas.M.c);
         var1.drawImage(MainCanvas.M.pngImage, this.bP[1][0], this.bP[1][1], 20);
         var1.setColor(16776960);
-        var1.drawString(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE)), GlobalConfig.defaultWidth >> 1, this.e.aq.b + this.e.aq.d - 51 + (MainCanvas.M.pngImage.getHeight() - GlobalConfig.j) / 2, 17);
+        var1.drawString(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE)), GlobalConfig.defaultWidth >> 1, this.mainCanvasRef.aq.b + this.mainCanvasRef.aq.d - 51 + (MainCanvas.M.pngImage.getHeight() - GlobalConfig.j) / 2, 17);
     }
 
     public final void e(int var1) {
-        this.l = 0;
-        this.e.aw = 0;
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aw = 0;
         this.as = var1;
         if (this.as >= GlobalConfig.L.length) {
             this.as = 0;
         }
 
         this.bS = false;
-        if (this.j == 9) {
+        if (this.sceneStateShadow == 9) {
             this.aq = this.aF;
             this.ar = this.aG;
-        } else if (this.j != 4) {
+        } else if (this.sceneStateShadow != 4) {
             this.aq = this.ar = 0;
         }
 
         LoadingPage.l = 0;
-        this.e.aq.b();
-        this.e.aq.a("");
-        this.e.aq.a(true);
-        this.e.as.a(new String[]{" 一 ", " 二 ", " 三 ", " 四 ", " 五 "});
-        this.e.as.a = this.aH;
-        this.e.as.a((byte) 1);
-        this.e.aq.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("");
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.as.a(new String[]{" 一 ", " 二 ", " 三 ", " 四 ", " 五 "});
+        this.mainCanvasRef.as.a = this.aH;
+        this.mainCanvasRef.as.a((byte) 1);
+        this.mainCanvasRef.aq.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
         bn var2;
         if ((var2 = this.y(0)) != null && (this.as != 4 && this.as != 15 && this.as != 16 && this.as != 20 || var2.g - var2.v > 0)) {
             this.q();
         } else {
-            this.e.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
         }
 
-        this.e.au.a("");
+        this.mainCanvasRef.au.a("");
         if (this.as == 0) {
             this.am = new String[]{"使用", "查看", "丢弃", "设置", "整理"};
         } else if (this.as == 18) {
-            this.e.au.a("操作");
-            this.e.au.a(true);
+            this.mainCanvasRef.au.a("操作");
+            this.mainCanvasRef.au.a(true);
         } else if (this.as == 5 || this.as == 8) {
             this.bR = 0L;
             this.ag = 1;
         }
 
-        this.e.at.a((byte) 1);
-        this.e.aq.a((al) this.e.as);
-        this.e.aq.a((al) this.e.at);
-        this.e.aq.a((al) this.e.au);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 4;
+        this.mainCanvasRef.at.a((byte) 1);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 4;
     }
 
     public final void q() {
         if (GlobalStatus.bC.size() > 0 && this.A((this.ar << 3) + this.aq) != null) {
-            this.e.at.a(this.A((this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a(this.A((this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
         } else {
-            this.e.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
         }
 
-        this.e.at.a((byte) 1);
+        this.mainCanvasRef.at.a((byte) 1);
         LoadingPage.l = 0;
     }
 
     private bn y(int var1) {
-        var1 = (this.e.as.a << 5) + var1;
+        var1 = (this.mainCanvasRef.as.a << 5) + var1;
         bn var3 = null;
 
         for (int var2 = 0; var2 < GlobalStatus.bC.size(); ++var2) {
@@ -5054,7 +5066,7 @@ public final class ao_1 {
     }
 
     private int z(int var1) {
-        var1 = (this.e.as.a << 5) + var1;
+        var1 = (this.mainCanvasRef.as.a << 5) + var1;
         Object var3 = null;
 
         for (int var2 = 0; var2 < GlobalStatus.bC.size(); ++var2) {
@@ -5081,13 +5093,13 @@ public final class ao_1 {
     }
 
     private String A(int var1) {
-        var1 = (this.e.as.a << 5) + var1;
+        var1 = (this.mainCanvasRef.as.a << 5) + var1;
         Object var2 = null;
 
         for (int var3 = 0; var3 < GlobalStatus.bC.size(); ++var3) {
             bn var5;
             if ((var5 = (bn) GlobalStatus.bC.elementAt(var3)) != null && var5.h == var1) {
-                if (this.j == 4 && this.as == 4 && var5.g - var5.v <= 0) {
+                if (this.sceneStateShadow == 4 && this.as == 4 && var5.g - var5.v <= 0) {
                     return null;
                 }
 
@@ -5138,10 +5150,10 @@ public final class ao_1 {
     }
 
     private void B(int var1) {
-        if (this.l == 0) {
+        if (this.sceneSubState == 0) {
             this.aV();
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -5177,7 +5189,7 @@ public final class ao_1 {
                                         this.c((int) 0, (int) this.aE, (int) this.aA);
                                         this.E();
                                         LoadingPage.o = 0;
-                                        this.l = 1;
+                                        this.sceneSubState = 1;
                                         return;
                                     }
 
@@ -5187,21 +5199,21 @@ public final class ao_1 {
                                         this.an = new String[]{"取出物品", "存入物品"};
                                         K = new TextRender(GlobalStatus.t[this.af].b + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
                                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
-                                        this.l = 3;
+                                        this.sceneSubState = 3;
                                         return;
                                     }
 
                                     if (this.as == 3) {
                                         this.c((int) 0, (int) this.aE, (int) this.aA);
                                         LoadingPage.o = 2;
-                                        this.l = 1;
+                                        this.sceneSubState = 1;
                                         return;
                                     }
 
                                     if (this.as == 4) {
                                         this.b((byte) 0, true);
                                         this.ar = this.aU;
-                                        this.e.ax = this.aV;
+                                        this.mainCanvasRef.ax = this.aV;
                                         return;
                                     }
 
@@ -5212,8 +5224,8 @@ public final class ao_1 {
                                     }
 
                                     if (this.as == 6) {
-                                        this.e.touchPageCase = this.e.k;
-                                        this.j = this.k = 25;
+                                        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+                                        this.sceneStateShadow = this.currentSceneModeId = 25;
                                         return;
                                     }
 
@@ -5230,12 +5242,12 @@ public final class ao_1 {
 
                                     if (this.as == 10) {
                                         this.O.a();
-                                        this.e.ar.a(0);
+                                        this.mainCanvasRef.ar.a(0);
                                         return;
                                     }
 
                                     if (this.as == 11) {
-                                        this.aH = this.e.as.a;
+                                        this.aH = this.mainCanvasRef.as.a;
                                         this.O.a(this.O.a, (short) this.O.c, this.O.d);
                                         return;
                                     }
@@ -5249,7 +5261,7 @@ public final class ao_1 {
                                         this.c((int) 0, (int) this.aE, (int) this.aA);
                                         this.E();
                                         LoadingPage.o = 8;
-                                        this.l = 1;
+                                        this.sceneSubState = 1;
                                         return;
                                     }
 
@@ -5298,34 +5310,34 @@ public final class ao_1 {
 
                 if (this.as == 0) {
                     LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, this.am, false);
-                    this.l = 1;
+                    this.sceneSubState = 1;
                 } else if (this.as == 1) {
                     byte[] var34;
-                    if ((var34 = NetPayloadBuilder.g((short) 4173, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()], (int) this.z((this.ar << 3) + this.aq))) != null) {
+                    if ((var34 = NetPayloadBuilder.g((short) 4173, GlobalStatus.ad, GlobalStatus.fA[this.mainCanvasRef.ar.g()], (int) this.z((this.ar << 3) + this.aq))) != null) {
                         NetPacket var23 = new NetPacket((short) 4173, var34);
                         MainCanvas.netUtils.sendPacket(var23);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                         return;
                     }
 
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                 } else if (this.as == 2) {
                     if (var22.g > 1) {
                         this.a((long) var22.g);
-                        this.l = 2;
+                        this.sceneSubState = 2;
                     } else {
                         this.E(var22.g);
                     }
                 } else if (this.as == 3) {
                     byte[] var35;
-                    if ((var35 = NetPayloadBuilder.h((short) 4174, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()], this.z((this.ar << 3) + this.aq))) != null) {
+                    if ((var35 = NetPayloadBuilder.h((short) 4174, GlobalStatus.ad, GlobalStatus.fA[this.mainCanvasRef.ar.g()], this.z((this.ar << 3) + this.aq))) != null) {
                         NetPacket var24 = new NetPacket((short) 4174, var35);
                         MainCanvas.netUtils.sendPacket(var24);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                         return;
                     }
 
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                 } else if (this.as == 4) {
                     if (var22.g - var22.v <= 0) {
                         return;
@@ -5333,98 +5345,98 @@ public final class ao_1 {
 
                     if (GlobalStatus.a(var22.d)) {
                         LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"查看", "交易"}, false);
-                        this.l = 15;
+                        this.sceneSubState = 15;
                     } else if (var22.g - var22.v <= 1) {
                         this.D(1);
                         this.b((byte) 0, true);
                         this.ar = this.aU;
-                        this.e.ax = this.aV;
+                        this.mainCanvasRef.ax = this.aV;
                         this.as = 0;
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     } else {
                         if (var22.g - var22.v <= 1) {
                             return;
                         }
 
                         this.a((long) (var22.g - var22.v));
-                        this.l = 4;
+                        this.sceneSubState = 4;
                     }
                 } else if (this.as == 5) {
                     if (GlobalStatus.a(var22.d)) {
                         LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"查看", "拍卖"}, false);
-                        this.l = 16;
+                        this.sceneSubState = 16;
                     } else if (var22.g > 1) {
                         this.a((long) var22.g);
-                        this.l = 7;
+                        this.sceneSubState = 7;
                     } else {
                         this.ag = 1;
-                        this.l = 6;
+                        this.sceneSubState = 6;
                         this.o();
                     }
                 } else if (this.as == 6) {
                     if (var22.d != 10 && var22.d != 15 && var22.d != 16) {
-                        this.e.processException("战斗中你不能使用该物品!");
+                        this.mainCanvasRef.processException("战斗中你不能使用该物品!");
                     } else {
-                        if (this.g == null) {
+                        if (this.overlayDialogController == null) {
                             return;
                         }
 
                         if (bq_1.h() && var22.f != 2) {
-                            this.e.processException("你只能使用复活道具");
+                            this.mainCanvasRef.processException("你只能使用复活道具");
                             return;
                         }
 
                         if (var22.d == 16) {
                             if (var22.f == 3) {
-                                if (this.g.j()) {
-                                    this.g.a((byte) 2, var22.a, (byte) 0, bq_1.i(), (byte) 1, 1, (byte) 1, (byte) -1);
-                                    this.g.f = -1;
-                                    this.g.e = 5;
+                                if (this.overlayDialogController.j()) {
+                                    this.overlayDialogController.a((byte) 2, var22.a, (byte) 0, bq_1.i(), (byte) 1, 1, (byte) 1, (byte) -1);
+                                    this.overlayDialogController.f = -1;
+                                    this.overlayDialogController.e = 5;
                                 } else {
-                                    this.g.j = 2;
-                                    this.g.p = var22.a;
-                                    this.g.n = 0;
-                                    this.g.d = 4;
+                                    this.overlayDialogController.j = 2;
+                                    this.overlayDialogController.p = var22.a;
+                                    this.overlayDialogController.n = 0;
+                                    this.overlayDialogController.d = 4;
                                 }
                             } else if (var22.f == 4) {
                                 if (bq_1.b() <= 1) {
-                                    this.g.a((byte) 2, var22.a, (byte) 0, bq_1.i(), (byte) 1, 1, (byte) 1, (byte) -1);
-                                    this.g.f = -1;
-                                    this.g.e = 5;
+                                    this.overlayDialogController.a((byte) 2, var22.a, (byte) 0, bq_1.i(), (byte) 1, 1, (byte) 1, (byte) -1);
+                                    this.overlayDialogController.f = -1;
+                                    this.overlayDialogController.e = 5;
                                 } else {
-                                    this.g.j = 2;
-                                    this.g.p = var22.a;
-                                    this.g.n = 0;
-                                    this.g.d = 4;
+                                    this.overlayDialogController.j = 2;
+                                    this.overlayDialogController.p = var22.a;
+                                    this.overlayDialogController.n = 0;
+                                    this.overlayDialogController.d = 4;
                                 }
                             } else if (var22.f == 5) {
                                 if (bq_1.c() <= 1) {
-                                    this.g.a((byte) 2, var22.a, (byte) 1, GlobalStatus.M[this.g.h].a, (byte) 2, -1, (byte) -1, (byte) -1);
-                                    this.g.f = -1;
-                                    this.g.e = 5;
+                                    this.overlayDialogController.a((byte) 2, var22.a, (byte) 1, GlobalStatus.M[this.overlayDialogController.h].a, (byte) 2, -1, (byte) -1, (byte) -1);
+                                    this.overlayDialogController.f = -1;
+                                    this.overlayDialogController.e = 5;
                                 } else {
-                                    this.g.j = 2;
-                                    this.g.p = var22.a;
-                                    this.g.n = 1;
-                                    this.g.d = 9;
+                                    this.overlayDialogController.j = 2;
+                                    this.overlayDialogController.p = var22.a;
+                                    this.overlayDialogController.n = 1;
+                                    this.overlayDialogController.d = 9;
                                 }
                             }
                         } else if (GlobalStatus.H.length > 1 && !bq_1.h()) {
-                            this.g.j = 2;
-                            this.g.p = var22.a;
-                            this.g.n = 0;
-                            this.g.d = 4;
+                            this.overlayDialogController.j = 2;
+                            this.overlayDialogController.p = var22.a;
+                            this.overlayDialogController.n = 0;
+                            this.overlayDialogController.d = 4;
                         } else {
                             if (bq_1.h()) {
-                                this.g.m();
+                                this.overlayDialogController.m();
                             }
 
-                            this.g.a((byte) 2, var22.a, (byte) 0, GlobalStatus.H[this.g.i].a, (byte) 2, -1, (byte) -1, (byte) -1);
-                            this.g.f = -1;
-                            this.g.e = 5;
+                            this.overlayDialogController.a((byte) 2, var22.a, (byte) 0, GlobalStatus.H[this.overlayDialogController.i].a, (byte) 2, -1, (byte) -1, (byte) -1);
+                            this.overlayDialogController.f = -1;
+                            this.overlayDialogController.e = 5;
                         }
 
-                        this.j = this.k = 25;
+                        this.sceneStateShadow = this.currentSceneModeId = 25;
                     }
                 } else if (this.as == 7) {
                     if (!GlobalStatus.b(var22.d)) {
@@ -5434,18 +5446,18 @@ public final class ao_1 {
                     byte[] var36;
                     if ((var36 = NetPayloadBuilder.b((short) 4135, GlobalStatus.ad, (int) var22.a, (byte) ((byte) (0 + this.av)))) != null) {
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4135, var36));
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                         return;
                     }
 
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                 } else if (this.as == 8) {
                     if (var22.g > 1) {
                         this.a((long) var22.g);
-                        this.l = 12;
+                        this.sceneSubState = 12;
                     } else {
                         this.ag = 1;
-                        this.l = 11;
+                        this.sceneSubState = 11;
                         this.o();
                     }
                 } else if (this.as == 9) {
@@ -5454,7 +5466,7 @@ public final class ao_1 {
                     }
 
                     if (var22.e == 2) {
-                        this.l = 13;
+                        this.sceneSubState = 13;
                         LoadingPage.h = 0;
                     } else {
                         this.as = 0;
@@ -5466,7 +5478,7 @@ public final class ao_1 {
                     }
 
                     LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"查看", "打孔"}, false);
-                    this.l = 14;
+                    this.sceneSubState = 14;
                 } else if (this.as == 11) {
                     if (var22.d != 30) {
                         return;
@@ -5478,50 +5490,50 @@ public final class ao_1 {
                         if ((var37 = NetPayloadBuilder.a((short) 4687, GlobalStatus.ko, (byte) 3, GlobalStatus.jG, var22.a, this.O.b, "", GlobalStatus.ad)) != null) {
                             NetPacket var25 = new NetPacket((short) 4687, var37);
                             MainCanvas.netUtils.sendPacket(var25);
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                             return;
                         }
 
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                     } else {
                         byte[] var38;
                         if ((var38 = NetPayloadBuilder.c((short) 4645, GlobalStatus.ad, GlobalStatus.ko, var22.a, this.O.b)) != null) {
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4645, var38));
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                             return;
                         }
 
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                     }
                 } else if (this.as == 13) {
                     byte[] var26;
-                    if ((var26 = NetPayloadBuilder.b((short) 4856, GlobalStatus.ad, GlobalStatus.dK[this.e.ar.g() - 1], (int) this.z((this.ar << 3) + this.aq))) != null) {
+                    if ((var26 = NetPayloadBuilder.b((short) 4856, GlobalStatus.ad, GlobalStatus.dK[this.mainCanvasRef.ar.g() - 1], (int) this.z((this.ar << 3) + this.aq))) != null) {
                         NetPacket var27 = new NetPacket((short) 4856, var26);
                         MainCanvas.netUtils.sendPacket(var27);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                         return;
                     }
 
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                 } else if (this.as == 14) {
                     byte[] var39;
-                    if ((var39 = NetPayloadBuilder.h((short) 4661, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()], this.z((this.ar << 3) + this.aq))) != null) {
+                    if ((var39 = NetPayloadBuilder.h((short) 4661, GlobalStatus.ad, GlobalStatus.fA[this.mainCanvasRef.ar.g()], this.z((this.ar << 3) + this.aq))) != null) {
                         NetPacket var28 = new NetPacket((short) 4661, var39);
                         MainCanvas.netUtils.sendPacket(var28);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                         return;
                     }
 
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                 } else if (this.as == 18) {
                     if (var22.g > 1) {
                         this.a((long) var22.g);
-                        this.l = 2;
+                        this.sceneSubState = 2;
                     } else {
                         LoadingPage.h = 0;
                         int var40 = LoadingPage.a(var22.b) != -1 ? LoadingPage.a(var22.b) : 15138723;
                         this.at = "您确定向你的帮派捐献" + (var40 != 15138723 ? var22.b.substring(3, var22.b.length()) : var22.b) + "X" + var22.g + "？";
-                        this.l = 18;
+                        this.sceneSubState = 18;
                     }
                 } else if (this.as == 20) {
                     GlobalConfig.printStr("升星 选择物品");
@@ -5533,105 +5545,105 @@ public final class ao_1 {
                 } else {
                     if (this.as != 21) {
                         if (this.as == 22) {
-                            this.a((byte) 0, GlobalStatus.fA[this.bg], var22.a, (byte) 35, (byte) ((byte) (this.e.ar.g() - 5)));
+                            this.a((byte) 0, GlobalStatus.fA[this.bg], var22.a, (byte) 35, (byte) ((byte) (this.mainCanvasRef.ar.g() - 5)));
                         }
 
                         return;
                     }
 
-                    this.a((byte) 0, GlobalStatus.fA[this.bg], var22.a, (byte) 34, (byte) ((byte) this.e.ar.g()));
+                    this.a((byte) 0, GlobalStatus.fA[this.bg], var22.a, (byte) 34, (byte) ((byte) this.mainCanvasRef.ar.g()));
                 }
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             this.a(GlobalStatus.en);
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else {
                 bn var19;
                 if ((var19 = this.y((this.ar << 3) + this.aq)) == null || var19.a <= 0 || var19.g <= 0) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
 
                 switch (LoadingPage.o) {
                     case 0:
                         if (GlobalStatus.a(var19.d) && var19.e == 2) {
-                            this.l = 10;
+                            this.sceneSubState = 10;
                             LoadingPage.h = 0;
                             return;
                         }
 
                         byte[] var33;
                         if ((var33 = NetPayloadBuilder.b((short) 4105, GlobalStatus.ad, (int) var19.a)) == null) {
-                            this.e.processException("获取上传指令数据错误!");
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         NetPacket var21 = new NetPacket((short) 4105, var33);
                         MainCanvas.netUtils.sendPacket(var21);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                         break;
                     case 1:
-                        this.aH = this.e.as.a;
+                        this.aH = this.mainCanvasRef.as.a;
                         if (GlobalStatus.a(var19.d)) {
                             GlobalStatus.a(var19);
-                            this.O.a(0, (short) this.k, this.as);
+                            this.O.a(0, (short) this.currentSceneModeId, this.as);
                         } else {
-                            this.e.aq.j();
-                            this.e.aq.b();
-                            this.e.aq.a("物品详情");
-                            this.e.at.a(this.A((this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
-                            this.e.aq.a((al) this.e.at);
-                            this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-                            this.l = 17;
+                            this.mainCanvasRef.aq.j();
+                            this.mainCanvasRef.aq.b();
+                            this.mainCanvasRef.aq.a("物品详情");
+                            this.mainCanvasRef.at.a(this.A((this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
+                            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+                            this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+                            this.sceneSubState = 17;
                         }
 
                         return;
                     case 2:
                         if (var19.g > 1) {
                             this.a((long) var19.g);
-                            this.l = 2;
+                            this.sceneSubState = 2;
                         } else {
                             LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"取消", "确认"}, false);
-                            this.l = 3;
+                            this.sceneSubState = 3;
                         }
 
                         return;
                     case 3:
-                        if (this.e.touchPageCase != 2) {
-                            this.e.touchPageCase = this.e.k;
+                        if (this.mainCanvasRef.touchPageCase != 2) {
+                            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
                         }
 
                         this.az = 0;
-                        this.l = 8;
+                        this.sceneSubState = 8;
                         return;
                     case 4:
                         byte[] var32;
                         if ((var32 = NetPayloadBuilder.j((short) 4143, GlobalStatus.ad)) != null) {
                             NetPacket var20 = new NetPacket((short) 4143, var32);
                             MainCanvas.netUtils.sendPacket(var20);
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                             return;
                         }
 
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                 }
             }
-        } else if (this.l == 2) {
+        } else if (this.sceneSubState == 2) {
             this.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
                     if (this.as == 0) {
                         LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, this.am, false);
-                        this.l = 1;
+                        this.sceneSubState = 1;
                         return;
                     }
 
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else {
@@ -5642,14 +5654,14 @@ public final class ao_1 {
 
                 if (this.as == 0) {
                     LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"取消", "确认"}, false);
-                    this.l = 3;
+                    this.sceneSubState = 3;
                 } else {
                     if (this.as != 2) {
                         if (this.as == 18) {
                             LoadingPage.h = 0;
                             int var31 = LoadingPage.a(var18.b) != -1 ? LoadingPage.a(var18.b) : 15138723;
                             this.at = "您确定向你的帮派捐献" + (var31 != 15138723 ? var18.b.substring(3, var18.b.length()) : var18.b) + "X" + this.ag + "？";
-                            this.l = 18;
+                            this.sceneSubState = 18;
                         }
 
                         return;
@@ -5658,30 +5670,30 @@ public final class ao_1 {
                     this.E(var18.g > 1 ? this.ag : 1);
                 }
             }
-        } else if (this.l == 3) {
+        } else if (this.sceneSubState == 3) {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
                     bn var17;
                     if ((var17 = this.y((this.ar << 3) + this.aq)) == null || var17.a <= 0 || var17.g <= 0) {
-                        this.l = 0;
+                        this.sceneSubState = 0;
                         return;
                     }
 
                     LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, this.am, false);
-                    this.l = 1;
+                    this.sceneSubState = 1;
                 }
             } else {
                 bn var16;
                 if ((var16 = this.y((this.ar << 3) + this.aq)) == null || var16.a <= 0 || var16.g <= 0) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
                     if (this.as == 0) {
                         if (var16.r != 0) {
-                            this.e.a((String) "重要物品输入OK丢弃", (int) 0);
+                            this.mainCanvasRef.a((String) "重要物品输入OK丢弃", (int) 0);
                             this.ag = var16.g > 1 ? this.ag : 1;
                         } else {
                             this.f(var16.g > 1 ? this.ag : 1);
@@ -5691,30 +5703,30 @@ public final class ao_1 {
                     }
                 } else {
                     LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, this.am, false);
-                    this.l = 1;
+                    this.sceneSubState = 1;
                 }
             }
-        } else if (this.l == 4) {
+        } else if (this.sceneSubState == 4) {
             this.b(var1);
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                 this.D(this.ag);
                 this.b((byte) 0, true);
                 this.ar = this.aU;
-                this.e.ax = this.aV;
+                this.mainCanvasRef.ax = this.aV;
                 this.as = 0;
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 0;
+                this.sceneSubState = 0;
                 return;
             }
-        } else if (this.l == 5) {
+        } else if (this.sceneSubState == 5) {
             if (var1 != 268435456 && var1 != 517 && var1 != 1073741824) {
                 if (var1 == 536870912) {
                     this.at = null;
-                    this.l = 6;
+                    this.sceneSubState = 6;
                     this.o();
                     return;
                 }
@@ -5726,15 +5738,15 @@ public final class ao_1 {
 
                 byte[] var30;
                 if ((var30 = NetPayloadBuilder.b((short) 4152, GlobalStatus.ad, var14.a, this.ag > var14.g ? var14.g : this.ag, this.bR)) == null) {
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                     return;
                 }
 
                 NetPacket var15 = new NetPacket((short) 4152, var30);
                 MainCanvas.netUtils.sendPacket(var15);
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
             }
-        } else if (this.l == 6) {
+        } else if (this.sceneSubState == 6) {
             if (var1 == 268435456 || var1 == 1073741824) {
                 if (this.n() != -1L) {
                     try {
@@ -5742,18 +5754,18 @@ public final class ao_1 {
                         if ((var13 = this.y((this.ar << 3) + this.aq)) != null && var13.a > 0 && var13.g > 0) {
                             this.bR = this.n();
                             this.at = "您确定以" + this.bR + "两的价格拍卖此物品" + (this.ag > var13.g ? var13.g : this.ag) + "个?";
-                            this.l = 5;
+                            this.sceneSubState = 5;
                             LoadingPage.h = 0;
                         }
 
                         return;
                     } catch (Exception var3) {
-                        this.e.processException("超出最大值,请重新输入");
+                        this.mainCanvasRef.processException("超出最大值,请重新输入");
                         return;
                     }
                 }
 
-                this.e.processException("输入有误,请重新输入");
+                this.mainCanvasRef.processException("输入有误,请重新输入");
                 return;
             }
 
@@ -5763,34 +5775,34 @@ public final class ao_1 {
                     return;
                 }
 
-                this.e.o();
+                this.mainCanvasRef.o();
                 bn var12;
                 if ((var12 = this.y((this.ar << 3) + this.aq)) == null || var12.g <= 1) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
 
-                this.l = 7;
+                this.sceneSubState = 7;
             }
-        } else if (this.l == 7) {
+        } else if (this.sceneSubState == 7) {
             this.b(var1);
             if (var1 == 268435456 || var1 == 517 || var1 == 1073741824) {
-                this.l = 6;
+                this.sceneSubState = 6;
                 this.o();
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 0;
+                this.sceneSubState = 0;
                 return;
             }
-        } else if (this.l == 8) {
+        } else if (this.sceneSubState == 8) {
             if (var1 != 516 && var1 != 8) {
                 if (var1 != 518 && var1 != 2) {
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                         if (var1 == 536870912) {
                             LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, this.am, false);
-                            this.l = 1;
+                            this.sceneSubState = 1;
                             return;
                         }
 
@@ -5803,7 +5815,7 @@ public final class ao_1 {
                     }
 
                     LoadingPage.a(this.au[(this.ar << 3) + this.aq][0] - 17, this.au[(this.ar << 3) + this.aq][1] + 17, new String[]{"覆盖", "清空"}, false);
-                    this.l = 9;
+                    this.sceneSubState = 9;
                     return;
                 }
 
@@ -5813,7 +5825,7 @@ public final class ao_1 {
 
             this.az = this.az <= 0 ? 7 : --this.az;
             return;
-        } else if (this.l == 9) {
+        } else if (this.sceneSubState == 9) {
             LoadingPage.b(var1);
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                 if (LoadingPage.o == 0) {
@@ -5826,28 +5838,28 @@ public final class ao_1 {
             }
 
             if (var1 == 536870912) {
-                this.l = 8;
+                this.sceneSubState = 8;
                 return;
             }
-        } else if (this.l == 10) {
+        } else if (this.sceneSubState == 10) {
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 1;
+                    this.sceneSubState = 1;
                     this.s();
                     return;
                 }
             } else {
                 byte[] var11;
                 if ((var11 = NetPayloadBuilder.b((short) 4105, GlobalStatus.ad, (int) this.z((this.ar << 3) + this.aq))) == null) {
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                     return;
                 }
 
                 NetPacket var29 = new NetPacket((short) 4105, var11);
                 MainCanvas.netUtils.sendPacket(var29);
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
             }
-        } else if (this.l == 11) {
+        } else if (this.sceneSubState == 11) {
             if (var1 == 268435456 || var1 == 1073741824) {
                 if (this.n() != -1L) {
                     try {
@@ -5855,18 +5867,18 @@ public final class ao_1 {
                         if ((var10 = this.y((this.ar << 3) + this.aq)) != null && var10.a > 0 && var10.g > 0) {
                             this.bR = this.n();
                             this.at = "您确定以" + this.bR + "个金豆的价格拍卖此物品" + (this.ag > var10.g ? var10.g : this.ag) + "个?";
-                            this.l = 5;
+                            this.sceneSubState = 5;
                             LoadingPage.h = 0;
                         }
 
                         return;
                     } catch (Exception var4) {
-                        this.e.processException("超出最大值,请重新输入");
+                        this.mainCanvasRef.processException("超出最大值,请重新输入");
                         return;
                     }
                 }
 
-                this.e.processException("输入有误,请重新输入");
+                this.mainCanvasRef.processException("输入有误,请重新输入");
                 return;
             }
 
@@ -5875,27 +5887,27 @@ public final class ao_1 {
                 return;
             }
 
-            this.e.o();
+            this.mainCanvasRef.o();
             bn var9;
             if ((var9 = this.y((this.ar << 3) + this.aq)) == null || var9.g <= 1) {
-                this.l = 0;
+                this.sceneSubState = 0;
                 return;
             }
 
-            this.l = 12;
-        } else if (this.l == 12) {
+            this.sceneSubState = 12;
+        } else if (this.sceneSubState == 12) {
             this.b(var1);
             if (var1 == 268435456 || var1 == 517 || var1 == 1073741824) {
-                this.l = 11;
+                this.sceneSubState = 11;
                 this.o();
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 0;
+                this.sceneSubState = 0;
                 return;
             }
-        } else if (this.l == 13) {
+        } else if (this.sceneSubState == 13) {
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                 this.as = 0;
                 this.V(this.z((this.ar << 3) + this.aq));
@@ -5903,22 +5915,22 @@ public final class ao_1 {
             }
 
             if (var1 == 536870912) {
-                this.l = 0;
+                this.sceneSubState = 0;
                 this.s();
                 return;
             }
-        } else if (this.l == 14) {
+        } else if (this.sceneSubState == 14) {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else {
                 if (LoadingPage.o == 0) {
-                    this.aH = this.e.as.a;
+                    this.aH = this.mainCanvasRef.as.a;
                     GlobalStatus.a(this.y((this.ar << 3) + this.aq));
-                    this.O.a(0, (short) this.k, this.as);
+                    this.O.a(0, (short) this.currentSceneModeId, this.as);
                     return;
                 }
 
@@ -5926,28 +5938,28 @@ public final class ao_1 {
                     o_1.e = 0;
                     bn var8 = this.y((this.ar << 3) + this.aq);
                     byte[] var2;
-                    if ((var2 = NetPayloadBuilder.b((short) 4642, GlobalStatus.ad, GlobalStatus.km[this.e.ar.g()], var8.a, (short) GlobalStatus.t[this.af].a)) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                    if ((var2 = NetPayloadBuilder.b((short) 4642, GlobalStatus.ad, GlobalStatus.km[this.mainCanvasRef.ar.g()], var8.a, (short) GlobalStatus.t[this.af].a)) == null) {
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4642, var2));
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 }
             }
-        } else if (this.l == 15) {
+        } else if (this.sceneSubState == 15) {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else {
                 bn var7 = this.y((this.ar << 3) + this.aq);
                 if (LoadingPage.o == 0) {
-                    this.aH = this.e.as.a;
+                    this.aH = this.mainCanvasRef.as.a;
                     GlobalStatus.a(var7);
-                    this.O.a(0, (short) this.k, this.as);
+                    this.O.a(0, (short) this.currentSceneModeId, this.as);
                 } else {
                     if (LoadingPage.o != 1) {
                         return;
@@ -5956,7 +5968,7 @@ public final class ao_1 {
                     if (var7.g - var7.v > 1) {
                         if (var7.g - var7.v > 1) {
                             this.a((long) (var7.g - var7.v));
-                            this.l = 4;
+                            this.sceneSubState = 4;
                         }
 
                         return;
@@ -5965,46 +5977,46 @@ public final class ao_1 {
                     this.D(1);
                     this.b((byte) 0, true);
                     this.ar = this.aU;
-                    this.e.ax = this.aV;
+                    this.mainCanvasRef.ax = this.aV;
                     this.as = 0;
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 }
             }
-        } else if (this.l == 16) {
+        } else if (this.sceneSubState == 16) {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else {
                 bn var6 = this.y((this.ar << 3) + this.aq);
                 if (LoadingPage.o == 0) {
-                    this.aH = this.e.as.a;
+                    this.aH = this.mainCanvasRef.as.a;
                     GlobalStatus.a(var6);
-                    this.O.a(0, (short) this.k, this.as);
+                    this.O.a(0, (short) this.currentSceneModeId, this.as);
                 } else {
                     if (var6.g <= 1) {
                         this.ag = 1;
-                        this.l = 6;
+                        this.sceneSubState = 6;
                         this.o();
                         return;
                     }
 
                     this.a((long) var6.g);
-                    this.l = 7;
+                    this.sceneSubState = 7;
                 }
             }
-        } else if (this.l == 17) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        } else if (this.sceneSubState == 17) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517 && var1 == 536870912) {
                 this.e((int) 0);
                 return;
             }
-        } else if (this.l == 18) {
+        } else if (this.sceneSubState == 18) {
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                 bn var5;
                 if ((var5 = this.y((this.ar << 3) + this.aq)).g > 1) {
@@ -6014,13 +6026,13 @@ public final class ao_1 {
                 }
 
                 LoadingPage.h = 0;
-                this.l = 0;
+                this.sceneSubState = 0;
                 return;
             }
 
             if (var1 == 536870912) {
                 LoadingPage.h = 0;
-                this.l = 0;
+                this.sceneSubState = 0;
             }
         }
 
@@ -6031,38 +6043,38 @@ public final class ao_1 {
         if ((var2 = NetPayloadBuilder.b((short) 4244, this.z((this.ar << 3) + this.aq), (int) var1, GlobalStatus.ad)) != null) {
             NetPacket var3 = new NetPacket((short) 4244, var2);
             MainCanvas.netUtils.sendPacket(var3);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     private void a(boolean var1, byte var2) {
         byte[] var3;
-        if ((var3 = NetPayloadBuilder.a((short) 4117, GlobalStatus.ad, (byte) this.az, (byte) (var1 ? var2 : 0), (int) (var1 ? (var2 == 2 ? this.z((this.ar << 3) + this.aq) : GlobalStatus.dl[this.e.ar.g()]) : -1))) != null) {
+        if ((var3 = NetPayloadBuilder.a((short) 4117, GlobalStatus.ad, (byte) this.az, (byte) (var1 ? var2 : 0), (int) (var1 ? (var2 == 2 ? this.z((this.ar << 3) + this.aq) : GlobalStatus.dl[this.mainCanvasRef.ar.g()]) : -1))) != null) {
             NetPacket var4 = new NetPacket((short) 4117, var3);
             MainCanvas.netUtils.sendPacket(var4);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     private void b(boolean var1, byte var2) {
         byte[] var3;
-        if ((var3 = NetPayloadBuilder.a((short) 4193, GlobalStatus.ad, GlobalStatus.fA[this.ay], (byte) this.az, (byte) (var1 ? 1 : 0), (int) (var1 ? GlobalStatus.dl[this.e.ar.g()] : -1))) != null) {
+        if ((var3 = NetPayloadBuilder.a((short) 4193, GlobalStatus.ad, GlobalStatus.fA[this.ay], (byte) this.az, (byte) (var1 ? 1 : 0), (int) (var1 ? GlobalStatus.dl[this.mainCanvasRef.ar.g()] : -1))) != null) {
             NetPacket var4 = new NetPacket((short) 4193, var3);
             MainCanvas.netUtils.sendPacket(var4);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     private void D(int var1) {
         if (this.bS) {
             if (GlobalStatus.fh.length >= 10) {
-                this.e.processException("交易物品栏已满");
+                this.mainCanvasRef.processException("交易物品栏已满");
                 return;
             }
 
@@ -6076,30 +6088,30 @@ public final class ao_1 {
                 }
 
                 if (!var3) {
-                    this.e.ax = var2;
+                    this.mainCanvasRef.ax = var2;
                     break;
                 }
             }
         }
 
         byte[] var5;
-        if ((var5 = NetPayloadBuilder.a((short) 4126, GlobalStatus.ad, (int) this.z((this.ar << 3) + this.aq), (int) (this.e.ax % 10), (int) var1)) != null) {
+        if ((var5 = NetPayloadBuilder.a((short) 4126, GlobalStatus.ad, (int) this.z((this.ar << 3) + this.aq), (int) (this.mainCanvasRef.ax % 10), (int) var1)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4126, var5));
             this.bS = true;
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     public final void s() {
         if (GlobalStatus.bC.size() > 0 && this.A((this.ar << 3) + this.aq) != null) {
-            this.e.at.a(this.A((this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a(this.A((this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
         } else {
-            this.e.at.a("没有物品，按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有物品，按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
         }
 
-        this.e.at.a((byte) 1);
-        this.l = 0;
+        this.mainCanvasRef.at.a((byte) 1);
+        this.sceneSubState = 0;
         LoadingPage.l = 0;
     }
 
@@ -6108,9 +6120,9 @@ public final class ao_1 {
         if ((var2 = NetPayloadBuilder.a((short) 4104, GlobalStatus.ad, (int) this.z((this.ar << 3) + this.aq), (byte) ((byte) var1))) != null) {
             NetPacket var3 = new NetPacket((short) 4104, var2);
             MainCanvas.netUtils.sendPacket(var3);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -6119,9 +6131,9 @@ public final class ao_1 {
         if ((var2 = NetPayloadBuilder.e((short) 4157, GlobalStatus.ad, this.z((this.ar << 3) + this.aq), (int) var1)) != null) {
             NetPacket var3 = new NetPacket((short) 4157, var2);
             MainCanvas.netUtils.sendPacket(var3);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -6156,21 +6168,21 @@ public final class ao_1 {
     }
 
     private void c(Graphics var1, String var2) {
-        if (this.e.aq != null) {
-            this.e.aq.a(var2);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.a(var2);
             int var12 = GlobalConfig.realHigh <= 240 ? 79 : 120;
-            this.e.aq.a(var1);
-            LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 29 + this.e.as.b, this.e.aq.c - 11, var12, 1);
+            this.mainCanvasRef.aq.a(var1);
+            LoadingPage.a(var1, this.mainCanvasRef.aq.a + 5, this.mainCanvasRef.aq.b + 29 + this.mainCanvasRef.as.b, this.mainCanvasRef.aq.c - 11, var12, 1);
             LoadingPage.a(var1);
             Graphics var3 = var1;
-            ao_1 var13 = this;
-            int var4 = (this.e.aq.c - 11 - (x.b << 3)) / 9;
+            UISceneController var13 = this;
+            int var4 = (this.mainCanvasRef.aq.c - 11 - (x.b << 3)) / 9;
             int var5 = ((GlobalConfig.realHigh <= 240 ? 79 : 120) - 6 - (x.b << 2)) / 5;
-            int var6 = this.e.aq.a + 8 + var4;
-            int var7 = this.e.aq.b + 33 + this.e.as.b + var5;
+            int var6 = this.mainCanvasRef.aq.a + 8 + var4;
+            int var7 = this.mainCanvasRef.aq.b + 33 + this.mainCanvasRef.as.b + var5;
 
             for (int var8 = 0; var8 < 32; ++var8) {
-                MainCanvas.f.a(var3, x, (int[]) null, (aj) null, 0, 0, var8 % 8 * (x.b + var4) + var6, var8 / 8 * (x.b + var5) + var7, 0, 0);
+                MainCanvas.pngUtil.a(var3, x, (int[]) null, (aj) null, 0, 0, var8 % 8 * (x.b + var4) + var6, var8 / 8 * (x.b + var5) + var7, 0, 0);
                 var13.a((int) var8, var8 % 8 * (x.b + var4) + var6, var8 / 8 * (x.b + var5) + var7, (int) x.b, (int) x.c);
             }
 
@@ -6189,13 +6201,13 @@ public final class ao_1 {
                         }
 
                         var9 = var13.bT.h % 32;
-                        if (var13.bT.h / 32 == var13.e.as.a) {
-                            MainCanvas.f.a(var3, b(var13.bT.i), (int[]) null, (aj) null, 0, 0, var9 % 8 * (x.b + var4) + var6 + 1, var9 / 8 * (x.b + var5) + var7 + 1, 0, 0);
+                        if (var13.bT.h / 32 == var13.mainCanvasRef.as.a) {
+                            MainCanvas.pngUtil.a(var3, b(var13.bT.i), (int[]) null, (aj) null, 0, 0, var9 % 8 * (x.b + var4) + var6 + 1, var9 / 8 * (x.b + var5) + var7 + 1, 0, 0);
                             if (var10 > 9) {
-                                MainCanvas.f.a(var3, MainCanvas.num, (int[]) null, var10 / 10, 0, 0, 10 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
-                                MainCanvas.f.a(var3, MainCanvas.num, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                                MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, var10 / 10, 0, 0, 10 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                                MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
                             } else if (var10 > 1) {
-                                MainCanvas.f.a(var3, MainCanvas.num, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                                MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
                             }
 
                             if (var13.bT.h % 32 == (var13.ar << 3) + var13.aq) {
@@ -6212,16 +6224,16 @@ public final class ao_1 {
             }
 
             if (this.as != 18) {
-                this.a(var1, GlobalStatus.ap, GlobalConfig.defaultWidth / 2 + x.b, this.e.au.a() + GlobalConfig.a(MainCanvas.E.c));
-                MainCanvas.f.a(var1, w, (int[]) null, (aj) null, 0, 0, GlobalConfig.a(GlobalConfig.defaultWidth, this.e.l.toString()) - x.b, this.e.au.a() + 4, 0, 0);
+                this.a(var1, GlobalStatus.ap, GlobalConfig.defaultWidth / 2 + x.b, this.mainCanvasRef.au.a() + GlobalConfig.a(MainCanvas.E.c));
+                MainCanvas.pngUtil.a(var1, w, (int[]) null, (aj) null, 0, 0, GlobalConfig.a(GlobalConfig.defaultWidth, this.mainCanvasRef.l.toString()) - x.b, this.mainCanvasRef.au.a() + 4, 0, 0);
             }
         }
 
-        if (this.l != 1 && this.l != 3 && this.l != 9 && this.l != 14 && this.l != 15 && this.l != 16) {
-            if (this.l != 2 && this.l != 4 && this.l != 7 && this.l != 12) {
-                if (this.l != 6 && this.l != 11) {
-                    if (this.l != 5 && this.l != 18) {
-                        if (this.l == 8) {
+        if (this.sceneSubState != 1 && this.sceneSubState != 3 && this.sceneSubState != 9 && this.sceneSubState != 14 && this.sceneSubState != 15 && this.sceneSubState != 16) {
+            if (this.sceneSubState != 2 && this.sceneSubState != 4 && this.sceneSubState != 7 && this.sceneSubState != 12) {
+                if (this.sceneSubState != 6 && this.sceneSubState != 11) {
+                    if (this.sceneSubState != 5 && this.sceneSubState != 18) {
+                        if (this.sceneSubState == 8) {
                             this.a(var1, (GlobalConfig.defaultWidth - 176) / 2, (GlobalConfig.defaultHigh - 20) / 2, 0);
                             int var14 = 0;
 
@@ -6238,21 +6250,21 @@ public final class ao_1 {
                                 ++var14;
                             }
                         } else {
-                            if (this.l == 10 || this.l == 13) {
+                            if (this.sceneSubState == 10 || this.sceneSubState == 13) {
                                 LoadingPage.a(var1, "使用该物品将与你绑定，是否确认使用？", new String[]{"确定", "取消"});
                                 return;
                             }
 
-                            if (this.l == 17 && this.e.aq != null) {
-                                this.e.aq.a("物品详情");
-                                this.e.aq.a(var1);
+                            if (this.sceneSubState == 17 && this.mainCanvasRef.aq != null) {
+                                this.mainCanvasRef.aq.a("物品详情");
+                                this.mainCanvasRef.aq.a(var1);
                             }
                         }
 
                     } else {
                         LoadingPage.a(var1, this.at, new String[]{"确定", "取消"});
                     }
-                } else if (this.l == 6) {
+                } else if (this.sceneSubState == 6) {
                     this.b(var1, "拍卖价格");
                 } else {
                     this.b(var1, "金豆数量");
@@ -6266,9 +6278,9 @@ public final class ao_1 {
     }
 
     public final void a(byte var1, byte[] var2) {
-        this.l = 0;
-        this.e.aw = 0;
-        if (this.j != 126) {
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aw = 0;
+        if (this.sceneStateShadow != 126) {
             this.aq = this.ar = 0;
         }
 
@@ -6295,34 +6307,34 @@ public final class ao_1 {
         }
 
         LoadingPage.l = 0;
-        this.e.aq.b();
-        this.e.aq.a("可选物品");
-        this.e.aq.a(true);
-        this.e.as.a(new String[]{" 一 ", " 二 ", " 三 ", " 四 ", " 五 "});
-        this.e.as.a((byte) 1);
-        this.e.aq.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("可选物品");
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.as.a(new String[]{" 一 ", " 二 ", " 三 ", " 四 ", " 五 "});
+        this.mainCanvasRef.as.a((byte) 1);
+        this.mainCanvasRef.aq.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
         if (this.bU.size() > 0) {
-            this.e.at.a(a((bn) this.bU.elementAt(0)), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a(a((bn) this.bU.elementAt(0)), GlobalConfig.i, (byte) 1);
         } else {
-            this.e.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
         }
 
-        this.e.at.a((byte) 1);
+        this.mainCanvasRef.at.a((byte) 1);
         LoadingPage.l = 0;
-        this.e.au.a("");
-        this.e.aq.a((al) this.e.as);
-        this.e.aq.a((al) this.e.at);
-        this.e.aq.a((al) this.e.au);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        this.k = 126;
+        this.mainCanvasRef.au.a("");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.currentSceneModeId = 126;
     }
 
     private void F(int var1) {
-        if (this.l == 0) {
+        if (this.sceneSubState == 0) {
             this.aV();
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -6336,27 +6348,27 @@ public final class ao_1 {
                         if (var1 != 1 && var1 != 514) {
                             if (var1 != 4 && var1 != 520) {
                                 if (var1 == 536870912) {
-                                    if (this.j == 102) {
+                                    if (this.sceneStateShadow == 102) {
                                         this.V.a(false);
                                         return;
                                     }
 
-                                    if (this.j == 106) {
+                                    if (this.sceneStateShadow == 106) {
                                         this.O.a(false);
                                         return;
                                     }
 
-                                    if (this.j == 110) {
+                                    if (this.sceneStateShadow == 110) {
                                         this.P.a(false);
                                         return;
                                     }
 
-                                    if (this.j == 118) {
+                                    if (this.sceneStateShadow == 118) {
                                         this.Q.a(false);
                                         return;
                                     }
 
-                                    if (this.j == 64) {
+                                    if (this.sceneStateShadow == 64) {
                                         this.O.a(this.O.a, (short) this.O.c, this.O.d);
                                         return;
                                     }
@@ -6384,7 +6396,7 @@ public final class ao_1 {
                 this.G((this.ar << 3) + this.aq);
                 return;
             } else {
-                var1 = (this.e.as.a << 5) + (this.ar << 3) + this.aq;
+                var1 = (this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq;
                 bn var2 = null;
                 if (var1 < this.bU.size()) {
                     var2 = (bn) this.bU.elementAt(var1);
@@ -6394,7 +6406,7 @@ public final class ao_1 {
                     return;
                 }
 
-                if (this.j == 102) {
+                if (this.sceneStateShadow == 102) {
                     if (var2.g - var2.v <= 0 || this.V.b != 0) {
                         return;
                     }
@@ -6404,12 +6416,12 @@ public final class ao_1 {
                     if ((var5 = NetPayloadBuilder.a((short) 4689, var2.a, (byte) 0, (byte) -1, GlobalStatus.ad)) != null) {
                         NetPacket var6 = new NetPacket((short) 4689, var5);
                         MainCanvas.netUtils.sendPacket(var6);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                         return;
                     }
 
-                    this.e.processException("获取上传指令数据错误!");
-                } else if (this.j == 106) {
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
+                } else if (this.sceneStateShadow == 106) {
                     if (var2.g - var2.v <= 0) {
                         return;
                     }
@@ -6424,12 +6436,12 @@ public final class ao_1 {
                     if (var7 != null) {
                         NetPacket var8 = new NetPacket((short) 4688, var7);
                         MainCanvas.netUtils.sendPacket(var8);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                         return;
                     }
 
-                    this.e.processException("获取上传指令数据错误!");
-                } else if (this.j == 110) {
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
+                } else if (this.sceneStateShadow == 110) {
                     if (var2.g - var2.v <= 0 || this.P.b != 0 && (this.P.b != 1 || this.P.c == -1)) {
                         return;
                     }
@@ -6448,12 +6460,12 @@ public final class ao_1 {
                     if (var9 != null) {
                         NetPacket var10 = new NetPacket((short) 4262, var9);
                         MainCanvas.netUtils.sendPacket(var10);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                         return;
                     }
 
-                    this.e.processException("获取上传指令数据错误!");
-                } else if (this.j == 118) {
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
+                } else if (this.sceneStateShadow == 118) {
                     if (var2.g - var2.v <= 0 || this.Q.b != 0 && (this.Q.b != 1 || this.Q.c == -1)) {
                         return;
                     }
@@ -6472,13 +6484,13 @@ public final class ao_1 {
                     if (var11 != null) {
                         NetPacket var12 = new NetPacket((short) 4266, var11);
                         MainCanvas.netUtils.sendPacket(var12);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                         return;
                     }
 
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                 } else {
-                    if (this.j != 64 || var2.g - var2.v <= 0) {
+                    if (this.sceneStateShadow != 64 || var2.g - var2.v <= 0) {
                         return;
                     }
 
@@ -6488,20 +6500,20 @@ public final class ao_1 {
                         if ((var13 = NetPayloadBuilder.a((short) 4687, GlobalStatus.ko, (byte) 3, GlobalStatus.jG, var2.a, this.O.b, "", GlobalStatus.ad)) != null) {
                             NetPacket var14 = new NetPacket((short) 4687, var13);
                             MainCanvas.netUtils.sendPacket(var14);
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                             return;
                         }
 
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                     } else {
                         byte[] var15;
                         if ((var15 = NetPayloadBuilder.c((short) 4645, GlobalStatus.ad, GlobalStatus.ko, var2.a, this.O.b)) == null) {
-                            this.e.processException("获取上传指令数据错误!");
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4645, var15));
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     }
                 }
             }
@@ -6510,20 +6522,20 @@ public final class ao_1 {
     }
 
     private void d(Graphics var1) {
-        if (this.e.aq != null) {
-            this.e.aq.a(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.a(var1);
             int var2 = GlobalConfig.realHigh <= 240 ? 79 : 120;
-            LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 29 + this.e.as.b, this.e.aq.c - 11, var2, 1);
+            LoadingPage.a(var1, this.mainCanvasRef.aq.a + 5, this.mainCanvasRef.aq.b + 29 + this.mainCanvasRef.as.b, this.mainCanvasRef.aq.c - 11, var2, 1);
             LoadingPage.a(var1);
             Graphics var3 = var1;
-            ao_1 var12 = this;
-            int var4 = (this.e.aq.c - 11 - (x.b << 3)) / 9;
+            UISceneController var12 = this;
+            int var4 = (this.mainCanvasRef.aq.c - 11 - (x.b << 3)) / 9;
             int var5 = ((GlobalConfig.realHigh <= 240 ? 79 : 120) - 6 - (x.b << 2)) / 5;
-            int var6 = this.e.aq.a + 8 + var4;
-            int var7 = this.e.aq.b + 33 + this.e.as.b + var5;
+            int var6 = this.mainCanvasRef.aq.a + 8 + var4;
+            int var7 = this.mainCanvasRef.aq.b + 33 + this.mainCanvasRef.as.b + var5;
 
             for (int var8 = 0; var8 < 32; ++var8) {
-                MainCanvas.f.a(var3, x, (int[]) null, (aj) null, 0, 0, var8 % 8 * (x.b + var4) + var6, var8 / 8 * (x.b + var5) + var7, 0, 0);
+                MainCanvas.pngUtil.a(var3, x, (int[]) null, (aj) null, 0, 0, var8 % 8 * (x.b + var4) + var6, var8 / 8 * (x.b + var5) + var7, 0, 0);
                 var12.a((int) var8, var8 % 8 * (x.b + var4) + var6, var8 / 8 * (x.b + var5) + var7, (int) x.b, (int) x.c);
             }
 
@@ -6537,13 +6549,13 @@ public final class ao_1 {
                     if (var12.bT != null && var12.bT.a >= 0 && var12.bT.g - var12.bT.v >= 1) {
                         var10 = var12.bT.g - var12.bT.v;
                         var9 = var11 % 32;
-                        if (var11 / 32 == var12.e.as.a) {
-                            MainCanvas.f.a(var3, b(var12.bT.i), (int[]) null, (aj) null, 0, 0, var9 % 8 * (x.b + var4) + var6 + 1, var9 / 8 * (x.b + var5) + var7 + 1, 0, 0);
+                        if (var11 / 32 == var12.mainCanvasRef.as.a) {
+                            MainCanvas.pngUtil.a(var3, b(var12.bT.i), (int[]) null, (aj) null, 0, 0, var9 % 8 * (x.b + var4) + var6 + 1, var9 / 8 * (x.b + var5) + var7 + 1, 0, 0);
                             if (var10 > 9) {
-                                MainCanvas.f.a(var3, MainCanvas.num, (int[]) null, var10 / 10, 0, 0, 10 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
-                                MainCanvas.f.a(var3, MainCanvas.num, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                                MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, var10 / 10, 0, 0, 10 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                                MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
                             } else if (var10 > 1) {
-                                MainCanvas.f.a(var3, MainCanvas.num, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                                MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
                             }
 
                             if (var11 % 32 == (var12.ar << 3) + var12.aq) {
@@ -6559,22 +6571,22 @@ public final class ao_1 {
                 LoadingPage.a(var3, var13.b + "X" + (var13.g - var13.v), var13.q, var6 + var12.aq * (x.b + var4) + x.b / 2, var7 + var12.ar * (x.b + var5) + x.b / 2);
             }
 
-            this.a(var1, GlobalStatus.ap, GlobalConfig.defaultWidth / 2 + 15, this.e.au.a() + GlobalConfig.a(MainCanvas.E.c));
-            MainCanvas.f.a(var1, w, (int[]) null, (aj) null, 0, 0, GlobalConfig.a(GlobalConfig.defaultWidth, this.e.l.toString()) - 15, this.e.au.a() + 4, 0, 0);
+            this.a(var1, GlobalStatus.ap, GlobalConfig.defaultWidth / 2 + 15, this.mainCanvasRef.au.a() + GlobalConfig.a(MainCanvas.E.c));
+            MainCanvas.pngUtil.a(var1, w, (int[]) null, (aj) null, 0, 0, GlobalConfig.a(GlobalConfig.defaultWidth, this.mainCanvasRef.l.toString()) - 15, this.mainCanvasRef.au.a() + 4, 0, 0);
         }
 
     }
 
     private void G(int var1) {
-        var1 = (this.e.as.a << 5) + var1;
+        var1 = (this.mainCanvasRef.as.a << 5) + var1;
         if (this.bU.size() > 0 && var1 < this.bU.size()) {
-            this.e.at.a(a((bn) this.bU.elementAt(var1)), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a(a((bn) this.bU.elementAt(var1)), GlobalConfig.i, (byte) 1);
         } else {
-            this.e.at.a("没有物品，按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有物品，按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
         }
 
-        this.e.at.a((byte) 1);
-        this.l = 0;
+        this.mainCanvasRef.at.a((byte) 1);
+        this.sceneSubState = 0;
         LoadingPage.l = 0;
     }
 
@@ -6640,23 +6652,23 @@ public final class ao_1 {
 
     public final void t() {
         this.bV = new int[10][4];
-        this.l = 0;
-        this.m = 0;
+        this.sceneSubState = 0;
+        this.sceneSubMode = 0;
         LoadingPage.l = 0;
-        q = this.e.a(q, GlobalStatus.ax, GlobalStatus.aj, (byte) 3, (byte) 1, false);
+        q = this.mainCanvasRef.a(q, GlobalStatus.ax, GlobalStatus.aj, (byte) 3, (byte) 1, false);
         if (GlobalStatus.cz != null) {
             for (byte var1 = 0; var1 < GlobalStatus.cz.length; ++var1) {
                 this.a(GlobalStatus.cD[var1]);
             }
         }
 
-        this.e.touchPageCase = this.e.k;
-        MainCanvas.f.a(this.f, h, i, false, true, 1009050);
-        this.j = this.k = 5;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        MainCanvas.pngUtil.a(this.f, h, i, false, true, 1009050);
+        this.sceneStateShadow = this.currentSceneModeId = 5;
     }
 
     private void e(Graphics var1) {
-        if (this.l != 2) {
+        if (this.sceneSubState != 2) {
             int var6 = 0;
             int var7 = 0;
             if (q != null && MainCanvas.O != null && MainCanvas.R != null) {
@@ -6678,7 +6690,7 @@ public final class ao_1 {
                     this.c(var4, var6 + this.bY[var4][0], var7 + this.bY[var4][1], MainCanvas.R[0].b, MainCanvas.R[0].c);
                 }
 
-                MainCanvas.f.a(var1, (Frame1) q, (int[]) null, 0, 0, var6 + MainCanvas.O.b / 2, var7 + (MainCanvas.O.c - q.j()) / 2 + q.j(), 20, 0);
+                MainCanvas.pngUtil.a(var1, (Frame1) q, (int[]) null, 0, 0, var6 + MainCanvas.O.b / 2, var7 + (MainCanvas.O.c - q.j()) / 2 + q.j(), 20, 0);
             }
 
             var1.setColor(10092544);
@@ -6686,19 +6698,19 @@ public final class ao_1 {
             int[] var8 = new int[]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
             if (GlobalStatus.cz != null) {
                 for (int var5 = 0; var5 < GlobalStatus.cz.length; var8[GlobalStatus.cB[var5]] = var5++) {
-                    MainCanvas.f.a(var1, b(GlobalStatus.cC[var5]), (int[]) null, (aj) null, 0, 0, var6 + this.bY[GlobalStatus.cB[var5]][0] + 1, var7 + this.bY[GlobalStatus.cB[var5]][1] + 1, 0, 0);
+                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.cC[var5]), (int[]) null, (aj) null, 0, 0, var6 + this.bY[GlobalStatus.cB[var5]][0] + 1, var7 + this.bY[GlobalStatus.cB[var5]][1] + 1, 0, 0);
                 }
             }
 
             if (var8[this.av] >= 0) {
                 if (this.av < 3) {
-                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.e.l, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1], 40);
+                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.l, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1], 40);
                 } else if (this.av < 5) {
-                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.e.l, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1] + 16, 24);
+                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.l, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1] + 16, 24);
                 } else if (this.av < 7) {
-                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.e.l, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1] + 16, 20);
+                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.l, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1] + 16, 20);
                 } else {
-                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.e.l, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 36);
+                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.l, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 36);
                 }
             } else if (this.av < 3) {
                 LoadingPage.a(var1, GlobalConfig.M[this.av], "", var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1], 40);
@@ -6710,31 +6722,31 @@ public final class ao_1 {
                 LoadingPage.a(var1, GlobalConfig.M[this.av], "", var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 36);
             }
 
-            if (this.l == 1) {
+            if (this.sceneSubState == 1) {
                 LoadingPage.c(var1);
             }
 
         } else {
-            if (this.l == 2) {
-                if (this.e.aq != null) {
-                    this.e.aq.a(30);
-                    this.e.aq.a(var1);
-                    LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 32, this.e.aq.c - 11, 30, 1);
-                    LoadingPage.a(var1, (String) "宝石", (int) (this.e.aq.a + 10), this.e.aq.b + 35 + GlobalConfig.a(25), 20, 16776960, 0);
+            if (this.sceneSubState == 2) {
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.a(30);
+                    this.mainCanvasRef.aq.a(var1);
+                    LoadingPage.a(var1, this.mainCanvasRef.aq.a + 5, this.mainCanvasRef.aq.b + 32, this.mainCanvasRef.aq.c - 11, 30, 1);
+                    LoadingPage.a(var1, (String) "宝石", (int) (this.mainCanvasRef.aq.a + 10), this.mainCanvasRef.aq.b + 35 + GlobalConfig.a(25), 20, 16776960, 0);
                 }
 
                 if (GlobalStatus.cD != null) {
                     for (int var2 = 0; var2 < GlobalStatus.cD.length; ++var2) {
                         if (GlobalStatus.cB[var2] == this.av && GlobalStatus.cD[var2] != null) {
-                            this.a(var1, this.e.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:"), this.e.aq.b + 37, 17, 17, GlobalStatus.cD[var2].length, 1);
+                            this.a(var1, this.mainCanvasRef.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:"), this.mainCanvasRef.aq.b + 37, 17, 17, GlobalStatus.cD[var2].length, 1);
 
                             for (byte var3 = 0; var3 < GlobalStatus.cD[var2].length; ++var3) {
                                 if (GlobalStatus.cD[var2][var3] <= -1) {
-                                    LoadingPage.a(var1, 125269879, 207, this.e.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var3 * 17, this.e.aq.b + 39, 17, 17);
+                                    LoadingPage.a(var1, 125269879, 207, this.mainCanvasRef.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var3 * 17, this.mainCanvasRef.aq.b + 39, 17, 17);
                                 }
 
                                 if (GlobalStatus.cD[var2][var3] > 0) {
-                                    MainCanvas.f.a(var1, b(GlobalStatus.cD[var2][var3]), (int[]) null, (aj) null, 0, 0, this.e.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var3 * 17, this.e.aq.b + 39, 0, 0);
+                                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.cD[var2][var3]), (int[]) null, (aj) null, 0, 0, this.mainCanvasRef.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var3 * 17, this.mainCanvasRef.aq.b + 39, 0, 0);
                                 }
                             }
                         }
@@ -6746,28 +6758,28 @@ public final class ao_1 {
     }
 
     public final void b(byte var1) {
-        this.l = 0;
-        this.e.aq.b();
-        this.e.aq.a("周围" + (GlobalStatus.r != null && GlobalStatus.r.trim().length() > 0 ? GlobalStatus.r : ""));
-        this.e.aq.a(true);
-        if (this.j != 7) {
-            this.e.as.a(new String[]{"全部", "空闲", "好友", "队伍"});
-            this.e.as.a((byte) 0);
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("周围" + (GlobalStatus.r != null && GlobalStatus.r.trim().length() > 0 ? GlobalStatus.r : ""));
+        this.mainCanvasRef.aq.a(true);
+        if (this.sceneStateShadow != 7) {
+            this.mainCanvasRef.as.a(new String[]{"全部", "空闲", "好友", "队伍"});
+            this.mainCanvasRef.as.a((byte) 0);
         }
 
         this.m(var1);
-        this.e.au.a("操作");
-        this.e.au.a(true);
-        this.e.aq.a((al) this.e.as);
-        this.e.aq.a((al) this.e.ar);
+        this.mainCanvasRef.au.a("操作");
+        this.mainCanvasRef.au.a(true);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.df = null;
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 7;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 7;
     }
 
     private static boolean aD() {
@@ -6778,83 +6790,83 @@ public final class ao_1 {
         K = new TextRender(GlobalStatus.lw, (short) (GlobalConfig.defaultWidth - GlobalStatus.ly));
         LoadingPage.a((az_1) null, K, GlobalStatus.lz, (String[]) null, GlobalStatus.lx);
         LoadingPage.h = 0;
-        this.e.touchPageCase = this.e.k;
-        this.e.touchAction = 0;
-        this.e.b = 0;
-        this.k = 72;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.mainCanvasRef.touchAction = 0;
+        this.mainCanvasRef.b = 0;
+        this.currentSceneModeId = 72;
         this.as = 0;
     }
 
     public final void u() {
-        this.l = 0;
-        this.e.aq.j();
-        this.e.aq.a("定购服务");
-        this.e.aq.a(true);
-        this.e.ar.a((Image[]) null, GlobalStatus.P.j, (String[]) null, (String[]) null);
-        this.e.ar.a(GlobalStatus.P.n);
-        this.e.aq.a((al) this.e.ar);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh, 0, 0, false);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k;
-        this.k = 77;
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aq.j();
+        this.mainCanvasRef.aq.a("定购服务");
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.P.j, (String[]) null, (String[]) null);
+        this.mainCanvasRef.ar.a(GlobalStatus.P.n);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh, 0, 0, false);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId;
+        this.currentSceneModeId = 77;
     }
 
     public final void d(byte var1) {
         if (GlobalStatus.R != null) {
-            this.e.processException(GlobalStatus.R);
+            this.mainCanvasRef.processException(GlobalStatus.R);
         } else {
-            this.l = 0;
-            this.e.aq.b();
-            this.e.aq.a("邮件服务");
-            this.e.aq.a(true);
-            this.e.as.a(new String[]{"我的邮件", "系统邮件"});
-            this.e.as.a((byte) 0);
-            this.e.as.a = var1;
+            this.sceneSubState = 0;
+            this.mainCanvasRef.aq.b();
+            this.mainCanvasRef.aq.a("邮件服务");
+            this.mainCanvasRef.aq.a(true);
+            this.mainCanvasRef.as.a(new String[]{"我的邮件", "系统邮件"});
+            this.mainCanvasRef.as.a((byte) 0);
+            this.mainCanvasRef.as.a = var1;
             if (var1 == 0) {
                 if (GlobalStatus.O.g == null) {
                     GlobalStatus.O.c();
                 }
 
-                this.e.ar.a(GlobalStatus.O.k, GlobalStatus.O.g, GlobalStatus.O.h, GlobalStatus.O.i);
-                this.e.ar.a(GlobalStatus.O.l);
-                this.e.ar.b(false);
-                this.e.ar.a((String) null, 1);
-                int var2 = Math.min(this.e.ar.g(), GlobalStatus.O.j.length);
-                this.e.at.a(GlobalStatus.O.j[var2], GlobalConfig.i, (byte) 1);
-                this.e.aq.a((al) this.e.as);
-                this.e.aq.a((al) this.e.ar);
-                this.e.aq.a((al) this.e.at);
-                this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh, 50, 100, false);
+                this.mainCanvasRef.ar.a(GlobalStatus.O.k, GlobalStatus.O.g, GlobalStatus.O.h, GlobalStatus.O.i);
+                this.mainCanvasRef.ar.a(GlobalStatus.O.l);
+                this.mainCanvasRef.ar.b(false);
+                this.mainCanvasRef.ar.a((String) null, 1);
+                int var2 = Math.min(this.mainCanvasRef.ar.g(), GlobalStatus.O.j.length);
+                this.mainCanvasRef.at.a(GlobalStatus.O.j[var2], GlobalConfig.i, (byte) 1);
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+                this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh, 50, 100, false);
             } else {
                 if (GlobalStatus.P.d == null) {
                     GlobalStatus.P.d();
                 }
 
-                this.e.ar.a(GlobalStatus.P.g, GlobalStatus.P.d, GlobalStatus.P.e, GlobalStatus.P.f);
-                this.e.ar.a(GlobalStatus.P.h);
-                this.e.ar.b(false);
-                this.e.ar.a((String) null, 1);
-                this.e.aq.a((al) this.e.as);
-                this.e.aq.a((al) this.e.ar);
-                this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh, 0, 0, false);
+                this.mainCanvasRef.ar.a(GlobalStatus.P.g, GlobalStatus.P.d, GlobalStatus.P.e, GlobalStatus.P.f);
+                this.mainCanvasRef.ar.a(GlobalStatus.P.h);
+                this.mainCanvasRef.ar.b(false);
+                this.mainCanvasRef.ar.a((String) null, 1);
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+                this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh, 0, 0, false);
             }
 
-            this.e.touchPageCase = this.e.k;
-            this.j = this.k;
-            this.k = 76;
+            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+            this.sceneStateShadow = this.currentSceneModeId;
+            this.currentSceneModeId = 76;
             this.as = var1;
         }
     }
 
     public final void e(byte var1) {
         if (GlobalStatus.lF != null) {
-            this.l = 0;
-            this.e.aq.b();
-            this.e.aq.a(GlobalStatus.lF);
-            this.e.aq.a(true);
-            this.e.as.a(GlobalStatus.lJ);
-            this.e.as.a((byte) 0);
-            this.e.as.a = var1;
+            this.sceneSubState = 0;
+            this.mainCanvasRef.aq.b();
+            this.mainCanvasRef.aq.a(GlobalStatus.lF);
+            this.mainCanvasRef.aq.a(true);
+            this.mainCanvasRef.as.a(GlobalStatus.lJ);
+            this.mainCanvasRef.as.a((byte) 0);
+            this.mainCanvasRef.as.a = var1;
             boolean var2 = false;
             boolean var3 = false;
             int var4 = 0;
@@ -6863,116 +6875,116 @@ public final class ao_1 {
                     var2 = GlobalStatus.lK != null || GlobalStatus.lL != null || GlobalStatus.lM != null;
                     var3 = GlobalStatus.lN != null;
                     if (var2) {
-                        this.e.ar.a((Image[]) null, GlobalStatus.lK, GlobalStatus.lL, GlobalStatus.lM);
-                        this.e.ar.a(GlobalStatus.lR);
-                        this.e.ar.b(false);
+                        this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.lK, GlobalStatus.lL, GlobalStatus.lM);
+                        this.mainCanvasRef.ar.a(GlobalStatus.lR);
+                        this.mainCanvasRef.ar.b(false);
                     }
 
                     if (GlobalStatus.lO != null) {
-                        this.e.ar.a(GlobalStatus.lO[this.e.ar.g()], 1);
+                        this.mainCanvasRef.ar.a(GlobalStatus.lO[this.mainCanvasRef.ar.g()], 1);
                     }
 
                     if (var3) {
                         if (GlobalStatus.lN.length == 1) {
                             var4 = 0;
                         } else {
-                            var4 = this.e.ar.g();
+                            var4 = this.mainCanvasRef.ar.g();
                         }
 
-                        this.e.at.a(GlobalStatus.lN[var4], GlobalConfig.i, (byte) 1);
+                        this.mainCanvasRef.at.a(GlobalStatus.lN[var4], GlobalConfig.i, (byte) 1);
                         if (var2) {
-                            this.e.at.a((byte) 1);
+                            this.mainCanvasRef.at.a((byte) 1);
                         }
                     }
 
-                    this.e.aq.a((al) this.e.as);
+                    this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
                     if (var2) {
-                        this.e.aq.a((al) this.e.ar);
+                        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
                     }
 
                     if (var3) {
-                        this.e.aq.a((al) this.e.at);
+                        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
                     }
 
-                    this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh, GlobalStatus.lG != null ? GlobalStatus.lG[var1] : 66, GlobalStatus.lH != null ? GlobalStatus.lH[var1] : 100, GlobalStatus.lI != null ? GlobalStatus.lI[var1] == 1 : false);
+                    this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh, GlobalStatus.lG != null ? GlobalStatus.lG[var1] : 66, GlobalStatus.lH != null ? GlobalStatus.lH[var1] : 100, GlobalStatus.lI != null ? GlobalStatus.lI[var1] == 1 : false);
                     break;
                 case 1:
                     var2 = GlobalStatus.lS != null || GlobalStatus.lT != null || GlobalStatus.lU != null;
                     var3 = GlobalStatus.lV != null;
                     if (var2) {
-                        this.e.ar.a((Image[]) null, GlobalStatus.lS, GlobalStatus.lT, GlobalStatus.lU);
-                        this.e.ar.a(GlobalStatus.lZ);
-                        this.e.ar.b(false);
+                        this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.lS, GlobalStatus.lT, GlobalStatus.lU);
+                        this.mainCanvasRef.ar.a(GlobalStatus.lZ);
+                        this.mainCanvasRef.ar.b(false);
                     }
 
                     if (var3) {
                         if (GlobalStatus.lV.length == 1) {
                             var4 = 0;
                         } else {
-                            var4 = this.e.ar.g();
+                            var4 = this.mainCanvasRef.ar.g();
                         }
 
-                        this.e.at.a(GlobalStatus.lV[var4], GlobalConfig.i, (byte) 1);
+                        this.mainCanvasRef.at.a(GlobalStatus.lV[var4], GlobalConfig.i, (byte) 1);
                         if (var2) {
-                            this.e.at.a((byte) 1);
+                            this.mainCanvasRef.at.a((byte) 1);
                         }
                     }
 
                     if (GlobalStatus.lW != null) {
-                        this.e.ar.a(GlobalStatus.lW[this.e.ar.g()], 1);
+                        this.mainCanvasRef.ar.a(GlobalStatus.lW[this.mainCanvasRef.ar.g()], 1);
                     }
 
-                    this.e.aq.a((al) this.e.as);
+                    this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
                     if (var3) {
-                        this.e.aq.a((al) this.e.at);
+                        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
                     }
 
                     if (var2) {
-                        this.e.aq.a((al) this.e.ar);
+                        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
                     }
 
-                    this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh, GlobalStatus.lG != null ? GlobalStatus.lG[var1] : 66, GlobalStatus.lH != null ? GlobalStatus.lH[var1] : 100, GlobalStatus.lI == null || GlobalStatus.lI[var1] == 1);
+                    this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh, GlobalStatus.lG != null ? GlobalStatus.lG[var1] : 66, GlobalStatus.lH != null ? GlobalStatus.lH[var1] : 100, GlobalStatus.lI == null || GlobalStatus.lI[var1] == 1);
                     break;
                 case 2:
                     var2 = GlobalStatus.ma != null || GlobalStatus.mb != null || GlobalStatus.mc != null;
                     var3 = GlobalStatus.md != null;
                     if (var2) {
-                        this.e.ar.a((Image[]) null, GlobalStatus.ma, GlobalStatus.mb, GlobalStatus.mc);
-                        this.e.ar.a(GlobalStatus.mh);
-                        this.e.ar.b(false);
+                        this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.ma, GlobalStatus.mb, GlobalStatus.mc);
+                        this.mainCanvasRef.ar.a(GlobalStatus.mh);
+                        this.mainCanvasRef.ar.b(false);
                     }
 
                     if (GlobalStatus.me != null) {
-                        this.e.ar.a(GlobalStatus.me[this.e.ar.g()], 1);
+                        this.mainCanvasRef.ar.a(GlobalStatus.me[this.mainCanvasRef.ar.g()], 1);
                     }
 
                     if (var3) {
                         if (GlobalStatus.md.length == 1) {
                             var4 = 0;
                         } else {
-                            var4 = this.e.ar.g();
+                            var4 = this.mainCanvasRef.ar.g();
                         }
 
-                        this.e.at.a(GlobalStatus.md[var4], GlobalConfig.i, (byte) 1);
+                        this.mainCanvasRef.at.a(GlobalStatus.md[var4], GlobalConfig.i, (byte) 1);
                         if (var2) {
-                            this.e.at.a((byte) 1);
+                            this.mainCanvasRef.at.a((byte) 1);
                         }
                     }
 
-                    this.e.aq.a((al) this.e.as);
+                    this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
                     if (var2) {
-                        this.e.aq.a((al) this.e.ar);
+                        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
                     }
 
                     if (var3) {
-                        this.e.aq.a((al) this.e.at);
+                        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
                     }
 
-                    this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh, GlobalStatus.lG != null ? GlobalStatus.lG[var1] : 66, GlobalStatus.lH != null ? GlobalStatus.lH[var1] : 100, GlobalStatus.lI != null ? GlobalStatus.lI[var1] == 1 : false);
+                    this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh, GlobalStatus.lG != null ? GlobalStatus.lG[var1] : 66, GlobalStatus.lH != null ? GlobalStatus.lH[var1] : 100, GlobalStatus.lI != null ? GlobalStatus.lI[var1] == 1 : false);
             }
 
-            this.e.touchPageCase = this.e.k;
-            this.k = 71;
+            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+            this.currentSceneModeId = 71;
             this.as = var1;
         }
     }
@@ -6980,7 +6992,7 @@ public final class ao_1 {
     private void m(byte var1) {
         GlobalStatus.C();
         if (GlobalStatus.gS == null) {
-            this.e.processException("周围没玩家");
+            this.mainCanvasRef.processException("周围没玩家");
         } else if (var1 != 3) {
             byte var9 = 0;
             byte var10 = 0;
@@ -7065,11 +7077,11 @@ public final class ao_1 {
                 }
             }
 
-            this.e.ar.a(var13, GlobalStatus.gJ, (String[]) null, this.al);
-            this.e.ar.a(GlobalStatus.aC == 1 ? GlobalStatus.gN : null);
-            this.e.ar.b(GlobalStatus.aH == 1 ? GlobalStatus.gO : null);
-            this.e.ar.a(GlobalStatus.gI);
-            this.e.ar.b(false);
+            this.mainCanvasRef.ar.a(var13, GlobalStatus.gJ, (String[]) null, this.al);
+            this.mainCanvasRef.ar.a(GlobalStatus.aC == 1 ? GlobalStatus.gN : null);
+            this.mainCanvasRef.ar.b(GlobalStatus.aH == 1 ? GlobalStatus.gO : null);
+            this.mainCanvasRef.ar.a(GlobalStatus.gI);
+            this.mainCanvasRef.ar.b(false);
         } else {
             this.am = null;
             this.al = null;
@@ -7108,23 +7120,23 @@ public final class ao_1 {
                 }
             }
 
-            this.e.ar.a(var7, this.am, (String[]) null, this.al);
-            this.e.ar.a(var4);
-            this.e.ar.b(var5);
-            this.e.ar.a(var3);
-            this.e.ar.b(false);
+            this.mainCanvasRef.ar.a(var7, this.am, (String[]) null, this.al);
+            this.mainCanvasRef.ar.a(var4);
+            this.mainCanvasRef.ar.b(var5);
+            this.mainCanvasRef.ar.a(var3);
+            this.mainCanvasRef.ar.b(false);
         }
     }
 
     private void H(int var1) {
-        if (this.l == 0) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
-            this.aV = this.e.as.a;
+            this.aV = this.mainCanvasRef.as.a;
             if (var1 == 8 || var1 == 2 || var1 == 518 || var1 == 516) {
-                this.b(this.e.as.a);
+                this.b(this.mainCanvasRef.as.a);
             }
 
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -7177,125 +7189,125 @@ public final class ao_1 {
                         return;
                     }
                 } else if (var1 == 513) {
-                    this.e.as.a = 3;
-                    this.b(this.e.as.a);
+                    this.mainCanvasRef.as.a = 3;
+                    this.b(this.mainCanvasRef.as.a);
                     return;
                 }
-            } else if (this.e.as.a < 3) {
+            } else if (this.mainCanvasRef.as.a < 3) {
                 if (GlobalStatus.gH != null) {
-                    LoadingPage.a(65 + o, 2 * GlobalConfig.j + 10 + this.e.ar.g() * GlobalConfig.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
-                    this.l = 1;
+                    LoadingPage.a(65 + o, 2 * GlobalConfig.j + 10 + this.mainCanvasRef.ar.g() * GlobalConfig.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
+                    this.sceneSubState = 1;
                     return;
                 }
-            } else if (this.e.as.a == 3) {
+            } else if (this.mainCanvasRef.as.a == 3) {
                 if (GlobalStatus.q == null) {
                     return;
                 }
 
-                if (GlobalStatus.q[this.e.ar.g()].b.equals(GlobalStatus.ad)) {
+                if (GlobalStatus.q[this.mainCanvasRef.ar.g()].b.equals(GlobalStatus.ad)) {
                     return;
                 }
 
                 if (GlobalStatus.bs == 1) {
-                    LoadingPage.a(0, (3 + this.e.ar.g()) * GlobalConfig.j + 10 + p, new String[]{"踢除", "任命", "解散", "群聊", "私聊", "查看", GlobalStatus.s == 0 ? "自由" : "跟随"}, true);
+                    LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + 10 + p, new String[]{"踢除", "任命", "解散", "群聊", "私聊", "查看", GlobalStatus.s == 0 ? "自由" : "跟随"}, true);
                 } else {
-                    LoadingPage.a(0, (3 + this.e.ar.g()) * GlobalConfig.j + p, new String[]{"群聊", "私聊", "离开", "查看"}, true);
+                    LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"群聊", "私聊", "离开", "查看"}, true);
                 }
 
-                this.l = 8;
+                this.sceneSubState = 8;
                 return;
             }
-        } else if (this.l == 1) {
-            if (this.e.aC != null && this.e.g) {
-                this.aQ = GlobalStatus.gJ[this.e.ar.g()];
-                this.a((String) GlobalStatus.gH[this.e.ar.g()], (byte) 4);
-                this.l = 0;
+        } else if (this.sceneSubState == 1) {
+            if (this.mainCanvasRef.aC != null && this.mainCanvasRef.g) {
+                this.aQ = GlobalStatus.gJ[this.mainCanvasRef.ar.g()];
+                this.a((String) GlobalStatus.gH[this.mainCanvasRef.ar.g()], (byte) 4);
+                this.sceneSubState = 0;
             }
 
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else {
                 if (LoadingPage.o == 0) {
-                    LoadingPage.a(65 + o, (3 + this.e.ar.g()) * GlobalConfig.j + p, new String[]{"属性", "装备", "成就"}, false);
-                    this.l = 2;
+                    LoadingPage.a(65 + o, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"属性", "装备", "成就"}, false);
+                    this.sceneSubState = 2;
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
-                    this.aS = GlobalStatus.gH[this.e.ar.g()];
+                    this.aS = GlobalStatus.gH[this.mainCanvasRef.ar.g()];
                     this.aT = 4;
-                    this.e.a((String) "聊天", (int) 0);
+                    this.mainCanvasRef.a((String) "聊天", (int) 0);
                     return;
                 }
 
                 if (LoadingPage.o == 2) {
                     if (GlobalStatus.G()) {
-                        this.e.processException("住宅中不能组队");
+                        this.mainCanvasRef.processException("住宅中不能组队");
                         return;
                     }
 
-                    if (GlobalStatus.bw < 1 || GlobalStatus.gP[this.e.ar.g()] != 2 && GlobalStatus.gP[this.e.ar.g()] != 3) {
+                    if (GlobalStatus.bw < 1 || GlobalStatus.gP[this.mainCanvasRef.ar.g()] != 2 && GlobalStatus.gP[this.mainCanvasRef.ar.g()] != 3) {
                         if (GlobalStatus.bs == -1) {
-                            LoadingPage.a(65 + o, (3 + this.e.ar.g()) * GlobalConfig.j + p, new String[]{"自由", "跟随"}, false);
-                            this.l = 6;
+                            LoadingPage.a(65 + o, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"自由", "跟随"}, false);
+                            this.sceneSubState = 6;
                             return;
                         }
 
-                        this.a(GlobalStatus.s, GlobalStatus.gH[this.e.ar.g()]);
+                        this.a(GlobalStatus.s, GlobalStatus.gH[this.mainCanvasRef.ar.g()]);
                         return;
                     }
 
-                    this.e.processException("敌对玩家不能组队！");
+                    this.mainCanvasRef.processException("敌对玩家不能组队！");
                     return;
                 }
 
                 if (LoadingPage.o == 3) {
-                    if (GlobalStatus.bw < 1 || GlobalStatus.gP[this.e.ar.g()] != 2 && GlobalStatus.gP[this.e.ar.g()] != 3) {
-                        LoadingPage.a(65 + o, (3 + this.e.ar.g()) * GlobalConfig.j + p, new String[]{"物品", "宠物"}, false);
-                        this.l = 5;
+                    if (GlobalStatus.bw < 1 || GlobalStatus.gP[this.mainCanvasRef.ar.g()] != 2 && GlobalStatus.gP[this.mainCanvasRef.ar.g()] != 3) {
+                        LoadingPage.a(65 + o, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"物品", "宠物"}, false);
+                        this.sceneSubState = 5;
                         return;
                     }
 
-                    this.e.processException("敌对玩家不能交易！");
+                    this.mainCanvasRef.processException("敌对玩家不能交易！");
                     return;
                 }
 
                 if (LoadingPage.o == 4) {
-                    this.a(GlobalStatus.gH[this.e.ar.g()]);
-                    this.l = 0;
+                    this.a(GlobalStatus.gH[this.mainCanvasRef.ar.g()]);
+                    this.sceneSubState = 0;
                     return;
                 }
 
                 if (LoadingPage.o == 5) {
-                    this.b(GlobalStatus.gH[this.e.ar.g()]);
-                    this.l = 0;
+                    this.b(GlobalStatus.gH[this.mainCanvasRef.ar.g()]);
+                    this.sceneSubState = 0;
                     return;
                 }
 
                 if (LoadingPage.o != 6) {
                     if (LoadingPage.o == 7) {
                         if (GlobalStatus.G()) {
-                            this.e.processException("住宅中不能参观别人住宅");
+                            this.mainCanvasRef.processException("住宅中不能参观别人住宅");
                             return;
                         }
 
                         if (GlobalStatus.bs != -1) {
-                            this.e.processException("队伍中不能参看住宅！");
+                            this.mainCanvasRef.processException("队伍中不能参看住宅！");
                             return;
                         }
 
-                        this.a((byte) 1, -1, GlobalStatus.gH[this.e.ar.g()]);
+                        this.a((byte) 1, -1, GlobalStatus.gH[this.mainCanvasRef.ar.g()]);
                         return;
                     }
                 } else {
                     boolean var10000;
                     label531:
                     {
-                        String var13 = GlobalStatus.gH[this.e.ar.g()];
+                        String var13 = GlobalStatus.gH[this.mainCanvasRef.ar.g()];
                         if (GlobalStatus.q != null) {
                             for (byte var2 = 0; var2 < GlobalStatus.q.length; ++var2) {
                                 if (GlobalStatus.q[var2].b.equals(var13)) {
@@ -7309,58 +7321,58 @@ public final class ao_1 {
                     }
 
                     if (var10000) {
-                        this.e.processException("队友间不允许决斗!");
+                        this.mainCanvasRef.processException("队友间不允许决斗!");
                         return;
                     }
 
-                    if (GlobalStatus.gL[this.e.ar.g()] == 0 && GlobalStatus.s == 0) {
-                        this.e.processException(GlobalStatus.gJ[this.e.ar.g()] + "不是队长!");
+                    if (GlobalStatus.gL[this.mainCanvasRef.ar.g()] == 0 && GlobalStatus.s == 0) {
+                        this.mainCanvasRef.processException(GlobalStatus.gJ[this.mainCanvasRef.ar.g()] + "不是队长!");
                         return;
                     }
 
                     if (GlobalStatus.bs == 0 && GlobalStatus.s == 0) {
-                        this.e.processException("跟随模式下队员不能发出决斗邀请");
+                        this.mainCanvasRef.processException("跟随模式下队员不能发出决斗邀请");
                         return;
                     }
 
                     if (GlobalStatus.bw < 1) {
                         this.o();
-                        this.l = 7;
+                        this.sceneSubState = 7;
                         return;
                     }
 
-                    if (GlobalStatus.gP[this.e.ar.g()] == 0 || GlobalStatus.gP[this.e.ar.g()] == 1) {
-                        this.e.processException("非敌对玩家不能决斗！");
+                    if (GlobalStatus.gP[this.mainCanvasRef.ar.g()] == 0 || GlobalStatus.gP[this.mainCanvasRef.ar.g()] == 1) {
+                        this.mainCanvasRef.processException("非敌对玩家不能决斗！");
                         return;
                     }
 
-                    if (GlobalStatus.gP[this.e.ar.g()] == 2 || GlobalStatus.gP[this.e.ar.g()] == 3) {
+                    if (GlobalStatus.gP[this.mainCanvasRef.ar.g()] == 2 || GlobalStatus.gP[this.mainCanvasRef.ar.g()] == 3) {
                         if (System.currentTimeMillis() - GlobalStatus.y > (GlobalStatus.bw == 1 ? this.M.q : (GlobalStatus.bw == 2 ? this.M.r : 0L))) {
-                            this.M.a(GlobalStatus.gH[this.e.ar.g()], (byte) 1);
+                            this.M.a(GlobalStatus.gH[this.mainCanvasRef.ar.g()], (byte) 1);
                             return;
                         }
 
-                        this.e.processException("保护时间内玩家不能决斗！");
+                        this.mainCanvasRef.processException("保护时间内玩家不能决斗！");
                         return;
                     }
                 }
             }
-        } else if (this.l != 2 && this.l != 6) {
-            if (this.l == 3) {
+        } else if (this.sceneSubState != 2 && this.sceneSubState != 6) {
+            if (this.sceneSubState == 3) {
                 this.T.b(var1);
                 if (var1 == 268435456 || var1 == 536870912) {
                     this.al = null;
                     this.T.j();
-                    this.l = 2;
+                    this.sceneSubState = 2;
                     return;
                 }
-            } else if (this.l == 4) {
+            } else if (this.sceneSubState == 4) {
                 this.a(GlobalStatus.cJ);
                 this.g(var1);
                 if (var1 == 536870912) {
-                    if (this.m == 1) {
+                    if (this.sceneSubMode == 1) {
                         this.T.j();
-                        this.m = 0;
+                        this.sceneSubMode = 0;
                         return;
                     }
 
@@ -7370,54 +7382,54 @@ public final class ao_1 {
 
                     q = null;
                     this.al = null;
-                    MainCanvas.f.a(this.f, h, i, true, false, 1009050);
-                    this.l = 2;
+                    MainCanvas.pngUtil.a(this.f, h, i, true, false, 1009050);
+                    this.sceneSubState = 2;
                     return;
                 }
-            } else if (this.l == 5) {
+            } else if (this.sceneSubState == 5) {
                 LoadingPage.b(var1);
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                    this.e(GlobalStatus.gH[this.e.ar.g()]);
+                    this.e(GlobalStatus.gH[this.mainCanvasRef.ar.g()]);
                     return;
                 }
 
                 if (var1 == 536870912) {
-                    LoadingPage.a(65 + o, 2 * GlobalConfig.j + 20 + this.e.ar.g() * GlobalConfig.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
+                    LoadingPage.a(65 + o, 2 * GlobalConfig.j + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
                     LoadingPage.o = 3;
-                    this.l = 1;
+                    this.sceneSubState = 1;
                     return;
                 }
-            } else if (this.l == 7) {
+            } else if (this.sceneSubState == 7) {
                 this.d(var1);
                 if (var1 == 268435456) {
                     if (this.n() <= 0L) {
-                        this.e.processException("输入金钱必须大于0!");
+                        this.mainCanvasRef.processException("输入金钱必须大于0!");
                         return;
                     }
 
                     if (this.n() > GlobalStatus.ap) {
-                        this.e.processException("输入金钱超出你支付能力!");
+                        this.mainCanvasRef.processException("输入金钱超出你支付能力!");
                         return;
                     }
 
                     byte[] var12;
-                    if ((var12 = NetPayloadBuilder.a((short) 4185, GlobalStatus.ad, GlobalStatus.gH[this.e.ar.g()], this.n())) != null) {
+                    if ((var12 = NetPayloadBuilder.a((short) 4185, GlobalStatus.ad, GlobalStatus.gH[this.mainCanvasRef.ar.g()], this.n())) != null) {
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4185, var12));
                     } else {
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                     }
 
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
 
                 if (var1 == 536870912) {
-                    LoadingPage.a(65 + o, 2 * GlobalConfig.j + 20 + this.e.ar.g() * GlobalConfig.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
-                    this.l = 1;
+                    LoadingPage.a(65 + o, 2 * GlobalConfig.j + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
+                    this.sceneSubState = 1;
                     return;
                 }
-            } else if (this.l != 8) {
-                if (this.l == 9) {
+            } else if (this.sceneSubState != 8) {
+                if (this.sceneSubState == 9) {
                     LoadingPage.b(var1);
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                         if (var1 == 536870912) {
@@ -7427,48 +7439,48 @@ public final class ao_1 {
                     } else if (LoadingPage.o == 0) {
                         if (this.bz == 0) {
                             byte[] var6;
-                            if ((var6 = NetPayloadBuilder.e((short) 4114, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b)) == null) {
-                                this.e.processException("获取上传指令数据错误!");
+                            if ((var6 = NetPayloadBuilder.e((short) 4114, GlobalStatus.ad, GlobalStatus.q[this.mainCanvasRef.ar.g()].b)) == null) {
+                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                                 return;
                             }
 
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4114, var6));
-                            this.e.processException("剔除队员" + GlobalStatus.q[this.e.ar.g()].e + "请求已发送!");
+                            this.mainCanvasRef.processException("剔除队员" + GlobalStatus.q[this.mainCanvasRef.ar.g()].e + "请求已发送!");
                         } else if (this.bz == 1) {
                             byte[] var7;
-                            if ((var7 = NetPayloadBuilder.f((short) 4119, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b)) == null) {
-                                this.e.processException("获取上传指令数据错误!");
+                            if ((var7 = NetPayloadBuilder.f((short) 4119, GlobalStatus.ad, GlobalStatus.q[this.mainCanvasRef.ar.g()].b)) == null) {
+                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                                 return;
                             }
 
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4119, var7));
-                            this.e.processException("任命" + GlobalStatus.q[this.e.ar.g()].e + "为队长请求已发送!");
+                            this.mainCanvasRef.processException("任命" + GlobalStatus.q[this.mainCanvasRef.ar.g()].e + "为队长请求已发送!");
                         } else if (this.bz == 2) {
                             if (GlobalStatus.bs == 1) {
                                 byte[] var8;
                                 if ((var8 = NetPayloadBuilder.h((short) 4120, GlobalStatus.ad)) == null) {
-                                    this.e.processException("获取上传指令数据错误!");
+                                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4120, var8));
-                                this.e.processException("解散队伍请求已发送!");
+                                this.mainCanvasRef.processException("解散队伍请求已发送!");
                             } else if (GlobalStatus.bs == 0) {
                                 byte[] var9;
                                 if ((var9 = NetPayloadBuilder.i((short) 4121, GlobalStatus.ad)) == null) {
-                                    this.e.processException("获取上传指令数据错误!");
+                                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4121, var9));
-                                this.e.processException("脱离队伍请求已发送!");
+                                this.mainCanvasRef.processException("脱离队伍请求已发送!");
                             }
                         }
                     } else if (LoadingPage.o == 1) {
                         this.an(this.bz);
                         return;
                     }
-                } else if (this.l == 10) {
+                } else if (this.sceneSubState == 10) {
                     LoadingPage.b(var1);
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                         if (var1 == 536870912) {
@@ -7482,57 +7494,57 @@ public final class ao_1 {
                         }
                     } else if (LoadingPage.o == 0) {
                         byte[] var10;
-                        if ((var10 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b, (byte) 0)) == null) {
-                            this.e.processException("获取上传指令数据错误!");
+                        if ((var10 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, GlobalStatus.q[this.mainCanvasRef.ar.g()].b, (byte) 0)) == null) {
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4110, var10));
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     } else if (LoadingPage.o == 1) {
                         byte[] var11;
-                        if ((var11 = NetPayloadBuilder.b((short) 4111, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b)) == null) {
-                            this.e.processException("获取上传指令数据错误!");
+                        if ((var11 = NetPayloadBuilder.b((short) 4111, GlobalStatus.ad, GlobalStatus.q[this.mainCanvasRef.ar.g()].b)) == null) {
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4111, var11));
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     }
-                } else if (this.l == 11) {
+                } else if (this.sceneSubState == 11) {
                     this.T.b(var1);
                     if (var1 == 268435456 || var1 == 536870912) {
-                        LoadingPage.a(0, (3 + this.e.ar.g()) * GlobalConfig.j + p, new String[]{"属性", "装备"}, true);
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"属性", "装备"}, true);
                         this.T.j();
-                        this.l = 10;
+                        this.sceneSubState = 10;
                         return;
                     }
-                } else if (this.l == 12) {
+                } else if (this.sceneSubState == 12) {
                     this.a(GlobalStatus.cJ);
                     this.g(var1);
                     if (var1 == 536870912) {
-                        if (this.m == 1) {
+                        if (this.sceneSubMode == 1) {
                             this.T.j();
-                            this.m = 0;
+                            this.sceneSubMode = 0;
                             return;
                         }
 
-                        LoadingPage.a(0, (3 + this.e.ar.g()) * GlobalConfig.j + p, new String[]{"属性", "装备"}, true);
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"属性", "装备"}, true);
                         if (GlobalStatus.cJ != null) {
                             GlobalStatus.o();
                         }
 
                         q = null;
                         this.al = null;
-                        MainCanvas.f.a(this.f, h, i, true, false, 1009050);
-                        this.l = 10;
+                        MainCanvas.pngUtil.a(this.f, h, i, true, false, 1009050);
+                        this.sceneSubState = 10;
                     }
                 }
             } else {
                 LoadingPage.b(var1);
-                if (this.e.aC != null && this.e.g) {
+                if (this.mainCanvasRef.aC != null && this.mainCanvasRef.g) {
                     if (this.bz != 0 && this.bz != 3) {
-                        this.a((String) GlobalStatus.q[this.e.ar.g()].b, (byte) 4);
+                        this.a((String) GlobalStatus.q[this.mainCanvasRef.ar.g()].b, (byte) 4);
                     } else {
                         this.a((String) null, (byte) 2);
                     }
@@ -7540,52 +7552,52 @@ public final class ao_1 {
 
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        this.l = 0;
+                        this.sceneSubState = 0;
                         return;
                     }
                 } else if (GlobalStatus.bs == 1) {
                     if (LoadingPage.o == 0) {
-                        LoadingPage.a(0, (3 + this.e.ar.g()) * GlobalConfig.j + p, new String[]{"确认", "取消"}, true);
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"确认", "取消"}, true);
                         this.bz = 0;
-                        this.l = 9;
+                        this.sceneSubState = 9;
                         return;
                     }
 
                     if (LoadingPage.o == 1) {
-                        LoadingPage.a(0, (3 + this.e.ar.g()) * GlobalConfig.j + p, new String[]{"确认", "取消"}, true);
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"确认", "取消"}, true);
                         this.bz = 1;
-                        this.l = 9;
+                        this.sceneSubState = 9;
                         return;
                     }
 
                     if (LoadingPage.o == 2) {
-                        LoadingPage.a(0, (3 + this.e.ar.g()) * GlobalConfig.j + p, new String[]{"确认", "取消"}, true);
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"确认", "取消"}, true);
                         this.bz = 2;
-                        this.l = 9;
+                        this.sceneSubState = 9;
                         return;
                     }
 
                     if (LoadingPage.o == 3) {
                         this.aS = null;
                         this.aT = 2;
-                        this.e.a((String) "聊天", (int) 0);
+                        this.mainCanvasRef.a((String) "聊天", (int) 0);
                         this.bz = 3;
-                        this.aQ = GlobalStatus.q[this.e.ar.g()].e;
+                        this.aQ = GlobalStatus.q[this.mainCanvasRef.ar.g()].e;
                         return;
                     }
 
                     if (LoadingPage.o == 4) {
-                        this.aS = GlobalStatus.q[this.e.ar.g()].b;
+                        this.aS = GlobalStatus.q[this.mainCanvasRef.ar.g()].b;
                         this.aT = 4;
-                        this.e.a((String) "聊天", (int) 0);
+                        this.mainCanvasRef.a((String) "聊天", (int) 0);
                         this.bz = 4;
-                        this.aQ = GlobalStatus.q[this.e.ar.g()].e;
+                        this.aQ = GlobalStatus.q[this.mainCanvasRef.ar.g()].e;
                         return;
                     }
 
                     if (LoadingPage.o == 5) {
-                        LoadingPage.a(0, (3 + this.e.ar.g()) * GlobalConfig.j + p, new String[]{"属性", "装备"}, true);
-                        this.l = 10;
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"属性", "装备"}, true);
+                        this.sceneSubState = 10;
                         return;
                     }
 
@@ -7593,51 +7605,51 @@ public final class ao_1 {
                         this.bz = 6;
                         byte[] var5;
                         if ((var5 = NetPayloadBuilder.b((short) 4115, GlobalStatus.ad, (short) GlobalStatus.s)) == null) {
-                            this.e.processException("获取上传指令数据错误!");
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4115, var5));
                         if (GlobalStatus.s == 0) {
-                            this.e.processException("队员自由活动请求已发送!");
+                            this.mainCanvasRef.processException("队员自由活动请求已发送!");
                         } else {
                             if (GlobalStatus.s != 1) {
                                 return;
                             }
 
-                            this.e.processException("队伍集合请求已发送!");
+                            this.mainCanvasRef.processException("队伍集合请求已发送!");
                         }
                     }
                 } else if (GlobalStatus.bs == 0) {
                     if (LoadingPage.o == 0) {
                         this.aS = null;
                         this.aT = 2;
-                        this.e.a((String) "聊天", (int) 0);
+                        this.mainCanvasRef.a((String) "聊天", (int) 0);
                         this.bz = 0;
-                        this.aQ = GlobalStatus.q[this.e.ar.g()].e;
+                        this.aQ = GlobalStatus.q[this.mainCanvasRef.ar.g()].e;
                         return;
                     }
 
                     if (LoadingPage.o == 1) {
-                        this.aS = GlobalStatus.q[this.e.ar.g()].b;
+                        this.aS = GlobalStatus.q[this.mainCanvasRef.ar.g()].b;
                         this.aT = 2;
-                        this.e.a((String) "聊天", (int) 0);
+                        this.mainCanvasRef.a((String) "聊天", (int) 0);
                         this.bz = 1;
-                        this.aQ = GlobalStatus.q[this.e.ar.g()].e;
+                        this.aQ = GlobalStatus.q[this.mainCanvasRef.ar.g()].e;
                         return;
                     }
 
                     if (LoadingPage.o == 2) {
-                        LoadingPage.a(0, (3 + this.e.ar.g()) * GlobalConfig.j + p, new String[]{"确认", "取消"}, true);
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"确认", "取消"}, true);
                         this.bz = 2;
-                        this.l = 9;
+                        this.sceneSubState = 9;
                         return;
                     }
 
                     if (LoadingPage.o == 3) {
-                        LoadingPage.a(0, (3 + this.e.ar.g()) * GlobalConfig.j + p, new String[]{"属性", "装备"}, true);
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"属性", "装备"}, true);
                         this.bz = 3;
-                        this.l = 10;
+                        this.sceneSubState = 10;
                         return;
                     }
                 }
@@ -7646,37 +7658,37 @@ public final class ao_1 {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    LoadingPage.a(65 + o, 2 * GlobalConfig.j + 20 + this.e.ar.g() * GlobalConfig.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
-                    this.l = 1;
+                    LoadingPage.a(65 + o, 2 * GlobalConfig.j + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
+                    this.sceneSubState = 1;
                     return;
                 }
             } else {
-                if (this.l == 6) {
-                    this.a((short) (LoadingPage.o == 0 ? 1 : 0), (String) GlobalStatus.gH[this.e.ar.g()]);
+                if (this.sceneSubState == 6) {
+                    this.a((short) (LoadingPage.o == 0 ? 1 : 0), (String) GlobalStatus.gH[this.mainCanvasRef.ar.g()]);
                     return;
                 }
 
                 if (LoadingPage.o == 0) {
                     byte[] var3;
-                    if ((var3 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, GlobalStatus.gH[this.e.ar.g()], (byte) 0)) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                    if ((var3 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, GlobalStatus.gH[this.mainCanvasRef.ar.g()], (byte) 0)) == null) {
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4110, var3));
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 } else if (LoadingPage.o == 1) {
                     byte[] var4;
-                    if ((var4 = NetPayloadBuilder.b((short) 4111, GlobalStatus.ad, GlobalStatus.gH[this.e.ar.g()])) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                    if ((var4 = NetPayloadBuilder.b((short) 4111, GlobalStatus.ad, GlobalStatus.gH[this.mainCanvasRef.ar.g()])) == null) {
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4111, var4));
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 } else if (LoadingPage.o == 2) {
-                    this.df = GlobalStatus.gH[this.e.ar.g()];
-                    this.a(GlobalStatus.gH[this.e.ar.g()], GlobalStatus.ad, (short) 2, (short) 1);
+                    this.df = GlobalStatus.gH[this.mainCanvasRef.ar.g()];
+                    this.a(GlobalStatus.gH[this.mainCanvasRef.ar.g()], GlobalStatus.ad, (short) 2, (short) 1);
                     return;
                 }
             }
@@ -7685,12 +7697,12 @@ public final class ao_1 {
     }
 
     private void f(Graphics var1) {
-        if (this.e.aq != null && this.l != 4 && this.l != 12) {
-            this.e.aq.a(var1);
+        if (this.mainCanvasRef.aq != null && this.sceneSubState != 4 && this.sceneSubState != 12) {
+            this.mainCanvasRef.aq.a(var1);
         }
 
-        if (this.e.as.a != 3) {
-            if (this.l == 1) {
+        if (this.mainCanvasRef.as.a != 3) {
+            if (this.sceneSubState == 1) {
                 if (GlobalStatus.bw < 1) {
                     LoadingPage.c(var1);
                     return;
@@ -7701,7 +7713,7 @@ public final class ao_1 {
                 for (int var3 = 0; var3 < var2.length; ++var3) {
                     if (var3 != 2 && var3 != 3) {
                         if (var3 == 6) {
-                            if (GlobalStatus.gP[this.e.ar.g()] != 0 && GlobalStatus.gP[this.e.ar.g()] != 1) {
+                            if (GlobalStatus.gP[this.mainCanvasRef.ar.g()] != 0 && GlobalStatus.gP[this.mainCanvasRef.ar.g()] != 1) {
                                 var2[var3] = 0;
                             } else {
                                 var2[var3] = 1;
@@ -7709,7 +7721,7 @@ public final class ao_1 {
                         } else {
                             var2[var3] = 0;
                         }
-                    } else if (GlobalStatus.gP[this.e.ar.g()] != 2 && GlobalStatus.gP[this.e.ar.g()] != 3) {
+                    } else if (GlobalStatus.gP[this.mainCanvasRef.ar.g()] != 2 && GlobalStatus.gP[this.mainCanvasRef.ar.g()] != 3) {
                         var2[var3] = 0;
                     } else {
                         var2[var3] = 1;
@@ -7721,38 +7733,38 @@ public final class ao_1 {
                 return;
             }
 
-            if (this.l == 2 || this.l == 5 || this.l == 6) {
+            if (this.sceneSubState == 2 || this.sceneSubState == 5 || this.sceneSubState == 6) {
                 LoadingPage.c(var1);
                 return;
             }
 
-            if (this.l == 3) {
+            if (this.sceneSubState == 3) {
                 this.T.a(var1);
                 return;
             }
 
-            if (this.l == 4) {
-                this.a(var1, GlobalStatus.gJ[this.e.ar.g()], q);
+            if (this.sceneSubState == 4) {
+                this.a(var1, GlobalStatus.gJ[this.mainCanvasRef.ar.g()], q);
                 return;
             }
 
-            if (this.l == 7) {
+            if (this.sceneSubState == 7) {
                 this.b(var1, "请输入决斗金额");
                 return;
             }
-        } else if (this.e.as.a == 3 && GlobalStatus.q != null) {
-            if (this.l == 8 || this.l == 9 || this.l == 10) {
+        } else if (this.mainCanvasRef.as.a == 3 && GlobalStatus.q != null) {
+            if (this.sceneSubState == 8 || this.sceneSubState == 9 || this.sceneSubState == 10) {
                 LoadingPage.c(var1);
                 return;
             }
 
-            if (this.l == 11) {
+            if (this.sceneSubState == 11) {
                 this.T.a(var1);
                 return;
             }
 
-            if (this.l == 12) {
-                this.a(var1, GlobalStatus.q[this.e.ar.g()].e, q);
+            if (this.sceneSubState == 12) {
+                this.a(var1, GlobalStatus.q[this.mainCanvasRef.ar.g()].e, q);
             }
         }
 
@@ -7762,56 +7774,56 @@ public final class ao_1 {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.b((short) 4124, GlobalStatus.ad, var1, (byte) ((byte) LoadingPage.o))) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4124, var2));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     public final void v() {
-        GlobalConfig.clearStr(this.e.l);
-        this.e.l.append("昵称：" + GlobalStatus.eS + '\t');
-        this.e.l.append("门派：" + GlobalConfig.G[GlobalStatus.eV] + '\t');
-        this.e.l.append("级别：" + GlobalStatus.eT + '\t');
-        this.e.l.append("性别：" + (GlobalStatus.eU == 0 ? "男" : "女") + '\t');
-        this.e.l.append("称号：" + GlobalStatus.eW + '\t');
-        this.e.l.append("帮派：" + GlobalStatus.eX);
+        GlobalConfig.clearStr(this.mainCanvasRef.l);
+        this.mainCanvasRef.l.append("昵称：" + GlobalStatus.eS + '\t');
+        this.mainCanvasRef.l.append("门派：" + GlobalConfig.G[GlobalStatus.eV] + '\t');
+        this.mainCanvasRef.l.append("级别：" + GlobalStatus.eT + '\t');
+        this.mainCanvasRef.l.append("性别：" + (GlobalStatus.eU == 0 ? "男" : "女") + '\t');
+        this.mainCanvasRef.l.append("称号：" + GlobalStatus.eW + '\t');
+        this.mainCanvasRef.l.append("帮派：" + GlobalStatus.eX);
         if (!"无".equals(GlobalStatus.eX)) {
-            this.e.l.append("(" + GlobalStatus.eY + "级)");
+            this.mainCanvasRef.l.append("(" + GlobalStatus.eY + "级)");
         }
 
-        this.e.l.append('\t');
-        this.e.l.append("职务：" + GlobalStatus.eZ + '\t');
-        this.e.l.append("功勋：" + GlobalStatus.fa + '\t');
-        this.e.l.append("配偶：" + GlobalStatus.fb + '\t');
-        this.e.l.append("师傅：" + GlobalStatus.fc + '\t');
-        this.e.l.append("好感度：" + GlobalStatus.fd + '\t');
-        this.e.l.append(GlobalStatus.fe);
+        this.mainCanvasRef.l.append('\t');
+        this.mainCanvasRef.l.append("职务：" + GlobalStatus.eZ + '\t');
+        this.mainCanvasRef.l.append("功勋：" + GlobalStatus.fa + '\t');
+        this.mainCanvasRef.l.append("配偶：" + GlobalStatus.fb + '\t');
+        this.mainCanvasRef.l.append("师傅：" + GlobalStatus.fc + '\t');
+        this.mainCanvasRef.l.append("好感度：" + GlobalStatus.fd + '\t');
+        this.mainCanvasRef.l.append(GlobalStatus.fe);
         this.T.j();
         this.T.a("玩家详细");
         this.T.a(true);
         an_1 var1;
-        (var1 = new an_1()).b(this.e.l.toString(), GlobalConfig.i, (byte) 2);
+        (var1 = new an_1()).b(this.mainCanvasRef.l.toString(), GlobalConfig.i, (byte) 2);
         this.T.a((al) var1);
         this.T.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        if (this.k == 7) {
-            if (this.l == 10) {
-                this.l = 11;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        if (this.currentSceneModeId == 7) {
+            if (this.sceneSubState == 10) {
+                this.sceneSubState = 11;
             } else {
-                this.l = 3;
+                this.sceneSubState = 3;
             }
-        } else if (this.k == 21) {
-            this.l = 4;
-        } else if (this.k == 46) {
-            this.l = 2;
-        } else if (this.k == 47) {
-            this.l = 3;
-        } else if (this.k == 19) {
-            this.l = 10;
+        } else if (this.currentSceneModeId == 21) {
+            this.sceneSubState = 4;
+        } else if (this.currentSceneModeId == 46) {
+            this.sceneSubState = 2;
+        } else if (this.currentSceneModeId == 47) {
+            this.sceneSubState = 3;
+        } else if (this.currentSceneModeId == 19) {
+            this.sceneSubState = 10;
         } else {
-            if (this.k == 130) {
-                this.l = 3;
+            if (this.currentSceneModeId == 130) {
+                this.sceneSubState = 3;
             }
 
         }
@@ -7821,40 +7833,40 @@ public final class ao_1 {
         this.aq = 0;
         LoadingPage.l = 0;
         this.bV = new int[10][4];
-        MainCanvas.f.a(this.f, h, i, false, true, 1009050);
+        MainCanvas.pngUtil.a(this.f, h, i, false, true, 1009050);
         if (GlobalStatus.cG != null) {
             for (byte var1 = 0; var1 < GlobalStatus.cQ.length; ++var1) {
                 this.a(GlobalStatus.cQ[var1]);
             }
         }
 
-        this.e.touchPageCase = this.e.k;
-        if (this.k == 7) {
-            q = this.e.a(q, GlobalStatus.cE, GlobalStatus.cF, (byte) 3, (byte) 1, false);
-            if (this.l == 10) {
-                this.l = 12;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        if (this.currentSceneModeId == 7) {
+            q = this.mainCanvasRef.a(q, GlobalStatus.cE, GlobalStatus.cF, (byte) 3, (byte) 1, false);
+            if (this.sceneSubState == 10) {
+                this.sceneSubState = 12;
             } else {
-                this.l = 4;
+                this.sceneSubState = 4;
             }
-        } else if (this.k == 21) {
-            if (this.e.ar.g() < GlobalStatus.q.length) {
-                q = this.e.a(q, GlobalStatus.q[this.e.ar.g()].q, GlobalStatus.q[this.e.ar.g()].p, (byte) 3, GlobalStatus.q[this.e.ar.g()].r, false);
+        } else if (this.currentSceneModeId == 21) {
+            if (this.mainCanvasRef.ar.g() < GlobalStatus.q.length) {
+                q = this.mainCanvasRef.a(q, GlobalStatus.q[this.mainCanvasRef.ar.g()].q, GlobalStatus.q[this.mainCanvasRef.ar.g()].p, (byte) 3, GlobalStatus.q[this.mainCanvasRef.ar.g()].r, false);
             }
 
-            this.l = 5;
-        } else if (this.k == 47) {
-            q = this.e.a(q, GlobalStatus.cE, GlobalStatus.cF, (byte) 3, (byte) 0, false);
-            this.l = 4;
-        } else if (this.k == 130) {
-            q = this.e.a(q, GlobalStatus.cE, GlobalStatus.cF, (byte) 3, (byte) 0, false);
-            this.l = 4;
+            this.sceneSubState = 5;
+        } else if (this.currentSceneModeId == 47) {
+            q = this.mainCanvasRef.a(q, GlobalStatus.cE, GlobalStatus.cF, (byte) 3, (byte) 0, false);
+            this.sceneSubState = 4;
+        } else if (this.currentSceneModeId == 130) {
+            q = this.mainCanvasRef.a(q, GlobalStatus.cE, GlobalStatus.cF, (byte) 3, (byte) 0, false);
+            this.sceneSubState = 4;
         }
 
-        if (this.l == 4 || this.l == 12) {
-            MainCanvas.f.a(this.f, h, i, false, true, 1009050);
+        if (this.sceneSubState == 4 || this.sceneSubState == 12) {
+            MainCanvas.pngUtil.a(this.f, h, i, false, true, 1009050);
         }
 
-        this.m = 0;
+        this.sceneSubMode = 0;
     }
 
     private String a(int var1, boolean var2) {
@@ -7864,8 +7876,8 @@ public final class ao_1 {
                 if (var2) {
                     var4.append(GlobalStatus.cH[var3]);
                     var4.append("（");
-                    GlobalConfig.a(this.e.l, GlobalStatus.cO[var3]);
-                    var4.append(this.e.l.toString() + "）");
+                    GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.cO[var3]);
+                    var4.append(this.mainCanvasRef.l.toString() + "）");
                     var4.append('\t');
                 }
 
@@ -7903,10 +7915,10 @@ public final class ao_1 {
     }
 
     public final void g(int var1) {
-        if (this.m == 1) {
+        if (this.sceneSubMode == 1) {
             this.T.b(var1);
-        } else if (this.m == 0) {
-            PngUtil.a(q, this.e.ak);
+        } else if (this.sceneSubMode == 0) {
+            PngUtil.a(q, this.mainCanvasRef.ak);
             if (var1 != 8 && var1 != 516) {
                 if (var1 != 2 && var1 != 518) {
                     if (var1 == 1073741824 || var1 == 268435456 || var1 == 517) {
@@ -7918,7 +7930,7 @@ public final class ao_1 {
                         this.T.a(30);
                         this.T.a((al) var2);
                         this.T.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-                        this.m = 1;
+                        this.sceneSubMode = 1;
                     }
 
                 } else {
@@ -7951,14 +7963,14 @@ public final class ao_1 {
                 this.c(var5, var3 + this.cc[var5][0], var4 + this.cc[var5][1], MainCanvas.R[0].b, MainCanvas.R[0].c);
             }
 
-            MainCanvas.f.a(var1, (Frame1) var2, (int[]) null, 0, 0, var3 + (MainCanvas.O.b - var2.i()) / 2, var4 + (MainCanvas.O.c - var2.j()) / 2, 20, 0);
+            MainCanvas.pngUtil.a(var1, (Frame1) var2, (int[]) null, 0, 0, var3 + (MainCanvas.O.b - var2.i()) / 2, var4 + (MainCanvas.O.c - var2.j()) / 2, 20, 0);
         }
 
         LoadingPage.d(var1, var3 + this.cc[this.aq][0], var4 + this.cc[this.aq][1], 17, 17);
         int[] var7 = new int[]{-1, -1, -1, -1, -1, -1};
         if (GlobalStatus.jH != null) {
             for (int var6 = 0; var6 < GlobalStatus.jH.length; var7[n(GlobalStatus.jJ[var6])] = var6++) {
-                MainCanvas.f.a(var1, b(GlobalStatus.jK[var6]), (int[]) null, (aj) null, 0, 0, var3 + this.cc[n(GlobalStatus.jJ[var6])][0] + 1, var4 + this.cc[n(GlobalStatus.jJ[var6])][1] + 1, 0, 0);
+                MainCanvas.pngUtil.a(var1, b(GlobalStatus.jK[var6]), (int[]) null, (aj) null, 0, 0, var3 + this.cc[n(GlobalStatus.jJ[var6])][0] + 1, var4 + this.cc[n(GlobalStatus.jJ[var6])][1] + 1, 0, 0);
             }
         }
 
@@ -7984,7 +7996,7 @@ public final class ao_1 {
     }
 
     public final void a(Graphics var1, String var2, Frame1 var3) {
-        if (this.m == 0) {
+        if (this.sceneSubMode == 0) {
             int var4 = 0;
             int var5 = 0;
             if (var3 != null && MainCanvas.O != null && MainCanvas.R != null) {
@@ -8006,7 +8018,7 @@ public final class ao_1 {
                     this.c(var6, var4 + this.bY[var6][0], var5 + this.bY[var6][1], MainCanvas.R[0].b, MainCanvas.R[0].c);
                 }
 
-                MainCanvas.f.a(var1, (Frame1) var3, (int[]) null, 0, 0, var4 + MainCanvas.O.b / 2, var5 + (MainCanvas.O.c - var3.j()) / 2 + var3.j(), 20, 0);
+                MainCanvas.pngUtil.a(var1, (Frame1) var3, (int[]) null, 0, 0, var4 + MainCanvas.O.b / 2, var5 + (MainCanvas.O.c - var3.j()) / 2 + var3.j(), 20, 0);
                 LoadingPage.a(var1, (String) var2, (int) (var4 + MainCanvas.O.b / 2), var5 + 26, 17, 16776960, 0);
             }
 
@@ -8015,7 +8027,7 @@ public final class ao_1 {
             int[] var10 = new int[]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
             if (GlobalStatus.cG != null) {
                 for (int var7 = 0; var7 < GlobalStatus.cG.length; var10[GlobalStatus.cI[var7]] = var7++) {
-                    MainCanvas.f.a(var1, b(GlobalStatus.cJ[var7]), (int[]) null, (aj) null, 0, 0, var4 + this.bY[GlobalStatus.cI[var7]][0] + 1, var5 + this.bY[GlobalStatus.cI[var7]][1] + 1, 0, 0);
+                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.cJ[var7]), (int[]) null, (aj) null, 0, 0, var4 + this.bY[GlobalStatus.cI[var7]][0] + 1, var5 + this.bY[GlobalStatus.cI[var7]][1] + 1, 0, 0);
                 }
             }
 
@@ -8041,7 +8053,7 @@ public final class ao_1 {
 
                 LoadingPage.a(var1, GlobalConfig.M[this.aq], -1L, var4 + this.bY[this.aq][0], var5 + this.bY[this.aq][1] + 16, 20);
             }
-        } else if (this.m == 1) {
+        } else if (this.sceneSubMode == 1) {
             this.T.a(var1);
             LoadingPage.a(var1, this.T.a + 5, this.T.b + 32, this.T.c - 11, 30, 1);
             LoadingPage.a(var1, (String) "宝石", (int) (this.T.a + 10), this.T.b + 35 + GlobalConfig.a(25), 20, 16776960, 0);
@@ -8052,7 +8064,7 @@ public final class ao_1 {
 
                         for (byte var9 = 0; var9 < GlobalStatus.cQ[var8].length; ++var9) {
                             if (GlobalStatus.cQ[var8][var9] > 0) {
-                                MainCanvas.f.a(var1, b(GlobalStatus.cQ[var8][var9]), (int[]) null, (aj) null, 0, 0, this.T.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var9 * 17, this.T.b + 39, 0, 0);
+                                MainCanvas.pngUtil.a(var1, b(GlobalStatus.cQ[var8][var9]), (int[]) null, (aj) null, 0, 0, this.T.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var9 * 17, this.T.b + 39, 0, 0);
                             }
                         }
                     }
@@ -8063,27 +8075,27 @@ public final class ao_1 {
     }
 
     public final void x() {
-        this.l = 0;
-        this.e.aq.b();
-        this.e.aq.a("任务");
-        this.e.aq.a(true);
-        this.e.as.a(new String[]{"已接", "剧情", "活动", "增值", "其他"});
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("任务");
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.as.a(new String[]{"已接", "剧情", "活动", "增值", "其他"});
         this.I(0);
-        this.e.ar.a((Image[]) null, this.cd, (String[]) null, this.ce);
-        this.e.au.a("操作");
-        this.e.aq.a((al) this.e.as);
-        this.e.aq.a((al) this.e.ar);
+        this.mainCanvasRef.ar.a((Image[]) null, this.cd, (String[]) null, this.ce);
+        this.mainCanvasRef.au.a("操作");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         if (GlobalStatus.bV != null && GlobalStatus.bV.length > 0) {
-            this.e.ar.a(GlobalStatus.bV[0], 1);
+            this.mainCanvasRef.ar.a(GlobalStatus.bV[0], 1);
         }
 
-        this.e.touchPageCase = this.e.k = 7;
-        this.j = this.k = 6;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k = 7;
+        this.sceneStateShadow = this.currentSceneModeId = 6;
     }
 
     private void I(int var1) {
@@ -8153,26 +8165,26 @@ public final class ao_1 {
     private void a(short var1, byte[] var2, String var3) {
         if (var2 != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket(var1, var2));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     private void J(int var1) {
-        if (this.l == 0) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 != 8 && var1 != 516 && var1 != 2 && var1 != 518) {
                 if (var1 != 536870912 && (GlobalStatus.bR != null || GlobalStatus.bL != null)) {
                     if (var1 != 1 && var1 != 4 && var1 != 514 && var1 != 520) {
-                        if ((var1 == 268435456 || var1 == 1073741824 || var1 == 517) && this.e.as.a == 0 && GlobalStatus.bR != null && GlobalStatus.bU[this.e.ar.g()] == 0) {
+                        if ((var1 == 268435456 || var1 == 1073741824 || var1 == 517) && this.mainCanvasRef.as.a == 0 && GlobalStatus.bR != null && GlobalStatus.bU[this.mainCanvasRef.ar.g()] == 0) {
                             this.aE();
                         }
                     } else if (this.cf != null && this.cf.length > 0) {
-                        this.e.ar.a(this.cf[this.e.ar.g() < this.cf.length ? this.e.ar.g() : this.cf.length - 1], 1);
+                        this.mainCanvasRef.ar.a(this.cf[this.mainCanvasRef.ar.g() < this.cf.length ? this.mainCanvasRef.ar.g() : this.cf.length - 1], 1);
                     }
                 } else if (this.by == 1) {
                     this.N();
@@ -8182,40 +8194,40 @@ public final class ao_1 {
                     this.c((int) 3);
                 }
             } else {
-                this.I(this.e.as.a);
-                this.e.ar.a((Image[]) null, this.cd, (String[]) null, this.ce);
+                this.I(this.mainCanvasRef.as.a);
+                this.mainCanvasRef.ar.a((Image[]) null, this.cd, (String[]) null, this.ce);
                 if (this.cf != null && this.cf.length > 0) {
-                    this.e.ar.a(this.cf[this.e.ar.g()], 1);
+                    this.mainCanvasRef.ar.a(this.cf[this.mainCanvasRef.ar.g()], 1);
                 } else {
-                    this.e.ar.a("", 1);
+                    this.mainCanvasRef.ar.a("", 1);
                 }
             }
         } else {
-            if (this.l == 1) {
+            if (this.sceneSubState == 1) {
                 LoadingPage.b(var1);
                 if (var1 == 268435456 || var1 == 517 || var1 == 1073741824) {
                     Object var3 = null;
                     switch (LoadingPage.o) {
                         case 0:
-                            byte[] var7 = NetPayloadBuilder.a((short) 5124, GlobalStatus.ad, (int) GlobalStatus.bR[this.e.ar.g()]);
+                            byte[] var7 = NetPayloadBuilder.a((short) 5124, GlobalStatus.ad, (int) GlobalStatus.bR[this.mainCanvasRef.ar.g()]);
                             this.a((short) 5124, var7, (String) null);
                             return;
                         case 1:
                             this.bs = 0;
-                            byte[] var6 = NetPayloadBuilder.a((short) 5125, GlobalStatus.ad, (int) GlobalStatus.bR[this.e.ar.g()]);
+                            byte[] var6 = NetPayloadBuilder.a((short) 5125, GlobalStatus.ad, (int) GlobalStatus.bR[this.mainCanvasRef.ar.g()]);
                             this.a((short) 5125, var6, (String) null);
-                            this.l = 0;
+                            this.sceneSubState = 0;
                             return;
                         case 2:
-                            byte[] var5 = NetPayloadBuilder.d((short) 4132, GlobalStatus.ad, (int) GlobalStatus.bR[this.e.ar.g()]);
+                            byte[] var5 = NetPayloadBuilder.d((short) 4132, GlobalStatus.ad, (int) GlobalStatus.bR[this.mainCanvasRef.ar.g()]);
                             this.a((short) 4132, var5, (String) null);
-                            this.aA = this.e.ar.h();
-                            this.aE = this.e.ar.g();
+                            this.aA = this.mainCanvasRef.ar.h();
+                            this.aE = this.mainCanvasRef.ar.g();
                             return;
                         case 3:
                             String[] var4 = new String[]{"确认", "取消"};
-                            LoadingPage.a(35 + o, (3 + this.e.ar.i()) * GlobalConfig.j + 12 + p, var4, false);
-                            this.l = 2;
+                            LoadingPage.a(35 + o, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.j + 12 + p, var4, false);
+                            this.sceneSubState = 2;
                         default:
                             return;
                     }
@@ -8225,7 +8237,7 @@ public final class ao_1 {
                     return;
                 }
             } else {
-                if (this.l == 2) {
+                if (this.sceneSubState == 2) {
                     LoadingPage.b(var1);
                     if (var1 != 268435456 && var1 != 517 && var1 != 1073741824) {
                         if (var1 == 536870912) {
@@ -8241,12 +8253,12 @@ public final class ao_1 {
                             }
 
                             this.at();
-                            this.e.ax = 1;
+                            this.mainCanvasRef.ax = 1;
                             return;
                         }
                     } else {
                         if (LoadingPage.o == 0) {
-                            byte[] var2 = NetPayloadBuilder.e((short) 4133, GlobalStatus.ad, (int) GlobalStatus.bR[this.e.ar.g()]);
+                            byte[] var2 = NetPayloadBuilder.e((short) 4133, GlobalStatus.ad, (int) GlobalStatus.bR[this.mainCanvasRef.ar.g()]);
                             this.a((short) 4133, var2, (String) null);
                             return;
                         }
@@ -8260,12 +8272,12 @@ public final class ao_1 {
                     return;
                 }
 
-                if (this.l != 3) {
+                if (this.sceneSubState != 3) {
                     return;
                 }
 
-                if (this.e.aq != null) {
-                    this.e.aq.b(var1);
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.b(var1);
                 }
 
                 if (var1 != 268435456 && var1 != 536870912 && var1 != 517 && var1 != 1073741824) {
@@ -8273,35 +8285,35 @@ public final class ao_1 {
                 }
 
                 this.x();
-                this.e.ar.a(this.aA, this.aE);
+                this.mainCanvasRef.ar.a(this.aA, this.aE);
                 if (GlobalStatus.bV != null && GlobalStatus.bV.length > 0) {
-                    this.e.ar.a(GlobalStatus.bV[this.aE], 1);
+                    this.mainCanvasRef.ar.a(GlobalStatus.bV[this.aE], 1);
                 }
             }
 
-            this.l = 0;
+            this.sceneSubState = 0;
         }
     }
 
     private void aE() {
         String[] var1 = new String[]{"自动", "追踪", "详情", "放弃"};
-        LoadingPage.a(35 + o, (3 + this.e.ar.i()) * GlobalConfig.j + 12 + p, var1, false);
-        this.l = 1;
+        LoadingPage.a(35 + o, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.j + 12 + p, var1, false);
+        this.sceneSubState = 1;
     }
 
     public final void a(boolean var1, boolean var2) {
         this.cg = var1;
-        this.l = 0;
+        this.sceneSubState = 0;
         this.b(var2);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 36;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 36;
     }
 
     public final void b(boolean var1) {
         int var2;
         if ((var2 = this.cg ? GlobalStatus.db.length : GlobalStatus.cR.length) >= 0) {
-            this.e.aq.b();
-            this.e.aq.a("宠物技能");
+            this.mainCanvasRef.aq.b();
+            this.mainCanvasRef.aq.a("宠物技能");
             if (var2 > 0) {
                 GlobalStatus.dl = new int[var2];
                 GlobalStatus.dm = new String[var2];
@@ -8330,7 +8342,7 @@ public final class ao_1 {
                 GlobalStatus.p();
             }
 
-            c_1 var10000 = this.e.ar;
+            c_1 var10000 = this.mainCanvasRef.ar;
             Image[] var10001 = b(GlobalStatus.dr);
             byte[] var7 = GlobalStatus.du;
             String[] var6 = GlobalStatus.dm;
@@ -8348,27 +8360,27 @@ public final class ao_1 {
             }
 
             var10000.a(var10001, var4, (String[]) null, d(GlobalStatus.dq));
-            if (this.k == 36) {
-                this.e.ar.a(this.aq, this.ar);
+            if (this.currentSceneModeId == 36) {
+                this.mainCanvasRef.ar.a(this.aq, this.ar);
             } else {
                 this.aq = 0;
                 this.ar = 0;
             }
 
             if (GlobalStatus.dl == null) {
-                this.e.ar.a("没有技能,按3、9键可以上下翻滚此属性描述框", 2);
+                this.mainCanvasRef.ar.a("没有技能,按3、9键可以上下翻滚此属性描述框", 2);
             } else {
-                this.e.ar.a(GlobalStatus.ds[this.e.ar.g()], 2);
+                this.mainCanvasRef.ar.a(GlobalStatus.ds[this.mainCanvasRef.ar.g()], 2);
             }
 
             if (!var1) {
-                this.e.at.a("".equals(GlobalStatus.dt[this.e.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.e.ar.g()], GlobalConfig.i, (byte) 1);
-                this.e.at.a((byte) 1);
-                this.e.aq.a((al) this.e.at);
+                this.mainCanvasRef.at.a("".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 1);
+                this.mainCanvasRef.at.a((byte) 1);
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
             }
 
-            this.e.aq.a((al) this.e.ar);
-            this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+            this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         }
 
     }
@@ -8387,37 +8399,37 @@ public final class ao_1 {
     }
 
     private void K(int var1) {
-        if (this.l == 0) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             this.a(GlobalStatus.dr);
             if (var1 == 1 || var1 == 4 || var1 == 514 || var1 == 520) {
                 if (GlobalStatus.dl != null && GlobalStatus.dl.length > 0) {
-                    this.e.ar.a(GlobalStatus.ds[this.e.ar.g()], 2);
-                    this.e.at.a("".equals(GlobalStatus.dt[this.e.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.e.ar.g()], GlobalConfig.i, (byte) 1);
-                    this.e.at.a((byte) 1);
+                    this.mainCanvasRef.ar.a(GlobalStatus.ds[this.mainCanvasRef.ar.g()], 2);
+                    this.mainCanvasRef.at.a("".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.a((byte) 1);
                     return;
                 }
 
-                this.e.touchAction = 0;
+                this.mainCanvasRef.touchAction = 0;
                 return;
             }
 
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
                     GlobalStatus.p();
-                    if (this.g != null && !i()) {
-                        this.g.e = 3;
-                        this.j = this.k = 25;
+                    if (this.overlayDialogController != null && !i()) {
+                        this.overlayDialogController.e = 3;
+                        this.sceneStateShadow = this.currentSceneModeId = 25;
                         return;
                     }
 
                     this.c((int) 0, (int) this.aE, (int) this.aA);
                     this.E();
                     LoadingPage.o = 8;
-                    this.l = 1;
+                    this.sceneSubState = 1;
                     return;
                 }
             } else {
@@ -8427,72 +8439,72 @@ public final class ao_1 {
 
                 if (i()) {
                     Object var6 = null;
-                    if (GlobalStatus.dn[this.e.ar.g()] == 2 || GlobalStatus.du[this.e.ar.g()] != 1) {
+                    if (GlobalStatus.dn[this.mainCanvasRef.ar.g()] == 2 || GlobalStatus.du[this.mainCanvasRef.ar.g()] != 1) {
                         String[] var8;
-                        if ("".equals(GlobalStatus.dt[this.e.ar.g()])) {
-                            var8 = new String[]{GlobalStatus.du[this.e.ar.g()] == 0 ? "激活技能" : "取消激活", "遗忘技能"};
+                        if ("".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()])) {
+                            var8 = new String[]{GlobalStatus.du[this.mainCanvasRef.ar.g()] == 0 ? "激活技能" : "取消激活", "遗忘技能"};
                         } else {
-                            var8 = new String[]{"升级", GlobalStatus.du[this.e.ar.g()] == 0 ? "激活技能" : "取消激活", "遗忘技能"};
+                            var8 = new String[]{"升级", GlobalStatus.du[this.mainCanvasRef.ar.g()] == 0 ? "激活技能" : "取消激活", "遗忘技能"};
                         }
 
-                        LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, var8, true);
-                        this.l = 5;
+                        LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, var8, true);
+                        this.sceneSubState = 5;
                         return;
                     }
 
                     String[] var7;
-                    if ("".equals(GlobalStatus.dt[this.e.ar.g()])) {
-                        var7 = new String[]{"设置快捷", GlobalStatus.du[this.e.ar.g()] == 0 ? "激活技能" : "取消激活", "遗忘技能"};
+                    if ("".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()])) {
+                        var7 = new String[]{"设置快捷", GlobalStatus.du[this.mainCanvasRef.ar.g()] == 0 ? "激活技能" : "取消激活", "遗忘技能"};
                     } else {
-                        var7 = new String[]{"升级", "设置快捷", GlobalStatus.du[this.e.ar.g()] == 0 ? "激活技能" : "取消激活", "遗忘技能"};
+                        var7 = new String[]{"升级", "设置快捷", GlobalStatus.du[this.mainCanvasRef.ar.g()] == 0 ? "激活技能" : "取消激活", "遗忘技能"};
                     }
 
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, var7, true);
-                    this.l = 1;
-                } else if (this.g != null && GlobalStatus.dn[this.e.ar.g()] != 2 && !i() && GlobalStatus.du[this.e.ar.g()] == 1) {
-                    if (GlobalStatus.do_2[this.e.ar.g()] == 2) {
-                        if (bq_1.c() > 1 && bq_1.c() > GlobalStatus.dp[this.e.ar.g()]) {
-                            this.g.k = 1;
-                            this.g.q = GlobalStatus.dl[this.e.ar.g()];
-                            this.g.d = 3;
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, var7, true);
+                    this.sceneSubState = 1;
+                } else if (this.overlayDialogController != null && GlobalStatus.dn[this.mainCanvasRef.ar.g()] != 2 && !i() && GlobalStatus.du[this.mainCanvasRef.ar.g()] == 1) {
+                    if (GlobalStatus.do_2[this.mainCanvasRef.ar.g()] == 2) {
+                        if (bq_1.c() > 1 && bq_1.c() > GlobalStatus.dp[this.mainCanvasRef.ar.g()]) {
+                            this.overlayDialogController.k = 1;
+                            this.overlayDialogController.q = GlobalStatus.dl[this.mainCanvasRef.ar.g()];
+                            this.overlayDialogController.d = 3;
                         } else {
-                            this.g.a(this.g.j, this.g.p, this.g.n, this.g.o, (byte) 1, GlobalStatus.dl[this.e.ar.g()], (byte) 1, GlobalStatus.M[this.g.h].a);
-                            this.g.f = -1;
-                            this.g.e = 5;
+                            this.overlayDialogController.a(this.overlayDialogController.j, this.overlayDialogController.p, this.overlayDialogController.n, this.overlayDialogController.o, (byte) 1, GlobalStatus.dl[this.mainCanvasRef.ar.g()], (byte) 1, GlobalStatus.M[this.overlayDialogController.h].a);
+                            this.overlayDialogController.f = -1;
+                            this.overlayDialogController.e = 5;
                         }
-                    } else if (GlobalStatus.do_2[this.e.ar.g()] == 1) {
-                        this.g.k = 1;
-                        this.g.q = GlobalStatus.dl[this.e.ar.g()];
+                    } else if (GlobalStatus.do_2[this.mainCanvasRef.ar.g()] == 1) {
+                        this.overlayDialogController.k = 1;
+                        this.overlayDialogController.q = GlobalStatus.dl[this.mainCanvasRef.ar.g()];
                         if (bq_1.b() <= 1) {
-                            this.g.m = (byte) (bq_1.i() + 3);
-                            this.g.l = 0;
-                            this.g.a(this.g.j, this.g.p, this.g.n, this.g.o, (byte) 1, GlobalStatus.dl[this.e.ar.g()], this.g.l, this.g.m);
-                            this.g.f = -1;
-                            this.g.e = 5;
+                            this.overlayDialogController.m = (byte) (bq_1.i() + 3);
+                            this.overlayDialogController.l = 0;
+                            this.overlayDialogController.a(this.overlayDialogController.j, this.overlayDialogController.p, this.overlayDialogController.n, this.overlayDialogController.o, (byte) 1, GlobalStatus.dl[this.mainCanvasRef.ar.g()], this.overlayDialogController.l, this.overlayDialogController.m);
+                            this.overlayDialogController.f = -1;
+                            this.overlayDialogController.e = 5;
                         } else {
-                            this.g.k = 1;
-                            this.g.q = GlobalStatus.dl[this.e.ar.g()];
-                            this.g.d = 6;
-                            this.g.i = this.g.g();
+                            this.overlayDialogController.k = 1;
+                            this.overlayDialogController.q = GlobalStatus.dl[this.mainCanvasRef.ar.g()];
+                            this.overlayDialogController.d = 6;
+                            this.overlayDialogController.i = this.overlayDialogController.g();
                         }
-                    } else if (GlobalStatus.do_2[this.e.ar.g()] == 0) {
-                        this.g.k = 1;
-                        this.g.q = GlobalStatus.dl[this.e.ar.g()];
-                        this.g.m = (byte) (bq_1.i() + 3);
-                        this.g.l = 0;
-                        this.g.a(this.g.j, this.g.p, this.g.n, this.g.o, (byte) 1, GlobalStatus.dl[this.e.ar.g()], this.g.l, this.g.m);
-                        this.g.f = -1;
-                        this.g.e = 5;
+                    } else if (GlobalStatus.do_2[this.mainCanvasRef.ar.g()] == 0) {
+                        this.overlayDialogController.k = 1;
+                        this.overlayDialogController.q = GlobalStatus.dl[this.mainCanvasRef.ar.g()];
+                        this.overlayDialogController.m = (byte) (bq_1.i() + 3);
+                        this.overlayDialogController.l = 0;
+                        this.overlayDialogController.a(this.overlayDialogController.j, this.overlayDialogController.p, this.overlayDialogController.n, this.overlayDialogController.o, (byte) 1, GlobalStatus.dl[this.mainCanvasRef.ar.g()], this.overlayDialogController.l, this.overlayDialogController.m);
+                        this.overlayDialogController.f = -1;
+                        this.overlayDialogController.e = 5;
                     }
 
-                    this.j = this.k = 25;
+                    this.sceneStateShadow = this.currentSceneModeId = 25;
                     return;
                 }
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
 
@@ -8501,64 +8513,64 @@ public final class ao_1 {
             }
 
             if (LoadingPage.p.length == 4 && LoadingPage.o == 0) {
-                this.l = 0;
-                this.aq = this.e.ar.h();
-                this.ar = this.e.ar.g();
+                this.sceneSubState = 0;
+                this.aq = this.mainCanvasRef.ar.h();
+                this.ar = this.mainCanvasRef.ar.g();
                 byte[] var5;
-                if ((var5 = NetPayloadBuilder.j((short) 4166, GlobalStatus.ad, GlobalStatus.fA[this.aE], GlobalStatus.dl[this.e.ar.g()])) == null) {
-                    this.e.processException("获取上传指令数据错误!");
+                if ((var5 = NetPayloadBuilder.j((short) 4166, GlobalStatus.ad, GlobalStatus.fA[this.aE], GlobalStatus.dl[this.mainCanvasRef.ar.g()])) == null) {
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                     return;
                 }
 
                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4166, var5));
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
             } else {
                 if (LoadingPage.p.length == 3 && LoadingPage.o == 0 || LoadingPage.p.length == 4 && LoadingPage.o == 1) {
                     this.az = 0;
                     if (GlobalStatus.eq == null) {
-                        if (this.e.touchPageCase != 2) {
-                            this.e.touchPageCase = this.e.k;
+                        if (this.mainCanvasRef.touchPageCase != 2) {
+                            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
                         }
 
-                        this.l = 2;
+                        this.sceneSubState = 2;
                         return;
                     }
 
-                    this.l = 2;
+                    this.sceneSubState = 2;
                     return;
                 }
 
                 if ((LoadingPage.p.length != 3 || LoadingPage.o != 1) && (LoadingPage.p.length != 4 || LoadingPage.o != 2)) {
                     if (LoadingPage.p.length == 3 && LoadingPage.o == 2 || LoadingPage.p.length == 4 && LoadingPage.o == 3) {
-                        if (GlobalStatus.dl[this.e.ar.g()] != 1) {
-                            this.e.a((String) "输入OK确定遗忘宠物技能", (int) 0);
+                        if (GlobalStatus.dl[this.mainCanvasRef.ar.g()] != 1) {
+                            this.mainCanvasRef.a((String) "输入OK确定遗忘宠物技能", (int) 0);
                         } else {
-                            this.e.processException("普通技能不能被遗忘");
+                            this.mainCanvasRef.processException("普通技能不能被遗忘");
                         }
 
-                        this.l = 0;
+                        this.sceneSubState = 0;
                         return;
                     }
                 } else {
-                    this.aq = this.e.ar.h();
-                    this.ar = this.e.ar.g();
+                    this.aq = this.mainCanvasRef.ar.h();
+                    this.ar = this.mainCanvasRef.ar.g();
                     byte[] var4;
-                    if ((var4 = NetPayloadBuilder.a((short) 4663, GlobalStatus.fA[this.aE], (int) GlobalStatus.dl[this.e.ar.g()], GlobalStatus.du[this.e.ar.g()], GlobalStatus.ad)) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                    if ((var4 = NetPayloadBuilder.a((short) 4663, GlobalStatus.fA[this.aE], (int) GlobalStatus.dl[this.mainCanvasRef.ar.g()], GlobalStatus.du[this.mainCanvasRef.ar.g()], GlobalStatus.ad)) == null) {
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4663, var4));
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 }
             }
-        } else if (this.l == 2) {
+        } else if (this.sceneSubState == 2) {
             this.a(GlobalStatus.et);
             if (var1 != 516 && var1 != 8) {
                 if (var1 != 518 && var1 != 2) {
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                         if (var1 == 536870912) {
-                            this.l = 0;
+                            this.sceneSubState = 0;
                             return;
                         }
 
@@ -8570,8 +8582,8 @@ public final class ao_1 {
                         return;
                     }
 
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"覆盖", "清空"}, true);
-                    this.l = 3;
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"覆盖", "清空"}, true);
+                    this.sceneSubState = 3;
                     return;
                 }
 
@@ -8582,11 +8594,11 @@ public final class ao_1 {
             this.az = this.az <= 0 ? 7 : --this.az;
             return;
         } else {
-            if (this.l == 3) {
+            if (this.sceneSubState == 3) {
                 this.a(GlobalStatus.et);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        this.l = 2;
+                        this.sceneSubState = 2;
                         return;
                     }
 
@@ -8603,47 +8615,47 @@ public final class ao_1 {
                 return;
             }
 
-            if (this.l == 5) {
+            if (this.sceneSubState == 5) {
                 LoadingPage.b(var1);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        this.l = 0;
+                        this.sceneSubState = 0;
                     }
                 } else if (LoadingPage.p.length == 3 && LoadingPage.o == 0) {
-                    this.l = 0;
-                    this.aq = this.e.ar.h();
-                    this.ar = this.e.ar.g();
+                    this.sceneSubState = 0;
+                    this.aq = this.mainCanvasRef.ar.h();
+                    this.ar = this.mainCanvasRef.ar.g();
                     byte[] var3;
-                    if ((var3 = NetPayloadBuilder.j((short) 4166, GlobalStatus.ad, GlobalStatus.fA[this.aE], GlobalStatus.dl[this.e.ar.g()])) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                    if ((var3 = NetPayloadBuilder.j((short) 4166, GlobalStatus.ad, GlobalStatus.fA[this.aE], GlobalStatus.dl[this.mainCanvasRef.ar.g()])) == null) {
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4166, var3));
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 } else if ((LoadingPage.p.length != 3 || LoadingPage.o != 1) && (LoadingPage.p.length != 2 || LoadingPage.o != 0)) {
                     if (LoadingPage.p.length == 3 && LoadingPage.o == 2 || LoadingPage.p.length == 2 && LoadingPage.o == 1) {
-                        if (GlobalStatus.dl[this.e.ar.g()] != 1) {
-                            this.e.a((String) "输入OK确定遗忘宠物技能", (int) 0);
+                        if (GlobalStatus.dl[this.mainCanvasRef.ar.g()] != 1) {
+                            this.mainCanvasRef.a((String) "输入OK确定遗忘宠物技能", (int) 0);
                         } else {
-                            this.e.processException("普通技能不能被遗忘");
+                            this.mainCanvasRef.processException("普通技能不能被遗忘");
                         }
 
-                        this.l = 0;
+                        this.sceneSubState = 0;
                         return;
                     }
                 } else {
-                    this.l = 0;
-                    this.aq = this.e.ar.h();
-                    this.ar = this.e.ar.g();
+                    this.sceneSubState = 0;
+                    this.aq = this.mainCanvasRef.ar.h();
+                    this.ar = this.mainCanvasRef.ar.g();
                     byte[] var2;
-                    if ((var2 = NetPayloadBuilder.a((short) 4663, GlobalStatus.fA[this.aE], (int) GlobalStatus.dl[this.e.ar.g()], GlobalStatus.du[this.e.ar.g()], GlobalStatus.ad)) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                    if ((var2 = NetPayloadBuilder.a((short) 4663, GlobalStatus.fA[this.aE], (int) GlobalStatus.dl[this.mainCanvasRef.ar.g()], GlobalStatus.du[this.mainCanvasRef.ar.g()], GlobalStatus.ad)) == null) {
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4663, var2));
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 }
             }
         }
@@ -8652,21 +8664,21 @@ public final class ao_1 {
 
     public final void y() {
         byte[] var1;
-        if ((var1 = NetPayloadBuilder.m((short) 4629, GlobalStatus.ad, GlobalStatus.fA[this.aE], GlobalStatus.dl[this.e.ar.g()])) != null) {
+        if ((var1 = NetPayloadBuilder.m((short) 4629, GlobalStatus.ad, GlobalStatus.fA[this.aE], GlobalStatus.dl[this.mainCanvasRef.ar.g()])) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4629, var1));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     private void g(Graphics var1) {
-        if (this.e.aq != null) {
-            this.e.aq.a(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.a(var1);
         }
 
-        if (this.l != 1 && this.l != 3 && this.l != 5) {
-            if (this.l == 2) {
+        if (this.sceneSubState != 1 && this.sceneSubState != 3 && this.sceneSubState != 5) {
+            if (this.sceneSubState == 2) {
                 this.a(var1, (GlobalConfig.defaultWidth - 176) / 2, (GlobalConfig.defaultHigh - 20) / 2, 1);
 
                 for (int var2 = 0; var2 < GlobalStatus.ep.length; ++var2) {
@@ -8684,45 +8696,45 @@ public final class ao_1 {
 
     public final void z() {
         if (GlobalStatus.mO == null) {
-            this.e.processException("没有特效");
+            this.mainCanvasRef.processException("没有特效");
         } else {
-            this.l = 0;
-            this.e.aq.j();
-            this.e.aq.a("技能特效");
-            this.e.aq.a(true);
+            this.sceneSubState = 0;
+            this.mainCanvasRef.aq.j();
+            this.mainCanvasRef.aq.a("技能特效");
+            this.mainCanvasRef.aq.a(true);
             String[] var1 = new String[GlobalStatus.mP.length];
 
             for (int var2 = 0; var2 < var1.length; ++var2) {
                 var1[var2] = String.valueOf(GlobalStatus.mQ[var2]);
             }
 
-            this.e.ar.a((Image[]) null, GlobalStatus.mP, (String[]) null, var1);
-            this.e.aq.a((al) this.e.ar);
-            this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-            this.e.ar.a(this.e.aq.a + this.e.aq.c / 2 - 2, this.e.ar.b(), this.e.aq.c / 2 - 4, this.e.ar.d());
-            this.ci = new int[]{this.e.aq.a, this.e.ar.b(), this.e.aq.c / 2, this.e.ar.d()};
+            this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.mP, (String[]) null, var1);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+            this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.ar.a(this.mainCanvasRef.aq.a + this.mainCanvasRef.aq.c / 2 - 2, this.mainCanvasRef.ar.b(), this.mainCanvasRef.aq.c / 2 - 4, this.mainCanvasRef.ar.d());
+            this.ci = new int[]{this.mainCanvasRef.aq.a, this.mainCanvasRef.ar.b(), this.mainCanvasRef.aq.c / 2, this.mainCanvasRef.ar.d()};
             if (MainCanvas.ad == null) {
                 (MainCanvas.ad = new Page("/", "skill")).loadRpg();
             }
 
-            this.ch = MainCanvas.ad.getFrame1(String.valueOf(GlobalStatus.mR[this.e.ar.g()]));
-            this.e.touchPageCase = this.e.k;
-            this.j = this.k = 123;
+            this.ch = MainCanvas.ad.getFrame1(String.valueOf(GlobalStatus.mR[this.mainCanvasRef.ar.g()]));
+            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+            this.sceneStateShadow = this.currentSceneModeId = 123;
         }
     }
 
     private void L(int var1) {
-        if (this.l == 0) {
-            this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            this.mainCanvasRef.aq.b(var1);
             if (var1 == 1 || var1 == 4) {
-                this.ch = MainCanvas.ad.getFrame1("" + GlobalStatus.mR[this.e.ar.g()]);
-                this.e.ar.a(GlobalStatus.mS[this.e.ar.g()], 1);
+                this.ch = MainCanvas.ad.getFrame1("" + GlobalStatus.mR[this.mainCanvasRef.ar.g()]);
+                this.mainCanvasRef.ar.a(GlobalStatus.mS[this.mainCanvasRef.ar.g()], 1);
                 return;
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 28 + this.e.ar.i() * GlobalConfig.j + p, new String[]{"激活", "取消激活"}, true);
-                this.l = 1;
+                LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 28 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"激活", "取消激活"}, true);
+                this.sceneSubState = 1;
                 return;
             }
 
@@ -8731,20 +8743,20 @@ public final class ao_1 {
                 this.c((int) 2);
                 return;
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                 }
             } else {
                 if (LoadingPage.o == 0) {
-                    this.a((byte) 1, GlobalStatus.mO[this.e.ar.g()], (int) 0);
+                    this.a((byte) 1, GlobalStatus.mO[this.mainCanvasRef.ar.g()], (int) 0);
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
-                    this.a((byte) 3, GlobalStatus.mO[this.e.ar.g()], (int) 0);
+                    this.a((byte) 3, GlobalStatus.mO[this.mainCanvasRef.ar.g()], (int) 0);
                     return;
                 }
             }
@@ -8753,14 +8765,14 @@ public final class ao_1 {
     }
 
     private void h(Graphics var1) {
-        this.e.aq.a(var1);
-        if (this.l == 0) {
+        this.mainCanvasRef.aq.a(var1);
+        if (this.sceneSubState == 0) {
             if (this.ch != null) {
-                PngUtil.a(this.ch, this.e.ak);
-                MainCanvas.f.a(var1, (Frame1) this.ch, this.ci, 0, 0, this.e.aq.a + this.e.aq.c / 4, this.e.ar.b() + this.e.ar.d() / 2 + this.ch.h() / 2, 0, 0);
+                PngUtil.a(this.ch, this.mainCanvasRef.ak);
+                MainCanvas.pngUtil.a(var1, (Frame1) this.ch, this.ci, 0, 0, this.mainCanvasRef.aq.a + this.mainCanvasRef.aq.c / 4, this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() / 2 + this.ch.h() / 2, 0, 0);
                 return;
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             LoadingPage.c(var1);
         }
 
@@ -8768,94 +8780,94 @@ public final class ao_1 {
 
     public final void A() {
         if (GlobalStatus.nb == null) {
-            this.e.aq.j();
-            this.e.aq.a("消除特效");
-            this.e.aq.a(true);
-            this.e.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
-            this.e.au.a("");
-            this.e.aq.a((al) this.e.ar);
+            this.mainCanvasRef.aq.j();
+            this.mainCanvasRef.aq.a("消除特效");
+            this.mainCanvasRef.aq.a(true);
+            this.mainCanvasRef.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
+            this.mainCanvasRef.au.a("");
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
             if (GlobalConfig.defaultHigh > 220) {
-                this.e.aq.a((al) this.e.au);
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
             }
 
-            this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         } else {
-            this.e.aq.j();
-            this.e.aq.a("消除特效");
-            this.e.aq.a(true);
+            this.mainCanvasRef.aq.j();
+            this.mainCanvasRef.aq.a("消除特效");
+            this.mainCanvasRef.aq.a(true);
             String[] var1 = new String[GlobalStatus.nb.length];
 
             for (int var2 = 0; var2 < var1.length; ++var2) {
                 var1[var2] = GlobalStatus.na;
             }
 
-            this.e.ar.a((Image[]) null, var1, GlobalStatus.nc, GlobalStatus.nd);
-            this.e.au.a("");
-            this.e.aq.a((al) this.e.ar);
+            this.mainCanvasRef.ar.a((Image[]) null, var1, GlobalStatus.nc, GlobalStatus.nd);
+            this.mainCanvasRef.au.a("");
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
             if (GlobalConfig.defaultHigh > 220) {
-                this.e.aq.a((al) this.e.au);
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
             }
 
-            this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         }
 
-        this.l = 0;
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 121;
+        this.sceneSubState = 0;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 121;
     }
 
     private void M(int var1) {
-        this.e.aq.b(var1);
+        this.mainCanvasRef.aq.b(var1);
         if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                 this.z();
             }
         } else if (GlobalStatus.nb != null) {
-            this.a((byte) 4, GlobalStatus.mZ, (int) GlobalStatus.nb[this.e.ar.g()]);
+            this.a((byte) 4, GlobalStatus.mZ, (int) GlobalStatus.nb[this.mainCanvasRef.ar.g()]);
             return;
         }
 
     }
 
     private void i(Graphics var1) {
-        this.e.aq.a(var1);
+        this.mainCanvasRef.aq.a(var1);
     }
 
     public final void B() {
-        this.l = 0;
-        this.e.aq.j();
-        this.e.aq.a("激活特效");
-        this.e.aq.a(true);
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aq.j();
+        this.mainCanvasRef.aq.a("激活特效");
+        this.mainCanvasRef.aq.a(true);
         this.a(GlobalStatus.mX);
-        this.e.ar.a(b(GlobalStatus.mX), GlobalStatus.mW, (String[]) null, GlobalStatus.mY);
-        this.e.at.b((String) null, GlobalConfig.i, (byte) 2);
-        this.e.at.a((byte) 1);
-        this.e.au.a("");
-        this.e.aq.a((al) this.e.ar);
-        this.e.aq.a((al) this.e.at);
+        this.mainCanvasRef.ar.a(b(GlobalStatus.mX), GlobalStatus.mW, (String[]) null, GlobalStatus.mY);
+        this.mainCanvasRef.at.b((String) null, GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.a((byte) 1);
+        this.mainCanvasRef.au.a("");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 122;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 122;
     }
 
     private void N(int var1) {
-        this.e.aq.b(var1);
+        this.mainCanvasRef.aq.b(var1);
         if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                 this.z();
             }
 
         } else {
-            this.a((byte) 2, GlobalStatus.mT, (int) GlobalStatus.mV[this.e.ar.g()]);
+            this.a((byte) 2, GlobalStatus.mT, (int) GlobalStatus.mV[this.mainCanvasRef.ar.g()]);
         }
     }
 
     private void j(Graphics var1) {
-        this.e.aq.a(var1);
+        this.mainCanvasRef.aq.a(var1);
     }
 
     private void a(byte var1, String var2, int var3) {
@@ -8863,18 +8875,18 @@ public final class ao_1 {
         if ((var4 = NetPayloadBuilder.a(var1, var2, var3)) != null) {
             NetPacket var5 = new NetPacket((short) 4374, var4);
             MainCanvas.netUtils.sendPacket(var5);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     public final void h(int var1) {
         this.as = var1;
-        this.l = 0;
+        this.sceneSubState = 0;
         this.a((byte) 1, false);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 12;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 12;
     }
 
     private static boolean a(byte var0, byte var1) {
@@ -8943,80 +8955,80 @@ public final class ao_1 {
                 GlobalStatus.p();
             }
 
-            this.e.aq.b();
-            this.e.aq.a("人物技能");
-            this.e.aq.a(true);
+            this.mainCanvasRef.aq.b();
+            this.mainCanvasRef.aq.a("人物技能");
+            this.mainCanvasRef.aq.a(true);
             if (this.as == 0) {
-                if (this.j != 12) {
-                    this.e.as.a(new String[]{" 技能   ", "  心法  ", "  附魔  "});
+                if (this.sceneStateShadow != 12) {
+                    this.mainCanvasRef.as.a(new String[]{" 技能   ", "  心法  ", "  附魔  "});
                 }
 
-                this.e.aq.a((al) this.e.as);
-                this.e.ar.a(b(GlobalStatus.dr), GlobalStatus.dm, (String[]) null, var1 == 2 ? null : e(GlobalStatus.dq));
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+                this.mainCanvasRef.ar.a(b(GlobalStatus.dr), GlobalStatus.dm, (String[]) null, var1 == 2 ? null : e(GlobalStatus.dq));
                 if (var2) {
-                    this.e.ar.a(this.aA, this.aE);
+                    this.mainCanvasRef.ar.a(this.aA, this.aE);
                 } else {
                     this.aA = 0;
                     this.aE = 0;
                 }
 
                 if (GlobalStatus.dl == null) {
-                    this.e.ar.a("没有技能,按3、9键可以上下翻滚此属性描述框", 2);
-                    this.e.at.a("", GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.ar.a("没有技能,按3、9键可以上下翻滚此属性描述框", 2);
+                    this.mainCanvasRef.at.a("", GlobalConfig.i, (byte) 1);
                 } else {
-                    this.e.ar.a(GlobalStatus.ds[this.e.ar.g()], 2);
-                    this.e.at.a("".equals(GlobalStatus.dt[this.e.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.e.ar.g()], GlobalConfig.i, (byte) 1);
-                    this.e.at.a((byte) 1);
+                    this.mainCanvasRef.ar.a(GlobalStatus.ds[this.mainCanvasRef.ar.g()], 2);
+                    this.mainCanvasRef.at.a("".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.a((byte) 1);
                 }
 
                 if (var1 == 1) {
-                    this.e.aq.a((al) this.e.at);
+                    this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
                 } else if (var1 == 0) {
-                    this.e.aq.a((al) this.e.at);
-                    this.e.au.a("升级");
-                    this.e.aq.a((al) this.e.au);
+                    this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+                    this.mainCanvasRef.au.a("升级");
+                    this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
                 }
 
-                this.e.aq.a((al) this.e.ar);
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
             } else {
-                this.e.as.a(new String[]{" 技能   "});
-                this.e.aq.a((al) this.e.as);
-                this.e.ar.a(b(GlobalStatus.dr), GlobalStatus.dm, (String[]) null, var1 == 2 ? null : e(GlobalStatus.dq));
+                this.mainCanvasRef.as.a(new String[]{" 技能   "});
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+                this.mainCanvasRef.ar.a(b(GlobalStatus.dr), GlobalStatus.dm, (String[]) null, var1 == 2 ? null : e(GlobalStatus.dq));
                 if (GlobalStatus.dl == null) {
-                    this.e.ar.a("没有技能,按3、9键可以上下翻滚此属性描述框", 2);
+                    this.mainCanvasRef.ar.a("没有技能,按3、9键可以上下翻滚此属性描述框", 2);
                 } else {
-                    this.e.ar.a(GlobalStatus.ds[0], 2);
+                    this.mainCanvasRef.ar.a(GlobalStatus.ds[0], 2);
                 }
 
-                this.e.aq.a((al) this.e.ar);
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
             }
 
-            this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         }
 
     }
 
     private void O(int var1) {
-        if (this.l == 0) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 == 8 || var1 == 2 || var1 == 518 || var1 == 516) {
-                if (this.e.as.a == 0) {
+                if (this.mainCanvasRef.as.a == 0) {
                     this.a((byte) 1, false);
-                } else if (this.e.as.a == 1) {
+                } else if (this.mainCanvasRef.as.a == 1) {
                     this.a((byte) 0, false);
                 } else {
-                    this.a(this.e.as.a, false);
+                    this.a(this.mainCanvasRef.as.a, false);
                 }
             }
 
             if (var1 == 1 || var1 == 4 || var1 == 514 || var1 == 520) {
                 if (GlobalStatus.dl != null && GlobalStatus.dl.length > 0) {
-                    this.e.ar.a(GlobalStatus.ds[this.e.ar.g()], 2);
-                    this.e.at.a("".equals(GlobalStatus.dt[this.e.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.e.ar.g()], GlobalConfig.i, (byte) 1);
-                    this.e.at.a((byte) 1);
+                    this.mainCanvasRef.ar.a(GlobalStatus.ds[this.mainCanvasRef.ar.g()], 2);
+                    this.mainCanvasRef.at.a("".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.a((byte) 1);
                     return;
                 }
 
@@ -9033,7 +9045,7 @@ public final class ao_1 {
                     }
 
                     if (this.as != 2 && this.as == 3) {
-                        this.j = this.k = 25;
+                        this.sceneStateShadow = this.currentSceneModeId = 25;
                         return;
                     }
                 }
@@ -9043,68 +9055,68 @@ public final class ao_1 {
                 }
 
                 if (this.as == 0) {
-                    if (this.e.as.a == 0) {
-                        String[] var6 = "".equals(GlobalStatus.dt[this.e.ar.g()]) ? new String[]{"设置", "特效"} : new String[]{"升级", "设置", "特效"};
-                        LoadingPage.a(GlobalConfig.realWidth / 3 - GlobalConfig.i.stringWidth("操作") / 2, 2 * GlobalConfig.j + 28 + this.e.ar.i() * GlobalConfig.j + p, var6, true);
-                        this.l = 1;
+                    if (this.mainCanvasRef.as.a == 0) {
+                        String[] var6 = "".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()]) ? new String[]{"设置", "特效"} : new String[]{"升级", "设置", "特效"};
+                        LoadingPage.a(GlobalConfig.realWidth / 3 - GlobalConfig.i.stringWidth("操作") / 2, 2 * GlobalConfig.j + 28 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, var6, true);
+                        this.sceneSubState = 1;
                         return;
                     }
 
-                    if (this.e.as.a == 1 && !"".equals(GlobalStatus.dt[this.e.ar.g()])) {
-                        this.aE = this.e.ar.g();
-                        this.aA = this.e.ar.h();
+                    if (this.mainCanvasRef.as.a == 1 && !"".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()])) {
+                        this.aE = this.mainCanvasRef.ar.g();
+                        this.aA = this.mainCanvasRef.ar.h();
                         byte[] var4;
-                        if ((var4 = NetPayloadBuilder.q((short) 4167, GlobalStatus.ad, GlobalStatus.dl[this.e.ar.g()])) == null) {
-                            this.e.processException("获取上传指令数据错误!");
+                        if ((var4 = NetPayloadBuilder.q((short) 4167, GlobalStatus.ad, GlobalStatus.dl[this.mainCanvasRef.ar.g()])) == null) {
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         NetPacket var5 = new NetPacket((short) 4167, var4);
                         MainCanvas.netUtils.sendPacket(var5);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     }
-                } else if (this.as == 3 && this.g != null && this.e.as.a != 2) {
-                    this.g.j = 1;
-                    this.g.p = GlobalStatus.dl[this.e.ar.g()];
-                    if (GlobalStatus.do_2[this.e.ar.g()] == 2) {
-                        if (bq_1.c() > 1 && bq_1.c() > GlobalStatus.dp[this.e.ar.g()]) {
-                            this.g.n = 1;
-                            this.g.d = 1;
+                } else if (this.as == 3 && this.overlayDialogController != null && this.mainCanvasRef.as.a != 2) {
+                    this.overlayDialogController.j = 1;
+                    this.overlayDialogController.p = GlobalStatus.dl[this.mainCanvasRef.ar.g()];
+                    if (GlobalStatus.do_2[this.mainCanvasRef.ar.g()] == 2) {
+                        if (bq_1.c() > 1 && bq_1.c() > GlobalStatus.dp[this.mainCanvasRef.ar.g()]) {
+                            this.overlayDialogController.n = 1;
+                            this.overlayDialogController.d = 1;
                         } else {
-                            this.g.n = 1;
-                            this.g.o = GlobalStatus.M[this.g.h].a;
-                            if (this.g.j()) {
-                                this.g.a((byte) 1, this.g.p, this.g.n, this.g.o, (byte) 1, 1, (byte) 1, (byte) -1);
-                                this.g.f = -1;
-                                this.g.e = 5;
+                            this.overlayDialogController.n = 1;
+                            this.overlayDialogController.o = GlobalStatus.M[this.overlayDialogController.h].a;
+                            if (this.overlayDialogController.j()) {
+                                this.overlayDialogController.a((byte) 1, this.overlayDialogController.p, this.overlayDialogController.n, this.overlayDialogController.o, (byte) 1, 1, (byte) 1, (byte) -1);
+                                this.overlayDialogController.f = -1;
+                                this.overlayDialogController.e = 5;
                             } else {
-                                this.g.d = 2;
+                                this.overlayDialogController.d = 2;
                             }
                         }
-                    } else if (GlobalStatus.do_2[this.e.ar.g()] == 1) {
-                        this.g.n = 0;
-                        this.g.d = 5;
-                        this.g.i = bq_1.f() < 0 ? this.g.i : bq_1.f();
-                    } else if (GlobalStatus.do_2[this.e.ar.g()] == 0) {
-                        this.g.n = 0;
-                        this.g.o = bq_1.i();
-                        if (this.g.j()) {
-                            this.g.a((byte) 1, this.g.p, this.g.n, this.g.o, (byte) 1, 1, (byte) 1, (byte) -1);
-                            this.g.f = -1;
-                            this.g.e = 5;
+                    } else if (GlobalStatus.do_2[this.mainCanvasRef.ar.g()] == 1) {
+                        this.overlayDialogController.n = 0;
+                        this.overlayDialogController.d = 5;
+                        this.overlayDialogController.i = bq_1.f() < 0 ? this.overlayDialogController.i : bq_1.f();
+                    } else if (GlobalStatus.do_2[this.mainCanvasRef.ar.g()] == 0) {
+                        this.overlayDialogController.n = 0;
+                        this.overlayDialogController.o = bq_1.i();
+                        if (this.overlayDialogController.j()) {
+                            this.overlayDialogController.a((byte) 1, this.overlayDialogController.p, this.overlayDialogController.n, this.overlayDialogController.o, (byte) 1, 1, (byte) 1, (byte) -1);
+                            this.overlayDialogController.f = -1;
+                            this.overlayDialogController.e = 5;
                         } else {
-                            this.g.d = 2;
+                            this.overlayDialogController.d = 2;
                         }
                     }
 
-                    this.j = this.k = 25;
+                    this.sceneStateShadow = this.currentSceneModeId = 25;
                     return;
                 }
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
 
@@ -9113,45 +9125,45 @@ public final class ao_1 {
             }
 
             if (LoadingPage.p.length == 3 && LoadingPage.o == 0) {
-                this.aE = this.e.ar.g();
-                this.aA = this.e.ar.h();
+                this.aE = this.mainCanvasRef.ar.g();
+                this.aA = this.mainCanvasRef.ar.h();
                 byte[] var2;
-                if ((var2 = NetPayloadBuilder.q((short) 4167, GlobalStatus.ad, GlobalStatus.dl[this.e.ar.g()])) == null) {
-                    this.e.processException("获取上传指令数据错误!");
+                if ((var2 = NetPayloadBuilder.q((short) 4167, GlobalStatus.ad, GlobalStatus.dl[this.mainCanvasRef.ar.g()])) == null) {
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                     return;
                 }
 
                 NetPacket var3 = new NetPacket((short) 4167, var2);
                 MainCanvas.netUtils.sendPacket(var3);
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
             } else {
                 if (LoadingPage.p.length == 3 && LoadingPage.o == 1 || LoadingPage.p.length == 2 && LoadingPage.o == 0) {
                     this.az = 0;
                     if (GlobalStatus.ek == null) {
-                        if (this.e.touchPageCase != 2) {
-                            this.e.touchPageCase = this.e.k;
+                        if (this.mainCanvasRef.touchPageCase != 2) {
+                            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
                         }
 
-                        this.l = 6;
+                        this.sceneSubState = 6;
                         return;
                     }
 
-                    this.l = 6;
+                    this.sceneSubState = 6;
                     return;
                 }
 
                 if (LoadingPage.p.length == 2 && LoadingPage.o == 1 || LoadingPage.p.length == 3 && LoadingPage.o == 2) {
-                    this.a((byte) 5, "", (int) GlobalStatus.dl[this.e.ar.g()]);
+                    this.a((byte) 5, "", (int) GlobalStatus.dl[this.mainCanvasRef.ar.g()]);
                     return;
                 }
             }
-        } else if (this.l == 6) {
+        } else if (this.sceneSubState == 6) {
             this.a(GlobalStatus.en);
             if (var1 != 516 && var1 != 8) {
                 if (var1 != 518 && var1 != 2) {
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                         if (var1 == 536870912) {
-                            this.l = 0;
+                            this.sceneSubState = 0;
                             return;
                         }
 
@@ -9163,8 +9175,8 @@ public final class ao_1 {
                         return;
                     }
 
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 28 + this.e.ar.i() * GlobalConfig.j + p, new String[]{"覆盖", "清空"}, true);
-                    this.l = 7;
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 28 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"覆盖", "清空"}, true);
+                    this.sceneSubState = 7;
                     return;
                 }
 
@@ -9174,7 +9186,7 @@ public final class ao_1 {
 
             this.az = this.az <= 0 ? 7 : --this.az;
             return;
-        } else if (this.l == 7) {
+        } else if (this.sceneSubState == 7) {
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                 if (LoadingPage.o == 0) {
                     this.a(true, (byte) 1);
@@ -9186,7 +9198,7 @@ public final class ao_1 {
             }
 
             if (var1 == 536870912) {
-                this.l = 6;
+                this.sceneSubState = 6;
                 return;
             }
 
@@ -9196,12 +9208,12 @@ public final class ao_1 {
     }
 
     private void k(Graphics var1) {
-        if (this.e.aq != null) {
-            this.e.aq.a(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.a(var1);
         }
 
-        if (this.l != 1 && this.l != 7) {
-            if (this.l == 6) {
+        if (this.sceneSubState != 1 && this.sceneSubState != 7) {
+            if (this.sceneSubState == 6) {
                 this.a(var1, (GlobalConfig.defaultWidth - 176) / 2, (GlobalConfig.defaultHigh - 20) / 2, 0);
 
                 for (int var2 = 0; var2 < GlobalStatus.ej.length; ++var2) {
@@ -9218,85 +9230,85 @@ public final class ao_1 {
     }
 
     public final void C() {
-        this.l = 0;
-        if (this.j != 34) {
+        this.sceneSubState = 0;
+        if (this.sceneStateShadow != 34) {
             this.aV = 0;
-            this.e.as.a(new String[]{"拍卖中", "仓库", "记录"});
+            this.mainCanvasRef.as.a(new String[]{"拍卖中", "仓库", "记录"});
         }
 
-        if (this.j != 34 || this.j == 34 && this.e.as.a != 2) {
-            this.e.aq.b();
-            this.e.aq.a("宠物拍卖详情");
-            this.e.ar.a((Image[]) null, GlobalStatus.gt, e(GlobalStatus.gu), this.a(GlobalStatus.gv));
-            if (this.e.as.a == 0) {
-                this.e.au.a("下架");
+        if (this.sceneStateShadow != 34 || this.sceneStateShadow == 34 && this.mainCanvasRef.as.a != 2) {
+            this.mainCanvasRef.aq.b();
+            this.mainCanvasRef.aq.a("宠物拍卖详情");
+            this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.gt, e(GlobalStatus.gu), this.a(GlobalStatus.gv));
+            if (this.mainCanvasRef.as.a == 0) {
+                this.mainCanvasRef.au.a("下架");
             } else {
-                this.e.au.a("取回");
+                this.mainCanvasRef.au.a("取回");
             }
 
-            this.e.au.a(true);
-            this.e.at.a(GlobalStatus.a((StringBuffer) this.e.l, (int) 0, (byte) this.e.as.a), GlobalConfig.i, (byte) 2);
-            this.e.at.a((byte) 1);
-            this.e.aq.a((al) this.e.as);
-            this.e.aq.a((al) this.e.ar);
-            this.e.aq.a((al) this.e.at);
-            this.e.aq.a((al) this.e.au);
-            this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-            this.e.aq.a(true);
+            this.mainCanvasRef.au.a(true);
+            this.mainCanvasRef.at.a(GlobalStatus.a((StringBuffer) this.mainCanvasRef.l, (int) 0, (byte) this.mainCanvasRef.as.a), GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a((byte) 1);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
+            this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.aq.a(true);
             if (GlobalStatus.gw != null) {
                 a(GlobalStatus.gw[0], GlobalStatus.gx[0], GlobalStatus.gy[0], GlobalStatus.gz[0]);
                 this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.gw[0] + "_0"), GlobalStatus.gx[0], GlobalStatus.gy[0], GlobalStatus.gz[0]);
             }
 
-            this.e.touchPageCase = this.e.k;
-            this.j = this.k = 34;
+            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+            this.sceneStateShadow = this.currentSceneModeId = 34;
         } else {
-            this.e.aq.b();
-            this.e.aq.a("宠物拍卖详情");
-            this.e.aq.a(true);
-            this.e.au.a("确定");
-            this.e.au.a(true);
-            this.e.at.a(this.aY(), GlobalConfig.i, (byte) 2);
-            this.e.at.a((byte) 0);
-            this.e.aq.a((al) this.e.as);
-            this.e.aq.a((al) this.e.at);
+            this.mainCanvasRef.aq.b();
+            this.mainCanvasRef.aq.a("宠物拍卖详情");
+            this.mainCanvasRef.aq.a(true);
+            this.mainCanvasRef.au.a("确定");
+            this.mainCanvasRef.au.a(true);
+            this.mainCanvasRef.at.a(this.aY(), GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a((byte) 0);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
             if (GlobalConfig.defaultHigh > 220) {
-                this.e.aq.a((al) this.e.au);
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
             }
 
-            this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-            this.e.touchPageCase = this.e.k;
-            this.j = this.k = 34;
+            this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+            this.sceneStateShadow = this.currentSceneModeId = 34;
         }
     }
 
     private void P(int var1) {
-        if (this.l == 0) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 == 8 || var1 == 2) {
-                if (this.e.as.a == 0 && this.aV != 0) {
+                if (this.mainCanvasRef.as.a == 0 && this.aV != 0) {
                     GlobalStatus.gQ = 1;
                     this.a((byte) 1, (short) GlobalStatus.gQ);
-                    this.aV = this.e.as.a;
-                } else if (this.e.as.a == 1) {
+                    this.aV = this.mainCanvasRef.as.a;
+                } else if (this.mainCanvasRef.as.a == 1) {
                     GlobalStatus.gQ = 1;
                     this.c((byte) 1, (short) GlobalStatus.gQ);
-                    this.aV = this.e.as.a;
-                } else if (this.e.as.a == 2 && this.aV != 2) {
+                    this.aV = this.mainCanvasRef.as.a;
+                } else if (this.mainCanvasRef.as.a == 2 && this.aV != 2) {
                     GlobalStatus.gQ = 1;
                     this.b((byte) 1, (short) GlobalStatus.gQ);
-                    this.aV = this.e.as.a;
+                    this.aV = this.mainCanvasRef.as.a;
                 }
             }
 
             if (var1 == 1024) {
                 if (GlobalStatus.gQ > 1) {
-                    if (this.e.as.a == 0) {
+                    if (this.mainCanvasRef.as.a == 0) {
                         this.a((byte) 1, (short) ((short) (GlobalStatus.gQ - 1)));
-                    } else if (this.e.as.a == 1) {
+                    } else if (this.mainCanvasRef.as.a == 1) {
                         this.c((byte) 1, (short) ((short) (GlobalStatus.gQ - 1)));
                     } else {
                         this.b((byte) 1, (short) ((short) (GlobalStatus.gQ - 1)));
@@ -9304,9 +9316,9 @@ public final class ao_1 {
                 }
             } else if (var1 == 2048) {
                 if (GlobalStatus.gR == 1) {
-                    if (this.e.as.a == 0) {
+                    if (this.mainCanvasRef.as.a == 0) {
                         this.a((byte) 1, (short) ((short) (GlobalStatus.gQ + 1)));
-                    } else if (this.e.as.a == 1) {
+                    } else if (this.mainCanvasRef.as.a == 1) {
                         this.c((byte) 1, (short) ((short) (GlobalStatus.gQ + 1)));
                     } else {
                         this.b((byte) 1, (short) ((short) (GlobalStatus.gQ + 1)));
@@ -9316,110 +9328,110 @@ public final class ao_1 {
                 this.m();
             }
 
-            if (this.e.as.a != 2 && GlobalStatus.gs != null) {
-                if (GlobalStatus.gA != null && GlobalStatus.gA[this.e.ar.g()] != null && GlobalStatus.gA[this.e.ar.g()].length > 0) {
-                    for (byte var4 = 0; var4 < GlobalStatus.gA[this.e.ar.g()].length; ++var4) {
-                        this.a(GlobalStatus.gA[this.e.ar.g()]);
+            if (this.mainCanvasRef.as.a != 2 && GlobalStatus.gs != null) {
+                if (GlobalStatus.gA != null && GlobalStatus.gA[this.mainCanvasRef.ar.g()] != null && GlobalStatus.gA[this.mainCanvasRef.ar.g()].length > 0) {
+                    for (byte var4 = 0; var4 < GlobalStatus.gA[this.mainCanvasRef.ar.g()].length; ++var4) {
+                        this.a(GlobalStatus.gA[this.mainCanvasRef.ar.g()]);
                     }
                 }
 
                 if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-                    this.e.at.a(GlobalStatus.a(this.e.l, this.e.ar.g(), this.e.as.a), GlobalConfig.i, (byte) 2);
-                    this.e.at.a((byte) 1);
-                    a(GlobalStatus.gw[this.e.ar.g()], GlobalStatus.gx[this.e.ar.g()], GlobalStatus.gy[this.e.ar.g()], GlobalStatus.gz[this.e.ar.g()]);
-                    this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.gw[this.e.ar.g()] + "_0"), GlobalStatus.gx[this.e.ar.g()], GlobalStatus.gy[this.e.ar.g()], GlobalStatus.gz[this.e.ar.g()]);
+                    this.mainCanvasRef.at.a(GlobalStatus.a(this.mainCanvasRef.l, this.mainCanvasRef.ar.g(), this.mainCanvasRef.as.a), GlobalConfig.i, (byte) 2);
+                    this.mainCanvasRef.at.a((byte) 1);
+                    a(GlobalStatus.gw[this.mainCanvasRef.ar.g()], GlobalStatus.gx[this.mainCanvasRef.ar.g()], GlobalStatus.gy[this.mainCanvasRef.ar.g()], GlobalStatus.gz[this.mainCanvasRef.ar.g()]);
+                    this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.gw[this.mainCanvasRef.ar.g()] + "_0"), GlobalStatus.gx[this.mainCanvasRef.ar.g()], GlobalStatus.gy[this.mainCanvasRef.ar.g()], GlobalStatus.gz[this.mainCanvasRef.ar.g()]);
                 }
 
-                PngUtil.a(this.aI, this.e.ak);
+                PngUtil.a(this.aI, this.mainCanvasRef.ak);
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                    if (this.e.as.a == 0 && GlobalStatus.gs != null) {
-                        LoadingPage.a(35 + GlobalConfig.f, (3 + this.e.ar.i()) * GlobalConfig.j + GlobalConfig.g, new String[]{"取消拍卖"}, false);
-                        this.l = 1;
+                    if (this.mainCanvasRef.as.a == 0 && GlobalStatus.gs != null) {
+                        LoadingPage.a(35 + GlobalConfig.f, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.j + GlobalConfig.g, new String[]{"取消拍卖"}, false);
+                        this.sceneSubState = 1;
                         return;
                     }
 
-                    if (this.e.as.a == 1 && GlobalStatus.gs != null) {
-                        LoadingPage.a(35 + GlobalConfig.f, (3 + this.e.ar.i()) * GlobalConfig.j + GlobalConfig.g, new String[]{"拍卖", "取回"}, false);
-                        this.l = 2;
+                    if (this.mainCanvasRef.as.a == 1 && GlobalStatus.gs != null) {
+                        LoadingPage.a(35 + GlobalConfig.f, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.j + GlobalConfig.g, new String[]{"拍卖", "取回"}, false);
+                        this.sceneSubState = 2;
                         return;
                     }
                 }
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             LoadingPage.b(var1);
             if (var1 != 1073741824 && var1 != 268435456 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else if (LoadingPage.o == 0) {
-                this.l = 3;
+                this.sceneSubState = 3;
                 LoadingPage.h = 0;
                 return;
             }
-        } else if (this.l == 2) {
+        } else if (this.sceneSubState == 2) {
             LoadingPage.b(var1);
             if (var1 != 1073741824 && var1 != 268435456 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else {
                 if (LoadingPage.o == 0) {
-                    this.l = 4;
+                    this.sceneSubState = 4;
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
                     byte[] var2;
-                    if ((var2 = NetPayloadBuilder.n((short) 4151, GlobalStatus.ad, (int) GlobalStatus.gs[this.e.ar.g()])) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                    if ((var2 = NetPayloadBuilder.n((short) 4151, GlobalStatus.ad, (int) GlobalStatus.gs[this.mainCanvasRef.ar.g()])) == null) {
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     NetPacket var3 = new NetPacket((short) 4151, var2);
                     MainCanvas.netUtils.sendPacket(var3);
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 }
             }
-        } else if (this.l == 3) {
+        } else if (this.sceneSubState == 3) {
             if (var1 == 1073741824 || var1 == 268435456 || var1 == 517) {
-                this.a((byte) 1, (int) GlobalStatus.gs[this.e.ar.g()]);
+                this.a((byte) 1, (int) GlobalStatus.gs[this.mainCanvasRef.ar.g()]);
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 1;
+                this.sceneSubState = 1;
                 return;
             }
-        } else if (this.l == 4) {
+        } else if (this.sceneSubState == 4) {
             this.d(var1);
             this.bR = this.n();
             if (var1 == 1073741824 || var1 == 268435456) {
                 if (this.n() <= 0L) {
-                    this.e.processException("输入金钱必须大于0!");
+                    this.mainCanvasRef.processException("输入金钱必须大于0!");
                     return;
                 }
 
-                this.l = 5;
+                this.sceneSubState = 5;
                 LoadingPage.h = 0;
                 this.o();
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 2;
+                this.sceneSubState = 2;
                 this.o();
                 return;
             }
-        } else if (this.l == 5) {
+        } else if (this.sceneSubState == 5) {
             if (var1 == 1073741824 || var1 == 268435456 || var1 == 517) {
-                this.a((byte) 1, GlobalStatus.gs[this.e.ar.g()], this.bR);
+                this.a((byte) 1, GlobalStatus.gs[this.mainCanvasRef.ar.g()], this.bR);
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 2;
+                this.sceneSubState = 2;
                 this.o();
             }
         }
@@ -9427,38 +9439,38 @@ public final class ao_1 {
     }
 
     private void l(Graphics var1) {
-        if (this.e.aq != null) {
-            this.e.aq.a(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.a(var1);
         }
 
         Object var2 = null;
-        if (this.e.as.a != 2) {
-            if (GlobalStatus.gw != null && GlobalStatus.gA[this.e.ar.g()] != null && GlobalStatus.gA[this.e.ar.g()].length > 0 && this.e.at.a == 0) {
-                Vector var4 = a(GlobalStatus.gA[this.e.ar.g()], GlobalStatus.gB[this.e.ar.g()]);
-                if (GlobalStatus.gG[this.e.ar.g()] > 11) {
-                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - 187 - 26, this.e.at.c + 3, 17, 17, 11, 1);
-                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.e.ar.g()] - 11) * 17 - 26, this.e.at.c + 24, 17, 17, GlobalStatus.gG[this.e.ar.g()] - 11, 1);
+        if (this.mainCanvasRef.as.a != 2) {
+            if (GlobalStatus.gw != null && GlobalStatus.gA[this.mainCanvasRef.ar.g()] != null && GlobalStatus.gA[this.mainCanvasRef.ar.g()].length > 0 && this.mainCanvasRef.at.a == 0) {
+                Vector var4 = a(GlobalStatus.gA[this.mainCanvasRef.ar.g()], GlobalStatus.gB[this.mainCanvasRef.ar.g()]);
+                if (GlobalStatus.gG[this.mainCanvasRef.ar.g()] > 11) {
+                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - 187 - 26, this.mainCanvasRef.at.c + 3, 17, 17, 11, 1);
+                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.mainCanvasRef.ar.g()] - 11) * 17 - 26, this.mainCanvasRef.at.c + 24, 17, 17, GlobalStatus.gG[this.mainCanvasRef.ar.g()] - 11, 1);
                 } else {
-                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - GlobalStatus.gG[this.e.ar.g()] * 17 - 26, this.e.at.c + 3, 17, 17, GlobalStatus.gG[this.e.ar.g()], 1);
+                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - GlobalStatus.gG[this.mainCanvasRef.ar.g()] * 17 - 26, this.mainCanvasRef.at.c + 3, 17, 17, GlobalStatus.gG[this.mainCanvasRef.ar.g()], 1);
                 }
 
                 for (byte var3 = 0; var3 < var4.size(); ++var3) {
-                    if (GlobalStatus.gG[this.e.ar.g()] > 11) {
+                    if (GlobalStatus.gG[this.mainCanvasRef.ar.g()] > 11) {
                         if (var3 < 11) {
-                            MainCanvas.f.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (11 - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                            MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (11 - var3) * 17 - 23, this.mainCanvasRef.at.c + 4 + 2, 0, 0);
                         } else {
-                            MainCanvas.f.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
+                            MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.mainCanvasRef.ar.g()] - var3) * 17 - 23, this.mainCanvasRef.at.c + 4 + 2 + 21, 0, 0);
                         }
                     } else {
-                        MainCanvas.f.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                        MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.mainCanvasRef.ar.g()] - var3) * 17 - 23, this.mainCanvasRef.at.c + 4 + 2, 0, 0);
                     }
                 }
             }
 
-            if (GlobalStatus.gw != null && this.aI != null && this.l == 0) {
+            if (GlobalStatus.gw != null && this.aI != null && this.sceneSubState == 0) {
                 int var5;
-                var5 = (var5 = this.e.ar.b() + 2 + (this.e.ar.g() - this.e.ar.h() + 1) * GlobalConfig.j) + 50 > this.e.ar.b() + this.e.ar.d() ? this.e.ar.b() + this.e.ar.d() - 50 : var5;
-                int var7 = this.e.ar.a() + this.e.ar.c() - 50 - 20;
+                var5 = (var5 = this.mainCanvasRef.ar.b() + 2 + (this.mainCanvasRef.ar.g() - this.mainCanvasRef.ar.h() + 1) * GlobalConfig.j) + 50 > this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() ? this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() - 50 : var5;
+                int var7 = this.mainCanvasRef.ar.a() + this.mainCanvasRef.ar.c() - 50 - 20;
                 LoadingPage.a(var1, 1009050, 159, var7, var5, 50, 50);
                 var1.setColor(16776960);
                 var1.drawRect(var7 - 1, var5 - 1, 51, 51);
@@ -9467,24 +9479,24 @@ public final class ao_1 {
                 var1.setColor(0);
                 var1.drawRect(var7 + 9, var5 + 2, 31, 3);
                 var1.setColor(16711680);
-                var1.fillRect(var7 + 1 + 9, var5 + 1 + 2, 30 * GlobalStatus.gD[this.e.ar.g()] / GlobalStatus.gC[this.e.ar.g()], 2);
+                var1.fillRect(var7 + 1 + 9, var5 + 1 + 2, 30 * GlobalStatus.gD[this.mainCanvasRef.ar.g()] / GlobalStatus.gC[this.mainCanvasRef.ar.g()], 2);
                 var1.setColor(16777215);
                 var1.fillRect(var7 + 9, var5 + 7, 31, 3);
                 var1.setColor(0);
                 var1.drawRect(var7 + 9, var5 + 7, 31, 3);
                 var1.setColor(48127);
-                var1.fillRect(var7 + 1 + 9, var5 + 1 + 7, 30 * GlobalStatus.gF[this.e.ar.g()] / GlobalStatus.gE[this.e.ar.g()], 2);
-                MainCanvas.f.a(var1, (Frame1) this.aI, (int[]) null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 50 - this.aI.h() - 3, 20, 0);
+                var1.fillRect(var7 + 1 + 9, var5 + 1 + 7, 30 * GlobalStatus.gF[this.mainCanvasRef.ar.g()] / GlobalStatus.gE[this.mainCanvasRef.ar.g()], 2);
+                MainCanvas.pngUtil.a(var1, (Frame1) this.aI, (int[]) null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 50 - this.aI.h() - 3, 20, 0);
             }
         }
 
-        if (this.l != 1 && this.l != 2) {
-            if (this.l == 3) {
-                LoadingPage.a(var1, "是否将" + GlobalStatus.gt[this.e.ar.g()] + "从拍卖场中撤下？", new String[]{"确定", "取消"});
-            } else if (this.l == 4) {
+        if (this.sceneSubState != 1 && this.sceneSubState != 2) {
+            if (this.sceneSubState == 3) {
+                LoadingPage.a(var1, "是否将" + GlobalStatus.gt[this.mainCanvasRef.ar.g()] + "从拍卖场中撤下？", new String[]{"确定", "取消"});
+            } else if (this.sceneSubState == 4) {
                 this.b(var1, "拍卖价格");
             } else {
-                if (this.l == 5) {
+                if (this.sceneSubState == 5) {
                     LoadingPage.a(var1, "您确定以" + this.bR + "两的价格拍卖此物品?", new String[]{"确定", "取消"});
                 }
 
@@ -9495,68 +9507,68 @@ public final class ao_1 {
     }
 
     private void aF() {
-        this.l = 0;
-        this.e.aq.b();
-        this.e.aq.a("宠物仓库");
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("宠物仓库");
         if (GlobalStatus.gs != null && GlobalStatus.gs.length > 0) {
-            this.e.ar.a((Image[]) null, GlobalStatus.gt, (String[]) null, e(GlobalStatus.gu));
-            this.e.at.a(GlobalStatus.g(this.e.l, 0), GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.gt, (String[]) null, e(GlobalStatus.gu));
+            this.mainCanvasRef.at.a(GlobalStatus.g(this.mainCanvasRef.l, 0), GlobalConfig.i, (byte) 2);
         } else {
-            this.e.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
-            this.e.at.a((String) null, GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
+            this.mainCanvasRef.at.a((String) null, GlobalConfig.i, (byte) 2);
         }
 
-        this.e.at.a((byte) 1);
-        this.e.au.a("取回");
-        this.e.aq.a((al) this.e.ar);
-        this.e.aq.a((al) this.e.at);
+        this.mainCanvasRef.at.a((byte) 1);
+        this.mainCanvasRef.au.a("取回");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         if (GlobalStatus.gw != null) {
             a(GlobalStatus.gw[0], GlobalStatus.gx[0], GlobalStatus.gy[0], GlobalStatus.gz[0]);
             this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.gw[0] + "_0"), GlobalStatus.gx[0], GlobalStatus.gy[0], GlobalStatus.gz[0]);
         }
 
-        this.j = this.k = 35;
+        this.sceneStateShadow = this.currentSceneModeId = 35;
     }
 
     public final void D() {
         this.aF();
-        this.e.ar.a(this.aA, this.aE >= GlobalStatus.gs.length ? GlobalStatus.gs.length - 1 : this.aE);
+        this.mainCanvasRef.ar.a(this.aA, this.aE >= GlobalStatus.gs.length ? GlobalStatus.gs.length - 1 : this.aE);
         if (GlobalStatus.gw != null) {
-            a(GlobalStatus.gw[this.e.ar.g()], GlobalStatus.gx[this.e.ar.g()], GlobalStatus.gy[this.e.ar.g()], GlobalStatus.gz[this.e.ar.g()]);
-            this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.gw[this.e.ar.g()] + "_0"), GlobalStatus.gx[this.e.ar.g()], GlobalStatus.gy[this.e.ar.g()], GlobalStatus.gz[this.e.ar.g()]);
+            a(GlobalStatus.gw[this.mainCanvasRef.ar.g()], GlobalStatus.gx[this.mainCanvasRef.ar.g()], GlobalStatus.gy[this.mainCanvasRef.ar.g()], GlobalStatus.gz[this.mainCanvasRef.ar.g()]);
+            this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.gw[this.mainCanvasRef.ar.g()] + "_0"), GlobalStatus.gx[this.mainCanvasRef.ar.g()], GlobalStatus.gy[this.mainCanvasRef.ar.g()], GlobalStatus.gz[this.mainCanvasRef.ar.g()]);
         }
 
     }
 
     private void Q(int var1) {
         if (GlobalStatus.gs == null) {
-            this.e.touchPageCase = this.e.k;
+            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
             this.N();
         } else {
-            if (this.l == 0) {
-                if (this.e.aq != null) {
-                    this.e.aq.b(var1);
+            if (this.sceneSubState == 0) {
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.b(var1);
                 }
 
-                if (GlobalStatus.gA[this.e.ar.g()] != null && GlobalStatus.gA[this.e.ar.g()].length > 0 && this.e.at.a == 0) {
-                    for (byte var2 = 0; var2 < GlobalStatus.gA[this.e.ar.g()].length; ++var2) {
-                        this.a(GlobalStatus.gA[this.e.ar.g()]);
+                if (GlobalStatus.gA[this.mainCanvasRef.ar.g()] != null && GlobalStatus.gA[this.mainCanvasRef.ar.g()].length > 0 && this.mainCanvasRef.at.a == 0) {
+                    for (byte var2 = 0; var2 < GlobalStatus.gA[this.mainCanvasRef.ar.g()].length; ++var2) {
+                        this.a(GlobalStatus.gA[this.mainCanvasRef.ar.g()]);
                     }
                 }
 
                 if ((var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) && GlobalStatus.gs != null && GlobalStatus.gs.length > 0) {
-                    this.e.at.a(GlobalStatus.g(this.e.l, this.e.ar.g()), GlobalConfig.i, (byte) 2);
-                    this.e.at.a((byte) 1);
-                    a(GlobalStatus.gw[this.e.ar.g()], GlobalStatus.gx[this.e.ar.g()], GlobalStatus.gy[this.e.ar.g()], GlobalStatus.gz[this.e.ar.g()]);
-                    this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.gw[this.e.ar.g()] + "_0"), GlobalStatus.gx[this.e.ar.g()], GlobalStatus.gy[this.e.ar.g()], GlobalStatus.gz[this.e.ar.g()]);
+                    this.mainCanvasRef.at.a(GlobalStatus.g(this.mainCanvasRef.l, this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 2);
+                    this.mainCanvasRef.at.a((byte) 1);
+                    a(GlobalStatus.gw[this.mainCanvasRef.ar.g()], GlobalStatus.gx[this.mainCanvasRef.ar.g()], GlobalStatus.gy[this.mainCanvasRef.ar.g()], GlobalStatus.gz[this.mainCanvasRef.ar.g()]);
+                    this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.gw[this.mainCanvasRef.ar.g()] + "_0"), GlobalStatus.gx[this.mainCanvasRef.ar.g()], GlobalStatus.gy[this.mainCanvasRef.ar.g()], GlobalStatus.gz[this.mainCanvasRef.ar.g()]);
                 }
 
-                PngUtil.a(this.aI, this.e.ak);
+                PngUtil.a(this.aI, this.mainCanvasRef.ak);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
                         this.al = null;
@@ -9564,17 +9576,17 @@ public final class ao_1 {
                         this.m();
                     }
                 } else {
-                    this.aE = this.e.ar.g();
-                    this.aA = this.e.ar.h();
+                    this.aE = this.mainCanvasRef.ar.g();
+                    this.aA = this.mainCanvasRef.ar.h();
                     byte[] var4;
-                    if ((var4 = NetPayloadBuilder.o((short) 4162, GlobalStatus.ad, GlobalStatus.gs[this.e.ar.g()])) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                    if ((var4 = NetPayloadBuilder.o((short) 4162, GlobalStatus.ad, GlobalStatus.gs[this.mainCanvasRef.ar.g()])) == null) {
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     NetPacket var3 = new NetPacket((short) 4162, var4);
                     MainCanvas.netUtils.sendPacket(var3);
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 }
             }
 
@@ -9583,36 +9595,36 @@ public final class ao_1 {
 
     private void m(Graphics var1) {
         if (GlobalStatus.gs != null) {
-            if (this.e.aq != null) {
-                this.e.aq.a(var1);
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.a(var1);
             }
 
             Object var2 = null;
-            if (this.aI != null && this.l == 0 && GlobalStatus.gA[this.e.ar.g()] != null && GlobalStatus.gA[this.e.ar.g()].length > 0 && this.e.at.a == 0) {
-                Vector var4 = a(GlobalStatus.gA[this.e.ar.g()], GlobalStatus.gB[this.e.ar.g()]);
-                if (GlobalStatus.gG[this.e.ar.g()] > 11) {
-                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - 187 - 26, this.e.at.c + 3, 17, 17, 11, 1);
-                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.e.ar.g()] - 11) * 17 - 26, this.e.at.c + 24, 17, 17, GlobalStatus.gG[this.e.ar.g()] - 11, 1);
+            if (this.aI != null && this.sceneSubState == 0 && GlobalStatus.gA[this.mainCanvasRef.ar.g()] != null && GlobalStatus.gA[this.mainCanvasRef.ar.g()].length > 0 && this.mainCanvasRef.at.a == 0) {
+                Vector var4 = a(GlobalStatus.gA[this.mainCanvasRef.ar.g()], GlobalStatus.gB[this.mainCanvasRef.ar.g()]);
+                if (GlobalStatus.gG[this.mainCanvasRef.ar.g()] > 11) {
+                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - 187 - 26, this.mainCanvasRef.at.c + 3, 17, 17, 11, 1);
+                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.mainCanvasRef.ar.g()] - 11) * 17 - 26, this.mainCanvasRef.at.c + 24, 17, 17, GlobalStatus.gG[this.mainCanvasRef.ar.g()] - 11, 1);
                 } else {
-                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - GlobalStatus.gG[this.e.ar.g()] * 17 - 26, this.e.at.c + 3, 17, 17, GlobalStatus.gG[this.e.ar.g()], 1);
+                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - GlobalStatus.gG[this.mainCanvasRef.ar.g()] * 17 - 26, this.mainCanvasRef.at.c + 3, 17, 17, GlobalStatus.gG[this.mainCanvasRef.ar.g()], 1);
                 }
 
                 for (byte var3 = 0; var3 < var4.size(); ++var3) {
-                    if (GlobalStatus.gG[this.e.ar.g()] > 11) {
+                    if (GlobalStatus.gG[this.mainCanvasRef.ar.g()] > 11) {
                         if (var3 < 11) {
-                            MainCanvas.f.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (11 - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                            MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (11 - var3) * 17 - 23, this.mainCanvasRef.at.c + 4 + 2, 0, 0);
                         } else {
-                            MainCanvas.f.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
+                            MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.mainCanvasRef.ar.g()] - var3) * 17 - 23, this.mainCanvasRef.at.c + 4 + 2 + 21, 0, 0);
                         }
                     } else {
-                        MainCanvas.f.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                        MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.mainCanvasRef.ar.g()] - var3) * 17 - 23, this.mainCanvasRef.at.c + 4 + 2, 0, 0);
                     }
                 }
             }
 
-            if (this.aI != null && this.l == 0) {
+            if (this.aI != null && this.sceneSubState == 0) {
                 int var5;
-                var5 = (var5 = this.e.ar.b() + 2 + (this.e.ar.g() - this.e.ar.h()) * GlobalConfig.j) + 42 > this.e.ar.b() + this.e.ar.d() ? this.e.ar.b() + this.e.ar.d() - 42 : var5;
+                var5 = (var5 = this.mainCanvasRef.ar.b() + 2 + (this.mainCanvasRef.ar.g() - this.mainCanvasRef.ar.h()) * GlobalConfig.j) + 42 > this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() ? this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() - 42 : var5;
                 int var7 = GlobalConfig.f + GlobalConfig.realWidth - 50 - 20;
                 LoadingPage.a(var1, 1009050, 159, var7, var5, 50, 42);
                 var1.setColor(16776960);
@@ -9622,26 +9634,26 @@ public final class ao_1 {
                 var1.setColor(0);
                 var1.drawRect(var7 + 4, var5 + 2, 31, 3);
                 var1.setColor(16711680);
-                var1.fillRect(var7 + 1 + 4, var5 + 1 + 2, 30 * GlobalStatus.gD[this.e.ar.g()] / GlobalStatus.gC[this.e.ar.g()], 2);
+                var1.fillRect(var7 + 1 + 4, var5 + 1 + 2, 30 * GlobalStatus.gD[this.mainCanvasRef.ar.g()] / GlobalStatus.gC[this.mainCanvasRef.ar.g()], 2);
                 var1.setColor(16777215);
                 var1.fillRect(var7 + 4, var5 + 7, 31, 3);
                 var1.setColor(0);
                 var1.drawRect(var7 + 4, var5 + 7, 31, 3);
                 var1.setColor(48127);
-                var1.fillRect(var7 + 1 + 4, var5 + 1 + 7, 30 * GlobalStatus.gF[this.e.ar.g()] / GlobalStatus.gE[this.e.ar.g()], 2);
-                MainCanvas.f.a(var1, (Frame1) this.aI, (int[]) null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 21 - this.aI.h() / 2 + 6, 20, 0);
+                var1.fillRect(var7 + 1 + 4, var5 + 1 + 7, 30 * GlobalStatus.gF[this.mainCanvasRef.ar.g()] / GlobalStatus.gE[this.mainCanvasRef.ar.g()], 2);
+                MainCanvas.pngUtil.a(var1, (Frame1) this.aI, (int[]) null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 21 - this.aI.h() / 2 + 6, 20, 0);
             }
 
         }
     }
 
     public final void i(int var1) {
-        this.l = 0;
-        this.e.aq.b();
-        this.e.aq.a("升级技能");
-        this.e.aq.a(true);
-        this.e.as.a(new String[]{"武功"});
-        c_1 var10000 = this.e.ar;
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("升级技能");
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.as.a(new String[]{"武功"});
+        c_1 var10000 = this.mainCanvasRef.ar;
         Image[] var10001 = b(GlobalStatus.dH);
         String[] var10002 = GlobalStatus.dF;
         short[] var2 = GlobalStatus.dG;
@@ -9656,45 +9668,45 @@ public final class ao_1 {
 
         var10000.a(var10001, var10002, var3, (String[]) null);
         if (GlobalStatus.dI != null && GlobalStatus.dI.length > 0) {
-            this.e.ar.a(GlobalStatus.dI[var1], 2);
+            this.mainCanvasRef.ar.a(GlobalStatus.dI[var1], 2);
         }
 
-        this.e.ar.a(var1);
-        this.e.au.a("升级");
-        this.e.aq.a((al) this.e.as);
-        this.e.aq.a((al) this.e.ar);
+        this.mainCanvasRef.ar.a(var1);
+        this.mainCanvasRef.au.a("升级");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.j = this.k = 29;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.sceneStateShadow = this.currentSceneModeId = 29;
     }
 
     private void R(int var1) {
-        if (this.l == 0) {
+        if (this.sceneSubState == 0) {
             this.a(GlobalStatus.dH);
-            if (this.e.aq != null) {
-                this.e.ar.a(b(GlobalStatus.dH));
-                this.e.aq.b(var1);
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.ar.a(b(GlobalStatus.dH));
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if ((var1 == 1 || var1 == 4 || var1 == 514 || var1 == 520) && GlobalStatus.dI != null) {
-                this.e.ar.a(GlobalStatus.dI[this.e.ar.g()], 2);
+                this.mainCanvasRef.ar.a(GlobalStatus.dI[this.mainCanvasRef.ar.g()], 2);
             }
 
             if ((var1 == 268435456 || var1 == 1073741824 || var1 == 517) && GlobalStatus.dI != null) {
-                this.aE = this.e.ar.g();
-                this.aA = this.e.ar.h();
+                this.aE = this.mainCanvasRef.ar.g();
+                this.aA = this.mainCanvasRef.ar.h();
                 byte[] var2;
-                if ((var2 = NetPayloadBuilder.q((short) 4167, GlobalStatus.ad, GlobalStatus.dE[this.e.ar.g()])) == null) {
-                    this.e.processException("获取上传指令数据错误!");
+                if ((var2 = NetPayloadBuilder.q((short) 4167, GlobalStatus.ad, GlobalStatus.dE[this.mainCanvasRef.ar.g()])) == null) {
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                     return;
                 }
 
                 NetPacket var3 = new NetPacket((short) 4167, var2);
                 MainCanvas.netUtils.sendPacket(var3);
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
             } else if (var1 == 536870912 || GlobalStatus.dI == null) {
                 this.m();
             }
@@ -9719,11 +9731,11 @@ public final class ao_1 {
                     }
 
                     if (var7 != -1 && var6 >= 0 && var6 < 8) {
-                        MainCanvas.f.a(var1, b(var7), (int[]) null, (aj) null, 0, 0, var2 + 3 + var5 * 17, var3 + 3, 0, 0);
+                        MainCanvas.pngUtil.a(var1, b(var7), (int[]) null, (aj) null, 0, 0, var2 + 3 + var5 * 17, var3 + 3, 0, 0);
                     }
 
                     if (var6 >= 8) {
-                        MainCanvas.f.a(var1, F, (int[]) null, var6 == 8 ? 0 : 2, 0, 0, var2 + 3 + var5 * 17, var3 + 3, 0, 0);
+                        MainCanvas.pngUtil.a(var1, F, (int[]) null, var6 == 8 ? 0 : 2, 0, 0, var2 + 3 + var5 * 17, var3 + 3, 0, 0);
                     }
                 }
 
@@ -9765,9 +9777,9 @@ public final class ao_1 {
                 for (int var5 = 0; var5 < GlobalStatus.t.length; ++var5) {
                     if (GlobalStatus.t[var5] != null) {
                         if (GlobalStatus.t[var5].t == -1 && t_2 != null) {
-                            MainCanvas.f.a(var1, (Frame1) t_2, (int[]) null, 0, 0, this.aB + GlobalStatus.t[var5].c * this.aD / 16 - 10, this.aC + GlobalStatus.t[var5].d * this.aD / 16 - t_2.j() - 5, 0, 0);
+                            MainCanvas.pngUtil.a(var1, (Frame1) t_2, (int[]) null, 0, 0, this.aB + GlobalStatus.t[var5].c * this.aD / 16 - 10, this.aC + GlobalStatus.t[var5].d * this.aD / 16 - t_2.j() - 5, 0, 0);
                         } else if (GlobalStatus.t[var5].t == 1 && s != null) {
-                            MainCanvas.f.a(var1, (Frame1) s, (int[]) null, 0, 0, this.aB + GlobalStatus.t[var5].c * this.aD / 16 - 10, this.aC + GlobalStatus.t[var5].d * this.aD / 16 - s.j() - 5, 0, 0);
+                            MainCanvas.pngUtil.a(var1, (Frame1) s, (int[]) null, 0, 0, this.aB + GlobalStatus.t[var5].c * this.aD / 16 - 10, this.aC + GlobalStatus.t[var5].d * this.aD / 16 - s.j() - 5, 0, 0);
                         }
 
                         if (GlobalStatus.t[var5].b.length() <= 2) {
@@ -9777,7 +9789,7 @@ public final class ao_1 {
                         }
 
                         if (bo != null) {
-                            MainCanvas.f.a(var1, (Frame1) bo, (int[]) null, 0, 0, this.aB + GlobalStatus.t[var5].c * this.aD / 16, this.aC + GlobalStatus.t[var5].d * this.aD / 16, 0, 0);
+                            MainCanvas.pngUtil.a(var1, (Frame1) bo, (int[]) null, 0, 0, this.aB + GlobalStatus.t[var5].c * this.aD / 16, this.aC + GlobalStatus.t[var5].d * this.aD / 16, 0, 0);
                         }
                     }
                 }
@@ -9788,11 +9800,11 @@ public final class ao_1 {
     }
 
     public final void j(int var1) {
-        this.l = 0;
+        this.sceneSubState = 0;
         this.as = var1;
         this.bR = 0L;
-        this.e.aq.b();
-        this.e.aq.a("宠物列表");
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("宠物列表");
         if (this.as != 4 && this.as != 10 && this.as != 11) {
             if (GlobalStatus.fA != null && GlobalStatus.fA.length > 0) {
                 this.am = new String[GlobalStatus.fA.length];
@@ -9807,13 +9819,13 @@ public final class ao_1 {
                     var5[var6] = GlobalStatus.fB[var6] + "(" + GlobalStatus.ge[var6] + "灵)";
                 }
 
-                this.e.ar.a((Image[]) null, var5, e(GlobalStatus.fD), this.am);
+                this.mainCanvasRef.ar.a((Image[]) null, var5, e(GlobalStatus.fD), this.am);
             } else {
-                this.e.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
+                this.mainCanvasRef.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
             }
 
-            this.e.at.a(GlobalStatus.fA == null ? "" : GlobalStatus.e((StringBuffer) this.e.l, (int) 0), GlobalConfig.i, (byte) 2);
-            this.e.at.a((byte) 1);
+            this.mainCanvasRef.at.a(GlobalStatus.fA == null ? "" : GlobalStatus.e((StringBuffer) this.mainCanvasRef.l, (int) 0), GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a((byte) 1);
             if (GlobalStatus.fE != null) {
                 a(GlobalStatus.fE[0], GlobalStatus.fF[0], GlobalStatus.fG[0], GlobalStatus.fH[0]);
                 this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.fE[0] + "_0"), GlobalStatus.fF[0], GlobalStatus.fG[0], GlobalStatus.fH[0]);
@@ -9831,30 +9843,30 @@ public final class ao_1 {
                     this.bK[var2] = GlobalStatus.fz[GlobalStatus.fw[var2]] == 0 ? "休息" : "出战";
                 }
 
-                this.e.ar.a((Image[]) null, this.am, this.al, this.bK);
-                this.e.at.a(GlobalStatus.e(this.e.l, var1), GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.ar.a((Image[]) null, this.am, this.al, this.bK);
+                this.mainCanvasRef.at.a(GlobalStatus.e(this.mainCanvasRef.l, var1), GlobalConfig.i, (byte) 2);
                 if (GlobalStatus.fE != null) {
                     a(GlobalStatus.fE[var1], GlobalStatus.fF[var1], GlobalStatus.fG[var1], GlobalStatus.fH[var1]);
                     this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.fE[var1] + "_0"), GlobalStatus.fF[var1], GlobalStatus.fG[var1], GlobalStatus.fH[var1]);
                 }
             } else {
-                this.e.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
-                this.e.at.a((String) null, GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
+                this.mainCanvasRef.at.a((String) null, GlobalConfig.i, (byte) 2);
                 this.aI = null;
             }
 
-            this.e.at.a((byte) 1);
+            this.mainCanvasRef.at.a((byte) 1);
         }
 
-        this.e.au.a("确定");
-        this.e.aq.a((al) this.e.ar);
-        this.e.aq.a((al) this.e.at);
+        this.mainCanvasRef.au.a("确定");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.j = this.k = 13;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.sceneStateShadow = this.currentSceneModeId = 13;
     }
 
     public final void c(int var1, int var2, int var3) {
@@ -9864,15 +9876,15 @@ public final class ao_1 {
         }
 
         this.j((int) 0);
-        this.e.at.a(GlobalStatus.fA == null ? "" : GlobalStatus.e(this.e.l, var2), GlobalConfig.i, (byte) 2);
-        this.e.at.a((byte) 1);
+        this.mainCanvasRef.at.a(GlobalStatus.fA == null ? "" : GlobalStatus.e(this.mainCanvasRef.l, var2), GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.a((byte) 1);
         if (GlobalStatus.fE != null) {
             a(GlobalStatus.fE[var2], GlobalStatus.fF[var2], GlobalStatus.fG[var2], GlobalStatus.fH[var2]);
             this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.fE[var2] + "_0"), GlobalStatus.fF[var2], GlobalStatus.fG[var2], GlobalStatus.fH[var2]);
         }
 
-        this.j = this.k = 13;
-        this.e.ar.a(var3, var2);
+        this.sceneStateShadow = this.currentSceneModeId = 13;
+        this.mainCanvasRef.ar.a(var3, var2);
     }
 
     public final void k(int var1) {
@@ -9904,17 +9916,17 @@ public final class ao_1 {
             this.bO[var3] = this.bL[var3][0] + (this.bL[var3][1] != -1 ? "/" + this.bL[var3][1] : "");
         }
 
-        this.e.aq.b();
-        this.e.aq.a("宠物属性分配");
-        this.e.aq.a(false);
-        this.e.ar.a((Image[]) null, this.bN, (String[]) null, this.bO);
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("宠物属性分配");
+        this.mainCanvasRef.aq.a(false);
+        this.mainCanvasRef.ar.a((Image[]) null, this.bN, (String[]) null, this.bO);
         short var2 = MainCanvas.L.c;
-        this.e.aq.f = var2;
-        this.e.au.a(new String[]{"确定", "取消"});
-        this.e.aq.a((al) this.e.ar);
-        this.e.aq.a((al) this.e.au);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.j = this.k = 96;
+        this.mainCanvasRef.aq.f = var2;
+        this.mainCanvasRef.au.a(new String[]{"确定", "取消"});
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.sceneStateShadow = this.currentSceneModeId = 96;
     }
 
     private short S(int var1) {
@@ -9933,14 +9945,14 @@ public final class ao_1 {
             NetPacket var6 = new NetPacket((short) 4253, var7);
             MainCanvas.netUtils.sendPacket(var6);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     public final void c(boolean var1) {
         this.bV = new int[6][4];
         boolean var2 = false;
-        ao_1 var3 = this;
+        UISceneController var3 = this;
         if (var2) {
             this.aq = this.ar = 0;
         } else {
@@ -9953,57 +9965,57 @@ public final class ao_1 {
             }
         }
 
-        this.e.touchPageCase = this.e.k;
-        MainCanvas.f.a(this.f, h, i, false, true, 1009050);
-        this.j = this.k = 13;
-        this.l = 7;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        MainCanvas.pngUtil.a(this.f, h, i, false, true, 1009050);
+        this.sceneStateShadow = this.currentSceneModeId = 13;
+        this.sceneSubState = 7;
         LoadingPage.l = 0;
     }
 
     private void T(int var1) {
         if (GlobalStatus.fA != null && GlobalStatus.fA.length > 0) {
             if (this.as != 4 && this.as != 10 && this.as != 11 || GlobalStatus.fw != null && GlobalStatus.fw.length > 0) {
-                if (this.e.h) {
-                    this.e.h = false;
-                    String var4 = this.e.aC.getString();
+                if (this.mainCanvasRef.h) {
+                    this.mainCanvasRef.h = false;
+                    String var4 = this.mainCanvasRef.aC.getString();
                     byte[] var47;
-                    if ((var47 = NetPayloadBuilder.a((short) 4188, GlobalStatus.ad, (int) GlobalStatus.fA[this.e.ar.g()], (String) var4)) != null) {
+                    if ((var47 = NetPayloadBuilder.a((short) 4188, GlobalStatus.ad, (int) GlobalStatus.fA[this.mainCanvasRef.ar.g()], (String) var4)) != null) {
                         NetPacket var3 = new NetPacket((short) 4188, var47);
                         MainCanvas.netUtils.sendPacket(var3);
                     } else {
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                     }
 
-                    this.e.a((String) null);
-                    this.e.m();
+                    this.mainCanvasRef.a((String) null);
+                    this.mainCanvasRef.m();
                 }
 
-                if (this.l == 0) {
-                    if (this.e.aq != null) {
-                        this.e.aq.b(var1);
+                if (this.sceneSubState == 0) {
+                    if (this.mainCanvasRef.aq != null) {
+                        this.mainCanvasRef.aq.b(var1);
                     }
 
                     int var22 = 0;
                     if (this.as != 4 && this.as != 10 && this.as != 11) {
-                        var22 = this.e.ar.g();
+                        var22 = this.mainCanvasRef.ar.g();
                     } else {
-                        var22 = GlobalStatus.fw[this.e.ar.g()];
+                        var22 = GlobalStatus.fw[this.mainCanvasRef.ar.g()];
                     }
 
-                    if (GlobalStatus.gb[var22] != null && GlobalStatus.gb[var22].length > 0 && this.e.at.a == 0) {
+                    if (GlobalStatus.gb[var22] != null && GlobalStatus.gb[var22].length > 0 && this.mainCanvasRef.at.a == 0) {
                         for (byte var43 = 0; var43 < GlobalStatus.gb[var22].length; ++var43) {
                             this.a(GlobalStatus.gb[var22]);
                         }
                     }
 
                     if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-                        this.e.at.a(GlobalStatus.e(this.e.l, var22), GlobalConfig.i, (byte) 2);
-                        this.e.at.a((byte) 1);
+                        this.mainCanvasRef.at.a(GlobalStatus.e(this.mainCanvasRef.l, var22), GlobalConfig.i, (byte) 2);
+                        this.mainCanvasRef.at.a((byte) 1);
                         a(GlobalStatus.fE[var22], GlobalStatus.fF[var22], GlobalStatus.fG[var22], GlobalStatus.fH[var22]);
                         this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.fE[var22] + "_0"), GlobalStatus.fF[var22], GlobalStatus.fG[var22], GlobalStatus.fH[var22]);
                     }
 
-                    PngUtil.a(this.aI, this.e.ak);
+                    PngUtil.a(this.aI, this.mainCanvasRef.ak);
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                         if (var1 != 536870912 && GlobalStatus.fA != null) {
                             return;
@@ -10024,12 +10036,12 @@ public final class ao_1 {
                             this.aE = 0;
                         } else if (this.as != 1 && this.as != 6) {
                             if (this.as == 2) {
-                                this.l = 5;
+                                this.sceneSubState = 5;
                                 this.m();
                             } else if (this.as == 4) {
                                 this.b((byte) 1, true);
                                 this.ar = this.aU;
-                                this.e.ax = this.aV;
+                                this.mainCanvasRef.ax = this.aV;
                             } else if (this.as == 5) {
                                 this.m();
                             } else {
@@ -10047,71 +10059,71 @@ public final class ao_1 {
                             this.m();
                         }
                     } else {
-                        this.aA = this.e.ar.h();
-                        this.aE = this.e.ar.g();
+                        this.aA = this.mainCanvasRef.ar.h();
+                        this.aE = this.mainCanvasRef.ar.g();
                         if (this.as == 0) {
                             this.E();
-                            this.aE = this.e.ar.g();
+                            this.aE = this.mainCanvasRef.ar.g();
                         } else if (this.as == 1) {
-                            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.e.ar.i() * GlobalConfig.j + p, new String[]{"拍卖"}, false);
+                            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"拍卖"}, false);
                         } else if (this.as == 2) {
-                            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.e.ar.i() * GlobalConfig.j + p, new String[]{"寄养"}, false);
+                            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"寄养"}, false);
                         } else if (this.as == 4) {
-                            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.e.ar.i() * GlobalConfig.j + p, new String[]{"交易"}, false);
+                            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"交易"}, false);
                         } else if (this.as == 5) {
-                            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.e.ar.i() * GlobalConfig.j + p, new String[]{"出售", "取消"}, false);
+                            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"出售", "取消"}, false);
                         }
 
-                        this.l = 1;
+                        this.sceneSubState = 1;
                         if (this.as == 6) {
-                            this.l = 0;
+                            this.sceneSubState = 0;
                             byte[] var44;
-                            if ((var44 = NetPayloadBuilder.v((short) 4191, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()])) != null) {
+                            if ((var44 = NetPayloadBuilder.v((short) 4191, GlobalStatus.ad, GlobalStatus.fA[this.mainCanvasRef.ar.g()])) != null) {
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4191, var44));
-                                this.e.a((String) null);
+                                this.mainCanvasRef.a((String) null);
                                 return;
                             }
 
-                            this.e.processException("获取上传指令数据错误!");
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                         } else if (this.as == 10) {
-                            this.l = 0;
-                            this.c((int) GlobalStatus.fA[GlobalStatus.fw[this.e.ar.g()]], (byte) 0);
+                            this.sceneSubState = 0;
+                            this.c((int) GlobalStatus.fA[GlobalStatus.fw[this.mainCanvasRef.ar.g()]], (byte) 0);
                         } else {
                             if (this.as != 11) {
                                 return;
                             }
 
-                            this.l = 0;
+                            this.sceneSubState = 0;
                             if (cg_1.d) {
                                 cg_1.c = var22;
                                 byte[] var45;
                                 if ((var45 = NetPayloadBuilder.b((byte) 1, cg_1.a, GlobalStatus.fA[var22], 0)) != null) {
                                     NetPacket var8 = new NetPacket((short) 4691, var45);
                                     MainCanvas.netUtils.sendPacket(var8);
-                                    this.e.a((String) null);
+                                    this.mainCanvasRef.a((String) null);
                                     return;
                                 }
 
-                                this.e.processException("获取上传指令数据错误!");
+                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                             } else {
                                 cg_1.b = var22;
                                 byte[] var46;
                                 if ((var46 = NetPayloadBuilder.b((byte) 0, GlobalStatus.fA[var22], -1, 0)) != null) {
                                     NetPacket var9 = new NetPacket((short) 4691, var46);
                                     MainCanvas.netUtils.sendPacket(var9);
-                                    this.e.a((String) null);
+                                    this.mainCanvasRef.a((String) null);
                                     return;
                                 }
 
-                                this.e.processException("获取上传指令数据错误!");
+                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                             }
                         }
                     }
-                } else if (this.l == 1) {
+                } else if (this.sceneSubState == 1) {
                     LoadingPage.b(var1);
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                         if (var1 == 536870912) {
-                            this.l = 0;
+                            this.sceneSubState = 0;
                             return;
                         }
                     } else if (this.as == 0) {
@@ -10121,12 +10133,12 @@ public final class ao_1 {
                                 return;
                             }
 
-                            this.e.processException("背包中没有物品");
+                            this.mainCanvasRef.processException("背包中没有物品");
                             return;
                         }
 
                         if (LoadingPage.o == 1) {
-                            this.s(this.e.ar.g());
+                            this.s(this.mainCanvasRef.ar.g());
                             return;
                         }
 
@@ -10136,102 +10148,102 @@ public final class ao_1 {
                                 return;
                             }
 
-                            this.e.processException("背包中没有物品");
+                            this.mainCanvasRef.processException("背包中没有物品");
                             return;
                         }
 
                         if (LoadingPage.o == 3) {
-                            if (!GlobalStatus.gf[this.e.ar.g()].equals("")) {
-                                this.e.processException("该宠物已经自带星级了，星级为零的宠物才能做主宠。");
+                            if (!GlobalStatus.gf[this.mainCanvasRef.ar.g()].equals("")) {
+                                this.mainCanvasRef.processException("该宠物已经自带星级了，星级为零的宠物才能做主宠。");
                                 return;
                             }
 
-                            cg_1.b = this.e.ar.g();
+                            cg_1.b = this.mainCanvasRef.ar.g();
                             this.W.a();
                             byte[] var15;
-                            if ((var15 = NetPayloadBuilder.b((byte) 0, GlobalStatus.fA[this.e.ar.g()], -1, 0)) == null) {
-                                this.e.processException("获取上传指令数据错误!");
+                            if ((var15 = NetPayloadBuilder.b((byte) 0, GlobalStatus.fA[this.mainCanvasRef.ar.g()], -1, 0)) == null) {
+                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                                 return;
                             }
 
                             NetPacket var36 = new NetPacket((short) 4691, var15);
                             MainCanvas.netUtils.sendPacket(var36);
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                         } else if (LoadingPage.o == 4) {
-                            if (GlobalStatus.fz[this.e.ar.g()] == 0) {
+                            if (GlobalStatus.fz[this.mainCanvasRef.ar.g()] == 0) {
                                 byte[] var16;
-                                if ((var16 = NetPayloadBuilder.h((short) 4163, GlobalStatus.ad, (int) GlobalStatus.fA[this.e.ar.g()])) == null) {
-                                    this.e.processException("获取上传指令数据错误!");
+                                if ((var16 = NetPayloadBuilder.h((short) 4163, GlobalStatus.ad, (int) GlobalStatus.fA[this.mainCanvasRef.ar.g()])) == null) {
+                                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
                                 NetPacket var37 = new NetPacket((short) 4163, var16);
                                 MainCanvas.netUtils.sendPacket(var37);
-                                this.e.a((String) null);
-                            } else if (GlobalStatus.fz[this.e.ar.g()] == 1) {
+                                this.mainCanvasRef.a((String) null);
+                            } else if (GlobalStatus.fz[this.mainCanvasRef.ar.g()] == 1) {
                                 byte[] var17;
-                                if ((var17 = NetPayloadBuilder.i((short) 4164, GlobalStatus.ad, (int) GlobalStatus.fA[this.e.ar.g()])) == null) {
-                                    this.e.processException("获取上传指令数据错误!");
+                                if ((var17 = NetPayloadBuilder.i((short) 4164, GlobalStatus.ad, (int) GlobalStatus.fA[this.mainCanvasRef.ar.g()])) == null) {
+                                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
                                 NetPacket var38 = new NetPacket((short) 4164, var17);
                                 MainCanvas.netUtils.sendPacket(var38);
-                                this.e.a((String) null);
+                                this.mainCanvasRef.a((String) null);
                             }
                         } else {
                             if (LoadingPage.o == 5) {
-                                this.W(this.e.ar.g());
+                                this.W(this.mainCanvasRef.ar.g());
                                 return;
                             }
 
                             if (LoadingPage.o == 6) {
-                                this.e.f("宠物名称");
+                                this.mainCanvasRef.f("宠物名称");
                                 return;
                             }
 
                             if (LoadingPage.o == 7) {
-                                this.aE = this.e.ar.g();
-                                this.k(this.e.ar.g());
+                                this.aE = this.mainCanvasRef.ar.g();
+                                this.k(this.mainCanvasRef.ar.g());
                                 return;
                             }
 
                             if (LoadingPage.o == 8) {
-                                LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.e.ar.i() * GlobalConfig.j + p, new String[]{"列表", "开灵"}, false);
-                                this.l = 9;
+                                LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"列表", "开灵"}, false);
+                                this.sceneSubState = 9;
                                 return;
                             }
 
                             if (LoadingPage.o == 9) {
                                 byte[] var39;
-                                if ((var39 = NetPayloadBuilder.z((short) 4613, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()])) == null) {
-                                    this.e.processException("获取上传指令数据错误!");
+                                if ((var39 = NetPayloadBuilder.z((short) 4613, GlobalStatus.ad, GlobalStatus.fA[this.mainCanvasRef.ar.g()])) == null) {
+                                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
                                 NetPacket var52 = new NetPacket((short) 4148, var39);
                                 MainCanvas.netUtils.sendPacket(var52);
-                                this.e.a((String) null);
+                                this.mainCanvasRef.a((String) null);
                             } else if (LoadingPage.o == 10) {
                                 byte[] var18;
-                                if ((var18 = NetPayloadBuilder.b(GlobalStatus.fA[this.e.ar.g()])) == null) {
-                                    this.e.processException("获取上传指令数据错误!");
+                                if ((var18 = NetPayloadBuilder.b(GlobalStatus.fA[this.mainCanvasRef.ar.g()])) == null) {
+                                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
                                 NetPacket var40 = new NetPacket((short) 4686, var18);
                                 MainCanvas.netUtils.sendPacket(var40);
-                                this.e.a((String) null);
+                                this.mainCanvasRef.a((String) null);
                             }
                         }
                     } else {
                         if (this.as == 1) {
-                            if (GlobalStatus.fz[this.e.ar.g()] == 1) {
-                                this.e.processException("出战宠物不能拍卖");
+                            if (GlobalStatus.fz[this.mainCanvasRef.ar.g()] == 1) {
+                                this.mainCanvasRef.processException("出战宠物不能拍卖");
                                 return;
                             }
 
-                            this.l = 3;
+                            this.sceneSubState = 3;
                             this.o();
                             return;
                         }
@@ -10239,83 +10251,83 @@ public final class ao_1 {
                         if (this.as == 2) {
                             if (LoadingPage.o == 0) {
                                 byte[] var19;
-                                if ((var19 = NetPayloadBuilder.k((short) 4161, GlobalStatus.ad, (int) GlobalStatus.fA[this.e.ar.g()])) == null) {
-                                    this.e.processException("获取上传指令数据错误!");
+                                if ((var19 = NetPayloadBuilder.k((short) 4161, GlobalStatus.ad, (int) GlobalStatus.fA[this.mainCanvasRef.ar.g()])) == null) {
+                                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
                                 NetPacket var41 = new NetPacket((short) 4161, var19);
                                 MainCanvas.netUtils.sendPacket(var41);
-                                this.e.a((String) null);
+                                this.mainCanvasRef.a((String) null);
                             }
                         } else if (this.as == 4) {
                             if (LoadingPage.o == 0) {
-                                int var20 = GlobalStatus.fw[this.e.ar.g()];
+                                int var20 = GlobalStatus.fw[this.mainCanvasRef.ar.g()];
                                 if (GlobalStatus.fz[var20] == 0) {
-                                    byte[] var53 = NetPayloadBuilder.i((short) 4172, GlobalStatus.ad, GlobalStatus.fA[var20], this.e.ax % 10);
+                                    byte[] var53 = NetPayloadBuilder.i((short) 4172, GlobalStatus.ad, GlobalStatus.fA[var20], this.mainCanvasRef.ax % 10);
                                     NetPacket var54 = new NetPacket((short) 4172, var53);
                                     MainCanvas.netUtils.sendPacket(var54);
                                     this.b((byte) 1, true);
                                     this.ar = this.aU;
-                                    this.e.ax = this.aV;
-                                    this.e.a((String) null);
+                                    this.mainCanvasRef.ax = this.aV;
+                                    this.mainCanvasRef.a((String) null);
                                     return;
                                 }
 
-                                this.e.processException("出战宠物不能交易");
+                                this.mainCanvasRef.processException("出战宠物不能交易");
                             }
                         } else if (this.as == 5) {
                             if (LoadingPage.o == 0) {
-                                if (GlobalStatus.fz[this.e.ar.g()] != 0) {
-                                    this.e.processException("出战宠物不能出售");
+                                if (GlobalStatus.fz[this.mainCanvasRef.ar.g()] != 0) {
+                                    this.mainCanvasRef.processException("出战宠物不能出售");
                                     return;
                                 }
 
                                 byte[] var21;
-                                if ((var21 = NetPayloadBuilder.r((short) 4146, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()])) == null) {
-                                    this.e.processException("获取上传指令数据错误!");
+                                if ((var21 = NetPayloadBuilder.r((short) 4146, GlobalStatus.ad, GlobalStatus.fA[this.mainCanvasRef.ar.g()])) == null) {
+                                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
                                 NetPacket var42 = new NetPacket((short) 4146, var21);
                                 MainCanvas.netUtils.sendPacket(var42);
-                                this.e.a((String) null);
+                                this.mainCanvasRef.a((String) null);
                             } else if (LoadingPage.o == 1) {
-                                this.l = 0;
+                                this.sceneSubState = 0;
                                 return;
                             }
                         }
                     }
-                } else if (this.l == 2) {
+                } else if (this.sceneSubState == 2) {
                     LoadingPage.b(var1);
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                         if (var1 == 536870912) {
                             this.E();
-                            this.l = 1;
+                            this.sceneSubState = 1;
                             return;
                         }
                     } else if (LoadingPage.o == 1) {
                         byte[] var14;
-                        if ((var14 = NetPayloadBuilder.g((short) 4165, GlobalStatus.ad, (int) GlobalStatus.fA[this.e.ar.g()])) == null) {
-                            this.e.processException("获取上传指令数据错误!");
+                        if ((var14 = NetPayloadBuilder.g((short) 4165, GlobalStatus.ad, (int) GlobalStatus.fA[this.mainCanvasRef.ar.g()])) == null) {
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         NetPacket var35 = new NetPacket((short) 4165, var14);
                         MainCanvas.netUtils.sendPacket(var35);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     } else if (LoadingPage.o == 0) {
                         this.E();
-                        this.l = 1;
+                        this.sceneSubState = 1;
                         return;
                     }
-                } else if (this.l == 3) {
+                } else if (this.sceneSubState == 3) {
                     if (var1 != 268435456 && var1 != 1073741824) {
                         if (var1 != 1073741824) {
                             if (var1 == 536870912) {
-                                this.e.o();
-                                LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.e.ar.i() * GlobalConfig.j + p, new String[]{"拍卖"}, false);
-                                this.l = 1;
+                                this.mainCanvasRef.o();
+                                LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"拍卖"}, false);
+                                this.sceneSubState = 1;
                                 return;
                             }
 
@@ -10324,52 +10336,52 @@ public final class ao_1 {
                         }
                     } else {
                         if (this.n() == -1L) {
-                            this.e.processException("输入有误,请重新输入");
+                            this.mainCanvasRef.processException("输入有误,请重新输入");
                             return;
                         }
 
                         try {
                             this.bR = this.n();
                             if (this.bR <= 999999999L) {
-                                this.l = 4;
+                                this.sceneSubState = 4;
                                 LoadingPage.h = 0;
                                 return;
                             }
 
-                            this.e.processException("价格太高,请重新输入!");
+                            this.mainCanvasRef.processException("价格太高,请重新输入!");
                         } catch (Exception var5) {
-                            this.e.processException("输入有误,请重新输入");
+                            this.mainCanvasRef.processException("输入有误,请重新输入");
                             return;
                         }
                     }
-                } else if (this.l == 4) {
+                } else if (this.sceneSubState == 4) {
                     if (var1 != 268435456 && var1 != 1073741824) {
                         if (var1 == 536870912) {
-                            this.l = 3;
+                            this.sceneSubState = 3;
                             this.o();
                             return;
                         }
                     } else {
                         byte[] var13;
-                        if ((var13 = NetPayloadBuilder.a((short) 4148, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()], (int) 1, this.bR)) == null) {
-                            this.e.processException("获取上传指令数据错误!");
+                        if ((var13 = NetPayloadBuilder.a((short) 4148, GlobalStatus.ad, GlobalStatus.fA[this.mainCanvasRef.ar.g()], (int) 1, this.bR)) == null) {
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         NetPacket var34 = new NetPacket((short) 4148, var13);
                         MainCanvas.netUtils.sendPacket(var34);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     }
-                } else if (this.l == 7) {
+                } else if (this.sceneSubState == 7) {
                     this.a(GlobalStatus.jK);
-                    PngUtil.a(this.aI, this.e.ak);
+                    PngUtil.a(this.aI, this.mainCanvasRef.ak);
                     if (var1 != 8 && var1 != 516) {
                         if (var1 != 2 && var1 != 518) {
                             if (var1 == 536870912) {
                                 this.c((int) 0, (int) this.aE, (int) this.aA);
                                 this.E();
                                 LoadingPage.o = 9;
-                                this.l = 1;
+                                this.sceneSubState = 1;
                             } else {
                                 if (var1 != 268435456 && var1 != 517 && var1 != 1073741824) {
                                     return;
@@ -10382,7 +10394,7 @@ public final class ao_1 {
                                 }
 
                                 LoadingPage.a((GlobalConfig.defaultWidth - GlobalConfig.i.stringWidth("操作") - 20) / 2, (GlobalConfig.defaultHigh - (GlobalConfig.j + 3) * 6) / 2, new String[]{"查看", "更换", "卸下", "升星", "洗炼", "附魔"}, true);
-                                this.l = 8;
+                                this.sceneSubState = 8;
                             }
                         } else {
                             this.aq = this.aq + 1 > 5 ? 0 : this.aq + 1;
@@ -10392,7 +10404,7 @@ public final class ao_1 {
                         this.aq = this.aq - 1 < 0 ? 5 : this.aq - 1;
                         LoadingPage.l = 0;
                     }
-                } else if (this.l == 8) {
+                } else if (this.sceneSubState == 8) {
                     LoadingPage.b(var1);
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                         if (var1 == 536870912) {
@@ -10402,7 +10414,7 @@ public final class ao_1 {
                     } else {
                         if (LoadingPage.o == 0) {
                             GlobalStatus.b((int) l(this.aq));
-                            this.O.a(0, (short) this.k, this.as);
+                            this.O.a(0, (short) this.currentSceneModeId, this.as);
                             return;
                         }
 
@@ -10416,15 +10428,15 @@ public final class ao_1 {
                             if ((var24 = l(this.aq)) >= 0 && var24 <= 6) {
                                 byte[] var48;
                                 if ((var48 = NetPayloadBuilder.d((short) 4615, GlobalStatus.ad, GlobalStatus.jG, (byte) var24)) == null) {
-                                    this.e.processException("获取上传指令数据错误!");
+                                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
                                 NetPacket var49 = new NetPacket((short) 4614, var48);
                                 MainCanvas.netUtils.sendPacket(var49);
-                                this.e.a((String) null);
+                                this.mainCanvasRef.a((String) null);
                             } else {
-                                this.e.processException("卸下失败");
+                                this.mainCanvasRef.processException("卸下失败");
                             }
                         } else if (LoadingPage.o == 3) {
                             this.aJ = true;
@@ -10441,13 +10453,13 @@ public final class ao_1 {
                             Object var26 = null;
                             byte[] var27;
                             if ((var27 = NetPayloadBuilder.a((short) 4689, var2, (byte) 0, (byte) -1, GlobalStatus.ad)) == null) {
-                                this.e.processException("获取上传指令数据错误!");
+                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                                 return;
                             }
 
                             NetPacket var6 = new NetPacket((short) 4689, var27);
                             MainCanvas.netUtils.sendPacket(var6);
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                         } else if (LoadingPage.o == 4) {
                             this.aJ = true;
                             this.O.d();
@@ -10463,15 +10475,15 @@ public final class ao_1 {
                             o_1.h = 2;
                             byte[] var29;
                             if ((var29 = NetPayloadBuilder.a((short) 4688, var10, -1L, (byte) 0, o_1.h, GlobalStatus.jG, (byte[]) null, GlobalStatus.ad)) == null) {
-                                this.e.processException("获取上传指令数据错误!");
+                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                                 return;
                             }
 
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4688, var29));
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                         } else if (LoadingPage.o == 5) {
                             if (this.P == null) {
-                                this.P = new r(this, this.e, MainCanvas.f);
+                                this.P = new r(this, this.mainCanvasRef, MainCanvas.pngUtil);
                             }
 
                             this.P.b();
@@ -10487,73 +10499,73 @@ public final class ao_1 {
 
                             byte[] var31;
                             if ((var31 = NetPayloadBuilder.a((short) 4262, var11, -1L, (byte) 0, (int[]) null, (byte[]) null, -1, (byte) 0, GlobalStatus.ad)) == null) {
-                                this.e.processException("获取上传指令数据错误!");
+                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                                 return;
                             }
 
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4262, var31));
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                         }
                     }
-                } else if (this.l == 9) {
+                } else if (this.sceneSubState == 9) {
                     LoadingPage.b(var1);
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                         if (var1 == 536870912) {
                             this.E();
                             LoadingPage.o = 8;
-                            this.l = 1;
+                            this.sceneSubState = 1;
                             return;
                         }
                     } else if (LoadingPage.o == 0) {
-                        int var12 = this.e.ar.g();
+                        int var12 = this.mainCanvasRef.ar.g();
                         this.ay = var12;
-                        if (GlobalStatus.fz[this.e.ar.g()] == 0) {
-                            byte[] var32 = NetPayloadBuilder.u((short) 4189, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()]);
+                        if (GlobalStatus.fz[this.mainCanvasRef.ar.g()] == 0) {
+                            byte[] var32 = NetPayloadBuilder.u((short) 4189, GlobalStatus.ad, GlobalStatus.fA[this.mainCanvasRef.ar.g()]);
                             NetPacket var7 = new NetPacket((short) 4189, var32);
                             MainCanvas.netUtils.sendPacket(var7);
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                         } else {
                             if (GlobalStatus.cR != null && GlobalStatus.cR.length > 0) {
                                 this.a(false, false);
                                 return;
                             }
 
-                            this.e.processException("宠物没有技能!");
+                            this.mainCanvasRef.processException("宠物没有技能!");
                         }
                     } else if (LoadingPage.o == 1) {
                         this.cj = (byte) this.aq;
                         this.e((int) 14);
                         return;
                     }
-                } else if (this.l == 10) {
-                    if (this.e.aq != null) {
-                        this.e.aq.b(var1);
+                } else if (this.sceneSubState == 10) {
+                    if (this.mainCanvasRef.aq != null) {
+                        this.mainCanvasRef.aq.b(var1);
                     }
 
                     if (var1 == 536870912) {
-                        this.l = 8;
+                        this.sceneSubState = 8;
                         return;
                     }
-                } else if (this.l == 11) {
+                } else if (this.sceneSubState == 11) {
                     if (var1 == 268435456) {
-                        int var33 = GlobalStatus.fA[this.e.ar.g()];
+                        int var33 = GlobalStatus.fA[this.mainCanvasRef.ar.g()];
                         byte[] var50;
                         if ((var50 = NetPayloadBuilder.a(var33)) == null) {
-                            this.e.processException("获取上传指令数据错误!");
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         NetPacket var51 = new NetPacket((short) 4682, var50);
                         MainCanvas.netUtils.sendPacket(var51);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     } else if (var1 == 536870912) {
-                        this.l = 0;
+                        this.sceneSubState = 0;
                     }
                 }
 
             }
         } else {
-            this.e.touchPageCase = this.e.k;
+            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
             this.N();
         }
     }
@@ -10611,20 +10623,20 @@ public final class ao_1 {
             if ((var3 = NetPayloadBuilder.b((short) 4614, GlobalStatus.ad, GlobalStatus.jG, var1, (byte) var2)) != null) {
                 NetPacket var4 = new NetPacket((short) 4614, var3);
                 MainCanvas.netUtils.sendPacket(var4);
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
             } else {
-                this.e.processException("获取上传指令数据错误!");
+                this.mainCanvasRef.processException("获取上传指令数据错误!");
             }
         } else {
-            this.e.processException("装备失败");
+            this.mainCanvasRef.processException("装备失败");
         }
     }
 
     public final void E() {
-        if (GlobalStatus.fz[this.e.ar.g()] == 0) {
-            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.e.ar.i() * GlobalConfig.j + p, new String[]{"喂养", "附魂", "学习", "继承", "出战", "状态", "改名", "配点", "技能", "装备", "炼化"}, false);
+        if (GlobalStatus.fz[this.mainCanvasRef.ar.g()] == 0) {
+            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"喂养", "附魂", "学习", "继承", "出战", "状态", "改名", "配点", "技能", "装备", "炼化"}, false);
         } else {
-            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.e.ar.i() * GlobalConfig.j + p, new String[]{"喂养", "附魂", "学习", "继承", "休息", "状态", "改名", "配点", "技能", "装备", "炼化"}, false);
+            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"喂养", "附魂", "学习", "继承", "休息", "状态", "改名", "配点", "技能", "装备", "炼化"}, false);
         }
     }
 
@@ -10633,51 +10645,51 @@ public final class ao_1 {
         if (GlobalStatus.fA != null) {
             if (this.as != 4 || GlobalStatus.fw != null && GlobalStatus.fw.length > 0) {
                 int var3 = 0;
-                if (this.l != 7 && this.l != 8 && this.l != 10) {
-                    if (this.e.aq != null) {
-                        this.e.aq.a(var1);
+                if (this.sceneSubState != 7 && this.sceneSubState != 8 && this.sceneSubState != 10) {
+                    if (this.mainCanvasRef.aq != null) {
+                        this.mainCanvasRef.aq.a(var1);
                     }
 
                     if (this.as != 4 && this.as != 10 && this.as != 11) {
-                        var3 = this.e.ar.g();
+                        var3 = this.mainCanvasRef.ar.g();
                     } else {
-                        var3 = GlobalStatus.fw[this.e.ar.g()];
+                        var3 = GlobalStatus.fw[this.mainCanvasRef.ar.g()];
                     }
 
-                    if (this.aI != null && this.l == 0 && GlobalStatus.gb[var3] != null && GlobalStatus.gb[var3].length > 0 && this.e.at.a == 0) {
+                    if (this.aI != null && this.sceneSubState == 0 && GlobalStatus.gb[var3] != null && GlobalStatus.gb[var3].length > 0 && this.mainCanvasRef.at.a == 0) {
                         Vector var5 = a(GlobalStatus.gb[var3], GlobalStatus.gd[var3]);
                         if (GlobalStatus.ge[var3] > 11) {
-                            this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - 187 - 26, this.e.at.c + 3, 17, 17, 11, 1);
-                            this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.ge[var3] - 11) * 17 - 26, this.e.at.c + 24, 17, 17, GlobalStatus.ge[var3] - 11, 1);
+                            this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - 187 - 26, this.mainCanvasRef.at.c + 3, 17, 17, 11, 1);
+                            this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.ge[var3] - 11) * 17 - 26, this.mainCanvasRef.at.c + 24, 17, 17, GlobalStatus.ge[var3] - 11, 1);
                         } else {
-                            this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - GlobalStatus.ge[var3] * 17 - 26, this.e.at.c + 3, 17, 17, GlobalStatus.ge[var3], 1);
+                            this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - GlobalStatus.ge[var3] * 17 - 26, this.mainCanvasRef.at.c + 3, 17, 17, GlobalStatus.ge[var3], 1);
                         }
 
                         for (byte var4 = 0; var4 < var5.size(); ++var4) {
                             if (GlobalStatus.ge[var3] > 11) {
                                 if (var4 < 11) {
-                                    MainCanvas.f.a(var1, b(((Short) var5.elementAt(var4)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (11 - var4) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                                    MainCanvas.pngUtil.a(var1, b(((Short) var5.elementAt(var4)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (11 - var4) * 17 - 23, this.mainCanvasRef.at.c + 4 + 2, 0, 0);
                                 } else {
-                                    MainCanvas.f.a(var1, b(((Short) var5.elementAt(var4)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.ge[var3] - var4) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
+                                    MainCanvas.pngUtil.a(var1, b(((Short) var5.elementAt(var4)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.ge[var3] - var4) * 17 - 23, this.mainCanvasRef.at.c + 4 + 2 + 21, 0, 0);
                                 }
                             } else {
-                                MainCanvas.f.a(var1, b(((Short) var5.elementAt(var4)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.ge[var3] - var4) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                                MainCanvas.pngUtil.a(var1, b(((Short) var5.elementAt(var4)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.ge[var3] - var4) * 17 - 23, this.mainCanvasRef.at.c + 4 + 2, 0, 0);
                             }
                         }
                     }
                 }
 
                 if (this.as == 4) {
-                    var3 = GlobalStatus.fw[this.e.ar.g()];
+                    var3 = GlobalStatus.fw[this.mainCanvasRef.ar.g()];
                 } else {
-                    var3 = this.e.ar.g();
+                    var3 = this.mainCanvasRef.ar.g();
                 }
 
-                if (this.aI != null && this.l == 0) {
+                if (this.aI != null && this.sceneSubState == 0) {
                     int var12 = 0;
                     int var6 = 0;
-                    var6 = (var6 = this.e.ar.b() + 2 + (this.e.ar.g() - this.e.ar.h() + 1) * GlobalConfig.j) + 50 > this.e.ar.b() + this.e.ar.d() ? this.e.ar.b() + this.e.ar.d() - 50 : var6;
-                    var12 = this.e.ar.a() + this.e.ar.c() - 50 - 20;
+                    var6 = (var6 = this.mainCanvasRef.ar.b() + 2 + (this.mainCanvasRef.ar.g() - this.mainCanvasRef.ar.h() + 1) * GlobalConfig.j) + 50 > this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() ? this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() - 50 : var6;
+                    var12 = this.mainCanvasRef.ar.a() + this.mainCanvasRef.ar.c() - 50 - 20;
                     LoadingPage.a(var1, 1009050, 159, var12, var6, 50, 50);
                     var1.setColor(16776960);
                     var1.drawRect(var12 - 1, var6 - 1, 51, 51);
@@ -10693,53 +10705,53 @@ public final class ao_1 {
                     var1.drawRect(var12 + 9, var6 + 7, 31, 3);
                     var1.setColor(48127);
                     var1.fillRect(var12 + 1 + 9, var6 + 1 + 7, 30 * GlobalStatus.fK[var3] / GlobalStatus.fL[var3], 2);
-                    MainCanvas.f.a(var1, (Frame1) this.aI, (int[]) null, 0, 0, var12 + 25 - this.aI.g() / 2, var6 + 50 - this.aI.h() - 3, 20, 0);
+                    MainCanvas.pngUtil.a(var1, (Frame1) this.aI, (int[]) null, 0, 0, var12 + 25 - this.aI.g() / 2, var6 + 50 - this.aI.h() - 3, 20, 0);
                 }
 
-                if (this.l != 1 && this.l != 2 && this.l != 9) {
-                    if (this.l == 3) {
+                if (this.sceneSubState != 1 && this.sceneSubState != 2 && this.sceneSubState != 9) {
+                    if (this.sceneSubState == 3) {
                         this.b(var1, "请输入拍卖价格:");
-                    } else if (this.l == 4) {
+                    } else if (this.sceneSubState == 4) {
                         LoadingPage.a(var1, "您确定以" + this.bR + "两的价格拍卖此宠物1只?", new String[]{"确定", "取消"});
-                    } else if (this.l == 6) {
+                    } else if (this.sceneSubState == 6) {
                         this.a((Graphics) var1, (int) 1);
-                    } else if (this.l == 7) {
+                    } else if (this.sceneSubState == 7) {
                         this.a(var1, this.aI);
-                    } else if (this.l == 8) {
+                    } else if (this.sceneSubState == 8) {
                         this.a(var1, this.aI);
                         LoadingPage.c(var1);
                     } else {
-                        if (this.l == 10) {
-                            if (this.e.aq != null) {
-                                this.e.aq.a(30);
-                                this.e.aq.a(var1);
-                                LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 32, this.e.aq.c - 11, 30, 1);
-                                LoadingPage.a(var1, (String) "宝石", (int) (this.e.aq.a + 10), this.e.aq.b + 35 + GlobalConfig.a(25), 20, 16776960, 0);
+                        if (this.sceneSubState == 10) {
+                            if (this.mainCanvasRef.aq != null) {
+                                this.mainCanvasRef.aq.a(30);
+                                this.mainCanvasRef.aq.a(var1);
+                                LoadingPage.a(var1, this.mainCanvasRef.aq.a + 5, this.mainCanvasRef.aq.b + 32, this.mainCanvasRef.aq.c - 11, 30, 1);
+                                LoadingPage.a(var1, (String) "宝石", (int) (this.mainCanvasRef.aq.a + 10), this.mainCanvasRef.aq.b + 35 + GlobalConfig.a(25), 20, 16776960, 0);
                             }
 
                             if (GlobalStatus.jM != null) {
                                 for (int var14 = 0; var14 < GlobalStatus.jH.length; ++var14) {
                                     if (n(GlobalStatus.jJ[var14]) == this.aq && GlobalStatus.jM[var14] != null) {
-                                        this.a(var1, this.e.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:"), this.e.aq.b + 37, 17, 17, GlobalStatus.jM[var14].length, 1);
+                                        this.a(var1, this.mainCanvasRef.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:"), this.mainCanvasRef.aq.b + 37, 17, 17, GlobalStatus.jM[var14].length, 1);
 
                                         for (byte var9 = 0; var9 < GlobalStatus.jM[var14].length; ++var9) {
                                             if (GlobalStatus.jM[var14][var9] <= -1) {
-                                                LoadingPage.a(var1, 125269879, 207, this.e.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var9 * 17, this.e.aq.b + 39, 17, 17);
+                                                LoadingPage.a(var1, 125269879, 207, this.mainCanvasRef.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.aq.b + 39, 17, 17);
                                             }
 
                                             if (GlobalStatus.jM[var14][var9] > 0) {
-                                                MainCanvas.f.a(var1, b(GlobalStatus.jM[var14][var9]), (int[]) null, (aj) null, 0, 0, this.e.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var9 * 17, this.e.aq.b + 39, 0, 0);
+                                                MainCanvas.pngUtil.a(var1, b(GlobalStatus.jM[var14][var9]), (int[]) null, (aj) null, 0, 0, this.mainCanvasRef.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.aq.b + 39, 0, 0);
                                             }
 
                                             var1.setColor(16776960);
-                                            var1.drawRect(this.e.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var9 * 17, this.e.aq.b + 39, 17, 17);
+                                            var1.drawRect(this.mainCanvasRef.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.aq.b + 39, 17, 17);
                                         }
                                     }
                                 }
 
                                 return;
                             }
-                        } else if (this.l == 11) {
+                        } else if (this.sceneSubState == 11) {
                             String var15 = "炼化条件:" + GlobalStatus.nC[0] + "\t";
                             var15 = var15 + "炼化所得:" + GlobalStatus.nC[2] + "\t";
                             var15 = var15 + "消耗:" + GlobalStatus.nC[1] + "\t";
@@ -10770,111 +10782,111 @@ public final class ao_1 {
     }
 
     private void W(int var1) {
-        GlobalConfig.clearStr(this.e.l);
-        this.e.l.append("名称：" + GlobalStatus.fB[var1] + '\t');
-        this.e.l.append("星级:").append(GlobalStatus.gf[var1]).append('\t');
-        this.e.l.append("种类：" + GlobalStatus.fC[var1] + '\t');
-        this.e.l.append("级别：" + GlobalStatus.fD[var1] + '\t');
-        this.e.l.append("经验：" + (GlobalStatus.fY[var1] - GlobalStatus.ga[var1]) + '/' + (GlobalStatus.fZ[var1] - GlobalStatus.ga[var1]) + '\t');
-        this.e.l.append("生命：" + GlobalStatus.fI[var1] + '/' + GlobalStatus.fJ[var1] + '\t');
-        this.e.l.append("内力：" + GlobalStatus.fK[var1] + '/' + GlobalStatus.fL[var1] + '\t');
-        this.e.l.append("物攻：" + GlobalStatus.fM[var1] + '/' + GlobalStatus.fN[var1] + '\t');
-        this.e.l.append("法攻：" + GlobalStatus.fO[var1] + '/' + GlobalStatus.fP[var1] + '\t');
-        this.e.l.append("防御：" + GlobalStatus.fQ[var1] + '/' + GlobalStatus.fR[var1] + '\t');
-        this.e.l.append("速度：" + GlobalStatus.fS[var1] + '\t');
-        this.e.l.append("冰抗：" + GlobalStatus.fT[var1] + '\t');
-        this.e.l.append("火抗：" + GlobalStatus.fU[var1] + '\t');
-        this.e.l.append("雷抗：" + GlobalStatus.fV[var1] + '\t');
-        this.e.l.append(GlobalStatus.fX[var1]);
+        GlobalConfig.clearStr(this.mainCanvasRef.l);
+        this.mainCanvasRef.l.append("名称：" + GlobalStatus.fB[var1] + '\t');
+        this.mainCanvasRef.l.append("星级:").append(GlobalStatus.gf[var1]).append('\t');
+        this.mainCanvasRef.l.append("种类：" + GlobalStatus.fC[var1] + '\t');
+        this.mainCanvasRef.l.append("级别：" + GlobalStatus.fD[var1] + '\t');
+        this.mainCanvasRef.l.append("经验：" + (GlobalStatus.fY[var1] - GlobalStatus.ga[var1]) + '/' + (GlobalStatus.fZ[var1] - GlobalStatus.ga[var1]) + '\t');
+        this.mainCanvasRef.l.append("生命：" + GlobalStatus.fI[var1] + '/' + GlobalStatus.fJ[var1] + '\t');
+        this.mainCanvasRef.l.append("内力：" + GlobalStatus.fK[var1] + '/' + GlobalStatus.fL[var1] + '\t');
+        this.mainCanvasRef.l.append("物攻：" + GlobalStatus.fM[var1] + '/' + GlobalStatus.fN[var1] + '\t');
+        this.mainCanvasRef.l.append("法攻：" + GlobalStatus.fO[var1] + '/' + GlobalStatus.fP[var1] + '\t');
+        this.mainCanvasRef.l.append("防御：" + GlobalStatus.fQ[var1] + '/' + GlobalStatus.fR[var1] + '\t');
+        this.mainCanvasRef.l.append("速度：" + GlobalStatus.fS[var1] + '\t');
+        this.mainCanvasRef.l.append("冰抗：" + GlobalStatus.fT[var1] + '\t');
+        this.mainCanvasRef.l.append("火抗：" + GlobalStatus.fU[var1] + '\t');
+        this.mainCanvasRef.l.append("雷抗：" + GlobalStatus.fV[var1] + '\t');
+        this.mainCanvasRef.l.append(GlobalStatus.fX[var1]);
         if (GlobalStatus.gc != null && GlobalStatus.gc[var1] != null && GlobalStatus.gc[var1].length > 0) {
             for (byte var2 = 0; var2 < GlobalStatus.gc[var1].length; ++var2) {
-                this.e.l.append((var2 == 0 ? "技能：" : "，") + GlobalStatus.gc[var1][var2]);
+                this.mainCanvasRef.l.append((var2 == 0 ? "技能：" : "，") + GlobalStatus.gc[var1][var2]);
                 if (var2 == GlobalStatus.gc[var1].length - 1) {
-                    this.e.l.append("\t");
+                    this.mainCanvasRef.l.append("\t");
                 }
             }
         }
 
         if (GlobalStatus.gh[var1] != null) {
-            this.e.l.append("技能附魂:");
+            this.mainCanvasRef.l.append("技能附魂:");
 
             for (int var3 = 0; var3 < GlobalStatus.gh[var1].length; ++var3) {
                 if (GlobalStatus.gh[var1][var3] != null) {
-                    this.e.l.append(GlobalStatus.gh[var1][var3]);
-                    this.e.l.append(",");
+                    this.mainCanvasRef.l.append(GlobalStatus.gh[var1][var3]);
+                    this.mainCanvasRef.l.append(",");
                 }
             }
 
-            this.e.l.append('\t');
+            this.mainCanvasRef.l.append('\t');
         }
 
         if (GlobalStatus.gl[var1] != null) {
-            this.e.l.append("状态附魂:");
+            this.mainCanvasRef.l.append("状态附魂:");
 
             for (int var4 = 0; var4 < GlobalStatus.gl[var1].length; ++var4) {
                 if (GlobalStatus.gl[var1][var4] != null) {
-                    this.e.l.append(GlobalStatus.gl[var1][var4]);
-                    this.e.l.append(",");
+                    this.mainCanvasRef.l.append(GlobalStatus.gl[var1][var4]);
+                    this.mainCanvasRef.l.append(",");
                 }
             }
 
-            this.e.l.append('\t');
+            this.mainCanvasRef.l.append('\t');
         }
 
-        this.e.aq.j();
-        this.e.aq.a("宠物属性");
-        this.e.aq.a(true);
-        this.e.at.a(this.e.l.toString(), GlobalConfig.i, (byte) 2);
-        this.e.aq.a((al) this.e.at);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.j = this.k = 95;
+        this.mainCanvasRef.aq.j();
+        this.mainCanvasRef.aq.a("宠物属性");
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.at.a(this.mainCanvasRef.l.toString(), GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.sceneStateShadow = this.currentSceneModeId = 95;
     }
 
     private void X(int var1) {
-        if (this.e.aq != null) {
-            this.e.aq.b(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.b(var1);
         }
 
         if (var1 == 268435456 || var1 == 536870912) {
             this.c((int) 0, (int) this.aE, (int) this.aA);
             LoadingPage.o = 5;
-            this.l = 1;
+            this.sceneSubState = 1;
         }
 
     }
 
     private void p(Graphics var1) {
-        if (this.e.aq != null) {
-            this.e.aq.a(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.a(var1);
         }
 
     }
 
     public final void F() {
-        this.l = 0;
-        this.e.aw = 0;
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aw = 0;
         LoadingPage.l = 0;
         this.aq = this.ar = 0;
-        this.e.aq.b();
-        this.e.aq.a("买东西");
-        this.e.aq.a(true);
-        this.e.as.a(new String[]{"货柜一"});
-        this.e.as.a((byte) 1);
-        this.e.aq.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("买东西");
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.as.a(new String[]{"货柜一"});
+        this.mainCanvasRef.as.a((byte) 1);
+        this.mainCanvasRef.aq.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
         if (GlobalStatus.bY != null && GlobalStatus.bY.length > 0) {
-            this.e.at.a(Y((this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a(Y((this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
         } else {
-            this.e.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
         }
 
-        this.e.at.a((byte) 1);
-        this.e.au.a("");
-        this.e.aq.a((al) this.e.as);
-        this.e.aq.a((al) this.e.at);
-        this.e.aq.a((al) this.e.au);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 8;
+        this.mainCanvasRef.at.a((byte) 1);
+        this.mainCanvasRef.au.a("");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 8;
     }
 
     private static String Y(int var0) {
@@ -10969,12 +10981,12 @@ public final class ao_1 {
 
     private void aG() {
         if (GlobalStatus.bY != null && (this.ar << 3) + this.aq < GlobalStatus.bY.length) {
-            this.e.at.a(Y((this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a(Y((this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
         } else {
-            this.e.at.a("没有商品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有商品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
         }
 
-        this.e.at.a((byte) 1);
+        this.mainCanvasRef.at.a((byte) 1);
         LoadingPage.l = 0;
     }
 
@@ -10990,33 +11002,33 @@ public final class ao_1 {
         if ((var3 = NetPayloadBuilder.a((short) 4138, GlobalStatus.ad, (int) var2, (int) GlobalStatus.bY[(this.ar << 3) + this.aq], (byte) ((byte) var1))) != null) {
             NetPacket var4 = new NetPacket((short) 4138, var3);
             MainCanvas.netUtils.sendPacket(var4);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     private void q(Graphics var1) {
-        if (this.e.aq != null) {
+        if (this.mainCanvasRef.aq != null) {
             int var2 = GlobalConfig.realHigh <= 240 ? 79 : 120;
-            this.e.aq.a(var2);
-            this.e.aq.a(var1);
-            LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 29 + this.e.as.b, this.e.aq.c - 11, var2, 1);
+            this.mainCanvasRef.aq.a(var2);
+            this.mainCanvasRef.aq.a(var1);
+            LoadingPage.a(var1, this.mainCanvasRef.aq.a + 5, this.mainCanvasRef.aq.b + 29 + this.mainCanvasRef.as.b, this.mainCanvasRef.aq.c - 11, var2, 1);
             LoadingPage.a(var1);
-            var2 = (this.e.aq.c - 11 - (x.b << 3)) / 9;
+            var2 = (this.mainCanvasRef.aq.c - 11 - (x.b << 3)) / 9;
             int var3 = ((GlobalConfig.realHigh <= 240 ? 79 : 120) - 6 - (x.b << 2)) / 5;
-            int var4 = this.e.aq.a + 8 + var2;
-            int var5 = this.e.aq.b + 33 + this.e.as.b + var3;
+            int var4 = this.mainCanvasRef.aq.a + 8 + var2;
+            int var5 = this.mainCanvasRef.aq.b + 33 + this.mainCanvasRef.as.b + var3;
 
             for (int var6 = 0; var6 < 32; ++var6) {
-                MainCanvas.f.a(var1, x, (int[]) null, (aj) null, 0, 0, var6 % 8 * (x.b + var2) + var4, var6 / 8 * (x.b + var3) + var5, 0, 0);
+                MainCanvas.pngUtil.a(var1, x, (int[]) null, (aj) null, 0, 0, var6 % 8 * (x.b + var2) + var4, var6 / 8 * (x.b + var3) + var5, 0, 0);
                 this.a((int) var6, var6 % 8 * (x.b + var2) + var4, var6 / 8 * (x.b + var3) + var5, (int) x.b, (int) x.c);
             }
 
             int var9 = -1;
 
             for (int var7 = 0; var7 < GlobalStatus.cb.length; ++var7) {
-                MainCanvas.f.a(var1, b(GlobalStatus.cb[var7]), (int[]) null, (aj) null, 0, 0, var7 % 8 * (x.b + var2) + var4 + 1, var7 / 8 * (x.b + var3) + var5 + 1, 0, 0);
+                MainCanvas.pngUtil.a(var1, b(GlobalStatus.cb[var7]), (int[]) null, (aj) null, 0, 0, var7 % 8 * (x.b + var2) + var4 + 1, var7 / 8 * (x.b + var3) + var5 + 1, 0, 0);
                 if (var7 == (this.ar << 3) + this.aq) {
                     var9 = var7;
                 }
@@ -11028,19 +11040,19 @@ public final class ao_1 {
                 LoadingPage.a(var1, GlobalStatus.bZ[var9], GlobalStatus.cp[var9], var4 + this.aq * (x.b + var2) + x.b / 2, var5 + this.ar * (x.b + var3) + x.b / 2);
             }
 
-            this.a(var1, GlobalStatus.ap, GlobalConfig.defaultWidth / 2 + x.b, this.e.au.a() + GlobalConfig.a(MainCanvas.E.c));
-            MainCanvas.f.a(var1, w, (int[]) null, (aj) null, 0, 0, GlobalConfig.a(GlobalConfig.defaultWidth, this.e.l.toString()) - x.b, this.e.au.a() + 4, 0, 0);
+            this.a(var1, GlobalStatus.ap, GlobalConfig.defaultWidth / 2 + x.b, this.mainCanvasRef.au.a() + GlobalConfig.a(MainCanvas.E.c));
+            MainCanvas.pngUtil.a(var1, w, (int[]) null, (aj) null, 0, 0, GlobalConfig.a(GlobalConfig.defaultWidth, this.mainCanvasRef.l.toString()) - x.b, this.mainCanvasRef.au.a() + 4, 0, 0);
         }
 
-        if (this.l == 2) {
+        if (this.sceneSubState == 2) {
             this.a(var1, "数量");
         }
 
     }
 
     private void a(Graphics var1, long var2, int var4, int var5) {
-        GlobalConfig.a(this.e.l, var2);
-        LoadingPage.a(var1, (String) this.e.l.toString(), (int) var4, var5, 17, 16776917, 0);
+        GlobalConfig.a(this.mainCanvasRef.l, var2);
+        LoadingPage.a(var1, (String) this.mainCanvasRef.l.toString(), (int) var4, var5, 17, 16776917, 0);
     }
 
     public static String a(StringBuffer var0, long var1) {
@@ -11055,10 +11067,10 @@ public final class ao_1 {
     }
 
     private void aa(int var1) {
-        if (this.l == 0) {
+        if (this.sceneSubState == 0) {
             this.aV();
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -11106,7 +11118,7 @@ public final class ao_1 {
 
                 if (var2.g > 1) {
                     this.a((long) var2.g);
-                    this.l = 2;
+                    this.sceneSubState = 2;
                 } else {
                     this.aE = this.aq;
                     this.aG = this.ar;
@@ -11115,15 +11127,15 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.e.a((String) "重要物品输入OK卖出", (int) 0);
+                    this.mainCanvasRef.a((String) "重要物品输入OK卖出", (int) 0);
                     this.ag = 1;
                 }
             }
-        } else if (this.l == 2) {
+        } else if (this.sceneSubState == 2) {
             this.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                 }
             } else {
                 this.aE = this.aq;
@@ -11133,7 +11145,7 @@ public final class ao_1 {
                     return;
                 }
 
-                this.e.a((String) "重要物品输入OK卖出", (int) 0);
+                this.mainCanvasRef.a((String) "重要物品输入OK卖出", (int) 0);
             }
         }
 
@@ -11144,43 +11156,43 @@ public final class ao_1 {
         if ((var2 = NetPayloadBuilder.d((short) 4139, GlobalStatus.ad, this.z((this.ar << 3) + this.aq), (int) var1)) != null) {
             NetPacket var3 = new NetPacket((short) 4139, var2);
             MainCanvas.netUtils.sendPacket(var3);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     public final void n(int var1) {
-        this.l = 0;
-        this.e.aw = 0;
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aw = 0;
         this.as = var1;
         LoadingPage.l = 0;
-        this.e.aq.b();
-        this.e.aq.a("");
-        this.e.aq.a(true);
-        this.e.as.a(new String[]{" 一 ", " 二 ", " 三 ", " 四 ", " 五 "});
-        this.e.as.a((byte) 1);
-        this.e.aq.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
-        this.e.as.a = this.aH;
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("");
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.as.a(new String[]{" 一 ", " 二 ", " 三 ", " 四 ", " 五 "});
+        this.mainCanvasRef.as.a((byte) 1);
+        this.mainCanvasRef.aq.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
+        this.mainCanvasRef.as.a = this.aH;
         this.aq = this.aF;
         this.ar = this.aG;
         if (GlobalStatus.ct != null && GlobalStatus.ct.length > 0) {
-            this.e.at.a(GlobalStatus.a(this.k, this.e.l, (this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a(GlobalStatus.a(this.currentSceneModeId, this.mainCanvasRef.l, (this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
         } else {
-            this.e.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
         }
 
-        this.e.at.a((byte) 1);
-        this.e.au.a("");
-        this.e.aq.a((al) this.e.as);
-        this.e.aq.a((al) this.e.at);
+        this.mainCanvasRef.at.a((byte) 1);
+        this.mainCanvasRef.au.a("");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 11;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 11;
     }
 
     private void ab(int var1) {
@@ -11195,7 +11207,7 @@ public final class ao_1 {
                 this.an = new String[]{"取出物品", "存入物品"};
                 K = new TextRender(GlobalStatus.t[this.af].b + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
                 LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
-                this.l = 3;
+                this.sceneSubState = 3;
             } else if (this.as == 1) {
                 this.an = new String[]{"拍卖物品", "拍卖场", "拍卖场仓库"};
                 K = new TextRender(GlobalStatus.t[this.af].b + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
@@ -11203,10 +11215,10 @@ public final class ao_1 {
             }
         }
 
-        if (this.l == 0) {
+        if (this.sceneSubState == 0) {
             this.a(GlobalStatus.cx);
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 == 1024 || var1 == 2048) {
@@ -11223,7 +11235,7 @@ public final class ao_1 {
                         this.an = new String[]{"取出物品", "存入物品"};
                         K = new TextRender(GlobalStatus.t[this.af].b + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
-                        this.l = 3;
+                        this.sceneSubState = 3;
                         return;
                     }
 
@@ -11260,22 +11272,22 @@ public final class ao_1 {
                     this.G();
                     return;
                 }
-            } else if (GlobalStatus.ct != null && (this.e.as.a << 5) + (this.ar << 3) + this.aq < GlobalStatus.ct.length) {
+            } else if (GlobalStatus.ct != null && (this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq < GlobalStatus.ct.length) {
                 if (this.as == 0) {
-                    if (GlobalStatus.a(GlobalStatus.cv[(this.e.as.a << 5) + (this.ar << 3) + this.aq])) {
+                    if (GlobalStatus.a(GlobalStatus.cv[(this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq])) {
                         LoadingPage.a(3 + this.aq * 17 + 8 + o, 2 * GlobalConfig.j + 13 + this.ar * 17 + 17 + p, new String[]{"查看", "取出"}, false);
-                        this.l = 4;
+                        this.sceneSubState = 4;
                         return;
                     }
 
-                    if (GlobalStatus.cw[(this.e.as.a << 5) + (this.ar << 3) + this.aq] > 1) {
-                        this.a((long) GlobalStatus.cw[(this.e.as.a << 5) + (this.ar << 3) + this.aq]);
-                        this.l = 2;
+                    if (GlobalStatus.cw[(this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq] > 1) {
+                        this.a((long) GlobalStatus.cw[(this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq]);
+                        this.sceneSubState = 2;
                         return;
                     }
 
-                    if (GlobalStatus.ct == null || GlobalStatus.cw[(this.e.as.a << 5) + (this.ar << 3) + this.aq] <= 0) {
-                        this.l = 0;
+                    if (GlobalStatus.ct == null || GlobalStatus.cw[(this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq] <= 0) {
+                        this.sceneSubState = 0;
                         return;
                     }
 
@@ -11284,25 +11296,25 @@ public final class ao_1 {
                         return;
                     }
                 } else if (this.as == 1) {
-                    if (GlobalStatus.ct != null && GlobalStatus.cw[(this.e.as.a << 5) + (this.ar << 3) + this.aq] > 0) {
-                        this.ad(GlobalStatus.ct[(this.e.as.a << 5) + (this.ar << 3) + this.aq]);
+                    if (GlobalStatus.ct != null && GlobalStatus.cw[(this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq] > 0) {
+                        this.ad(GlobalStatus.ct[(this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq]);
                         return;
                     }
 
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             }
-        } else if (this.l == 2) {
+        } else if (this.sceneSubState == 2) {
             this.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else {
-                if (GlobalStatus.ct == null || GlobalStatus.cw[(this.e.as.a << 5) + (this.ar << 3) + this.aq] <= 0) {
-                    this.l = 0;
+                if (GlobalStatus.ct == null || GlobalStatus.cw[(this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq] <= 0) {
+                    this.sceneSubState = 0;
                     return;
                 }
 
@@ -11312,33 +11324,33 @@ public final class ao_1 {
                 }
 
                 if (this.as == 1) {
-                    this.ad(GlobalStatus.ct[(this.e.as.a << 5) + (this.ar << 3) + this.aq]);
+                    this.ad(GlobalStatus.ct[(this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq]);
                     return;
                 }
             }
-        } else if (this.l == 4) {
+        } else if (this.sceneSubState == 4) {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                 }
             } else {
                 if (LoadingPage.o == 0) {
-                    this.aH = this.e.as.a;
-                    GlobalStatus.c((this.e.as.a << 5) + (this.ar << 3) + this.aq);
-                    this.O.a(0, (short) this.k, this.as);
+                    this.aH = this.mainCanvasRef.as.a;
+                    GlobalStatus.c((this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq);
+                    this.O.a(0, (short) this.currentSceneModeId, this.as);
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
-                    if (GlobalStatus.cw[(this.e.as.a << 5) + (this.ar << 3) + this.aq] > 1) {
-                        this.a((long) GlobalStatus.cw[(this.e.as.a << 5) + (this.ar << 3) + this.aq]);
-                        this.l = 2;
+                    if (GlobalStatus.cw[(this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq] > 1) {
+                        this.a((long) GlobalStatus.cw[(this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq]);
+                        this.sceneSubState = 2;
                         return;
                     }
 
-                    if (GlobalStatus.ct == null || GlobalStatus.cw[(this.e.as.a << 5) + (this.ar << 3) + this.aq] <= 0) {
-                        this.l = 0;
+                    if (GlobalStatus.ct == null || GlobalStatus.cw[(this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq] <= 0) {
+                        this.sceneSubState = 0;
                         return;
                     }
 
@@ -11353,24 +11365,24 @@ public final class ao_1 {
     }
 
     public final void G() {
-        if (GlobalStatus.ct != null && (this.e.as.a << 5) + (this.ar << 3) + this.aq < GlobalStatus.ct.length) {
-            this.e.at.a(GlobalStatus.a(this.k, this.e.l, (this.e.as.a << 5) + (this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
+        if (GlobalStatus.ct != null && (this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq < GlobalStatus.ct.length) {
+            this.mainCanvasRef.at.a(GlobalStatus.a(this.currentSceneModeId, this.mainCanvasRef.l, (this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
         } else {
-            this.e.at.a("没有商品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有商品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
         }
 
-        this.e.at.a((byte) 1);
+        this.mainCanvasRef.at.a((byte) 1);
         LoadingPage.l = 0;
     }
 
     private void ac(int var1) {
         byte[] var2;
-        if ((var2 = NetPayloadBuilder.f((short) 4158, GlobalStatus.ad, GlobalStatus.ct[(this.e.as.a << 5) + (this.ar << 3) + this.aq], (int) var1)) != null) {
+        if ((var2 = NetPayloadBuilder.f((short) 4158, GlobalStatus.ad, GlobalStatus.ct[(this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq], (int) var1)) != null) {
             NetPacket var3 = new NetPacket((short) 4158, var2);
             MainCanvas.netUtils.sendPacket(var3);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -11379,56 +11391,56 @@ public final class ao_1 {
         if ((var2 = NetPayloadBuilder.p((short) 4155, GlobalStatus.ad, var1)) != null) {
             NetPacket var3 = new NetPacket((short) 4155, var2);
             MainCanvas.netUtils.sendPacket(var3);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     private void r(Graphics var1) {
         if (GlobalStatus.ct != null && GlobalStatus.ct.length > 0) {
-            if (this.e.aq != null) {
-                this.e.aq.a("仓库");
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.a("仓库");
                 int var2 = GlobalConfig.realHigh <= 240 ? 79 : 120;
-                this.e.aq.a(var2);
-                this.e.aq.a(var1);
-                LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 29 + this.e.as.b, this.e.aq.c - 11, var2, 1);
+                this.mainCanvasRef.aq.a(var2);
+                this.mainCanvasRef.aq.a(var1);
+                LoadingPage.a(var1, this.mainCanvasRef.aq.a + 5, this.mainCanvasRef.aq.b + 29 + this.mainCanvasRef.as.b, this.mainCanvasRef.aq.c - 11, var2, 1);
                 LoadingPage.a(var1);
-                var2 = (this.e.aq.c - 11 - (x.b << 3)) / 9;
+                var2 = (this.mainCanvasRef.aq.c - 11 - (x.b << 3)) / 9;
                 int var3 = ((GlobalConfig.realHigh <= 240 ? 79 : 120) - 6 - (x.b << 2)) / 5;
-                int var4 = this.e.aq.a + 8 + var2;
-                int var5 = this.e.aq.b + 33 + this.e.as.b + var3;
+                int var4 = this.mainCanvasRef.aq.a + 8 + var2;
+                int var5 = this.mainCanvasRef.aq.b + 33 + this.mainCanvasRef.as.b + var3;
 
                 for (int var6 = 0; var6 < 32; ++var6) {
-                    MainCanvas.f.a(var1, x, (int[]) null, (aj) null, 0, 0, var6 % 8 * (x.b + var2) + var4, var6 / 8 * (x.b + var3) + var5, 0, 0);
+                    MainCanvas.pngUtil.a(var1, x, (int[]) null, (aj) null, 0, 0, var6 % 8 * (x.b + var2) + var4, var6 / 8 * (x.b + var3) + var5, 0, 0);
                     this.a((int) var6, var6 % 8 * (x.b + var2) + var4, var6 / 8 * (x.b + var3) + var5, (int) x.b, (int) x.c);
                 }
 
                 int var10 = 0;
 
-                for (int var7 = this.e.as.a << 5; var7 < (GlobalStatus.cx.length > this.e.as.a + 1 << 5 ? this.e.as.a + 1 << 5 : GlobalStatus.cx.length); ++var7) {
+                for (int var7 = this.mainCanvasRef.as.a << 5; var7 < (GlobalStatus.cx.length > this.mainCanvasRef.as.a + 1 << 5 ? this.mainCanvasRef.as.a + 1 << 5 : GlobalStatus.cx.length); ++var7) {
                     int var8 = var7 % 32;
-                    MainCanvas.f.a(var1, b(GlobalStatus.cx[var7]), (int[]) null, (aj) null, 0, 0, var8 % 8 * (x.b + var2) + var4 + 1, var8 / 8 * (x.b + var3) + var5 + 1, 0, 0);
+                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.cx[var7]), (int[]) null, (aj) null, 0, 0, var8 % 8 * (x.b + var2) + var4 + 1, var8 / 8 * (x.b + var3) + var5 + 1, 0, 0);
                     if (GlobalStatus.cw[var7] > 9) {
-                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.cw[var7] / 10, 0, 0, 10 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
-                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.cw[var7] % 10, 0, 0, 14 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
+                        MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.cw[var7] / 10, 0, 0, 10 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
+                        MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.cw[var7] % 10, 0, 0, 14 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
                     } else if (GlobalStatus.cw[var7] > 1) {
-                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.cw[var7] % 10, 0, 0, 14 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
+                        MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.cw[var7] % 10, 0, 0, 14 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
                     }
 
-                    if (var7 == (this.ar << 3) + this.aq + 32 * this.e.as.a) {
+                    if (var7 == (this.ar << 3) + this.aq + 32 * this.mainCanvasRef.as.a) {
                         var10 = var7;
                     }
                 }
 
                 LoadingPage.d(var1, var4 + this.aq * (x.b + var2), var5 + this.ar * (x.b + var3), 17, 17);
-                if (var10 >= 0 && var10 < GlobalStatus.cx.length && var10 == (this.ar << 3) + this.aq + 32 * this.e.as.a) {
+                if (var10 >= 0 && var10 < GlobalStatus.cx.length && var10 == (this.ar << 3) + this.aq + 32 * this.mainCanvasRef.as.a) {
                     LoadingPage.a(var1, GlobalStatus.cu[var10] + "X" + GlobalStatus.cw[var10], GlobalStatus.cy[var10], var4 + this.aq * (x.b + var2) + x.b / 2, var5 + this.ar * (x.b + var3) + x.b / 2);
                 }
             }
 
-            if (this.l != 1 && this.l != 4) {
-                if (this.l == 2) {
+            if (this.sceneSubState != 1 && this.sceneSubState != 4) {
+                if (this.sceneSubState == 2) {
                     this.a(var1, "数量");
                 }
 
@@ -11439,42 +11451,42 @@ public final class ao_1 {
     }
 
     public final void H() {
-        this.e.aq.b();
-        this.e.aq.a("物品拍卖场");
-        this.e.ar.a((Image[]) null, new String[]{"关键字", "武器", "头盔", "衣甲", "鞋子", "饰品", "书籍", "材料", "打造"}, (String[]) null, (String[]) null);
-        this.e.au.a("搜索");
-        this.e.aq.a((al) this.e.ar);
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("物品拍卖场");
+        this.mainCanvasRef.ar.a((Image[]) null, new String[]{"关键字", "武器", "头盔", "衣甲", "鞋子", "饰品", "书籍", "材料", "打造"}, (String[]) null, (String[]) null);
+        this.mainCanvasRef.au.a("搜索");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.j = this.k = 14;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.sceneStateShadow = this.currentSceneModeId = 14;
     }
 
     private void ae(int var1) {
-        if (this.e.aq != null) {
-            this.e.aq.b(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.b(var1);
         }
 
         if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                 this.al = null;
                 this.m();
-                this.e.ar.a(this.ai);
+                this.mainCanvasRef.ar.a(this.ai);
             }
 
         } else {
-            this.aU = this.e.ar.g();
-            if (this.e.ar.g() == 0) {
-                this.e.e("物品关键字搜索");
+            this.aU = this.mainCanvasRef.ar.g();
+            if (this.mainCanvasRef.ar.g() == 0) {
+                this.mainCanvasRef.e("物品关键字搜索");
             } else {
                 this.aK = "";
                 this.aL = GlobalConfig.P[this.aU - 1];
                 this.aM = 1;
                 this.aN = 0;
                 this.a(this.aK, this.aL, this.aM, this.aN);
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
             }
         }
     }
@@ -11485,7 +11497,7 @@ public final class ao_1 {
             NetPacket var5 = new NetPacket((short) 4153, var6);
             MainCanvas.netUtils.sendPacket(var5);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -11495,7 +11507,7 @@ public final class ao_1 {
             NetPacket var5 = new NetPacket((short) 4147, var6);
             MainCanvas.netUtils.sendPacket(var5);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -11509,38 +11521,38 @@ public final class ao_1 {
 
     public final void I() {
         this.a(GlobalStatus.ec);
-        this.e.aq.b();
-        if (this.k != 23) {
-            this.e.as.a(new String[]{"低价", "高价"});
-            this.e.as.a((byte) 0);
+        this.mainCanvasRef.aq.b();
+        if (this.currentSceneModeId != 23) {
+            this.mainCanvasRef.as.a(new String[]{"低价", "高价"});
+            this.mainCanvasRef.as.a((byte) 0);
         }
 
         if (GlobalStatus.dY != null && GlobalStatus.dY.length > 0) {
-            this.e.ar.a(b(GlobalStatus.ec), a(this.e.l, GlobalStatus.dZ, GlobalStatus.eb), this.a(GlobalStatus.eg), (String[]) null);
-            if (this.j == 64) {
-                this.e.ar.a(this.aA, this.aq);
-                this.e.as.a = this.aH;
+            this.mainCanvasRef.ar.a(b(GlobalStatus.ec), a(this.mainCanvasRef.l, GlobalStatus.dZ, GlobalStatus.eb), this.a(GlobalStatus.eg), (String[]) null);
+            if (this.sceneStateShadow == 64) {
+                this.mainCanvasRef.ar.a(this.aA, this.aq);
+                this.mainCanvasRef.as.a = this.aH;
             }
 
-            this.e.ar.a(this.af(this.e.ar.g()), 1);
+            this.mainCanvasRef.ar.a(this.af(this.mainCanvasRef.ar.g()), 1);
         } else {
-            this.e.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
+            this.mainCanvasRef.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
         }
 
-        this.e.aq.a("物品拍卖场");
-        this.e.aq.a(true);
-        this.e.au.a("购买");
-        this.e.au.a(true);
-        this.e.aq.a((al) this.e.as);
-        this.e.aq.a((al) this.e.ar);
+        this.mainCanvasRef.aq.a("物品拍卖场");
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.au.a("购买");
+        this.mainCanvasRef.au.a(true);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.l = 0;
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 23;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.sceneSubState = 0;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 23;
     }
 
     private String af(int var1) {
@@ -11548,8 +11560,8 @@ public final class ao_1 {
         (var2 = new StringBuffer()).append(GlobalStatus.dZ[var1]);
         var2.append("X" + GlobalStatus.eb[var1]);
         var2.append("（");
-        GlobalConfig.a(this.e.l, GlobalStatus.eg[var1]);
-        var2.append(this.e.l.toString() + "）");
+        GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.eg[var1]);
+        var2.append(this.mainCanvasRef.l.toString() + "）");
         var2.append('\t');
         if (GlobalStatus.ed[var1] != null && GlobalStatus.ed[var1].length() > 0) {
             var2.append(GlobalStatus.ed[var1]);
@@ -11579,77 +11591,77 @@ public final class ao_1 {
         if (GlobalStatus.dY == null) {
             this.am = null;
             this.al = null;
-            this.e.touchPageCase = this.e.k;
+            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
             this.N();
         } else {
-            if (this.l != 0) {
-                if (this.l == 1) {
+            if (this.sceneSubState != 0) {
+                if (this.sceneSubState == 1) {
                     LoadingPage.b(var1);
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                         if (var1 == 536870912) {
-                            this.l = 0;
+                            this.sceneSubState = 0;
                             return;
                         }
-                    } else if (GlobalStatus.a(GlobalStatus.ea[this.e.ar.g()])) {
+                    } else if (GlobalStatus.a(GlobalStatus.ea[this.mainCanvasRef.ar.g()])) {
                         if (LoadingPage.o == 0) {
-                            this.aq = this.e.ar.g();
-                            this.aA = this.e.ar.h();
-                            this.aH = this.e.as.a;
-                            GlobalStatus.d(this.e.ar.g());
-                            this.O.a(0, (short) this.k, this.as);
+                            this.aq = this.mainCanvasRef.ar.g();
+                            this.aA = this.mainCanvasRef.ar.h();
+                            this.aH = this.mainCanvasRef.as.a;
+                            GlobalStatus.d(this.mainCanvasRef.ar.g());
+                            this.O.a(0, (short) this.currentSceneModeId, this.as);
                             return;
                         }
 
                         if (LoadingPage.o == 1) {
                             this.ag = 1;
                             LoadingPage.h = 0;
-                            this.l = 3;
+                            this.sceneSubState = 3;
                             return;
                         }
                     } else if (LoadingPage.o == 0) {
                         this.ag = 1;
-                        this.l = 3;
+                        this.sceneSubState = 3;
                         LoadingPage.h = 0;
                         return;
                     }
-                } else if (this.l == 2) {
+                } else if (this.sceneSubState == 2) {
                     this.b(var1);
                     if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                        this.l = 4;
+                        this.sceneSubState = 4;
                         LoadingPage.h = 0;
                         return;
                     }
 
                     if (var1 == 536870912) {
-                        this.l = 0;
+                        this.sceneSubState = 0;
                         return;
                     }
-                } else if (this.l == 3 || this.l == 4) {
+                } else if (this.sceneSubState == 3 || this.sceneSubState == 4) {
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                         if (var1 == 536870912) {
-                            this.l = 0;
+                            this.sceneSubState = 0;
                         }
                     } else {
-                        GlobalConfig.clearStr(this.e.l);
+                        GlobalConfig.clearStr(this.mainCanvasRef.l);
                         byte[] var4;
-                        if ((var4 = NetPayloadBuilder.l((short) 4154, GlobalStatus.ad, (int) GlobalStatus.dY[this.e.ar.g()])) == null) {
-                            this.e.processException("获取上传指令数据错误!");
+                        if ((var4 = NetPayloadBuilder.l((short) 4154, GlobalStatus.ad, (int) GlobalStatus.dY[this.mainCanvasRef.ar.g()])) == null) {
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         NetPacket var5 = new NetPacket((short) 4154, var4);
                         MainCanvas.netUtils.sendPacket(var5);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     }
                 }
             } else {
-                this.e.aq.b(var1);
+                this.mainCanvasRef.aq.b(var1);
                 if (var1 != 1 && var1 != 4 && var1 != 514 && var1 != 520) {
                     label173:
                     {
                         if (var1 != 8 && var1 != 2 && var1 != 516 && var1 != 518) {
                             if (var1 == 1024) {
-                                this.aV = this.e.as.a;
+                                this.aV = this.mainCanvasRef.as.a;
                                 this.aL = this.aL.equals("") ? this.aL : GlobalConfig.P[this.aU - 1];
                                 --this.aM;
                                 if (this.aM < 1) {
@@ -11657,9 +11669,9 @@ public final class ao_1 {
                                     return;
                                 }
 
-                                this.aN = this.e.as.a;
+                                this.aN = this.mainCanvasRef.as.a;
                                 this.a(this.aK, this.aL, this.aM, this.aN);
-                                this.e.a((String) null);
+                                this.mainCanvasRef.a((String) null);
                                 break label173;
                             }
 
@@ -11667,7 +11679,7 @@ public final class ao_1 {
                                 break label173;
                             }
 
-                            this.aV = this.e.as.a;
+                            this.aV = this.mainCanvasRef.as.a;
                             this.aL = this.aL.equals("") ? this.aL : GlobalConfig.P[this.aU - 1];
                             if (GlobalStatus.ei != 1) {
                                 return;
@@ -11675,36 +11687,36 @@ public final class ao_1 {
 
                             ++this.aM;
                         } else {
-                            this.aV = this.e.as.a;
+                            this.aV = this.mainCanvasRef.as.a;
                             this.aL = this.aL.equals("") ? this.aL : GlobalConfig.P[this.aU - 1];
                             this.aM = 1;
                         }
 
-                        this.aN = this.e.as.a;
+                        this.aN = this.mainCanvasRef.as.a;
                         this.a(this.aK, this.aL, this.aM, this.aN);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     }
                 } else {
-                    this.e.ar.a(this.af(this.e.ar.g()), 1);
+                    this.mainCanvasRef.ar.a(this.af(this.mainCanvasRef.ar.g()), 1);
                 }
 
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                     Object var2 = null;
                     String[] var3;
-                    if (GlobalStatus.a(GlobalStatus.ea[this.e.ar.g()])) {
+                    if (GlobalStatus.a(GlobalStatus.ea[this.mainCanvasRef.ar.g()])) {
                         var3 = new String[]{"查看", "购买"};
                     } else {
                         var3 = new String[]{"购买"};
                     }
 
-                    LoadingPage.a(o + 50, 2 * GlobalConfig.j + 15 + p + this.e.ar.i() * GlobalConfig.j, var3, false);
-                    this.l = 1;
+                    LoadingPage.a(o + 50, 2 * GlobalConfig.j + 15 + p + this.mainCanvasRef.ar.i() * GlobalConfig.j, var3, false);
+                    this.sceneSubState = 1;
                     return;
                 }
 
                 if (var1 == 536870912) {
                     this.H();
-                    this.e.ar.a(this.aU);
+                    this.mainCanvasRef.ar.a(this.aU);
                     this.aH();
                     return;
                 }
@@ -11714,22 +11726,22 @@ public final class ao_1 {
     }
 
     private void aI() {
-        this.e.aq.b();
-        this.e.aq.a("宠物拍卖场");
-        this.e.ar.a((Image[]) null, new String[]{"关键字", "雷属性", "火属性", "冰属性", "无属性"}, (String[]) null, (String[]) null);
-        this.e.au.a("搜索");
-        this.e.aq.a((al) this.e.ar);
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("宠物拍卖场");
+        this.mainCanvasRef.ar.a((Image[]) null, new String[]{"关键字", "雷属性", "火属性", "冰属性", "无属性"}, (String[]) null, (String[]) null);
+        this.mainCanvasRef.au.a("搜索");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 15;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 15;
     }
 
     private void ah(int var1) {
-        this.e.aq.b(var1);
+        this.mainCanvasRef.aq.b(var1);
         if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                 this.al = null;
@@ -11738,16 +11750,16 @@ public final class ao_1 {
             }
 
         } else {
-            this.aU = this.e.ar.g();
-            if (this.e.ar.g() == 0) {
-                this.e.e("宠物关键字搜索");
+            this.aU = this.mainCanvasRef.ar.g();
+            if (this.mainCanvasRef.ar.g() == 0) {
+                this.mainCanvasRef.e("宠物关键字搜索");
             } else {
                 this.aK = "";
                 this.aL = GlobalConfig.O[this.aU - 1];
                 this.aM = 1;
                 this.aN = 0;
                 this.b(this.aK, this.aL, this.aM, this.aN);
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
             }
         }
     }
@@ -11758,68 +11770,68 @@ public final class ao_1 {
             this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.gw[0] + "_0"), GlobalStatus.gx[0], GlobalStatus.gy[0], GlobalStatus.gz[0]);
         }
 
-        this.e.aq.b();
-        this.e.aq.a("宠物拍卖场");
-        if (this.j != 24) {
-            this.e.as.a(new String[]{"低价", "高价"});
-            this.e.as.a((byte) 0);
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("宠物拍卖场");
+        if (this.sceneStateShadow != 24) {
+            this.mainCanvasRef.as.a(new String[]{"低价", "高价"});
+            this.mainCanvasRef.as.a((byte) 0);
         }
 
-        this.e.ar.a((Image[]) null, GlobalStatus.gt, (String[]) null, this.a(GlobalStatus.gv));
-        this.e.at.a(GlobalStatus.g(this.e.l, 0), GlobalConfig.i, (byte) 2);
-        this.e.at.a((byte) 1);
-        this.e.au.a("购买");
-        this.e.au.a(true);
-        this.e.aq.a((al) this.e.as);
-        this.e.aq.a((al) this.e.ar);
-        this.e.aq.a((al) this.e.at);
+        this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.gt, (String[]) null, this.a(GlobalStatus.gv));
+        this.mainCanvasRef.at.a(GlobalStatus.g(this.mainCanvasRef.l, 0), GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.a((byte) 1);
+        this.mainCanvasRef.au.a("购买");
+        this.mainCanvasRef.au.a(true);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.aq.a(true);
-        this.l = 0;
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 24;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.aq.a(true);
+        this.sceneSubState = 0;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 24;
     }
 
     private void ai(int var1) {
         if (GlobalStatus.gs == null) {
             this.am = null;
             this.al = null;
-            this.e.touchPageCase = this.e.k;
+            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
             this.N();
         } else {
-            if (this.l == 0) {
-                this.e.aq.b(var1);
-                if (GlobalStatus.gA[this.e.ar.g()] != null && GlobalStatus.gA[this.e.ar.g()].length > 0 && this.e.at.a == 0) {
-                    for (byte var2 = 0; var2 < GlobalStatus.gA[this.e.ar.g()].length; ++var2) {
-                        this.a(GlobalStatus.gA[this.e.ar.g()]);
+            if (this.sceneSubState == 0) {
+                this.mainCanvasRef.aq.b(var1);
+                if (GlobalStatus.gA[this.mainCanvasRef.ar.g()] != null && GlobalStatus.gA[this.mainCanvasRef.ar.g()].length > 0 && this.mainCanvasRef.at.a == 0) {
+                    for (byte var2 = 0; var2 < GlobalStatus.gA[this.mainCanvasRef.ar.g()].length; ++var2) {
+                        this.a(GlobalStatus.gA[this.mainCanvasRef.ar.g()]);
                     }
                 }
 
-                PngUtil.a(this.aI, this.e.ak);
+                PngUtil.a(this.aI, this.mainCanvasRef.ak);
                 if (var1 == 1 || var1 == 4 || var1 == 514 || var1 == 520) {
-                    this.e.at.a(GlobalStatus.g(this.e.l, this.e.ar.g()), GlobalConfig.i, (byte) 2);
-                    this.e.at.a((byte) 1);
-                    a(GlobalStatus.gw[this.e.ar.g()], GlobalStatus.gx[this.e.ar.g()], GlobalStatus.gy[this.e.ar.g()], GlobalStatus.gz[this.e.ar.g()]);
-                    this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.gw[this.e.ar.g()] + "_0"), GlobalStatus.gx[this.e.ar.g()], GlobalStatus.gy[this.e.ar.g()], GlobalStatus.gz[this.e.ar.g()]);
+                    this.mainCanvasRef.at.a(GlobalStatus.g(this.mainCanvasRef.l, this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 2);
+                    this.mainCanvasRef.at.a((byte) 1);
+                    a(GlobalStatus.gw[this.mainCanvasRef.ar.g()], GlobalStatus.gx[this.mainCanvasRef.ar.g()], GlobalStatus.gy[this.mainCanvasRef.ar.g()], GlobalStatus.gz[this.mainCanvasRef.ar.g()]);
+                    this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.gw[this.mainCanvasRef.ar.g()] + "_0"), GlobalStatus.gx[this.mainCanvasRef.ar.g()], GlobalStatus.gy[this.mainCanvasRef.ar.g()], GlobalStatus.gz[this.mainCanvasRef.ar.g()]);
                     return;
                 }
 
                 if (var1 == 8 || var1 == 2 || var1 == 516 || var1 == 518) {
-                    this.aV = this.e.as.a;
+                    this.aV = this.mainCanvasRef.as.a;
                     this.aL = this.aL.equals("") ? this.aL : GlobalConfig.O[this.aU - 1];
                     this.aM = 1;
-                    this.aN = this.e.as.a;
+                    this.aN = this.mainCanvasRef.as.a;
                     this.b(this.aK, this.aL, this.aM, this.aN);
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                     return;
                 }
 
                 if (var1 == 1024) {
-                    this.aV = this.e.as.a;
+                    this.aV = this.mainCanvasRef.as.a;
                     this.aL = this.aL.equals("") ? this.aL : GlobalConfig.O[this.aU - 1];
                     --this.aM;
                     if (this.aM < 1) {
@@ -11827,20 +11839,20 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.aN = this.e.as.a;
+                    this.aN = this.mainCanvasRef.as.a;
                     this.b(this.aK, this.aL, this.aM, this.aN);
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                     return;
                 }
 
                 if (var1 == 2048) {
-                    this.aV = this.e.as.a;
+                    this.aV = this.mainCanvasRef.as.a;
                     this.aL = this.aL.equals("") ? this.aL : GlobalConfig.O[this.aU - 1];
                     if (GlobalStatus.ei == 1) {
                         ++this.aM;
-                        this.aN = this.e.as.a;
+                        this.aN = this.mainCanvasRef.as.a;
                         this.b(this.aK, this.aL, this.aM, this.aN);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                         return;
                     }
 
@@ -11848,45 +11860,45 @@ public final class ao_1 {
                 }
 
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                    LoadingPage.a(o + 50, 2 * GlobalConfig.j + 15 + p + this.e.ar.i() * GlobalConfig.j, new String[]{"购买"}, false);
-                    this.l = 1;
+                    LoadingPage.a(o + 50, 2 * GlobalConfig.j + 15 + p + this.mainCanvasRef.ar.i() * GlobalConfig.j, new String[]{"购买"}, false);
+                    this.sceneSubState = 1;
                     return;
                 }
 
                 if (var1 == 536870912) {
                     this.aI();
-                    this.e.ar.a(this.aU);
+                    this.mainCanvasRef.ar.a(this.aU);
                     this.aH();
                     return;
                 }
-            } else if (this.l == 1) {
+            } else if (this.sceneSubState == 1) {
                 LoadingPage.b(var1);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        this.l = 0;
+                        this.sceneSubState = 0;
                         return;
                     }
                 } else if (LoadingPage.o == 0) {
-                    this.l = 2;
+                    this.sceneSubState = 2;
                     LoadingPage.h = 0;
                     return;
                 }
-            } else if (this.l == 2) {
+            } else if (this.sceneSubState == 2) {
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        LoadingPage.a(o + 50, 2 * GlobalConfig.j + 15 + p + this.e.ar.i() * GlobalConfig.j, new String[]{"购买"}, false);
-                        this.l = 1;
+                        LoadingPage.a(o + 50, 2 * GlobalConfig.j + 15 + p + this.mainCanvasRef.ar.i() * GlobalConfig.j, new String[]{"购买"}, false);
+                        this.sceneSubState = 1;
                     }
                 } else {
                     byte[] var4;
-                    if ((var4 = NetPayloadBuilder.m((short) 4149, GlobalStatus.ad, (int) GlobalStatus.gs[this.e.ar.g()])) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                    if ((var4 = NetPayloadBuilder.m((short) 4149, GlobalStatus.ad, (int) GlobalStatus.gs[this.mainCanvasRef.ar.g()])) == null) {
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     NetPacket var3 = new NetPacket((short) 4149, var4);
                     MainCanvas.netUtils.sendPacket(var3);
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 }
             }
 
@@ -11896,36 +11908,36 @@ public final class ao_1 {
     private void s(Graphics var1) {
         Object var2 = null;
         if (GlobalStatus.gs != null) {
-            if (this.e.aq != null) {
-                this.e.aq.a(var1);
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.a(var1);
             }
 
-            if (this.aI != null && this.l == 0 && GlobalStatus.gA[this.e.ar.g()] != null && GlobalStatus.gA[this.e.ar.g()].length > 0 && this.e.at.a == 0) {
-                Vector var4 = a(GlobalStatus.gA[this.e.ar.g()], GlobalStatus.gB[this.e.ar.g()]);
-                if (GlobalStatus.gG[this.e.ar.g()] > 11) {
-                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - 187 - 26, this.e.at.c + 3, 17, 17, 11, 1);
-                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.e.ar.g()] - 11) * 17 - 26, this.e.at.c + 24, 17, 17, GlobalStatus.gG[this.e.ar.g()] - 11, 1);
+            if (this.aI != null && this.sceneSubState == 0 && GlobalStatus.gA[this.mainCanvasRef.ar.g()] != null && GlobalStatus.gA[this.mainCanvasRef.ar.g()].length > 0 && this.mainCanvasRef.at.a == 0) {
+                Vector var4 = a(GlobalStatus.gA[this.mainCanvasRef.ar.g()], GlobalStatus.gB[this.mainCanvasRef.ar.g()]);
+                if (GlobalStatus.gG[this.mainCanvasRef.ar.g()] > 11) {
+                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - 187 - 26, this.mainCanvasRef.at.c + 3, 17, 17, 11, 1);
+                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.mainCanvasRef.ar.g()] - 11) * 17 - 26, this.mainCanvasRef.at.c + 24, 17, 17, GlobalStatus.gG[this.mainCanvasRef.ar.g()] - 11, 1);
                 } else {
-                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - GlobalStatus.gG[this.e.ar.g()] * 17 - 26, this.e.at.c + 3, 17, 17, GlobalStatus.gG[this.e.ar.g()], 1);
+                    this.a(var1, GlobalConfig.defaultWidth - GlobalConfig.f - GlobalStatus.gG[this.mainCanvasRef.ar.g()] * 17 - 26, this.mainCanvasRef.at.c + 3, 17, 17, GlobalStatus.gG[this.mainCanvasRef.ar.g()], 1);
                 }
 
                 for (byte var3 = 0; var3 < var4.size(); ++var3) {
-                    if (GlobalStatus.gG[this.e.ar.g()] > 11) {
+                    if (GlobalStatus.gG[this.mainCanvasRef.ar.g()] > 11) {
                         if (var3 < 11) {
-                            MainCanvas.f.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (11 - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                            MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (11 - var3) * 17 - 23, this.mainCanvasRef.at.c + 4 + 2, 0, 0);
                         } else {
-                            MainCanvas.f.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2 + 21, 0, 0);
+                            MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.mainCanvasRef.ar.g()] - var3) * 17 - 23, this.mainCanvasRef.at.c + 4 + 2 + 21, 0, 0);
                         }
                     } else {
-                        MainCanvas.f.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.e.ar.g()] - var3) * 17 - 23, this.e.at.c + 4 + 2, 0, 0);
+                        MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (aj) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.f - (GlobalStatus.gG[this.mainCanvasRef.ar.g()] - var3) * 17 - 23, this.mainCanvasRef.at.c + 4 + 2, 0, 0);
                     }
                 }
             }
 
-            if (this.aI != null && this.l == 0) {
+            if (this.aI != null && this.sceneSubState == 0) {
                 int var5;
-                var5 = (var5 = this.e.ar.b() + 2 + (this.e.ar.g() - this.e.ar.h() + 1) * GlobalConfig.j) + 50 > this.e.ar.b() + this.e.ar.d() ? this.e.ar.b() + this.e.ar.d() - 50 : var5;
-                int var7 = this.e.ar.a() + this.e.ar.c() - 50 - 20;
+                var5 = (var5 = this.mainCanvasRef.ar.b() + 2 + (this.mainCanvasRef.ar.g() - this.mainCanvasRef.ar.h() + 1) * GlobalConfig.j) + 50 > this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() ? this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() - 50 : var5;
+                int var7 = this.mainCanvasRef.ar.a() + this.mainCanvasRef.ar.c() - 50 - 20;
                 LoadingPage.a(var1, 1009050, 159, var7, var5, 50, 50);
                 var1.setColor(16776960);
                 var1.drawRect(var7 - 1, var5 - 1, 51, 51);
@@ -11934,21 +11946,21 @@ public final class ao_1 {
                 var1.setColor(0);
                 var1.drawRect(var7 + 9, var5 + 2, 31, 3);
                 var1.setColor(16711680);
-                var1.fillRect(var7 + 1 + 9, var5 + 1 + 2, 30 * GlobalStatus.gD[this.e.ar.g()] / GlobalStatus.gC[this.e.ar.g()], 2);
+                var1.fillRect(var7 + 1 + 9, var5 + 1 + 2, 30 * GlobalStatus.gD[this.mainCanvasRef.ar.g()] / GlobalStatus.gC[this.mainCanvasRef.ar.g()], 2);
                 var1.setColor(16777215);
                 var1.fillRect(var7 + 9, var5 + 7, 31, 3);
                 var1.setColor(0);
                 var1.drawRect(var7 + 9, var5 + 7, 31, 3);
                 var1.setColor(48127);
-                var1.fillRect(var7 + 1 + 9, var5 + 1 + 7, 30 * GlobalStatus.gF[this.e.ar.g()] / GlobalStatus.gE[this.e.ar.g()], 2);
-                MainCanvas.f.a(var1, (Frame1) this.aI, (int[]) null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 50 - this.aI.h() - 3, 20, 0);
+                var1.fillRect(var7 + 1 + 9, var5 + 1 + 7, 30 * GlobalStatus.gF[this.mainCanvasRef.ar.g()] / GlobalStatus.gE[this.mainCanvasRef.ar.g()], 2);
+                MainCanvas.pngUtil.a(var1, (Frame1) this.aI, (int[]) null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 50 - this.aI.h() - 3, 20, 0);
             }
 
-            if (this.l == 1) {
+            if (this.sceneSubState == 1) {
                 LoadingPage.c(var1);
             } else {
-                if (this.l == 2) {
-                    LoadingPage.a(var1, "您确认以" + GlobalStatus.a(GlobalStatus.gv[this.e.ar.g()]) + "的价格购买该宠物1只", new String[]{"确定", "取消"});
+                if (this.sceneSubState == 2) {
+                    LoadingPage.a(var1, "您确认以" + GlobalStatus.a(GlobalStatus.gv[this.mainCanvasRef.ar.g()]) + "的价格购买该宠物1只", new String[]{"确定", "取消"});
                 }
 
             }
@@ -11957,8 +11969,8 @@ public final class ao_1 {
 
     public final void f(byte var1) {
         this.c = true;
-        this.e.p = true;
-        ao_1 var2 = this;
+        this.mainCanvasRef.p = true;
+        UISceneController var2 = this;
         if (this.bA != null) {
             for (int var3 = 0; var3 < var2.bA.length; ++var3) {
                 var2.bA[var3] = null;
@@ -11969,16 +11981,16 @@ public final class ao_1 {
             var2.bE = null;
         }
 
-        this.e.clear();
+        this.mainCanvasRef.clear();
         if (var1 == 2 || var1 == 1) {
-            this.e.q.setCurrent(this.e);
+            this.mainCanvasRef.display.setCurrent(this.mainCanvasRef);
         }
 
         this.aT();
-        this.e.clear();
+        this.mainCanvasRef.clear();
         GlobalConfig.printStr("[FIGHT] f(" + var1 + ") 创建bq_1前: v=" + GlobalStatus.v + " w=" + GlobalStatus.w);
-        this.g = new bq_1(this.e, this, var1);
-        this.e.clear();
+        this.overlayDialogController = new bq_1(this.mainCanvasRef, this, var1);
+        this.mainCanvasRef.clear();
         if (GlobalStatus.bu && ab_1.b) {
             if (!GlobalStatus.bt) {
                 this.O();
@@ -11987,11 +11999,11 @@ public final class ao_1 {
             ab_1.b = false;
         }
 
-        this.e.clear();
-        MainCanvas.f.a(this.f, h, i, false);
-        this.j = this.k = 25;
-        this.e.touchPageCase = this.e.k = 7;
-        this.e.p = false;
+        this.mainCanvasRef.clear();
+        MainCanvas.pngUtil.a(this.f, h, i, false);
+        this.sceneStateShadow = this.currentSceneModeId = 25;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k = 7;
+        this.mainCanvasRef.p = false;
         byte[] var5;
         if ((var5 = NetPayloadBuilder.z((short) 4223, GlobalStatus.ad)) != null) {
             NetPacket var4 = new NetPacket((short) 4659, var5);
@@ -12001,21 +12013,21 @@ public final class ao_1 {
     }
 
     public final void o(int var1) {
-        if (this.g != null && GlobalStatus.H != null && GlobalStatus.M != null) {
-            this.g.a(var1);
+        if (this.overlayDialogController != null && GlobalStatus.H != null && GlobalStatus.M != null) {
+            this.overlayDialogController.a(var1);
         }
 
     }
 
     private void t(Graphics var1) {
         try {
-            if (this.g != null && GlobalStatus.H != null && GlobalStatus.M != null) {
-                if (this.k != 18 && GlobalConfig.defaultWidth >= 240) {
-                    this.e.m = 8;
+            if (this.overlayDialogController != null && GlobalStatus.H != null && GlobalStatus.M != null) {
+                if (this.currentSceneModeId != 18 && GlobalConfig.defaultWidth >= 240) {
+                    this.mainCanvasRef.m = 8;
                 }
 
-                this.g.a(MainCanvas.f, var1);
-                if (this.k == 18) {
+                this.overlayDialogController.a(MainCanvas.pngUtil, var1);
+                if (this.currentSceneModeId == 18) {
                     LoadingPage.a(var1, 0, 159, 0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
                 }
             }
@@ -12027,7 +12039,7 @@ public final class ao_1 {
     }
 
     public final void K() {
-        this.l = 0;
+        this.sceneSubState = 0;
         this.cp = -1;
         if (this.n) {
             this.n = false;
@@ -12035,42 +12047,42 @@ public final class ao_1 {
 
         this.aR = false;
         this.aM();
-        LoadingPage.a(aP.size(), 4, this.e.as.b + 6, GlobalConfig.defaultWidth - 8, GlobalConfig.defaultHigh - this.e.as.b - 6, (GlobalConfig.defaultHigh - this.e.as.b - 6) / GlobalConfig.j, false);
+        LoadingPage.a(aP.size(), 4, this.mainCanvasRef.as.b + 6, GlobalConfig.defaultWidth - 8, GlobalConfig.defaultHigh - this.mainCanvasRef.as.b - 6, (GlobalConfig.defaultHigh - this.mainCanvasRef.as.b - 6) / GlobalConfig.j, false);
         this.cr = new int[aP.size()][4];
-        this.l = 1;
-        this.e.aq.j();
-        this.e.aq.a(false);
-        this.e.aq.b(false);
-        this.e.aq.a((String) null);
-        this.e.as.a(new String[]{"全", "系", "世", "帮", "区", "队", "私", "跨"});
-        this.e.aq.a((al) this.e.as);
-        this.e.aq.a(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-        MainCanvas.f.a(this.f, h, i, false, true, 2109231);
-        this.j = this.k = 18;
+        this.sceneSubState = 1;
+        this.mainCanvasRef.aq.j();
+        this.mainCanvasRef.aq.a(false);
+        this.mainCanvasRef.aq.b(false);
+        this.mainCanvasRef.aq.a((String) null);
+        this.mainCanvasRef.as.a(new String[]{"全", "系", "世", "帮", "区", "队", "私", "跨"});
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+        this.mainCanvasRef.aq.a(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
+        MainCanvas.pngUtil.a(this.f, h, i, false, true, 2109231);
+        this.sceneStateShadow = this.currentSceneModeId = 18;
     }
 
     private void aJ() {
-        if (this.e.as.a == 0) {
+        if (this.mainCanvasRef.as.a == 0) {
             this.aM();
-        } else if (this.e.as.a == 1) {
+        } else if (this.mainCanvasRef.as.a == 1) {
             o((byte) 5);
-        } else if (this.e.as.a == 2) {
+        } else if (this.mainCanvasRef.as.a == 2) {
             o((byte) 0);
-        } else if (this.e.as.a == 3) {
+        } else if (this.mainCanvasRef.as.a == 3) {
             o((byte) 3);
-        } else if (this.e.as.a == 4) {
+        } else if (this.mainCanvasRef.as.a == 4) {
             o((byte) 1);
-        } else if (this.e.as.a == 5) {
+        } else if (this.mainCanvasRef.as.a == 5) {
             o((byte) 2);
-        } else if (this.e.as.a == 6) {
+        } else if (this.mainCanvasRef.as.a == 6) {
             o((byte) 4);
-        } else if (this.e.as.a == 7) {
+        } else if (this.mainCanvasRef.as.a == 7) {
             o((byte) 6);
         }
 
         this.cr = new int[aP.size()][4];
-        LoadingPage.a(aP.size(), 4, this.e.as.b + 6, GlobalConfig.defaultWidth - 8, GlobalConfig.defaultHigh - this.e.as.b - 6, (GlobalConfig.defaultHigh - this.e.as.b - 6) / GlobalConfig.j, false);
-        if (this.cp == this.e.as.a) {
+        LoadingPage.a(aP.size(), 4, this.mainCanvasRef.as.b + 6, GlobalConfig.defaultWidth - 8, GlobalConfig.defaultHigh - this.mainCanvasRef.as.b - 6, (GlobalConfig.defaultHigh - this.mainCanvasRef.as.b - 6) / GlobalConfig.j, false);
+        if (this.cp == this.mainCanvasRef.as.a) {
             LoadingPage.w = this.cn;
             LoadingPage.z = this.co;
         }
@@ -12078,51 +12090,51 @@ public final class ao_1 {
     }
 
     private void aj(int var1) {
-        if (this.e.aC != null && this.e.g) {
-            if (this.e.aE == null) {
-                if (this.e.as.a != 6 && !this.aR) {
-                    if (this.e.as.a == 0) {
+        if (this.mainCanvasRef.aC != null && this.mainCanvasRef.g) {
+            if (this.mainCanvasRef.aE == null) {
+                if (this.mainCanvasRef.as.a != 6 && !this.aR) {
+                    if (this.mainCanvasRef.as.a == 0) {
                         this.a(this.cl, (byte) this.aT);
-                        this.e.n();
-                    } else if (this.e.as.a != 1) {
-                        if (this.e.as.a == 2) {
+                        this.mainCanvasRef.n();
+                    } else if (this.mainCanvasRef.as.a != 1) {
+                        if (this.mainCanvasRef.as.a == 2) {
                             this.a((String) this.cl, (byte) 0);
-                            this.e.n();
-                        } else if (this.e.as.a == 3) {
+                            this.mainCanvasRef.n();
+                        } else if (this.mainCanvasRef.as.a == 3) {
                             this.a((String) this.cl, (byte) 3);
-                            this.e.n();
-                        } else if (this.e.as.a == 4) {
+                            this.mainCanvasRef.n();
+                        } else if (this.mainCanvasRef.as.a == 4) {
                             this.a((String) this.cl, (byte) 1);
-                            this.e.n();
-                        } else if (this.e.as.a == 5) {
+                            this.mainCanvasRef.n();
+                        } else if (this.mainCanvasRef.as.a == 5) {
                             this.a((String) this.cl, (byte) 2);
-                            this.e.n();
+                            this.mainCanvasRef.n();
                         }
                     }
                 } else {
                     this.a((String) this.cl, (byte) 4);
-                    this.e.n();
+                    this.mainCanvasRef.n();
                 }
             } else {
                 this.f((short) -1);
             }
 
-            this.l = 1;
+            this.sceneSubState = 1;
         }
 
-        if (this.l == 0) {
-            this.e.aq.b(var1);
-            if (this.e.as.a != this.cp) {
+        if (this.sceneSubState == 0) {
+            this.mainCanvasRef.aq.b(var1);
+            if (this.mainCanvasRef.as.a != this.cp) {
                 this.aL();
                 this.aJ();
-                this.cp = this.e.as.a;
+                this.cp = this.mainCanvasRef.as.a;
             }
 
-            if (this.e.tempTouchStatus > 40) {
-                LoadingPage.a(this.e.b, 1, 1);
+            if (this.mainCanvasRef.tempTouchStatus > 40) {
+                LoadingPage.a(this.mainCanvasRef.b, 1, 1);
             } else {
                 LoadingPage.a(var1, 1, 1);
-                ++this.e.tempTouchStatus;
+                ++this.mainCanvasRef.tempTouchStatus;
             }
 
             this.cn = LoadingPage.w;
@@ -12135,8 +12147,8 @@ public final class ao_1 {
 
                 if (var1 == 536870912) {
                     if (this.c) {
-                        MainCanvas.f.a(this.f, h, i, false);
-                        this.j = this.k = 25;
+                        MainCanvas.pngUtil.a(this.f, h, i, false);
+                        this.sceneStateShadow = this.currentSceneModeId = 25;
                     } else if (this.by == 1) {
                         this.N();
                         this.by = 0;
@@ -12151,19 +12163,19 @@ public final class ao_1 {
                     return;
                 }
             }
-        } else if (this.l == 1) {
-            this.e.aq.b(var1);
-            if (this.e.as.a != this.cp) {
+        } else if (this.sceneSubState == 1) {
+            this.mainCanvasRef.aq.b(var1);
+            if (this.mainCanvasRef.as.a != this.cp) {
                 this.aL();
                 this.aJ();
-                this.cp = this.e.as.a;
+                this.cp = this.mainCanvasRef.as.a;
             }
 
-            if (this.e.tempTouchStatus > 40) {
-                LoadingPage.a(this.e.b, 1, 1);
+            if (this.mainCanvasRef.tempTouchStatus > 40) {
+                LoadingPage.a(this.mainCanvasRef.b, 1, 1);
             } else {
                 LoadingPage.a(var1, 1, 1);
-                ++this.e.tempTouchStatus;
+                ++this.mainCanvasRef.tempTouchStatus;
             }
 
             this.cn = LoadingPage.w;
@@ -12176,8 +12188,8 @@ public final class ao_1 {
 
                 if (var1 == 536870912) {
                     if (this.c) {
-                        MainCanvas.f.a(this.f, h, i, false);
-                        this.j = this.k = 25;
+                        MainCanvas.pngUtil.a(this.f, h, i, false);
+                        this.sceneStateShadow = this.currentSceneModeId = 25;
                     } else if (this.by == 1) {
                         this.N();
                         this.by = 0;
@@ -12190,63 +12202,63 @@ public final class ao_1 {
                     return;
                 }
             }
-        } else if (this.l != 2 && this.l != 3) {
-            if (this.l == 4) {
+        } else if (this.sceneSubState != 2 && this.sceneSubState != 3) {
+            if (this.sceneSubState == 4) {
                 LoadingPage.b(var1);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        if (this.e.as.a == 5) {
+                        if (this.mainCanvasRef.as.a == 5) {
                             if (this.c) {
-                                LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单"}, true);
+                                LoadingPage.a(0, this.sceneSubMode == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单"}, true);
                             } else {
-                                LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单", "组队", "交易"}, true);
+                                LoadingPage.a(0, this.sceneSubMode == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单", "组队", "交易"}, true);
                             }
 
                             LoadingPage.o = 2;
                         } else {
                             if (this.c) {
-                                LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单"}, true);
+                                LoadingPage.a(0, this.sceneSubMode == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单"}, true);
                             } else {
-                                LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单", "组队", "交易"}, true);
+                                LoadingPage.a(0, this.sceneSubMode == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单", "组队", "交易"}, true);
                             }
 
                             LoadingPage.o = 3;
                         }
 
-                        this.l = this.m;
+                        this.sceneSubState = this.sceneSubMode;
                         return;
                     }
                 } else {
                     if (LoadingPage.o == 0) {
                         this.b(this.cl);
-                        this.l = 0;
+                        this.sceneSubState = 0;
                         return;
                     }
 
                     if (LoadingPage.o == 1) {
-                        if (this.e.as.a == 5) {
+                        if (this.mainCanvasRef.as.a == 5) {
                             if (this.c) {
-                                LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单"}, true);
+                                LoadingPage.a(0, this.sceneSubMode == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单"}, true);
                             } else {
-                                LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单", "组队", "交易"}, true);
+                                LoadingPage.a(0, this.sceneSubMode == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单", "组队", "交易"}, true);
                             }
 
                             LoadingPage.o = 2;
                         } else {
                             if (this.c) {
-                                LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单"}, true);
+                                LoadingPage.a(0, this.sceneSubMode == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单"}, true);
                             } else {
-                                LoadingPage.a(0, this.m == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单", "组队", "交易"}, true);
+                                LoadingPage.a(0, this.sceneSubMode == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单", "组队", "交易"}, true);
                             }
 
                             LoadingPage.o = 3;
                         }
 
-                        this.l = this.m;
+                        this.sceneSubState = this.sceneSubMode;
                         return;
                     }
                 }
-            } else if (this.l == 5) {
+            } else if (this.sceneSubState == 5) {
                 LoadingPage.b(var1);
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                     this.a((short) (LoadingPage.o == 0 ? 0 : 1), (String) this.cl);
@@ -12254,10 +12266,10 @@ public final class ao_1 {
                 }
 
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
-            } else if (this.l == 6) {
+            } else if (this.sceneSubState == 6) {
                 LoadingPage.b(var1);
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                     this.e(this.cl);
@@ -12265,49 +12277,49 @@ public final class ao_1 {
                 }
 
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                 }
             }
         } else {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    if (this.l == 2) {
-                        this.l = 0;
+                    if (this.sceneSubState == 2) {
+                        this.sceneSubState = 0;
                         return;
                     }
 
-                    this.l = 1;
+                    this.sceneSubState = 1;
                     return;
                 }
             } else {
                 this.aR = false;
                 if (this.cl != null && !this.cl.equals("")) {
-                    if (this.e.as.a == 6) {
+                    if (this.mainCanvasRef.as.a == 6) {
                         if (LoadingPage.o == 0) {
                             this.aR = true;
                             this.aS = this.cl;
                             this.aT = 4;
-                            this.e.a((String) "聊天", (int) 0);
+                            this.mainCanvasRef.a((String) "聊天", (int) 0);
                             return;
                         }
 
                         if (LoadingPage.o == 1) {
                             this.a(this.cl);
-                            this.l = 0;
+                            this.sceneSubState = 0;
                             return;
                         }
 
                         if (LoadingPage.o == 2) {
-                            LoadingPage.a(0, this.l == 2 ? 150 : 40, new String[]{"确认", "取消"}, true);
-                            this.l = 4;
+                            LoadingPage.a(0, this.sceneSubState == 2 ? 150 : 40, new String[]{"确认", "取消"}, true);
+                            this.sceneSubState = 4;
                             return;
                         }
 
                         if (LoadingPage.o == 3) {
                             if (GlobalStatus.bs == -1) {
                                 LoadingPage.a(LoadingPage.r + 65 + o, 2 * GlobalConfig.j + 20 + LoadingPage.w * GlobalConfig.j + p, new String[]{"跟随", "自由"}, false);
-                                this.l = 5;
+                                this.sceneSubState = 5;
                                 return;
                             }
 
@@ -12317,7 +12329,7 @@ public final class ao_1 {
 
                         if (LoadingPage.o == 4) {
                             LoadingPage.a(LoadingPage.r + 65 + o, 2 * GlobalConfig.j + 20 + LoadingPage.w * GlobalConfig.j + p, new String[]{"物品", "宠物"}, false);
-                            this.l = 6;
+                            this.sceneSubState = 6;
                             return;
                         }
                     } else {
@@ -12325,49 +12337,49 @@ public final class ao_1 {
                             this.aR = true;
                             this.aS = this.cl;
                             this.aT = 4;
-                            this.e.a((String) "聊天", (int) 0);
+                            this.mainCanvasRef.a((String) "聊天", (int) 0);
                             return;
                         }
 
                         if (LoadingPage.o == 1) {
-                            if (this.e.as.a != 1) {
+                            if (this.mainCanvasRef.as.a != 1) {
                                 this.aS = this.cl;
                                 this.aT = this.cm == 4 ? 0 : this.cm;
-                                this.e.a((String) "聊天", (int) 0);
+                                this.mainCanvasRef.a((String) "聊天", (int) 0);
                                 return;
                             }
 
-                            if (this.e.as.a == 3) {
-                                this.e.a((String) "聊天", (int) 0);
+                            if (this.mainCanvasRef.as.a == 3) {
+                                this.mainCanvasRef.a((String) "聊天", (int) 0);
                                 return;
                             }
 
-                            if (this.e.as.a == 4) {
+                            if (this.mainCanvasRef.as.a == 4) {
                                 if (GlobalStatus.bs == -1) {
-                                    this.e.processException("不在队伍中");
+                                    this.mainCanvasRef.processException("不在队伍中");
                                     return;
                                 }
 
-                                this.e.a((String) "聊天", (int) 0);
+                                this.mainCanvasRef.a((String) "聊天", (int) 0);
                                 return;
                             }
                         } else {
                             if (LoadingPage.o == 2) {
                                 this.a(this.cl);
-                                this.l = 1;
+                                this.sceneSubState = 1;
                                 return;
                             }
 
                             if (LoadingPage.o == 3) {
-                                LoadingPage.a(0, this.l == 2 ? 150 : 40, new String[]{"确认", "取消"}, true);
-                                this.l = 4;
+                                LoadingPage.a(0, this.sceneSubState == 2 ? 150 : 40, new String[]{"确认", "取消"}, true);
+                                this.sceneSubState = 4;
                                 return;
                             }
 
                             if (LoadingPage.o == 4) {
                                 if (GlobalStatus.bs == -1) {
                                     LoadingPage.a(LoadingPage.r + 65 + o, 2 * GlobalConfig.j + 20 + LoadingPage.w * GlobalConfig.j + p, new String[]{"跟随", "自由"}, false);
-                                    this.l = 5;
+                                    this.sceneSubState = 5;
                                     return;
                                 }
 
@@ -12377,7 +12389,7 @@ public final class ao_1 {
 
                             if (LoadingPage.o == 5) {
                                 LoadingPage.a(LoadingPage.r + 65 + o, 2 * GlobalConfig.j + 20 + LoadingPage.w * GlobalConfig.j + p, new String[]{"物品", "宠物"}, false);
-                                this.l = 6;
+                                this.sceneSubState = 6;
                                 return;
                             }
                         }
@@ -12393,36 +12405,36 @@ public final class ao_1 {
         if ((var3 = NetPayloadBuilder.a((short) 4628, GlobalStatus.ad, var1, var2)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4628, var3));
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     public final void a(String var1) {
         byte[] var2;
-        if ((var2 = NetPayloadBuilder.b((short) 4122, GlobalStatus.ad, var1, (short) this.k)) != null) {
+        if ((var2 = NetPayloadBuilder.b((short) 4122, GlobalStatus.ad, var1, (short) this.currentSceneModeId)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4122, var2));
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     public final void b(String var1) {
         byte[] var2;
-        if ((var2 = NetPayloadBuilder.c((short) 4123, GlobalStatus.ad, var1, (short) this.k)) != null) {
+        if ((var2 = NetPayloadBuilder.c((short) 4123, GlobalStatus.ad, var1, (short) this.currentSceneModeId)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4123, var2));
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     private void g(short var1) {
-        if (LoadingPage.v > 0 && this.e.as.a != 1) {
+        if (LoadingPage.v > 0 && this.mainCanvasRef.as.a != 1) {
             if (LoadingPage.w >= aP.size() || aP.size() < 1) {
                 this.aK();
                 return;
             }
 
-            if (this.e.as.a == 7) {
+            if (this.mainCanvasRef.as.a == 7) {
                 this.aK();
                 return;
             }
@@ -12483,18 +12495,18 @@ public final class ao_1 {
 
                 this.cm = var11;
                 if (this.cl == null || this.cl != null && this.cl.equals(GlobalStatus.ad)) {
-                    this.e.processException("不能自言自语！");
+                    this.mainCanvasRef.processException("不能自言自语！");
                     return;
                 }
 
-                if (this.e.as.a != 6) {
+                if (this.mainCanvasRef.as.a != 6) {
                     if (this.c) {
                         LoadingPage.a(0, var1 == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单"}, true);
                     } else {
                         LoadingPage.a(0, var1 == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单", "组队", "交易"}, true);
                     }
 
-                    this.m = this.l = var1;
+                    this.sceneSubMode = this.sceneSubState = var1;
                     return;
                 }
 
@@ -12504,66 +12516,66 @@ public final class ao_1 {
                     LoadingPage.a(0, var1 == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单", "组队", "交易"}, true);
                 }
 
-                this.m = this.l = var1;
+                this.sceneSubMode = this.sceneSubState = var1;
                 break;
             }
-        } else if (this.e.as.a != 6) {
+        } else if (this.mainCanvasRef.as.a != 6) {
             this.aK();
         }
 
     }
 
     private void aK() {
-        this.e.d("聊天");
-        if (this.e.as.a == 2) {
-            this.e.aE.setSelectedIndex(0, true);
-        } else if (this.e.as.a == 3) {
-            this.e.aE.setSelectedIndex(3, true);
-        } else if (this.e.as.a == 4) {
-            this.e.aE.setSelectedIndex(1, true);
-        } else if (this.e.as.a == 5) {
-            this.e.aE.setSelectedIndex(2, true);
+        this.mainCanvasRef.d("聊天");
+        if (this.mainCanvasRef.as.a == 2) {
+            this.mainCanvasRef.aE.setSelectedIndex(0, true);
+        } else if (this.mainCanvasRef.as.a == 3) {
+            this.mainCanvasRef.aE.setSelectedIndex(3, true);
+        } else if (this.mainCanvasRef.as.a == 4) {
+            this.mainCanvasRef.aE.setSelectedIndex(1, true);
+        } else if (this.mainCanvasRef.as.a == 5) {
+            this.mainCanvasRef.aE.setSelectedIndex(2, true);
         } else {
-            if (this.e.as.a == 7) {
-                this.e.aE.setSelectedIndex(4, true);
+            if (this.mainCanvasRef.as.a == 7) {
+                this.mainCanvasRef.aE.setSelectedIndex(4, true);
             }
 
         }
     }
 
     private void aL() {
-        if (this.e.as.a != 0) {
-            if (this.e.as.a == 1) {
+        if (this.mainCanvasRef.as.a != 0) {
+            if (this.mainCanvasRef.as.a == 1) {
                 o((byte) 5);
                 return;
             }
 
-            if (this.e.as.a == 2) {
+            if (this.mainCanvasRef.as.a == 2) {
                 o((byte) 0);
                 return;
             }
 
-            if (this.e.as.a == 3) {
+            if (this.mainCanvasRef.as.a == 3) {
                 o((byte) 3);
                 return;
             }
 
-            if (this.e.as.a == 4) {
+            if (this.mainCanvasRef.as.a == 4) {
                 o((byte) 1);
                 return;
             }
 
-            if (this.e.as.a == 5) {
+            if (this.mainCanvasRef.as.a == 5) {
                 o((byte) 2);
                 return;
             }
 
-            if (this.e.as.a == 6) {
+            if (this.mainCanvasRef.as.a == 6) {
                 o((byte) 4);
                 return;
             }
 
-            if (this.e.as.a == 7) {
+            if (this.mainCanvasRef.as.a == 7) {
                 o((byte) 6);
                 return;
             }
@@ -12621,7 +12633,7 @@ public final class ao_1 {
                 }
 
                 this.cq = (b) aP.elementAt(var2);
-                this.cq.a(var1, MainCanvas.f, C, LoadingPage.r + 2, LoadingPage.s + (var2 - LoadingPage.z) * var1.getFont().getHeight());
+                this.cq.a(var1, MainCanvas.pngUtil, C, LoadingPage.r + 2, LoadingPage.s + (var2 - LoadingPage.z) * var1.getFont().getHeight());
                 int var10002 = LoadingPage.r + 2;
                 int var10003 = LoadingPage.s + (var2 - LoadingPage.z) * var1.getFont().getHeight();
                 int var10004 = LoadingPage.t - 20;
@@ -12656,12 +12668,12 @@ public final class ao_1 {
             this.cs[1][1] = var13;
             this.cs[1][2] = var14;
             this.cs[1][3] = var10;
-            this.e.aq.a(var1);
-            if (this.l == 2 || this.l == 3 || this.l == 4 || this.l == 5 || this.l == 6) {
+            this.mainCanvasRef.aq.a(var1);
+            if (this.sceneSubState == 2 || this.sceneSubState == 3 || this.sceneSubState == 4 || this.sceneSubState == 5 || this.sceneSubState == 6) {
                 LoadingPage.c(var1);
             }
 
-            if (GlobalConfig.o && this.e.touchController != null && MainCanvas.u != null) {
+            if (GlobalConfig.o && this.mainCanvasRef.touchController != null && MainCanvas.u != null) {
                 var1.drawImage(MainCanvas.u.pngImage, GlobalConfig.defaultWidth - MainCanvas.u.b - 5, 5, 20);
             }
 
@@ -12699,15 +12711,15 @@ public final class ao_1 {
 
     public final void p(int var1) {
         if (i()) {
-            this.l = 0;
-            this.e.aq.b();
-            this.e.aq.a("社交关系");
-            if (this.j != 19) {
-                this.e.as.a(new String[]{"好友", "师徒", "黑名单"});
+            this.sceneSubState = 0;
+            this.mainCanvasRef.aq.b();
+            this.mainCanvasRef.aq.a("社交关系");
+            if (this.sceneStateShadow != 19) {
+                this.mainCanvasRef.as.a(new String[]{"好友", "师徒", "黑名单"});
             }
 
             if (var1 == 1) {
-                this.e.ar.a((Image[]) null, GlobalStatus.dL, (String[]) null, GlobalStatus.dQ);
+                this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.dL, (String[]) null, GlobalStatus.dQ);
             } else {
                 String[] var2 = null;
                 if (GlobalStatus.dK != null && GlobalStatus.dK.length > 0) {
@@ -12718,90 +12730,90 @@ public final class ao_1 {
                     }
                 }
 
-                this.e.ar.a((Image[]) null, GlobalStatus.dL, (String[]) null, var2);
+                this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.dL, (String[]) null, var2);
                 if (var1 == 0) {
-                    this.e.ar.a("添加好友");
-                    this.e.ar.a(GlobalStatus.aC == 1 ? GlobalStatus.dO : null);
-                    this.e.ar.b(GlobalStatus.aH == 1 ? GlobalStatus.dP : null);
+                    this.mainCanvasRef.ar.a("添加好友");
+                    this.mainCanvasRef.ar.a(GlobalStatus.aC == 1 ? GlobalStatus.dO : null);
+                    this.mainCanvasRef.ar.b(GlobalStatus.aH == 1 ? GlobalStatus.dP : null);
                 }
             }
 
-            this.e.ar.a(GlobalStatus.dR);
-            this.e.au.a("确定");
-            this.e.aq.a((al) this.e.as);
-            this.e.aq.a((al) this.e.ar);
+            this.mainCanvasRef.ar.a(GlobalStatus.dR);
+            this.mainCanvasRef.au.a("确定");
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
             if (GlobalConfig.defaultHigh > 220) {
-                this.e.aq.a((al) this.e.au);
+                this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
             }
 
-            this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-            this.e.aq.a(true);
+            this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.aq.a(true);
             this.de = null;
-            this.e.touchPageCase = this.e.k;
-            this.j = this.k = 19;
+            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+            this.sceneStateShadow = this.currentSceneModeId = 19;
         }
     }
 
     private void ak(int var1) {
-        if (this.e.aC != null && this.e.g && this.e.ar.g() - 1 >= 0) {
-            this.a((String) GlobalStatus.dK[this.e.ar.g() - 1], (byte) 4);
+        if (this.mainCanvasRef.aC != null && this.mainCanvasRef.g && this.mainCanvasRef.ar.g() - 1 >= 0) {
+            this.a((String) GlobalStatus.dK[this.mainCanvasRef.ar.g() - 1], (byte) 4);
         }
 
-        if (this.l == 0) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 == 8 || var1 == 2 || var1 == 516 || var1 == 518) {
-                if (this.e.as.a == 0) {
+                if (this.mainCanvasRef.as.a == 0) {
                     byte[] var8;
                     if ((var8 = NetPayloadBuilder.f((short) 4168, GlobalStatus.ad)) != null) {
                         NetPacket var9 = new NetPacket((short) 4168, var8);
                         MainCanvas.netUtils.sendPacket(var9);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     } else {
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                     }
-                } else if (this.e.as.a == 1) {
+                } else if (this.mainCanvasRef.as.a == 1) {
                     byte[] var10;
                     if ((var10 = NetPayloadBuilder.C((short) 4202, GlobalStatus.ad)) != null) {
                         NetPacket var11 = new NetPacket((short) 4202, var10);
                         MainCanvas.netUtils.sendPacket(var11);
                     } else {
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                     }
-                } else if (this.e.as.a == 2) {
+                } else if (this.mainCanvasRef.as.a == 2) {
                     byte[] var12;
                     if ((var12 = NetPayloadBuilder.g((short) 4169, GlobalStatus.ad)) != null) {
                         NetPacket var13 = new NetPacket((short) 4169, var12);
                         MainCanvas.netUtils.sendPacket(var13);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     } else {
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                     }
                 }
             }
 
-            if (this.e.as.a == 0) {
+            if (this.mainCanvasRef.as.a == 0) {
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                    if (this.e.ar.g() == this.e.ar.h()) {
-                        this.e.a((String) "请输入好友昵称", (int) 0);
+                    if (this.mainCanvasRef.ar.g() == this.mainCanvasRef.ar.h()) {
+                        this.mainCanvasRef.a((String) "请输入好友昵称", (int) 0);
                     } else if (GlobalStatus.dK != null) {
-                        if (GlobalStatus.dM[this.e.ar.g() - 1] == 0) {
-                            LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
-                        } else if (GlobalStatus.dM[this.e.ar.g() - 1] == 1) {
-                            LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
+                        if (GlobalStatus.dM[this.mainCanvasRef.ar.g() - 1] == 0) {
+                            LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
+                        } else if (GlobalStatus.dM[this.mainCanvasRef.ar.g() - 1] == 1) {
+                            LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
                         }
 
-                        this.l = 1;
+                        this.sceneSubState = 1;
                     }
                 }
-            } else if (this.e.as.a == 2 && (var1 == 268435456 || var1 == 1073741824 || var1 == 517) && GlobalStatus.dK != null) {
-                if (GlobalStatus.dM[this.e.ar.g()] == 0 || GlobalStatus.dM[this.e.ar.g()] == 1) {
-                    LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"删除", "加为好友"}, true);
+            } else if (this.mainCanvasRef.as.a == 2 && (var1 == 268435456 || var1 == 1073741824 || var1 == 517) && GlobalStatus.dK != null) {
+                if (GlobalStatus.dM[this.mainCanvasRef.ar.g()] == 0 || GlobalStatus.dM[this.mainCanvasRef.ar.g()] == 1) {
+                    LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"删除", "加为好友"}, true);
                 }
 
-                this.l = 4;
+                this.sceneSubState = 4;
             }
 
             if (var1 == 536870912) {
@@ -12816,178 +12828,178 @@ public final class ao_1 {
                 this.c((int) 0);
                 return;
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else {
-                this.e.aw = LoadingPage.o;
+                this.mainCanvasRef.aw = LoadingPage.o;
                 if (LoadingPage.o == 0) {
-                    this.aQ = GlobalStatus.dL[this.e.ar.g() - 1];
-                    this.aS = GlobalStatus.dK[this.e.ar.g() - 1];
+                    this.aQ = GlobalStatus.dL[this.mainCanvasRef.ar.g() - 1];
+                    this.aS = GlobalStatus.dK[this.mainCanvasRef.ar.g() - 1];
                     this.aT = 4;
-                    this.e.a((String) "聊天", (int) 0);
+                    this.mainCanvasRef.a((String) "聊天", (int) 0);
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
-                    LoadingPage.a(0, 2 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"查看", "道具", "成就"}, true);
-                    this.l = 9;
+                    LoadingPage.a(0, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"查看", "道具", "成就"}, true);
+                    this.sceneSubState = 9;
                     return;
                 }
 
                 if (LoadingPage.o == 2) {
-                    LoadingPage.a(0, 2 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"确认", "取消"}, true);
-                    this.l = 2;
+                    LoadingPage.a(0, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"确认", "取消"}, true);
+                    this.sceneSubState = 2;
                     return;
                 }
 
                 if (LoadingPage.o == 3) {
-                    LoadingPage.a(0, 2 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"确认", "取消"}, true);
-                    this.l = 3;
+                    LoadingPage.a(0, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"确认", "取消"}, true);
+                    this.sceneSubState = 3;
                     return;
                 }
 
                 if (LoadingPage.o == 4) {
                     if (GlobalStatus.bs == -1) {
-                        LoadingPage.a(65 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.e.ar.g() * GlobalConfig.j + GlobalConfig.g, new String[]{"自由", "跟随"}, false);
-                        this.l = 6;
+                        LoadingPage.a(65 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.j + GlobalConfig.g, new String[]{"自由", "跟随"}, false);
+                        this.sceneSubState = 6;
                         return;
                     }
 
-                    this.a(GlobalStatus.s, GlobalStatus.dK[this.e.ar.g() - 1]);
+                    this.a(GlobalStatus.s, GlobalStatus.dK[this.mainCanvasRef.ar.g() - 1]);
                     return;
                 }
 
                 if (LoadingPage.o == 5) {
-                    LoadingPage.a(65 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.e.ar.g() * GlobalConfig.j + GlobalConfig.g, new String[]{"物品", "宠物"}, false);
-                    this.l = 7;
+                    LoadingPage.a(65 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.j + GlobalConfig.g, new String[]{"物品", "宠物"}, false);
+                    this.sceneSubState = 7;
                     return;
                 }
 
                 if (LoadingPage.o == 6) {
                     if (GlobalStatus.G()) {
-                        this.e.processException("住宅中不能参观别人住宅");
+                        this.mainCanvasRef.processException("住宅中不能参观别人住宅");
                         return;
                     }
 
                     if (GlobalStatus.bs != -1) {
-                        this.e.processException("队伍中不能参看住宅！");
+                        this.mainCanvasRef.processException("队伍中不能参看住宅！");
                         return;
                     }
 
-                    this.a((byte) 1, -1, GlobalStatus.dK[this.e.ar.g() - 1]);
+                    this.a((byte) 1, -1, GlobalStatus.dK[this.mainCanvasRef.ar.g() - 1]);
                     return;
                 }
 
                 if (LoadingPage.o == 7) {
                     aq var10000 = this.M;
-                    String var7 = GlobalStatus.dL[this.e.ar.g() - 1];
+                    String var7 = GlobalStatus.dL[this.mainCanvasRef.ar.g() - 1];
                     var10000.f = var7;
                     this.M.h();
                     return;
                 }
             }
-        } else if (this.l != 2 && this.l != 3) {
-            if (this.l == 4) {
+        } else if (this.sceneSubState != 2 && this.sceneSubState != 3) {
+            if (this.sceneSubState == 4) {
                 LoadingPage.b(var1);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        this.l = 0;
+                        this.sceneSubState = 0;
                         return;
                     }
                 } else {
                     if (LoadingPage.o == 0) {
-                        LoadingPage.a(0, 2 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"确认", "取消"}, true);
-                        this.l = 5;
+                        LoadingPage.a(0, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"确认", "取消"}, true);
+                        this.sceneSubState = 5;
                         return;
                     }
 
                     if (LoadingPage.o == 1) {
-                        this.a(GlobalStatus.dK[this.e.ar.g()]);
+                        this.a(GlobalStatus.dK[this.mainCanvasRef.ar.g()]);
                         return;
                     }
                 }
-            } else if (this.l == 5) {
+            } else if (this.sceneSubState == 5) {
                 LoadingPage.b(var1);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
-                    if (var1 == 536870912 && (GlobalStatus.dM[this.e.ar.g()] == 0 || GlobalStatus.dM[this.e.ar.g()] == 1)) {
-                        LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"删除", "加为好友"}, true);
-                        this.l = 4;
+                    if (var1 == 536870912 && (GlobalStatus.dM[this.mainCanvasRef.ar.g()] == 0 || GlobalStatus.dM[this.mainCanvasRef.ar.g()] == 1)) {
+                        LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"删除", "加为好友"}, true);
+                        this.sceneSubState = 4;
                         return;
                     }
                 } else if (LoadingPage.o == 0) {
                     byte[] var5;
-                    if ((var5 = NetPayloadBuilder.d((short) 4171, GlobalStatus.ad, GlobalStatus.dK[this.e.ar.g()])) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                    if ((var5 = NetPayloadBuilder.d((short) 4171, GlobalStatus.ad, GlobalStatus.dK[this.mainCanvasRef.ar.g()])) == null) {
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     NetPacket var6 = new NetPacket((short) 4171, var5);
                     MainCanvas.netUtils.sendPacket(var6);
-                    this.e.a((String) null);
-                } else if (LoadingPage.o == 1 && (GlobalStatus.dM[this.e.ar.g()] == 0 || GlobalStatus.dM[this.e.ar.g()] == 1)) {
-                    LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"删除", "加为好友"}, true);
-                    this.l = 4;
+                    this.mainCanvasRef.a((String) null);
+                } else if (LoadingPage.o == 1 && (GlobalStatus.dM[this.mainCanvasRef.ar.g()] == 0 || GlobalStatus.dM[this.mainCanvasRef.ar.g()] == 1)) {
+                    LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"删除", "加为好友"}, true);
+                    this.sceneSubState = 4;
                     return;
                 }
-            } else if (this.l == 6) {
+            } else if (this.sceneSubState == 6) {
                 LoadingPage.b(var1);
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                    this.a((short) (LoadingPage.o == 0 ? 1 : 0), (String) GlobalStatus.dK[this.e.ar.g() - 1]);
+                    this.a((short) (LoadingPage.o == 0 ? 1 : 0), (String) GlobalStatus.dK[this.mainCanvasRef.ar.g() - 1]);
                     return;
                 }
 
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
-            } else if (this.l == 7) {
+            } else if (this.sceneSubState == 7) {
                 LoadingPage.b(var1);
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                    this.e(GlobalStatus.dK[this.e.ar.g() - 1]);
+                    this.e(GlobalStatus.dK[this.mainCanvasRef.ar.g() - 1]);
                     return;
                 }
 
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
-            } else if (this.l == 8) {
+            } else if (this.sceneSubState == 8) {
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        this.l = 0;
+                        this.sceneSubState = 0;
                         return;
                     }
                 } else {
                     byte[] var2;
-                    if ((var2 = NetPayloadBuilder.c((short) 4170, GlobalStatus.ad, GlobalStatus.dK[this.e.ar.g() - 1])) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                    if ((var2 = NetPayloadBuilder.c((short) 4170, GlobalStatus.ad, GlobalStatus.dK[this.mainCanvasRef.ar.g() - 1])) == null) {
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     NetPacket var3 = new NetPacket((short) 4170, var2);
                     MainCanvas.netUtils.sendPacket(var3);
                 }
-            } else if (this.l == 9) {
+            } else if (this.sceneSubState == 9) {
                 LoadingPage.b(var1);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        this.l = 0;
+                        this.sceneSubState = 0;
                         return;
                     }
                 } else if (LoadingPage.o == 0) {
                     byte[] var4;
-                    if ((var4 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, GlobalStatus.dK[this.e.ar.g() - 1], (byte) 0)) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                    if ((var4 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, GlobalStatus.dK[this.mainCanvasRef.ar.g() - 1], (byte) 0)) == null) {
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4110, var4));
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 } else {
                     if (LoadingPage.o == 1) {
                         if (GlobalStatus.bC.size() > 0) {
@@ -12995,17 +13007,17 @@ public final class ao_1 {
                             return;
                         }
 
-                        this.e.processException("背包中没有物品");
+                        this.mainCanvasRef.processException("背包中没有物品");
                         return;
                     }
 
                     if (LoadingPage.o == 2) {
-                        this.de = GlobalStatus.dK[this.e.ar.g() - 1];
-                        this.a(GlobalStatus.dK[this.e.ar.g() - 1], GlobalStatus.ad, (short) 3, (short) 1);
+                        this.de = GlobalStatus.dK[this.mainCanvasRef.ar.g() - 1];
+                        this.a(GlobalStatus.dK[this.mainCanvasRef.ar.g() - 1], GlobalStatus.ad, (short) 3, (short) 1);
                         return;
                     }
                 }
-            } else if (this.l == 10) {
+            } else if (this.sceneSubState == 10) {
                 this.T.b(var1);
                 if (var1 == 268435456 || var1 == 536870912) {
                     this.T.j();
@@ -13016,41 +13028,41 @@ public final class ao_1 {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    if (GlobalStatus.dM[this.e.ar.g() - 1] == 0) {
-                        LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
-                    } else if (GlobalStatus.dM[this.e.ar.g() - 1] == 1) {
-                        LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
+                    if (GlobalStatus.dM[this.mainCanvasRef.ar.g() - 1] == 0) {
+                        LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
+                    } else if (GlobalStatus.dM[this.mainCanvasRef.ar.g() - 1] == 1) {
+                        LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
                     }
 
-                    LoadingPage.o = this.e.aw;
-                    this.l = 1;
+                    LoadingPage.o = this.mainCanvasRef.aw;
+                    this.sceneSubState = 1;
                     return;
                 }
             } else if (LoadingPage.o == 0) {
-                if (this.e.aw == 2) {
-                    this.l = 8;
+                if (this.mainCanvasRef.aw == 2) {
+                    this.sceneSubState = 8;
                     LoadingPage.h = 0;
                     return;
                 }
 
-                if (this.e.aw == 3) {
-                    if (GlobalStatus.dM[this.e.ar.g() - 1] == 1) {
-                        this.b(GlobalStatus.dK[this.e.ar.g() - 1]);
+                if (this.mainCanvasRef.aw == 3) {
+                    if (GlobalStatus.dM[this.mainCanvasRef.ar.g() - 1] == 1) {
+                        this.b(GlobalStatus.dK[this.mainCanvasRef.ar.g() - 1]);
                         return;
                     }
 
-                    this.e.processException("对方不在线");
+                    this.mainCanvasRef.processException("对方不在线");
                     return;
                 }
             } else if (LoadingPage.o == 1) {
-                if (GlobalStatus.dM[this.e.ar.g() - 1] == 0) {
-                    LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
-                } else if (GlobalStatus.dM[this.e.ar.g() - 1] == 1) {
-                    LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
+                if (GlobalStatus.dM[this.mainCanvasRef.ar.g() - 1] == 0) {
+                    LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
+                } else if (GlobalStatus.dM[this.mainCanvasRef.ar.g() - 1] == 1) {
+                    LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
                 }
 
-                LoadingPage.o = this.e.aw;
-                this.l = 1;
+                LoadingPage.o = this.mainCanvasRef.aw;
+                this.sceneSubState = 1;
                 return;
             }
         }
@@ -13059,17 +13071,17 @@ public final class ao_1 {
 
     public final void a(short var1) {
         this.bb = var1;
-        this.e.mainMidlet.start();
+        this.mainCanvasRef.mainMidlet.start();
         GlobalStatus.dS = GlobalStatus.dT;
         GlobalStatus.dU = GlobalStatus.dV;
         GlobalStatus.dW = GlobalStatus.dX;
         this.an = new String[]{GlobalStatus.dS[2], GlobalStatus.dS[3]};
         K = new TextRender(GlobalStatus.dS[0], (short) (GlobalConfig.defaultWidth - 20));
         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
-        MainCanvas.f.a(this.f, h, i, true, false, 1009050);
-        this.e.az = false;
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 20;
+        MainCanvas.pngUtil.a(this.f, h, i, true, false, 1009050);
+        this.mainCanvasRef.az = false;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 20;
     }
 
     private void al(int var1) {
@@ -13089,9 +13101,9 @@ public final class ao_1 {
                                 if (GlobalStatus.dU == 26 && GlobalStatus.dS[2].equals("注册")) {
                                     c_3.a(true);
                                 } else if (GlobalStatus.dU == 28 && GlobalStatus.dS[2].equals("下载")) {
-                                    this.e.c(GlobalStatus.dS[1]);
+                                    this.mainCanvasRef.c(GlobalStatus.dS[1]);
                                 } else {
-                                    this.e.a((String) null);
+                                    this.mainCanvasRef.a((String) null);
                                 }
                             } else if (LoadingPage.g == 1) {
                                 this.b(GlobalStatus.dS[1], GlobalStatus.dW);
@@ -13100,7 +13112,7 @@ public final class ao_1 {
 
                             if (this.bb == 64) {
                                 this.bb = 0;
-                                this.O.a(MainCanvas.e.O.a, (short) this.O.c, this.O.d);
+                                this.O.a(MainCanvas.uiSceneController.O.a, (short) this.O.c, this.O.d);
                             }
                         }
                     } else {
@@ -13116,7 +13128,7 @@ public final class ao_1 {
             LoadingPage.g = LoadingPage.g - 1 >= 0 ? LoadingPage.g - 1 : this.an.length - 1;
         }
 
-        this.e.b = 0;
+        this.mainCanvasRef.b = 0;
     }
 
     private void aN() {
@@ -13134,18 +13146,18 @@ public final class ao_1 {
             }
         }
 
-        if (this.j != 21) {
-            this.l = 0;
-            this.e.aq.j();
-            this.e.aq.a("队伍(" + (GlobalStatus.s == 0 ? "跟随" : "自由") + ")信息");
-            this.e.ar.a(var1, this.am, (String[]) null, this.al);
-            this.e.aq.a((al) this.e.ar);
-            this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-            this.e.touchPageCase = this.e.k;
-            this.j = this.k = 21;
+        if (this.sceneStateShadow != 21) {
+            this.sceneSubState = 0;
+            this.mainCanvasRef.aq.j();
+            this.mainCanvasRef.aq.a("队伍(" + (GlobalStatus.s == 0 ? "跟随" : "自由") + ")信息");
+            this.mainCanvasRef.ar.a(var1, this.am, (String[]) null, this.al);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+            this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+            this.sceneStateShadow = this.currentSceneModeId = 21;
         } else {
-            this.e.aq.a("队伍(" + (GlobalStatus.s == 0 ? "跟随" : "自由") + ")信息");
-            this.e.ar.a(var1, this.am, (String[]) null, this.al);
+            this.mainCanvasRef.aq.a("队伍(" + (GlobalStatus.s == 0 ? "跟随" : "自由") + ")信息");
+            this.mainCanvasRef.ar.a(var1, this.am, (String[]) null, this.al);
         }
     }
 
@@ -13154,18 +13166,18 @@ public final class ao_1 {
             this.al = null;
             this.N();
         } else {
-            if (this.e.aC != null && this.e.g) {
+            if (this.mainCanvasRef.aC != null && this.mainCanvasRef.g) {
                 if (this.bz != 0 && this.bz != 3) {
-                    this.a((String) GlobalStatus.q[this.e.ar.g()].b, (byte) 4);
+                    this.a((String) GlobalStatus.q[this.mainCanvasRef.ar.g()].b, (byte) 4);
                 } else {
                     this.a((String) null, (byte) 2);
                 }
             }
 
-            if (this.l == 0) {
-                this.e.aq.b(var1);
+            if (this.sceneSubState == 0) {
+                this.mainCanvasRef.aq.b(var1);
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                    if (GlobalStatus.q[this.e.ar.g()].b.equals(GlobalStatus.ad)) {
+                    if (GlobalStatus.q[this.mainCanvasRef.ar.g()].b.equals(GlobalStatus.ad)) {
                         return;
                     }
 
@@ -13175,64 +13187,64 @@ public final class ao_1 {
                         LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"群聊", "私聊", "离开", "查看"}, true);
                     }
 
-                    this.l = 1;
+                    this.sceneSubState = 1;
                     return;
                 }
 
                 if (var1 == 536870912) {
-                    this.e.aq.j();
+                    this.mainCanvasRef.aq.j();
                     this.c((int) 0);
-                    this.l = 1;
-                    MainCanvas.f.a(this.f, h, i, false, false, 1009050);
-                    this.j = this.k = 1;
+                    this.sceneSubState = 1;
+                    MainCanvas.pngUtil.a(this.f, h, i, false, false, 1009050);
+                    this.sceneStateShadow = this.currentSceneModeId = 1;
                     return;
                 }
-            } else if (this.l == 1) {
+            } else if (this.sceneSubState == 1) {
                 LoadingPage.b(var1);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        this.l = 0;
+                        this.sceneSubState = 0;
                         return;
                     }
                 } else if (GlobalStatus.bs == 1) {
                     if (LoadingPage.o == 0) {
                         LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"确认", "取消"}, true);
                         this.bz = 0;
-                        this.l = 2;
+                        this.sceneSubState = 2;
                         return;
                     }
 
                     if (LoadingPage.o == 1) {
                         LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"确认", "取消"}, true);
                         this.bz = 1;
-                        this.l = 2;
+                        this.sceneSubState = 2;
                         return;
                     }
 
                     if (LoadingPage.o == 2) {
                         LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"确认", "取消"}, true);
                         this.bz = 2;
-                        this.l = 2;
+                        this.sceneSubState = 2;
                         return;
                     }
 
                     if (LoadingPage.o == 3) {
-                        this.e.a((String) "聊天", (int) 0);
+                        this.mainCanvasRef.a((String) "聊天", (int) 0);
                         this.bz = 3;
-                        this.aQ = GlobalStatus.q[this.e.ar.g()].e;
+                        this.aQ = GlobalStatus.q[this.mainCanvasRef.ar.g()].e;
                         return;
                     }
 
                     if (LoadingPage.o == 4) {
-                        this.e.a((String) "聊天", (int) 0);
+                        this.mainCanvasRef.a((String) "聊天", (int) 0);
                         this.bz = 4;
-                        this.aQ = GlobalStatus.q[this.e.ar.g()].e;
+                        this.aQ = GlobalStatus.q[this.mainCanvasRef.ar.g()].e;
                         return;
                     }
 
                     if (LoadingPage.o == 5) {
                         LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"属性", "装备"}, true);
-                        this.l = 3;
+                        this.sceneSubState = 3;
                         return;
                     }
 
@@ -13240,51 +13252,51 @@ public final class ao_1 {
                         this.bz = 6;
                         byte[] var8;
                         if ((var8 = NetPayloadBuilder.b((short) 4115, GlobalStatus.ad, (short) GlobalStatus.s)) == null) {
-                            this.e.processException("获取上传指令数据错误!");
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4115, var8));
                         if (GlobalStatus.s == 0) {
-                            this.e.processException("队员自由活动请求已发送!");
+                            this.mainCanvasRef.processException("队员自由活动请求已发送!");
                         } else {
                             if (GlobalStatus.s != 1) {
                                 return;
                             }
 
-                            this.e.processException("队伍集合请求已发送!");
+                            this.mainCanvasRef.processException("队伍集合请求已发送!");
                         }
                     }
                 } else if (GlobalStatus.bs == 0) {
                     if (LoadingPage.o == 0) {
-                        this.e.a((String) "聊天", (int) 0);
+                        this.mainCanvasRef.a((String) "聊天", (int) 0);
                         this.bz = 0;
-                        this.aQ = GlobalStatus.q[this.e.ar.g()].e;
+                        this.aQ = GlobalStatus.q[this.mainCanvasRef.ar.g()].e;
                         return;
                     }
 
                     if (LoadingPage.o == 1) {
-                        this.e.a((String) "聊天", (int) 0);
+                        this.mainCanvasRef.a((String) "聊天", (int) 0);
                         this.bz = 1;
-                        this.aQ = GlobalStatus.q[this.e.ar.g()].e;
+                        this.aQ = GlobalStatus.q[this.mainCanvasRef.ar.g()].e;
                         return;
                     }
 
                     if (LoadingPage.o == 2) {
                         LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"确认", "取消"}, true);
                         this.bz = 2;
-                        this.l = 2;
+                        this.sceneSubState = 2;
                         return;
                     }
 
                     if (LoadingPage.o == 3) {
                         LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"属性", "装备"}, true);
                         this.bz = 3;
-                        this.l = 3;
+                        this.sceneSubState = 3;
                         return;
                     }
                 }
-            } else if (this.l == 2) {
+            } else if (this.sceneSubState == 2) {
                 LoadingPage.b(var1);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
@@ -13294,48 +13306,48 @@ public final class ao_1 {
                 } else if (LoadingPage.o == 0) {
                     if (this.bz == 0) {
                         byte[] var2;
-                        if ((var2 = NetPayloadBuilder.e((short) 4114, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b)) == null) {
-                            this.e.processException("获取上传指令数据错误!");
+                        if ((var2 = NetPayloadBuilder.e((short) 4114, GlobalStatus.ad, GlobalStatus.q[this.mainCanvasRef.ar.g()].b)) == null) {
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4114, var2));
-                        this.e.processException("剔除队员" + GlobalStatus.q[this.e.ar.g()].e + "请求已发送!");
+                        this.mainCanvasRef.processException("剔除队员" + GlobalStatus.q[this.mainCanvasRef.ar.g()].e + "请求已发送!");
                     } else if (this.bz == 1) {
                         byte[] var3;
-                        if ((var3 = NetPayloadBuilder.f((short) 4119, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b)) == null) {
-                            this.e.processException("获取上传指令数据错误!");
+                        if ((var3 = NetPayloadBuilder.f((short) 4119, GlobalStatus.ad, GlobalStatus.q[this.mainCanvasRef.ar.g()].b)) == null) {
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4119, var3));
-                        this.e.processException("任命" + GlobalStatus.q[this.e.ar.g()].e + "为队长请求已发送!");
+                        this.mainCanvasRef.processException("任命" + GlobalStatus.q[this.mainCanvasRef.ar.g()].e + "为队长请求已发送!");
                     } else if (this.bz == 2) {
                         if (GlobalStatus.bs == 1) {
                             byte[] var4;
                             if ((var4 = NetPayloadBuilder.h((short) 4120, GlobalStatus.ad)) == null) {
-                                this.e.processException("获取上传指令数据错误!");
+                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                                 return;
                             }
 
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4120, var4));
-                            this.e.processException("解散队伍请求已发送!");
+                            this.mainCanvasRef.processException("解散队伍请求已发送!");
                         } else if (GlobalStatus.bs == 0) {
                             byte[] var5;
                             if ((var5 = NetPayloadBuilder.i((short) 4121, GlobalStatus.ad)) == null) {
-                                this.e.processException("获取上传指令数据错误!");
+                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                                 return;
                             }
 
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4121, var5));
-                            this.e.processException("脱离队伍请求已发送!");
+                            this.mainCanvasRef.processException("脱离队伍请求已发送!");
                         }
                     }
                 } else if (LoadingPage.o == 1) {
                     this.an(this.bz);
                     return;
                 }
-            } else if (this.l == 3) {
+            } else if (this.sceneSubState == 3) {
                 LoadingPage.b(var1);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
@@ -13349,33 +13361,33 @@ public final class ao_1 {
                     }
                 } else if (LoadingPage.o == 0) {
                     byte[] var6;
-                    if ((var6 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b, (byte) 0)) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                    if ((var6 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, GlobalStatus.q[this.mainCanvasRef.ar.g()].b, (byte) 0)) == null) {
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4110, var6));
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 } else if (LoadingPage.o == 1) {
                     byte[] var7;
-                    if ((var7 = NetPayloadBuilder.b((short) 4111, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b)) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                    if ((var7 = NetPayloadBuilder.b((short) 4111, GlobalStatus.ad, GlobalStatus.q[this.mainCanvasRef.ar.g()].b)) == null) {
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4111, var7));
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 }
-            } else if (this.l == 4) {
+            } else if (this.sceneSubState == 4) {
                 this.T.b(var1);
                 if (var1 == 268435456 || var1 == 536870912) {
                     LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"属性", "装备"}, true);
                     this.al = null;
                     this.T.j();
-                    this.l = 3;
+                    this.sceneSubState = 3;
                     return;
                 }
-            } else if (this.l == 5) {
+            } else if (this.sceneSubState == 5) {
                 this.a(GlobalStatus.cJ);
                 this.g(var1);
                 if (var1 == 536870912) {
@@ -13386,7 +13398,7 @@ public final class ao_1 {
 
                     q = null;
                     this.al = null;
-                    this.l = 3;
+                    this.sceneSubState = 3;
                 }
             }
 
@@ -13401,11 +13413,11 @@ public final class ao_1 {
         }
 
         LoadingPage.o = var1;
-        if (this.k == 21) {
-            this.l = 1;
+        if (this.currentSceneModeId == 21) {
+            this.sceneSubState = 1;
         } else {
-            if (this.k == 7) {
-                this.l = 8;
+            if (this.currentSceneModeId == 7) {
+                this.sceneSubState = 8;
             }
 
         }
@@ -13413,31 +13425,31 @@ public final class ao_1 {
 
     public final void b(byte var1, boolean var2) {
         this.ct = var1;
-        this.l = 0;
+        this.sceneSubState = 0;
         if (var2) {
-            this.aE = this.e.ax = this.aF;
+            this.aE = this.mainCanvasRef.ax = this.aF;
         } else {
-            this.aE = this.aV = this.e.ax = 0;
+            this.aE = this.aV = this.mainCanvasRef.ax = 0;
         }
 
         this.aU = this.ar = 1;
         this.aP();
-        this.e.aq.b();
-        this.e.au.a(new String[]{"交易", "取消"});
-        this.e.aq.a((al) this.e.au);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.aq.a(GlobalStatus.ff);
-        this.j = this.k = 22;
-        this.e.touchPageCase = this.e.k = 7;
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.au.a(new String[]{"交易", "取消"});
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.aq.a(GlobalStatus.ff);
+        this.sceneStateShadow = this.currentSceneModeId = 22;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k = 7;
     }
 
     private void ao(int var1) {
-        if (this.aE == this.e.ax) {
+        if (this.aE == this.mainCanvasRef.ax) {
             this.aP();
             this.aE = -1;
         }
 
-        if (this.l == 0) {
+        if (this.sceneSubState == 0) {
             if (this.ct == 0) {
                 this.a(GlobalStatus.fs);
                 this.aV();
@@ -13451,98 +13463,98 @@ public final class ao_1 {
                         if (var1 != 520 && var1 != 4) {
                             if (var1 == 1073741824) {
                                 if (this.ar == 0) {
-                                    if (GlobalStatus.fp != null && GlobalStatus.a((byte) 1, this.e.ax)) {
-                                        LoadingPage.a(GlobalConfig.f + 20 + this.e.ax * 17, GlobalConfig.g + 41, new String[]{"查看"}, false);
-                                        this.l = 3;
+                                    if (GlobalStatus.fp != null && GlobalStatus.a((byte) 1, this.mainCanvasRef.ax)) {
+                                        LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 41, new String[]{"查看"}, false);
+                                        this.sceneSubState = 3;
                                     }
                                 } else if (this.ar <= 1) {
                                     var1 = 0;
                                     if (this.ct == 0) {
                                         if (this.ar == 1) {
                                             if (GlobalStatus.fh == null || GlobalStatus.fh != null && this.aO()) {
-                                                if (GlobalStatus.fi != null && GlobalStatus.a((byte) 0, this.e.ax)) {
-                                                    LoadingPage.a(GlobalConfig.f + 20 + this.e.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"查看", "放入", "金钱", "锁定", "交易", "退出"}, false);
+                                                if (GlobalStatus.fi != null && GlobalStatus.a((byte) 0, this.mainCanvasRef.ax)) {
+                                                    LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"查看", "放入", "金钱", "锁定", "交易", "退出"}, false);
                                                 } else {
-                                                    LoadingPage.a(GlobalConfig.f + 20 + this.e.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"放入", "金钱", "锁定", "交易", "退出"}, false);
+                                                    LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"放入", "金钱", "锁定", "交易", "退出"}, false);
                                                 }
 
                                                 LoadingPage.o = 0;
-                                                this.l = 1;
+                                                this.sceneSubState = 1;
                                             } else {
-                                                if (GlobalStatus.fi != null && GlobalStatus.a((byte) 0, this.e.ax)) {
-                                                    LoadingPage.a(GlobalConfig.f + 20 + this.e.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"查看", "取出", "金钱", "锁定", "交易", "退出"}, false);
+                                                if (GlobalStatus.fi != null && GlobalStatus.a((byte) 0, this.mainCanvasRef.ax)) {
+                                                    LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"查看", "取出", "金钱", "锁定", "交易", "退出"}, false);
                                                 } else {
-                                                    LoadingPage.a(GlobalConfig.f + 20 + this.e.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"取出", "金钱", "锁定", "交易", "退出"}, false);
+                                                    LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"取出", "金钱", "锁定", "交易", "退出"}, false);
                                                 }
 
                                                 LoadingPage.o = 0;
-                                                this.l = 2;
+                                                this.sceneSubState = 2;
                                             }
                                         }
                                     } else if (this.ct == 1 && this.ar == 1) {
                                         if (GlobalStatus.fu != null && (GlobalStatus.fu == null || !this.aO())) {
-                                            LoadingPage.a(GlobalConfig.f + 20 + this.e.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"取出", "金钱", "锁定", "交易", "退出"}, false);
+                                            LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"取出", "金钱", "锁定", "交易", "退出"}, false);
                                             LoadingPage.o = 0;
-                                            this.l = 2;
+                                            this.sceneSubState = 2;
                                         } else {
-                                            LoadingPage.a(GlobalConfig.f + 20 + this.e.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"放入", "金钱", "锁定", "交易", "退出"}, false);
+                                            LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"放入", "金钱", "锁定", "交易", "退出"}, false);
                                             LoadingPage.o = 0;
-                                            this.l = 1;
+                                            this.sceneSubState = 1;
                                         }
                                     }
                                 }
 
-                                this.aF = this.e.ax;
+                                this.aF = this.mainCanvasRef.ax;
                                 return;
                             }
 
                             if (var1 == 536870912) {
                                 LoadingPage.h = 0;
-                                this.l = 5;
+                                this.sceneSubState = 5;
                                 return;
                             }
 
                             if (var1 == 1024) {
                                 if (GlobalStatus.i == 0) {
-                                    this.e.processException("交易已锁定");
+                                    this.mainCanvasRef.processException("交易已锁定");
                                     return;
                                 }
 
                                 byte[] var7;
                                 if ((var7 = NetPayloadBuilder.g((short) 4128, GlobalStatus.ad, (byte) this.ct)) == null) {
-                                    this.e.processException("获取上传指令数据错误!");
+                                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4128, var7));
-                                this.e.a((String) null);
+                                this.mainCanvasRef.a((String) null);
                             } else {
                                 if (var1 == 2048) {
                                     if (GlobalStatus.i == 0) {
-                                        this.e.processException("交易已锁定");
+                                        this.mainCanvasRef.processException("交易已锁定");
                                         return;
                                     }
 
                                     if (GlobalStatus.ap > 0L) {
                                         this.ah = GlobalStatus.ap;
-                                        this.l = 6;
+                                        this.sceneSubState = 6;
                                         this.o();
                                         return;
                                     }
 
-                                    this.e.processException("身上没有银两");
+                                    this.mainCanvasRef.processException("身上没有银两");
                                     return;
                                 }
 
                                 if (var1 == 268435456) {
                                     byte[] var8;
                                     if ((var8 = NetPayloadBuilder.h((short) 4129, GlobalStatus.ad, (byte) this.ct)) == null) {
-                                        this.e.processException("获取上传指令数据错误!");
+                                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                                         return;
                                     }
 
                                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4129, var8));
-                                    this.e.a((String) null);
+                                    this.mainCanvasRef.a((String) null);
                                     return;
                                 }
                             }
@@ -13561,7 +13573,7 @@ public final class ao_1 {
                     }
 
                     if (this.ar - 1 == 1) {
-                        this.aV = this.e.ax = 0;
+                        this.aV = this.mainCanvasRef.ax = 0;
                     }
 
                     --this.ar;
@@ -13575,54 +13587,54 @@ public final class ao_1 {
                 }
 
                 if (this.ar == 3) {
-                    this.aV = this.e.ax = this.e.ax == 0 ? 1 : 0;
+                    this.aV = this.mainCanvasRef.ax = this.mainCanvasRef.ax == 0 ? 1 : 0;
                     this.aP();
                     return;
                 }
 
-                this.aE = this.aV = this.e.ax = this.e.ax >= 7 ? 0 : ++this.e.ax;
+                this.aE = this.aV = this.mainCanvasRef.ax = this.mainCanvasRef.ax >= 7 ? 0 : ++this.mainCanvasRef.ax;
                 this.aP();
                 return;
             }
 
             if (this.ar == 3) {
-                this.aV = this.e.ax = this.e.ax == 0 ? 1 : 0;
+                this.aV = this.mainCanvasRef.ax = this.mainCanvasRef.ax == 0 ? 1 : 0;
                 this.aP();
                 return;
             }
 
-            this.aE = this.aV = this.e.ax = this.e.ax <= 0 ? 7 : --this.e.ax;
+            this.aE = this.aV = this.mainCanvasRef.ax = this.mainCanvasRef.ax <= 0 ? 7 : --this.mainCanvasRef.ax;
             this.aP();
             return;
-        } else if (this.l != 1 && this.l != 2) {
-            if (this.l == 3) {
+        } else if (this.sceneSubState != 1 && this.sceneSubState != 2) {
+            if (this.sceneSubState == 3) {
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                    this.aH = this.e.as.a;
-                    GlobalStatus.a((int) this.e.ax, 1);
-                    this.O.a(0, (short) this.k, this.ct);
+                    this.aH = this.mainCanvasRef.as.a;
+                    GlobalStatus.a((int) this.mainCanvasRef.ax, 1);
+                    this.O.a(0, (short) this.currentSceneModeId, this.ct);
                     return;
                 }
 
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
-            } else if (this.l == 5) {
+            } else if (this.sceneSubState == 5) {
                 if (var1 == 268435456) {
                     this.g(this.ct);
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                     return;
                 }
 
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
-            } else if (this.l == 6) {
+            } else if (this.sceneSubState == 6) {
                 if (var1 != 268435456 && var1 != 1073741824) {
                     if (var1 != 1073741824) {
                         if (var1 == 536870912) {
-                            this.l = 0;
+                            this.sceneSubState = 0;
                             return;
                         }
 
@@ -13630,19 +13642,19 @@ public final class ao_1 {
                     }
                 } else if (this.n() != -1L) {
                     if (this.n() > this.ah) {
-                        this.e.processException("超出最大值，请重新输入");
+                        this.mainCanvasRef.processException("超出最大值，请重新输入");
                         return;
                     }
 
                     byte[] var6;
                     if ((var6 = NetPayloadBuilder.a((short) 4127, GlobalStatus.ad, this.n(), (int) this.ct)) != null) {
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4127, var6));
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     } else {
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                     }
 
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             }
@@ -13650,27 +13662,27 @@ public final class ao_1 {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 517 && var1 != 1073741824) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
-            } else if (GlobalStatus.fi != null && GlobalStatus.a((byte) 0, this.e.ax)) {
+            } else if (GlobalStatus.fi != null && GlobalStatus.a((byte) 0, this.mainCanvasRef.ax)) {
                 if (LoadingPage.o == 0) {
-                    this.aH = this.e.as.a;
-                    GlobalStatus.a((int) this.e.ax, 0);
-                    this.O.a(0, (short) this.k, this.ct);
+                    this.aH = this.mainCanvasRef.as.a;
+                    GlobalStatus.a((int) this.mainCanvasRef.ax, 0);
+                    this.O.a(0, (short) this.currentSceneModeId, this.ct);
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
                     if (GlobalStatus.i == 0) {
-                        this.e.processException("交易已锁定");
+                        this.mainCanvasRef.processException("交易已锁定");
                         return;
                     }
 
-                    if (this.l == 1) {
+                    if (this.sceneSubState == 1) {
                         if (this.ct == 0) {
                             if (GlobalStatus.fh != null && GlobalStatus.fh.length >= 10) {
-                                this.e.processException("交易物品栏已满!");
+                                this.mainCanvasRef.processException("交易物品栏已满!");
                                 return;
                             }
 
@@ -13680,7 +13692,7 @@ public final class ao_1 {
 
                         if (this.ct == 1) {
                             if (GlobalStatus.gs != null && GlobalStatus.gs.length >= 10) {
-                                this.e.processException("交易宠物栏已满!");
+                                this.mainCanvasRef.processException("交易宠物栏已满!");
                                 return;
                             }
 
@@ -13689,86 +13701,86 @@ public final class ao_1 {
                                 return;
                             }
 
-                            this.e.processException("您没有宠物!");
+                            this.mainCanvasRef.processException("您没有宠物!");
                             return;
                         }
-                    } else if (this.l == 2) {
+                    } else if (this.sceneSubState == 2) {
                         if (this.ct == 0) {
-                            this.b(this.ct, (byte) this.e.ax);
+                            this.b(this.ct, (byte) this.mainCanvasRef.ax);
                             this.b((byte) 0, true);
                             this.ar = this.aU;
-                            this.e.ax = this.aF;
+                            this.mainCanvasRef.ax = this.aF;
                             this.as = 0;
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                             return;
                         }
 
                         if (this.ct == 1) {
-                            this.b(this.ct, (byte) this.e.ax);
+                            this.b(this.ct, (byte) this.mainCanvasRef.ax);
                             this.b((byte) 1, true);
                             this.ar = this.aU;
-                            this.e.ax = this.aF;
-                            this.e.a((String) null);
+                            this.mainCanvasRef.ax = this.aF;
+                            this.mainCanvasRef.a((String) null);
                             return;
                         }
                     }
                 } else {
                     if (LoadingPage.o == 2) {
                         if (GlobalStatus.i == 0) {
-                            this.e.processException("交易已锁定");
+                            this.mainCanvasRef.processException("交易已锁定");
                             return;
                         }
 
                         if (GlobalStatus.ap > 0L) {
                             this.ah = GlobalStatus.ap;
-                            this.l = 6;
+                            this.sceneSubState = 6;
                             this.o();
                             return;
                         }
 
-                        this.e.processException("身上没有银两");
+                        this.mainCanvasRef.processException("身上没有银两");
                         return;
                     }
 
                     if (LoadingPage.o == 3) {
                         if (GlobalStatus.i == 0) {
-                            this.e.processException("交易已锁定");
+                            this.mainCanvasRef.processException("交易已锁定");
                             return;
                         }
 
                         byte[] var4;
                         if ((var4 = NetPayloadBuilder.g((short) 4128, GlobalStatus.ad, (byte) this.ct)) == null) {
-                            this.e.processException("获取上传指令数据错误!");
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4128, var4));
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     } else if (LoadingPage.o == 4) {
                         byte[] var5;
                         if ((var5 = NetPayloadBuilder.h((short) 4129, GlobalStatus.ad, (byte) this.ct)) == null) {
-                            this.e.processException("获取上传指令数据错误!");
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4129, var5));
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                     } else if (LoadingPage.o == 5) {
                         LoadingPage.h = 0;
-                        this.l = 5;
+                        this.sceneSubState = 5;
                         return;
                     }
                 }
             } else if (LoadingPage.o == 0) {
                 if (GlobalStatus.i == 0) {
-                    this.e.processException("交易已锁定");
+                    this.mainCanvasRef.processException("交易已锁定");
                     return;
                 }
 
-                if (this.l == 1) {
+                if (this.sceneSubState == 1) {
                     if (this.ct == 0) {
                         if (GlobalStatus.fh != null && GlobalStatus.fh.length >= 10) {
-                            this.e.processException("交易物品栏已满!");
+                            this.mainCanvasRef.processException("交易物品栏已满!");
                             return;
                         }
 
@@ -13778,7 +13790,7 @@ public final class ao_1 {
 
                     if (this.ct == 1) {
                         if (GlobalStatus.gs != null && GlobalStatus.gs.length >= 10) {
-                            this.e.processException("交易宠物栏已满!");
+                            this.mainCanvasRef.processException("交易宠物栏已满!");
                             return;
                         }
 
@@ -13787,73 +13799,73 @@ public final class ao_1 {
                             return;
                         }
 
-                        this.e.processException("您没有宠物!");
+                        this.mainCanvasRef.processException("您没有宠物!");
                         return;
                     }
-                } else if (this.l == 2) {
+                } else if (this.sceneSubState == 2) {
                     if (this.ct == 0) {
-                        this.b(this.ct, (byte) this.e.ax);
+                        this.b(this.ct, (byte) this.mainCanvasRef.ax);
                         this.b((byte) 0, true);
                         this.ar = this.aU;
-                        this.e.ax = this.aF;
+                        this.mainCanvasRef.ax = this.aF;
                         this.as = 0;
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                         return;
                     }
 
                     if (this.ct == 1) {
-                        this.b(this.ct, (byte) this.e.ax);
+                        this.b(this.ct, (byte) this.mainCanvasRef.ax);
                         this.b((byte) 1, true);
                         this.ar = this.aU;
-                        this.e.ax = this.aF;
-                        this.e.a((String) null);
+                        this.mainCanvasRef.ax = this.aF;
+                        this.mainCanvasRef.a((String) null);
                         return;
                     }
                 }
             } else {
                 if (LoadingPage.o == 1) {
                     if (GlobalStatus.i == 0) {
-                        this.e.processException("交易已锁定");
+                        this.mainCanvasRef.processException("交易已锁定");
                         return;
                     }
 
                     if (GlobalStatus.ap > 0L) {
                         this.ah = GlobalStatus.ap;
-                        this.l = 6;
+                        this.sceneSubState = 6;
                         this.o();
                         return;
                     }
 
-                    this.e.processException("身上没有银两");
+                    this.mainCanvasRef.processException("身上没有银两");
                     return;
                 }
 
                 if (LoadingPage.o == 2) {
                     if (GlobalStatus.i == 0) {
-                        this.e.processException("交易已锁定");
+                        this.mainCanvasRef.processException("交易已锁定");
                         return;
                     }
 
                     byte[] var2;
                     if ((var2 = NetPayloadBuilder.g((short) 4128, GlobalStatus.ad, (byte) this.ct)) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4128, var2));
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 } else if (LoadingPage.o == 3) {
                     byte[] var3;
                     if ((var3 = NetPayloadBuilder.h((short) 4129, GlobalStatus.ad, (byte) this.ct)) == null) {
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
 
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4129, var3));
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 } else if (LoadingPage.o == 4) {
                     LoadingPage.h = 0;
-                    this.l = 5;
+                    this.sceneSubState = 5;
                     return;
                 }
             }
@@ -13866,7 +13878,7 @@ public final class ao_1 {
         if ((var3 = NetPayloadBuilder.c((short) 4134, GlobalStatus.ad, (byte) var1, (byte) var2)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4134, var3));
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -13875,7 +13887,7 @@ public final class ao_1 {
         if ((var2 = NetPayloadBuilder.f((short) 4125, GlobalStatus.ad, (byte) var1)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4125, var2));
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -13883,14 +13895,14 @@ public final class ao_1 {
         if (this.ct == 0) {
             if (this.ar == 1 && GlobalStatus.fh != null) {
                 for (int var1 = 0; var1 < GlobalStatus.fm.length; ++var1) {
-                    if (this.e.ax == GlobalStatus.fk[var1]) {
+                    if (this.mainCanvasRef.ax == GlobalStatus.fk[var1]) {
                         return false;
                     }
                 }
             }
         } else if (this.ct == 1 && this.ar == 1 && GlobalStatus.fu != null) {
             for (int var2 = 0; var2 < GlobalStatus.fu.length; ++var2) {
-                if (this.e.ax == GlobalStatus.fv[var2]) {
+                if (this.mainCanvasRef.ax == GlobalStatus.fv[var2]) {
                     return false;
                 }
             }
@@ -13900,7 +13912,7 @@ public final class ao_1 {
     }
 
     private void aP() {
-        int var1 = this.e.ax;
+        int var1 = this.mainCanvasRef.ax;
         LoadingPage.l = 0;
         this.cu = this.ct == 0 ? "没有物品" : "没有宠物";
         if (this.ct == 0) {
@@ -13913,7 +13925,7 @@ public final class ao_1 {
                     }
 
                     if (var1 == GlobalStatus.fr[var3]) {
-                        this.cu = GlobalStatus.b(this.e.l, var3);
+                        this.cu = GlobalStatus.b(this.mainCanvasRef.l, var3);
                         break;
                     }
 
@@ -13928,7 +13940,7 @@ public final class ao_1 {
                     }
 
                     if (var1 == GlobalStatus.fk[var2]) {
-                        this.cu = GlobalStatus.a(this.e.l, var2);
+                        this.cu = GlobalStatus.a(this.mainCanvasRef.l, var2);
                         break;
                     }
 
@@ -13945,7 +13957,7 @@ public final class ao_1 {
                     }
 
                     if (var1 == GlobalStatus.fy[var5]) {
-                        this.cu = GlobalStatus.d(this.e.l, var5);
+                        this.cu = GlobalStatus.d(this.mainCanvasRef.l, var5);
                         break;
                     }
 
@@ -13954,7 +13966,7 @@ public final class ao_1 {
             } else if (this.ar == 1 && GlobalStatus.fu != null) {
                 for (int var4 = 0; var4 < GlobalStatus.fu.length; ++var4) {
                     if (var1 == GlobalStatus.fv[var4]) {
-                        this.cu = GlobalStatus.c(this.e.l, var4);
+                        this.cu = GlobalStatus.c(this.mainCanvasRef.l, var4);
                         return;
                     }
                 }
@@ -13985,15 +13997,15 @@ public final class ao_1 {
     }
 
     private void a(Graphics var1, int var2, int var3, int var4, byte var5) {
-        MainCanvas.f.a(var1, MainCanvas.L, (int[]) null, (aj) null, 0, 0, var2, var3, 0, 0);
-        MainCanvas.f.a(var1, MainCanvas.L, (int[]) null, (aj) null, 0, 0, var2 + var4 - MainCanvas.L.b, var3, 0, 0);
+        MainCanvas.pngUtil.a(var1, MainCanvas.L, (int[]) null, (aj) null, 0, 0, var2, var3, 0, 0);
+        MainCanvas.pngUtil.a(var1, MainCanvas.L, (int[]) null, (aj) null, 0, 0, var2 + var4 - MainCanvas.L.b, var3, 0, 0);
         var1.setColor(79948);
         int var6 = 0;
-        if (var5 == 0 && GlobalStatus.fn > 0L && GlobalConfig.i.stringWidth(GlobalConfig.a(this.e.l, GlobalStatus.fn)) > var4 - (MainCanvas.L.b << 1)) {
-            var6 = GlobalConfig.i.stringWidth(GlobalConfig.a(this.e.l, GlobalStatus.fn));
+        if (var5 == 0 && GlobalStatus.fn > 0L && GlobalConfig.i.stringWidth(GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.fn)) > var4 - (MainCanvas.L.b << 1)) {
+            var6 = GlobalConfig.i.stringWidth(GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.fn));
             var1.fillRect(var2 + (var4 - var6) / 2, var3, var6, MainCanvas.L.c);
-        } else if (var5 == 1 && GlobalStatus.fg > 0L && GlobalConfig.i.stringWidth(GlobalConfig.a(this.e.l, GlobalStatus.fg)) > var4 - (MainCanvas.L.b << 1)) {
-            var6 = GlobalConfig.i.stringWidth(GlobalConfig.a(this.e.l, GlobalStatus.fg));
+        } else if (var5 == 1 && GlobalStatus.fg > 0L && GlobalConfig.i.stringWidth(GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.fg)) > var4 - (MainCanvas.L.b << 1)) {
+            var6 = GlobalConfig.i.stringWidth(GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.fg));
             var1.fillRect(var2 + (var4 - var6) / 2, var3, var6, MainCanvas.L.c);
         } else {
             var6 = var4 - (MainCanvas.L.b << 1);
@@ -14002,12 +14014,12 @@ public final class ao_1 {
 
         var1.setColor(16776917);
         if (var5 == 0 && GlobalStatus.fn > 0L) {
-            var1.drawString(GlobalConfig.a(this.e.l, GlobalStatus.fn), var2 + var4 / 2 + 2, var3, 17);
+            var1.drawString(GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.fn), var2 + var4 / 2 + 2, var3, 17);
         } else if (var5 == 1 && GlobalStatus.fg > 0L) {
-            var1.drawString(GlobalConfig.a(this.e.l, GlobalStatus.fg), var2 + var4 / 2 + 2, var3, 17);
+            var1.drawString(GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.fg), var2 + var4 / 2 + 2, var3, 17);
         }
 
-        MainCanvas.f.a(var1, w, (int[]) null, (aj) null, 0, 0, var2 + (var4 - var6) / 2 - w.b - 2, var3 + 2, 0, 0);
+        MainCanvas.pngUtil.a(var1, w, (int[]) null, (aj) null, 0, 0, var2 + (var4 - var6) / 2 - w.b - 2, var3 + 2, 0, 0);
     }
 
     private void d(int var1, int var2, int var3, int var4, int var5) {
@@ -14024,19 +14036,19 @@ public final class ao_1 {
         if (this.cv != null) {
             for (int var4 = 0; var4 < this.cv.length; ++var4) {
                 if (var2 >= this.cv[var4][0] && var2 <= this.cv[var4][0] + this.cv[var4][2] && var3 >= this.cv[var4][1] && var3 <= this.cv[var4][1] + this.cv[var4][3]) {
-                    if (this.e.ax != var4) {
+                    if (this.mainCanvasRef.ax != var4) {
                         this.ar = 0;
-                        this.aE = this.e.ax = var4;
+                        this.aE = this.mainCanvasRef.ax = var4;
                         LoadingPage.l = 0;
                         return 0;
                     }
 
-                    if (this.e.ax == var4 && this.ar == 0) {
+                    if (this.mainCanvasRef.ax == var4 && this.ar == 0) {
                         return 1073741824;
                     }
 
                     this.ar = 0;
-                    this.aE = this.e.ax;
+                    this.aE = this.mainCanvasRef.ax;
                 }
             }
         }
@@ -14044,18 +14056,18 @@ public final class ao_1 {
         if (this.cw != null) {
             for (int var5 = 0; var5 < this.cw.length; ++var5) {
                 if (var2 >= this.cw[var5][0] && var2 <= this.cw[var5][0] + this.cw[var5][2] && var3 >= this.cw[var5][1] && var3 <= this.cw[var5][1] + this.cw[var5][3]) {
-                    if (this.e.ax != var5) {
+                    if (this.mainCanvasRef.ax != var5) {
                         this.ar = 1;
-                        this.aE = this.e.ax = var5;
+                        this.aE = this.mainCanvasRef.ax = var5;
                         LoadingPage.l = 0;
                         return 0;
                     }
 
-                    if (this.e.ax == var5 && this.ar == 1) {
+                    if (this.mainCanvasRef.ax == var5 && this.ar == 1) {
                         return 1073741824;
                     }
 
-                    this.aE = this.e.ax;
+                    this.aE = this.mainCanvasRef.ax;
                 }
             }
         }
@@ -14074,13 +14086,13 @@ public final class ao_1 {
     }
 
     private void v(Graphics var1) {
-        this.e.aq.a(var1);
-        LoadingPage.a(var1, this.e.aq.a + 5, this.e.aq.b + 29, this.e.aq.c - 11, this.e.aq.d - 30 - l_1.b(), 1);
-        int var2 = this.e.aq.a + 8;
-        int var3 = this.e.aq.b + 32;
-        int var4 = this.e.aq.c - 16;
+        this.mainCanvasRef.aq.a(var1);
+        LoadingPage.a(var1, this.mainCanvasRef.aq.a + 5, this.mainCanvasRef.aq.b + 29, this.mainCanvasRef.aq.c - 11, this.mainCanvasRef.aq.d - 30 - l_1.b(), 1);
+        int var2 = this.mainCanvasRef.aq.a + 8;
+        int var3 = this.mainCanvasRef.aq.b + 32;
+        int var4 = this.mainCanvasRef.aq.c - 16;
         int var5;
-        int var6 = ((var5 = this.e.aq.d - 29 - 24 - 10) - (MainCanvas.L.c << 1) - MainCanvas.H.c - MainCanvas.G.c - (x.c << 1)) / 7;
+        int var6 = ((var5 = this.mainCanvasRef.aq.d - 29 - 24 - 10) - (MainCanvas.L.c << 1) - MainCanvas.H.c - MainCanvas.G.c - (x.c << 1)) / 7;
         int var7 = 0;
         var3 = var3 + (var5 - (MainCanvas.L.c << 1) - MainCanvas.H.c - MainCanvas.G.c - (x.c << 1)) % 7 / 2 + var6;
 
@@ -14096,18 +14108,18 @@ public final class ao_1 {
                 this.cv[var8][3] = var14;
             }
 
-            MainCanvas.f.a(var1, x, (int[]) null, (aj) null, 0, 0, this.cv[var8][0], this.cv[var8][1], 0, 0);
+            MainCanvas.pngUtil.a(var1, x, (int[]) null, (aj) null, 0, 0, this.cv[var8][0], this.cv[var8][1], 0, 0);
         }
 
         if (this.ct == 0) {
             if (GlobalStatus.fs != null && GlobalStatus.fs.length > 0) {
                 for (int var27 = 0; var27 < GlobalStatus.fs.length; ++var27) {
-                    MainCanvas.f.a(var1, b(GlobalStatus.fs[var27]), (int[]) null, (aj) null, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 1, var3 + 1, 0, 0);
+                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.fs[var27]), (int[]) null, (aj) null, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 1, var3 + 1, 0, 0);
                     if (GlobalStatus.fq[var27] > 9) {
-                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fq[var27] / 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 1, var3 + 1, 0, 0);
-                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fq[var27] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 5, var3 + 1, 0, 0);
+                        MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fq[var27] / 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 1, var3 + 1, 0, 0);
+                        MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fq[var27] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 5, var3 + 1, 0, 0);
                     } else if (GlobalStatus.fq[var27] > 1) {
-                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fq[var27] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 1, var3 + 1, 0, 0);
+                        MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fq[var27] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 1, var3 + 1, 0, 0);
                     }
                 }
             }
@@ -14120,7 +14132,7 @@ public final class ao_1 {
         }
 
         if (this.ar == 0) {
-            LoadingPage.d(var1, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (this.e.ax + 1) + this.e.ax * 18, var3, 18, 18);
+            LoadingPage.d(var1, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (this.mainCanvasRef.ax + 1) + this.mainCanvasRef.ax * 18, var3, 18, 18);
             var7 = var3;
         }
 
@@ -14130,7 +14142,7 @@ public final class ao_1 {
         a(var1, var2, var3, var2 + var4, var3);
         var3 += 5;
         var3 += var6;
-        MainCanvas.f.a(var1, MainCanvas.G, (int[]) null, (aj) null, 0, 0, var2 + var4 / 2 - MainCanvas.G.b / 2, var3, 0, 0);
+        MainCanvas.pngUtil.a(var1, MainCanvas.G, (int[]) null, (aj) null, 0, 0, var2 + var4 / 2 - MainCanvas.G.b / 2, var3, 0, 0);
         var3 = var3 + MainCanvas.G.c + var6;
 
         for (int var29 = 0; var29 < 8; ++var29) {
@@ -14145,18 +14157,18 @@ public final class ao_1 {
                 this.cw[var29][3] = var35;
             }
 
-            MainCanvas.f.a(var1, x, (int[]) null, (aj) null, 0, 0, this.cw[var29][0], this.cw[var29][1], 0, 0);
+            MainCanvas.pngUtil.a(var1, x, (int[]) null, (aj) null, 0, 0, this.cw[var29][0], this.cw[var29][1], 0, 0);
         }
 
         if (this.ct == 0) {
             if (GlobalStatus.fl != null && GlobalStatus.fl.length > 0) {
                 for (int var30 = 0; var30 < GlobalStatus.fl.length; ++var30) {
-                    MainCanvas.f.a(var1, b(GlobalStatus.fl[var30]), (int[]) null, (aj) null, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 1, var3 + 1, 0, 0);
+                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.fl[var30]), (int[]) null, (aj) null, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 1, var3 + 1, 0, 0);
                     if (GlobalStatus.fj[var30] > 9) {
-                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fj[var30] / 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 1, var3 + 1, 0, 0);
-                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fj[var30] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 5, var3 + 1, 0, 0);
+                        MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fj[var30] / 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 1, var3 + 1, 0, 0);
+                        MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fj[var30] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 5, var3 + 1, 0, 0);
                     } else if (GlobalStatus.fj[var30] > 1) {
-                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fj[var30] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 1, var3 + 1, 0, 0);
+                        MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fj[var30] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 1, var3 + 1, 0, 0);
                     }
                 }
             }
@@ -14169,7 +14181,7 @@ public final class ao_1 {
         }
 
         if (this.ar == 1) {
-            LoadingPage.d(var1, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (this.e.ax + 1) + this.e.ax * 18, var3, 18, 18);
+            LoadingPage.d(var1, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (this.mainCanvasRef.ax + 1) + this.mainCanvasRef.ax * 18, var3, 18, 18);
             var7 = var3;
         }
 
@@ -14182,27 +14194,27 @@ public final class ao_1 {
         var3 = var3 + var6 + (var5 - (MainCanvas.L.c << 1) - MainCanvas.H.c - MainCanvas.G.c - (x.c << 1)) % 7 / 2;
         this.d(0, var2 + var4 / 4 - MainCanvas.K.b / 2, var3, MainCanvas.H.b, MainCanvas.H.c);
         if (GlobalStatus.i == 0 && GlobalStatus.j == -1) {
-            MainCanvas.f.a(var1, MainCanvas.I, (int[]) null, (aj) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
+            MainCanvas.pngUtil.a(var1, MainCanvas.I, (int[]) null, (aj) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
         } else if (GlobalStatus.j == 0 && GlobalStatus.i == -1) {
-            MainCanvas.f.a(var1, MainCanvas.I, (int[]) null, (aj) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
+            MainCanvas.pngUtil.a(var1, MainCanvas.I, (int[]) null, (aj) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
         } else if (GlobalStatus.i == 0 && GlobalStatus.j == 0) {
-            MainCanvas.f.a(var1, MainCanvas.J, (int[]) null, (aj) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
+            MainCanvas.pngUtil.a(var1, MainCanvas.J, (int[]) null, (aj) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
         } else {
-            MainCanvas.f.a(var1, MainCanvas.H, (int[]) null, (aj) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
+            MainCanvas.pngUtil.a(var1, MainCanvas.H, (int[]) null, (aj) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
         }
 
         this.d(1, var2 + var4 * 3 / 4 - MainCanvas.K.b / 2, var3, MainCanvas.K.b, MainCanvas.K.c);
-        MainCanvas.f.a(var1, MainCanvas.K, (int[]) null, (aj) null, 0, 0, this.cx[1][0], this.cx[1][1], 0, 0);
+        MainCanvas.pngUtil.a(var1, MainCanvas.K, (int[]) null, (aj) null, 0, 0, this.cx[1][0], this.cx[1][1], 0, 0);
         if (this.cu != null) {
-            var2 = var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (this.e.ax + 1) + this.e.ax * 18 + 16;
+            var2 = var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (this.mainCanvasRef.ax + 1) + this.mainCanvasRef.ax * 18 + 16;
             LoadingPage.b(var1, this.cu, var2, var7 + 16, GlobalConfig.g + GlobalConfig.realHigh, 1);
         }
 
-        if ((this.ar != 1 || this.l != 1 && this.l != 2) && (this.ar != 0 || this.l != 3)) {
-            if (this.l == 5) {
+        if ((this.ar != 1 || this.sceneSubState != 1 && this.sceneSubState != 2) && (this.ar != 0 || this.sceneSubState != 3)) {
+            if (this.sceneSubState == 5) {
                 LoadingPage.a(var1, "确定放弃该次交易?", new String[]{"确定", "取消"});
             } else {
-                if (this.l == 6) {
+                if (this.sceneSubState == 6) {
                     this.b(var1, "输入交易银两");
                 }
 
@@ -14214,29 +14226,29 @@ public final class ao_1 {
 
     public final void a(short var1, byte var2) {
         this.bb = var1;
-        this.l = 0;
+        this.sceneSubState = 0;
         this.cy = var2;
-        this.e.aq.b();
-        this.e.aq.a(true);
-        this.e.aq.a(this.cy == 2 ? "锻造列表" : "兑换列表");
-        this.e.ar.a((Image[]) null, GlobalStatus.ex, (String[]) null, (String[]) null);
-        this.e.au.a(this.cy == 2 ? "锻造" : "兑换");
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.aq.a(this.cy == 2 ? "锻造列表" : "兑换列表");
+        this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.ex, (String[]) null, (String[]) null);
+        this.mainCanvasRef.au.a(this.cy == 2 ? "锻造" : "兑换");
         if (GlobalStatus.ew != null && GlobalStatus.ew.length > 0) {
-            this.e.at.a(ap(this.e.ar.g()), GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a(ap(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 2);
         } else {
-            this.e.at.a((String) null, GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a((String) null, GlobalConfig.i, (byte) 2);
         }
 
-        this.e.at.a((byte) 1);
-        this.e.aq.a((al) this.e.ar);
-        this.e.aq.a((al) this.e.at);
+        this.mainCanvasRef.at.a((byte) 1);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k = 7;
-        this.j = this.k = 31;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k = 7;
+        this.sceneStateShadow = this.currentSceneModeId = 31;
     }
 
     private static String ap(int var0) {
@@ -14254,9 +14266,9 @@ public final class ao_1 {
     }
 
     private void aq(int var1) {
-        if (this.l == 0) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 != 514 && var1 != 520 && var1 != 1 && var1 != 4) {
@@ -14272,70 +14284,70 @@ public final class ao_1 {
                     }
                 } else if (GlobalStatus.ew != null && GlobalStatus.ew.length > 0) {
                     if (this.cy == 2) {
-                        LoadingPage.a(this.e.ar.a() + 65 + GlobalConfig.f, GlobalConfig.j + 20 + this.e.ar.g() * GlobalConfig.j + GlobalConfig.g, new String[]{"锻造", "查看"}, true);
-                        this.l = 2;
+                        LoadingPage.a(this.mainCanvasRef.ar.a() + 65 + GlobalConfig.f, GlobalConfig.j + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.j + GlobalConfig.g, new String[]{"锻造", "查看"}, true);
+                        this.sceneSubState = 2;
                         return;
                     }
 
                     this.a(99L);
-                    this.l = 1;
+                    this.sceneSubState = 1;
                     return;
                 }
             } else if (GlobalStatus.ew != null && GlobalStatus.ew.length > 0) {
-                this.e.at.a(ap(this.e.ar.g()), GlobalConfig.i, (byte) 2);
-                this.e.at.a((byte) 1);
+                this.mainCanvasRef.at.a(ap(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.a((byte) 1);
                 return;
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             this.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else {
                 Object var2 = null;
                 byte[] var3;
                 if (!aj && !GlobalStatus.ev) {
-                    var3 = NetPayloadBuilder.k((short) 4365, GlobalStatus.ad, GlobalStatus.ew[this.e.ar.g()], this.ag);
+                    var3 = NetPayloadBuilder.k((short) 4365, GlobalStatus.ad, GlobalStatus.ew[this.mainCanvasRef.ar.g()], this.ag);
                 } else {
-                    var3 = NetPayloadBuilder.k((short) 4178, GlobalStatus.ad, GlobalStatus.ew[this.e.ar.g()], this.ag);
+                    var3 = NetPayloadBuilder.k((short) 4178, GlobalStatus.ad, GlobalStatus.ew[this.mainCanvasRef.ar.g()], this.ag);
                 }
 
                 if (var3 == null) {
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                     return;
                 }
 
                 NetPacket var4 = new NetPacket((short) 4178, var3);
                 MainCanvas.netUtils.sendPacket(var4);
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
             }
-        } else if (this.l == 2) {
+        } else if (this.sceneSubState == 2) {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                 }
             } else if (LoadingPage.o == 0) {
                 Object var5 = null;
                 byte[] var6;
                 if (aj) {
-                    var6 = NetPayloadBuilder.k((short) 4178, GlobalStatus.ad, GlobalStatus.ew[this.e.ar.g()], 1);
+                    var6 = NetPayloadBuilder.k((short) 4178, GlobalStatus.ad, GlobalStatus.ew[this.mainCanvasRef.ar.g()], 1);
                 } else {
-                    var6 = NetPayloadBuilder.k((short) 4365, GlobalStatus.ad, GlobalStatus.ew[this.e.ar.g()], 1);
+                    var6 = NetPayloadBuilder.k((short) 4365, GlobalStatus.ad, GlobalStatus.ew[this.mainCanvasRef.ar.g()], 1);
                 }
 
                 if (var6 == null) {
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                     return;
                 }
 
                 NetPacket var7 = new NetPacket((short) 4178, var6);
                 MainCanvas.netUtils.sendPacket(var7);
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
             } else if (LoadingPage.o == 1) {
-                this.e.processException("没有此功能!");
+                this.mainCanvasRef.processException("没有此功能!");
                 return;
             }
         }
@@ -14347,9 +14359,9 @@ public final class ao_1 {
         this.aq = this.ar = 0;
         this.aB = (GlobalConfig.defaultWidth - C.b) / 2;
         this.aC = (GlobalConfig.defaultHigh - C.c) / 2;
-        MainCanvas.f.a(this.f, h, i, false, true, 2109231);
-        this.e.touchPageCase = this.e.k = 7;
-        this.k = 32;
+        MainCanvas.pngUtil.a(this.f, h, i, false, true, 2109231);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k = 7;
+        this.currentSceneModeId = 32;
     }
 
     private void ar(int var1) {
@@ -14360,22 +14372,22 @@ public final class ao_1 {
                         if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                             if (var1 == 536870912) {
                                 if (GlobalConfig.defaultWidth >= 240) {
-                                    this.e.m = 8;
+                                    this.mainCanvasRef.m = 8;
                                     o = 35;
                                     p = 50;
                                 }
 
-                                this.e.q.setCurrent(this.e.aD);
+                                this.mainCanvasRef.display.setCurrent(this.mainCanvasRef.aD);
                             }
                         } else {
                             String var2;
-                            if ((var2 = this.e.aC.getString() + "<" + (this.ar * 6 + this.aq + 1) + ">").toCharArray().length <= 30) {
-                                MainCanvas.a(this.e.aC, var2);
-                                this.e.q.setCurrent(this.e.aD);
+                            if ((var2 = this.mainCanvasRef.aC.getString() + "<" + (this.ar * 6 + this.aq + 1) + ">").toCharArray().length <= 30) {
+                                MainCanvas.a(this.mainCanvasRef.aC, var2);
+                                this.mainCanvasRef.display.setCurrent(this.mainCanvasRef.aD);
                                 return;
                             }
 
-                            this.e.processException("表情插入失败，聊天内容过长");
+                            this.mainCanvasRef.processException("表情插入失败，聊天内容过长");
                         }
 
                     } else {
@@ -14415,7 +14427,7 @@ public final class ao_1 {
     private void w(Graphics var1) {
         for (int var2 = 1; var2 < 7; ++var2) {
             for (int var3 = 0; var3 < 8; ++var3) {
-                MainCanvas.f.a(var1, C, (int[]) null, var3 * 6 + var2, 0, 0, this.aB - 6 + (var2 - 1) * 19, this.aC + 2 + var3 * 19, 0, 0);
+                MainCanvas.pngUtil.a(var1, C, (int[]) null, var3 * 6 + var2, 0, 0, this.aB - 6 + (var2 - 1) * 19, this.aC + 2 + var3 * 19, 0, 0);
                 int var10001 = var3 * 6 + var2 - 1;
                 int var10002 = this.aB - 6 + (var2 - 1) * 19;
                 int var10003 = this.aC + 2 + var3 * 19;
@@ -14442,7 +14454,7 @@ public final class ao_1 {
         if ((var2 = NetPayloadBuilder.b((short) 4610, GlobalStatus.ad, (byte) var1, (byte) GlobalStatus.C[var1])) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4610, var2));
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -14450,9 +14462,9 @@ public final class ao_1 {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.c((short) 4611, GlobalStatus.ad, (byte) var1)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4611, var2));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -14460,9 +14472,9 @@ public final class ao_1 {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.c((short) 4609, GlobalStatus.ad, (byte) var1)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4609, var2));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -14470,9 +14482,9 @@ public final class ao_1 {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.b((short) 4608, GlobalStatus.ad, (byte) var1)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4608, var2));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -14482,26 +14494,26 @@ public final class ao_1 {
     }
 
     private void aQ() {
-        if (this.j != 28) {
+        if (this.sceneStateShadow != 28) {
             this.cA = 0;
             this.cB = new int[2][4];
             this.cC = new int[2][4];
-            this.e.k();
+            this.mainCanvasRef.k();
             this.d(true);
-            this.e.aq.j();
-            this.e.aq.a("游戏设置");
-            this.e.ar.a((Image[]) null, this.al, (String[]) null, this.am);
-            this.e.aq.a((al) this.e.ar);
-            this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-            this.e.touchPageCase = this.e.k;
-            this.j = this.k = 28;
+            this.mainCanvasRef.aq.j();
+            this.mainCanvasRef.aq.a("游戏设置");
+            this.mainCanvasRef.ar.a((Image[]) null, this.al, (String[]) null, this.am);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+            this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+            this.sceneStateShadow = this.currentSceneModeId = 28;
         } else {
             this.d(false);
         }
     }
 
     public final void d(boolean var1) {
-        if (this.k == 28 || var1) {
+        if (this.currentSceneModeId == 28 || var1) {
             this.al = new String[]{"玩家数量", "聊天记录", "玩家名字", "NPC名字", "队员名字", "弹出信息", "迷你地图", "世界频道", "区域频道", "玩家宠物", "动态NPC", "战斗信息", "界面样式", "组队开关", "交易开关", "自动打怪", "PK开关", "帮派频道", "滚动提示", "任务自动"};
             this.am = new String[aW.length];
 
@@ -14556,134 +14568,134 @@ public final class ao_1 {
                 var10000[var10001] = var10002;
             }
 
-            this.e.ar.a((Image[]) null, this.al, (String[]) null, this.am);
-            this.e.ar.a(this.aA, this.cA);
+            this.mainCanvasRef.ar.a((Image[]) null, this.al, (String[]) null, this.am);
+            this.mainCanvasRef.ar.a(this.aA, this.cA);
         }
 
     }
 
     private void as(int var1) {
         if (this.f.i != null) {
-            this.e.aq.b(var1);
+            this.mainCanvasRef.aq.b(var1);
             if (var1 != 516 && var1 != 8) {
                 if (var1 != 518 && var1 != 2) {
                     if (var1 == 536870912) {
-                        this.e.j();
-                        this.e.aq.j();
+                        this.mainCanvasRef.j();
+                        this.mainCanvasRef.aq.j();
                         this.ax();
                         this.cB = null;
                         this.cC = null;
                     }
                 } else {
-                    this.aA = this.e.ar.h();
-                    this.cA = this.e.ar.g();
-                    if (this.e.ar.g() == 0) {
+                    this.aA = this.mainCanvasRef.ar.h();
+                    this.cA = this.mainCanvasRef.ar.g();
+                    if (this.mainCanvasRef.ar.g() == 0) {
                         aW[0] = aW[0] >= 50 ? 50 : ++aW[0];
                         this.aQ();
                         return;
                     }
 
-                    if (this.e.ar.g() == 1) {
+                    if (this.mainCanvasRef.ar.g() == 1) {
                         aW[1] = aW[1] >= 50 ? 50 : ++aW[1];
                         this.aQ();
                         return;
                     }
 
-                    if (this.e.ar.g() == 3) {
+                    if (this.mainCanvasRef.ar.g() == 3) {
                         aW[3] = (byte) (aW[3] == 0 ? 1 : 0);
-                        MainCanvas.f.a(this.f, h, i, true, true, 1009050);
+                        MainCanvas.pngUtil.a(this.f, h, i, true, true, 1009050);
                         this.aQ();
                         return;
                     }
 
-                    if (this.e.ar.g() != 7 && this.e.ar.g() != 8 && this.e.ar.g() != 17) {
-                        if (this.e.ar.g() == 13) {
+                    if (this.mainCanvasRef.ar.g() != 7 && this.mainCanvasRef.ar.g() != 8 && this.mainCanvasRef.ar.g() != 17) {
+                        if (this.mainCanvasRef.ar.g() == 13) {
                             this.r(GlobalStatus.B);
                             return;
                         }
 
-                        if (this.e.ar.g() == 14) {
+                        if (this.mainCanvasRef.ar.g() == 14) {
                             this.s(GlobalStatus.A);
                             return;
                         }
 
-                        if (this.e.ar.g() == 15) {
+                        if (this.mainCanvasRef.ar.g() == 15) {
                             this.O();
                             return;
                         }
 
-                        if (this.e.ar.g() == 16) {
+                        if (this.mainCanvasRef.ar.g() == 16) {
                             this.q(GlobalStatus.D);
                             return;
                         }
 
-                        if (this.e.ar.g() == 19) {
+                        if (this.mainCanvasRef.ar.g() == 19) {
                             this.t(GlobalStatus.E);
                             return;
                         }
 
-                        aW[this.e.ar.g()] = (byte) (aW[this.e.ar.g()] == 1 ? 0 : 1);
+                        aW[this.mainCanvasRef.ar.g()] = (byte) (aW[this.mainCanvasRef.ar.g()] == 1 ? 0 : 1);
                         this.aQ();
                         return;
                     }
 
-                    if (this.e.ar.g() == 7) {
+                    if (this.mainCanvasRef.ar.g() == 7) {
                         this.p((byte) 0);
                         return;
                     }
 
-                    if (this.e.ar.g() == 8) {
+                    if (this.mainCanvasRef.ar.g() == 8) {
                         this.p((byte) 1);
                         return;
                     }
 
-                    if (this.e.ar.g() == 17) {
+                    if (this.mainCanvasRef.ar.g() == 17) {
                         this.p((byte) 3);
                         return;
                     }
                 }
             } else {
-                this.aA = this.e.ar.h();
-                this.cA = this.e.ar.g();
-                if (this.e.ar.g() == 0 || this.e.ar.g() == 12) {
-                    aW[this.e.ar.g()] = aW[this.e.ar.g()] <= 0 ? 0 : --aW[this.e.ar.g()];
+                this.aA = this.mainCanvasRef.ar.h();
+                this.cA = this.mainCanvasRef.ar.g();
+                if (this.mainCanvasRef.ar.g() == 0 || this.mainCanvasRef.ar.g() == 12) {
+                    aW[this.mainCanvasRef.ar.g()] = aW[this.mainCanvasRef.ar.g()] <= 0 ? 0 : --aW[this.mainCanvasRef.ar.g()];
                     return;
                 }
 
-                if (this.e.ar.g() == 1) {
-                    aW[this.e.ar.g()] = aW[this.e.ar.g()] <= 10 ? 10 : --aW[this.e.ar.g()];
+                if (this.mainCanvasRef.ar.g() == 1) {
+                    aW[this.mainCanvasRef.ar.g()] = aW[this.mainCanvasRef.ar.g()] <= 10 ? 10 : --aW[this.mainCanvasRef.ar.g()];
                     return;
                 }
 
-                if (this.e.ar.g() == 3) {
+                if (this.mainCanvasRef.ar.g() == 3) {
                     aW[3] = (byte) (aW[3] == 0 ? 1 : 0);
-                    MainCanvas.f.a(this.f, h, i, true, true, 1009050);
+                    MainCanvas.pngUtil.a(this.f, h, i, true, true, 1009050);
                     this.aQ();
                     return;
                 }
 
-                if (this.e.ar.g() != 7 && this.e.ar.g() != 8 && this.e.ar.g() != 17) {
-                    if (this.e.ar.g() == 13) {
+                if (this.mainCanvasRef.ar.g() != 7 && this.mainCanvasRef.ar.g() != 8 && this.mainCanvasRef.ar.g() != 17) {
+                    if (this.mainCanvasRef.ar.g() == 13) {
                         this.r(GlobalStatus.B);
                         return;
                     }
 
-                    if (this.e.ar.g() == 14) {
+                    if (this.mainCanvasRef.ar.g() == 14) {
                         this.s(GlobalStatus.A);
                         return;
                     }
 
-                    if (this.e.ar.g() == 15) {
+                    if (this.mainCanvasRef.ar.g() == 15) {
                         this.O();
                         return;
                     }
 
-                    if (this.e.ar.g() == 16) {
+                    if (this.mainCanvasRef.ar.g() == 16) {
                         this.q(GlobalStatus.D);
                         return;
                     }
 
-                    if (this.e.ar.g() == 18) {
+                    if (this.mainCanvasRef.ar.g() == 18) {
                         aW[18] = (byte) (aW[18] == 0 ? 1 : 0);
                         this.d(true);
                         GlobalStatus.k = null;
@@ -14691,27 +14703,27 @@ public final class ao_1 {
                         return;
                     }
 
-                    if (this.e.ar.g() == 19) {
+                    if (this.mainCanvasRef.ar.g() == 19) {
                         this.t(GlobalStatus.E);
                         return;
                     }
 
-                    aW[this.e.ar.g()] = (byte) (aW[this.e.ar.g()] == 0 ? 1 : 0);
+                    aW[this.mainCanvasRef.ar.g()] = (byte) (aW[this.mainCanvasRef.ar.g()] == 0 ? 1 : 0);
                     this.aQ();
                     return;
                 }
 
-                if (this.e.ar.g() == 7) {
+                if (this.mainCanvasRef.ar.g() == 7) {
                     this.p((byte) 0);
                     return;
                 }
 
-                if (this.e.ar.g() == 8) {
+                if (this.mainCanvasRef.ar.g() == 8) {
                     this.p((byte) 1);
                     return;
                 }
 
-                if (this.e.ar.g() == 17) {
+                if (this.mainCanvasRef.ar.g() == 17) {
                     this.p((byte) 3);
                     return;
                 }
@@ -14756,12 +14768,12 @@ public final class ao_1 {
         if ((var3 = NetPayloadBuilder.c((short) 4113, GlobalStatus.ad, var1, (byte) var2)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4113, var3));
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     private void a(ce var1) {
-        if (this.k != 18 && (aW[5] != 1 || var1.b == 5) && (aW[7] != 1 || var1.b != 0) && (aW[8] != 1 || var1.b != 1) && (aW[17] != 1 || var1.b != 3) && (aW[7] != 1 || var1.b != 6)) {
+        if (this.currentSceneModeId != 18 && (aW[5] != 1 || var1.b == 5) && (aW[7] != 1 || var1.b != 0) && (aW[8] != 1 || var1.b != 1) && (aW[17] != 1 || var1.b != 3) && (aW[7] != 1 || var1.b != 6)) {
             String[] var2;
             if ((var2 = LoadingPage.a("[" + var1.d + "]" + var1.e, GlobalConfig.i, GlobalConfig.defaultWidth - 5)) != null && var2.length > 0) {
                 this.u((byte) var2.length);
@@ -14797,7 +14809,7 @@ public final class ao_1 {
 
             if (var2 != null) {
                 LoadingPage.a(var1, 2109231, 175, 0, GlobalConfig.defaultHigh - (var4 - var3) * var5, GlobalConfig.defaultWidth, var5);
-                var2.a(var1, MainCanvas.f, C, 2, GlobalConfig.defaultHigh - (var4 - var3) * var5);
+                var2.a(var1, MainCanvas.pngUtil, C, 2, GlobalConfig.defaultHigh - (var4 - var3) * var5);
                 ++var3;
             }
         }
@@ -14867,13 +14879,13 @@ public final class ao_1 {
                 if ((var2 = (by) bl.elementAt(var5)).a && var2 != null) {
                     if (var2.b == 6) {
                         bx var6 = (bx) var2.c;
-                        MainCanvas.f.a(var1, var6, ((cb) var2).d, var3, var4, var6.e, var6.f, 0);
+                        MainCanvas.pngUtil.a(var1, var6, ((cb) var2).d, var3, var4, var6.e, var6.f, 0);
                     } else if (var2.b == 1) {
-                        this.I.a(var1, MainCanvas.f, var3, var4, (byte) 0);
+                        this.sceneRefreshCoordinator.a(var1, MainCanvas.pngUtil, var3, var4, (byte) 0);
                     } else if (var2.b == 2) {
                         bl var10000 = (bl) var2.c;
                         boolean var12 = false;
-                        PngUtil var7 = MainCanvas.f;
+                        PngUtil var7 = MainCanvas.pngUtil;
                         bl var13 = var10000;
                         if (var10000.g != null) {
                             var7.a(var1, (Frame1) var13.g, (int[]) null, var3, var4, var13.j + 8, var13.k + 16, 20, 0);
@@ -14894,7 +14906,7 @@ public final class ao_1 {
                     } else if (var2.b == 3) {
                         bp_1 var27 = (bp_1) var2.c;
                         boolean var14 = false;
-                        PngUtil var22 = MainCanvas.f;
+                        PngUtil var22 = MainCanvas.pngUtil;
                         bp_1 var15 = var27;
                         if (var27.g != null) {
                             var22.a(var1, (Frame1) var15.g, (int[]) null, var3, var4, var15.j + 8, var15.k + 16, 20, 0);
@@ -14917,8 +14929,8 @@ public final class ao_1 {
                         if (aW[10] == 0) {
                             int var16 = var20.c / 16;
                             int var23 = var20.d / 16;
-                            int var8 = (this.I.j + 8) / 16;
-                            int var9 = (this.I.k + 8) / 16;
+                            int var8 = (this.sceneRefreshCoordinator.j + 8) / 16;
+                            int var9 = (this.sceneRefreshCoordinator.k + 8) / 16;
                             if ((var16 != var8 || var23 != var9) && (var16 - 1 != var8 || var23 != var9) && (var16 + 1 != var8 || var23 != var9) && (var16 - 1 != var8 || var23 - 1 != var9) && (var16 != var8 || var23 - 1 != var9) && (var16 + 1 != var8 || var23 - 1 != var9) && (var16 - 1 != var8 || var23 + 1 != var9) && (var16 != var8 || var23 + 1 != var9) && (var16 + 1 != var8 || var23 + 1 != var9)) {
                                 var20.x = false;
                                 var20.e();
@@ -14928,7 +14940,7 @@ public final class ao_1 {
                         }
 
                         boolean var17 = false;
-                        PngUtil var24 = MainCanvas.f;
+                        PngUtil var24 = MainCanvas.pngUtil;
                         if (aW[10] == 1) {
                             if (var20.w != null && var20.w.k != null) {
                                 var24.a(var1, var20.w.k[var20.w.f], var20.w.g(), var20.w.h(), (int[]) null, var3, var4, var20.c, var20.d, 20, 0);
@@ -14943,11 +14955,11 @@ public final class ao_1 {
 
                         var20.a(var1, var24, var3, var4, (byte) 0);
                     } else if (var2.b == 4) {
-                        ((au) var2.c).a(var1, MainCanvas.f, var3, var4, (byte) 0);
+                        ((au) var2.c).a(var1, MainCanvas.pngUtil, var3, var4, (byte) 0);
                     } else if (var2.b == 7) {
-                        ((s) var2.c).a(var1, MainCanvas.f, var3, var4, (byte) 0);
+                        ((s) var2.c).a(var1, MainCanvas.pngUtil, var3, var4, (byte) 0);
                     } else if (var2.b == 8) {
-                        ((bv) var2.c).a(var1, MainCanvas.f, var3, var4, (byte) 0);
+                        ((bv) var2.c).a(var1, MainCanvas.pngUtil, var3, var4, (byte) 0);
                     }
                 }
             }
@@ -14957,8 +14969,8 @@ public final class ao_1 {
                     if (GlobalStatus.t[var19] != null) {
                         int var21 = GlobalStatus.t[var19].c / 16;
                         int var18 = GlobalStatus.t[var19].d / 16;
-                        int var25 = (this.I.j + 8) / 16;
-                        int var26 = (this.I.k + 8) / 16;
+                        int var25 = (this.sceneRefreshCoordinator.j + 8) / 16;
+                        int var26 = (this.sceneRefreshCoordinator.k + 8) / 16;
                         if ((var21 != var25 || var18 != var26) && (var21 - 1 != var25 || var18 != var26) && (var21 + 1 != var25 || var18 != var26) && (var21 - 1 != var25 || var18 - 1 != var26) && (var21 != var25 || var18 - 1 != var26) && (var21 + 1 != var25 || var18 - 1 != var26) && (var21 - 1 != var25 || var18 + 1 != var26) && (var21 != var25 || var18 + 1 != var26) && (var21 + 1 != var25 || var18 + 1 != var26)) {
                             GlobalStatus.t[var19].x = false;
                             GlobalStatus.t[var19].e();
@@ -14966,7 +14978,7 @@ public final class ao_1 {
                             GlobalStatus.t[var19].x = true;
                         }
 
-                        GlobalStatus.t[var19].a(var1, MainCanvas.f, var3, var4, (byte) 0);
+                        GlobalStatus.t[var19].a(var1, MainCanvas.pngUtil, var3, var4, (byte) 0);
                     }
                 }
             }
@@ -14998,14 +15010,14 @@ public final class ao_1 {
             var1.drawImage(bq.pngImage, var2, 5, 20);
             var1.drawImage(v.pngImage, var2 + 37, 8, 20);
             if (GlobalStatus.ak < 10) {
-                MainCanvas.f.a(var1, B, (int[]) null, GlobalStatus.ak % 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.ak % 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
             } else if (GlobalStatus.ak >= 10 && GlobalStatus.ak <= 99) {
-                MainCanvas.f.a(var1, B, (int[]) null, GlobalStatus.ak / 10 + 1, 0, 0, var2 + 20, 25, 0, 0);
-                MainCanvas.f.a(var1, B, (int[]) null, GlobalStatus.ak % 10 + 1, 0, 0, var2 + 25, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.ak / 10 + 1, 0, 0, var2 + 20, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.ak % 10 + 1, 0, 0, var2 + 25, 25, 0, 0);
             } else {
-                MainCanvas.f.a(var1, B, (int[]) null, GlobalStatus.ak % 10 + 1, 0, 0, var2 + 28, 25, 0, 0);
-                MainCanvas.f.a(var1, B, (int[]) null, (GlobalStatus.ak - GlobalStatus.ak / 100 * 100) / 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
-                MainCanvas.f.a(var1, B, (int[]) null, GlobalStatus.ak / 100 + 1, 0, 0, var2 + 18, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.ak % 10 + 1, 0, 0, var2 + 28, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, B, (int[]) null, (GlobalStatus.ak - GlobalStatus.ak / 100 * 100) / 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.ak / 100 + 1, 0, 0, var2 + 18, 25, 0, 0);
             }
 
             int var3 = GlobalStatus.aN * 30 / GlobalStatus.aM;
@@ -15044,7 +15056,7 @@ public final class ao_1 {
             var1.setColor(7252485);
             var1.drawLine(var2 + 32 - var3, 21, var2 + 32, 21);
             if (GlobalStatus.bf != 0) {
-                var1.setColor(this.e.al++ % 8L / 4L == 0L ? 15984780 : 15953687);
+                var1.setColor(this.mainCanvasRef.al++ % 8L / 4L == 0L ? 15984780 : 15953687);
                 var1.fillRect(var2 + 2, 24, br.b - 2, br.c);
                 var1.drawImage(br.pngImage, var2, 24, 20);
             }
@@ -15065,16 +15077,16 @@ public final class ao_1 {
     public final void M() {
         if (!this.c) {
             try {
-                this.I.a(this.f, MainCanvas.f, this.e.ak);
+                this.sceneRefreshCoordinator.a(this.f, MainCanvas.pngUtil, this.mainCanvasRef.ak);
                 bl.removeAllElements();
-                PngUtil.a(u, this.e.ak);
-                PngUtil.a(t_2, this.e.ak);
-                PngUtil.a(s, this.e.ak);
-                if (GlobalStatus.s != 0 && this.I.d != null && this.I.d.f != null) {
-                    if (c((int) this.I.d.h, (int) this.I.d.i, (int) this.I.d.f.g(), (int) this.I.d.f.h())) {
-                        bl.addElement(new by((byte) 4, this.I.d, true));
+                PngUtil.a(u, this.mainCanvasRef.ak);
+                PngUtil.a(t_2, this.mainCanvasRef.ak);
+                PngUtil.a(s, this.mainCanvasRef.ak);
+                if (GlobalStatus.s != 0 && this.sceneRefreshCoordinator.d != null && this.sceneRefreshCoordinator.d.f != null) {
+                    if (c((int) this.sceneRefreshCoordinator.d.h, (int) this.sceneRefreshCoordinator.d.i, (int) this.sceneRefreshCoordinator.d.f.g(), (int) this.sceneRefreshCoordinator.d.f.h())) {
+                        bl.addElement(new by((byte) 4, this.sceneRefreshCoordinator.d, true));
                     } else {
-                        bl.addElement(new by((byte) 4, this.I.d, false));
+                        bl.addElement(new by((byte) 4, this.sceneRefreshCoordinator.d, false));
                     }
                 }
 
@@ -15126,10 +15138,10 @@ public final class ao_1 {
                 }
 
                 if (GlobalStatus.bs != 0 || GlobalStatus.s == 1 && GlobalStatus.bs == 0) {
-                    bl.addElement(new by((byte) 1, this.I, true));
+                    bl.addElement(new by((byte) 1, this.sceneRefreshCoordinator, true));
                 }
 
-                ao_1 var12 = this;
+                UISceneController var12 = this;
 
                 for (int var20 = 0; var20 < var12.aO.size(); ++var20) {
                     s var25;
@@ -15157,7 +15169,7 @@ public final class ao_1 {
                         by var6;
                         if ((var6 = (by) bl.elementAt(var26)).a) {
                             by var4 = var6;
-                            ao_1 var2 = var12;
+                            UISceneController var2 = var12;
                             if (var12.f.l != null) {
                                 int[] var10000 = var12.cH;
                                 short var10002;
@@ -15286,7 +15298,7 @@ public final class ao_1 {
                                     var30 = var2.cI[1] + var2.f.n[var7][1];
                                     if (c(var2.cI[0], var2.cI[1], var2.cI[2], var2.cI[3]) && var4.a() < var30 && PngUtil.a(var2.cH, var2.cI)) {
                                         int[] var32 = new int[4];
-                                        MainCanvas.f.a(var2.cH, var2.cI, var32);
+                                        MainCanvas.pngUtil.a(var2.cH, var2.cI, var32);
                                         bl.addElement(new cb((byte) 6, var2.f.l[var7], (short) var2.f.n[var7][1], (short) var2.f.n[var7][0], var32));
                                     }
                                 }
@@ -15325,21 +15337,21 @@ public final class ao_1 {
                         by var16;
                         if ((var16 = (by) bl.elementAt(var19)) != null && var16.c != null && (var16.b != 1 || this.cK >= 0)) {
                             if (var16.b == 2) {
-                                ((bl) var16.c).a(this.f, MainCanvas.f, this.e.ak);
+                                ((bl) var16.c).a(this.f, MainCanvas.pngUtil, this.mainCanvasRef.ak);
                             } else if (var16.b == 3) {
-                                ((bp_1) var16.c).a(MainCanvas.f, this.e.ak);
+                                ((bp_1) var16.c).a(MainCanvas.pngUtil, this.mainCanvasRef.ak);
                             } else if (var16.b == 5) {
                                 az_1 var37 = (az_1) var16.c;
-                                long var28 = this.e.ak;
-                                PngUtil var24 = MainCanvas.f;
+                                long var28 = this.mainCanvasRef.ak;
+                                PngUtil var24 = MainCanvas.pngUtil;
                                 az_1 var17 = var37;
                                 if (var37.w != null && aW[10] == 0) {
                                     PngUtil.a(var17.w, var28);
                                 }
                             } else if (var16.b == 4) {
-                                ((au) var16.c).a(this.f, MainCanvas.f, this.e.ak);
+                                ((au) var16.c).a(this.f, MainCanvas.pngUtil, this.mainCanvasRef.ak);
                             } else if (var16.b == 7) {
-                                ((s) var16.c).a(this.f, MainCanvas.f, this.e.ak);
+                                ((s) var16.c).a(this.f, MainCanvas.pngUtil, this.mainCanvasRef.ak);
                             }
                         }
                     }
@@ -15359,7 +15371,7 @@ public final class ao_1 {
     }
 
     private void aR() {
-        if (this.k == 18) {
+        if (this.currentSceneModeId == 18) {
             this.aL();
             this.aJ();
         }
@@ -15383,9 +15395,9 @@ public final class ao_1 {
     }
 
     public final void N() {
-        MainCanvas.f.a(this.f, h, i, true, false, 1009050);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 0;
+        MainCanvas.pngUtil.a(this.f, h, i, true, false, 1009050);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 0;
     }
 
     public final void c(String var1) {
@@ -15396,12 +15408,12 @@ public final class ao_1 {
 
     public final void h(byte var1) {
         byte[] var2;
-        if ((var2 = NetPayloadBuilder.a((short) 4195, GlobalStatus.ad, (byte) var1, (short) this.I.j, (short) this.I.k)) != null) {
+        if ((var2 = NetPayloadBuilder.a((short) 4195, GlobalStatus.ad, (byte) var1, (short) this.sceneRefreshCoordinator.j, (short) this.sceneRefreshCoordinator.k)) != null) {
             NetPacket var3 = new NetPacket((short) 4195, var2);
             MainCanvas.netUtils.sendPacket(var3);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -15410,9 +15422,9 @@ public final class ao_1 {
         if ((var1 = NetPayloadBuilder.a((short) 4140, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
             NetPacket var2 = new NetPacket((short) 4140, var1);
             MainCanvas.netUtils.sendPacket(var2);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -15420,7 +15432,7 @@ public final class ao_1 {
         byte[] var1 = NetPayloadBuilder.j((short) 4177, GlobalStatus.ad, (int) (GlobalStatus.bt ? 1 : 0));
         NetPacket var2 = new NetPacket((short) 4177, var1);
         MainCanvas.netUtils.sendPacket(var2);
-        this.e.a((String) null);
+        this.mainCanvasRef.a((String) null);
     }
 
     public final void P() {
@@ -15458,7 +15470,7 @@ public final class ao_1 {
             }
 
             System.currentTimeMillis();
-            ao_1 var6 = this;
+            UISceneController var6 = this;
             if (this.cV == 0 && GlobalStatus.t != null) {
                 if (GlobalConfig.l == 2) {
                     MainCanvas.ah.c();
@@ -15486,8 +15498,8 @@ public final class ao_1 {
                 var6.cV = 1;
             }
 
-            if (this.f != null && this.f.i != null && i() && this.k != 1) {
-                MainCanvas.f.a(this.f, h, i, true, false, 1009050);
+            if (this.f != null && this.f.i != null && i() && this.currentSceneModeId != 1) {
+                MainCanvas.pngUtil.a(this.f, h, i, true, false, 1009050);
             }
         }
 
@@ -15544,14 +15556,14 @@ public final class ao_1 {
         if (var1 != null) {
             if (GlobalStatus.q == null) {
                 for (int var4 = 0; var4 < var1.length; ++var4) {
-                    var1[var4].j = this.I.j;
-                    var1[var4].k = this.I.k;
-                    var1[var4].l = this.I.j;
-                    var1[var4].m = this.I.k;
+                    var1[var4].j = this.sceneRefreshCoordinator.j;
+                    var1[var4].k = this.sceneRefreshCoordinator.k;
+                    var1[var4].l = this.sceneRefreshCoordinator.j;
+                    var1[var4].m = this.sceneRefreshCoordinator.k;
                 }
 
                 if (GlobalStatus.bs == 0 && GlobalStatus.s == 0) {
-                    this.I.a((int) 1);
+                    this.sceneRefreshCoordinator.a((int) 1);
                 }
 
                 GlobalStatus.q = var1;
@@ -15572,14 +15584,14 @@ public final class ao_1 {
             }
 
             GlobalStatus.q = var1;
-            if (this.k == 21) {
+            if (this.currentSceneModeId == 21) {
                 this.aN();
                 return;
             }
         } else if (GlobalStatus.q != null) {
             R();
-            if (this.k == 21) {
-                this.e.processException("没有队伍");
+            if (this.currentSceneModeId == 21) {
+                this.mainCanvasRef.processException("没有队伍");
             }
         }
 
@@ -15593,19 +15605,19 @@ public final class ao_1 {
 
     public final void a(short var1, String var2) {
         if (GlobalStatus.bs == 0) {
-            this.e.processException("队员不能发送组队邀请");
+            this.mainCanvasRef.processException("队员不能发送组队邀请");
         } else if (GlobalStatus.bs == 1 && GlobalStatus.q != null && GlobalStatus.q.length >= 3) {
-            this.e.processException("队伍已满，无法邀请");
+            this.mainCanvasRef.processException("队伍已满，无法邀请");
         } else if (GlobalStatus.G()) {
-            this.e.processException("住宅区域中，无法邀请");
+            this.mainCanvasRef.processException("住宅区域中，无法邀请");
         } else {
             byte[] var3;
             if ((var3 = NetPayloadBuilder.a((short) 4112, GlobalStatus.ad, var2, (short) var1)) != null) {
                 NetPacket var4 = new NetPacket((short) 4112, var3);
                 MainCanvas.netUtils.sendPacket(var4);
-                this.l = 0;
+                this.sceneSubState = 0;
             } else {
-                this.e.processException("获取上传指令数据错误!");
+                this.mainCanvasRef.processException("获取上传指令数据错误!");
             }
         }
     }
@@ -15616,7 +15628,7 @@ public final class ao_1 {
         for (int var3 = 0; var3 < var1.length; ++var3) {
             ce var4;
             b(var4 = var1[var3]);
-            if (this.k == 0 || !i()) {
+            if (this.currentSceneModeId == 0 || !i()) {
                 this.a(var4);
             }
 
@@ -15989,7 +16001,7 @@ public final class ao_1 {
             String[] var4 = new String[var1.length];
 
             for (int var3 = 0; var3 < var1.length; ++var3) {
-                var4[var3] = GlobalConfig.a(this.e.l, var1[var3]);
+                var4[var3] = GlobalConfig.a(this.mainCanvasRef.l, var1[var3]);
             }
 
             return var4;
@@ -16070,15 +16082,15 @@ public final class ao_1 {
             var3 = new String[]{"购买", "仓库", "招募", "家属"};
         }
 
-        this.e.aq.b();
-        this.e.aq.a(var2);
-        this.e.aq.a(true);
-        this.e.as.a(var3);
-        this.e.aq.a((al) this.e.as);
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a(var2);
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.as.a(var3);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
         if (this.as != 7 && this.as != 8 && this.as != 9 && this.as != 10) {
             this.j((byte) this.as);
-            this.e.aq.a((al) this.e.ar);
-            this.e.aq.a((al) this.e.at);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         } else {
             int var4 = this.as;
             this.as = var4;
@@ -16094,36 +16106,36 @@ public final class ao_1 {
                 var3_t = GlobalStatus.hW[0];
             }
 
-            this.e.ar.a((Image[]) null, var5, (String[]) null, (String[]) null);
+            this.mainCanvasRef.ar.a((Image[]) null, var5, (String[]) null, (String[]) null);
             if (var3_t != null && !((String) var3_t).equals("")) {
-                this.e.ar.a(var3_t, 1);
+                this.mainCanvasRef.ar.a(var3_t, 1);
             }
 
-            this.e.as.a = (byte) this.aU;
-            this.e.aq.a((al) this.e.ar);
+            this.mainCanvasRef.as.a = (byte) this.aU;
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
         }
 
-        this.e.au.a("确定");
+        this.mainCanvasRef.au.a("确定");
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.aw = 0;
-        this.l = 0;
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 38;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.aw = 0;
+        this.sceneSubState = 0;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 38;
     }
 
     public final void j(byte var1) {
         this.as = var1;
         if (GlobalStatus.hL != null && GlobalStatus.hL.length > 0) {
-            this.e.at.b(this.au(0), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.b(this.au(0), GlobalConfig.i, (byte) 1);
         } else {
-            this.e.at.b("没有建筑材料，按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.b("没有建筑材料，按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
         }
 
-        this.e.at.a((byte) 1);
+        this.mainCanvasRef.at.a((byte) 1);
         String[] var2 = null;
         if (this.as != 0 && this.as != 2 && this.as != 4 && this.as != 6) {
             if (this.as == 1 || this.as == 3 || this.as == 5) {
@@ -16133,22 +16145,22 @@ public final class ao_1 {
             var2 = GlobalStatus.hM;
         }
 
-        this.e.ar.a((Image[]) null, var2, (String[]) null, (String[]) null);
+        this.mainCanvasRef.ar.a((Image[]) null, var2, (String[]) null, (String[]) null);
         if (this.aZ == 8 || this.aZ == 7 || this.aZ == 9 || this.aZ == 10) {
-            this.e.aq.a((al) this.e.at);
-            this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+            this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         }
 
     }
 
     private void at(int var1) {
-        if (this.l == 0) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 == 8 || var1 == 2 || var1 == 518 || var1 == 516) {
-                if (this.e.as.a == 0) {
+                if (this.mainCanvasRef.as.a == 0) {
                     if (this.as == 1) {
                         this.j((byte) 0);
                     } else if (this.as != 3 && this.as != 8 && this.as != 7) {
@@ -16161,7 +16173,7 @@ public final class ao_1 {
                         this.aZ = (byte) this.as;
                         this.j((byte) 2);
                     }
-                } else if (this.e.as.a == 1) {
+                } else if (this.mainCanvasRef.as.a == 1) {
                     if (this.as == 0) {
                         this.v((byte) 1);
                     } else if (this.as != 2 && this.as != 7 && this.as != 8) {
@@ -16173,22 +16185,22 @@ public final class ao_1 {
                         this.v((byte) 2);
                         this.aZ = (byte) this.as;
                     }
-                } else if (this.e.as.a == 2) {
+                } else if (this.mainCanvasRef.as.a == 2) {
                     if (this.as != 5 && this.as != 4 && this.as != 9 && this.as != 10) {
                         if (this.as != 3 && this.as != 8 && this.as != 2) {
                             if (this.as == 0) {
                                 this.v((byte) 1);
                             }
                         } else {
-                            this.aU = this.e.as.a;
+                            this.aU = this.mainCanvasRef.as.a;
                             this.c((short) 4664, (byte) this.af);
                         }
                     } else {
                         this.aZ = (byte) this.as;
                         this.c((short) 4361, (byte) this.af, (byte) 2);
                     }
-                } else if (this.e.as.a == 3) {
-                    this.aU = this.e.as.a;
+                } else if (this.mainCanvasRef.as.a == 3) {
+                    this.aU = this.mainCanvasRef.as.a;
                     if (this.as != 7 && this.as != 2 && this.as != 3) {
                         if (this.as == 4 || this.as == 5 || this.as == 6 || this.as == 10) {
                             this.c((short) 4664, (byte) this.af);
@@ -16196,8 +16208,8 @@ public final class ao_1 {
                     } else {
                         this.d((short) 4666, (byte) this.af);
                     }
-                } else if (this.e.as.a == 4) {
-                    this.aU = this.e.as.a;
+                } else if (this.mainCanvasRef.as.a == 4) {
+                    this.aU = this.mainCanvasRef.as.a;
                     if (this.as == 9 || this.as == 4 || this.as == 5 || this.as == 6) {
                         this.d((short) 4666, (byte) this.af);
                     }
@@ -16209,26 +16221,26 @@ public final class ao_1 {
                     if (this.as != 1 && this.as != 3 && this.as != 5) {
                         if (this.as != 7 && this.as != 9) {
                             if ((this.as == 8 || this.as == 10) && GlobalStatus.hZ != null) {
-                                this.e.ar.a(GlobalStatus.hZ[this.e.ar.g()], 1);
+                                this.mainCanvasRef.ar.a(GlobalStatus.hZ[this.mainCanvasRef.ar.g()], 1);
                             }
                         } else if (GlobalStatus.hW != null) {
-                            this.e.ar.a(GlobalStatus.hW[this.e.ar.g()], 1);
+                            this.mainCanvasRef.ar.a(GlobalStatus.hW[this.mainCanvasRef.ar.g()], 1);
                         }
                     } else {
                         if (GlobalStatus.hP == null || GlobalStatus.hP.length <= 0) {
                             return;
                         }
 
-                        this.e.at.b(GlobalStatus.hR[this.e.ar.g()], GlobalConfig.i, (byte) 1);
-                        this.e.at.a((byte) 1);
+                        this.mainCanvasRef.at.b(GlobalStatus.hR[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 1);
+                        this.mainCanvasRef.at.a((byte) 1);
                     }
                 } else {
                     if (GlobalStatus.hN == null || GlobalStatus.hN.length <= 0) {
                         return;
                     }
 
-                    this.e.at.b(this.au(this.e.ar.g()), GlobalConfig.i, (byte) 1);
-                    this.e.at.a((byte) 1);
+                    this.mainCanvasRef.at.b(this.au(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.a((byte) 1);
                 }
             }
 
@@ -16239,120 +16251,120 @@ public final class ao_1 {
                     this.m();
                     return;
                 }
-            } else if (this.as == 0 && this.e.as.a == 0) {
+            } else if (this.as == 0 && this.mainCanvasRef.as.a == 0) {
                 if (GlobalStatus.hL != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"购买", "取消"}, true);
-                    this.l = 1;
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"购买", "取消"}, true);
+                    this.sceneSubState = 1;
                     return;
                 }
-            } else if (this.as == 1 && this.e.as.a == 1) {
+            } else if (this.as == 1 && this.mainCanvasRef.as.a == 1) {
                 if (GlobalStatus.hP != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"进入", "拍卖", "消拍", "卖出"}, true);
-                    this.l = 2;
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"进入", "拍卖", "消拍", "卖出"}, true);
+                    this.sceneSubState = 2;
                     return;
                 }
-            } else if (this.as == 2 && this.e.as.a == 0) {
+            } else if (this.as == 2 && this.mainCanvasRef.as.a == 0) {
                 if (GlobalStatus.hL != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"购买"}, true);
-                    this.l = 3;
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"购买"}, true);
+                    this.sceneSubState = 3;
                     return;
                 }
-            } else if (this.as == 3 && this.e.as.a == 1) {
+            } else if (this.as == 3 && this.mainCanvasRef.as.a == 1) {
                 if (GlobalStatus.hP != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"布置", "卖出"}, true);
-                    this.l = 4;
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"布置", "卖出"}, true);
+                    this.sceneSubState = 4;
                     return;
                 }
-            } else if (this.as == 4 && this.e.as.a == 0) {
+            } else if (this.as == 4 && this.mainCanvasRef.as.a == 0) {
                 if (GlobalStatus.hL != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"购买", "取消"}, true);
-                    this.l = 5;
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"购买", "取消"}, true);
+                    this.sceneSubState = 5;
                     return;
                 }
-            } else if (this.as == 5 && this.e.as.a == 1) {
+            } else if (this.as == 5 && this.mainCanvasRef.as.a == 1) {
                 if (GlobalStatus.hP != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"布置", "卖出"}, true);
-                    this.l = 6;
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"布置", "卖出"}, true);
+                    this.sceneSubState = 6;
                     return;
                 }
-            } else if (this.as == 6 && this.e.as.a == 2) {
+            } else if (this.as == 6 && this.mainCanvasRef.as.a == 2) {
                 if (GlobalStatus.hL != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"升级", "取消"}, true);
-                    this.l = 8;
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"升级", "取消"}, true);
+                    this.sceneSubState = 8;
                     return;
                 }
-            } else if ((this.as != 7 || this.e.as.a != 2) && (this.as != 9 || this.e.as.a != 3)) {
-                if ((this.as == 8 && this.e.as.a == 3 || this.as == 10 && this.e.as.a == 4) && GlobalStatus.hX != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"安排", "解约"}, true);
-                    this.l = 10;
+            } else if ((this.as != 7 || this.mainCanvasRef.as.a != 2) && (this.as != 9 || this.mainCanvasRef.as.a != 3)) {
+                if ((this.as == 8 && this.mainCanvasRef.as.a == 3 || this.as == 10 && this.mainCanvasRef.as.a == 4) && GlobalStatus.hX != null) {
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"安排", "解约"}, true);
+                    this.sceneSubState = 10;
                     return;
                 }
             } else if (GlobalStatus.hV != null) {
-                this.l = 9;
+                this.sceneSubState = 9;
                 LoadingPage.h = 0;
                 return;
             }
-        } else if (this.l != 1 && this.l != 2 && this.l != 3 && this.l != 4 && this.l != 5 && this.l != 6 && this.l != 8 && this.l != 10) {
-            if (this.l == 7) {
+        } else if (this.sceneSubState != 1 && this.sceneSubState != 2 && this.sceneSubState != 3 && this.sceneSubState != 4 && this.sceneSubState != 5 && this.sceneSubState != 6 && this.sceneSubState != 8 && this.sceneSubState != 10) {
+            if (this.sceneSubState == 7) {
                 LoadingPage.b(var1);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        this.l = 0;
+                        this.sceneSubState = 0;
                         return;
                     }
                 } else {
                     if (LoadingPage.o == 0) {
-                        this.l = 0;
+                        this.sceneSubState = 0;
                         return;
                     }
 
                     if (LoadingPage.o == 1) {
                         if (this.as == 3) {
-                            this.a((byte) 2, (int) GlobalStatus.hP[this.e.ar.g()], (byte) 3);
+                            this.a((byte) 2, (int) GlobalStatus.hP[this.mainCanvasRef.ar.g()], (byte) 3);
                             return;
                         }
 
                         if (this.as == 5) {
-                            this.a((byte) 3, (int) GlobalStatus.hP[this.e.ar.g()], (byte) 3);
+                            this.a((byte) 3, (int) GlobalStatus.hP[this.mainCanvasRef.ar.g()], (byte) 3);
                             return;
                         }
 
                         if (this.as == 1) {
-                            this.a((byte) 1, (int) GlobalStatus.hP[this.e.ar.g()], (byte) 1);
+                            this.a((byte) 1, (int) GlobalStatus.hP[this.mainCanvasRef.ar.g()], (byte) 1);
                             return;
                         }
 
                         if (this.as == 8 || this.as == 10) {
-                            this.a((short) 4665, String.valueOf(GlobalStatus.t[this.af].a), (byte) 1, "", GlobalStatus.hX[this.e.ar.g()]);
+                            this.a((short) 4665, String.valueOf(GlobalStatus.t[this.af].a), (byte) 1, "", GlobalStatus.hX[this.mainCanvasRef.ar.g()]);
                             return;
                         }
                     }
                 }
-            } else if (this.l == 9) {
+            } else if (this.sceneSubState == 9) {
                 if (var1 == 268435456 || var1 == 1073741824) {
-                    this.a((short) 4665, String.valueOf(GlobalStatus.t[this.af].a), (byte) 0, GlobalStatus.hV[this.e.ar.g()], 0);
+                    this.a((short) 4665, String.valueOf(GlobalStatus.t[this.af].a), (byte) 0, GlobalStatus.hV[this.mainCanvasRef.ar.g()], 0);
                     return;
                 }
 
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                 }
             }
         } else if (this.as == 0) {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else {
                 if (LoadingPage.o == 0) {
-                    this.b((short) 4354, (byte) ((byte) this.e.ar.g()), (byte) this.af);
+                    this.b((short) 4354, (byte) ((byte) this.mainCanvasRef.ar.g()), (byte) this.af);
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             }
@@ -16360,38 +16372,38 @@ public final class ao_1 {
             LoadingPage.b(var1);
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                 if (LoadingPage.o == 0) {
-                    this.a((byte) 1, (short) GlobalStatus.hP[this.e.ar.g()], GlobalStatus.ad);
+                    this.a((byte) 1, (short) GlobalStatus.hP[this.mainCanvasRef.ar.g()], GlobalStatus.ad);
                     return;
                 }
 
                 if (LoadingPage.o == 3) {
-                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"取消", "确认"}, false);
-                    this.l = 7;
+                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"取消", "确认"}, false);
+                    this.sceneSubState = 7;
                     return;
                 }
 
-                this.e.processException("该功能稍后开放");
+                this.mainCanvasRef.processException("该功能稍后开放");
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 0;
+                this.sceneSubState = 0;
                 return;
             }
         } else if (this.as == 2) {
             LoadingPage.b(var1);
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                 if (LoadingPage.o == 0) {
-                    this.b((short) 4359, (byte) ((byte) this.e.ar.g()), (byte) this.af);
+                    this.b((short) 4359, (byte) ((byte) this.mainCanvasRef.ar.g()), (byte) this.af);
                     return;
                 }
 
-                this.e.processException("该功能稍后开放");
+                this.mainCanvasRef.processException("该功能稍后开放");
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 0;
+                this.sceneSubState = 0;
                 return;
             }
         } else if (this.as == 3) {
@@ -16400,38 +16412,38 @@ public final class ao_1 {
                 if (LoadingPage.o == 0) {
                     this.as = -1;
                     this.aZ = -1;
-                    this.a((String) GlobalStatus.hQ[this.e.ar.g()], GlobalStatus.hP[this.e.ar.g()], (short) GlobalStatus.hS[this.e.ar.g()], (byte) GlobalStatus.hT[this.e.ar.g()], (byte) 2);
+                    this.a((String) GlobalStatus.hQ[this.mainCanvasRef.ar.g()], GlobalStatus.hP[this.mainCanvasRef.ar.g()], (short) GlobalStatus.hS[this.mainCanvasRef.ar.g()], (byte) GlobalStatus.hT[this.mainCanvasRef.ar.g()], (byte) 2);
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
-                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"取消", "确认"}, false);
-                    this.l = 7;
+                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"取消", "确认"}, false);
+                    this.sceneSubState = 7;
                     return;
                 }
 
-                this.e.processException("该功能稍后开放");
+                this.mainCanvasRef.processException("该功能稍后开放");
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 0;
+                this.sceneSubState = 0;
                 return;
             }
         } else if (this.as == 4) {
             LoadingPage.b(var1);
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                 if (LoadingPage.o == 0) {
-                    this.b((short) 4362, (byte) ((byte) this.e.ar.g()), (byte) this.af);
+                    this.b((short) 4362, (byte) ((byte) this.mainCanvasRef.ar.g()), (byte) this.af);
                     return;
                 }
 
-                this.l = 0;
+                this.sceneSubState = 0;
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 0;
+                this.sceneSubState = 0;
                 return;
             }
         } else if (this.as == 5) {
@@ -16440,39 +16452,39 @@ public final class ao_1 {
                 if (LoadingPage.o == 0) {
                     this.as = -1;
                     this.aZ = -1;
-                    this.a((String) GlobalStatus.hQ[this.e.ar.g()], GlobalStatus.hP[this.e.ar.g()], (short) GlobalStatus.hS[this.e.ar.g()], (byte) GlobalStatus.hT[this.e.ar.g()], (byte) 3);
+                    this.a((String) GlobalStatus.hQ[this.mainCanvasRef.ar.g()], GlobalStatus.hP[this.mainCanvasRef.ar.g()], (short) GlobalStatus.hS[this.mainCanvasRef.ar.g()], (byte) GlobalStatus.hT[this.mainCanvasRef.ar.g()], (byte) 3);
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
-                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"取消", "确认"}, false);
-                    this.l = 7;
+                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"取消", "确认"}, false);
+                    this.sceneSubState = 7;
                     return;
                 }
 
-                this.l = 0;
+                this.sceneSubState = 0;
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 0;
+                this.sceneSubState = 0;
                 return;
             }
         } else if (this.as == 6) {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else {
                 if (LoadingPage.o == 0) {
-                    this.b((short) 4362, (byte) ((byte) this.e.ar.g()), (byte) this.af);
+                    this.b((short) 4362, (byte) ((byte) this.mainCanvasRef.ar.g()), (byte) this.af);
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             }
@@ -16480,20 +16492,20 @@ public final class ao_1 {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else {
                 if (LoadingPage.o == 0) {
                     this.as = -1;
                     this.aZ = -1;
-                    this.a((String) "", -1, (short) Short.parseShort(GlobalStatus.ia[this.e.ar.g()]), (byte) 0, (byte) 5);
+                    this.a((String) "", -1, (short) Short.parseShort(GlobalStatus.ia[this.mainCanvasRef.ar.g()]), (byte) 0, (byte) 5);
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
-                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"取消", "确认"}, false);
-                    this.l = 7;
+                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"取消", "确认"}, false);
+                    this.sceneSubState = 7;
                     return;
                 }
             }
@@ -16502,36 +16514,36 @@ public final class ao_1 {
     }
 
     private String au(int var1) {
-        this.e.l.delete(0, this.e.l.length());
+        this.mainCanvasRef.l.delete(0, this.mainCanvasRef.l.length());
         int var2 = GlobalStatus.hO[var1] >> 16;
         short var3 = (short) GlobalStatus.hO[var1];
-        this.e.l.append(GlobalStatus.hN[var1]);
-        this.e.l.append("\t");
-        this.e.l.append("公共剩余:");
+        this.mainCanvasRef.l.append(GlobalStatus.hN[var1]);
+        this.mainCanvasRef.l.append("\t");
+        this.mainCanvasRef.l.append("公共剩余:");
         if (var2 >= 0) {
-            this.e.l.append(var2);
+            this.mainCanvasRef.l.append(var2);
         } else {
-            this.e.l.append("无限制");
+            this.mainCanvasRef.l.append("无限制");
         }
 
-        this.e.l.append("\t");
-        this.e.l.append("个人剩余:");
+        this.mainCanvasRef.l.append("\t");
+        this.mainCanvasRef.l.append("个人剩余:");
         if (var3 >= 0) {
-            this.e.l.append(var3);
+            this.mainCanvasRef.l.append(var3);
         } else {
-            this.e.l.append("无限制");
+            this.mainCanvasRef.l.append("无限制");
         }
 
-        return this.e.l.toString();
+        return this.mainCanvasRef.l.toString();
     }
 
     private void b(short var1, byte var2, byte var3) {
         byte[] var4;
         if ((var4 = NetPayloadBuilder.a(var1, GlobalStatus.ad, (short) GlobalStatus.hL[var2], (int) GlobalStatus.t[var3].a)) == null) {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket(var1, var4));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         }
     }
 
@@ -16539,9 +16551,9 @@ public final class ao_1 {
         byte[] var3;
         if ((var3 = NetPayloadBuilder.d(var1, GlobalStatus.ad, GlobalStatus.t[var2].a)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket(var1, var3));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -16549,9 +16561,9 @@ public final class ao_1 {
         byte[] var4;
         if ((var4 = NetPayloadBuilder.a((short) 4361, GlobalStatus.ad, (short) GlobalStatus.t[var2].a, (byte) var3)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4361, var4));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -16559,9 +16571,9 @@ public final class ao_1 {
         byte[] var3;
         if ((var3 = NetPayloadBuilder.e((short) 4664, GlobalStatus.ad, (short) GlobalStatus.t[var2].a)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4664, var3));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -16569,9 +16581,9 @@ public final class ao_1 {
         byte[] var3;
         if ((var3 = NetPayloadBuilder.f((short) 4666, GlobalStatus.ad, (short) GlobalStatus.t[var2].a)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4666, var3));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -16579,56 +16591,56 @@ public final class ao_1 {
         byte[] var6;
         if ((var6 = NetPayloadBuilder.a((short) 4665, GlobalStatus.ad, var2, var3, var4, var5)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4665, var6));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     private void v(byte var1) {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.i((short) 4355, GlobalStatus.ad, (byte) var1)) == null) {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4354, var2));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         }
     }
 
     private void a(short var1, int var2, String var3, String var4) {
         byte[] var5;
         if ((var5 = NetPayloadBuilder.a((short) 4256, GlobalStatus.ad, var1, var2, var3, var4)) == null) {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4256, var5));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         }
     }
 
     private void a(byte var1, int var2, String var3) {
         byte[] var4;
-        if ((var4 = NetPayloadBuilder.a((short) 4356, GlobalStatus.ad, (byte) 1, var2, var3, this.I.j, this.I.k)) == null) {
-            this.e.processException("获取上传指令数据错误!");
+        if ((var4 = NetPayloadBuilder.a((short) 4356, GlobalStatus.ad, (byte) 1, var2, var3, this.sceneRefreshCoordinator.j, this.sceneRefreshCoordinator.k)) == null) {
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4356, var4));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         }
     }
 
     private void w(byte var1) {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.j((short) 4357, GlobalStatus.ad, (byte) var1)) == null) {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4357, var2));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         }
     }
 
     private void a(byte var1, bv var2) {
         byte[] var3;
         if ((var3 = NetPayloadBuilder.a((short) 4360, GlobalStatus.ad, (byte) var1, (bv) var2)) == null) {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4360, var3));
         }
@@ -16637,68 +16649,68 @@ public final class ao_1 {
     private void f(String var1) {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.a((short) 4671, GlobalStatus.ad, var1, (int) GlobalStatus.O.d)) == null) {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4671, var2));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         }
     }
 
     private void av(int var1) {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.w((short) 4668, GlobalStatus.ad, var1)) == null) {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4668, var2));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         }
     }
 
     public final void a(String var1, String var2, int var3) {
         byte[] var4;
         if ((var4 = NetPayloadBuilder.a((short) 4670, GlobalStatus.ad, var1, var2, var3)) == null) {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4670, var4));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         }
     }
 
     public final void a(String var1, String var2, String var3, int var4) {
         byte[] var5;
         if ((var5 = NetPayloadBuilder.a((short) 4669, GlobalStatus.ad, var1, var2, var4, var3)) == null) {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4669, var5));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         }
     }
 
     public final void k(byte var1) {
         this.as = var1;
-        this.l = 0;
-        this.e.aw = 0;
-        this.e.ar.a((Image[]) null, GlobalStatus.hQ, (String[]) null, (String[]) null);
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aw = 0;
+        this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.hQ, (String[]) null, (String[]) null);
         if (GlobalStatus.hP != null && GlobalStatus.hP.length > 0) {
-            this.e.at.b(GlobalStatus.hR[0], GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.b(GlobalStatus.hR[0], GlobalConfig.i, (byte) 1);
         } else {
-            this.e.at.b("没有建筑材料，按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.b("没有建筑材料，按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
         }
 
-        this.e.at.a((byte) 1);
+        this.mainCanvasRef.at.a((byte) 1);
         if (this.aZ == 7 || this.aZ == 8 || this.aZ == 9 || this.aZ == 10) {
-            this.e.aq.a((al) this.e.at);
-            this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+            this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         }
 
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 38;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 38;
     }
 
     public final void a(String var1, int var2, short var3, byte var4, byte var5) {
-        this.e.p = true;
+        this.mainCanvasRef.p = true;
         this.cX = var5;
-        this.ba = new bv(var2, this.I.j, this.I.k, var3, var4);
+        this.ba = new bv(var2, this.sceneRefreshCoordinator.j, this.sceneRefreshCoordinator.k, var3, var4);
         if (this.cX == 5) {
             MainCanvas.ah.loadFrame((String[]) (new String[]{String.valueOf(var3)}), (short[]) null, (short[]) null, (short[]) null);
             bv var10000 = this.ba;
@@ -16711,11 +16723,11 @@ public final class ao_1 {
             var8.d = var7;
         }
 
-        this.l = 0;
-        this.e.touchPageCase = this.e.k;
-        MainCanvas.f.a(this.f, h, i, false, false, 1009050);
-        this.j = this.k = 39;
-        this.e.p = false;
+        this.sceneSubState = 0;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        MainCanvas.pngUtil.a(this.f, h, i, false, false, 1009050);
+        this.sceneStateShadow = this.currentSceneModeId = 39;
+        this.mainCanvasRef.p = false;
     }
 
     public final void U() {
@@ -16741,10 +16753,10 @@ public final class ao_1 {
     }
 
     public final void V() {
-        if (this.e.b != 8 && this.e.b != 516) {
-            if (this.e.b != 2 && this.e.b != 518) {
-                if (this.e.b != 1 && this.e.b != 514) {
-                    if (this.e.b != 4 && this.e.b != 520) {
+        if (this.mainCanvasRef.b != 8 && this.mainCanvasRef.b != 516) {
+            if (this.mainCanvasRef.b != 2 && this.mainCanvasRef.b != 518) {
+                if (this.mainCanvasRef.b != 1 && this.mainCanvasRef.b != 514) {
+                    if (this.mainCanvasRef.b != 4 && this.mainCanvasRef.b != 520) {
                         this.ba.a((byte) -1);
                     } else {
                         this.ba.a((byte) 3);
@@ -16759,46 +16771,46 @@ public final class ao_1 {
             this.ba.a((byte) 0);
         }
 
-        if (this.e.touchAction != 268435456 && this.e.touchAction != 517 && this.e.touchAction != 1073741824) {
-            if (this.e.touchAction == 536870912) {
-                this.l = 0;
-                this.e.touchPageCase = this.e.k;
+        if (this.mainCanvasRef.touchAction != 268435456 && this.mainCanvasRef.touchAction != 517 && this.mainCanvasRef.touchAction != 1073741824) {
+            if (this.mainCanvasRef.touchAction == 536870912) {
+                this.sceneSubState = 0;
+                this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
                 this.N();
             }
         } else if (this.ba != null) {
             byte var1;
             if ((var1 = this.a(this.ba)) == 0) {
-                this.e.processException("布置失败，请检查是否覆盖地图元素");
+                this.mainCanvasRef.processException("布置失败，请检查是否覆盖地图元素");
                 return;
             }
 
             if (var1 == 1) {
-                this.e.processException("布置失败，请检查是否覆盖地图npc");
+                this.mainCanvasRef.processException("布置失败，请检查是否覆盖地图npc");
                 return;
             }
 
             if (var1 == 2) {
-                this.e.processException("布置失败，请检查是否覆盖传送点");
+                this.mainCanvasRef.processException("布置失败，请检查是否覆盖传送点");
                 return;
             }
 
             if (var1 == 3) {
-                this.e.processException("布置失败，请检查是否覆盖其他材料");
+                this.mainCanvasRef.processException("布置失败，请检查是否覆盖其他材料");
                 return;
             }
 
             if (var1 == 4) {
-                this.e.processException("布置失败，请检查当前区域是否支持放置该类型材料");
+                this.mainCanvasRef.processException("布置失败，请检查当前区域是否支持放置该类型材料");
                 return;
             }
 
             if (var1 == 5) {
-                this.e.processException("布置失败，请检查是否在合法区域内");
+                this.mainCanvasRef.processException("布置失败，请检查是否在合法区域内");
                 return;
             }
 
             if (var1 == 6) {
-                this.e.processException("布置失败，请检查是否与当前人物位置重叠");
+                this.mainCanvasRef.processException("布置失败，请检查是否与当前人物位置重叠");
                 return;
             }
 
@@ -16816,11 +16828,11 @@ public final class ao_1 {
                 }
             } else {
                 if (this.cX != 5) {
-                    this.e.processException("材料类型不存在");
+                    this.mainCanvasRef.processException("材料类型不存在");
                     return;
                 }
 
-                int var10001 = GlobalStatus.hX[this.e.ar.g()];
+                int var10001 = GlobalStatus.hX[this.mainCanvasRef.ar.g()];
                 int var10003 = this.ba.e + 2;
                 short var5 = (short) (this.ba.f + 28);
                 int var4 = var10003;
@@ -16828,19 +16840,19 @@ public final class ao_1 {
                 int var10 = var10001;
                 byte[] var6;
                 if ((var6 = NetPayloadBuilder.b((short) 4667, GlobalStatus.ad, var10, var4, (int) var5)) == null) {
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                 } else {
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4667, var6));
                 }
             }
 
-            this.l = 0;
-            this.e.touchPageCase = this.e.k;
+            this.sceneSubState = 0;
+            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
             this.N();
         }
 
         this.aE = 0;
-        this.e.touchAction = 0;
+        this.mainCanvasRef.touchAction = 0;
         if (this.f.i != null) {
             short var11 = 0;
             short var14 = 0;
@@ -17024,11 +17036,11 @@ public final class ao_1 {
                 }
             }
 
-            if (this.I != null && this.I.g != null) {
-                this.cI[0] = this.I.j + (8 - this.I.g.i() / 2);
-                this.cI[1] = this.I.k - (this.I.g.j() - 16);
-                this.cI[2] = this.I.g.g();
-                this.cI[3] = this.I.g.h();
+            if (this.sceneRefreshCoordinator != null && this.sceneRefreshCoordinator.g != null) {
+                this.cI[0] = this.sceneRefreshCoordinator.j + (8 - this.sceneRefreshCoordinator.g.i() / 2);
+                this.cI[1] = this.sceneRefreshCoordinator.k - (this.sceneRefreshCoordinator.g.j() - 16);
+                this.cI[2] = this.sceneRefreshCoordinator.g.g();
+                this.cI[3] = this.sceneRefreshCoordinator.g.h();
                 if (PngUtil.a(this.cH, this.cI)) {
                     return 6;
                 }
@@ -17039,14 +17051,14 @@ public final class ao_1 {
     }
 
     private void aw(int var1) {
-        if (this.l == 0) {
+        if (this.sceneSubState == 0) {
             if (var1 != 514 && var1 != 1) {
                 if (var1 != 520 && var1 != 4) {
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                         if (var1 == 536870912) {
-                            this.l = 0;
-                            this.j = this.k = 0;
-                            this.e.touchPageCase = this.e.k = 7;
+                            this.sceneSubState = 0;
+                            this.sceneStateShadow = this.currentSceneModeId = 0;
+                            this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k = 7;
                             return;
                         }
 
@@ -17076,7 +17088,7 @@ public final class ao_1 {
 
                     aj = false;
                     this.N();
-                    this.e.touchPageCase = this.e.k = 7;
+                    this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k = 7;
                     return;
                 }
 
@@ -17086,39 +17098,39 @@ public final class ao_1 {
 
             LoadingPage.g = LoadingPage.g == 0 ? this.an.length - 1 : LoadingPage.g - 1;
             return;
-        } else if (this.l == 1) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        } else if (this.sceneSubState == 1) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 == 268435456 || var1 == 536870912 || var1 == 517 || var1 == 1073741824) {
-                this.l = 0;
+                this.sceneSubState = 0;
             }
         }
 
     }
 
     public final void d(String var1) {
-        this.e.aq.j();
-        this.e.aq.a("详细信息");
-        this.e.aq.a(false);
-        this.e.at.a(var1, GlobalConfig.i, (byte) 2);
-        this.e.au.a("确定");
-        this.e.aq.a((al) this.e.at);
-        this.e.aq.a((al) this.e.au);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.k = 40;
-        this.e.touchPageCase = this.e.k;
-        this.l = 1;
+        this.mainCanvasRef.aq.j();
+        this.mainCanvasRef.aq.a("详细信息");
+        this.mainCanvasRef.aq.a(false);
+        this.mainCanvasRef.at.a(var1, GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.au.a("确定");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.currentSceneModeId = 40;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneSubState = 1;
     }
 
     private void a(byte var1, int var2, byte var3) {
         byte[] var4;
         if ((var4 = NetPayloadBuilder.a((short) 4363, GlobalStatus.ad, (byte) var1, (int) var2, (byte) var3)) == null) {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4363, var4));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         }
     }
 
@@ -17126,13 +17138,13 @@ public final class ao_1 {
         if (L.j != null && L.j.length > var3) {
             byte[] var4;
             if ((var4 = NetPayloadBuilder.a((short) 4364, GlobalStatus.ad, (byte) var1, (int) var2, (int) L.j[var3])) == null) {
-                this.e.processException("获取上传指令数据错误!");
+                this.mainCanvasRef.processException("获取上传指令数据错误!");
             } else {
                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4364, var4));
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
             }
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -17140,17 +17152,17 @@ public final class ao_1 {
         byte[] var1;
         if ((var1 = NetPayloadBuilder.t((short) 4248, GlobalStatus.ad)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4248, var1));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     public final void W() {
-        this.l = 0;
-        this.e.aq.b();
-        this.e.aq.a("增值仓库");
-        c_1 var10000 = this.e.ar;
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("增值仓库");
+        c_1 var10000 = this.mainCanvasRef.ar;
         Image[] var10001 = b(GlobalStatus.jC);
         String[] var10002 = GlobalStatus.jA;
         int[] var1;
@@ -17171,33 +17183,33 @@ public final class ao_1 {
         }
 
         var10000.a(var10001, var10002, var10003, (String[]) null);
-        this.e.at.a(GlobalStatus.jD != null ? GlobalStatus.jD[0] : null, GlobalConfig.i, (byte) 1);
-        this.e.at.a((byte) 1);
-        this.e.au.a("取出");
-        this.e.aq.a((al) this.e.ar);
-        this.e.aq.a((al) this.e.at);
-        this.e.aq.a((al) this.e.au);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 53;
+        this.mainCanvasRef.at.a(GlobalStatus.jD != null ? GlobalStatus.jD[0] : null, GlobalConfig.i, (byte) 1);
+        this.mainCanvasRef.at.a((byte) 1);
+        this.mainCanvasRef.au.a("取出");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 53;
     }
 
     private void ax(int var1) {
-        if (this.l == 0) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (GlobalStatus.jz != null) {
                 this.a(GlobalStatus.jC);
                 if ((var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) && GlobalStatus.jD != null) {
-                    this.e.at.b(GlobalStatus.jD != null ? GlobalStatus.jD[this.e.ar.g()] : null, GlobalConfig.i, (byte) 1);
-                    this.e.at.a((byte) 1);
+                    this.mainCanvasRef.at.b(GlobalStatus.jD != null ? GlobalStatus.jD[this.mainCanvasRef.ar.g()] : null, GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.a((byte) 1);
                 }
 
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                    LoadingPage.a(65 + o, GlobalConfig.j + 20 + this.e.ar.g() * GlobalConfig.j + p, new String[]{"取回"}, true);
-                    this.l = 1;
+                    LoadingPage.a(65 + o, GlobalConfig.j + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.j + p, new String[]{"取回"}, true);
+                    this.sceneSubState = 1;
                 }
             }
 
@@ -17206,74 +17218,74 @@ public final class ao_1 {
                 this.N();
                 return;
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else if (LoadingPage.o == 0) {
-                this.a(GlobalStatus.jB[this.e.ar.g()] > 99 ? 99L : (long) GlobalStatus.jB[this.e.ar.g()]);
-                this.l = 2;
+                this.a(GlobalStatus.jB[this.mainCanvasRef.ar.g()] > 99 ? 99L : (long) GlobalStatus.jB[this.mainCanvasRef.ar.g()]);
+                this.sceneSubState = 2;
                 return;
             }
-        } else if (this.l == 2) {
+        } else if (this.sceneSubState == 2) {
             this.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                 }
             } else {
-                int var10001 = GlobalStatus.jz[this.e.ar.g()];
+                int var10001 = GlobalStatus.jz[this.mainCanvasRef.ar.g()];
                 byte var2 = (byte) this.ag;
                 var1 = var10001;
                 byte[] var4;
                 if ((var4 = NetPayloadBuilder.c((short) 4249, GlobalStatus.ad, (int) var1, (byte) var2)) == null) {
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                     return;
                 }
 
                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4249, var4));
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
             }
         }
 
     }
 
     public final void q(int var1) {
-        if (this.e.ar.g() == 2 && (var1 == 1073741824 || var1 == 517)) {
+        if (this.mainCanvasRef.ar.g() == 2 && (var1 == 1073741824 || var1 == 517)) {
             byte[] var2;
             if ((var2 = NetPayloadBuilder.a((short) 4194, GlobalStatus.ad, (byte) GlobalStatus.z)) != null) {
                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4194, var2));
                 return;
             }
 
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
 
     }
 
     public final void X() {
-        this.e.aq.b();
-        this.e.aq.a("住宅列表");
-        this.e.ar.a((Image[]) null, GlobalStatus.hQ, (String[]) null, (String[]) null);
-        this.e.au.a("进入");
-        this.e.aq.a((al) this.e.ar);
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("住宅列表");
+        this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.hQ, (String[]) null, (String[]) null);
+        this.mainCanvasRef.au.a("进入");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.l = 0;
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 57;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.sceneSubState = 0;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 57;
     }
 
     public final void r(int var1) {
-        if (this.l == 0) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -17282,7 +17294,7 @@ public final class ao_1 {
                     this.c((int) 5);
                 }
             } else if (GlobalStatus.hP != null) {
-                this.a((byte) 1, (short) GlobalStatus.hP[this.e.ar.g()], GlobalStatus.ad);
+                this.a((byte) 1, (short) GlobalStatus.hP[this.mainCanvasRef.ar.g()], GlobalStatus.ad);
                 return;
             }
         }
@@ -17291,13 +17303,13 @@ public final class ao_1 {
 
     private String aY() {
         StringBuffer var1 = new StringBuffer();
-        if (this.j == 59) {
+        if (this.sceneStateShadow == 59) {
             if (GlobalStatus.jT == null || GlobalStatus.jT.length <= 0) {
                 return null;
             }
 
             for (int var3 = 0; var3 < GlobalStatus.jT.length; ++var3) {
-                String[] var2 = LoadingPage.a("<" + GlobalStatus.jS[var3] + ">以" + GlobalConfig.a(this.e.l, GlobalStatus.jU[var3]) + "购买了您的" + GlobalStatus.jT[var3], GlobalConfig.i, 155, "\t");
+                String[] var2 = LoadingPage.a("<" + GlobalStatus.jS[var3] + ">以" + GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.jU[var3]) + "购买了您的" + GlobalStatus.jT[var3], GlobalConfig.i, 155, "\t");
 
                 for (int var4 = 0; var4 < var2.length; ++var4) {
                     var1.append(var2[var4]);
@@ -17310,7 +17322,7 @@ public final class ao_1 {
             }
 
             for (int var6 = 0; var6 < GlobalStatus.jW.length; ++var6) {
-                String[] var5 = LoadingPage.a("<" + GlobalStatus.jV[var6] + ">以" + GlobalConfig.a(this.e.l, GlobalStatus.jX[var6]) + "购买了您的" + GlobalStatus.jW[var6], GlobalConfig.i, 160, "\t");
+                String[] var5 = LoadingPage.a("<" + GlobalStatus.jV[var6] + ">以" + GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.jX[var6]) + "购买了您的" + GlobalStatus.jW[var6], GlobalConfig.i, 160, "\t");
 
                 for (int var7 = 0; var7 < var5.length; ++var7) {
                     var1.append(var5[var7]);
@@ -17327,9 +17339,9 @@ public final class ao_1 {
         if ((var3 = NetPayloadBuilder.a((short) 4631, GlobalStatus.ad, (byte) var1, (short) var2)) != null) {
             NetPacket var4 = new NetPacket((short) 4631, var3);
             MainCanvas.netUtils.sendPacket(var4);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -17338,9 +17350,9 @@ public final class ao_1 {
         if ((var3 = NetPayloadBuilder.b((short) 4632, GlobalStatus.ad, (byte) var1, (short) var2)) != null) {
             NetPacket var4 = new NetPacket((short) 4632, var3);
             MainCanvas.netUtils.sendPacket(var4);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -17349,9 +17361,9 @@ public final class ao_1 {
         if ((var3 = NetPayloadBuilder.c((short) 4150, GlobalStatus.ad, (byte) var1, (short) var2)) != null) {
             NetPacket var4 = new NetPacket((short) 4150, var3);
             MainCanvas.netUtils.sendPacket(var4);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -17360,9 +17372,9 @@ public final class ao_1 {
         if ((var3 = NetPayloadBuilder.e((short) 4633, GlobalStatus.ad, var2, (byte) var1)) != null) {
             NetPacket var4 = new NetPacket((short) 4633, var3);
             MainCanvas.netUtils.sendPacket(var4);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -17371,74 +17383,74 @@ public final class ao_1 {
         if ((var5 = NetPayloadBuilder.a((short) 4640, GlobalStatus.ad, var2, (byte) var1, var3)) != null) {
             NetPacket var6 = new NetPacket((short) 4640, var5);
             MainCanvas.netUtils.sendPacket(var6);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     public final void l(byte var1) {
-        this.l = 0;
+        this.sceneSubState = 0;
         this.cZ = var1;
-        this.e.aq.b();
-        this.e.aq.a("物品拍卖详情");
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("物品拍卖详情");
         if (var1 == 0) {
-            if (this.j != 59) {
+            if (this.sceneStateShadow != 59) {
                 this.aV = 0;
-                this.e.as.a(new String[]{"拍卖中", "仓库", "记录"});
-                this.e.as.a((byte) 0);
+                this.mainCanvasRef.as.a(new String[]{"拍卖中", "仓库", "记录"});
+                this.mainCanvasRef.as.a((byte) 0);
             }
 
             if (GlobalStatus.jN != null) {
                 this.a(GlobalStatus.jR);
-                this.e.ar.a(b(GlobalStatus.jR), a(this.e.l, GlobalStatus.jO, GlobalStatus.jP), (String[]) null, (String[]) null);
-                if (this.j == 64) {
-                    this.e.ar.a(this.aA, this.aq);
+                this.mainCanvasRef.ar.a(b(GlobalStatus.jR), a(this.mainCanvasRef.l, GlobalStatus.jO, GlobalStatus.jP), (String[]) null, (String[]) null);
+                if (this.sceneStateShadow == 64) {
+                    this.mainCanvasRef.ar.a(this.aA, this.aq);
                 }
 
-                this.e.ar.a(GlobalStatus.h(this.e.l, this.e.ar.g()), 1);
+                this.mainCanvasRef.ar.a(GlobalStatus.h(this.mainCanvasRef.l, this.mainCanvasRef.ar.g()), 1);
             } else {
-                this.e.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
+                this.mainCanvasRef.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
             }
 
-            this.e.au.a("下架");
+            this.mainCanvasRef.au.a("下架");
         } else if (var1 == 1) {
             if (GlobalStatus.ct != null) {
                 this.a(GlobalStatus.cx);
-                this.e.ar.a(b(GlobalStatus.cx), a(this.e.l, GlobalStatus.cu, GlobalStatus.cw), (String[]) null, (String[]) null);
-                if (this.j == 64) {
-                    this.e.ar.a(this.aA, this.aq);
+                this.mainCanvasRef.ar.a(b(GlobalStatus.cx), a(this.mainCanvasRef.l, GlobalStatus.cu, GlobalStatus.cw), (String[]) null, (String[]) null);
+                if (this.sceneStateShadow == 64) {
+                    this.mainCanvasRef.ar.a(this.aA, this.aq);
                 }
 
-                this.e.ar.a(GlobalStatus.a(this.k, this.e.l, this.e.ar.g()), 1);
+                this.mainCanvasRef.ar.a(GlobalStatus.a(this.currentSceneModeId, this.mainCanvasRef.l, this.mainCanvasRef.ar.g()), 1);
             } else {
-                this.e.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
+                this.mainCanvasRef.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
             }
 
-            this.e.au.a("取出");
+            this.mainCanvasRef.au.a("取出");
         } else if (var1 == 2) {
-            this.e.at.b(this.aY(), GlobalConfig.i, (byte) 2);
-            this.e.au.a("确定");
+            this.mainCanvasRef.at.b(this.aY(), GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.au.a("确定");
         }
 
-        this.e.au.a(true);
-        this.e.aq.a((al) this.e.as);
+        this.mainCanvasRef.au.a(true);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
         if (var1 == 2) {
-            this.e.aq.a((al) this.e.at);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         } else {
-            this.e.aq.a((al) this.e.ar);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
         }
 
-        this.e.aq.a((al) this.e.au);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.aq.a(true);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 59;
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 59;
     }
 
     private void ay(int var1) {
-        if (this.l == 0) {
-            this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            this.mainCanvasRef.aq.b(var1);
             if (var1 != 4 && var1 != 1) {
                 if (var1 != 8 && var1 != 2) {
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -17450,12 +17462,12 @@ public final class ao_1 {
 
                         if (var1 == 1024) {
                             if (GlobalStatus.gQ > 1) {
-                                if (this.e.as.a == 0) {
+                                if (this.mainCanvasRef.as.a == 0) {
                                     this.a((byte) 0, (short) ((short) (GlobalStatus.gQ - 1 <= 1 ? 1 : GlobalStatus.gQ - 1)));
                                     return;
                                 }
 
-                                if (this.e.as.a == 1) {
+                                if (this.mainCanvasRef.as.a == 1) {
                                     this.c((byte) 0, (short) ((short) (GlobalStatus.gQ - 1 <= 1 ? 1 : GlobalStatus.gQ - 1)));
                                     return;
                                 }
@@ -17464,12 +17476,12 @@ public final class ao_1 {
                                 return;
                             }
                         } else if (var1 == 2048 && GlobalStatus.gR == 1) {
-                            if (this.e.as.a == 0) {
+                            if (this.mainCanvasRef.as.a == 0) {
                                 this.a((byte) 0, (short) ((short) (GlobalStatus.gQ + 1)));
                                 return;
                             }
 
-                            if (this.e.as.a == 1) {
+                            if (this.mainCanvasRef.as.a == 1) {
                                 this.c((byte) 0, (short) ((short) (GlobalStatus.gQ + 1)));
                                 return;
                             }
@@ -17479,173 +17491,173 @@ public final class ao_1 {
                         }
                     } else {
                         Object var2 = null;
-                        if (this.e.as.a != 0 || GlobalStatus.jN == null) {
-                            if (this.e.as.a == 1 && GlobalStatus.ct != null) {
+                        if (this.mainCanvasRef.as.a != 0 || GlobalStatus.jN == null) {
+                            if (this.mainCanvasRef.as.a == 1 && GlobalStatus.ct != null) {
                                 String[] var4;
-                                if (GlobalStatus.a(GlobalStatus.cv[this.e.ar.g()])) {
+                                if (GlobalStatus.a(GlobalStatus.cv[this.mainCanvasRef.ar.g()])) {
                                     var4 = new String[]{"查看", "拍卖", "取回"};
                                 } else {
                                     var4 = new String[]{"拍卖", "取回"};
                                 }
 
-                                LoadingPage.a(35 + o, (3 + this.e.ar.i()) * GlobalConfig.j + p, var4, false);
-                                this.l = 2;
+                                LoadingPage.a(35 + o, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.j + p, var4, false);
+                                this.sceneSubState = 2;
                             }
 
                             return;
                         }
 
                         String[] var3;
-                        if (GlobalStatus.a(GlobalStatus.jQ[this.e.ar.g()])) {
+                        if (GlobalStatus.a(GlobalStatus.jQ[this.mainCanvasRef.ar.g()])) {
                             var3 = new String[]{"查看", "取消拍卖"};
                         } else {
                             var3 = new String[]{"取消拍卖"};
                         }
 
-                        LoadingPage.a(35 + o, (3 + this.e.ar.i()) * GlobalConfig.j + p, var3, false);
-                        this.l = 1;
+                        LoadingPage.a(35 + o, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.j + p, var3, false);
+                        this.sceneSubState = 1;
                     }
                 } else {
-                    if (this.e.as.a == 0 && this.aV != 0) {
+                    if (this.mainCanvasRef.as.a == 0 && this.aV != 0) {
                         GlobalStatus.gQ = 1;
                         this.a((byte) 0, (short) GlobalStatus.gQ);
-                        this.aV = this.e.as.a;
+                        this.aV = this.mainCanvasRef.as.a;
                         return;
                     }
 
-                    if (this.e.as.a == 1) {
+                    if (this.mainCanvasRef.as.a == 1) {
                         GlobalStatus.gQ = 1;
                         this.c((byte) 0, (short) GlobalStatus.gQ);
-                        this.aV = this.e.as.a;
+                        this.aV = this.mainCanvasRef.as.a;
                         return;
                     }
 
-                    if (this.e.as.a == 2 && this.aV != 2) {
+                    if (this.mainCanvasRef.as.a == 2 && this.aV != 2) {
                         GlobalStatus.gQ = 1;
                         this.b((byte) 0, (short) GlobalStatus.gQ);
-                        this.aV = this.e.as.a;
+                        this.aV = this.mainCanvasRef.as.a;
                         return;
                     }
                 }
-            } else if (this.e.as.a == 0) {
+            } else if (this.mainCanvasRef.as.a == 0) {
                 if (GlobalStatus.jN != null) {
-                    this.e.ar.a(GlobalStatus.h(this.e.l, this.e.ar.g()), 1);
+                    this.mainCanvasRef.ar.a(GlobalStatus.h(this.mainCanvasRef.l, this.mainCanvasRef.ar.g()), 1);
                     return;
                 }
-            } else if (this.e.as.a == 1 && GlobalStatus.ct != null) {
-                this.e.ar.a(GlobalStatus.a(this.k, this.e.l, this.e.ar.g()), 1);
+            } else if (this.mainCanvasRef.as.a == 1 && GlobalStatus.ct != null) {
+                this.mainCanvasRef.ar.a(GlobalStatus.a(this.currentSceneModeId, this.mainCanvasRef.l, this.mainCanvasRef.ar.g()), 1);
                 return;
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             LoadingPage.b(var1);
             if (var1 != 1073741824 && var1 != 268435456 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
-            } else if (GlobalStatus.a(GlobalStatus.jQ[this.e.ar.g()])) {
+            } else if (GlobalStatus.a(GlobalStatus.jQ[this.mainCanvasRef.ar.g()])) {
                 if (LoadingPage.o == 0) {
-                    if (this.e.as.a == 0) {
-                        GlobalStatus.e(this.e.ar.g());
+                    if (this.mainCanvasRef.as.a == 0) {
+                        GlobalStatus.e(this.mainCanvasRef.ar.g());
                     } else {
-                        GlobalStatus.c(this.e.ar.g());
+                        GlobalStatus.c(this.mainCanvasRef.ar.g());
                     }
 
-                    this.aq = this.e.ar.g();
-                    this.aA = this.e.ar.h();
-                    this.O.a(0, (short) this.k, this.cZ);
+                    this.aq = this.mainCanvasRef.ar.g();
+                    this.aA = this.mainCanvasRef.ar.h();
+                    this.O.a(0, (short) this.currentSceneModeId, this.cZ);
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
-                    this.l = 3;
+                    this.sceneSubState = 3;
                     LoadingPage.h = 0;
                     return;
                 }
             } else if (LoadingPage.o == 0) {
-                this.l = 3;
+                this.sceneSubState = 3;
                 LoadingPage.h = 0;
                 return;
             }
-        } else if (this.l == 2) {
+        } else if (this.sceneSubState == 2) {
             LoadingPage.b(var1);
             if (var1 != 1073741824 && var1 != 268435456 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
-            } else if (GlobalStatus.a(GlobalStatus.cv[this.e.ar.g()])) {
+            } else if (GlobalStatus.a(GlobalStatus.cv[this.mainCanvasRef.ar.g()])) {
                 if (LoadingPage.o == 0) {
-                    if (this.e.as.a == 0) {
-                        GlobalStatus.e(this.e.ar.g());
+                    if (this.mainCanvasRef.as.a == 0) {
+                        GlobalStatus.e(this.mainCanvasRef.ar.g());
                     } else {
-                        GlobalStatus.c(this.e.ar.g());
+                        GlobalStatus.c(this.mainCanvasRef.ar.g());
                     }
 
-                    this.aq = this.e.ar.g();
-                    this.aA = this.e.ar.h();
-                    this.O.a(0, (short) this.k, this.cZ);
+                    this.aq = this.mainCanvasRef.ar.g();
+                    this.aA = this.mainCanvasRef.ar.h();
+                    this.O.a(0, (short) this.currentSceneModeId, this.cZ);
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
-                    this.l = 4;
+                    this.sceneSubState = 4;
                     return;
                 }
 
                 if (LoadingPage.o == 2) {
-                    this.ad(GlobalStatus.ct[this.e.ar.g()]);
+                    this.ad(GlobalStatus.ct[this.mainCanvasRef.ar.g()]);
                     return;
                 }
             } else {
                 if (LoadingPage.o == 0) {
-                    this.l = 4;
+                    this.sceneSubState = 4;
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
-                    this.ad(GlobalStatus.ct[this.e.ar.g()]);
+                    this.ad(GlobalStatus.ct[this.mainCanvasRef.ar.g()]);
                     return;
                 }
             }
-        } else if (this.l == 3) {
+        } else if (this.sceneSubState == 3) {
             if (var1 == 1073741824 || var1 == 268435456 || var1 == 517) {
-                this.a((byte) 0, (int) GlobalStatus.jN[this.e.ar.g()]);
+                this.a((byte) 0, (int) GlobalStatus.jN[this.mainCanvasRef.ar.g()]);
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 1;
+                this.sceneSubState = 1;
                 return;
             }
-        } else if (this.l == 4) {
+        } else if (this.sceneSubState == 4) {
             this.d(var1);
             this.bR = this.n();
             if (var1 == 1073741824 || var1 == 268435456) {
                 if (this.n() <= 0L) {
-                    this.e.processException("输入金钱必须大于0!");
+                    this.mainCanvasRef.processException("输入金钱必须大于0!");
                     return;
                 }
 
-                this.l = 5;
+                this.sceneSubState = 5;
                 LoadingPage.h = 0;
                 this.o();
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 2;
+                this.sceneSubState = 2;
                 this.o();
                 return;
             }
-        } else if (this.l == 5) {
+        } else if (this.sceneSubState == 5) {
             if (var1 == 1073741824 || var1 == 268435456 || var1 == 517) {
-                this.a((byte) 0, GlobalStatus.ct[this.e.ar.g()], this.bR);
+                this.a((byte) 0, GlobalStatus.ct[this.mainCanvasRef.ar.g()], this.bR);
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 2;
+                this.sceneSubState = 2;
                 this.o();
             }
         }
@@ -17684,24 +17696,24 @@ public final class ao_1 {
     }
 
     public final void Y() {
-        this.l = 0;
-        this.e.aq.b();
-        this.e.aq.a(GlobalStatus.kI == 0 ? "金豆商城" : "万能果商城");
-        this.e.ar.a((Image[]) null, GlobalStatus.kH, (String[]) null, (String[]) null);
-        this.e.au.a("确定");
-        this.e.aq.a((al) this.e.ar);
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a(GlobalStatus.kI == 0 ? "金豆商城" : "万能果商城");
+        this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.kH, (String[]) null, (String[]) null);
+        this.mainCanvasRef.au.a("确定");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 68;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 68;
     }
 
     private void az(int var1) {
-        if (this.e.aq != null) {
-            this.e.aq.b(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.b(var1);
         }
 
         if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -17711,43 +17723,43 @@ public final class ao_1 {
                 this.c(GlobalStatus.kI == 0 ? 0 : 1);
             }
         } else {
-            this.aA = this.e.ar.h();
-            this.aU = this.e.ar.g();
+            this.aA = this.mainCanvasRef.ar.h();
+            this.aU = this.mainCanvasRef.ar.g();
             byte[] var2;
-            if ((var2 = NetPayloadBuilder.a((short) 4649, (byte) GlobalStatus.kI, (short) ((short) this.e.ar.g()), GlobalStatus.ad)) == null) {
-                this.e.processException("获取上传指令数据错误!");
+            if ((var2 = NetPayloadBuilder.a((short) 4649, (byte) GlobalStatus.kI, (short) ((short) this.mainCanvasRef.ar.g()), GlobalStatus.ad)) == null) {
+                this.mainCanvasRef.processException("获取上传指令数据错误!");
                 return;
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4649, var2));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         }
 
     }
 
     public final void c(short var1) {
         this.bb = var1;
-        this.l = 0;
-        this.e.aq.b();
-        this.e.aq.a(LoadingPage.a(GlobalStatus.kH[GlobalStatus.kN]) == -1 ? GlobalStatus.kH[GlobalStatus.kN] : GlobalStatus.kH[GlobalStatus.kN].substring(3, GlobalStatus.kH[GlobalStatus.kN].length()));
-        this.e.ar.a((Image[]) null, GlobalStatus.kK, (String[]) null, (String[]) null);
-        this.e.au.a("兑换");
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a(LoadingPage.a(GlobalStatus.kH[GlobalStatus.kN]) == -1 ? GlobalStatus.kH[GlobalStatus.kN] : GlobalStatus.kH[GlobalStatus.kN].substring(3, GlobalStatus.kH[GlobalStatus.kN].length()));
+        this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.kK, (String[]) null, (String[]) null);
+        this.mainCanvasRef.au.a("兑换");
         if (GlobalStatus.kJ != null && GlobalStatus.kJ.length > 0) {
-            this.e.at.a(aA(0), GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a(aA(0), GlobalConfig.i, (byte) 2);
         } else {
-            this.e.at.a((String) null, GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a((String) null, GlobalConfig.i, (byte) 2);
         }
 
-        this.e.at.a((byte) 1);
-        this.e.aq.a((al) this.e.ar);
-        this.e.aq.a((al) this.e.at);
+        this.mainCanvasRef.at.a((byte) 1);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 69;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 69;
     }
 
     private static String aA(int var0) {
@@ -17760,9 +17772,9 @@ public final class ao_1 {
     }
 
     private void aB(int var1) {
-        if (this.l == 0) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 == 536870912) {
@@ -17770,7 +17782,7 @@ public final class ao_1 {
                     this.al = null;
                     GlobalStatus.M();
                     this.Y();
-                    this.e.ar.a(this.aA, this.aU);
+                    this.mainCanvasRef.ar.a(this.aA, this.aU);
                 } else {
                     this.N();
                 }
@@ -17781,40 +17793,40 @@ public final class ao_1 {
             }
 
             if (var1 == 514 || var1 == 520 || var1 == 1 || var1 == 4) {
-                this.e.at.a(aA(this.e.ar.g()), GlobalConfig.i, (byte) 2);
-                this.e.at.a((byte) 1);
+                this.mainCanvasRef.at.a(aA(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.a((byte) 1);
                 return;
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                 this.a(99L);
-                this.l = 1;
+                this.sceneSubState = 1;
                 return;
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             this.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                 }
             } else {
                 byte[] var2;
-                if ((var2 = NetPayloadBuilder.a((short) 4650, (int) GlobalStatus.kJ[this.e.ar.g()], (int) this.ag, GlobalStatus.ad)) == null) {
-                    this.e.processException("获取上传指令数据错误!");
+                if ((var2 = NetPayloadBuilder.a((short) 4650, (int) GlobalStatus.kJ[this.mainCanvasRef.ar.g()], (int) this.ag, GlobalStatus.ad)) == null) {
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                     return;
                 }
 
                 NetPacket var3 = new NetPacket((short) 4650, var2);
                 MainCanvas.netUtils.sendPacket(var3);
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
             }
         }
 
     }
 
     public final void Z() {
-        this.aH = this.e.as.a;
-        this.l = 0;
+        this.aH = this.mainCanvasRef.as.a;
+        this.sceneSubState = 0;
         if (GlobalStatus.kP != 0 && GlobalStatus.kP != 3) {
             this.da = GlobalStatus.kQ;
         } else {
@@ -17824,13 +17836,13 @@ public final class ao_1 {
         K = new TextRender(this.da, (short) (GlobalConfig.defaultWidth - 20));
         this.am = GlobalStatus.kR;
         LoadingPage.a(MainCanvas.F, K, this.am, (String[]) null, true);
-        MainCanvas.f.a(this.f, h, i, true, false, 1009050);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 70;
+        MainCanvas.pngUtil.a(this.f, h, i, true, false, 1009050);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 70;
     }
 
     private void aC(int var1) {
-        if (this.l == 0) {
+        if (this.sceneSubState == 0) {
             if (var1 != 8 && var1 != 516) {
                 if (var1 == 2 || var1 == 518) {
                     LoadingPage.e = LoadingPage.e + LoadingPage.d < K.a() ? LoadingPage.e + LoadingPage.d : LoadingPage.e;
@@ -17849,13 +17861,13 @@ public final class ao_1 {
                         byte[] var2;
                         if ((var2 = NetPayloadBuilder.a((short) 4652, GlobalStatus.ad, (int) GlobalStatus.kO, (byte) GlobalStatus.kP, (byte) ((byte) LoadingPage.g))) != null) {
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4652, var2));
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                         } else {
-                            this.e.processException("获取上传指令数据错误!");
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                         }
 
                         GlobalStatus.kT = false;
-                        this.l = 0;
+                        this.sceneSubState = 0;
                     }
                 } else if (this.am != null) {
                     LoadingPage.g = LoadingPage.g + 1 < this.am.length ? LoadingPage.g + 1 : 0;
@@ -17870,32 +17882,32 @@ public final class ao_1 {
     }
 
     private void B(Graphics var1) {
-        if (this.l == 0) {
+        if (this.sceneSubState == 0) {
             LoadingPage.a(var1, 0, GlobalConfig.defaultHigh - LoadingPage.f, GlobalConfig.defaultWidth, LoadingPage.f, K, this.am, (String[]) null);
         }
 
     }
 
     public final void aa() {
-        this.l = 0;
-        this.e.aq.b();
-        this.e.aq.a(GlobalStatus.bz == null ? "" : GlobalStatus.bz);
-        this.e.at.a(GlobalStatus.by, GlobalConfig.i, (byte) 2);
-        this.e.at.a((byte) 0);
-        this.e.au.a("确定");
-        this.e.aq.a((al) this.e.at);
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a(GlobalStatus.bz == null ? "" : GlobalStatus.bz);
+        this.mainCanvasRef.at.a(GlobalStatus.by, GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.a((byte) 0);
+        this.mainCanvasRef.au.a("确定");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 75;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 75;
     }
 
     private void aD(int var1) {
-        if (this.e.aq != null) {
-            this.e.aq.b(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.b(var1);
         }
 
         if (var1 == 268435456 || var1 == 536870912) {
@@ -17907,11 +17919,11 @@ public final class ao_1 {
     }
 
     private void aE(int var1) {
-        if (this.l == 0) {
+        if (this.sceneSubState == 0) {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.j = this.k = 0;
+                    this.sceneStateShadow = this.currentSceneModeId = 0;
                 }
             } else if (GlobalStatus.bf != 0) {
                 if (GlobalStatus.bs >= 0) {
@@ -18062,9 +18074,9 @@ public final class ao_1 {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.c((short) 4106, GlobalStatus.ad, (int) -1)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4106, var2));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -18073,14 +18085,14 @@ public final class ao_1 {
         if ((var1 = NetPayloadBuilder.C((short) 4680, GlobalStatus.ad)) != null) {
             NetPacket var2 = new NetPacket((short) 4680, var1);
             MainCanvas.netUtils.sendPacket(var2);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     private void aG(int var1) {
-        if (this.l == 0) {
+        if (this.sceneSubState == 0) {
             if (var1 != 8 && var1 != 516) {
                 if (var1 == 2 || var1 == 518) {
                     LoadingPage.e = LoadingPage.e + LoadingPage.d < K.a() ? LoadingPage.e + LoadingPage.d : LoadingPage.e;
@@ -18097,13 +18109,13 @@ public final class ao_1 {
                 if (var1 != 4 && var1 != 520) {
                     if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                         if (GlobalStatus.lB[LoadingPage.g] != null) {
-                            this.l = 1;
+                            this.sceneSubState = 1;
                         } else {
-                            short var2 = this.j;
+                            short var2 = this.sceneStateShadow;
                             this.N();
                             if (aD()) {
                                 if (LoadingPage.g == 0) {
-                                    this.e.b("游客注册 第1步: ", "修改角色昵称");
+                                    this.mainCanvasRef.b("游客注册 第1步: ", "修改角色昵称");
                                 }
                             } else if (var2 == 76) {
                                 this.a((byte) 1, GlobalStatus.lu, GlobalStatus.lv, Short.parseShort(GlobalStatus.lA[LoadingPage.g]), GlobalStatus.lC);
@@ -18125,12 +18137,12 @@ public final class ao_1 {
                 this.as = 0;
                 if (aD()) {
                     this.N();
-                } else if (this.j == 76) {
+                } else if (this.sceneStateShadow == 76) {
                     this.a((byte) 1, GlobalStatus.lu, GlobalStatus.lv, (short) -1, GlobalStatus.lC);
                     this.d((byte) 1);
                     int var3 = 0;
                     if (GlobalStatus.lv == 2 && GlobalStatus.lC != null && (var3 = GlobalStatus.P.a(GlobalStatus.lC)) != -1) {
-                        this.e.ar.a(var3 + 1);
+                        this.mainCanvasRef.ar.a(var3 + 1);
                     }
                 } else {
                     this.a((byte) 1, GlobalStatus.lu, GlobalStatus.lv, (short) -1, "");
@@ -18140,110 +18152,110 @@ public final class ao_1 {
                 K = null;
                 return;
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                 this.N();
                 this.a((byte) 1, GlobalStatus.lu, GlobalStatus.lv, Short.parseShort(GlobalStatus.lA[LoadingPage.g]), GlobalStatus.lz[LoadingPage.g]);
-                this.l = 0;
+                this.sceneSubState = 0;
             }
 
             if (var1 == 536870912) {
-                this.l = 0;
+                this.sceneSubState = 0;
             }
         }
 
     }
 
     private void aH(int var1) {
-        if (this.l == 0) {
+        if (this.sceneSubState == 0) {
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                GlobalStatus.P.i = this.e.ar.g();
+                GlobalStatus.P.i = this.mainCanvasRef.ar.g();
                 ak var2 = GlobalStatus.P.c[GlobalStatus.P.i];
-                this.l = 1;
-                this.e.av.b();
-                this.e.av.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-                this.e.av.a(var2.b);
-                this.e.av.a((bk) (new bi(var2.c)));
+                this.sceneSubState = 1;
+                this.mainCanvasRef.av.b();
+                this.mainCanvasRef.av.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+                this.mainCanvasRef.av.a(var2.b);
+                this.mainCanvasRef.av.a((bk) (new bi(var2.c)));
                 u var4;
                 (var4 = new u()).b(var2.d);
-                this.e.av.a((bk) var4);
-                this.e.av.d();
+                this.mainCanvasRef.av.a((bk) var4);
+                this.mainCanvasRef.av.d();
                 return;
             }
 
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 == 536870912) {
                 this.d((byte) 0);
                 return;
             }
-        } else if (this.l == 1) {
-            if (this.e.av != null) {
-                this.e.av.a(var1);
+        } else if (this.sceneSubState == 1) {
+            if (this.mainCanvasRef.av != null) {
+                this.mainCanvasRef.av.a(var1);
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                this.l = 2;
+                this.sceneSubState = 2;
                 LoadingPage.h = 0;
             }
 
             if (var1 == 536870912) {
-                this.e.av.b();
+                this.mainCanvasRef.av.b();
                 this.u();
-                this.e.ar.a(GlobalStatus.P.i);
+                this.mainCanvasRef.ar.a(GlobalStatus.P.i);
                 GlobalStatus.P.i = -1;
-                this.l = 0;
+                this.sceneSubState = 0;
                 return;
             }
-        } else if (this.l == 2) {
+        } else if (this.sceneSubState == 2) {
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                 ak var5 = GlobalStatus.P.c[GlobalStatus.P.i];
                 String var3 = var5.f;
                 byte[] var6;
                 if ((var6 = NetPayloadBuilder.r((short) 4678, GlobalStatus.ad, var3)) == null) {
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                 } else {
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4678, var6));
-                    this.e.a((String) null);
+                    this.mainCanvasRef.a((String) null);
                 }
             }
 
             if (var1 == 536870912) {
-                this.l = 1;
+                this.sceneSubState = 1;
             }
         }
 
     }
 
     private void aI(int var1) {
-        if (this.l == 0) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
-            if ((var1 == 8 || var1 == 2 || var1 == 516 || var1 == 518) && this.e.as.a != this.as) {
-                this.d(this.e.as.a);
+            if ((var1 == 8 || var1 == 2 || var1 == 516 || var1 == 518) && this.mainCanvasRef.as.a != this.as) {
+                this.d(this.mainCanvasRef.as.a);
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                int var8 = this.e.ar.g();
+                int var8 = this.mainCanvasRef.ar.g();
                 if (this.as == 0) {
                     if (var8 == 0) {
-                        LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 26 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, f_1.a, false);
-                        this.l = 1;
+                        LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 26 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, f_1.a, false);
+                        this.sceneSubState = 1;
                     } else {
                         bo_1 var9;
                         boolean var11 = (var9 = GlobalStatus.O.f[var8 - 1]) != null && var9.f;
-                        LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 26 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, var11 ? f_1.c : f_1.b, false);
-                        this.l = 1;
+                        LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 26 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, var11 ? f_1.c : f_1.b, false);
+                        this.sceneSubState = 1;
                     }
                 } else if (var8 == 0) {
                     if (GlobalStatus.V != null) {
-                        this.e.processException(GlobalStatus.V);
+                        this.mainCanvasRef.processException(GlobalStatus.V);
                     } else {
-                        this.e.l();
+                        this.mainCanvasRef.l();
                     }
                 } else {
                     be_1 var10 = GlobalStatus.P.b[var8 - 1];
@@ -18252,8 +18264,8 @@ public final class ao_1 {
             }
 
             if ((var1 == 1 || var1 == 4 || var1 == 514 || var1 == 520) && this.as == 0) {
-                this.e.at.a(GlobalStatus.O.j[this.e.ar.g()], GlobalConfig.i, (byte) 2);
-                this.e.at.a((byte) 1);
+                this.mainCanvasRef.at.a(GlobalStatus.O.j[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.a((byte) 1);
             }
 
             if (var1 == 536870912) {
@@ -18262,7 +18274,7 @@ public final class ao_1 {
             }
 
         } else {
-            if (this.l == 1) {
+            if (this.sceneSubState == 1) {
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 1 || var1 == 4 || var1 == 514 || var1 == 520) {
                         LoadingPage.b(var1);
@@ -18270,10 +18282,10 @@ public final class ao_1 {
                     }
 
                     if (var1 == 536870912 && this.as == 0) {
-                        this.l = 0;
+                        this.sceneSubState = 0;
                     }
                 } else if (this.as == 0) {
-                    int var2 = this.e.ar.g();
+                    int var2 = this.mainCanvasRef.ar.g();
                     String var3 = LoadingPage.p[LoadingPage.o];
                     if (var2 == 0) {
                         if (f_1.a[0].equals(var3)) {
@@ -18282,10 +18294,10 @@ public final class ao_1 {
                             this.av(GlobalStatus.O.d + 1);
                         } else if (f_1.a[2].equals(var3)) {
                             if (GlobalStatus.S != null) {
-                                this.l = 0;
-                                this.e.processException(GlobalStatus.S);
+                                this.sceneSubState = 0;
+                                this.mainCanvasRef.processException(GlobalStatus.S);
                             } else {
-                                this.e.a((byte) 0, "发送邮件", GlobalStatus.O.n, GlobalStatus.O.o, GlobalStatus.O.p == null ? "" : GlobalStatus.O.p, GlobalStatus.O.q, GlobalStatus.O.r);
+                                this.mainCanvasRef.a((byte) 0, "发送邮件", GlobalStatus.O.n, GlobalStatus.O.o, GlobalStatus.O.p == null ? "" : GlobalStatus.O.p, GlobalStatus.O.q, GlobalStatus.O.r);
                             }
                         } else if (f_1.a[3].equals(var3)) {
                             this.f("all");
@@ -18295,16 +18307,16 @@ public final class ao_1 {
                             }
 
                             if (GlobalStatus.U != null) {
-                                this.e.processException(GlobalStatus.U);
+                                this.mainCanvasRef.processException(GlobalStatus.U);
                             } else {
                                 byte[] var5;
                                 if ((var5 = NetPayloadBuilder.l((short) 4672, GlobalStatus.ad)) == null) {
-                                    this.e.processException("获取上传指令数据错误!");
+                                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4668, var5));
-                                this.e.a((String) null);
+                                this.mainCanvasRef.a((String) null);
                             }
                         }
                     } else {
@@ -18313,29 +18325,29 @@ public final class ao_1 {
                             var4.f = true;
                             GlobalStatus.O.c();
                             this.d((byte) 0);
-                            this.e.ar.a(var2);
-                            this.e.at.a(GlobalStatus.O.j[var2], GlobalConfig.i, (byte) 1);
-                            this.e.at.a((byte) 1);
-                            this.l = 0;
+                            this.mainCanvasRef.ar.a(var2);
+                            this.mainCanvasRef.at.a(GlobalStatus.O.j[var2], GlobalConfig.i, (byte) 1);
+                            this.mainCanvasRef.at.a((byte) 1);
+                            this.sceneSubState = 0;
                             String var6 = var4.a;
                             byte[] var7;
                             if ((var7 = NetPayloadBuilder.h((short) 4673, GlobalStatus.ad, var6)) == null) {
-                                this.e.processException("获取上传指令数据错误!");
+                                this.mainCanvasRef.processException("获取上传指令数据错误!");
                                 return;
                             }
 
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4673, var7));
                         } else if (f_1.b[1].equals(var3)) {
                             if (GlobalStatus.S != null) {
-                                this.e.processException(GlobalStatus.S);
+                                this.mainCanvasRef.processException(GlobalStatus.S);
                             } else if (!var4.f) {
-                                this.e.processException("未读邮件，请查看后再进行回复");
+                                this.mainCanvasRef.processException("未读邮件，请查看后再进行回复");
                             } else {
                                 GlobalStatus.O.a();
                                 GlobalStatus.O.q = var4.a;
                                 GlobalStatus.O.r = var4.d;
                                 GlobalStatus.O.o = var4.e;
-                                this.e.a((byte) 0, "回复邮件", GlobalStatus.O.n, GlobalStatus.O.o, GlobalStatus.O.p == null ? "" : GlobalStatus.O.p, GlobalStatus.O.q, GlobalStatus.O.r);
+                                this.mainCanvasRef.a((byte) 0, "回复邮件", GlobalStatus.O.n, GlobalStatus.O.o, GlobalStatus.O.p == null ? "" : GlobalStatus.O.p, GlobalStatus.O.q, GlobalStatus.O.r);
                             }
                         } else if (f_1.b[2].equals(var3)) {
                             this.f(var4.a);
@@ -18349,14 +18361,14 @@ public final class ao_1 {
                             }
 
                             if (GlobalStatus.T != null) {
-                                this.e.processException(GlobalStatus.T);
+                                this.mainCanvasRef.processException(GlobalStatus.T);
                             } else {
                                 if (var4.f) {
-                                    this.e.a(var4.a, var4.e, var4.b, var4.c);
+                                    this.mainCanvasRef.a(var4.a, var4.e, var4.b, var4.c);
                                     return;
                                 }
 
-                                this.e.processException("未读邮件，请先查看");
+                                this.mainCanvasRef.processException("未读邮件，请先查看");
                             }
                         }
                     }
@@ -18367,13 +18379,13 @@ public final class ao_1 {
     }
 
     private void aJ(int var1) {
-        if (this.l == 0) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
-            if ((var1 == 8 || var1 == 2 || var1 == 516 || var1 == 518) && this.e.as.a != this.as) {
-                this.e(this.e.as.a);
+            if ((var1 == 8 || var1 == 2 || var1 == 516 || var1 == 518) && this.mainCanvasRef.as.a != this.as) {
+                this.e(this.mainCanvasRef.as.a);
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
@@ -18384,13 +18396,13 @@ public final class ao_1 {
                         return;
                     }
 
-                    var5 = GlobalStatus.lP[this.e.ar.g()];
+                    var5 = GlobalStatus.lP[this.mainCanvasRef.ar.g()];
                 } else if (this.as == 1) {
                     if (GlobalStatus.lX == null) {
                         return;
                     }
 
-                    var5 = GlobalStatus.lX[this.e.ar.g()];
+                    var5 = GlobalStatus.lX[this.mainCanvasRef.ar.g()];
                 } else {
                     if (this.as != 2) {
                         return;
@@ -18400,12 +18412,12 @@ public final class ao_1 {
                         return;
                     }
 
-                    var5 = GlobalStatus.mf[this.e.ar.g()];
+                    var5 = GlobalStatus.mf[this.mainCanvasRef.ar.g()];
                 }
 
                 if (var5 != null) {
-                    LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 26 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{var5}, false);
-                    this.l = 1;
+                    LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 26 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{var5}, false);
+                    this.sceneSubState = 1;
                 }
             }
 
@@ -18413,42 +18425,42 @@ public final class ao_1 {
                 int var6 = 0;
                 if (this.as == 0) {
                     if (GlobalStatus.lO != null) {
-                        this.e.ar.a(GlobalStatus.lO[this.e.ar.g()], 1);
+                        this.mainCanvasRef.ar.a(GlobalStatus.lO[this.mainCanvasRef.ar.g()], 1);
                     }
 
                     if (GlobalStatus.lN != null && GlobalStatus.lN.length != 1) {
-                        var6 = this.e.ar.g();
-                        this.e.at.a(GlobalStatus.lN[var6], GlobalConfig.i, (byte) 2);
+                        var6 = this.mainCanvasRef.ar.g();
+                        this.mainCanvasRef.at.a(GlobalStatus.lN[var6], GlobalConfig.i, (byte) 2);
                         if (GlobalStatus.lK != null) {
-                            this.e.at.a((byte) 1);
+                            this.mainCanvasRef.at.a((byte) 1);
                         }
                     }
                 }
 
                 if (this.as == 1) {
                     if (GlobalStatus.lW != null) {
-                        this.e.ar.a(GlobalStatus.lW[this.e.ar.g()], 1);
+                        this.mainCanvasRef.ar.a(GlobalStatus.lW[this.mainCanvasRef.ar.g()], 1);
                     }
 
                     if (GlobalStatus.lV != null && GlobalStatus.lV.length != 1) {
-                        var6 = this.e.ar.g();
-                        this.e.at.a(GlobalStatus.lV[var6], GlobalConfig.i, (byte) 2);
+                        var6 = this.mainCanvasRef.ar.g();
+                        this.mainCanvasRef.at.a(GlobalStatus.lV[var6], GlobalConfig.i, (byte) 2);
                         if (GlobalStatus.lS != null) {
-                            this.e.at.a((byte) 1);
+                            this.mainCanvasRef.at.a((byte) 1);
                         }
                     }
                 }
 
                 if (this.as == 2) {
                     if (GlobalStatus.me != null) {
-                        this.e.ar.a(GlobalStatus.me[this.e.ar.g()], 1);
+                        this.mainCanvasRef.ar.a(GlobalStatus.me[this.mainCanvasRef.ar.g()], 1);
                     }
 
                     if (GlobalStatus.md != null && GlobalStatus.md.length != 1) {
-                        var6 = this.e.ar.g();
-                        this.e.at.a(GlobalStatus.md[var6], GlobalConfig.i, (byte) 2);
+                        var6 = this.mainCanvasRef.ar.g();
+                        this.mainCanvasRef.at.a(GlobalStatus.md[var6], GlobalConfig.i, (byte) 2);
                         if (GlobalStatus.ma != null) {
-                            this.e.at.a((byte) 1);
+                            this.mainCanvasRef.at.a((byte) 1);
                         }
                     }
                 }
@@ -18460,11 +18472,11 @@ public final class ao_1 {
 
             this.as = 0;
             this.a((byte) 0, GlobalStatus.lD, GlobalStatus.lE, (short) -1, GlobalStatus.lF);
-            if (this.j == 1) {
+            if (this.sceneStateShadow == 1) {
                 this.av();
                 this.c((int) 7);
             } else {
-                if (this.j != 76) {
+                if (this.sceneStateShadow != 76) {
                     this.N();
                     return;
                 }
@@ -18472,19 +18484,19 @@ public final class ao_1 {
                 this.d((byte) 1);
                 int var10 = 0;
                 if (GlobalStatus.lE == 2 && GlobalStatus.mi != null && (var10 = GlobalStatus.P.a(GlobalStatus.mi)) != -1) {
-                    this.e.ar.a(var10 + 1);
+                    this.mainCanvasRef.ar.a(var10 + 1);
                 }
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                 String var2 = null;
                 var1 = 0;
                 if (this.as == 0) {
-                    var1 = GlobalStatus.lQ[this.e.ar.g()];
+                    var1 = GlobalStatus.lQ[this.mainCanvasRef.ar.g()];
                 } else if (this.as == 1) {
-                    var1 = GlobalStatus.lY[this.e.ar.g()];
+                    var1 = GlobalStatus.lY[this.mainCanvasRef.ar.g()];
                 } else if (this.as == 2) {
-                    var1 = GlobalStatus.mg[this.e.ar.g()];
+                    var1 = GlobalStatus.mg[this.mainCanvasRef.ar.g()];
                 }
 
                 if (var1 != 0) {
@@ -18492,29 +18504,29 @@ public final class ao_1 {
                 }
 
                 if (var2 != null) {
-                    this.aE = this.e.ar.g();
+                    this.aE = this.mainCanvasRef.ar.g();
                     this.a(GlobalStatus.lD, GlobalStatus.lE, var2, GlobalStatus.mi);
                 }
 
-                this.l = 0;
+                this.sceneSubState = 0;
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 0;
+                this.sceneSubState = 0;
             }
         }
 
     }
 
     private void C(Graphics var1) {
-        if (this.l == 0 && this.e.aq != null) {
-            this.e.aq.a(var1);
-        } else if (this.l == 1 && this.e.av != null) {
-            this.e.av.a(var1);
+        if (this.sceneSubState == 0 && this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.a(var1);
+        } else if (this.sceneSubState == 1 && this.mainCanvasRef.av != null) {
+            this.mainCanvasRef.av.a(var1);
         } else {
-            if (this.l == 2 && this.e.av != null) {
-                this.e.av.a(var1);
+            if (this.sceneSubState == 2 && this.mainCanvasRef.av != null) {
+                this.mainCanvasRef.av.a(var1);
                 ak var2 = GlobalStatus.P.c[GlobalStatus.P.i];
                 LoadingPage.a(var1, var2.e, new String[]{"确定", "取消"});
             }
@@ -18523,22 +18535,22 @@ public final class ao_1 {
     }
 
     private void D(Graphics var1) {
-        if (this.e.aq != null) {
-            this.e.aq.a(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.a(var1);
         }
 
-        if (this.l == 1) {
+        if (this.sceneSubState == 1) {
             LoadingPage.c(var1);
         }
 
     }
 
     private void E(Graphics var1) {
-        if (this.e.aq != null) {
-            this.e.aq.a(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.a(var1);
         }
 
-        if (this.l == 1) {
+        if (this.sceneSubState == 1) {
             LoadingPage.c(var1);
         }
 
@@ -18546,7 +18558,7 @@ public final class ao_1 {
 
     private void F(Graphics var1) {
         LoadingPage.a(var1, 0, GlobalConfig.defaultHigh - LoadingPage.f, GlobalConfig.defaultWidth, LoadingPage.f, K, GlobalStatus.lz, (String[]) null);
-        if (this.l == 1) {
+        if (this.sceneSubState == 1) {
             LoadingPage.a(var1, GlobalStatus.lB[LoadingPage.g], new String[]{"确定", "取消"});
         }
 
@@ -18557,9 +18569,9 @@ public final class ao_1 {
         if ((var1 = NetPayloadBuilder.y((short) 4659, GlobalStatus.ad)) != null) {
             NetPacket var2 = new NetPacket((short) 4659, var1);
             MainCanvas.netUtils.sendPacket(var2);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -18568,25 +18580,25 @@ public final class ao_1 {
         if ((var1 = NetPayloadBuilder.b((short) 4267)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4267, var1));
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     private void a(byte var1, byte var2, byte var3, byte var4) {
         if (GlobalStatus.bs == 0) {
-            this.e.processException("队员不能发随机送组队邀请");
+            this.mainCanvasRef.processException("队员不能发随机送组队邀请");
         } else if (GlobalStatus.bs == 1 && GlobalStatus.q != null && GlobalStatus.q.length >= 3) {
-            this.e.processException("队伍已满，无法邀请");
+            this.mainCanvasRef.processException("队伍已满，无法邀请");
         } else if (GlobalStatus.G()) {
-            this.e.processException("住宅区域中，无法邀请");
+            this.mainCanvasRef.processException("住宅区域中，无法邀请");
         } else {
             byte[] var5;
             if ((var5 = NetPayloadBuilder.a((short) 4259, var1, var2, var3, var4, GlobalStatus.ad)) != null) {
                 NetPacket var6 = new NetPacket((short) 4659, var5);
                 MainCanvas.netUtils.sendPacket(var6);
-                this.e.a((String) null);
+                this.mainCanvasRef.a((String) null);
             } else {
-                this.e.processException("获取上传指令数据错误!");
+                this.mainCanvasRef.processException("获取上传指令数据错误!");
             }
         }
     }
@@ -18595,9 +18607,9 @@ public final class ao_1 {
         byte[] var1;
         if ((var1 = NetPayloadBuilder.h((short) 4120, GlobalStatus.ad)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4120, var1));
-            this.e.processException("解散队伍请求已发送!");
+            this.mainCanvasRef.processException("解散队伍请求已发送!");
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -18605,14 +18617,14 @@ public final class ao_1 {
         byte[] var1;
         if ((var1 = NetPayloadBuilder.i((short) 4121, GlobalStatus.ad)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4121, var1));
-            this.e.processException("脱离队伍请求已发送!");
+            this.mainCanvasRef.processException("脱离队伍请求已发送!");
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     private void G(Graphics var1) {
-        if (this.l == 0) {
+        if (this.sceneSubState == 0) {
             LoadingPage.c(var1);
         }
 
@@ -18628,25 +18640,25 @@ public final class ao_1 {
     }
 
     public final void d(short var1) {
-        this.l = var1;
-        this.e.aq.b();
-        this.e.aq.a((GlobalStatus.lg == 1 ? GlobalStatus.lf : "帮派") + "的成就");
-        this.e.aq.a(true);
-        this.e.ar.a((Image[]) null, GlobalStatus.lb, (String[]) null, GlobalStatus.lc);
-        this.e.at.a(aK(0), GlobalConfig.i, (byte) 1);
-        this.e.at.a((byte) 1);
-        this.e.au.a("操作");
-        this.e.au.a(true);
-        this.e.aq.a((al) this.e.ar);
-        this.e.aq.a((al) this.e.at);
+        this.sceneSubState = var1;
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a((GlobalStatus.lg == 1 ? GlobalStatus.lf : "帮派") + "的成就");
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.lb, (String[]) null, GlobalStatus.lc);
+        this.mainCanvasRef.at.a(aK(0), GlobalConfig.i, (byte) 1);
+        this.mainCanvasRef.at.a((byte) 1);
+        this.mainCanvasRef.au.a("操作");
+        this.mainCanvasRef.au.a(true);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k;
-        this.k = 104;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId;
+        this.currentSceneModeId = 104;
     }
 
     private static String aK(int var0) {
@@ -18659,7 +18671,7 @@ public final class ao_1 {
     }
 
     public final void e(short var1) {
-        this.l = var1;
+        this.sceneSubState = var1;
         this.T.b();
         this.T.a(GlobalStatus.lh);
         this.T.a(true);
@@ -18676,14 +18688,14 @@ public final class ao_1 {
         }
 
         this.T.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k;
-        this.k = 105;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId;
+        this.currentSceneModeId = 105;
     }
 
     private void H(Graphics var1) {
-        if (this.e.aq != null) {
-            this.e.aq.a(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.a(var1);
         }
 
     }
@@ -18696,8 +18708,8 @@ public final class ao_1 {
     }
 
     private void aL(int var1) {
-        if (this.l != 0 && this.l != 4) {
-            if (this.l == 2) {
+        if (this.sceneSubState != 0 && this.sceneSubState != 4) {
+            if (this.sceneSubState == 2) {
                 if (this.T != null) {
                     this.T.b(var1);
                 }
@@ -18709,7 +18721,7 @@ public final class ao_1 {
                 }
 
                 if (var1 == 536870912) {
-                    this.k = 104;
+                    this.currentSceneModeId = 104;
                     GlobalStatus.lr = 1;
                     GlobalStatus.Q();
                     return;
@@ -18750,7 +18762,7 @@ public final class ao_1 {
                         return;
                     }
                 }
-            } else if (this.l == 3) {
+            } else if (this.sceneSubState == 3) {
                 if (this.T != null) {
                     this.T.b(var1);
                 }
@@ -18762,7 +18774,7 @@ public final class ao_1 {
                 }
 
                 if (var1 == 536870912) {
-                    this.k = 104;
+                    this.currentSceneModeId = 104;
                     GlobalStatus.lr = 1;
                     GlobalStatus.Q();
                     return;
@@ -18815,7 +18827,7 @@ public final class ao_1 {
             }
 
             if (var1 == 536870912) {
-                this.k = 104;
+                this.currentSceneModeId = 104;
                 GlobalStatus.lr = 1;
                 GlobalStatus.Q();
                 return;
@@ -18829,7 +18841,7 @@ public final class ao_1 {
                         --GlobalStatus.lr;
                     }
 
-                    this.a(GlobalStatus.ad, this.l, GlobalStatus.lr);
+                    this.a(GlobalStatus.ad, this.sceneSubState, GlobalStatus.lr);
                     return;
                 }
 
@@ -18840,19 +18852,19 @@ public final class ao_1 {
                         --GlobalStatus.lr;
                     }
 
-                    this.a(GlobalStatus.ad, this.l, GlobalStatus.lr);
+                    this.a(GlobalStatus.ad, this.sceneSubState, GlobalStatus.lr);
                     return;
                 }
             } else if (var1 == 2048) {
                 if (GlobalStatus.lr <= 1 && GlobalStatus.ls == 1) {
                     ++GlobalStatus.lr;
-                    this.a(GlobalStatus.ad, this.l, GlobalStatus.lr);
+                    this.a(GlobalStatus.ad, this.sceneSubState, GlobalStatus.lr);
                     return;
                 }
 
                 if (GlobalStatus.lr > 1 && GlobalStatus.ls == 1) {
                     ++GlobalStatus.lr;
-                    this.a(GlobalStatus.ad, this.l, GlobalStatus.lr);
+                    this.a(GlobalStatus.ad, this.sceneSubState, GlobalStatus.lr);
                     return;
                 }
             }
@@ -18861,15 +18873,15 @@ public final class ao_1 {
     }
 
     private void aM(int var1) {
-        if (this.l != 0 && this.l != 4) {
-            if (this.l == 2) {
-                if (this.e.aq != null) {
-                    this.e.aq.b(var1);
+        if (this.sceneSubState != 0 && this.sceneSubState != 4) {
+            if (this.sceneSubState == 2) {
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.b(var1);
                 }
 
                 if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-                    this.e.at.a(aK(this.e.ar.g()), GlobalConfig.i, (byte) 1);
-                    this.e.at.a((byte) 1);
+                    this.mainCanvasRef.at.a(aK(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.a((byte) 1);
                     return;
                 }
 
@@ -18920,14 +18932,14 @@ public final class ao_1 {
                         return;
                     }
                 }
-            } else if (this.l == 3) {
-                if (this.e.aq != null) {
-                    this.e.aq.b(var1);
+            } else if (this.sceneSubState == 3) {
+                if (this.mainCanvasRef.aq != null) {
+                    this.mainCanvasRef.aq.b(var1);
                 }
 
                 if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-                    this.e.at.a(aK(this.e.ar.g()), GlobalConfig.i, (byte) 1);
-                    this.e.at.a((byte) 1);
+                    this.mainCanvasRef.at.a(aK(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.a((byte) 1);
                     return;
                 }
 
@@ -18979,29 +18991,29 @@ public final class ao_1 {
                 }
             }
         } else {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-                this.e.at.a(aK(this.e.ar.g()), GlobalConfig.i, (byte) 1);
-                this.e.at.a((byte) 1);
+                this.mainCanvasRef.at.a(aK(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 1);
+                this.mainCanvasRef.at.a((byte) 1);
                 return;
             }
 
             if (var1 == 268435456 || var1 == 1073741824) {
-                this.a(GlobalStatus.ad, this.l, (short) 1);
+                this.a(GlobalStatus.ad, this.sceneSubState, (short) 1);
                 return;
             }
 
             if (var1 == 536870912) {
-                if (this.l == 0) {
+                if (this.sceneSubState == 0) {
                     GlobalStatus.lp = 1;
                     this.av();
                     this.c((int) 6);
-                } else if (this.l == 4) {
-                    this.j = this.k = 0;
-                    this.e.touchPageCase = this.e.k = 7;
+                } else if (this.sceneSubState == 4) {
+                    this.sceneStateShadow = this.currentSceneModeId = 0;
+                    this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k = 7;
                 }
 
                 GlobalStatus.P();
@@ -19016,7 +19028,7 @@ public final class ao_1 {
                         --GlobalStatus.lp;
                     }
 
-                    this.a(GlobalStatus.ad, GlobalStatus.ad, this.l, GlobalStatus.lp);
+                    this.a(GlobalStatus.ad, GlobalStatus.ad, this.sceneSubState, GlobalStatus.lp);
                     return;
                 }
 
@@ -19027,19 +19039,19 @@ public final class ao_1 {
                         --GlobalStatus.lp;
                     }
 
-                    this.a(GlobalStatus.ad, GlobalStatus.ad, this.l, GlobalStatus.lp);
+                    this.a(GlobalStatus.ad, GlobalStatus.ad, this.sceneSubState, GlobalStatus.lp);
                     return;
                 }
             } else if (var1 == 2048) {
                 if (GlobalStatus.lp <= 1 && GlobalStatus.lq == 1) {
                     ++GlobalStatus.lp;
-                    this.a(GlobalStatus.ad, GlobalStatus.ad, this.l, GlobalStatus.lp);
+                    this.a(GlobalStatus.ad, GlobalStatus.ad, this.sceneSubState, GlobalStatus.lp);
                     return;
                 }
 
                 if (GlobalStatus.lp > 1 && GlobalStatus.lq == 1) {
                     ++GlobalStatus.lp;
-                    this.a(GlobalStatus.ad, GlobalStatus.ad, this.l, GlobalStatus.lp);
+                    this.a(GlobalStatus.ad, GlobalStatus.ad, this.sceneSubState, GlobalStatus.lp);
                     return;
                 }
             }
@@ -19052,19 +19064,19 @@ public final class ao_1 {
         GlobalStatus.lo = var1;
         if (var5 != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 5121, var5));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     private void a(String var1, short var2, short var3) {
         byte[] var4;
-        if ((var4 = NetPayloadBuilder.a((short) 5122, var1, GlobalStatus.la[this.e.ar.g()], var3, var2)) != null) {
+        if ((var4 = NetPayloadBuilder.a((short) 5122, var1, GlobalStatus.la[this.mainCanvasRef.ar.g()], var3, var2)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 5122, var4));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -19072,29 +19084,29 @@ public final class ao_1 {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.b((short) 4881, var1, GlobalStatus.ad)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4881, var2));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     public final void ac() {
-        this.e.aq.j();
-        this.e.aq.a("称号列表");
-        this.e.aq.a(true);
-        this.e.as.a(new String[]{"活动", "成就", "职业", "特殊"});
-        this.e.ar.a((Image[]) null, GlobalStatus.ml, (String[]) null, GlobalStatus.mn);
-        this.e.ar.a(GlobalStatus.mp);
-        this.e.at.a(aN(0), GlobalConfig.i, (byte) 1);
-        this.e.at.a((byte) 1);
-        this.e.aq.a((al) this.e.as);
-        this.e.aq.a((al) this.e.ar);
-        this.e.aq.a((al) this.e.at);
-        this.e.as.a = GlobalStatus.mj;
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.l = 0;
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 103;
+        this.mainCanvasRef.aq.j();
+        this.mainCanvasRef.aq.a("称号列表");
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.as.a(new String[]{"活动", "成就", "职业", "特殊"});
+        this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.ml, (String[]) null, GlobalStatus.mn);
+        this.mainCanvasRef.ar.a(GlobalStatus.mp);
+        this.mainCanvasRef.at.a(aN(0), GlobalConfig.i, (byte) 1);
+        this.mainCanvasRef.at.a((byte) 1);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+        this.mainCanvasRef.as.a = GlobalStatus.mj;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.sceneSubState = 0;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 103;
     }
 
     private static String aN(int var0) {
@@ -19107,19 +19119,19 @@ public final class ao_1 {
     }
 
     private void aO(int var1) {
-        if (this.l == 0) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-                this.e.at.a(aN(this.e.ar.g()), GlobalConfig.i, (byte) 1);
-                this.e.at.a((byte) 1);
+                this.mainCanvasRef.at.a(aN(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 1);
+                this.mainCanvasRef.at.a((byte) 1);
                 return;
             }
 
             if (var1 == 8 || var1 == 2 || var1 == 518 || var1 == 516) {
-                this.x(this.e.as.a);
+                this.x(this.mainCanvasRef.as.a);
                 return;
             }
 
@@ -19130,37 +19142,37 @@ public final class ao_1 {
                     return;
                 }
             } else if (GlobalStatus.ml != null && GlobalStatus.mk != null) {
-                if (GlobalStatus.mm[this.e.ar.g()] == 1) {
+                if (GlobalStatus.mm[this.mainCanvasRef.ar.g()] == 1) {
                     this.am = new String[]{"取消激活"};
-                    this.l = 1;
+                    this.sceneSubState = 1;
                 } else {
                     this.am = new String[]{"激活"};
-                    this.l = 2;
+                    this.sceneSubState = 2;
                 }
 
-                LoadingPage.a(GlobalConfig.f, 3 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, this.am, true);
+                LoadingPage.a(GlobalConfig.f, 3 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, this.am, true);
                 return;
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 517 && var1 != 1073741824) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                     return;
                 }
             } else if (LoadingPage.o == 0) {
-                this.a(this.e.as.a, GlobalStatus.mk[this.e.ar.g()], (byte) 2);
+                this.a(this.mainCanvasRef.as.a, GlobalStatus.mk[this.mainCanvasRef.ar.g()], (byte) 2);
                 return;
             }
-        } else if (this.l == 2) {
+        } else if (this.sceneSubState == 2) {
             LoadingPage.b(var1);
             if (var1 == 268435456 || var1 == 517 || var1 == 1073741824) {
-                this.a(this.e.as.a, GlobalStatus.mk[this.e.ar.g()], (byte) 1);
+                this.a(this.mainCanvasRef.as.a, GlobalStatus.mk[this.mainCanvasRef.ar.g()], (byte) 1);
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 0;
+                this.sceneSubState = 0;
             }
         }
 
@@ -19170,22 +19182,22 @@ public final class ao_1 {
         byte[] var4;
         if ((var4 = NetPayloadBuilder.a((short) 4882, var1, var2, var3, GlobalStatus.ad)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4882, var4));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     private void J(Graphics var1) {
-        this.e.aq.a(var1);
-        if (this.l == 1 || this.l == 2) {
+        this.mainCanvasRef.aq.a(var1);
+        if (this.sceneSubState == 1 || this.sceneSubState == 2) {
             LoadingPage.c(var1);
         }
 
     }
 
     public final boolean ad() {
-        return this.k == 71 || this.k == 72;
+        return this.currentSceneModeId == 71 || this.currentSceneModeId == 72;
     }
 
     private void aP(int var1) {
@@ -19193,17 +19205,17 @@ public final class ao_1 {
             if (var1 != 4 && var1 != 520) {
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                     if (LoadingPage.g == 0) {
-                        this.e.b("游客注册 第1步: ", "修改角色昵称");
+                        this.mainCanvasRef.b("游客注册 第1步: ", "修改角色昵称");
                     }
 
                     K = null;
-                    this.j = this.k = 0;
+                    this.sceneStateShadow = this.currentSceneModeId = 0;
                     return;
                 }
 
                 if (var1 == 536870912) {
                     K = null;
-                    this.j = this.k = 0;
+                    this.sceneStateShadow = this.currentSceneModeId = 0;
                 }
             } else if (this.dg != null) {
                 LoadingPage.g = LoadingPage.g + 1 < this.dg.length ? LoadingPage.g + 1 : 0;
@@ -19221,35 +19233,35 @@ public final class ao_1 {
     }
 
     public final void ae() {
-        this.e.aq.b();
-        this.e.aq.a(GlobalStatus.mr);
-        this.e.aq.a(true);
-        this.e.ar.a((Image[]) null, GlobalStatus.mu, (String[]) null, (String[]) null);
-        this.e.at.a(GlobalStatus.mv == null ? null : GlobalStatus.mv[0], GlobalConfig.i, (byte) 1);
-        this.e.at.a((byte) 1);
-        this.e.au.a("确认");
-        this.e.aq.a((al) this.e.ar);
-        this.e.aq.a((al) this.e.at);
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a(GlobalStatus.mr);
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.mu, (String[]) null, (String[]) null);
+        this.mainCanvasRef.at.a(GlobalStatus.mv == null ? null : GlobalStatus.mv[0], GlobalConfig.i, (byte) 1);
+        this.mainCanvasRef.at.a((byte) 1);
+        this.mainCanvasRef.au.a("确认");
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.l = 0;
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 107;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.sceneSubState = 0;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 107;
     }
 
     private void aQ(int var1) {
-        if (this.l == 0) {
-            if (this.e.aq != null) {
-                this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            if (this.mainCanvasRef.aq != null) {
+                this.mainCanvasRef.aq.b(var1);
             }
 
             if (var1 != 268435456 && var1 != 517 && var1 != 1073741824) {
                 if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-                    this.e.at.a(GlobalStatus.mv == null ? null : GlobalStatus.mv[this.e.ar.g()], GlobalConfig.i, (byte) 1);
-                    this.e.at.a((byte) 1);
+                    this.mainCanvasRef.at.a(GlobalStatus.mv == null ? null : GlobalStatus.mv[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.a((byte) 1);
                     return;
                 }
 
@@ -19257,8 +19269,8 @@ public final class ao_1 {
                     if (GlobalStatus.mq == 1) {
                         GlobalStatus.S();
                         GlobalStatus.R();
-                        this.l = 0;
-                        this.j = this.k = 0;
+                        this.sceneSubState = 0;
+                        this.sceneStateShadow = this.currentSceneModeId = 0;
                         return;
                     }
 
@@ -19273,17 +19285,17 @@ public final class ao_1 {
                 }
             } else {
                 if (GlobalStatus.mq == 1) {
-                    this.a(GlobalStatus.mq, (byte) this.e.ar.g(), (byte) -1, (byte) -1);
+                    this.a(GlobalStatus.mq, (byte) this.mainCanvasRef.ar.g(), (byte) -1, (byte) -1);
                     return;
                 }
 
                 if (GlobalStatus.mq == 2) {
-                    this.a(GlobalStatus.mq, GlobalStatus.ms, (byte) this.e.ar.g(), (byte) -1);
+                    this.a(GlobalStatus.mq, GlobalStatus.ms, (byte) this.mainCanvasRef.ar.g(), (byte) -1);
                     return;
                 }
 
                 if (GlobalStatus.mq == 3) {
-                    this.a(GlobalStatus.mq, GlobalStatus.ms, GlobalStatus.mt, (byte) this.e.ar.g());
+                    this.a(GlobalStatus.mq, GlobalStatus.ms, GlobalStatus.mt, (byte) this.mainCanvasRef.ar.g());
                     return;
                 }
             }
@@ -19292,8 +19304,8 @@ public final class ao_1 {
     }
 
     private void L(Graphics var1) {
-        if (this.l == 0 && this.e.aq != null) {
-            this.e.aq.a(var1);
+        if (this.sceneSubState == 0 && this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.a(var1);
         }
 
     }
@@ -19307,22 +19319,22 @@ public final class ao_1 {
     }
 
     private void a(String var1, String var2, short var3) {
-        this.e.aq.j();
-        this.e.aq.a(var1);
-        this.e.aq.a(false);
-        this.e.at.a(var2, GlobalConfig.i, (byte) 2);
-        this.e.au.a(new String[]{"开 通", "取 消"});
-        this.e.aq.a((al) this.e.at);
-        this.e.aq.a((al) this.e.au);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.l = 0;
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = var3;
+        this.mainCanvasRef.aq.j();
+        this.mainCanvasRef.aq.a(var1);
+        this.mainCanvasRef.aq.a(false);
+        this.mainCanvasRef.at.a(var2, GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.au.a(new String[]{"开 通", "取 消"});
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.sceneSubState = 0;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = var3;
     }
 
     private void aR(int var1) {
-        if (this.l == 0) {
-            this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            this.mainCanvasRef.aq.b(var1);
             if (var1 != 268435456 && var1 != 1073741824) {
                 if (var1 == 536870912) {
                     this.N();
@@ -19330,32 +19342,32 @@ public final class ao_1 {
                 }
             } else {
                 LoadingPage.h = 0;
-                this.l = 2;
-                if (this.k == 108) {
-                    this.l = 1;
-                    this.e.aq.j();
-                    this.e.aq.a("开通超Q");
-                    this.e.aq.a(false);
-                    this.e.ar.a(new String[]{"中国移动", "中国联通"}, (String[]) null, (String[]) null);
-                    this.e.at.b(GlobalConfig.ah[0], GlobalConfig.i, (byte) 2);
-                    this.e.au.a(new String[]{"开通", "取消"});
-                    this.e.aq.a((al) this.e.ar);
-                    this.e.aq.a((al) this.e.at);
-                    this.e.aq.a((al) this.e.au);
-                    this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+                this.sceneSubState = 2;
+                if (this.currentSceneModeId == 108) {
+                    this.sceneSubState = 1;
+                    this.mainCanvasRef.aq.j();
+                    this.mainCanvasRef.aq.a("开通超Q");
+                    this.mainCanvasRef.aq.a(false);
+                    this.mainCanvasRef.ar.a(new String[]{"中国移动", "中国联通"}, (String[]) null, (String[]) null);
+                    this.mainCanvasRef.at.b(GlobalConfig.ah[0], GlobalConfig.i, (byte) 2);
+                    this.mainCanvasRef.au.a(new String[]{"开通", "取消"});
+                    this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+                    this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+                    this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
+                    this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
                     return;
                 }
             }
-        } else if (this.l == 1) {
-            this.e.aq.b(var1);
+        } else if (this.sceneSubState == 1) {
+            this.mainCanvasRef.aq.b(var1);
             if (var1 == 268435456 || var1 == 1073741824) {
                 LoadingPage.h = 0;
-                this.l = (short) (this.e.ar.g() == 0 ? 2 : 3);
+                this.sceneSubState = (short) (this.mainCanvasRef.ar.g() == 0 ? 2 : 3);
                 return;
             }
 
             if (var1 == 1 || var1 == 4) {
-                this.e.at.b(GlobalConfig.ah[this.e.ar.g()], GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.b(GlobalConfig.ah[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 2);
                 return;
             }
 
@@ -19363,43 +19375,43 @@ public final class ao_1 {
                 this.N();
                 return;
             }
-        } else if (this.l == 2) {
+        } else if (this.sceneSubState == 2) {
             if (var1 == 268435456 || var1 == 1073741824) {
-                String var3 = this.k == 108 ? GlobalStatus.aE : GlobalStatus.aK;
-                String var2 = this.k == 108 ? GlobalStatus.aF : GlobalStatus.aL;
-                this.e.c(var3, var2);
+                String var3 = this.currentSceneModeId == 108 ? GlobalStatus.aE : GlobalStatus.aK;
+                String var2 = this.currentSceneModeId == 108 ? GlobalStatus.aF : GlobalStatus.aL;
+                this.mainCanvasRef.c(var3, var2);
                 this.N();
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = (short) (this.k == 108 ? 1 : 0);
+                this.sceneSubState = (short) (this.currentSceneModeId == 108 ? 1 : 0);
                 return;
             }
-        } else if (this.l == 3) {
+        } else if (this.sceneSubState == 3) {
             if (var1 == 268435456 || var1 == 1073741824) {
-                this.e.c(GlobalStatus.aG);
+                this.mainCanvasRef.c(GlobalStatus.aG);
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 1;
+                this.sceneSubState = 1;
             }
         }
 
     }
 
     private void M(Graphics var1) {
-        if (this.e.aq != null) {
-            this.e.aq.a(var1);
+        if (this.mainCanvasRef.aq != null) {
+            this.mainCanvasRef.aq.a(var1);
         }
 
-        if (this.l == 2) {
-            String var2 = this.k == 108 ? "确认以发送短信方式开通超Q？ " : "确认以发送短信方式开通魔钻？";
+        if (this.sceneSubState == 2) {
+            String var2 = this.currentSceneModeId == 108 ? "确认以发送短信方式开通超Q？ " : "确认以发送短信方式开通魔钻？";
             LoadingPage.a(var1, var2, new String[]{"确 认", "取 消"});
         }
 
-        if (this.l == 3) {
+        if (this.sceneSubState == 3) {
             LoadingPage.a(var1, "进入超Q官网开通超Q？", new String[]{"进入", "返回"});
         }
 
@@ -19408,47 +19420,47 @@ public final class ao_1 {
     public final void ah() {
         MainCanvas.ah.d("3762");
         bp = MainCanvas.ah.getFrame1("3762");
-        this.e.aq.j();
-        this.e.aq.a("超Q精灵");
-        this.e.aq.a(true);
+        this.mainCanvasRef.aq.j();
+        this.mainCanvasRef.aq.a("超Q精灵");
+        this.mainCanvasRef.aq.a(true);
         this.bQ = Math.max(GlobalConfig.j * 3 + 10, bp.j() + 10);
-        this.e.aq.a(this.bQ);
-        this.e.at.b(GlobalStatus.kW, GlobalConfig.i, (byte) 1);
-        this.e.au.a(new String[]{"领取", "返回"});
-        this.e.aq.a((al) this.e.at);
-        this.e.aq.a((al) this.e.au);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.l = 0;
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 33;
+        this.mainCanvasRef.aq.a(this.bQ);
+        this.mainCanvasRef.at.b(GlobalStatus.kW, GlobalConfig.i, (byte) 1);
+        this.mainCanvasRef.au.a(new String[]{"领取", "返回"});
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.sceneSubState = 0;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 33;
     }
 
     private void aS(int var1) {
-        this.e.aq.b(var1);
+        this.mainCanvasRef.aq.b(var1);
         if (var1 != 268435456 && var1 != 1073741824) {
             if (var1 == 536870912) {
-                if (this.l == 0) {
+                if (this.sceneSubState == 0) {
                     this.av();
                     this.c((int) 8);
                     return;
                 }
 
-                --this.l;
+                --this.sceneSubState;
             }
         } else {
-            switch (this.l) {
+            switch (this.sceneSubState) {
                 case 0:
-                    this.l = 1;
-                    LoadingPage.a(this.e.aq.a + this.e.aq.c / 2, this.e.aq.b + 45 + this.bQ / 2, new String[]{"领取"}, false);
+                    this.sceneSubState = 1;
+                    LoadingPage.a(this.mainCanvasRef.aq.a + this.mainCanvasRef.aq.c / 2, this.mainCanvasRef.aq.b + 45 + this.bQ / 2, new String[]{"领取"}, false);
                     break;
                 case 1:
                     byte[] var2;
                     if ((var2 = NetPayloadBuilder.x((short) 4658, GlobalStatus.ad)) != null) {
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4658, var2));
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                         break;
                     } else {
-                        this.e.processException("获取上传指令数据错误!");
+                        this.mainCanvasRef.processException("获取上传指令数据错误!");
                         return;
                     }
                 default:
@@ -19459,20 +19471,20 @@ public final class ao_1 {
     }
 
     public final int f(int var1, int var2) {
-        return var1 >= this.e.aq.a + 68 && var1 <= this.e.aq.a + this.e.aq.c - 12 && var2 >= this.e.aq.b + 30 + this.bQ / 2 && var2 < this.e.aq.b + 30 + this.bQ / 2 + GlobalConfig.j ? 268435456 : 0;
+        return var1 >= this.mainCanvasRef.aq.a + 68 && var1 <= this.mainCanvasRef.aq.a + this.mainCanvasRef.aq.c - 12 && var2 >= this.mainCanvasRef.aq.b + 30 + this.bQ / 2 && var2 < this.mainCanvasRef.aq.b + 30 + this.bQ / 2 + GlobalConfig.j ? 268435456 : 0;
     }
 
     private void aT(int var1) {
-        if (this.e.av != null) {
-            this.e.av.a(var1);
+        if (this.mainCanvasRef.av != null) {
+            this.mainCanvasRef.av.a(var1);
         }
 
         if (var1 == 536870912) {
-            var1 = this.j;
-            if (this.j == 76) {
-                int var8 = this.e.ar.g();
+            var1 = this.sceneStateShadow;
+            if (this.sceneStateShadow == 76) {
+                int var8 = this.mainCanvasRef.ar.g();
                 this.d((byte) 1);
-                this.e.ar.a(var8);
+                this.mainCanvasRef.ar.a(var8);
             } else {
                 this.N();
             }
@@ -19520,8 +19532,8 @@ public final class ao_1 {
 
             var1 = var10000;
             if (var10000 != -1 && GlobalStatus.Q.i[var1] != null) {
-                this.a((byte) 3, this.j, GlobalStatus.Q.a, (short) var1, GlobalStatus.Q.b);
-                this.e.a((String) null);
+                this.a((byte) 3, this.sceneStateShadow, GlobalStatus.Q.a, (short) var1, GlobalStatus.Q.b);
+                this.mainCanvasRef.a((String) null);
                 GlobalStatus.Q = null;
             }
 
@@ -19533,7 +19545,7 @@ public final class ao_1 {
             this.P.a(var1);
         }
 
-        if (this.l == 0 && this.k == 0) {
+        if (this.sceneSubState == 0 && this.currentSceneModeId == 0) {
             this.P = null;
         }
 
@@ -19544,7 +19556,7 @@ public final class ao_1 {
             this.Q.a(var1);
         }
 
-        if (this.l == 0 && this.k == 0) {
+        if (this.sceneSubState == 0 && this.currentSceneModeId == 0) {
             this.Q = null;
         }
 
@@ -19567,39 +19579,39 @@ public final class ao_1 {
     private void g(String var1) {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.s((short) 4675, GlobalStatus.ad, var1)) == null) {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4675, var2));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         }
     }
 
     public final void a(String var1, String var2) {
         byte[] var3;
         if ((var3 = NetPayloadBuilder.c((short) 4674, GlobalStatus.ad, var2, var1)) == null) {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4674, var3));
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         }
     }
 
     public final void ai() {
         LoadingPage.g = 0;
         LoadingPage.h = 0;
-        this.e.touchAction = 0;
-        this.e.b = 0;
-        this.l = 0;
-        this.e.touchPageCase = this.e.k;
-        this.k = 116;
+        this.mainCanvasRef.touchAction = 0;
+        this.mainCanvasRef.b = 0;
+        this.sceneSubState = 0;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.currentSceneModeId = 116;
     }
 
     private void aW(int var1) {
         if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
-                this.k = this.j;
-                this.l = 0;
-                this.m = 0;
+                this.currentSceneModeId = this.sceneStateShadow;
+                this.sceneSubState = 0;
+                this.sceneSubMode = 0;
                 LoadingPage.h = 0;
             }
 
@@ -19609,9 +19621,9 @@ public final class ao_1 {
                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4369, var2));
             }
 
-            this.k = this.j;
-            this.l = 0;
-            this.m = 0;
+            this.currentSceneModeId = this.sceneStateShadow;
+            this.sceneSubState = 0;
+            this.sceneSubMode = 0;
             LoadingPage.h = 0;
         }
     }
@@ -19625,18 +19637,18 @@ public final class ao_1 {
         LoadingPage.a((az_1) null, K, GlobalStatus.eL, (String[]) null, true);
         LoadingPage.h = 0;
         LoadingPage.g = 0;
-        this.e.touchAction = 0;
-        this.e.b = 0;
-        this.l = 0;
-        this.e.touchPageCase = this.e.k;
-        this.k = 117;
+        this.mainCanvasRef.touchAction = 0;
+        this.mainCanvasRef.b = 0;
+        this.sceneSubState = 0;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.currentSceneModeId = 117;
     }
 
     private void aX(int var1) {
         if (GlobalStatus.eL.length > 0 && var1 == 536870912 || GlobalStatus.eL.length <= 0 && (var1 == 536870912 || var1 == 268435456 || var1 == 517 || var1 == 1073741824)) {
-            this.k = this.j;
-            this.l = 0;
-            this.m = 0;
+            this.currentSceneModeId = this.sceneStateShadow;
+            this.sceneSubState = 0;
+            this.sceneSubMode = 0;
             LoadingPage.g = 0;
             LoadingPage.h = 0;
         }
@@ -19656,9 +19668,9 @@ public final class ao_1 {
                         byte[] var2;
                         if ((var2 = NetPayloadBuilder.c((short) 4370, (byte) LoadingPage.g, GlobalStatus.ad)) != null) {
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4370, var2));
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                         } else {
-                            this.e.processException("获取上传指令数据错误!");
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                         }
 
                         LoadingPage.g = 0;
@@ -19711,7 +19723,7 @@ public final class ao_1 {
             GlobalStatus.N();
             this.bf = 0;
             this.be = 0;
-            this.bc = new ba(this.e, this, MainCanvas.f);
+            this.bc = new ba(this.mainCanvasRef, this, MainCanvas.pngUtil);
         }
 
         this.bc.a();
@@ -19719,16 +19731,16 @@ public final class ao_1 {
         if (GlobalStatus.fA != null) {
             for (int var3 = 0; var3 < GlobalStatus.fA.length; ++var3) {
                 if (GlobalStatus.mx == GlobalStatus.fA[var3]) {
-                    var2 = GlobalStatus.f(this.e.l, var3);
+                    var2 = GlobalStatus.f(this.mainCanvasRef.l, var3);
                     break;
                 }
             }
         }
 
         if (GlobalStatus.mN != null && !GlobalStatus.mN.equals("")) {
-            this.e.at.a(GlobalStatus.mN + "\t" + var2, GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a(GlobalStatus.mN + "\t" + var2, GlobalConfig.i, (byte) 2);
         } else {
-            this.e.at.a("" + var2, GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a("" + var2, GlobalConfig.i, (byte) 2);
         }
 
         if (GlobalStatus.mx != -1 && GlobalStatus.my != -1) {
@@ -19762,22 +19774,22 @@ public final class ao_1 {
 
         this.ak();
         LoadingPage.l = 0;
-        this.l = 0;
-        this.e.touchPageCase = this.e.k = 7;
-        this.j = this.k = 119;
+        this.sceneSubState = 0;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k = 7;
+        this.sceneStateShadow = this.currentSceneModeId = 119;
     }
 
     private void aY(int var1) {
-        if (this.l == 0) {
+        if (this.sceneSubState == 0) {
             if (GlobalStatus.mx != -1 && this.aI != null) {
-                PngUtil.a(this.aI, this.e.ak);
+                PngUtil.a(this.aI, this.mainCanvasRef.ak);
             }
 
             if (GlobalStatus.mD != -1 && this.bd != null) {
-                PngUtil.a(this.bd, this.e.ak);
+                PngUtil.a(this.bd, this.mainCanvasRef.ak);
             }
 
-            this.e.at.b(var1);
+            this.mainCanvasRef.at.b(var1);
             if (var1 == 2) {
                 if (this.be == 0 && this.bf == 0) {
                     this.be = 1;
@@ -19808,11 +19820,11 @@ public final class ao_1 {
                             if (GlobalStatus.fw != null && GlobalStatus.fw.length > 0) {
                                 this.j((int) 10);
                             } else {
-                                this.e.processException("您没有宠物可选择");
+                                this.mainCanvasRef.processException("您没有宠物可选择");
                             }
                         } else {
                             LoadingPage.a(GlobalConfig.defaultWidth / 2, GlobalConfig.defaultHigh / 2, new String[]{"升星", "取出"}, true);
-                            this.l = 1;
+                            this.sceneSubState = 1;
                         }
                     } else if (this.bf == 1) {
                         if (GlobalStatus.mD == -1) {
@@ -19820,24 +19832,24 @@ public final class ao_1 {
                                 if (GlobalStatus.fw != null && GlobalStatus.fw.length > 0) {
                                     this.j((int) 10);
                                 } else {
-                                    this.e.processException("您没有宠物可选择");
+                                    this.mainCanvasRef.processException("您没有宠物可选择");
                                 }
                             } else {
-                                this.e.processException("请先放入要升星的宠物");
+                                this.mainCanvasRef.processException("请先放入要升星的宠物");
                             }
                         } else {
                             LoadingPage.a(GlobalConfig.defaultWidth / 2, GlobalConfig.defaultHigh / 2, new String[]{"取出"}, true);
-                            this.l = 1;
+                            this.sceneSubState = 1;
                         }
                     }
                 } else if (this.be == 1) {
                     if (GlobalStatus.mJ[this.bf] != -1) {
                         LoadingPage.a(GlobalConfig.defaultWidth / 2, GlobalConfig.defaultHigh / 2, new String[]{"取出"}, true);
-                        this.l = 1;
+                        this.sceneSubState = 1;
                     } else if (GlobalStatus.mx != -1) {
                         this.e((int) 20);
                     } else {
-                        this.e.processException("请先放入要升星的宠物");
+                        this.mainCanvasRef.processException("请先放入要升星的宠物");
                     }
                 }
             }
@@ -19856,10 +19868,10 @@ public final class ao_1 {
                 this.l();
                 this.c((int) 4);
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             LoadingPage.b(var1);
             if (var1 == 536870912) {
-                this.l = 0;
+                this.sceneSubState = 0;
             } else if (var1 == 268435456 || var1 == 1073741824) {
                 if (LoadingPage.o == 0) {
                     if (this.be == 0 && this.bf == 1) {
@@ -19869,9 +19881,9 @@ public final class ao_1 {
                         if ((var2 = NetPayloadBuilder.a((byte) 6, GlobalStatus.mx, GlobalStatus.mD, GlobalStatus.mJ, -1, (byte) this.bf)) != null) {
                             NetPacket var3 = new NetPacket((short) 4681, var2);
                             MainCanvas.netUtils.sendPacket(var3);
-                            this.e.a((String) null);
+                            this.mainCanvasRef.a((String) null);
                         } else {
-                            this.e.processException("获取上传指令数据错误!");
+                            this.mainCanvasRef.processException("获取上传指令数据错误!");
                         }
                     } else if (this.be == 1) {
                         this.b((int) 0, (byte) 1);
@@ -19882,7 +19894,7 @@ public final class ao_1 {
             }
         }
 
-        this.e.touchAction = 0;
+        this.mainCanvasRef.touchAction = 0;
     }
 
     private void S(Graphics var1) {
@@ -19901,9 +19913,9 @@ public final class ao_1 {
         if (var5 != null) {
             NetPacket var4 = new NetPacket((short) 4681, var5);
             MainCanvas.netUtils.sendPacket(var4);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -19925,9 +19937,9 @@ public final class ao_1 {
         if (var5 != null) {
             NetPacket var4 = new NetPacket((short) 4681, var5);
             MainCanvas.netUtils.sendPacket(var4);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
@@ -19935,9 +19947,9 @@ public final class ao_1 {
         this.bh = true;
         this.bg = var1;
         GlobalConfig.printStr("pet index=" + var1);
-        this.l = 0;
-        this.e.aq.b();
-        this.e.aq.a("宠物附魂");
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("宠物附魂");
         String[] var2;
         (var2 = new String[10])[0] = "技能附魂";
         var2[5] = "状态附魂";
@@ -19956,19 +19968,19 @@ public final class ao_1 {
             }
         }
 
-        this.e.ar.a((Image[]) null, var2, (String[]) null, (String[]) null);
-        this.e.aq.a((al) this.e.ar);
-        this.e.at.a("", GlobalConfig.i, (byte) 2);
-        this.e.at.a((byte) 1);
-        this.e.aq.a((al) this.e.at);
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 120;
+        this.mainCanvasRef.ar.a((Image[]) null, var2, (String[]) null, (String[]) null);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.at.a("", GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.a((byte) 1);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 120;
     }
 
     public final void t(int var1) {
         GlobalConfig.printStr("pet index=" + this.bg);
-        this.l = 0;
+        this.sceneSubState = 0;
         String[] var2;
         (var2 = new String[10])[0] = "技能附魂";
         var2[5] = "状态附魂";
@@ -19987,33 +19999,33 @@ public final class ao_1 {
             }
         }
 
-        this.e.ar.a((Image[]) null, var2, (String[]) null, (String[]) null);
-        this.e.ar.a(var1);
-        if (this.e.ar.g() != 0 && this.e.ar.g() != 5) {
-            if (this.e.ar.g() < 5) {
-                if (GlobalStatus.gh[this.bg] != null && GlobalStatus.gh[this.bg][this.e.ar.g() - 1] != null) {
-                    this.e.at.a(GlobalStatus.gi[this.bg][this.e.ar.g() - 1], GlobalConfig.i, (byte) 2);
-                    this.e.at.a((byte) 1);
+        this.mainCanvasRef.ar.a((Image[]) null, var2, (String[]) null, (String[]) null);
+        this.mainCanvasRef.ar.a(var1);
+        if (this.mainCanvasRef.ar.g() != 0 && this.mainCanvasRef.ar.g() != 5) {
+            if (this.mainCanvasRef.ar.g() < 5) {
+                if (GlobalStatus.gh[this.bg] != null && GlobalStatus.gh[this.bg][this.mainCanvasRef.ar.g() - 1] != null) {
+                    this.mainCanvasRef.at.a(GlobalStatus.gi[this.bg][this.mainCanvasRef.ar.g() - 1], GlobalConfig.i, (byte) 2);
+                    this.mainCanvasRef.at.a((byte) 1);
                 } else {
-                    this.e.at.a("可以嵌入符文", GlobalConfig.i, (byte) 2);
-                    this.e.at.a((byte) 1);
+                    this.mainCanvasRef.at.a("可以嵌入符文", GlobalConfig.i, (byte) 2);
+                    this.mainCanvasRef.at.a((byte) 1);
                 }
-            } else if (GlobalStatus.gl[this.bg] != null && GlobalStatus.gl[this.bg][this.e.ar.g() - 6] != null) {
-                this.e.at.a(GlobalStatus.gm[this.bg][this.e.ar.g() - 6], GlobalConfig.i, (byte) 2);
-                this.e.at.a((byte) 1);
+            } else if (GlobalStatus.gl[this.bg] != null && GlobalStatus.gl[this.bg][this.mainCanvasRef.ar.g() - 6] != null) {
+                this.mainCanvasRef.at.a(GlobalStatus.gm[this.bg][this.mainCanvasRef.ar.g() - 6], GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.a((byte) 1);
             } else {
-                this.e.at.a("可以嵌入符文", GlobalConfig.i, (byte) 2);
-                this.e.at.a((byte) 1);
+                this.mainCanvasRef.at.a("可以嵌入符文", GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.a((byte) 1);
             }
         } else {
-            this.e.at.a("", GlobalConfig.i, (byte) 2);
-            this.e.at.a((byte) 1);
+            this.mainCanvasRef.at.a("", GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a((byte) 1);
         }
     }
 
     private void aZ(int var1) {
-        if (this.l == 0) {
-            this.e.aq.b(var1);
+        if (this.sceneSubState == 0) {
+            this.mainCanvasRef.aq.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
                     this.bh = false;
@@ -20023,66 +20035,66 @@ public final class ao_1 {
                 }
 
                 if (var1 == 1 || var1 == 4 || var1 == 514 || var1 == 520) {
-                    if (this.e.ar.g() != 0 && this.e.ar.g() != 5) {
-                        if (this.e.ar.g() < 5) {
-                            if (GlobalStatus.gh[this.bg] != null && GlobalStatus.gh[this.bg][this.e.ar.g() - 1] != null) {
-                                this.e.at.a(GlobalStatus.gi[this.bg][this.e.ar.g() - 1], GlobalConfig.i, (byte) 2);
-                                this.e.at.a((byte) 1);
+                    if (this.mainCanvasRef.ar.g() != 0 && this.mainCanvasRef.ar.g() != 5) {
+                        if (this.mainCanvasRef.ar.g() < 5) {
+                            if (GlobalStatus.gh[this.bg] != null && GlobalStatus.gh[this.bg][this.mainCanvasRef.ar.g() - 1] != null) {
+                                this.mainCanvasRef.at.a(GlobalStatus.gi[this.bg][this.mainCanvasRef.ar.g() - 1], GlobalConfig.i, (byte) 2);
+                                this.mainCanvasRef.at.a((byte) 1);
                                 return;
                             }
 
-                            this.e.at.a("可以嵌入符文", GlobalConfig.i, (byte) 2);
-                            this.e.at.a((byte) 1);
+                            this.mainCanvasRef.at.a("可以嵌入符文", GlobalConfig.i, (byte) 2);
+                            this.mainCanvasRef.at.a((byte) 1);
                             return;
                         }
 
-                        if (GlobalStatus.gl[this.bg] != null && GlobalStatus.gl[this.bg][this.e.ar.g() - 6] != null) {
-                            this.e.at.a(GlobalStatus.gm[this.bg][this.e.ar.g() - 6], GlobalConfig.i, (byte) 2);
-                            this.e.at.a((byte) 1);
+                        if (GlobalStatus.gl[this.bg] != null && GlobalStatus.gl[this.bg][this.mainCanvasRef.ar.g() - 6] != null) {
+                            this.mainCanvasRef.at.a(GlobalStatus.gm[this.bg][this.mainCanvasRef.ar.g() - 6], GlobalConfig.i, (byte) 2);
+                            this.mainCanvasRef.at.a((byte) 1);
                             return;
                         }
 
-                        this.e.at.a("可以嵌入符文", GlobalConfig.i, (byte) 2);
-                        this.e.at.a((byte) 1);
+                        this.mainCanvasRef.at.a("可以嵌入符文", GlobalConfig.i, (byte) 2);
+                        this.mainCanvasRef.at.a((byte) 1);
                         return;
                     }
 
-                    this.e.at.a("", GlobalConfig.i, (byte) 2);
-                    this.e.at.a((byte) 1);
+                    this.mainCanvasRef.at.a("", GlobalConfig.i, (byte) 2);
+                    this.mainCanvasRef.at.a((byte) 1);
                     return;
                 }
-            } else if (this.e.ar.g() != 0 && this.e.ar.g() != 5) {
-                if (this.e.ar.g() < 5) {
-                    if (GlobalStatus.gh[this.bg] != null && GlobalStatus.gh[this.bg][this.e.ar.g() - 1] != null) {
+            } else if (this.mainCanvasRef.ar.g() != 0 && this.mainCanvasRef.ar.g() != 5) {
+                if (this.mainCanvasRef.ar.g() < 5) {
+                    if (GlobalStatus.gh[this.bg] != null && GlobalStatus.gh[this.bg][this.mainCanvasRef.ar.g() - 1] != null) {
                         LoadingPage.a(GlobalConfig.defaultWidth >> 1, GlobalConfig.defaultHigh >> 1, new String[]{"挖出"}, true);
-                        this.l = 1;
+                        this.sceneSubState = 1;
                         return;
                     }
 
                     LoadingPage.a(GlobalConfig.defaultWidth >> 1, GlobalConfig.defaultHigh >> 1, new String[]{"嵌入"}, true);
-                    this.l = 1;
+                    this.sceneSubState = 1;
                     return;
                 }
 
-                if (GlobalStatus.gl[this.bg] != null && GlobalStatus.gl[this.bg][this.e.ar.g() - 6] != null) {
+                if (GlobalStatus.gl[this.bg] != null && GlobalStatus.gl[this.bg][this.mainCanvasRef.ar.g() - 6] != null) {
                     LoadingPage.a(GlobalConfig.defaultWidth >> 1, GlobalConfig.defaultHigh >> 1, new String[]{"挖出"}, true);
-                    this.l = 1;
+                    this.sceneSubState = 1;
                     return;
                 }
 
                 LoadingPage.a(GlobalConfig.defaultWidth >> 1, GlobalConfig.defaultHigh >> 1, new String[]{"嵌入"}, true);
-                this.l = 1;
+                this.sceneSubState = 1;
                 return;
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.l = 0;
+                    this.sceneSubState = 0;
                 }
             } else if (LoadingPage.o == 0) {
-                if (this.e.ar.g() < 5) {
-                    if (GlobalStatus.gh[this.bg] != null && GlobalStatus.gh[this.bg][this.e.ar.g() - 1] != null) {
-                        this.a((byte) 1, GlobalStatus.fA[this.bg], GlobalStatus.gg[this.bg][this.e.ar.g() - 1], (byte) 34, (byte) GlobalStatus.gj[this.bg][this.e.ar.g() - 1]);
+                if (this.mainCanvasRef.ar.g() < 5) {
+                    if (GlobalStatus.gh[this.bg] != null && GlobalStatus.gh[this.bg][this.mainCanvasRef.ar.g() - 1] != null) {
+                        this.a((byte) 1, GlobalStatus.fA[this.bg], GlobalStatus.gg[this.bg][this.mainCanvasRef.ar.g() - 1], (byte) 34, (byte) GlobalStatus.gj[this.bg][this.mainCanvasRef.ar.g() - 1]);
                         return;
                     }
 
@@ -20090,8 +20102,8 @@ public final class ao_1 {
                     return;
                 }
 
-                if (GlobalStatus.gl[this.bg] != null && GlobalStatus.gl[this.bg][this.e.ar.g() - 6] != null) {
-                    this.a((byte) 1, GlobalStatus.fA[this.bg], GlobalStatus.gk[this.bg][this.e.ar.g() - 6], (byte) 35, (byte) GlobalStatus.gn[this.bg][this.e.ar.g() - 6]);
+                if (GlobalStatus.gl[this.bg] != null && GlobalStatus.gl[this.bg][this.mainCanvasRef.ar.g() - 6] != null) {
+                    this.a((byte) 1, GlobalStatus.fA[this.bg], GlobalStatus.gk[this.bg][this.mainCanvasRef.ar.g() - 6], (byte) 35, (byte) GlobalStatus.gn[this.bg][this.mainCanvasRef.ar.g() - 6]);
                     return;
                 }
 
@@ -20103,8 +20115,8 @@ public final class ao_1 {
     }
 
     private void T(Graphics var1) {
-        this.e.aq.a(var1);
-        if (this.l == 1) {
+        this.mainCanvasRef.aq.a(var1);
+        if (this.sceneSubState == 1) {
             LoadingPage.c(var1);
         }
 
@@ -20115,19 +20127,19 @@ public final class ao_1 {
         if ((var6 = NetPayloadBuilder.a(var1, var2, var3, var4, var5)) != null) {
             NetPacket var7 = new NetPacket((short) 4684, var6);
             MainCanvas.netUtils.sendPacket(var7);
-            this.e.a((String) null);
+            this.mainCanvasRef.a((String) null);
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     public final void al() {
         this.di = new an_1();
         this.dj = new an_1();
-        this.l = 0;
-        this.e.aq.b();
-        this.e.aq.a("坐骑");
-        this.e.aq.a(true);
+        this.sceneSubState = 0;
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("坐骑");
+        this.mainCanvasRef.aq.a(true);
 
         for (byte var1 = 0; var1 < GlobalStatus.nu.length; ++var1) {
             if (GlobalStatus.nu[var1] == GlobalStatus.nm) {
@@ -20156,46 +20168,46 @@ public final class ao_1 {
                 }
             }
         } else {
-            this.e.au.a(this.dr);
+            this.mainCanvasRef.au.a(this.dr);
         }
 
-        this.e.at.a(GlobalStatus.nt, GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.a(GlobalStatus.nt, GlobalConfig.i, (byte) 2);
         this.di.a(GlobalStatus.nr, GlobalConfig.i, (byte) 2);
         this.dj.b(GlobalStatus.ns, GlobalConfig.i, (byte) 2);
-        this.e.aq.a((al) this.e.at);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.e.at.a(this.e.at.b, this.e.at.c, this.e.at.d, this.e.at.e / 3);
-        this.di.a(this.e.at.b, this.e.at.c + this.e.at.e, this.e.at.d / 2, this.e.at.e << 1);
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.at.a(this.mainCanvasRef.at.b, this.mainCanvasRef.at.c, this.mainCanvasRef.at.d, this.mainCanvasRef.at.e / 3);
+        this.di.a(this.mainCanvasRef.at.b, this.mainCanvasRef.at.c + this.mainCanvasRef.at.e, this.mainCanvasRef.at.d / 2, this.mainCanvasRef.at.e << 1);
         this.dj.a(this.di.b + this.di.d, this.di.c, this.di.d, this.di.e);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 125;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 125;
     }
 
     private void be() {
         if (GlobalStatus.nu[this.dl] == GlobalStatus.nm) {
             if (!GlobalStatus.nn.equals("")) {
-                this.e.au.a(this.do_2);
+                this.mainCanvasRef.au.a(this.do_2);
                 return;
             }
         } else if (GlobalStatus.nw[this.dl] == 0) {
-            this.e.au.a(this.dq);
+            this.mainCanvasRef.au.a(this.dq);
             return;
         }
 
-        this.e.au.a(this.dp);
+        this.mainCanvasRef.au.a(this.dp);
     }
 
     private void ba(int var1) {
-        this.e.aq.b(var1);
+        this.mainCanvasRef.aq.b(var1);
         this.di.b(var1);
         this.dj.b(var1);
         if (this.dk != null && this.dk.length > 0) {
             for (int var2 = 0; var2 < this.dk.length; ++var2) {
-                PngUtil.a(this.dk[var2], this.e.ak);
+                PngUtil.a(this.dk[var2], this.mainCanvasRef.ak);
             }
         }
 
@@ -20247,19 +20259,19 @@ public final class ao_1 {
     }
 
     private void U(Graphics var1) {
-        this.e.aq.a(var1);
+        this.mainCanvasRef.aq.a(var1);
         this.di.a(var1);
         this.dj.a(var1);
         if (this.dk != null && this.dk.length > 0) {
             var1.setColor(2176196);
-            int var2 = this.e.aq.b + 45 + 15;
-            int var3 = this.e.aq.a + this.e.aq.c * 3 / 4;
-            int var4 = this.e.aq.b + 45 + this.dk[0].j();
+            int var2 = this.mainCanvasRef.aq.b + 45 + 15;
+            int var3 = this.mainCanvasRef.aq.a + this.mainCanvasRef.aq.c * 3 / 4;
+            int var4 = this.mainCanvasRef.aq.b + 45 + this.dk[0].j();
             if (this.dl == 2) {
                 var4 += 30;
             }
 
-            MainCanvas.f.a(var1, (Frame1) this.dk[this.dl], (int[]) null, 0, 0, var3, var4, 20, 0);
+            MainCanvas.pngUtil.a(var1, (Frame1) this.dk[this.dl], (int[]) null, 0, 0, var3, var4, 20, 0);
             if (this.dm == 0) {
                 this.dm = var3;
                 this.dn = var2 + GlobalConfig.j + 10;
@@ -20273,7 +20285,7 @@ public final class ao_1 {
 
     public final int g(int var1, int var2) {
         int var3 = 0;
-        if ((var3 = this.e.aq.b(var1, var2)) <= 0) {
+        if ((var3 = this.mainCanvasRef.aq.b(var1, var2)) <= 0) {
             var3 = this.di.b(var1, var2);
         }
 
@@ -20303,44 +20315,44 @@ public final class ao_1 {
         if ((var4 = NetPayloadBuilder.a(var1, var2, (short) 0)) != null) {
             NetPacket var5 = new NetPacket((short) 4685, var4);
             MainCanvas.netUtils.sendPacket(var5);
-            this.e.a("");
+            this.mainCanvasRef.a("");
         } else {
-            this.e.processException("获取上传指令数据错误!");
+            this.mainCanvasRef.processException("获取上传指令数据错误!");
         }
     }
 
     public final void am() {
-        this.l = 0;
+        this.sceneSubState = 0;
         this.aq = 0;
         this.dv = new TextRender(GlobalStatus.nh, (short) 120);
-        this.e.aq.b();
-        this.e.aq.a("见钱开箱");
-        this.e.aq.a(true);
-        this.e.au.a("开启");
-        this.e.at.b(GlobalStatus.ni, GlobalConfig.i, (byte) 2);
-        this.e.aq.a((al) this.e.at);
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("见钱开箱");
+        this.mainCanvasRef.aq.a(true);
+        this.mainCanvasRef.au.a("开启");
+        this.mainCanvasRef.at.b(GlobalStatus.ni, GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         if (GlobalConfig.defaultHigh > 220) {
-            this.e.aq.a((al) this.e.au);
+            this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
         }
 
-        this.e.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.ds = this.e.at.b;
-        this.dt = this.e.at.c;
-        this.e.at.a(this.e.at.b, this.e.at.c + (this.e.at.e >> 1), this.e.at.d, this.e.at.e >> 1);
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 127;
+        this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.ds = this.mainCanvasRef.at.b;
+        this.dt = this.mainCanvasRef.at.c;
+        this.mainCanvasRef.at.a(this.mainCanvasRef.at.b, this.mainCanvasRef.at.c + (this.mainCanvasRef.at.e >> 1), this.mainCanvasRef.at.d, this.mainCanvasRef.at.e >> 1);
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 127;
         LoadingPage.l = 0;
     }
 
     private void bb(int var1) {
-        this.e.aq.b(var1);
+        this.mainCanvasRef.aq.b(var1);
         if (var1 == 536870912) {
             if (this.du) {
                 this.du = false;
             } else {
                 GlobalStatus.W();
                 this.dv = null;
-                this.j = this.k = 2;
+                this.sceneStateShadow = this.currentSceneModeId = 2;
             }
         } else if (var1 != 8 && var1 != 516) {
             if (var1 != 2 && var1 != 518) {
@@ -20349,11 +20361,11 @@ public final class ao_1 {
                     if ((var2 = NetPayloadBuilder.a((byte) 1)) != null) {
                         NetPacket var3 = new NetPacket((short) 4683, var2);
                         MainCanvas.netUtils.sendPacket(var3);
-                        this.e.a((String) null);
+                        this.mainCanvasRef.a((String) null);
                         return;
                     }
 
-                    this.e.processException("获取上传指令数据错误!");
+                    this.mainCanvasRef.processException("获取上传指令数据错误!");
                 }
 
             } else {
@@ -20369,38 +20381,38 @@ public final class ao_1 {
     }
 
     private void V(Graphics var1) {
-        this.e.aq.a(var1);
-        LoadingPage.a(var1, this.ds, this.dt, this.e.at.d, this.e.at.e >> 1, 1);
+        this.mainCanvasRef.aq.a(var1);
+        LoadingPage.a(var1, this.ds, this.dt, this.mainCanvasRef.at.d, this.mainCanvasRef.at.e >> 1, 1);
         var1.setColor(255);
         var1.drawString("可开出的珍贵物品", this.ds + 32, this.dt + 8, 0);
 
         for (int var2 = 0; var2 < 4; ++var2) {
-            MainCanvas.f.a(var1, x, (int[]) null, (aj) null, 0, 0, this.ds + this.e.at.d / 2 - 76 + var2 * 40, this.dt + (this.e.at.e >> 1) - 24, 0, 0);
+            MainCanvas.pngUtil.a(var1, x, (int[]) null, (aj) null, 0, 0, this.ds + this.mainCanvasRef.at.d / 2 - 76 + var2 * 40, this.dt + (this.mainCanvasRef.at.e >> 1) - 24, 0, 0);
             if (var2 < GlobalStatus.ng.length) {
                 if (!GlobalStatus.ne[var2].equals("MONEY")) {
                     short var3 = (short) Integer.parseInt(GlobalStatus.ng[var2]);
                     MainCanvas.af.e(GlobalStatus.ng[var2]);
-                    MainCanvas.f.a(var1, b(var3), (int[]) null, (aj) null, 0, 0, this.ds + this.e.at.d / 2 - 76 + var2 * 40, this.dt + (this.e.at.e >> 1) - 24, 0, 0);
+                    MainCanvas.pngUtil.a(var1, b(var3), (int[]) null, (aj) null, 0, 0, this.ds + this.mainCanvasRef.at.d / 2 - 76 + var2 * 40, this.dt + (this.mainCanvasRef.at.e >> 1) - 24, 0, 0);
                 }
 
                 if (var2 == this.aq) {
-                    LoadingPage.d(var1, this.ds + this.e.at.d / 2 - 76 + var2 * 40, this.dt + (this.e.at.e >> 1) - 24, 17, 17);
+                    LoadingPage.d(var1, this.ds + this.mainCanvasRef.at.d / 2 - 76 + var2 * 40, this.dt + (this.mainCanvasRef.at.e >> 1) - 24, 17, 17);
                 }
             }
         }
 
-        LoadingPage.a(var1, this.ds, this.dt + (this.e.at.e >> 1), this.e.at.d, this.e.at.e >> 1, 1);
+        LoadingPage.a(var1, this.ds, this.dt + (this.mainCanvasRef.at.e >> 1), this.mainCanvasRef.at.d, this.mainCanvasRef.at.e >> 1, 1);
         var1.setColor(2917024);
-        var1.fillRect(this.ds + -70 + (this.e.at.d >> 1) - 20, this.dt + (this.e.at.e >> 1) + (this.e.at.e >> 2) - 20, 40, 40);
+        var1.fillRect(this.ds + -70 + (this.mainCanvasRef.at.d >> 1) - 20, this.dt + (this.mainCanvasRef.at.e >> 1) + (this.mainCanvasRef.at.e >> 2) - 20, 40, 40);
         var1.setColor(9360850);
-        var1.drawRect(this.ds + -70 + (this.e.at.d >> 1) - 20, this.dt + (this.e.at.e >> 1) + (this.e.at.e >> 2) - 20, 39, 39);
+        var1.drawRect(this.ds + -70 + (this.mainCanvasRef.at.d >> 1) - 20, this.dt + (this.mainCanvasRef.at.e >> 1) + (this.mainCanvasRef.at.e >> 2) - 20, 39, 39);
         if (GlobalStatus.nl != null) {
             MainCanvas.af.e(GlobalStatus.nl);
             short var5 = (short) Integer.parseInt(GlobalStatus.nl);
-            MainCanvas.f.a(var1, b(var5), (int[]) null, (aj) null, 0, 0, this.ds + -70 + (this.e.at.d >> 1) - 8, this.dt + (this.e.at.e >> 1) + (this.e.at.e >> 2) - 8, 0, 0);
+            MainCanvas.pngUtil.a(var1, b(var5), (int[]) null, (aj) null, 0, 0, this.ds + -70 + (this.mainCanvasRef.at.d >> 1) - 8, this.dt + (this.mainCanvasRef.at.e >> 1) + (this.mainCanvasRef.at.e >> 2) - 8, 0, 0);
         }
 
-        this.dv.a(var1, this.ds + 40 + (this.e.at.d >> 1) - 40, this.dt + (this.e.at.e >> 1) + (this.e.at.e >> 2) - 20, 0);
+        this.dv.a(var1, this.ds + 40 + (this.mainCanvasRef.at.d >> 1) - 40, this.dt + (this.mainCanvasRef.at.e >> 1) + (this.mainCanvasRef.at.e >> 2) - 20, 0);
         if (this.du) {
             for (int var6 = 0; var6 < 4; ++var6) {
                 if (var6 == this.aq) {
@@ -20409,7 +20421,7 @@ public final class ao_1 {
                         var4 = "金钱";
                     }
 
-                    LoadingPage.a(var1, GlobalStatus.ne[var6], var4, this.ds + this.e.at.d / 2 - 76 + var6 * 40, this.dt + (this.e.at.e >> 1) - 24, 40);
+                    LoadingPage.a(var1, GlobalStatus.ne[var6], var4, this.ds + this.mainCanvasRef.at.d / 2 - 76 + var6 * 40, this.dt + (this.mainCanvasRef.at.e >> 1) - 24, 40);
                 }
             }
         }
@@ -20419,9 +20431,9 @@ public final class ao_1 {
     public final int h(int var1, int var2) {
         int var3 = 0;
         this.du = false;
-        if ((var3 = this.e.aq.b(var1, var2)) <= 0) {
+        if ((var3 = this.mainCanvasRef.aq.b(var1, var2)) <= 0) {
             for (int var4 = 0; var4 < 4; ++var4) {
-                if (var1 > this.ds + this.e.at.d / 2 - 80 + var4 * 40 && var1 < this.ds + this.e.at.d / 2 - 80 + var4 * 40 + 17 && var2 > this.dt + (this.e.at.e >> 1) - 24 && var2 < this.dt + (this.e.at.e >> 1) - 24 + 17) {
+                if (var1 > this.ds + this.mainCanvasRef.at.d / 2 - 80 + var4 * 40 && var1 < this.ds + this.mainCanvasRef.at.d / 2 - 80 + var4 * 40 + 17 && var2 > this.dt + (this.mainCanvasRef.at.e >> 1) - 24 && var2 < this.dt + (this.mainCanvasRef.at.e >> 1) - 24 + 17) {
                     this.aq = var4;
                     LoadingPage.l = 0;
                     this.du = true;
@@ -20434,22 +20446,22 @@ public final class ao_1 {
     }
 
     public final void an() {
-        this.aU = this.e.ar.g();
-        this.e.aq.b();
-        this.e.aq.a("特效");
-        this.e.ar.a(GlobalStatus.ny, (String[]) null, GlobalStatus.nz);
-        this.e.at.b(GlobalStatus.nA[0], GlobalConfig.i, (byte) 2);
-        this.e.aq.a((al) this.e.ar);
-        this.e.aq.a((al) this.e.at);
-        this.e.aq.a(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-        this.l = 0;
-        this.e.touchPageCase = this.e.k;
-        this.j = this.k = 128;
+        this.aU = this.mainCanvasRef.ar.g();
+        this.mainCanvasRef.aq.b();
+        this.mainCanvasRef.aq.a("特效");
+        this.mainCanvasRef.ar.a(GlobalStatus.ny, (String[]) null, GlobalStatus.nz);
+        this.mainCanvasRef.at.b(GlobalStatus.nA[0], GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
+        this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
+        this.mainCanvasRef.aq.a(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
+        this.sceneSubState = 0;
+        this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
+        this.sceneStateShadow = this.currentSceneModeId = 128;
     }
 
     private void bc(int var1) {
-        this.e.aq.b(var1);
-        if (this.l == 0) {
+        this.mainCanvasRef.aq.b(var1);
+        if (this.sceneSubState == 0) {
             if (var1 == 536870912) {
                 GlobalStatus.X();
                 this.h((int) 0);
@@ -20461,32 +20473,32 @@ public final class ao_1 {
             }
 
             if (var1 == 1 || var1 == 4) {
-                this.e.at.b(GlobalStatus.nA[this.e.ar.g()], GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.b(GlobalStatus.nA[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 2);
                 return;
             }
 
             if (var1 == 268435456 || var1 == 1073741824) {
-                LoadingPage.a(GlobalConfig.realWidth / 3 - GlobalConfig.i.stringWidth("操作") / 2, 3 * GlobalConfig.j + 11 + this.e.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"激活"}, true);
-                this.l = 1;
+                LoadingPage.a(GlobalConfig.realWidth / 3 - GlobalConfig.i.stringWidth("操作") / 2, 3 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"激活"}, true);
+                this.sceneSubState = 1;
                 return;
             }
-        } else if (this.l == 1) {
+        } else if (this.sceneSubState == 1) {
             LoadingPage.b(var1);
             if (var1 == 268435456 || var1 == 1073741824) {
-                this.a((byte) 6, GlobalStatus.nx[this.e.ar.g()], (int) GlobalStatus.dl[this.aU]);
+                this.a((byte) 6, GlobalStatus.nx[this.mainCanvasRef.ar.g()], (int) GlobalStatus.dl[this.aU]);
                 return;
             }
 
             if (var1 == 536870912) {
-                this.l = 0;
+                this.sceneSubState = 0;
             }
         }
 
     }
 
     private void W(Graphics var1) {
-        this.e.aq.a(var1);
-        if (this.l == 1) {
+        this.mainCanvasRef.aq.a(var1);
+        if (this.sceneSubState == 1) {
             LoadingPage.c(var1);
         }
 

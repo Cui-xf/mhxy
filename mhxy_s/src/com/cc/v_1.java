@@ -8,7 +8,7 @@ import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
 public final class v_1 {
-   private ao_1 h;
+   private UISceneController h;
    private MainCanvas i;
    public static int[] a;
    private static String[] j;
@@ -25,7 +25,7 @@ public final class v_1 {
    private static int[] o;
    private static String[] p;
 
-   public v_1(ao_1 var1, MainCanvas var2) {
+   public v_1(UISceneController var1, MainCanvas var2) {
       this.h = var1;
       this.i = var2;
    }
@@ -34,7 +34,7 @@ public final class v_1 {
       byte[] var5;
       if ((var5 = NetPayloadBuilder.a((short)4857, GlobalStatus.ad, var1, var2, var3)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4857, var5));
-         this.h.j = this.h.k = 0;
+         this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
          this.i.a((String)null);
       } else {
          this.i.processException("获取上传指令数据错误!");
@@ -45,7 +45,7 @@ public final class v_1 {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.m((short)4858, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4858, var1));
-         this.h.j = this.h.k = 0;
+         this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
          this.i.a((String)null);
       } else {
          this.i.processException("获取上传指令数据错误!");
@@ -93,9 +93,9 @@ public final class v_1 {
       this.i.aq.a((al)this.i.ar);
       this.i.aq.a((al)this.i.au);
       this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-      this.h.l = 0;
+      this.h.sceneSubState = 0;
       this.i.touchPageCase = this.i.k;
-      this.h.j = this.h.k = 90;
+      this.h.sceneStateShadow = this.h.currentSceneModeId = 90;
    }
 
    public final void b() {
@@ -107,27 +107,27 @@ public final class v_1 {
       this.i.aq.a((al)this.i.at);
       this.i.aq.a((al)this.i.au);
       this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-      this.h.l = 2;
+      this.h.sceneSubState = 2;
       this.i.touchPageCase = this.i.k;
-      this.h.j = this.h.k = 90;
+      this.h.sceneStateShadow = this.h.currentSceneModeId = 90;
    }
 
    public final void b(int var1) {
-      if (this.h.l == 0) {
+      if (this.h.sceneSubState == 0) {
          if (this.i.aq != null) {
             this.i.aq.b(var1);
          }
 
          if (a != null && (var1 == 268435456 || var1 == 1073741824 || var1 == 517)) {
              LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.j + 20 + this.i.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"查看"}, false);
-            this.h.l = 1;
+            this.h.sceneSubState = 1;
             this.h.aA = this.i.ar.h();
             this.h.aE = this.i.ar.g();
          }
 
          if (var1 == 536870912) {
-            this.h.l = 0;
-            this.h.j = this.h.k = 0;
+            this.h.sceneSubState = 0;
+            this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
             return;
          }
 
@@ -166,11 +166,11 @@ public final class v_1 {
                return;
             }
          }
-      } else if (this.h.l == 1) {
+      } else if (this.h.sceneSubState == 1) {
           LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
-               this.h.l = 0;
+               this.h.sceneSubState = 0;
                return;
             }
          } else if ( LoadingPage.o == 0) {
@@ -182,10 +182,10 @@ public final class v_1 {
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short)4859, var3));
-            this.h.j = this.h.k = 0;
+            this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
             this.i.a((String)null);
          }
-      } else if (this.h.l == 2) {
+      } else if (this.h.sceneSubState == 2) {
          if (this.i.aq != null) {
             this.i.aq.b(var1);
          }
@@ -199,8 +199,8 @@ public final class v_1 {
    }
 
    public final void a(Graphics var1) {
-      if (this.h.l != 0 && this.h.l != 1) {
-         if (this.h.l == 2 && this.i.aq != null) {
+      if (this.h.sceneSubState != 0 && this.h.sceneSubState != 1) {
+         if (this.h.sceneSubState == 2 && this.i.aq != null) {
             this.i.aq.a(var1);
          }
       } else {
@@ -208,7 +208,7 @@ public final class v_1 {
             this.i.aq.a(var1);
          }
 
-         if (this.h.l == 1) {
+         if (this.h.sceneSubState == 1) {
              LoadingPage.c(var1);
             return;
          }
@@ -220,7 +220,7 @@ public final class v_1 {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.m((short)4860, GlobalStatus.ad, (byte)var1)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4860, var2));
-         this.h.j = this.h.k = 0;
+         this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
          this.i.a((String)null);
       } else {
          this.i.processException("获取上传指令数据错误!");
@@ -242,13 +242,13 @@ public final class v_1 {
       int var2 = 2 * GlobalConfig.j + 16;
       this.i.aq.g = var2;
       this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-      this.h.l = 0;
+      this.h.sceneSubState = 0;
       this.i.touchPageCase = this.i.k;
-      this.h.j = this.h.k = 91;
+      this.h.sceneStateShadow = this.h.currentSceneModeId = 91;
    }
 
    public final void c(int var1) {
-      if (this.h.l == 0) {
+      if (this.h.sceneSubState == 0) {
          if (this.i.aq != null) {
             this.i.aq.b(var1);
          }
@@ -259,8 +259,8 @@ public final class v_1 {
                   if (var1 == 536870912) {
                      this.d = 0;
                      this.a((byte)2);
-                     this.h.l = 0;
-                     this.h.j = this.h.k = 0;
+                     this.h.sceneSubState = 0;
+                     this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
                   }
                } else {
                   if (this.d == 0) {
@@ -285,7 +285,7 @@ public final class v_1 {
    }
 
    public final void b(Graphics var1) {
-      if (this.h.l == 0) {
+      if (this.h.sceneSubState == 0) {
          int var2 = 0;
          int var3 = 0;
          if (this.i.aq != null) {
@@ -316,7 +316,7 @@ public final class v_1 {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.n((short)4861, GlobalStatus.ad, (byte)var1)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4861, var2));
-         this.h.j = this.h.k = 0;
+         this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
          this.i.a((String)null);
       } else {
          this.i.processException("获取上传指令数据错误!");
@@ -337,13 +337,13 @@ public final class v_1 {
       int var2 = 2 * GlobalConfig.j + 16;
       this.i.aq.g = var2;
       this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-      this.h.l = 0;
+      this.h.sceneSubState = 0;
       this.i.touchPageCase = this.i.k;
-      this.h.j = this.h.k = 92;
+      this.h.sceneStateShadow = this.h.currentSceneModeId = 92;
    }
 
    public final void d(int var1) {
-      if (this.h.l == 0) {
+      if (this.h.sceneSubState == 0) {
          if (this.i.aq != null) {
             this.i.aq.b(var1);
          }
@@ -353,8 +353,8 @@ public final class v_1 {
                if (var1 != 1073741824 && var1 != 517 && var1 != 268435456) {
                   if (var1 == 536870912) {
                      this.g = 0;
-                     this.h.l = 0;
-                     this.h.j = this.h.k = 0;
+                     this.h.sceneSubState = 0;
+                     this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
                   }
                } else {
                   if (this.g == 0) {
@@ -369,8 +369,8 @@ public final class v_1 {
                         return;
                      }
 
-                     this.h.l = 0;
-                     this.h.j = this.h.k = 0;
+                     this.h.sceneSubState = 0;
+                     this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
                      return;
                   }
 
@@ -385,7 +385,7 @@ public final class v_1 {
    }
 
    public final void c(Graphics var1) {
-      if (this.h.l == 0) {
+      if (this.h.sceneSubState == 0) {
          int var2 = 0;
          int var3 = 0;
          if (this.i.aq != null) {
@@ -416,7 +416,7 @@ public final class v_1 {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.n((short)4862, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4862, var1));
-         this.h.j = this.h.k = 0;
+         this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
          this.i.a((String)null);
       } else {
          this.i.processException("获取上传指令数据错误!");
@@ -451,13 +451,13 @@ public final class v_1 {
       this.i.aq.a((al)this.i.ar);
       this.i.aq.a((al)this.i.au);
       this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-      this.h.l = 0;
+      this.h.sceneSubState = 0;
       this.i.touchPageCase = this.i.k;
-      this.h.j = this.h.k = 93;
+      this.h.sceneStateShadow = this.h.currentSceneModeId = 93;
    }
 
    public final void e(int var1) {
-      if (this.h.l == 0) {
+      if (this.h.sceneSubState == 0) {
          if (this.i.aq != null) {
             this.i.aq.b(var1);
          }
@@ -465,9 +465,9 @@ public final class v_1 {
          if (o != null && (var1 == 268435456 || var1 == 1073741824 || var1 == 517)) {
             int var3 = o[this.i.ar.g()];
             byte[] var4;
-            if ((var4 = NetPayloadBuilder.a((short)4863, GlobalStatus.ad, GlobalStatus.t[this.h.af].a, (int)var3, (short)this.h.I.j, (short)this.h.I.k)) != null) {
+            if ((var4 = NetPayloadBuilder.a((short)4863, GlobalStatus.ad, GlobalStatus.t[this.h.af].a, (int)var3, (short)this.h.sceneRefreshCoordinator.j, (short)this.h.sceneRefreshCoordinator.k)) != null) {
                MainCanvas.netUtils.sendPacket(new NetPacket((short)4863, var4));
-               this.h.j = this.h.k = 0;
+               this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
                this.i.a((String)null);
             } else {
                this.i.processException("获取上传指令数据错误!");
@@ -475,8 +475,8 @@ public final class v_1 {
          }
 
          if (var1 == 536870912) {
-            this.h.l = 0;
-            this.h.j = this.h.k = 0;
+            this.h.sceneSubState = 0;
+            this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
             return;
          }
 
@@ -519,7 +519,7 @@ public final class v_1 {
    }
 
    public final void d(Graphics var1) {
-      if (this.h.l == 0 && this.i.aq != null) {
+      if (this.h.sceneSubState == 0 && this.i.aq != null) {
          this.i.aq.a(var1);
       }
 

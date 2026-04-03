@@ -3031,8 +3031,8 @@ public final class GlobalStatus {
             }
         } else {
             v();
-            ao_1.c(fs);
-            ao_1.c(fl);
+            UISceneController.c(fs);
+            UISceneController.c(fl);
         }
 
         if (var1.readByte() == 1) {
