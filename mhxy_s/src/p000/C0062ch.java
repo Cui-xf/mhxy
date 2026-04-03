@@ -326,7 +326,7 @@ public final class C0062ch {
     }
 
     /* renamed from: a */
-    public final void m1358a(DataInputStream dataInputStream) {
+    public final void m1358a(DataInputStream dataInputStream) throws IOException {
         f1997h = dataInputStream.readInt();
         f1999j = dataInputStream.readShort();
         f2000k = dataInputStream.readUTF();

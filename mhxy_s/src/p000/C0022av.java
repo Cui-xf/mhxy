@@ -68,7 +68,7 @@ public final class C0022av {
     }
 
     /* renamed from: a */
-    public static void m591a(int i) throws InterruptedException {
+    public static void m591a(int i){
         try {
             Thread.sleep(15);
         } catch (Exception e) {

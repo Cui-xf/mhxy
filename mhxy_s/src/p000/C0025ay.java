@@ -30,8 +30,8 @@ public final class C0025ay extends AbstractC0038bk {
     /* renamed from: a */
     public final int mo30a(int i, int i2) {
         if (m690b(i, i2)) {
-            Object[] objArr = 0;
-            objArr[1] = i2;
+//            Object[] objArr = 0;
+//            objArr[1] = i2;
             if (this.f480e > 0 && i >= (this.f676f + this.f678h) - 15 && i < this.f676f + this.f678h) {
                 if (i2 >= this.f677g && i2 <= this.f677g + 20) {
                     return 1;

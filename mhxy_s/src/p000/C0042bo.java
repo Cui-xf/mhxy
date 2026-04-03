@@ -1,6 +1,7 @@
 package p000;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import javax.microedition.lcdui.Image;
 
 /* renamed from: bo */
@@ -37,7 +38,7 @@ public final class C0042bo {
     }
 
     /* renamed from: a */
-    public final void m698a(DataInputStream dataInputStream) {
+    public final void m698a(DataInputStream dataInputStream) throws IOException {
         this.f737a = dataInputStream.readUTF();
         this.f738b = dataInputStream.readUTF();
         this.f743h = dataInputStream.readUTF();

@@ -69,7 +69,7 @@ public final class C0093y extends AbstractC0038bk {
         return f2574v;
     }
 
-     // p000.AbstractC0038bk
+    // p000.AbstractC0038bk
     /* renamed from: a */
     public final int mo30a(int i, int i2) {
         if (i > (this.f676f + this.f678h) - 30 && i < (this.f676f + this.f678h) - 5 && i2 > this.f677g && i2 < this.f677g + 30) {
@@ -84,12 +84,12 @@ public final class C0093y extends AbstractC0038bk {
         return 0;
     }
 
-     // p000.AbstractC0038bk
+    // p000.AbstractC0038bk
     /* renamed from: a */
     public final void mo31a() {
     }
 
-     // p000.AbstractC0038bk
+    // p000.AbstractC0038bk
     /* renamed from: a */
     public final void mo32a(int i) {
         int i2 = 0;
@@ -117,7 +117,7 @@ public final class C0093y extends AbstractC0038bk {
         this.f2578m = str;
     }
 
-     // p000.AbstractC0038bk
+    // p000.AbstractC0038bk
     /* renamed from: a */
     public final void mo33a(Graphics graphics) {
         graphics.setClip(this.f676f, this.f677g, this.f678h, this.f679i);
@@ -150,7 +150,7 @@ public final class C0093y extends AbstractC0038bk {
         graphics.drawImage(f2573e.f598a, (this.f676f + this.f678h) - f2573e.f599b, (this.f677g + this.f679i) - f2573e.f600c, 20);
     }
 
-     // p000.AbstractC0038bk
+    // p000.AbstractC0038bk
     /* renamed from: b */
     public final void mo34b() {
         int i = 0;
@@ -192,9 +192,10 @@ public final class C0093y extends AbstractC0038bk {
         int iM691e = this.f677g + 31;
         int iM691e2 = (this.f679i - 25) - 10;
         if (this.f2582q != -1) {
-            ((C0006af) this.f2586u.elementAt(this.f2582q)).m689a(i2, iM691e, this.f678h - 10, 25);
-            iM691e += r0.m691e() - 3;
-            iM691e2 -= r0.m691e() - 3;
+            C0006af aa = (C0006af) this.f2586u.elementAt(this.f2582q);
+            aa.m689a(i2, iM691e, this.f678h - 10, 25);
+            iM691e += aa.m691e() - 3;
+            iM691e2 -= aa.m691e() - 3;
         }
         if (this.f2585t != -1) {
             C0089u c0089u = (C0089u) this.f2586u.elementAt(this.f2585t);

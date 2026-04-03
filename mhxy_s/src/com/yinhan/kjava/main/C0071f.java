@@ -1253,16 +1253,7 @@ public final class C0071f {
         }
     }
 
-    /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
-    /* JADX WARN: Code restructure failed: missing block: B:735:0x0218, code lost:
-    
-        continue;
-     */
-    /* JADX WARN: Removed duplicated region for block: B:59:0x01e7  */
     /* renamed from: a */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-    */
     public final void m1550a(int i, int i2) {
         boolean z;
         if (this.f2231a == null || this.f2232b.f2216j != 7) {
@@ -1270,175 +1261,14 @@ public final class C0071f {
         }
         switch (this.f2231a.f358k) {
             case 0:
-                if (this.f2231a.f358k != 0 || this.f2231a.f182J == null) {
-                    if (C0047bt.f1766t != null) {
-                        for (int i3 = 0; i3 < C0047bt.f1766t.length; i3++) {
-                            if (C0047bt.f1766t[i3] != null && C0047bt.f1766t[i3].f532x && C0015ao.f175u != null && ((i >= ((C0047bt.f1766t[i3].f511c - C0015ao.f167h) + this.f2231a.m456g()) - (C0047bt.f1766t[i3].m616c() / 2) && i <= (C0047bt.f1766t[i3].f511c - C0015ao.f167h) + this.f2231a.m456g() + (C0047bt.f1766t[i3].m616c() / 2) && i2 >= ((C0047bt.f1766t[i3].f512d - C0015ao.f168i) + this.f2231a.m460h()) - C0047bt.f1766t[i3].m617d() && i2 <= (C0047bt.f1766t[i3].f512d - C0015ao.f168i) + this.f2231a.m460h()) || ((i >= (C0047bt.f1766t[i3].f511c - C0015ao.f167h) + this.f2231a.m456g() + (C0047bt.f1766t[i3].m616c() / 2) && i <= (C0047bt.f1766t[i3].f511c - C0015ao.f167h) + this.f2231a.m456g() + (C0047bt.f1766t[i3].m616c() / 2) + C0015ao.f175u.m635i() && i2 >= ((C0047bt.f1766t[i3].f512d - C0015ao.f168i) + this.f2231a.m460h()) - C0047bt.f1766t[i3].m617d() && i2 <= (((C0047bt.f1766t[i3].f512d - C0015ao.f168i) + this.f2231a.m460h()) - C0047bt.f1766t[i3].m617d()) + C0015ao.f175u.m636j()) || (i >= ((C0047bt.f1766t[i3].f511c - C0015ao.f167h) + this.f2231a.m456g()) - (C0015ao.f173s.m635i() / 2) && i <= (C0047bt.f1766t[i3].f511c - C0015ao.f167h) + this.f2231a.m456g() + (C0015ao.f173s.m635i() / 2) && i2 >= ((((C0047bt.f1766t[i3].f512d - C0015ao.f168i) + this.f2231a.m460h()) - C0047bt.f1766t[i3].m617d()) - C0088t.f2524j) - C0015ao.f173s.m636j() && i2 <= (((C0047bt.f1766t[i3].f512d - C0015ao.f168i) + this.f2231a.m460h()) - C0047bt.f1766t[i3].m617d()) - C0088t.f2524j)))) {
-                                this.f2231a.m378a(1073741824);
-                                if (!this.f2231a.f181I.f17c.isEmpty()) {
-                                    this.f2231a.f181I.f17c.removeAllElements();
-                                    this.f2231a.f181I.m17a(true);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    if (C0015ao.m310i() && this.f2231a.f181I.f399g != null) {
-                        switch (this.f2231a.f181I.f400h) {
-                            case 0:
-                                if (i >= (((this.f2231a.f181I.f402j + 16) - (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g())) - 3 && i <= (((this.f2231a.f181I.f402j + 16) + (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g())) - 5 && i2 >= ((this.f2231a.f181I.f403k + 16) - this.f2231a.f181I.f399g.m634h()) - (C0015ao.f168i - this.f2231a.m460h()) && i2 <= (this.f2231a.f181I.f403k + 16) - (C0015ao.f168i - this.f2231a.m460h())) {
-                                    this.f2232b.f2126a = 536870912;
-                                    this.f2231a.f181I.f17c.removeAllElements();
-                                    this.f2231a.f181I.m17a(true);
-                                    z = true;
-                                    break;
-                                }
-                                break;
-                            case 1:
-                                if (i >= ((this.f2231a.f181I.f402j + 8) - (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i <= ((this.f2231a.f181I.f402j + 8) + (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i2 >= (this.f2231a.f181I.f403k - (C0015ao.f168i - this.f2231a.m460h())) - 12 && i2 <= ((this.f2231a.f181I.f403k + this.f2231a.f181I.f399g.m634h()) - (C0015ao.f168i - this.f2231a.m460h())) - 5) {
-                                    this.f2232b.f2126a = 536870912;
-                                    this.f2231a.f181I.f17c.removeAllElements();
-                                    this.f2231a.f181I.m17a(true);
-                                    z = true;
-                                    break;
-                                }
-                                break;
-                            case 2:
-                                if (i >= ((this.f2231a.f181I.f402j - (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g())) + 4 && i <= ((this.f2231a.f181I.f402j + (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g())) + 4 && i2 >= ((this.f2231a.f181I.f403k + 16) - this.f2231a.f181I.f399g.m634h()) - (C0015ao.f168i - this.f2231a.m460h()) && i2 <= (this.f2231a.f181I.f403k + 16) - (C0015ao.f168i - this.f2231a.m460h())) {
-                                    this.f2232b.f2126a = 536870912;
-                                    this.f2231a.f181I.f17c.removeAllElements();
-                                    this.f2231a.f181I.m17a(true);
-                                    z = true;
-                                    break;
-                                }
-                                break;
-                            case 3:
-                                if (i >= ((this.f2231a.f181I.f402j + 8) - (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i <= ((this.f2231a.f181I.f402j + 8) + (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i2 >= (((this.f2231a.f181I.f403k + 8) - this.f2231a.f181I.f399g.m634h()) - (C0015ao.f168i - this.f2231a.m460h())) - 4 && i2 <= ((this.f2231a.f181I.f403k + 8) - (C0015ao.f168i - this.f2231a.m460h())) + 4) {
-                                    this.f2232b.f2126a = 536870912;
-                                    this.f2231a.f181I.f17c.removeAllElements();
-                                    this.f2231a.f181I.m17a(true);
-                                    z = true;
-                                    break;
-                                }
-                                break;
-                        }
-                    } else {
-                        z = false;
-                    }
-                    if (!z) {
-                        if (C0047bt.f1152fz != null && C0047bt.f1152fz.length > 0 && C0047bt.f1765s != 0) {
-                            int i4 = 0;
-                            while (true) {
-                                if (i4 < C0047bt.f1152fz.length) {
-                                    if (C0047bt.f1152fz[i4] == 1 && this.f2231a.f181I.f396d.f436f != null) {
-                                        switch (this.f2231a.f181I.f396d.f440j) {
-                                            case 0:
-                                                if (i < ((this.f2231a.f181I.f396d.f438h + 16) - (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) || i > ((this.f2231a.f181I.f396d.f438h + 16) + (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) || i2 < ((this.f2231a.f181I.f396d.f439i + 16) - this.f2231a.f181I.f396d.f436f.m634h()) - (C0015ao.f168i - this.f2231a.m460h()) || i2 > (this.f2231a.f181I.f396d.f439i + 16) - (C0015ao.f168i - this.f2231a.m460h())) {
-                                                    break;
-                                                } else {
-                                                    this.f2232b.f2126a = 48;
-                                                    this.f2231a.f181I.f17c.removeAllElements();
-                                                    this.f2231a.f181I.m17a(true);
-                                                    break;
-                                                }
-                                                break;
-                                            case 1:
-                                                if (i < ((this.f2231a.f181I.f396d.f438h + 8) - (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) || i > ((this.f2231a.f181I.f396d.f438h + 8) + (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) || i2 < this.f2231a.f181I.f396d.f439i - (C0015ao.f168i - this.f2231a.m460h()) || i2 > (this.f2231a.f181I.f396d.f439i + this.f2231a.f181I.f396d.f436f.m634h()) - (C0015ao.f168i - this.f2231a.m460h())) {
-                                                    break;
-                                                } else {
-                                                    this.f2232b.f2126a = 48;
-                                                    this.f2231a.f181I.f17c.removeAllElements();
-                                                    this.f2231a.f181I.m17a(true);
-                                                    break;
-                                                }
-                                                break;
-                                            case 2:
-                                                if (i < (this.f2231a.f181I.f396d.f438h - (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) || i > (this.f2231a.f181I.f396d.f438h + (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) || i2 < ((this.f2231a.f181I.f396d.f439i + 16) - this.f2231a.f181I.f396d.f436f.m634h()) - (C0015ao.f168i - this.f2231a.m460h()) || i2 > (this.f2231a.f181I.f396d.f439i + 16) - (C0015ao.f168i - this.f2231a.m460h())) {
-                                                    break;
-                                                } else {
-                                                    this.f2232b.f2126a = 48;
-                                                    this.f2231a.f181I.f17c.removeAllElements();
-                                                    this.f2231a.f181I.m17a(true);
-                                                    break;
-                                                }
-                                                break;
-                                            case 3:
-                                                if (i < ((this.f2231a.f181I.f396d.f438h + 8) - (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) || i > ((this.f2231a.f181I.f396d.f438h + 8) + (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) || i2 < ((this.f2231a.f181I.f396d.f439i + 8) - this.f2231a.f181I.f396d.f436f.m634h()) - (C0015ao.f168i - this.f2231a.m460h()) || i2 > (this.f2231a.f181I.f396d.f439i + 8) - (C0015ao.f168i - this.f2231a.m460h())) {
-                                                    break;
-                                                } else {
-                                                    this.f2232b.f2126a = 48;
-                                                    this.f2231a.f181I.f17c.removeAllElements();
-                                                    this.f2231a.f181I.m17a(true);
-                                                    break;
-                                                }
-                                                break;
-                                        }
-                                    }
-                                    i4++;
-                                }
-                            }
-                        }
-                        if (C0015ao.f145aW[6] != 0 || i < 2 || i > RunnableC0066a.f2114f.f74e + 2 || i2 < C0088t.f2524j + 2 || i2 > C0088t.f2524j + 2 + RunnableC0066a.f2114f.f75f) {
-                            if (this.f2231a.f358k != 25) {
-                                if (i >= (C0088t.f2516b - C0042bo.f736g[0].getWidth()) + (-10) && i <= C0088t.f2516b + (-10) && i2 >= 40 && i2 <= C0042bo.f736g[0].getHeight() + 40) {
-                                    if (C0047bt.f824P.f61o) {
-                                        this.f2231a.m438d((byte) 1);
-                                        break;
-                                    } else if (C0047bt.f823O.f2267u) {
-                                        this.f2231a.m438d((byte) 0);
-                                        break;
-                                    } else if (this.f2231a.f361n && C0015ao.m310i()) {
-                                        this.f2232b.f2126a = 1024;
-                                        break;
-                                    }
-                                }
-                            }
-                            if (C0015ao.f141L == null || i < C0015ao.f141L.f1782e - C0015ao.f167h || i > (C0015ao.f141L.f1782e - C0015ao.f167h) + C0015ao.f141L.f1781d.m633g() || i2 < C0015ao.f141L.f1783f - C0015ao.f168i || i2 > (C0015ao.f141L.f1783f - C0015ao.f168i) + C0015ao.f141L.f1781d.m634h()) {
-                                if (i < (C0088t.f2516b - 67) + 37 || i > (C0088t.f2516b - 67) + 37 + C0015ao.f176v.f598a.getWidth() || i2 < 8 || i2 > C0015ao.f176v.f598a.getHeight() + 8) {
-                                    if (i < C0088t.f2516b - 67 || i > (C0088t.f2516b - 67) + 33 || i2 < 5 || i2 > 18) {
-                                        if (i < 20 || i > C0088t.f2523i.stringWidth(C0047bt.f866ae) + 20 || i2 < 2 || i2 > C0088t.f2524j + 2) {
-                                            if (i < C0088t.f2516b - 67 || i > (C0088t.f2516b - 67) + 16 || i2 < 24 || i2 > 34) {
-                                                if (i < 1 || i > C0088t.f2523i.stringWidth("菜单") + 1 || i2 < (C0088t.f2517c - C0088t.f2524j) - 1 || i2 > C0088t.f2517c - 1) {
-                                                    if (i < C0088t.f2516b - C0088t.f2523i.stringWidth("聊天") || i > C0088t.f2516b || i2 < (C0088t.f2517c - C0088t.f2524j) - 1 || i2 > C0088t.f2517c - 1) {
-                                                        if (!C0047bt.f935bu) {
-                                                            this.f2231a.f331d = (byte) -1;
-                                                            this.f2232b.m1441b((C0015ao.f167h + i) - this.f2231a.m456g(), (C0015ao.f168i + i2) - this.f2231a.m460h());
-                                                            break;
-                                                        }
-                                                    } else {
-                                                        this.f2232b.f2126a = 1024;
-                                                        break;
-                                                    }
-                                                } else {
-                                                    this.f2232b.f2126a = 268435456;
-                                                    break;
-                                                }
-                                            } else if (C0047bt.f920bf != 0) {
-                                                this.f2231a.m479p();
-                                                break;
-                                            }
-                                        } else {
-                                            this.f2232b.f2126a = 513;
-                                            break;
-                                        }
-                                    } else {
-                                        this.f2232b.f2126a = 515;
-                                        break;
-                                    }
-                                } else {
-                                    this.f2232b.f2126a = 2048;
-                                    break;
-                                }
-                            } else {
-                                this.f2232b.f2126a = 1073741824;
-                                if (!this.f2231a.f181I.f17c.isEmpty()) {
-                                    this.f2231a.f181I.f17c.removeAllElements();
-                                    this.f2231a.f181I.m17a(true);
-                                    break;
-                                }
-                            }
-                        } else {
-                            this.f2232b.f2126a = 519;
+                if (this.f2231a.f359l == 0 && this.f2231a.f182J != null) {
+                    this.f2232b.f2126a = C0055ca.m1314b(i, i2);
+                    break;
+                }
+                if (C0047bt.f1766t != null) {
+                    for (int i3 = 0; i3 < C0047bt.f1766t.length; i3++) {
+                        if (C0047bt.f1766t[i3] != null && C0047bt.f1766t[i3].f532x && C0015ao.f175u != null && ((i >= ((C0047bt.f1766t[i3].f511c - C0015ao.f167h) + this.f2231a.m456g()) - (C0047bt.f1766t[i3].m616c() / 2) && i <= (C0047bt.f1766t[i3].f511c - C0015ao.f167h) + this.f2231a.m456g() + (C0047bt.f1766t[i3].m616c() / 2) && i2 >= ((C0047bt.f1766t[i3].f512d - C0015ao.f168i) + this.f2231a.m460h()) - C0047bt.f1766t[i3].m617d() && i2 <= (C0047bt.f1766t[i3].f512d - C0015ao.f168i) + this.f2231a.m460h()) || ((i >= (C0047bt.f1766t[i3].f511c - C0015ao.f167h) + this.f2231a.m456g() + (C0047bt.f1766t[i3].m616c() / 2) && i <= (C0047bt.f1766t[i3].f511c - C0015ao.f167h) + this.f2231a.m456g() + (C0047bt.f1766t[i3].m616c() / 2) + C0015ao.f175u.m635i() && i2 >= ((C0047bt.f1766t[i3].f512d - C0015ao.f168i) + this.f2231a.m460h()) - C0047bt.f1766t[i3].m617d() && i2 <= (((C0047bt.f1766t[i3].f512d - C0015ao.f168i) + this.f2231a.m460h()) - C0047bt.f1766t[i3].m617d()) + C0015ao.f175u.m636j()) || (i >= ((C0047bt.f1766t[i3].f511c - C0015ao.f167h) + this.f2231a.m456g()) - (C0015ao.f173s.m635i() / 2) && i <= (C0047bt.f1766t[i3].f511c - C0015ao.f167h) + this.f2231a.m456g() + (C0015ao.f173s.m635i() / 2) && i2 >= ((((C0047bt.f1766t[i3].f512d - C0015ao.f168i) + this.f2231a.m460h()) - C0047bt.f1766t[i3].m617d()) - C0088t.f2524j) - C0015ao.f173s.m636j() && i2 <= (((C0047bt.f1766t[i3].f512d - C0015ao.f168i) + this.f2231a.m460h()) - C0047bt.f1766t[i3].m617d()) - C0088t.f2524j)))) {
+                            this.f2231a.m378a(1073741824);
                             if (!this.f2231a.f181I.f17c.isEmpty()) {
                                 this.f2231a.f181I.f17c.removeAllElements();
                                 this.f2231a.f181I.m17a(true);
@@ -1446,9 +1276,154 @@ public final class C0071f {
                             }
                         }
                     }
-                } else {
-                    this.f2232b.f2126a = C0055ca.m1314b(i, i2);
+                }
+                z = false;
+                if (C0015ao.m310i() && this.f2231a.f181I.f399g != null) {
+                    switch (this.f2231a.f181I.f400h) {
+                        case 0:
+                            if (i >= (((this.f2231a.f181I.f402j + 16) - (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g())) - 3 && i <= (((this.f2231a.f181I.f402j + 16) + (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g())) - 5 && i2 >= ((this.f2231a.f181I.f403k + 16) - this.f2231a.f181I.f399g.m634h()) - (C0015ao.f168i - this.f2231a.m460h()) && i2 <= (this.f2231a.f181I.f403k + 16) - (C0015ao.f168i - this.f2231a.m460h())) {
+                                this.f2232b.f2126a = 536870912;
+                                this.f2231a.f181I.f17c.removeAllElements();
+                                this.f2231a.f181I.m17a(true);
+                                z = true;
+                            }
+                            break;
+                        case 1:
+                            if (i >= ((this.f2231a.f181I.f402j + 8) - (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i <= ((this.f2231a.f181I.f402j + 8) + (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i2 >= (this.f2231a.f181I.f403k - (C0015ao.f168i - this.f2231a.m460h())) - 12 && i2 <= ((this.f2231a.f181I.f403k + this.f2231a.f181I.f399g.m634h()) - (C0015ao.f168i - this.f2231a.m460h())) - 5) {
+                                this.f2232b.f2126a = 536870912;
+                                this.f2231a.f181I.f17c.removeAllElements();
+                                this.f2231a.f181I.m17a(true);
+                                z = true;
+                            }
+                            break;
+                        case 2:
+                            if (i >= ((this.f2231a.f181I.f402j - (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g())) + 4 && i <= ((this.f2231a.f181I.f402j + (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g())) + 4 && i2 >= ((this.f2231a.f181I.f403k + 16) - this.f2231a.f181I.f399g.m634h()) - (C0015ao.f168i - this.f2231a.m460h()) && i2 <= (this.f2231a.f181I.f403k + 16) - (C0015ao.f168i - this.f2231a.m460h())) {
+                                this.f2232b.f2126a = 536870912;
+                                this.f2231a.f181I.f17c.removeAllElements();
+                                this.f2231a.f181I.m17a(true);
+                                z = true;
+                            }
+                            break;
+                        case 3:
+                            if (i >= ((this.f2231a.f181I.f402j + 8) - (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i <= ((this.f2231a.f181I.f402j + 8) + (this.f2231a.f181I.f399g.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i2 >= (((this.f2231a.f181I.f403k + 8) - this.f2231a.f181I.f399g.m634h()) - (C0015ao.f168i - this.f2231a.m460h())) - 4 && i2 <= ((this.f2231a.f181I.f403k + 8) - (C0015ao.f168i - this.f2231a.m460h())) + 4) {
+                                this.f2232b.f2126a = 536870912;
+                                this.f2231a.f181I.f17c.removeAllElements();
+                                this.f2231a.f181I.m17a(true);
+                                z = true;
+                            }
+                            break;
+                    }
+                }
+                if (z) {
                     break;
+                }
+                if (C0047bt.f1152fz != null && C0047bt.f1152fz.length > 0 && C0047bt.f1765s != 0) {
+                    for (int i4 = 0; i4 < C0047bt.f1152fz.length; i4++) {
+                        if (C0047bt.f1152fz[i4] == 1 && this.f2231a.f181I.f396d.f436f != null) {
+                            switch (this.f2231a.f181I.f396d.f440j) {
+                                case 0:
+                                    if (i >= ((this.f2231a.f181I.f396d.f438h + 16) - (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i <= ((this.f2231a.f181I.f396d.f438h + 16) + (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i2 >= ((this.f2231a.f181I.f396d.f439i + 16) - this.f2231a.f181I.f396d.f436f.m634h()) - (C0015ao.f168i - this.f2231a.m460h()) && i2 <= (this.f2231a.f181I.f396d.f439i + 16) - (C0015ao.f168i - this.f2231a.m460h())) {
+                                        this.f2232b.f2126a = 48;
+                                        this.f2231a.f181I.f17c.removeAllElements();
+                                        this.f2231a.f181I.m17a(true);
+                                        break;
+                                    }
+                                    continue;
+                                case 1:
+                                    if (i >= ((this.f2231a.f181I.f396d.f438h + 8) - (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i <= ((this.f2231a.f181I.f396d.f438h + 8) + (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i2 >= this.f2231a.f181I.f396d.f439i - (C0015ao.f168i - this.f2231a.m460h()) && i2 <= (this.f2231a.f181I.f396d.f439i + this.f2231a.f181I.f396d.f436f.m634h()) - (C0015ao.f168i - this.f2231a.m460h())) {
+                                        this.f2232b.f2126a = 48;
+                                        this.f2231a.f181I.f17c.removeAllElements();
+                                        this.f2231a.f181I.m17a(true);
+                                        break;
+                                    }
+                                    continue;
+                                case 2:
+                                    if (i >= (this.f2231a.f181I.f396d.f438h - (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i <= (this.f2231a.f181I.f396d.f438h + (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i2 >= ((this.f2231a.f181I.f396d.f439i + 16) - this.f2231a.f181I.f396d.f436f.m634h()) - (C0015ao.f168i - this.f2231a.m460h()) && i2 <= (this.f2231a.f181I.f396d.f439i + 16) - (C0015ao.f168i - this.f2231a.m460h())) {
+                                        this.f2232b.f2126a = 48;
+                                        this.f2231a.f181I.f17c.removeAllElements();
+                                        this.f2231a.f181I.m17a(true);
+                                        break;
+                                    }
+                                    continue;
+                                case 3:
+                                    if (i >= ((this.f2231a.f181I.f396d.f438h + 8) - (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i <= ((this.f2231a.f181I.f396d.f438h + 8) + (this.f2231a.f181I.f396d.f436f.m633g() / 2)) - (C0015ao.f167h - this.f2231a.m456g()) && i2 >= ((this.f2231a.f181I.f396d.f439i + 8) - this.f2231a.f181I.f396d.f436f.m634h()) - (C0015ao.f168i - this.f2231a.m460h()) && i2 <= (this.f2231a.f181I.f396d.f439i + 8) - (C0015ao.f168i - this.f2231a.m460h())) {
+                                        this.f2232b.f2126a = 48;
+                                        this.f2231a.f181I.f17c.removeAllElements();
+                                        this.f2231a.f181I.m17a(true);
+                                        break;
+                                    }
+                                    continue;
+                            }
+                            break;
+                        }
+                    }
+                }
+                if (C0015ao.f145aW[6] != 0 || i < 2 || i > RunnableC0066a.f2114f.f74e + 2 || i2 < C0088t.f2524j + 2 || i2 > C0088t.f2524j + 2 + RunnableC0066a.f2114f.f75f) {
+                    if (this.f2231a.f358k != 25) {
+                        if (i >= (C0088t.f2516b - C0042bo.f736g[0].getWidth()) + (-10) && i <= C0088t.f2516b + (-10) && i2 >= 40 && i2 <= C0042bo.f736g[0].getHeight() + 40) {
+                            if (C0047bt.f824P.f61o) {
+                                this.f2231a.m438d((byte) 1);
+                                break;
+                            } else if (C0047bt.f823O.f2267u) {
+                                this.f2231a.m438d((byte) 0);
+                                break;
+                            } else if (this.f2231a.f361n && C0015ao.m310i()) {
+                                this.f2232b.f2126a = 1024;
+                                break;
+                            }
+                        }
+                    }
+                    if (C0015ao.f141L == null || i < C0015ao.f141L.f1782e - C0015ao.f167h || i > (C0015ao.f141L.f1782e - C0015ao.f167h) + C0015ao.f141L.f1781d.m633g() || i2 < C0015ao.f141L.f1783f - C0015ao.f168i || i2 > (C0015ao.f141L.f1783f - C0015ao.f168i) + C0015ao.f141L.f1781d.m634h()) {
+                        if (i < (C0088t.f2516b - 67) + 37 || i > (C0088t.f2516b - 67) + 37 + C0015ao.f176v.f598a.getWidth() || i2 < 8 || i2 > C0015ao.f176v.f598a.getHeight() + 8) {
+                            if (i < C0088t.f2516b - 67 || i > (C0088t.f2516b - 67) + 33 || i2 < 5 || i2 > 18) {
+                                if (i < 20 || i > C0088t.f2523i.stringWidth(C0047bt.f866ae) + 20 || i2 < 2 || i2 > C0088t.f2524j + 2) {
+                                    if (i < C0088t.f2516b - 67 || i > (C0088t.f2516b - 67) + 16 || i2 < 24 || i2 > 34) {
+                                        if (i < 1 || i > C0088t.f2523i.stringWidth("菜单") + 1 || i2 < (C0088t.f2517c - C0088t.f2524j) - 1 || i2 > C0088t.f2517c - 1) {
+                                            if (i < C0088t.f2516b - C0088t.f2523i.stringWidth("聊天") || i > C0088t.f2516b || i2 < (C0088t.f2517c - C0088t.f2524j) - 1 || i2 > C0088t.f2517c - 1) {
+                                                if (!C0047bt.f935bu) {
+                                                    this.f2231a.f331d = (byte) -1;
+                                                    this.f2232b.m1441b((C0015ao.f167h + i) - this.f2231a.m456g(), (C0015ao.f168i + i2) - this.f2231a.m460h());
+                                                    break;
+                                                }
+                                            } else {
+                                                this.f2232b.f2126a = 1024;
+                                                break;
+                                            }
+                                        } else {
+                                            this.f2232b.f2126a = 268435456;
+                                            break;
+                                        }
+                                    } else if (C0047bt.f920bf != 0) {
+                                        this.f2231a.m479p();
+                                        break;
+                                    }
+                                } else {
+                                    this.f2232b.f2126a = 513;
+                                    break;
+                                }
+                            } else {
+                                this.f2232b.f2126a = 515;
+                                break;
+                            }
+                        } else {
+                            this.f2232b.f2126a = 2048;
+                            break;
+                        }
+                    } else {
+                        this.f2232b.f2126a = 1073741824;
+                        if (!this.f2231a.f181I.f17c.isEmpty()) {
+                            this.f2231a.f181I.f17c.removeAllElements();
+                            this.f2231a.f181I.m17a(true);
+                            break;
+                        }
+                    }
+                } else {
+                    this.f2232b.f2126a = 519;
+                    if (!this.f2231a.f181I.f17c.isEmpty()) {
+                        this.f2231a.f181I.f17c.removeAllElements();
+                        this.f2231a.f181I.m17a(true);
+                        break;
+                    }
                 }
                 break;
             case 1:

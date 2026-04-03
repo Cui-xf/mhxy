@@ -69,7 +69,7 @@ mkdir -p "${SCRIPT_DIR}/../classes"
 echo "*** Compiling source files ***"
 # Source files are UTF-8
 "$JAVAC" -encoding UTF-8 \
-  -bootclasspath "${CLDCAPI}:${MIDPAPI}:${RT_JAR}" \
+  -bootclasspath "${RT_JAR}:${CLDCAPI}:${MIDPAPI}" \
   -source 1.4 -target 1.4 \
   -d "${SCRIPT_DIR}/../tmpclasses" \
   -classpath "${SCRIPT_DIR}/../tmpclasses" \

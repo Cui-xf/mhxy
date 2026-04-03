@@ -83,22 +83,22 @@ public final class C0090v {
     }
 
     /* renamed from: b */
-    public static void m1686b(DataInputStream dataInputStream) {
+    public static void m1686b(DataInputStream dataInputStream) throws IOException {
         f2548b = dataInputStream.readUTF();
     }
 
     /* renamed from: c */
-    public static void m1687c(DataInputStream dataInputStream) {
+    public static void m1687c(DataInputStream dataInputStream) throws IOException {
         f2554l = dataInputStream.readByte();
     }
 
     /* renamed from: d */
-    public static void m1688d(DataInputStream dataInputStream) {
+    public static void m1688d(DataInputStream dataInputStream) throws IOException {
         f2550e = dataInputStream.readByte();
     }
 
     /* renamed from: e */
-    public static void m1689e(DataInputStream dataInputStream) {
+    public static void m1689e(DataInputStream dataInputStream) throws IOException {
         C0047bt.f1170gQ = dataInputStream.readShort();
         int i = dataInputStream.readShort();
         C0047bt.f1171gR = dataInputStream.readByte();

@@ -100,7 +100,7 @@ public final class C0031bd implements CommandListener {
     }
 
     /* renamed from: a */
-    public final void m638a(DataInputStream dataInputStream) {
+    public final void m638a(DataInputStream dataInputStream) throws IOException {
         this.f580e = dataInputStream.readUTF();
         this.f581f = dataInputStream.readUTF();
         this.f582g = dataInputStream.readShort();

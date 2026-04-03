@@ -979,7 +979,7 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
     }
 
     /* renamed from: c */
-    static void m1407c(RunnableC0066a runnableC0066a) throws Throwable {
+    static void m1407c(RunnableC0066a runnableC0066a) {
         DataInputStream dataInputStreamM1389a;
         C0048bu c0048bu = new C0048bu("/", "ui");
         f2097ac = c0048bu;
@@ -1100,7 +1100,6 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
                 } catch (RecordStoreException e7) {
                 }
             }
-            throw th;
         }
         runnableC0066a.f2218l = new StringBuffer();
         runnableC0066a.f2149aq = new C0081m();
@@ -1119,7 +1118,7 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
 
     /* renamed from: c */
     private void m1408c(Graphics graphics) {
-        this.f2201bt = C0088t.f2517c <= 240 ? 2 : ((C0088t.f2517c - this.f2192bh.getHeight()) - (this.f2193bi.getHeight() * 7)) / 3;
+        this.f2201bt = (C0088t.f2517c <= 240 || this.f2192bh == null || this.f2193bi == null) ? 2 : ((C0088t.f2517c - this.f2192bh.getHeight()) - (this.f2193bi.getHeight() * 7)) / 3;
         if (this.f2191bg != null) {
             graphics.drawImage(this.f2191bg, (C0088t.f2516b - this.f2191bg.getWidth()) >> 1, (C0088t.f2517c - this.f2191bg.getHeight()) >> 1, 20);
         }
@@ -3627,7 +3626,7 @@ public final class RunnableC0066a extends Canvas implements Runnable, CommandLis
                                     i4 = 1073741824;
                                 } else {
                                     runnableC0066a2.f2206bz = b;
-                                    runnableC0066a2.f2160bA = (byte) (b2 == 0 ? 1 : 0);
+                                    runnableC0066a2.f2160bA = b2;
                                     i4 = 4;
                                 }
                                 runnableC0066a.f2126a = i4;

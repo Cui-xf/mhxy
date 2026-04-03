@@ -3581,7 +3581,7 @@ public final class C0047bt {
     }
 
     /* renamed from: F */
-    public static void m769F(DataInputStream dataInputStream) {
+    public static void m769F(DataInputStream dataInputStream) throws IOException {
         f1312j = dataInputStream.readByte();
         f1259i = dataInputStream.readByte();
     }
@@ -4569,7 +4569,7 @@ public final class C0047bt {
     }
 
     /* renamed from: X */
-    public static void m805X(DataInputStream dataInputStream) {
+    public static void m805X(DataInputStream dataInputStream) throws IOException {
         f1267iH = dataInputStream.readUTF();
     }
 
@@ -4622,7 +4622,7 @@ public final class C0047bt {
     }
 
     /* renamed from: Y */
-    public static void m807Y(DataInputStream dataInputStream) {
+    public static void m807Y(DataInputStream dataInputStream) throws IOException {
         f1269iJ = dataInputStream.readByte();
         for (int i = 0; i < f1268iI.length; i++) {
             f1268iI[i] = dataInputStream.readUTF();
@@ -5085,7 +5085,7 @@ public final class C0047bt {
     }
 
     /* renamed from: a */
-    public static void m822a(DataInputStream dataInputStream, byte b) {
+    public static void m822a(DataInputStream dataInputStream, byte b) throws IOException {
         int i = 0;
         if (b <= 0) {
             f1022db = null;
@@ -5539,7 +5539,7 @@ public final class C0047bt {
     }
 
     /* renamed from: aL */
-    public static void m839aL(DataInputStream dataInputStream) {
+    public static void m839aL(DataInputStream dataInputStream) throws IOException {
         if (f1449le > 0) {
             f1445la = new String[f1449le];
             f1446lb = new String[f1449le];
@@ -5555,7 +5555,7 @@ public final class C0047bt {
     }
 
     /* renamed from: aM */
-    public static void m840aM(DataInputStream dataInputStream) {
+    public static void m840aM(DataInputStream dataInputStream) throws IOException {
         if (f1456ll > 0) {
             f1751rm = new String[f1456ll];
             f1453li = new String[f1456ll];
@@ -6176,7 +6176,7 @@ public final class C0047bt {
     }
 
     /* renamed from: aX */
-    public static void m851aX(DataInputStream dataInputStream) {
+    public static void m851aX(DataInputStream dataInputStream) throws IOException {
         f1559ni = dataInputStream.readUTF();
         C0088t.m1679a(new StringBuffer().append("lottery message=").append(f1559ni).toString());
         if (dataInputStream.readByte() != -1) {
@@ -6260,7 +6260,7 @@ public final class C0047bt {
     }
 
     /* renamed from: aZ */
-    public static void m853aZ(DataInputStream dataInputStream) {
+    public static void m853aZ(DataInputStream dataInputStream) throws IOException {
         f1756rr = dataInputStream.readShort();
         f1568nr = dataInputStream.readUTF();
         f1570nt = new StringBuffer().append("当前骑术等级为").append((int) f1756rr).append("\t").append(dataInputStream.readUTF()).toString();
@@ -6332,12 +6332,12 @@ public final class C0047bt {
     }
 
     /* renamed from: ac */
-    public static void m856ac(DataInputStream dataInputStream) {
+    public static void m856ac(DataInputStream dataInputStream) throws IOException {
         f1344jf = dataInputStream.readUTF();
     }
 
     /* renamed from: ad */
-    public static void m857ad(DataInputStream dataInputStream) {
+    public static void m857ad(DataInputStream dataInputStream) throws IOException {
         f1345jg = dataInputStream.readLong();
         f1346jh = dataInputStream.readShort();
         f1347ji = dataInputStream.readLong();
@@ -6816,18 +6816,18 @@ public final class C0047bt {
     }
 
     /* renamed from: aq */
-    public static void m870aq(DataInputStream dataInputStream) {
+    public static void m870aq(DataInputStream dataInputStream) throws IOException {
         f1399kh = dataInputStream.readInt();
         f1400ki = dataInputStream.readInt();
     }
 
     /* renamed from: ar */
-    public static void m871ar(DataInputStream dataInputStream) {
+    public static void m871ar(DataInputStream dataInputStream) throws IOException {
         f1402kk = dataInputStream.readUTF();
     }
 
     /* renamed from: as */
-    public static void m872as(DataInputStream dataInputStream) {
+    public static void m872as(DataInputStream dataInputStream) throws IOException {
         f1170gQ = dataInputStream.readShort();
         f1171gR = dataInputStream.readByte();
         f1403kl = dataInputStream.readUTF();
@@ -7128,12 +7128,12 @@ public final class C0047bt {
     }
 
     /* renamed from: ax */
-    public static void m877ax(DataInputStream dataInputStream) {
+    public static void m877ax(DataInputStream dataInputStream) throws IOException {
         f1368kC = dataInputStream.readUTF();
     }
 
     /* renamed from: ay */
-    public static void m878ay(DataInputStream dataInputStream) {
+    public static void m878ay(DataInputStream dataInputStream) throws IOException {
         int i = dataInputStream.readByte();
         if (i <= 0) {
             f1369kD = (byte) 0;
@@ -7306,7 +7306,7 @@ public final class C0047bt {
     }
 
     /* renamed from: b */
-    public static void m885b(DataInputStream dataInputStream, byte b) {
+    public static void m885b(DataInputStream dataInputStream, byte b) throws IOException {
         if (b == 1) {
             f1520mw = dataInputStream.readUTF();
         }
@@ -7534,7 +7534,7 @@ public final class C0047bt {
     }
 
     /* renamed from: c */
-    public static void m894c(DataInputStream dataInputStream) {
+    public static void m894c(DataInputStream dataInputStream) throws IOException {
         f879ar = dataInputStream.readShort();
         f866ae = dataInputStream.readUTF();
         f881at = dataInputStream.readShort();
@@ -7546,7 +7546,7 @@ public final class C0047bt {
     }
 
     /* renamed from: c */
-    private static void m895c(DataInputStream dataInputStream, byte b) {
+    private static void m895c(DataInputStream dataInputStream, byte b) throws IOException {
         int i = 0;
         if (b <= 0) {
             f959cR = null;
@@ -7801,7 +7801,7 @@ public final class C0047bt {
     }
 
     /* renamed from: d */
-    private static void m902d(DataInputStream dataInputStream, byte b) {
+    private static void m902d(DataInputStream dataInputStream, byte b) throws IOException {
         f818J = new C0084p[b];
         for (int i = 0; i < b; i++) {
             f818J[i] = new C0084p();
@@ -7958,7 +7958,7 @@ public final class C0047bt {
     }
 
     /* renamed from: e */
-    private static void m907e(DataInputStream dataInputStream, byte b) {
+    private static void m907e(DataInputStream dataInputStream, byte b) throws IOException {
         f817I = new C0084p[b];
         for (int i = 0; i < b; i++) {
             f817I[i] = new C0084p();
@@ -8988,7 +8988,7 @@ public final class C0047bt {
     }
 
     /* renamed from: q */
-    public static void m936q(DataInputStream dataInputStream) {
+    public static void m936q(DataInputStream dataInputStream) throws IOException {
         String[] strArr = new String[4];
         f1014dT = strArr;
         strArr[0] = dataInputStream.readUTF();

@@ -119,15 +119,8 @@ public final class C0039bl extends AbstractC0018ar {
         return this.f696w;
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:18:0x0045 A[Catch: Exception -> 0x0076, TryCatch #0 {Exception -> 0x0076, blocks: (B:3:0x0002, B:5:0x0006, B:7:0x000a, B:9:0x0012, B:11:0x0028, B:13:0x0032, B:15:0x003c, B:16:0x003f, B:18:0x0045, B:19:0x0063, B:20:0x0068, B:22:0x006c, B:36:0x009f, B:24:0x0072, B:28:0x007b, B:30:0x0085, B:32:0x008f, B:33:0x0092, B:34:0x0097, B:35:0x009b, B:37:0x00a4), top: B:39:0x0002 }] */
-    /* JADX WARN: Removed duplicated region for block: B:35:0x009b A[Catch: Exception -> 0x0076, TryCatch #0 {Exception -> 0x0076, blocks: (B:3:0x0002, B:5:0x0006, B:7:0x000a, B:9:0x0012, B:11:0x0028, B:13:0x0032, B:15:0x003c, B:16:0x003f, B:18:0x0045, B:19:0x0063, B:20:0x0068, B:22:0x006c, B:36:0x009f, B:24:0x0072, B:28:0x007b, B:30:0x0085, B:32:0x008f, B:33:0x0092, B:34:0x0097, B:35:0x009b, B:37:0x00a4), top: B:39:0x0002 }] */
-    /* JADX WARN: Removed duplicated region for block: B:36:0x009f A[Catch: Exception -> 0x0076, TryCatch #0 {Exception -> 0x0076, blocks: (B:3:0x0002, B:5:0x0006, B:7:0x000a, B:9:0x0012, B:11:0x0028, B:13:0x0032, B:15:0x003c, B:16:0x003f, B:18:0x0045, B:19:0x0063, B:20:0x0068, B:22:0x006c, B:36:0x009f, B:24:0x0072, B:28:0x007b, B:30:0x0085, B:32:0x008f, B:33:0x0092, B:34:0x0097, B:35:0x009b, B:37:0x00a4), top: B:39:0x0002 }] */
     /* renamed from: a */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-    */
     public final void m694a(C0023aw c0023aw, C0009ai c0009ai, long j) {
-        byte b;
         try {
             if (this.f399g != null) {
                 if (this.f398f == null || this.f398f.size() <= 3) {
@@ -135,41 +128,40 @@ public final class C0039bl extends AbstractC0018ar {
                     C0009ai.m43a(this.f399g, j);
                 } else {
                     short[] sArr = (short[]) this.f398f.elementAt(this.f398f.size() - 1);
+                    int b;
                     if (this.f401i == null) {
                         this.f401i = sArr;
                         b = -1;
-                        if (b == -1) {
-                            m692a(false);
-                            this.f402j = sArr[0];
-                            this.f403k = sArr[1];
-                            m570r();
-                            this.f398f.removeElementAt(this.f398f.size() - 1);
+                    } else if (this.f401i[0] == sArr[0]) {
+                        if (sArr[1] > this.f401i[1]) {
+                            this.f400h = (byte) 3;
                         } else {
-                            m692a(false);
+                            this.f400h = (byte) 1;
                         }
-                        C0009ai.m43a(this.f399g, j);
+                        this.f401i = sArr;
+                        b = this.f400h;
+                    } else if (this.f401i[1] == sArr[1]) {
+                        if (sArr[0] > this.f401i[0]) {
+                            this.f400h = (byte) 2;
+                        } else {
+                            this.f400h = (byte) 0;
+                        }
+                        this.f401i = sArr;
+                        b = this.f400h;
                     } else {
-                        if (this.f401i[0] == sArr[0]) {
-                            if (sArr[1] > this.f401i[1]) {
-                                this.f400h = (byte) 3;
-                            } else {
-                                this.f400h = (byte) 1;
-                            }
-                            this.f401i = sArr;
-                            b = this.f400h;
-                        } else if (this.f401i[1] == sArr[1]) {
-                            if (sArr[0] > this.f401i[0]) {
-                                this.f400h = (byte) 2;
-                            } else {
-                                this.f400h = (byte) 0;
-                            }
-                            this.f401i = sArr;
-                            b = this.f400h;
-                        }
-                        if (b == -1) {
-                        }
-                        C0009ai.m43a(this.f399g, j);
+                        this.f401i = sArr;
+                        b = -1;
                     }
+                    if (b == -1) {
+                        m692a(false);
+                        this.f402j = sArr[0];
+                        this.f403k = sArr[1];
+                        m570r();
+                        this.f398f.removeElementAt(this.f398f.size() - 1);
+                    } else {
+                        m692a(false);
+                    }
+                    C0009ai.m43a(this.f399g, j);
                 }
                 if (this.f396d != null) {
                     this.f396d.mo584a(c0023aw, c0009ai, j);

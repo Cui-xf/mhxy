@@ -17,7 +17,7 @@ final class RunnableC0067b implements Runnable {
     }
 
      // java.lang.Runnable
-    public final void run() throws Throwable {
+    public final void run() {
         if (this.f2223a != RunnableC0066a.f2088aB) {
             RunnableC0066a.m1407c(this.f2224b);
             return;

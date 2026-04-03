@@ -16,7 +16,7 @@ public final class C0037bj {
             RecordStore.deleteRecordStore(str);
             return RecordStore.openRecordStore(str, z);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e.getMessage());
         }
     }
 
@@ -43,8 +43,6 @@ public final class C0037bj {
                         recordStoreM681a.closeRecordStore();
                     } catch (RecordStoreException e4) {
                         e4.printStackTrace();
-                    } catch (RecordStoreNotOpenException e5) {
-                        e5.printStackTrace();
                     }
                 }
             }
@@ -54,11 +52,8 @@ public final class C0037bj {
                     recordStoreM681a.closeRecordStore();
                 } catch (RecordStoreException e6) {
                     e6.printStackTrace();
-                } catch (RecordStoreNotOpenException e7) {
-                    e7.printStackTrace();
                 }
             }
-            throw th;
         }
     }
 

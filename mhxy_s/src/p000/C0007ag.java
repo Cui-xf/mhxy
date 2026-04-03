@@ -1,6 +1,7 @@
 package p000;
 
 import com.yinhan.kjava.main.RunnableC0066a;
+
 import javax.microedition.lcdui.Image;
 
 /* renamed from: ag */
@@ -65,7 +66,7 @@ public final class C0007ag {
     public boolean f61o = false;
 
     static {
-        new String[1][0] = "查看";
+        String[] var10000 = new String[]{"查看"};
         f46a = new String[]{"Bug", "建议", "咨询"};
     }
 

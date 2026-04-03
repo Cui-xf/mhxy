@@ -66,13 +66,13 @@ public final class C0024ax {
             f474e[42] = (byte) (i >>> 8);
             f474e[43] = (byte) i;
             int iM607a = m607a(f474e, 37, 7);
-            f474e[44] = iM607a >> 24;
+            f474e[44] = (byte) (iM607a >> 24);
             f474e[45] = (byte) (iM607a >>> 16);
             f474e[46] = (byte) (iM607a >>> 8);
             f474e[47] = (byte) iM607a;
             f474e[56] = b;
             int iM607a2 = m607a(f474e, 52, 5);
-            f474e[57] = iM607a2 >> 24;
+            f474e[57] = (byte) (iM607a2 >> 24);
             f474e[58] = (byte) (iM607a2 >>> 16);
             f474e[59] = (byte) (iM607a2 >>> 8);
             f474e[60] = (byte) iM607a2;

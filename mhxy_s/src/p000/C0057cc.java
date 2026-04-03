@@ -475,7 +475,7 @@ public final class C0057cc {
     }
 
     /* renamed from: b */
-    public final void m1339b(DataInputStream dataInputStream) {
+    public final void m1339b(DataInputStream dataInputStream) throws IOException {
         this.f1920i = dataInputStream.readShort();
     }
 }

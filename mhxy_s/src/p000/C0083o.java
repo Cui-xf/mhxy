@@ -883,6 +883,7 @@ public final class C0083o {
                     graphics2 = graphics;
                 } else if (this.f2407O == null || i6 - 2 >= this.f2407O.length) {
                     i5 = i6 + 1;
+                    continue;
                 } else {
                     c0009ai = this.f2416k;
                     if (this.f2407O[i6 - 2]) {
@@ -928,7 +929,7 @@ public final class C0083o {
                 C0055ca.m1324c(graphics);
             }
         } else {
-            if (this.f2398F == null && this.f2398F == "") {
+            if (this.f2398F == "") {
                 return;
             }
             if (this.f2413f == 1) {

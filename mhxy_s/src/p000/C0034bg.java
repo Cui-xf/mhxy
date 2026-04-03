@@ -392,7 +392,7 @@ public final class C0034bg implements CommandListener {
     }
 
     /* renamed from: k */
-    private void m666k() throws IOException {
+    private void m666k(){
         byte b = 2;
         String string = this.f651n.getString();
         String string2 = this.f652o.getString();
@@ -688,7 +688,7 @@ public final class C0034bg implements CommandListener {
         this.f642a = (byte) 9;
     }
 
-    public final void commandAction(Command command, Displayable displayable) throws Throwable {
+    public final void commandAction(Command command, Displayable displayable) {
         int i = 2;
         String label = command.getLabel();
         if (label == null) {
@@ -1089,7 +1089,6 @@ public final class C0034bg implements CommandListener {
                         }
                     }
                 }
-                break;
             case 8:
                 if (this.f630M == 7) {
                     if (!label.equals("提交")) {

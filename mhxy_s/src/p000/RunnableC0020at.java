@@ -126,7 +126,7 @@ public final class RunnableC0020at implements Runnable {
         }
         try {
             if (this.f424c == null) {
-                this.f424c = Connector.open(C0022av.f444c);
+                this.f424c = (SocketConnection) Connector.open(C0022av.f444c);
                 this.f424c.setSocketOption((byte) 2, 1);
                 this.f424c.setSocketOption((byte) 1, 5);
                 this.f424c.setSocketOption((byte) 0, 10000);
@@ -161,7 +161,7 @@ public final class RunnableC0020at implements Runnable {
     }
 
      // java.lang.Runnable
-    public final void run() throws Throwable {
+    public final void run() {
         while (this.f429h && C0022av.f445d != 3) {
             try {
                 if (this.f424c != null && this.f426e != null) {

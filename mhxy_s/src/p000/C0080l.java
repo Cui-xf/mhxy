@@ -189,42 +189,43 @@ public final class C0080l extends AbstractC0012al {
         this.f2326u = false;
     }
 
-    /* JADX WARN: Removed duplicated region for block: B:55:0x00a4  */
      // p000.AbstractC0012al
     /* renamed from: b */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-    */
     public final int mo69b(int i, int i2) {
-        boolean z;
+        int z;
         if (this.f2306a != null) {
-            z = i >= this.f2311f && i <= this.f2311f + this.f2313h && i2 >= this.f2312g && i2 <= this.f2312g + this.f2314i;
+            z = (i >= this.f2311f && i <= this.f2311f + this.f2313h && i2 >= this.f2312g && i2 <= this.f2312g + this.f2314i) ? 1 : 0;
         } else if (this.f2307b != null) {
             if (i >= this.f2311f && i <= this.f2311f + this.f2313h && i2 >= this.f2312g && i2 <= this.f2312g + this.f2314i) {
-                z = true;
+                z = 1;
             } else if (i >= this.f2319n && i <= this.f2319n + this.f2321p && i2 >= this.f2320o && i2 <= this.f2320o + this.f2322q) {
                 z = 2;
             } else if (i >= this.f2315j && i <= this.f2315j + this.f2317l && i2 >= this.f2316k && i2 <= this.f2316k + this.f2318m) {
                 z = 3;
+            } else {
+                z = 0;
             }
+        } else {
+            z = 0;
         }
         switch (z) {
-            case true:
-                break;
-            case true:
-                break;
-            case true:
-                break;
+            case 1:
+                return 268435456;
+            case 2:
+                return 1073741824;
+            case 3:
+                return 536870912;
             default:
                 if (this.f2326u) {
-                    if (i < this.f2327v[0][0] || i > this.f2327v[0][0] + this.f2327v[0][2] || i2 < this.f2327v[0][1] || i2 > this.f2327v[0][1] + this.f2327v[0][3]) {
-                        if (i < this.f2327v[1][0] || i > this.f2327v[1][0] + this.f2327v[1][2] || i2 < this.f2327v[1][1] || i2 > this.f2327v[1][1] + this.f2327v[1][3]) {
-                        }
+                    if (i >= this.f2327v[0][0] && i <= this.f2327v[0][0] + this.f2327v[0][2] && i2 >= this.f2327v[0][1] && i2 <= this.f2327v[0][1] + this.f2327v[0][3]) {
+                        return 1024;
+                    }
+                    if (i >= this.f2327v[1][0] && i <= this.f2327v[1][0] + this.f2327v[1][2] && i2 >= this.f2327v[1][1] && i2 <= this.f2327v[1][1] + this.f2327v[1][3]) {
+                        return 2048;
                     }
                 }
-                break;
+                return 0;
         }
-        return 0;
     }
 
      // p000.AbstractC0012al

@@ -1,6 +1,7 @@
 package p000;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import javax.microedition.lcdui.Image;
 
 /* renamed from: be */
@@ -23,7 +24,7 @@ public final class C0032be {
     public boolean f596d;
 
     /* renamed from: a */
-    public final void m642a(DataInputStream dataInputStream) {
+    public final void m642a(DataInputStream dataInputStream) throws IOException {
         this.f593a = dataInputStream.readUTF();
         this.f594b = dataInputStream.readUTF();
         this.f595c = dataInputStream.readUTF();

@@ -58,9 +58,13 @@ public final class C0085q {
 
     /* renamed from: a */
     private void m1648a() {
-        C0047bt.f811C = new byte[this.f2439b.readByte()];
-        for (byte b = 0; b < C0047bt.f811C.length; b = (byte) (b + 1)) {
-            C0047bt.f811C[b] = this.f2439b.readByte();
+        try {
+            C0047bt.f811C = new byte[this.f2439b.readByte()];
+            for (byte b = 0; b < C0047bt.f811C.length; b = (byte) (b + 1)) {
+                C0047bt.f811C[b] = this.f2439b.readByte();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
         }
     }
 
@@ -210,7 +214,7 @@ public final class C0085q {
     }
 
     /* renamed from: b */
-    private void m1651b() {
+    private void m1651b() throws IOException {
         C0047bt.m894c(this.f2439b);
         if (RunnableC0066a.f2113e != null && RunnableC0066a.f2113e.f181I != null) {
             if (C0088t.f2529o && this.f2438a.f2146aj != null) {
@@ -389,7 +393,7 @@ public final class C0085q {
     }
 
     /* renamed from: c */
-    private void m1654c() {
+    private void m1654c() throws IOException {
         boolean z = this.f2439b.readByte() == 1;
         C0047bt.f893bE = z;
         if (z) {
@@ -1750,7 +1754,6 @@ public final class C0085q {
                             c0015ao4.f357j = (short) 38;
                             break;
                         }
-                        break;
                     case 8455:
                         C0047bt.m789P(this.f2439b);
                         RunnableC0066a.f2113e.m469k((byte) 5);
@@ -1771,7 +1774,6 @@ public final class C0085q {
                             RunnableC0066a.f2113e.f183M.m515b();
                             break;
                         }
-                        break;
                     case 8705:
                         C0047bt.m803W(this.f2439b);
                         RunnableC0066a.f2113e.f183M.m533h(0);
@@ -2280,7 +2282,6 @@ public final class C0085q {
                             this.f2438a.m1447d();
                             break;
                         }
-                        break;
                     case 9473:
                         C0047bt.f1461lq = this.f2439b.readByte();
                         C0047bt.f1460lp = this.f2439b.readShort();
@@ -2421,7 +2422,6 @@ public final class C0085q {
             } catch (IOException e18) {
                 e18.printStackTrace();
             }
-            throw th;
         }
     }
 }

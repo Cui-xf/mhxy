@@ -1268,8 +1268,8 @@ public final class C0044bq {
         Code decompiled incorrectly, please refer to instructions dump.
     */
     public final void m744a(byte b, int i, byte b2, byte b3, byte b4, int i2, byte b5, byte b6) {
-        boolean z;
-        boolean z2;
+        boolean z = false;
+        boolean z2 = false;
         if (b != 4 && m711a(b2, b3) && b2 == 0) {
             if (b == 2) {
                 int i3 = 0;
@@ -1324,7 +1324,6 @@ public final class C0044bq {
                         break;
                     }
                 }
-                z = false;
                 if (!z) {
                 }
             }
@@ -1528,7 +1527,7 @@ public final class C0044bq {
                     if (this.f803z.f238az <= 0) {
                         b2 = 9;
                     } else {
-                        b2 = (byte) (r2.f238az - 1);
+                        b2 = (byte) (c0015ao.f238az - 1);
                         this.f803z.f238az = b2;
                     }
                     c0015ao.f238az = b2;
