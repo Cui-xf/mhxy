@@ -119,13 +119,8 @@ public final class SocketReadLooper implements Runnable {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(bos);
             if (this.firstHands || packet.firstPacket) {
-                if (GlobalConfig.channel == 0) {
-                    //代理头
-                    dos.write(NetPayloadBuilder.buildProxy((byte) 1, NetPayloadBuilder.channelFlag, 0, 0));
-                } else {
-                    dos.writeByte(NetPayloadBuilder.hands1);
-                    dos.writeByte(NetPayloadBuilder.hands2);
-                }
+                dos.writeByte(NetPayloadBuilder.hands1);
+                dos.writeByte(NetPayloadBuilder.hands2);
                 this.firstHands = false;
             }
             dos.write(buffer);

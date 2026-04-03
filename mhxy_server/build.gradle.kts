@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    implementation("io.netty:netty-all:4.1.119.Final")
 }
 
 kotlin {
