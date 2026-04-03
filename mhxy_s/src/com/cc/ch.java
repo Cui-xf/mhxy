@@ -214,7 +214,7 @@ public final class ch {
    public final void a(int var1) {
       if (t == 1) {
          t = 0;
-         this.d.b("升星成功");
+         this.d.processException("升星成功");
       }
 
       if (this.c.l == 0) {
@@ -287,9 +287,9 @@ public final class ch {
                   q[var1] = false;
                   l -= 0.2 + (double)var1 * 0.1 * (double)(var1 + 2);
                } else if (h == -1) {
-                  this.d.b("请先放入装备");
+                  this.d.processException("请先放入装备");
                } else if (m.equals("不能升级")) {
-                  this.d.b("该装备不能升星，请选择其它装备");
+                  this.d.processException("该装备不能升星，请选择其它装备");
                } else {
                   if (n[var1] >= 1) {
                      for(int var2 = 0; var2 < 3; ++var2) {
@@ -305,7 +305,7 @@ public final class ch {
                      return;
                   }
 
-                  this.d.b("该材料已经消耗完，请选择其它材料");
+                  this.d.processException("该材料已经消耗完，请选择其它材料");
                }
             }
          }
@@ -328,9 +328,9 @@ public final class ch {
 
             p = (byte)var1;
             if (h == -1) {
-               this.d.b("请先放入装备");
+               this.d.processException("请先放入装备");
             } else if (m.equals("不能升级")) {
-               this.d.b("该装备不能升星，请选择其它装备");
+               this.d.processException("该装备不能升星，请选择其它装备");
             } else {
                Object var6 = null;
                byte[] var7;
@@ -339,14 +339,14 @@ public final class ch {
                   MainCanvas.netUtils.sendPacket(var12);
                   this.d.a((String)null);
                } else {
-                  this.d.b("获取上传指令数据错误!");
+                  this.d.processException("获取上传指令数据错误!");
                }
             }
 
             Object var8 = null;
             byte[] var9;
             if ((var9 = NetPayloadBuilder.a((short)4689, h, (byte)1, p, GlobalStatus.ad)) == null) {
-               this.d.b("获取上传指令数据错误!");
+               this.d.processException("获取上传指令数据错误!");
                return;
             }
 
@@ -384,7 +384,7 @@ public final class ch {
                   if (var10000 != null) {
                      GlobalStatus.a(var11);
                   } else {
-                     this.d.b("装备不存在");
+                     this.d.processException("装备不存在");
                   }
                }
 

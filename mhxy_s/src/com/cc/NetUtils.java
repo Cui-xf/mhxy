@@ -13,92 +13,49 @@ import java.util.Vector;
 //public final class av_1 {
 
 public final class NetUtils {
-    public static String httpUrl = "http://117.135.138.130:7099";
-    public static String socketUrl = "socket://120.78.151.213:20008";
-    public static String realSocketUrl = "";
-    private static String j = "";
+//    public static String socketUrl = "socket://120.78.151.213:20008";
+        public static String socketUrl = "socket://127.0.0.1:20008";
     public static byte status;
-    public byte e;
+    public byte retryCount;
     public MainCanvas mainCanvas;
-    private q k = new q();
-    private SocketWristLooper l;
+    private NetworkPacketProcessors networkPacketProcessors = new NetworkPacketProcessors();
+    private SocketWristLooper socketWristLooper;
     public SocketReadLooper socketReadLooper;
     private Vector receivePacketQueue = new Vector();
-    private NetPacket n = null;
-    public static byte h = -1;
-    public static byte xieyiType = 2;
 
     public NetUtils() {
         NetPayloadBuilder.channelFlag = GlobalConfig.channel == 0 ? 162 : 40;
-        h = -1;
-        xieyiType = 2;
-        if (httpUrl == null) {
-            httpUrl = "http://117.135.138.130:7099";
-        }
-
-        if (socketUrl == null) {
-            socketUrl = "socket://120.78.151.213:20008";
-        }
-
-        realSocketUrl = "";
-        j = "";
-        this.b();
+        this.start();
     }
 
     public final void setMainCanvas(MainCanvas mainCanvas) {
         this.mainCanvas = mainCanvas;
-        if (this.k != null) {
-            this.k.a(mainCanvas);
+        if (this.networkPacketProcessors != null) {
+            this.networkPacketProcessors.setMainCanvas(mainCanvas);
         }
 
     }
 
-    private void e() {
-        if (h == 2) {
-            status = 1;
-            realSocketUrl = socketUrl;
-            if (this.socketReadLooper != null) {
-                this.socketReadLooper.stop();
-            }
-
-            this.socketReadLooper = new SocketReadLooper(this);
-            if (this.l == null) {
-                this.l = new SocketWristLooper(this);
-            }
+    private void startSocket() {
+        status = 1;
+        if (this.socketReadLooper != null) {
+            this.socketReadLooper.stop();
         }
 
-    }
-
-    public final q a() {
-        return this.k;
-    }
-
-    public static boolean sockerUrlNotEq(String var0) {
-        return !realSocketUrl.equals(var0);
-    }
-
-    public final void b() {
-        if (GlobalConfig.channel == 0) {
-            if (h == -1) {
-                xieyiType = 2;
-                j = null;
-                socketUrl = null;
-                realSocketUrl = null;
-                h = xieyiType;
-                this.e();
-            }
-
-        } else {
-            j = xieyiType == 2 ? socketUrl : httpUrl;
-            h = xieyiType;
-            realSocketUrl = j;
-            status = 3;
-            if (h == 2) {
-                this.e();
-            }
-
-            GlobalConfig.printStr("当前服务地址-->" + realSocketUrl);
+        this.socketReadLooper = new SocketReadLooper(this);
+        if (this.socketWristLooper == null) {
+            this.socketWristLooper = new SocketWristLooper(this);
         }
+    }
+
+    public NetworkPacketProcessors getNetworkPacketProcessors() {
+        return this.networkPacketProcessors;
+    }
+
+    public void start() {
+        status = 3;
+        this.startSocket();
+        GlobalConfig.printStr("当前服务地址-->" + socketUrl);
     }
 
     private void onReceivePacket(NetPacket packet) {
@@ -115,22 +72,21 @@ public final class NetUtils {
         return false;
     }
 
-    public final void c() {
-        if (this.receivePacketQueue.size() > 0) {
+    public void processNetPacket() {
+        if (!this.receivePacketQueue.isEmpty()) {
             for (int var1 = 0; var1 < this.receivePacketQueue.size(); ++var1) {
-                this.n = (NetPacket) this.receivePacketQueue.elementAt(0);
-                if (this.n != null) {
+                NetPacket netPacket = (NetPacket) this.receivePacketQueue.elementAt(0);
+                if (netPacket != null) {
                     try {
-                        NetPacket var2 = this.n;
-                        if (this.k != null) {
-                            this.k.a(var2);
+                        if (this.networkPacketProcessors != null) {
+                            this.networkPacketProcessors.process(netPacket);
                         } else {
-                            this.mainCanvas.b("网络数据包处理器未启动");
+                            this.mainCanvas.processException("网络数据包处理器未启动");
                         }
                     } catch (Exception var3) {
                         if (this.mainCanvas != null) {
                             this.mainCanvas.a((Exception) var3, (byte) 6);
-                            ((Throwable) var3).printStackTrace();
+                            var3.printStackTrace();
                         }
                     }
 
@@ -241,17 +197,17 @@ public final class NetUtils {
         }
     }
 
-    public final void d() {
+    public void stop() {
         status = 3;
-        if (this.l != null) {
-            this.l.stop();
+        if (this.socketWristLooper != null) {
+            this.socketWristLooper.stop();
         }
 
         if (this.socketReadLooper != null) {
             this.socketReadLooper.stop();
         }
 
-        this.l = null;
+        this.socketWristLooper = null;
         this.socketReadLooper = null;
     }
 

@@ -248,7 +248,7 @@ public final class o_1 {
                     e = 1;
                     byte[] var6;
                     if ((var6 = NetPayloadBuilder.a((short) 4687, GlobalStatus.ko, (byte) 2, this.c == 13 ? GlobalStatus.jG : 0, 0, (byte) 0, "", GlobalStatus.ad)) == null) {
-                        this.j.b("获取上传指令数据错误!");
+                        this.j.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -267,7 +267,7 @@ public final class o_1 {
                 if (this.c == 13) {
                     byte[] var7;
                     if ((var7 = NetPayloadBuilder.a((short) 4687, GlobalStatus.ko, (byte) 0, GlobalStatus.jG, 0, this.b, "", GlobalStatus.ad)) == null) {
-                        this.j.b("获取上传指令数据错误!");
+                        this.j.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -277,7 +277,7 @@ public final class o_1 {
                 } else {
                     byte[] var8;
                     if ((var8 = NetPayloadBuilder.g((short) 4647, GlobalStatus.ad, GlobalStatus.ko, (byte) this.b)) == null) {
-                        this.j.b("获取上传指令数据错误!");
+                        this.j.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -290,7 +290,7 @@ public final class o_1 {
                 if (this.c == 13) {
                     byte[] var9;
                     if ((var9 = NetPayloadBuilder.a((short) 4687, GlobalStatus.ko, (byte) 1, GlobalStatus.jG, 0, this.b, "", GlobalStatus.ad)) == null) {
-                        this.j.b("获取上传指令数据错误!");
+                        this.j.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -300,7 +300,7 @@ public final class o_1 {
                 } else {
                     byte[] var10;
                     if ((var10 = NetPayloadBuilder.f((short) 4646, GlobalStatus.ad, GlobalStatus.ko, (byte) this.b)) == null) {
-                        this.j.b("获取上传指令数据错误!");
+                        this.j.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -312,7 +312,7 @@ public final class o_1 {
                 e = 1;
                 byte[] var11;
                 if ((var11 = NetPayloadBuilder.a((short) 4687, GlobalStatus.ko, (byte) 2, this.c == 13 ? GlobalStatus.jG : 0, 0, (byte) 0, "", GlobalStatus.ad)) == null) {
-                    this.j.b("获取上传指令数据错误!");
+                    this.j.processException("获取上传指令数据错误!");
                     return;
                 }
 
@@ -445,7 +445,7 @@ public final class o_1 {
     }
 
     public final void b() {
-        this.j.b("此界面正在维护，如有不便之处请谅解!");
+        this.j.processException("此界面正在维护，如有不便之处请谅解!");
     }
 
     public final void c(int var1) {
@@ -751,7 +751,7 @@ public final class o_1 {
                         }
                     } else if (this.f == 1) {
                         if (g == -1) {
-                            this.j.b("请先放入洗炼装备");
+                            this.j.processException("请先放入洗炼装备");
                         } else if (x == -1L) {
                             this.i.a((byte) 0, (byte[]) (new byte[]{5}));
                         } else {
@@ -761,7 +761,7 @@ public final class o_1 {
                     } else if (this.O != null && this.f - 2 < this.O.length) {
                         if (!this.O[this.f - 2]) {
                             if (this.M + 1 > E) {
-                                this.j.b("没有足够的洗炼锁");
+                                this.j.processException("没有足够的洗炼锁");
                             } else {
                                 this.O[this.f - 2] = true;
                                 ++this.M;
@@ -825,7 +825,7 @@ public final class o_1 {
                     MainCanvas.netUtils.sendPacket(var6);
                     this.j.a((String) null);
                 } else {
-                    this.j.b("获取上传指令数据错误!");
+                    this.j.processException("获取上传指令数据错误!");
                 }
             } else if (LoadingPage.o == 1) {
                 if (this.i.aw && !this.N) {
@@ -857,7 +857,7 @@ public final class o_1 {
                     if (var10000 != null) {
                         GlobalStatus.a(var8);
                     } else {
-                        this.j.b("装备不存在");
+                        this.j.processException("装备不存在");
                     }
                 }
 

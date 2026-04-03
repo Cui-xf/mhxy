@@ -37,7 +37,7 @@ public final class v_1 {
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
-         this.i.b("获取上传指令数据错误!");
+         this.i.processException("获取上传指令数据错误!");
       }
    }
 
@@ -48,7 +48,7 @@ public final class v_1 {
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
-         this.i.b("获取上传指令数据错误!");
+         this.i.processException("获取上传指令数据错误!");
       }
    }
 
@@ -177,7 +177,7 @@ public final class v_1 {
             var1 = a[this.i.ar.g()];
             byte[] var3;
             if ((var3 = NetPayloadBuilder.A((short)4859, GlobalStatus.ad, var1)) == null) {
-               this.i.b("获取上传指令数据错误!");
+               this.i.processException("获取上传指令数据错误!");
                return;
             }
 
@@ -223,7 +223,7 @@ public final class v_1 {
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
-         this.i.b("获取上传指令数据错误!");
+         this.i.processException("获取上传指令数据错误!");
       }
    }
 
@@ -319,7 +319,7 @@ public final class v_1 {
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
-         this.i.b("获取上传指令数据错误!");
+         this.i.processException("获取上传指令数据错误!");
       }
    }
 
@@ -419,7 +419,7 @@ public final class v_1 {
          this.h.j = this.h.k = 0;
          this.i.a((String)null);
       } else {
-         this.i.b("获取上传指令数据错误!");
+         this.i.processException("获取上传指令数据错误!");
       }
    }
 
@@ -470,7 +470,7 @@ public final class v_1 {
                this.h.j = this.h.k = 0;
                this.i.a((String)null);
             } else {
-               this.i.b("获取上传指令数据错误!");
+               this.i.processException("获取上传指令数据错误!");
             }
          }
 

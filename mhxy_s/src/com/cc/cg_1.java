@@ -272,7 +272,7 @@ public final class cg_1 {
    public final void b(int var1) {
       if (F == 1) {
          F = 0;
-         this.f.b("宠物星级继承成功");
+         this.f.processException("宠物星级继承成功");
          var1 = 0;
          this.e.c((int)0, (int)this.e.aE, (int)this.e.aA);
          this.e.E();
@@ -336,11 +336,11 @@ public final class cg_1 {
                      return;
                   }
 
-                  this.f.b("您没有符合要求的副宠");
+                  this.f.processException("您没有符合要求的副宠");
                   return;
                }
 
-               this.f.b("请先放入主宠");
+               this.f.processException("请先放入主宠");
                return;
             }
          }
@@ -355,13 +355,13 @@ public final class cg_1 {
             if (this.K == 0) {
                if (LoadingPage.o == 0) {
                   if (a == -1 || k == -1) {
-                     this.f.b("请先放入副宠");
+                     this.f.processException("请先放入副宠");
                      return;
                   }
 
                   byte[] var3;
                   if ((var3 = NetPayloadBuilder.b((byte)2, a, k, E)) == null) {
-                     this.f.b("获取上传指令数据错误!");
+                     this.f.processException("获取上传指令数据错误!");
                      return;
                   }
 
@@ -397,13 +397,13 @@ public final class cg_1 {
                      return;
                   }
 
-                  this.f.b("您没有主宠可以选择");
+                  this.f.processException("您没有主宠可以选择");
                   return;
                }
             } else if (this.K == 1 && LoadingPage.o == 0) {
                c();
                if (GlobalStatus.fw == null || GlobalStatus.fw.length <= 0) {
-                  this.f.b("您没有符合要求的副宠");
+                  this.f.processException("您没有符合要求的副宠");
                   return;
                }
 

@@ -36,10 +36,9 @@ public final class h {
     }
 
     public void sendFirstPacket(NetPacket packet) {
-        if (MainCanvas.netUtils == null || NetPayloadBuilder.hands2 != 72 || NetUtils.sockerUrlNotEq("socket://120.78.151.213:20008")) {
+        if (MainCanvas.netUtils == null || NetPayloadBuilder.hands2 != 72) {
             NetPayloadBuilder.hands2 = 72;
-            MainCanvas.setUrl("socket://120.78.151.213:20008", (byte) 2);
-            this.mainMidlet.mainCanvas.init("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
+            this.mainMidlet.mainCanvas.init();
         }
 
         if (MainCanvas.netUtils != null) {

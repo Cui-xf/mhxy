@@ -306,7 +306,7 @@ public final class r {
                   }
                } else if (this.a == 1) {
                   if (this.c == -1) {
-                     this.j.b("请先放入需要附魔的装备");
+                     this.j.processException("请先放入需要附魔的装备");
                   } else if (this.d == -1L) {
                      this.i.a((byte)0, (byte[])(new byte[]{3}));
                   } else {
@@ -321,7 +321,7 @@ public final class r {
                } else if (this.c != -1 && this.d != -1L) {
                   this.i.a((byte)0, (byte[])(new byte[]{4}));
                } else {
-                  this.j.b("请先放入附魔装备与附魔符");
+                  this.j.processException("请先放入附魔装备与附魔符");
                }
             }
          } else {
@@ -348,7 +348,7 @@ public final class r {
                   MainCanvas.netUtils.sendPacket(var5);
                   this.j.a((String)null);
                } else {
-                  this.j.b("获取上传指令数据错误!");
+                  this.j.processException("获取上传指令数据错误!");
                }
             } else {
                byte[] var6 = null;
@@ -363,7 +363,7 @@ public final class r {
                   MainCanvas.netUtils.sendPacket(var7);
                   this.j.a((String)null);
                } else {
-                  this.j.b("获取上传指令数据错误!");
+                  this.j.processException("获取上传指令数据错误!");
                }
             }
          } else if (LoadingPage.o == 1) {
@@ -396,7 +396,7 @@ public final class r {
                if (var10000 != null) {
                   GlobalStatus.a(var9);
                } else {
-                  this.j.b("装备不存在");
+                  this.j.processException("装备不存在");
                }
             }
 

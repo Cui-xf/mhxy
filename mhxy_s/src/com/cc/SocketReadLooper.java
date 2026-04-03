@@ -59,7 +59,7 @@ public final class SocketReadLooper implements Runnable {
         if (NetUtils.status != 3) {
             try {
                 if (this.socketConnection == null) {
-                    this.socketConnection = (SocketConnection) Connector.open(NetUtils.realSocketUrl);
+                    this.socketConnection = (SocketConnection) Connector.open(NetUtils.socketUrl);
                     this.socketConnection.setSocketOption((byte) 2, 1);
                     this.socketConnection.setSocketOption((byte) 1, 5);
                     this.socketConnection.setSocketOption((byte) 0, 10000);
@@ -69,13 +69,13 @@ public final class SocketReadLooper implements Runnable {
                 }
 
                 if (this.socketConnection != null) {
-                    if (this.packetQueue.size() > 0) {
+                    if (!this.packetQueue.isEmpty()) {
                         this.doWrite(this.packetQueue);
                         this.g = this.netUtils.mainCanvas.ak;
                         return;
                     }
 
-                    if (this.heartbeatQueue.size() > 0) {
+                    if (!this.heartbeatQueue.isEmpty()) {
                         if (this.netUtils.mainCanvas.ak - this.g < 2000L) {
                             return;
                         }
@@ -86,18 +86,16 @@ public final class SocketReadLooper implements Runnable {
                 }
 
             } catch (IOException var4) {
-                ((Throwable) var4).printStackTrace();
-                ++this.netUtils.e;
-                (new StringBuffer()).append("数据发送异常，尝试重连|").append(this.netUtils.e).toString();
-                if (this.netUtils.e > 30) {
-                    this.netUtils.d();
+                var4.printStackTrace();
+                ++this.netUtils.retryCount;
+                GlobalConfig.printStr("数据发送异常，尝试重连|" + this.netUtils.retryCount);
+                if (this.netUtils.retryCount > 30) {
+                    this.netUtils.stop();
                     this.netUtils.toast("连接超时,请尝试其他连接方式!");
                 }
 
                 this.stop();
                 this.g = this.netUtils.mainCanvas.ak;
-            } finally {
-
             }
         }
     }
@@ -142,7 +140,7 @@ public final class SocketReadLooper implements Runnable {
         }
 
         this.g = this.netUtils.mainCanvas.ak;
-        this.netUtils.e = 0;
+        this.netUtils.retryCount = 0;
         queue.removeElementAt(0);
         if (packet.getCode() == 4352) {
             this.packetQueue.removeAllElements();

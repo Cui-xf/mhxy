@@ -109,7 +109,7 @@ public final class GlobalConfig {
     /**
      * 通用开关
      */
-    public static boolean w;
+    public static boolean logined;
     /**
      * 渠道 mhxy002 特性开关
      */
@@ -427,7 +427,7 @@ public final class GlobalConfig {
         t = "v1.4.4";
         u = 4;
         PopularizeChannel = "";
-        w = false;
+        logined = false;
         x = false;
         y = false;
         z = false;

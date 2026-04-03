@@ -4626,7 +4626,7 @@ public final class GlobalStatus {
 
     public static void M(DataInputStream var0) throws IOException {
         if (GlobalConfig.channel == 1) {
-            if (GlobalConfig.w) {
+            if (GlobalConfig.logined) {
                 bb_1.g = var0.readUTF();
                 bb_1.h = var0.readUTF();
                 bb_1.b = var0.readInt();

@@ -31,10 +31,9 @@ public final class c_3 {
         var4.append(':');
         var4.append(var3);
         NetPacket var5 = NetPayloadBuilder.login((byte) 1, (byte) 1, var4.toString());
-        if (MainCanvas.netUtils == null || NetPayloadBuilder.hands2 != 72 || NetUtils.sockerUrlNotEq("socket://120.78.151.213:20008")) {
-            System.out.println("socket://120.78.151.213:20008");
+        if (MainCanvas.netUtils == null || NetPayloadBuilder.hands2 != 72) {
             NetPayloadBuilder.hands2 = 72;
-            this.a.mainCanvas.init("socket://120.78.151.213:20008", "http://117.135.138.130:7099");
+            this.a.mainCanvas.init();
         }
 
         if (MainCanvas.netUtils != null) {

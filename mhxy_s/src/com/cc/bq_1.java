@@ -54,12 +54,12 @@ public final class bq_1 {
       this.y = var1;
       this.z = var2;
       t = (short)var3;
-      var1.b();
+      var1.clear();
       GlobalConfig.printStr("[FIGHT] bq_1构造: w=" + GlobalStatus.w + " -> 设置v=w");
       GlobalStatus.v = GlobalStatus.w;
       GlobalConfig.printStr("[FIGHT] bq_1构造后: v=" + GlobalStatus.v);
       this.a();
-      var1.b();
+      var1.clear();
    }
 
    public final void a() {
@@ -460,7 +460,7 @@ public final class bq_1 {
                      if (GlobalStatus.dB != null && GlobalStatus.dB.length > 0) {
                         this.z.h((int)3);
                      } else {
-                        this.y.b("没有可用技能");
+                        this.y.processException("没有可用技能");
                      }
                   } else if (this.e == 3) {
                      this.z.e((int)6);
@@ -469,16 +469,16 @@ public final class bq_1 {
                         this.k = 1;
                         this.q = 1;
                         if (t == 1) {
-                           this.y.b("决斗时不能逃跑!");
+                           this.y.processException("决斗时不能逃跑!");
                         } else if (GlobalStatus.bs == 0 && GlobalStatus.s == 0) {
-                           this.y.b("队员不能逃跑");
+                           this.y.processException("队员不能逃跑");
                         } else {
                            this.a((byte)4, -1, (byte)0, this.o, this.k, this.q, (byte)1, GlobalStatus.M[this.h].a);
                            this.f = -1;
                            this.e = 5;
                         }
                      } else if (t == 1) {
-                        this.y.b("决斗时不能逃跑!");
+                        this.y.processException("决斗时不能逃跑!");
                      } else {
                         this.j = 4;
                         this.p = 1;
@@ -761,7 +761,7 @@ public final class bq_1 {
                         if (GlobalStatus.cR != null && GlobalStatus.cR.length > 0) {
                            this.z.a(false, true);
                         } else {
-                           this.y.b("宠物没有技能!");
+                           this.y.processException("宠物没有技能!");
                         }
                      } else if (this.e == 3 && GlobalStatus.et[this.z.az] != -1) {
                         this.r();
@@ -810,7 +810,7 @@ public final class bq_1 {
                      }
                   } else if (var1 == 536870912) {
                      if (y()) {
-                        this.y.b("你已被锁定\t无法进行该操作");
+                        this.y.processException("你已被锁定\t无法进行该操作");
                      } else {
                         this.d = 0;
                      }
@@ -849,7 +849,7 @@ public final class bq_1 {
                      }
                   }
                } else if (h()) {
-                  this.y.b("只能对自己使用复活道具");
+                  this.y.processException("只能对自己使用复活道具");
                } else {
                   this.i = c(this.i);
                }
@@ -1764,7 +1764,7 @@ public final class bq_1 {
          this.j = 0;
          this.p = GlobalStatus.ej[this.z.az];
          if (h() && GlobalStatus.ek[this.z.az] != 2) {
-            this.y.b("只能使用复活道具");
+            this.y.processException("只能使用复活道具");
             return;
          }
 
@@ -1919,7 +1919,7 @@ public final class bq_1 {
          }
 
          if (!var10000) {
-            this.y.b("不能对死亡目标使用");
+            this.y.processException("不能对死亡目标使用");
             return;
          }
       }
@@ -1948,7 +1948,7 @@ public final class bq_1 {
          }
 
          if (!var17) {
-            this.y.b("不能对死亡目标使用");
+            this.y.processException("不能对死亡目标使用");
             return;
          }
       }
@@ -1960,7 +1960,7 @@ public final class bq_1 {
          this.J = false;
          this.d = 0;
       } else {
-         this.y.b("获取上传指令数据错误!");
+         this.y.processException("获取上传指令数据错误!");
       }
    }
 
@@ -2077,7 +2077,7 @@ public final class bq_1 {
 
    public final void d() {
       this.y.p = true;
-      this.y.b();
+      this.y.clear();
       if (this.v != null) {
          this.v.removeAllElements();
          this.v = null;
@@ -2093,20 +2093,20 @@ public final class bq_1 {
       }
 
       e();
-      this.y.b();
+      this.y.clear();
       GlobalStatus.p();
-      this.y.b();
+      this.y.clear();
       this.z.c = false;
-      this.y.b();
+      this.y.clear();
       this.u = null;
       this.z.T();
-      this.y.b();
+      this.y.clear();
       GlobalStatus.g();
-      this.y.b();
+      this.y.clear();
       MainCanvas.f.a(this.z.f, ao_1.h, ao_1.i, true, false, 1283472);
-      this.y.b();
+      this.y.clear();
       this.z.j();
-      this.y.b();
+      this.y.clear();
       this.y.p = false;
       r = System.currentTimeMillis();
       g = -1;

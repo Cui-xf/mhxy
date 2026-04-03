@@ -152,7 +152,7 @@ public final class cc {
                 this.a = (short) this.c.as.a;
                 byte[] var11;
                 if ((var11 = NetPayloadBuilder.d((short) 4690, (byte) 2, "")) == null) {
-                    this.c.b("获取上传指令数据错误!");
+                    this.c.processException("获取上传指令数据错误!");
                     return;
                 }
 
@@ -180,7 +180,7 @@ public final class cc {
                     String var8 = this.a == 0 ? this.p[this.g] : this.A[this.c.ar.g() - 1];
                     byte[] var4;
                     if ((var4 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, var8, (byte) 0)) == null) {
-                        this.c.b("获取上传指令数据错误!");
+                        this.c.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -191,7 +191,7 @@ public final class cc {
                     String var2 = this.a == 0 ? this.p[this.g] : this.A[this.c.ar.g() - 1];
                     byte[] var3;
                     if ((var3 = NetPayloadBuilder.b((short) 4111, GlobalStatus.ad, var2)) == null) {
-                        this.c.b("获取上传指令数据错误!");
+                        this.c.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -209,7 +209,7 @@ public final class cc {
                 String var9 = this.a == 0 ? this.o[this.g] : this.z[this.c.ar.g() - 1];
                 byte[] var5;
                 if ((var5 = NetPayloadBuilder.d((short) 4690, (byte) 1, var9)) == null) {
-                    this.c.b("获取上传指令数据错误!");
+                    this.c.processException("获取上传指令数据错误!");
                     return;
                 }
 

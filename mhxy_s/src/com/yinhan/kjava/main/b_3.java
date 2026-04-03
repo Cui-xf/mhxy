@@ -16,7 +16,7 @@ final class b_3 implements Runnable {
       } else {
          while(this.mainCanvas.touchPageCase == 1 || this.mainCanvas.p) {
             try {
-               this.mainCanvas.b();
+               this.mainCanvas.clear();
                Thread.sleep(30L);
             } catch (Exception var2) {
                ((Throwable)var2).printStackTrace();

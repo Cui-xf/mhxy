@@ -265,38 +265,38 @@ public final class ao_1 {
         GlobalStatus.a = false;
         this.e.p = true;
         this.d = -1;
-        this.e.b();
+        this.e.clear();
         this.e.k();
-        this.e.b();
+        this.e.clear();
         this.aY = 0L;
         GlobalStatus.as = -1;
         this.ar();
-        this.e.b();
+        this.e.clear();
         this.ao();
-        this.e.b();
+        this.e.clear();
         MainCanvas.af.e("-1000");
         MainCanvas.af.e("103");
-        this.e.b();
+        this.e.clear();
         this.aq();
-        this.e.b();
+        this.e.clear();
         this.U();
-        this.e.b();
+        this.e.clear();
         GlobalConfig.a(GlobalStatus.ax, GlobalStatus.aj, (byte) 3, 1, false);
         this.I = new ac();
         this.I.a(GlobalStatus.at, GlobalStatus.au);
         MainCanvas.f.a(this.g(), this.h(), GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-        this.e.b();
+        this.e.clear();
         this.as();
         if (this.I.d != null) {
             this.I.d.h = this.I.j;
             this.I.d.i = this.I.k;
         }
 
-        this.e.b();
+        this.e.clear();
         GlobalStatus.E();
         this.aO.removeAllElements();
         this.Y = GlobalStatus.ar;
-        this.e.b();
+        this.e.clear();
         this.N();
         this.e.touchPageCase = this.e.k = 7;
         this.e.p = false;
@@ -403,7 +403,7 @@ public final class ao_1 {
                                         if (GlobalStatus.q != null) {
                                             this.aN();
                                         } else {
-                                            this.e.b("没有加入队伍");
+                                            this.e.processException("没有加入队伍");
                                         }
                                         break label986;
                                     case 1:
@@ -431,7 +431,7 @@ public final class ao_1 {
                                     this.N();
                                     this.e.a((String) null);
                                 } else {
-                                    this.e.b("获取上传指令数据错误!");
+                                    this.e.processException("获取上传指令数据错误!");
                                 }
                             }
                         } else if (this.l == 8) {
@@ -509,7 +509,7 @@ public final class ao_1 {
                                                             break label986;
                                                         case 1:
                                                             if (!GlobalStatus.jv) {
-                                                                this.e.b("商城暂时关闭");
+                                                                this.e.processException("商城暂时关闭");
                                                             } else {
                                                                 this.aw();
                                                             }
@@ -519,7 +519,7 @@ public final class ao_1 {
                                                             break label986;
                                                         case 3:
                                                             if (GlobalStatus.bR == null && GlobalStatus.bL == null) {
-                                                                this.e.b("当前没有任务");
+                                                                this.e.processException("当前没有任务");
                                                             } else {
                                                                 this.x();
                                                             }
@@ -537,7 +537,7 @@ public final class ao_1 {
                                                             if (GlobalStatus.fA != null) {
                                                                 this.j((int) 0);
                                                             } else {
-                                                                this.e.b("您没有宠物！");
+                                                                this.e.processException("您没有宠物！");
                                                             }
                                                             break label986;
                                                         case 8:
@@ -602,7 +602,7 @@ public final class ao_1 {
                                                             if (GlobalStatus.dv != null && GlobalStatus.dv.length > 0) {
                                                                 this.h((int) 0);
                                                             } else {
-                                                                this.e.b("没有技能");
+                                                                this.e.processException("没有技能");
                                                             }
                                                             break label986;
                                                         case 2:
@@ -627,7 +627,7 @@ public final class ao_1 {
                                                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4254, var11));
                                                                 this.e.a((String) null);
                                                             } else {
-                                                                this.e.b("获取上传指令数据错误!");
+                                                                this.e.processException("获取上传指令数据错误!");
                                                             }
                                                             break label986;
                                                         case 8:
@@ -637,7 +637,7 @@ public final class ao_1 {
                                                                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4653, var9));
                                                                     this.e.a((String) null);
                                                                 } else {
-                                                                    this.e.b("获取上传指令数据错误!");
+                                                                    this.e.processException("获取上传指令数据错误!");
                                                                 }
                                                             } else {
                                                                 this.af();
@@ -655,13 +655,13 @@ public final class ao_1 {
                                                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4648, var24));
                                                             this.e.a((String) null);
                                                         } else {
-                                                            this.e.b("获取上传指令数据错误!");
+                                                            this.e.processException("获取上传指令数据错误!");
                                                         }
                                                     } else if (GlobalConfig.channel == 0) {
                                                         this.c(var46);
                                                         switch (var46) {
                                                             case 1:
-                                                                this.e.b("此功能暂时不开放！");
+                                                                this.e.processException("此功能暂时不开放！");
                                                                 break label986;
                                                             case 2:
                                                                 this.aX();
@@ -688,7 +688,7 @@ public final class ao_1 {
                                                                 if (GlobalStatus.jy == 1) {
                                                                     c_3.g();
                                                                 } else {
-                                                                    this.e.b("充值功能暂时关闭");
+                                                                    this.e.processException("充值功能暂时关闭");
                                                                 }
                                                                 break label986;
                                                             case 3:
@@ -696,7 +696,7 @@ public final class ao_1 {
                                                                     if (GlobalStatus.jx == 1) {
                                                                         c_3.a(this.e, "1", (short) 101, 1);
                                                                     } else {
-                                                                        this.e.b("换豆功能暂时关闭");
+                                                                        this.e.processException("换豆功能暂时关闭");
                                                                     }
                                                                 }
                                                                 break label986;
@@ -728,12 +728,12 @@ public final class ao_1 {
                                                                 MainCanvas.netUtils.sendPacket(var8);
                                                                 this.e.a((String) null);
                                                             } else {
-                                                                this.e.b("获取上传指令数据错误!");
+                                                                this.e.processException("获取上传指令数据错误!");
                                                             }
                                                             break label986;
                                                         case 3:
                                                             if (GlobalStatus.bs == 0) {
-                                                                this.e.b("队员不能使用");
+                                                                this.e.processException("队员不能使用");
                                                             } else {
                                                                 boolean var20_t = true;
                                                                 if (MainCanvas.f.a(this.f, this.I.j + 8, this.I.k + 16) == 0 && MainCanvas.f.a(this.f, this.I.j + 8, this.I.k + 16) == 0 && MainCanvas.f.a(this.f, this.I.j + 10, this.I.k + 16) == 0 && !MainCanvas.f.a(this.I.j + 8, this.I.k + 16) && !MainCanvas.f.a(this.I.j + 10, this.I.k + 16)) {
@@ -755,7 +755,7 @@ public final class ao_1 {
                                                                 if (var20_t) {
                                                                     this.h((byte) 0);
                                                                 } else {
-                                                                    this.e.b("您没有卡死");
+                                                                    this.e.processException("您没有卡死");
                                                                 }
                                                             }
                                                             break label986;
@@ -766,7 +766,7 @@ public final class ao_1 {
                                                                 this.N();
                                                                 this.e.a((String) null);
                                                             } else {
-                                                                this.e.b("获取上传指令数据错误!");
+                                                                this.e.processException("获取上传指令数据错误!");
                                                             }
                                                             break label986;
                                                         case 5:
@@ -782,7 +782,7 @@ public final class ao_1 {
                                                     switch (var44) {
                                                         case 0:
                                                             if (GlobalStatus.jy != 1) {
-                                                                this.e.b("充值卡充值暂时关闭");
+                                                                this.e.processException("充值卡充值暂时关闭");
                                                             }
                                                             break label986;
                                                         case 1:
@@ -790,17 +790,17 @@ public final class ao_1 {
                                                                 this.a(99L);
                                                                 this.l = 8;
                                                             } else {
-                                                                this.e.b("QB直充暂时关闭");
+                                                                this.e.processException("QB直充暂时关闭");
                                                             }
                                                             break label986;
                                                         case 2:
                                                             if (GlobalStatus.kG != 1) {
-                                                                this.e.b("QB卡直充暂时关闭");
+                                                                this.e.processException("QB卡直充暂时关闭");
                                                             }
                                                             break label986;
                                                         case 3:
                                                             if (!GlobalStatus.jw) {
-                                                                this.e.b("短信支付暂时关闭");
+                                                                this.e.processException("短信支付暂时关闭");
                                                             }
                                                     }
                                                 }
@@ -860,7 +860,7 @@ public final class ao_1 {
                                                                 MainCanvas.netUtils.sendPacket(var7);
                                                                 this.e.a((String) null);
                                                             } else {
-                                                                this.e.b("获取上传指令数据错误!");
+                                                                this.e.processException("获取上传指令数据错误!");
                                                             }
                                                             break label986;
                                                         case 1:
@@ -908,7 +908,7 @@ public final class ao_1 {
                             if ((var31 = NetPayloadBuilder.a((short) 4194, GlobalStatus.ad, (byte) GlobalStatus.z)) != null) {
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4194, var31));
                             } else {
-                                this.e.b("获取上传指令数据错误!");
+                                this.e.processException("获取上传指令数据错误!");
                             }
                         }
                     } else if (this.e.as.a == 3) {
@@ -917,7 +917,7 @@ public final class ao_1 {
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4612, var19));
                             this.e.a((String) null);
                         } else {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                         }
                     } else {
                         this.a(this.e.as.a);
@@ -1004,7 +1004,7 @@ public final class ao_1 {
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4136, var34));
                                 var5.e.a((String) null);
                             } else {
-                                var5.e.b("获取上传指令数据错误!");
+                                var5.e.processException("获取上传指令数据错误!");
                             }
                         } else if (LoadingPage.o == 3) {
                             this.aw = true;
@@ -1025,7 +1025,7 @@ public final class ao_1 {
                                 MainCanvas.netUtils.sendPacket(var17);
                                 var5.e.a((String) null);
                             } else {
-                                var5.e.b("获取上传指令数据错误!");
+                                var5.e.processException("获取上传指令数据错误!");
                             }
                         } else if (LoadingPage.o == 4) {
                             this.aw = true;
@@ -1045,7 +1045,7 @@ public final class ao_1 {
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4688, var39));
                                 var5.e.a((String) null);
                             } else {
-                                var5.e.b("获取上传指令数据错误!");
+                                var5.e.processException("获取上传指令数据错误!");
                             }
                         } else if (LoadingPage.o == 5) {
                             if (this.P == null) {
@@ -1068,7 +1068,7 @@ public final class ao_1 {
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4262, var41));
                                 var5.e.a((String) null);
                             } else {
-                                var5.e.b("获取上传指令数据错误!");
+                                var5.e.processException("获取上传指令数据错误!");
                             }
                         }
                     } else if (this.l == 2) {
@@ -1499,7 +1499,7 @@ public final class ao_1 {
                                 NetPacket var2 = new NetPacket((short) 4375, var4);
                                 MainCanvas.netUtils.sendPacket(var2);
                             } else {
-                                var1.b.b("获取上传指令数据错误!");
+                                var1.b.processException("获取上传指令数据错误!");
                             }
 
                             var1.b.a((String) null);
@@ -2575,7 +2575,7 @@ public final class ao_1 {
                 if (MainCanvas.netUtils != null) {
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4630, var2));
                 } else {
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                 }
             }
         }
@@ -2599,7 +2599,7 @@ public final class ao_1 {
                 if (GlobalStatus.bs == 1 && GlobalStatus.s == 0 && this.e.ak - this.aY < 5000L) {
                     if (!this.cJ) {
                         this.cJ = !this.cJ;
-                        this.e.b("组队时的传送间隔为5秒!");
+                        this.e.processException("组队时的传送间隔为5秒!");
                     }
                     break label95;
                 }
@@ -2615,7 +2615,7 @@ public final class ao_1 {
                     if ((var12 = NetPayloadBuilder.a((short) 4144, GlobalStatus.ad, var11, var13, var14, var15)) != null) {
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4144, var12));
                     } else {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                     }
 
                     this.aX = true;
@@ -2642,7 +2642,7 @@ public final class ao_1 {
                             return;
                         }
 
-                        var1.e.b("获取上传指令数据错误!");
+                        var1.e.processException("获取上传指令数据错误!");
                     }
                 }
             }
@@ -2801,27 +2801,27 @@ public final class ao_1 {
         this.aU();
         this.e.h();
         if (this.k != 25) {
-            this.e.b();
+            this.e.clear();
             if (GlobalStatus.aw == 1) {
                 GlobalStatus.d();
                 GlobalStatus.aw = 0;
             }
 
             this.ar();
-            this.e.b();
+            this.e.clear();
             this.ao();
-            this.e.b();
+            this.e.clear();
             this.U();
-            this.e.b();
+            this.e.clear();
             this.I.a(GlobalStatus.at, GlobalStatus.au);
             ap();
-            this.e.b();
+            this.e.clear();
             this.as();
-            this.e.b();
+            this.e.clear();
             MainCanvas.f.a(this.g(), this.h(), GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-            this.e.b();
+            this.e.clear();
             MainCanvas.f.a(this.f, h, i, true, false, 1009050);
-            this.e.b();
+            this.e.clear();
             bm.removeAllElements();
             GlobalStatus.p.removeAllElements();
             GlobalStatus.o = null;
@@ -3045,7 +3045,7 @@ public final class ao_1 {
                         if ((var8 = NetPayloadBuilder.C((short) 4371, GlobalStatus.ad)) != null) {
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4371, var8));
                         } else {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                         }
                     }
                 } else if (var1 == 268435456) {
@@ -3077,7 +3077,7 @@ public final class ao_1 {
                     this.K();
                 } else if (var1 == 2048) {
                     if (GlobalStatus.bR == null && GlobalStatus.bL == null) {
-                        this.e.b("当前没有任务");
+                        this.e.processException("当前没有任务");
                     } else {
                         this.by = 1;
                         this.x();
@@ -3088,7 +3088,7 @@ public final class ao_1 {
                             this.by = 1;
                             this.j((int) 0);
                         } else {
-                            this.e.b("您没有宠物！");
+                            this.e.processException("您没有宠物！");
                         }
                     } else if (var1 == 513) {
                         this.aS();
@@ -3142,7 +3142,7 @@ public final class ao_1 {
                             this.by = 1;
                             this.e.a((String) null);
                         } else {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                         }
                     }
                 } else {
@@ -3165,7 +3165,7 @@ public final class ao_1 {
                             return;
                         }
 
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -3399,7 +3399,7 @@ public final class ao_1 {
 
     private boolean ay() {
         if (GlobalConfig.x) {
-            this.e.b("该功能暂不支持");
+            this.e.processException("该功能暂不支持");
             return false;
         } else {
             return true;
@@ -3521,7 +3521,7 @@ public final class ao_1 {
                 if (GlobalStatus.ak < 9) {
                     this.e.g = false;
                     this.e.n();
-                    this.e.b("需要九级才能使用世界频道!");
+                    this.e.processException("需要九级才能使用世界频道!");
                     return;
                 }
 
@@ -3535,7 +3535,7 @@ public final class ao_1 {
                 if (GlobalStatus.bs == -1) {
                     this.e.g = false;
                     this.e.n();
-                    this.e.b("没有队伍,不能使用队伍频道!");
+                    this.e.processException("没有队伍,不能使用队伍频道!");
                     return;
                 }
 
@@ -3549,7 +3549,7 @@ public final class ao_1 {
                 if (GlobalStatus.az.equals("无")) {
                     this.e.g = false;
                     this.e.n();
-                    this.e.b("没有帮派,不能使用帮派频道!");
+                    this.e.processException("没有帮派,不能使用帮派频道!");
                     return;
                 }
 
@@ -3582,7 +3582,7 @@ public final class ao_1 {
         String var3;
         if ((var3 = this.e.aC.getString()) != null) {
             if (this.bG != null && this.bG.equals(var3)) {
-                this.e.b("不能发送相同信息");
+                this.e.processException("不能发送相同信息");
             } else {
                 byte[] var4 = NetPayloadBuilder.a((short) 4184, GlobalStatus.ad, var2, var1 == null ? "" : var1, var3);
                 NetPacket var5 = new NetPacket((short) 4184, var4);
@@ -3597,7 +3597,7 @@ public final class ao_1 {
                     }
                 }
 
-                this.e.b("聊天消息已发送!");
+                this.e.processException("聊天消息已发送!");
             }
 
             this.e.n();
@@ -3880,7 +3880,7 @@ public final class ao_1 {
                                         if (GlobalStatus.bY != null) {
                                             this.F();
                                         } else {
-                                            this.e.b("npc商店没有商品!");
+                                            this.e.processException("npc商店没有商品!");
                                         }
                                         break;
                                     case 1:
@@ -3898,14 +3898,14 @@ public final class ao_1 {
                                             byte[] var36 = NetPayloadBuilder.c((short) 4118, GlobalStatus.ad, (short) GlobalStatus.t[this.af].a);
                                             this.a((short) 4118, var36, (String) null);
                                         } else {
-                                            this.e.b("生命值为0,不能战斗!");
+                                            this.e.processException("生命值为0,不能战斗!");
                                         }
                                         break;
                                     case 3:
                                         if (GlobalStatus.cr != null && GlobalStatus.cr.length > 0) {
                                             this.a(true);
                                         } else {
-                                            this.e.b("传送列表为空!");
+                                            this.e.processException("传送列表为空!");
                                         }
                                         break;
                                     case 4:
@@ -3941,7 +3941,7 @@ public final class ao_1 {
                                         if (GlobalStatus.fA != null) {
                                             this.j((int) 1);
                                         } else {
-                                            this.e.b("您没有宠物!");
+                                            this.e.processException("您没有宠物!");
                                         }
                                         break;
                                     case 9:
@@ -3964,7 +3964,7 @@ public final class ao_1 {
                                         if (GlobalStatus.dE != null) {
                                             this.i((int) 0);
                                         } else {
-                                            this.e.b("当前没有可升级技能");
+                                            this.e.processException("当前没有可升级技能");
                                         }
                                         break;
                                     case 12:
@@ -3983,7 +3983,7 @@ public final class ao_1 {
                                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4107, var25));
                                                 this.e.a((String) null);
                                             } else {
-                                                this.e.b("获取上传指令数据错误!");
+                                                this.e.processException("获取上传指令数据错误!");
                                             }
                                         }
                                         break;
@@ -3991,7 +3991,7 @@ public final class ao_1 {
                                         if (GlobalStatus.fA != null) {
                                             this.j((int) 5);
                                         } else {
-                                            this.e.b("您没有宠物");
+                                            this.e.processException("您没有宠物");
                                         }
                                     case 14:
                                         break;
@@ -3999,7 +3999,7 @@ public final class ao_1 {
                                         if (GlobalStatus.ew != null && GlobalStatus.ew.length > 0) {
                                             this.a((short) this.k, (byte) 1);
                                         } else {
-                                            this.e.b("兑换列表为空");
+                                            this.e.processException("兑换列表为空");
                                         }
                                         break;
                                     case 16:
@@ -4010,7 +4010,7 @@ public final class ao_1 {
                                             this.N();
                                             this.e.a((String) null);
                                         } else {
-                                            this.e.b("获取上传指令数据错误!");
+                                            this.e.processException("获取上传指令数据错误!");
                                         }
                                         break;
                                     case 17:
@@ -4019,7 +4019,7 @@ public final class ao_1 {
                                         break;
                                     case 18:
                                         if (GlobalStatus.fA == null) {
-                                            this.e.b("您没有宠物");
+                                            this.e.processException("您没有宠物");
                                             return;
                                         }
 
@@ -4030,7 +4030,7 @@ public final class ao_1 {
                                         break;
                                     case 20:
                                         if (GlobalStatus.bs != -1) {
-                                            this.e.b("队伍状态下不能进行住宅操作");
+                                            this.e.processException("队伍状态下不能进行住宅操作");
                                             return;
                                         }
 
@@ -4071,7 +4071,7 @@ public final class ao_1 {
                                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4222, var24));
                                             var8.b.a((String) null);
                                         } else {
-                                            var8.b.b("获取上传指令数据错误!");
+                                            var8.b.processException("获取上传指令数据错误!");
                                         }
                                         break;
                                     case 29:
@@ -4087,7 +4087,7 @@ public final class ao_1 {
                                         if (GlobalStatus.kB != null) {
                                             this.O.b();
                                         } else {
-                                            this.e.b("无可开孔装备");
+                                            this.e.processException("无可开孔装备");
                                         }
                                         break;
                                     case 32:
@@ -4097,7 +4097,7 @@ public final class ao_1 {
                                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4870, var23));
                                             var7.b.a((String) null);
                                         } else {
-                                            var7.b.b("获取上传指令数据错误!");
+                                            var7.b.processException("获取上传指令数据错误!");
                                         }
                                         break;
                                     case 33:
@@ -4107,7 +4107,7 @@ public final class ao_1 {
                                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4873, var22));
                                             var6.b.a((String) null);
                                         } else {
-                                            var6.b.b("获取上传指令数据错误!");
+                                            var6.b.processException("获取上传指令数据错误!");
                                         }
                                         break;
                                     case 34:
@@ -4138,7 +4138,7 @@ public final class ao_1 {
                                         if (GlobalStatus.ew != null && GlobalStatus.ew.length > 0) {
                                             this.a((short) this.k, (byte) 2);
                                         } else {
-                                            this.e.b("锻造列表为空");
+                                            this.e.processException("锻造列表为空");
                                         }
                                         break;
                                     case 41:
@@ -4147,7 +4147,7 @@ public final class ao_1 {
                                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4660, var21));
                                             this.e.a((String) null);
                                         } else {
-                                            this.e.b("获取上传指令数据错误!");
+                                            this.e.processException("获取上传指令数据错误!");
                                         }
                                         break;
                                     case 42:
@@ -4156,14 +4156,14 @@ public final class ao_1 {
                                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4662, var20));
                                             this.e.a((String) null);
                                         } else {
-                                            this.e.b("获取上传指令数据错误!");
+                                            this.e.processException("获取上传指令数据错误!");
                                         }
                                         break;
                                     case 43:
                                         this.e.a((String) "输入兑换码", (int) 0);
                                         break;
                                     case 44:
-                                        this.U.a.b("装备暂不能升星");
+                                        this.U.a.processException("装备暂不能升星");
                                         break;
                                     case 45:
                                         this.a((short) 4665, String.valueOf(GlobalStatus.t[this.af].a), (byte) 2, "", GlobalStatus.t[this.af].S);
@@ -4197,7 +4197,7 @@ public final class ao_1 {
                                             MainCanvas.netUtils.sendPacket(var5);
                                             this.e.a((String) null);
                                         } else {
-                                            this.e.b("获取上传指令数据错误!");
+                                            this.e.processException("获取上传指令数据错误!");
                                         }
                                 }
                             }
@@ -4244,7 +4244,7 @@ public final class ao_1 {
                                         this.N();
                                         this.e.a((String) null);
                                     } else {
-                                        this.e.b("获取上传指令数据错误!");
+                                        this.e.processException("获取上传指令数据错误!");
                                     }
                                 } else if (GlobalStatus.bK[this.ai] == -1) {
                                     byte[] var12;
@@ -4254,7 +4254,7 @@ public final class ao_1 {
                                         this.N();
                                         this.e.a((String) null);
                                     } else {
-                                        this.e.b("获取上传指令数据错误!");
+                                        this.e.processException("获取上传指令数据错误!");
                                     }
                                 } else if (GlobalStatus.bK[this.ai] == 1) {
                                     this.N();
@@ -4264,7 +4264,7 @@ public final class ao_1 {
                                         GlobalStatus.j();
                                         this.e.a((String) null);
                                     } else {
-                                        this.e.b("获取上传指令数据错误!");
+                                        this.e.processException("获取上传指令数据错误!");
                                     }
                                 } else {
                                     GlobalStatus.bH = null;
@@ -4313,13 +4313,13 @@ public final class ao_1 {
                             if (GlobalStatus.fA != null) {
                                 this.j((int) 2);
                             } else {
-                                this.e.b("您没有宠物!");
+                                this.e.processException("您没有宠物!");
                             }
                         } else if (LoadingPage.g == 1) {
                             if (GlobalStatus.gs != null) {
                                 this.aF();
                             } else {
-                                this.e.b("没有寄养宠物!");
+                                this.e.processException("没有寄养宠物!");
                             }
                         }
                     } else if (this.an != null) {
@@ -4363,7 +4363,7 @@ public final class ao_1 {
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4219, var30));
                                 var19.b.a((String) null);
                             } else {
-                                var19.b.b("获取上传指令数据错误!");
+                                var19.b.processException("获取上传指令数据错误!");
                             }
                         } else if (LoadingPage.g == 1) {
                             this.e.a((String) "输入公告", (int) 0);
@@ -4391,7 +4391,7 @@ public final class ao_1 {
                                 }
                             } else {
                                 GlobalStatus.m();
-                                this.e.b("仓库中没有物品");
+                                this.e.processException("仓库中没有物品");
                             }
                         } else if (this.l == 4) {
                             if (GlobalStatus.aq > 0L) {
@@ -4399,14 +4399,14 @@ public final class ao_1 {
                                 this.m = 1;
                                 this.o();
                             } else {
-                                this.e.b("银库中没有银两");
+                                this.e.processException("银库中没有银两");
                             }
                         } else if (GlobalStatus.ap > 0L) {
                             this.a(GlobalStatus.ap);
                             this.m = 3;
                             this.o();
                         } else {
-                            this.e.b("身上没有银两");
+                            this.e.processException("身上没有银两");
                         }
                     } else if (LoadingPage.g == 1) {
                         if (this.l == 3) {
@@ -4417,7 +4417,7 @@ public final class ao_1 {
                                 this.m = 2;
                                 this.o();
                             } else {
-                                this.e.b("身上没有银两");
+                                this.e.processException("身上没有银两");
                             }
                         } else {
                             this.o();
@@ -4457,7 +4457,7 @@ public final class ao_1 {
                         MainCanvas.netUtils.sendPacket(var28);
                         this.e.a((String) null);
                     } else {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                     }
                 }
             } else if (this.m == 6) {
@@ -4474,7 +4474,7 @@ public final class ao_1 {
                         MainCanvas.netUtils.sendPacket(var29);
                         this.e.a((String) null);
                     } else {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                     }
                 }
             }
@@ -4488,9 +4488,9 @@ public final class ao_1 {
         } else if (this.n() != -1L) {
             if (this.n() > this.ah) {
                 if (this.m == 1) {
-                    this.e.b("超出最大值,请重新输入");
+                    this.e.processException("超出最大值,请重新输入");
                 } else {
-                    this.e.b("您的银两不足,请重新输入");
+                    this.e.processException("您的银两不足,请重新输入");
                 }
             } else if (this.m == 1) {
                 byte[] var15;
@@ -4499,7 +4499,7 @@ public final class ao_1 {
                     MainCanvas.netUtils.sendPacket(var26);
                     this.e.a((String) null);
                 } else {
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                 }
             } else if (this.m == 2) {
                 byte[] var16;
@@ -4508,7 +4508,7 @@ public final class ao_1 {
                     MainCanvas.netUtils.sendPacket(var27);
                     this.e.a((String) null);
                 } else {
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                 }
             } else if (this.m == 3) {
                 this.at = "确定消耗" + GlobalStatus.a(this.n()) + "进行攻城竞标？";
@@ -4516,7 +4516,7 @@ public final class ao_1 {
                 this.m = 5;
             }
         } else {
-            this.e.b("输入有误,请重新输入");
+            this.e.processException("输入有误,请重新输入");
         }
 
         this.e.b = 0;
@@ -4565,7 +4565,7 @@ public final class ao_1 {
             } else {
                 byte[] var2;
                 if ((var2 = NetPayloadBuilder.a((short) 4142, GlobalStatus.ad, (int) (this.bJ ? GlobalStatus.t[this.af].a : -1), (short) GlobalStatus.cr[this.e.ar.g()])) == null) {
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                     return;
                 }
 
@@ -5308,7 +5308,7 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                 } else if (this.as == 2) {
                     if (var22.g > 1) {
                         this.a((long) var22.g);
@@ -5325,7 +5325,7 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                 } else if (this.as == 4) {
                     if (var22.g - var22.v <= 0) {
                         return;
@@ -5363,14 +5363,14 @@ public final class ao_1 {
                     }
                 } else if (this.as == 6) {
                     if (var22.d != 10 && var22.d != 15 && var22.d != 16) {
-                        this.e.b("战斗中你不能使用该物品!");
+                        this.e.processException("战斗中你不能使用该物品!");
                     } else {
                         if (this.g == null) {
                             return;
                         }
 
                         if (bq_1.h() && var22.f != 2) {
-                            this.e.b("你只能使用复活道具");
+                            this.e.processException("你只能使用复活道具");
                             return;
                         }
 
@@ -5438,7 +5438,7 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                 } else if (this.as == 8) {
                     if (var22.g > 1) {
                         this.a((long) var22.g);
@@ -5482,7 +5482,7 @@ public final class ao_1 {
                             return;
                         }
 
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                     } else {
                         byte[] var38;
                         if ((var38 = NetPayloadBuilder.c((short) 4645, GlobalStatus.ad, GlobalStatus.ko, var22.a, this.O.b)) != null) {
@@ -5491,7 +5491,7 @@ public final class ao_1 {
                             return;
                         }
 
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                     }
                 } else if (this.as == 13) {
                     byte[] var26;
@@ -5502,7 +5502,7 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                 } else if (this.as == 14) {
                     byte[] var39;
                     if ((var39 = NetPayloadBuilder.h((short) 4661, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()], this.z((this.ar << 3) + this.aq))) != null) {
@@ -5512,7 +5512,7 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                 } else if (this.as == 18) {
                     if (var22.g > 1) {
                         this.a((long) var22.g);
@@ -5567,7 +5567,7 @@ public final class ao_1 {
 
                         byte[] var33;
                         if ((var33 = NetPayloadBuilder.b((short) 4105, GlobalStatus.ad, (int) var19.a)) == null) {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                             return;
                         }
 
@@ -5618,7 +5618,7 @@ public final class ao_1 {
                             return;
                         }
 
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                 }
             }
         } else if (this.l == 2) {
@@ -5726,7 +5726,7 @@ public final class ao_1 {
 
                 byte[] var30;
                 if ((var30 = NetPayloadBuilder.b((short) 4152, GlobalStatus.ad, var14.a, this.ag > var14.g ? var14.g : this.ag, this.bR)) == null) {
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                     return;
                 }
 
@@ -5748,12 +5748,12 @@ public final class ao_1 {
 
                         return;
                     } catch (Exception var3) {
-                        this.e.b("超出最大值,请重新输入");
+                        this.e.processException("超出最大值,请重新输入");
                         return;
                     }
                 }
 
-                this.e.b("输入有误,请重新输入");
+                this.e.processException("输入有误,请重新输入");
                 return;
             }
 
@@ -5839,7 +5839,7 @@ public final class ao_1 {
             } else {
                 byte[] var11;
                 if ((var11 = NetPayloadBuilder.b((short) 4105, GlobalStatus.ad, (int) this.z((this.ar << 3) + this.aq))) == null) {
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                     return;
                 }
 
@@ -5861,12 +5861,12 @@ public final class ao_1 {
 
                         return;
                     } catch (Exception var4) {
-                        this.e.b("超出最大值,请重新输入");
+                        this.e.processException("超出最大值,请重新输入");
                         return;
                     }
                 }
 
-                this.e.b("输入有误,请重新输入");
+                this.e.processException("输入有误,请重新输入");
                 return;
             }
 
@@ -5927,7 +5927,7 @@ public final class ao_1 {
                     bn var8 = this.y((this.ar << 3) + this.aq);
                     byte[] var2;
                     if ((var2 = NetPayloadBuilder.b((short) 4642, GlobalStatus.ad, GlobalStatus.km[this.e.ar.g()], var8.a, (short) GlobalStatus.t[this.af].a)) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -6033,7 +6033,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var3);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -6044,7 +6044,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var4);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -6055,14 +6055,14 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var4);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
     private void D(int var1) {
         if (this.bS) {
             if (GlobalStatus.fh.length >= 10) {
-                this.e.b("交易物品栏已满");
+                this.e.processException("交易物品栏已满");
                 return;
             }
 
@@ -6087,7 +6087,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4126, var5));
             this.bS = true;
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -6110,7 +6110,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var3);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -6121,7 +6121,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var3);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -6408,7 +6408,7 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                 } else if (this.j == 106) {
                     if (var2.g - var2.v <= 0) {
                         return;
@@ -6428,7 +6428,7 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                 } else if (this.j == 110) {
                     if (var2.g - var2.v <= 0 || this.P.b != 0 && (this.P.b != 1 || this.P.c == -1)) {
                         return;
@@ -6452,7 +6452,7 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                 } else if (this.j == 118) {
                     if (var2.g - var2.v <= 0 || this.Q.b != 0 && (this.Q.b != 1 || this.Q.c == -1)) {
                         return;
@@ -6476,7 +6476,7 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                 } else {
                     if (this.j != 64 || var2.g - var2.v <= 0) {
                         return;
@@ -6492,11 +6492,11 @@ public final class ao_1 {
                             return;
                         }
 
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                     } else {
                         byte[] var15;
                         if ((var15 = NetPayloadBuilder.c((short) 4645, GlobalStatus.ad, GlobalStatus.ko, var2.a, this.O.b)) == null) {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                             return;
                         }
 
@@ -6801,7 +6801,7 @@ public final class ao_1 {
 
     public final void d(byte var1) {
         if (GlobalStatus.R != null) {
-            this.e.b(GlobalStatus.R);
+            this.e.processException(GlobalStatus.R);
         } else {
             this.l = 0;
             this.e.aq.b();
@@ -6980,7 +6980,7 @@ public final class ao_1 {
     private void m(byte var1) {
         GlobalStatus.C();
         if (GlobalStatus.gS == null) {
-            this.e.b("周围没玩家");
+            this.e.processException("周围没玩家");
         } else if (var1 != 3) {
             byte var9 = 0;
             byte var10 = 0;
@@ -7234,7 +7234,7 @@ public final class ao_1 {
 
                 if (LoadingPage.o == 2) {
                     if (GlobalStatus.G()) {
-                        this.e.b("住宅中不能组队");
+                        this.e.processException("住宅中不能组队");
                         return;
                     }
 
@@ -7249,7 +7249,7 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.e.b("敌对玩家不能组队！");
+                    this.e.processException("敌对玩家不能组队！");
                     return;
                 }
 
@@ -7260,7 +7260,7 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.e.b("敌对玩家不能交易！");
+                    this.e.processException("敌对玩家不能交易！");
                     return;
                 }
 
@@ -7279,12 +7279,12 @@ public final class ao_1 {
                 if (LoadingPage.o != 6) {
                     if (LoadingPage.o == 7) {
                         if (GlobalStatus.G()) {
-                            this.e.b("住宅中不能参观别人住宅");
+                            this.e.processException("住宅中不能参观别人住宅");
                             return;
                         }
 
                         if (GlobalStatus.bs != -1) {
-                            this.e.b("队伍中不能参看住宅！");
+                            this.e.processException("队伍中不能参看住宅！");
                             return;
                         }
 
@@ -7309,17 +7309,17 @@ public final class ao_1 {
                     }
 
                     if (var10000) {
-                        this.e.b("队友间不允许决斗!");
+                        this.e.processException("队友间不允许决斗!");
                         return;
                     }
 
                     if (GlobalStatus.gL[this.e.ar.g()] == 0 && GlobalStatus.s == 0) {
-                        this.e.b(GlobalStatus.gJ[this.e.ar.g()] + "不是队长!");
+                        this.e.processException(GlobalStatus.gJ[this.e.ar.g()] + "不是队长!");
                         return;
                     }
 
                     if (GlobalStatus.bs == 0 && GlobalStatus.s == 0) {
-                        this.e.b("跟随模式下队员不能发出决斗邀请");
+                        this.e.processException("跟随模式下队员不能发出决斗邀请");
                         return;
                     }
 
@@ -7330,7 +7330,7 @@ public final class ao_1 {
                     }
 
                     if (GlobalStatus.gP[this.e.ar.g()] == 0 || GlobalStatus.gP[this.e.ar.g()] == 1) {
-                        this.e.b("非敌对玩家不能决斗！");
+                        this.e.processException("非敌对玩家不能决斗！");
                         return;
                     }
 
@@ -7340,7 +7340,7 @@ public final class ao_1 {
                             return;
                         }
 
-                        this.e.b("保护时间内玩家不能决斗！");
+                        this.e.processException("保护时间内玩家不能决斗！");
                         return;
                     }
                 }
@@ -7391,12 +7391,12 @@ public final class ao_1 {
                 this.d(var1);
                 if (var1 == 268435456) {
                     if (this.n() <= 0L) {
-                        this.e.b("输入金钱必须大于0!");
+                        this.e.processException("输入金钱必须大于0!");
                         return;
                     }
 
                     if (this.n() > GlobalStatus.ap) {
-                        this.e.b("输入金钱超出你支付能力!");
+                        this.e.processException("输入金钱超出你支付能力!");
                         return;
                     }
 
@@ -7404,7 +7404,7 @@ public final class ao_1 {
                     if ((var12 = NetPayloadBuilder.a((short) 4185, GlobalStatus.ad, GlobalStatus.gH[this.e.ar.g()], this.n())) != null) {
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4185, var12));
                     } else {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                     }
 
                     this.l = 0;
@@ -7428,40 +7428,40 @@ public final class ao_1 {
                         if (this.bz == 0) {
                             byte[] var6;
                             if ((var6 = NetPayloadBuilder.e((short) 4114, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b)) == null) {
-                                this.e.b("获取上传指令数据错误!");
+                                this.e.processException("获取上传指令数据错误!");
                                 return;
                             }
 
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4114, var6));
-                            this.e.b("剔除队员" + GlobalStatus.q[this.e.ar.g()].e + "请求已发送!");
+                            this.e.processException("剔除队员" + GlobalStatus.q[this.e.ar.g()].e + "请求已发送!");
                         } else if (this.bz == 1) {
                             byte[] var7;
                             if ((var7 = NetPayloadBuilder.f((short) 4119, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b)) == null) {
-                                this.e.b("获取上传指令数据错误!");
+                                this.e.processException("获取上传指令数据错误!");
                                 return;
                             }
 
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4119, var7));
-                            this.e.b("任命" + GlobalStatus.q[this.e.ar.g()].e + "为队长请求已发送!");
+                            this.e.processException("任命" + GlobalStatus.q[this.e.ar.g()].e + "为队长请求已发送!");
                         } else if (this.bz == 2) {
                             if (GlobalStatus.bs == 1) {
                                 byte[] var8;
                                 if ((var8 = NetPayloadBuilder.h((short) 4120, GlobalStatus.ad)) == null) {
-                                    this.e.b("获取上传指令数据错误!");
+                                    this.e.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4120, var8));
-                                this.e.b("解散队伍请求已发送!");
+                                this.e.processException("解散队伍请求已发送!");
                             } else if (GlobalStatus.bs == 0) {
                                 byte[] var9;
                                 if ((var9 = NetPayloadBuilder.i((short) 4121, GlobalStatus.ad)) == null) {
-                                    this.e.b("获取上传指令数据错误!");
+                                    this.e.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4121, var9));
-                                this.e.b("脱离队伍请求已发送!");
+                                this.e.processException("脱离队伍请求已发送!");
                             }
                         }
                     } else if (LoadingPage.o == 1) {
@@ -7483,7 +7483,7 @@ public final class ao_1 {
                     } else if (LoadingPage.o == 0) {
                         byte[] var10;
                         if ((var10 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b, (byte) 0)) == null) {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                             return;
                         }
 
@@ -7492,7 +7492,7 @@ public final class ao_1 {
                     } else if (LoadingPage.o == 1) {
                         byte[] var11;
                         if ((var11 = NetPayloadBuilder.b((short) 4111, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b)) == null) {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                             return;
                         }
 
@@ -7593,19 +7593,19 @@ public final class ao_1 {
                         this.bz = 6;
                         byte[] var5;
                         if ((var5 = NetPayloadBuilder.b((short) 4115, GlobalStatus.ad, (short) GlobalStatus.s)) == null) {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4115, var5));
                         if (GlobalStatus.s == 0) {
-                            this.e.b("队员自由活动请求已发送!");
+                            this.e.processException("队员自由活动请求已发送!");
                         } else {
                             if (GlobalStatus.s != 1) {
                                 return;
                             }
 
-                            this.e.b("队伍集合请求已发送!");
+                            this.e.processException("队伍集合请求已发送!");
                         }
                     }
                 } else if (GlobalStatus.bs == 0) {
@@ -7659,7 +7659,7 @@ public final class ao_1 {
                 if (LoadingPage.o == 0) {
                     byte[] var3;
                     if ((var3 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, GlobalStatus.gH[this.e.ar.g()], (byte) 0)) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -7668,7 +7668,7 @@ public final class ao_1 {
                 } else if (LoadingPage.o == 1) {
                     byte[] var4;
                     if ((var4 = NetPayloadBuilder.b((short) 4111, GlobalStatus.ad, GlobalStatus.gH[this.e.ar.g()])) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -7764,7 +7764,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4124, var2));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -8155,7 +8155,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket(var1, var2));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -8506,7 +8506,7 @@ public final class ao_1 {
                 this.ar = this.e.ar.g();
                 byte[] var5;
                 if ((var5 = NetPayloadBuilder.j((short) 4166, GlobalStatus.ad, GlobalStatus.fA[this.aE], GlobalStatus.dl[this.e.ar.g()])) == null) {
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                     return;
                 }
 
@@ -8533,7 +8533,7 @@ public final class ao_1 {
                         if (GlobalStatus.dl[this.e.ar.g()] != 1) {
                             this.e.a((String) "输入OK确定遗忘宠物技能", (int) 0);
                         } else {
-                            this.e.b("普通技能不能被遗忘");
+                            this.e.processException("普通技能不能被遗忘");
                         }
 
                         this.l = 0;
@@ -8544,7 +8544,7 @@ public final class ao_1 {
                     this.ar = this.e.ar.g();
                     byte[] var4;
                     if ((var4 = NetPayloadBuilder.a((short) 4663, GlobalStatus.fA[this.aE], (int) GlobalStatus.dl[this.e.ar.g()], GlobalStatus.du[this.e.ar.g()], GlobalStatus.ad)) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -8615,7 +8615,7 @@ public final class ao_1 {
                     this.ar = this.e.ar.g();
                     byte[] var3;
                     if ((var3 = NetPayloadBuilder.j((short) 4166, GlobalStatus.ad, GlobalStatus.fA[this.aE], GlobalStatus.dl[this.e.ar.g()])) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -8626,7 +8626,7 @@ public final class ao_1 {
                         if (GlobalStatus.dl[this.e.ar.g()] != 1) {
                             this.e.a((String) "输入OK确定遗忘宠物技能", (int) 0);
                         } else {
-                            this.e.b("普通技能不能被遗忘");
+                            this.e.processException("普通技能不能被遗忘");
                         }
 
                         this.l = 0;
@@ -8638,7 +8638,7 @@ public final class ao_1 {
                     this.ar = this.e.ar.g();
                     byte[] var2;
                     if ((var2 = NetPayloadBuilder.a((short) 4663, GlobalStatus.fA[this.aE], (int) GlobalStatus.dl[this.e.ar.g()], GlobalStatus.du[this.e.ar.g()], GlobalStatus.ad)) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -8656,7 +8656,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4629, var1));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -8684,7 +8684,7 @@ public final class ao_1 {
 
     public final void z() {
         if (GlobalStatus.mO == null) {
-            this.e.b("没有特效");
+            this.e.processException("没有特效");
         } else {
             this.l = 0;
             this.e.aq.j();
@@ -8865,7 +8865,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var5);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -9055,7 +9055,7 @@ public final class ao_1 {
                         this.aA = this.e.ar.h();
                         byte[] var4;
                         if ((var4 = NetPayloadBuilder.q((short) 4167, GlobalStatus.ad, GlobalStatus.dl[this.e.ar.g()])) == null) {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                             return;
                         }
 
@@ -9117,7 +9117,7 @@ public final class ao_1 {
                 this.aA = this.e.ar.h();
                 byte[] var2;
                 if ((var2 = NetPayloadBuilder.q((short) 4167, GlobalStatus.ad, GlobalStatus.dl[this.e.ar.g()])) == null) {
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                     return;
                 }
 
@@ -9373,7 +9373,7 @@ public final class ao_1 {
                 if (LoadingPage.o == 1) {
                     byte[] var2;
                     if ((var2 = NetPayloadBuilder.n((short) 4151, GlobalStatus.ad, (int) GlobalStatus.gs[this.e.ar.g()])) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -9397,7 +9397,7 @@ public final class ao_1 {
             this.bR = this.n();
             if (var1 == 1073741824 || var1 == 268435456) {
                 if (this.n() <= 0L) {
-                    this.e.b("输入金钱必须大于0!");
+                    this.e.processException("输入金钱必须大于0!");
                     return;
                 }
 
@@ -9568,7 +9568,7 @@ public final class ao_1 {
                     this.aA = this.e.ar.h();
                     byte[] var4;
                     if ((var4 = NetPayloadBuilder.o((short) 4162, GlobalStatus.ad, GlobalStatus.gs[this.e.ar.g()])) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -9688,7 +9688,7 @@ public final class ao_1 {
                 this.aA = this.e.ar.h();
                 byte[] var2;
                 if ((var2 = NetPayloadBuilder.q((short) 4167, GlobalStatus.ad, GlobalStatus.dE[this.e.ar.g()])) == null) {
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                     return;
                 }
 
@@ -9933,7 +9933,7 @@ public final class ao_1 {
             NetPacket var6 = new NetPacket((short) 4253, var7);
             MainCanvas.netUtils.sendPacket(var6);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -9971,7 +9971,7 @@ public final class ao_1 {
                         NetPacket var3 = new NetPacket((short) 4188, var47);
                         MainCanvas.netUtils.sendPacket(var3);
                     } else {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                     }
 
                     this.e.a((String) null);
@@ -10072,7 +10072,7 @@ public final class ao_1 {
                                 return;
                             }
 
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                         } else if (this.as == 10) {
                             this.l = 0;
                             this.c((int) GlobalStatus.fA[GlobalStatus.fw[this.e.ar.g()]], (byte) 0);
@@ -10092,7 +10092,7 @@ public final class ao_1 {
                                     return;
                                 }
 
-                                this.e.b("获取上传指令数据错误!");
+                                this.e.processException("获取上传指令数据错误!");
                             } else {
                                 cg_1.b = var22;
                                 byte[] var46;
@@ -10103,7 +10103,7 @@ public final class ao_1 {
                                     return;
                                 }
 
-                                this.e.b("获取上传指令数据错误!");
+                                this.e.processException("获取上传指令数据错误!");
                             }
                         }
                     }
@@ -10121,7 +10121,7 @@ public final class ao_1 {
                                 return;
                             }
 
-                            this.e.b("背包中没有物品");
+                            this.e.processException("背包中没有物品");
                             return;
                         }
 
@@ -10136,13 +10136,13 @@ public final class ao_1 {
                                 return;
                             }
 
-                            this.e.b("背包中没有物品");
+                            this.e.processException("背包中没有物品");
                             return;
                         }
 
                         if (LoadingPage.o == 3) {
                             if (!GlobalStatus.gf[this.e.ar.g()].equals("")) {
-                                this.e.b("该宠物已经自带星级了，星级为零的宠物才能做主宠。");
+                                this.e.processException("该宠物已经自带星级了，星级为零的宠物才能做主宠。");
                                 return;
                             }
 
@@ -10150,7 +10150,7 @@ public final class ao_1 {
                             this.W.a();
                             byte[] var15;
                             if ((var15 = NetPayloadBuilder.b((byte) 0, GlobalStatus.fA[this.e.ar.g()], -1, 0)) == null) {
-                                this.e.b("获取上传指令数据错误!");
+                                this.e.processException("获取上传指令数据错误!");
                                 return;
                             }
 
@@ -10161,7 +10161,7 @@ public final class ao_1 {
                             if (GlobalStatus.fz[this.e.ar.g()] == 0) {
                                 byte[] var16;
                                 if ((var16 = NetPayloadBuilder.h((short) 4163, GlobalStatus.ad, (int) GlobalStatus.fA[this.e.ar.g()])) == null) {
-                                    this.e.b("获取上传指令数据错误!");
+                                    this.e.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
@@ -10171,7 +10171,7 @@ public final class ao_1 {
                             } else if (GlobalStatus.fz[this.e.ar.g()] == 1) {
                                 byte[] var17;
                                 if ((var17 = NetPayloadBuilder.i((short) 4164, GlobalStatus.ad, (int) GlobalStatus.fA[this.e.ar.g()])) == null) {
-                                    this.e.b("获取上传指令数据错误!");
+                                    this.e.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
@@ -10205,7 +10205,7 @@ public final class ao_1 {
                             if (LoadingPage.o == 9) {
                                 byte[] var39;
                                 if ((var39 = NetPayloadBuilder.z((short) 4613, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()])) == null) {
-                                    this.e.b("获取上传指令数据错误!");
+                                    this.e.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
@@ -10215,7 +10215,7 @@ public final class ao_1 {
                             } else if (LoadingPage.o == 10) {
                                 byte[] var18;
                                 if ((var18 = NetPayloadBuilder.b(GlobalStatus.fA[this.e.ar.g()])) == null) {
-                                    this.e.b("获取上传指令数据错误!");
+                                    this.e.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
@@ -10227,7 +10227,7 @@ public final class ao_1 {
                     } else {
                         if (this.as == 1) {
                             if (GlobalStatus.fz[this.e.ar.g()] == 1) {
-                                this.e.b("出战宠物不能拍卖");
+                                this.e.processException("出战宠物不能拍卖");
                                 return;
                             }
 
@@ -10240,7 +10240,7 @@ public final class ao_1 {
                             if (LoadingPage.o == 0) {
                                 byte[] var19;
                                 if ((var19 = NetPayloadBuilder.k((short) 4161, GlobalStatus.ad, (int) GlobalStatus.fA[this.e.ar.g()])) == null) {
-                                    this.e.b("获取上传指令数据错误!");
+                                    this.e.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
@@ -10262,18 +10262,18 @@ public final class ao_1 {
                                     return;
                                 }
 
-                                this.e.b("出战宠物不能交易");
+                                this.e.processException("出战宠物不能交易");
                             }
                         } else if (this.as == 5) {
                             if (LoadingPage.o == 0) {
                                 if (GlobalStatus.fz[this.e.ar.g()] != 0) {
-                                    this.e.b("出战宠物不能出售");
+                                    this.e.processException("出战宠物不能出售");
                                     return;
                                 }
 
                                 byte[] var21;
                                 if ((var21 = NetPayloadBuilder.r((short) 4146, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()])) == null) {
-                                    this.e.b("获取上传指令数据错误!");
+                                    this.e.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
@@ -10297,7 +10297,7 @@ public final class ao_1 {
                     } else if (LoadingPage.o == 1) {
                         byte[] var14;
                         if ((var14 = NetPayloadBuilder.g((short) 4165, GlobalStatus.ad, (int) GlobalStatus.fA[this.e.ar.g()])) == null) {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                             return;
                         }
 
@@ -10324,7 +10324,7 @@ public final class ao_1 {
                         }
                     } else {
                         if (this.n() == -1L) {
-                            this.e.b("输入有误,请重新输入");
+                            this.e.processException("输入有误,请重新输入");
                             return;
                         }
 
@@ -10336,9 +10336,9 @@ public final class ao_1 {
                                 return;
                             }
 
-                            this.e.b("价格太高,请重新输入!");
+                            this.e.processException("价格太高,请重新输入!");
                         } catch (Exception var5) {
-                            this.e.b("输入有误,请重新输入");
+                            this.e.processException("输入有误,请重新输入");
                             return;
                         }
                     }
@@ -10352,7 +10352,7 @@ public final class ao_1 {
                     } else {
                         byte[] var13;
                         if ((var13 = NetPayloadBuilder.a((short) 4148, GlobalStatus.ad, GlobalStatus.fA[this.e.ar.g()], (int) 1, this.bR)) == null) {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                             return;
                         }
 
@@ -10416,7 +10416,7 @@ public final class ao_1 {
                             if ((var24 = l(this.aq)) >= 0 && var24 <= 6) {
                                 byte[] var48;
                                 if ((var48 = NetPayloadBuilder.d((short) 4615, GlobalStatus.ad, GlobalStatus.jG, (byte) var24)) == null) {
-                                    this.e.b("获取上传指令数据错误!");
+                                    this.e.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
@@ -10424,7 +10424,7 @@ public final class ao_1 {
                                 MainCanvas.netUtils.sendPacket(var49);
                                 this.e.a((String) null);
                             } else {
-                                this.e.b("卸下失败");
+                                this.e.processException("卸下失败");
                             }
                         } else if (LoadingPage.o == 3) {
                             this.aJ = true;
@@ -10441,7 +10441,7 @@ public final class ao_1 {
                             Object var26 = null;
                             byte[] var27;
                             if ((var27 = NetPayloadBuilder.a((short) 4689, var2, (byte) 0, (byte) -1, GlobalStatus.ad)) == null) {
-                                this.e.b("获取上传指令数据错误!");
+                                this.e.processException("获取上传指令数据错误!");
                                 return;
                             }
 
@@ -10463,7 +10463,7 @@ public final class ao_1 {
                             o_1.h = 2;
                             byte[] var29;
                             if ((var29 = NetPayloadBuilder.a((short) 4688, var10, -1L, (byte) 0, o_1.h, GlobalStatus.jG, (byte[]) null, GlobalStatus.ad)) == null) {
-                                this.e.b("获取上传指令数据错误!");
+                                this.e.processException("获取上传指令数据错误!");
                                 return;
                             }
 
@@ -10487,7 +10487,7 @@ public final class ao_1 {
 
                             byte[] var31;
                             if ((var31 = NetPayloadBuilder.a((short) 4262, var11, -1L, (byte) 0, (int[]) null, (byte[]) null, -1, (byte) 0, GlobalStatus.ad)) == null) {
-                                this.e.b("获取上传指令数据错误!");
+                                this.e.processException("获取上传指令数据错误!");
                                 return;
                             }
 
@@ -10518,7 +10518,7 @@ public final class ao_1 {
                                 return;
                             }
 
-                            this.e.b("宠物没有技能!");
+                            this.e.processException("宠物没有技能!");
                         }
                     } else if (LoadingPage.o == 1) {
                         this.cj = (byte) this.aq;
@@ -10539,7 +10539,7 @@ public final class ao_1 {
                         int var33 = GlobalStatus.fA[this.e.ar.g()];
                         byte[] var50;
                         if ((var50 = NetPayloadBuilder.a(var33)) == null) {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                             return;
                         }
 
@@ -10613,10 +10613,10 @@ public final class ao_1 {
                 MainCanvas.netUtils.sendPacket(var4);
                 this.e.a((String) null);
             } else {
-                this.e.b("获取上传指令数据错误!");
+                this.e.processException("获取上传指令数据错误!");
             }
         } else {
-            this.e.b("装备失败");
+            this.e.processException("装备失败");
         }
     }
 
@@ -10992,7 +10992,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var4);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -11146,7 +11146,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var3);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -11370,7 +11370,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var3);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -11381,7 +11381,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var3);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -11485,7 +11485,7 @@ public final class ao_1 {
             NetPacket var5 = new NetPacket((short) 4153, var6);
             MainCanvas.netUtils.sendPacket(var5);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -11495,7 +11495,7 @@ public final class ao_1 {
             NetPacket var5 = new NetPacket((short) 4147, var6);
             MainCanvas.netUtils.sendPacket(var5);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -11633,7 +11633,7 @@ public final class ao_1 {
                         GlobalConfig.clearStr(this.e.l);
                         byte[] var4;
                         if ((var4 = NetPayloadBuilder.l((short) 4154, GlobalStatus.ad, (int) GlobalStatus.dY[this.e.ar.g()])) == null) {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                             return;
                         }
 
@@ -11880,7 +11880,7 @@ public final class ao_1 {
                 } else {
                     byte[] var4;
                     if ((var4 = NetPayloadBuilder.m((short) 4149, GlobalStatus.ad, (int) GlobalStatus.gs[this.e.ar.g()])) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -11969,16 +11969,16 @@ public final class ao_1 {
             var2.bE = null;
         }
 
-        this.e.b();
+        this.e.clear();
         if (var1 == 2 || var1 == 1) {
             this.e.q.setCurrent(this.e);
         }
 
         this.aT();
-        this.e.b();
+        this.e.clear();
         GlobalConfig.printStr("[FIGHT] f(" + var1 + ") 创建bq_1前: v=" + GlobalStatus.v + " w=" + GlobalStatus.w);
         this.g = new bq_1(this.e, this, var1);
-        this.e.b();
+        this.e.clear();
         if (GlobalStatus.bu && ab_1.b) {
             if (!GlobalStatus.bt) {
                 this.O();
@@ -11987,7 +11987,7 @@ public final class ao_1 {
             ab_1.b = false;
         }
 
-        this.e.b();
+        this.e.clear();
         MainCanvas.f.a(this.f, h, i, false);
         this.j = this.k = 25;
         this.e.touchPageCase = this.e.k = 7;
@@ -12344,7 +12344,7 @@ public final class ao_1 {
 
                             if (this.e.as.a == 4) {
                                 if (GlobalStatus.bs == -1) {
-                                    this.e.b("不在队伍中");
+                                    this.e.processException("不在队伍中");
                                     return;
                                 }
 
@@ -12393,7 +12393,7 @@ public final class ao_1 {
         if ((var3 = NetPayloadBuilder.a((short) 4628, GlobalStatus.ad, var1, var2)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4628, var3));
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -12402,7 +12402,7 @@ public final class ao_1 {
         if ((var2 = NetPayloadBuilder.b((short) 4122, GlobalStatus.ad, var1, (short) this.k)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4122, var2));
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -12411,7 +12411,7 @@ public final class ao_1 {
         if ((var2 = NetPayloadBuilder.c((short) 4123, GlobalStatus.ad, var1, (short) this.k)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4123, var2));
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -12483,7 +12483,7 @@ public final class ao_1 {
 
                 this.cm = var11;
                 if (this.cl == null || this.cl != null && this.cl.equals(GlobalStatus.ad)) {
-                    this.e.b("不能自言自语！");
+                    this.e.processException("不能自言自语！");
                     return;
                 }
 
@@ -12760,7 +12760,7 @@ public final class ao_1 {
                         MainCanvas.netUtils.sendPacket(var9);
                         this.e.a((String) null);
                     } else {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                     }
                 } else if (this.e.as.a == 1) {
                     byte[] var10;
@@ -12768,7 +12768,7 @@ public final class ao_1 {
                         NetPacket var11 = new NetPacket((short) 4202, var10);
                         MainCanvas.netUtils.sendPacket(var11);
                     } else {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                     }
                 } else if (this.e.as.a == 2) {
                     byte[] var12;
@@ -12777,7 +12777,7 @@ public final class ao_1 {
                         MainCanvas.netUtils.sendPacket(var13);
                         this.e.a((String) null);
                     } else {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                     }
                 }
             }
@@ -12870,12 +12870,12 @@ public final class ao_1 {
 
                 if (LoadingPage.o == 6) {
                     if (GlobalStatus.G()) {
-                        this.e.b("住宅中不能参观别人住宅");
+                        this.e.processException("住宅中不能参观别人住宅");
                         return;
                     }
 
                     if (GlobalStatus.bs != -1) {
-                        this.e.b("队伍中不能参看住宅！");
+                        this.e.processException("队伍中不能参看住宅！");
                         return;
                     }
 
@@ -12922,7 +12922,7 @@ public final class ao_1 {
                 } else if (LoadingPage.o == 0) {
                     byte[] var5;
                     if ((var5 = NetPayloadBuilder.d((short) 4171, GlobalStatus.ad, GlobalStatus.dK[this.e.ar.g()])) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -12965,7 +12965,7 @@ public final class ao_1 {
                 } else {
                     byte[] var2;
                     if ((var2 = NetPayloadBuilder.c((short) 4170, GlobalStatus.ad, GlobalStatus.dK[this.e.ar.g() - 1])) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -12982,7 +12982,7 @@ public final class ao_1 {
                 } else if (LoadingPage.o == 0) {
                     byte[] var4;
                     if ((var4 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, GlobalStatus.dK[this.e.ar.g() - 1], (byte) 0)) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -12995,7 +12995,7 @@ public final class ao_1 {
                             return;
                         }
 
-                        this.e.b("背包中没有物品");
+                        this.e.processException("背包中没有物品");
                         return;
                     }
 
@@ -13039,7 +13039,7 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.e.b("对方不在线");
+                    this.e.processException("对方不在线");
                     return;
                 }
             } else if (LoadingPage.o == 1) {
@@ -13240,19 +13240,19 @@ public final class ao_1 {
                         this.bz = 6;
                         byte[] var8;
                         if ((var8 = NetPayloadBuilder.b((short) 4115, GlobalStatus.ad, (short) GlobalStatus.s)) == null) {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4115, var8));
                         if (GlobalStatus.s == 0) {
-                            this.e.b("队员自由活动请求已发送!");
+                            this.e.processException("队员自由活动请求已发送!");
                         } else {
                             if (GlobalStatus.s != 1) {
                                 return;
                             }
 
-                            this.e.b("队伍集合请求已发送!");
+                            this.e.processException("队伍集合请求已发送!");
                         }
                     }
                 } else if (GlobalStatus.bs == 0) {
@@ -13295,40 +13295,40 @@ public final class ao_1 {
                     if (this.bz == 0) {
                         byte[] var2;
                         if ((var2 = NetPayloadBuilder.e((short) 4114, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b)) == null) {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4114, var2));
-                        this.e.b("剔除队员" + GlobalStatus.q[this.e.ar.g()].e + "请求已发送!");
+                        this.e.processException("剔除队员" + GlobalStatus.q[this.e.ar.g()].e + "请求已发送!");
                     } else if (this.bz == 1) {
                         byte[] var3;
                         if ((var3 = NetPayloadBuilder.f((short) 4119, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b)) == null) {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                             return;
                         }
 
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4119, var3));
-                        this.e.b("任命" + GlobalStatus.q[this.e.ar.g()].e + "为队长请求已发送!");
+                        this.e.processException("任命" + GlobalStatus.q[this.e.ar.g()].e + "为队长请求已发送!");
                     } else if (this.bz == 2) {
                         if (GlobalStatus.bs == 1) {
                             byte[] var4;
                             if ((var4 = NetPayloadBuilder.h((short) 4120, GlobalStatus.ad)) == null) {
-                                this.e.b("获取上传指令数据错误!");
+                                this.e.processException("获取上传指令数据错误!");
                                 return;
                             }
 
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4120, var4));
-                            this.e.b("解散队伍请求已发送!");
+                            this.e.processException("解散队伍请求已发送!");
                         } else if (GlobalStatus.bs == 0) {
                             byte[] var5;
                             if ((var5 = NetPayloadBuilder.i((short) 4121, GlobalStatus.ad)) == null) {
-                                this.e.b("获取上传指令数据错误!");
+                                this.e.processException("获取上传指令数据错误!");
                                 return;
                             }
 
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4121, var5));
-                            this.e.b("脱离队伍请求已发送!");
+                            this.e.processException("脱离队伍请求已发送!");
                         }
                     }
                 } else if (LoadingPage.o == 1) {
@@ -13350,7 +13350,7 @@ public final class ao_1 {
                 } else if (LoadingPage.o == 0) {
                     byte[] var6;
                     if ((var6 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b, (byte) 0)) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -13359,7 +13359,7 @@ public final class ao_1 {
                 } else if (LoadingPage.o == 1) {
                     byte[] var7;
                     if ((var7 = NetPayloadBuilder.b((short) 4111, GlobalStatus.ad, GlobalStatus.q[this.e.ar.g()].b)) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -13504,13 +13504,13 @@ public final class ao_1 {
 
                             if (var1 == 1024) {
                                 if (GlobalStatus.i == 0) {
-                                    this.e.b("交易已锁定");
+                                    this.e.processException("交易已锁定");
                                     return;
                                 }
 
                                 byte[] var7;
                                 if ((var7 = NetPayloadBuilder.g((short) 4128, GlobalStatus.ad, (byte) this.ct)) == null) {
-                                    this.e.b("获取上传指令数据错误!");
+                                    this.e.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
@@ -13519,7 +13519,7 @@ public final class ao_1 {
                             } else {
                                 if (var1 == 2048) {
                                     if (GlobalStatus.i == 0) {
-                                        this.e.b("交易已锁定");
+                                        this.e.processException("交易已锁定");
                                         return;
                                     }
 
@@ -13530,14 +13530,14 @@ public final class ao_1 {
                                         return;
                                     }
 
-                                    this.e.b("身上没有银两");
+                                    this.e.processException("身上没有银两");
                                     return;
                                 }
 
                                 if (var1 == 268435456) {
                                     byte[] var8;
                                     if ((var8 = NetPayloadBuilder.h((short) 4129, GlobalStatus.ad, (byte) this.ct)) == null) {
-                                        this.e.b("获取上传指令数据错误!");
+                                        this.e.processException("获取上传指令数据错误!");
                                         return;
                                     }
 
@@ -13630,7 +13630,7 @@ public final class ao_1 {
                     }
                 } else if (this.n() != -1L) {
                     if (this.n() > this.ah) {
-                        this.e.b("超出最大值，请重新输入");
+                        this.e.processException("超出最大值，请重新输入");
                         return;
                     }
 
@@ -13639,7 +13639,7 @@ public final class ao_1 {
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4127, var6));
                         this.e.a((String) null);
                     } else {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                     }
 
                     this.l = 0;
@@ -13663,14 +13663,14 @@ public final class ao_1 {
 
                 if (LoadingPage.o == 1) {
                     if (GlobalStatus.i == 0) {
-                        this.e.b("交易已锁定");
+                        this.e.processException("交易已锁定");
                         return;
                     }
 
                     if (this.l == 1) {
                         if (this.ct == 0) {
                             if (GlobalStatus.fh != null && GlobalStatus.fh.length >= 10) {
-                                this.e.b("交易物品栏已满!");
+                                this.e.processException("交易物品栏已满!");
                                 return;
                             }
 
@@ -13680,7 +13680,7 @@ public final class ao_1 {
 
                         if (this.ct == 1) {
                             if (GlobalStatus.gs != null && GlobalStatus.gs.length >= 10) {
-                                this.e.b("交易宠物栏已满!");
+                                this.e.processException("交易宠物栏已满!");
                                 return;
                             }
 
@@ -13689,7 +13689,7 @@ public final class ao_1 {
                                 return;
                             }
 
-                            this.e.b("您没有宠物!");
+                            this.e.processException("您没有宠物!");
                             return;
                         }
                     } else if (this.l == 2) {
@@ -13715,7 +13715,7 @@ public final class ao_1 {
                 } else {
                     if (LoadingPage.o == 2) {
                         if (GlobalStatus.i == 0) {
-                            this.e.b("交易已锁定");
+                            this.e.processException("交易已锁定");
                             return;
                         }
 
@@ -13726,19 +13726,19 @@ public final class ao_1 {
                             return;
                         }
 
-                        this.e.b("身上没有银两");
+                        this.e.processException("身上没有银两");
                         return;
                     }
 
                     if (LoadingPage.o == 3) {
                         if (GlobalStatus.i == 0) {
-                            this.e.b("交易已锁定");
+                            this.e.processException("交易已锁定");
                             return;
                         }
 
                         byte[] var4;
                         if ((var4 = NetPayloadBuilder.g((short) 4128, GlobalStatus.ad, (byte) this.ct)) == null) {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                             return;
                         }
 
@@ -13747,7 +13747,7 @@ public final class ao_1 {
                     } else if (LoadingPage.o == 4) {
                         byte[] var5;
                         if ((var5 = NetPayloadBuilder.h((short) 4129, GlobalStatus.ad, (byte) this.ct)) == null) {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                             return;
                         }
 
@@ -13761,14 +13761,14 @@ public final class ao_1 {
                 }
             } else if (LoadingPage.o == 0) {
                 if (GlobalStatus.i == 0) {
-                    this.e.b("交易已锁定");
+                    this.e.processException("交易已锁定");
                     return;
                 }
 
                 if (this.l == 1) {
                     if (this.ct == 0) {
                         if (GlobalStatus.fh != null && GlobalStatus.fh.length >= 10) {
-                            this.e.b("交易物品栏已满!");
+                            this.e.processException("交易物品栏已满!");
                             return;
                         }
 
@@ -13778,7 +13778,7 @@ public final class ao_1 {
 
                     if (this.ct == 1) {
                         if (GlobalStatus.gs != null && GlobalStatus.gs.length >= 10) {
-                            this.e.b("交易宠物栏已满!");
+                            this.e.processException("交易宠物栏已满!");
                             return;
                         }
 
@@ -13787,7 +13787,7 @@ public final class ao_1 {
                             return;
                         }
 
-                        this.e.b("您没有宠物!");
+                        this.e.processException("您没有宠物!");
                         return;
                     }
                 } else if (this.l == 2) {
@@ -13813,7 +13813,7 @@ public final class ao_1 {
             } else {
                 if (LoadingPage.o == 1) {
                     if (GlobalStatus.i == 0) {
-                        this.e.b("交易已锁定");
+                        this.e.processException("交易已锁定");
                         return;
                     }
 
@@ -13824,19 +13824,19 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.e.b("身上没有银两");
+                    this.e.processException("身上没有银两");
                     return;
                 }
 
                 if (LoadingPage.o == 2) {
                     if (GlobalStatus.i == 0) {
-                        this.e.b("交易已锁定");
+                        this.e.processException("交易已锁定");
                         return;
                     }
 
                     byte[] var2;
                     if ((var2 = NetPayloadBuilder.g((short) 4128, GlobalStatus.ad, (byte) this.ct)) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -13845,7 +13845,7 @@ public final class ao_1 {
                 } else if (LoadingPage.o == 3) {
                     byte[] var3;
                     if ((var3 = NetPayloadBuilder.h((short) 4129, GlobalStatus.ad, (byte) this.ct)) == null) {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
 
@@ -13866,7 +13866,7 @@ public final class ao_1 {
         if ((var3 = NetPayloadBuilder.c((short) 4134, GlobalStatus.ad, (byte) var1, (byte) var2)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4134, var3));
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -13875,7 +13875,7 @@ public final class ao_1 {
         if ((var2 = NetPayloadBuilder.f((short) 4125, GlobalStatus.ad, (byte) var1)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4125, var2));
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -14303,7 +14303,7 @@ public final class ao_1 {
                 }
 
                 if (var3 == null) {
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                     return;
                 }
 
@@ -14327,7 +14327,7 @@ public final class ao_1 {
                 }
 
                 if (var6 == null) {
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                     return;
                 }
 
@@ -14335,7 +14335,7 @@ public final class ao_1 {
                 MainCanvas.netUtils.sendPacket(var7);
                 this.e.a((String) null);
             } else if (LoadingPage.o == 1) {
-                this.e.b("没有此功能!");
+                this.e.processException("没有此功能!");
                 return;
             }
         }
@@ -14375,7 +14375,7 @@ public final class ao_1 {
                                 return;
                             }
 
-                            this.e.b("表情插入失败，聊天内容过长");
+                            this.e.processException("表情插入失败，聊天内容过长");
                         }
 
                     } else {
@@ -14442,7 +14442,7 @@ public final class ao_1 {
         if ((var2 = NetPayloadBuilder.b((short) 4610, GlobalStatus.ad, (byte) var1, (byte) GlobalStatus.C[var1])) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4610, var2));
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -14452,7 +14452,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4611, var2));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -14462,7 +14462,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4609, var2));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -14472,7 +14472,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4608, var2));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -14756,7 +14756,7 @@ public final class ao_1 {
         if ((var3 = NetPayloadBuilder.c((short) 4113, GlobalStatus.ad, var1, (byte) var2)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4113, var3));
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -15401,7 +15401,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var3);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -15412,7 +15412,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var2);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -15579,7 +15579,7 @@ public final class ao_1 {
         } else if (GlobalStatus.q != null) {
             R();
             if (this.k == 21) {
-                this.e.b("没有队伍");
+                this.e.processException("没有队伍");
             }
         }
 
@@ -15593,11 +15593,11 @@ public final class ao_1 {
 
     public final void a(short var1, String var2) {
         if (GlobalStatus.bs == 0) {
-            this.e.b("队员不能发送组队邀请");
+            this.e.processException("队员不能发送组队邀请");
         } else if (GlobalStatus.bs == 1 && GlobalStatus.q != null && GlobalStatus.q.length >= 3) {
-            this.e.b("队伍已满，无法邀请");
+            this.e.processException("队伍已满，无法邀请");
         } else if (GlobalStatus.G()) {
-            this.e.b("住宅区域中，无法邀请");
+            this.e.processException("住宅区域中，无法邀请");
         } else {
             byte[] var3;
             if ((var3 = NetPayloadBuilder.a((short) 4112, GlobalStatus.ad, var2, (short) var1)) != null) {
@@ -15605,7 +15605,7 @@ public final class ao_1 {
                 MainCanvas.netUtils.sendPacket(var4);
                 this.l = 0;
             } else {
-                this.e.b("获取上传指令数据错误!");
+                this.e.processException("获取上传指令数据错误!");
             }
         }
     }
@@ -16370,7 +16370,7 @@ public final class ao_1 {
                     return;
                 }
 
-                this.e.b("该功能稍后开放");
+                this.e.processException("该功能稍后开放");
                 return;
             }
 
@@ -16386,7 +16386,7 @@ public final class ao_1 {
                     return;
                 }
 
-                this.e.b("该功能稍后开放");
+                this.e.processException("该功能稍后开放");
                 return;
             }
 
@@ -16410,7 +16410,7 @@ public final class ao_1 {
                     return;
                 }
 
-                this.e.b("该功能稍后开放");
+                this.e.processException("该功能稍后开放");
                 return;
             }
 
@@ -16528,7 +16528,7 @@ public final class ao_1 {
     private void b(short var1, byte var2, byte var3) {
         byte[] var4;
         if ((var4 = NetPayloadBuilder.a(var1, GlobalStatus.ad, (short) GlobalStatus.hL[var2], (int) GlobalStatus.t[var3].a)) == null) {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket(var1, var4));
             this.e.a((String) null);
@@ -16541,7 +16541,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket(var1, var3));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -16551,7 +16551,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4361, var4));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -16561,7 +16561,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4664, var3));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -16571,7 +16571,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4666, var3));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -16581,14 +16581,14 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4665, var6));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
     private void v(byte var1) {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.i((short) 4355, GlobalStatus.ad, (byte) var1)) == null) {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4354, var2));
             this.e.a((String) null);
@@ -16598,7 +16598,7 @@ public final class ao_1 {
     private void a(short var1, int var2, String var3, String var4) {
         byte[] var5;
         if ((var5 = NetPayloadBuilder.a((short) 4256, GlobalStatus.ad, var1, var2, var3, var4)) == null) {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4256, var5));
             this.e.a((String) null);
@@ -16608,7 +16608,7 @@ public final class ao_1 {
     private void a(byte var1, int var2, String var3) {
         byte[] var4;
         if ((var4 = NetPayloadBuilder.a((short) 4356, GlobalStatus.ad, (byte) 1, var2, var3, this.I.j, this.I.k)) == null) {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4356, var4));
             this.e.a((String) null);
@@ -16618,7 +16618,7 @@ public final class ao_1 {
     private void w(byte var1) {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.j((short) 4357, GlobalStatus.ad, (byte) var1)) == null) {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4357, var2));
             this.e.a((String) null);
@@ -16628,7 +16628,7 @@ public final class ao_1 {
     private void a(byte var1, bv var2) {
         byte[] var3;
         if ((var3 = NetPayloadBuilder.a((short) 4360, GlobalStatus.ad, (byte) var1, (bv) var2)) == null) {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4360, var3));
         }
@@ -16637,7 +16637,7 @@ public final class ao_1 {
     private void f(String var1) {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.a((short) 4671, GlobalStatus.ad, var1, (int) GlobalStatus.O.d)) == null) {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4671, var2));
             this.e.a((String) null);
@@ -16647,7 +16647,7 @@ public final class ao_1 {
     private void av(int var1) {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.w((short) 4668, GlobalStatus.ad, var1)) == null) {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4668, var2));
             this.e.a((String) null);
@@ -16657,7 +16657,7 @@ public final class ao_1 {
     public final void a(String var1, String var2, int var3) {
         byte[] var4;
         if ((var4 = NetPayloadBuilder.a((short) 4670, GlobalStatus.ad, var1, var2, var3)) == null) {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4670, var4));
             this.e.a((String) null);
@@ -16667,7 +16667,7 @@ public final class ao_1 {
     public final void a(String var1, String var2, String var3, int var4) {
         byte[] var5;
         if ((var5 = NetPayloadBuilder.a((short) 4669, GlobalStatus.ad, var1, var2, var4, var3)) == null) {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4669, var5));
             this.e.a((String) null);
@@ -16768,37 +16768,37 @@ public final class ao_1 {
         } else if (this.ba != null) {
             byte var1;
             if ((var1 = this.a(this.ba)) == 0) {
-                this.e.b("布置失败，请检查是否覆盖地图元素");
+                this.e.processException("布置失败，请检查是否覆盖地图元素");
                 return;
             }
 
             if (var1 == 1) {
-                this.e.b("布置失败，请检查是否覆盖地图npc");
+                this.e.processException("布置失败，请检查是否覆盖地图npc");
                 return;
             }
 
             if (var1 == 2) {
-                this.e.b("布置失败，请检查是否覆盖传送点");
+                this.e.processException("布置失败，请检查是否覆盖传送点");
                 return;
             }
 
             if (var1 == 3) {
-                this.e.b("布置失败，请检查是否覆盖其他材料");
+                this.e.processException("布置失败，请检查是否覆盖其他材料");
                 return;
             }
 
             if (var1 == 4) {
-                this.e.b("布置失败，请检查当前区域是否支持放置该类型材料");
+                this.e.processException("布置失败，请检查当前区域是否支持放置该类型材料");
                 return;
             }
 
             if (var1 == 5) {
-                this.e.b("布置失败，请检查是否在合法区域内");
+                this.e.processException("布置失败，请检查是否在合法区域内");
                 return;
             }
 
             if (var1 == 6) {
-                this.e.b("布置失败，请检查是否与当前人物位置重叠");
+                this.e.processException("布置失败，请检查是否与当前人物位置重叠");
                 return;
             }
 
@@ -16810,13 +16810,13 @@ public final class ao_1 {
                 aq var8 = this.M;
                 byte[] var2;
                 if ((var2 = NetPayloadBuilder.a((short) 4234, GlobalStatus.ad, (int) GlobalStatus.jr[var8.b.ar.g()], (short) var8.a.ba.e, (short) var8.a.ba.f)) == null) {
-                    var8.b.b("获取上传指令数据错误!");
+                    var8.b.processException("获取上传指令数据错误!");
                 } else {
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4234, var2));
                 }
             } else {
                 if (this.cX != 5) {
-                    this.e.b("材料类型不存在");
+                    this.e.processException("材料类型不存在");
                     return;
                 }
 
@@ -16828,7 +16828,7 @@ public final class ao_1 {
                 int var10 = var10001;
                 byte[] var6;
                 if ((var6 = NetPayloadBuilder.b((short) 4667, GlobalStatus.ad, var10, var4, (int) var5)) == null) {
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                 } else {
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4667, var6));
                 }
@@ -17064,13 +17064,13 @@ public final class ao_1 {
                         if (L.j != null && L.j.length > var3) {
                             byte[] var5;
                             if ((var5 = NetPayloadBuilder.l((short) 4238, GlobalStatus.ad, var2, L.j[var3])) == null) {
-                                var4.b.b("获取上传指令数据错误!");
+                                var4.b.processException("获取上传指令数据错误!");
                             } else {
                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4238, var5));
                                 var4.b.a((String) null);
                             }
                         } else {
-                            var4.b.b("获取上传指令数据错误!");
+                            var4.b.processException("获取上传指令数据错误!");
                         }
                     }
 
@@ -17115,7 +17115,7 @@ public final class ao_1 {
     private void a(byte var1, int var2, byte var3) {
         byte[] var4;
         if ((var4 = NetPayloadBuilder.a((short) 4363, GlobalStatus.ad, (byte) var1, (int) var2, (byte) var3)) == null) {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4363, var4));
             this.e.a((String) null);
@@ -17126,13 +17126,13 @@ public final class ao_1 {
         if (L.j != null && L.j.length > var3) {
             byte[] var4;
             if ((var4 = NetPayloadBuilder.a((short) 4364, GlobalStatus.ad, (byte) var1, (int) var2, (int) L.j[var3])) == null) {
-                this.e.b("获取上传指令数据错误!");
+                this.e.processException("获取上传指令数据错误!");
             } else {
                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4364, var4));
                 this.e.a((String) null);
             }
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -17142,7 +17142,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4248, var1));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -17230,7 +17230,7 @@ public final class ao_1 {
                 var1 = var10001;
                 byte[] var4;
                 if ((var4 = NetPayloadBuilder.c((short) 4249, GlobalStatus.ad, (int) var1, (byte) var2)) == null) {
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                     return;
                 }
 
@@ -17249,7 +17249,7 @@ public final class ao_1 {
                 return;
             }
 
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
 
     }
@@ -17329,7 +17329,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var4);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -17340,7 +17340,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var4);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -17351,7 +17351,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var4);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -17362,7 +17362,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var4);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -17373,7 +17373,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var6);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -17623,7 +17623,7 @@ public final class ao_1 {
             this.bR = this.n();
             if (var1 == 1073741824 || var1 == 268435456) {
                 if (this.n() <= 0L) {
-                    this.e.b("输入金钱必须大于0!");
+                    this.e.processException("输入金钱必须大于0!");
                     return;
                 }
 
@@ -17715,7 +17715,7 @@ public final class ao_1 {
             this.aU = this.e.ar.g();
             byte[] var2;
             if ((var2 = NetPayloadBuilder.a((short) 4649, (byte) GlobalStatus.kI, (short) ((short) this.e.ar.g()), GlobalStatus.ad)) == null) {
-                this.e.b("获取上传指令数据错误!");
+                this.e.processException("获取上传指令数据错误!");
                 return;
             }
 
@@ -17800,7 +17800,7 @@ public final class ao_1 {
             } else {
                 byte[] var2;
                 if ((var2 = NetPayloadBuilder.a((short) 4650, (int) GlobalStatus.kJ[this.e.ar.g()], (int) this.ag, GlobalStatus.ad)) == null) {
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                     return;
                 }
 
@@ -17851,7 +17851,7 @@ public final class ao_1 {
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4652, var2));
                             this.e.a((String) null);
                         } else {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                         }
 
                         GlobalStatus.kT = false;
@@ -18064,7 +18064,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4106, var2));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -18075,7 +18075,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var2);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -18203,7 +18203,7 @@ public final class ao_1 {
                 String var3 = var5.f;
                 byte[] var6;
                 if ((var6 = NetPayloadBuilder.r((short) 4678, GlobalStatus.ad, var3)) == null) {
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                 } else {
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4678, var6));
                     this.e.a((String) null);
@@ -18241,7 +18241,7 @@ public final class ao_1 {
                     }
                 } else if (var8 == 0) {
                     if (GlobalStatus.V != null) {
-                        this.e.b(GlobalStatus.V);
+                        this.e.processException(GlobalStatus.V);
                     } else {
                         this.e.l();
                     }
@@ -18283,7 +18283,7 @@ public final class ao_1 {
                         } else if (f_1.a[2].equals(var3)) {
                             if (GlobalStatus.S != null) {
                                 this.l = 0;
-                                this.e.b(GlobalStatus.S);
+                                this.e.processException(GlobalStatus.S);
                             } else {
                                 this.e.a((byte) 0, "发送邮件", GlobalStatus.O.n, GlobalStatus.O.o, GlobalStatus.O.p == null ? "" : GlobalStatus.O.p, GlobalStatus.O.q, GlobalStatus.O.r);
                             }
@@ -18295,11 +18295,11 @@ public final class ao_1 {
                             }
 
                             if (GlobalStatus.U != null) {
-                                this.e.b(GlobalStatus.U);
+                                this.e.processException(GlobalStatus.U);
                             } else {
                                 byte[] var5;
                                 if ((var5 = NetPayloadBuilder.l((short) 4672, GlobalStatus.ad)) == null) {
-                                    this.e.b("获取上传指令数据错误!");
+                                    this.e.processException("获取上传指令数据错误!");
                                     return;
                                 }
 
@@ -18320,16 +18320,16 @@ public final class ao_1 {
                             String var6 = var4.a;
                             byte[] var7;
                             if ((var7 = NetPayloadBuilder.h((short) 4673, GlobalStatus.ad, var6)) == null) {
-                                this.e.b("获取上传指令数据错误!");
+                                this.e.processException("获取上传指令数据错误!");
                                 return;
                             }
 
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4673, var7));
                         } else if (f_1.b[1].equals(var3)) {
                             if (GlobalStatus.S != null) {
-                                this.e.b(GlobalStatus.S);
+                                this.e.processException(GlobalStatus.S);
                             } else if (!var4.f) {
-                                this.e.b("未读邮件，请查看后再进行回复");
+                                this.e.processException("未读邮件，请查看后再进行回复");
                             } else {
                                 GlobalStatus.O.a();
                                 GlobalStatus.O.q = var4.a;
@@ -18349,14 +18349,14 @@ public final class ao_1 {
                             }
 
                             if (GlobalStatus.T != null) {
-                                this.e.b(GlobalStatus.T);
+                                this.e.processException(GlobalStatus.T);
                             } else {
                                 if (var4.f) {
                                     this.e.a(var4.a, var4.e, var4.b, var4.c);
                                     return;
                                 }
 
-                                this.e.b("未读邮件，请先查看");
+                                this.e.processException("未读邮件，请先查看");
                             }
                         }
                     }
@@ -18559,7 +18559,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var2);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -18568,17 +18568,17 @@ public final class ao_1 {
         if ((var1 = NetPayloadBuilder.b((short) 4267)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4267, var1));
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
     private void a(byte var1, byte var2, byte var3, byte var4) {
         if (GlobalStatus.bs == 0) {
-            this.e.b("队员不能发随机送组队邀请");
+            this.e.processException("队员不能发随机送组队邀请");
         } else if (GlobalStatus.bs == 1 && GlobalStatus.q != null && GlobalStatus.q.length >= 3) {
-            this.e.b("队伍已满，无法邀请");
+            this.e.processException("队伍已满，无法邀请");
         } else if (GlobalStatus.G()) {
-            this.e.b("住宅区域中，无法邀请");
+            this.e.processException("住宅区域中，无法邀请");
         } else {
             byte[] var5;
             if ((var5 = NetPayloadBuilder.a((short) 4259, var1, var2, var3, var4, GlobalStatus.ad)) != null) {
@@ -18586,7 +18586,7 @@ public final class ao_1 {
                 MainCanvas.netUtils.sendPacket(var6);
                 this.e.a((String) null);
             } else {
-                this.e.b("获取上传指令数据错误!");
+                this.e.processException("获取上传指令数据错误!");
             }
         }
     }
@@ -18595,9 +18595,9 @@ public final class ao_1 {
         byte[] var1;
         if ((var1 = NetPayloadBuilder.h((short) 4120, GlobalStatus.ad)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4120, var1));
-            this.e.b("解散队伍请求已发送!");
+            this.e.processException("解散队伍请求已发送!");
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -18605,9 +18605,9 @@ public final class ao_1 {
         byte[] var1;
         if ((var1 = NetPayloadBuilder.i((short) 4121, GlobalStatus.ad)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4121, var1));
-            this.e.b("脱离队伍请求已发送!");
+            this.e.processException("脱离队伍请求已发送!");
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -19054,7 +19054,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 5121, var5));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -19064,7 +19064,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 5122, var4));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -19074,7 +19074,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4881, var2));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -19172,7 +19172,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4882, var4));
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -19448,7 +19448,7 @@ public final class ao_1 {
                         this.e.a((String) null);
                         break;
                     } else {
-                        this.e.b("获取上传指令数据错误!");
+                        this.e.processException("获取上传指令数据错误!");
                         return;
                     }
                 default:
@@ -19567,7 +19567,7 @@ public final class ao_1 {
     private void g(String var1) {
         byte[] var2;
         if ((var2 = NetPayloadBuilder.s((short) 4675, GlobalStatus.ad, var1)) == null) {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4675, var2));
             this.e.a((String) null);
@@ -19577,7 +19577,7 @@ public final class ao_1 {
     public final void a(String var1, String var2) {
         byte[] var3;
         if ((var3 = NetPayloadBuilder.c((short) 4674, GlobalStatus.ad, var2, var1)) == null) {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4674, var3));
             this.e.a((String) null);
@@ -19658,7 +19658,7 @@ public final class ao_1 {
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4370, var2));
                             this.e.a((String) null);
                         } else {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                         }
 
                         LoadingPage.g = 0;
@@ -19808,7 +19808,7 @@ public final class ao_1 {
                             if (GlobalStatus.fw != null && GlobalStatus.fw.length > 0) {
                                 this.j((int) 10);
                             } else {
-                                this.e.b("您没有宠物可选择");
+                                this.e.processException("您没有宠物可选择");
                             }
                         } else {
                             LoadingPage.a(GlobalConfig.defaultWidth / 2, GlobalConfig.defaultHigh / 2, new String[]{"升星", "取出"}, true);
@@ -19820,10 +19820,10 @@ public final class ao_1 {
                                 if (GlobalStatus.fw != null && GlobalStatus.fw.length > 0) {
                                     this.j((int) 10);
                                 } else {
-                                    this.e.b("您没有宠物可选择");
+                                    this.e.processException("您没有宠物可选择");
                                 }
                             } else {
-                                this.e.b("请先放入要升星的宠物");
+                                this.e.processException("请先放入要升星的宠物");
                             }
                         } else {
                             LoadingPage.a(GlobalConfig.defaultWidth / 2, GlobalConfig.defaultHigh / 2, new String[]{"取出"}, true);
@@ -19837,7 +19837,7 @@ public final class ao_1 {
                     } else if (GlobalStatus.mx != -1) {
                         this.e((int) 20);
                     } else {
-                        this.e.b("请先放入要升星的宠物");
+                        this.e.processException("请先放入要升星的宠物");
                     }
                 }
             }
@@ -19871,7 +19871,7 @@ public final class ao_1 {
                             MainCanvas.netUtils.sendPacket(var3);
                             this.e.a((String) null);
                         } else {
-                            this.e.b("获取上传指令数据错误!");
+                            this.e.processException("获取上传指令数据错误!");
                         }
                     } else if (this.be == 1) {
                         this.b((int) 0, (byte) 1);
@@ -19903,7 +19903,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var4);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -19927,7 +19927,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var4);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -20117,7 +20117,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var7);
             this.e.a((String) null);
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -20305,7 +20305,7 @@ public final class ao_1 {
             MainCanvas.netUtils.sendPacket(var5);
             this.e.a("");
         } else {
-            this.e.b("获取上传指令数据错误!");
+            this.e.processException("获取上传指令数据错误!");
         }
     }
 
@@ -20353,7 +20353,7 @@ public final class ao_1 {
                         return;
                     }
 
-                    this.e.b("获取上传指令数据错误!");
+                    this.e.processException("获取上传指令数据错误!");
                 }
 
             } else {

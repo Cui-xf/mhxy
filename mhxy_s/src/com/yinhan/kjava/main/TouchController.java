@@ -543,7 +543,7 @@ public final class TouchController {
                         for(byte var36 = (byte)(GlobalStatus.H.length - 1); var36 >= 0; --var36) {
                            if (GlobalStatus.H[var36].j != null && var1 >= GlobalConfig.Q[GlobalStatus.H[var36].a][0] - GlobalStatus.H[var36].f() / 2 && var1 <= GlobalConfig.Q[GlobalStatus.H[var36].a][0] + GlobalStatus.H[var36].f() / 2 && var2 >= GlobalConfig.Q[GlobalStatus.H[var36].a][1] - GlobalStatus.H[var36].g() && var2 <= GlobalConfig.Q[GlobalStatus.H[var36].a][1]) {
                               if (bq_1.h()) {
-                                 this.canvas.b("只能对自己使用复活道具");
+                                 this.canvas.processException("只能对自己使用复活道具");
                               } else if (this.a.g.i != var36) {
                                  this.a.g.i = var36;
                               } else {
@@ -556,7 +556,7 @@ public final class TouchController {
                      for(byte var35 = (byte)(GlobalStatus.H.length - 1); var35 >= 0; --var35) {
                         if (GlobalStatus.H[var35].j != null && var1 >= GlobalConfig.Q[GlobalStatus.H[var35].a][0] - GlobalStatus.H[var35].f() / 2 && var1 <= GlobalConfig.Q[GlobalStatus.H[var35].a][0] + GlobalStatus.H[var35].f() / 2 && var2 >= GlobalConfig.Q[GlobalStatus.H[var35].a][1] - GlobalStatus.H[var35].g() && var2 <= GlobalConfig.Q[GlobalStatus.H[var35].a][1]) {
                            if (bq_1.h()) {
-                              this.canvas.b("只能对自己使用复活道具");
+                              this.canvas.processException("只能对自己使用复活道具");
                            } else if (this.a.g.i != var35) {
                               this.a.g.i = var35;
                            } else {

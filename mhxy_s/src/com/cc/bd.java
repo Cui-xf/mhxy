@@ -195,7 +195,7 @@ public final class bd implements CommandListener {
       String var4 = this.d.getString();
       if (var3.equals("确定") && var4 != null) {
          if (var4.length() == 0) {
-            this.b.b("名称为空！");
+            this.b.processException("名称为空！");
          } else {
             if (this.a.R != null) {
                this.a.R.c = 1;
