@@ -45,11 +45,11 @@ public final class ck {
             GlobalConfig.sbTemp.append("f").append(this.j).append(1).append(this.v).append(var1);
          }
 
-         this.m = MainCanvas.ab.b(GlobalConfig.sbTemp.toString());
+         this.m = MainCanvas.ab.getFrame1(GlobalConfig.sbTemp.toString());
          if (this.m == null && var1 != 4) {
             GlobalConfig.sbTemp.delete(0, GlobalConfig.sbTemp.length());
             GlobalConfig.sbTemp.append("f").append(this.j).append(1).append(1).append(var1);
-            this.m = MainCanvas.ab.b(GlobalConfig.sbTemp.toString());
+            this.m = MainCanvas.ab.getFrame1(GlobalConfig.sbTemp.toString());
          }
       } else if (this.b == 1) {
          GlobalConfig.sbTemp.append(this.j).append(var1 > 3 ? 3 : var1);

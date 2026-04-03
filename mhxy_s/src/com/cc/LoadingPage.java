@@ -1612,26 +1612,26 @@ public final class LoadingPage {
     *   2. 居中 "正在载入资源..." 白色文字
     *   3. 进度条和百分比
     *
-    * @param var0 Graphics 画布
-    * @param var1 进度条背景图片
+    * @param graphics Graphics 画布
+    * @param jindutiao 进度条背景图片
     */
-   public static void a(Graphics var0, Image var1) {
-      if (an != null && var1 != null) {
-         var0.setColor(0);
-         var0.fillRect(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);          // 黑色填充整个屏幕
+   public static void drawLoadingPage(Graphics graphics, Image jindutiao) {
+      if (an != null && jindutiao != null) {
+         graphics.setColor(0);
+         graphics.fillRect(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);          // 黑色填充整个屏幕
          if (ap != null) {
-            ap.a(var0, GlobalConfig.defaultWidth / 2, 20, 17);            // 顶部居中绘制提示文字（anchor=TOP|HCENTER）
+            ap.a(graphics, GlobalConfig.defaultWidth / 2, 20, 17);            // 顶部居中绘制提示文字（anchor=TOP|HCENTER）
          }
 
-         var0.setColor(16777215);                      // 白色
-         var0.drawString("正在载入资源...", GlobalConfig.defaultWidth / 2, GlobalConfig.defaultHigh / 2, 17);  // 屏幕中央
-         var0.setColor(14459464);                      // 浅蓝色
-         var0.drawString(100 * A / 100 + "%", GlobalConfig.defaultWidth / 2, an[1] + 10, 17);  // 百分比数字
-         var0.drawImage(var1, an[0] - 5, an[1] - 4, 20);   // 进度条背景图
-         var0.setColor(16382066);                      // 进度条前景色1
-         var0.fillRect(an[0], an[1], 100 * A / 100, 3);
-         var0.setColor(14459464);                      // 进度条前景色2（高光层）
-         var0.fillRect(an[0], an[1] + 1, 100 * A / 100, 2);
+         graphics.setColor(16777215);                      // 白色
+         graphics.drawString("正在载入资源...", GlobalConfig.defaultWidth / 2, GlobalConfig.defaultHigh / 2, 17);  // 屏幕中央
+         graphics.setColor(14459464);                      // 浅蓝色
+         graphics.drawString(100 * A / 100 + "%", GlobalConfig.defaultWidth / 2, an[1] + 10, 17);  // 百分比数字
+         graphics.drawImage(jindutiao, an[0] - 5, an[1] - 4, 20);   // 进度条背景图
+         graphics.setColor(16382066);                      // 进度条前景色1
+         graphics.fillRect(an[0], an[1], 100 * A / 100, 3);
+         graphics.setColor(14459464);                      // 进度条前景色2（高光层）
+         graphics.fillRect(an[0], an[1] + 1, 100 * A / 100, 2);
          A = ++A > 100 ? 100 : A;                     // 进度递增，上限100
       }
    }

@@ -93,7 +93,7 @@ public final class Page {
         return null;
     }
 
-    public final Frame1 b(String var1) {
+    public final Frame1 getFrame1(String var1) {
         var1 = wrapName(var1, (byte) 2);
         return this.a((int) hashKey(var1.toCharArray()), (short) 0, (short) 0, (short) 0);
     }

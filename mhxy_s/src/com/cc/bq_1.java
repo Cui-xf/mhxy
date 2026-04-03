@@ -2294,7 +2294,7 @@ public final class bq_1 {
             if (var2 >= 0 && var2 < 8) {
                var10000 = MainCanvas.f;
                var10001 = var1;
-               var10002 = MainCanvas.n;
+               var10002 = MainCanvas.num;
                var10003 = null;
                var10004 = var2 + 1;
             } else {

@@ -3,7 +3,7 @@ package com.cc.handler.cmd
 import com.cc.handler.util.ResponseWriter
 import io.netty.channel.ChannelHandlerContext
 import java.io.DataInputStream
-import java.util.*
+import java.util.UUID
 
 /**
  * 握手/建连包 opcode=6400 (0x1900)
@@ -50,41 +50,43 @@ object HandshakeHandler : CmdHandler {
         }
         ResponseWriter.send(ctx, 8194, body8194)
 
-        // opcode=8195：下发角色列表（来源：GlobalStatus.a(DataInputStream) 第1097行）
+        // opcode=8195：下发角色列表（来源：GlobalStatus.a(DataInputStream) + 真包日志）
         // body: [count: byte]
-        //   per role: [name: UTF][level: short][job: byte][gender: byte][serverName: UTF][nD: byte]
-        //   per role: [UTF][UTF][UTF]  （3个附加字段，内容不明，用空字符串占位）
-        // [UTF]  （末尾1个全局字段，内容不明，用空字符串占位）
-        val roles = listOf(
-            RoleInfo(name = "测试角色", level = 1, job = 0, gender = 0, serverName = "测试服")
-        )
+        //   per role: [roleId: UTF][level: short][job: byte][gender: byte][displayName: UTF][flag: byte]
+        //   per role: [extra1: UTF][extra2: UTF][extra3: UTF]
+        // [tail: UTF]
+        val roles = listOf(GameBootstrap.defaultRole)
         val body8195 = ResponseWriter.buildBody {
             writeByte(roles.size)
             for (role in roles) {
-                writeUTF(role.name)
+                writeUTF(role.roleId)
                 writeShort(role.level.toInt())
                 writeByte(role.job.toInt())
                 writeByte(role.gender.toInt())
-                writeUTF(role.serverName)
-                writeByte(0)        // nD[i]，用途不明
+                writeUTF(role.displayName)
+                writeByte(role.flag.toInt())
             }
             for (role in roles) {
-                writeUTF("")        // 附加字段1
-                writeUTF("")        // 附加字段2
-                writeUTF("")        // 附加字段3
+                writeUTF(role.extra1)
+                writeUTF(role.extra2)
+                writeUTF(role.extra3)
             }
-            writeUTF("")            // 末尾全局字段
+            writeUTF("0")
         }
         ResponseWriter.send(ctx, 8195, body8195)
     }
 }
 
 data class RoleInfo(
-    val name: String,
+    val roleId: String,
     val level: Short,
     val job: Byte,
     val gender: Byte,
-    val serverName: String,
+    val displayName: String,
+    val flag: Byte,
+    val extra1: String,
+    val extra2: String,
+    val extra3: String,
 )
 
 /**
@@ -93,20 +95,15 @@ data class RoleInfo(
  * 由 MainCanvas.g(roleName) 发出，格式与 4100 相同：
  * [account: UTF][token: UTF][roleName: UTF]
  *
- * 服务端回复 opcode=8197，body 对应 GlobalStatus.d(DataInputStream)：
- * [roleName:UTF][level:short][mapName:UTF][job:byte][gender:byte][title:UTF]
- * [color:byte][exp:long][maxExp:long][mapId:long][gold:long][bindGold:long][totalGold:long]
- * [x:int][y:int][destX:int][destY:int][maxHp:int][hp:int][maxMp:int][mp:int]
- * [maxSp:int][sp:int][maxOp:int][op:int][atkMin:int][atkMax:int]
- * [petSlot:short(若>-1: petX:short,petY:short,petDir:short)]
- * [guildName:UTF][guildLevel:short][guildJob:byte]
- * [unknown1:UTF][unknown2:UTF][unknown3:int][unknown4:byte]
- * [unknown5:UTF][unknown6:UTF][unknown7:UTF][unknown8:UTF][unknown9:UTF]
- * [aW:int][aX:int][aY:int][bA:byte]
- * [bB:UTF][bn:UTF][bo:UTF]
- * [aI:byte]
- * [nm:byte(若>0: nn:UTF,no:short,np:short,nq:short)]
- * [bd:UTF]
+ * 真实首轮进图流程（结合客户端 `NetworkPacketProcessors` 与日志）：
+ * 1. 8197：角色完整状态
+ * 2. 8198：当前地图实体/NPC列表
+ * 3. 8199：过渡图“空间通道”
+ * 4. 8199：目标图“花果山”
+ * 5. 8200：目标图兴趣点坐标
+ *
+ * 注：8245/8260 也属于完整切图链路，但当前日志里的大包正文被截断，
+ * 暂时无法无损复原，因此先补齐客户端真正会消费且当前可完整还原的包。
  */
 object EnterGameHandler : CmdHandler {
     override val cmd = 4250
@@ -114,63 +111,16 @@ object EnterGameHandler : CmdHandler {
     override fun handle(ctx: ChannelHandlerContext, dis: DataInputStream) {
         val account = dis.readUTF()
         val token = dis.readUTF()
-        val roleName = dis.readUTF()
+        val roleId = dis.readUTF()
 
-        println("[EnterGame] account=$account roleName=$roleName")
+        println("[EnterGame] account=$account roleId=$roleId")
 
-        val body8197 = ResponseWriter.buildBody {
-            writeUTF(roleName)      // ad: 角色名
-            writeShort(1)           // ak: 等级
-            writeUTF("新手村")      // ag: 地图名
-            writeByte(0)            // aj: 职业
-            writeByte(0)            // ax: 性别
-            writeUTF("")            // ah: 称号
-            writeByte(0)            // ai: 颜色 byte（LoadingPage.a 转换）
-            writeLong(0)            // ap: 当前经验
-            writeLong(100)          // aq: 升级所需经验
-            writeLong(0)            // al: 地图ID
-            writeLong(0)            // am: 金币
-            writeLong(0)            // an: 绑定金币
-            writeLong(0)            // ao: 累计金币
-            writeInt(50)            // aN: x坐标
-            writeInt(50)            // aM: y坐标
-            writeInt(50)            // aP: 目标x
-            writeInt(50)            // aO: 目标y
-            writeInt(100)           // aR: 最大HP
-            writeInt(100)           // aQ: 当前HP
-            writeInt(100)           // aT: 最大MP
-            writeInt(100)           // aS: 当前MP
-            writeInt(100)           // aV: 最大SP
-            writeInt(100)           // aU: 当前SP
-            writeInt(100)           // aZ: 最大OP
-            writeInt(100)           // bc: 当前OP
-            writeInt(10)            // ba: 最小攻击
-            writeInt(20)            // bb: 最大攻击
-            writeShort(-1)          // be: 宠物槽位（-1表示无宠物）
-            writeUTF("")            // bh: 帮派名
-            writeShort(0)           // bf: 帮派等级
-            writeByte(0)            // bg: 帮派职位
-            writeUTF("")            // az: unknown1
-            writeUTF("")            // aA: unknown2
-            writeInt(0)             // aB: unknown3
-            writeByte(0)            // ay: unknown4
-            writeUTF("")            // bi
-            writeUTF("")            // bj
-            writeUTF("")            // bk
-            writeUTF("")            // bl
-            writeUTF("")            // bm
-            writeInt(0)             // aW
-            writeInt(0)             // aX
-            writeInt(0)             // aY
-            writeByte(0)            // bA: VIP等级
-            writeUTF("")            // bB
-            writeUTF("")            // bn: 最后死亡记录（空时客户端改为"暂无记录。"）
-            writeUTF("")            // bo
-            writeByte(0)            // aI
-            writeByte(0)            // nm: 坐骑标志（0=无坐骑）
-            writeUTF("")            // bd
-        }
-        ResponseWriter.send(ctx, 8197, body8197)
+        // 8197 必须与客户端真实读序一致，直接复用真包可避免字段错位。
+        ResponseWriter.send(ctx, 8197, GameBootstrap.roleState8197)
+        ResponseWriter.send(ctx, 8198, GameBootstrap.mapEntities8198)
+        ResponseWriter.send(ctx, 8199, GameBootstrap.spacePassage8199)
+        ResponseWriter.send(ctx, 8199, GameBootstrap.huaguoshan8199)
+        ResponseWriter.send(ctx, 8200, GameBootstrap.huaguoshanPoints8200)
     }
 }
 
@@ -192,5 +142,59 @@ object AccountLoginHandler : CmdHandler {
 
         println("[AccountLogin] username=$username roleName=$roleName server=$s")
         // TODO: 鉴权逻辑
+    }
+}
+
+private object GameBootstrap {
+    val defaultRole = RoleInfo(
+        roleId = "id_12_63775455",
+        level = 3,
+        job = 1,
+        gender = 2,
+        displayName = "欧阳娜娜",
+        flag = 1,
+        extra1 = "roles3",
+        extra2 = "roles4",
+        extra3 = "roles5",
+    )
+
+    val roleState8197 = hex(
+        "000E69645F31325F36333737353435350003000CE6ACA7E998B3E5A8" +
+                "9CE5A89C0102000001000000000000504600000000000000000009313331302F31" +
+                "3430300000000000000000000002540BE4000000000000002A0000031C00000320" +
+                "00000195000001950000005F000000690000002100000024000000240000002700" +
+                "00000B0000002B0000001E00000034FFFF0000000C000000000000000000010000" +
+                "000000000000000000000000000000000027000000240100000122E79B8AE6B094" +
+                "E4B8B8EFBCA9302F33303009E79B8AE8A180E4B8B8EFBCA9302F33303009E79B8AE5" +
+                "8A9BE4B8B8EFBCA9302F33303009E79B8AE699BAE4B8B8EFBCA9302F33303009E79B" +
+                "8AE4BD93E4B8B8EFBCA9302F33303009E5BCBAE6B094E4B8B9EFBCA9302F32303009" +
+                "E5BCBAE8A180E4B8B9EFBCA9302F32303009E5BCBAE58A9BE4B8B9EFBCA9302F3230" +
+                "3009E5BCBAE699BAE4B8B9EFBCA9302F32303009E5BCBAE4BD93E4B8B9EFBCA9302F" +
+                "32303009E5A29EE6B094E4B8B9EFBCA9302F31353009E5A29EE8A180E4B8B9EFBCA9" +
+                "302F31353009E5A29EE58A9BE4B8B9EFBCA9302F31353009E5A29EE699BAE4B8B9EF" +
+                "BCA9302F31353009E5A29EE4BD93E4B8B9EFBCA9302F31353009E4B99DE8BDACE987" +
+                "91E4B8B9EFBCA9302F313009000000FF0000"
+    )
+
+    val mapEntities8198 = hex(
+        "0602BD000EE591A8E78C8EE688B728E594AE290001014001B00000070000000000" +
+                "00000CB3000000000000000002BE0009E9BE9FE4B89EE79BB8000101B000E00000" +
+                "01000000010000000D03000000000000000002BF0009E6B581E58583E5B8850001" +
+                "01B00140000001000000000000000CF0000000000000000002C00009E5969CE78C" +
+                "B4E78CB400010020015000000100000000000000041B000000000000000002C100" +
+                "09E68792E78CB4E78CB40001006000E000000100000000000000041B0000000000" +
+                "00000002C20009E4BA8CE5AFA8E4B8BB0001002000600000410000000000000003" +
+                "FD0000000000000000"
+    )
+
+    val spacePassage8199 = hex("0001000CE7A9BAE997B4E9809AE98193FFF6FFF600000000")
+    val huaguoshan8199 = hex("00070009E88AB1E69E9CE5B1B101A001A000000000")
+    val huaguoshanPoints8200 = hex("020130021001900060")
+}
+
+private fun hex(value: String): ByteArray {
+    require(value.length % 2 == 0) { "hex string length must be even" }
+    return ByteArray(value.length / 2) { index ->
+        value.substring(index * 2, index * 2 + 2).toInt(16).toByte()
     }
 }

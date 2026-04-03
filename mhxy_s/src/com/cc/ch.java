@@ -424,16 +424,16 @@ public final class ch {
                MainCanvas.af.e(String.valueOf(1702));
                MainCanvas.f.a(var1, ao_1.b((short)1702), (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
                if (n[var2 - 4] > 99) {
-                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, n[var2 - 4] / 100, 0, 0, this.a[var2][0] + 13 - 8, this.a[var2][1] + 11, 0, 0);
-                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, n[var2 - 4] % 100 / 10, 0, 0, this.a[var2][0] + 13 - 4, this.a[var2][1] + 11, 0, 0);
-                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, n[var2 - 4] % 100, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] / 100, 0, 0, this.a[var2][0] + 13 - 8, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] % 100 / 10, 0, 0, this.a[var2][0] + 13 - 4, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] % 100, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
                }
 
                if (n[var2 - 4] > 9) {
-                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, n[var2 - 4] / 10, 0, 0, this.a[var2][0] + 13 - 4, this.a[var2][1] + 11, 0, 0);
-                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, n[var2 - 4] % 10, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] / 10, 0, 0, this.a[var2][0] + 13 - 4, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] % 10, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
                } else if (n[var2 - 4] >= 0) {
-                  MainCanvas.f.a(var1, MainCanvas.n, (int[])null, n[var2 - 4] % 10, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
+                  MainCanvas.f.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] % 10, 0, 0, this.a[var2][0] + 13, this.a[var2][1] + 11, 0, 0);
                }
             }
          }

@@ -12,9 +12,9 @@ public final class cj {
    public cj(int var1, int var2) {
       this.b = new int[var2];
       this.c = new int[var2];
-      this.a = MainCanvas.ad.b(String.valueOf(var1));
+      this.a = MainCanvas.ad.getFrame1(String.valueOf(var1));
       if (this.a == null || this.a.k == null || this.a.k[0] == null || this.a.k[0][0] == null || this.a.k[0][0].a == null) {
-         this.a = MainCanvas.ad.b(String.valueOf(10));
+         this.a = MainCanvas.ad.getFrame1(String.valueOf(10));
       }
 
    }

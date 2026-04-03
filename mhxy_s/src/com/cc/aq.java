@@ -2549,10 +2549,10 @@ public final class aq {
                int var10 = var9 % 32;
                MainCanvas.f.a(var3, ao_1.b(GlobalStatus.iR[var9]), (int[])null, (aj)null, 0, 0, var10 % 8 * (ao_1.x.b + var4) + var6 + 1, var10 / 8 * (ao_1.x.b + var5) + var7 + 1, 0, 0);
                if (GlobalStatus.iQ[var9] > 9) {
-                  MainCanvas.f.a(var3, MainCanvas.n, (int[])null, GlobalStatus.iQ[var9] / 10, 0, 0, 10 + var10 % 8 * (ao_1.x.b + var4) + var6, var10 / 8 * (ao_1.x.b + var5) + var7 + 12, 0, 0);
-                  MainCanvas.f.a(var3, MainCanvas.n, (int[])null, GlobalStatus.iQ[var9] % 10, 0, 0, 14 + var10 % 8 * (ao_1.x.b + var4) + var6, var10 / 8 * (ao_1.x.b + var5) + var7 + 12, 0, 0);
+                  MainCanvas.f.a(var3, MainCanvas.num, (int[])null, GlobalStatus.iQ[var9] / 10, 0, 0, 10 + var10 % 8 * (ao_1.x.b + var4) + var6, var10 / 8 * (ao_1.x.b + var5) + var7 + 12, 0, 0);
+                  MainCanvas.f.a(var3, MainCanvas.num, (int[])null, GlobalStatus.iQ[var9] % 10, 0, 0, 14 + var10 % 8 * (ao_1.x.b + var4) + var6, var10 / 8 * (ao_1.x.b + var5) + var7 + 12, 0, 0);
                } else if (GlobalStatus.iQ[var9] > 1) {
-                  MainCanvas.f.a(var3, MainCanvas.n, (int[])null, GlobalStatus.iQ[var9] % 10, 0, 0, 14 + var10 % 8 * (ao_1.x.b + var4) + var6, var10 / 8 * (ao_1.x.b + var5) + var7 + 12, 0, 0);
+                  MainCanvas.f.a(var3, MainCanvas.num, (int[])null, GlobalStatus.iQ[var9] % 10, 0, 0, 14 + var10 % 8 * (ao_1.x.b + var4) + var6, var10 / 8 * (ao_1.x.b + var5) + var7 + 12, 0, 0);
                }
 
                if (var9 == (var11.a.ar << 3) + var11.a.aq + 32 * var11.b.as.a) {

@@ -2906,11 +2906,11 @@ public final class ao_1 {
         G = MainCanvas.ui.getFrame("hotkeyicon");
         F = MainCanvas.ui.getFrame("fighticon");
         E = MainCanvas.ui.getFrame("fightnum");
-        bn = MainCanvas.ui.b("trans");
-        u = MainCanvas.ui.b("dialog");
-        s = MainCanvas.ui.b("?");
-        t_2 = MainCanvas.ui.b("!");
-        bo = MainCanvas.ui.b("mapnpc");
+        bn = MainCanvas.ui.getFrame1("trans");
+        u = MainCanvas.ui.getFrame1("dialog");
+        s = MainCanvas.ui.getFrame1("?");
+        t_2 = MainCanvas.ui.getFrame1("!");
+        bo = MainCanvas.ui.getFrame1("mapnpc");
         H = MainCanvas.ui.getFrame("mystation");
         v = MainCanvas.publicUI.getFrame(GlobalConfig.N[GlobalStatus.ax][GlobalStatus.aj]);
         B = MainCanvas.publicUI.getFrame("lvl");
@@ -6192,10 +6192,10 @@ public final class ao_1 {
                         if (var13.bT.h / 32 == var13.e.as.a) {
                             MainCanvas.f.a(var3, b(var13.bT.i), (int[]) null, (aj) null, 0, 0, var9 % 8 * (x.b + var4) + var6 + 1, var9 / 8 * (x.b + var5) + var7 + 1, 0, 0);
                             if (var10 > 9) {
-                                MainCanvas.f.a(var3, MainCanvas.n, (int[]) null, var10 / 10, 0, 0, 10 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
-                                MainCanvas.f.a(var3, MainCanvas.n, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                                MainCanvas.f.a(var3, MainCanvas.num, (int[]) null, var10 / 10, 0, 0, 10 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                                MainCanvas.f.a(var3, MainCanvas.num, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
                             } else if (var10 > 1) {
-                                MainCanvas.f.a(var3, MainCanvas.n, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                                MainCanvas.f.a(var3, MainCanvas.num, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
                             }
 
                             if (var13.bT.h % 32 == (var13.ar << 3) + var13.aq) {
@@ -6540,10 +6540,10 @@ public final class ao_1 {
                         if (var11 / 32 == var12.e.as.a) {
                             MainCanvas.f.a(var3, b(var12.bT.i), (int[]) null, (aj) null, 0, 0, var9 % 8 * (x.b + var4) + var6 + 1, var9 / 8 * (x.b + var5) + var7 + 1, 0, 0);
                             if (var10 > 9) {
-                                MainCanvas.f.a(var3, MainCanvas.n, (int[]) null, var10 / 10, 0, 0, 10 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
-                                MainCanvas.f.a(var3, MainCanvas.n, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                                MainCanvas.f.a(var3, MainCanvas.num, (int[]) null, var10 / 10, 0, 0, 10 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                                MainCanvas.f.a(var3, MainCanvas.num, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
                             } else if (var10 > 1) {
-                                MainCanvas.f.a(var3, MainCanvas.n, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
+                                MainCanvas.f.a(var3, MainCanvas.num, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (x.b + var4) + var6, 12 + var9 / 8 * (x.b + var5) + var7, 0, 0);
                             }
 
                             if (var11 % 32 == (var12.ar << 3) + var12.aq) {
@@ -8705,7 +8705,7 @@ public final class ao_1 {
                 (MainCanvas.ad = new Page("/", "skill")).loadRpg();
             }
 
-            this.ch = MainCanvas.ad.b(String.valueOf(GlobalStatus.mR[this.e.ar.g()]));
+            this.ch = MainCanvas.ad.getFrame1(String.valueOf(GlobalStatus.mR[this.e.ar.g()]));
             this.e.touchPageCase = this.e.k;
             this.j = this.k = 123;
         }
@@ -8715,7 +8715,7 @@ public final class ao_1 {
         if (this.l == 0) {
             this.e.aq.b(var1);
             if (var1 == 1 || var1 == 4) {
-                this.ch = MainCanvas.ad.b("" + GlobalStatus.mR[this.e.ar.g()]);
+                this.ch = MainCanvas.ad.getFrame1("" + GlobalStatus.mR[this.e.ar.g()]);
                 this.e.ar.a(GlobalStatus.mS[this.e.ar.g()], 1);
                 return;
             }
@@ -11410,10 +11410,10 @@ public final class ao_1 {
                     int var8 = var7 % 32;
                     MainCanvas.f.a(var1, b(GlobalStatus.cx[var7]), (int[]) null, (aj) null, 0, 0, var8 % 8 * (x.b + var2) + var4 + 1, var8 / 8 * (x.b + var3) + var5 + 1, 0, 0);
                     if (GlobalStatus.cw[var7] > 9) {
-                        MainCanvas.f.a(var1, MainCanvas.n, (int[]) null, GlobalStatus.cw[var7] / 10, 0, 0, 10 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
-                        MainCanvas.f.a(var1, MainCanvas.n, (int[]) null, GlobalStatus.cw[var7] % 10, 0, 0, 14 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
+                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.cw[var7] / 10, 0, 0, 10 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
+                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.cw[var7] % 10, 0, 0, 14 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
                     } else if (GlobalStatus.cw[var7] > 1) {
-                        MainCanvas.f.a(var1, MainCanvas.n, (int[]) null, GlobalStatus.cw[var7] % 10, 0, 0, 14 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
+                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.cw[var7] % 10, 0, 0, 14 + var8 % 8 * (x.b + var2) + var4, var8 / 8 * (x.b + var3) + var5 + 12, 0, 0);
                     }
 
                     if (var7 == (this.ar << 3) + this.aq + 32 * this.e.as.a) {
@@ -14104,10 +14104,10 @@ public final class ao_1 {
                 for (int var27 = 0; var27 < GlobalStatus.fs.length; ++var27) {
                     MainCanvas.f.a(var1, b(GlobalStatus.fs[var27]), (int[]) null, (aj) null, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 1, var3 + 1, 0, 0);
                     if (GlobalStatus.fq[var27] > 9) {
-                        MainCanvas.f.a(var1, MainCanvas.n, (int[]) null, GlobalStatus.fq[var27] / 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 1, var3 + 1, 0, 0);
-                        MainCanvas.f.a(var1, MainCanvas.n, (int[]) null, GlobalStatus.fq[var27] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 5, var3 + 1, 0, 0);
+                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fq[var27] / 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 1, var3 + 1, 0, 0);
+                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fq[var27] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 5, var3 + 1, 0, 0);
                     } else if (GlobalStatus.fq[var27] > 1) {
-                        MainCanvas.f.a(var1, MainCanvas.n, (int[]) null, GlobalStatus.fq[var27] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 1, var3 + 1, 0, 0);
+                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fq[var27] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 1, var3 + 1, 0, 0);
                     }
                 }
             }
@@ -14153,10 +14153,10 @@ public final class ao_1 {
                 for (int var30 = 0; var30 < GlobalStatus.fl.length; ++var30) {
                     MainCanvas.f.a(var1, b(GlobalStatus.fl[var30]), (int[]) null, (aj) null, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 1, var3 + 1, 0, 0);
                     if (GlobalStatus.fj[var30] > 9) {
-                        MainCanvas.f.a(var1, MainCanvas.n, (int[]) null, GlobalStatus.fj[var30] / 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 1, var3 + 1, 0, 0);
-                        MainCanvas.f.a(var1, MainCanvas.n, (int[]) null, GlobalStatus.fj[var30] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 5, var3 + 1, 0, 0);
+                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fj[var30] / 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 1, var3 + 1, 0, 0);
+                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fj[var30] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 5, var3 + 1, 0, 0);
                     } else if (GlobalStatus.fj[var30] > 1) {
-                        MainCanvas.f.a(var1, MainCanvas.n, (int[]) null, GlobalStatus.fj[var30] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 1, var3 + 1, 0, 0);
+                        MainCanvas.f.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fj[var30] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 1, var3 + 1, 0, 0);
                     }
                 }
             }
@@ -15642,23 +15642,23 @@ public final class ao_1 {
         }
 
         if (ab == null) {
-            ab = MainCanvas.ad.b("27");
+            ab = MainCanvas.ad.getFrame1("27");
         }
 
         if (aa == null) {
-            aa = MainCanvas.ad.b("quit");
+            aa = MainCanvas.ad.getFrame1("quit");
         }
 
         if (ac == null) {
-            ac = MainCanvas.ad.b("dead");
+            ac = MainCanvas.ad.getFrame1("dead");
         }
 
         if (ad == null) {
-            ad = MainCanvas.ad.b("dead2");
+            ad = MainCanvas.ad.getFrame1("dead2");
         }
 
         if (ae == null) {
-            ae = MainCanvas.ad.b("defence");
+            ae = MainCanvas.ad.getFrame1("defence");
         }
 
         c(GlobalStatus.cb);
@@ -16707,7 +16707,7 @@ public final class ao_1 {
         } else {
             MainCanvas.ae.d(String.valueOf(this.ba.g));
             bv var8 = this.ba;
-            Frame1 var7 = MainCanvas.ae.b(String.valueOf(this.ba.g));
+            Frame1 var7 = MainCanvas.ae.getFrame1(String.valueOf(this.ba.g));
             var8.d = var7;
         }
 
@@ -19407,7 +19407,7 @@ public final class ao_1 {
 
     public final void ah() {
         MainCanvas.ah.d("3762");
-        bp = MainCanvas.ah.b("3762");
+        bp = MainCanvas.ah.getFrame1("3762");
         this.e.aq.j();
         this.e.aq.a("超Q精灵");
         this.e.aq.a(true);
