@@ -82,9 +82,9 @@ public final class k {
 
       if (var2) {
          if (this.s != null && !this.s.equals("")) {
-            this.j.at.a(this.s, GlobalConfig.i, (byte)1);
+            this.j.at.a(this.s, GlobalConfig.font2, (byte)1);
          } else {
-            this.j.at.a((String)null, GlobalConfig.i, (byte)1);
+            this.j.at.a((String)null, GlobalConfig.font2, (byte)1);
          }
       }
 
@@ -121,9 +121,9 @@ public final class k {
 
    private void c() {
       if (this.s != null && !this.s.equals("")) {
-         this.j.at.a(this.s, GlobalConfig.i, (byte)1);
+         this.j.at.a(this.s, GlobalConfig.font2, (byte)1);
       } else {
-         this.j.at.a((String)null, GlobalConfig.i, (byte)1);
+         this.j.at.a((String)null, GlobalConfig.font2, (byte)1);
       }
    }
 
@@ -247,8 +247,8 @@ public final class k {
       this.j.aq.b();
       this.j.aq.a("物品合成");
       this.j.aq.a(false);
-      this.w = (Math.max(GlobalConfig.j, 17) << 1) + 10;
-      this.x = GlobalConfig.j + 26 + 5;
+      this.w = (Math.max(GlobalConfig.font2_h, 17) << 1) + 10;
+      this.x = GlobalConfig.font2_h + 26 + 5;
       this.j.aq.a(this.w + this.x);
       this.c();
       this.j.aq.a((al)this.j.at);
@@ -405,7 +405,7 @@ public final class k {
          LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32 + this.w + 1, this.j.aq.c - 11, this.x - 2, 1);
       }
 
-      int var3 = this.j.aq.a + GlobalConfig.i.stringWidth(this.h[0]) + 10;
+      int var3 = this.j.aq.a + GlobalConfig.font2.stringWidth(this.h[0]) + 10;
       int var4 = this.j.aq.b + 40;
       if (this.g == null) {
          this.g = new int[5][4];
@@ -433,8 +433,8 @@ public final class k {
       }
 
       var1.setColor(255);
-      var1.drawString(this.h[0], this.g[0][0] - 2, this.g[0][1] + (var2 - GlobalConfig.j) / 2, 24);
-      var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] - var2 + (var2 - GlobalConfig.j) / 2, 20);
+      var1.drawString(this.h[0], this.g[0][0] - 2, this.g[0][1] + (var2 - GlobalConfig.font2_h) / 2, 24);
+      var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] - var2 + (var2 - GlobalConfig.font2_h) / 2, 20);
       Frame0 var13;
       if (this.c != -1 && (var13 = UISceneController.b(this.k)) != null) {
          var1.drawImage(var13.pngImage, this.g[0][0] + 1, this.g[0][1] + 1, 20);

@@ -104,8 +104,8 @@ public final class as {
       this.a.aq.b();
       this.a.aq.a("装备升星");
       this.a.aq.a(false);
-      this.l = Math.max((GlobalConfig.j << 1) + 25, 59);
-      this.m = GlobalConfig.j + 13;
+      this.l = Math.max((GlobalConfig.font2_h << 1) + 25, 59);
+      this.m = GlobalConfig.font2_h + 13;
       this.a.aq.a(this.l + this.m);
       this.a();
       this.a.aq.a((al)this.a.at);
@@ -124,15 +124,15 @@ public final class as {
 
    private void a() {
       if (k != null && !k.equals("")) {
-         this.a.at.a(k, GlobalConfig.i, (byte)1);
+         this.a.at.a(k, GlobalConfig.font2, (byte)1);
       } else {
-         this.a.at.a((String)null, GlobalConfig.i, (byte)1);
+         this.a.at.a((String)null, GlobalConfig.font2, (byte)1);
       }
    }
 
    private void b() {
       if (j != null) {
-         new TextRender(j, (short) GlobalConfig.i.stringWidth(j));
+         new TextRender(j, (short) GlobalConfig.font2.stringWidth(j));
       }
 
    }

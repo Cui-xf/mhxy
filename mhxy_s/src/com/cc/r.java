@@ -82,9 +82,9 @@ public final class r {
 
       if (var2) {
          if (this.s != null && !this.s.equals("")) {
-            this.j.at.a(this.s, GlobalConfig.i, (byte)1);
+            this.j.at.a(this.s, GlobalConfig.font2, (byte)1);
          } else {
-            this.j.at.a((String)null, GlobalConfig.i, (byte)1);
+            this.j.at.a((String)null, GlobalConfig.font2, (byte)1);
          }
       }
 
@@ -120,9 +120,9 @@ public final class r {
 
    private void d() {
       if (this.s != null && !this.s.equals("")) {
-         this.j.at.a(this.s, GlobalConfig.i, (byte)1);
+         this.j.at.a(this.s, GlobalConfig.font2, (byte)1);
       } else {
-         this.j.at.a((String)null, GlobalConfig.i, (byte)1);
+         this.j.at.a((String)null, GlobalConfig.font2, (byte)1);
       }
    }
 
@@ -231,8 +231,8 @@ public final class r {
       this.j.aq.b();
       this.j.aq.a("装备附魔");
       this.j.aq.a(false);
-      this.v = Math.max((GlobalConfig.j << 1) + 25, 59);
-      this.w = GlobalConfig.j + 26 + 5;
+      this.v = Math.max((GlobalConfig.font2_h << 1) + 25, 59);
+      this.w = GlobalConfig.font2_h + 26 + 5;
       this.j.aq.a(this.v + this.w);
       this.d();
       this.j.aq.a((al)this.j.at);
@@ -301,7 +301,7 @@ public final class r {
                      this.x = true;
                      this.i.a((byte)0, (byte[])(new byte[]{0}));
                   } else {
-                     LoadingPage.a(this.j.aq.a + GlobalConfig.k * 3 + 29, this.j.aq.b + 49, new String[]{"附魔", "查看", "取出"}, false);
+                     LoadingPage.a(this.j.aq.a + GlobalConfig.font2_w * 3 + 29, this.j.aq.b + 49, new String[]{"附魔", "查看", "取出"}, false);
                      this.i.sceneSubState = 1;
                   }
                } else if (this.a == 1) {
@@ -421,7 +421,7 @@ public final class r {
          LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32 + this.v + 1, this.j.aq.c - 11, this.w - 2, 1);
       }
 
-      int var3 = this.j.aq.a + GlobalConfig.i.stringWidth("装备孔") + 10;
+      int var3 = this.j.aq.a + GlobalConfig.font2.stringWidth("装备孔") + 10;
       int var4 = this.j.aq.b + 40;
 
       for(int var5 = 0; var5 < this.g.length; ++var5) {
@@ -446,9 +446,9 @@ public final class r {
       }
 
       var1.setColor(255);
-      var1.drawString(this.h[0], this.g[0][0] - 2, this.g[0][1] + (var2 - GlobalConfig.j) / 2, 24);
-      var1.drawString(this.h[1], this.g[1][0] - 2, this.g[1][1] + (var2 - GlobalConfig.j) / 2, 24);
-      var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] + (var2 - GlobalConfig.j) / 2, 24);
+      var1.drawString(this.h[0], this.g[0][0] - 2, this.g[0][1] + (var2 - GlobalConfig.font2_h) / 2, 24);
+      var1.drawString(this.h[1], this.g[1][0] - 2, this.g[1][1] + (var2 - GlobalConfig.font2_h) / 2, 24);
+      var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] + (var2 - GlobalConfig.font2_h) / 2, 24);
       Frame0 var11;
       if (this.c != -1 && (var11 = UISceneController.b(this.k)) != null) {
          var1.drawImage(var11.pngImage, this.g[0][0], this.g[0][1], 20);
@@ -477,7 +477,7 @@ public final class r {
       if (this.i.sceneSubState == 0) {
          if (this.u != null || this.u != "") {
             if (this.b == 0 && this.a == 1) {
-               LoadingPage.b(var1, this.u, this.j.aq.c - 10 - UISceneController.x.b - 2 * (UISceneController.x.b + 10) - 6 - GlobalConfig.i.stringWidth("装备孔"), this.j.aq.b + 32 + 8 + UISceneController.x.c, GlobalConfig.defaultHigh - 5, 1);
+               LoadingPage.b(var1, this.u, this.j.aq.c - 10 - UISceneController.x.b - 2 * (UISceneController.x.b + 10) - 6 - GlobalConfig.font2.stringWidth("装备孔"), this.j.aq.b + 32 + 8 + UISceneController.x.c, GlobalConfig.defaultHigh - 5, 1);
                return;
             }
 

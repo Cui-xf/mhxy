@@ -37,7 +37,7 @@ public final class TouchController {
                         UISceneController.u.i() && var2 >= GlobalStatus.t[var37].d - UISceneController.i + this.a.h() - GlobalStatus.t[var37].d() && var2 <= GlobalStatus.t[var37].d -
                         UISceneController.i + this.a.h() - GlobalStatus.t[var37].d() + UISceneController.u.j() || var1 >= GlobalStatus.t[var37].c - UISceneController.h + this.a.g() -
                         UISceneController.s.i() / 2 && var1 <= GlobalStatus.t[var37].c - UISceneController.h + this.a.g() + UISceneController.s.i() / 2 && var2 >= GlobalStatus.t[var37].d -
-                        UISceneController.i + this.a.h() - GlobalStatus.t[var37].d() - GlobalConfig.j - UISceneController.s.j() && var2 <= GlobalStatus.t[var37].d - UISceneController.i + this.a.h() - GlobalStatus.t[var37].d() - GlobalConfig.j)) {
+                        UISceneController.i + this.a.h() - GlobalStatus.t[var37].d() - GlobalConfig.font2_h - UISceneController.s.j() && var2 <= GlobalStatus.t[var37].d - UISceneController.i + this.a.h() - GlobalStatus.t[var37].d() - GlobalConfig.font2_h)) {
                            this.a.a(1073741824);
                            if (!this.a.sceneRefreshCoordinator.c.isEmpty()) {
                               this.a.sceneRefreshCoordinator.c.removeAllElements();
@@ -142,7 +142,7 @@ public final class TouchController {
                      }
                   }
 
-                  if (UISceneController.aW[6] == 0 && var1 >= 2 && var1 <= 2 + MainCanvas.pngUtil.e && var2 >= 2 + GlobalConfig.j && var2 <= 2 + GlobalConfig.j + MainCanvas.pngUtil.f) {
+                  if (UISceneController.aW[6] == 0 && var1 >= 2 && var1 <= 2 + MainCanvas.pngUtil.e && var2 >= 2 + GlobalConfig.font2_h && var2 <= 2 + GlobalConfig.font2_h + MainCanvas.pngUtil.f) {
                      this.canvas.touchAction = 519;
                      if (!this.a.sceneRefreshCoordinator.c.isEmpty()) {
                         this.a.sceneRefreshCoordinator.c.removeAllElements();
@@ -185,7 +185,7 @@ public final class TouchController {
                         this.canvas.touchAction = 2048;
                      } else if (var1 >= GlobalConfig.defaultWidth - 67 && var1 <= GlobalConfig.defaultWidth - 67 + 33 && var2 >= 5 && var2 <= 18) {
                         this.canvas.touchAction = 515;
-                     } else if (var1 >= 20 && var1 <= 20 + GlobalConfig.i.stringWidth(GlobalStatus.ae) && var2 >= 2 && var2 <= 2 + GlobalConfig.j) {
+                     } else if (var1 >= 20 && var1 <= 20 + GlobalConfig.font2.stringWidth(GlobalStatus.ae) && var2 >= 2 && var2 <= 2 + GlobalConfig.font2_h) {
                         this.canvas.touchAction = 513;
                      } else if (var1 >= GlobalConfig.defaultWidth - 67 && var1 <= GlobalConfig.defaultWidth - 67 + 16 && var2 >= 24 && var2 <= 34) {
                         if (GlobalStatus.bf == 0) {
@@ -194,12 +194,12 @@ public final class TouchController {
 
                         this.a.p();
                      } else {
-                        if (var1 >= 1 && var1 <= 1 + GlobalConfig.i.stringWidth("菜单") && var2 >= GlobalConfig.defaultHigh - GlobalConfig.j - 1 && var2 <= GlobalConfig.defaultHigh - 1) {
+                        if (var1 >= 1 && var1 <= 1 + GlobalConfig.font2.stringWidth("菜单") && var2 >= GlobalConfig.defaultHigh - GlobalConfig.font2_h - 1 && var2 <= GlobalConfig.defaultHigh - 1) {
                            this.canvas.touchAction = 268435456;
                            break;
                         }
 
-                        if (var1 < GlobalConfig.defaultWidth - GlobalConfig.i.stringWidth("聊天") || var1 > GlobalConfig.defaultWidth || var2 < GlobalConfig.defaultHigh - GlobalConfig.j - 1 || var2 > GlobalConfig.defaultHigh - 1) {
+                        if (var1 < GlobalConfig.defaultWidth - GlobalConfig.font2.stringWidth("聊天") || var1 > GlobalConfig.defaultWidth || var2 < GlobalConfig.defaultHigh - GlobalConfig.font2_h - 1 || var2 > GlobalConfig.defaultHigh - 1) {
                            if (!GlobalStatus.bu) {
                               this.a.d = -1;
                               this.canvas.b(var1 + UISceneController.h - this.a.g(), var2 + UISceneController.i - this.a.h());
@@ -1947,15 +1947,15 @@ public final class TouchController {
       if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
          int var3 = this.canvas.aq.a + 5;
-         int var4 = this.canvas.aq.b + this.canvas.aq.d - (2 * GlobalConfig.j + 16) - 6;
-         int var5 = GlobalConfig.i.stringWidth("同意(点击申请结婚)");
-         int var6 = GlobalConfig.i.stringWidth("拒绝");
-         if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + GlobalConfig.j) {
+         int var4 = this.canvas.aq.b + this.canvas.aq.d - (2 * GlobalConfig.font2_h + 16) - 6;
+         int var5 = GlobalConfig.font2.stringWidth("同意(点击申请结婚)");
+         int var6 = GlobalConfig.font2.stringWidth("拒绝");
+         if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + GlobalConfig.font2_h) {
             this.canvas.touchAction = this.a.S.d == 0 ? 1073741824 : this.canvas.touchAction;
             this.a.S.d = 0;
          }
 
-         if (var1 >= var3 + 4 && var2 >= var4 + 5 + GlobalConfig.j + 5 && var1 <= var3 + 4 + var6 && var2 <= var4 + 5 + GlobalConfig.j + 5 + GlobalConfig.j) {
+         if (var1 >= var3 + 4 && var2 >= var4 + 5 + GlobalConfig.font2_h + 5 && var1 <= var3 + 4 + var6 && var2 <= var4 + 5 + GlobalConfig.font2_h + 5 + GlobalConfig.font2_h) {
             this.canvas.touchAction = this.a.S.d == 1 ? 1073741824 : this.canvas.touchAction;
             this.a.S.d = 1;
          }
@@ -1967,15 +1967,15 @@ public final class TouchController {
       if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
          this.canvas.touchAction = this.canvas.aq.b(var1, var2);
          int var3 = this.canvas.aq.a + 5;
-         int var4 = this.canvas.aq.b + this.canvas.aq.d - (2 * GlobalConfig.j + 16) - 6;
-         int var5 = GlobalConfig.i.stringWidth("离婚(点击申请离婚)");
-         int var6 = GlobalConfig.i.stringWidth("取消离婚");
-         if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + GlobalConfig.j) {
+         int var4 = this.canvas.aq.b + this.canvas.aq.d - (2 * GlobalConfig.font2_h + 16) - 6;
+         int var5 = GlobalConfig.font2.stringWidth("离婚(点击申请离婚)");
+         int var6 = GlobalConfig.font2.stringWidth("取消离婚");
+         if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + GlobalConfig.font2_h) {
             this.canvas.touchAction = this.a.S.g == 0 ? 1073741824 : this.canvas.touchAction;
             this.a.S.g = 0;
          }
 
-         if (var1 >= var3 + 4 && var2 >= var4 + 5 + GlobalConfig.j + 5 && var1 <= var3 + 4 + var6 && var2 <= var4 + 5 + GlobalConfig.j + 5 + GlobalConfig.j) {
+         if (var1 >= var3 + 4 && var2 >= var4 + 5 + GlobalConfig.font2_h + 5 && var1 <= var3 + 4 + var6 && var2 <= var4 + 5 + GlobalConfig.font2_h + 5 + GlobalConfig.font2_h) {
             this.canvas.touchAction = this.a.S.g == 1 ? 1073741824 : this.canvas.touchAction;
             this.a.S.g = 1;
          }

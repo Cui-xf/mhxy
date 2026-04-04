@@ -55,7 +55,7 @@ public final class NetworkPacketProcessors {
                             if (MainCanvas.uiSceneController.overlayDialogController != null) {
                                 MainCanvas.uiSceneController.overlayDialogController.d();
                                 MainCanvas.uiSceneController.sceneStateShadow = MainCanvas.uiSceneController.currentSceneModeId = 0;
-                                this.mainCanvas.processException(GlobalConfig.Y[GlobalStatus.eB]);
+                                this.mainCanvas.processException(GlobalConfig.YiChangTiShi[GlobalStatus.eB]);
                             }
 
                             return;
@@ -65,7 +65,7 @@ public final class NetworkPacketProcessors {
                             if (MainCanvas.uiSceneController.overlayDialogController != null) {
                                 MainCanvas.uiSceneController.overlayDialogController.f = -2;
                             } else {
-                                this.mainCanvas.processException(GlobalConfig.Y[GlobalStatus.eB]);
+                                this.mainCanvas.processException(GlobalConfig.YiChangTiShi[GlobalStatus.eB]);
                             }
 
                             return;
@@ -76,7 +76,7 @@ public final class NetworkPacketProcessors {
                                 if (GlobalStatus.eC != null) {
                                     this.mainCanvas.processException(GlobalStatus.eC);
                                 } else {
-                                    this.mainCanvas.processException(GlobalConfig.Y[GlobalStatus.eB < 0 ? 0 : GlobalStatus.eB]);
+                                    this.mainCanvas.processException(GlobalConfig.YiChangTiShi[GlobalStatus.eB < 0 ? 0 : GlobalStatus.eB]);
                                 }
                                 break;
                             }
@@ -90,7 +90,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8194:
-                        GlobalStatus.b = this.b.readUTF();
+                        GlobalStatus.zhangHao = this.b.readUTF();
                         GlobalStatus.d = this.b.readUTF();
                         return;
                     case 8195:
@@ -106,9 +106,9 @@ public final class NetworkPacketProcessors {
 
                         MainCanvas.uiSceneController.aX = false;
                         if (MainCanvas.uiSceneController.currentSceneModeId == 2 && MainCanvas.uiSceneController.sceneSubState == 4) {
-                            String var48 = GlobalConfig.a(this.mainCanvas.l, GlobalStatus.aq);
-                            GlobalConfig.a(this.mainCanvas.l, GlobalStatus.ap);
-                            MainCanvas.uiSceneController.am = LoadingPage.a(GlobalStatus.t[MainCanvas.uiSceneController.af].b + ":已存入银两" + var48 + "，现有银两" + this.mainCanvas.l.toString(), GlobalConfig.i, GlobalConfig.defaultWidth == 176 ? 118 : 152, "\t");
+                            String var48 = GlobalConfig.yinLiangFormat(this.mainCanvas.shareSb, GlobalStatus.aq);
+                            GlobalConfig.yinLiangFormat(this.mainCanvas.shareSb, GlobalStatus.ap);
+                            MainCanvas.uiSceneController.am = LoadingPage.a(GlobalStatus.t[MainCanvas.uiSceneController.af].b + ":已存入银两" + var48 + "，现有银两" + this.mainCanvas.shareSb.toString(), GlobalConfig.font2, GlobalConfig.defaultWidth == 176 ? 118 : 152, "\t");
                             MainCanvas.uiSceneController.ah = MainCanvas.uiSceneController.sceneSubMode == 1 ? GlobalStatus.aq : GlobalStatus.ap;
                         } else if (MainCanvas.uiSceneController.currentSceneModeId == 37 && MainCanvas.uiSceneController.ao) {
                             MainCanvas.uiSceneController.p();
@@ -415,7 +415,7 @@ public final class NetworkPacketProcessors {
                         if (MainCanvas.uiSceneController.currentSceneModeId == 6) {
                             this.mainCanvas.aq.b();
                             this.mainCanvas.aq.a("任务详细");
-                            this.mainCanvas.at.a(GlobalStatus.bH, GlobalConfig.i, (byte) 2);
+                            this.mainCanvas.at.a(GlobalStatus.bH, GlobalConfig.font2, (byte) 2);
                             this.mainCanvas.at.a((byte) 0);
                             this.mainCanvas.au.a("确定");
                             this.mainCanvas.aq.a((al) this.mainCanvas.at);
@@ -728,7 +728,7 @@ public final class NetworkPacketProcessors {
                         if (MainCanvas.uiSceneController.currentSceneModeId == 2) {
                             MainCanvas.uiSceneController.M.b(false);
                         } else if (MainCanvas.uiSceneController.currentSceneModeId == 50) {
-                            this.mainCanvas.at.b(GlobalStatus.iI[this.mainCanvas.ar.g()], GlobalConfig.i, (byte) 2);
+                            this.mainCanvas.at.b(GlobalStatus.iI[this.mainCanvas.ar.g()], GlobalConfig.font2, (byte) 2);
                             this.mainCanvas.at.a((byte) 1);
                             break;
                         }
@@ -888,7 +888,7 @@ public final class NetworkPacketProcessors {
                         this.mainCanvas.q();
                         return;
                     case 8290:
-                        GlobalStatus.b = this.b.readUTF();
+                        GlobalStatus.zhangHao = this.b.readUTF();
                         GlobalStatus.d = this.b.readUTF();
                         if (GlobalConfig.channel == 1) {
                             this.b.readUTF();

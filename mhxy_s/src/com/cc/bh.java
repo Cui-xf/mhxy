@@ -132,7 +132,7 @@ public final class bh {
    }
 
    private void a(String str, ad[] adVarArr) {
-      String[] strArrA = LoadingPage.a(str, GlobalConfig.i, this.b, "\t");
+      String[] strArrA = LoadingPage.a(str, GlobalConfig.font2, this.b, "\t");
       int iA = 0;
       this.a = new j[strArrA.length];
       Vector vector = new Vector();

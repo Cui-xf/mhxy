@@ -854,7 +854,7 @@ public final class LoginModel implements CommandListener {
 
                         if (var13.equals("充值帮助")) {
                             this.f();
-                            this.a(this.h.getDisplay(), "充值帮助", (String[]) null, bb_1.e);
+                            this.a(this.h.getDisplay(), "充值帮助", (String[]) null, bb_1.chongZhi);
                             return;
                         }
 
@@ -1040,8 +1040,8 @@ public final class LoginModel implements CommandListener {
                             this.a((String) "您没有输入充值卡密码，请返回重新输入", (byte) 2);
                         } else {
                             if (bj.b(var44)) {
-                                StringBuffer var55;
-                                (var55 = new StringBuffer()).append(bb_1.g);
+                                StringBuffer var55 = new StringBuffer();
+                                var55.append(bb_1.g);
                                 var55.append(':');
                                 var55.append(bb_1.h);
                                 var55.append(':');
@@ -1052,14 +1052,7 @@ public final class LoginModel implements CommandListener {
                                 var55.append(var44);
                                 var55.append(':');
                                 var55.append(var51);
-                                Object var8 = null;
-                                NetPacket var9;
-                                if (GlobalConfig.x) {
-                                    var9 = NetPayloadBuilder.login((byte) 3, (byte) 8, var55.toString());
-                                } else {
-                                    var9 = NetPayloadBuilder.login((byte) 2, (byte) 8, var55.toString());
-                                }
-
+                                NetPacket var9 = NetPayloadBuilder.login((byte) 2, (byte) 8, var55.toString());
                                 if (var9 != null) {
                                     MainCanvas.netUtils.sendPacket(var9);
                                     var17.h.mainMidlet.start();
@@ -1075,7 +1068,7 @@ public final class LoginModel implements CommandListener {
                     } else {
                         if (var13.equals("充值帮助")) {
                             this.f();
-                            this.a(this.h.getDisplay(), "充值帮助", (String[]) null, bb_1.f);
+                            this.a(this.h.getDisplay(), "充值帮助", (String[]) null, bb_1.conggZhi);
                             return;
                         }
 

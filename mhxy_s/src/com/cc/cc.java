@@ -68,7 +68,7 @@ public final class cc {
         this.mainCanvas.aq.a((al) this.mainCanvas.as);
         this.mainCanvas.aq.a(true);
         if (this.a == 0) {
-            this.mainCanvas.at.b("", GlobalConfig.i, (byte) 1);
+            this.mainCanvas.at.b("", GlobalConfig.font2, (byte) 1);
             this.mainCanvas.aq.a((al) this.mainCanvas.at);
             this.mainCanvas.au.a(new String[]{"操作", "返回"});
             this.mainCanvas.aq.a((al) this.mainCanvas.au);
@@ -89,12 +89,12 @@ public final class cc {
             this.mainCanvas.aq.a((al) this.mainCanvas.ar);
             this.mainCanvas.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         } else if (this.a == 2) {
-            this.mainCanvas.at.b(this.C, GlobalConfig.i, (byte) 1);
+            this.mainCanvas.at.b(this.C, GlobalConfig.font2, (byte) 1);
             this.mainCanvas.aq.a((al) this.mainCanvas.at);
             this.mainCanvas.au.a(new String[]{"购买次数", "返回"});
             this.mainCanvas.aq.a((al) this.mainCanvas.au);
             this.mainCanvas.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-            this.e = GlobalConfig.j * 3 + 4;
+            this.e = GlobalConfig.font2_h * 3 + 4;
             this.mainCanvas.at.a(this.mainCanvas.at.b, this.mainCanvas.at.c, this.mainCanvas.at.d, this.mainCanvas.at.e - this.e - 2);
             UISceneController.K = new TextRender("当前排名：" + (this.h <= 0 ? "无" : "第" + this.h + "名") + "\t剩余挑战：" + this.i + "次\t当前积分：" + this.j, (short) (this.mainCanvas.at.d - 20));
         }
@@ -259,9 +259,9 @@ public final class cc {
                     LoadingPage.a(var1, (Image) null, this.d[var2][0], this.d[var2][1], this.d[var2][2], this.d[var2][3], var2 == this.g);
                     if (this.p != null && var2 < this.p.length) {
                         var1.setColor(65535);
-                        var1.drawString(this.l[var2], this.d[var2][0] + (this.d[var2][2] - GlobalConfig.i.stringWidth(this.l[var2])) / 2, this.d[var2][1] + 4, 20);
+                        var1.drawString(this.l[var2], this.d[var2][0] + (this.d[var2][2] - GlobalConfig.font2.stringWidth(this.l[var2])) / 2, this.d[var2][1] + 4, 20);
                         var1.setColor(16777215);
-                        var1.drawString(this.k[var2], this.d[var2][0] + (this.d[var2][2] - GlobalConfig.i.stringWidth(this.k[var2])) / 2, this.d[var2][1] + this.d[var2][3] - GlobalConfig.j - 4, 20);
+                        var1.drawString(this.k[var2], this.d[var2][0] + (this.d[var2][2] - GlobalConfig.font2.stringWidth(this.k[var2])) / 2, this.d[var2][1] + this.d[var2][3] - GlobalConfig.font2_h - 4, 20);
                         MainCanvas.pngUtil.a(var1, (Frame1) this.f[var2], (int[]) null, 0, 0, this.d[var2][0] + this.d[var2][2] / 2, this.d[var2][1] + this.d[var2][3] / 4 * 3, 20, 0);
                     }
                 }

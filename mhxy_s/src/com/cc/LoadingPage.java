@@ -81,7 +81,7 @@ public final class LoadingPage {
    private static Random aq = new Random();
 
    public static void a(Graphics var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-      if (GlobalConfig.q != 2) {
+      if (GlobalConfig.pingTaiBiaoShi != 2) {
          ax.a(var0, var1, var2, var3, var4, var5, var6);
       }
 
@@ -113,7 +113,7 @@ public final class LoadingPage {
       }
 
       if (var1 != null && var1.a() != 0) {
-         int var6 = (GlobalConfig.defaultHigh - 26 - var9 - var11 * GlobalConfig.j) / GlobalConfig.j;
+         int var6 = (GlobalConfig.defaultHigh - 26 - var9 - var11 * GlobalConfig.font2_h) / GlobalConfig.font2_h;
          if (!var4) {
             C = var1.a() / var6 + (var1.a() % var6 != 0 ? 1 : 0);
             d = var6;
@@ -155,7 +155,7 @@ public final class LoadingPage {
          }
       }
 
-      f = (d + var11) * GlobalConfig.j + 26;
+      f = (d + var11) * GlobalConfig.font2_h + 26;
    }
 
    public static int a(int var0, int var1) {
@@ -200,7 +200,7 @@ public final class LoadingPage {
          var1 = e + d >= var5.a() ? var5.a() : e + d;
 
          for(int var10 = e; var10 < var1; ++var10) {
-            var5.a(var0, 10, var2 + 12 + (var10 - e) * GlobalConfig.j, var10, 20);
+            var5.a(var0, 10, var2 + 12 + (var10 - e) * GlobalConfig.font2_h, var10, 20);
          }
 
          if (MainCanvas.A != null) {
@@ -226,8 +226,8 @@ public final class LoadingPage {
 
       if (var6 != null && F != null) {
          for(int var9 = 0; var9 < var6.length; ++var9) {
-            a((int[])(F != null ? F[var9] : null), 10, var2 + var4 - 9 - (var6.length - var9) * GlobalConfig.j, GlobalConfig.i.stringWidth(var6[var9]), GlobalConfig.j);
-            a(var0, (String)var6[var9], (int)F[var9][0], F[var9][1], 20, g == var9 ? 16711680 : 16777215, 0);
+            a((int[])(F != null ? F[var9] : null), 10, var2 + var4 - 9 - (var6.length - var9) * GlobalConfig.font2_h, GlobalConfig.font2.stringWidth(var6[var9]), GlobalConfig.font2_h);
+            drawString(var0, (String)var6[var9], (int)F[var9][0], F[var9][1], 20, g == var9 ? 16711680 : 16777215, 0);
          }
       }
 
@@ -239,7 +239,7 @@ public final class LoadingPage {
          var0.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
          if (h >= 0) {
             if (h == 0) {
-               I = ((H = a(var1, GlobalConfig.i, GlobalConfig.defaultWidth - 10, "\t")).length + 1) * GlobalConfig.j + 20;
+               I = ((H = a(var1, GlobalConfig.font2, GlobalConfig.defaultWidth - 10, "\t")).length + 1) * GlobalConfig.font2_h + 20;
                a(var0, GlobalConfig.defaultWidth / 2 * 3, (GlobalConfig.defaultHigh - I / 4) / 2, GlobalConfig.defaultWidth / 4, I / 4);
                J = new int[var2.length][4];
             } else if (h == 1) {
@@ -250,10 +250,10 @@ public final class LoadingPage {
                a((Graphics)var0, 0, (GlobalConfig.defaultHigh - I) / 2, GlobalConfig.defaultWidth, I);
                if (H != null) {
                   if (H.length == 1) {
-                     a(var0, (String)H[0], (int)((GlobalConfig.defaultWidth - GlobalConfig.i.stringWidth(H[0])) / 2), (GlobalConfig.defaultHigh - I) / 2 + 10, 20, 16777215, 0);
+                     drawString(var0, (String)H[0], (int)((GlobalConfig.defaultWidth - GlobalConfig.font2.stringWidth(H[0])) / 2), (GlobalConfig.defaultHigh - I) / 2 + 10, 20, 16777215, 0);
                   } else {
                      for(int var3 = 0; var3 < H.length; ++var3) {
-                        a(var0, (String)H[var3], (int)((GlobalConfig.defaultWidth - GlobalConfig.i.stringWidth(H[var3])) / 2), (GlobalConfig.defaultHigh - I) / 2 + 10 + var3 * GlobalConfig.j, 20, 16777215, 0);
+                        drawString(var0, (String)H[var3], (int)((GlobalConfig.defaultWidth - GlobalConfig.font2.stringWidth(H[var3])) / 2), (GlobalConfig.defaultHigh - I) / 2 + 10 + var3 * GlobalConfig.font2_h, 20, 16777215, 0);
                      }
                   }
                }
@@ -264,13 +264,13 @@ public final class LoadingPage {
                }
 
                if (var2.length == 2) {
-                  a((String)var2[0], 0, 10, (GlobalConfig.defaultHigh - I) / 2 + I - 9 - GlobalConfig.j);
-                  a(var0, (String)var2[0], (int)J[0][0], J[0][1], 20, 16775357, 0);
-                  a((String)var2[1], 1, GlobalConfig.defaultWidth - 10 - GlobalConfig.i.stringWidth(var2[1]), (GlobalConfig.defaultHigh - I) / 2 + I - 9 - GlobalConfig.j);
-                  a(var0, (String)var2[1], (int)J[1][0], J[1][1], 20, 16775357, 0);
+                  a((String)var2[0], 0, 10, (GlobalConfig.defaultHigh - I) / 2 + I - 9 - GlobalConfig.font2_h);
+                  drawString(var0, (String)var2[0], (int)J[0][0], J[0][1], 20, 16775357, 0);
+                  a((String)var2[1], 1, GlobalConfig.defaultWidth - 10 - GlobalConfig.font2.stringWidth(var2[1]), (GlobalConfig.defaultHigh - I) / 2 + I - 9 - GlobalConfig.font2_h);
+                  drawString(var0, (String)var2[1], (int)J[1][0], J[1][1], 20, 16775357, 0);
                } else {
-                  a((String)var2[0], 0, (GlobalConfig.defaultWidth - GlobalConfig.i.stringWidth(var2[0])) / 2, (GlobalConfig.defaultHigh - I) / 2 + I - 9 - GlobalConfig.j);
-                  a(var0, (String)var2[0], (int)J[0][0], J[0][0], 20, 16775357, 0);
+                  a((String)var2[0], 0, (GlobalConfig.defaultWidth - GlobalConfig.font2.stringWidth(var2[0])) / 2, (GlobalConfig.defaultHigh - I) / 2 + I - 9 - GlobalConfig.font2_h);
+                  drawString(var0, (String)var2[0], (int)J[0][0], J[0][0], 20, 16775357, 0);
                }
             }
          }
@@ -283,8 +283,8 @@ public final class LoadingPage {
       if (var0 != null && J != null && J.length > var1) {
          J[var1][0] = var2;
          J[var1][1] = var3;
-         J[var1][2] = GlobalConfig.i.stringWidth(var0);
-         J[var1][3] = GlobalConfig.j;
+         J[var1][2] = GlobalConfig.font2.stringWidth(var0);
+         J[var1][3] = GlobalConfig.font2_h;
       }
 
    }
@@ -571,8 +571,8 @@ public final class LoadingPage {
       var0.setColor(var2[0]);
    }
 
-   public static void a(Graphics var0, String var1, int var2, int var3, int var4, int var5, int var6) {
-      var0.setColor(var6);
+   public static void drawString(Graphics var0, String var1, int var2, int var3, int var4, int var5, int color) {
+      var0.setColor(color);
       var0.drawString(var1, var2 - 1, var3 - 1, var4);
       var0.drawString(var1, var2, var3 - 1, var4);
       var0.drawString(var1, var2 - 1, var3, var4);
@@ -595,18 +595,18 @@ public final class LoadingPage {
       N = var1;
       O = var2;
       Q = var4 == null ? "载入中…" : var4;
-      P = M + (O - GlobalConfig.i.stringWidth(Q)) / 2;
+      P = M + (O - GlobalConfig.font2.stringWidth(Q)) / 2;
    }
 
    public static void b(Graphics var0) {
       var0.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-      a(var0, 1808583, 95, M, N - (4 + GlobalConfig.j), O, 8 + GlobalConfig.j + 18);
+      a(var0, 1808583, 95, M, N - (4 + GlobalConfig.font2_h), O, 8 + GlobalConfig.font2_h + 18);
       var0.setColor(26540);
-      var0.drawRect(M, N - (4 + GlobalConfig.j), O, 8 + GlobalConfig.j + 18);
-      var0.drawRect(M + 2, N - (2 + GlobalConfig.j), O - 4, 8 + GlobalConfig.j + 14);
+      var0.drawRect(M, N - (4 + GlobalConfig.font2_h), O, 8 + GlobalConfig.font2_h + 18);
+      var0.drawRect(M + 2, N - (2 + GlobalConfig.font2_h), O - 4, 8 + GlobalConfig.font2_h + 14);
       var0.setColor(11267556);
-      var0.drawRect(M + 1, N - (3 + GlobalConfig.j), O - 2, 8 + GlobalConfig.j + 16);
-      a(var0, (String)Q, (int)P, N, 36, 16777215, 727632);
+      var0.drawRect(M + 1, N - (3 + GlobalConfig.font2_h), O - 2, 8 + GlobalConfig.font2_h + 16);
+      drawString(var0, (String)Q, (int)P, N, 36, 16777215, 727632);
       var0.setColor(539727);
       var0.fillRect(M + 2, N, O - 4, 18);
       var0.setColor(4448748);
@@ -708,20 +708,20 @@ public final class LoadingPage {
                break;
             }
          }
-         String[] strArrA = a(string.trim(), GlobalConfig.i, i6, "\t");
+         String[] strArrA = a(string.trim(), GlobalConfig.font2, i6, "\t");
          int iMax = 0;
          for (int i1 = 0; i1 < strArrA.length; i1++) {
             String str2 = strArrA[i1];
-            iMax = Math.max(iMax, GlobalConfig.i.stringWidth(str2) + 8);
+            iMax = Math.max(iMax, GlobalConfig.font2.stringWidth(str2) + 8);
          }
 
          X = Math.min(iMax, i6);
          if (i5 == 1) {
             V = new TextRender(str, (short) (X - 8));
-            Y = (GlobalConfig.j * V.a()) + 8;
+            Y = (GlobalConfig.font2_h * V.a()) + 8;
          } else if (i5 == 2) {
-            W = a(str.trim(), GlobalConfig.i, X - 8, "\t");
-            Y = (GlobalConfig.j * W.length) + 8;
+            W = a(str.trim(), GlobalConfig.font2, X - 8, "\t");
+            Y = (GlobalConfig.font2_h * W.length) + 8;
          }
          Z = i2 + X <= GlobalConfig.f + GlobalConfig.realWidth ? i2 : i2 - X >= GlobalConfig.f ? i2 - X : GlobalConfig.f + ((GlobalConfig.realWidth - X) / 2);
          aa = i3 + Y <= i4 ? i3 : i3 - Y >= GlobalConfig.g ? i3 - Y : GlobalConfig.g + ((GlobalConfig.realHigh - Y) / 2);
@@ -741,7 +741,7 @@ public final class LoadingPage {
                graphics.setColor(15138723);
                for (int i7 = 0; i7 < W.length; i7++) {
                   if (W[i7] != null) {
-                     graphics.drawString(W[i7], Z + 4, aa + 4 + (i7 * GlobalConfig.j), 0);
+                     graphics.drawString(W[i7], Z + 4, aa + 4 + (i7 * GlobalConfig.font2_h), 0);
                   }
                }
             }
@@ -758,7 +758,7 @@ public final class LoadingPage {
       if (l >= 15) {
          if (l == 15) {
             label148: {
-               ad = var2 >= 0L ? "价格:" + GlobalConfig.a(new StringBuffer(), var2) : null;
+               ad = var2 >= 0L ? "价格:" + GlobalConfig.yinLiangFormat(new StringBuffer(), var2) : null;
                String var10000;
                if (var1 != null) {
                   if ((ab = a(var1) != -1 ? a(var1) : 15138723) != 15138723) {
@@ -780,8 +780,8 @@ public final class LoadingPage {
                ac = var10000;
             }
 
-            X = Math.max(GlobalConfig.i.stringWidth(ac), ad == null ? 0 : GlobalConfig.i.stringWidth(ad)) + 8;
-            Y = GlobalConfig.j * (ad == null ? 1 : 2) + 8;
+            X = Math.max(GlobalConfig.font2.stringWidth(ac), ad == null ? 0 : GlobalConfig.font2.stringWidth(ad)) + 8;
+            Y = GlobalConfig.font2_h * (ad == null ? 1 : 2) + 8;
             Z = var4;
             aa = var5;
             if (var6 == 40) {
@@ -864,7 +864,7 @@ public final class LoadingPage {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var5 - Y + 4, 20);
                   if (ad != null) {
-                     var0.drawString(ad, Z + 4, var5 - Y + 4 + GlobalConfig.j, 20);
+                     var0.drawString(ad, Z + 4, var5 - Y + 4 + GlobalConfig.font2_h, 20);
                   }
                } else {
                   a(var0, 1009050, 210, Z - X, var5 - Y, X, Y);
@@ -872,7 +872,7 @@ public final class LoadingPage {
                   var0.setColor(ab);
                   var0.drawString(ac, Z - X + 4, var5 - Y + 4, 20);
                   if (ad != null) {
-                     var0.drawString(ad, Z - X + 4, var5 - Y + 4 + GlobalConfig.j, 20);
+                     var0.drawString(ad, Z - X + 4, var5 - Y + 4 + GlobalConfig.font2_h, 20);
                   }
                }
             } else if (var6 == 36) {
@@ -882,7 +882,7 @@ public final class LoadingPage {
                   var0.setColor(ab);
                   var0.drawString(ac, Z - X + 4, var5 - Y + 4, 20);
                   if (ad != null) {
-                     var0.drawString(ad, Z - X + 4, var5 - Y + 4 + GlobalConfig.j, 20);
+                     var0.drawString(ad, Z - X + 4, var5 - Y + 4 + GlobalConfig.font2_h, 20);
                   }
                } else {
                   a(var0, 1009050, 210, Z, var5 - Y, X, Y);
@@ -890,7 +890,7 @@ public final class LoadingPage {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var5 - Y + 4, 20);
                   if (ad != null) {
-                     var0.drawString(ad, Z + 4, var5 - Y + 4 + GlobalConfig.j, 20);
+                     var0.drawString(ad, Z + 4, var5 - Y + 4 + GlobalConfig.font2_h, 20);
                   }
                }
             } else if (var6 == 24) {
@@ -900,7 +900,7 @@ public final class LoadingPage {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var5 + 4, 20);
                   if (ad != null) {
-                     var0.drawString(ad, Z + 4, var5 + 4 + GlobalConfig.j, 20);
+                     var0.drawString(ad, Z + 4, var5 + 4 + GlobalConfig.font2_h, 20);
                   }
                } else {
                   a(var0, 1009050, 210, Z - X, var5, X, Y);
@@ -908,7 +908,7 @@ public final class LoadingPage {
                   var0.setColor(ab);
                   var0.drawString(ac, Z - X + 4, var5 + 4, 20);
                   if (ad != null) {
-                     var0.drawString(ad, Z - X + 4, var5 + 4 + GlobalConfig.j, 20);
+                     var0.drawString(ad, Z - X + 4, var5 + 4 + GlobalConfig.font2_h, 20);
                   }
                }
             } else {
@@ -923,7 +923,7 @@ public final class LoadingPage {
                var0.setColor(ab);
                var0.drawString(ac, var8 + 4, var7 + 4, 20);
                if (ad != null) {
-                  var0.drawString(ad, var8 + 4, var7 + 4 + GlobalConfig.j, 20);
+                  var0.drawString(ad, var8 + 4, var7 + 4 + GlobalConfig.font2_h, 20);
                }
             }
          }
@@ -950,9 +950,9 @@ public final class LoadingPage {
                ac = "";
             }
 
-            int var6 = GlobalConfig.i.stringWidth(ac) + 8;
+            int var6 = GlobalConfig.font2.stringWidth(ac) + 8;
             X = ae == null ? var6 : (ae.a <= 0 ? X : Math.max(var6, ae.a + 8));
-            Y = GlobalConfig.j * (ae == null ? 1 : ae.a() + 1) + 8;
+            Y = GlobalConfig.font2_h * (ae == null ? 1 : ae.a() + 1) + 8;
             if (var3 + X > GlobalConfig.defaultWidth) {
                var3 = GlobalConfig.defaultWidth - X;
             } else if (var3 < 0) {
@@ -1134,7 +1134,7 @@ public final class LoadingPage {
                      var0.setColor(ab);
                      var0.drawString(ac, Z + 4, var4 + 4, 20);
                      if (ae != null) {
-                        ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.j, 0);
+                        ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                      }
                   } else {
                      a(var0, 1009050, 210, Z, var4 - Y, X, Y);
@@ -1142,7 +1142,7 @@ public final class LoadingPage {
                      var0.setColor(ab);
                      var0.drawString(ac, Z + 4, var4 - Y + 4, 20);
                      if (ae != null) {
-                        ae.a(var0, Z + 4, var4 - Y + 4 + GlobalConfig.j, 0);
+                        ae.a(var0, Z + 4, var4 - Y + 4 + GlobalConfig.font2_h, 0);
                      }
                   }
                } else if (var4 < Y) {
@@ -1151,7 +1151,7 @@ public final class LoadingPage {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var4 + 4, 20);
                   if (ae != null) {
-                     ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.j, 0);
+                     ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                   }
                } else {
                   a(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
@@ -1159,7 +1159,7 @@ public final class LoadingPage {
                   var0.setColor(ab);
                   var0.drawString(ac, Z - X + 4, var4 - Y + 4, 20);
                   if (ae != null) {
-                     ae.a(var0, Z - X + 4, var4 - Y + 4 + GlobalConfig.j, 0);
+                     ae.a(var0, Z - X + 4, var4 - Y + 4 + GlobalConfig.font2_h, 0);
                   }
                }
             } else if (var5 == 36) {
@@ -1170,7 +1170,7 @@ public final class LoadingPage {
                      var0.setColor(ab);
                      var0.drawString(ac, Z + 4, var4 + 4, 20);
                      if (ae != null) {
-                        ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.j, 0);
+                        ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                      }
                   } else {
                      a(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
@@ -1178,7 +1178,7 @@ public final class LoadingPage {
                      var0.setColor(ab);
                      var0.drawString(ac, Z - X + 4, var4 - Y + 4, 20);
                      if (ae != null) {
-                        ae.a(var0, Z - X + 4, var4 - Y + 4 + GlobalConfig.j, 0);
+                        ae.a(var0, Z - X + 4, var4 - Y + 4 + GlobalConfig.font2_h, 0);
                      }
                   }
                } else if (var4 < Y) {
@@ -1187,7 +1187,7 @@ public final class LoadingPage {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var4 + 4, 20);
                   if (ae != null) {
-                     ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.j, 0);
+                     ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                   }
                } else {
                   a(var0, 1009050, 210, Z, var4 - Y, X, Y);
@@ -1195,7 +1195,7 @@ public final class LoadingPage {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var4 - Y + 4, 20);
                   if (ae != null) {
-                     ae.a(var0, Z + 4, var4 - Y + 4 + GlobalConfig.j, 0);
+                     ae.a(var0, Z + 4, var4 - Y + 4 + GlobalConfig.font2_h, 0);
                   }
                }
             } else if (var5 == 24) {
@@ -1206,7 +1206,7 @@ public final class LoadingPage {
                      var0.setColor(ab);
                      var0.drawString(ac, Z + 4, var4 + 4 - Y, 20);
                      if (ae != null) {
-                        ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.j - Y, 0);
+                        ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h - Y, 0);
                      }
                   } else {
                      a(var0, 1009050, 210, Z, var4, X, Y);
@@ -1214,7 +1214,7 @@ public final class LoadingPage {
                      var0.setColor(ab);
                      var0.drawString(ac, Z + 4, var4 + 4, 20);
                      if (ae != null) {
-                        ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.j, 0);
+                        ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                      }
                   }
                } else if (var4 + Y >= GlobalConfig.defaultHigh) {
@@ -1223,7 +1223,7 @@ public final class LoadingPage {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var4 + 4 - Y, 20);
                   if (ae != null) {
-                     ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.j - Y, 0);
+                     ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h - Y, 0);
                   }
                } else {
                   a(var0, 1009050, 210, Z - X, var4, X, Y);
@@ -1231,7 +1231,7 @@ public final class LoadingPage {
                   var0.setColor(ab);
                   var0.drawString(ac, Z - X + 4, var4 + 4, 20);
                   if (ae != null) {
-                     ae.a(var0, Z - X + 4, var4 + 4 + GlobalConfig.j, 0);
+                     ae.a(var0, Z - X + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                   }
                }
             } else if (var3 + X <= GlobalConfig.defaultWidth) {
@@ -1241,7 +1241,7 @@ public final class LoadingPage {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4 - X, var4 + 4 - Y, 20);
                   if (ae != null) {
-                     ae.a(var0, Z + 4 - X, var4 + 4 + GlobalConfig.j - Y, 0);
+                     ae.a(var0, Z + 4 - X, var4 + 4 + GlobalConfig.font2_h - Y, 0);
                   }
                } else {
                   a(var0, 1009050, 210, Z, var4, X, Y);
@@ -1249,7 +1249,7 @@ public final class LoadingPage {
                   var0.setColor(ab);
                   var0.drawString(ac, Z + 4, var4 + 4, 20);
                   if (ae != null) {
-                     ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.j, 0);
+                     ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                   }
                }
             } else if (var4 + Y >= GlobalConfig.defaultHigh) {
@@ -1262,7 +1262,7 @@ public final class LoadingPage {
                var0.setColor(ab);
                var0.drawString(ac, Z - X + 4, var4 + 4 - Y, 20);
                if (ae != null) {
-                  ae.a(var0, Z - X + 4, var4 + 4 + GlobalConfig.j - Y, 0);
+                  ae.a(var0, Z - X + 4, var4 + 4 + GlobalConfig.font2_h - Y, 0);
                }
             } else {
                a(var0, 1009050, 210, Z - X, var4, X, Y);
@@ -1270,7 +1270,7 @@ public final class LoadingPage {
                var0.setColor(ab);
                var0.drawString(ac, Z - X + 4, var4 + 4, 20);
                if (ae != null) {
-                  ae.a(var0, Z - X + 4, var4 + 4 + GlobalConfig.j, 0);
+                  ae.a(var0, Z - X + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                }
             }
          }
@@ -1325,16 +1325,16 @@ public final class LoadingPage {
             System.arraycopy(var2, 0, p, 0, var2.length);
          }
 
-         q = GlobalConfig.i.stringWidth("菜单");
+         q = GlobalConfig.font2.stringWidth("菜单");
 
          for(int var5 = 0; var5 < p.length; ++var5) {
-            q = Math.max(q, GlobalConfig.i.stringWidth(p[var5]));
+            q = Math.max(q, GlobalConfig.font2.stringWidth(p[var5]));
          }
 
          q += 20;
          af[0] = var0;
          af[1] = var1;
-         ag = p.length * (GlobalConfig.j + 3) + 3;
+         ag = p.length * (GlobalConfig.font2_h + 3) + 3;
          af[1] = af[1] + ag > GlobalConfig.defaultHigh ? GlobalConfig.defaultHigh - ag : af[1];
          int[] var10000;
          byte var10001;
@@ -1378,16 +1378,16 @@ public final class LoadingPage {
 
       for(int var1 = 0; var1 < p.length; ++var1) {
          var0.setColor(o == var1 ? 1539988 : 6082765);
-         var0.fillRect(af[0] + 2, af[1] + 2 + (GlobalConfig.j + 3) * var1, q - 4, GlobalConfig.j + 2);
+         var0.fillRect(af[0] + 2, af[1] + 2 + (GlobalConfig.font2_h + 3) * var1, q - 4, GlobalConfig.font2_h + 2);
          var0.setColor(14172);
-         var0.drawRect(af[0] + 2, af[1] + 2 + (GlobalConfig.j + 3) * var1, q - 5, GlobalConfig.j + 1);
-         a(ai[var1], af[0] + 2, af[1] + 2 + (GlobalConfig.j + 3) * var1, q - 5, GlobalConfig.j + 1);
+         var0.drawRect(af[0] + 2, af[1] + 2 + (GlobalConfig.font2_h + 3) * var1, q - 5, GlobalConfig.font2_h + 1);
+         a(ai[var1], af[0] + 2, af[1] + 2 + (GlobalConfig.font2_h + 3) * var1, q - 5, GlobalConfig.font2_h + 1);
          var0.setColor(o == var1 ? 16053950 : 3756286);
          if (ah != null && var1 < ah.length && ah[var1] == 1) {
             var0.setColor(8750469);
          }
 
-         var0.drawString(p[var1], af[0] + q / 2, af[1] + 2 + (GlobalConfig.j + 3) * var1, 17);
+         var0.drawString(p[var1], af[0] + q / 2, af[1] + 2 + (GlobalConfig.font2_h + 3) * var1, 17);
       }
 
       if (MainCanvas.S != null && MainCanvas.S.length == 4) {
@@ -1414,26 +1414,26 @@ public final class LoadingPage {
 
    public static void a(Graphics var0, String var1, int var2, boolean var3) {
       l = 0;
-      int var4 = (GlobalConfig.j << 1) + 35 + 24;
+      int var4 = (GlobalConfig.font2_h << 1) + 35 + 24;
       int var5 = (GlobalConfig.defaultWidth - 140) / 2;
       int var6 = (GlobalConfig.defaultHigh - var4) / 2;
       c(var0, var5, var6, 140, var4, 0);
-      c(var0, var5 + 20, var6 + 5 + GlobalConfig.j + 12, 100, GlobalConfig.j, 1);
-      a((int[])al, var5 + 20, var6 + 5 + GlobalConfig.j + 12, 100, GlobalConfig.j);
-      a(var0, (String)var1, (int)(var5 + 70), var6 + 5, 17, 16776666, 0);
+      c(var0, var5 + 20, var6 + 5 + GlobalConfig.font2_h + 12, 100, GlobalConfig.font2_h, 1);
+      a((int[])al, var5 + 20, var6 + 5 + GlobalConfig.font2_h + 12, 100, GlobalConfig.font2_h);
+      drawString(var0, (String)var1, (int)(var5 + 70), var6 + 5, 17, 16776666, 0);
       if (var2 > 0) {
-         a(var0, "" + var2, var5 + 70, var6 + 6 + GlobalConfig.j + 12, 17, 16711639);
+         a(var0, "" + var2, var5 + 70, var6 + 6 + GlobalConfig.font2_h + 12, 17, 16711639);
       }
 
       if (var3 && MainCanvas.X != null && MainCanvas.Y != null && MainCanvas.V != null && MainCanvas.W != null) {
-         var0.drawImage(MainCanvas.V.pngImage, var5 + (140 - MainCanvas.V.b) / 2, var6 + 7 + GlobalConfig.j, 20);
-         a(aj[0], var5 + (140 - MainCanvas.V.b) / 2, var6 + 7 + GlobalConfig.j, MainCanvas.V.pngImage.getWidth(), MainCanvas.V.pngImage.getHeight());
-         var0.drawImage(MainCanvas.W.pngImage, var5 + (140 - MainCanvas.V.b) / 2, var6 + 5 + (GlobalConfig.j << 1) + 14, 20);
-         a(aj[1], var5 + (140 - MainCanvas.V.b) / 2, var6 + 5 + (GlobalConfig.j << 1) + 14, MainCanvas.W.pngImage.getWidth(), MainCanvas.W.pngImage.getHeight());
-         var0.drawImage(MainCanvas.X.pngImage, var5 + 5, var6 + 5 + GlobalConfig.j + 12, 20);
-         a(aj[2], var5 + 5, var6 + 5 + GlobalConfig.j + 12, MainCanvas.X.pngImage.getWidth(), MainCanvas.X.pngImage.getHeight());
-         var0.drawImage(MainCanvas.Y.pngImage, var5 + 140 - 5 - MainCanvas.Y.b, var6 + 5 + GlobalConfig.j + 12, 20);
-         a(aj[3], var5 + 140 - 5 - MainCanvas.Y.b, var6 + 5 + GlobalConfig.j + 12, MainCanvas.Y.pngImage.getWidth(), MainCanvas.Y.pngImage.getHeight());
+         var0.drawImage(MainCanvas.V.pngImage, var5 + (140 - MainCanvas.V.b) / 2, var6 + 7 + GlobalConfig.font2_h, 20);
+         a(aj[0], var5 + (140 - MainCanvas.V.b) / 2, var6 + 7 + GlobalConfig.font2_h, MainCanvas.V.pngImage.getWidth(), MainCanvas.V.pngImage.getHeight());
+         var0.drawImage(MainCanvas.W.pngImage, var5 + (140 - MainCanvas.V.b) / 2, var6 + 5 + (GlobalConfig.font2_h << 1) + 14, 20);
+         a(aj[1], var5 + (140 - MainCanvas.V.b) / 2, var6 + 5 + (GlobalConfig.font2_h << 1) + 14, MainCanvas.W.pngImage.getWidth(), MainCanvas.W.pngImage.getHeight());
+         var0.drawImage(MainCanvas.X.pngImage, var5 + 5, var6 + 5 + GlobalConfig.font2_h + 12, 20);
+         a(aj[2], var5 + 5, var6 + 5 + GlobalConfig.font2_h + 12, MainCanvas.X.pngImage.getWidth(), MainCanvas.X.pngImage.getHeight());
+         var0.drawImage(MainCanvas.Y.pngImage, var5 + 140 - 5 - MainCanvas.Y.b, var6 + 5 + GlobalConfig.font2_h + 12, 20);
+         a(aj[3], var5 + 140 - 5 - MainCanvas.Y.b, var6 + 5 + GlobalConfig.font2_h + 12, MainCanvas.Y.pngImage.getWidth(), MainCanvas.Y.pngImage.getHeight());
       }
 
       if (MainCanvas.T != null && MainCanvas.U != null) {
@@ -1462,7 +1462,7 @@ public final class LoadingPage {
 
    public static void a(Graphics var0, String var1, int var2, int var3, int var4) {
       var0.drawImage(MainCanvas.X.pngImage, var2, var3 + 3, 20);
-      c(var0, var2 + 12, var3, var4 - 24, GlobalConfig.j, 1);
+      c(var0, var2 + 12, var3, var4 - 24, GlobalConfig.font2_h, 1);
       var0.drawImage(MainCanvas.Y.pngImage, var2 + var4 - 9, var3 + 3, 20);
       a(var0, var1, var2 + var4 / 2, var3 + 3, 17, 16711639);
    }

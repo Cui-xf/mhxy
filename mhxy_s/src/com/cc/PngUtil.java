@@ -360,13 +360,13 @@ public final class PngUtil {
             for (int var11 = 0; var11 < GlobalStatus.t.length; ++var11) {
                 if (GlobalStatus.t[var11] != null) {
                     if (UISceneController.aW[3] == 0 && GlobalStatus.t[var11].b != null) {
-                        var1.setFont(GlobalConfig.i);
-                        LoadingPage.a(var1, (String) GlobalStatus.t[var11].b, (int) (GlobalStatus.t[var11].c - var3), GlobalStatus.t[var11].d - (GlobalStatus.t[var11].w == null ? 30 : GlobalStatus.t[var11].w.j()) - GlobalConfig.j - var4, 17, 255, 16777215);
+                        var1.setFont(GlobalConfig.font2);
+                        LoadingPage.drawString(var1, (String) GlobalStatus.t[var11].b, (int) (GlobalStatus.t[var11].c - var3), GlobalStatus.t[var11].d - (GlobalStatus.t[var11].w == null ? 30 : GlobalStatus.t[var11].w.j()) - GlobalConfig.font2_h - var4, 17, 255, 16777215);
                     }
 
                     if (GlobalStatus.t[var11].w != null && GlobalStatus.t[var11].w.k != null && UISceneController.aW[10] == 1) {
                         this.a(var1, GlobalStatus.t[var11].w.k[GlobalStatus.t[var11].w.f], GlobalStatus.t[var11].w.g(), GlobalStatus.t[var11].w.h(), (int[]) null, var3, var4, GlobalStatus.t[var11].c, GlobalStatus.t[var11].d, 20, var5);
-                        var1.setFont(GlobalConfig.i);
+                        var1.setFont(GlobalConfig.font2);
                     }
                 }
             }

@@ -67,9 +67,6 @@ public final class h {
         this.loginModel.b(this.display);
     }
 
-    public final void e() {
-        this.loginModel.b(this.display);
-    }
 
     public final void f() {
         this.loginModel.c(this.display);

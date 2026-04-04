@@ -47,9 +47,9 @@ public final class aq {
       this.b.aq.j();
       this.b.aq.a("帮派");
       this.b.aq.a(false);
-      this.b.ar.a((Image[])null, GlobalConfig.Z, (String[])null, (String[])null);
+      this.b.ar.a((Image[])null, GlobalConfig.BangPaiCaoZuo, (String[])null, (String[])null);
       this.b.ar.a(var1);
-      this.b.at.b(GlobalConfig.aa[var1], GlobalConfig.i, (byte)2);
+      this.b.at.b(GlobalConfig.BangPaiShuoMing[var1], GlobalConfig.font2, (byte)2);
       this.b.at.a((byte)1);
       this.b.au.a("选择");
       this.b.aq.a((al)this.b.ar);
@@ -68,7 +68,7 @@ public final class aq {
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 4 || var1 == 520) {
-            this.b.at.b(GlobalConfig.aa[this.b.ar.g()], GlobalConfig.i, (byte)2);
+            this.b.at.b(GlobalConfig.BangPaiShuoMing[this.b.ar.g()], GlobalConfig.font2, (byte)2);
             this.b.at.a((byte)1);
          }
 
@@ -164,7 +164,7 @@ public final class aq {
    }
 
    public final void a() {
-      this.a.am = LoadingPage.a("将交付" + this.u + "帮派基金作为招募费用，持续一周？", GlobalConfig.i, 140, "\t");
+      this.a.am = LoadingPage.a("将交付" + this.u + "帮派基金作为招募费用，持续一周？", GlobalConfig.font2, 140, "\t");
       this.a.sceneSubState = 3;
       LoadingPage.h = 0;
    }
@@ -193,7 +193,7 @@ public final class aq {
       }
 
       var10000.a((Image[])null, var10002, (String[])null, var2);
-      this.b.at.b(GlobalStatus.im == null ? null : GlobalStatus.im[0], GlobalConfig.i, (byte)2);
+      this.b.at.b(GlobalStatus.im == null ? null : GlobalStatus.im[0], GlobalConfig.font2, (byte)2);
       this.b.at.a((byte)1);
       this.b.au.a("响应");
       this.b.au.a(true);
@@ -213,12 +213,12 @@ public final class aq {
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-            this.b.at.b(GlobalStatus.im == null ? null : GlobalStatus.im[this.b.ar.g()], GlobalConfig.i, (byte)2);
+            this.b.at.b(GlobalStatus.im == null ? null : GlobalStatus.im[this.b.ar.g()], GlobalConfig.font2, (byte)2);
             this.b.at.a((byte)1);
          }
 
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.j + 20 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, GlobalStatus.io[this.b.ar.g()] == 1 ? new String[]{"取消响应"} : new String[]{"响应"}, false);
+            LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, GlobalStatus.io[this.b.ar.g()] == 1 ? new String[]{"取消响应"} : new String[]{"响应"}, false);
             this.a.sceneSubState = 1;
             return;
          }
@@ -303,7 +303,7 @@ public final class aq {
       this.b.aq.a("帮派招募");
       this.b.aq.a(false);
       this.b.ar.a((Image[])null, GlobalStatus.iq, (String[])null, (String[])null);
-      this.b.at.b(GlobalStatus.ir == null ? null : GlobalStatus.ir[0], GlobalConfig.i, (byte)2);
+      this.b.at.b(GlobalStatus.ir == null ? null : GlobalStatus.ir[0], GlobalConfig.font2, (byte)2);
       this.b.at.a((byte)1);
       this.b.au.a("申请");
       this.b.au.a(true);
@@ -325,12 +325,12 @@ public final class aq {
 
             this.b.aq.b(var1);
             if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-               this.b.at.b(GlobalStatus.ir == null ? null : GlobalStatus.ir[this.b.ar.g()], GlobalConfig.i, (byte)2);
+               this.b.at.b(GlobalStatus.ir == null ? null : GlobalStatus.ir[this.b.ar.g()], GlobalConfig.font2, (byte)2);
                this.b.at.a((byte)1);
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-               LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.j + 20 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, GlobalStatus.is[this.b.ar.g()] == 1 ? new String[]{"取消申请"} : new String[]{"申请"}, false);
+               LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, GlobalStatus.is[this.b.ar.g()] == 1 ? new String[]{"取消申请"} : new String[]{"申请"}, false);
                this.a.sceneSubState = 1;
             }
          }
@@ -422,12 +422,12 @@ public final class aq {
       this.b.aq.j();
       this.b.aq.a("帮派管理");
       this.b.aq.a(false);
-      this.b.ar.a((Image[])null, GlobalConfig.ab, (String[])null, (String[])null);
+      this.b.ar.a((Image[])null, GlobalConfig.BangPaiGuanLi, (String[])null, (String[])null);
       if (var1) {
          this.b.ar.a(this.a.aA, this.a.aE);
-         this.b.at.b(GlobalConfig.ac[this.a.aE], GlobalConfig.i, (byte)2);
+         this.b.at.b(GlobalConfig.BangPaiGuanLiCaoZuo[this.a.aE], GlobalConfig.font2, (byte)2);
       } else {
-         this.b.at.b(GlobalConfig.ac[0], GlobalConfig.i, (byte)2);
+         this.b.at.b(GlobalConfig.BangPaiGuanLiCaoZuo[0], GlobalConfig.font2, (byte)2);
       }
 
       this.b.at.a((byte)1);
@@ -448,7 +448,7 @@ public final class aq {
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-            this.b.at.b(GlobalConfig.ac[this.b.ar.g()], GlobalConfig.i, (byte)2);
+            this.b.at.b(GlobalConfig.BangPaiGuanLiCaoZuo[this.b.ar.g()], GlobalConfig.font2, (byte)2);
             this.b.at.a((byte)1);
          }
 
@@ -534,7 +534,7 @@ public final class aq {
          }
 
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.j + 20 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"详情", "接纳", "拒绝"}, false);
+            LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"详情", "接纳", "拒绝"}, false);
             this.a.sceneSubState = 1;
             return;
          }
@@ -698,7 +698,7 @@ public final class aq {
          this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       } else if (var1 == 1) {
          this.b.as.a = 1;
-         this.b.at.b(GlobalStatus.iH, GlobalConfig.i, (byte)2);
+         this.b.at.b(GlobalStatus.iH, GlobalConfig.font2, (byte)2);
          this.b.aq.a((al)this.b.at);
          this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       } else if (var1 == 2) {
@@ -733,7 +733,7 @@ public final class aq {
          LoadingPage.l = 0;
       } else if (var1 == 3) {
          this.b.as.a = 3;
-         this.b.at.b(GlobalStatus.kl, GlobalConfig.i, (byte)2);
+         this.b.at.b(GlobalStatus.kl, GlobalConfig.font2, (byte)2);
          this.b.au.a("确定");
          this.b.au.a(true);
          this.b.aq.a((al)this.b.at);
@@ -784,13 +784,13 @@ public final class aq {
                   }
                } else if (GlobalStatus.iD[this.b.ar.g()] == 1) {
                   if (!GlobalStatus.iy[this.b.ar.g()].equals(GlobalStatus.ad)) {
-                     LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+                     LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
                      this.a.sceneSubState = 1;
                      this.a.aE = this.b.ar.g();
                      this.a.aA = this.b.ar.h();
                   }
                } else if (!GlobalStatus.iy[this.b.ar.g()].equals(GlobalStatus.ad)) {
-                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"查看"}, false);
+                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看"}, false);
                   this.a.sceneSubState = 1;
                   this.a.aE = this.b.ar.g();
                   this.a.aA = this.b.ar.h();
@@ -875,7 +875,7 @@ public final class aq {
                if (this.b.ar.g() == this.b.ar.h()) {
                   this.b.a((String)"请输入要搜索的帮派名称", (int)0);
                } else if (GlobalStatus.jY != null) {
-                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"查看", "外交", "宣战"}, true);
+                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "外交", "宣战"}, true);
                   this.a.sceneSubState = 7;
                }
             }
@@ -964,7 +964,7 @@ public final class aq {
             }
          } else {
             if (LoadingPage.o == 0) {
-               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"属性", "装备"}, false);
+               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"属性", "装备"}, false);
                this.a.sceneSubState = 2;
                return;
             }
@@ -978,7 +978,7 @@ public final class aq {
 
             if (LoadingPage.o == 2) {
                if (GlobalStatus.bs == -1) {
-                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"自由", "跟随"}, false);
+                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"自由", "跟随"}, false);
                   this.a.sceneSubState = 6;
                   return;
                }
@@ -988,7 +988,7 @@ public final class aq {
             }
 
             if (LoadingPage.o == 3) {
-               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"物品", "宠物"}, false);
+               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"物品", "宠物"}, false);
                this.a.sceneSubState = 5;
                return;
             }
@@ -1010,9 +1010,9 @@ public final class aq {
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                if (GlobalStatus.iD[this.b.ar.g()] == 1) {
-                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
                } else {
-                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"查看"}, false);
+                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看"}, false);
                }
 
                this.a.sceneSubState = 1;
@@ -1068,7 +1068,7 @@ public final class aq {
          LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
-               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
                LoadingPage.o = 3;
                this.a.sceneSubState = 1;
                return;
@@ -1087,7 +1087,7 @@ public final class aq {
          LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
-               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
                LoadingPage.o = 2;
                this.a.sceneSubState = 1;
                return;
@@ -1125,7 +1125,7 @@ public final class aq {
             }
 
             if (LoadingPage.o == 1) {
-               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"中立", "敌对"}, true);
+               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"中立", "敌对"}, true);
                this.a.sceneSubState = 8;
                return;
             }
@@ -1216,7 +1216,7 @@ public final class aq {
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-               LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.j + 20 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"任免", "开除"}, false);
+               LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"任免", "开除"}, false);
                this.a.sceneSubState = 1;
                this.v = this.b.ar.g();
             }
@@ -1295,7 +1295,7 @@ public final class aq {
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-            this.b.at.b(GlobalStatus.je[this.b.ar.g()], GlobalConfig.i, (byte)2);
+            this.b.at.b(GlobalStatus.je[this.b.ar.g()], GlobalConfig.font2, (byte)2);
             this.b.at.a((byte)1);
          }
 
@@ -1342,7 +1342,7 @@ public final class aq {
       this.b.aq.a("职务列表");
       this.b.aq.a(true);
       this.b.ar.a((Image[])null, GlobalStatus.jd, (String[])null, (String[])null);
-      this.b.at.b(GlobalStatus.je[this.b.ar.g()], GlobalConfig.i, (byte)2);
+      this.b.at.b(GlobalStatus.je[this.b.ar.g()], GlobalConfig.font2, (byte)2);
       this.b.at.a((byte)1);
       this.b.au.a("确定");
       this.b.aq.a((al)this.b.ar);
@@ -1371,7 +1371,7 @@ public final class aq {
       this.b.aq.j();
       this.b.aq.a("帮派公告");
       this.b.aq.a(false);
-      this.b.at.b(GlobalStatus.jf, GlobalConfig.i, (byte)2);
+      this.b.at.b(GlobalStatus.jf, GlobalConfig.font2, (byte)2);
       this.b.au.a("确定");
       this.b.aq.a((al)this.b.at);
       this.b.aq.a((al)this.b.au);
@@ -1385,12 +1385,12 @@ public final class aq {
       this.b.aq.j();
       this.b.aq.a("宝库管理");
       this.b.aq.a(false);
-      this.b.ar.a((Image[])null, GlobalConfig.ad, (String[])null, (String[])null);
+      this.b.ar.a((Image[])null, GlobalConfig.BaoKuCaoZuo, (String[])null, (String[])null);
       if (var1) {
          this.b.ar.a(this.a.aA, this.a.aE);
-         this.b.at.b(GlobalStatus.iI[this.a.aE], GlobalConfig.i, (byte)2);
+         this.b.at.b(GlobalStatus.iI[this.a.aE], GlobalConfig.font2, (byte)2);
       } else {
-         this.b.at.b(GlobalStatus.iI[0], GlobalConfig.i, (byte)2);
+         this.b.at.b(GlobalStatus.iI[0], GlobalConfig.font2, (byte)2);
       }
 
       this.b.at.a((byte)1);
@@ -1414,7 +1414,7 @@ public final class aq {
          }
 
          if (var1 == 514 || var1 == 520 || var1 == 1 || var1 == 4) {
-            this.b.at.b(GlobalStatus.iI[this.b.ar.g()], GlobalConfig.i, (byte)2);
+            this.b.at.b(GlobalStatus.iI[this.b.ar.g()], GlobalConfig.font2, (byte)2);
             this.b.at.a((byte)1);
          }
 
@@ -1652,7 +1652,7 @@ public final class aq {
       this.b.aq.j();
       this.b.aq.a("贡献物品");
       this.b.aq.a(false);
-      String[] var1 = GlobalConfig.defaultWidth <= 176 ? new String[]{"", "", "", "", ""} : GlobalConfig.ae;
+      String[] var1 = GlobalConfig.defaultWidth <= 176 ? new String[]{"", "", "", "", ""} : GlobalConfig.HuoBiType;
       this.b.ar.a(UISceneController.b(this.w), var1, (String[])null, (String[])null);
       short var2 = MainCanvas.L.c;
       this.b.aq.f = var2;
@@ -1992,7 +1992,7 @@ public final class aq {
       this.b.aq.j();
       this.b.aq.a("宝库配置");
       this.b.aq.a(false);
-      this.b.ar.a(UISceneController.b(this.A), GlobalConfig.af, (String[])null, (String[])null);
+      this.b.ar.a(UISceneController.b(this.A), GlobalConfig.JiangLiType, (String[])null, (String[])null);
       this.b.au.a(new String[]{"确定", "返回"});
       this.b.aq.a((al)this.b.ar);
       this.b.aq.a((al)this.b.au);
@@ -2200,27 +2200,27 @@ public final class aq {
          for(int var2 = 0; var2 < this.b.ar.f(); ++var2) {
             int var3 = this.b.ar.a() + this.b.ar.c() - MainCanvas.C.b - 126;
             int var4 = this.b.ar.b() + 4 + var2 * this.b.ar.e();
-            LoadingPage.a(var1, var2 == 1 ? UISceneController.a(this.b.l, (long)this.i[var2]) : this.i[var2] + "%", var3, var4, 122);
+            LoadingPage.a(var1, var2 == 1 ? UISceneController.a(this.b.shareSb, (long)this.i[var2]) : this.i[var2] + "%", var3, var4, 122);
             var3 = 122;
             if (this.x != null && this.x.length > var2) {
                this.x[var2][0] = var3;
                this.x[var2][1] = var4;
                this.x[var2][2] = 12;
-               this.x[var2][3] = GlobalConfig.j;
+               this.x[var2][3] = GlobalConfig.font2_h;
             }
 
             if (this.y != null && this.y.length > var2) {
                this.y[var2][0] = var3 + 122 - 12;
                this.y[var2][1] = var4;
                this.y[var2][2] = 12;
-               this.y[var2][3] = GlobalConfig.j;
+               this.y[var2][3] = GlobalConfig.font2_h;
             }
 
             if (this.z != null) {
                this.z[var2][0] = var3 + 12;
                this.z[var2][1] = var4;
                this.z[var2][2] = 98;
-               this.z[var2][3] = GlobalConfig.j;
+               this.z[var2][3] = GlobalConfig.font2_h;
             }
          }
       }
@@ -2267,9 +2267,9 @@ public final class aq {
 
       int var1 = (this.b.as.a << 5) + (this.a.ar << 3) + this.a.aq;
       if (GlobalStatus.iN != null && var1 < GlobalStatus.iN.length) {
-         this.b.at.a(GlobalStatus.ja[var1], GlobalConfig.i, (byte)1);
+         this.b.at.a(GlobalStatus.ja[var1], GlobalConfig.font2, (byte)1);
       } else {
-         this.b.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte)1);
+         this.b.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte)1);
       }
 
       this.b.au.a("操作");
@@ -2286,9 +2286,9 @@ public final class aq {
    public final void p() {
       int var1 = (this.b.as.a << 5) + (this.a.ar << 3) + this.a.aq;
       if (GlobalStatus.iN != null && var1 < GlobalStatus.iN.length) {
-         this.b.at.a(GlobalStatus.ja[var1], GlobalConfig.i, (byte)1);
+         this.b.at.a(GlobalStatus.ja[var1], GlobalConfig.font2, (byte)1);
       } else {
-         this.b.at.a("没有物品，按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte)1);
+         this.b.at.a("没有物品，按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte)1);
       }
 
       this.b.at.a((byte)1);
@@ -2361,7 +2361,7 @@ public final class aq {
                      this.b.aq.b();
                      this.b.aq.a("宝物详情");
                      if (GlobalStatus.ja != null && var2 < GlobalStatus.ja.length && GlobalStatus.ja[var2] != null) {
-                        this.b.at.a(GlobalStatus.iO[var2] + "：\t" + GlobalStatus.ja[var2], GlobalConfig.i, (byte)1);
+                        this.b.at.a(GlobalStatus.iO[var2] + "：\t" + GlobalStatus.ja[var2], GlobalConfig.font2, (byte)1);
                      }
 
                      this.b.aq.a((al)this.b.at);
@@ -2616,32 +2616,32 @@ public final class aq {
          for(int var2 = 0; var2 < this.b.ar.f(); ++var2) {
             int var3 = this.b.ar.a() + this.b.ar.c() - MainCanvas.C.b - 130;
             int var4 = this.b.ar.b() + 4 + var2 * this.b.ar.e();
-            LoadingPage.a(var1, var2 == 0 ? UISceneController.a(this.b.l, this.j) : "" + this.k[var2], var3, var4, 124);
+            LoadingPage.a(var1, var2 == 0 ? UISceneController.a(this.b.shareSb, this.j) : "" + this.k[var2], var3, var4, 124);
             var3 = 124;
             if (this.l != null && this.l.length > var2) {
                this.l[var2][0] = var3;
                this.l[var2][1] = var4;
                this.l[var2][2] = 12;
-               this.l[var2][3] = GlobalConfig.j;
+               this.l[var2][3] = GlobalConfig.font2_h;
             }
 
             if (this.m != null && this.m.length > var2) {
                this.m[var2][0] = var3 + 124 - 12;
                this.m[var2][1] = var4;
                this.m[var2][2] = 12;
-               this.m[var2][3] = GlobalConfig.j;
+               this.m[var2][3] = GlobalConfig.font2_h;
             }
 
             if (this.n != null && var2 == 0) {
                this.n[0] = var3 + 12;
                this.n[1] = var4;
                this.n[2] = 100;
-               this.n[3] = GlobalConfig.j;
+               this.n[3] = GlobalConfig.font2_h;
             }
          }
 
          long var7 = (this.j + (long)this.B * GlobalStatus.jg + (long)this.C * GlobalStatus.ji + (long)this.D * GlobalStatus.jk + (long)this.E * GlobalStatus.jm) / 300L;
-         LoadingPage.a(var1, (String)("得到功勋：" + var7), (int)(this.b.aq.a + this.b.aq.c / 2), this.b.aq.b + this.b.aq.d - 51 + (MainCanvas.M.pngImage.getHeight() - GlobalConfig.j) / 2, 17, 16776666, 0);
+         LoadingPage.drawString(var1, (String)("得到功勋：" + var7), (int)(this.b.aq.a + this.b.aq.c / 2), this.b.aq.b + this.b.aq.d - 51 + (MainCanvas.M.pngImage.getHeight() - GlobalConfig.font2_h) / 2, 17, 16776666, 0);
       }
 
    }
@@ -2672,7 +2672,7 @@ public final class aq {
       this.b.aq.a(true);
       this.b.as.a(new String[]{"购买", "仓库"});
       this.b.ar.a((Image[])null, GlobalStatus.jp, (String[])null, (String[])null);
-      this.b.at.b(GlobalStatus.jq == null ? null : GlobalStatus.jq[this.b.ar.g()], GlobalConfig.i, (byte)2);
+      this.b.at.b(GlobalStatus.jq == null ? null : GlobalStatus.jq[this.b.ar.g()], GlobalConfig.font2, (byte)2);
       this.b.at.a((byte)1);
       this.b.au.a("购买");
       this.b.au.a(true);
@@ -2688,7 +2688,7 @@ public final class aq {
 
    public final void t() {
       this.b.ar.a((Image[])null, GlobalStatus.js, (String[])null, (String[])null);
-      this.b.at.b(GlobalStatus.jt == null ? null : GlobalStatus.jt[this.b.ar.g()], GlobalConfig.i, (byte)2);
+      this.b.at.b(GlobalStatus.jt == null ? null : GlobalStatus.jt[this.b.ar.g()], GlobalConfig.font2, (byte)2);
       this.b.at.a((byte)1);
       this.b.au.a("选择");
       this.b.au.a(true);
@@ -2725,7 +2725,7 @@ public final class aq {
                   break label159;
                }
 
-               this.b.at.b(this.b.as.a == 0 ? GlobalStatus.jq[this.b.ar.g()] : GlobalStatus.jt[this.b.ar.g()], GlobalConfig.i, (byte)2);
+               this.b.at.b(this.b.as.a == 0 ? GlobalStatus.jq[this.b.ar.g()] : GlobalStatus.jt[this.b.ar.g()], GlobalConfig.font2, (byte)2);
                this.b.at.a((byte)1);
             }
          }
@@ -2775,13 +2775,13 @@ public final class aq {
             }
          } else {
             if (this.b.as.a == 0 && GlobalStatus.jo != null) {
-               LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"购买"}, true);
+               LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"购买"}, true);
                this.a.sceneSubState = 1;
                return;
             }
 
             if (this.b.as.a == 1 && GlobalStatus.jr != null) {
-               LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"布置", "卖出"}, true);
+               LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"布置", "卖出"}, true);
                this.a.sceneSubState = 2;
                return;
             }
@@ -2974,7 +2974,7 @@ public final class aq {
             }
 
             if (GlobalStatus.jY != null) {
-               LoadingPage.a(GlobalConfig.f, GlobalConfig.j + 11 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"查看", "外交", "宣战"}, true);
+               LoadingPage.a(GlobalConfig.f, GlobalConfig.font2_h + 11 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "外交", "宣战"}, true);
                this.a.sceneSubState = 1;
                return;
             }
@@ -2994,7 +2994,7 @@ public final class aq {
             }
 
             if (LoadingPage.o == 1) {
-               LoadingPage.a(0, GlobalConfig.j + 11 + this.b.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"中立", "敌对"}, true);
+               LoadingPage.a(0, GlobalConfig.font2_h + 11 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"中立", "敌对"}, true);
                this.a.sceneSubState = 2;
                return;
             }
@@ -3129,14 +3129,14 @@ public final class aq {
          this.b.aq.a("战争捷报");
          this.b.aq.a(false);
          this.b.ar.a((Image[])null, GlobalStatus.kE, (String[])null, (String[])null);
-         this.b.at.b(GlobalStatus.kF[0], GlobalConfig.i, (byte)2);
+         this.b.at.b(GlobalStatus.kF[0], GlobalConfig.font2, (byte)2);
          this.b.at.a((byte)1);
          this.b.au.a("确定");
          this.b.aq.a((al)this.b.ar);
          this.b.aq.a((al)this.b.at);
          this.b.aq.a((al)this.b.au);
          m_1 var10000 = this.b.aq;
-         int var2 = 2 * GlobalConfig.j + 8;
+         int var2 = 2 * GlobalConfig.font2_h + 8;
          m_1 var1 = var10000;
          var10000.e = var2;
          int var3 = var1.e;
@@ -3155,7 +3155,7 @@ public final class aq {
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-            this.b.at.b(GlobalStatus.kF[this.b.ar.g()], GlobalConfig.i, (byte)2);
+            this.b.at.b(GlobalStatus.kF[this.b.ar.g()], GlobalConfig.font2, (byte)2);
             this.b.at.a((byte)1);
          }
 
@@ -3196,7 +3196,7 @@ public final class aq {
       this.b.aq.b();
       this.b.aq.a("帮派升级");
       this.b.aq.a(false);
-      this.b.at.b(GlobalStatus.mw == null ? "暂无帮派升级信息" : GlobalStatus.mw, GlobalConfig.i, (byte)0);
+      this.b.at.b(GlobalStatus.mw == null ? "暂无帮派升级信息" : GlobalStatus.mw, GlobalConfig.font2, (byte)0);
       this.b.aq.a((al)this.b.at);
       this.b.au.a("升级");
       this.b.aq.a((al)this.b.at);

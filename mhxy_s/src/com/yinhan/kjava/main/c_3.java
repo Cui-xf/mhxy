@@ -1,6 +1,5 @@
 package com.yinhan.kjava.main;
 
-import com.cc.NetUtils;
 import com.cc.NetPayloadBuilder;
 import com.cc.h;
 import com.cc.GlobalConfig;
@@ -78,11 +77,7 @@ public final class c_3 {
     }
 
     public static void g() {
-        if (GlobalConfig.x) {
-            c.e();
-        } else {
-            c.d();
-        }
+        c.d();
     }
 
     public static void h() {

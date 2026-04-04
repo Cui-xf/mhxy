@@ -83,20 +83,20 @@ public final class m_1 extends al {
       this.b(var1, var2, var3, var4);
       this.c();
       if (this.t != -1) {
-         ((n_1)this.l.elementAt(this.t)).a(this.a + 5, this.s, this.c - 20, GlobalConfig.j + 3);
-         this.s += GlobalConfig.j;
+         ((n_1)this.l.elementAt(this.t)).a(this.a + 5, this.s, this.c - 20, GlobalConfig.font2_h + 3);
+         this.s += GlobalConfig.font2_h;
       }
 
       if (this.u != -1 && this.v == -1) {
-         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.j + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e;
+         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e;
          ((c_1)this.l.elementAt(this.u)).a(this.a + 5, this.s + this.e, this.c - 11, var1 - this.f);
          this.s += var1;
       } else if (this.u == -1 && this.v != -1) {
-         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.j + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.r;
+         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.r;
          ((an_1)this.l.elementAt(this.v)).a(this.a + 5, this.s + this.r, this.c - 11, var1 - this.g);
          this.s += var1;
       } else if (this.u != -1 && this.v != -1) {
-         var2 = (var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.j + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e) / 2;
+         var2 = (var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e) / 2;
          this.s += this.e;
          ((c_1)this.l.elementAt(this.u)).a(this.a + 5, this.s, this.c - 11, var2);
          this.s += var2;
@@ -122,20 +122,20 @@ public final class m_1 extends al {
       this.b(var1, var2, var3, var4);
       this.c();
       if (this.t != -1) {
-         ((n_1)this.l.elementAt(this.t)).a(this.a + 5, this.s, this.c - 20, GlobalConfig.j + 3);
-         this.s += GlobalConfig.j;
+         ((n_1)this.l.elementAt(this.t)).a(this.a + 5, this.s, this.c - 20, GlobalConfig.font2_h + 3);
+         this.s += GlobalConfig.font2_h;
       }
 
       if (this.u != -1 && this.v == -1) {
-         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.j + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e;
+         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e;
          ((c_1)this.l.elementAt(this.u)).a(this.a + 5, this.s + this.e, this.c - 11, var1 - this.f);
          this.s += var1;
       } else if (this.u == -1 && this.v != -1) {
-         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.j + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.r;
+         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.r;
          ((an_1)this.l.elementAt(this.v)).a(this.a + 5, this.s + this.r, this.c - 11, var1 - this.g);
          this.s += var1;
       } else if (this.u != -1 && this.v != -1) {
-         var2 = (var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.j + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e) * var5 / var6;
+         var2 = (var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e) * var5 / var6;
          this.s += this.e;
          if (var7) {
             ((an_1)this.l.elementAt(this.v)).a(this.a + 5, this.s, this.c - 11, var2);
@@ -261,7 +261,7 @@ public final class m_1 extends al {
             }
          }
 
-         LoadingPage.a(var1, (String)var10, (int)(this.m + this.o / 2), this.n + GlobalConfig.a(MainCanvas.v.c), 17, var2, 0);
+         LoadingPage.drawString(var1, (String)var10, (int)(this.m + this.o / 2), this.n + GlobalConfig.getCzjz(MainCanvas.v.c), 17, var2, 0);
          LoadingPage.a(var1, this.m, this.n + this.p, this.o);
       }
 

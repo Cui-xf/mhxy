@@ -67,7 +67,7 @@ public final class b {
       for(int var6 = 0; var6 < this.b.length; ++var6) {
          if (this.b[var6].a == 0) {
             var1.drawString(this.b[var6].b, var4 + this.d, var5, 0);
-            this.d += GlobalConfig.i.stringWidth(this.b[var6].b);
+            this.d += GlobalConfig.font2.stringWidth(this.b[var6].b);
          } else {
             var2.a(var1, var3, (int[])null, Integer.parseInt(this.b[var6].b), 0, 0, var4 + this.d, var5, 0, 0);
             this.d += 16;

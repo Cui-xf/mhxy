@@ -294,7 +294,6 @@ public final class UISceneController {
         this.mainCanvasRef.clear();
         this.U();
         this.mainCanvasRef.clear();
-        GlobalConfig.a(GlobalStatus.ax, GlobalStatus.aj, (byte) 3, 1, false);
         this.sceneRefreshCoordinator = new ac();
         this.sceneRefreshCoordinator.a(GlobalStatus.at, GlobalStatus.au);
         MainCanvas.pngUtil.a(this.g(), this.h(), GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
@@ -976,7 +975,7 @@ public final class UISceneController {
                                     }
 
                                     if (var26) {
-                                        LoadingPage.a(28 + o + (0 + (var5.av >= 1 ? 1 : 0)) % 2 * 80, (GlobalConfig.defaultHigh - (GlobalConfig.j + 3) * 6) / 2, new String[]{"查看", "装备", "卸下", "升星", "洗炼", "附魔"}, true);
+                                        LoadingPage.a(28 + o + (0 + (var5.av >= 1 ? 1 : 0)) % 2 * 80, (GlobalConfig.defaultHigh - (GlobalConfig.font2_h + 3) * 6) / 2, new String[]{"查看", "装备", "卸下", "升星", "洗炼", "附魔"}, true);
                                         var5.sceneSubState = 1;
                                     } else {
                                         var5.e((int) 7);
@@ -1577,10 +1576,10 @@ public final class UISceneController {
                 Graphics var19 = var1;
                 UISceneController var25 = this;
                 if (this.f != null && this.currentSceneModeId == 0) {
-                    int var7 = 2 + GlobalConfig.j;
+                    int var7 = 2 + GlobalConfig.font2_h;
                     MainCanvas.pngUtil.a(var1, this.sceneRefreshCoordinator.j / this.mainCanvasRef.m, this.sceneRefreshCoordinator.k / this.mainCanvasRef.m, 2, var7, 17 / this.mainCanvasRef.m, 25 / this.mainCanvasRef.m, 0, 0);
                     var1.setColor(16711680);
-                    LoadingPage.a(var1, (String) (this.sceneRefreshCoordinator.j / 16 + "," + (this.sceneRefreshCoordinator.k + 25) / 16), (int) 2, var7 + MainCanvas.pngUtil.f, 20, 16777215, 0);
+                    LoadingPage.drawString(var1, (String) (this.sceneRefreshCoordinator.j / 16 + "," + (this.sceneRefreshCoordinator.k + 25) / 16), (int) 2, var7 + MainCanvas.pngUtil.f, 20, 16777215, 0);
                     if (GlobalStatus.ab != null) {
                         var1.setColor(16711680);
 
@@ -1604,18 +1603,18 @@ public final class UISceneController {
 
                 if (GlobalStatus.G()) {
                     var1.setColor(16711680);
-                    var1.drawString(GlobalStatus.id + "/" + GlobalStatus.ic, GlobalConfig.defaultWidth, (GlobalConfig.j << 1) + 2 + MainCanvas.pngUtil.f + 30, 24);
+                    var1.drawString(GlobalStatus.id + "/" + GlobalStatus.ic, GlobalConfig.defaultWidth, (GlobalConfig.font2_h << 1) + 2 + MainCanvas.pngUtil.f + 30, 24);
                 }
             } else if (GlobalStatus.G()) {
                 var1.setColor(16711680);
-                var1.drawString(GlobalStatus.id + "/" + GlobalStatus.ic, GlobalConfig.defaultWidth, GlobalConfig.j + 30, 24);
+                var1.drawString(GlobalStatus.id + "/" + GlobalStatus.ic, GlobalConfig.defaultWidth, GlobalConfig.font2_h + 30, 24);
             }
 
             if (this.currentSceneModeId != 1) {
                 var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
                 this.A(var1);
                 var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-                LoadingPage.a(var1, (String) GlobalStatus.ae, (int) 20, 2, 20, 0, GlobalStatus.bw >= 1 ? 16711680 : 16777215);
+                LoadingPage.drawString(var1, (String) GlobalStatus.ae, (int) 20, 2, 20, 0, GlobalStatus.bw >= 1 ? 16711680 : 16777215);
             }
         }
 
@@ -1632,20 +1631,20 @@ public final class UISceneController {
         int var35 = GlobalStatus.kh;
         aq var26 = var10000;
         if (var10000.a.currentSceneModeId == 0 && GlobalStatus.bw == 2 && var35 != 0 && var36 != 0) {
-            LoadingPage.a(var1, (String) "阵营", (int) (GlobalConfig.defaultWidth >> 1), 2, 17, 1017663, 0);
-            LoadingPage.a(var1, (String) ("" + var35), (int) (GlobalConfig.defaultWidth / 2 - 4), 2 + GlobalConfig.j, 24, 16776960, 0);
-            LoadingPage.a(var1, (String) ":", (int) (GlobalConfig.defaultWidth >> 1), 2 + GlobalConfig.j, 17, 16776960, 0);
-            LoadingPage.a(var1, (String) ("" + var36), (int) (GlobalConfig.defaultWidth / 2 + 5), 2 + GlobalConfig.j, 20, 16776960, 0);
+            LoadingPage.drawString(var1, (String) "阵营", (int) (GlobalConfig.defaultWidth >> 1), 2, 17, 1017663, 0);
+            LoadingPage.drawString(var1, (String) ("" + var35), (int) (GlobalConfig.defaultWidth / 2 - 4), 2 + GlobalConfig.font2_h, 24, 16776960, 0);
+            LoadingPage.drawString(var1, (String) ":", (int) (GlobalConfig.defaultWidth >> 1), 2 + GlobalConfig.font2_h, 17, 16776960, 0);
+            LoadingPage.drawString(var1, (String) ("" + var36), (int) (GlobalConfig.defaultWidth / 2 + 5), 2 + GlobalConfig.font2_h, 20, 16776960, 0);
         } else if (var26.a.currentSceneModeId == 0 && GlobalStatus.ke != -1 && GlobalStatus.kf != -1 && GlobalStatus.kg != -1) {
-            LoadingPage.a(var1, (String) "阵营", (int) (GlobalConfig.defaultWidth >> 1), 2, 17, 16776960, 0);
-            LoadingPage.a(var1, (String) ("" + GlobalStatus.ke), (int) (GlobalConfig.defaultWidth / 2 - 4), 2 + GlobalConfig.j, 24, 16776960, 0);
-            LoadingPage.a(var1, (String) ":", (int) (GlobalConfig.defaultWidth >> 1), 2 + GlobalConfig.j, 17, 16776960, 0);
-            LoadingPage.a(var1, (String) ("" + GlobalStatus.kf), (int) (GlobalConfig.defaultWidth / 2 + 5), 2 + GlobalConfig.j, 20, 16776960, 0);
-            LoadingPage.a(var1, (String) ("个人:" + GlobalStatus.kg), (int) (GlobalConfig.defaultWidth >> 1), 2 + (GlobalConfig.j << 1), 17, 16776960, 0);
+            LoadingPage.drawString(var1, (String) "阵营", (int) (GlobalConfig.defaultWidth >> 1), 2, 17, 16776960, 0);
+            LoadingPage.drawString(var1, (String) ("" + GlobalStatus.ke), (int) (GlobalConfig.defaultWidth / 2 - 4), 2 + GlobalConfig.font2_h, 24, 16776960, 0);
+            LoadingPage.drawString(var1, (String) ":", (int) (GlobalConfig.defaultWidth >> 1), 2 + GlobalConfig.font2_h, 17, 16776960, 0);
+            LoadingPage.drawString(var1, (String) ("" + GlobalStatus.kf), (int) (GlobalConfig.defaultWidth / 2 + 5), 2 + GlobalConfig.font2_h, 20, 16776960, 0);
+            LoadingPage.drawString(var1, (String) ("个人:" + GlobalStatus.kg), (int) (GlobalConfig.defaultWidth >> 1), 2 + (GlobalConfig.font2_h << 1), 17, 16776960, 0);
         }
 
         if (GlobalStatus.bu) {
-            LoadingPage.a(var1, (String) String.valueOf(GlobalStatus.bv), (int) (GlobalConfig.defaultWidth / 2), 0, 17, 0, 16711680);
+            LoadingPage.drawString(var1, (String) String.valueOf(GlobalStatus.bv), (int) (GlobalConfig.defaultWidth / 2), 0, 17, 0, 16711680);
         }
 
         if (this.currentSceneModeId != 25) {
@@ -1673,9 +1672,9 @@ public final class UISceneController {
         switch (this.currentSceneModeId) {
             case 0:
                 if (GlobalStatus.k != null && this.dd != null && aW[18] == 0) {
-                    LoadingPage.a(var1, 873078, 191, 0, this.dc, GlobalConfig.defaultWidth, GlobalConfig.j + 2);
+                    LoadingPage.a(var1, 873078, 191, 0, this.dc, GlobalConfig.defaultWidth, GlobalConfig.font2_h + 2);
                     this.dd.a(var1, this.db, this.dc + 1, 20);
-                    if (this.db <= -GlobalConfig.i.stringWidth(GlobalStatus.k)) {
+                    if (this.db <= -GlobalConfig.font2.stringWidth(GlobalStatus.k)) {
                         if (GlobalStatus.l <= 0) {
                             GlobalStatus.k = null;
                             this.dd = null;
@@ -1689,11 +1688,11 @@ public final class UISceneController {
                 }
 
                 if (GlobalStatus.E == 1 && GlobalStatus.F != null && GlobalStatus.G != null) {
-                    var1.setClip(0, 40 + GlobalConfig.j, 70, GlobalConfig.j << 1);
-                    LoadingPage.a(var1, (String) GlobalStatus.F, (int) this.bs, 40 + GlobalConfig.j, 20, 16776960, 0);
-                    LoadingPage.a(var1, (String) GlobalStatus.G, (int) 5, 40 + (GlobalConfig.j << 1), 20, 16776960, 0);
-                    if (GlobalConfig.i.stringWidth(GlobalStatus.F) > 70) {
-                        if (this.bs + GlobalConfig.i.stringWidth(GlobalStatus.F) - 10 < 0 || this.bs > 75) {
+                    var1.setClip(0, 40 + GlobalConfig.font2_h, 70, GlobalConfig.font2_h << 1);
+                    LoadingPage.drawString(var1, (String) GlobalStatus.F, (int) this.bs, 40 + GlobalConfig.font2_h, 20, 16776960, 0);
+                    LoadingPage.drawString(var1, (String) GlobalStatus.G, (int) 5, 40 + (GlobalConfig.font2_h << 1), 20, 16776960, 0);
+                    if (GlobalConfig.font2.stringWidth(GlobalStatus.F) > 70) {
+                        if (this.bs + GlobalConfig.font2.stringWidth(GlobalStatus.F) - 10 < 0 || this.bs > 75) {
                             this.bi = (byte) (this.bi == -1 ? 1 : -1);
                         }
 
@@ -1737,7 +1736,7 @@ public final class UISceneController {
                 if (this.mainCanvasRef.aq != null) {
                     this.mainCanvasRef.aq.a(var1);
                     if (this.mainCanvasRef.as.a == 0 && this.mainCanvasRef.at.a == 0) {
-                        int var24 = this.mainCanvasRef.at.b + 5 + GlobalConfig.i.stringWidth("昵称：" + GlobalStatus.af);
+                        int var24 = this.mainCanvasRef.at.b + 5 + GlobalConfig.font2.stringWidth("昵称：" + GlobalStatus.af);
                         Image var31;
                         if (GlobalStatus.aC == 1 && (var31 = MainCanvas.d(GlobalStatus.bA)) != null) {
                             var1.drawImage(var31, var24, this.mainCanvasRef.at.c + 5, 20);
@@ -1761,7 +1760,7 @@ public final class UISceneController {
                     return;
                 }
 
-                this.c(var1, GlobalConfig.L[this.as]);
+                this.c(var1, GlobalConfig.ShiYongFangShi[this.as]);
                 return;
             case 5:
                 this.e(var1);
@@ -1955,9 +1954,9 @@ public final class UISceneController {
                 int var22 = this.mainCanvasRef.ar.a() + this.mainCanvasRef.ar.c() - MainCanvas.C.b - 70;
                 int var29 = this.mainCanvasRef.ar.b() + 4;
                 LoadingPage.a(var1, "" + aW[0], var22, var29, 60);
-                LoadingPage.a(var1, "" + aW[1], var22, var29 + GlobalConfig.j, 60);
+                LoadingPage.a(var1, "" + aW[1], var22, var29 + GlobalConfig.font2_h, 60);
                 this.b((int) 0, (int) var22, (int) var29, (int) 60);
-                this.b((int) 1, (int) var22, (int) (var29 + GlobalConfig.j), (int) 60);
+                this.b((int) 1, (int) var22, (int) (var29 + GlobalConfig.font2_h), (int) 60);
                 break;
             case 29:
                 if (GlobalStatus.dF != null && this.mainCanvasRef.aq != null) {
@@ -2009,9 +2008,9 @@ public final class UISceneController {
                 }
 
                 var1.setColor(1539988);
-                var1.fillRect(this.mainCanvasRef.aq.a + 68, this.mainCanvasRef.aq.b + 30 + this.bQ / 2, this.mainCanvasRef.aq.c - 80, GlobalConfig.j);
+                var1.fillRect(this.mainCanvasRef.aq.a + 68, this.mainCanvasRef.aq.b + 30 + this.bQ / 2, this.mainCanvasRef.aq.c - 80, GlobalConfig.font2_h);
                 var1.setColor(16776960);
-                var1.drawString("超Q等级：" + GlobalStatus.kU, this.mainCanvasRef.aq.a + 70, this.mainCanvasRef.aq.b + 30 + this.bQ / 2 - GlobalConfig.j, 20);
+                var1.drawString("超Q等级：" + GlobalStatus.kU, this.mainCanvasRef.aq.a + 70, this.mainCanvasRef.aq.b + 30 + this.bQ / 2 - GlobalConfig.font2_h, 20);
                 var1.drawString("超Q特权礼包：" + (GlobalStatus.kV == 1 ? "领取" : "未领取"), this.mainCanvasRef.aq.a + 70, this.mainCanvasRef.aq.b + 30 + this.bQ / 2, 20);
                 if (this.sceneSubState == 1) {
                     LoadingPage.c(var1);
@@ -2328,7 +2327,7 @@ public final class UISceneController {
                 break;
             case 61:
                 String var3 = "离复活还有" + GlobalStatus.kj + "秒！";
-                LoadingPage.a(var1, (String) var3, (int) ((GlobalConfig.defaultWidth - GlobalConfig.i.stringWidth(var3)) / 2), (GlobalConfig.defaultHigh - GlobalConfig.j) / 2, 20, 16711680, 0);
+                LoadingPage.drawString(var1, (String) var3, (int) ((GlobalConfig.defaultWidth - GlobalConfig.font2.stringWidth(var3)) / 2), (GlobalConfig.defaultHigh - GlobalConfig.font2_h) / 2, 20, 16711680, 0);
                 return;
             case 62:
                 LoadingPage.a(var1, GlobalStatus.kC, new String[]{"确定", "取消"});
@@ -2336,10 +2335,10 @@ public final class UISceneController {
             case 63:
                 aq var2;
                 if ((var2 = this.M).a.sceneSubState == 0 && var2.b.aq != null) {
-                    LoadingPage.a(var1, var2.b.aq.a + 5, var2.b.aq.a(), var2.b.aq.c - 11, 2 * GlobalConfig.j + 8, 1);
+                    LoadingPage.a(var1, var2.b.aq.a + 5, var2.b.aq.a(), var2.b.aq.c - 11, 2 * GlobalConfig.font2_h + 8, 1);
                     var1.setColor(16711680);
                     var1.drawString("处置战败方：", GlobalConfig.f + GlobalConfig.realWidth / 2, var2.b.aq.a() + 2, 17);
-                    var1.drawString("（" + GlobalStatus.kD + "分钟限时）", GlobalConfig.f + GlobalConfig.realWidth / 2, var2.b.aq.a() + 2 + GlobalConfig.j + 4, 17);
+                    var1.drawString("（" + GlobalStatus.kD + "分钟限时）", GlobalConfig.f + GlobalConfig.realWidth / 2, var2.b.aq.a() + 2 + GlobalConfig.font2_h + 4, 17);
                     var2.b.aq.a(var1);
                 }
 
@@ -2758,7 +2757,7 @@ public final class UISceneController {
                             GlobalStatus.I[var13].c = var12 == 0 ? GlobalStatus.ad : String.valueOf(GlobalStatus.fA[var15]);
                             GlobalStatus.I[var13].d = var12 == 0 ? GlobalStatus.af : GlobalStatus.fB[var15];
                             GlobalStatus.I[var13].e = var12 == 0 ? GlobalStatus.aN : GlobalStatus.fI[var15];
-                            GlobalStatus.I[var13].f = var12 == 0 ? GlobalStatus.aM : GlobalStatus.fJ[var15];
+                            GlobalStatus.I[var13].f = var12 == 0 ? GlobalStatus.totalShengMing : GlobalStatus.fJ[var15];
                             GlobalStatus.I[var13].g = var12 == 0 ? GlobalStatus.aP : GlobalStatus.fK[var15];
                             GlobalStatus.I[var13].h = var12 == 0 ? GlobalStatus.aO : GlobalStatus.fL[var15];
                             short var8 = 0;
@@ -2924,7 +2923,7 @@ public final class UISceneController {
         t_2 = MainCanvas.ui.getFrame1("!");
         bo = MainCanvas.ui.getFrame1("mapnpc");
         H = MainCanvas.ui.getFrame("mystation");
-        v = MainCanvas.publicUI.getFrame(GlobalConfig.N[GlobalStatus.ax][GlobalStatus.aj]);
+        v = MainCanvas.publicUI.getFrame(GlobalConfig.JueSeWaiGuanName[GlobalStatus.ax][GlobalStatus.aj]);
         B = MainCanvas.publicUI.getFrame("lvl");
         bq = MainCanvas.publicUI.getFrame("board");
         br = MainCanvas.publicUI.getFrame("board+");
@@ -2949,7 +2948,7 @@ public final class UISceneController {
         if (GlobalStatus.as != GlobalStatus.ar) {
             this.mainCanvasRef.o = false;
             GlobalStatus.as = GlobalStatus.ar;
-            if (GlobalConfig.l == 2) {
+            if (GlobalConfig.hangju == 2) {
                 MainCanvas.ah.c();
                 MainCanvas.ah.c();
             }
@@ -3079,7 +3078,7 @@ public final class UISceneController {
                     var14.addElement("传送");
                     String[] var17 = new String[var14.size()];
                     var14.copyInto(var17);
-                    LoadingPage.a((GlobalConfig.realWidth - GlobalConfig.i.stringWidth("操作")) / 2, (GlobalConfig.realHigh - GlobalConfig.j * var17.length) / 2, var17, true);
+                    LoadingPage.a((GlobalConfig.realWidth - GlobalConfig.font2.stringWidth("操作")) / 2, (GlobalConfig.realHigh - GlobalConfig.font2_h * var17.length) / 2, var17, true);
                     this.sceneSubState = 0;
                     GlobalStatus.gQ = 1;
                     this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
@@ -3410,17 +3409,12 @@ public final class UISceneController {
     }
 
     private boolean ay() {
-        if (GlobalConfig.x) {
-            this.mainCanvasRef.processException("该功能暂不支持");
-            return false;
-        } else {
             return true;
-        }
     }
 
     private void b(Graphics var1) {
-        int var2 = Math.min(GlobalConfig.defaultWidth / this.bC - 2, GlobalConfig.i.stringWidth("字符长") + 12);
-        int var3 = GlobalConfig.j + 10;
+        int var2 = Math.min(GlobalConfig.defaultWidth / this.bC - 2, GlobalConfig.font2.stringWidth("字符长") + 12);
+        int var3 = GlobalConfig.font2_h + 10;
         int var4 = (GlobalConfig.defaultWidth - this.bC * var2) / 2;
         int var5 = (GlobalConfig.defaultHigh - this.bD * var3) / 2;
         var1.setColor(6732228);
@@ -3484,9 +3478,9 @@ public final class UISceneController {
         this.mainCanvasRef.aq.b();
         this.mainCanvasRef.aq.a("商城必看");
         if (GlobalStatus.n != null && !GlobalStatus.n.equals("")) {
-            this.mainCanvasRef.at.b(GlobalStatus.n, GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.b(GlobalStatus.n, GlobalConfig.font2, (byte) 2);
         } else {
-            this.mainCanvasRef.at.b("正在同步数据，请稍候！", GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.b("正在同步数据，请稍候！", GlobalConfig.font2, (byte) 2);
         }
 
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
@@ -3629,178 +3623,178 @@ public final class UISceneController {
             this.by = 0;
             if (GlobalStatus.bI != null && GlobalStatus.bI.length > 0) {
                 for (int var1 = 0; var1 < GlobalStatus.bI.length; ++var1) {
-                    bH.addElement(GlobalStatus.bJ[var1] + "(" + GlobalConfig.J[GlobalStatus.bK[var1] + 1] + ")");
+                    bH.addElement(GlobalStatus.bJ[var1] + "(" + GlobalConfig.renWuZhuangTai[GlobalStatus.bK[var1] + 1] + ")");
                 }
             }
 
             if (this.af < GlobalStatus.t.length) {
                 if (GlobalStatus.t[this.af].q == 1) {
-                    bH.addElement(GlobalConfig.I[16]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[16]);
                 }
 
                 if (GlobalStatus.t[this.af].f == 1) {
-                    bH.addElement(GlobalConfig.I[0]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[0]);
                 }
 
                 if (GlobalStatus.t[this.af].g == 1) {
-                    bH.addElement(GlobalConfig.I[1]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[1]);
                 }
 
                 if (GlobalStatus.t[this.af].h == 1) {
-                    bH.addElement(GlobalConfig.I[14]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[14]);
                 }
 
                 if (GlobalStatus.t[this.af].i == 1) {
-                    bH.addElement(GlobalConfig.I[13]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[13]);
                 }
 
                 if (GlobalStatus.t[this.af].j == 1) {
-                    bH.addElement(GlobalConfig.I[15]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[15]);
                 }
 
                 if (GlobalStatus.t[this.af].j == 2) {
-                    bH.addElement(GlobalConfig.I[39]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[39]);
                 }
 
                 if (GlobalStatus.t[this.af].l == 1) {
-                    bH.addElement(GlobalConfig.I[2]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[2]);
                 }
 
                 if (GlobalStatus.t[this.af].k == 1) {
-                    bH.addElement(GlobalConfig.I[3]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[3]);
                 }
 
                 if (GlobalStatus.t[this.af].m == 1) {
-                    bH.addElement(GlobalConfig.I[4]);
-                    bH.addElement(GlobalConfig.I[5]);
-                    bH.addElement(GlobalConfig.I[6]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[4]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[5]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[6]);
                 }
 
                 if (GlobalStatus.t[this.af].n == 1 || GlobalStatus.t[this.af].o == 1) {
                     if (GlobalStatus.t[this.af].n == 1) {
-                        bH.addElement(GlobalConfig.I[7]);
-                        bH.addElement(GlobalConfig.I[9]);
-                        bH.addElement(GlobalConfig.I[10]);
+                        bH.addElement(GlobalConfig.NpcGongNeng[7]);
+                        bH.addElement(GlobalConfig.NpcGongNeng[9]);
+                        bH.addElement(GlobalConfig.NpcGongNeng[10]);
                     }
 
                     if (GlobalStatus.t[this.af].o == 1) {
-                        bH.addElement(GlobalConfig.I[8]);
-                        bH.addElement(GlobalConfig.I[9]);
-                        bH.addElement(GlobalConfig.I[10]);
+                        bH.addElement(GlobalConfig.NpcGongNeng[8]);
+                        bH.addElement(GlobalConfig.NpcGongNeng[9]);
+                        bH.addElement(GlobalConfig.NpcGongNeng[10]);
                     }
                 }
 
                 if (GlobalStatus.t[this.af].p == 1) {
-                    bH.addElement(GlobalConfig.I[11]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[11]);
                 }
 
                 if (GlobalStatus.t[this.af].D == 1) {
-                    bH.addElement(GlobalConfig.I[17]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[17]);
                 }
 
                 if (GlobalStatus.t[this.af].E == 1) {
-                    bH.addElement(GlobalConfig.I[18]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[18]);
                 }
 
                 if (GlobalStatus.t[this.af].H == 1) {
-                    bH.addElement(GlobalConfig.I[19]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[19]);
                 }
 
                 if (GlobalStatus.t[this.af].H == 2) {
-                    bH.addElement(GlobalConfig.I[20]);
-                    bH.addElement(GlobalConfig.I[21]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[20]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[21]);
                 } else if (GlobalStatus.t[this.af].H == 3) {
-                    bH.addElement(GlobalConfig.I[22]);
-                    bH.addElement(GlobalConfig.I[23]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[22]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[23]);
                 }
 
                 if (GlobalStatus.t[this.af].I == 1) {
-                    bH.addElement(GlobalConfig.I[24]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[24]);
                 }
 
                 if (GlobalStatus.t[this.af].I == 2) {
-                    bH.addElement(GlobalConfig.I[25]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[25]);
                 }
 
                 if (GlobalStatus.t[this.af].I == 3) {
-                    bH.addElement(GlobalConfig.I[26]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[26]);
                 }
 
                 if (GlobalStatus.t[this.af].I == 4) {
-                    bH.addElement(GlobalConfig.I[27]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[27]);
                 }
 
                 if (GlobalStatus.t[this.af].I == 5) {
-                    bH.addElement(GlobalConfig.I[28]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[28]);
                 }
 
                 if (GlobalStatus.t[this.af].I == 6) {
-                    bH.addElement(GlobalConfig.I[29]);
-                    bH.addElement(GlobalConfig.I[32]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[29]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[32]);
                 }
 
                 if (GlobalStatus.t[this.af].I == 100) {
-                    bH.addElement(GlobalConfig.I[33]);
-                    bH.addElement(GlobalConfig.I[26]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[33]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[26]);
                 }
 
                 if (GlobalStatus.t[this.af].F == 1) {
-                    bH.addElement(GlobalConfig.I[30]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[30]);
                 }
 
                 if (GlobalStatus.t[this.af].G == 1) {
-                    bH.addElement(GlobalConfig.I[31]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[31]);
                 }
 
                 if (GlobalStatus.t[this.af].J == 1) {
-                    bH.addElement(GlobalConfig.I[34]);
-                    bH.addElement(GlobalConfig.I[35]);
-                    bH.addElement(GlobalConfig.I[36]);
-                    bH.addElement(GlobalConfig.I[37]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[34]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[35]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[36]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[37]);
                 }
 
                 if (GlobalStatus.t[this.af].r == 1 && GlobalStatus.t[this.af].s == 0) {
-                    bH.addElement(GlobalConfig.I[38]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[38]);
                 }
 
                 if (GlobalStatus.t[this.af].r == 1 && GlobalStatus.t[this.af].s == 1) {
-                    bH.addElement(GlobalConfig.I[40]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[40]);
                 }
 
                 if (GlobalStatus.t[this.af].K == 1) {
-                    bH.addElement(GlobalConfig.I[41]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[41]);
                 }
 
                 if (GlobalStatus.t[this.af].L == 1) {
-                    bH.addElement(GlobalConfig.I[42]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[42]);
                 }
 
                 if (GlobalStatus.t[this.af].M == 1) {
-                    bH.addElement(GlobalConfig.I[43]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[43]);
                 }
 
                 if (GlobalStatus.t[this.af].Q == 1) {
-                    bH.addElement(GlobalConfig.I[44]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[44]);
                 }
 
                 if (GlobalStatus.t[this.af].R == 1) {
-                    bH.addElement(GlobalConfig.I[45]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[45]);
                 }
 
                 if (GlobalStatus.t[this.af].N == 1) {
-                    bH.addElement(GlobalConfig.I[46]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[46]);
                 }
 
                 if (GlobalStatus.t[this.af].O == 1) {
-                    bH.addElement(GlobalConfig.I[47]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[47]);
                 }
 
                 if (GlobalStatus.t[this.af].P == 1 && GlobalStatus.aA != null && GlobalStatus.aA.indexOf("帮主") != -1) {
-                    bH.addElement(GlobalConfig.I[48]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[48]);
                 }
 
                 if (GlobalStatus.t[this.af].T == 1) {
-                    bH.addElement(GlobalConfig.I[49]);
+                    bH.addElement(GlobalConfig.NpcGongNeng[49]);
                 }
 
                 if (GlobalStatus.t[this.af].B != null) {
@@ -3810,7 +3804,7 @@ public final class UISceneController {
                 }
             }
 
-            if (a(bH, GlobalConfig.I[7])) {
+            if (a(bH, GlobalConfig.NpcGongNeng[7])) {
                 this.as = 256;
             } else {
                 this.as = 257;
@@ -3878,8 +3872,8 @@ public final class UISceneController {
                                 this.bI = bH.elementAt(this.ai).toString();
                                 int var2 = -1;
 
-                                for (int var3 = 0; var3 < GlobalConfig.I.length; ++var3) {
-                                    if (this.bI.equals(GlobalConfig.I[var3])) {
+                                for (int var3 = 0; var3 < GlobalConfig.NpcGongNeng.length; ++var3) {
+                                    if (this.bI.equals(GlobalConfig.NpcGongNeng[var3])) {
                                         var2 = var3;
                                         break;
                                     }
@@ -3906,7 +3900,7 @@ public final class UISceneController {
                                         this.sceneStateShadow = this.currentSceneModeId = 9;
                                         break;
                                     case 2:
-                                        if (GlobalStatus.aM > 0) {
+                                        if (GlobalStatus.totalShengMing > 0) {
                                             byte[] var36 = NetPayloadBuilder.c((short) 4118, GlobalStatus.ad, (short) GlobalStatus.t[this.af].a);
                                             this.a((short) 4118, var36, (String) null);
                                         } else {
@@ -3933,8 +3927,8 @@ public final class UISceneController {
                                         this.sceneSubMode = 0;
                                         this.an = new String[]{"取出银两", "存入银两"};
                                         String var10 = GlobalStatus.a(GlobalStatus.aq);
-                                        GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.ap);
-                                        K = new TextRender(GlobalStatus.t[this.af].b + ":已存入银两" + var10 + ",现有银两" + this.mainCanvasRef.l.toString(), (short) (GlobalConfig.defaultWidth - 20));
+                                        GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.ap);
+                                        K = new TextRender(GlobalStatus.t[this.af].b + ":已存入银两" + var10 + ",现有银两" + this.mainCanvasRef.shareSb.toString(), (short) (GlobalConfig.defaultWidth - 20));
                                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
                                         this.sceneSubState = 4;
                                         break;
@@ -4197,7 +4191,7 @@ public final class UISceneController {
                                         this.ar = 0;
                                         this.sceneSubMode = 0;
                                         this.an = new String[]{"银两竞标", "金豆竞标"};
-                                        GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.ap);
+                                        GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.ap);
                                         K = new TextRender(GlobalStatus.t[this.af].b + ":选择银两竞标或金豆竞标，一金豆折合300万银两。", (short) (GlobalConfig.defaultWidth - 20));
                                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
                                         this.sceneSubState = 10;
@@ -4641,7 +4635,7 @@ public final class UISceneController {
     }
 
     public final void a(byte var1) {
-        GlobalConfig.clearStr(this.mainCanvasRef.l);
+        GlobalConfig.clearStr(this.mainCanvasRef.shareSb);
         this.mainCanvasRef.aq.j();
         this.mainCanvasRef.aq.a("人物属性-战力" + GlobalStatus.ao);
         this.mainCanvasRef.aq.a(true);
@@ -4650,40 +4644,40 @@ public final class UISceneController {
         this.mainCanvasRef.as.a = (byte) var1;
         switch (var1) {
             case 0:
-                this.mainCanvasRef.l.append("昵称：" + GlobalStatus.af + '\t');
+                this.mainCanvasRef.shareSb.append("昵称：" + GlobalStatus.af + '\t');
                 if (GlobalConfig.channel == 0) {
-                    this.mainCanvasRef.l.append("ID：" + GlobalStatus.ad + '\t');
+                    this.mainCanvasRef.shareSb.append("ID：" + GlobalStatus.ad + '\t');
                 }
 
-                this.mainCanvasRef.l.append("门派：" + GlobalConfig.G[GlobalStatus.ax] + '\t');
-                this.mainCanvasRef.l.append("级别：" + GlobalStatus.ak + '\t');
-                this.mainCanvasRef.l.append("称号：" + GlobalStatus.ah + '\t');
-                this.mainCanvasRef.l.append("配偶：" + GlobalStatus.bl + '\t');
-                this.mainCanvasRef.l.append("师傅：" + GlobalStatus.bm + '\t');
-                this.mainCanvasRef.l.append("帮派：" + GlobalStatus.az + '\t');
-                this.mainCanvasRef.l.append("职务：" + GlobalStatus.aA + '\t');
-                this.mainCanvasRef.l.append("功勋：" + GlobalStatus.aB + '\t');
-                this.mainCanvasRef.l.append("经验：" + GlobalStatus.al + (GlobalStatus.z == 0 ? "" : "<暂停>") + '\t');
-                this.mainCanvasRef.l.append("修炼：" + GlobalStatus.am + (GlobalStatus.z == 1 ? "<开启>" : "<关闭>") + '\t');
+                this.mainCanvasRef.shareSb.append("门派：" + GlobalConfig.manPaiName[GlobalStatus.ax] + '\t');
+                this.mainCanvasRef.shareSb.append("级别：" + GlobalStatus.ak + '\t');
+                this.mainCanvasRef.shareSb.append("称号：" + GlobalStatus.ah + '\t');
+                this.mainCanvasRef.shareSb.append("配偶：" + GlobalStatus.bl + '\t');
+                this.mainCanvasRef.shareSb.append("师傅：" + GlobalStatus.bm + '\t');
+                this.mainCanvasRef.shareSb.append("帮派：" + GlobalStatus.az + '\t');
+                this.mainCanvasRef.shareSb.append("职务：" + GlobalStatus.aA + '\t');
+                this.mainCanvasRef.shareSb.append("功勋：" + GlobalStatus.aB + '\t');
+                this.mainCanvasRef.shareSb.append("经验：" + GlobalStatus.al + (GlobalStatus.z == 0 ? "" : "<暂停>") + '\t');
+                this.mainCanvasRef.shareSb.append("修炼：" + GlobalStatus.am + (GlobalStatus.z == 1 ? "<开启>" : "<关闭>") + '\t');
                 this.aB();
                 break;
             case 1:
-                this.mainCanvasRef.l.append("生命：" + GlobalStatus.aN + "/" + GlobalStatus.aM + '\t');
-                this.mainCanvasRef.l.append("内力：" + GlobalStatus.aP + "/" + GlobalStatus.aO + '\t');
-                this.mainCanvasRef.l.append("物攻：[" + GlobalStatus.aR + "," + GlobalStatus.aQ + "]" + '\t');
-                this.mainCanvasRef.l.append("法伤：" + GlobalStatus.aW + '\t');
-                this.mainCanvasRef.l.append("法攻：[" + GlobalStatus.aY + "," + GlobalStatus.aX + "]" + '\t');
-                this.mainCanvasRef.l.append("物防：[" + GlobalStatus.aT + "," + GlobalStatus.aS + "]" + '\t');
-                this.mainCanvasRef.l.append("速度：" + GlobalStatus.aZ + '\t');
-                this.mainCanvasRef.l.append("冰抗：" + GlobalStatus.bc + '\t');
-                this.mainCanvasRef.l.append("火抗：" + GlobalStatus.ba + '\t');
-                this.mainCanvasRef.l.append("雷抗：" + GlobalStatus.bb + '\t');
-                this.mainCanvasRef.l.append(GlobalStatus.bd);
+                this.mainCanvasRef.shareSb.append("生命：" + GlobalStatus.aN + "/" + GlobalStatus.totalShengMing + '\t');
+                this.mainCanvasRef.shareSb.append("内力：" + GlobalStatus.aP + "/" + GlobalStatus.aO + '\t');
+                this.mainCanvasRef.shareSb.append("物攻：[" + GlobalStatus.aR + "," + GlobalStatus.aQ + "]" + '\t');
+                this.mainCanvasRef.shareSb.append("法伤：" + GlobalStatus.aW + '\t');
+                this.mainCanvasRef.shareSb.append("法攻：[" + GlobalStatus.aY + "," + GlobalStatus.aX + "]" + '\t');
+                this.mainCanvasRef.shareSb.append("物防：[" + GlobalStatus.aT + "," + GlobalStatus.aS + "]" + '\t');
+                this.mainCanvasRef.shareSb.append("速度：" + GlobalStatus.aZ + '\t');
+                this.mainCanvasRef.shareSb.append("冰抗：" + GlobalStatus.bc + '\t');
+                this.mainCanvasRef.shareSb.append("火抗：" + GlobalStatus.ba + '\t');
+                this.mainCanvasRef.shareSb.append("雷抗：" + GlobalStatus.bb + '\t');
+                this.mainCanvasRef.shareSb.append(GlobalStatus.bd);
                 this.aB();
                 break;
             case 2:
                 this.mainCanvasRef.ar.a((Image[]) null, new String[]{"经验", "上限", "开关"}, (String[]) null, new String[]{String.valueOf(GlobalStatus.am), String.valueOf(GlobalStatus.an), GlobalStatus.z == 1 ? "<开>" : "<关>"});
-                this.mainCanvasRef.at.b("开启经验修炼模式后，杀怪、任务、使用道具获得的经验将会全部转入修炼经验，修炼经验可用于学习心法技能", GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.b("开启经验修炼模式后，杀怪、任务、使用道具获得的经验将会全部转入修炼经验，修炼经验可用于学习心法技能", GlobalConfig.font2, (byte) 2);
                 this.mainCanvasRef.at.a((byte) 1);
                 this.mainCanvasRef.au.a("确定");
                 this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
@@ -4706,20 +4700,20 @@ public final class UISceneController {
                 this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
                 break;
             case 4:
-                this.mainCanvasRef.l.append("住宅：" + GlobalStatus.bi + '\t');
-                this.mainCanvasRef.l.append("帮派：" + GlobalStatus.bj + '\t');
-                this.mainCanvasRef.l.append("称号：" + GlobalStatus.bB + '\t');
-                this.mainCanvasRef.l.append("装备：" + GlobalStatus.bk + '\t');
-                this.mainCanvasRef.l.append("祝福：\t" + GlobalStatus.bh + '\t');
-                this.mainCanvasRef.l.append("成就: " + GlobalStatus.bo + '\t');
+                this.mainCanvasRef.shareSb.append("住宅：" + GlobalStatus.bi + '\t');
+                this.mainCanvasRef.shareSb.append("帮派：" + GlobalStatus.bj + '\t');
+                this.mainCanvasRef.shareSb.append("称号：" + GlobalStatus.bB + '\t');
+                this.mainCanvasRef.shareSb.append("装备：" + GlobalStatus.bk + '\t');
+                this.mainCanvasRef.shareSb.append("祝福：\t" + GlobalStatus.bh + '\t');
+                this.mainCanvasRef.shareSb.append("成就: " + GlobalStatus.bo + '\t');
                 if (GlobalStatus.s == 1 && GlobalStatus.bg >= 1) {
-                    this.mainCanvasRef.l.append(new StringBuffer().append("队伍加成：").append(GlobalStatus.q != null ? new StringBuffer().append("属性+").append(GlobalStatus.bg * 5).append("%\n").append("经验+").append(GlobalStatus.bg * 5).append("%").toString() : "").append('\t').toString());
+                    this.mainCanvasRef.shareSb.append(new StringBuffer().append("队伍加成：").append(GlobalStatus.q != null ? new StringBuffer().append("属性+").append(GlobalStatus.bg * 5).append("%\n").append("经验+").append(GlobalStatus.bg * 5).append("%").toString() : "").append('\t').toString());
                 }
 
                 this.aB();
                 break;
             case 5:
-                this.mainCanvasRef.l.append("" + GlobalStatus.bn + '\t');
+                this.mainCanvasRef.shareSb.append("" + GlobalStatus.bn + '\t');
                 this.aB();
         }
 
@@ -4729,7 +4723,7 @@ public final class UISceneController {
     }
 
     private void aB() {
-        this.mainCanvasRef.at.b(this.mainCanvasRef.l.toString(), GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.b(this.mainCanvasRef.shareSb.toString(), GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
     }
 
@@ -4738,7 +4732,7 @@ public final class UISceneController {
         this.bM = new short[9];
         this.bO = new String[9];
         this.bL[0][0] = GlobalStatus.aN;
-        this.bL[0][1] = GlobalStatus.aM;
+        this.bL[0][1] = GlobalStatus.totalShengMing;
         this.bL[1][0] = GlobalStatus.aP;
         this.bL[1][1] = GlobalStatus.aO;
         this.bL[2][0] = GlobalStatus.aR;
@@ -4964,7 +4958,7 @@ public final class UISceneController {
         int var3 = 0;
         var1.drawImage(MainCanvas.L.pngImage, this.mainCanvasRef.aq.a + 5, this.mainCanvasRef.aq.b + this.mainCanvasRef.aq.d - 53, 20);
         var1.drawImage(MainCanvas.L.pngImage, this.mainCanvasRef.aq.a + this.mainCanvasRef.aq.c - 5 - MainCanvas.L.b, this.mainCanvasRef.aq.b + this.mainCanvasRef.aq.d - 53, 20);
-        int var4 = Math.max(this.mainCanvasRef.aq.c - (MainCanvas.L.b << 1), GlobalConfig.i.stringWidth(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE))));
+        int var4 = Math.max(this.mainCanvasRef.aq.c - (MainCanvas.L.b << 1), GlobalConfig.font2.stringWidth(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE))));
         var3 = this.mainCanvasRef.aq.a + (this.mainCanvasRef.aq.c - var4) / 2;
         var1.setColor(79948);
         var1.fillRect(var3, this.mainCanvasRef.aq.b + this.mainCanvasRef.aq.d - 53, var4, MainCanvas.L.c);
@@ -4987,14 +4981,14 @@ public final class UISceneController {
         this.b(1, var3 + var4, this.mainCanvasRef.aq.b + this.mainCanvasRef.aq.d - 51, MainCanvas.M.b, MainCanvas.M.c);
         var1.drawImage(MainCanvas.M.pngImage, this.bP[1][0], this.bP[1][1], 20);
         var1.setColor(16776960);
-        var1.drawString(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE)), GlobalConfig.defaultWidth >> 1, this.mainCanvasRef.aq.b + this.mainCanvasRef.aq.d - 51 + (MainCanvas.M.pngImage.getHeight() - GlobalConfig.j) / 2, 17);
+        var1.drawString(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE)), GlobalConfig.defaultWidth >> 1, this.mainCanvasRef.aq.b + this.mainCanvasRef.aq.d - 51 + (MainCanvas.M.pngImage.getHeight() - GlobalConfig.font2_h) / 2, 17);
     }
 
     public final void e(int var1) {
         this.sceneSubState = 0;
         this.mainCanvasRef.aw = 0;
         this.as = var1;
-        if (this.as >= GlobalConfig.L.length) {
+        if (this.as >= GlobalConfig.ShiYongFangShi.length) {
             this.as = 0;
         }
 
@@ -5018,7 +5012,7 @@ public final class UISceneController {
         if ((var2 = this.y(0)) != null && (this.as != 4 && this.as != 15 && this.as != 16 && this.as != 20 || var2.g - var2.v > 0)) {
             this.q();
         } else {
-            this.mainCanvasRef.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
         }
 
         this.mainCanvasRef.au.a("");
@@ -5043,9 +5037,9 @@ public final class UISceneController {
 
     public final void q() {
         if (GlobalStatus.bC.size() > 0 && this.A((this.ar << 3) + this.aq) != null) {
-            this.mainCanvasRef.at.a(this.A((this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a(this.A((this.ar << 3) + this.aq), GlobalConfig.font2, (byte) 1);
         } else {
-            this.mainCanvasRef.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
         }
 
         this.mainCanvasRef.at.a((byte) 1);
@@ -5596,7 +5590,7 @@ public final class UISceneController {
                             this.mainCanvasRef.aq.j();
                             this.mainCanvasRef.aq.b();
                             this.mainCanvasRef.aq.a("物品详情");
-                            this.mainCanvasRef.at.a(this.A((this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
+                            this.mainCanvasRef.at.a(this.A((this.ar << 3) + this.aq), GlobalConfig.font2, (byte) 1);
                             this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
                             this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
                             this.sceneSubState = 17;
@@ -6105,9 +6099,9 @@ public final class UISceneController {
 
     public final void s() {
         if (GlobalStatus.bC.size() > 0 && this.A((this.ar << 3) + this.aq) != null) {
-            this.mainCanvasRef.at.a(this.A((this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a(this.A((this.ar << 3) + this.aq), GlobalConfig.font2, (byte) 1);
         } else {
-            this.mainCanvasRef.at.a("没有物品，按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有物品，按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
         }
 
         this.mainCanvasRef.at.a((byte) 1);
@@ -6224,8 +6218,8 @@ public final class UISceneController {
             }
 
             if (this.as != 18) {
-                this.a(var1, GlobalStatus.ap, GlobalConfig.defaultWidth / 2 + x.b, this.mainCanvasRef.au.a() + GlobalConfig.a(MainCanvas.E.c));
-                MainCanvas.pngUtil.a(var1, w, (int[]) null, (aj) null, 0, 0, GlobalConfig.a(GlobalConfig.defaultWidth, this.mainCanvasRef.l.toString()) - x.b, this.mainCanvasRef.au.a() + 4, 0, 0);
+                this.a(var1, GlobalStatus.ap, GlobalConfig.defaultWidth / 2 + x.b, this.mainCanvasRef.au.a() + GlobalConfig.getCzjz(MainCanvas.E.c));
+                MainCanvas.pngUtil.a(var1, w, (int[]) null, (aj) null, 0, 0, GlobalConfig.getSpjzPx(GlobalConfig.defaultWidth, this.mainCanvasRef.shareSb.toString()) - x.b, this.mainCanvasRef.au.a() + 4, 0, 0);
             }
         }
 
@@ -6314,9 +6308,9 @@ public final class UISceneController {
         this.mainCanvasRef.as.a((byte) 1);
         this.mainCanvasRef.aq.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
         if (this.bU.size() > 0) {
-            this.mainCanvasRef.at.a(a((bn) this.bU.elementAt(0)), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a(a((bn) this.bU.elementAt(0)), GlobalConfig.font2, (byte) 1);
         } else {
-            this.mainCanvasRef.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
         }
 
         this.mainCanvasRef.at.a((byte) 1);
@@ -6571,8 +6565,8 @@ public final class UISceneController {
                 LoadingPage.a(var3, var13.b + "X" + (var13.g - var13.v), var13.q, var6 + var12.aq * (x.b + var4) + x.b / 2, var7 + var12.ar * (x.b + var5) + x.b / 2);
             }
 
-            this.a(var1, GlobalStatus.ap, GlobalConfig.defaultWidth / 2 + 15, this.mainCanvasRef.au.a() + GlobalConfig.a(MainCanvas.E.c));
-            MainCanvas.pngUtil.a(var1, w, (int[]) null, (aj) null, 0, 0, GlobalConfig.a(GlobalConfig.defaultWidth, this.mainCanvasRef.l.toString()) - 15, this.mainCanvasRef.au.a() + 4, 0, 0);
+            this.a(var1, GlobalStatus.ap, GlobalConfig.defaultWidth / 2 + 15, this.mainCanvasRef.au.a() + GlobalConfig.getCzjz(MainCanvas.E.c));
+            MainCanvas.pngUtil.a(var1, w, (int[]) null, (aj) null, 0, 0, GlobalConfig.getSpjzPx(GlobalConfig.defaultWidth, this.mainCanvasRef.shareSb.toString()) - 15, this.mainCanvasRef.au.a() + 4, 0, 0);
         }
 
     }
@@ -6580,9 +6574,9 @@ public final class UISceneController {
     private void G(int var1) {
         var1 = (this.mainCanvasRef.as.a << 5) + var1;
         if (this.bU.size() > 0 && var1 < this.bU.size()) {
-            this.mainCanvasRef.at.a(a((bn) this.bU.elementAt(var1)), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a(a((bn) this.bU.elementAt(var1)), GlobalConfig.font2, (byte) 1);
         } else {
-            this.mainCanvasRef.at.a("没有物品，按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有物品，按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
         }
 
         this.mainCanvasRef.at.a((byte) 1);
@@ -6704,22 +6698,22 @@ public final class UISceneController {
 
             if (var8[this.av] >= 0) {
                 if (this.av < 3) {
-                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.l, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1], 40);
+                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.shareSb, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1], 40);
                 } else if (this.av < 5) {
-                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.l, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1] + 16, 24);
+                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.shareSb, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1] + 16, 24);
                 } else if (this.av < 7) {
-                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.l, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1] + 16, 20);
+                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.shareSb, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1] + 16, 20);
                 } else {
-                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.l, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 36);
+                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.shareSb, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 36);
                 }
             } else if (this.av < 3) {
-                LoadingPage.a(var1, GlobalConfig.M[this.av], "", var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1], 40);
+                LoadingPage.a(var1, GlobalConfig.ZhuangBeiBuWei[this.av], "", var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1], 40);
             } else if (this.av < 5) {
-                LoadingPage.a(var1, GlobalConfig.M[this.av], "", var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1] + 16, 24);
+                LoadingPage.a(var1, GlobalConfig.ZhuangBeiBuWei[this.av], "", var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1] + 16, 24);
             } else if (this.av < 7) {
-                LoadingPage.a(var1, GlobalConfig.M[this.av], "", var6 + this.bY[this.av][0], var7 + this.bY[this.av][1] + 16, 20);
+                LoadingPage.a(var1, GlobalConfig.ZhuangBeiBuWei[this.av], "", var6 + this.bY[this.av][0], var7 + this.bY[this.av][1] + 16, 20);
             } else {
-                LoadingPage.a(var1, GlobalConfig.M[this.av], "", var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 36);
+                LoadingPage.a(var1, GlobalConfig.ZhuangBeiBuWei[this.av], "", var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 36);
             }
 
             if (this.sceneSubState == 1) {
@@ -6732,21 +6726,21 @@ public final class UISceneController {
                     this.mainCanvasRef.aq.a(30);
                     this.mainCanvasRef.aq.a(var1);
                     LoadingPage.a(var1, this.mainCanvasRef.aq.a + 5, this.mainCanvasRef.aq.b + 32, this.mainCanvasRef.aq.c - 11, 30, 1);
-                    LoadingPage.a(var1, (String) "宝石", (int) (this.mainCanvasRef.aq.a + 10), this.mainCanvasRef.aq.b + 35 + GlobalConfig.a(25), 20, 16776960, 0);
+                    LoadingPage.drawString(var1, (String) "宝石", (int) (this.mainCanvasRef.aq.a + 10), this.mainCanvasRef.aq.b + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
                 }
 
                 if (GlobalStatus.cD != null) {
                     for (int var2 = 0; var2 < GlobalStatus.cD.length; ++var2) {
                         if (GlobalStatus.cB[var2] == this.av && GlobalStatus.cD[var2] != null) {
-                            this.a(var1, this.mainCanvasRef.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:"), this.mainCanvasRef.aq.b + 37, 17, 17, GlobalStatus.cD[var2].length, 1);
+                            this.a(var1, this.mainCanvasRef.aq.a + 10 + GlobalConfig.font2.stringWidth("宝石:"), this.mainCanvasRef.aq.b + 37, 17, 17, GlobalStatus.cD[var2].length, 1);
 
                             for (byte var3 = 0; var3 < GlobalStatus.cD[var2].length; ++var3) {
                                 if (GlobalStatus.cD[var2][var3] <= -1) {
-                                    LoadingPage.a(var1, 125269879, 207, this.mainCanvasRef.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var3 * 17, this.mainCanvasRef.aq.b + 39, 17, 17);
+                                    LoadingPage.a(var1, 125269879, 207, this.mainCanvasRef.aq.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var3 * 17, this.mainCanvasRef.aq.b + 39, 17, 17);
                                 }
 
                                 if (GlobalStatus.cD[var2][var3] > 0) {
-                                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.cD[var2][var3]), (int[]) null, (aj) null, 0, 0, this.mainCanvasRef.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var3 * 17, this.mainCanvasRef.aq.b + 39, 0, 0);
+                                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.cD[var2][var3]), (int[]) null, (aj) null, 0, 0, this.mainCanvasRef.aq.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var3 * 17, this.mainCanvasRef.aq.b + 39, 0, 0);
                                 }
                             }
                         }
@@ -6832,7 +6826,7 @@ public final class UISceneController {
                 this.mainCanvasRef.ar.b(false);
                 this.mainCanvasRef.ar.a((String) null, 1);
                 int var2 = Math.min(this.mainCanvasRef.ar.g(), GlobalStatus.O.j.length);
-                this.mainCanvasRef.at.a(GlobalStatus.O.j[var2], GlobalConfig.i, (byte) 1);
+                this.mainCanvasRef.at.a(GlobalStatus.O.j[var2], GlobalConfig.font2, (byte) 1);
                 this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
                 this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
                 this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
@@ -6891,7 +6885,7 @@ public final class UISceneController {
                             var4 = this.mainCanvasRef.ar.g();
                         }
 
-                        this.mainCanvasRef.at.a(GlobalStatus.lN[var4], GlobalConfig.i, (byte) 1);
+                        this.mainCanvasRef.at.a(GlobalStatus.lN[var4], GlobalConfig.font2, (byte) 1);
                         if (var2) {
                             this.mainCanvasRef.at.a((byte) 1);
                         }
@@ -6924,7 +6918,7 @@ public final class UISceneController {
                             var4 = this.mainCanvasRef.ar.g();
                         }
 
-                        this.mainCanvasRef.at.a(GlobalStatus.lV[var4], GlobalConfig.i, (byte) 1);
+                        this.mainCanvasRef.at.a(GlobalStatus.lV[var4], GlobalConfig.font2, (byte) 1);
                         if (var2) {
                             this.mainCanvasRef.at.a((byte) 1);
                         }
@@ -6965,7 +6959,7 @@ public final class UISceneController {
                             var4 = this.mainCanvasRef.ar.g();
                         }
 
-                        this.mainCanvasRef.at.a(GlobalStatus.md[var4], GlobalConfig.i, (byte) 1);
+                        this.mainCanvasRef.at.a(GlobalStatus.md[var4], GlobalConfig.font2, (byte) 1);
                         if (var2) {
                             this.mainCanvasRef.at.a((byte) 1);
                         }
@@ -7195,7 +7189,7 @@ public final class UISceneController {
                 }
             } else if (this.mainCanvasRef.as.a < 3) {
                 if (GlobalStatus.gH != null) {
-                    LoadingPage.a(65 + o, 2 * GlobalConfig.j + 10 + this.mainCanvasRef.ar.g() * GlobalConfig.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
+                    LoadingPage.a(65 + o, 2 * GlobalConfig.font2_h + 10 + this.mainCanvasRef.ar.g() * GlobalConfig.font2_h + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
                     this.sceneSubState = 1;
                     return;
                 }
@@ -7209,9 +7203,9 @@ public final class UISceneController {
                 }
 
                 if (GlobalStatus.bs == 1) {
-                    LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + 10 + p, new String[]{"踢除", "任命", "解散", "群聊", "私聊", "查看", GlobalStatus.s == 0 ? "自由" : "跟随"}, true);
+                    LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.font2_h + 10 + p, new String[]{"踢除", "任命", "解散", "群聊", "私聊", "查看", GlobalStatus.s == 0 ? "自由" : "跟随"}, true);
                 } else {
-                    LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"群聊", "私聊", "离开", "查看"}, true);
+                    LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.font2_h + p, new String[]{"群聊", "私聊", "离开", "查看"}, true);
                 }
 
                 this.sceneSubState = 8;
@@ -7232,7 +7226,7 @@ public final class UISceneController {
                 }
             } else {
                 if (LoadingPage.o == 0) {
-                    LoadingPage.a(65 + o, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"属性", "装备", "成就"}, false);
+                    LoadingPage.a(65 + o, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.font2_h + p, new String[]{"属性", "装备", "成就"}, false);
                     this.sceneSubState = 2;
                     return;
                 }
@@ -7252,7 +7246,7 @@ public final class UISceneController {
 
                     if (GlobalStatus.bw < 1 || GlobalStatus.gP[this.mainCanvasRef.ar.g()] != 2 && GlobalStatus.gP[this.mainCanvasRef.ar.g()] != 3) {
                         if (GlobalStatus.bs == -1) {
-                            LoadingPage.a(65 + o, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"自由", "跟随"}, false);
+                            LoadingPage.a(65 + o, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.font2_h + p, new String[]{"自由", "跟随"}, false);
                             this.sceneSubState = 6;
                             return;
                         }
@@ -7267,7 +7261,7 @@ public final class UISceneController {
 
                 if (LoadingPage.o == 3) {
                     if (GlobalStatus.bw < 1 || GlobalStatus.gP[this.mainCanvasRef.ar.g()] != 2 && GlobalStatus.gP[this.mainCanvasRef.ar.g()] != 3) {
-                        LoadingPage.a(65 + o, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"物品", "宠物"}, false);
+                        LoadingPage.a(65 + o, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.font2_h + p, new String[]{"物品", "宠物"}, false);
                         this.sceneSubState = 5;
                         return;
                     }
@@ -7394,7 +7388,7 @@ public final class UISceneController {
                 }
 
                 if (var1 == 536870912) {
-                    LoadingPage.a(65 + o, 2 * GlobalConfig.j + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
+                    LoadingPage.a(65 + o, 2 * GlobalConfig.font2_h + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.font2_h + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
                     LoadingPage.o = 3;
                     this.sceneSubState = 1;
                     return;
@@ -7424,7 +7418,7 @@ public final class UISceneController {
                 }
 
                 if (var1 == 536870912) {
-                    LoadingPage.a(65 + o, 2 * GlobalConfig.j + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
+                    LoadingPage.a(65 + o, 2 * GlobalConfig.font2_h + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.font2_h + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
                     this.sceneSubState = 1;
                     return;
                 }
@@ -7514,7 +7508,7 @@ public final class UISceneController {
                 } else if (this.sceneSubState == 11) {
                     this.T.b(var1);
                     if (var1 == 268435456 || var1 == 536870912) {
-                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"属性", "装备"}, true);
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.font2_h + p, new String[]{"属性", "装备"}, true);
                         this.T.j();
                         this.sceneSubState = 10;
                         return;
@@ -7529,7 +7523,7 @@ public final class UISceneController {
                             return;
                         }
 
-                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"属性", "装备"}, true);
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.font2_h + p, new String[]{"属性", "装备"}, true);
                         if (GlobalStatus.cJ != null) {
                             GlobalStatus.o();
                         }
@@ -7557,21 +7551,21 @@ public final class UISceneController {
                     }
                 } else if (GlobalStatus.bs == 1) {
                     if (LoadingPage.o == 0) {
-                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"确认", "取消"}, true);
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.font2_h + p, new String[]{"确认", "取消"}, true);
                         this.bz = 0;
                         this.sceneSubState = 9;
                         return;
                     }
 
                     if (LoadingPage.o == 1) {
-                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"确认", "取消"}, true);
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.font2_h + p, new String[]{"确认", "取消"}, true);
                         this.bz = 1;
                         this.sceneSubState = 9;
                         return;
                     }
 
                     if (LoadingPage.o == 2) {
-                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"确认", "取消"}, true);
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.font2_h + p, new String[]{"确认", "取消"}, true);
                         this.bz = 2;
                         this.sceneSubState = 9;
                         return;
@@ -7596,7 +7590,7 @@ public final class UISceneController {
                     }
 
                     if (LoadingPage.o == 5) {
-                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"属性", "装备"}, true);
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.font2_h + p, new String[]{"属性", "装备"}, true);
                         this.sceneSubState = 10;
                         return;
                     }
@@ -7640,14 +7634,14 @@ public final class UISceneController {
                     }
 
                     if (LoadingPage.o == 2) {
-                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"确认", "取消"}, true);
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.font2_h + p, new String[]{"确认", "取消"}, true);
                         this.bz = 2;
                         this.sceneSubState = 9;
                         return;
                     }
 
                     if (LoadingPage.o == 3) {
-                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.j + p, new String[]{"属性", "装备"}, true);
+                        LoadingPage.a(0, (3 + this.mainCanvasRef.ar.g()) * GlobalConfig.font2_h + p, new String[]{"属性", "装备"}, true);
                         this.bz = 3;
                         this.sceneSubState = 10;
                         return;
@@ -7658,7 +7652,7 @@ public final class UISceneController {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    LoadingPage.a(65 + o, 2 * GlobalConfig.j + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.j + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
+                    LoadingPage.a(65 + o, 2 * GlobalConfig.font2_h + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.font2_h + p, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
                     this.sceneSubState = 1;
                     return;
                 }
@@ -7781,29 +7775,29 @@ public final class UISceneController {
     }
 
     public final void v() {
-        GlobalConfig.clearStr(this.mainCanvasRef.l);
-        this.mainCanvasRef.l.append("昵称：" + GlobalStatus.eS + '\t');
-        this.mainCanvasRef.l.append("门派：" + GlobalConfig.G[GlobalStatus.eV] + '\t');
-        this.mainCanvasRef.l.append("级别：" + GlobalStatus.eT + '\t');
-        this.mainCanvasRef.l.append("性别：" + (GlobalStatus.eU == 0 ? "男" : "女") + '\t');
-        this.mainCanvasRef.l.append("称号：" + GlobalStatus.eW + '\t');
-        this.mainCanvasRef.l.append("帮派：" + GlobalStatus.eX);
+        GlobalConfig.clearStr(this.mainCanvasRef.shareSb);
+        this.mainCanvasRef.shareSb.append("昵称：" + GlobalStatus.eS + '\t');
+        this.mainCanvasRef.shareSb.append("门派：" + GlobalConfig.manPaiName[GlobalStatus.eV] + '\t');
+        this.mainCanvasRef.shareSb.append("级别：" + GlobalStatus.eT + '\t');
+        this.mainCanvasRef.shareSb.append("性别：" + (GlobalStatus.eU == 0 ? "男" : "女") + '\t');
+        this.mainCanvasRef.shareSb.append("称号：" + GlobalStatus.eW + '\t');
+        this.mainCanvasRef.shareSb.append("帮派：" + GlobalStatus.eX);
         if (!"无".equals(GlobalStatus.eX)) {
-            this.mainCanvasRef.l.append("(" + GlobalStatus.eY + "级)");
+            this.mainCanvasRef.shareSb.append("(" + GlobalStatus.eY + "级)");
         }
 
-        this.mainCanvasRef.l.append('\t');
-        this.mainCanvasRef.l.append("职务：" + GlobalStatus.eZ + '\t');
-        this.mainCanvasRef.l.append("功勋：" + GlobalStatus.fa + '\t');
-        this.mainCanvasRef.l.append("配偶：" + GlobalStatus.fb + '\t');
-        this.mainCanvasRef.l.append("师傅：" + GlobalStatus.fc + '\t');
-        this.mainCanvasRef.l.append("好感度：" + GlobalStatus.fd + '\t');
-        this.mainCanvasRef.l.append(GlobalStatus.fe);
+        this.mainCanvasRef.shareSb.append('\t');
+        this.mainCanvasRef.shareSb.append("职务：" + GlobalStatus.eZ + '\t');
+        this.mainCanvasRef.shareSb.append("功勋：" + GlobalStatus.fa + '\t');
+        this.mainCanvasRef.shareSb.append("配偶：" + GlobalStatus.fb + '\t');
+        this.mainCanvasRef.shareSb.append("师傅：" + GlobalStatus.fc + '\t');
+        this.mainCanvasRef.shareSb.append("好感度：" + GlobalStatus.fd + '\t');
+        this.mainCanvasRef.shareSb.append(GlobalStatus.fe);
         this.T.j();
         this.T.a("玩家详细");
         this.T.a(true);
         an_1 var1;
-        (var1 = new an_1()).b(this.mainCanvasRef.l.toString(), GlobalConfig.i, (byte) 2);
+        (var1 = new an_1()).b(this.mainCanvasRef.shareSb.toString(), GlobalConfig.font2, (byte) 2);
         this.T.a((al) var1);
         this.T.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.touchPageCase = this.mainCanvasRef.k;
@@ -7876,8 +7870,8 @@ public final class UISceneController {
                 if (var2) {
                     var4.append(GlobalStatus.cH[var3]);
                     var4.append("（");
-                    GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.cO[var3]);
-                    var4.append(this.mainCanvasRef.l.toString() + "）");
+                    GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.cO[var3]);
+                    var4.append(this.mainCanvasRef.shareSb.toString() + "）");
                     var4.append('\t');
                 }
 
@@ -7926,7 +7920,7 @@ public final class UISceneController {
                         this.T.a("装备属性");
                         this.T.a(true);
                         an_1 var2;
-                        (var2 = new an_1()).a(this.a(this.aq, true), GlobalConfig.i, (byte) 2);
+                        (var2 = new an_1()).a(this.a(this.aq, true), GlobalConfig.font2, (byte) 2);
                         this.T.a(30);
                         this.T.a((al) var2);
                         this.T.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
@@ -8019,7 +8013,7 @@ public final class UISceneController {
                 }
 
                 MainCanvas.pngUtil.a(var1, (Frame1) var3, (int[]) null, 0, 0, var4 + MainCanvas.O.b / 2, var5 + (MainCanvas.O.c - var3.j()) / 2 + var3.j(), 20, 0);
-                LoadingPage.a(var1, (String) var2, (int) (var4 + MainCanvas.O.b / 2), var5 + 26, 17, 16776960, 0);
+                LoadingPage.drawString(var1, (String) var2, (int) (var4 + MainCanvas.O.b / 2), var5 + 26, 17, 16776960, 0);
             }
 
             var1.setColor(10092544);
@@ -8042,29 +8036,29 @@ public final class UISceneController {
                     LoadingPage.a(var1, GlobalStatus.cH[var10[this.aq]], this.a(this.aq, false), var4 + this.bY[this.aq][0], var5 + this.bY[this.aq][1], 36);
                 }
             } else if (this.aq < 3) {
-                LoadingPage.a(var1, GlobalConfig.M[this.aq], -1L, var4 + this.bY[this.aq][0] + 16, var5 + this.bY[this.aq][1], 40);
+                LoadingPage.a(var1, GlobalConfig.ZhuangBeiBuWei[this.aq], -1L, var4 + this.bY[this.aq][0] + 16, var5 + this.bY[this.aq][1], 40);
             } else if (this.aq < 5) {
-                LoadingPage.a(var1, GlobalConfig.M[this.aq], -1L, var4 + this.bY[this.aq][0] + 16, var5 + this.bY[this.aq][1] + 16, 24);
+                LoadingPage.a(var1, GlobalConfig.ZhuangBeiBuWei[this.aq], -1L, var4 + this.bY[this.aq][0] + 16, var5 + this.bY[this.aq][1] + 16, 24);
             } else {
                 if (this.aq >= 7) {
-                    LoadingPage.a(var1, GlobalConfig.M[this.aq], -1L, var4 + this.bY[this.aq][0], var5 + this.bY[this.aq][1], 36);
+                    LoadingPage.a(var1, GlobalConfig.ZhuangBeiBuWei[this.aq], -1L, var4 + this.bY[this.aq][0], var5 + this.bY[this.aq][1], 36);
                     return;
                 }
 
-                LoadingPage.a(var1, GlobalConfig.M[this.aq], -1L, var4 + this.bY[this.aq][0], var5 + this.bY[this.aq][1] + 16, 20);
+                LoadingPage.a(var1, GlobalConfig.ZhuangBeiBuWei[this.aq], -1L, var4 + this.bY[this.aq][0], var5 + this.bY[this.aq][1] + 16, 20);
             }
         } else if (this.sceneSubMode == 1) {
             this.T.a(var1);
             LoadingPage.a(var1, this.T.a + 5, this.T.b + 32, this.T.c - 11, 30, 1);
-            LoadingPage.a(var1, (String) "宝石", (int) (this.T.a + 10), this.T.b + 35 + GlobalConfig.a(25), 20, 16776960, 0);
+            LoadingPage.drawString(var1, (String) "宝石", (int) (this.T.a + 10), this.T.b + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
             if (GlobalStatus.cQ != null) {
                 for (int var8 = 0; var8 < GlobalStatus.cG.length; ++var8) {
                     if (GlobalStatus.cI[var8] == this.aq && GlobalStatus.cQ[var8] != null) {
-                        this.a(var1, this.T.a + 10 + GlobalConfig.i.stringWidth("宝石:"), this.T.b + 37, 17, 17, GlobalStatus.cQ[var8].length, 1);
+                        this.a(var1, this.T.a + 10 + GlobalConfig.font2.stringWidth("宝石:"), this.T.b + 37, 17, 17, GlobalStatus.cQ[var8].length, 1);
 
                         for (byte var9 = 0; var9 < GlobalStatus.cQ[var8].length; ++var9) {
                             if (GlobalStatus.cQ[var8][var9] > 0) {
-                                MainCanvas.pngUtil.a(var1, b(GlobalStatus.cQ[var8][var9]), (int[]) null, (aj) null, 0, 0, this.T.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var9 * 17, this.T.b + 39, 0, 0);
+                                MainCanvas.pngUtil.a(var1, b(GlobalStatus.cQ[var8][var9]), (int[]) null, (aj) null, 0, 0, this.T.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.T.b + 39, 0, 0);
                             }
                         }
                     }
@@ -8226,7 +8220,7 @@ public final class UISceneController {
                             return;
                         case 3:
                             String[] var4 = new String[]{"确认", "取消"};
-                            LoadingPage.a(35 + o, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.j + 12 + p, var4, false);
+                            LoadingPage.a(35 + o, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.font2_h + 12 + p, var4, false);
                             this.sceneSubState = 2;
                         default:
                             return;
@@ -8297,7 +8291,7 @@ public final class UISceneController {
 
     private void aE() {
         String[] var1 = new String[]{"自动", "追踪", "详情", "放弃"};
-        LoadingPage.a(35 + o, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.j + 12 + p, var1, false);
+        LoadingPage.a(35 + o, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.font2_h + 12 + p, var1, false);
         this.sceneSubState = 1;
     }
 
@@ -8374,7 +8368,7 @@ public final class UISceneController {
             }
 
             if (!var1) {
-                this.mainCanvasRef.at.a("".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 1);
+                this.mainCanvasRef.at.a("".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.mainCanvasRef.ar.g()], GlobalConfig.font2, (byte) 1);
                 this.mainCanvasRef.at.a((byte) 1);
                 this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
             }
@@ -8408,7 +8402,7 @@ public final class UISceneController {
             if (var1 == 1 || var1 == 4 || var1 == 514 || var1 == 520) {
                 if (GlobalStatus.dl != null && GlobalStatus.dl.length > 0) {
                     this.mainCanvasRef.ar.a(GlobalStatus.ds[this.mainCanvasRef.ar.g()], 2);
-                    this.mainCanvasRef.at.a("".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.a("".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.mainCanvasRef.ar.g()], GlobalConfig.font2, (byte) 1);
                     this.mainCanvasRef.at.a((byte) 1);
                     return;
                 }
@@ -8447,7 +8441,7 @@ public final class UISceneController {
                             var8 = new String[]{"升级", GlobalStatus.du[this.mainCanvasRef.ar.g()] == 0 ? "激活技能" : "取消激活", "遗忘技能"};
                         }
 
-                        LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, var8, true);
+                        LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, var8, true);
                         this.sceneSubState = 5;
                         return;
                     }
@@ -8459,7 +8453,7 @@ public final class UISceneController {
                         var7 = new String[]{"升级", "设置快捷", GlobalStatus.du[this.mainCanvasRef.ar.g()] == 0 ? "激活技能" : "取消激活", "遗忘技能"};
                     }
 
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, var7, true);
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, var7, true);
                     this.sceneSubState = 1;
                 } else if (this.overlayDialogController != null && GlobalStatus.dn[this.mainCanvasRef.ar.g()] != 2 && !i() && GlobalStatus.du[this.mainCanvasRef.ar.g()] == 1) {
                     if (GlobalStatus.do_2[this.mainCanvasRef.ar.g()] == 2) {
@@ -8582,7 +8576,7 @@ public final class UISceneController {
                         return;
                     }
 
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"覆盖", "清空"}, true);
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"覆盖", "清空"}, true);
                     this.sceneSubState = 3;
                     return;
                 }
@@ -8733,7 +8727,7 @@ public final class UISceneController {
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 28 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"激活", "取消激活"}, true);
+                LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 28 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + p, new String[]{"激活", "取消激活"}, true);
                 this.sceneSubState = 1;
                 return;
             }
@@ -8840,7 +8834,7 @@ public final class UISceneController {
         this.mainCanvasRef.aq.a(true);
         this.a(GlobalStatus.mX);
         this.mainCanvasRef.ar.a(b(GlobalStatus.mX), GlobalStatus.mW, (String[]) null, GlobalStatus.mY);
-        this.mainCanvasRef.at.b((String) null, GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.b((String) null, GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.at.a((byte) 1);
         this.mainCanvasRef.au.a("");
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
@@ -8974,10 +8968,10 @@ public final class UISceneController {
 
                 if (GlobalStatus.dl == null) {
                     this.mainCanvasRef.ar.a("没有技能,按3、9键可以上下翻滚此属性描述框", 2);
-                    this.mainCanvasRef.at.a("", GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.a("", GlobalConfig.font2, (byte) 1);
                 } else {
                     this.mainCanvasRef.ar.a(GlobalStatus.ds[this.mainCanvasRef.ar.g()], 2);
-                    this.mainCanvasRef.at.a("".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.a("".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.mainCanvasRef.ar.g()], GlobalConfig.font2, (byte) 1);
                     this.mainCanvasRef.at.a((byte) 1);
                 }
 
@@ -9027,7 +9021,7 @@ public final class UISceneController {
             if (var1 == 1 || var1 == 4 || var1 == 514 || var1 == 520) {
                 if (GlobalStatus.dl != null && GlobalStatus.dl.length > 0) {
                     this.mainCanvasRef.ar.a(GlobalStatus.ds[this.mainCanvasRef.ar.g()], 2);
-                    this.mainCanvasRef.at.a("".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.a("".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.mainCanvasRef.ar.g()], GlobalConfig.font2, (byte) 1);
                     this.mainCanvasRef.at.a((byte) 1);
                     return;
                 }
@@ -9057,7 +9051,7 @@ public final class UISceneController {
                 if (this.as == 0) {
                     if (this.mainCanvasRef.as.a == 0) {
                         String[] var6 = "".equals(GlobalStatus.dt[this.mainCanvasRef.ar.g()]) ? new String[]{"设置", "特效"} : new String[]{"升级", "设置", "特效"};
-                        LoadingPage.a(GlobalConfig.realWidth / 3 - GlobalConfig.i.stringWidth("操作") / 2, 2 * GlobalConfig.j + 28 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, var6, true);
+                        LoadingPage.a(GlobalConfig.realWidth / 3 - GlobalConfig.font2.stringWidth("操作") / 2, 2 * GlobalConfig.font2_h + 28 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + p, var6, true);
                         this.sceneSubState = 1;
                         return;
                     }
@@ -9175,7 +9169,7 @@ public final class UISceneController {
                         return;
                     }
 
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 28 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"覆盖", "清空"}, true);
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 28 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + p, new String[]{"覆盖", "清空"}, true);
                     this.sceneSubState = 7;
                     return;
                 }
@@ -9247,7 +9241,7 @@ public final class UISceneController {
             }
 
             this.mainCanvasRef.au.a(true);
-            this.mainCanvasRef.at.a(GlobalStatus.a((StringBuffer) this.mainCanvasRef.l, (int) 0, (byte) this.mainCanvasRef.as.a), GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a(GlobalStatus.a((StringBuffer) this.mainCanvasRef.shareSb, (int) 0, (byte) this.mainCanvasRef.as.a), GlobalConfig.font2, (byte) 2);
             this.mainCanvasRef.at.a((byte) 1);
             this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
             this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
@@ -9268,7 +9262,7 @@ public final class UISceneController {
             this.mainCanvasRef.aq.a(true);
             this.mainCanvasRef.au.a("确定");
             this.mainCanvasRef.au.a(true);
-            this.mainCanvasRef.at.a(this.aY(), GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a(this.aY(), GlobalConfig.font2, (byte) 2);
             this.mainCanvasRef.at.a((byte) 0);
             this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
             this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
@@ -9336,7 +9330,7 @@ public final class UISceneController {
                 }
 
                 if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-                    this.mainCanvasRef.at.a(GlobalStatus.a(this.mainCanvasRef.l, this.mainCanvasRef.ar.g(), this.mainCanvasRef.as.a), GlobalConfig.i, (byte) 2);
+                    this.mainCanvasRef.at.a(GlobalStatus.a(this.mainCanvasRef.shareSb, this.mainCanvasRef.ar.g(), this.mainCanvasRef.as.a), GlobalConfig.font2, (byte) 2);
                     this.mainCanvasRef.at.a((byte) 1);
                     a(GlobalStatus.gw[this.mainCanvasRef.ar.g()], GlobalStatus.gx[this.mainCanvasRef.ar.g()], GlobalStatus.gy[this.mainCanvasRef.ar.g()], GlobalStatus.gz[this.mainCanvasRef.ar.g()]);
                     this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.gw[this.mainCanvasRef.ar.g()] + "_0"), GlobalStatus.gx[this.mainCanvasRef.ar.g()], GlobalStatus.gy[this.mainCanvasRef.ar.g()], GlobalStatus.gz[this.mainCanvasRef.ar.g()]);
@@ -9345,13 +9339,13 @@ public final class UISceneController {
                 PngUtil.a(this.aI, this.mainCanvasRef.ak);
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                     if (this.mainCanvasRef.as.a == 0 && GlobalStatus.gs != null) {
-                        LoadingPage.a(35 + GlobalConfig.f, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.j + GlobalConfig.g, new String[]{"取消拍卖"}, false);
+                        LoadingPage.a(35 + GlobalConfig.f, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"取消拍卖"}, false);
                         this.sceneSubState = 1;
                         return;
                     }
 
                     if (this.mainCanvasRef.as.a == 1 && GlobalStatus.gs != null) {
-                        LoadingPage.a(35 + GlobalConfig.f, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.j + GlobalConfig.g, new String[]{"拍卖", "取回"}, false);
+                        LoadingPage.a(35 + GlobalConfig.f, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"拍卖", "取回"}, false);
                         this.sceneSubState = 2;
                         return;
                     }
@@ -9469,7 +9463,7 @@ public final class UISceneController {
 
             if (GlobalStatus.gw != null && this.aI != null && this.sceneSubState == 0) {
                 int var5;
-                var5 = (var5 = this.mainCanvasRef.ar.b() + 2 + (this.mainCanvasRef.ar.g() - this.mainCanvasRef.ar.h() + 1) * GlobalConfig.j) + 50 > this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() ? this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() - 50 : var5;
+                var5 = (var5 = this.mainCanvasRef.ar.b() + 2 + (this.mainCanvasRef.ar.g() - this.mainCanvasRef.ar.h() + 1) * GlobalConfig.font2_h) + 50 > this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() ? this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() - 50 : var5;
                 int var7 = this.mainCanvasRef.ar.a() + this.mainCanvasRef.ar.c() - 50 - 20;
                 LoadingPage.a(var1, 1009050, 159, var7, var5, 50, 50);
                 var1.setColor(16776960);
@@ -9512,10 +9506,10 @@ public final class UISceneController {
         this.mainCanvasRef.aq.a("宠物仓库");
         if (GlobalStatus.gs != null && GlobalStatus.gs.length > 0) {
             this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.gt, (String[]) null, e(GlobalStatus.gu));
-            this.mainCanvasRef.at.a(GlobalStatus.g(this.mainCanvasRef.l, 0), GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a(GlobalStatus.g(this.mainCanvasRef.shareSb, 0), GlobalConfig.font2, (byte) 2);
         } else {
             this.mainCanvasRef.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
-            this.mainCanvasRef.at.a((String) null, GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a((String) null, GlobalConfig.font2, (byte) 2);
         }
 
         this.mainCanvasRef.at.a((byte) 1);
@@ -9562,7 +9556,7 @@ public final class UISceneController {
                 }
 
                 if ((var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) && GlobalStatus.gs != null && GlobalStatus.gs.length > 0) {
-                    this.mainCanvasRef.at.a(GlobalStatus.g(this.mainCanvasRef.l, this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 2);
+                    this.mainCanvasRef.at.a(GlobalStatus.g(this.mainCanvasRef.shareSb, this.mainCanvasRef.ar.g()), GlobalConfig.font2, (byte) 2);
                     this.mainCanvasRef.at.a((byte) 1);
                     a(GlobalStatus.gw[this.mainCanvasRef.ar.g()], GlobalStatus.gx[this.mainCanvasRef.ar.g()], GlobalStatus.gy[this.mainCanvasRef.ar.g()], GlobalStatus.gz[this.mainCanvasRef.ar.g()]);
                     this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.gw[this.mainCanvasRef.ar.g()] + "_0"), GlobalStatus.gx[this.mainCanvasRef.ar.g()], GlobalStatus.gy[this.mainCanvasRef.ar.g()], GlobalStatus.gz[this.mainCanvasRef.ar.g()]);
@@ -9624,7 +9618,7 @@ public final class UISceneController {
 
             if (this.aI != null && this.sceneSubState == 0) {
                 int var5;
-                var5 = (var5 = this.mainCanvasRef.ar.b() + 2 + (this.mainCanvasRef.ar.g() - this.mainCanvasRef.ar.h()) * GlobalConfig.j) + 42 > this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() ? this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() - 42 : var5;
+                var5 = (var5 = this.mainCanvasRef.ar.b() + 2 + (this.mainCanvasRef.ar.g() - this.mainCanvasRef.ar.h()) * GlobalConfig.font2_h) + 42 > this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() ? this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() - 42 : var5;
                 int var7 = GlobalConfig.f + GlobalConfig.realWidth - 50 - 20;
                 LoadingPage.a(var1, 1009050, 159, var7, var5, 50, 42);
                 var1.setColor(16776960);
@@ -9783,9 +9777,9 @@ public final class UISceneController {
                         }
 
                         if (GlobalStatus.t[var5].b.length() <= 2) {
-                            LoadingPage.a(var1, (String) GlobalStatus.t[var5].b, (int) (this.aB + GlobalStatus.t[var5].c * this.aD / 16), this.aC + GlobalStatus.t[var5].d * this.aD / 16 - GlobalConfig.j - 5, 17, 13883606, 0);
+                            LoadingPage.drawString(var1, (String) GlobalStatus.t[var5].b, (int) (this.aB + GlobalStatus.t[var5].c * this.aD / 16), this.aC + GlobalStatus.t[var5].d * this.aD / 16 - GlobalConfig.font2_h - 5, 17, 13883606, 0);
                         } else {
-                            LoadingPage.a(var1, (String) (GlobalStatus.t[var5].b.substring(0, 1) + "~"), (int) (this.aB + GlobalStatus.t[var5].c * this.aD / 16), this.aC + GlobalStatus.t[var5].d * this.aD / 16 - GlobalConfig.j - 5, 17, 13883606, 0);
+                            LoadingPage.drawString(var1, (String) (GlobalStatus.t[var5].b.substring(0, 1) + "~"), (int) (this.aB + GlobalStatus.t[var5].c * this.aD / 16), this.aC + GlobalStatus.t[var5].d * this.aD / 16 - GlobalConfig.font2_h - 5, 17, 13883606, 0);
                         }
 
                         if (bo != null) {
@@ -9824,7 +9818,7 @@ public final class UISceneController {
                 this.mainCanvasRef.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
             }
 
-            this.mainCanvasRef.at.a(GlobalStatus.fA == null ? "" : GlobalStatus.e((StringBuffer) this.mainCanvasRef.l, (int) 0), GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a(GlobalStatus.fA == null ? "" : GlobalStatus.e((StringBuffer) this.mainCanvasRef.shareSb, (int) 0), GlobalConfig.font2, (byte) 2);
             this.mainCanvasRef.at.a((byte) 1);
             if (GlobalStatus.fE != null) {
                 a(GlobalStatus.fE[0], GlobalStatus.fF[0], GlobalStatus.fG[0], GlobalStatus.fH[0]);
@@ -9844,14 +9838,14 @@ public final class UISceneController {
                 }
 
                 this.mainCanvasRef.ar.a((Image[]) null, this.am, this.al, this.bK);
-                this.mainCanvasRef.at.a(GlobalStatus.e(this.mainCanvasRef.l, var1), GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.a(GlobalStatus.e(this.mainCanvasRef.shareSb, var1), GlobalConfig.font2, (byte) 2);
                 if (GlobalStatus.fE != null) {
                     a(GlobalStatus.fE[var1], GlobalStatus.fF[var1], GlobalStatus.fG[var1], GlobalStatus.fH[var1]);
                     this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.fE[var1] + "_0"), GlobalStatus.fF[var1], GlobalStatus.fG[var1], GlobalStatus.fH[var1]);
                 }
             } else {
                 this.mainCanvasRef.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
-                this.mainCanvasRef.at.a((String) null, GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.a((String) null, GlobalConfig.font2, (byte) 2);
                 this.aI = null;
             }
 
@@ -9876,7 +9870,7 @@ public final class UISceneController {
         }
 
         this.j((int) 0);
-        this.mainCanvasRef.at.a(GlobalStatus.fA == null ? "" : GlobalStatus.e(this.mainCanvasRef.l, var2), GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.a(GlobalStatus.fA == null ? "" : GlobalStatus.e(this.mainCanvasRef.shareSb, var2), GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.at.a((byte) 1);
         if (GlobalStatus.fE != null) {
             a(GlobalStatus.fE[var2], GlobalStatus.fF[var2], GlobalStatus.fG[var2], GlobalStatus.fH[var2]);
@@ -10009,7 +10003,7 @@ public final class UISceneController {
                     }
 
                     if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-                        this.mainCanvasRef.at.a(GlobalStatus.e(this.mainCanvasRef.l, var22), GlobalConfig.i, (byte) 2);
+                        this.mainCanvasRef.at.a(GlobalStatus.e(this.mainCanvasRef.shareSb, var22), GlobalConfig.font2, (byte) 2);
                         this.mainCanvasRef.at.a((byte) 1);
                         a(GlobalStatus.fE[var22], GlobalStatus.fF[var22], GlobalStatus.fG[var22], GlobalStatus.fH[var22]);
                         this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.fE[var22] + "_0"), GlobalStatus.fF[var22], GlobalStatus.fG[var22], GlobalStatus.fH[var22]);
@@ -10065,13 +10059,13 @@ public final class UISceneController {
                             this.E();
                             this.aE = this.mainCanvasRef.ar.g();
                         } else if (this.as == 1) {
-                            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"拍卖"}, false);
+                            LoadingPage.a(70 + o, 2 * GlobalConfig.font2_h + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + p, new String[]{"拍卖"}, false);
                         } else if (this.as == 2) {
-                            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"寄养"}, false);
+                            LoadingPage.a(70 + o, 2 * GlobalConfig.font2_h + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + p, new String[]{"寄养"}, false);
                         } else if (this.as == 4) {
-                            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"交易"}, false);
+                            LoadingPage.a(70 + o, 2 * GlobalConfig.font2_h + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + p, new String[]{"交易"}, false);
                         } else if (this.as == 5) {
-                            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"出售", "取消"}, false);
+                            LoadingPage.a(70 + o, 2 * GlobalConfig.font2_h + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + p, new String[]{"出售", "取消"}, false);
                         }
 
                         this.sceneSubState = 1;
@@ -10209,7 +10203,7 @@ public final class UISceneController {
                             }
 
                             if (LoadingPage.o == 8) {
-                                LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"列表", "开灵"}, false);
+                                LoadingPage.a(70 + o, 2 * GlobalConfig.font2_h + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + p, new String[]{"列表", "开灵"}, false);
                                 this.sceneSubState = 9;
                                 return;
                             }
@@ -10326,7 +10320,7 @@ public final class UISceneController {
                         if (var1 != 1073741824) {
                             if (var1 == 536870912) {
                                 this.mainCanvasRef.o();
-                                LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"拍卖"}, false);
+                                LoadingPage.a(70 + o, 2 * GlobalConfig.font2_h + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + p, new String[]{"拍卖"}, false);
                                 this.sceneSubState = 1;
                                 return;
                             }
@@ -10393,7 +10387,7 @@ public final class UISceneController {
                                     return;
                                 }
 
-                                LoadingPage.a((GlobalConfig.defaultWidth - GlobalConfig.i.stringWidth("操作") - 20) / 2, (GlobalConfig.defaultHigh - (GlobalConfig.j + 3) * 6) / 2, new String[]{"查看", "更换", "卸下", "升星", "洗炼", "附魔"}, true);
+                                LoadingPage.a((GlobalConfig.defaultWidth - GlobalConfig.font2.stringWidth("操作") - 20) / 2, (GlobalConfig.defaultHigh - (GlobalConfig.font2_h + 3) * 6) / 2, new String[]{"查看", "更换", "卸下", "升星", "洗炼", "附魔"}, true);
                                 this.sceneSubState = 8;
                             }
                         } else {
@@ -10634,9 +10628,9 @@ public final class UISceneController {
 
     public final void E() {
         if (GlobalStatus.fz[this.mainCanvasRef.ar.g()] == 0) {
-            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"喂养", "附魂", "学习", "继承", "出战", "状态", "改名", "配点", "技能", "装备", "炼化"}, false);
+            LoadingPage.a(70 + o, 2 * GlobalConfig.font2_h + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + p, new String[]{"喂养", "附魂", "学习", "继承", "出战", "状态", "改名", "配点", "技能", "装备", "炼化"}, false);
         } else {
-            LoadingPage.a(70 + o, 2 * GlobalConfig.j + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.j + p, new String[]{"喂养", "附魂", "学习", "继承", "休息", "状态", "改名", "配点", "技能", "装备", "炼化"}, false);
+            LoadingPage.a(70 + o, 2 * GlobalConfig.font2_h + 5 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + p, new String[]{"喂养", "附魂", "学习", "继承", "休息", "状态", "改名", "配点", "技能", "装备", "炼化"}, false);
         }
     }
 
@@ -10688,7 +10682,7 @@ public final class UISceneController {
                 if (this.aI != null && this.sceneSubState == 0) {
                     int var12 = 0;
                     int var6 = 0;
-                    var6 = (var6 = this.mainCanvasRef.ar.b() + 2 + (this.mainCanvasRef.ar.g() - this.mainCanvasRef.ar.h() + 1) * GlobalConfig.j) + 50 > this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() ? this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() - 50 : var6;
+                    var6 = (var6 = this.mainCanvasRef.ar.b() + 2 + (this.mainCanvasRef.ar.g() - this.mainCanvasRef.ar.h() + 1) * GlobalConfig.font2_h) + 50 > this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() ? this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() - 50 : var6;
                     var12 = this.mainCanvasRef.ar.a() + this.mainCanvasRef.ar.c() - 50 - 20;
                     LoadingPage.a(var1, 1009050, 159, var12, var6, 50, 50);
                     var1.setColor(16776960);
@@ -10726,25 +10720,25 @@ public final class UISceneController {
                                 this.mainCanvasRef.aq.a(30);
                                 this.mainCanvasRef.aq.a(var1);
                                 LoadingPage.a(var1, this.mainCanvasRef.aq.a + 5, this.mainCanvasRef.aq.b + 32, this.mainCanvasRef.aq.c - 11, 30, 1);
-                                LoadingPage.a(var1, (String) "宝石", (int) (this.mainCanvasRef.aq.a + 10), this.mainCanvasRef.aq.b + 35 + GlobalConfig.a(25), 20, 16776960, 0);
+                                LoadingPage.drawString(var1, (String) "宝石", (int) (this.mainCanvasRef.aq.a + 10), this.mainCanvasRef.aq.b + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
                             }
 
                             if (GlobalStatus.jM != null) {
                                 for (int var14 = 0; var14 < GlobalStatus.jH.length; ++var14) {
                                     if (n(GlobalStatus.jJ[var14]) == this.aq && GlobalStatus.jM[var14] != null) {
-                                        this.a(var1, this.mainCanvasRef.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:"), this.mainCanvasRef.aq.b + 37, 17, 17, GlobalStatus.jM[var14].length, 1);
+                                        this.a(var1, this.mainCanvasRef.aq.a + 10 + GlobalConfig.font2.stringWidth("宝石:"), this.mainCanvasRef.aq.b + 37, 17, 17, GlobalStatus.jM[var14].length, 1);
 
                                         for (byte var9 = 0; var9 < GlobalStatus.jM[var14].length; ++var9) {
                                             if (GlobalStatus.jM[var14][var9] <= -1) {
-                                                LoadingPage.a(var1, 125269879, 207, this.mainCanvasRef.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.aq.b + 39, 17, 17);
+                                                LoadingPage.a(var1, 125269879, 207, this.mainCanvasRef.aq.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.aq.b + 39, 17, 17);
                                             }
 
                                             if (GlobalStatus.jM[var14][var9] > 0) {
-                                                MainCanvas.pngUtil.a(var1, b(GlobalStatus.jM[var14][var9]), (int[]) null, (aj) null, 0, 0, this.mainCanvasRef.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.aq.b + 39, 0, 0);
+                                                MainCanvas.pngUtil.a(var1, b(GlobalStatus.jM[var14][var9]), (int[]) null, (aj) null, 0, 0, this.mainCanvasRef.aq.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.aq.b + 39, 0, 0);
                                             }
 
                                             var1.setColor(16776960);
-                                            var1.drawRect(this.mainCanvasRef.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.aq.b + 39, 17, 17);
+                                            var1.drawRect(this.mainCanvasRef.aq.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.aq.b + 39, 17, 17);
                                         }
                                     }
                                 }
@@ -10782,61 +10776,61 @@ public final class UISceneController {
     }
 
     private void W(int var1) {
-        GlobalConfig.clearStr(this.mainCanvasRef.l);
-        this.mainCanvasRef.l.append("名称：" + GlobalStatus.fB[var1] + '\t');
-        this.mainCanvasRef.l.append("星级:").append(GlobalStatus.gf[var1]).append('\t');
-        this.mainCanvasRef.l.append("种类：" + GlobalStatus.fC[var1] + '\t');
-        this.mainCanvasRef.l.append("级别：" + GlobalStatus.fD[var1] + '\t');
-        this.mainCanvasRef.l.append("经验：" + (GlobalStatus.fY[var1] - GlobalStatus.ga[var1]) + '/' + (GlobalStatus.fZ[var1] - GlobalStatus.ga[var1]) + '\t');
-        this.mainCanvasRef.l.append("生命：" + GlobalStatus.fI[var1] + '/' + GlobalStatus.fJ[var1] + '\t');
-        this.mainCanvasRef.l.append("内力：" + GlobalStatus.fK[var1] + '/' + GlobalStatus.fL[var1] + '\t');
-        this.mainCanvasRef.l.append("物攻：" + GlobalStatus.fM[var1] + '/' + GlobalStatus.fN[var1] + '\t');
-        this.mainCanvasRef.l.append("法攻：" + GlobalStatus.fO[var1] + '/' + GlobalStatus.fP[var1] + '\t');
-        this.mainCanvasRef.l.append("防御：" + GlobalStatus.fQ[var1] + '/' + GlobalStatus.fR[var1] + '\t');
-        this.mainCanvasRef.l.append("速度：" + GlobalStatus.fS[var1] + '\t');
-        this.mainCanvasRef.l.append("冰抗：" + GlobalStatus.fT[var1] + '\t');
-        this.mainCanvasRef.l.append("火抗：" + GlobalStatus.fU[var1] + '\t');
-        this.mainCanvasRef.l.append("雷抗：" + GlobalStatus.fV[var1] + '\t');
-        this.mainCanvasRef.l.append(GlobalStatus.fX[var1]);
+        GlobalConfig.clearStr(this.mainCanvasRef.shareSb);
+        this.mainCanvasRef.shareSb.append("名称：" + GlobalStatus.fB[var1] + '\t');
+        this.mainCanvasRef.shareSb.append("星级:").append(GlobalStatus.gf[var1]).append('\t');
+        this.mainCanvasRef.shareSb.append("种类：" + GlobalStatus.fC[var1] + '\t');
+        this.mainCanvasRef.shareSb.append("级别：" + GlobalStatus.fD[var1] + '\t');
+        this.mainCanvasRef.shareSb.append("经验：" + (GlobalStatus.fY[var1] - GlobalStatus.ga[var1]) + '/' + (GlobalStatus.fZ[var1] - GlobalStatus.ga[var1]) + '\t');
+        this.mainCanvasRef.shareSb.append("生命：" + GlobalStatus.fI[var1] + '/' + GlobalStatus.fJ[var1] + '\t');
+        this.mainCanvasRef.shareSb.append("内力：" + GlobalStatus.fK[var1] + '/' + GlobalStatus.fL[var1] + '\t');
+        this.mainCanvasRef.shareSb.append("物攻：" + GlobalStatus.fM[var1] + '/' + GlobalStatus.fN[var1] + '\t');
+        this.mainCanvasRef.shareSb.append("法攻：" + GlobalStatus.fO[var1] + '/' + GlobalStatus.fP[var1] + '\t');
+        this.mainCanvasRef.shareSb.append("防御：" + GlobalStatus.fQ[var1] + '/' + GlobalStatus.fR[var1] + '\t');
+        this.mainCanvasRef.shareSb.append("速度：" + GlobalStatus.fS[var1] + '\t');
+        this.mainCanvasRef.shareSb.append("冰抗：" + GlobalStatus.fT[var1] + '\t');
+        this.mainCanvasRef.shareSb.append("火抗：" + GlobalStatus.fU[var1] + '\t');
+        this.mainCanvasRef.shareSb.append("雷抗：" + GlobalStatus.fV[var1] + '\t');
+        this.mainCanvasRef.shareSb.append(GlobalStatus.fX[var1]);
         if (GlobalStatus.gc != null && GlobalStatus.gc[var1] != null && GlobalStatus.gc[var1].length > 0) {
             for (byte var2 = 0; var2 < GlobalStatus.gc[var1].length; ++var2) {
-                this.mainCanvasRef.l.append((var2 == 0 ? "技能：" : "，") + GlobalStatus.gc[var1][var2]);
+                this.mainCanvasRef.shareSb.append((var2 == 0 ? "技能：" : "，") + GlobalStatus.gc[var1][var2]);
                 if (var2 == GlobalStatus.gc[var1].length - 1) {
-                    this.mainCanvasRef.l.append("\t");
+                    this.mainCanvasRef.shareSb.append("\t");
                 }
             }
         }
 
         if (GlobalStatus.gh[var1] != null) {
-            this.mainCanvasRef.l.append("技能附魂:");
+            this.mainCanvasRef.shareSb.append("技能附魂:");
 
             for (int var3 = 0; var3 < GlobalStatus.gh[var1].length; ++var3) {
                 if (GlobalStatus.gh[var1][var3] != null) {
-                    this.mainCanvasRef.l.append(GlobalStatus.gh[var1][var3]);
-                    this.mainCanvasRef.l.append(",");
+                    this.mainCanvasRef.shareSb.append(GlobalStatus.gh[var1][var3]);
+                    this.mainCanvasRef.shareSb.append(",");
                 }
             }
 
-            this.mainCanvasRef.l.append('\t');
+            this.mainCanvasRef.shareSb.append('\t');
         }
 
         if (GlobalStatus.gl[var1] != null) {
-            this.mainCanvasRef.l.append("状态附魂:");
+            this.mainCanvasRef.shareSb.append("状态附魂:");
 
             for (int var4 = 0; var4 < GlobalStatus.gl[var1].length; ++var4) {
                 if (GlobalStatus.gl[var1][var4] != null) {
-                    this.mainCanvasRef.l.append(GlobalStatus.gl[var1][var4]);
-                    this.mainCanvasRef.l.append(",");
+                    this.mainCanvasRef.shareSb.append(GlobalStatus.gl[var1][var4]);
+                    this.mainCanvasRef.shareSb.append(",");
                 }
             }
 
-            this.mainCanvasRef.l.append('\t');
+            this.mainCanvasRef.shareSb.append('\t');
         }
 
         this.mainCanvasRef.aq.j();
         this.mainCanvasRef.aq.a("宠物属性");
         this.mainCanvasRef.aq.a(true);
-        this.mainCanvasRef.at.a(this.mainCanvasRef.l.toString(), GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.a(this.mainCanvasRef.shareSb.toString(), GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.sceneStateShadow = this.currentSceneModeId = 95;
@@ -10874,9 +10868,9 @@ public final class UISceneController {
         this.mainCanvasRef.as.a((byte) 1);
         this.mainCanvasRef.aq.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
         if (GlobalStatus.bY != null && GlobalStatus.bY.length > 0) {
-            this.mainCanvasRef.at.a(Y((this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a(Y((this.ar << 3) + this.aq), GlobalConfig.font2, (byte) 1);
         } else {
-            this.mainCanvasRef.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
         }
 
         this.mainCanvasRef.at.a((byte) 1);
@@ -10981,9 +10975,9 @@ public final class UISceneController {
 
     private void aG() {
         if (GlobalStatus.bY != null && (this.ar << 3) + this.aq < GlobalStatus.bY.length) {
-            this.mainCanvasRef.at.a(Y((this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a(Y((this.ar << 3) + this.aq), GlobalConfig.font2, (byte) 1);
         } else {
-            this.mainCanvasRef.at.a("没有商品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有商品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
         }
 
         this.mainCanvasRef.at.a((byte) 1);
@@ -11040,8 +11034,8 @@ public final class UISceneController {
                 LoadingPage.a(var1, GlobalStatus.bZ[var9], GlobalStatus.cp[var9], var4 + this.aq * (x.b + var2) + x.b / 2, var5 + this.ar * (x.b + var3) + x.b / 2);
             }
 
-            this.a(var1, GlobalStatus.ap, GlobalConfig.defaultWidth / 2 + x.b, this.mainCanvasRef.au.a() + GlobalConfig.a(MainCanvas.E.c));
-            MainCanvas.pngUtil.a(var1, w, (int[]) null, (aj) null, 0, 0, GlobalConfig.a(GlobalConfig.defaultWidth, this.mainCanvasRef.l.toString()) - x.b, this.mainCanvasRef.au.a() + 4, 0, 0);
+            this.a(var1, GlobalStatus.ap, GlobalConfig.defaultWidth / 2 + x.b, this.mainCanvasRef.au.a() + GlobalConfig.getCzjz(MainCanvas.E.c));
+            MainCanvas.pngUtil.a(var1, w, (int[]) null, (aj) null, 0, 0, GlobalConfig.getSpjzPx(GlobalConfig.defaultWidth, this.mainCanvasRef.shareSb.toString()) - x.b, this.mainCanvasRef.au.a() + 4, 0, 0);
         }
 
         if (this.sceneSubState == 2) {
@@ -11051,8 +11045,8 @@ public final class UISceneController {
     }
 
     private void a(Graphics var1, long var2, int var4, int var5) {
-        GlobalConfig.a(this.mainCanvasRef.l, var2);
-        LoadingPage.a(var1, (String) this.mainCanvasRef.l.toString(), (int) var4, var5, 17, 16776917, 0);
+        GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, var2);
+        LoadingPage.drawString(var1, (String) this.mainCanvasRef.shareSb.toString(), (int) var4, var5, 17, 16776917, 0);
     }
 
     public static String a(StringBuffer var0, long var1) {
@@ -11177,9 +11171,9 @@ public final class UISceneController {
         this.aq = this.aF;
         this.ar = this.aG;
         if (GlobalStatus.ct != null && GlobalStatus.ct.length > 0) {
-            this.mainCanvasRef.at.a(GlobalStatus.a(this.currentSceneModeId, this.mainCanvasRef.l, (this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a(GlobalStatus.a(this.currentSceneModeId, this.mainCanvasRef.shareSb, (this.ar << 3) + this.aq), GlobalConfig.font2, (byte) 1);
         } else {
-            this.mainCanvasRef.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
         }
 
         this.mainCanvasRef.at.a((byte) 1);
@@ -11275,7 +11269,7 @@ public final class UISceneController {
             } else if (GlobalStatus.ct != null && (this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq < GlobalStatus.ct.length) {
                 if (this.as == 0) {
                     if (GlobalStatus.a(GlobalStatus.cv[(this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq])) {
-                        LoadingPage.a(3 + this.aq * 17 + 8 + o, 2 * GlobalConfig.j + 13 + this.ar * 17 + 17 + p, new String[]{"查看", "取出"}, false);
+                        LoadingPage.a(3 + this.aq * 17 + 8 + o, 2 * GlobalConfig.font2_h + 13 + this.ar * 17 + 17 + p, new String[]{"查看", "取出"}, false);
                         this.sceneSubState = 4;
                         return;
                     }
@@ -11366,9 +11360,9 @@ public final class UISceneController {
 
     public final void G() {
         if (GlobalStatus.ct != null && (this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq < GlobalStatus.ct.length) {
-            this.mainCanvasRef.at.a(GlobalStatus.a(this.currentSceneModeId, this.mainCanvasRef.l, (this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a(GlobalStatus.a(this.currentSceneModeId, this.mainCanvasRef.shareSb, (this.mainCanvasRef.as.a << 5) + (this.ar << 3) + this.aq), GlobalConfig.font2, (byte) 1);
         } else {
-            this.mainCanvasRef.at.a("没有商品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.a("没有商品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
         }
 
         this.mainCanvasRef.at.a((byte) 1);
@@ -11482,7 +11476,7 @@ public final class UISceneController {
                 this.mainCanvasRef.e("物品关键字搜索");
             } else {
                 this.aK = "";
-                this.aL = GlobalConfig.P[this.aU - 1];
+                this.aL = GlobalConfig.ZhuangBeiLeiXing[this.aU - 1];
                 this.aM = 1;
                 this.aN = 0;
                 this.a(this.aK, this.aL, this.aM, this.aN);
@@ -11528,7 +11522,7 @@ public final class UISceneController {
         }
 
         if (GlobalStatus.dY != null && GlobalStatus.dY.length > 0) {
-            this.mainCanvasRef.ar.a(b(GlobalStatus.ec), a(this.mainCanvasRef.l, GlobalStatus.dZ, GlobalStatus.eb), this.a(GlobalStatus.eg), (String[]) null);
+            this.mainCanvasRef.ar.a(b(GlobalStatus.ec), a(this.mainCanvasRef.shareSb, GlobalStatus.dZ, GlobalStatus.eb), this.a(GlobalStatus.eg), (String[]) null);
             if (this.sceneStateShadow == 64) {
                 this.mainCanvasRef.ar.a(this.aA, this.aq);
                 this.mainCanvasRef.as.a = this.aH;
@@ -11560,8 +11554,8 @@ public final class UISceneController {
         (var2 = new StringBuffer()).append(GlobalStatus.dZ[var1]);
         var2.append("X" + GlobalStatus.eb[var1]);
         var2.append("（");
-        GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.eg[var1]);
-        var2.append(this.mainCanvasRef.l.toString() + "）");
+        GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.eg[var1]);
+        var2.append(this.mainCanvasRef.shareSb.toString() + "）");
         var2.append('\t');
         if (GlobalStatus.ed[var1] != null && GlobalStatus.ed[var1].length() > 0) {
             var2.append(GlobalStatus.ed[var1]);
@@ -11642,7 +11636,7 @@ public final class UISceneController {
                             this.sceneSubState = 0;
                         }
                     } else {
-                        GlobalConfig.clearStr(this.mainCanvasRef.l);
+                        GlobalConfig.clearStr(this.mainCanvasRef.shareSb);
                         byte[] var4;
                         if ((var4 = NetPayloadBuilder.l((short) 4154, GlobalStatus.ad, (int) GlobalStatus.dY[this.mainCanvasRef.ar.g()])) == null) {
                             this.mainCanvasRef.processException("获取上传指令数据错误!");
@@ -11662,7 +11656,7 @@ public final class UISceneController {
                         if (var1 != 8 && var1 != 2 && var1 != 516 && var1 != 518) {
                             if (var1 == 1024) {
                                 this.aV = this.mainCanvasRef.as.a;
-                                this.aL = this.aL.equals("") ? this.aL : GlobalConfig.P[this.aU - 1];
+                                this.aL = this.aL.equals("") ? this.aL : GlobalConfig.ZhuangBeiLeiXing[this.aU - 1];
                                 --this.aM;
                                 if (this.aM < 1) {
                                     this.aM = 1;
@@ -11680,7 +11674,7 @@ public final class UISceneController {
                             }
 
                             this.aV = this.mainCanvasRef.as.a;
-                            this.aL = this.aL.equals("") ? this.aL : GlobalConfig.P[this.aU - 1];
+                            this.aL = this.aL.equals("") ? this.aL : GlobalConfig.ZhuangBeiLeiXing[this.aU - 1];
                             if (GlobalStatus.ei != 1) {
                                 return;
                             }
@@ -11688,7 +11682,7 @@ public final class UISceneController {
                             ++this.aM;
                         } else {
                             this.aV = this.mainCanvasRef.as.a;
-                            this.aL = this.aL.equals("") ? this.aL : GlobalConfig.P[this.aU - 1];
+                            this.aL = this.aL.equals("") ? this.aL : GlobalConfig.ZhuangBeiLeiXing[this.aU - 1];
                             this.aM = 1;
                         }
 
@@ -11709,7 +11703,7 @@ public final class UISceneController {
                         var3 = new String[]{"购买"};
                     }
 
-                    LoadingPage.a(o + 50, 2 * GlobalConfig.j + 15 + p + this.mainCanvasRef.ar.i() * GlobalConfig.j, var3, false);
+                    LoadingPage.a(o + 50, 2 * GlobalConfig.font2_h + 15 + p + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h, var3, false);
                     this.sceneSubState = 1;
                     return;
                 }
@@ -11755,7 +11749,7 @@ public final class UISceneController {
                 this.mainCanvasRef.e("宠物关键字搜索");
             } else {
                 this.aK = "";
-                this.aL = GlobalConfig.O[this.aU - 1];
+                this.aL = GlobalConfig.LightTag[this.aU - 1];
                 this.aM = 1;
                 this.aN = 0;
                 this.b(this.aK, this.aL, this.aM, this.aN);
@@ -11778,7 +11772,7 @@ public final class UISceneController {
         }
 
         this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.gt, (String[]) null, this.a(GlobalStatus.gv));
-        this.mainCanvasRef.at.a(GlobalStatus.g(this.mainCanvasRef.l, 0), GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.a(GlobalStatus.g(this.mainCanvasRef.shareSb, 0), GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.at.a((byte) 1);
         this.mainCanvasRef.au.a("购买");
         this.mainCanvasRef.au.a(true);
@@ -11813,7 +11807,7 @@ public final class UISceneController {
 
                 PngUtil.a(this.aI, this.mainCanvasRef.ak);
                 if (var1 == 1 || var1 == 4 || var1 == 514 || var1 == 520) {
-                    this.mainCanvasRef.at.a(GlobalStatus.g(this.mainCanvasRef.l, this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 2);
+                    this.mainCanvasRef.at.a(GlobalStatus.g(this.mainCanvasRef.shareSb, this.mainCanvasRef.ar.g()), GlobalConfig.font2, (byte) 2);
                     this.mainCanvasRef.at.a((byte) 1);
                     a(GlobalStatus.gw[this.mainCanvasRef.ar.g()], GlobalStatus.gx[this.mainCanvasRef.ar.g()], GlobalStatus.gy[this.mainCanvasRef.ar.g()], GlobalStatus.gz[this.mainCanvasRef.ar.g()]);
                     this.aI = MainCanvas.ah.a(String.valueOf(GlobalStatus.gw[this.mainCanvasRef.ar.g()] + "_0"), GlobalStatus.gx[this.mainCanvasRef.ar.g()], GlobalStatus.gy[this.mainCanvasRef.ar.g()], GlobalStatus.gz[this.mainCanvasRef.ar.g()]);
@@ -11822,7 +11816,7 @@ public final class UISceneController {
 
                 if (var1 == 8 || var1 == 2 || var1 == 516 || var1 == 518) {
                     this.aV = this.mainCanvasRef.as.a;
-                    this.aL = this.aL.equals("") ? this.aL : GlobalConfig.O[this.aU - 1];
+                    this.aL = this.aL.equals("") ? this.aL : GlobalConfig.LightTag[this.aU - 1];
                     this.aM = 1;
                     this.aN = this.mainCanvasRef.as.a;
                     this.b(this.aK, this.aL, this.aM, this.aN);
@@ -11832,7 +11826,7 @@ public final class UISceneController {
 
                 if (var1 == 1024) {
                     this.aV = this.mainCanvasRef.as.a;
-                    this.aL = this.aL.equals("") ? this.aL : GlobalConfig.O[this.aU - 1];
+                    this.aL = this.aL.equals("") ? this.aL : GlobalConfig.LightTag[this.aU - 1];
                     --this.aM;
                     if (this.aM < 1) {
                         this.aM = 1;
@@ -11847,7 +11841,7 @@ public final class UISceneController {
 
                 if (var1 == 2048) {
                     this.aV = this.mainCanvasRef.as.a;
-                    this.aL = this.aL.equals("") ? this.aL : GlobalConfig.O[this.aU - 1];
+                    this.aL = this.aL.equals("") ? this.aL : GlobalConfig.LightTag[this.aU - 1];
                     if (GlobalStatus.ei == 1) {
                         ++this.aM;
                         this.aN = this.mainCanvasRef.as.a;
@@ -11860,7 +11854,7 @@ public final class UISceneController {
                 }
 
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                    LoadingPage.a(o + 50, 2 * GlobalConfig.j + 15 + p + this.mainCanvasRef.ar.i() * GlobalConfig.j, new String[]{"购买"}, false);
+                    LoadingPage.a(o + 50, 2 * GlobalConfig.font2_h + 15 + p + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h, new String[]{"购买"}, false);
                     this.sceneSubState = 1;
                     return;
                 }
@@ -11886,7 +11880,7 @@ public final class UISceneController {
             } else if (this.sceneSubState == 2) {
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        LoadingPage.a(o + 50, 2 * GlobalConfig.j + 15 + p + this.mainCanvasRef.ar.i() * GlobalConfig.j, new String[]{"购买"}, false);
+                        LoadingPage.a(o + 50, 2 * GlobalConfig.font2_h + 15 + p + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h, new String[]{"购买"}, false);
                         this.sceneSubState = 1;
                     }
                 } else {
@@ -11936,7 +11930,7 @@ public final class UISceneController {
 
             if (this.aI != null && this.sceneSubState == 0) {
                 int var5;
-                var5 = (var5 = this.mainCanvasRef.ar.b() + 2 + (this.mainCanvasRef.ar.g() - this.mainCanvasRef.ar.h() + 1) * GlobalConfig.j) + 50 > this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() ? this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() - 50 : var5;
+                var5 = (var5 = this.mainCanvasRef.ar.b() + 2 + (this.mainCanvasRef.ar.g() - this.mainCanvasRef.ar.h() + 1) * GlobalConfig.font2_h) + 50 > this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() ? this.mainCanvasRef.ar.b() + this.mainCanvasRef.ar.d() - 50 : var5;
                 int var7 = this.mainCanvasRef.ar.a() + this.mainCanvasRef.ar.c() - 50 - 20;
                 LoadingPage.a(var1, 1009050, 159, var7, var5, 50, 50);
                 var1.setColor(16776960);
@@ -12047,7 +12041,7 @@ public final class UISceneController {
 
         this.aR = false;
         this.aM();
-        LoadingPage.a(aP.size(), 4, this.mainCanvasRef.as.b + 6, GlobalConfig.defaultWidth - 8, GlobalConfig.defaultHigh - this.mainCanvasRef.as.b - 6, (GlobalConfig.defaultHigh - this.mainCanvasRef.as.b - 6) / GlobalConfig.j, false);
+        LoadingPage.a(aP.size(), 4, this.mainCanvasRef.as.b + 6, GlobalConfig.defaultWidth - 8, GlobalConfig.defaultHigh - this.mainCanvasRef.as.b - 6, (GlobalConfig.defaultHigh - this.mainCanvasRef.as.b - 6) / GlobalConfig.font2_h, false);
         this.cr = new int[aP.size()][4];
         this.sceneSubState = 1;
         this.mainCanvasRef.aq.j();
@@ -12081,7 +12075,7 @@ public final class UISceneController {
         }
 
         this.cr = new int[aP.size()][4];
-        LoadingPage.a(aP.size(), 4, this.mainCanvasRef.as.b + 6, GlobalConfig.defaultWidth - 8, GlobalConfig.defaultHigh - this.mainCanvasRef.as.b - 6, (GlobalConfig.defaultHigh - this.mainCanvasRef.as.b - 6) / GlobalConfig.j, false);
+        LoadingPage.a(aP.size(), 4, this.mainCanvasRef.as.b + 6, GlobalConfig.defaultWidth - 8, GlobalConfig.defaultHigh - this.mainCanvasRef.as.b - 6, (GlobalConfig.defaultHigh - this.mainCanvasRef.as.b - 6) / GlobalConfig.font2_h, false);
         if (this.cp == this.mainCanvasRef.as.a) {
             LoadingPage.w = this.cn;
             LoadingPage.z = this.co;
@@ -12318,7 +12312,7 @@ public final class UISceneController {
 
                         if (LoadingPage.o == 3) {
                             if (GlobalStatus.bs == -1) {
-                                LoadingPage.a(LoadingPage.r + 65 + o, 2 * GlobalConfig.j + 20 + LoadingPage.w * GlobalConfig.j + p, new String[]{"跟随", "自由"}, false);
+                                LoadingPage.a(LoadingPage.r + 65 + o, 2 * GlobalConfig.font2_h + 20 + LoadingPage.w * GlobalConfig.font2_h + p, new String[]{"跟随", "自由"}, false);
                                 this.sceneSubState = 5;
                                 return;
                             }
@@ -12328,7 +12322,7 @@ public final class UISceneController {
                         }
 
                         if (LoadingPage.o == 4) {
-                            LoadingPage.a(LoadingPage.r + 65 + o, 2 * GlobalConfig.j + 20 + LoadingPage.w * GlobalConfig.j + p, new String[]{"物品", "宠物"}, false);
+                            LoadingPage.a(LoadingPage.r + 65 + o, 2 * GlobalConfig.font2_h + 20 + LoadingPage.w * GlobalConfig.font2_h + p, new String[]{"物品", "宠物"}, false);
                             this.sceneSubState = 6;
                             return;
                         }
@@ -12378,7 +12372,7 @@ public final class UISceneController {
 
                             if (LoadingPage.o == 4) {
                                 if (GlobalStatus.bs == -1) {
-                                    LoadingPage.a(LoadingPage.r + 65 + o, 2 * GlobalConfig.j + 20 + LoadingPage.w * GlobalConfig.j + p, new String[]{"跟随", "自由"}, false);
+                                    LoadingPage.a(LoadingPage.r + 65 + o, 2 * GlobalConfig.font2_h + 20 + LoadingPage.w * GlobalConfig.font2_h + p, new String[]{"跟随", "自由"}, false);
                                     this.sceneSubState = 5;
                                     return;
                                 }
@@ -12388,7 +12382,7 @@ public final class UISceneController {
                             }
 
                             if (LoadingPage.o == 5) {
-                                LoadingPage.a(LoadingPage.r + 65 + o, 2 * GlobalConfig.j + 20 + LoadingPage.w * GlobalConfig.j + p, new String[]{"物品", "宠物"}, false);
+                                LoadingPage.a(LoadingPage.r + 65 + o, 2 * GlobalConfig.font2_h + 20 + LoadingPage.w * GlobalConfig.font2_h + p, new String[]{"物品", "宠物"}, false);
                                 this.sceneSubState = 6;
                                 return;
                             }
@@ -12593,7 +12587,7 @@ public final class UISceneController {
             for (int var2 = 0; var2 < ck.size(); ++var2) {
                 ce var6 = (ce) ck.elementAt(var2);
                 String[] var1;
-                if ((var1 = LoadingPage.a("[" + var6.d + "]" + var6.e, GlobalConfig.i, GlobalConfig.defaultWidth - 20)) != null && var1.length > 0) {
+                if ((var1 = LoadingPage.a("[" + var6.d + "]" + var6.e, GlobalConfig.font2, GlobalConfig.defaultWidth - 20)) != null && var1.length > 0) {
                     for (int var3 = 0; var3 < var1.length; ++var3) {
                         aP.addElement(new b(var1[var3], LoadingPage.n[var6.a]));
                     }
@@ -12611,7 +12605,7 @@ public final class UISceneController {
         for (int var3 = 0; var3 < ck.size(); ++var3) {
             String[] var2;
             ce var5;
-            if ((var5 = (ce) ck.elementAt(var3)).b == var0 && (var2 = LoadingPage.a("[" + var5.d + "]" + var5.e, GlobalConfig.i, GlobalConfig.defaultWidth - 20)) != null && var2.length > 0) {
+            if ((var5 = (ce) ck.elementAt(var3)).b == var0 && (var2 = LoadingPage.a("[" + var5.d + "]" + var5.e, GlobalConfig.font2, GlobalConfig.defaultWidth - 20)) != null && var2.length > 0) {
                 for (int var4 = 0; var4 < var2.length; ++var4) {
                     aP.addElement(new b(var2[var4], LoadingPage.n[var5.a]));
                 }
@@ -12626,9 +12620,9 @@ public final class UISceneController {
                 if (LoadingPage.w == var2) {
                     LoadingPage.a(var1, 9);
                     if (LoadingPage.w >= LoadingPage.x) {
-                        LoadingPage.a(var1, 873078, 191, LoadingPage.r + 2, LoadingPage.s + (LoadingPage.x - 1) * GlobalConfig.j, LoadingPage.t - 20, GlobalConfig.j);
+                        LoadingPage.a(var1, 873078, 191, LoadingPage.r + 2, LoadingPage.s + (LoadingPage.x - 1) * GlobalConfig.font2_h, LoadingPage.t - 20, GlobalConfig.font2_h);
                     } else {
-                        LoadingPage.a(var1, 873078, 191, LoadingPage.r + 2, LoadingPage.s + LoadingPage.w * GlobalConfig.j, LoadingPage.t - 20, GlobalConfig.j);
+                        LoadingPage.a(var1, 873078, 191, LoadingPage.r + 2, LoadingPage.s + LoadingPage.w * GlobalConfig.font2_h, LoadingPage.t - 20, GlobalConfig.font2_h);
                     }
                 }
 
@@ -12637,7 +12631,7 @@ public final class UISceneController {
                 int var10002 = LoadingPage.r + 2;
                 int var10003 = LoadingPage.s + (var2 - LoadingPage.z) * var1.getFont().getHeight();
                 int var10004 = LoadingPage.t - 20;
-                int var8 = GlobalConfig.j;
+                int var8 = GlobalConfig.font2_h;
                 int var7 = var10004;
                 int var6 = var10003;
                 int var5 = var10002;
@@ -12649,11 +12643,11 @@ public final class UISceneController {
                 }
             }
 
-            LoadingPage.a(var1, GlobalConfig.defaultWidth - 5 - MainCanvas.C.b, GlobalConfig.j + 10, LoadingPage.u - 20, LoadingPage.y, LoadingPage.z, LoadingPage.v, LoadingPage.x);
+            LoadingPage.a(var1, GlobalConfig.defaultWidth - 5 - MainCanvas.C.b, GlobalConfig.font2_h + 10, LoadingPage.u - 20, LoadingPage.y, LoadingPage.z, LoadingPage.v, LoadingPage.x);
             int var10001 = GlobalConfig.defaultWidth - 5 - MainCanvas.C.b;
-            int var15 = GlobalConfig.j + 10;
+            int var15 = GlobalConfig.font2_h + 10;
             int var16 = GlobalConfig.defaultWidth - 5 - MainCanvas.C.b;
-            int var17 = GlobalConfig.j - 10 + LoadingPage.u - MainCanvas.D.c;
+            int var17 = GlobalConfig.font2_h - 10 + LoadingPage.u - MainCanvas.D.c;
             short var10 = MainCanvas.D.c;
             short var14 = MainCanvas.D.b;
             int var13 = var17;
@@ -12800,9 +12794,9 @@ public final class UISceneController {
                         this.mainCanvasRef.a((String) "请输入好友昵称", (int) 0);
                     } else if (GlobalStatus.dK != null) {
                         if (GlobalStatus.dM[this.mainCanvasRef.ar.g() - 1] == 0) {
-                            LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
+                            LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
                         } else if (GlobalStatus.dM[this.mainCanvasRef.ar.g() - 1] == 1) {
-                            LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
+                            LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
                         }
 
                         this.sceneSubState = 1;
@@ -12810,7 +12804,7 @@ public final class UISceneController {
                 }
             } else if (this.mainCanvasRef.as.a == 2 && (var1 == 268435456 || var1 == 1073741824 || var1 == 517) && GlobalStatus.dK != null) {
                 if (GlobalStatus.dM[this.mainCanvasRef.ar.g()] == 0 || GlobalStatus.dM[this.mainCanvasRef.ar.g()] == 1) {
-                    LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"删除", "加为好友"}, true);
+                    LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"删除", "加为好友"}, true);
                 }
 
                 this.sceneSubState = 4;
@@ -12846,26 +12840,26 @@ public final class UISceneController {
                 }
 
                 if (LoadingPage.o == 1) {
-                    LoadingPage.a(0, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"查看", "道具", "成就"}, true);
+                    LoadingPage.a(0, 2 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "道具", "成就"}, true);
                     this.sceneSubState = 9;
                     return;
                 }
 
                 if (LoadingPage.o == 2) {
-                    LoadingPage.a(0, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"确认", "取消"}, true);
+                    LoadingPage.a(0, 2 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"确认", "取消"}, true);
                     this.sceneSubState = 2;
                     return;
                 }
 
                 if (LoadingPage.o == 3) {
-                    LoadingPage.a(0, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"确认", "取消"}, true);
+                    LoadingPage.a(0, 2 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"确认", "取消"}, true);
                     this.sceneSubState = 3;
                     return;
                 }
 
                 if (LoadingPage.o == 4) {
                     if (GlobalStatus.bs == -1) {
-                        LoadingPage.a(65 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.j + GlobalConfig.g, new String[]{"自由", "跟随"}, false);
+                        LoadingPage.a(65 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"自由", "跟随"}, false);
                         this.sceneSubState = 6;
                         return;
                     }
@@ -12875,7 +12869,7 @@ public final class UISceneController {
                 }
 
                 if (LoadingPage.o == 5) {
-                    LoadingPage.a(65 + GlobalConfig.f, 2 * GlobalConfig.j + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.j + GlobalConfig.g, new String[]{"物品", "宠物"}, false);
+                    LoadingPage.a(65 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"物品", "宠物"}, false);
                     this.sceneSubState = 7;
                     return;
                 }
@@ -12913,7 +12907,7 @@ public final class UISceneController {
                     }
                 } else {
                     if (LoadingPage.o == 0) {
-                        LoadingPage.a(0, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"确认", "取消"}, true);
+                        LoadingPage.a(0, 2 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"确认", "取消"}, true);
                         this.sceneSubState = 5;
                         return;
                     }
@@ -12927,7 +12921,7 @@ public final class UISceneController {
                 LoadingPage.b(var1);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912 && (GlobalStatus.dM[this.mainCanvasRef.ar.g()] == 0 || GlobalStatus.dM[this.mainCanvasRef.ar.g()] == 1)) {
-                        LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"删除", "加为好友"}, true);
+                        LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"删除", "加为好友"}, true);
                         this.sceneSubState = 4;
                         return;
                     }
@@ -12942,7 +12936,7 @@ public final class UISceneController {
                     MainCanvas.netUtils.sendPacket(var6);
                     this.mainCanvasRef.a((String) null);
                 } else if (LoadingPage.o == 1 && (GlobalStatus.dM[this.mainCanvasRef.ar.g()] == 0 || GlobalStatus.dM[this.mainCanvasRef.ar.g()] == 1)) {
-                    LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"删除", "加为好友"}, true);
+                    LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"删除", "加为好友"}, true);
                     this.sceneSubState = 4;
                     return;
                 }
@@ -13029,9 +13023,9 @@ public final class UISceneController {
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
                     if (GlobalStatus.dM[this.mainCanvasRef.ar.g() - 1] == 0) {
-                        LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
+                        LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
                     } else if (GlobalStatus.dM[this.mainCanvasRef.ar.g() - 1] == 1) {
-                        LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
+                        LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
                     }
 
                     LoadingPage.o = this.mainCanvasRef.aw;
@@ -13056,9 +13050,9 @@ public final class UISceneController {
                 }
             } else if (LoadingPage.o == 1) {
                 if (GlobalStatus.dM[this.mainCanvasRef.ar.g() - 1] == 0) {
-                    LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
+                    LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单"}, true);
                 } else if (GlobalStatus.dM[this.mainCanvasRef.ar.g() - 1] == 1) {
-                    LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
+                    LoadingPage.a(GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"聊天", "状态", "删除", "黑名单", "组队", "交易", "参观住宅", "邀请入帮"}, true);
                 }
 
                 LoadingPage.o = this.mainCanvasRef.aw;
@@ -13101,7 +13095,7 @@ public final class UISceneController {
                                 if (GlobalStatus.dU == 26 && GlobalStatus.dS[2].equals("注册")) {
                                     c_3.a(true);
                                 } else if (GlobalStatus.dU == 28 && GlobalStatus.dS[2].equals("下载")) {
-                                    this.mainCanvasRef.c(GlobalStatus.dS[1]);
+                                    this.mainCanvasRef.openWebView(GlobalStatus.dS[1]);
                                 } else {
                                     this.mainCanvasRef.a((String) null);
                                 }
@@ -13182,9 +13176,9 @@ public final class UISceneController {
                     }
 
                     if (GlobalStatus.bs == 1) {
-                        LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"踢除", "任命", "解散", "群聊", "私聊", "查看", GlobalStatus.s == 0 ? "自由" : "跟随"}, true);
+                        LoadingPage.a(0, 2 * GlobalConfig.font2_h + 10 + p, new String[]{"踢除", "任命", "解散", "群聊", "私聊", "查看", GlobalStatus.s == 0 ? "自由" : "跟随"}, true);
                     } else {
-                        LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"群聊", "私聊", "离开", "查看"}, true);
+                        LoadingPage.a(0, 2 * GlobalConfig.font2_h + 10 + p, new String[]{"群聊", "私聊", "离开", "查看"}, true);
                     }
 
                     this.sceneSubState = 1;
@@ -13208,21 +13202,21 @@ public final class UISceneController {
                     }
                 } else if (GlobalStatus.bs == 1) {
                     if (LoadingPage.o == 0) {
-                        LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"确认", "取消"}, true);
+                        LoadingPage.a(0, 2 * GlobalConfig.font2_h + 10 + p, new String[]{"确认", "取消"}, true);
                         this.bz = 0;
                         this.sceneSubState = 2;
                         return;
                     }
 
                     if (LoadingPage.o == 1) {
-                        LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"确认", "取消"}, true);
+                        LoadingPage.a(0, 2 * GlobalConfig.font2_h + 10 + p, new String[]{"确认", "取消"}, true);
                         this.bz = 1;
                         this.sceneSubState = 2;
                         return;
                     }
 
                     if (LoadingPage.o == 2) {
-                        LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"确认", "取消"}, true);
+                        LoadingPage.a(0, 2 * GlobalConfig.font2_h + 10 + p, new String[]{"确认", "取消"}, true);
                         this.bz = 2;
                         this.sceneSubState = 2;
                         return;
@@ -13243,7 +13237,7 @@ public final class UISceneController {
                     }
 
                     if (LoadingPage.o == 5) {
-                        LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"属性", "装备"}, true);
+                        LoadingPage.a(0, 2 * GlobalConfig.font2_h + 10 + p, new String[]{"属性", "装备"}, true);
                         this.sceneSubState = 3;
                         return;
                     }
@@ -13283,14 +13277,14 @@ public final class UISceneController {
                     }
 
                     if (LoadingPage.o == 2) {
-                        LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"确认", "取消"}, true);
+                        LoadingPage.a(0, 2 * GlobalConfig.font2_h + 10 + p, new String[]{"确认", "取消"}, true);
                         this.bz = 2;
                         this.sceneSubState = 2;
                         return;
                     }
 
                     if (LoadingPage.o == 3) {
-                        LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"属性", "装备"}, true);
+                        LoadingPage.a(0, 2 * GlobalConfig.font2_h + 10 + p, new String[]{"属性", "装备"}, true);
                         this.bz = 3;
                         this.sceneSubState = 3;
                         return;
@@ -13381,7 +13375,7 @@ public final class UISceneController {
             } else if (this.sceneSubState == 4) {
                 this.T.b(var1);
                 if (var1 == 268435456 || var1 == 536870912) {
-                    LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"属性", "装备"}, true);
+                    LoadingPage.a(0, 2 * GlobalConfig.font2_h + 10 + p, new String[]{"属性", "装备"}, true);
                     this.al = null;
                     this.T.j();
                     this.sceneSubState = 3;
@@ -13391,7 +13385,7 @@ public final class UISceneController {
                 this.a(GlobalStatus.cJ);
                 this.g(var1);
                 if (var1 == 536870912) {
-                    LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"属性", "装备"}, true);
+                    LoadingPage.a(0, 2 * GlobalConfig.font2_h + 10 + p, new String[]{"属性", "装备"}, true);
                     if (GlobalStatus.cJ != null) {
                         GlobalStatus.o();
                     }
@@ -13407,9 +13401,9 @@ public final class UISceneController {
 
     private void an(int var1) {
         if (GlobalStatus.bs == 1) {
-            LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"踢除", "任命", "解散", "群聊", "私聊", "查看", GlobalStatus.s == 0 ? "自由" : "跟随"}, true);
+            LoadingPage.a(0, 2 * GlobalConfig.font2_h + 10 + p, new String[]{"踢除", "任命", "解散", "群聊", "私聊", "查看", GlobalStatus.s == 0 ? "自由" : "跟随"}, true);
         } else {
-            LoadingPage.a(0, 2 * GlobalConfig.j + 10 + p, new String[]{"群聊", "私聊", "离开", "查看"}, true);
+            LoadingPage.a(0, 2 * GlobalConfig.font2_h + 10 + p, new String[]{"群聊", "私聊", "离开", "查看"}, true);
         }
 
         LoadingPage.o = var1;
@@ -13473,18 +13467,18 @@ public final class UISceneController {
                                         if (this.ar == 1) {
                                             if (GlobalStatus.fh == null || GlobalStatus.fh != null && this.aO()) {
                                                 if (GlobalStatus.fi != null && GlobalStatus.a((byte) 0, this.mainCanvasRef.ax)) {
-                                                    LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"查看", "放入", "金钱", "锁定", "交易", "退出"}, false);
+                                                    LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.font2_h + 35, new String[]{"查看", "放入", "金钱", "锁定", "交易", "退出"}, false);
                                                 } else {
-                                                    LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"放入", "金钱", "锁定", "交易", "退出"}, false);
+                                                    LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.font2_h + 35, new String[]{"放入", "金钱", "锁定", "交易", "退出"}, false);
                                                 }
 
                                                 LoadingPage.o = 0;
                                                 this.sceneSubState = 1;
                                             } else {
                                                 if (GlobalStatus.fi != null && GlobalStatus.a((byte) 0, this.mainCanvasRef.ax)) {
-                                                    LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"查看", "取出", "金钱", "锁定", "交易", "退出"}, false);
+                                                    LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.font2_h + 35, new String[]{"查看", "取出", "金钱", "锁定", "交易", "退出"}, false);
                                                 } else {
-                                                    LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"取出", "金钱", "锁定", "交易", "退出"}, false);
+                                                    LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.font2_h + 35, new String[]{"取出", "金钱", "锁定", "交易", "退出"}, false);
                                                 }
 
                                                 LoadingPage.o = 0;
@@ -13493,11 +13487,11 @@ public final class UISceneController {
                                         }
                                     } else if (this.ct == 1 && this.ar == 1) {
                                         if (GlobalStatus.fu != null && (GlobalStatus.fu == null || !this.aO())) {
-                                            LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"取出", "金钱", "锁定", "交易", "退出"}, false);
+                                            LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.font2_h + 35, new String[]{"取出", "金钱", "锁定", "交易", "退出"}, false);
                                             LoadingPage.o = 0;
                                             this.sceneSubState = 2;
                                         } else {
-                                            LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.j + 35, new String[]{"放入", "金钱", "锁定", "交易", "退出"}, false);
+                                            LoadingPage.a(GlobalConfig.f + 20 + this.mainCanvasRef.ax * 17, GlobalConfig.g + 4 * GlobalConfig.font2_h + 35, new String[]{"放入", "金钱", "锁定", "交易", "退出"}, false);
                                             LoadingPage.o = 0;
                                             this.sceneSubState = 1;
                                         }
@@ -13925,7 +13919,7 @@ public final class UISceneController {
                     }
 
                     if (var1 == GlobalStatus.fr[var3]) {
-                        this.cu = GlobalStatus.b(this.mainCanvasRef.l, var3);
+                        this.cu = GlobalStatus.b(this.mainCanvasRef.shareSb, var3);
                         break;
                     }
 
@@ -13940,7 +13934,7 @@ public final class UISceneController {
                     }
 
                     if (var1 == GlobalStatus.fk[var2]) {
-                        this.cu = GlobalStatus.a(this.mainCanvasRef.l, var2);
+                        this.cu = GlobalStatus.a(this.mainCanvasRef.shareSb, var2);
                         break;
                     }
 
@@ -13957,7 +13951,7 @@ public final class UISceneController {
                     }
 
                     if (var1 == GlobalStatus.fy[var5]) {
-                        this.cu = GlobalStatus.d(this.mainCanvasRef.l, var5);
+                        this.cu = GlobalStatus.d(this.mainCanvasRef.shareSb, var5);
                         break;
                     }
 
@@ -13966,7 +13960,7 @@ public final class UISceneController {
             } else if (this.ar == 1 && GlobalStatus.fu != null) {
                 for (int var4 = 0; var4 < GlobalStatus.fu.length; ++var4) {
                     if (var1 == GlobalStatus.fv[var4]) {
-                        this.cu = GlobalStatus.c(this.mainCanvasRef.l, var4);
+                        this.cu = GlobalStatus.c(this.mainCanvasRef.shareSb, var4);
                         return;
                     }
                 }
@@ -14001,11 +13995,11 @@ public final class UISceneController {
         MainCanvas.pngUtil.a(var1, MainCanvas.L, (int[]) null, (aj) null, 0, 0, var2 + var4 - MainCanvas.L.b, var3, 0, 0);
         var1.setColor(79948);
         int var6 = 0;
-        if (var5 == 0 && GlobalStatus.fn > 0L && GlobalConfig.i.stringWidth(GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.fn)) > var4 - (MainCanvas.L.b << 1)) {
-            var6 = GlobalConfig.i.stringWidth(GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.fn));
+        if (var5 == 0 && GlobalStatus.fn > 0L && GlobalConfig.font2.stringWidth(GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.fn)) > var4 - (MainCanvas.L.b << 1)) {
+            var6 = GlobalConfig.font2.stringWidth(GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.fn));
             var1.fillRect(var2 + (var4 - var6) / 2, var3, var6, MainCanvas.L.c);
-        } else if (var5 == 1 && GlobalStatus.fg > 0L && GlobalConfig.i.stringWidth(GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.fg)) > var4 - (MainCanvas.L.b << 1)) {
-            var6 = GlobalConfig.i.stringWidth(GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.fg));
+        } else if (var5 == 1 && GlobalStatus.fg > 0L && GlobalConfig.font2.stringWidth(GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.fg)) > var4 - (MainCanvas.L.b << 1)) {
+            var6 = GlobalConfig.font2.stringWidth(GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.fg));
             var1.fillRect(var2 + (var4 - var6) / 2, var3, var6, MainCanvas.L.c);
         } else {
             var6 = var4 - (MainCanvas.L.b << 1);
@@ -14014,9 +14008,9 @@ public final class UISceneController {
 
         var1.setColor(16776917);
         if (var5 == 0 && GlobalStatus.fn > 0L) {
-            var1.drawString(GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.fn), var2 + var4 / 2 + 2, var3, 17);
+            var1.drawString(GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.fn), var2 + var4 / 2 + 2, var3, 17);
         } else if (var5 == 1 && GlobalStatus.fg > 0L) {
-            var1.drawString(GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.fg), var2 + var4 / 2 + 2, var3, 17);
+            var1.drawString(GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.fg), var2 + var4 / 2 + 2, var3, 17);
         }
 
         MainCanvas.pngUtil.a(var1, w, (int[]) null, (aj) null, 0, 0, var2 + (var4 - var6) / 2 - w.b - 2, var3 + 2, 0, 0);
@@ -14234,9 +14228,9 @@ public final class UISceneController {
         this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.ex, (String[]) null, (String[]) null);
         this.mainCanvasRef.au.a(this.cy == 2 ? "锻造" : "兑换");
         if (GlobalStatus.ew != null && GlobalStatus.ew.length > 0) {
-            this.mainCanvasRef.at.a(ap(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a(ap(this.mainCanvasRef.ar.g()), GlobalConfig.font2, (byte) 2);
         } else {
-            this.mainCanvasRef.at.a((String) null, GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a((String) null, GlobalConfig.font2, (byte) 2);
         }
 
         this.mainCanvasRef.at.a((byte) 1);
@@ -14284,7 +14278,7 @@ public final class UISceneController {
                     }
                 } else if (GlobalStatus.ew != null && GlobalStatus.ew.length > 0) {
                     if (this.cy == 2) {
-                        LoadingPage.a(this.mainCanvasRef.ar.a() + 65 + GlobalConfig.f, GlobalConfig.j + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.j + GlobalConfig.g, new String[]{"锻造", "查看"}, true);
+                        LoadingPage.a(this.mainCanvasRef.ar.a() + 65 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"锻造", "查看"}, true);
                         this.sceneSubState = 2;
                         return;
                     }
@@ -14294,7 +14288,7 @@ public final class UISceneController {
                     return;
                 }
             } else if (GlobalStatus.ew != null && GlobalStatus.ew.length > 0) {
-                this.mainCanvasRef.at.a(ap(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.a(ap(this.mainCanvasRef.ar.g()), GlobalConfig.font2, (byte) 2);
                 this.mainCanvasRef.at.a((byte) 1);
                 return;
             }
@@ -14737,14 +14731,14 @@ public final class UISceneController {
             this.cB[var1][0] = var2;
             this.cB[var1][1] = var3;
             this.cB[var1][2] = 12;
-            this.cB[var1][3] = GlobalConfig.j;
+            this.cB[var1][3] = GlobalConfig.font2_h;
         }
 
         if (this.cC != null && this.cC.length > var1) {
             this.cC[var1][0] = var2 + 60 - 12;
             this.cC[var1][1] = var3;
             this.cC[var1][2] = 12;
-            this.cC[var1][3] = GlobalConfig.j;
+            this.cC[var1][3] = GlobalConfig.font2_h;
         }
 
     }
@@ -14775,7 +14769,7 @@ public final class UISceneController {
     private void a(ce var1) {
         if (this.currentSceneModeId != 18 && (aW[5] != 1 || var1.b == 5) && (aW[7] != 1 || var1.b != 0) && (aW[8] != 1 || var1.b != 1) && (aW[17] != 1 || var1.b != 3) && (aW[7] != 1 || var1.b != 6)) {
             String[] var2;
-            if ((var2 = LoadingPage.a("[" + var1.d + "]" + var1.e, GlobalConfig.i, GlobalConfig.defaultWidth - 5)) != null && var2.length > 0) {
+            if ((var2 = LoadingPage.a("[" + var1.d + "]" + var1.e, GlobalConfig.font2, GlobalConfig.defaultWidth - 5)) != null && var2.length > 0) {
                 this.u((byte) var2.length);
 
                 for (int var3 = 0; var3 < var2.length; ++var3) {
@@ -14799,7 +14793,7 @@ public final class UISceneController {
         int var4;
         var4 = (var4 = this.cD.size()) < 3 ? var4 : 3;
         int var5;
-        var5 = (var5 = GlobalConfig.j) > 16 ? var5 : 16;
+        var5 = (var5 = GlobalConfig.font2_h) > 16 ? var5 : 16;
 
         for (int var6 = 0; var6 < 3; ++var6) {
             var2 = null;
@@ -14891,16 +14885,16 @@ public final class UISceneController {
                             var7.a(var1, (Frame1) var13.g, (int[]) null, var3, var4, var13.j + 8, var13.k + 16, 20, 0);
                             if (var13.e != null && aW[2] == 0) {
                                 if (var13.b != null && !var13.b.equals("")) {
-                                    LoadingPage.a(var1, var13.b, var13.j - var3 + 8, var13.k - var4 - (GlobalConfig.j << 1) - var13.g.j() + 16, 17, var13.a(var13.u, var13.p));
+                                    LoadingPage.a(var1, var13.b, var13.j - var3 + 8, var13.k - var4 - (GlobalConfig.font2_h << 1) - var13.g.j() + 16, 17, var13.a(var13.u, var13.p));
                                 }
 
-                                LoadingPage.a(var1, (String) var13.e, (int) (var13.j - var3 + 8), var13.k - var4 - GlobalConfig.j - var13.g.j() + 16, 17, var13.a(var13.u, var13.p), 0);
+                                LoadingPage.drawString(var1, (String) var13.e, (int) (var13.j - var3 + 8), var13.k - var4 - GlobalConfig.font2_h - var13.g.j() + 16, 17, var13.a(var13.u, var13.p), 0);
                             }
 
                             if (var13.p == 1 && y != null) {
-                                var7.a(var1, y, (int[]) null, (aj) null, var3, var4, var13.j + 8 - (aW[2] == 0 ? GlobalConfig.i.stringWidth(var13.e) / 2 + y.b : y.b / 2), var13.k - GlobalConfig.j - 18, 20, 0);
+                                var7.a(var1, y, (int[]) null, (aj) null, var3, var4, var13.j + 8 - (aW[2] == 0 ? GlobalConfig.font2.stringWidth(var13.e) / 2 + y.b : y.b / 2), var13.k - GlobalConfig.font2_h - 18, 20, 0);
                             } else if (var13.p == 0 && z != null) {
-                                var7.a(var1, z, (int[]) null, (aj) null, var3, var4, var13.j + 8 - (aW[2] == 0 ? GlobalConfig.i.stringWidth(var13.e) / 2 + z.b : z.b / 2), var13.k - GlobalConfig.j - 18, 20, 0);
+                                var7.a(var1, z, (int[]) null, (aj) null, var3, var4, var13.j + 8 - (aW[2] == 0 ? GlobalConfig.font2.stringWidth(var13.e) / 2 + z.b : z.b / 2), var13.k - GlobalConfig.font2_h - 18, 20, 0);
                             }
                         }
                     } else if (var2.b == 3) {
@@ -14912,16 +14906,16 @@ public final class UISceneController {
                             var22.a(var1, (Frame1) var15.g, (int[]) null, var3, var4, var15.j + 8, var15.k + 16, 20, 0);
                             if (var15.e != null && (var15.b.equals(GlobalStatus.ad) || aW[4] == 0)) {
                                 if (var15.c != null && !var15.c.equals("")) {
-                                    LoadingPage.a(var1, var15.c, var15.j - var3 + 8, var15.k - var4 - (GlobalConfig.j << 1) - var15.g.j() + 16, 17, 65280);
+                                    LoadingPage.a(var1, var15.c, var15.j - var3 + 8, var15.k - var4 - (GlobalConfig.font2_h << 1) - var15.g.j() + 16, 17, 65280);
                                 }
 
-                                LoadingPage.a(var1, (String) var15.e, (int) (var15.j - var3 + 8), var15.k - var4 - GlobalConfig.j - var15.g.j() + 16, 17, 65280, 0);
+                                LoadingPage.drawString(var1, (String) var15.e, (int) (var15.j - var3 + 8), var15.k - var4 - GlobalConfig.font2_h - var15.g.j() + 16, 17, 65280, 0);
                             }
 
                             if (var15.s == 1) {
-                                var22.a(var1, y, (int[]) null, (aj) null, var3, var4, var15.j + 8 - (aW[4] == 0 ? GlobalConfig.i.stringWidth(var15.e) / 2 + y.b : y.b / 2), var15.k - GlobalConfig.j - 18, 20, 0);
+                                var22.a(var1, y, (int[]) null, (aj) null, var3, var4, var15.j + 8 - (aW[4] == 0 ? GlobalConfig.font2.stringWidth(var15.e) / 2 + y.b : y.b / 2), var15.k - GlobalConfig.font2_h - 18, 20, 0);
                             } else if (var15.s == 0) {
-                                var22.a(var1, z, (int[]) null, (aj) null, var3, var4, var15.j + 8 - (aW[4] == 0 ? GlobalConfig.i.stringWidth(var15.e) / 2 + z.b : z.b / 2), var15.k - GlobalConfig.j - 18, 20, 0);
+                                var22.a(var1, z, (int[]) null, (aj) null, var3, var4, var15.j + 8 - (aW[4] == 0 ? GlobalConfig.font2.stringWidth(var15.e) / 2 + z.b : z.b / 2), var15.k - GlobalConfig.font2_h - 18, 20, 0);
                             }
                         }
                     } else if (var2.b == 5) {
@@ -14950,7 +14944,7 @@ public final class UISceneController {
                         }
 
                         if (var20.b != null && var20.x && aW[3] == 1) {
-                            LoadingPage.a(var1, (String) var20.b, (int) (var20.c - var3), var20.d - (var20.w == null ? 30 : var20.w.j()) - GlobalConfig.j - var4, 17, 255, 16777215);
+                            LoadingPage.drawString(var1, (String) var20.b, (int) (var20.c - var3), var20.d - (var20.w == null ? 30 : var20.w.j()) - GlobalConfig.font2_h - var4, 17, 255, 16777215);
                         }
 
                         var20.a(var1, var24, var3, var4, (byte) 0);
@@ -15020,7 +15014,7 @@ public final class UISceneController {
                 MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.ak / 100 + 1, 0, 0, var2 + 18, 25, 0, 0);
             }
 
-            int var3 = GlobalStatus.aN * 30 / GlobalStatus.aM;
+            int var3 = GlobalStatus.aN * 30 / GlobalStatus.totalShengMing;
             var1.setColor(16472935);
             var1.drawLine(var2 + 32 - var3, 7, var2 + 32, 7);
             var1.setColor(16717352);
@@ -15065,7 +15059,7 @@ public final class UISceneController {
             if (GlobalStatus.bs >= 0 && GlobalStatus.q != null) {
                 for (int var5 = 0; var5 < GlobalStatus.q.length; ++var5) {
                     if (GlobalStatus.q[var5] != null && !GlobalStatus.q[var5].b.equals(GlobalStatus.ad)) {
-                        LoadingPage.a(var1, (String) GlobalStatus.q[var5].e, (int) (GlobalConfig.defaultWidth - 2 - GlobalConfig.i.stringWidth(GlobalStatus.q[var5].e)), 60 + GlobalConfig.j * var4, 0, 65280, 0);
+                        LoadingPage.drawString(var1, (String) GlobalStatus.q[var5].e, (int) (GlobalConfig.defaultWidth - 2 - GlobalConfig.font2.stringWidth(GlobalStatus.q[var5].e)), 60 + GlobalConfig.font2_h * var4, 0, 65280, 0);
                         ++var4;
                     }
                 }
@@ -15472,7 +15466,7 @@ public final class UISceneController {
             System.currentTimeMillis();
             UISceneController var6 = this;
             if (this.cV == 0 && GlobalStatus.t != null) {
-                if (GlobalConfig.l == 2) {
+                if (GlobalConfig.hangju == 2) {
                     MainCanvas.ah.c();
                 }
 
@@ -15728,7 +15722,7 @@ public final class UISceneController {
     }
 
     private void a(short var1, byte var2, byte var3) {
-        if (GlobalConfig.m == 2) {
+        if (GlobalConfig.ziTiMoShi == 2) {
             var2 = 1;
         }
 
@@ -16001,7 +15995,7 @@ public final class UISceneController {
             String[] var4 = new String[var1.length];
 
             for (int var3 = 0; var3 < var1.length; ++var3) {
-                var4[var3] = GlobalConfig.a(this.mainCanvasRef.l, var1[var3]);
+                var4[var3] = GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, var1[var3]);
             }
 
             return var4;
@@ -16130,9 +16124,9 @@ public final class UISceneController {
     public final void j(byte var1) {
         this.as = var1;
         if (GlobalStatus.hL != null && GlobalStatus.hL.length > 0) {
-            this.mainCanvasRef.at.b(this.au(0), GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.b(this.au(0), GlobalConfig.font2, (byte) 1);
         } else {
-            this.mainCanvasRef.at.b("没有建筑材料，按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.b("没有建筑材料，按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
         }
 
         this.mainCanvasRef.at.a((byte) 1);
@@ -16231,7 +16225,7 @@ public final class UISceneController {
                             return;
                         }
 
-                        this.mainCanvasRef.at.b(GlobalStatus.hR[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 1);
+                        this.mainCanvasRef.at.b(GlobalStatus.hR[this.mainCanvasRef.ar.g()], GlobalConfig.font2, (byte) 1);
                         this.mainCanvasRef.at.a((byte) 1);
                     }
                 } else {
@@ -16239,7 +16233,7 @@ public final class UISceneController {
                         return;
                     }
 
-                    this.mainCanvasRef.at.b(this.au(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.b(this.au(this.mainCanvasRef.ar.g()), GlobalConfig.font2, (byte) 1);
                     this.mainCanvasRef.at.a((byte) 1);
                 }
             }
@@ -16253,49 +16247,49 @@ public final class UISceneController {
                 }
             } else if (this.as == 0 && this.mainCanvasRef.as.a == 0) {
                 if (GlobalStatus.hL != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"购买", "取消"}, true);
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"购买", "取消"}, true);
                     this.sceneSubState = 1;
                     return;
                 }
             } else if (this.as == 1 && this.mainCanvasRef.as.a == 1) {
                 if (GlobalStatus.hP != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"进入", "拍卖", "消拍", "卖出"}, true);
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"进入", "拍卖", "消拍", "卖出"}, true);
                     this.sceneSubState = 2;
                     return;
                 }
             } else if (this.as == 2 && this.mainCanvasRef.as.a == 0) {
                 if (GlobalStatus.hL != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"购买"}, true);
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"购买"}, true);
                     this.sceneSubState = 3;
                     return;
                 }
             } else if (this.as == 3 && this.mainCanvasRef.as.a == 1) {
                 if (GlobalStatus.hP != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"布置", "卖出"}, true);
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"布置", "卖出"}, true);
                     this.sceneSubState = 4;
                     return;
                 }
             } else if (this.as == 4 && this.mainCanvasRef.as.a == 0) {
                 if (GlobalStatus.hL != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"购买", "取消"}, true);
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"购买", "取消"}, true);
                     this.sceneSubState = 5;
                     return;
                 }
             } else if (this.as == 5 && this.mainCanvasRef.as.a == 1) {
                 if (GlobalStatus.hP != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"布置", "卖出"}, true);
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"布置", "卖出"}, true);
                     this.sceneSubState = 6;
                     return;
                 }
             } else if (this.as == 6 && this.mainCanvasRef.as.a == 2) {
                 if (GlobalStatus.hL != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"升级", "取消"}, true);
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"升级", "取消"}, true);
                     this.sceneSubState = 8;
                     return;
                 }
             } else if ((this.as != 7 || this.mainCanvasRef.as.a != 2) && (this.as != 9 || this.mainCanvasRef.as.a != 3)) {
                 if ((this.as == 8 && this.mainCanvasRef.as.a == 3 || this.as == 10 && this.mainCanvasRef.as.a == 4) && GlobalStatus.hX != null) {
-                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"安排", "解约"}, true);
+                    LoadingPage.a(70 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"安排", "解约"}, true);
                     this.sceneSubState = 10;
                     return;
                 }
@@ -16377,7 +16371,7 @@ public final class UISceneController {
                 }
 
                 if (LoadingPage.o == 3) {
-                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"取消", "确认"}, false);
+                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"取消", "确认"}, false);
                     this.sceneSubState = 7;
                     return;
                 }
@@ -16417,7 +16411,7 @@ public final class UISceneController {
                 }
 
                 if (LoadingPage.o == 1) {
-                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"取消", "确认"}, false);
+                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"取消", "确认"}, false);
                     this.sceneSubState = 7;
                     return;
                 }
@@ -16457,7 +16451,7 @@ public final class UISceneController {
                 }
 
                 if (LoadingPage.o == 1) {
-                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"取消", "确认"}, false);
+                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"取消", "确认"}, false);
                     this.sceneSubState = 7;
                     return;
                 }
@@ -16504,7 +16498,7 @@ public final class UISceneController {
                 }
 
                 if (LoadingPage.o == 1) {
-                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.j + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"取消", "确认"}, false);
+                    LoadingPage.a(40 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"取消", "确认"}, false);
                     this.sceneSubState = 7;
                     return;
                 }
@@ -16514,27 +16508,27 @@ public final class UISceneController {
     }
 
     private String au(int var1) {
-        this.mainCanvasRef.l.delete(0, this.mainCanvasRef.l.length());
+        this.mainCanvasRef.shareSb.delete(0, this.mainCanvasRef.shareSb.length());
         int var2 = GlobalStatus.hO[var1] >> 16;
         short var3 = (short) GlobalStatus.hO[var1];
-        this.mainCanvasRef.l.append(GlobalStatus.hN[var1]);
-        this.mainCanvasRef.l.append("\t");
-        this.mainCanvasRef.l.append("公共剩余:");
+        this.mainCanvasRef.shareSb.append(GlobalStatus.hN[var1]);
+        this.mainCanvasRef.shareSb.append("\t");
+        this.mainCanvasRef.shareSb.append("公共剩余:");
         if (var2 >= 0) {
-            this.mainCanvasRef.l.append(var2);
+            this.mainCanvasRef.shareSb.append(var2);
         } else {
-            this.mainCanvasRef.l.append("无限制");
+            this.mainCanvasRef.shareSb.append("无限制");
         }
 
-        this.mainCanvasRef.l.append("\t");
-        this.mainCanvasRef.l.append("个人剩余:");
+        this.mainCanvasRef.shareSb.append("\t");
+        this.mainCanvasRef.shareSb.append("个人剩余:");
         if (var3 >= 0) {
-            this.mainCanvasRef.l.append(var3);
+            this.mainCanvasRef.shareSb.append(var3);
         } else {
-            this.mainCanvasRef.l.append("无限制");
+            this.mainCanvasRef.shareSb.append("无限制");
         }
 
-        return this.mainCanvasRef.l.toString();
+        return this.mainCanvasRef.shareSb.toString();
     }
 
     private void b(short var1, byte var2, byte var3) {
@@ -16692,9 +16686,9 @@ public final class UISceneController {
         this.mainCanvasRef.aw = 0;
         this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.hQ, (String[]) null, (String[]) null);
         if (GlobalStatus.hP != null && GlobalStatus.hP.length > 0) {
-            this.mainCanvasRef.at.b(GlobalStatus.hR[0], GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.b(GlobalStatus.hR[0], GlobalConfig.font2, (byte) 1);
         } else {
-            this.mainCanvasRef.at.b("没有建筑材料，按3、9键可以上下翻滚此属性描述框", GlobalConfig.i, (byte) 1);
+            this.mainCanvasRef.at.b("没有建筑材料，按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
         }
 
         this.mainCanvasRef.at.a((byte) 1);
@@ -17114,7 +17108,7 @@ public final class UISceneController {
         this.mainCanvasRef.aq.j();
         this.mainCanvasRef.aq.a("详细信息");
         this.mainCanvasRef.aq.a(false);
-        this.mainCanvasRef.at.a(var1, GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.a(var1, GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.au.a("确定");
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
@@ -17183,7 +17177,7 @@ public final class UISceneController {
         }
 
         var10000.a(var10001, var10002, var10003, (String[]) null);
-        this.mainCanvasRef.at.a(GlobalStatus.jD != null ? GlobalStatus.jD[0] : null, GlobalConfig.i, (byte) 1);
+        this.mainCanvasRef.at.a(GlobalStatus.jD != null ? GlobalStatus.jD[0] : null, GlobalConfig.font2, (byte) 1);
         this.mainCanvasRef.at.a((byte) 1);
         this.mainCanvasRef.au.a("取出");
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
@@ -17203,12 +17197,12 @@ public final class UISceneController {
             if (GlobalStatus.jz != null) {
                 this.a(GlobalStatus.jC);
                 if ((var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) && GlobalStatus.jD != null) {
-                    this.mainCanvasRef.at.b(GlobalStatus.jD != null ? GlobalStatus.jD[this.mainCanvasRef.ar.g()] : null, GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.b(GlobalStatus.jD != null ? GlobalStatus.jD[this.mainCanvasRef.ar.g()] : null, GlobalConfig.font2, (byte) 1);
                     this.mainCanvasRef.at.a((byte) 1);
                 }
 
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                    LoadingPage.a(65 + o, GlobalConfig.j + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.j + p, new String[]{"取回"}, true);
+                    LoadingPage.a(65 + o, GlobalConfig.font2_h + 20 + this.mainCanvasRef.ar.g() * GlobalConfig.font2_h + p, new String[]{"取回"}, true);
                     this.sceneSubState = 1;
                 }
             }
@@ -17309,7 +17303,7 @@ public final class UISceneController {
             }
 
             for (int var3 = 0; var3 < GlobalStatus.jT.length; ++var3) {
-                String[] var2 = LoadingPage.a("<" + GlobalStatus.jS[var3] + ">以" + GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.jU[var3]) + "购买了您的" + GlobalStatus.jT[var3], GlobalConfig.i, 155, "\t");
+                String[] var2 = LoadingPage.a("<" + GlobalStatus.jS[var3] + ">以" + GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.jU[var3]) + "购买了您的" + GlobalStatus.jT[var3], GlobalConfig.font2, 155, "\t");
 
                 for (int var4 = 0; var4 < var2.length; ++var4) {
                     var1.append(var2[var4]);
@@ -17322,7 +17316,7 @@ public final class UISceneController {
             }
 
             for (int var6 = 0; var6 < GlobalStatus.jW.length; ++var6) {
-                String[] var5 = LoadingPage.a("<" + GlobalStatus.jV[var6] + ">以" + GlobalConfig.a(this.mainCanvasRef.l, GlobalStatus.jX[var6]) + "购买了您的" + GlobalStatus.jW[var6], GlobalConfig.i, 160, "\t");
+                String[] var5 = LoadingPage.a("<" + GlobalStatus.jV[var6] + ">以" + GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.jX[var6]) + "购买了您的" + GlobalStatus.jW[var6], GlobalConfig.font2, 160, "\t");
 
                 for (int var7 = 0; var7 < var5.length; ++var7) {
                     var1.append(var5[var7]);
@@ -17403,12 +17397,12 @@ public final class UISceneController {
 
             if (GlobalStatus.jN != null) {
                 this.a(GlobalStatus.jR);
-                this.mainCanvasRef.ar.a(b(GlobalStatus.jR), a(this.mainCanvasRef.l, GlobalStatus.jO, GlobalStatus.jP), (String[]) null, (String[]) null);
+                this.mainCanvasRef.ar.a(b(GlobalStatus.jR), a(this.mainCanvasRef.shareSb, GlobalStatus.jO, GlobalStatus.jP), (String[]) null, (String[]) null);
                 if (this.sceneStateShadow == 64) {
                     this.mainCanvasRef.ar.a(this.aA, this.aq);
                 }
 
-                this.mainCanvasRef.ar.a(GlobalStatus.h(this.mainCanvasRef.l, this.mainCanvasRef.ar.g()), 1);
+                this.mainCanvasRef.ar.a(GlobalStatus.h(this.mainCanvasRef.shareSb, this.mainCanvasRef.ar.g()), 1);
             } else {
                 this.mainCanvasRef.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
             }
@@ -17417,19 +17411,19 @@ public final class UISceneController {
         } else if (var1 == 1) {
             if (GlobalStatus.ct != null) {
                 this.a(GlobalStatus.cx);
-                this.mainCanvasRef.ar.a(b(GlobalStatus.cx), a(this.mainCanvasRef.l, GlobalStatus.cu, GlobalStatus.cw), (String[]) null, (String[]) null);
+                this.mainCanvasRef.ar.a(b(GlobalStatus.cx), a(this.mainCanvasRef.shareSb, GlobalStatus.cu, GlobalStatus.cw), (String[]) null, (String[]) null);
                 if (this.sceneStateShadow == 64) {
                     this.mainCanvasRef.ar.a(this.aA, this.aq);
                 }
 
-                this.mainCanvasRef.ar.a(GlobalStatus.a(this.currentSceneModeId, this.mainCanvasRef.l, this.mainCanvasRef.ar.g()), 1);
+                this.mainCanvasRef.ar.a(GlobalStatus.a(this.currentSceneModeId, this.mainCanvasRef.shareSb, this.mainCanvasRef.ar.g()), 1);
             } else {
                 this.mainCanvasRef.ar.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
             }
 
             this.mainCanvasRef.au.a("取出");
         } else if (var1 == 2) {
-            this.mainCanvasRef.at.b(this.aY(), GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.b(this.aY(), GlobalConfig.font2, (byte) 2);
             this.mainCanvasRef.au.a("确定");
         }
 
@@ -17500,7 +17494,7 @@ public final class UISceneController {
                                     var4 = new String[]{"拍卖", "取回"};
                                 }
 
-                                LoadingPage.a(35 + o, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.j + p, var4, false);
+                                LoadingPage.a(35 + o, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.font2_h + p, var4, false);
                                 this.sceneSubState = 2;
                             }
 
@@ -17514,7 +17508,7 @@ public final class UISceneController {
                             var3 = new String[]{"取消拍卖"};
                         }
 
-                        LoadingPage.a(35 + o, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.j + p, var3, false);
+                        LoadingPage.a(35 + o, (3 + this.mainCanvasRef.ar.i()) * GlobalConfig.font2_h + p, var3, false);
                         this.sceneSubState = 1;
                     }
                 } else {
@@ -17541,11 +17535,11 @@ public final class UISceneController {
                 }
             } else if (this.mainCanvasRef.as.a == 0) {
                 if (GlobalStatus.jN != null) {
-                    this.mainCanvasRef.ar.a(GlobalStatus.h(this.mainCanvasRef.l, this.mainCanvasRef.ar.g()), 1);
+                    this.mainCanvasRef.ar.a(GlobalStatus.h(this.mainCanvasRef.shareSb, this.mainCanvasRef.ar.g()), 1);
                     return;
                 }
             } else if (this.mainCanvasRef.as.a == 1 && GlobalStatus.ct != null) {
-                this.mainCanvasRef.ar.a(GlobalStatus.a(this.currentSceneModeId, this.mainCanvasRef.l, this.mainCanvasRef.ar.g()), 1);
+                this.mainCanvasRef.ar.a(GlobalStatus.a(this.currentSceneModeId, this.mainCanvasRef.shareSb, this.mainCanvasRef.ar.g()), 1);
                 return;
             }
         } else if (this.sceneSubState == 1) {
@@ -17745,9 +17739,9 @@ public final class UISceneController {
         this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.kK, (String[]) null, (String[]) null);
         this.mainCanvasRef.au.a("兑换");
         if (GlobalStatus.kJ != null && GlobalStatus.kJ.length > 0) {
-            this.mainCanvasRef.at.a(aA(0), GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a(aA(0), GlobalConfig.font2, (byte) 2);
         } else {
-            this.mainCanvasRef.at.a((String) null, GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a((String) null, GlobalConfig.font2, (byte) 2);
         }
 
         this.mainCanvasRef.at.a((byte) 1);
@@ -17793,7 +17787,7 @@ public final class UISceneController {
             }
 
             if (var1 == 514 || var1 == 520 || var1 == 1 || var1 == 4) {
-                this.mainCanvasRef.at.a(aA(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.a(aA(this.mainCanvasRef.ar.g()), GlobalConfig.font2, (byte) 2);
                 this.mainCanvasRef.at.a((byte) 1);
                 return;
             }
@@ -17892,7 +17886,7 @@ public final class UISceneController {
         this.sceneSubState = 0;
         this.mainCanvasRef.aq.b();
         this.mainCanvasRef.aq.a(GlobalStatus.bz == null ? "" : GlobalStatus.bz);
-        this.mainCanvasRef.at.a(GlobalStatus.by, GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.a(GlobalStatus.by, GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.at.a((byte) 0);
         this.mainCanvasRef.au.a("确定");
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
@@ -18243,12 +18237,12 @@ public final class UISceneController {
                 int var8 = this.mainCanvasRef.ar.g();
                 if (this.as == 0) {
                     if (var8 == 0) {
-                        LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 26 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, f_1.a, false);
+                        LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 26 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, f_1.a, false);
                         this.sceneSubState = 1;
                     } else {
                         bo_1 var9;
                         boolean var11 = (var9 = GlobalStatus.O.f[var8 - 1]) != null && var9.f;
-                        LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 26 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, var11 ? f_1.c : f_1.b, false);
+                        LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 26 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, var11 ? f_1.c : f_1.b, false);
                         this.sceneSubState = 1;
                     }
                 } else if (var8 == 0) {
@@ -18264,7 +18258,7 @@ public final class UISceneController {
             }
 
             if ((var1 == 1 || var1 == 4 || var1 == 514 || var1 == 520) && this.as == 0) {
-                this.mainCanvasRef.at.a(GlobalStatus.O.j[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.a(GlobalStatus.O.j[this.mainCanvasRef.ar.g()], GlobalConfig.font2, (byte) 2);
                 this.mainCanvasRef.at.a((byte) 1);
             }
 
@@ -18326,7 +18320,7 @@ public final class UISceneController {
                             GlobalStatus.O.c();
                             this.d((byte) 0);
                             this.mainCanvasRef.ar.a(var2);
-                            this.mainCanvasRef.at.a(GlobalStatus.O.j[var2], GlobalConfig.i, (byte) 1);
+                            this.mainCanvasRef.at.a(GlobalStatus.O.j[var2], GlobalConfig.font2, (byte) 1);
                             this.mainCanvasRef.at.a((byte) 1);
                             this.sceneSubState = 0;
                             String var6 = var4.a;
@@ -18416,7 +18410,7 @@ public final class UISceneController {
                 }
 
                 if (var5 != null) {
-                    LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.j + 26 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{var5}, false);
+                    LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 26 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{var5}, false);
                     this.sceneSubState = 1;
                 }
             }
@@ -18430,7 +18424,7 @@ public final class UISceneController {
 
                     if (GlobalStatus.lN != null && GlobalStatus.lN.length != 1) {
                         var6 = this.mainCanvasRef.ar.g();
-                        this.mainCanvasRef.at.a(GlobalStatus.lN[var6], GlobalConfig.i, (byte) 2);
+                        this.mainCanvasRef.at.a(GlobalStatus.lN[var6], GlobalConfig.font2, (byte) 2);
                         if (GlobalStatus.lK != null) {
                             this.mainCanvasRef.at.a((byte) 1);
                         }
@@ -18444,7 +18438,7 @@ public final class UISceneController {
 
                     if (GlobalStatus.lV != null && GlobalStatus.lV.length != 1) {
                         var6 = this.mainCanvasRef.ar.g();
-                        this.mainCanvasRef.at.a(GlobalStatus.lV[var6], GlobalConfig.i, (byte) 2);
+                        this.mainCanvasRef.at.a(GlobalStatus.lV[var6], GlobalConfig.font2, (byte) 2);
                         if (GlobalStatus.lS != null) {
                             this.mainCanvasRef.at.a((byte) 1);
                         }
@@ -18458,7 +18452,7 @@ public final class UISceneController {
 
                     if (GlobalStatus.md != null && GlobalStatus.md.length != 1) {
                         var6 = this.mainCanvasRef.ar.g();
-                        this.mainCanvasRef.at.a(GlobalStatus.md[var6], GlobalConfig.i, (byte) 2);
+                        this.mainCanvasRef.at.a(GlobalStatus.md[var6], GlobalConfig.font2, (byte) 2);
                         if (GlobalStatus.ma != null) {
                             this.mainCanvasRef.at.a((byte) 1);
                         }
@@ -18632,7 +18626,7 @@ public final class UISceneController {
 
     public final void ab() {
         if (aW[18] == 0) {
-            this.dd = new TextRender(GlobalStatus.k, (short) GlobalConfig.i.stringWidth(GlobalStatus.k));
+            this.dd = new TextRender(GlobalStatus.k, (short) GlobalConfig.font2.stringWidth(GlobalStatus.k));
             this.db = GlobalConfig.defaultWidth;
             this.dc = 40;
         }
@@ -18645,7 +18639,7 @@ public final class UISceneController {
         this.mainCanvasRef.aq.a((GlobalStatus.lg == 1 ? GlobalStatus.lf : "帮派") + "的成就");
         this.mainCanvasRef.aq.a(true);
         this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.lb, (String[]) null, GlobalStatus.lc);
-        this.mainCanvasRef.at.a(aK(0), GlobalConfig.i, (byte) 1);
+        this.mainCanvasRef.at.a(aK(0), GlobalConfig.font2, (byte) 1);
         this.mainCanvasRef.at.a((byte) 1);
         this.mainCanvasRef.au.a("操作");
         this.mainCanvasRef.au.a(true);
@@ -18677,7 +18671,7 @@ public final class UISceneController {
         this.T.a(true);
         this.bu.a((Image[]) null, GlobalStatus.li, (String[]) null, GlobalStatus.lj);
         this.bu.a(GlobalStatus.ln);
-        this.bv.a(GlobalStatus.lk[0], GlobalConfig.i, (byte) 1);
+        this.bv.a(GlobalStatus.lk[0], GlobalConfig.font2, (byte) 1);
         this.bv.a((byte) 1);
         this.bw.a("操作");
         this.bw.a(true);
@@ -18715,7 +18709,7 @@ public final class UISceneController {
                 }
 
                 if (var1 == 514 || var1 == 520 || var1 == 1 || var1 == 4) {
-                    this.bv.a(GlobalStatus.lk[this.bu.g()], GlobalConfig.i, (byte) 1);
+                    this.bv.a(GlobalStatus.lk[this.bu.g()], GlobalConfig.font2, (byte) 1);
                     this.bv.a((byte) 1);
                     return;
                 }
@@ -18768,7 +18762,7 @@ public final class UISceneController {
                 }
 
                 if (var1 == 514 || var1 == 520 || var1 == 1 || var1 == 4) {
-                    this.bv.a(GlobalStatus.lk[this.bu.g()], GlobalConfig.i, (byte) 1);
+                    this.bv.a(GlobalStatus.lk[this.bu.g()], GlobalConfig.font2, (byte) 1);
                     this.bv.a((byte) 1);
                     return;
                 }
@@ -18821,7 +18815,7 @@ public final class UISceneController {
             }
 
             if (var1 == 514 || var1 == 520 || var1 == 1 || var1 == 4) {
-                this.bv.a(GlobalStatus.lk[this.bu.g()], GlobalConfig.i, (byte) 1);
+                this.bv.a(GlobalStatus.lk[this.bu.g()], GlobalConfig.font2, (byte) 1);
                 this.bv.a((byte) 1);
                 return;
             }
@@ -18880,7 +18874,7 @@ public final class UISceneController {
                 }
 
                 if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-                    this.mainCanvasRef.at.a(aK(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.a(aK(this.mainCanvasRef.ar.g()), GlobalConfig.font2, (byte) 1);
                     this.mainCanvasRef.at.a((byte) 1);
                     return;
                 }
@@ -18938,7 +18932,7 @@ public final class UISceneController {
                 }
 
                 if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-                    this.mainCanvasRef.at.a(aK(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.a(aK(this.mainCanvasRef.ar.g()), GlobalConfig.font2, (byte) 1);
                     this.mainCanvasRef.at.a((byte) 1);
                     return;
                 }
@@ -18996,7 +18990,7 @@ public final class UISceneController {
             }
 
             if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-                this.mainCanvasRef.at.a(aK(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 1);
+                this.mainCanvasRef.at.a(aK(this.mainCanvasRef.ar.g()), GlobalConfig.font2, (byte) 1);
                 this.mainCanvasRef.at.a((byte) 1);
                 return;
             }
@@ -19097,7 +19091,7 @@ public final class UISceneController {
         this.mainCanvasRef.as.a(new String[]{"活动", "成就", "职业", "特殊"});
         this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.ml, (String[]) null, GlobalStatus.mn);
         this.mainCanvasRef.ar.a(GlobalStatus.mp);
-        this.mainCanvasRef.at.a(aN(0), GlobalConfig.i, (byte) 1);
+        this.mainCanvasRef.at.a(aN(0), GlobalConfig.font2, (byte) 1);
         this.mainCanvasRef.at.a((byte) 1);
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.as);
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
@@ -19125,7 +19119,7 @@ public final class UISceneController {
             }
 
             if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-                this.mainCanvasRef.at.a(aN(this.mainCanvasRef.ar.g()), GlobalConfig.i, (byte) 1);
+                this.mainCanvasRef.at.a(aN(this.mainCanvasRef.ar.g()), GlobalConfig.font2, (byte) 1);
                 this.mainCanvasRef.at.a((byte) 1);
                 return;
             }
@@ -19150,7 +19144,7 @@ public final class UISceneController {
                     this.sceneSubState = 2;
                 }
 
-                LoadingPage.a(GlobalConfig.f, 3 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, this.am, true);
+                LoadingPage.a(GlobalConfig.f, 3 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, this.am, true);
                 return;
             }
         } else if (this.sceneSubState == 1) {
@@ -19237,7 +19231,7 @@ public final class UISceneController {
         this.mainCanvasRef.aq.a(GlobalStatus.mr);
         this.mainCanvasRef.aq.a(true);
         this.mainCanvasRef.ar.a((Image[]) null, GlobalStatus.mu, (String[]) null, (String[]) null);
-        this.mainCanvasRef.at.a(GlobalStatus.mv == null ? null : GlobalStatus.mv[0], GlobalConfig.i, (byte) 1);
+        this.mainCanvasRef.at.a(GlobalStatus.mv == null ? null : GlobalStatus.mv[0], GlobalConfig.font2, (byte) 1);
         this.mainCanvasRef.at.a((byte) 1);
         this.mainCanvasRef.au.a("确认");
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
@@ -19260,7 +19254,7 @@ public final class UISceneController {
 
             if (var1 != 268435456 && var1 != 517 && var1 != 1073741824) {
                 if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-                    this.mainCanvasRef.at.a(GlobalStatus.mv == null ? null : GlobalStatus.mv[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 1);
+                    this.mainCanvasRef.at.a(GlobalStatus.mv == null ? null : GlobalStatus.mv[this.mainCanvasRef.ar.g()], GlobalConfig.font2, (byte) 1);
                     this.mainCanvasRef.at.a((byte) 1);
                     return;
                 }
@@ -19322,7 +19316,7 @@ public final class UISceneController {
         this.mainCanvasRef.aq.j();
         this.mainCanvasRef.aq.a(var1);
         this.mainCanvasRef.aq.a(false);
-        this.mainCanvasRef.at.a(var2, GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.a(var2, GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.au.a(new String[]{"开 通", "取 消"});
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
@@ -19349,7 +19343,7 @@ public final class UISceneController {
                     this.mainCanvasRef.aq.a("开通超Q");
                     this.mainCanvasRef.aq.a(false);
                     this.mainCanvasRef.ar.a(new String[]{"中国移动", "中国联通"}, (String[]) null, (String[]) null);
-                    this.mainCanvasRef.at.b(GlobalConfig.ah[0], GlobalConfig.i, (byte) 2);
+                    this.mainCanvasRef.at.b(GlobalConfig.ChaoQ[0], GlobalConfig.font2, (byte) 2);
                     this.mainCanvasRef.au.a(new String[]{"开通", "取消"});
                     this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
                     this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
@@ -19367,7 +19361,7 @@ public final class UISceneController {
             }
 
             if (var1 == 1 || var1 == 4) {
-                this.mainCanvasRef.at.b(GlobalConfig.ah[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.b(GlobalConfig.ChaoQ[this.mainCanvasRef.ar.g()], GlobalConfig.font2, (byte) 2);
                 return;
             }
 
@@ -19390,7 +19384,7 @@ public final class UISceneController {
             }
         } else if (this.sceneSubState == 3) {
             if (var1 == 268435456 || var1 == 1073741824) {
-                this.mainCanvasRef.c(GlobalStatus.aG);
+                this.mainCanvasRef.openWebView(GlobalStatus.aG);
                 return;
             }
 
@@ -19423,9 +19417,9 @@ public final class UISceneController {
         this.mainCanvasRef.aq.j();
         this.mainCanvasRef.aq.a("超Q精灵");
         this.mainCanvasRef.aq.a(true);
-        this.bQ = Math.max(GlobalConfig.j * 3 + 10, bp.j() + 10);
+        this.bQ = Math.max(GlobalConfig.font2_h * 3 + 10, bp.j() + 10);
         this.mainCanvasRef.aq.a(this.bQ);
-        this.mainCanvasRef.at.b(GlobalStatus.kW, GlobalConfig.i, (byte) 1);
+        this.mainCanvasRef.at.b(GlobalStatus.kW, GlobalConfig.font2, (byte) 1);
         this.mainCanvasRef.au.a(new String[]{"领取", "返回"});
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
@@ -19471,7 +19465,7 @@ public final class UISceneController {
     }
 
     public final int f(int var1, int var2) {
-        return var1 >= this.mainCanvasRef.aq.a + 68 && var1 <= this.mainCanvasRef.aq.a + this.mainCanvasRef.aq.c - 12 && var2 >= this.mainCanvasRef.aq.b + 30 + this.bQ / 2 && var2 < this.mainCanvasRef.aq.b + 30 + this.bQ / 2 + GlobalConfig.j ? 268435456 : 0;
+        return var1 >= this.mainCanvasRef.aq.a + 68 && var1 <= this.mainCanvasRef.aq.a + this.mainCanvasRef.aq.c - 12 && var2 >= this.mainCanvasRef.aq.b + 30 + this.bQ / 2 && var2 < this.mainCanvasRef.aq.b + 30 + this.bQ / 2 + GlobalConfig.font2_h ? 268435456 : 0;
     }
 
     private void aT(int var1) {
@@ -19731,16 +19725,16 @@ public final class UISceneController {
         if (GlobalStatus.fA != null) {
             for (int var3 = 0; var3 < GlobalStatus.fA.length; ++var3) {
                 if (GlobalStatus.mx == GlobalStatus.fA[var3]) {
-                    var2 = GlobalStatus.f(this.mainCanvasRef.l, var3);
+                    var2 = GlobalStatus.f(this.mainCanvasRef.shareSb, var3);
                     break;
                 }
             }
         }
 
         if (GlobalStatus.mN != null && !GlobalStatus.mN.equals("")) {
-            this.mainCanvasRef.at.a(GlobalStatus.mN + "\t" + var2, GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a(GlobalStatus.mN + "\t" + var2, GlobalConfig.font2, (byte) 2);
         } else {
-            this.mainCanvasRef.at.a("" + var2, GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a("" + var2, GlobalConfig.font2, (byte) 2);
         }
 
         if (GlobalStatus.mx != -1 && GlobalStatus.my != -1) {
@@ -19970,7 +19964,7 @@ public final class UISceneController {
 
         this.mainCanvasRef.ar.a((Image[]) null, var2, (String[]) null, (String[]) null);
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
-        this.mainCanvasRef.at.a("", GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.a("", GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.at.a((byte) 1);
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         this.mainCanvasRef.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
@@ -20004,21 +19998,21 @@ public final class UISceneController {
         if (this.mainCanvasRef.ar.g() != 0 && this.mainCanvasRef.ar.g() != 5) {
             if (this.mainCanvasRef.ar.g() < 5) {
                 if (GlobalStatus.gh[this.bg] != null && GlobalStatus.gh[this.bg][this.mainCanvasRef.ar.g() - 1] != null) {
-                    this.mainCanvasRef.at.a(GlobalStatus.gi[this.bg][this.mainCanvasRef.ar.g() - 1], GlobalConfig.i, (byte) 2);
+                    this.mainCanvasRef.at.a(GlobalStatus.gi[this.bg][this.mainCanvasRef.ar.g() - 1], GlobalConfig.font2, (byte) 2);
                     this.mainCanvasRef.at.a((byte) 1);
                 } else {
-                    this.mainCanvasRef.at.a("可以嵌入符文", GlobalConfig.i, (byte) 2);
+                    this.mainCanvasRef.at.a("可以嵌入符文", GlobalConfig.font2, (byte) 2);
                     this.mainCanvasRef.at.a((byte) 1);
                 }
             } else if (GlobalStatus.gl[this.bg] != null && GlobalStatus.gl[this.bg][this.mainCanvasRef.ar.g() - 6] != null) {
-                this.mainCanvasRef.at.a(GlobalStatus.gm[this.bg][this.mainCanvasRef.ar.g() - 6], GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.a(GlobalStatus.gm[this.bg][this.mainCanvasRef.ar.g() - 6], GlobalConfig.font2, (byte) 2);
                 this.mainCanvasRef.at.a((byte) 1);
             } else {
-                this.mainCanvasRef.at.a("可以嵌入符文", GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.a("可以嵌入符文", GlobalConfig.font2, (byte) 2);
                 this.mainCanvasRef.at.a((byte) 1);
             }
         } else {
-            this.mainCanvasRef.at.a("", GlobalConfig.i, (byte) 2);
+            this.mainCanvasRef.at.a("", GlobalConfig.font2, (byte) 2);
             this.mainCanvasRef.at.a((byte) 1);
         }
     }
@@ -20038,28 +20032,28 @@ public final class UISceneController {
                     if (this.mainCanvasRef.ar.g() != 0 && this.mainCanvasRef.ar.g() != 5) {
                         if (this.mainCanvasRef.ar.g() < 5) {
                             if (GlobalStatus.gh[this.bg] != null && GlobalStatus.gh[this.bg][this.mainCanvasRef.ar.g() - 1] != null) {
-                                this.mainCanvasRef.at.a(GlobalStatus.gi[this.bg][this.mainCanvasRef.ar.g() - 1], GlobalConfig.i, (byte) 2);
+                                this.mainCanvasRef.at.a(GlobalStatus.gi[this.bg][this.mainCanvasRef.ar.g() - 1], GlobalConfig.font2, (byte) 2);
                                 this.mainCanvasRef.at.a((byte) 1);
                                 return;
                             }
 
-                            this.mainCanvasRef.at.a("可以嵌入符文", GlobalConfig.i, (byte) 2);
+                            this.mainCanvasRef.at.a("可以嵌入符文", GlobalConfig.font2, (byte) 2);
                             this.mainCanvasRef.at.a((byte) 1);
                             return;
                         }
 
                         if (GlobalStatus.gl[this.bg] != null && GlobalStatus.gl[this.bg][this.mainCanvasRef.ar.g() - 6] != null) {
-                            this.mainCanvasRef.at.a(GlobalStatus.gm[this.bg][this.mainCanvasRef.ar.g() - 6], GlobalConfig.i, (byte) 2);
+                            this.mainCanvasRef.at.a(GlobalStatus.gm[this.bg][this.mainCanvasRef.ar.g() - 6], GlobalConfig.font2, (byte) 2);
                             this.mainCanvasRef.at.a((byte) 1);
                             return;
                         }
 
-                        this.mainCanvasRef.at.a("可以嵌入符文", GlobalConfig.i, (byte) 2);
+                        this.mainCanvasRef.at.a("可以嵌入符文", GlobalConfig.font2, (byte) 2);
                         this.mainCanvasRef.at.a((byte) 1);
                         return;
                     }
 
-                    this.mainCanvasRef.at.a("", GlobalConfig.i, (byte) 2);
+                    this.mainCanvasRef.at.a("", GlobalConfig.font2, (byte) 2);
                     this.mainCanvasRef.at.a((byte) 1);
                     return;
                 }
@@ -20150,7 +20144,7 @@ public final class UISceneController {
 
         if (GlobalConfig.hasRideRes) {
             this.be();
-            GlobalConfig.i.stringWidth(GlobalConfig.G[0]);
+            GlobalConfig.font2.stringWidth(GlobalConfig.manPaiName[0]);
             if (GlobalStatus.nv != null) {
                 this.dk = new Frame1[GlobalStatus.nv.length];
 
@@ -20171,9 +20165,9 @@ public final class UISceneController {
             this.mainCanvasRef.au.a(this.dr);
         }
 
-        this.mainCanvasRef.at.a(GlobalStatus.nt, GlobalConfig.i, (byte) 2);
-        this.di.a(GlobalStatus.nr, GlobalConfig.i, (byte) 2);
-        this.dj.b(GlobalStatus.ns, GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.a(GlobalStatus.nt, GlobalConfig.font2, (byte) 2);
+        this.di.a(GlobalStatus.nr, GlobalConfig.font2, (byte) 2);
+        this.dj.b(GlobalStatus.ns, GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         if (GlobalConfig.defaultHigh > 220) {
             this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
@@ -20274,7 +20268,7 @@ public final class UISceneController {
             MainCanvas.pngUtil.a(var1, (Frame1) this.dk[this.dl], (int[]) null, 0, 0, var3, var4, 20, 0);
             if (this.dm == 0) {
                 this.dm = var3;
-                this.dn = var2 + GlobalConfig.j + 10;
+                this.dn = var2 + GlobalConfig.font2_h + 10;
             }
 
             var1.drawImage(MainCanvas.X.pngImage, this.dm - 30, this.dn, 20);
@@ -20329,7 +20323,7 @@ public final class UISceneController {
         this.mainCanvasRef.aq.a("见钱开箱");
         this.mainCanvasRef.aq.a(true);
         this.mainCanvasRef.au.a("开启");
-        this.mainCanvasRef.at.b(GlobalStatus.ni, GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.b(GlobalStatus.ni, GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         if (GlobalConfig.defaultHigh > 220) {
             this.mainCanvasRef.aq.a((al) this.mainCanvasRef.au);
@@ -20450,7 +20444,7 @@ public final class UISceneController {
         this.mainCanvasRef.aq.b();
         this.mainCanvasRef.aq.a("特效");
         this.mainCanvasRef.ar.a(GlobalStatus.ny, (String[]) null, GlobalStatus.nz);
-        this.mainCanvasRef.at.b(GlobalStatus.nA[0], GlobalConfig.i, (byte) 2);
+        this.mainCanvasRef.at.b(GlobalStatus.nA[0], GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.ar);
         this.mainCanvasRef.aq.a((al) this.mainCanvasRef.at);
         this.mainCanvasRef.aq.a(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
@@ -20473,12 +20467,12 @@ public final class UISceneController {
             }
 
             if (var1 == 1 || var1 == 4) {
-                this.mainCanvasRef.at.b(GlobalStatus.nA[this.mainCanvasRef.ar.g()], GlobalConfig.i, (byte) 2);
+                this.mainCanvasRef.at.b(GlobalStatus.nA[this.mainCanvasRef.ar.g()], GlobalConfig.font2, (byte) 2);
                 return;
             }
 
             if (var1 == 268435456 || var1 == 1073741824) {
-                LoadingPage.a(GlobalConfig.realWidth / 3 - GlobalConfig.i.stringWidth("操作") / 2, 3 * GlobalConfig.j + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"激活"}, true);
+                LoadingPage.a(GlobalConfig.realWidth / 3 - GlobalConfig.font2.stringWidth("操作") / 2, 3 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"激活"}, true);
                 this.sceneSubState = 1;
                 return;
             }

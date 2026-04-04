@@ -102,7 +102,7 @@ public final class v_1 {
       this.i.aq.j();
       this.i.aq.a("求爱宣言");
       this.i.aq.a(false);
-      this.i.at.a(b, GlobalConfig.i, (byte)2);
+      this.i.at.a(b, GlobalConfig.font2, (byte)2);
       this.i.au.a("确定");
       this.i.aq.a((al)this.i.at);
       this.i.aq.a((al)this.i.au);
@@ -119,7 +119,7 @@ public final class v_1 {
          }
 
          if (a != null && (var1 == 268435456 || var1 == 1073741824 || var1 == 517)) {
-             LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.j + 20 + this.i.ar.i() * GlobalConfig.j + GlobalConfig.g, new String[]{"查看"}, false);
+             LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.i.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看"}, false);
             this.h.sceneSubState = 1;
             this.h.aA = this.i.ar.h();
             this.h.aE = this.i.ar.g();
@@ -236,10 +236,10 @@ public final class v_1 {
       this.i.aq.j();
       this.i.aq.a("申请结婚");
       this.i.aq.a(false);
-      this.i.at.b(c, GlobalConfig.i, (byte)2);
+      this.i.at.b(c, GlobalConfig.font2, (byte)2);
       this.i.at.a((byte)1);
       this.i.aq.a((al)this.i.at);
-      int var2 = 2 * GlobalConfig.j + 16;
+      int var2 = 2 * GlobalConfig.font2_h + 16;
       this.i.aq.g = var2;
       this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 0;
@@ -290,8 +290,8 @@ public final class v_1 {
          int var3 = 0;
          if (this.i.aq != null) {
             var2 = this.i.aq.a + 5;
-            var3 = this.i.aq.b + this.i.aq.d - (2 * GlobalConfig.j + 16) - 6;
-             LoadingPage.a(var1, var2, var3, this.i.aq.c - 11, 2 * GlobalConfig.j + 16, 1);
+            var3 = this.i.aq.b + this.i.aq.d - (2 * GlobalConfig.font2_h + 16) - 6;
+             LoadingPage.a(var1, var2, var3, this.i.aq.c - 11, 2 * GlobalConfig.font2_h + 16, 1);
             this.i.aq.a(var1);
          }
 
@@ -306,7 +306,7 @@ public final class v_1 {
                this.m[0] = "同意(点击申请结婚)";
             }
 
-             LoadingPage.a(var1, (String)this.m[var5], (int)(var2 + 4), var3 + 5 + var5 * (GlobalConfig.j + 5), 20, this.d == var5 ? 16711680 : var4, 0);
+             LoadingPage.drawString(var1, (String)this.m[var5], (int)(var2 + 4), var3 + 5 + var5 * (GlobalConfig.font2_h + 5), 20, this.d == var5 ? 16711680 : var4, 0);
          }
       }
 
@@ -331,10 +331,10 @@ public final class v_1 {
       this.i.aq.j();
       this.i.aq.a("申请离婚");
       this.i.aq.a(false);
-      this.i.at.b(f, GlobalConfig.i, (byte)2);
+      this.i.at.b(f, GlobalConfig.font2, (byte)2);
       this.i.at.a((byte)1);
       this.i.aq.a((al)this.i.at);
-      int var2 = 2 * GlobalConfig.j + 16;
+      int var2 = 2 * GlobalConfig.font2_h + 16;
       this.i.aq.g = var2;
       this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 0;
@@ -390,8 +390,8 @@ public final class v_1 {
          int var3 = 0;
          if (this.i.aq != null) {
             var2 = this.i.aq.a + 5;
-            var3 = this.i.aq.b + this.i.aq.d - (2 * GlobalConfig.j + 16) - 6;
-             LoadingPage.a(var1, var2, var3, this.i.aq.c - 11, 2 * GlobalConfig.j + 16, 1);
+            var3 = this.i.aq.b + this.i.aq.d - (2 * GlobalConfig.font2_h + 16) - 6;
+             LoadingPage.a(var1, var2, var3, this.i.aq.c - 11, 2 * GlobalConfig.font2_h + 16, 1);
             this.i.aq.a(var1);
          }
 
@@ -406,7 +406,7 @@ public final class v_1 {
                this.n[0] = "离婚(点击申请离婚)";
             }
 
-             LoadingPage.a(var1, (String)this.n[var5], (int)(var2 + 4), var3 + 5 + var5 * (GlobalConfig.j + 5), 20, this.g == var5 ? 16711680 : var4, 0);
+             LoadingPage.drawString(var1, (String)this.n[var5], (int)(var2 + 4), var3 + 5 + var5 * (GlobalConfig.font2_h + 5), 20, this.g == var5 ? 16711680 : var4, 0);
          }
       }
 

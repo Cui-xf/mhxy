@@ -204,20 +204,20 @@ public final class ac extends ar {
          var2.a(var1, (Frame1)super.g, (int[])null, var3, var4, super.j + 8, super.k + 16, 20, 0);
          if (GlobalStatus.ag != null) {
             this.w = GlobalStatus.ag;
-           LoadingPage.a(var1, (String)this.w, (int)(super.j + 8 - var3), super.k - var4 - GlobalConfig.j- super.g.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.ai, 0);
+           LoadingPage.drawString(var1, (String)this.w, (int)(super.j + 8 - var3), super.k - var4 - GlobalConfig.font2_h - super.g.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.ai, 0);
          }
 
          if (GlobalStatus.ah != null && !GlobalStatus.ah.equals("")) {
-           LoadingPage.a(var1, GlobalStatus.ah, super.j + 8 - var3, super.k - var4 - (GlobalConfig.j<< 1) - super.g.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.ai);
+           LoadingPage.a(var1, GlobalStatus.ah, super.j + 8 - var3, super.k - var4 - (GlobalConfig.font2_h << 1) - super.g.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.ai);
          }
 
          if (GlobalStatus.bs == 1) {
-            var2.a(var1, UISceneController.y, (int[])null, (aj)null, var3, var4, super.j + 8 - GlobalConfig.i.stringWidth(this.w) / 2 - UISceneController.y.b, super.k - GlobalConfig.j- 18, 20, 0);
+            var2.a(var1, UISceneController.y, (int[])null, (aj)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - UISceneController.y.b, super.k - GlobalConfig.font2_h - 18, 20, 0);
             return;
          }
 
          if (GlobalStatus.bs == 0) {
-            var2.a(var1, UISceneController.z, (int[])null, (aj)null, var3, var4, super.j + 8 - GlobalConfig.i.stringWidth(this.w) / 2 - UISceneController.z.b, super.k - GlobalConfig.j- 18, 20, 0);
+            var2.a(var1, UISceneController.z, (int[])null, (aj)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - UISceneController.z.b, super.k - GlobalConfig.font2_h - 18, 20, 0);
          }
       }
 

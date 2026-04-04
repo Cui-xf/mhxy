@@ -174,7 +174,7 @@ public final class az_1 {
          this.Z = 0;
          this.X = new TextRender(var7, (short)(var2 - 10));
          if (this.X != null && this.X.a() != 0) {
-            int var8 = GlobalConfig.j;
+            int var8 = GlobalConfig.font2_h;
             this.Y = new int[4];
             this.Y[2] = var2;
             this.Y[3] = this.X.a() * var8 + 10;
@@ -190,9 +190,9 @@ public final class az_1 {
 
    public final void a(Graphics var1, PngUtil var2, int var3, int var4, byte var5) {
       if (this.t == -1 && UISceneController.t_2 != null || this.I == 100 && UISceneController.t_2 != null) {
-         var2.a(var1, (Frame1) UISceneController.t_2, (int[])null, var3, var4, this.c - UISceneController.t_2.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - GlobalConfig.j - UISceneController.t_2.j(), 20, var5);
+         var2.a(var1, (Frame1) UISceneController.t_2, (int[])null, var3, var4, this.c - UISceneController.t_2.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - GlobalConfig.font2_h - UISceneController.t_2.j(), 20, var5);
       } else if (this.t == 1 && UISceneController.s != null) {
-         var2.a(var1, (Frame1) UISceneController.s, (int[])null, var3, var4, this.c - UISceneController.s.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - GlobalConfig.j - UISceneController.s.j(), 20, var5);
+         var2.a(var1, (Frame1) UISceneController.s, (int[])null, var3, var4, this.c - UISceneController.s.i() / 2, this.d - (this.w == null ? 30 : this.w.j()) - GlobalConfig.font2_h - UISceneController.s.j(), 20, var5);
       }
 
       if (this.x && UISceneController.u != null) {

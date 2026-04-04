@@ -66,30 +66,30 @@ public final class bq_1 {
       int var2 = (GlobalConfig.defaultWidth - 176) / 4;
       int var3 = (GlobalConfig.defaultHigh - 208) / 6;
       GlobalConfig.Q = new short[6][2];
-      (GlobalConfig.R = new short[6][2])[0][0] = (short)(GlobalConfig.T[0][0] + var2);
-      GlobalConfig.R[0][1] = (short)(GlobalConfig.T[0][1] + (var3 << 1));
-      GlobalConfig.R[1][0] = (short)(GlobalConfig.T[1][0] + (var2 << 1));
-      GlobalConfig.R[1][1] = (short)(GlobalConfig.T[1][1] + (var3 << 1));
-      GlobalConfig.R[2][0] = (short)(GlobalConfig.T[2][0] + var2 * 3);
-      GlobalConfig.R[2][1] = (short)(GlobalConfig.T[2][1] + (var3 << 1));
-      GlobalConfig.R[3][0] = (short)(GlobalConfig.T[3][0] + var2);
-      GlobalConfig.R[3][1] = (short)(GlobalConfig.T[3][1] + var3);
-      GlobalConfig.R[4][0] = (short)(GlobalConfig.T[4][0] + (var2 << 1));
-      GlobalConfig.R[4][1] = (short)(GlobalConfig.T[4][1] + var3);
-      GlobalConfig.R[5][0] = (short)(GlobalConfig.T[5][0] + var2 * 3);
-      GlobalConfig.R[5][1] = (short)(GlobalConfig.T[5][1] + var3);
-      GlobalConfig.Q[0][0] = (short)(GlobalConfig.S[0][0] + var2);
-      GlobalConfig.Q[0][1] = (short)(GlobalConfig.S[0][1] + var3 * 5);
-      GlobalConfig.Q[1][0] = (short)(GlobalConfig.S[1][0] + (var2 << 1));
-      GlobalConfig.Q[1][1] = (short)(GlobalConfig.S[1][1] + var3 * 5);
-      GlobalConfig.Q[2][0] = (short)(GlobalConfig.S[2][0] + var2 * 3);
-      GlobalConfig.Q[2][1] = (short)(GlobalConfig.S[2][1] + var3 * 5);
-      GlobalConfig.Q[3][0] = (short)(GlobalConfig.S[3][0] + var2);
-      GlobalConfig.Q[3][1] = (short)(GlobalConfig.S[3][1] + (var3 << 2));
-      GlobalConfig.Q[4][0] = (short)(GlobalConfig.S[4][0] + (var2 << 1));
-      GlobalConfig.Q[4][1] = (short)(GlobalConfig.S[4][1] + (var3 << 2));
-      GlobalConfig.Q[5][0] = (short)(GlobalConfig.S[5][0] + var2 * 3);
-      GlobalConfig.Q[5][1] = (short)(GlobalConfig.S[5][1] + (var3 << 2));
+      (GlobalConfig.R = new short[6][2])[0][0] = (short)(GlobalConfig.ZhanDouZuoBiao2[0][0] + var2);
+      GlobalConfig.R[0][1] = (short)(GlobalConfig.ZhanDouZuoBiao2[0][1] + (var3 << 1));
+      GlobalConfig.R[1][0] = (short)(GlobalConfig.ZhanDouZuoBiao2[1][0] + (var2 << 1));
+      GlobalConfig.R[1][1] = (short)(GlobalConfig.ZhanDouZuoBiao2[1][1] + (var3 << 1));
+      GlobalConfig.R[2][0] = (short)(GlobalConfig.ZhanDouZuoBiao2[2][0] + var2 * 3);
+      GlobalConfig.R[2][1] = (short)(GlobalConfig.ZhanDouZuoBiao2[2][1] + (var3 << 1));
+      GlobalConfig.R[3][0] = (short)(GlobalConfig.ZhanDouZuoBiao2[3][0] + var2);
+      GlobalConfig.R[3][1] = (short)(GlobalConfig.ZhanDouZuoBiao2[3][1] + var3);
+      GlobalConfig.R[4][0] = (short)(GlobalConfig.ZhanDouZuoBiao2[4][0] + (var2 << 1));
+      GlobalConfig.R[4][1] = (short)(GlobalConfig.ZhanDouZuoBiao2[4][1] + var3);
+      GlobalConfig.R[5][0] = (short)(GlobalConfig.ZhanDouZuoBiao2[5][0] + var2 * 3);
+      GlobalConfig.R[5][1] = (short)(GlobalConfig.ZhanDouZuoBiao2[5][1] + var3);
+      GlobalConfig.Q[0][0] = (short)(GlobalConfig.ZhanDouZuoBiao1[0][0] + var2);
+      GlobalConfig.Q[0][1] = (short)(GlobalConfig.ZhanDouZuoBiao1[0][1] + var3 * 5);
+      GlobalConfig.Q[1][0] = (short)(GlobalConfig.ZhanDouZuoBiao1[1][0] + (var2 << 1));
+      GlobalConfig.Q[1][1] = (short)(GlobalConfig.ZhanDouZuoBiao1[1][1] + var3 * 5);
+      GlobalConfig.Q[2][0] = (short)(GlobalConfig.ZhanDouZuoBiao1[2][0] + var2 * 3);
+      GlobalConfig.Q[2][1] = (short)(GlobalConfig.ZhanDouZuoBiao1[2][1] + var3 * 5);
+      GlobalConfig.Q[3][0] = (short)(GlobalConfig.ZhanDouZuoBiao1[3][0] + var2);
+      GlobalConfig.Q[3][1] = (short)(GlobalConfig.ZhanDouZuoBiao1[3][1] + (var3 << 2));
+      GlobalConfig.Q[4][0] = (short)(GlobalConfig.ZhanDouZuoBiao1[4][0] + (var2 << 1));
+      GlobalConfig.Q[4][1] = (short)(GlobalConfig.ZhanDouZuoBiao1[4][1] + (var3 << 2));
+      GlobalConfig.Q[5][0] = (short)(GlobalConfig.ZhanDouZuoBiao1[5][0] + var2 * 3);
+      GlobalConfig.Q[5][1] = (short)(GlobalConfig.ZhanDouZuoBiao1[5][1] + (var3 << 2));
       GlobalStatus.H = new p[GlobalStatus.I.length];
       if (t == 0) {
          GlobalStatus.M = new ck[GlobalStatus.N.length];
@@ -1224,7 +1224,7 @@ public final class bq_1 {
    public final void a(PngUtil var1, Graphics var2) {
       var2.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
       if ((this.f == 2 || this.f == 3 || this.f == 6) && this.E != null && this.E[0].f != null && !this.E[0].f.equals("")) {
-         LoadingPage.a(var2, (String)this.E[0].f, (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.j, 17, 0, 16777215);
+         LoadingPage.drawString(var2, (String)this.E[0].f, (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 0, 16777215);
       }
 
       if (this.f != 4 && this.f != 8) {
@@ -1402,7 +1402,7 @@ public final class bq_1 {
          for(byte var12 = 0; var12 < GlobalStatus.H.length; ++var12) {
             if (GlobalStatus.H != null && var12 >= 0 && var12 <= GlobalStatus.H.length - 1 && var12 >= 0 && !GlobalStatus.H[var12].d()) {
                if (var9.i == var12 && (var9.d == 4 || var9.d == 5)) {
-                  LoadingPage.a(var3, (String) GlobalStatus.H[var9.i].d, (int)2, 2, 20, 14337302, 0);
+                  LoadingPage.drawString(var3, (String) GlobalStatus.H[var9.i].d, (int)2, 2, 20, 14337302, 0);
                }
 
                if (GlobalStatus.H[var12].b == 0) {
@@ -1424,8 +1424,8 @@ public final class bq_1 {
             if (var13 >= 0 && !GlobalStatus.M[var13].a()) {
                LoadingPage.e(var3, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 4 - GlobalStatus.M[var13].d(), GlobalStatus.M[var13].e * 19 / GlobalStatus.M[var13].f, 0);
                if (var9.h == var13 && (var9.d == 1 || var9.d == 0 || var9.d == 2 || var9.d == 3 || var9.d == 9)) {
-                  LoadingPage.a(var3, (String) GlobalStatus.M[var13].d, (int)2, 2, 20, 14337302, 0);
-                  LoadingPage.a(var3, (String)("" + GlobalConfig.K[GlobalStatus.M[var13].k]), (int)(GlobalConfig.defaultWidth - 2), 2, 24, 14337302, 0);
+                  LoadingPage.drawString(var3, (String) GlobalStatus.M[var13].d, (int)2, 2, 20, 14337302, 0);
+                  LoadingPage.drawString(var3, (String)("" + GlobalConfig.ShangHaiLeiXing[GlobalStatus.M[var13].k]), (int)(GlobalConfig.defaultWidth - 2), 2, 24, 14337302, 0);
                }
 
                if (GlobalStatus.M[var13].i > 99) {
@@ -1440,7 +1440,7 @@ public final class bq_1 {
                }
 
                if (var9.h == var13 && GlobalStatus.M[var13].l == 1) {
-                  MainCanvas.pngUtil.a(var3, UISceneController.D, (int[])null, -1, 0, 0, 4 + GlobalConfig.i.stringWidth(GlobalStatus.M[var13].d), 6, 0, 0);
+                  MainCanvas.pngUtil.a(var3, UISceneController.D, (int[])null, -1, 0, 0, 4 + GlobalConfig.font2.stringWidth(GlobalStatus.M[var13].d), 6, 0, 0);
                }
             }
          }
@@ -1466,7 +1466,7 @@ public final class bq_1 {
          }
 
          if ((GlobalStatus.bs >= 0 && GlobalStatus.s == 0 || t == 1 || t == 2) && s >= 0) {
-            LoadingPage.a(var2, (String)String.valueOf(s), (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh / 2 - (GlobalConfig.defaultHigh <= 240 ? GlobalConfig.j : GlobalConfig.j / 2), 17, 16711680, 0);
+            LoadingPage.drawString(var2, (String)String.valueOf(s), (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh / 2 - (GlobalConfig.defaultHigh <= 240 ? GlobalConfig.font2_h : GlobalConfig.font2_h / 2), 17, 16711680, 0);
          }
       } else if (this.f == 3) {
          this.a(var2);
@@ -1487,7 +1487,7 @@ public final class bq_1 {
 
       this.d(var2);
       if (GlobalStatus.bt && c > 0) {
-         LoadingPage.a(var2, (String)("自动回合:" + c), (int)(GlobalConfig.defaultWidth - GlobalConfig.i.stringWidth("自动回合:" + c) / 2 - 45), 2, 17, 16777215, 0);
+         LoadingPage.drawString(var2, (String)("自动回合:" + c), (int)(GlobalConfig.defaultWidth - GlobalConfig.font2.stringWidth("自动回合:" + c) / 2 - 45), 2, 17, 16777215, 0);
       }
 
       if (GlobalConfig.o) {
@@ -2061,14 +2061,14 @@ public final class bq_1 {
    private void a(Graphics var1, String var2) {
       if (this.y.touchPageCase != 2) {
          if (this.K == null) {
-            this.K = LoadingPage.a(var2, GlobalConfig.i, GlobalConfig.defaultWidth / 2 - 20, "/t");
+            this.K = LoadingPage.a(var2, GlobalConfig.font2, GlobalConfig.defaultWidth / 2 - 20, "/t");
          }
 
          if (this.K != null) {
-            LoadingPage.a(var1, (GlobalConfig.defaultWidth - GlobalConfig.k * 10) / 2, (GlobalConfig.defaultHigh - GlobalConfig.j * this.K.length - 20) / 2, GlobalConfig.k * 10, GlobalConfig.j * this.K.length + 20);
+            LoadingPage.a(var1, (GlobalConfig.defaultWidth - GlobalConfig.font2_w * 10) / 2, (GlobalConfig.defaultHigh - GlobalConfig.font2_h * this.K.length - 20) / 2, GlobalConfig.font2_w * 10, GlobalConfig.font2_h * this.K.length + 20);
 
             for(int var3 = 0; var3 < this.K.length; ++var3) {
-               LoadingPage.a(var1, (String)this.K[var3], (int)(GlobalConfig.defaultWidth / 2), (GlobalConfig.defaultHigh - GlobalConfig.j * this.K.length - 20) / 2 + 10 + var3 * GlobalConfig.j, 17, LoadingPage.a, 0);
+               LoadingPage.drawString(var1, (String)this.K[var3], (int)(GlobalConfig.defaultWidth / 2), (GlobalConfig.defaultHigh - GlobalConfig.font2_h * this.K.length - 20) / 2 + 10 + var3 * GlobalConfig.font2_h, 17, LoadingPage.a, 0);
             }
          }
       }
@@ -2145,7 +2145,7 @@ public final class bq_1 {
       if (var0.c.equals(GlobalStatus.ad) && GlobalStatus.x != -1) {
          GlobalStatus.aN = var0.e;
          GlobalStatus.aP = var0.g;
-         GlobalStatus.aM = var0.f;
+         GlobalStatus.totalShengMing = var0.f;
          GlobalStatus.aO = var0.h;
       }
 
@@ -2185,19 +2185,19 @@ public final class bq_1 {
                LoadingPage.d(var1, 1, GlobalConfig.defaultHigh - 102 + (this.e << 4), 25, 15);
                switch (this.e) {
                   case 0:
-                     LoadingPage.a(var1, (String)"攻击", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.j, 17, 16776960, 0);
+                     LoadingPage.drawString(var1, (String)"攻击", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                      break;
                   case 1:
-                     LoadingPage.a(var1, (String)"防御", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.j, 17, 16776960, 0);
+                     LoadingPage.drawString(var1, (String)"防御", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                      break;
                   case 2:
-                     LoadingPage.a(var1, (String)"技能", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.j, 17, 16776960, 0);
+                     LoadingPage.drawString(var1, (String)"技能", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                      break;
                   case 3:
-                     LoadingPage.a(var1, (String)"道具", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.j, 17, 16776960, 0);
+                     LoadingPage.drawString(var1, (String)"道具", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                      break;
                   case 4:
-                     LoadingPage.a(var1, (String)"逃跑", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.j, 17, 16776960, 0);
+                     LoadingPage.drawString(var1, (String)"逃跑", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                }
             }
          }
@@ -2239,13 +2239,13 @@ public final class bq_1 {
                LoadingPage.d(var1, 1, GlobalConfig.defaultHigh - 70 + (var2 << 4), 25, 15);
                switch (this.e) {
                   case 0:
-                     LoadingPage.a(var1, (String)"攻击", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.j, 17, 16776960, 0);
+                     LoadingPage.drawString(var1, (String)"攻击", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                      break;
                   case 1:
-                     LoadingPage.a(var1, (String)"防御", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.j, 17, 16776960, 0);
+                     LoadingPage.drawString(var1, (String)"防御", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                      break;
                   case 2:
-                     LoadingPage.a(var1, (String)"技能", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.j, 17, 16776960, 0);
+                     LoadingPage.drawString(var1, (String)"技能", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                }
             }
          }
@@ -2341,21 +2341,21 @@ public final class bq_1 {
                                  return;
                               }
 
-                              LoadingPage.a(var1, (String) GlobalStatus.eo[this.z.az], (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.j, 17, 16776960, 0);
+                              LoadingPage.drawString(var1, (String) GlobalStatus.eo[this.z.az], (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                            } else {
                               if (this.d != 2 || GlobalStatus.et[this.z.az] == -1) {
                                  return;
                               }
 
-                              LoadingPage.a(var1, (String) GlobalStatus.eu[this.z.az], (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.j, 17, 16776960, 0);
+                              LoadingPage.drawString(var1, (String) GlobalStatus.eu[this.z.az], (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                            }
 
                            return;
                         case 8:
-                           LoadingPage.a(var1, (String)"聊天记录", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.j, 17, 16776960, 0);
+                           LoadingPage.drawString(var1, (String)"聊天记录", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                            return;
                         case 9:
-                           LoadingPage.a(var1, (String)"自动打怪", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.j, 17, 16776960, 0);
+                           LoadingPage.drawString(var1, (String)"自动打怪", (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                            return;
                         default:
                            return;
@@ -2372,7 +2372,7 @@ public final class bq_1 {
    private void e(Graphics var1) {
       if (this.u != null) {
          for(byte var2 = 0; var2 < this.u.length; ++var2) {
-            LoadingPage.a(var1, (String)this.u[var2], (int)(GlobalConfig.defaultWidth / 2), (GlobalConfig.defaultHigh - this.u.length * GlobalConfig.j) / 2 + var2 * GlobalConfig.j, 17, 15849739, 0);
+            LoadingPage.drawString(var1, (String)this.u[var2], (int)(GlobalConfig.defaultWidth / 2), (GlobalConfig.defaultHigh - this.u.length * GlobalConfig.font2_h) / 2 + var2 * GlobalConfig.font2_h, 17, 15849739, 0);
          }
       }
 
@@ -2415,7 +2415,7 @@ public final class bq_1 {
    public final void a(String var1) {
       if (this.x != null) {
          synchronized(this.x) {
-            this.x.addElement(LoadingPage.a(var1, GlobalConfig.i, GlobalConfig.defaultWidth * 5 / 7, "\t"));
+            this.x.addElement(LoadingPage.a(var1, GlobalConfig.font2, GlobalConfig.defaultWidth * 5 / 7, "\t"));
          }
       }
    }

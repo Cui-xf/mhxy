@@ -19,8 +19,8 @@ public final class bm extends al {
    private Font n;
 
    public bm() {
-      this.m = GlobalConfig.i;
-      this.n = GlobalConfig.i;
+      this.m = GlobalConfig.font2;
+      this.n = GlobalConfig.font2;
    }
 
    public final void b(int var1) {
@@ -30,10 +30,10 @@ public final class bm extends al {
       boolean var10000;
       if (var1 >= this.c && var1 <= this.c + this.e && var2 >= this.d && var2 <= this.d + this.f) {
          this.k = 16711680;
-         this.m = GlobalConfig.h;
+         this.m = GlobalConfig.font1;
          var10000 = true;
       } else {
-         this.m = GlobalConfig.i;
+         this.m = GlobalConfig.font2;
          this.k = 16776960;
          var10000 = false;
       }
@@ -43,10 +43,10 @@ public final class bm extends al {
       } else {
          if (var1 >= this.g && var1 <= this.g + this.i && var2 >= this.h && var2 <= this.h + this.j) {
             this.l = 16711680;
-            this.n = GlobalConfig.h;
+            this.n = GlobalConfig.font1;
             var10000 = true;
          } else {
-            this.n = GlobalConfig.i;
+            this.n = GlobalConfig.font2;
             this.l = 16776960;
             var10000 = false;
          }

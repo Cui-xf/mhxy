@@ -236,8 +236,8 @@ public final class cg_1 {
       this.f.aq.b();
       this.f.aq.a("星级继承");
       this.f.aq.a(true);
-      this.H.a(this.L, GlobalConfig.i, (byte)2);
-      this.I.a(this.M, GlobalConfig.i, (byte)2);
+      this.H.a(this.L, GlobalConfig.font2, (byte)2);
+      this.I.a(this.M, GlobalConfig.font2, (byte)2);
       if (a != -1 && u != -1) {
          UISceneController.a(u, v, w, x);
          this.h = MainCanvas.ah.a(String.valueOf(u + "_0"), v, w, x);
@@ -259,7 +259,7 @@ public final class cg_1 {
          this.f.aq.a((al)this.f.au);
       }
 
-      this.G = (this.f.aq.d - 32 - GlobalConfig.j) / 3 - 10;
+      this.G = (this.f.aq.d - 32 - GlobalConfig.font2_h) / 3 - 10;
       this.f.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.H.a(this.f.aq.a + 5, this.f.aq.b + 32 + this.G, this.f.aq.c - 11, this.G + 10);
       this.I.a(this.f.aq.a + 5, this.f.aq.b + 32 + 2 * this.G + 10, this.f.aq.c - 11, this.G + 10);
@@ -439,7 +439,7 @@ public final class cg_1 {
          this.g.a(var1, (Frame1)this.i, (int[])null, 0, 0, this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 0, 0);
       } else {
          var1.setColor(16776960);
-         var1.drawString("副宠", this.f.aq.a + 5 + 25 + this.f.aq.c / 2 + 25, this.f.aq.b + 32 + 10 + GlobalConfig.j / 4 + 25, 65);
+         var1.drawString("副宠", this.f.aq.a + 5 + 25 + this.f.aq.c / 2 + 25, this.f.aq.b + 32 + 10 + GlobalConfig.font2_h / 4 + 25, 65);
       }
 
       if (this.e.sceneSubState == 1) {

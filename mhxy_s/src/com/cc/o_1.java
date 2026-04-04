@@ -77,7 +77,7 @@ public final class o_1 {
         this.j.aq.a(GlobalStatus.kp);
         this.j.aq.a(false);
         this.j.aq.a(30);
-        this.j.at.a(GlobalStatus.a(this.j.l), GlobalConfig.i, (byte) 1);
+        this.j.at.a(GlobalStatus.a(this.j.shareSb), GlobalConfig.font2, (byte) 1);
         this.j.au.a("确定");
         this.j.aq.a((al) this.j.at);
         if (GlobalConfig.defaultHigh > 220) {
@@ -85,7 +85,7 @@ public final class o_1 {
         }
 
         this.j.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        var1 = this.j.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:");
+        var1 = this.j.aq.a + 10 + GlobalConfig.font2.stringWidth("宝石:");
         int var2_t = this.j.aq.b + 37;
         if (this.l != null) {
             for (int var10 = 0; var10 < this.l.length; ++var10) {
@@ -220,13 +220,13 @@ public final class o_1 {
                 }
             } else if (GlobalStatus.kr != null && (this.c == 4 && this.d == 0 || this.c == 5 || this.c == 13) && GlobalStatus.kr[this.b] > -1) {
                 if (GlobalStatus.kr[this.b] == 0) {
-                    LoadingPage.a(this.j.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 12 + this.b * 17, this.j.aq.b + 45, new String[]{"镶嵌", "全部挖出"}, false);
+                    LoadingPage.a(this.j.aq.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 12 + this.b * 17, this.j.aq.b + 45, new String[]{"镶嵌", "全部挖出"}, false);
                     this.a = this.b;
                     this.i.sceneSubState = 1;
                     return;
                 }
 
-                LoadingPage.a(this.j.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 12 + this.b * 17, this.j.aq.b + 45, new String[]{"查看", "挖出", "全部挖出"}, false);
+                LoadingPage.a(this.j.aq.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 12 + this.b * 17, this.j.aq.b + 45, new String[]{"查看", "挖出", "全部挖出"}, false);
                 this.a = this.b;
                 this.i.sceneSubState = 2;
                 return;
@@ -329,25 +329,25 @@ public final class o_1 {
             this.j.aq.a(30);
             this.j.aq.a(var1);
             LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, 30, 1);
-            LoadingPage.a(var1, (String) "宝石", (int) (this.j.aq.a + 10), this.j.aq.b + 35 + GlobalConfig.a(25), 20, 16776960, 0);
+            LoadingPage.drawString(var1, (String) "宝石", (int) (this.j.aq.a + 10), this.j.aq.b + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
         }
 
         if (GlobalStatus.kr != null) {
-            this.i.a(var1, this.j.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:"), this.j.aq.b + 37, 17, 17, GlobalStatus.kr.length, 1);
+            this.i.a(var1, this.j.aq.a + 10 + GlobalConfig.font2.stringWidth("宝石:"), this.j.aq.b + 37, 17, 17, GlobalStatus.kr.length, 1);
 
             for (byte var2 = 0; var2 < GlobalStatus.kr.length; ++var2) {
                 if (GlobalStatus.kr[var2] <= -1) {
-                    LoadingPage.a(var1, 125269879, 207, this.j.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var2 * 17, this.j.aq.b + 39, 17, 17);
+                    LoadingPage.a(var1, 125269879, 207, this.j.aq.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var2 * 17, this.j.aq.b + 39, 17, 17);
                 }
 
                 if (GlobalStatus.kr[var2] > 0) {
-                    MainCanvas.pngUtil.a(var1, UISceneController.b(GlobalStatus.kr[var2]), (int[]) null, (aj) null, 0, 0, this.j.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + var2 * 17, this.j.aq.b + 39, 0, 0);
+                    MainCanvas.pngUtil.a(var1, UISceneController.b(GlobalStatus.kr[var2]), (int[]) null, (aj) null, 0, 0, this.j.aq.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var2 * 17, this.j.aq.b + 39, 0, 0);
                 }
             }
 
             if (this.c == 4 && this.d == 0 || this.c == 5 || this.c == 13) {
                 var1.setColor(16776960);
-                var1.drawRect(this.j.aq.a + 10 + GlobalConfig.i.stringWidth("宝石:") + 2 + this.b * 17, this.j.aq.b + 39, 17, 17);
+                var1.drawRect(this.j.aq.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + this.b * 17, this.j.aq.b + 39, 17, 17);
             }
         }
 
@@ -381,9 +381,9 @@ public final class o_1 {
         this.j.ar.a((Image[]) null, GlobalStatus.kn, (String[]) null, (String[]) null);
         this.j.au.a("确定");
         if (GlobalStatus.km != null && GlobalStatus.km.length > 0) {
-            this.j.at.a(GlobalStatus.i(this.j.l, this.j.ar.g()), GlobalConfig.i, (byte) 2);
+            this.j.at.a(GlobalStatus.i(this.j.shareSb, this.j.ar.g()), GlobalConfig.font2, (byte) 2);
         } else {
-            this.j.at.a((String) null, GlobalConfig.i, (byte) 2);
+            this.j.at.a((String) null, GlobalConfig.font2, (byte) 2);
         }
 
         this.j.at.a((byte) 1);
@@ -415,7 +415,7 @@ public final class o_1 {
                     return;
                 }
             } else if (GlobalStatus.km != null && GlobalStatus.km.length > 0) {
-                this.j.at.a(GlobalStatus.i(this.j.l, this.j.ar.g()), GlobalConfig.i, (byte) 2);
+                this.j.at.a(GlobalStatus.i(this.j.shareSb, this.j.ar.g()), GlobalConfig.font2, (byte) 2);
                 this.j.at.a((byte) 1);
                 return;
             }
@@ -473,7 +473,7 @@ public final class o_1 {
         this.j.aq.a(m);
         an_1 var10000 = this.j.at;
         StringBuffer var1;
-        if ((var1 = this.j.l) == null) {
+        if ((var1 = this.j.shareSb) == null) {
             var1 = new StringBuffer();
         } else {
             GlobalConfig.clearStr(var1);
@@ -521,7 +521,7 @@ public final class o_1 {
             var1.append(u);
         }
 
-        var10000.a(var1.toString(), GlobalConfig.i, (byte) 1);
+        var10000.a(var1.toString(), GlobalConfig.font2, (byte) 1);
         this.j.au.a("确定");
         this.j.aq.a((al) this.j.at);
         if (GlobalConfig.defaultHigh > 220) {
@@ -681,11 +681,11 @@ public final class o_1 {
         this.j.aq.b();
         this.j.aq.a("装备洗炼");
         this.j.aq.a(false);
-        this.J = Math.max(UISceneController.x.c, GlobalConfig.j) * 7 + 16;
-        this.H = UISceneController.x.c + GlobalConfig.j + 8;
+        this.J = Math.max(UISceneController.x.c, GlobalConfig.font2_h) * 7 + 16;
+        this.H = UISceneController.x.c + GlobalConfig.font2_h + 8;
         this.I = GlobalConfig.realHigh - 32 - l_1.b() - (this.J + 4) - this.H;
         this.j.aq.a(this.H + this.I);
-        this.j.at.a((String) null, GlobalConfig.i, (byte) 1);
+        this.j.at.a((String) null, GlobalConfig.font2, (byte) 1);
         this.j.aq.a((al) this.j.at);
         this.j.at.a((byte) 1);
         this.j.au.a("确定");
@@ -702,7 +702,7 @@ public final class o_1 {
                     var1_t = this.j.aq.a + this.j.aq.c / 4 * 3 - 8;
                 } else if (var3 > 1) {
                     var1_t = this.j.aq.a + (this.j.aq.c - 17) / 2;
-                    var2 = this.j.aq.b + 32 + this.H + this.I + 4 + 2 + (var3 - 1) * (Math.max(UISceneController.x.c, GlobalConfig.j) + 1);
+                    var2 = this.j.aq.b + 32 + this.H + this.I + 4 + 2 + (var3 - 1) * (Math.max(UISceneController.x.c, GlobalConfig.font2_h) + 1);
                 }
 
                 boolean var10001 = true;
@@ -953,7 +953,7 @@ public final class o_1 {
         var1.drawString("洗炼锁", this.G[0][0] + 17, this.j.aq.b + 32 + this.H + 3, 20);
         var1.drawString(this.M + " / " + E, this.G[1][0] - 5, this.j.aq.b + 32 + this.H + 3, 20);
         int var9 = var2 + 2;
-        var2 = Math.max(UISceneController.x.c, GlobalConfig.j);
+        var2 = Math.max(UISceneController.x.c, GlobalConfig.font2_h);
         var1.drawString("当    前", var4 + var3 / 2, var9, 17);
         var1.drawString("最    大", var5 + var3 / 2, var9, 17);
         if (C != null) {

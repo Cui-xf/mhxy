@@ -124,9 +124,9 @@ public final class ch {
 
    private void d() {
       if (r != null && !r.equals("")) {
-         this.d.at.a(m + "\t" + i + "\t" + s + "\t" + r, GlobalConfig.i, (byte)1);
+         this.d.at.a(m + "\t" + i + "\t" + s + "\t" + r, GlobalConfig.font2, (byte)1);
       } else {
-         this.d.at.a((String)null, GlobalConfig.i, (byte)1);
+         this.d.at.a((String)null, GlobalConfig.font2, (byte)1);
       }
    }
 
@@ -141,7 +141,7 @@ public final class ch {
    private void e() {
       this.g = null;
       if (u != null) {
-         this.g = new TextRender(u, (short) GlobalConfig.i.stringWidth(u));
+         this.g = new TextRender(u, (short) GlobalConfig.font2.stringWidth(u));
       }
 
    }
@@ -166,8 +166,8 @@ public final class ch {
       this.d.aq.b();
       this.d.aq.a("装备升星");
       this.d.aq.a(false);
-      this.w = Math.max((GlobalConfig.j << 1) + 25, 59);
-      this.x = GlobalConfig.j + 13;
+      this.w = Math.max((GlobalConfig.font2_h << 1) + 25, 59);
+      this.x = GlobalConfig.font2_h + 13;
       this.d.aq.a(this.w + this.x);
       this.d();
       this.b();

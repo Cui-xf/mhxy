@@ -9,8 +9,8 @@ import java.util.Vector;
 //public final class bGlobalConfig {
 public final class GlobalStatus {
     public static boolean a = false;
-    public static String b;
-    public static String c;
+    public static String zhangHao;
+    public static String token;
     public static String d;
     public static long lastSyncTime;
     public static long f;
@@ -99,7 +99,8 @@ public final class GlobalStatus {
     public static String aJ;
     public static String aK;
     public static String aL;
-    public static int aM;
+    //总生命值
+    public static int totalShengMing;
     public static int aN;
     private static int nE;
     private static int nF;
@@ -1178,7 +1179,7 @@ public final class GlobalStatus {
         if (nF != -1) {
             aN = nF;
             aP = nH;
-            aM = nE;
+            totalShengMing = nE;
             aO = nG;
         }
 
@@ -1212,7 +1213,7 @@ public final class GlobalStatus {
         an = var0.readLong();
         ao = var0.readLong();
         aN = var0.readInt();
-        aM = var0.readInt();
+        totalShengMing = var0.readInt();
         aP = var0.readInt();
         aO = var0.readInt();
         aR = var0.readInt();
@@ -2675,7 +2676,7 @@ public final class GlobalStatus {
         if ((eB = var0.readByte()) <= 0) {
             eC = var0.readUTF();
         } else {
-            eC = GlobalConfig.Y[eB];
+            eC = GlobalConfig.YiChangTiShi[eB];
         }
     }
 
@@ -3487,7 +3488,7 @@ public final class GlobalStatus {
         StringBuffer var2 = new StringBuffer();
         var2.append(oz[var1]);
         var2.append("（");
-        GlobalConfig.a(var0, oH[var1]);
+        GlobalConfig.yinLiangFormat(var0, oH[var1]);
         var2.append(var0).append("）");
         var2.append('\t');
         if (!oA[var1].equals("")) {
@@ -3524,7 +3525,7 @@ public final class GlobalStatus {
         StringBuffer var2;
         (var2 = new StringBuffer()).append(oM[var1]);
         var2.append("（");
-        GlobalConfig.a(var0, oU[var1]);
+        GlobalConfig.yinLiangFormat(var0, oU[var1]);
         var2.append(var0.toString() + "）");
         var2.append('\t');
         if (!oN[var1].equals("")) {
@@ -5613,7 +5614,7 @@ public final class GlobalStatus {
         StringBuffer var2;
         (var2 = new StringBuffer()).append(jO[var1]);
         var2.append("（");
-        GlobalConfig.a(var0, qv[var1]);
+        GlobalConfig.yinLiangFormat(var0, qv[var1]);
         var2.append(var0.toString() + "）");
         var2.append('\t');
         if (qy[var1] > 0L) {
@@ -8197,7 +8198,7 @@ public final class GlobalStatus {
         pY = new StringBuffer();
         hG = -1;
         qd = -1;
-        iI = new String[GlobalConfig.ad.length];
+        iI = new String[GlobalConfig.BaoKuCaoZuo.length];
         iK = new byte[2];
         iL = new byte[2];
         iM = new int[2];

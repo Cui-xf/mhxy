@@ -2,7 +2,6 @@ package com.yinhan.kjava.main;
 
 import com.cc.*;
 
-import javax.microedition.io.ConnectionNotFoundException;
 import javax.microedition.lcdui.*;
 import javax.microedition.rms.RecordStore;
 import javax.microedition.rms.RecordStoreException;
@@ -18,13 +17,13 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     public MainMidlet mainMidlet;
     public static UISceneController uiSceneController;
     public static PngUtil pngUtil;
-    private boolean aJ;
-    public boolean g = false;
-    public boolean h = false;
+    private boolean aJ = true;
+    public boolean g;
+    public boolean h;
     public static NetUtils netUtils;
     public short touchPageCase;
     public short k;
-    public StringBuffer l;
+    public StringBuffer shareSb;
     public int m;
     public static Frame0 num;
     public boolean o;
@@ -117,7 +116,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     public static String an = null;
     public static byte ao = 0;
     public static boolean ap = true;
-    private int bw;
+    private int bw = -1;
     public m_1 aq;
     public c_1 ar;
     public n_1 as;
@@ -133,7 +132,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     private int bB;
     private int[][] actorList;
     public int ax;
-    public String ay;
+    public String ay = "";
     private Image logo_btn_random;
     private byte bE;
     private byte bF;
@@ -141,7 +140,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     private int bH;
     public boolean az;
     public int tempTouchStatus;
-    private int bI;
+    private int bI = -1;
     private long bJ;
     private static byte bK = 1;
     public static byte aB = 2;
@@ -160,7 +159,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     private StringItem bV;
     private String bW;
     private ChoiceGroup bX;
-    private byte bY;
+    private byte bY = -1;
     public ChoiceGroup aE;
     private String bZ;
     public int aF;
@@ -174,31 +173,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     public static String aI;
 
     public MainCanvas(MainMidlet midlet, Display display) {
-        this.o = false;
-        this.p = false;
-        this.al = 0L;
-        this.aP = 0L;
-        this.aS = null;
-        this.aZ = false;
-        this.bs = 0;
-        this.bw = -1;
-        this.aw = 0;
-        this.bB = 0;
-        this.actorList = null;
-        this.ay = "";
-        this.logo_btn_random = null;
-        this.bG = 0;
-        this.bH = 0;
-        this.tempTouchStatus = 0;
-        this.bI = -1;
-        this.bJ = 0L;
-        this.bY = -1;
         GlobalConfig.init(midlet);
         this.setFullScreenMode(true);
         this.display = display;
         this.mainMidlet = midlet;
         ai = new c_3(midlet, display);
-        this.aJ = true;
         GlobalConfig.defaultWidth = (short) this.getWidth();
         GlobalConfig.defaultHigh = (short) this.getHeight();
         UISceneController.gameViewportWidth = GlobalConfig.realWidth = GlobalConfig.defaultWidth;
@@ -222,7 +201,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         ae.c();
         af.c();
         ah.c();
-        this.l = new StringBuffer();
+        this.shareSb = new StringBuffer();
         this.aq = new m_1();
         this.ar = new c_1();
         this.au = new l_1();
@@ -359,12 +338,12 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         case 3:
                             if (this.aZ) {
                                 this.init();
-                                GlobalConfig.clearStr(this.l);
-                                GlobalStatus.b = this.bN.getString();
-                                GlobalStatus.c = this.bO.getString();
+                                GlobalConfig.clearStr(this.shareSb);
+                                GlobalStatus.zhangHao = this.bN.getString();
+                                GlobalStatus.token = this.bO.getString();
                                 this.F();
                                 byte[] var16;
-                                if ((var16 = NetPayloadBuilder.buildLogin((short) 5379, GlobalStatus.b, GlobalStatus.c, GlobalConfig.PopularizeChannel)) != null) {
+                                if ((var16 = NetPayloadBuilder.buildLogin((short) 5379, GlobalStatus.zhangHao, GlobalStatus.token, GlobalConfig.PopularizeChannel)) != null) {
                                     NetPacket var21;
                                     (var21 = new NetPacket((short) 5379, var16)).firstPacket = true;
                                     netUtils.sendPacket(var21);
@@ -463,7 +442,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                                 }
 
                                                 byte[] var19;
-                                                if ((var19 = NetPayloadBuilder.a((short) 4098, (String) GlobalStatus.d, (String) GlobalStatus.b)) != null) {
+                                                if ((var19 = NetPayloadBuilder.a((short) 4098, (String) GlobalStatus.d, (String) GlobalStatus.zhangHao)) != null) {
                                                     netUtils.sendPacket(new NetPacket((short) 4098, var19));
                                                     this.a((String) null);
                                                 } else {
@@ -484,7 +463,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                             }
                                         } else if (this.bH == 0) {
                                             this.bE = (byte) (this.bE + 1 > 2 ? 0 : this.bE + 1);
-                                            this.at.b(GlobalConfig.H[this.bE], GlobalConfig.i, (byte) 1);
+                                            this.at.b(GlobalConfig.menPaiMiaoShu[this.bE], GlobalConfig.font2, (byte) 1);
                                             this.at.a((byte) 1);
                                         } else if (this.bH == 1) {
                                             this.bF = (byte) (this.bF + 1 > 1 ? 0 : 1);
@@ -493,7 +472,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                         }
                                     } else if (this.bH == 0) {
                                         this.bE = (byte) (this.bE - 1 < 0 ? 2 : this.bE - 1);
-                                        this.at.b(GlobalConfig.H[this.bE], GlobalConfig.i, (byte) 1);
+                                        this.at.b(GlobalConfig.menPaiMiaoShu[this.bE], GlobalConfig.font2, (byte) 1);
                                         this.at.a((byte) 1);
                                     } else if (this.bH == 1) {
                                         this.bF = (byte) (this.bF - 1 < 0 ? 1 : 0);
@@ -542,11 +521,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                         } else {
                                             switch (this.bs) {
                                                 case 0:
-                                                    if (GlobalConfig.x) {
-                                                        this.v();
-                                                    } else {
-                                                        c_3.c();
-                                                    }
+                                                    c_3.c();
                                                     break;
                                                 case 1:
                                                     c_3.e();
@@ -577,7 +552,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             break;
                         case 15:
                             if (this.touchAction == 268435456) {
-                                this.c("http://3g.01234.com.cn/game/gameAction.do?m=gameIndex&sId=");
+                                this.openWebView("http://3g.01234.com.cn/game/gameAction.do?m=gameIndex&sId=");
                                 this.aJ = false;
                             } else if (this.touchAction == 536870912) {
                                 this.c();
@@ -588,12 +563,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             break;
                         case 16:
                             if (this.touchAction == 268435456) {
-                                if (!GlobalConfig.y && !GlobalConfig.B && !GlobalConfig.D) {
-                                    LoadingPage.h = 0;
-                                    this.k = this.touchPageCase = 17;
-                                } else {
-                                    this.aJ = false;
-                                }
+                                LoadingPage.h = 0;
+                                this.k = this.touchPageCase = 17;
                             } else if (this.touchAction == 536870912) {
                                 this.k = this.touchPageCase = 14;
                             }
@@ -602,18 +573,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             break;
                         case 17:
                             if (this.touchAction == 268435456) {
-                                if (GlobalConfig.x) {
-                                    this.c("http://zt.d.cn/a091111_netgame_forum_promotion/index.pih?fid=6724&cid=269");
-                                } else if (GlobalConfig.z) {
-                                    this.c("http://9Game.CN/Url.Aspx?id=219");
-                                } else if (GlobalConfig.A) {
-                                    this.c("http://g.uc.cn");
-                                } else if (GlobalConfig.C) {
-                                    this.c("http://haxiang.cn");
-                                } else {
-                                    this.c("http://3g.01234.com.cn/game/gameAction.do?m=gameIndex&sId=");
-                                }
-
+                                this.openWebView("");
                                 this.aJ = false;
                             } else if (this.touchAction == 536870912) {
                                 this.touch4Status = 0;
@@ -631,7 +591,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                             this.bs = 0;
                                         }
                                     } else {
-                                        this.c(aI);
+                                        this.openWebView(aI);
                                     }
                                 } else {
                                     LoadingPage.e = LoadingPage.e + LoadingPage.d < UISceneController.K.a() ? LoadingPage.e + LoadingPage.d : LoadingPage.e;
@@ -686,7 +646,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             }
 
             graphics.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-            graphics.setFont(GlobalConfig.i);
+            graphics.setFont(GlobalConfig.font2);
             if (this.p) {
                 LoadingPage.b(graphics);
             } else {
@@ -740,34 +700,34 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 LoadingPage.a(graphics, this.aq.a + 5, this.aq.b + 32, this.aq.c - 11, this.aq.a(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150), 1);
                                 LoadingPage.b(graphics, this.aq.a + 80, this.aq.b + 35, this.aq.a + 80, this.aq.b + 35 + this.aq.a(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150) - 5);
                                 graphics.setColor(2176196);
-                                int var2 = GlobalConfig.i.stringWidth(GlobalConfig.G[0]);
+                                int var2 = GlobalConfig.font2.stringWidth(GlobalConfig.manPaiName[0]);
                                 int var3 = this.aq.b + 45;
                                 int var4 = this.aq.a + 5 + 80 + (this.aq.c - 80 - 13 - var2) / 2;
-                                graphics.drawString(GlobalConfig.G[this.bE], this.bE == 2 ? var4 + GlobalConfig.k / 2 : var4, var3, 20);
+                                graphics.drawString(GlobalConfig.manPaiName[this.bE], this.bE == 2 ? var4 + GlobalConfig.font2_w / 2 : var4, var3, 20);
                                 graphics.drawImage(X.pngImage, var4 - 20, var3, 20);
                                 this.a(0, var4 - 20, var3, X.b, X.c);
                                 graphics.drawImage(Y.pngImage, var4 + var2 + 15, var3, 20);
                                 this.a(1, var4 + var2 + 15, var3, Y.b, Y.c);
-                                graphics.drawString(this.bF == 0 ? "男" : "女", this.aq.a + 5 + 80 + (this.aq.c - 80 - 13 - GlobalConfig.k) / 2, var3 + GlobalConfig.j + 10, 20);
-                                graphics.drawImage(X.pngImage, var4 - 20, var3 + GlobalConfig.j + 10, 20);
-                                this.a(2, var4 - 20, var3 + GlobalConfig.j + 10, X.b, X.c);
-                                graphics.drawImage(Y.pngImage, var4 + var2 + 15, var3 + GlobalConfig.j + 10, 20);
-                                this.a(3, var4 + var2 + 15, var3 + GlobalConfig.j + 10, X.b, X.c);
-                                graphics.drawString("昵称：", this.aq.a + 5 + 80 + 5, var3 + (GlobalConfig.j + 10 << 1), 20);
-                                LoadingPage.c(graphics, this.aq.a + 5 + 80 + 5, var3 + (GlobalConfig.j + 10) * 3 - 1, this.aq.c - 80 - this.logo_btn_random.getWidth() - 20, GlobalConfig.j, 0);
-                                LoadingPage.a(graphics, this.ay, this.aq.a + 5 + 80 + 5 + 2, var3 + (GlobalConfig.j + 10) * 3, 20, 16711639);
-                                graphics.drawImage(this.logo_btn_random, this.aq.a + this.aq.c - 8, var3 + (GlobalConfig.j + 10) * 3, 24);
-                                this.a(4, this.aq.a + 5 + 80 + 5, var3 + (GlobalConfig.j + 10) * 3, this.aq.c - 80 - this.logo_btn_random.getWidth() - 20, GlobalConfig.j);
-                                this.a(5, this.aq.a + this.aq.c - 8 - this.logo_btn_random.getWidth(), var3 + (GlobalConfig.j + 10) * 3, this.logo_btn_random.getWidth(), this.logo_btn_random.getHeight());
+                                graphics.drawString(this.bF == 0 ? "男" : "女", this.aq.a + 5 + 80 + (this.aq.c - 80 - 13 - GlobalConfig.font2_w) / 2, var3 + GlobalConfig.font2_h + 10, 20);
+                                graphics.drawImage(X.pngImage, var4 - 20, var3 + GlobalConfig.font2_h + 10, 20);
+                                this.a(2, var4 - 20, var3 + GlobalConfig.font2_h + 10, X.b, X.c);
+                                graphics.drawImage(Y.pngImage, var4 + var2 + 15, var3 + GlobalConfig.font2_h + 10, 20);
+                                this.a(3, var4 + var2 + 15, var3 + GlobalConfig.font2_h + 10, X.b, X.c);
+                                graphics.drawString("昵称：", this.aq.a + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10 << 1), 20);
+                                LoadingPage.c(graphics, this.aq.a + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10) * 3 - 1, this.aq.c - 80 - this.logo_btn_random.getWidth() - 20, GlobalConfig.font2_h, 0);
+                                LoadingPage.a(graphics, this.ay, this.aq.a + 5 + 80 + 5 + 2, var3 + (GlobalConfig.font2_h + 10) * 3, 20, 16711639);
+                                graphics.drawImage(this.logo_btn_random, this.aq.a + this.aq.c - 8, var3 + (GlobalConfig.font2_h + 10) * 3, 24);
+                                this.a(4, this.aq.a + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10) * 3, this.aq.c - 80 - this.logo_btn_random.getWidth() - 20, GlobalConfig.font2_h);
+                                this.a(5, this.aq.a + this.aq.c - 8 - this.logo_btn_random.getWidth(), var3 + (GlobalConfig.font2_h + 10) * 3, this.logo_btn_random.getWidth(), this.logo_btn_random.getHeight());
                                 graphics.setColor(16711680);
                                 if (this.bH == 0) {
-                                    graphics.drawRect(var4, var3, var2, GlobalConfig.j);
+                                    graphics.drawRect(var4, var3, var2, GlobalConfig.font2_h);
                                 } else if (this.bH == 1) {
-                                    graphics.drawRect(this.aq.a + 5 + 80 + (this.aq.c - 80 - 13 - GlobalConfig.k) / 2, var3 + GlobalConfig.j + 10, GlobalConfig.k, GlobalConfig.j);
+                                    graphics.drawRect(this.aq.a + 5 + 80 + (this.aq.c - 80 - 13 - GlobalConfig.font2_w) / 2, var3 + GlobalConfig.font2_h + 10, GlobalConfig.font2_w, GlobalConfig.font2_h);
                                 } else if (this.bG == 0) {
-                                    graphics.drawRect(this.aq.a + 5 + 80 + 5, var3 + (GlobalConfig.j + 10) * 3 - 1, this.aq.c - 80 - this.logo_btn_random.getWidth() - 20, GlobalConfig.j);
+                                    graphics.drawRect(this.aq.a + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10) * 3 - 1, this.aq.c - 80 - this.logo_btn_random.getWidth() - 20, GlobalConfig.font2_h);
                                 } else {
-                                    graphics.drawRect(this.aq.a + this.aq.c - 8 - this.logo_btn_random.getWidth(), var3 + (GlobalConfig.j + 10) * 3, this.logo_btn_random.getWidth(), this.logo_btn_random.getHeight());
+                                    graphics.drawRect(this.aq.a + this.aq.c - 8 - this.logo_btn_random.getWidth(), var3 + (GlobalConfig.font2_h + 10) * 3, this.logo_btn_random.getWidth(), this.logo_btn_random.getHeight());
                                 }
 
                                 if (this.bx != null && this.bx[this.bF * 3 + this.bE] != null) {
@@ -813,21 +773,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             return;
                         case 17:
                             this.d(graphics);
-                            if (GlobalConfig.x) {
-                                LoadingPage.a(graphics, "是否进入当乐梦回西游论坛\t(http://zt.d.cn/a091111_netgame_forum_promotion/index.pih?fid=6724&cid=269)", new String[]{"进入", "退出"});
-                            } else if (GlobalConfig.z) {
-                                LoadingPage.a(graphics, "更多精彩游戏尽在九游网游戏频道\t(http://9Game.CN/Url.Aspx?id=219)", new String[]{"更多", "退出"});
-                            } else if (GlobalConfig.A) {
-                                LoadingPage.a(graphics, "更多精彩游戏尽在http://g.uc.cn", new String[]{"更多", "退出"});
-                            } else {
-                                if (!GlobalConfig.C) {
-                                    LoadingPage.a(graphics, "更多精彩游戏尽在一哥哥网游戏频道\t(3g.01234.com.cn)", new String[]{"更多", "退出"});
-                                    return;
-                                }
-
-                                LoadingPage.a(graphics, "更多精彩游戏尽在http://haxiang.cn", new String[]{"更多", "退出"});
-                            }
-                            break;
+                            LoadingPage.a(graphics, "更多精彩游戏尽在一哥哥网游戏频道\t(3g.01234.com.cn)", new String[]{"更多", "退出"});
+                            return;
                         case 20:
                             this.c(graphics);
                             LoadingPage.a(graphics, aH, new String[]{"下载", "取消"});
@@ -893,7 +840,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     }
 
     public static String a(byte var0, byte var1, byte var2, byte var3, boolean var4) {
-        if (GlobalConfig.m == 2) {
+        if (GlobalConfig.ziTiMoShi == 2) {
             var3 = 0;
         }
 
@@ -901,7 +848,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     }
 
     public static String a(byte var0, byte var1, byte var2, byte var3, boolean var4, String var5) {
-        if (GlobalConfig.m == 2) {
+        if (GlobalConfig.ziTiMoShi == 2) {
             var3 = 0;
         }
 
@@ -965,7 +912,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 }
 
                 this.aV = (GlobalConfig.defaultWidth - this.aX) / 2;
-                this.aY = this.aT.a() * GlobalConfig.j + 14;
+                this.aY = this.aT.a() * GlobalConfig.font2_h + 14;
                 this.aW = (GlobalConfig.defaultHigh - this.aY) / 2;
             }
 
@@ -1018,8 +965,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             this.aD = new Form("登陆游戏");
             this.bP = new Command("登陆", 4, 1);
             this.bQ = new Command("返回", 2, 1);
-            this.bN = new TextField("帐号:", GlobalStatus.b, 20, 0);
-            this.bO = new TextField("密码:", GlobalStatus.c, 20, 65536);
+            this.bN = new TextField("帐号:", GlobalStatus.zhangHao, 20, 0);
+            this.bO = new TextField("密码:", GlobalStatus.token, 20, 65536);
             this.aD.addCommand(this.bP);
             this.aD.addCommand(this.bQ);
             this.aD.append(this.bN);
@@ -1041,8 +988,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     GlobalConfig.logined = var3.readBoolean();
                     this.ba = var3.readByte();
                     bb_1.k = var3.readBoolean();
-                    GlobalStatus.b = var3.readUTF();
-                    GlobalStatus.c = var3.readUTF();
+                    GlobalStatus.zhangHao = var3.readUTF();
+                    GlobalStatus.token = var3.readUTF();
                     var3.close();
                 }
                 var2.closeRecordStore();
@@ -1065,8 +1012,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             this.bb.setSelectedIndex(GlobalConfig.logined ? 1 : 0, true);
             this.bc.setSelectedIndex(this.ba, true);
             this.bd.setSelectedIndex(0, true);
-            this.bN.setString(GlobalStatus.b);
-            this.bO.setString(GlobalStatus.c);
+            this.bN.setString(GlobalStatus.zhangHao);
+            this.bO.setString(GlobalStatus.token);
         }
 
         this.aD.setItemStateListener(new d_3(this));
@@ -1265,9 +1212,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
     private void d(Graphics var1) {
         this.c(var1);
-        LoadingPage.a(var1, (String) GlobalConfig.t, (int) 5, GlobalConfig.defaultHigh - 3, 36, 6160358, 335925);
+        LoadingPage.drawString(var1, GlobalConfig.appVersion, (int) 5, GlobalConfig.defaultHigh - 3, 36, 6160358, 335925);
         if (GlobalConfig.channel == 1) {
-            LoadingPage.a(var1, (String) "退出", (int) (GlobalConfig.defaultWidth - 5), GlobalConfig.defaultHigh - 3, 40, 16777215, 335925);
+            LoadingPage.drawString(var1, "退出", (int) (GlobalConfig.defaultWidth - 5), GlobalConfig.defaultHigh - 3, 40, 16777215, 335925);
         }
 
         for (int var2 = 0; var2 < this.bo.length; ++var2) {
@@ -1275,7 +1222,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 var1.drawImage(this.menuItem, GlobalConfig.defaultWidth - this.menuItem.getWidth() >> 1, (this.bt << 1) + this.logoTitle.getHeight() + var2 * this.menuItem.getHeight(), 20);
             }
 
-            LoadingPage.a(var1, (String) this.bo[var2], (int) (GlobalConfig.defaultWidth >> 1), (this.bt << 1) + this.logoTitle.getHeight() + var2 * this.menuItem.getHeight() + (this.menuItem.getHeight() - GlobalConfig.j) / 2, 17, 16777215, 335925);
+            LoadingPage.drawString(var1, (String) this.bo[var2], (int) (GlobalConfig.defaultWidth >> 1), (this.bt << 1) + this.logoTitle.getHeight() + var2 * this.menuItem.getHeight() + (this.menuItem.getHeight() - GlobalConfig.font2_h) / 2, 17, 16777215, 335925);
         }
 
         if (this.touch4Status == 1) {
@@ -1284,13 +1231,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
     }
 
-    public void c(String var1) {
-        try {
-            this.mainMidlet.platformRequest(var1);
-            this.G();
-        } catch (ConnectionNotFoundException var2) {
-            ((Throwable) var2).printStackTrace();
-        }
+    public void openWebView(String var1) {
+//            this.mainMidlet.platformRequest(var1);
+        this.G();
     }
 
     public void d() {
@@ -1476,7 +1419,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             this.aq.b();
             this.aq.a("角色列表");
             this.aq.a((this.bB << 1) + 6);
-            this.at.b(this.f(0), GlobalConfig.i, (byte) 1);
+            this.at.b(this.f(0), GlobalConfig.font2, (byte) 1);
             this.at.a((byte) 1);
             this.aq.a((al) this.at);
             if (GlobalConfig.defaultHigh > 220) {
@@ -1492,15 +1435,15 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
     private String f(int var1) {
         if (GlobalStatus.aa != null && var1 < GlobalStatus.aa.length) {
-            GlobalConfig.clearStr(this.l);
-            this.l.append("昵称：" + GlobalStatus.aa[var1] + '\t');
+            GlobalConfig.clearStr(this.shareSb);
+            this.shareSb.append("昵称：" + GlobalStatus.aa[var1] + '\t');
             if (GlobalConfig.channel == 0) {
-                this.l.append("ID：" + GlobalStatus.W[var1] + '\t');
+                this.shareSb.append("ID：" + GlobalStatus.W[var1] + '\t');
             }
 
-            this.l.append("等级：" + GlobalStatus.X[var1] + '\t');
+            this.shareSb.append("等级：" + GlobalStatus.X[var1] + '\t');
             this.au.a(new String[]{"进入游戏", ""});
-            return this.l.toString();
+            return this.shareSb.toString();
         } else {
             this.au.a(new String[]{"创 建", ""});
             return "创建角色";
@@ -1540,19 +1483,19 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             }
                         } else {
                             this.selectActorClo = (byte) (this.selectActorClo >= 1 ? 0 : this.selectActorClo + 1);
-                            this.at.b(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.i, (byte) 1);
+                            this.at.b(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.font2, (byte) 1);
                         }
                     } else {
                         this.selectActorClo = (byte) (this.selectActorClo <= 0 ? 1 : this.selectActorClo - 1);
-                        this.at.b(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.i, (byte) 1);
+                        this.at.b(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.font2, (byte) 1);
                     }
                 } else {
                     this.selectActorRow = (byte) (this.selectActorRow >= 1 ? 0 : this.selectActorRow + 1);
-                    this.at.b(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.i, (byte) 1);
+                    this.at.b(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.font2, (byte) 1);
                 }
             } else {
                 this.selectActorRow = (byte) (this.selectActorRow <= 0 ? 1 : this.selectActorRow - 1);
-                this.at.b(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.i, (byte) 1);
+                this.at.b(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.font2, (byte) 1);
             }
 
             if (this.bx != null) {
@@ -1710,7 +1653,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         this.aq.b();
         this.aq.a("创建角色");
         this.aq.a(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150);
-        this.at.b(GlobalConfig.H[0], GlobalConfig.i, (byte) 1);
+        this.at.b(GlobalConfig.menPaiMiaoShu[0], GlobalConfig.font2, (byte) 1);
         this.at.a((byte) 1);
         this.au.a(new String[]{"创 建", ""});
         this.aq.a((al) this.at);
@@ -1772,7 +1715,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
     public void h() {
         GlobalStatus.e();
-        GlobalConfig.clearStr(this.l);
+        GlobalConfig.clearStr(this.shareSb);
         if (this.bx != null) {
             for (int var1 = 0; var1 < this.bx.length; ++var1) {
                 if (this.bx[var1] != null) {
@@ -2182,7 +2125,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 if (uiSceneController.aR) {
                     this.aC = new TextField("与" + uiSceneController.aQ + "私聊", (String) null, 30, var2);
                 } else {
-                    this.aC = new TextField(GlobalConfig.E[uiSceneController.aT], (String) null, 30, var2);
+                    this.aC = new TextField(GlobalConfig.liaoTianPinDao[uiSceneController.aT], (String) null, 30, var2);
                 }
             } else if (uiSceneController.currentSceneModeId == 7) {
                 if (this.as.a < 3) {
@@ -3362,7 +3305,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     String var98 = var3 == 0 ? var5 : "";
                     String var90 = var3 == 1 ? var5 : "";
                     String var80 = var98;
-                    byte[] var97 = NetPayloadBuilder.a((short) 5392, (byte) 1, bb_1.a, bb_1.b, var80, var90, var8, GlobalConfig.PopularizeChannel, GlobalConfig.F, (int) Runtime.getRuntime().totalMemory(), GlobalConfig.u);
+                    byte[] var97 = NetPayloadBuilder.a((short) 5392, (byte) 1, bb_1.a, bb_1.b, var80, var90, var8, GlobalConfig.PopularizeChannel, GlobalConfig.model, (int) Runtime.getRuntime().totalMemory(), GlobalConfig.shuZiBiaoShi);
                     this.init();
                     if (var97 == null) {
                         this.processException("获取上传指令数据错误!");
@@ -3536,9 +3479,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     }
                 }
                 if (action == 0 && GlobalConfig.channel == 1) {
-                    int left = (GlobalConfig.defaultWidth - GlobalConfig.i.stringWidth("退出")) - 4;
+                    int left = (GlobalConfig.defaultWidth - GlobalConfig.font2.stringWidth("退出")) - 4;
                     int right = GlobalConfig.defaultWidth - 4;
-                    int top = (GlobalConfig.defaultHigh - GlobalConfig.j) - 4;
+                    int top = (GlobalConfig.defaultHigh - GlobalConfig.font2_h) - 4;
                     int bottom = GlobalConfig.defaultHigh - 4;
                     if (touchX >= left && touchX <= right && touchY >= top && touchY <= bottom) {
                         action = 536870912;
@@ -3863,7 +3806,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         ah = new Page("/petfight/", "petfight");
         af = new Page("/icon/", "icon");
 
-        mainCanvas.l = new StringBuffer();
+        mainCanvas.shareSb = new StringBuffer();
         mainCanvas.aq = new m_1();
         mainCanvas.av = y_1.c();
         mainCanvas.ar = new c_1();
