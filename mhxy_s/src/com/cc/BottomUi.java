@@ -5,8 +5,12 @@ import com.yinhan.kjava.main.MainCanvas;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
-public final class l_1 extends al {
+// 底部操作栏：支持单按钮、双按钮或三按钮布局，并处理左右翻页箭头点击。
+//public final class   l_1 extends BaseUi {
+public final class BottomUi extends BaseUi {
+   // 单按钮模式下的文案。
    private String a;
+   // 多按钮模式下的文案数组，长度通常为 2 或 3。
    private String[] b = null;
    private int c;
    private int d;
@@ -26,7 +30,9 @@ public final class l_1 extends al {
    private int r = 16776917;
    private int s = 16776917;
    private int t = 16776917;
+   // 是否显示操作栏两侧的小箭头。
    private boolean u = false;
+   // 左右箭头的触摸命中区域。
    private int[][] v = new int[2][4];
 
    public final int a() {
@@ -37,18 +43,21 @@ public final class l_1 extends al {
       return MainCanvas.E != null ? MainCanvas.E.c : GlobalConfig.font2_h;
    }
 
+   // 设置单按钮模式的文案。
    public final void a(String var1) {
       this.a = var1;
       this.b = null;
       this.u = false;
    }
 
+   // 设置多按钮模式的文案。
    public final void a(String[] var1) {
       this.b = var1;
       this.a = null;
       this.u = false;
    }
 
+   // 根据当前文案数量，计算按钮栏内各个按钮的落点和点击区域。
    public final void a(int var1, int var2, int var3, int var4) {
       this.c = var1;
       this.d = var2 + var4 - MainCanvas.E.c;
@@ -78,6 +87,7 @@ public final class l_1 extends al {
       }
    }
 
+   // 记录左侧按钮的点击区域。
    private void b(int var1, int var2, int var3, int var4) {
       this.f = var1;
       this.g = var2;
@@ -85,6 +95,7 @@ public final class l_1 extends al {
       this.i = var4;
    }
 
+   // 记录右侧按钮的点击区域。
    private void c(int var1, int var2, int var3, int var4) {
       this.j = var1;
       this.k = var2;
@@ -92,10 +103,11 @@ public final class l_1 extends al {
       this.m = var4;
    }
 
-   public final void b(int var1) {
+   public final void onClick(int var1) {
    }
 
-   public final int b(int var1, int var2) {
+   // 命中检测：返回左/中/右按钮或左右箭头对应的指令码。
+   public final int hintCheck(int var1, int var2) {
       byte var10000;
       label76: {
          if (this.a != null) {
@@ -145,6 +157,7 @@ public final class l_1 extends al {
       }
    }
 
+   // 绘制底部按钮栏及可选的左右翻页箭头。
    public final void a(Graphics var1) {
       if (this.a != null || this.b != null) {
          LoadingPage.a(var1, (Image) MainCanvas.E.pngImage, (short) MainCanvas.E.b, this.c, this.d, this.e, MainCanvas.E.c);
@@ -170,6 +183,7 @@ public final class l_1 extends al {
       }
    }
 
+   // 绘制左右箭头，同时缓存其触摸区域。
    private void a(Graphics var1, int var2, int var3, int var4) {
       if (this.u) {
          var1.drawImage(MainCanvas.Q.pngImage, var2, var4, 20);
@@ -186,7 +200,7 @@ public final class l_1 extends al {
 
    }
 
-   public final void j() {
+   public final void clear() {
       if (this.a != null) {
          this.a = null;
       }
@@ -197,6 +211,7 @@ public final class l_1 extends al {
 
    }
 
+   // 打开箭头模式；实参未被使用，只保留原始接口形态。
    public final void a(boolean var1) {
       this.u = true;
    }

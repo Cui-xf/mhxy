@@ -83,30 +83,30 @@ public final class v_1 {
    }
 
    public final void a(int var1) {
-      this.i.aq.j();
-      this.i.aq.a("求爱宣言");
-      this.i.aq.a(false);
-      this.i.ar.a((Image[])null, k, (String[])null, j);
-      this.i.ar.a(var1);
-      this.i.au.a("查看");
-      this.i.au.a(true);
-      this.i.aq.a((al)this.i.ar);
-      this.i.aq.a((al)this.i.au);
-      this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.i.mixedUi.clear();
+      this.i.mixedUi.a("求爱宣言");
+      this.i.mixedUi.a(false);
+      this.i.gunDongListUi.a((Image[])null, k, (String[])null, j);
+      this.i.gunDongListUi.a(var1);
+      this.i.bottomUi.a("查看");
+      this.i.bottomUi.a(true);
+      this.i.mixedUi.a((BaseUi)this.i.gunDongListUi);
+      this.i.mixedUi.a((BaseUi)this.i.bottomUi);
+      this.i.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 0;
       this.i.touchPageCase = this.i.k;
       this.h.sceneStateShadow = this.h.currentSceneModeId = 90;
    }
 
    public final void b() {
-      this.i.aq.j();
-      this.i.aq.a("求爱宣言");
-      this.i.aq.a(false);
-      this.i.at.a(b, GlobalConfig.font2, (byte)2);
-      this.i.au.a("确定");
-      this.i.aq.a((al)this.i.at);
-      this.i.aq.a((al)this.i.au);
-      this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.i.mixedUi.clear();
+      this.i.mixedUi.a("求爱宣言");
+      this.i.mixedUi.a(false);
+      this.i.textPanel.setFWBText(b, GlobalConfig.font2, (byte)2);
+      this.i.bottomUi.a("确定");
+      this.i.mixedUi.a((BaseUi)this.i.textPanel);
+      this.i.mixedUi.a((BaseUi)this.i.bottomUi);
+      this.i.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 2;
       this.i.touchPageCase = this.i.k;
       this.h.sceneStateShadow = this.h.currentSceneModeId = 90;
@@ -114,15 +114,15 @@ public final class v_1 {
 
    public final void b(int var1) {
       if (this.h.sceneSubState == 0) {
-         if (this.i.aq != null) {
-            this.i.aq.b(var1);
+         if (this.i.mixedUi != null) {
+            this.i.mixedUi.onClick(var1);
          }
 
          if (a != null && (var1 == 268435456 || var1 == 1073741824 || var1 == 517)) {
-             LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.i.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看"}, false);
+             LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.i.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看"}, false);
             this.h.sceneSubState = 1;
-            this.h.aA = this.i.ar.h();
-            this.h.aE = this.i.ar.g();
+            this.h.aA = this.i.gunDongListUi.h();
+            this.h.aE = this.i.gunDongListUi.g();
          }
 
          if (var1 == 536870912) {
@@ -174,7 +174,7 @@ public final class v_1 {
                return;
             }
          } else if ( LoadingPage.o == 0) {
-            var1 = a[this.i.ar.g()];
+            var1 = a[this.i.gunDongListUi.g()];
             byte[] var3;
             if ((var3 = NetPayloadBuilder.A((short)4859, GlobalStatus.ad, var1)) == null) {
                this.i.processException("获取上传指令数据错误!");
@@ -186,8 +186,8 @@ public final class v_1 {
             this.i.a((String)null);
          }
       } else if (this.h.sceneSubState == 2) {
-         if (this.i.aq != null) {
-            this.i.aq.b(var1);
+         if (this.i.mixedUi != null) {
+            this.i.mixedUi.onClick(var1);
          }
 
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517 || var1 == 536870912) {
@@ -200,12 +200,12 @@ public final class v_1 {
 
    public final void a(Graphics var1) {
       if (this.h.sceneSubState != 0 && this.h.sceneSubState != 1) {
-         if (this.h.sceneSubState == 2 && this.i.aq != null) {
-            this.i.aq.a(var1);
+         if (this.h.sceneSubState == 2 && this.i.mixedUi != null) {
+            this.i.mixedUi.a(var1);
          }
       } else {
-         if (this.i.aq != null) {
-            this.i.aq.a(var1);
+         if (this.i.mixedUi != null) {
+            this.i.mixedUi.a(var1);
          }
 
          if (this.h.sceneSubState == 1) {
@@ -233,15 +233,15 @@ public final class v_1 {
 
    public final void c() {
       this.i.mainMidlet.start();
-      this.i.aq.j();
-      this.i.aq.a("申请结婚");
-      this.i.aq.a(false);
-      this.i.at.b(c, GlobalConfig.font2, (byte)2);
-      this.i.at.a((byte)1);
-      this.i.aq.a((al)this.i.at);
+      this.i.mixedUi.clear();
+      this.i.mixedUi.a("申请结婚");
+      this.i.mixedUi.a(false);
+      this.i.textPanel.setText(c, GlobalConfig.font2, (byte)2);
+      this.i.textPanel.setShuRuMoShi((byte)1);
+      this.i.mixedUi.a((BaseUi)this.i.textPanel);
       int var2 = 2 * GlobalConfig.font2_h + 16;
-      this.i.aq.g = var2;
-      this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.i.mixedUi.g = var2;
+      this.i.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 0;
       this.i.touchPageCase = this.i.k;
       this.h.sceneStateShadow = this.h.currentSceneModeId = 91;
@@ -249,8 +249,8 @@ public final class v_1 {
 
    public final void c(int var1) {
       if (this.h.sceneSubState == 0) {
-         if (this.i.aq != null) {
-            this.i.aq.b(var1);
+         if (this.i.mixedUi != null) {
+            this.i.mixedUi.onClick(var1);
          }
 
          if (var1 != 514 && var1 != 1) {
@@ -288,11 +288,11 @@ public final class v_1 {
       if (this.h.sceneSubState == 0) {
          int var2 = 0;
          int var3 = 0;
-         if (this.i.aq != null) {
-            var2 = this.i.aq.a + 5;
-            var3 = this.i.aq.b + this.i.aq.d - (2 * GlobalConfig.font2_h + 16) - 6;
-             LoadingPage.a(var1, var2, var3, this.i.aq.c - 11, 2 * GlobalConfig.font2_h + 16, 1);
-            this.i.aq.a(var1);
+         if (this.i.mixedUi != null) {
+            var2 = this.i.mixedUi.a + 5;
+            var3 = this.i.mixedUi.b + this.i.mixedUi.d - (2 * GlobalConfig.font2_h + 16) - 6;
+             LoadingPage.draw(var1, var2, var3, this.i.mixedUi.c - 11, 2 * GlobalConfig.font2_h + 16, 1);
+            this.i.mixedUi.a(var1);
          }
 
          int var4 = 0;
@@ -328,15 +328,15 @@ public final class v_1 {
    }
 
    public final void d() {
-      this.i.aq.j();
-      this.i.aq.a("申请离婚");
-      this.i.aq.a(false);
-      this.i.at.b(f, GlobalConfig.font2, (byte)2);
-      this.i.at.a((byte)1);
-      this.i.aq.a((al)this.i.at);
+      this.i.mixedUi.clear();
+      this.i.mixedUi.a("申请离婚");
+      this.i.mixedUi.a(false);
+      this.i.textPanel.setText(f, GlobalConfig.font2, (byte)2);
+      this.i.textPanel.setShuRuMoShi((byte)1);
+      this.i.mixedUi.a((BaseUi)this.i.textPanel);
       int var2 = 2 * GlobalConfig.font2_h + 16;
-      this.i.aq.g = var2;
-      this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.i.mixedUi.g = var2;
+      this.i.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 0;
       this.i.touchPageCase = this.i.k;
       this.h.sceneStateShadow = this.h.currentSceneModeId = 92;
@@ -344,8 +344,8 @@ public final class v_1 {
 
    public final void d(int var1) {
       if (this.h.sceneSubState == 0) {
-         if (this.i.aq != null) {
-            this.i.aq.b(var1);
+         if (this.i.mixedUi != null) {
+            this.i.mixedUi.onClick(var1);
          }
 
          if (var1 != 514 && var1 != 1) {
@@ -388,11 +388,11 @@ public final class v_1 {
       if (this.h.sceneSubState == 0) {
          int var2 = 0;
          int var3 = 0;
-         if (this.i.aq != null) {
-            var2 = this.i.aq.a + 5;
-            var3 = this.i.aq.b + this.i.aq.d - (2 * GlobalConfig.font2_h + 16) - 6;
-             LoadingPage.a(var1, var2, var3, this.i.aq.c - 11, 2 * GlobalConfig.font2_h + 16, 1);
-            this.i.aq.a(var1);
+         if (this.i.mixedUi != null) {
+            var2 = this.i.mixedUi.a + 5;
+            var3 = this.i.mixedUi.b + this.i.mixedUi.d - (2 * GlobalConfig.font2_h + 16) - 6;
+             LoadingPage.draw(var1, var2, var3, this.i.mixedUi.c - 11, 2 * GlobalConfig.font2_h + 16, 1);
+            this.i.mixedUi.a(var1);
          }
 
          int var4 = 0;
@@ -442,15 +442,15 @@ public final class v_1 {
    }
 
    public final void f() {
-      this.i.aq.j();
-      this.i.aq.a("新人礼堂");
-      this.i.aq.a(false);
-      this.i.ar.a((Image[])null, p, (String[])null, (String[])null);
-      this.i.au.a("进入");
-      this.i.au.a(true);
-      this.i.aq.a((al)this.i.ar);
-      this.i.aq.a((al)this.i.au);
-      this.i.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.i.mixedUi.clear();
+      this.i.mixedUi.a("新人礼堂");
+      this.i.mixedUi.a(false);
+      this.i.gunDongListUi.a((Image[])null, p, (String[])null, (String[])null);
+      this.i.bottomUi.a("进入");
+      this.i.bottomUi.a(true);
+      this.i.mixedUi.a((BaseUi)this.i.gunDongListUi);
+      this.i.mixedUi.a((BaseUi)this.i.bottomUi);
+      this.i.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 0;
       this.i.touchPageCase = this.i.k;
       this.h.sceneStateShadow = this.h.currentSceneModeId = 93;
@@ -458,12 +458,12 @@ public final class v_1 {
 
    public final void e(int var1) {
       if (this.h.sceneSubState == 0) {
-         if (this.i.aq != null) {
-            this.i.aq.b(var1);
+         if (this.i.mixedUi != null) {
+            this.i.mixedUi.onClick(var1);
          }
 
          if (o != null && (var1 == 268435456 || var1 == 1073741824 || var1 == 517)) {
-            int var3 = o[this.i.ar.g()];
+            int var3 = o[this.i.gunDongListUi.g()];
             byte[] var4;
             if ((var4 = NetPayloadBuilder.a((short)4863, GlobalStatus.ad, GlobalStatus.t[this.h.af].a, (int)var3, (short)this.h.sceneRefreshCoordinator.j, (short)this.h.sceneRefreshCoordinator.k)) != null) {
                MainCanvas.netUtils.sendPacket(new NetPacket((short)4863, var4));
@@ -519,8 +519,8 @@ public final class v_1 {
    }
 
    public final void d(Graphics var1) {
-      if (this.h.sceneSubState == 0 && this.i.aq != null) {
-         this.i.aq.a(var1);
+      if (this.h.sceneSubState == 0 && this.i.mixedUi != null) {
+         this.i.mixedUi.a(var1);
       }
 
    }

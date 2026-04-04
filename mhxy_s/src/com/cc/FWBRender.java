@@ -1,59 +1,62 @@
 package com.cc;
 
-import java.util.Vector;
 import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
+import java.util.Vector;
 
 /**
  * 富文本渲染组件 - 支持带颜色标签的文本解析与绘制。
- *
+ * <p>
  * 用于加载页面顶部提示文字等场景，由 ca_1 在加载画面中创建并调用绘制。
  * 文本支持 <颜色值>...</颜色值> 格式的颜色标签。
- *
+ * <p>
  * 字段说明：
- *   b (e[])  - 解析后的每行文本数据，每个 e 包含文本片段数组和对应颜色数组
- *   c (short) - 最大显示宽度（像素），用于自动换行
- *   a (short) - 所有行中最大的行宽（像素）
- *   d (int)   - 绘制时的水平偏移累加器
+ * b (e[])  - 解析后的每行文本数据，每个 e 包含文本片段数组和对应颜色数组
+ * c (short) - 最大显示宽度（像素），用于自动换行
+ * a (short) - 所有行中最大的行宽（像素）
+ * d (int)   - 绘制时的水平偏移累加器
  */
 //bw_1
-public final class TextRender {
-    private e[] b;       // 解析后的行数据数组，每行包含多个带颜色的文本片段
-    private short c;     // 最大显示宽度（像素），超出则自动换行
+public final class FWBRender {
+    private LinePianDuan[] lines;       // 解析后的行数据数组，每行包含多个带颜色的文本片段
+    private short maxW;     // 最大显示宽度（像素），超出则自动换行
     public short a;      // 所有行中最大行宽（像素）
     private int d = 0;   // 绘制时的水平偏移累加器
 
     /**
-     * @param var1 要解析的富文本字符串，支持 <颜色值>文字</颜色值> 标签
+     * @param text 要解析的富文本字符串，支持 <颜色值>文字</颜色值> 标签
      * @param var2 最大显示宽度（像素）
      */
-    public TextRender(String var1, short var2) {
-        this.c = var2;
-        this.a(var1);     // 解析富文本
+    public FWBRender(String text, short var2) {
+        this.maxW = var2;
+        this.parseFWB(text);     // 解析富文本
     }
 
-    /** 返回总行数 */
-    public final short a() {
-        return this.b != null ? (short) this.b.length : 0;
+    /**
+     * 返回总行数
+     */
+    public short getLines() {
+        return this.lines != null ? (short) this.lines.length : 0;
     }
 
     /**
      * 绘制文本（左对齐模式）
+     *
      * @param var1 Graphics 画布
      * @param var2 x 坐标
      * @param var3 y 坐标
      * @param var4 anchor 锚点（如 Graphics.TOP | Graphics.HCENTER）
      */
     public final void a(Graphics var1, int var2, int var3, int var4) {
-        if (this.b != null) {
-            for (int var5 = 0; var5 < this.b.length; ++var5) {
-                if (this.b[var5] != null) {
+        if (this.lines != null) {
+            for (int var5 = 0; var5 < this.lines.length; ++var5) {
+                if (this.lines[var5] != null) {
                     this.d = 0;
 
-                    for (int var6 = 0; var6 < this.b[var5].a.length; ++var6) {
-                        var1.setColor(this.b[var5].b[var6]);
-                        var1.drawString(this.b[var5].a[var6], var2 + this.d, var3 + var5 * GlobalConfig.font2_h, var4);
-                        this.d += GlobalConfig.font2.stringWidth(this.b[var5].a[var6]);
+                    for (int var6 = 0; var6 < this.lines[var5].text.length; ++var6) {
+                        var1.setColor(this.lines[var5].color[var6]);
+                        var1.drawString(this.lines[var5].text[var6], var2 + this.d, var3 + var5 * GlobalConfig.font2_h, var4);
+                        this.d += GlobalConfig.font2.stringWidth(this.lines[var5].text[var6]);
                     }
                 }
             }
@@ -63,23 +66,24 @@ public final class TextRender {
 
     /**
      * 绘制文本（居中模式），每行根据行宽自动水平居中
+     *
      * @param var1 Graphics 画布
      * @param var2 中心 x 坐标
      * @param var3 y 坐标
      */
     public final void a(Graphics var1, int var2, int var3) {
-        if (this.b != null) {
+        if (this.lines != null) {
             short var4 = 0;
 
-            for (int var5 = 0; var5 < this.b.length; ++var5) {
-                if (this.b[var5] != null) {
+            for (int var5 = 0; var5 < this.lines.length; ++var5) {
+                if (this.lines[var5] != null) {
                     this.d = 0;
-                    var4 = this.b[var5].a();   // 获取该行总像素宽度
+                    var4 = this.lines[var5].getLineW();   // 获取该行总像素宽度
 
-                    for (int var6 = 0; var6 < this.b[var5].a.length; ++var6) {
-                        var1.setColor(this.b[var5].b[var6]);
-                        var1.drawString(this.b[var5].a[var6], var2 - var4 / 2 + this.d, var3 + var5 * GlobalConfig.font2_h, 20);
-                        this.d += GlobalConfig.font2.stringWidth(this.b[var5].a[var6]);
+                    for (int var6 = 0; var6 < this.lines[var5].text.length; ++var6) {
+                        var1.setColor(this.lines[var5].color[var6]);
+                        var1.drawString(this.lines[var5].text[var6], var2 - var4 / 2 + this.d, var3 + var5 * GlobalConfig.font2_h, 20);
+                        this.d += GlobalConfig.font2.stringWidth(this.lines[var5].text[var6]);
                     }
                 }
             }
@@ -89,32 +93,33 @@ public final class TextRender {
 
     /**
      * 绘制指定行
+     *
      * @param var4 行索引
      * @param var5 anchor 锚点
      */
-    public final void a(Graphics var1, int var2, int var3, int var4, int var5) {
+    public void drawLine(Graphics var1, int var2, int var3, int var4, int var5) {
         this.d = 0;
 
-        for (int var6 = 0; var6 < this.b[var4].a.length; ++var6) {
-            var1.setColor(this.b[var4].b[var6]);
-            var1.drawString(this.b[var4].a[var6], var2 + this.d, var3, var5);
-            this.d += GlobalConfig.font2.stringWidth(this.b[var4].a[var6]);
+        for (int i = 0; i < this.lines[var4].text.length; ++i) {
+            var1.setColor(this.lines[var4].color[i]);
+            var1.drawString(this.lines[var4].text[i], var2 + this.d, var3, var5);
+            this.d += GlobalConfig.font2.stringWidth(this.lines[var4].text[i]);
         }
 
     }
 
     /**
      * 解析富文本字符串，提取颜色标签并构建纯文本 + 颜色标记信息。
-     *
+     * <p>
      * 支持的标签格式：<颜色值>带颜色的文字</颜色值>
      * 例如: "普通文字<16711680>红色文字</16711680>普通文字"
-     *
+     * <p>
      * 解析结果：var5 中存放去除标签后的纯文本，var4 中存放颜色区间标记(ap对象)。
      * 最终调用 a(String, ap[]) 进行换行和分段处理。
      *
      * @param var1 含颜色标签的富文本字符串
      */
-    private void a(String var1) {
+    private void parseFWB(String var1) {
         int var2 = 0;                        // 当前字符（int类型，反编译产物，原始应为char）
         int var3 = 0;                        // 上一次标签结束位置的临时记录
         Vector var4 = new Vector();          // 收集所有颜色区间标记(ap对象)
@@ -239,7 +244,7 @@ public final class TextRender {
 
     /**
      * 对纯文本进行自动换行和颜色分段处理。
-     *
+     * <p>
      * 1. 先按 '\t' 分割为段落
      * 2. 每段按最大宽度(this.c)进行自动换行，拆成多行
      * 3. 每行再根据颜色区间(apVarArr)拆分为多个带颜色的文本片段
@@ -251,7 +256,7 @@ public final class TextRender {
     private void a(String str, ap[] apVarArr) {
         String strSubstring;
         Font font = GlobalConfig.font2;
-        int i = this.c;           // 最大显示宽度
+        int i = this.maxW;           // 最大显示宽度
         String str2 = str;
         if (str2 == null) {
             str2 = "";
@@ -272,7 +277,7 @@ public final class TextRender {
         vector.copyInto(strArr);
         String[] strArrA = a(strArr);       // 过滤掉空行
         int iA = 0;                         // 全局字符偏移，用于匹配颜色区间
-        this.b = new e[strArrA.length];
+        this.lines = new LinePianDuan[strArrA.length];
         Vector vector2 = new Vector();      // 当前行的文本片段列表
         Vector vector3 = new Vector();      // 当前行的颜色值列表
         for (int i2 = 0; i2 < strArrA.length; i2++) {
@@ -282,8 +287,8 @@ public final class TextRender {
             String[] strArr3 = new String[vector3.size()];
             vector2.copyInto(strArr2);
             vector3.copyInto(strArr3);
-            this.b[i2] = new e(this, strArr2, strArr3);  // 构建行数据
-            short sA = this.b[i2].a();       // 该行像素宽度
+            this.lines[i2] = new LinePianDuan(strArr2, strArr3);  // 构建行数据
+            short sA = this.lines[i2].getLineW();       // 该行像素宽度
             if (this.a < sA) {
                 this.a = sA;                 // 更新最大行宽
             }
@@ -295,7 +300,7 @@ public final class TextRender {
 
     /**
      * 根据颜色区间将一行文本拆分为多个带颜色的片段。
-     *
+     * <p>
      * 遍历行中每个字符，查找其是否落在某个颜色区间内。当颜色发生切换时，
      * 将之前同色的文本作为一个片段存入 vector（文本）和 vector2（颜色值）。
      *
@@ -347,6 +352,7 @@ public final class TextRender {
 
     /**
      * 按分隔符拆分字符串，类似 String.split()
+     *
      * @param var1 原始字符串
      * @param var2 分隔符
      * @return 拆分后的字符串数组
@@ -368,7 +374,9 @@ public final class TextRender {
         return var4;
     }
 
-    /** 向字符串数组末尾追加一个元素（数组扩容） */
+    /**
+     * 向字符串数组末尾追加一个元素（数组扩容）
+     */
     private String[] a(String[] var1, String var2) {
         if (var2 == null) {
             return var1;
@@ -393,7 +401,9 @@ public final class TextRender {
         return (var4 = var2.stringWidth(var1)) <= var3 ? var1 : this.a(var1.substring(0, var1.length() * var3 / var4), var2, var3);
     }
 
-    /** 过滤掉数组中的 null 和空字符串 */
+    /**
+     * 过滤掉数组中的 null 和空字符串
+     */
     private static String[] a(String[] var0) {
         Vector var1 = new Vector();
 

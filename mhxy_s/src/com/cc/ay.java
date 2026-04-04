@@ -106,16 +106,16 @@ public final class ay extends bk {
 
    public final void a(Graphics var1) {
       var1.setClip(super.f, super.g, super.h, super.i);
-      LoadingPage.a(var1, super.f, super.g, super.h, super.i, 1);
+      LoadingPage.draw(var1, super.f, super.g, super.h, super.i, 1);
       if (this.a) {
-         LoadingPage.a(var1);
+         LoadingPage.draw(var1);
       }
 
       Math.min(this.b / 0 + (super.i - 6) / 0 + 2, 0);
       var1.setClip(super.f + 4, super.g + 3, super.h - 4, super.i - 6);
       if (this.e > 0) {
          var1.setClip(super.f, super.g, super.h, super.i);
-         LoadingPage.a(var1, super.f + super.h - 2 - MainCanvas.C.b, super.g + 2, super.i - 4, this.e, this.b, 0, super.i - 6);
+         LoadingPage.draw(var1, super.f + super.h - 2 - MainCanvas.C.b, super.g + 2, super.i - 4, this.e, this.b, 0, super.i - 6);
       }
 
    }

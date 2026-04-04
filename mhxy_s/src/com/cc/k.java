@@ -25,8 +25,8 @@ public final class k {
    public byte[] f;
    private String r;
    private String s;
-   private TextRender t = null;
-   private TextRender u = null;
+   private FWBRender t = null;
+   private FWBRender u = null;
    private String v;
    public int[][] g;
    private int w;
@@ -82,9 +82,9 @@ public final class k {
 
       if (var2) {
          if (this.s != null && !this.s.equals("")) {
-            this.j.at.a(this.s, GlobalConfig.font2, (byte)1);
+            this.j.textPanel.setFWBText(this.s, GlobalConfig.font2, (byte)1);
          } else {
-            this.j.at.a((String)null, GlobalConfig.font2, (byte)1);
+            this.j.textPanel.setFWBText((String)null, GlobalConfig.font2, (byte)1);
          }
       }
 
@@ -121,9 +121,9 @@ public final class k {
 
    private void c() {
       if (this.s != null && !this.s.equals("")) {
-         this.j.at.a(this.s, GlobalConfig.font2, (byte)1);
+         this.j.textPanel.setFWBText(this.s, GlobalConfig.font2, (byte)1);
       } else {
-         this.j.at.a((String)null, GlobalConfig.font2, (byte)1);
+         this.j.textPanel.setFWBText((String)null, GlobalConfig.font2, (byte)1);
       }
    }
 
@@ -162,7 +162,7 @@ public final class k {
    private void e() {
       this.t = null;
       if (this.o != null && !this.o.equals("")) {
-         this.t = new TextRender("<0>银两：</0><5></5>" + this.o + (this.o.equals("0") ? "" : "万"), (short)(GlobalConfig.realWidth - 20));
+         this.t = new FWBRender("<0>银两：</0><5></5>" + this.o + (this.o.equals("0") ? "" : "万"), (short)(GlobalConfig.realWidth - 20));
       }
 
    }
@@ -170,7 +170,7 @@ public final class k {
    private void f() {
       this.u = null;
       if (this.r != null) {
-         this.u = new TextRender(this.r, (short)(GlobalConfig.realWidth - 20));
+         this.u = new FWBRender(this.r, (short)(GlobalConfig.realWidth - 20));
       }
 
    }
@@ -244,21 +244,21 @@ public final class k {
 
       this.b();
       this.g = new int[5][4];
-      this.j.aq.b();
-      this.j.aq.a("物品合成");
-      this.j.aq.a(false);
+      this.j.mixedUi.b();
+      this.j.mixedUi.a("物品合成");
+      this.j.mixedUi.a(false);
       this.w = (Math.max(GlobalConfig.font2_h, 17) << 1) + 10;
       this.x = GlobalConfig.font2_h + 26 + 5;
-      this.j.aq.a(this.w + this.x);
+      this.j.mixedUi.a(this.w + this.x);
       this.c();
-      this.j.aq.a((al)this.j.at);
-      this.j.at.a((byte)1);
-      this.j.au.a("确定");
+      this.j.mixedUi.a((BaseUi)this.j.textPanel);
+      this.j.textPanel.setShuRuMoShi((byte)1);
+      this.j.bottomUi.a("确定");
       if (GlobalConfig.defaultHigh > 220) {
-         this.j.aq.a((al)this.j.au);
+         this.j.mixedUi.a((BaseUi)this.j.bottomUi);
       }
 
-      this.j.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.j.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.d();
       this.e();
       this.f();
@@ -270,8 +270,8 @@ public final class k {
 
    public final void a(int var1) {
       if (this.i.sceneSubState == 0) {
-         if (this.j.aq != null) {
-            this.j.aq.b(var1);
+         if (this.j.mixedUi != null) {
+            this.j.mixedUi.onClick(var1);
          }
 
          if (var1 != 4 && var1 != 1) {
@@ -399,21 +399,21 @@ public final class k {
 
    public final void a(Graphics var1) {
       short var2 = UISceneController.x.b;
-      if (this.j.aq != null) {
-         this.j.aq.a(var1);
-         LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, this.w, 1);
-         LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32 + this.w + 1, this.j.aq.c - 11, this.x - 2, 1);
+      if (this.j.mixedUi != null) {
+         this.j.mixedUi.a(var1);
+         LoadingPage.draw(var1, this.j.mixedUi.a + 5, this.j.mixedUi.b + 32, this.j.mixedUi.c - 11, this.w, 1);
+         LoadingPage.draw(var1, this.j.mixedUi.a + 5, this.j.mixedUi.b + 32 + this.w + 1, this.j.mixedUi.c - 11, this.x - 2, 1);
       }
 
-      int var3 = this.j.aq.a + GlobalConfig.font2.stringWidth(this.h[0]) + 10;
-      int var4 = this.j.aq.b + 40;
+      int var3 = this.j.mixedUi.a + GlobalConfig.font2.stringWidth(this.h[0]) + 10;
+      int var4 = this.j.mixedUi.b + 40;
       if (this.g == null) {
          this.g = new int[5][4];
       }
 
       for(int var5 = 0; var5 < this.g.length; ++var5) {
          if (var5 > 1) {
-            var3 = this.j.aq.a + this.j.aq.c - 3 * (var2 + 5) - 8;
+            var3 = this.j.mixedUi.a + this.j.mixedUi.c - 3 * (var2 + 5) - 8;
          }
 
          int var10002 = var3 + 2 + (var5 < 2 ? (var5 == 0 ? 0 : var2 + 5) : (var5 - 2) * (var2 + 5));
@@ -458,7 +458,7 @@ public final class k {
       LoadingPage.d(var1, this.g[var17][0], this.g[var17][1], 17, 17);
       if (this.t != null) {
          try {
-            this.t.a(var1, this.j.aq.a + 5 + 6, this.j.aq.b + this.w + 8, 0);
+            this.t.a(var1, this.j.mixedUi.a + 5 + 6, this.j.mixedUi.b + this.w + 8, 0);
          } catch (Exception var11) {
             ((Throwable)var11).printStackTrace();
          }
@@ -466,7 +466,7 @@ public final class k {
 
       if (this.r != null) {
          try {
-            this.u.a(var1, this.j.aq.a + 5 + 6, this.j.aq.b + 32 + this.w + 1 + 3, 0);
+            this.u.a(var1, this.j.mixedUi.a + 5 + 6, this.j.mixedUi.b + 32 + this.w + 1 + 3, 0);
          } catch (Exception var10) {
             ((Throwable)var10).printStackTrace();
          }

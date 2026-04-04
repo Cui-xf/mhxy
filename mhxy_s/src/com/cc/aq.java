@@ -44,18 +44,18 @@ public final class aq {
    }
 
    public final void a(int var1) {
-      this.b.aq.j();
-      this.b.aq.a("帮派");
-      this.b.aq.a(false);
-      this.b.ar.a((Image[])null, GlobalConfig.BangPaiCaoZuo, (String[])null, (String[])null);
-      this.b.ar.a(var1);
-      this.b.at.b(GlobalConfig.BangPaiShuoMing[var1], GlobalConfig.font2, (byte)2);
-      this.b.at.a((byte)1);
-      this.b.au.a("选择");
-      this.b.aq.a((al)this.b.ar);
-      this.b.aq.a((al)this.b.at);
-      this.b.aq.a((al)this.b.au);
-      this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.clear();
+      this.b.mixedUi.a("帮派");
+      this.b.mixedUi.a(false);
+      this.b.gunDongListUi.a((Image[])null, GlobalConfig.BangPaiCaoZuo, (String[])null, (String[])null);
+      this.b.gunDongListUi.a(var1);
+      this.b.textPanel.setText(GlobalConfig.BangPaiShuoMing[var1], GlobalConfig.font2, (byte)2);
+      this.b.textPanel.setShuRuMoShi((byte)1);
+      this.b.bottomUi.a("选择");
+      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.a((BaseUi)this.b.textPanel);
+      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.a.mainCanvasRef.touchPageCase = this.a.mainCanvasRef.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 41;
@@ -63,13 +63,13 @@ public final class aq {
 
    public final void b(int var1) {
       if (this.a.sceneSubState == 0) {
-         if (this.b.aq != null) {
-            this.b.aq.b(var1);
+         if (this.b.mixedUi != null) {
+            this.b.mixedUi.onClick(var1);
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 4 || var1 == 520) {
-            this.b.at.b(GlobalConfig.BangPaiShuoMing[this.b.ar.g()], GlobalConfig.font2, (byte)2);
-            this.b.at.a((byte)1);
+            this.b.textPanel.setText(GlobalConfig.BangPaiShuoMing[this.b.gunDongListUi.g()], GlobalConfig.font2, (byte)2);
+            this.b.textPanel.setShuRuMoShi((byte)1);
          }
 
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -78,8 +78,8 @@ public final class aq {
                return;
             }
          } else {
-            this.a.aA = this.b.ar.h();
-            this.a.aE = this.b.ar.g();
+            this.a.aA = this.b.gunDongListUi.h();
+            this.a.aE = this.b.gunDongListUi.g();
             switch (this.a.aE) {
                case 0:
                   this.a.mainCanvasRef.a((String)"输入帮派名称", (int)0);
@@ -164,7 +164,7 @@ public final class aq {
    }
 
    public final void a() {
-      this.a.am = LoadingPage.a("将交付" + this.u + "帮派基金作为招募费用，持续一周？", GlobalConfig.font2, 140, "\t");
+      this.a.am = LoadingPage.parseText("将交付" + this.u + "帮派基金作为招募费用，持续一周？", GlobalConfig.font2, 140, "\t");
       this.a.sceneSubState = 3;
       LoadingPage.h = 0;
    }
@@ -180,10 +180,10 @@ public final class aq {
    }
 
    public final void b() {
-      this.b.aq.j();
-      this.b.aq.a("等待响应");
-      this.b.aq.a(false);
-      c_1 var10000 = this.b.ar;
+      this.b.mixedUi.clear();
+      this.b.mixedUi.a("等待响应");
+      this.b.mixedUi.a(false);
+      GunDongListUi var10000 = this.b.gunDongListUi;
       String[] var10002 = GlobalStatus.il;
       byte[] var1;
       String[] var2 = new String[(var1 = GlobalStatus.in).length];
@@ -193,14 +193,14 @@ public final class aq {
       }
 
       var10000.a((Image[])null, var10002, (String[])null, var2);
-      this.b.at.b(GlobalStatus.im == null ? null : GlobalStatus.im[0], GlobalConfig.font2, (byte)2);
-      this.b.at.a((byte)1);
-      this.b.au.a("响应");
-      this.b.au.a(true);
-      this.b.aq.a((al)this.b.ar);
-      this.b.aq.a((al)this.b.at);
-      this.b.aq.a((al)this.b.au);
-      this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.textPanel.setText(GlobalStatus.im == null ? null : GlobalStatus.im[0], GlobalConfig.font2, (byte)2);
+      this.b.textPanel.setShuRuMoShi((byte)1);
+      this.b.bottomUi.a("响应");
+      this.b.bottomUi.a(true);
+      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.a((BaseUi)this.b.textPanel);
+      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 42;
@@ -208,17 +208,17 @@ public final class aq {
 
    public final void c(int var1) {
       if (this.a.sceneSubState == 0) {
-         if (this.b.aq != null) {
-            this.b.aq.b(var1);
+         if (this.b.mixedUi != null) {
+            this.b.mixedUi.onClick(var1);
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-            this.b.at.b(GlobalStatus.im == null ? null : GlobalStatus.im[this.b.ar.g()], GlobalConfig.font2, (byte)2);
-            this.b.at.a((byte)1);
+            this.b.textPanel.setText(GlobalStatus.im == null ? null : GlobalStatus.im[this.b.gunDongListUi.g()], GlobalConfig.font2, (byte)2);
+            this.b.textPanel.setShuRuMoShi((byte)1);
          }
 
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, GlobalStatus.io[this.b.ar.g()] == 1 ? new String[]{"取消响应"} : new String[]{"响应"}, false);
+            LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, GlobalStatus.io[this.b.gunDongListUi.g()] == 1 ? new String[]{"取消响应"} : new String[]{"响应"}, false);
             this.a.sceneSubState = 1;
             return;
          }
@@ -270,9 +270,9 @@ public final class aq {
                this.a.sceneSubState = 0;
             }
          } else if (LoadingPage.o == 0) {
-            if (GlobalStatus.io[this.b.ar.g()] == 1) {
+            if (GlobalStatus.io[this.b.gunDongListUi.g()] == 1) {
                byte[] var4;
-               if ((var4 = NetPayloadBuilder.x((short)4243, GlobalStatus.ad, GlobalStatus.ik[this.b.ar.g()])) != null) {
+               if ((var4 = NetPayloadBuilder.x((short)4243, GlobalStatus.ad, GlobalStatus.ik[this.b.gunDongListUi.g()])) != null) {
                   NetPacket var5 = new NetPacket((short)4243, var4);
                   MainCanvas.netUtils.sendPacket(var5);
                } else {
@@ -284,7 +284,7 @@ public final class aq {
             }
 
             byte[] var2;
-            if ((var2 = NetPayloadBuilder.x((short)4199, GlobalStatus.ad, GlobalStatus.ik[this.b.ar.g()])) != null) {
+            if ((var2 = NetPayloadBuilder.x((short)4199, GlobalStatus.ad, GlobalStatus.ik[this.b.gunDongListUi.g()])) != null) {
                NetPacket var3 = new NetPacket((short)4199, var2);
                MainCanvas.netUtils.sendPacket(var3);
             } else {
@@ -299,18 +299,18 @@ public final class aq {
    }
 
    public final void c() {
-      this.b.aq.j();
-      this.b.aq.a("帮派招募");
-      this.b.aq.a(false);
-      this.b.ar.a((Image[])null, GlobalStatus.iq, (String[])null, (String[])null);
-      this.b.at.b(GlobalStatus.ir == null ? null : GlobalStatus.ir[0], GlobalConfig.font2, (byte)2);
-      this.b.at.a((byte)1);
-      this.b.au.a("申请");
-      this.b.au.a(true);
-      this.b.aq.a((al)this.b.ar);
-      this.b.aq.a((al)this.b.at);
-      this.b.aq.a((al)this.b.au);
-      this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.clear();
+      this.b.mixedUi.a("帮派招募");
+      this.b.mixedUi.a(false);
+      this.b.gunDongListUi.a((Image[])null, GlobalStatus.iq, (String[])null, (String[])null);
+      this.b.textPanel.setText(GlobalStatus.ir == null ? null : GlobalStatus.ir[0], GlobalConfig.font2, (byte)2);
+      this.b.textPanel.setShuRuMoShi((byte)1);
+      this.b.bottomUi.a("申请");
+      this.b.bottomUi.a(true);
+      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.a((BaseUi)this.b.textPanel);
+      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 43;
@@ -319,18 +319,18 @@ public final class aq {
    public final void d(int var1) {
       if (this.a.sceneSubState == 0) {
          if (GlobalStatus.ip != null) {
-            if (this.b.aq == null) {
+            if (this.b.mixedUi == null) {
                return;
             }
 
-            this.b.aq.b(var1);
+            this.b.mixedUi.onClick(var1);
             if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-               this.b.at.b(GlobalStatus.ir == null ? null : GlobalStatus.ir[this.b.ar.g()], GlobalConfig.font2, (byte)2);
-               this.b.at.a((byte)1);
+               this.b.textPanel.setText(GlobalStatus.ir == null ? null : GlobalStatus.ir[this.b.gunDongListUi.g()], GlobalConfig.font2, (byte)2);
+               this.b.textPanel.setShuRuMoShi((byte)1);
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-               LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, GlobalStatus.is[this.b.ar.g()] == 1 ? new String[]{"取消申请"} : new String[]{"申请"}, false);
+               LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, GlobalStatus.is[this.b.gunDongListUi.g()] == 1 ? new String[]{"取消申请"} : new String[]{"申请"}, false);
                this.a.sceneSubState = 1;
             }
          }
@@ -382,8 +382,8 @@ public final class aq {
                this.a.sceneSubState = 0;
             }
          } else if (LoadingPage.o == 0) {
-            if (GlobalStatus.is[this.b.ar.g()] == 1) {
-               String var2 = GlobalStatus.ip[this.b.ar.g()];
+            if (GlobalStatus.is[this.b.gunDongListUi.g()] == 1) {
+               String var2 = GlobalStatus.ip[this.b.gunDongListUi.g()];
                byte[] var3;
                if ((var3 = NetPayloadBuilder.l((short)4242, GlobalStatus.ad, var2)) == null) {
                   this.b.processException("获取上传指令数据错误!");
@@ -393,7 +393,7 @@ public final class aq {
                MainCanvas.netUtils.sendPacket(new NetPacket((short)4242, var3));
                this.b.a((String)null);
             } else {
-               String var4 = GlobalStatus.ip[this.b.ar.g()];
+               String var4 = GlobalStatus.ip[this.b.gunDongListUi.g()];
                byte[] var5;
                if ((var5 = NetPayloadBuilder.l((short)4226, GlobalStatus.ad, var4)) == null) {
                   this.b.processException("获取上传指令数据错误!");
@@ -419,23 +419,23 @@ public final class aq {
    }
 
    public final void a(boolean var1) {
-      this.b.aq.j();
-      this.b.aq.a("帮派管理");
-      this.b.aq.a(false);
-      this.b.ar.a((Image[])null, GlobalConfig.BangPaiGuanLi, (String[])null, (String[])null);
+      this.b.mixedUi.clear();
+      this.b.mixedUi.a("帮派管理");
+      this.b.mixedUi.a(false);
+      this.b.gunDongListUi.a((Image[])null, GlobalConfig.BangPaiGuanLi, (String[])null, (String[])null);
       if (var1) {
-         this.b.ar.a(this.a.aA, this.a.aE);
-         this.b.at.b(GlobalConfig.BangPaiGuanLiCaoZuo[this.a.aE], GlobalConfig.font2, (byte)2);
+         this.b.gunDongListUi.a(this.a.aA, this.a.aE);
+         this.b.textPanel.setText(GlobalConfig.BangPaiGuanLiCaoZuo[this.a.aE], GlobalConfig.font2, (byte)2);
       } else {
-         this.b.at.b(GlobalConfig.BangPaiGuanLiCaoZuo[0], GlobalConfig.font2, (byte)2);
+         this.b.textPanel.setText(GlobalConfig.BangPaiGuanLiCaoZuo[0], GlobalConfig.font2, (byte)2);
       }
 
-      this.b.at.a((byte)1);
-      this.b.au.a("确定");
-      this.b.aq.a((al)this.b.ar);
-      this.b.aq.a((al)this.b.at);
-      this.b.aq.a((al)this.b.au);
-      this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.textPanel.setShuRuMoShi((byte)1);
+      this.b.bottomUi.a("确定");
+      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.a((BaseUi)this.b.textPanel);
+      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 45;
@@ -443,13 +443,13 @@ public final class aq {
 
    public final void e(int var1) {
       if (this.a.sceneSubState == 0) {
-         if (this.b.aq != null) {
-            this.b.aq.b(var1);
+         if (this.b.mixedUi != null) {
+            this.b.mixedUi.onClick(var1);
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-            this.b.at.b(GlobalConfig.BangPaiGuanLiCaoZuo[this.b.ar.g()], GlobalConfig.font2, (byte)2);
-            this.b.at.a((byte)1);
+            this.b.textPanel.setText(GlobalConfig.BangPaiGuanLiCaoZuo[this.b.gunDongListUi.g()], GlobalConfig.font2, (byte)2);
+            this.b.textPanel.setShuRuMoShi((byte)1);
          }
 
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -459,8 +459,8 @@ public final class aq {
                this.a.sceneStateShadow = this.a.currentSceneModeId = 0;
             }
          } else {
-            this.a.aA = this.b.ar.h();
-            this.a.aE = this.b.ar.g();
+            this.a.aA = this.b.gunDongListUi.h();
+            this.a.aE = this.b.gunDongListUi.g();
             switch (this.a.aE) {
                case 0:
                   this.b.a((String)"输入帮派新宗旨", (int)0);
@@ -501,10 +501,10 @@ public final class aq {
    }
 
    public final void f() {
-      this.b.aq.j();
-      this.b.aq.a("申请列表");
-      this.b.aq.a(false);
-      c_1 var10000 = this.b.ar;
+      this.b.mixedUi.clear();
+      this.b.mixedUi.a("申请列表");
+      this.b.mixedUi.a(false);
+      GunDongListUi var10000 = this.b.gunDongListUi;
       String[] var10002 = GlobalStatus.iu;
       short[] var1 = GlobalStatus.iv;
       String[] var2 = null;
@@ -517,11 +517,11 @@ public final class aq {
       }
 
       var10000.a((Image[])null, var10002, var2, GlobalStatus.iw);
-      this.b.au.a("确定");
-      this.b.au.a(true);
-      this.b.aq.a((al)this.b.ar);
-      this.b.aq.a((al)this.b.au);
-      this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.bottomUi.a("确定");
+      this.b.bottomUi.a(true);
+      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 46;
@@ -529,12 +529,12 @@ public final class aq {
 
    public final void f(int var1) {
       if (this.a.sceneSubState == 0) {
-         if (this.b.aq != null) {
-            this.b.aq.b(var1);
+         if (this.b.mixedUi != null) {
+            this.b.mixedUi.onClick(var1);
          }
 
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"详情", "接纳", "拒绝"}, false);
+            LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"详情", "接纳", "拒绝"}, false);
             this.a.sceneSubState = 1;
             return;
          }
@@ -587,13 +587,13 @@ public final class aq {
                return;
             }
          } else if (LoadingPage.o == 0) {
-            if (GlobalStatus.ix[this.b.ar.g()] != 1) {
+            if (GlobalStatus.ix[this.b.gunDongListUi.g()] != 1) {
                this.b.processException("对方不在线");
                return;
             }
 
             byte[] var2;
-            if ((var2 = NetPayloadBuilder.a((short)4110, GlobalStatus.ad, GlobalStatus.it[this.b.ar.g()], (byte)0)) == null) {
+            if ((var2 = NetPayloadBuilder.a((short)4110, GlobalStatus.ad, GlobalStatus.it[this.b.gunDongListUi.g()], (byte)0)) == null) {
                this.b.processException("获取上传指令数据错误!");
                return;
             }
@@ -602,7 +602,7 @@ public final class aq {
             this.b.a((String)null);
          } else if (LoadingPage.o == 1) {
             byte[] var3;
-            if ((var3 = NetPayloadBuilder.m((short)4228, GlobalStatus.ad, GlobalStatus.it[this.b.ar.g()])) == null) {
+            if ((var3 = NetPayloadBuilder.m((short)4228, GlobalStatus.ad, GlobalStatus.it[this.b.gunDongListUi.g()])) == null) {
                this.b.processException("获取上传指令数据错误!");
                return;
             }
@@ -611,7 +611,7 @@ public final class aq {
             this.b.a((String)null);
          } else if (LoadingPage.o == 2) {
             byte[] var4;
-            if ((var4 = NetPayloadBuilder.m((short)4229, GlobalStatus.ad, GlobalStatus.it[this.b.ar.g()])) == null) {
+            if ((var4 = NetPayloadBuilder.m((short)4229, GlobalStatus.ad, GlobalStatus.it[this.b.gunDongListUi.g()])) == null) {
                this.b.processException("获取上传指令数据错误!");
                return;
             }
@@ -620,9 +620,9 @@ public final class aq {
             this.b.a((String)null);
          }
       } else if (this.a.sceneSubState == 2) {
-         this.a.T.b(var1);
+         this.a.T.onClick(var1);
          if (var1 == 268435456 || var1 == 536870912 || var1 == 1073741824 || var1 == 517) {
-            this.a.T.j();
+            this.a.T.clear();
             this.f();
          }
       }
@@ -680,29 +680,29 @@ public final class aq {
    }
 
    public final void h(int var1) {
-      this.b.aq.j();
-      this.b.aq.a("帮派信息");
-      this.b.aq.a(true);
-      this.b.as.a(new String[]{"成员", "帮派", "外交", "帮战"});
-      this.b.aq.a((al)this.b.as);
+      this.b.mixedUi.clear();
+      this.b.mixedUi.a("帮派信息");
+      this.b.mixedUi.a(true);
+      this.b.topUi.a(new String[]{"成员", "帮派", "外交", "帮战"});
+      this.b.mixedUi.a((BaseUi)this.b.topUi);
       if (var1 == 0) {
-         this.b.as.a = 0;
-         this.b.ar.a((Image[])null, GlobalStatus.iz, GlobalStatus.iA, a(GlobalStatus.iC, "战力"));
-         this.b.ar.a(GlobalStatus.aC == 1 ? GlobalStatus.iE : null);
-         this.b.ar.b(GlobalStatus.aH == 1 ? GlobalStatus.iF : null);
-         this.b.ar.a(GlobalStatus.iG);
-         this.b.au.a("确定");
-         this.b.au.a(true);
-         this.b.aq.a((al)this.b.ar);
-         this.b.aq.a((al)this.b.au);
-         this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+         this.b.topUi.a = 0;
+         this.b.gunDongListUi.a((Image[])null, GlobalStatus.iz, GlobalStatus.iA, a(GlobalStatus.iC, "战力"));
+         this.b.gunDongListUi.a(GlobalStatus.aC == 1 ? GlobalStatus.iE : null);
+         this.b.gunDongListUi.b(GlobalStatus.aH == 1 ? GlobalStatus.iF : null);
+         this.b.gunDongListUi.a(GlobalStatus.iG);
+         this.b.bottomUi.a("确定");
+         this.b.bottomUi.a(true);
+         this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
+         this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+         this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       } else if (var1 == 1) {
-         this.b.as.a = 1;
-         this.b.at.b(GlobalStatus.iH, GlobalConfig.font2, (byte)2);
-         this.b.aq.a((al)this.b.at);
-         this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+         this.b.topUi.a = 1;
+         this.b.textPanel.setText(GlobalStatus.iH, GlobalConfig.font2, (byte)2);
+         this.b.mixedUi.a((BaseUi)this.b.textPanel);
+         this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       } else if (var1 == 2) {
-         this.b.as.a = 2;
+         this.b.topUi.a = 2;
          String[] var4 = null;
          int[] var2 = null;
          if (GlobalStatus.jY != null && GlobalStatus.jY.length > 0) {
@@ -721,24 +721,24 @@ public final class aq {
             }
          }
 
-         this.b.ar.a((Image[])null, GlobalStatus.jZ, (String[])null, var4);
-         this.b.ar.a("搜索...");
-         this.b.ar.a(var2);
-         this.b.ar.a("帮派搜索", 1);
-         this.b.au.a("确定");
-         this.b.au.a(true);
-         this.b.aq.a((al)this.b.ar);
-         this.b.aq.a((al)this.b.au);
-         this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+         this.b.gunDongListUi.a((Image[])null, GlobalStatus.jZ, (String[])null, var4);
+         this.b.gunDongListUi.a("搜索...");
+         this.b.gunDongListUi.a(var2);
+         this.b.gunDongListUi.a("帮派搜索", 1);
+         this.b.bottomUi.a("确定");
+         this.b.bottomUi.a(true);
+         this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
+         this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+         this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
          LoadingPage.l = 0;
       } else if (var1 == 3) {
-         this.b.as.a = 3;
-         this.b.at.b(GlobalStatus.kl, GlobalConfig.font2, (byte)2);
-         this.b.au.a("确定");
-         this.b.au.a(true);
-         this.b.aq.a((al)this.b.at);
-         this.b.aq.a((al)this.b.au);
-         this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+         this.b.topUi.a = 3;
+         this.b.textPanel.setText(GlobalStatus.kl, GlobalConfig.font2, (byte)2);
+         this.b.bottomUi.a("确定");
+         this.b.bottomUi.a(true);
+         this.b.mixedUi.a((BaseUi)this.b.textPanel);
+         this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+         this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       }
 
       this.a.sceneSubState = 0;
@@ -748,9 +748,9 @@ public final class aq {
 
    public final void i(int var1) {
       if (this.a.sceneSubState == 0) {
-         if (this.b.as.a == 0) {
-            if (this.b.aq != null) {
-               this.b.aq.b(var1);
+         if (this.b.topUi.a == 0) {
+            if (this.b.mixedUi != null) {
+               this.b.mixedUi.onClick(var1);
             }
 
             if (GlobalStatus.iy != null) {
@@ -782,18 +782,18 @@ public final class aq {
                         this.g(this.g);
                      }
                   }
-               } else if (GlobalStatus.iD[this.b.ar.g()] == 1) {
-                  if (!GlobalStatus.iy[this.b.ar.g()].equals(GlobalStatus.ad)) {
-                     LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+               } else if (GlobalStatus.iD[this.b.gunDongListUi.g()] == 1) {
+                  if (!GlobalStatus.iy[this.b.gunDongListUi.g()].equals(GlobalStatus.ad)) {
+                     LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
                      this.a.sceneSubState = 1;
-                     this.a.aE = this.b.ar.g();
-                     this.a.aA = this.b.ar.h();
+                     this.a.aE = this.b.gunDongListUi.g();
+                     this.a.aA = this.b.gunDongListUi.h();
                   }
-               } else if (!GlobalStatus.iy[this.b.ar.g()].equals(GlobalStatus.ad)) {
-                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看"}, false);
+               } else if (!GlobalStatus.iy[this.b.gunDongListUi.g()].equals(GlobalStatus.ad)) {
+                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看"}, false);
                   this.a.sceneSubState = 1;
-                  this.a.aE = this.b.ar.g();
-                  this.a.aA = this.b.ar.h();
+                  this.a.aE = this.b.gunDongListUi.g();
+                  this.a.aA = this.b.gunDongListUi.h();
                }
             }
 
@@ -805,9 +805,9 @@ public final class aq {
             } else {
                this.B();
             }
-         } else if (this.b.as.a == 1) {
-            if (this.b.aq != null) {
-               this.b.aq.b(var1);
+         } else if (this.b.topUi.a == 1) {
+            if (this.b.mixedUi != null) {
+               this.b.mixedUi.onClick(var1);
             }
 
             if (var1 != 8 && var1 != 516) {
@@ -821,9 +821,9 @@ public final class aq {
                GlobalStatus.gQ = 1;
                this.g(this.g);
             }
-         } else if (this.b.as.a == 2) {
-            if (this.b.aq != null) {
-               this.b.aq.b(var1);
+         } else if (this.b.topUi.a == 2) {
+            if (this.b.mixedUi != null) {
+               this.b.mixedUi.onClick(var1);
             }
 
             if (var1 != 8 && var1 != 516) {
@@ -837,8 +837,8 @@ public final class aq {
             }
 
             if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-               boolean var2 = this.b.ar.g() == this.b.ar.h();
-               this.b.ar.a(var2 ? "帮派搜索" : w(this.b.ar.g() - 1), 1);
+               boolean var2 = this.b.gunDongListUi.g() == this.b.gunDongListUi.h();
+               this.b.gunDongListUi.a(var2 ? "帮派搜索" : w(this.b.gunDongListUi.g() - 1), 1);
             }
 
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -870,18 +870,18 @@ public final class aq {
                   }
                }
             } else {
-               this.a.aA = this.b.ar.h();
-               this.a.aE = this.b.ar.g();
-               if (this.b.ar.g() == this.b.ar.h()) {
+               this.a.aA = this.b.gunDongListUi.h();
+               this.a.aE = this.b.gunDongListUi.g();
+               if (this.b.gunDongListUi.g() == this.b.gunDongListUi.h()) {
                   this.b.a((String)"请输入要搜索的帮派名称", (int)0);
                } else if (GlobalStatus.jY != null) {
-                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "外交", "宣战"}, true);
+                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "外交", "宣战"}, true);
                   this.a.sceneSubState = 7;
                }
             }
-         } else if (this.b.as.a == 3) {
-            if (this.b.aq != null) {
-               this.b.aq.b(var1);
+         } else if (this.b.topUi.a == 3) {
+            if (this.b.mixedUi != null) {
+               this.b.mixedUi.onClick(var1);
             }
 
             if (var1 != 8 && var1 != 516) {
@@ -923,9 +923,9 @@ public final class aq {
                this.o = "";
                this.a(this.o);
             }
-         } else if (this.b.as.a == 4) {
-            if (this.b.aq != null) {
-               this.b.aq.b(var1);
+         } else if (this.b.topUi.a == 4) {
+            if (this.b.mixedUi != null) {
+               this.b.mixedUi.onClick(var1);
             }
 
             if (var1 == 8 || var1 == 516) {
@@ -949,9 +949,9 @@ public final class aq {
             }
          }
       } else if (this.a.sceneSubState == 1) {
-         if (this.b.aC != null && this.b.g) {
-            this.a.aQ = GlobalStatus.iz[this.b.ar.g()];
-            this.a.a((String) GlobalStatus.iy[this.b.ar.g()], (byte)4);
+         if (this.b.liaoTian != null && this.b.g) {
+            this.a.aQ = GlobalStatus.iz[this.b.gunDongListUi.g()];
+            this.a.a((String) GlobalStatus.iy[this.b.gunDongListUi.g()], (byte)4);
             this.a.sceneSubState = 0;
             this.b.processException("聊天消息已发送!");
          }
@@ -964,13 +964,13 @@ public final class aq {
             }
          } else {
             if (LoadingPage.o == 0) {
-               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"属性", "装备"}, false);
+               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"属性", "装备"}, false);
                this.a.sceneSubState = 2;
                return;
             }
 
             if (LoadingPage.o == 1) {
-               this.a.aS = GlobalStatus.iy[this.b.ar.g()];
+               this.a.aS = GlobalStatus.iy[this.b.gunDongListUi.g()];
                this.a.aT = 4;
                this.b.a((String)"聊天", (int)0);
                return;
@@ -978,29 +978,29 @@ public final class aq {
 
             if (LoadingPage.o == 2) {
                if (GlobalStatus.bs == -1) {
-                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"自由", "跟随"}, false);
+                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"自由", "跟随"}, false);
                   this.a.sceneSubState = 6;
                   return;
                }
 
-               this.a.a(GlobalStatus.s, GlobalStatus.iy[this.b.ar.g()]);
+               this.a.a(GlobalStatus.s, GlobalStatus.iy[this.b.gunDongListUi.g()]);
                return;
             }
 
             if (LoadingPage.o == 3) {
-               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"物品", "宠物"}, false);
+               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"物品", "宠物"}, false);
                this.a.sceneSubState = 5;
                return;
             }
 
             if (LoadingPage.o == 4) {
-               this.a.a(GlobalStatus.iy[this.b.ar.g()]);
+               this.a.a(GlobalStatus.iy[this.b.gunDongListUi.g()]);
                this.a.sceneSubState = 0;
                return;
             }
 
             if (LoadingPage.o == 5) {
-               this.a.b(GlobalStatus.iy[this.b.ar.g()]);
+               this.a.b(GlobalStatus.iy[this.b.gunDongListUi.g()]);
                this.a.sceneSubState = 0;
                return;
             }
@@ -1009,10 +1009,10 @@ public final class aq {
          LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
-               if (GlobalStatus.iD[this.b.ar.g()] == 1) {
-                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+               if (GlobalStatus.iD[this.b.gunDongListUi.g()] == 1) {
+                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
                } else {
-                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看"}, false);
+                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看"}, false);
                }
 
                this.a.sceneSubState = 1;
@@ -1020,7 +1020,7 @@ public final class aq {
             }
          } else if (LoadingPage.o == 0) {
             byte[] var6;
-            if ((var6 = NetPayloadBuilder.a((short)4110, GlobalStatus.ad, GlobalStatus.iy[this.b.ar.g()], (byte)1)) == null) {
+            if ((var6 = NetPayloadBuilder.a((short)4110, GlobalStatus.ad, GlobalStatus.iy[this.b.gunDongListUi.g()], (byte)1)) == null) {
                this.b.processException("获取上传指令数据错误!");
                return;
             }
@@ -1029,7 +1029,7 @@ public final class aq {
             this.b.a((String)null);
          } else if (LoadingPage.o == 1) {
             byte[] var7;
-            if ((var7 = NetPayloadBuilder.b((short)4111, GlobalStatus.ad, GlobalStatus.iy[this.b.ar.g()])) == null) {
+            if ((var7 = NetPayloadBuilder.b((short)4111, GlobalStatus.ad, GlobalStatus.iy[this.b.gunDongListUi.g()])) == null) {
                this.b.processException("获取上传指令数据错误!");
                return;
             }
@@ -1038,9 +1038,9 @@ public final class aq {
             this.b.a((String)null);
          }
       } else if (this.a.sceneSubState == 3) {
-         this.a.T.b(var1);
+         this.a.T.onClick(var1);
          if (var1 == 268435456 || var1 == 536870912) {
-            this.a.T.j();
+            this.a.T.clear();
             this.a.sceneSubState = 2;
             return;
          }
@@ -1049,7 +1049,7 @@ public final class aq {
          this.a.g(var1);
          if (var1 == 536870912) {
             if (this.a.sceneSubMode == 1) {
-               this.a.T.j();
+               this.a.T.clear();
                this.a.sceneSubMode = 0;
                return;
             }
@@ -1068,14 +1068,14 @@ public final class aq {
          LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
-               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
                LoadingPage.o = 3;
                this.a.sceneSubState = 1;
                return;
             }
          } else {
             byte[] var8;
-            if ((var8 = NetPayloadBuilder.b((short)4124, GlobalStatus.ad, GlobalStatus.iy[this.b.ar.g()], (byte)((byte) LoadingPage.o))) == null) {
+            if ((var8 = NetPayloadBuilder.b((short)4124, GlobalStatus.ad, GlobalStatus.iy[this.b.gunDongListUi.g()], (byte)((byte) LoadingPage.o))) == null) {
                this.b.processException("获取上传指令数据错误!");
                return;
             }
@@ -1087,7 +1087,7 @@ public final class aq {
          LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
-               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
                LoadingPage.o = 2;
                this.a.sceneSubState = 1;
                return;
@@ -1100,7 +1100,7 @@ public final class aq {
                this.b.processException("队伍已满，无法邀请！");
             } else {
                byte[] var4;
-               if ((var4 = NetPayloadBuilder.a((short)4112, GlobalStatus.ad, GlobalStatus.iy[this.b.ar.g()], (short)((short)var1))) == null) {
+               if ((var4 = NetPayloadBuilder.a((short)4112, GlobalStatus.ad, GlobalStatus.iy[this.b.gunDongListUi.g()], (short)((short)var1))) == null) {
                   this.b.processException("获取上传指令数据错误!");
                   return;
                }
@@ -1120,12 +1120,12 @@ public final class aq {
          } else {
             this.b.aw = LoadingPage.o;
             if (LoadingPage.o == 0) {
-               this.b(GlobalStatus.jY[this.b.ar.g() - 1]);
+               this.b(GlobalStatus.jY[this.b.gunDongListUi.g() - 1]);
                return;
             }
 
             if (LoadingPage.o == 1) {
-               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"中立", "敌对"}, true);
+               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"中立", "敌对"}, true);
                this.a.sceneSubState = 8;
                return;
             }
@@ -1145,12 +1145,12 @@ public final class aq {
             }
          } else {
             if (LoadingPage.o == 0) {
-               this.a((byte)1, GlobalStatus.jY[this.b.ar.g() - 1]);
+               this.a((byte)1, GlobalStatus.jY[this.b.gunDongListUi.g() - 1]);
                return;
             }
 
             if (LoadingPage.o == 1) {
-               this.a((byte)2, GlobalStatus.jY[this.b.ar.g() - 1]);
+               this.a((byte)2, GlobalStatus.jY[this.b.gunDongListUi.g() - 1]);
                return;
             }
          }
@@ -1178,18 +1178,18 @@ public final class aq {
    }
 
    public final void i() {
-      this.b.aq.j();
-      this.b.aq.a("成员列表");
-      this.b.aq.a(false);
-      this.b.ar.a((Image[])null, GlobalStatus.iz, GlobalStatus.iA, a(GlobalStatus.iB, "功勋"));
-      this.b.ar.a(GlobalStatus.aC == 1 ? GlobalStatus.iE : null);
-      this.b.ar.b(GlobalStatus.aH == 1 ? GlobalStatus.iF : null);
-      this.b.ar.a(GlobalStatus.iG);
-      this.b.au.a("任免");
-      this.b.au.a(true);
-      this.b.aq.a((al)this.b.ar);
-      this.b.aq.a((al)this.b.au);
-      this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.clear();
+      this.b.mixedUi.a("成员列表");
+      this.b.mixedUi.a(false);
+      this.b.gunDongListUi.a((Image[])null, GlobalStatus.iz, GlobalStatus.iA, a(GlobalStatus.iB, "功勋"));
+      this.b.gunDongListUi.a(GlobalStatus.aC == 1 ? GlobalStatus.iE : null);
+      this.b.gunDongListUi.b(GlobalStatus.aH == 1 ? GlobalStatus.iF : null);
+      this.b.gunDongListUi.a(GlobalStatus.iG);
+      this.b.bottomUi.a("任免");
+      this.b.bottomUi.a(true);
+      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 48;
@@ -1211,14 +1211,14 @@ public final class aq {
    public final void k(int var1) {
       if (this.a.sceneSubState == 0) {
          if (GlobalStatus.iy != null) {
-            if (this.b.aq != null) {
-               this.b.aq.b(var1);
+            if (this.b.mixedUi != null) {
+               this.b.mixedUi.onClick(var1);
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-               LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"任免", "开除"}, false);
+               LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"任免", "开除"}, false);
                this.a.sceneSubState = 1;
-               this.v = this.b.ar.g();
+               this.v = this.b.gunDongListUi.g();
             }
          }
 
@@ -1290,13 +1290,13 @@ public final class aq {
             return;
          }
       } else if (this.a.sceneSubState == 2) {
-         if (this.b.aq != null) {
-            this.b.aq.b(var1);
+         if (this.b.mixedUi != null) {
+            this.b.mixedUi.onClick(var1);
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-            this.b.at.b(GlobalStatus.je[this.b.ar.g()], GlobalConfig.font2, (byte)2);
-            this.b.at.a((byte)1);
+            this.b.textPanel.setText(GlobalStatus.je[this.b.gunDongListUi.g()], GlobalConfig.font2, (byte)2);
+            this.b.textPanel.setShuRuMoShi((byte)1);
          }
 
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -1306,7 +1306,7 @@ public final class aq {
             }
          } else {
             String var10001 = GlobalStatus.iy[this.v];
-            byte var2 = GlobalStatus.jc[this.b.ar.g()];
+            byte var2 = GlobalStatus.jc[this.b.gunDongListUi.g()];
             String var4 = var10001;
             byte[] var5;
             if ((var5 = NetPayloadBuilder.d((short)4217, GlobalStatus.ad, var4, (byte)var2)) == null) {
@@ -1323,7 +1323,7 @@ public final class aq {
                this.a.sceneSubState = 0;
             }
          } else {
-            String var6 = GlobalStatus.iy[this.b.ar.g()];
+            String var6 = GlobalStatus.iy[this.b.gunDongListUi.g()];
             byte[] var7;
             if ((var7 = NetPayloadBuilder.k((short)4208, GlobalStatus.ad, var6)) == null) {
                this.b.processException("获取上传指令数据错误!");
@@ -1338,17 +1338,17 @@ public final class aq {
    }
 
    public final void j() {
-      this.b.aq.j();
-      this.b.aq.a("职务列表");
-      this.b.aq.a(true);
-      this.b.ar.a((Image[])null, GlobalStatus.jd, (String[])null, (String[])null);
-      this.b.at.b(GlobalStatus.je[this.b.ar.g()], GlobalConfig.font2, (byte)2);
-      this.b.at.a((byte)1);
-      this.b.au.a("确定");
-      this.b.aq.a((al)this.b.ar);
-      this.b.aq.a((al)this.b.at);
-      this.b.aq.a((al)this.b.au);
-      this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.clear();
+      this.b.mixedUi.a("职务列表");
+      this.b.mixedUi.a(true);
+      this.b.gunDongListUi.a((Image[])null, GlobalStatus.jd, (String[])null, (String[])null);
+      this.b.textPanel.setText(GlobalStatus.je[this.b.gunDongListUi.g()], GlobalConfig.font2, (byte)2);
+      this.b.textPanel.setShuRuMoShi((byte)1);
+      this.b.bottomUi.a("确定");
+      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.a((BaseUi)this.b.textPanel);
+      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 2;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 48;
@@ -1356,8 +1356,8 @@ public final class aq {
 
    public final void l(int var1) {
       if (this.a.sceneSubState == 0) {
-         if (this.b.aq != null) {
-            this.b.aq.b(var1);
+         if (this.b.mixedUi != null) {
+            this.b.mixedUi.onClick(var1);
          }
 
          if (var1 == 268435456 || var1 == 536870912 || var1 == 1073741824 || var1 == 517) {
@@ -1368,37 +1368,37 @@ public final class aq {
    }
 
    public final void k() {
-      this.b.aq.j();
-      this.b.aq.a("帮派公告");
-      this.b.aq.a(false);
-      this.b.at.b(GlobalStatus.jf, GlobalConfig.font2, (byte)2);
-      this.b.au.a("确定");
-      this.b.aq.a((al)this.b.at);
-      this.b.aq.a((al)this.b.au);
-      this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.clear();
+      this.b.mixedUi.a("帮派公告");
+      this.b.mixedUi.a(false);
+      this.b.textPanel.setText(GlobalStatus.jf, GlobalConfig.font2, (byte)2);
+      this.b.bottomUi.a("确定");
+      this.b.mixedUi.a((BaseUi)this.b.textPanel);
+      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 49;
    }
 
    public final void b(boolean var1) {
-      this.b.aq.j();
-      this.b.aq.a("宝库管理");
-      this.b.aq.a(false);
-      this.b.ar.a((Image[])null, GlobalConfig.BaoKuCaoZuo, (String[])null, (String[])null);
+      this.b.mixedUi.clear();
+      this.b.mixedUi.a("宝库管理");
+      this.b.mixedUi.a(false);
+      this.b.gunDongListUi.a((Image[])null, GlobalConfig.BaoKuCaoZuo, (String[])null, (String[])null);
       if (var1) {
-         this.b.ar.a(this.a.aA, this.a.aE);
-         this.b.at.b(GlobalStatus.iI[this.a.aE], GlobalConfig.font2, (byte)2);
+         this.b.gunDongListUi.a(this.a.aA, this.a.aE);
+         this.b.textPanel.setText(GlobalStatus.iI[this.a.aE], GlobalConfig.font2, (byte)2);
       } else {
-         this.b.at.b(GlobalStatus.iI[0], GlobalConfig.font2, (byte)2);
+         this.b.textPanel.setText(GlobalStatus.iI[0], GlobalConfig.font2, (byte)2);
       }
 
-      this.b.at.a((byte)1);
-      this.b.au.a("确定");
-      this.b.aq.a((al)this.b.ar);
-      this.b.aq.a((al)this.b.at);
-      this.b.aq.a((al)this.b.au);
-      this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.textPanel.setShuRuMoShi((byte)1);
+      this.b.bottomUi.a("确定");
+      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.a((BaseUi)this.b.textPanel);
+      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       LoadingPage.h = 0;
       LoadingPage.g = 0;
       this.b.touchAction = 0;
@@ -1409,13 +1409,13 @@ public final class aq {
 
    public final void m(int var1) {
       if (this.a.sceneSubState == 0) {
-         if (this.b.aq != null) {
-            this.b.aq.b(var1);
+         if (this.b.mixedUi != null) {
+            this.b.mixedUi.onClick(var1);
          }
 
          if (var1 == 514 || var1 == 520 || var1 == 1 || var1 == 4) {
-            this.b.at.b(GlobalStatus.iI[this.b.ar.g()], GlobalConfig.font2, (byte)2);
-            this.b.at.a((byte)1);
+            this.b.textPanel.setText(GlobalStatus.iI[this.b.gunDongListUi.g()], GlobalConfig.font2, (byte)2);
+            this.b.textPanel.setShuRuMoShi((byte)1);
          }
 
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -1425,8 +1425,8 @@ public final class aq {
                return;
             }
          } else {
-            this.a.aA = this.b.ar.h();
-            this.a.aE = this.b.ar.g();
+            this.a.aA = this.b.gunDongListUi.h();
+            this.a.aE = this.b.gunDongListUi.g();
             switch (this.a.aE) {
                case 0:
                   this.o();
@@ -1649,18 +1649,18 @@ public final class aq {
       this.l = new int[5][4];
       this.m = new int[5][4];
       this.n = new int[4];
-      this.b.aq.j();
-      this.b.aq.a("贡献物品");
-      this.b.aq.a(false);
+      this.b.mixedUi.clear();
+      this.b.mixedUi.a("贡献物品");
+      this.b.mixedUi.a(false);
       String[] var1 = GlobalConfig.defaultWidth <= 176 ? new String[]{"", "", "", "", ""} : GlobalConfig.HuoBiType;
-      this.b.ar.a(UISceneController.b(this.w), var1, (String[])null, (String[])null);
+      this.b.gunDongListUi.a(UISceneController.b(this.w), var1, (String[])null, (String[])null);
       short var2 = MainCanvas.L.c;
-      this.b.aq.f = var2;
-      this.b.ar.b(false);
-      this.b.au.a(new String[]{"确定", "返回"});
-      this.b.aq.a((al)this.b.ar);
-      this.b.aq.a((al)this.b.au);
-      this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.f = var2;
+      this.b.gunDongListUi.b(false);
+      this.b.bottomUi.a(new String[]{"确定", "返回"});
+      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 51;
@@ -1678,14 +1678,14 @@ public final class aq {
 
    public final void n(int var1) {
       if (this.a.sceneSubState == 0) {
-         if (this.b.aq != null) {
-            this.b.aq.b(var1);
+         if (this.b.mixedUi != null) {
+            this.b.mixedUi.onClick(var1);
          }
 
          if (this.b.tempTouchStatus > 40) {
             if (this.b.b != 2 && this.b.b != 518) {
                if (this.b.b == 8 || this.b.b == 516) {
-                  switch (this.b.ar.g()) {
+                  switch (this.b.gunDongListUi.g()) {
                      case 0:
                         this.k[0] = (int)(this.j = this.j - 100L <= 0L ? 0L : this.j - 100L);
                         break;
@@ -1751,7 +1751,7 @@ public final class aq {
                   }
                }
             } else {
-               switch (this.b.ar.g()) {
+               switch (this.b.gunDongListUi.g()) {
                   case 0:
                      this.k[0] = (int)(this.j = this.j + 100L <= GlobalStatus.ap ? this.j + 100L : GlobalStatus.ap);
                      break;
@@ -1819,7 +1819,7 @@ public final class aq {
          } else {
             if (var1 != 2 && var1 != 518) {
                if (var1 == 8 || var1 == 516) {
-                  switch (this.b.ar.g()) {
+                  switch (this.b.gunDongListUi.g()) {
                      case 0:
                         this.k[0] = (int)(this.j = this.j - 100L <= 0L ? 0L : this.j - 100L);
                         break;
@@ -1885,7 +1885,7 @@ public final class aq {
                   }
                }
             } else {
-               switch (this.b.ar.g()) {
+               switch (this.b.gunDongListUi.g()) {
                   case 0:
                      this.k[0] = (int)(this.j = this.j + 100L <= GlobalStatus.ap ? this.j + 100L : GlobalStatus.ap);
                      break;
@@ -1973,7 +1973,7 @@ public final class aq {
                this.q();
                this.b(true);
             }
-         } else if (this.b.ar.g() == 0) {
+         } else if (this.b.gunDongListUi.g() == 0) {
             this.b.a((String)"请输入贡献金额", (int)2);
             return;
          }
@@ -1989,28 +1989,28 @@ public final class aq {
       this.x = new int[3][4];
       this.y = new int[3][4];
       this.z = new int[3][4];
-      this.b.aq.j();
-      this.b.aq.a("宝库配置");
-      this.b.aq.a(false);
-      this.b.ar.a(UISceneController.b(this.A), GlobalConfig.JiangLiType, (String[])null, (String[])null);
-      this.b.au.a(new String[]{"确定", "返回"});
-      this.b.aq.a((al)this.b.ar);
-      this.b.aq.a((al)this.b.au);
-      this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.clear();
+      this.b.mixedUi.a("宝库配置");
+      this.b.mixedUi.a(false);
+      this.b.gunDongListUi.a(UISceneController.b(this.A), GlobalConfig.JiangLiType, (String[])null, (String[])null);
+      this.b.bottomUi.a(new String[]{"确定", "返回"});
+      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 114;
    }
 
    public final void o(int var1) {
-      if (this.b.aq != null) {
-         this.b.aq.b(var1);
+      if (this.b.mixedUi != null) {
+         this.b.mixedUi.onClick(var1);
       }
 
       if (this.b.tempTouchStatus > 40) {
          if (this.b.b != 2 && this.b.b != 518) {
             if (this.b.b == 8 || this.b.b == 516) {
-               switch (this.b.ar.g()) {
+               switch (this.b.gunDongListUi.g()) {
                   case 0:
                      int[] var4 = this.i;
                      byte[] var12 = GlobalStatus.iK;
@@ -2046,7 +2046,7 @@ public final class aq {
                }
             }
          } else {
-            switch (this.b.ar.g()) {
+            switch (this.b.gunDongListUi.g()) {
                case 0:
                   int[] var2 = this.i;
                   byte[] var10 = GlobalStatus.iK;
@@ -2084,7 +2084,7 @@ public final class aq {
       } else {
          if (var1 != 2 && var1 != 518) {
             if (var1 == 8 || var1 == 516) {
-               switch (this.b.ar.g()) {
+               switch (this.b.gunDongListUi.g()) {
                   case 0:
                      int[] var8 = this.i;
                      byte[] var16 = GlobalStatus.iK;
@@ -2120,7 +2120,7 @@ public final class aq {
                }
             }
          } else {
-            switch (this.b.ar.g()) {
+            switch (this.b.gunDongListUi.g()) {
                case 0:
                   int[] var6 = this.i;
                   byte[] var14 = GlobalStatus.iK;
@@ -2175,17 +2175,17 @@ public final class aq {
             this.b(true);
          }
       } else {
-         if (this.b.ar.g() == 0) {
+         if (this.b.gunDongListUi.g() == 0) {
             this.b.a((String)"请输入物品掉率", (int)2);
             return;
          }
 
-         if (this.b.ar.g() == 1) {
+         if (this.b.gunDongListUi.g() == 1) {
             this.b.a((String)"请输入银两奖励", (int)2);
             return;
          }
 
-         if (this.b.ar.g() == 2) {
+         if (this.b.gunDongListUi.g() == 2) {
             this.b.a((String)"请输入经验加成", (int)2);
             return;
          }
@@ -2194,12 +2194,12 @@ public final class aq {
    }
 
    public final void a(Graphics var1) {
-      if (this.b.aq != null) {
-         this.b.aq.a(var1);
+      if (this.b.mixedUi != null) {
+         this.b.mixedUi.a(var1);
 
-         for(int var2 = 0; var2 < this.b.ar.f(); ++var2) {
-            int var3 = this.b.ar.a() + this.b.ar.c() - MainCanvas.C.b - 126;
-            int var4 = this.b.ar.b() + 4 + var2 * this.b.ar.e();
+         for(int var2 = 0; var2 < this.b.gunDongListUi.f(); ++var2) {
+            int var3 = this.b.gunDongListUi.a() + this.b.gunDongListUi.c() - MainCanvas.C.b - 126;
+            int var4 = this.b.gunDongListUi.b() + 4 + var2 * this.b.gunDongListUi.e();
             LoadingPage.a(var1, var2 == 1 ? UISceneController.a(this.b.shareSb, (long)this.i[var2]) : this.i[var2] + "%", var3, var4, 122);
             var3 = 122;
             if (this.x != null && this.x.length > var2) {
@@ -2251,56 +2251,56 @@ public final class aq {
       this.a.sceneSubState = 0;
       this.b.aw = 0;
       LoadingPage.l = 0;
-      this.b.aq.b();
-      this.b.aq.a("帮派宝库");
-      this.b.aq.a(true);
-      this.b.as.a(new String[]{"宝库一", "宝库二", "宝库三"});
-      this.b.as.a((byte)1);
-      this.b.aq.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
+      this.b.mixedUi.b();
+      this.b.mixedUi.a("帮派宝库");
+      this.b.mixedUi.a(true);
+      this.b.topUi.a(new String[]{"宝库一", "宝库二", "宝库三"});
+      this.b.topUi.a((byte)1);
+      this.b.mixedUi.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
       if (this.a.sceneStateShadow != 115 && this.a.sceneStateShadow != 64) {
          this.a.aq = this.a.ar = 0;
       } else {
          this.a.aq = this.a.aF;
          this.a.ar = this.a.aG;
-         this.b.as.a = this.a.aH;
+         this.b.topUi.a = this.a.aH;
       }
 
-      int var1 = (this.b.as.a << 5) + (this.a.ar << 3) + this.a.aq;
+      int var1 = (this.b.topUi.a << 5) + (this.a.ar << 3) + this.a.aq;
       if (GlobalStatus.iN != null && var1 < GlobalStatus.iN.length) {
-         this.b.at.a(GlobalStatus.ja[var1], GlobalConfig.font2, (byte)1);
+         this.b.textPanel.setFWBText(GlobalStatus.ja[var1], GlobalConfig.font2, (byte)1);
       } else {
-         this.b.at.a("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte)1);
+         this.b.textPanel.setFWBText("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte)1);
       }
 
-      this.b.au.a("操作");
-      this.b.au.a(true);
-      this.b.at.a((byte)1);
-      this.b.aq.a((al)this.b.as);
-      this.b.aq.a((al)this.b.at);
-      this.b.aq.a((al)this.b.au);
-      this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.bottomUi.a("操作");
+      this.b.bottomUi.a(true);
+      this.b.textPanel.setShuRuMoShi((byte)1);
+      this.b.mixedUi.a((BaseUi)this.b.topUi);
+      this.b.mixedUi.a((BaseUi)this.b.textPanel);
+      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 115;
    }
 
    public final void p() {
-      int var1 = (this.b.as.a << 5) + (this.a.ar << 3) + this.a.aq;
+      int var1 = (this.b.topUi.a << 5) + (this.a.ar << 3) + this.a.aq;
       if (GlobalStatus.iN != null && var1 < GlobalStatus.iN.length) {
-         this.b.at.a(GlobalStatus.ja[var1], GlobalConfig.font2, (byte)1);
+         this.b.textPanel.setFWBText(GlobalStatus.ja[var1], GlobalConfig.font2, (byte)1);
       } else {
-         this.b.at.a("没有物品，按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte)1);
+         this.b.textPanel.setFWBText("没有物品，按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte)1);
       }
 
-      this.b.at.a((byte)1);
+      this.b.textPanel.setShuRuMoShi((byte)1);
       LoadingPage.l = 0;
    }
 
    public final void p(int var1) {
-      int var2 = (this.b.as.a << 5) + (this.a.ar << 3) + this.a.aq;
+      int var2 = (this.b.topUi.a << 5) + (this.a.ar << 3) + this.a.aq;
       if (this.a.sceneSubState == 0) {
          this.a.a(GlobalStatus.iR);
-         if (this.b.aq != null) {
-            this.b.aq.b(var1);
+         if (this.b.mixedUi != null) {
+            this.b.mixedUi.onClick(var1);
          }
 
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -2357,15 +2357,15 @@ public final class aq {
             switch (LoadingPage.o) {
                case 0:
                   if (!GlobalStatus.a(GlobalStatus.iP[var2])) {
-                     this.b.aq.j();
-                     this.b.aq.b();
-                     this.b.aq.a("宝物详情");
+                     this.b.mixedUi.clear();
+                     this.b.mixedUi.b();
+                     this.b.mixedUi.a("宝物详情");
                      if (GlobalStatus.ja != null && var2 < GlobalStatus.ja.length && GlobalStatus.ja[var2] != null) {
-                        this.b.at.a(GlobalStatus.iO[var2] + "：\t" + GlobalStatus.ja[var2], GlobalConfig.font2, (byte)1);
+                        this.b.textPanel.setFWBText(GlobalStatus.iO[var2] + "：\t" + GlobalStatus.ja[var2], GlobalConfig.font2, (byte)1);
                      }
 
-                     this.b.aq.a((al)this.b.at);
-                     this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+                     this.b.mixedUi.a((BaseUi)this.b.textPanel);
+                     this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
                      this.a.sceneSubState = 2;
                   } else {
                      var1 = var2;
@@ -2399,7 +2399,7 @@ public final class aq {
 
                   this.a.aF = this.a.aq;
                   this.a.aG = this.a.ar;
-                  this.a.aH = this.b.as.a;
+                  this.a.aH = this.b.topUi.a;
                   break;
                case 1:
                   if (GlobalStatus.iQ[var2] > 1) {
@@ -2408,7 +2408,7 @@ public final class aq {
                   } else {
                      LoadingPage.h = 0;
                      String var8;
-                     int var15 = LoadingPage.a(var8 = GlobalStatus.iO[var2]) != -1 ? LoadingPage.a(var8) : 15138723;
+                     int var15 = LoadingPage.parseColor(var8 = GlobalStatus.iO[var2]) != -1 ? LoadingPage.parseColor(var8) : 15138723;
                      this.a.at = "您确定取出" + (var15 != 15138723 ? var8.substring(3, var8.length()) : var8) + "X" + GlobalStatus.iQ[var2] + "？";
                      this.a.sceneSubState = 5;
                   }
@@ -2420,7 +2420,7 @@ public final class aq {
                   } else {
                      LoadingPage.h = 0;
                      String var7;
-                     int var14 = LoadingPage.a(var7 = GlobalStatus.iO[var2]) != -1 ? LoadingPage.a(var7) : 15138723;
+                     int var14 = LoadingPage.parseColor(var7 = GlobalStatus.iO[var2]) != -1 ? LoadingPage.parseColor(var7) : 15138723;
                      this.a.at = "您确定丢弃" + (var14 != 15138723 ? var7.substring(3, var7.length()) : var7) + "X" + GlobalStatus.iQ[var2] + "？";
                      this.a.sceneSubState = 4;
                   }
@@ -2440,8 +2440,8 @@ public final class aq {
             }
          }
       } else if (this.a.sceneSubState == 2) {
-         if (this.b.aq != null) {
-            this.b.aq.b(var1);
+         if (this.b.mixedUi != null) {
+            this.b.mixedUi.onClick(var1);
          }
 
          if (var1 == 536870912) {
@@ -2497,7 +2497,7 @@ public final class aq {
             if (this.a.sceneSubState == 3) {
                LoadingPage.h = 0;
                String var5;
-               int var13 = LoadingPage.a(var5 = GlobalStatus.iO[var2]) != -1 ? LoadingPage.a(var5) : 15138723;
+               int var13 = LoadingPage.parseColor(var5 = GlobalStatus.iO[var2]) != -1 ? LoadingPage.parseColor(var5) : 15138723;
                this.a.at = "您确定取出" + (var13 != 15138723 ? var5.substring(3, var5.length()) : var5) + "X" + this.a.ag + "？";
                this.a.sceneSubState = 5;
                return;
@@ -2505,7 +2505,7 @@ public final class aq {
 
             LoadingPage.h = 0;
             String var4;
-            int var3 = LoadingPage.a(var4 = GlobalStatus.iO[var2]) != -1 ? LoadingPage.a(var4) : 15138723;
+            int var3 = LoadingPage.parseColor(var4 = GlobalStatus.iO[var2]) != -1 ? LoadingPage.parseColor(var4) : 15138723;
             this.a.at = "您确定丢弃" + (var3 != 15138723 ? var4.substring(3, var4.length()) : var4) + "X" + this.a.ag + "？";
             this.a.sceneSubState = 4;
             return;
@@ -2516,7 +2516,7 @@ public final class aq {
 
    private void c(byte var1) {
       byte[] var2;
-      if ((var2 = NetPayloadBuilder.b((short)4246, GlobalStatus.iN[(this.b.as.a << 5) + (this.a.ar << 3) + this.a.aq], (byte)var1, GlobalStatus.ad)) != null) {
+      if ((var2 = NetPayloadBuilder.b((short)4246, GlobalStatus.iN[(this.b.topUi.a << 5) + (this.a.ar << 3) + this.a.aq], (byte)var1, GlobalStatus.ad)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4246, var2));
          this.a.mainCanvasRef.a((String)null);
       } else {
@@ -2525,17 +2525,17 @@ public final class aq {
    }
 
    public final void b(Graphics var1) {
-      if (this.b.aq != null) {
+      if (this.b.mixedUi != null) {
          int var2 = GlobalConfig.realHigh <= 240 ? 79 : 120;
-         this.b.aq.a(var1);
-         LoadingPage.a(var1, this.b.aq.a + 5, this.b.aq.b + 29 + this.b.as.b, this.b.aq.c - 11, var2, 1);
-         LoadingPage.a(var1);
+         this.b.mixedUi.a(var1);
+         LoadingPage.draw(var1, this.b.mixedUi.a + 5, this.b.mixedUi.b + 29 + this.b.topUi.b, this.b.mixedUi.c - 11, var2, 1);
+         LoadingPage.draw(var1);
          Graphics var3 = var1;
          aq var11 = this;
-         int var4 = (this.b.aq.c - 11 - (UISceneController.x.b << 3)) / 9;
+         int var4 = (this.b.mixedUi.c - 11 - (UISceneController.x.b << 3)) / 9;
          int var5 = ((GlobalConfig.realHigh <= 240 ? 79 : 120) - 6 - (UISceneController.x.b << 2)) / 5;
-         int var6 = this.b.aq.a + 8 + var4;
-         int var7 = this.b.aq.b + 33 + this.b.as.b + var5;
+         int var6 = this.b.mixedUi.a + 8 + var4;
+         int var7 = this.b.mixedUi.b + 33 + this.b.topUi.b + var5;
 
          for(int var8 = 0; var8 < 32; ++var8) {
             MainCanvas.pngUtil.a(var3, UISceneController.x, (int[])null, (aj)null, 0, 0, var8 % 8 * (UISceneController.x.b + var4) + var6, var8 / 8 * (UISceneController.x.b + var5) + var7, 0, 0);
@@ -2545,7 +2545,7 @@ public final class aq {
          int var12 = 0;
          LoadingPage.d(var3, var6 + var11.a.aq * (UISceneController.x.b + var4), var7 + var11.a.ar * (UISceneController.x.b + var5), 17, 17);
          if (GlobalStatus.iR != null) {
-            for(int var9 = var11.b.as.a << 5; var9 < (GlobalStatus.iR.length > var11.b.as.a + 1 << 5 ? var11.b.as.a + 1 << 5 : GlobalStatus.iR.length); ++var9) {
+            for(int var9 = var11.b.topUi.a << 5; var9 < (GlobalStatus.iR.length > var11.b.topUi.a + 1 << 5 ? var11.b.topUi.a + 1 << 5 : GlobalStatus.iR.length); ++var9) {
                int var10 = var9 % 32;
                MainCanvas.pngUtil.a(var3, UISceneController.b(GlobalStatus.iR[var9]), (int[])null, (aj)null, 0, 0, var10 % 8 * (UISceneController.x.b + var4) + var6 + 1, var10 / 8 * (UISceneController.x.b + var5) + var7 + 1, 0, 0);
                if (GlobalStatus.iQ[var9] > 9) {
@@ -2555,14 +2555,14 @@ public final class aq {
                   MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[])null, GlobalStatus.iQ[var9] % 10, 0, 0, 14 + var10 % 8 * (UISceneController.x.b + var4) + var6, var10 / 8 * (UISceneController.x.b + var5) + var7 + 12, 0, 0);
                }
 
-               if (var9 == (var11.a.ar << 3) + var11.a.aq + 32 * var11.b.as.a) {
+               if (var9 == (var11.a.ar << 3) + var11.a.aq + 32 * var11.b.topUi.a) {
                   var12 = var9;
                }
             }
 
-            if (var12 >= 0 && var12 < GlobalStatus.iR.length && var12 == (var11.a.ar << 3) + var11.a.aq + 32 * var11.b.as.a) {
+            if (var12 >= 0 && var12 < GlobalStatus.iR.length && var12 == (var11.a.ar << 3) + var11.a.aq + 32 * var11.b.topUi.a) {
                LoadingPage.a(var3, GlobalStatus.iO[var12] + "X" + GlobalStatus.iQ[var12], GlobalStatus.iZ[var12], var6 + var11.a.aq * (UISceneController.x.b + var4) + UISceneController.x.b / 2, var7 + var11.a.ar * (UISceneController.x.b + var5) + UISceneController.x.b / 2);
-            } else if ((var11.b.as.a << 5) + (var11.a.ar << 3) + var11.a.aq >= GlobalStatus.iJ) {
+            } else if ((var11.b.topUi.a << 5) + (var11.a.ar << 3) + var11.a.aq >= GlobalStatus.iJ) {
                LoadingPage.a(var3, "未开启", -1L, var6 + var11.a.aq * (UISceneController.x.b + var4) + UISceneController.x.b / 2, var7 + var11.a.ar * (UISceneController.x.b + var5) + UISceneController.x.b / 2);
             }
          }
@@ -2572,8 +2572,8 @@ public final class aq {
          LoadingPage.c(var1);
       } else {
          if (this.a.sceneSubState == 2) {
-            if (this.b.aq != null) {
-               this.b.aq.a(var1);
+            if (this.b.mixedUi != null) {
+               this.b.mixedUi.a(var1);
                return;
             }
          } else {
@@ -2592,7 +2592,7 @@ public final class aq {
 
    private void d(byte var1) {
       byte[] var2;
-      if ((var2 = NetPayloadBuilder.b((short)4245, GlobalStatus.iN[(this.b.as.a << 5) + (this.a.ar << 3) + this.a.aq], (byte)var1, GlobalStatus.ad)) != null) {
+      if ((var2 = NetPayloadBuilder.b((short)4245, GlobalStatus.iN[(this.b.topUi.a << 5) + (this.a.ar << 3) + this.a.aq], (byte)var1, GlobalStatus.ad)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4245, var2));
          this.a.mainCanvasRef.a((String)null);
       } else {
@@ -2609,13 +2609,13 @@ public final class aq {
    }
 
    public final void c(Graphics var1) {
-      if (this.a.sceneSubState == 0 && this.b.aq != null) {
-         LoadingPage.a(var1, (Image) MainCanvas.L.pngImage, (short) MainCanvas.L.b, this.b.aq.a + 5, this.b.aq.b + this.b.aq.d - 53, this.b.aq.c - 10, MainCanvas.L.c);
-         this.b.aq.a(var1);
+      if (this.a.sceneSubState == 0 && this.b.mixedUi != null) {
+         LoadingPage.a(var1, (Image) MainCanvas.L.pngImage, (short) MainCanvas.L.b, this.b.mixedUi.a + 5, this.b.mixedUi.b + this.b.mixedUi.d - 53, this.b.mixedUi.c - 10, MainCanvas.L.c);
+         this.b.mixedUi.a(var1);
 
-         for(int var2 = 0; var2 < this.b.ar.f(); ++var2) {
-            int var3 = this.b.ar.a() + this.b.ar.c() - MainCanvas.C.b - 130;
-            int var4 = this.b.ar.b() + 4 + var2 * this.b.ar.e();
+         for(int var2 = 0; var2 < this.b.gunDongListUi.f(); ++var2) {
+            int var3 = this.b.gunDongListUi.a() + this.b.gunDongListUi.c() - MainCanvas.C.b - 130;
+            int var4 = this.b.gunDongListUi.b() + 4 + var2 * this.b.gunDongListUi.e();
             LoadingPage.a(var1, var2 == 0 ? UISceneController.a(this.b.shareSb, this.j) : "" + this.k[var2], var3, var4, 124);
             var3 = 124;
             if (this.l != null && this.l.length > var2) {
@@ -2641,7 +2641,7 @@ public final class aq {
          }
 
          long var7 = (this.j + (long)this.B * GlobalStatus.jg + (long)this.C * GlobalStatus.ji + (long)this.D * GlobalStatus.jk + (long)this.E * GlobalStatus.jm) / 300L;
-         LoadingPage.drawString(var1, (String)("得到功勋：" + var7), (int)(this.b.aq.a + this.b.aq.c / 2), this.b.aq.b + this.b.aq.d - 51 + (MainCanvas.M.pngImage.getHeight() - GlobalConfig.font2_h) / 2, 17, 16776666, 0);
+         LoadingPage.drawString(var1, (String)("得到功勋：" + var7), (int)(this.b.mixedUi.a + this.b.mixedUi.c / 2), this.b.mixedUi.b + this.b.mixedUi.d - 51 + (MainCanvas.M.pngImage.getHeight() - GlobalConfig.font2_h) / 2, 17, 16776666, 0);
       }
 
    }
@@ -2667,31 +2667,31 @@ public final class aq {
    }
 
    public final void s() {
-      this.b.aq.j();
-      this.b.aq.a("区域建设");
-      this.b.aq.a(true);
-      this.b.as.a(new String[]{"购买", "仓库"});
-      this.b.ar.a((Image[])null, GlobalStatus.jp, (String[])null, (String[])null);
-      this.b.at.b(GlobalStatus.jq == null ? null : GlobalStatus.jq[this.b.ar.g()], GlobalConfig.font2, (byte)2);
-      this.b.at.a((byte)1);
-      this.b.au.a("购买");
-      this.b.au.a(true);
-      this.b.aq.a((al)this.b.as);
-      this.b.aq.a((al)this.b.ar);
-      this.b.aq.a((al)this.b.at);
-      this.b.aq.a((al)this.b.au);
-      this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.clear();
+      this.b.mixedUi.a("区域建设");
+      this.b.mixedUi.a(true);
+      this.b.topUi.a(new String[]{"购买", "仓库"});
+      this.b.gunDongListUi.a((Image[])null, GlobalStatus.jp, (String[])null, (String[])null);
+      this.b.textPanel.setText(GlobalStatus.jq == null ? null : GlobalStatus.jq[this.b.gunDongListUi.g()], GlobalConfig.font2, (byte)2);
+      this.b.textPanel.setShuRuMoShi((byte)1);
+      this.b.bottomUi.a("购买");
+      this.b.bottomUi.a(true);
+      this.b.mixedUi.a((BaseUi)this.b.topUi);
+      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.a((BaseUi)this.b.textPanel);
+      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 52;
    }
 
    public final void t() {
-      this.b.ar.a((Image[])null, GlobalStatus.js, (String[])null, (String[])null);
-      this.b.at.b(GlobalStatus.jt == null ? null : GlobalStatus.jt[this.b.ar.g()], GlobalConfig.font2, (byte)2);
-      this.b.at.a((byte)1);
-      this.b.au.a("选择");
-      this.b.au.a(true);
+      this.b.gunDongListUi.a((Image[])null, GlobalStatus.js, (String[])null, (String[])null);
+      this.b.textPanel.setText(GlobalStatus.jt == null ? null : GlobalStatus.jt[this.b.gunDongListUi.g()], GlobalConfig.font2, (byte)2);
+      this.b.textPanel.setShuRuMoShi((byte)1);
+      this.b.bottomUi.a("选择");
+      this.b.bottomUi.a(true);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 52;
@@ -2699,25 +2699,25 @@ public final class aq {
 
    public final void r(int var1) {
       if (this.a.sceneSubState == 0) {
-         if (this.b.aq != null) {
-            this.b.aq.b(var1);
+         if (this.b.mixedUi != null) {
+            this.b.mixedUi.onClick(var1);
          }
 
          if (var1 == 8 || var1 == 516 || var1 == 2 || var1 == 518) {
             GlobalStatus.gQ = 1;
-            this.q(this.b.as.a);
-            if (this.b.as.a == 0) {
-               this.b.au.a("选择");
-               this.b.au.a(true);
-            } else if (this.b.as.a == 1) {
-               this.b.au.a("购买");
-               this.b.au.a(true);
+            this.q(this.b.topUi.a);
+            if (this.b.topUi.a == 0) {
+               this.b.bottomUi.a("选择");
+               this.b.bottomUi.a(true);
+            } else if (this.b.topUi.a == 1) {
+               this.b.bottomUi.a("购买");
+               this.b.bottomUi.a(true);
             }
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 4 || var1 == 520) {
             label159: {
-               if (this.b.as.a == 0) {
+               if (this.b.topUi.a == 0) {
                   if (GlobalStatus.jq == null) {
                      break label159;
                   }
@@ -2725,8 +2725,8 @@ public final class aq {
                   break label159;
                }
 
-               this.b.at.b(this.b.as.a == 0 ? GlobalStatus.jq[this.b.ar.g()] : GlobalStatus.jt[this.b.ar.g()], GlobalConfig.font2, (byte)2);
-               this.b.at.a((byte)1);
+               this.b.textPanel.setText(this.b.topUi.a == 0 ? GlobalStatus.jq[this.b.gunDongListUi.g()] : GlobalStatus.jt[this.b.gunDongListUi.g()], GlobalConfig.font2, (byte)2);
+               this.b.textPanel.setShuRuMoShi((byte)1);
             }
          }
 
@@ -2746,7 +2746,7 @@ public final class aq {
                      --GlobalStatus.gQ;
                   }
 
-                  this.q(this.b.as.a);
+                  this.q(this.b.topUi.a);
                   return;
                }
 
@@ -2757,31 +2757,31 @@ public final class aq {
                      --GlobalStatus.gQ;
                   }
 
-                  this.q(this.b.as.a);
+                  this.q(this.b.topUi.a);
                   return;
                }
             } else if (var1 == 2048) {
                if (GlobalStatus.gQ <= 1 && GlobalStatus.gR == 1) {
                   ++GlobalStatus.gQ;
-                  this.q(this.b.as.a);
+                  this.q(this.b.topUi.a);
                   return;
                }
 
                if (GlobalStatus.gQ > 1 && GlobalStatus.gR == 1) {
                   ++GlobalStatus.gQ;
-                  this.q(this.b.as.a);
+                  this.q(this.b.topUi.a);
                   return;
                }
             }
          } else {
-            if (this.b.as.a == 0 && GlobalStatus.jo != null) {
-               LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"购买"}, true);
+            if (this.b.topUi.a == 0 && GlobalStatus.jo != null) {
+               LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"购买"}, true);
                this.a.sceneSubState = 1;
                return;
             }
 
-            if (this.b.as.a == 1 && GlobalStatus.jr != null) {
-               LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"布置", "卖出"}, true);
+            if (this.b.topUi.a == 1 && GlobalStatus.jr != null) {
+               LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"布置", "卖出"}, true);
                this.a.sceneSubState = 2;
                return;
             }
@@ -2795,7 +2795,7 @@ public final class aq {
             }
          } else {
             byte[] var2;
-            if ((var2 = NetPayloadBuilder.l((short)4233, GlobalStatus.ad, (byte) GlobalStatus.jo[this.b.ar.g()])) == null) {
+            if ((var2 = NetPayloadBuilder.l((short)4233, GlobalStatus.ad, (byte) GlobalStatus.jo[this.b.gunDongListUi.g()])) == null) {
                this.b.processException("获取上传指令数据错误!");
                return;
             }
@@ -2811,13 +2811,13 @@ public final class aq {
             }
          } else {
             if (LoadingPage.o == 0) {
-               this.a.a((String) GlobalStatus.js[this.b.ar.g()], GlobalStatus.jr[this.b.ar.g()], (short) GlobalStatus.ju[this.b.ar.g()], (byte)0, (byte)4);
+               this.a.a((String) GlobalStatus.js[this.b.gunDongListUi.g()], GlobalStatus.jr[this.b.gunDongListUi.g()], (short) GlobalStatus.ju[this.b.gunDongListUi.g()], (byte)0, (byte)4);
                return;
             }
 
             if (LoadingPage.o == 1) {
                byte[] var3;
-               if ((var3 = NetPayloadBuilder.y((short)4237, GlobalStatus.ad, GlobalStatus.jr[this.b.ar.g()])) == null) {
+               if ((var3 = NetPayloadBuilder.y((short)4237, GlobalStatus.ad, GlobalStatus.jr[this.b.gunDongListUi.g()])) == null) {
                   this.b.processException("获取上传指令数据错误!");
                   return;
                }
@@ -2851,9 +2851,9 @@ public final class aq {
    }
 
    public final void u() {
-      this.b.aq.j();
-      this.b.aq.a("帮派外交");
-      this.b.aq.a(false);
+      this.b.mixedUi.clear();
+      this.b.mixedUi.a("帮派外交");
+      this.b.mixedUi.a(false);
       String[] var1 = null;
       int[] var2 = null;
       if (GlobalStatus.jY != null && GlobalStatus.jY.length > 0) {
@@ -2872,15 +2872,15 @@ public final class aq {
          }
       }
 
-      this.b.ar.a((Image[])null, GlobalStatus.jZ, (String[])null, var1);
-      this.b.ar.a("搜索...");
-      this.b.ar.a(var2);
-      this.b.ar.a("帮派搜索", 1);
-      this.b.au.a("确定");
-      this.b.au.a(true);
-      this.b.aq.a((al)this.b.ar);
-      this.b.aq.a((al)this.b.au);
-      this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.gunDongListUi.a((Image[])null, GlobalStatus.jZ, (String[])null, var1);
+      this.b.gunDongListUi.a("搜索...");
+      this.b.gunDongListUi.a(var2);
+      this.b.gunDongListUi.a("帮派搜索", 1);
+      this.b.bottomUi.a("确定");
+      this.b.bottomUi.a(true);
+      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       LoadingPage.l = 0;
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
@@ -2915,13 +2915,13 @@ public final class aq {
 
    public final void s(int var1) {
       if (this.a.sceneSubState == 0) {
-         if (this.b.aq != null) {
-            this.b.aq.b(var1);
+         if (this.b.mixedUi != null) {
+            this.b.mixedUi.onClick(var1);
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-            boolean var2 = this.b.ar.g() == this.b.ar.h();
-            this.b.ar.a(var2 ? "帮派搜索" : w(this.b.ar.g() - 1), 1);
+            boolean var2 = this.b.gunDongListUi.g() == this.b.gunDongListUi.h();
+            this.b.gunDongListUi.a(var2 ? "帮派搜索" : w(this.b.gunDongListUi.g() - 1), 1);
          }
 
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -2966,15 +2966,15 @@ public final class aq {
                }
             }
          } else {
-            this.a.aA = this.b.ar.h();
-            this.a.aE = this.b.ar.g();
-            if (this.b.ar.g() == this.b.ar.h()) {
+            this.a.aA = this.b.gunDongListUi.h();
+            this.a.aE = this.b.gunDongListUi.g();
+            if (this.b.gunDongListUi.g() == this.b.gunDongListUi.h()) {
                this.b.a((String)"请输入要搜索的帮派名称", (int)0);
                return;
             }
 
             if (GlobalStatus.jY != null) {
-               LoadingPage.a(GlobalConfig.f, GlobalConfig.font2_h + 11 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "外交", "宣战"}, true);
+               LoadingPage.a(GlobalConfig.f, GlobalConfig.font2_h + 11 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "外交", "宣战"}, true);
                this.a.sceneSubState = 1;
                return;
             }
@@ -2989,12 +2989,12 @@ public final class aq {
          } else {
             this.b.aw = LoadingPage.o;
             if (LoadingPage.o == 0) {
-               this.b(GlobalStatus.jY[this.b.ar.g() - 1]);
+               this.b(GlobalStatus.jY[this.b.gunDongListUi.g() - 1]);
                return;
             }
 
             if (LoadingPage.o == 1) {
-               LoadingPage.a(0, GlobalConfig.font2_h + 11 + this.b.ar.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"中立", "敌对"}, true);
+               LoadingPage.a(0, GlobalConfig.font2_h + 11 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"中立", "敌对"}, true);
                this.a.sceneSubState = 2;
                return;
             }
@@ -3014,12 +3014,12 @@ public final class aq {
             }
          } else {
             if (LoadingPage.o == 0) {
-               this.a((byte)1, GlobalStatus.jY[this.b.ar.g() - 1]);
+               this.a((byte)1, GlobalStatus.jY[this.b.gunDongListUi.g() - 1]);
                return;
             }
 
             if (LoadingPage.o == 1) {
-               this.a((byte)2, GlobalStatus.jY[this.b.ar.g() - 1]);
+               this.a((byte)2, GlobalStatus.jY[this.b.gunDongListUi.g() - 1]);
                return;
             }
          }
@@ -3125,22 +3125,22 @@ public final class aq {
 
    public final void x() {
       if (GlobalStatus.kE != null) {
-         this.b.aq.j();
-         this.b.aq.a("战争捷报");
-         this.b.aq.a(false);
-         this.b.ar.a((Image[])null, GlobalStatus.kE, (String[])null, (String[])null);
-         this.b.at.b(GlobalStatus.kF[0], GlobalConfig.font2, (byte)2);
-         this.b.at.a((byte)1);
-         this.b.au.a("确定");
-         this.b.aq.a((al)this.b.ar);
-         this.b.aq.a((al)this.b.at);
-         this.b.aq.a((al)this.b.au);
-         m_1 var10000 = this.b.aq;
+         this.b.mixedUi.clear();
+         this.b.mixedUi.a("战争捷报");
+         this.b.mixedUi.a(false);
+         this.b.gunDongListUi.a((Image[])null, GlobalStatus.kE, (String[])null, (String[])null);
+         this.b.textPanel.setText(GlobalStatus.kF[0], GlobalConfig.font2, (byte)2);
+         this.b.textPanel.setShuRuMoShi((byte)1);
+         this.b.bottomUi.a("确定");
+         this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
+         this.b.mixedUi.a((BaseUi)this.b.textPanel);
+         this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+         MixedUi var10000 = this.b.mixedUi;
          int var2 = 2 * GlobalConfig.font2_h + 8;
-         m_1 var1 = var10000;
+         MixedUi var1 = var10000;
          var10000.e = var2;
          int var3 = var1.e;
-         this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+         this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
          this.a.sceneSubState = 0;
          this.b.touchPageCase = this.b.k;
          this.a.sceneStateShadow = this.a.currentSceneModeId = 63;
@@ -3150,13 +3150,13 @@ public final class aq {
 
    public final void u(int var1) {
       if (this.a.sceneSubState == 0 && GlobalStatus.kE != null) {
-         if (this.b.aq != null) {
-            this.b.aq.b(var1);
+         if (this.b.mixedUi != null) {
+            this.b.mixedUi.onClick(var1);
          }
 
          if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-            this.b.at.b(GlobalStatus.kF[this.b.ar.g()], GlobalConfig.font2, (byte)2);
-            this.b.at.a((byte)1);
+            this.b.textPanel.setText(GlobalStatus.kF[this.b.gunDongListUi.g()], GlobalConfig.font2, (byte)2);
+            this.b.textPanel.setShuRuMoShi((byte)1);
          }
 
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -3165,8 +3165,8 @@ public final class aq {
                this.a.sceneStateShadow = this.a.currentSceneModeId = 0;
             }
          } else {
-            this.a.aA = this.b.ar.h();
-            this.a.aE = this.b.ar.g();
+            this.a.aA = this.b.gunDongListUi.h();
+            this.a.aE = this.b.gunDongListUi.g();
             switch (this.a.aE) {
                case 0:
                   this.b.a((String)"请输入警告语（30个字符内）", (int)0);
@@ -3174,7 +3174,7 @@ public final class aq {
                case 1:
                case 2:
                case 3:
-                  this.b((byte)this.b.ar.g(), (String)null);
+                  this.b((byte)this.b.gunDongListUi.g(), (String)null);
                default:
                   return;
             }
@@ -3193,18 +3193,18 @@ public final class aq {
    }
 
    public final void y() {
-      this.b.aq.b();
-      this.b.aq.a("帮派升级");
-      this.b.aq.a(false);
-      this.b.at.b(GlobalStatus.mw == null ? "暂无帮派升级信息" : GlobalStatus.mw, GlobalConfig.font2, (byte)0);
-      this.b.aq.a((al)this.b.at);
-      this.b.au.a("升级");
-      this.b.aq.a((al)this.b.at);
+      this.b.mixedUi.b();
+      this.b.mixedUi.a("帮派升级");
+      this.b.mixedUi.a(false);
+      this.b.textPanel.setText(GlobalStatus.mw == null ? "暂无帮派升级信息" : GlobalStatus.mw, GlobalConfig.font2, (byte)0);
+      this.b.mixedUi.a((BaseUi)this.b.textPanel);
+      this.b.bottomUi.a("升级");
+      this.b.mixedUi.a((BaseUi)this.b.textPanel);
       if (GlobalConfig.defaultHigh > 220) {
-         this.b.aq.a((al)this.b.au);
+         this.b.mixedUi.a((BaseUi)this.b.bottomUi);
       }
 
-      this.b.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 113;
@@ -3212,8 +3212,8 @@ public final class aq {
 
    public final void v(int var1) {
       if (this.a.sceneSubState == 0) {
-         if (this.b.aq != null) {
-            this.b.aq.b(var1);
+         if (this.b.mixedUi != null) {
+            this.b.mixedUi.onClick(var1);
          }
 
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
@@ -3229,8 +3229,8 @@ public final class aq {
    }
 
    public final void d(Graphics var1) {
-      if (this.a.sceneSubState == 0 && this.b.aq != null) {
-         this.b.aq.a(var1);
+      if (this.a.sceneSubState == 0 && this.b.mixedUi != null) {
+         this.b.mixedUi.a(var1);
       }
 
    }

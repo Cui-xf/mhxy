@@ -54,7 +54,7 @@ public final class az_1 {
    private byte V = 0;
    private String W;
    public byte U = 0;
-   private TextRender X;
+   private FWBRender X;
    private int[] Y = null;
    private int Z = 0;
    private boolean aa = false;
@@ -172,12 +172,12 @@ public final class az_1 {
          this.U = var4;
          this.aa = false;
          this.Z = 0;
-         this.X = new TextRender(var7, (short)(var2 - 10));
-         if (this.X != null && this.X.a() != 0) {
+         this.X = new FWBRender(var7, (short)(var2 - 10));
+         if (this.X != null && this.X.getLines() != 0) {
             int var8 = GlobalConfig.font2_h;
             this.Y = new int[4];
             this.Y[2] = var2;
-            this.Y[3] = this.X.a() * var8 + 10;
+            this.Y[3] = this.X.getLines() * var8 + 10;
             this.Y[0] = (GlobalConfig.defaultWidth - this.Y[2]) / 2;
             this.Y[1] = var15;
             return;

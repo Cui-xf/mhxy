@@ -1205,7 +1205,7 @@ public final class GlobalStatus {
         aj = var0.readByte();
         ax = var0.readByte();
         ah = var0.readUTF();
-        ai = LoadingPage.a(var0.readByte());
+        ai = LoadingPage.pickColor(var0.readByte());
         ap = var0.readLong();
         aq = var0.readLong();
         al = var0.readUTF();
@@ -2334,7 +2334,7 @@ public final class GlobalStatus {
                 dP[var3] = var0.readShort();
                 dQ[var3] = var0.readUTF();
                 var2 = var0.readByte();
-                dR[var3] = LoadingPage.a(var2);
+                dR[var3] = LoadingPage.pickColor(var2);
                 if (O != null && oh == 0) {
                     O.s[var3] = dL[var3];
                     O.t[var3] = dK[var3];
@@ -5046,7 +5046,7 @@ public final class GlobalStatus {
                 iE[var3] = var0.readShort();
                 if_2[var3] = var0.readShort();
                 var2 = var0.readByte();
-                iG[var3] = LoadingPage.a(var2);
+                iG[var3] = LoadingPage.pickColor(var2);
                 iC[var3] = var0.readInt();
             }
 
@@ -6868,10 +6868,10 @@ public final class GlobalStatus {
     public static void aF(DataInputStream var0) throws IOException {
         byte var1;
         if ((var1 = var0.readByte()) > 0) {
-            LoadingPage.n = new int[var1];
+            LoadingPage.colors = new int[var1];
 
             for (byte var2 = 0; var2 < var1; ++var2) {
-                LoadingPage.n[var2] = var0.readInt();
+                LoadingPage.colors[var2] = var0.readInt();
             }
         }
 
@@ -7137,10 +7137,10 @@ public final class GlobalStatus {
                 rn[var1] = var0.readShort();
                 if (1 == rn[var1]) {
                     lj[var1] = "已完成";
-                    ln[var1] = LoadingPage.a(lm);
+                    ln[var1] = LoadingPage.pickColor(lm);
                 } else {
                     lj[var1] = "未完成";
-                    ln[var1] = LoadingPage.a(11);
+                    ln[var1] = LoadingPage.pickColor(11);
                 }
 
                 lk[var1] = var0.readUTF();
@@ -7313,7 +7313,7 @@ public final class GlobalStatus {
             lR = new int[var1];
 
             for (int var39 = 0; var39 < var1; ++var39) {
-                lR[var39] = LoadingPage.a(var0.readByte());
+                lR[var39] = LoadingPage.pickColor(var0.readByte());
             }
         }
 
@@ -7373,7 +7373,7 @@ public final class GlobalStatus {
             lZ = new int[var1];
 
             for (int var45 = 0; var45 < var1; ++var45) {
-                lZ[var45] = LoadingPage.a(var0.readByte());
+                lZ[var45] = LoadingPage.pickColor(var0.readByte());
             }
         }
 
@@ -7433,7 +7433,7 @@ public final class GlobalStatus {
             mh = new int[var1];
 
             for (int var51 = 0; var51 < var1; ++var51) {
-                mh[var51] = LoadingPage.a(var0.readByte());
+                mh[var51] = LoadingPage.pickColor(var0.readByte());
             }
         }
 
@@ -7537,7 +7537,7 @@ public final class GlobalStatus {
                 mn[var3] = ro[mm[var3]];
                 mo[var3] = var0.readUTF();
                 byte var2 = var0.readByte();
-                mp[var3] = LoadingPage.a(var2);
+                mp[var3] = LoadingPage.pickColor(var2);
             }
 
         }

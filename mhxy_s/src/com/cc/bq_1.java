@@ -685,7 +685,7 @@ public final class bq_1 {
                               this.o = GlobalStatus.M[this.h].a;
                            } else if (this.e == 2) {
                               this.j = 1;
-                              this.p = GlobalStatus.dl[this.y.ar.g()];
+                              this.p = GlobalStatus.dl[this.y.gunDongListUi.g()];
                               this.n = 1;
                               this.o = GlobalStatus.M[this.h].a;
                            }
@@ -862,7 +862,7 @@ public final class bq_1 {
                   } else {
                      this.o = GlobalStatus.H[this.i].a;
                      this.j = 1;
-                     this.p = GlobalStatus.dl[this.y.ar.g()];
+                     this.p = GlobalStatus.dl[this.y.gunDongListUi.g()];
                      this.n = 0;
                      if (!this.j()) {
                         this.d = 2;
@@ -885,7 +885,7 @@ public final class bq_1 {
                      }
                   } else {
                      this.k = 1;
-                     this.q = GlobalStatus.dl[this.y.ar.g()];
+                     this.q = GlobalStatus.dl[this.y.gunDongListUi.g()];
                      this.l = 0;
                      this.a(this.j, this.p, this.n, this.o, this.k, this.q, this.l, GlobalStatus.H[this.i].a);
                      this.f = -1;
@@ -2061,7 +2061,7 @@ public final class bq_1 {
    private void a(Graphics var1, String var2) {
       if (this.y.touchPageCase != 2) {
          if (this.K == null) {
-            this.K = LoadingPage.a(var2, GlobalConfig.font2, GlobalConfig.defaultWidth / 2 - 20, "/t");
+            this.K = LoadingPage.parseText(var2, GlobalConfig.font2, GlobalConfig.defaultWidth / 2 - 20, "/t");
          }
 
          if (this.K != null) {
@@ -2415,7 +2415,7 @@ public final class bq_1 {
    public final void a(String var1) {
       if (this.x != null) {
          synchronized(this.x) {
-            this.x.addElement(LoadingPage.a(var1, GlobalConfig.font2, GlobalConfig.defaultWidth * 5 / 7, "\t"));
+            this.x.addElement(LoadingPage.parseText(var1, GlobalConfig.font2, GlobalConfig.defaultWidth * 5 / 7, "\t"));
          }
       }
    }

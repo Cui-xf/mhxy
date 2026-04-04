@@ -2,9 +2,13 @@ package com.cc;
 
 import javax.microedition.lcdui.Graphics;
 
-public final class n_1 extends al {
+// 顶部页签条：负责页签切换、横向滚动以及页签点击命中检测。
+public final class TopUi extends BaseUi {
+   // 所有页签标题。
    private String[] c;
+   // 当前选中的页签下标。
    public byte a = 0;
+   // 当前可见页签窗口的起始下标。
    private byte d = 0;
    private int e;
    private int f;
@@ -12,7 +16,9 @@ public final class n_1 extends al {
    public int b;
    private int h;
    private boolean i = false;
+   // 每个页签的触摸命中区域。
    private int[][] j;
+   // 当前可见的页签数量。
    private int k = 0;
    private int l;
    private int m;
@@ -25,8 +31,10 @@ public final class n_1 extends al {
    private int t = 2152398;
    private int u = 2152398;
    private int v = 16449445;
+   // 输入映射模式：0 使用 8/2，1 使用 1024/2048 这组左右切换指令。
    private byte w;
 
+   // 设置页签标题，并重建点击区域缓存。
    public final void a(String[] var1) {
       this.c = var1;
       byte var2 = 0;
@@ -40,6 +48,7 @@ public final class n_1 extends al {
       }
    }
 
+   // 设置页签条的显示区域，并计算是否需要横向滚动。
    public final void a(int var1, int var2, int var3, int var4) {
       this.e = var1;
       this.f = var2;
@@ -54,6 +63,7 @@ public final class n_1 extends al {
       this.i = this.h > this.g - 22;
    }
 
+   // 计算从当前可见起点到当前选中项所占的总宽度，用于滚动窗口修正。
    private int a() {
       int var1 = 0;
 
@@ -64,7 +74,8 @@ public final class n_1 extends al {
       return var1;
    }
 
-   public final void b(int var1) {
+   // 处理左右切换指令，维护当前页签和可见窗口范围。
+   public final void onClick(int var1) {
       if ((this.w != 0 || var1 != 8 && var1 != 516) && (this.w != 1 || var1 != 1024)) {
          if (this.w == 0 && (var1 == 2 || var1 == 518) || this.w == 1 && var1 == 2048) {
             this.a = this.a >= this.c.length - 1 ? 0 : ++this.a;
@@ -99,12 +110,13 @@ public final class n_1 extends al {
 
    }
 
-   public final int b(int var1, int var2) {
+   // 处理页签点击以及左右滚动箭头点击。
+   public final int hintCheck(int var1, int var2) {
       boolean var10000;
       label86: {
          int var5 = var2;
          int var4 = var1;
-         n_1 var3 = this;
+         TopUi var3 = this;
          if (this.j != null) {
             for(int var6 = 0; var6 < var3.j.length; ++var6) {
                if (var4 >= var3.j[var6][0] && var4 <= var3.j[var6][0] + var3.j[var6][2] && var5 >= var3.j[var6][1] && var5 <= var3.j[var6][1] + var3.j[var6][3]) {
@@ -134,6 +146,7 @@ public final class n_1 extends al {
       }
    }
 
+   // 绘制页签按钮，并在超宽时绘制左右滚动箭头。
    public final void a(Graphics var1) {
       int var2 = 0;
       int var3 = 10 + GlobalConfig.font2.stringWidth(this.c[this.d]);
@@ -143,15 +156,15 @@ public final class n_1 extends al {
          int var5 = 10 + GlobalConfig.font2.stringWidth(this.c[var4]);
          ++this.k;
          if (var4 == this.a) {
-            LoadingPage.a(var1, this.e + var2, this.f, var5 - 1, this.b, 1);
+            LoadingPage.draw(var1, this.e + var2, this.f, var5 - 1, this.b, 1);
             LoadingPage.j[0] = this.e + var2 + 3;
             LoadingPage.j[1] = this.f + this.b - 3;
             LoadingPage.j[2] = var5 - 6;
          } else {
-            LoadingPage.a(var1, this.e + var2, this.f, var5 - 1, this.b, 2);
+            LoadingPage.draw(var1, this.e + var2, this.f, var5 - 1, this.b, 2);
          }
 
-         LoadingPage.a(var1, this.c[var4], this.e + var2 + (var5 - 1) / 2, this.f + GlobalConfig.getCzjz(this.b), 17, var4 == this.a ? this.v : 5426130);
+         LoadingPage.drawString(var1, this.c[var4], this.e + var2 + (var5 - 1) / 2, this.f + GlobalConfig.getCzjz(this.b), 17, var4 == this.a ? this.v : 5426130);
          var2 += var5;
          var3 += var4 < this.c.length - 1 ? 10 + GlobalConfig.font2.stringWidth(this.c[var4 + 1]) : 0;
       }
@@ -161,7 +174,7 @@ public final class n_1 extends al {
       int var6 = var10003;
       int var15 = this.d;
       String[] var12 = this.c;
-      n_1 var11 = this;
+      TopUi var11 = this;
       int var8 = 0;
 
       for(int var9 = 0; var9 < var12.length; ++var9) {
@@ -181,9 +194,9 @@ public final class n_1 extends al {
       }
 
       if (this.i) {
-         var1.setColor(LoadingPage.c);
+         var1.setColor(4562087);
          var1.fillRect(this.e + var2 + 1, this.f + 2, 19, GlobalConfig.font2_h - 2);
-         var1.setColor(LoadingPage.i);
+         var1.setColor(26540);
          var1.drawRect(this.e + var2, this.f + 1, 19, GlobalConfig.font2_h - 2);
          int var10001 = this.e + var2 + 1;
          int var10002 = this.f + 1;
@@ -211,7 +224,7 @@ public final class n_1 extends al {
 
    }
 
-   public final void j() {
+   public final void clear() {
       if (this.c != null) {
          for(byte var1 = 0; var1 < this.c.length; ++var1) {
             this.c[var1] = null;
@@ -223,6 +236,7 @@ public final class n_1 extends al {
       this.j = null;
    }
 
+   // 切换输入映射模式。
    public final void a(byte var1) {
       this.w = var1;
    }

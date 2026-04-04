@@ -18,40 +18,40 @@ public final class ba {
       this.c = var1;
       this.a = var2;
       this.b = var3;
-      var1.aq.b();
-      var1.aq.a("宠物升星");
-      var1.aq.a((al)var1.at);
+      var1.mixedUi.b();
+      var1.mixedUi.a("宠物升星");
+      var1.mixedUi.a((BaseUi)var1.textPanel);
       if (GlobalConfig.defaultHigh > 220) {
-         var1.au.a("");
-         var1.aq.a((al)var1.au);
+         var1.bottomUi.a("");
+         var1.mixedUi.a((BaseUi)var1.bottomUi);
       }
 
-      var1.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-      this.d = (short)(var1.at.e >> 1);
-      this.e = var1.at.b;
-      this.f = var1.at.c;
-      this.g = var1.at.d;
+      var1.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.d = (short)(var1.textPanel.textH >> 1);
+      this.e = var1.textPanel.textX;
+      this.f = var1.textPanel.textY;
+      this.g = var1.textPanel.textW;
       this.h = this.d;
-      var1.at.a(this.e, this.f + this.h, this.g, this.h + 1);
+      var1.textPanel.setTextRect(this.e, this.f + this.h, this.g, this.h + 1);
    }
 
    public final void a() {
-      this.c.aq.b();
-      this.c.aq.a("宠物升星");
-      this.c.aq.a((al)this.c.at);
+      this.c.mixedUi.b();
+      this.c.mixedUi.a("宠物升星");
+      this.c.mixedUi.a((BaseUi)this.c.textPanel);
       if (GlobalConfig.defaultHigh > 220) {
-         this.c.au.a("");
-         this.c.aq.a((al)this.c.au);
+         this.c.bottomUi.a("");
+         this.c.mixedUi.a((BaseUi)this.c.bottomUi);
       }
 
-      this.c.aq.a("宠物升星");
-      this.c.at.a(this.e, this.f + this.h + 1, this.g, this.d);
+      this.c.mixedUi.a("宠物升星");
+      this.c.textPanel.setTextRect(this.e, this.f + this.h + 1, this.g, this.d);
    }
 
    public final void a(Graphics var1) {
-      this.c.aq.a(var1);
-      LoadingPage.a(var1, this.e, this.f, this.g, this.h - 32, 1);
-      LoadingPage.a(var1, this.e, this.f, 80, this.h - 32, 1);
+      this.c.mixedUi.a(var1);
+      LoadingPage.draw(var1, this.e, this.f, this.g, this.h - 32, 1);
+      LoadingPage.draw(var1, this.e, this.f, 80, this.h - 32, 1);
       if (this.a.bf == 0 && this.a.be == 0) {
          var1.setColor(16776960);
          var1.drawRect(this.e, this.f, 80, this.h - 32);
@@ -87,7 +87,7 @@ public final class ba {
          var1.drawString("副宠", this.e + this.g - 44 + 20, this.f + (this.h - 32) / 2, 65);
       }
 
-      LoadingPage.a(var1, this.e, this.f + this.h - 32, this.g, 32, 1);
+      LoadingPage.draw(var1, this.e, this.f + this.h - 32, this.g, 32, 1);
       if (GlobalStatus.mM != null) {
          var1.setColor(16776960);
          var1.drawString(GlobalStatus.mM, GlobalConfig.defaultWidth / 2, this.f + this.h - 25 + 2, 17);
@@ -102,8 +102,8 @@ public final class ba {
    public final int a(byte var1, int var2, int var3) {
       if (this.a.sceneSubState == 1) {
          return LoadingPage.c(var2, var3);
-      } else if (this.c.aq.b(var2, var3) > 0) {
-         return this.c.aq.b(var2, var3);
+      } else if (this.c.mixedUi.hintCheck(var2, var3) > 0) {
+         return this.c.mixedUi.hintCheck(var2, var3);
       } else {
          if (var2 > this.e && var2 < this.e + 80 && var3 > this.f && var3 < this.f + this.h - 32) {
             if (this.a.be == 0 && this.a.bf == 0) {

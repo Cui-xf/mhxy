@@ -77,10 +77,6 @@ public final class GlobalConfig {
      * 是否包含坐骑资源（从 JAD hasRideRes 或 LargeClient 属性读取）
      */
     public static boolean hasRideRes = true;
-    /**
-     * 平台标识（1=默认）
-     */
-    public static byte pingTaiBiaoShi = 1;
 
     /**
      * 版本号字符串，如 "v1.4.4"

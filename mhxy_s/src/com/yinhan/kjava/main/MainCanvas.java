@@ -84,7 +84,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     private long aQ;
     private boolean aR;
     private String aS;
-    private TextRender aT;
+    private FWBRender aT;
     private int aV;
     private int aW;
     private int aX;
@@ -117,19 +117,21 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     public static byte ao = 0;
     public static boolean ap = true;
     private int bw = -1;
-    public m_1 aq;
-    public c_1 ar;
-    public n_1 as;
-    public an_1 at;
-    public l_1 au;
+    public MixedUi mixedUi;
+    public GunDongListUi gunDongListUi;
+    public TopUi topUi;
+    public TextPanel textPanel;
+    public BottomUi bottomUi;
     public y_1 av;
     public int aw;
     private Frame1[] bx;
     private Frame1[] by;
 
+    //选中角色的行/列
     private byte selectActorClo;
     private byte selectActorRow;
     private int bB;
+    //角色列表
     private int[][] actorList;
     public int ax;
     public String ay = "";
@@ -144,13 +146,15 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     private long bJ;
     private static byte bK = 1;
     public static byte aB = 2;
-    public TextField aC;
-    private TextField bL;
+    //聊天
+    public TextField liaoTian;
+    //邮件
+    private TextField youjian;
     private TextField bM;
     private TextField bN;
     private TextField bO;
-    private Command bP;
-    private Command bQ;
+    private Command ok;
+    private Command back;
     private Command bR;
     public Form aD;
     private StringItem bS;
@@ -202,11 +206,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         af.c();
         ah.c();
         this.shareSb = new StringBuffer();
-        this.aq = new m_1();
-        this.ar = new c_1();
-        this.au = new l_1();
-        this.as = new n_1();
-        this.at = new an_1();
+        this.mixedUi = new MixedUi();
+        this.gunDongListUi = new GunDongListUi();
+        this.bottomUi = new BottomUi();
+        this.topUi = new TopUi();
+        this.textPanel = new TextPanel();
     }
 
     public void init() {
@@ -298,17 +302,17 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                         this.G();
                                     } else if (this.k == 7) {
                                         if (uiSceneController.currentSceneModeId == 71) {
-                                            uiSceneController.e(this.as.a);
-                                            this.ar.a(uiSceneController.aE);
+                                            uiSceneController.e(this.topUi.a);
+                                            this.gunDongListUi.a(uiSceneController.aE);
                                         } else if (uiSceneController.currentSceneModeId == 76) {
-                                            byte var10 = this.as.a;
-                                            int var17 = this.ar.g();
+                                            byte var10 = this.topUi.a;
+                                            int var17 = this.gunDongListUi.g();
                                             uiSceneController.d((byte) var10);
                                             int var22 = var10 == 0 ? GlobalStatus.O.f.length : GlobalStatus.P.b.length;
-                                            this.ar.a(Math.min(var17, var22));
+                                            this.gunDongListUi.a(Math.min(var17, var22));
                                         } else if (uiSceneController.currentSceneModeId == 77) {
                                             uiSceneController.u();
-                                            this.ar.a(GlobalStatus.P.i);
+                                            this.gunDongListUi.a(GlobalStatus.P.i);
                                         } else {
                                             this.i();
                                         }
@@ -363,8 +367,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                     this.d();
                                 }
 
-                                if (this.aq != null) {
-                                    this.aq.b(this.touchAction);
+                                if (this.mixedUi != null) {
+                                    this.mixedUi.onClick(this.touchAction);
                                 }
 
                                 if (this.touchAction != 268435456 && this.touchAction != 1073741824 && this.touchAction != 517) {
@@ -373,7 +377,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                     }
                                 } else if (GlobalStatus.hA != null || GlobalStatus.hA.length > 0) {
                                     if (GlobalConfig.channel == 0) {
-                                        int var13 = this.ar.g();
+                                        int var13 = this.gunDongListUi.g();
                                         s();
                                         String var20 = null;
                                         if (false) {
@@ -403,9 +407,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                             this.processException("获取上传指令数据错误!");
                                         }
                                     } else if (GlobalConfig.logined) {
-                                        this.a(this.ar.g());
+                                        this.a(this.gunDongListUi.g());
                                     } else if (!GlobalStatus.hw) {
-                                        this.a(this.ar.g());
+                                        this.a(this.gunDongListUi.g());
                                     }
                                 }
                             }
@@ -416,8 +420,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             this.B();
                             break;
                         case 6:
-                            if (this.aq != null) {
-                                this.aq.b(this.touchAction);
+                            if (this.mixedUi != null) {
+                                this.mixedUi.onClick(this.touchAction);
                             }
 
                             if (this.touchAction != 1 && this.touchAction != 514) {
@@ -463,8 +467,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                             }
                                         } else if (this.bH == 0) {
                                             this.bE = (byte) (this.bE + 1 > 2 ? 0 : this.bE + 1);
-                                            this.at.b(GlobalConfig.menPaiMiaoShu[this.bE], GlobalConfig.font2, (byte) 1);
-                                            this.at.a((byte) 1);
+                                            this.textPanel.setText(GlobalConfig.menPaiMiaoShu[this.bE], GlobalConfig.font2, (byte) 1);
+                                            this.textPanel.setShuRuMoShi((byte) 1);
                                         } else if (this.bH == 1) {
                                             this.bF = (byte) (this.bF + 1 > 1 ? 0 : 1);
                                         } else {
@@ -472,8 +476,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                         }
                                     } else if (this.bH == 0) {
                                         this.bE = (byte) (this.bE - 1 < 0 ? 2 : this.bE - 1);
-                                        this.at.b(GlobalConfig.menPaiMiaoShu[this.bE], GlobalConfig.font2, (byte) 1);
-                                        this.at.a((byte) 1);
+                                        this.textPanel.setText(GlobalConfig.menPaiMiaoShu[this.bE], GlobalConfig.font2, (byte) 1);
+                                        this.textPanel.setShuRuMoShi((byte) 1);
                                     } else if (this.bH == 1) {
                                         this.bF = (byte) (this.bF - 1 < 0 ? 1 : 0);
                                     } else {
@@ -594,7 +598,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                         this.openWebView(aI);
                                     }
                                 } else {
-                                    LoadingPage.e = LoadingPage.e + LoadingPage.d < UISceneController.K.a() ? LoadingPage.e + LoadingPage.d : LoadingPage.e;
+                                    LoadingPage.e = LoadingPage.e + LoadingPage.d < UISceneController.K.getLines() ? LoadingPage.e + LoadingPage.d : LoadingPage.e;
                                 }
                             } else {
                                 LoadingPage.e = LoadingPage.e - LoadingPage.d >= 0 ? LoadingPage.e - LoadingPage.d : 0;
@@ -695,43 +699,43 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             return;
                         case 6:
                             this.c(graphics);
-                            if (this.aq != null) {
-                                this.aq.a(graphics);
-                                LoadingPage.a(graphics, this.aq.a + 5, this.aq.b + 32, this.aq.c - 11, this.aq.a(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150), 1);
-                                LoadingPage.b(graphics, this.aq.a + 80, this.aq.b + 35, this.aq.a + 80, this.aq.b + 35 + this.aq.a(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150) - 5);
+                            if (this.mixedUi != null) {
+                                this.mixedUi.a(graphics);
+                                LoadingPage.draw(graphics, this.mixedUi.a + 5, this.mixedUi.b + 32, this.mixedUi.c - 11, this.mixedUi.a(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150), 1);
+                                LoadingPage.b(graphics, this.mixedUi.a + 80, this.mixedUi.b + 35, this.mixedUi.a + 80, this.mixedUi.b + 35 + this.mixedUi.a(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150) - 5);
                                 graphics.setColor(2176196);
                                 int var2 = GlobalConfig.font2.stringWidth(GlobalConfig.manPaiName[0]);
-                                int var3 = this.aq.b + 45;
-                                int var4 = this.aq.a + 5 + 80 + (this.aq.c - 80 - 13 - var2) / 2;
+                                int var3 = this.mixedUi.b + 45;
+                                int var4 = this.mixedUi.a + 5 + 80 + (this.mixedUi.c - 80 - 13 - var2) / 2;
                                 graphics.drawString(GlobalConfig.manPaiName[this.bE], this.bE == 2 ? var4 + GlobalConfig.font2_w / 2 : var4, var3, 20);
                                 graphics.drawImage(X.pngImage, var4 - 20, var3, 20);
                                 this.a(0, var4 - 20, var3, X.b, X.c);
                                 graphics.drawImage(Y.pngImage, var4 + var2 + 15, var3, 20);
                                 this.a(1, var4 + var2 + 15, var3, Y.b, Y.c);
-                                graphics.drawString(this.bF == 0 ? "男" : "女", this.aq.a + 5 + 80 + (this.aq.c - 80 - 13 - GlobalConfig.font2_w) / 2, var3 + GlobalConfig.font2_h + 10, 20);
+                                graphics.drawString(this.bF == 0 ? "男" : "女", this.mixedUi.a + 5 + 80 + (this.mixedUi.c - 80 - 13 - GlobalConfig.font2_w) / 2, var3 + GlobalConfig.font2_h + 10, 20);
                                 graphics.drawImage(X.pngImage, var4 - 20, var3 + GlobalConfig.font2_h + 10, 20);
                                 this.a(2, var4 - 20, var3 + GlobalConfig.font2_h + 10, X.b, X.c);
                                 graphics.drawImage(Y.pngImage, var4 + var2 + 15, var3 + GlobalConfig.font2_h + 10, 20);
                                 this.a(3, var4 + var2 + 15, var3 + GlobalConfig.font2_h + 10, X.b, X.c);
-                                graphics.drawString("昵称：", this.aq.a + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10 << 1), 20);
-                                LoadingPage.c(graphics, this.aq.a + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10) * 3 - 1, this.aq.c - 80 - this.logo_btn_random.getWidth() - 20, GlobalConfig.font2_h, 0);
-                                LoadingPage.a(graphics, this.ay, this.aq.a + 5 + 80 + 5 + 2, var3 + (GlobalConfig.font2_h + 10) * 3, 20, 16711639);
-                                graphics.drawImage(this.logo_btn_random, this.aq.a + this.aq.c - 8, var3 + (GlobalConfig.font2_h + 10) * 3, 24);
-                                this.a(4, this.aq.a + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10) * 3, this.aq.c - 80 - this.logo_btn_random.getWidth() - 20, GlobalConfig.font2_h);
-                                this.a(5, this.aq.a + this.aq.c - 8 - this.logo_btn_random.getWidth(), var3 + (GlobalConfig.font2_h + 10) * 3, this.logo_btn_random.getWidth(), this.logo_btn_random.getHeight());
+                                graphics.drawString("昵称：", this.mixedUi.a + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10 << 1), 20);
+                                LoadingPage.c(graphics, this.mixedUi.a + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10) * 3 - 1, this.mixedUi.c - 80 - this.logo_btn_random.getWidth() - 20, GlobalConfig.font2_h, 0);
+                                LoadingPage.drawString(graphics, this.ay, this.mixedUi.a + 5 + 80 + 5 + 2, var3 + (GlobalConfig.font2_h + 10) * 3, 20, 16711639);
+                                graphics.drawImage(this.logo_btn_random, this.mixedUi.a + this.mixedUi.c - 8, var3 + (GlobalConfig.font2_h + 10) * 3, 24);
+                                this.a(4, this.mixedUi.a + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10) * 3, this.mixedUi.c - 80 - this.logo_btn_random.getWidth() - 20, GlobalConfig.font2_h);
+                                this.a(5, this.mixedUi.a + this.mixedUi.c - 8 - this.logo_btn_random.getWidth(), var3 + (GlobalConfig.font2_h + 10) * 3, this.logo_btn_random.getWidth(), this.logo_btn_random.getHeight());
                                 graphics.setColor(16711680);
                                 if (this.bH == 0) {
                                     graphics.drawRect(var4, var3, var2, GlobalConfig.font2_h);
                                 } else if (this.bH == 1) {
-                                    graphics.drawRect(this.aq.a + 5 + 80 + (this.aq.c - 80 - 13 - GlobalConfig.font2_w) / 2, var3 + GlobalConfig.font2_h + 10, GlobalConfig.font2_w, GlobalConfig.font2_h);
+                                    graphics.drawRect(this.mixedUi.a + 5 + 80 + (this.mixedUi.c - 80 - 13 - GlobalConfig.font2_w) / 2, var3 + GlobalConfig.font2_h + 10, GlobalConfig.font2_w, GlobalConfig.font2_h);
                                 } else if (this.bG == 0) {
-                                    graphics.drawRect(this.aq.a + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10) * 3 - 1, this.aq.c - 80 - this.logo_btn_random.getWidth() - 20, GlobalConfig.font2_h);
+                                    graphics.drawRect(this.mixedUi.a + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10) * 3 - 1, this.mixedUi.c - 80 - this.logo_btn_random.getWidth() - 20, GlobalConfig.font2_h);
                                 } else {
-                                    graphics.drawRect(this.aq.a + this.aq.c - 8 - this.logo_btn_random.getWidth(), var3 + (GlobalConfig.font2_h + 10) * 3, this.logo_btn_random.getWidth(), this.logo_btn_random.getHeight());
+                                    graphics.drawRect(this.mixedUi.a + this.mixedUi.c - 8 - this.logo_btn_random.getWidth(), var3 + (GlobalConfig.font2_h + 10) * 3, this.logo_btn_random.getWidth(), this.logo_btn_random.getHeight());
                                 }
 
                                 if (this.bx != null && this.bx[this.bF * 3 + this.bE] != null) {
-                                    pngUtil.a(graphics, (Frame1) this.bx[this.bF * 3 + this.bE], (int[]) null, 0, 0, this.aq.a + 40 + 5, this.aq.b + 32 + this.bx[this.bF * 3 + this.bE].j() + (this.aq.a(GlobalConfig.realHigh <= 240 ? (this.bB << 1) + 6 : 120) - this.bx[this.bF * 3 + this.bE].j()) / 2, 20, 0);
+                                    pngUtil.a(graphics, (Frame1) this.bx[this.bF * 3 + this.bE], (int[]) null, 0, 0, this.mixedUi.a + 40 + 5, this.mixedUi.b + 32 + this.bx[this.bF * 3 + this.bE].j() + (this.mixedUi.a(GlobalConfig.realHigh <= 240 ? (this.bB << 1) + 6 : 120) - this.bx[this.bF * 3 + this.bE].j()) / 2, 20, 0);
                                 }
                             }
 
@@ -895,7 +899,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             this.i();
         } else {
             GlobalStatus.eC = msg;
-            this.aT = new TextRender(GlobalStatus.eC, (short) (GlobalConfig.defaultWidth - 20));
+            this.aT = new FWBRender(GlobalStatus.eC, (short) (GlobalConfig.defaultWidth - 20));
             if (uiSceneController == null || uiSceneController.currentSceneModeId != 25) {
                 ((Canvas) this).setFullScreenMode(true);
                 this.mainMidlet.display.setCurrent(this);
@@ -912,7 +916,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 }
 
                 this.aV = (GlobalConfig.defaultWidth - this.aX) / 2;
-                this.aY = this.aT.a() * GlobalConfig.font2_h + 14;
+                this.aY = this.aT.getLines() * GlobalConfig.font2_h + 14;
                 this.aW = (GlobalConfig.defaultHigh - this.aY) / 2;
             }
 
@@ -963,12 +967,12 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             this.v();
         } else {
             this.aD = new Form("登陆游戏");
-            this.bP = new Command("登陆", 4, 1);
-            this.bQ = new Command("返回", 2, 1);
+            this.ok = new Command("登陆", 4, 1);
+            this.back = new Command("返回", 2, 1);
             this.bN = new TextField("帐号:", GlobalStatus.zhangHao, 20, 0);
             this.bO = new TextField("密码:", GlobalStatus.token, 20, 65536);
-            this.aD.addCommand(this.bP);
-            this.aD.addCommand(this.bQ);
+            this.aD.addCommand(this.ok);
+            this.aD.addCommand(this.back);
             this.aD.append(this.bN);
             this.aD.append(this.bO);
             this.aD.setCommandListener(this);
@@ -1023,10 +1027,10 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         this.aD.append(this.bO);
         this.aD.append(this.bd);
         this.aD.append("温馨提示：如果有当乐帐号的用户可以在帐号选择使用当乐帐号进行登录游戏！");
-        this.bP = new Command("登陆", 4, 1);
-        this.bQ = new Command("返回", 2, 1);
-        this.aD.addCommand(this.bP);
-        this.aD.addCommand(this.bQ);
+        this.ok = new Command("登陆", 4, 1);
+        this.back = new Command("返回", 2, 1);
+        this.aD.addCommand(this.ok);
+        this.aD.addCommand(this.back);
         this.aD.setCommandListener(this);
         this.display.setCurrent(this.aD);
     }
@@ -1238,13 +1242,13 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
     public void d() {
         if (this.aD != null) {
-            this.aD.removeCommand(this.bP);
-            this.aD.removeCommand(this.bQ);
+            this.aD.removeCommand(this.ok);
+            this.aD.removeCommand(this.back);
             this.aD.deleteAll();
         }
 
-        this.bP = null;
-        this.bQ = null;
+        this.ok = null;
+        this.back = null;
         this.bN = null;
         this.bO = null;
         this.aD = null;
@@ -1278,27 +1282,27 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             }
         }
 
-        this.aq.b();
-        this.aq.a("服务器列表");
+        this.mixedUi.b();
+        this.mixedUi.a("服务器列表");
         int[] var9 = null;
         if (GlobalConfig.channel == 1 && GlobalStatus.hx >= 0 && GlobalStatus.hx < GlobalStatus.hA.length) {
             var9 = new int[GlobalStatus.hA.length];
 
             for (int var10 = 0; var10 < var9.length; ++var10) {
                 if (var10 == GlobalStatus.hx) {
-                    var9[var10] = LoadingPage.a(0);
+                    var9[var10] = LoadingPage.pickColor(0);
                 } else {
-                    var9[var10] = LoadingPage.a(6);
+                    var9[var10] = LoadingPage.pickColor(6);
                 }
             }
         }
 
-        this.ar.a((Image[]) null, GlobalStatus.hA, (String[]) null, GlobalStatus.hF);
-        this.ar.a(var9);
-        this.aq.a((al) this.ar);
-        this.au.a(new String[]{"进入选区", ""});
-        this.aq.a((al) this.au);
-        this.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.gunDongListUi.a((Image[]) null, GlobalStatus.hA, (String[]) null, GlobalStatus.hF);
+        this.gunDongListUi.a(var9);
+        this.mixedUi.a((BaseUi) this.gunDongListUi);
+        this.bottomUi.a(new String[]{"进入选区", ""});
+        this.mixedUi.a((BaseUi) this.bottomUi);
+        this.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.k = this.touchPageCase = 4;
         this.touch4Status = 0;
         this.touchAction = 0;
@@ -1331,8 +1335,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     private void e(Graphics var1) {
         if (GlobalConfig.channel != 1 || GlobalConfig.logined || !GlobalStatus.hw) {
             this.c(var1);
-            if (this.aq != null) {
-                this.aq.a(var1);
+            if (this.mixedUi != null) {
+                this.mixedUi.a(var1);
             }
 
             if (this.touch4Status == 2) {
@@ -1416,18 +1420,18 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             this.bB = 55;
             this.selectActorClo = 0;
             this.selectActorRow = 0;
-            this.aq.b();
-            this.aq.a("角色列表");
-            this.aq.a((this.bB << 1) + 6);
-            this.at.b(this.f(0), GlobalConfig.font2, (byte) 1);
-            this.at.a((byte) 1);
-            this.aq.a((al) this.at);
+            this.mixedUi.b();
+            this.mixedUi.a("角色列表");
+            this.mixedUi.a((this.bB << 1) + 6);
+            this.textPanel.setText(this.f(0), GlobalConfig.font2, (byte) 1);
+            this.textPanel.setShuRuMoShi((byte) 1);
+            this.mixedUi.a((BaseUi) this.textPanel);
             if (GlobalConfig.defaultHigh > 220) {
-                this.au.a(new String[]{"进入游戏", ""});
-                this.aq.a((al) this.au);
+                this.bottomUi.a(new String[]{"进入游戏", ""});
+                this.mixedUi.a((BaseUi) this.bottomUi);
             }
 
-            this.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
             this.show();
             this.k = this.touchPageCase = 5;
         }
@@ -1442,18 +1446,18 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             }
 
             this.shareSb.append("等级：" + GlobalStatus.X[var1] + '\t');
-            this.au.a(new String[]{"进入游戏", ""});
+            this.bottomUi.a(new String[]{"进入游戏", ""});
             return this.shareSb.toString();
         } else {
-            this.au.a(new String[]{"创 建", ""});
+            this.bottomUi.a(new String[]{"创 建", ""});
             return "创建角色";
         }
     }
 
     private void B() {
         if (this.touch4Status == 0) {
-            if (this.aq != null) {
-                this.aq.b(this.touchAction);
+            if (this.mixedUi != null) {
+                this.mixedUi.onClick(this.touchAction);
             }
 
             if (this.touchAction != 1 && this.touchAction != 514) {
@@ -1483,19 +1487,19 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             }
                         } else {
                             this.selectActorClo = (byte) (this.selectActorClo >= 1 ? 0 : this.selectActorClo + 1);
-                            this.at.b(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.font2, (byte) 1);
+                            this.textPanel.setText(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.font2, (byte) 1);
                         }
                     } else {
                         this.selectActorClo = (byte) (this.selectActorClo <= 0 ? 1 : this.selectActorClo - 1);
-                        this.at.b(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.font2, (byte) 1);
+                        this.textPanel.setText(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.font2, (byte) 1);
                     }
                 } else {
                     this.selectActorRow = (byte) (this.selectActorRow >= 1 ? 0 : this.selectActorRow + 1);
-                    this.at.b(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.font2, (byte) 1);
+                    this.textPanel.setText(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.font2, (byte) 1);
                 }
             } else {
                 this.selectActorRow = (byte) (this.selectActorRow <= 0 ? 1 : this.selectActorRow - 1);
-                this.at.b(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.font2, (byte) 1);
+                this.textPanel.setText(this.f((this.selectActorRow << 1) + this.selectActorClo), GlobalConfig.font2, (byte) 1);
             }
 
             if (this.bx != null) {
@@ -1553,15 +1557,15 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
     private void f(Graphics var1) {
         this.c(var1);
-        if (this.aq != null) {
-            this.aq.a(var1);
-            LoadingPage.a(var1, this.aq.a + 5, this.aq.b + 32, this.aq.c - 11, this.aq.a((this.bB << 1) + 6), 1);
-            int var2 = (this.aq.c - (this.bB << 1) - 16) / 3;
-            int var3 = (this.aq.a(GlobalConfig.realHigh <= 240 ? (this.bB << 1) + 6 : 111) - (this.bB << 1) - 6) / 3;
+        if (this.mixedUi != null) {
+            this.mixedUi.a(var1);
+            LoadingPage.draw(var1, this.mixedUi.a + 5, this.mixedUi.b + 32, this.mixedUi.c - 11, this.mixedUi.a((this.bB << 1) + 6), 1);
+            int var2 = (this.mixedUi.c - (this.bB << 1) - 16) / 3;
+            int var3 = (this.mixedUi.a(GlobalConfig.realHigh <= 240 ? (this.bB << 1) + 6 : 111) - (this.bB << 1) - 6) / 3;
 
             for (int var4 = 0; var4 < 2; ++var4) {
                 for (int var5 = 0; var5 < 2; ++var5) {
-                    this.a((var4 << 1) + var5, this.aq.a + 8 + var2 + (var2 + this.bB) * var5, this.aq.b + 35 + var3 + (var3 + this.bB) * var4, this.bB, this.bB);
+                    this.a((var4 << 1) + var5, this.mixedUi.a + 8 + var2 + (var2 + this.bB) * var5, this.mixedUi.b + 35 + var3 + (var3 + this.bB) * var4, this.bB, this.bB);
                     LoadingPage.a(var1, (Image) null, this.actorList[(var4 << 1) + var5][0], this.actorList[(var4 << 1) + var5][1], this.bB, this.bB, var4 == this.selectActorRow && var5 == this.selectActorClo);
                 }
             }
@@ -1650,18 +1654,18 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         this.bG = 0;
         this.bE = 0;
         this.bF = 0;
-        this.aq.b();
-        this.aq.a("创建角色");
-        this.aq.a(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150);
-        this.at.b(GlobalConfig.menPaiMiaoShu[0], GlobalConfig.font2, (byte) 1);
-        this.at.a((byte) 1);
-        this.au.a(new String[]{"创 建", ""});
-        this.aq.a((al) this.at);
+        this.mixedUi.b();
+        this.mixedUi.a("创建角色");
+        this.mixedUi.a(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150);
+        this.textPanel.setText(GlobalConfig.menPaiMiaoShu[0], GlobalConfig.font2, (byte) 1);
+        this.textPanel.setShuRuMoShi((byte) 1);
+        this.bottomUi.a(new String[]{"创 建", ""});
+        this.mixedUi.a((BaseUi) this.textPanel);
         if (GlobalConfig.defaultHigh > 220) {
-            this.aq.a((al) this.au);
+            this.mixedUi.a((BaseUi) this.bottomUi);
         }
 
-        this.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.touchAction = 0;
         this.b = 0;
         this.k = this.touchPageCase = 6;
@@ -1674,12 +1678,12 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         }
 
         this.aD = new Form("角色昵称");
-        this.aC = new TextField("角色昵称", (String) null, 5, 0);
-        this.bQ = new Command("返回", 8, 1);
-        this.bP = new Command("确定", 2, 1);
-        this.aD.addCommand(this.bP);
-        this.aD.addCommand(this.bQ);
-        this.aD.append(this.aC);
+        this.liaoTian = new TextField("角色昵称", (String) null, 5, 0);
+        this.back = new Command("返回", 8, 1);
+        this.ok = new Command("确定", 2, 1);
+        this.aD.addCommand(this.ok);
+        this.aD.addCommand(this.back);
+        this.aD.append(this.liaoTian);
         if (var1 != null) {
             this.aD.append(this.bS);
         }
@@ -1694,9 +1698,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         }
 
         this.bS = null;
-        this.bP = null;
-        this.bQ = null;
-        this.aC = null;
+        this.ok = null;
+        this.back = null;
+        this.liaoTian = null;
         this.aD = null;
     }
 
@@ -1785,7 +1789,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             uiSceneController.M.q();
             uiSceneController.M.m();
         } else if (uiSceneController.currentSceneModeId == 52) {
-            if (var1 == 0 && this.as.a == 1) {
+            if (var1 == 0 && this.topUi.a == 1) {
                 uiSceneController.M.t();
             } else if (var1 == 2 && LoadingPage.o == 1) {
                 uiSceneController.M.q(1);
@@ -2110,76 +2114,76 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
     private void H() {
         this.aD = null;
-        this.bP = null;
-        this.bP = null;
-        this.aC = null;
+        this.ok = null;
+        this.ok = null;
+        this.liaoTian = null;
         this.bX = null;
     }
 
     public void a(String var1, int var2) {
         this.aD = new Form(var1);
         if (var2 == 2) {
-            this.aC = new TextField(var1, (String) null, 9, var2);
+            this.liaoTian = new TextField(var1, (String) null, 9, var2);
         } else if (var1.equals("聊天")) {
             if (uiSceneController.currentSceneModeId == 18) {
                 if (uiSceneController.aR) {
-                    this.aC = new TextField("与" + uiSceneController.aQ + "私聊", (String) null, 30, var2);
+                    this.liaoTian = new TextField("与" + uiSceneController.aQ + "私聊", (String) null, 30, var2);
                 } else {
-                    this.aC = new TextField(GlobalConfig.liaoTianPinDao[uiSceneController.aT], (String) null, 30, var2);
+                    this.liaoTian = new TextField(GlobalConfig.liaoTianPinDao[uiSceneController.aT], (String) null, 30, var2);
                 }
             } else if (uiSceneController.currentSceneModeId == 7) {
-                if (this.as.a < 3) {
-                    this.aC = new TextField("与" + GlobalStatus.gJ[this.ar.g()] + "私聊", (String) null, 30, var2);
+                if (this.topUi.a < 3) {
+                    this.liaoTian = new TextField("与" + GlobalStatus.gJ[this.gunDongListUi.g()] + "私聊", (String) null, 30, var2);
                 } else if (GlobalStatus.bs == 1) {
                     if (LoadingPage.o == 3) {
-                        this.aC = new TextField("群聊", (String) null, 30, var2);
+                        this.liaoTian = new TextField("群聊", (String) null, 30, var2);
                     } else if (LoadingPage.o == 4) {
-                        this.aC = new TextField("与" + GlobalStatus.q[this.ar.g()].e + "私聊", (String) null, 30, var2);
+                        this.liaoTian = new TextField("与" + GlobalStatus.q[this.gunDongListUi.g()].e + "私聊", (String) null, 30, var2);
                     }
                 } else if (GlobalStatus.bs == 0) {
                     if (LoadingPage.o == 0) {
-                        this.aC = new TextField("群聊", (String) null, 30, var2);
+                        this.liaoTian = new TextField("群聊", (String) null, 30, var2);
                     } else if (LoadingPage.o == 1) {
-                        this.aC = new TextField("与" + GlobalStatus.q[this.ar.g()].e + "私聊", (String) null, 30, var2);
+                        this.liaoTian = new TextField("与" + GlobalStatus.q[this.gunDongListUi.g()].e + "私聊", (String) null, 30, var2);
                     }
                 }
             } else if (uiSceneController.currentSceneModeId == 19) {
-                this.aC = new TextField("与" + GlobalStatus.dL[this.ar.g() - 1] + "私聊", (String) null, 30, var2);
+                this.liaoTian = new TextField("与" + GlobalStatus.dL[this.gunDongListUi.g() - 1] + "私聊", (String) null, 30, var2);
             } else if (uiSceneController.currentSceneModeId == 47) {
-                this.aC = new TextField("与" + GlobalStatus.iz[this.ar.g()] + "私聊", (String) null, 30, var2);
+                this.liaoTian = new TextField("与" + GlobalStatus.iz[this.gunDongListUi.g()] + "私聊", (String) null, 30, var2);
             } else {
-                this.aC = new TextField("聊天", (String) null, 30, var2);
+                this.liaoTian = new TextField("聊天", (String) null, 30, var2);
             }
         } else if (!var1.equals("输入帮派宗旨") && !var1.equals("输入帮派新宗旨") && !var1.equals("输入公告")) {
             if (var1.equals("输入帮派名称")) {
-                this.aC = new TextField(var1, (String) null, 6, var2);
+                this.liaoTian = new TextField(var1, (String) null, 6, var2);
             } else if (var1.equals("请输入要搜索的帮派名称")) {
-                this.aC = new TextField(var1, (String) null, 6, var2);
+                this.liaoTian = new TextField(var1, (String) null, 6, var2);
             } else if (var1.equals("请输入警告语（30个字符内）")) {
-                this.aC = new TextField(var1, (String) null, 30, var2);
+                this.liaoTian = new TextField(var1, (String) null, 30, var2);
             } else if (var1.equals("输入兑换码")) {
-                this.aC = new TextField(var1, (String) null, 30, var2);
+                this.liaoTian = new TextField(var1, (String) null, 30, var2);
             } else {
-                this.aC = new TextField(var1, (String) null, 5, var2);
+                this.liaoTian = new TextField(var1, (String) null, 5, var2);
             }
         } else {
-            this.aC = new TextField(var1, (String) null, 100, var2);
+            this.liaoTian = new TextField(var1, (String) null, 100, var2);
         }
 
-        this.bQ = new Command("返回", 8, 1);
-        this.bP = new Command("确定", 2, 1);
+        this.back = new Command("返回", 8, 1);
+        this.ok = new Command("确定", 2, 1);
         if (var1.equals("聊天")) {
             this.bR = new Command("表情", 8, 1);
             this.aD.addCommand(this.bR);
         }
 
-        this.aD.addCommand(this.bP);
-        this.aD.addCommand(this.bQ);
-        this.aD.append(this.aC);
+        this.aD.addCommand(this.ok);
+        this.aD.addCommand(this.back);
+        this.aD.append(this.liaoTian);
         this.aD.setCommandListener(this);
         this.display.setCurrent(this.aD);
         if (var1.equals("聊天")) {
-            a(this.aC, this.bZ);
+            a(this.liaoTian, this.bZ);
         }
 
     }
@@ -2197,17 +2201,17 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
     public void a(String var1, String var2, String var3, String var4) {
         this.aD = new Form("邮件举报");
-        this.aC = new TextField("举报理由: ", "", 100, 0);
+        this.liaoTian = new TextField("举报理由: ", "", 100, 0);
         this.bS = new StringItem("举报邮件：", "");
         this.bT = new StringItem("发件人：", var2);
         this.bU = new StringItem("标    题：", var3);
         this.bV = new StringItem("正    文：", var4);
         this.bW = var1;
-        this.bP = new Command("举报", 3, 0);
-        this.bQ = new Command("返回", 1, 5);
-        this.aD.addCommand(this.bP);
-        this.aD.addCommand(this.bQ);
-        this.aD.append(this.aC);
+        this.ok = new Command("举报", 3, 0);
+        this.back = new Command("返回", 1, 5);
+        this.aD.addCommand(this.ok);
+        this.aD.addCommand(this.back);
+        this.aD.append(this.liaoTian);
         this.aD.append(this.bS);
         this.aD.append(this.bT);
         this.aD.append(this.bU);
@@ -2220,12 +2224,12 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     public void l() {
         this.aD = new Form("联系客服");
         this.bX = new ChoiceGroup("类型: ", 1, ag_1.a, (Image[]) null);
-        this.aC = new TextField("内容: ", "", 100, 0);
-        this.bP = new Command("确定", 3, 0);
-        this.bQ = new Command("返回", 1, 5);
-        this.aD.addCommand(this.bP);
-        this.aD.addCommand(this.bQ);
-        this.aD.append(this.aC);
+        this.liaoTian = new TextField("内容: ", "", 100, 0);
+        this.ok = new Command("确定", 3, 0);
+        this.back = new Command("返回", 1, 5);
+        this.aD.addCommand(this.ok);
+        this.aD.addCommand(this.back);
+        this.aD.append(this.liaoTian);
         this.aD.append(this.bX);
         this.display.setCurrent(this.aD);
         this.aD.setCommandListener(this);
@@ -2239,30 +2243,30 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         if (this.bY == 0) {
             this.aD = new Form(var2);
             if (!var1) {
-                this.bL = new TextField("收件人: ", var4, 10, 0);
+                this.youjian = new TextField("收件人: ", var4, 10, 0);
             } else {
                 this.bU = new StringItem("收件人: ", var4);
             }
 
-            this.aC = new TextField("标    题: ", var3, 10, 0);
+            this.liaoTian = new TextField("标    题: ", var3, 10, 0);
             this.bM = new TextField("正    文: ", var5, 100, 0);
-            this.bP = new Command("发送", 3, 0);
-            this.bQ = new Command("返回", 1, 5);
+            this.ok = new Command("发送", 3, 0);
+            this.back = new Command("返回", 1, 5);
             if (!var1) {
                 this.bR = new Command("选择收件人", 1, 5);
             }
 
             this.bS = new StringItem("温馨提示", "★请保护好个人帐号，勿在邮件内容中泄漏任何与财产相关的信息，后果需自负。");
             this.bT = new StringItem((String) null, "★官方与玩家联系使用系统邮件形式，慎访私人邮件冒用官方名义行骗。");
-            this.aD.addCommand(this.bP);
+            this.aD.addCommand(this.ok);
             if (!var1) {
                 this.aD.addCommand(this.bR);
             }
 
-            this.aD.addCommand(this.bQ);
-            this.aD.append(this.aC);
+            this.aD.addCommand(this.back);
+            this.aD.append(this.liaoTian);
             if (!var1) {
-                this.aD.append(this.bL);
+                this.aD.append(this.youjian);
             } else {
                 this.aD.append(this.bU);
             }
@@ -2280,67 +2284,67 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         this.aD = new Form(var1);
         this.aE = new ChoiceGroup("", 1, new String[]{"世界聊", "区域聊", "队伍聊", "帮派聊", "跨服聊"}, (Image[]) null);
         this.aE.setSelectedIndex(1, true);
-        this.aC = new TextField(var1, (String) null, 30, 0);
-        this.bQ = new Command("返回", 8, 1);
+        this.liaoTian = new TextField(var1, (String) null, 30, 0);
+        this.back = new Command("返回", 8, 1);
         this.bR = new Command("表情", 8, 1);
-        this.bP = new Command("确定", 2, 1);
-        this.aD.addCommand(this.bP);
+        this.ok = new Command("确定", 2, 1);
+        this.aD.addCommand(this.ok);
         this.aD.addCommand(this.bR);
-        this.aD.addCommand(this.bQ);
-        this.aD.append(this.aC);
+        this.aD.addCommand(this.back);
+        this.aD.append(this.liaoTian);
         this.aD.append(this.aE);
         this.aD.setCommandListener(this);
         this.display.setCurrent(this.aD);
-        a(this.aC, this.bZ);
+        a(this.liaoTian, this.bZ);
     }
 
     public void e(String var1) {
         this.aD = new Form(var1);
-        this.bP = new Command("确定", 4, 2);
-        this.bQ = new Command("返回", 2, 1);
-        this.aD.addCommand(this.bQ);
-        this.aD.addCommand(this.bP);
+        this.ok = new Command("确定", 4, 2);
+        this.back = new Command("返回", 2, 1);
+        this.aD.addCommand(this.back);
+        this.aD.addCommand(this.ok);
         this.aD.setCommandListener(this);
-        this.aC = new TextField("请输入搜索关键字:", "", 10, 0);
-        this.aD.append(this.aC);
+        this.liaoTian = new TextField("请输入搜索关键字:", "", 10, 0);
+        this.aD.append(this.liaoTian);
         this.display.setCurrent(this.aD);
     }
 
     public void f(String var1) {
         this.aD = new Form(var1);
-        this.bP = new Command("更改", 4, 2);
-        this.bQ = new Command("返回", 2, 1);
-        this.aD.addCommand(this.bQ);
-        this.aD.addCommand(this.bP);
+        this.ok = new Command("更改", 4, 2);
+        this.back = new Command("返回", 2, 1);
+        this.aD.addCommand(this.back);
+        this.aD.addCommand(this.ok);
         this.aD.setCommandListener(this);
-        this.aC = new TextField("新名称:", "", 5, 0);
-        this.aD.append(this.aC);
+        this.liaoTian = new TextField("新名称:", "", 5, 0);
+        this.aD.append(this.liaoTian);
         this.display.setCurrent(this.aD);
         this.h = false;
     }
 
     public void m() {
         if (this.aD != null) {
-            this.aD.removeCommand(this.bP);
-            this.aD.removeCommand(this.bQ);
+            this.aD.removeCommand(this.ok);
+            this.aD.removeCommand(this.back);
             this.aD.deleteAll();
         }
 
-        this.bP = null;
-        this.bQ = null;
-        this.aC = null;
+        this.ok = null;
+        this.back = null;
+        this.liaoTian = null;
         this.aD = null;
         this.h = false;
     }
 
     public void n() {
-        if (this.aC != null && this.aC.getString() != null) {
-            this.bZ = this.aC.getString();
+        if (this.liaoTian != null && this.liaoTian.getString() != null) {
+            this.bZ = this.liaoTian.getString();
         }
 
         if (this.aD != null) {
-            this.aD.removeCommand(this.bP);
-            this.aD.removeCommand(this.bQ);
+            this.aD.removeCommand(this.ok);
+            this.aD.removeCommand(this.back);
             this.aD.deleteAll();
         }
 
@@ -2349,34 +2353,34 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         }
 
         this.aE = null;
-        this.bP = null;
-        this.bQ = null;
-        this.aC = null;
+        this.ok = null;
+        this.back = null;
+        this.liaoTian = null;
         this.aD = null;
     }
 
     public void o() {
         if (this.aD != null) {
-            this.aD.removeCommand(this.bP);
-            this.aD.removeCommand(this.bQ);
+            this.aD.removeCommand(this.ok);
+            this.aD.removeCommand(this.back);
             this.aD.deleteAll();
         }
 
-        this.bP = null;
-        this.bQ = null;
-        this.aC = null;
+        this.ok = null;
+        this.back = null;
+        this.liaoTian = null;
         this.aD = null;
     }
 
     private void I() {
         if (this.aD != null) {
-            this.aD.removeCommand(this.bP);
-            this.aD.removeCommand(this.bQ);
+            this.aD.removeCommand(this.ok);
+            this.aD.removeCommand(this.back);
             this.aD.deleteAll();
         }
 
-        this.bP = null;
-        this.bQ = null;
+        this.ok = null;
+        this.back = null;
         this.aD = null;
     }
 
@@ -2421,8 +2425,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         return;
                     }
 
-                    if (!this.aC.getString().equals("")) {
-                        this.ay = this.aC.getString().trim();
+                    if (!this.liaoTian.getString().equals("")) {
+                        this.ay = this.liaoTian.getString().trim();
                         this.D();
                         this.mainMidlet.start();
                     } else {
@@ -2431,7 +2435,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 } else if (var51.equals("聊天")) {
                     String var48;
                     if ((var48 = var1.getLabel()).equals("确定")) {
-                        if (this.aC.getString() == null || this.aC.getString().equals("")) {
+                        if (this.liaoTian.getString() == null || this.liaoTian.getString().equals("")) {
                             this.mainMidlet.start();
                             this.processException("不能发送空消息");
                             return;
@@ -2480,11 +2484,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     }
                 } else if (var51.equals("物品关键字搜索")) {
                     String var47 = var1.getLabel();
-                    String var78 = this.aC.getString();
+                    String var78 = this.liaoTian.getString();
                     if (!var47.equals("确定") || var78 == null) {
                         if (var47.equals("返回")) {
                             this.aD = null;
-                            this.aC = null;
+                            this.liaoTian = null;
                             this.touchAction = 0;
                             this.b = 0;
                             this.mainMidlet.start();
@@ -2493,7 +2497,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         return;
                     }
 
-                    uiSceneController.aU = this.ar.g();
+                    uiSceneController.aU = this.gunDongListUi.g();
                     uiSceneController.aK = var78;
                     uiSceneController.aL = "";
                     uiSceneController.aM = 1;
@@ -2503,11 +2507,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     this.a((String) null);
                 } else if (var51.equals("宠物关键字搜索")) {
                     String var46 = var1.getLabel();
-                    String var77 = this.aC.getString();
+                    String var77 = this.liaoTian.getString();
                     if (!var46.equals("确定") || var77 == null) {
                         if (var46.equals("返回")) {
                             this.aD = null;
-                            this.aC = null;
+                            this.liaoTian = null;
                             this.touchAction = 0;
                             this.b = 0;
                             this.mainMidlet.start();
@@ -2516,7 +2520,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         return;
                     }
 
-                    uiSceneController.aU = this.ar.g();
+                    uiSceneController.aU = this.gunDongListUi.g();
                     uiSceneController.aK = var77;
                     uiSceneController.aL = "";
                     uiSceneController.aM = 1;
@@ -2526,7 +2530,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     this.a((String) null);
                 } else if (var51.equals("宠物名称")) {
                     String var45 = var1.getLabel();
-                    String var76 = this.aC.getString();
+                    String var76 = this.liaoTian.getString();
                     if (!var45.equals("更改") || var76 == null) {
                         if (var45.equals("返回")) {
                             this.mainMidlet.start();
@@ -2556,14 +2560,14 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         return;
                     }
 
-                    String var75 = this.aC.getString();
+                    String var75 = this.liaoTian.getString();
                     int var88 = this.bX.getSelectedIndex();
                     this.H();
                     this.showLoginPage();
                 } else if (!var51.equals("请输入拍卖价格") && !var51.equals("请输入取出银两") && !var51.equals("请输入存入银两") && !var51.equals("拍卖价格") && !var51.equals("输入交易银两") && !var51.equals("请输入决斗金额") && !var51.equals("捐献银两数量") && !var51.equals("取出银两数量") && !var51.equals("捐献经验数量") && !var51.equals("请输入决斗金额") && !var51.equals("请输入竞标银两")) {
                     if (var51.equals("输入帮派名称")) {
                         String var43 = var1.getLabel();
-                        String var74 = this.aC.getString();
+                        String var74 = this.liaoTian.getString();
                         if (!var43.equals("确定") || var74 == null) {
                             if (var43.equals("返回")) {
                                 Object var56 = null;
@@ -2584,7 +2588,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
                     } else if (var51.equals("输入帮派宗旨")) {
                         String var41 = var1.getLabel();
-                        String var73 = this.aC.getString();
+                        String var73 = this.liaoTian.getString();
                         if (!var41.equals("确定") || var73 == null) {
                             if (var41.equals("返回")) {
                                 Object var54 = null;
@@ -2620,7 +2624,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
                     } else if (var51.equals("输入帮派新宗旨")) {
                         String var39 = var1.getLabel();
-                        String var72 = this.aC.getString();
+                        String var72 = this.liaoTian.getString();
                         if (!var39.equals("确定") || var72 == null) {
                             if (var39.equals("返回")) {
                                 Object var53 = null;
@@ -2654,7 +2658,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
                     } else if (var51.equals("输入玩家名称")) {
                         String var38 = var1.getLabel();
-                        String var71 = this.aC.getString();
+                        String var71 = this.liaoTian.getString();
                         if (!var38.equals("确定") || var71 == null) {
                             if (var38.equals("返回")) {
                                 this.mainMidlet.start();
@@ -2677,19 +2681,19 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         if (!(var37 = var1.getLabel()).equals("确定")) {
                             if (var37.equals("返回")) {
                                 this.aD = null;
-                                this.aC = null;
+                                this.liaoTian = null;
                                 this.mainMidlet.start();
                             }
 
                             return;
                         }
 
-                        if (this.aC.getString() == "") {
+                        if (this.liaoTian.getString() == "") {
                             return;
                         }
 
                         uiSceneController.o();
-                        uiSceneController.ak.append(this.aC.getString());
+                        uiSceneController.ak.append(this.liaoTian.getString());
                         if (uiSceneController.n() >= 0L) {
                             uiSceneController.M.a(uiSceneController.n());
                             uiSceneController.M.a();
@@ -2702,16 +2706,16 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         if (!(var36 = var1.getLabel()).equals("确定")) {
                             if (var36.equals("返回")) {
                                 this.aD = null;
-                                this.aC = null;
+                                this.liaoTian = null;
                                 this.mainMidlet.start();
                             }
 
                             return;
                         }
 
-                        if (this.aC.getString() != "") {
+                        if (this.liaoTian.getString() != "") {
                             uiSceneController.o();
-                            uiSceneController.ak.append(this.aC.getString());
+                            uiSceneController.ak.append(this.liaoTian.getString());
                             if (uiSceneController.n() >= 0L) {
                                 if (uiSceneController.n() > GlobalStatus.ap) {
                                     this.processException("您没有这么多银两,请重新输入！");
@@ -2730,16 +2734,16 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         if (!(var35 = var1.getLabel()).equals("确定")) {
                             if (var35.equals("返回")) {
                                 this.aD = null;
-                                this.aC = null;
+                                this.liaoTian = null;
                                 this.mainMidlet.start();
                             }
 
                             return;
                         }
 
-                        if (this.aC.getString() != "") {
+                        if (this.liaoTian.getString() != "") {
                             uiSceneController.o();
-                            uiSceneController.ak.append(this.aC.getString());
+                            uiSceneController.ak.append(this.liaoTian.getString());
                             if (uiSceneController.n() >= 0L) {
                                 if (uiSceneController.n() > (long) GlobalStatus.iM[1]) {
                                     this.processException("最多只能配置" + GlobalStatus.a((long) GlobalStatus.iM[1]) + ",请重新输入！");
@@ -2758,16 +2762,16 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         if (!(var34 = var1.getLabel()).equals("确定")) {
                             if (var34.equals("返回")) {
                                 this.aD = null;
-                                this.aC = null;
+                                this.liaoTian = null;
                                 this.mainMidlet.start();
                             }
 
                             return;
                         }
 
-                        if (this.aC.getString() != "") {
+                        if (this.liaoTian.getString() != "") {
                             uiSceneController.o();
-                            uiSceneController.ak.append(this.aC.getString());
+                            uiSceneController.ak.append(this.liaoTian.getString());
                             if (uiSceneController.n() >= 0L) {
                                 if (uiSceneController.n() > (long) GlobalStatus.iK[1]) {
                                     this.processException("最多只能配置" + GlobalStatus.iK[1] + "%,请重新输入！");
@@ -2786,16 +2790,16 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         if (!(var33 = var1.getLabel()).equals("确定")) {
                             if (var33.equals("返回")) {
                                 this.aD = null;
-                                this.aC = null;
+                                this.liaoTian = null;
                                 this.mainMidlet.start();
                             }
 
                             return;
                         }
 
-                        if (this.aC.getString() != "") {
+                        if (this.liaoTian.getString() != "") {
                             uiSceneController.o();
-                            uiSceneController.ak.append(this.aC.getString());
+                            uiSceneController.ak.append(this.liaoTian.getString());
                             if (uiSceneController.n() >= 0L) {
                                 if (uiSceneController.n() > (long) GlobalStatus.iL[1]) {
                                     this.processException("最多只能配置" + GlobalStatus.iL[1] + "%,请重新输入！");
@@ -2811,7 +2815,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
                     } else if (var51.equals("输入公告")) {
                         String var31 = var1.getLabel();
-                        String var70 = this.aC.getString();
+                        String var70 = this.liaoTian.getString();
                         if (!var31.equals("确定") || var70 == null) {
                             if (var31.equals("返回")) {
                                 Object var52 = null;
@@ -2841,7 +2845,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
                     } else if (var51.equals("输入“OK” 删除角色")) {
                         String var30 = var1.getLabel();
-                        String var69 = this.aC.getString();
+                        String var69 = this.liaoTian.getString();
                         if (!var30.equals("确定") || var69 == null) {
                             if (var30.equals("返回")) {
                                 this.aD = null;
@@ -2869,7 +2873,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         if (!(var29 = var1.getLabel()).equals("确定")) {
                             if (var29.equals("返回")) {
                                 this.aD = null;
-                                this.aC = null;
+                                this.liaoTian = null;
                                 this.touchAction = 0;
                                 this.b = 0;
                                 this.mainMidlet.start();
@@ -2878,21 +2882,21 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             return;
                         }
 
-                        if (this.aC.getString().equals("")) {
+                        if (this.liaoTian.getString().equals("")) {
                             this.processException("昵称不能为空！");
                         } else {
-                            uiSceneController.a(this.aC.getString(), true);
+                            uiSceneController.a(this.liaoTian.getString(), true);
                             this.touchAction = 0;
                             this.b = 0;
                             this.mainMidlet.start();
                         }
                     } else if (var51.equals("重要物品输入OK丢弃")) {
                         String var28 = var1.getLabel();
-                        String var68 = this.aC.getString();
+                        String var68 = this.liaoTian.getString();
                         if (!var28.equals("确定") || var68 == null) {
                             if (var28.equals("返回")) {
                                 this.aD = null;
-                                this.aC = null;
+                                this.liaoTian = null;
                                 this.touchAction = 0;
                                 this.b = 0;
                                 this.mainMidlet.start();
@@ -2911,11 +2915,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
                     } else if (var51.equals("输入OK确认解散帮派")) {
                         String var26 = var1.getLabel();
-                        String var67 = this.aC.getString();
+                        String var67 = this.liaoTian.getString();
                         if (!var26.equals("确定") || var67 == null) {
                             if (var26.equals("返回")) {
                                 this.aD = null;
-                                this.aC = null;
+                                this.liaoTian = null;
                                 this.touchAction = 0;
                                 this.b = 0;
                                 uiSceneController.sceneSubState = 0;
@@ -2943,7 +2947,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
                     } else if (var51.equals("请输入要搜索的帮派名称")) {
                         String var25 = var1.getLabel();
-                        String var66 = this.aC.getString();
+                        String var66 = this.liaoTian.getString();
                         if (!var25.equals("确定") || var66 == null) {
                             if (var25.equals("返回")) {
                                 this.I();
@@ -2970,11 +2974,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         this.mainMidlet.start();
                     } else if (var51.equals("输入OK确认宣战")) {
                         String var24 = var1.getLabel();
-                        String var65 = this.aC.getString();
+                        String var65 = this.liaoTian.getString();
                         if (!var24.equals("确定") || var65 == null) {
                             if (var24.equals("返回")) {
                                 this.aD = null;
-                                this.aC = null;
+                                this.liaoTian = null;
                                 this.touchAction = 0;
                                 this.b = 0;
                                 uiSceneController.sceneSubState = 0;
@@ -2985,7 +2989,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
 
                         if (var65.equals("OK")) {
-                            uiSceneController.M.a((byte) 3, GlobalStatus.jY[this.ar.g() - 1]);
+                            uiSceneController.M.a((byte) 3, GlobalStatus.jY[this.gunDongListUi.g() - 1]);
                             this.touchAction = 0;
                             this.b = 0;
                             this.mainMidlet.start();
@@ -2994,11 +2998,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
                     } else if (var51.equals("重要物品输入OK卖出")) {
                         String var23 = var1.getLabel();
-                        String var64 = this.aC.getString();
+                        String var64 = this.liaoTian.getString();
                         if (!var23.equals("确定") || var64 == null) {
                             if (var23.equals("返回")) {
                                 this.aD = null;
-                                this.aC = null;
+                                this.liaoTian = null;
                                 this.touchAction = 0;
                                 this.b = 0;
                                 this.mainMidlet.start();
@@ -3017,11 +3021,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
                     } else if (var51.equals("请输入警告语（30个字符内）")) {
                         String var22 = var1.getLabel();
-                        String var63 = this.aC.getString();
+                        String var63 = this.liaoTian.getString();
                         if (!var22.equals("确定") || var63 == null) {
                             if (var22.equals("返回")) {
                                 this.aD = null;
-                                this.aC = null;
+                                this.liaoTian = null;
                                 this.touchAction = 0;
                                 this.b = 0;
                                 this.mainMidlet.start();
@@ -3036,11 +3040,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         this.mainMidlet.start();
                     } else if (var51.equals("输入OK确定遗忘宠物技能")) {
                         String var21 = var1.getLabel();
-                        String var62 = this.aC.getString();
+                        String var62 = this.liaoTian.getString();
                         if (!var21.equals("确定") || var62 == null) {
                             if (var21.equals("返回")) {
                                 this.aD = null;
-                                this.aC = null;
+                                this.liaoTian = null;
                                 this.touchAction = 0;
                                 this.b = 0;
                                 this.mainMidlet.start();
@@ -3059,14 +3063,14 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
                     } else if (var51.equals("发布求爱宣言")) {
                         String var19 = var1.getLabel();
-                        String var61 = this.aC.getString();
-                        String var82 = this.bL.getString();
+                        String var61 = this.liaoTian.getString();
+                        String var82 = this.youjian.getString();
                         String var89 = this.bM.getString();
                         if (!var19.equals("确定")) {
                             if (var19.equals("返回")) {
                                 this.aD = null;
-                                this.aC = null;
-                                this.bL = null;
+                                this.liaoTian = null;
+                                this.youjian = null;
                                 this.bM = null;
                                 this.touchAction = 0;
                                 this.b = 0;
@@ -3110,7 +3114,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
                     } else if (var51.equals("输入OK确定离婚")) {
                         String var18 = var1.getLabel();
-                        String var60 = this.aC.getString();
+                        String var60 = this.liaoTian.getString();
                         if (!var18.equals("确定") || var60 == null) {
                             if (var18.equals("返回")) {
                                 this.aD = null;
@@ -3131,7 +3135,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
                     } else if (var51.equals("输入兑换码")) {
                         String var17 = var1.getLabel();
-                        String var59 = this.aC.getString();
+                        String var59 = this.liaoTian.getString();
                         if (!var17.equals("确定") || var59 == null) {
                             if (var17.equals("返回")) {
                                 this.aD = null;
@@ -3142,7 +3146,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
 
                         byte[] var81;
-                        if ((var81 = NetPayloadBuilder.q((short) 4880, GlobalStatus.ad, this.aC.getString())) != null) {
+                        if ((var81 = NetPayloadBuilder.q((short) 4880, GlobalStatus.ad, this.liaoTian.getString())) != null) {
                             netUtils.sendPacket(new NetPacket((short) 4880, var81));
                             this.a((String) null);
                             return;
@@ -3162,7 +3166,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
                         if (var51.equals("邮件举报")) {
                             if (var1.getLabel().equals("举报")) {
-                                uiSceneController.a(this.bW, this.aC.getString().trim(), GlobalStatus.O.d);
+                                uiSceneController.a(this.bW, this.liaoTian.getString().trim(), GlobalStatus.O.d);
                                 this.mainMidlet.start();
                                 return;
                             }
@@ -3180,7 +3184,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             }
 
                             String var16;
-                            if ((var16 = this.aC.getString().trim()).length() >= 5) {
+                            if ((var16 = this.liaoTian.getString().trim()).length() >= 5) {
                                 uiSceneController.a(var16, ag_1.a[this.bX.getSelectedIndex()]);
                                 this.mainMidlet.start();
                                 return;
@@ -3199,8 +3203,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
                         GlobalStatus.O.a();
                         GlobalStatus.O.m = this.aD.getTitle();
-                        GlobalStatus.O.n = this.aC == null ? "" : this.aC.getString().trim();
-                        GlobalStatus.O.o = this.bL == null ? "" : this.bL.getString().trim();
+                        GlobalStatus.O.n = this.liaoTian == null ? "" : this.liaoTian.getString().trim();
+                        GlobalStatus.O.o = this.youjian == null ? "" : this.youjian.getString().trim();
                         GlobalStatus.O.p = this.bM == null ? "" : this.bM.getString().trim();
                         if (var15.equals("发送")) {
                             Object var57 = null;
@@ -3224,15 +3228,15 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 this.aD = new Form("选择收件人");
                                 if (GlobalStatus.O.s != null && GlobalStatus.O.s.length > 0) {
                                     this.bX = new ChoiceGroup("从好友列表中选择收件人", 1, GlobalStatus.O.s, (Image[]) null);
-                                    this.bP = new Command("确定", 3, 0);
-                                    this.bQ = new Command("返回", 1, 5);
-                                    this.aD.addCommand(this.bP);
-                                    this.aD.addCommand(this.bQ);
+                                    this.ok = new Command("确定", 3, 0);
+                                    this.back = new Command("返回", 1, 5);
+                                    this.aD.addCommand(this.ok);
+                                    this.aD.addCommand(this.back);
                                     this.aD.append(this.bX);
                                 } else {
                                     this.bS = new StringItem((String) null, "您的好友名单为空，请直接输入收件人昵称，或添加为好友后从列表中选择！");
-                                    this.bQ = new Command("返回", 1, 5);
-                                    this.aD.addCommand(this.bQ);
+                                    this.back = new Command("返回", 1, 5);
+                                    this.aD.addCommand(this.back);
                                     this.aD.append(this.bS);
                                 }
 
@@ -3246,7 +3250,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     if (!(var14 = var1.getLabel()).equals("确定")) {
                         if (var14.equals("返回")) {
                             this.aD = null;
-                            this.aC = null;
+                            this.liaoTian = null;
                             this.mainMidlet.start();
                             this.touchAction = 0;
                             this.b = 0;
@@ -3255,9 +3259,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         return;
                     }
 
-                    if (this.aC.getString() != "" && !this.aC.getString().substring(0, 1).equals("-")) {
+                    if (this.liaoTian.getString() != "" && !this.liaoTian.getString().substring(0, 1).equals("-")) {
                         uiSceneController.o();
-                        uiSceneController.ak.append(this.aC.getString());
+                        uiSceneController.ak.append(this.liaoTian.getString());
                         this.mainMidlet.start();
                         this.touchAction = 0;
                         this.b = 0;
@@ -3368,9 +3372,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 // case 4: 服务器/分线/登录前选择类界面。
                 // c: 当前大界面下的子状态。
                 if (this.touch4Status == 0) {
-                    if (this.aq != null) {
+                    if (this.mixedUi != null) {
                         // aq: 通用弹窗/面板命中检测对象，负责把坐标转换成按钮/列表命令。
-                        this.touchAction = this.aq.b(touchX, touchY);
+                        this.touchAction = this.mixedUi.hintCheck(touchX, touchY);
                     }
                     return;
                 }
@@ -3380,9 +3384,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 return;
             case 5:
                 // case 5: 角色列表界面。
-                if (this.aq != null) {
+                if (this.mixedUi != null) {
                     // 先让通用面板逻辑处理一次，再叠加角色列表自己的格子命中逻辑。
-                    this.touchAction = this.aq.b(touchX, touchY);
+                    this.touchAction = this.mixedUi.hintCheck(touchX, touchY);
                     int action = this.touchAction;
                     if (this.actorList != null) {
                         // bC: 角色列表 6 个格子的点击区域 [x, y, width, height]
@@ -3417,9 +3421,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 break;
             case 6:
                 // case 6: 创建角色界面。
-                if (this.aq != null) {
+                if (this.mixedUi != null) {
                     // 创建角色界面同样先走通用面板命中，再补自己的热点区域判断。
-                    this.touchAction = this.aq.b(touchX, touchY);
+                    this.touchAction = this.mixedUi.hintCheck(touchX, touchY);
                     int action = this.touchAction;
                     if (this.actorList != null) {
                         // bC: 创建角色界面的 6 个热点区域
@@ -3452,9 +3456,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 return;
             case 10:
                 // case 10: 只依赖通用面板命中的功能页。
-                if (this.aq != null) {
+                if (this.mixedUi != null) {
                     // aq: 这里仅依赖通用面板返回命令，不额外叠加界面专属逻辑。
-                    this.touchAction = this.aq.b(touchX, touchY);
+                    this.touchAction = this.mixedUi.hintCheck(touchX, touchY);
                 }
                 return;
             case 14:
@@ -3653,15 +3657,15 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
     public void p() {
         this.aD = new Form("发布求爱宣言");
-        this.aC = new TextField("求爱宣言保留48小时，请输入求爱人昵称：", (String) null, 5, 0);
-        this.bL = new TextField("请输入求爱宣言，不超过100字：", (String) null, 100, 0);
+        this.liaoTian = new TextField("求爱宣言保留48小时，请输入求爱人昵称：", (String) null, 5, 0);
+        this.youjian = new TextField("请输入求爱宣言，不超过100字：", (String) null, 100, 0);
         this.bM = new TextField("银两不可低于10万两，银两越多排位越靠前，请输入银两：", (String) null, 9, 2);
-        this.bQ = new Command("返回", 8, 1);
-        this.bP = new Command("确定", 2, 1);
-        this.aD.addCommand(this.bP);
-        this.aD.addCommand(this.bQ);
-        this.aD.append(this.aC);
-        this.aD.append(this.bL);
+        this.back = new Command("返回", 8, 1);
+        this.ok = new Command("确定", 2, 1);
+        this.aD.addCommand(this.ok);
+        this.aD.addCommand(this.back);
+        this.aD.append(this.liaoTian);
+        this.aD.append(this.youjian);
         this.aD.append(this.bM);
         this.aD.setCommandListener(this);
         this.display.setCurrent(this.aD);
@@ -3807,12 +3811,12 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         af = new Page("/icon/", "icon");
 
         mainCanvas.shareSb = new StringBuffer();
-        mainCanvas.aq = new m_1();
+        mainCanvas.mixedUi = new MixedUi();
         mainCanvas.av = y_1.c();
-        mainCanvas.ar = new c_1();
-        mainCanvas.au = new l_1();
-        mainCanvas.as = new n_1();
-        mainCanvas.at = new an_1();
+        mainCanvas.gunDongListUi = new GunDongListUi();
+        mainCanvas.bottomUi = new BottomUi();
+        mainCanvas.topUi = new TopUi();
+        mainCanvas.textPanel = new TextPanel();
         pngUtil = new PngUtil();
         if (GlobalConfig.o) {
             mainCanvas.touchController = new TouchController(mainCanvas, pngUtil);

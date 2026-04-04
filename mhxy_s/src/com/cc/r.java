@@ -25,7 +25,7 @@ public final class r {
    public byte[] f;
    private String r;
    private String s;
-   private TextRender t = null;
+   private FWBRender t = null;
    private String u;
    public int[][] g;
    private int v;
@@ -82,9 +82,9 @@ public final class r {
 
       if (var2) {
          if (this.s != null && !this.s.equals("")) {
-            this.j.at.a(this.s, GlobalConfig.font2, (byte)1);
+            this.j.textPanel.setFWBText(this.s, GlobalConfig.font2, (byte)1);
          } else {
-            this.j.at.a((String)null, GlobalConfig.font2, (byte)1);
+            this.j.textPanel.setFWBText((String)null, GlobalConfig.font2, (byte)1);
          }
       }
 
@@ -120,9 +120,9 @@ public final class r {
 
    private void d() {
       if (this.s != null && !this.s.equals("")) {
-         this.j.at.a(this.s, GlobalConfig.font2, (byte)1);
+         this.j.textPanel.setFWBText(this.s, GlobalConfig.font2, (byte)1);
       } else {
-         this.j.at.a((String)null, GlobalConfig.font2, (byte)1);
+         this.j.textPanel.setFWBText((String)null, GlobalConfig.font2, (byte)1);
       }
    }
 
@@ -165,7 +165,7 @@ public final class r {
          var1.append(this.o == null ? "" : this.o);
          var1.append("\t");
          var1.append(this.r == null ? "无幸运加成" : this.r);
-         this.t = new TextRender(var1.toString(), (short)(GlobalConfig.realWidth - 20));
+         this.t = new FWBRender(var1.toString(), (short)(GlobalConfig.realWidth - 20));
       }
 
    }
@@ -228,21 +228,21 @@ public final class r {
 
       this.c();
       this.g = new int[5][4];
-      this.j.aq.b();
-      this.j.aq.a("装备附魔");
-      this.j.aq.a(false);
+      this.j.mixedUi.b();
+      this.j.mixedUi.a("装备附魔");
+      this.j.mixedUi.a(false);
       this.v = Math.max((GlobalConfig.font2_h << 1) + 25, 59);
       this.w = GlobalConfig.font2_h + 26 + 5;
-      this.j.aq.a(this.v + this.w);
+      this.j.mixedUi.a(this.v + this.w);
       this.d();
-      this.j.aq.a((al)this.j.at);
-      this.j.at.a((byte)1);
-      this.j.au.a("确定");
+      this.j.mixedUi.a((BaseUi)this.j.textPanel);
+      this.j.textPanel.setShuRuMoShi((byte)1);
+      this.j.bottomUi.a("确定");
       if (GlobalConfig.defaultHigh > 220) {
-         this.j.aq.a((al)this.j.au);
+         this.j.mixedUi.a((BaseUi)this.j.bottomUi);
       }
 
-      this.j.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.j.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a();
       this.e();
       LoadingPage.l = 0;
@@ -253,8 +253,8 @@ public final class r {
 
    public final void a(int var1) {
       if (this.i.sceneSubState == 0) {
-         if (this.j.aq != null) {
-            this.j.aq.b(var1);
+         if (this.j.mixedUi != null) {
+            this.j.mixedUi.onClick(var1);
          }
 
          if (var1 != 4 && var1 != 1) {
@@ -301,7 +301,7 @@ public final class r {
                      this.x = true;
                      this.i.a((byte)0, (byte[])(new byte[]{0}));
                   } else {
-                     LoadingPage.a(this.j.aq.a + GlobalConfig.font2_w * 3 + 29, this.j.aq.b + 49, new String[]{"附魔", "查看", "取出"}, false);
+                     LoadingPage.a(this.j.mixedUi.a + GlobalConfig.font2_w * 3 + 29, this.j.mixedUi.b + 49, new String[]{"附魔", "查看", "取出"}, false);
                      this.i.sceneSubState = 1;
                   }
                } else if (this.a == 1) {
@@ -310,13 +310,13 @@ public final class r {
                   } else if (this.d == -1L) {
                      this.i.a((byte)0, (byte[])(new byte[]{3}));
                   } else {
-                     LoadingPage.a(this.j.aq.c - 3 * UISceneController.x.b - 21, this.j.aq.b + 49, new String[]{"取出"}, false);
+                     LoadingPage.a(this.j.mixedUi.c - 3 * UISceneController.x.b - 21, this.j.mixedUi.b + 49, new String[]{"取出"}, false);
                      this.i.sceneSubState = 1;
                   }
                }
             } else if (this.b == 1) {
                if (this.d(this.a) != -1) {
-                  LoadingPage.a(this.j.aq.c - 10 - UISceneController.x.b - (this.a + 2 * (1 - this.a)) * (UISceneController.x.b + 10) - LoadingPage.q / 2 + 9, this.j.aq.b + UISceneController.x.c + 69, new String[]{"取出"}, false);
+                  LoadingPage.a(this.j.mixedUi.c - 10 - UISceneController.x.b - (this.a + 2 * (1 - this.a)) * (UISceneController.x.b + 10) - LoadingPage.q / 2 + 9, this.j.mixedUi.b + UISceneController.x.c + 69, new String[]{"取出"}, false);
                   this.i.sceneSubState = 1;
                } else if (this.c != -1 && this.d != -1L) {
                   this.i.a((byte)0, (byte[])(new byte[]{4}));
@@ -415,18 +415,18 @@ public final class r {
 
    public final void a(Graphics var1) {
       short var2 = UISceneController.x.b;
-      if (this.j.aq != null) {
-         this.j.aq.a(var1);
-         LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32, this.j.aq.c - 11, this.v, 1);
-         LoadingPage.a(var1, this.j.aq.a + 5, this.j.aq.b + 32 + this.v + 1, this.j.aq.c - 11, this.w - 2, 1);
+      if (this.j.mixedUi != null) {
+         this.j.mixedUi.a(var1);
+         LoadingPage.draw(var1, this.j.mixedUi.a + 5, this.j.mixedUi.b + 32, this.j.mixedUi.c - 11, this.v, 1);
+         LoadingPage.draw(var1, this.j.mixedUi.a + 5, this.j.mixedUi.b + 32 + this.v + 1, this.j.mixedUi.c - 11, this.w - 2, 1);
       }
 
-      int var3 = this.j.aq.a + GlobalConfig.font2.stringWidth("装备孔") + 10;
-      int var4 = this.j.aq.b + 40;
+      int var3 = this.j.mixedUi.a + GlobalConfig.font2.stringWidth("装备孔") + 10;
+      int var4 = this.j.mixedUi.b + 40;
 
       for(int var5 = 0; var5 < this.g.length; ++var5) {
          if (var5 > 0) {
-            var3 = this.j.aq.a + this.j.aq.c - 3 * (var2 + 5) - 8;
+            var3 = this.j.mixedUi.a + this.j.mixedUi.c - 3 * (var2 + 5) - 8;
          }
 
          int var10002 = var3 + 2 + (var5 < 2 ? 0 : (var5 - 2) * (var2 + 5));
@@ -471,22 +471,22 @@ public final class r {
       int var15 = this.a + (this.b << 1);
       LoadingPage.d(var1, this.g[var15][0], this.g[var15][1], 17, 17);
       if (this.r != null || this.o != null) {
-         this.t.a(var1, this.j.aq.a + 5 + 6, this.j.aq.b + 32 + this.v + 1 + 3, 0);
+         this.t.a(var1, this.j.mixedUi.a + 5 + 6, this.j.mixedUi.b + 32 + this.v + 1 + 3, 0);
       }
 
       if (this.i.sceneSubState == 0) {
          if (this.u != null || this.u != "") {
             if (this.b == 0 && this.a == 1) {
-               LoadingPage.b(var1, this.u, this.j.aq.c - 10 - UISceneController.x.b - 2 * (UISceneController.x.b + 10) - 6 - GlobalConfig.font2.stringWidth("装备孔"), this.j.aq.b + 32 + 8 + UISceneController.x.c, GlobalConfig.defaultHigh - 5, 1);
+               LoadingPage.b(var1, this.u, this.j.mixedUi.c - 10 - UISceneController.x.b - 2 * (UISceneController.x.b + 10) - 6 - GlobalConfig.font2.stringWidth("装备孔"), this.j.mixedUi.b + 32 + 8 + UISceneController.x.c, GlobalConfig.defaultHigh - 5, 1);
                return;
             }
 
             if (this.b == 1) {
-               LoadingPage.b(var1, this.u, this.j.aq.c - (UISceneController.x.b + 10) * 3, this.j.aq.b + 32 + 8 + 10 + (UISceneController.x.c << 1), GlobalConfig.defaultHigh - 5, 1);
+               LoadingPage.b(var1, this.u, this.j.mixedUi.c - (UISceneController.x.b + 10) * 3, this.j.mixedUi.b + 32 + 8 + 10 + (UISceneController.x.c << 1), GlobalConfig.defaultHigh - 5, 1);
                return;
             }
 
-            LoadingPage.b(var1, this.u, this.j.aq.a + 5 + 2, this.j.aq.b + 32 + 8 + UISceneController.x.c, GlobalConfig.defaultHigh - 5, 1);
+            LoadingPage.b(var1, this.u, this.j.mixedUi.a + 5 + 2, this.j.mixedUi.b + 32 + 8 + UISceneController.x.c, GlobalConfig.defaultHigh - 5, 1);
             return;
          }
       } else if (this.i.sceneSubState == 1) {

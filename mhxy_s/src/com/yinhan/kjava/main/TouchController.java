@@ -220,18 +220,18 @@ public final class TouchController {
                this.s(var1, var2);
                return;
             case 3:
-               if (this.canvas.aq != null) {
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+               if (this.canvas.mixedUi != null) {
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                }
 
                return;
             case 4:
                if (this.a.sceneSubState == 0) {
-                  if (this.canvas.aq == null) {
+                  if (this.canvas.mixedUi == null) {
                      return;
                   }
 
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                   this.canvas.touchAction = this.a.b(this.canvas.touchAction, var1, var2);
                } else if (this.a.sceneSubState != 1 && this.a.sceneSubState != 3 && this.a.sceneSubState != 9 && this.a.sceneSubState != 14 && this.a.sceneSubState != 15 && this.a.sceneSubState != 16) {
                   if (this.a.sceneSubState != 2 && this.a.sceneSubState != 4 && this.a.sceneSubState != 7 && this.a.sceneSubState != 12) {
@@ -242,7 +242,7 @@ public final class TouchController {
                            } else {
                               if (this.a.sceneSubState != 10 && this.a.sceneSubState != 13) {
                                  if (this.a.sceneSubState == 17) {
-                                    this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+                                    this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                                  }
 
                                  return;
@@ -273,8 +273,8 @@ public final class TouchController {
                   this.canvas.touchAction = this.a.b(var1, var2);
                } else {
                   if (this.a.sceneSubState != 1) {
-                     if (this.a.sceneSubState == 2 && this.canvas.aq != null) {
-                        this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+                     if (this.a.sceneSubState == 2 && this.canvas.mixedUi != null) {
+                        this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                      }
 
                      return;
@@ -292,11 +292,11 @@ public final class TouchController {
                   return;
                }
 
-               if (this.canvas.aq == null) {
+               if (this.canvas.mixedUi == null) {
                   return;
                }
 
-               this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+               this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                break;
             case 7:
                this.v(var1, var2);
@@ -310,11 +310,11 @@ public final class TouchController {
                   return;
                }
 
-               if (this.canvas.aq == null) {
+               if (this.canvas.mixedUi == null) {
                   return;
                }
 
-               this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+               this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                this.canvas.touchAction = this.a.b(this.canvas.touchAction, var1, var2);
                break;
             case 9:
@@ -326,26 +326,26 @@ public final class TouchController {
                   return;
                }
 
-               if (this.canvas.aq == null) {
+               if (this.canvas.mixedUi == null) {
                   return;
                }
 
-               this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+               this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                this.canvas.touchAction = this.a.b(this.canvas.touchAction, var1, var2);
                break;
             case 10:
-               if (this.canvas.aq != null) {
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+               if (this.canvas.mixedUi != null) {
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                }
 
                return;
             case 11:
                if (this.a.sceneSubState == 0) {
-                  if (this.canvas.aq == null) {
+                  if (this.canvas.mixedUi == null) {
                      return;
                   }
 
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                   this.canvas.touchAction = this.a.b(this.canvas.touchAction, var1, var2);
                } else {
                   if (this.a.sceneSubState != 2) {
@@ -389,22 +389,22 @@ public final class TouchController {
                      this.canvas.touchAction = LoadingPage.c(var1, var2);
                   }
                } else {
-                  if (this.canvas.aq == null) {
+                  if (this.canvas.mixedUi == null) {
                      return;
                   }
 
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                }
                break;
             case 14:
-               if (this.canvas.aq != null) {
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+               if (this.canvas.mixedUi != null) {
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                }
 
                return;
             case 15:
-               if (this.canvas.aq != null) {
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+               if (this.canvas.mixedUi != null) {
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                }
 
                return;
@@ -450,11 +450,11 @@ public final class TouchController {
                return;
             case 22:
                if (this.a.sceneSubState == 0) {
-                  if (this.canvas.aq == null) {
+                  if (this.canvas.mixedUi == null) {
                      return;
                   }
 
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                   this.canvas.touchAction = this.a.e(this.canvas.touchAction, var1, var2);
                } else if (this.a.sceneSubState == 6) {
                   this.canvas.touchAction = LoadingPage.d(var1, var2);
@@ -477,11 +477,11 @@ public final class TouchController {
                break;
             case 23:
                if (this.a.sceneSubState == 0) {
-                  if (this.canvas.aq == null) {
+                  if (this.canvas.mixedUi == null) {
                      return;
                   }
 
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                } else if (this.a.sceneSubState == 1) {
                   this.canvas.touchAction = LoadingPage.c(var1, var2);
                } else {
@@ -498,11 +498,11 @@ public final class TouchController {
                break;
             case 24:
                if (this.a.sceneSubState == 0) {
-                  if (this.canvas.aq == null) {
+                  if (this.canvas.mixedUi == null) {
                      return;
                   }
 
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                } else {
                   if (this.a.sceneSubState != 1) {
                      if (this.a.sceneSubState == 2) {
@@ -590,8 +590,8 @@ public final class TouchController {
                this.t(var1, var2);
                return;
             case 29:
-               if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+               if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                }
 
                return;
@@ -600,11 +600,11 @@ public final class TouchController {
                return;
             case 31:
                if (this.a.sceneSubState == 0) {
-                  if (this.canvas.aq == null) {
+                  if (this.canvas.mixedUi == null) {
                      return;
                   }
 
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                } else {
                   if (this.a.sceneSubState != 1) {
                      if (this.a.sceneSubState == 2) {
@@ -626,11 +626,11 @@ public final class TouchController {
                return;
             case 34:
                if (this.a.sceneSubState == 0) {
-                  if (this.canvas.aq == null) {
+                  if (this.canvas.mixedUi == null) {
                      return;
                   }
 
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                } else if (this.a.sceneSubState != 1 && this.a.sceneSubState != 2) {
                   if (this.a.sceneSubState != 3 && this.a.sceneSubState != 5) {
                      if (this.a.sceneSubState == 4) {
@@ -650,18 +650,18 @@ public final class TouchController {
                }
                break;
             case 35:
-               if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+               if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                }
 
                return;
             case 36:
                if (this.a.sceneSubState == 0) {
-                  if (this.canvas.aq == null) {
+                  if (this.canvas.mixedUi == null) {
                      return;
                   }
 
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                } else if (this.a.sceneSubState == 2) {
                   this.canvas.touchAction = this.a.e(var1, var2);
                } else {
@@ -796,14 +796,14 @@ public final class TouchController {
                this.ak(var1, var2);
                return;
             case 95:
-               if (this.canvas.aq != null) {
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+               if (this.canvas.mixedUi != null) {
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                }
 
                return;
             case 96:
-               if (this.canvas.aq != null) {
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+               if (this.canvas.mixedUi != null) {
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                   this.canvas.touchAction = this.a.a(this.canvas.touchAction, var1, var2);
                }
 
@@ -871,7 +871,7 @@ public final class TouchController {
                return;
             case 120:
                if (this.a.sceneSubState == 0) {
-                  this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+                  this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                   return;
                }
 
@@ -913,7 +913,7 @@ public final class TouchController {
 
    private void b(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       } else {
          if (this.a.sceneSubState == 1) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
@@ -924,29 +924,29 @@ public final class TouchController {
 
    private void c(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
 
    private void d(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
 
    private void e(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
 
    private void f(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             this.canvas.touchAction = this.a.b(this.canvas.touchAction, var1, var2);
             return;
          }
@@ -957,8 +957,8 @@ public final class TouchController {
          }
 
          if (this.a.sceneSubState == 2) {
-            if (this.canvas.aq != null) {
-               this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+            if (this.canvas.mixedUi != null) {
+               this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                return;
             }
          } else {
@@ -976,8 +976,8 @@ public final class TouchController {
    }
 
    private void g(int var1, int var2) {
-      if (this.canvas.aq != null) {
-         int var3 = this.canvas.aq.b(var1, var2);
+      if (this.canvas.mixedUi != null) {
+         int var3 = this.canvas.mixedUi.hintCheck(var1, var2);
          this.canvas.touchAction = var3 == 1073741824 ? 0 : var3;
          this.canvas.touchAction = this.a.M.a(this.canvas.touchAction, var1, var2);
       }
@@ -985,8 +985,8 @@ public final class TouchController {
    }
 
    private void h(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       } else if (this.a.sceneSubState == 1 && this.canvas.av != null) {
          this.canvas.touchAction = this.canvas.av.a(var1, var2);
       } else {
@@ -999,8 +999,8 @@ public final class TouchController {
 
    private void i(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else if (this.a.sceneSubState == 1) {
@@ -1011,8 +1011,8 @@ public final class TouchController {
 
    private void j(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else if (this.a.sceneSubState == 1) {
@@ -1033,8 +1033,8 @@ public final class TouchController {
    }
 
    private void l(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
          if (this.canvas.touchAction == 0) {
             this.canvas.touchAction = this.a.b(this.canvas.touchAction, var1, var2);
          }
@@ -1044,8 +1044,8 @@ public final class TouchController {
 
    private void m(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else {
@@ -1062,8 +1062,8 @@ public final class TouchController {
    }
 
    private void n(int var1, int var2) {
-      if (this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
          this.canvas.b = this.canvas.touchAction = this.a.a(this.canvas.touchAction, var1, var2);
       }
 
@@ -1071,8 +1071,8 @@ public final class TouchController {
 
    private void o(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else {
@@ -1082,8 +1082,8 @@ public final class TouchController {
          }
 
          if (this.a.sceneSubState == 4) {
-            if (this.canvas.aq != null) {
-               this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+            if (this.canvas.mixedUi != null) {
+               this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                return;
             }
          } else if (this.a.sceneSubState == 5) {
@@ -1103,8 +1103,8 @@ public final class TouchController {
          if (this.a.sceneSubState == 8) {
             this.canvas.touchAction = LoadingPage.b(var1, var2);
          }
-      } else if (this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      } else if (this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
          return;
       }
 
@@ -1115,9 +1115,9 @@ public final class TouchController {
          if (this.a.sceneSubState == 2 || this.a.sceneSubState == 3 || this.a.sceneSubState == 4 || this.a.sceneSubState == 5 || this.a.sceneSubState == 6) {
             this.canvas.touchAction = LoadingPage.c(var1, var2);
          }
-      } else if (this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
-         this.canvas.aw = this.canvas.as.a;
+      } else if (this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
+         this.canvas.aw = this.canvas.topUi.a;
          this.canvas.touchAction = this.a.d(this.canvas.touchAction, var1, var2);
          if (this.canvas.touchAction == 0 && UISceneController.aP.size() == 0) {
             this.canvas.touchAction = 1073741824;
@@ -1183,13 +1183,13 @@ public final class TouchController {
    }
 
    private void t(int var1, int var2) {
-      if (this.canvas.aq != null) {
+      if (this.canvas.mixedUi != null) {
          int var3;
-         if ((var3 = this.canvas.aq.b(var1, var2)) == 1073741824) {
-            if (this.canvas.ar.g() != 0 && this.canvas.ar.g() != 1) {
+         if ((var3 = this.canvas.mixedUi.hintCheck(var1, var2)) == 1073741824) {
+            if (this.canvas.gunDongListUi.g() != 0 && this.canvas.gunDongListUi.g() != 1) {
                var3 = 8;
             } else {
-               var3 = this.a.f(this.canvas.ar.g(), var1, var2);
+               var3 = this.a.f(this.canvas.gunDongListUi.g(), var1, var2);
             }
          }
 
@@ -1199,16 +1199,16 @@ public final class TouchController {
    }
 
    private void u(int var1, int var2) {
-      if ((this.a.sceneSubState == 0 || this.a.sceneSubState == 1) && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if ((this.a.sceneSubState == 0 || this.a.sceneSubState == 1) && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
 
    private void v(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else if (this.a.sceneSubState != 3 && this.a.sceneSubState != 11) {
@@ -1219,7 +1219,7 @@ public final class TouchController {
 
          if (this.a.sceneSubState == 4 || this.a.sceneSubState == 12) {
             if (this.a.sceneSubMode == 1) {
-               this.canvas.touchAction = this.a.T.b(var1, var2);
+               this.canvas.touchAction = this.a.T.hintCheck(var1, var2);
                return;
             }
 
@@ -1234,7 +1234,7 @@ public final class TouchController {
             }
          }
       } else if (this.a.T != null) {
-         this.canvas.touchAction = this.a.T.b(var1, var2);
+         this.canvas.touchAction = this.a.T.hintCheck(var1, var2);
          return;
       }
 
@@ -1249,8 +1249,8 @@ public final class TouchController {
 
    private void x(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else {
@@ -1271,7 +1271,7 @@ public final class TouchController {
          this.canvas.touchAction = LoadingPage.a(var1, var2);
       } else {
          if (this.a.sceneSubState == 1) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
          }
 
       }
@@ -1307,8 +1307,8 @@ public final class TouchController {
 
    private void A(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else if (this.a.sceneSubState == 1 || this.a.sceneSubState == 2 || this.a.sceneSubState == 3) {
@@ -1319,8 +1319,8 @@ public final class TouchController {
 
    private void B(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else if (this.a.sceneSubState == 1) {
@@ -1331,8 +1331,8 @@ public final class TouchController {
 
    private void C(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else if (this.a.sceneSubState == 1) {
@@ -1342,16 +1342,16 @@ public final class TouchController {
    }
 
    private void D(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
 
    private void E(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else {
@@ -1361,7 +1361,7 @@ public final class TouchController {
          }
 
          if (this.a.sceneSubState == 2 && this.a.T != null) {
-            this.canvas.touchAction = this.a.T.b(var1, var2);
+            this.canvas.touchAction = this.a.T.hintCheck(var1, var2);
          }
       }
 
@@ -1369,8 +1369,8 @@ public final class TouchController {
 
    private void F(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else {
@@ -1380,7 +1380,7 @@ public final class TouchController {
          }
 
          if (this.a.sceneSubState == 3) {
-            this.canvas.touchAction = this.a.T.b(var1, var2);
+            this.canvas.touchAction = this.a.T.hintCheck(var1, var2);
             return;
          }
 
@@ -1391,7 +1391,7 @@ public final class TouchController {
             }
 
             if (this.a.sceneSubMode == 1) {
-               this.canvas.touchAction = this.a.T.b(var1, var2);
+               this.canvas.touchAction = this.a.T.hintCheck(var1, var2);
                return;
             }
          } else if (this.a.sceneSubState == 9) {
@@ -1403,8 +1403,8 @@ public final class TouchController {
 
    private void G(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else {
@@ -1414,8 +1414,8 @@ public final class TouchController {
          }
 
          if (this.a.sceneSubState == 2) {
-            if (this.canvas.aq != null) {
-               this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+            if (this.canvas.mixedUi != null) {
+               this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                return;
             }
          } else if (this.a.sceneSubState == 3) {
@@ -1426,16 +1426,16 @@ public final class TouchController {
    }
 
    private void H(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
 
    private void I(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else if (this.a.sceneSubState == 1) {
@@ -1478,11 +1478,11 @@ public final class TouchController {
    }
 
    private void J(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
          MainCanvas var10000;
          int var10001;
          label54: {
-            int var3 = this.canvas.aq.b(var1, var2);
+            int var3 = this.canvas.mixedUi.hintCheck(var1, var2);
             this.canvas.touchAction = var3 == 1073741824 ? 0 : var3;
             var10000 = this.canvas;
             var3 = var2;
@@ -1518,8 +1518,8 @@ public final class TouchController {
 
    private void K(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else if (this.a.sceneSubState == 1 || this.a.sceneSubState == 2) {
@@ -1530,8 +1530,8 @@ public final class TouchController {
 
    private void L(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else {
@@ -1548,15 +1548,15 @@ public final class TouchController {
    }
 
    private void M(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
 
    private void N(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
          this.a.r(this.canvas.touchAction);
          this.canvas.touchAction = 0;
       }
@@ -1564,8 +1564,8 @@ public final class TouchController {
    }
 
    private void O(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
          this.a.q(this.canvas.touchAction);
          this.canvas.touchAction = 0;
       }
@@ -1574,8 +1574,8 @@ public final class TouchController {
 
    private void P(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else {
@@ -1601,8 +1601,8 @@ public final class TouchController {
 
    private void Q(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else {
@@ -1626,8 +1626,8 @@ public final class TouchController {
    }
 
    private void S(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
@@ -1700,16 +1700,16 @@ public final class TouchController {
    }
 
    private void T(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
 
    private void U(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             this.canvas.touchAction = this.a.O.a(this.canvas.touchAction, var1, var2);
             return;
          }
@@ -1727,26 +1727,26 @@ public final class TouchController {
    }
 
    private void V(int var1, int var2) {
-      if (this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
 
    private void W(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
 
    private void X(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
+         if (this.canvas.mixedUi != null) {
             int var8;
             MainCanvas var10000;
             label37: {
-               this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+               this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                var10000 = this.canvas;
                ch var10001 = this.a.V;
                int var3 = var2;
@@ -1783,8 +1783,8 @@ public final class TouchController {
 
    private void Y(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             this.canvas.touchAction = this.a.O.b(this.canvas.touchAction, var1, var2);
             return;
          }
@@ -1796,11 +1796,11 @@ public final class TouchController {
 
    private void Z(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
+         if (this.canvas.mixedUi != null) {
             int var8;
             MainCanvas var10000;
             label44: {
-               this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+               this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                var10000 = this.canvas;
                r var10001 = this.a.P;
                int var3 = var2;
@@ -1850,11 +1850,11 @@ public final class TouchController {
 
    private void aa(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
+         if (this.canvas.mixedUi != null) {
             int var8;
             MainCanvas var10000;
             label42: {
-               this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+               this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
                var10000 = this.canvas;
                k var10001 = this.a.Q;
                int var3 = var2;
@@ -1899,16 +1899,16 @@ public final class TouchController {
    }
 
    private void ab(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
 
    private void ac(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else if (this.a.sceneSubState == 1) {
@@ -1918,16 +1918,16 @@ public final class TouchController {
    }
 
    private void ad(int var1, int var2) {
-      if (this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
 
    private void ae(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else {
@@ -1936,18 +1936,18 @@ public final class TouchController {
             return;
          }
 
-         if (this.a.sceneSubState == 2 && this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.a.sceneSubState == 2 && this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
          }
       }
 
    }
 
    private void af(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
-         int var3 = this.canvas.aq.a + 5;
-         int var4 = this.canvas.aq.b + this.canvas.aq.d - (2 * GlobalConfig.font2_h + 16) - 6;
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
+         int var3 = this.canvas.mixedUi.a + 5;
+         int var4 = this.canvas.mixedUi.b + this.canvas.mixedUi.d - (2 * GlobalConfig.font2_h + 16) - 6;
          int var5 = GlobalConfig.font2.stringWidth("同意(点击申请结婚)");
          int var6 = GlobalConfig.font2.stringWidth("拒绝");
          if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + GlobalConfig.font2_h) {
@@ -1964,10 +1964,10 @@ public final class TouchController {
    }
 
    private void ag(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
-         int var3 = this.canvas.aq.a + 5;
-         int var4 = this.canvas.aq.b + this.canvas.aq.d - (2 * GlobalConfig.font2_h + 16) - 6;
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
+         int var3 = this.canvas.mixedUi.a + 5;
+         int var4 = this.canvas.mixedUi.b + this.canvas.mixedUi.d - (2 * GlobalConfig.font2_h + 16) - 6;
          int var5 = GlobalConfig.font2.stringWidth("离婚(点击申请离婚)");
          int var6 = GlobalConfig.font2.stringWidth("取消离婚");
          if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + GlobalConfig.font2_h) {
@@ -1984,8 +1984,8 @@ public final class TouchController {
    }
 
    private void ah(int var1, int var2) {
-      if (this.a.sceneSubState == 0 && this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.a.sceneSubState == 0 && this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
@@ -1998,15 +1998,15 @@ public final class TouchController {
    }
 
    private void aj(int var1, int var2) {
-      if (this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
 
    private void ak(int var1, int var2) {
-      if (this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
@@ -2024,8 +2024,8 @@ public final class TouchController {
 
    private void am(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else if (this.a.sceneSubState == 1 || this.a.sceneSubState == 2) {
@@ -2035,15 +2035,15 @@ public final class TouchController {
    }
 
    private void an(int var1, int var2) {
-      if (this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      if (this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
       }
 
    }
 
    private void ao(int var1, int var2) {
       if (this.a.T != null) {
-         this.canvas.touchAction = this.a.T.b(var1, var2);
+         this.canvas.touchAction = this.a.T.hintCheck(var1, var2);
       }
 
    }
@@ -2052,7 +2052,7 @@ public final class TouchController {
       if (this.a.sceneSubState == 0) {
          this.canvas.touchAction = this.a.f(var1, var2);
          if (this.canvas.touchAction == 0) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else {
@@ -2066,8 +2066,8 @@ public final class TouchController {
          if (this.a.sceneSubState == 2 || this.a.sceneSubState == 3) {
             this.canvas.touchAction = LoadingPage.b(var1, var2);
          }
-      } else if (this.canvas.aq != null) {
-         this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+      } else if (this.canvas.mixedUi != null) {
+         this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
          return;
       }
 
@@ -2083,8 +2083,8 @@ public final class TouchController {
 
    private void at(int var1, int var2) {
       if (this.a.sceneSubState == 0) {
-         if (this.canvas.aq != null) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+         if (this.canvas.mixedUi != null) {
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             return;
          }
       } else if (this.a.sceneSubState == 1) {
@@ -2094,9 +2094,9 @@ public final class TouchController {
    }
 
    private void au(int var1, int var2) {
-      if (this.canvas.aq != null) {
+      if (this.canvas.mixedUi != null) {
          if (this.a.sceneSubState == 0) {
-            this.canvas.touchAction = this.canvas.aq.b(var1, var2);
+            this.canvas.touchAction = this.canvas.mixedUi.hintCheck(var1, var2);
             if (this.a.N.a == 0) {
                this.canvas.touchAction = this.a.N.a(this.canvas.touchAction, var1, var2);
                return;
@@ -2118,7 +2118,7 @@ public final class TouchController {
             }
 
             if (this.a.sceneSubState == 3) {
-               this.canvas.touchAction = this.a.T.b(var1, var2);
+               this.canvas.touchAction = this.a.T.hintCheck(var1, var2);
             }
          }
       }

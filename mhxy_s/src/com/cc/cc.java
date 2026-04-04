@@ -60,43 +60,43 @@ public final class cc {
         }
 
         this.uiSceneController.sceneSubState = 0;
-        this.mainCanvas.aq.j();
-        this.mainCanvas.aq.a("仙位排位赛");
-        this.mainCanvas.as.a(new String[]{"风云榜", "斗法场", "斗法记录"});
-        this.mainCanvas.as.a = (byte) var1;
+        this.mainCanvas.mixedUi.clear();
+        this.mainCanvas.mixedUi.a("仙位排位赛");
+        this.mainCanvas.topUi.a(new String[]{"风云榜", "斗法场", "斗法记录"});
+        this.mainCanvas.topUi.a = (byte) var1;
         this.a = (short) var1;
-        this.mainCanvas.aq.a((al) this.mainCanvas.as);
-        this.mainCanvas.aq.a(true);
+        this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.topUi);
+        this.mainCanvas.mixedUi.a(true);
         if (this.a == 0) {
-            this.mainCanvas.at.b("", GlobalConfig.font2, (byte) 1);
-            this.mainCanvas.aq.a((al) this.mainCanvas.at);
-            this.mainCanvas.au.a(new String[]{"操作", "返回"});
-            this.mainCanvas.aq.a((al) this.mainCanvas.au);
-            this.mainCanvas.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-            this.e = this.mainCanvas.at.e;
-            int var5 = (this.mainCanvas.aq.c - 16 - 2) / 2;
-            int var1_t = (this.mainCanvas.at.e - 6) / 2;
+            this.mainCanvas.textPanel.setText("", GlobalConfig.font2, (byte) 1);
+            this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.textPanel);
+            this.mainCanvas.bottomUi.a(new String[]{"操作", "返回"});
+            this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.bottomUi);
+            this.mainCanvas.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.e = this.mainCanvas.textPanel.textH;
+            int var5 = (this.mainCanvas.mixedUi.c - 16 - 2) / 2;
+            int var1_t = (this.mainCanvas.textPanel.textH - 6) / 2;
 
             for (int var3 = 0; var3 < this.d.length; ++var3) {
-                this.d[var3][0] = this.mainCanvas.at.b + 2 + var3 % 2 * (var5 + 2);
-                this.d[var3][1] = this.mainCanvas.at.c + 2 + var3 / 2 * (var1_t + 2);
+                this.d[var3][0] = this.mainCanvas.textPanel.textX + 2 + var3 % 2 * (var5 + 2);
+                this.d[var3][1] = this.mainCanvas.textPanel.textY + 2 + var3 / 2 * (var1_t + 2);
                 this.d[var3][2] = var5;
                 this.d[var3][3] = var1_t;
             }
         } else if (this.a == 1) {
-            this.mainCanvas.ar.a((Image[]) null, this.w, this.x, this.y);
-            this.mainCanvas.ar.a(this.B);
-            this.mainCanvas.aq.a((al) this.mainCanvas.ar);
-            this.mainCanvas.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvas.gunDongListUi.a((Image[]) null, this.w, this.x, this.y);
+            this.mainCanvas.gunDongListUi.a(this.B);
+            this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.gunDongListUi);
+            this.mainCanvas.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
         } else if (this.a == 2) {
-            this.mainCanvas.at.b(this.C, GlobalConfig.font2, (byte) 1);
-            this.mainCanvas.aq.a((al) this.mainCanvas.at);
-            this.mainCanvas.au.a(new String[]{"购买次数", "返回"});
-            this.mainCanvas.aq.a((al) this.mainCanvas.au);
-            this.mainCanvas.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvas.textPanel.setText(this.C, GlobalConfig.font2, (byte) 1);
+            this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.textPanel);
+            this.mainCanvas.bottomUi.a(new String[]{"购买次数", "返回"});
+            this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.bottomUi);
+            this.mainCanvas.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
             this.e = GlobalConfig.font2_h * 3 + 4;
-            this.mainCanvas.at.a(this.mainCanvas.at.b, this.mainCanvas.at.c, this.mainCanvas.at.d, this.mainCanvas.at.e - this.e - 2);
-            UISceneController.K = new TextRender("当前排名：" + (this.h <= 0 ? "无" : "第" + this.h + "名") + "\t剩余挑战：" + this.i + "次\t当前积分：" + this.j, (short) (this.mainCanvas.at.d - 20));
+            this.mainCanvas.textPanel.setTextRect(this.mainCanvas.textPanel.textX, this.mainCanvas.textPanel.textY, this.mainCanvas.textPanel.textW, this.mainCanvas.textPanel.textH - this.e - 2);
+            UISceneController.K = new FWBRender("当前排名：" + (this.h <= 0 ? "无" : "第" + this.h + "名") + "\t剩余挑战：" + this.i + "次\t当前积分：" + this.j, (short) (this.mainCanvas.textPanel.textW - 20));
         }
 
         this.mainCanvas.touchPageCase = this.mainCanvas.k;
@@ -105,8 +105,8 @@ public final class cc {
 
     public final void a(int var1) {
         if (this.uiSceneController.sceneSubState == 0) {
-            if (this.mainCanvas.aq != null) {
-                this.mainCanvas.aq.b(var1);
+            if (this.mainCanvas.mixedUi != null) {
+                this.mainCanvas.mixedUi.onClick(var1);
             }
 
             if (var1 == 536870912) {
@@ -116,7 +116,7 @@ public final class cc {
             }
 
             if (var1 == 8 || var1 == 2 || var1 == 516 || var1 == 518) {
-                this.a((short) this.mainCanvas.as.a);
+                this.a((short) this.mainCanvas.topUi.a);
                 return;
             }
 
@@ -143,13 +143,13 @@ public final class cc {
                     return;
                 }
             } else if (this.a == 1) {
-                if ((var1 == 268435456 || var1 == 1073741824 || var1 == 517) && this.mainCanvas.ar.g() > 0) {
-                    LoadingPage.a(GlobalConfig.realWidth / 3, this.mainCanvas.ar.b() + 40, new String[]{"挑战", "属性", "装备"}, false);
+                if ((var1 == 268435456 || var1 == 1073741824 || var1 == 517) && this.mainCanvas.gunDongListUi.g() > 0) {
+                    LoadingPage.a(GlobalConfig.realWidth / 3, this.mainCanvas.gunDongListUi.b() + 40, new String[]{"挑战", "属性", "装备"}, false);
                     this.uiSceneController.sceneSubState = 1;
                     return;
                 }
             } else if (this.a == 2 && (var1 == 268435456 || var1 == 1073741824 || var1 == 517)) {
-                this.a = (short) this.mainCanvas.as.a;
+                this.a = (short) this.mainCanvas.topUi.a;
                 byte[] var11;
                 if ((var11 = NetPayloadBuilder.d((short) 4690, (byte) 2, "")) == null) {
                     this.mainCanvas.processException("获取上传指令数据错误!");
@@ -168,7 +168,7 @@ public final class cc {
                     return;
                 }
             } else {
-                this.a = (short) this.mainCanvas.as.a;
+                this.a = (short) this.mainCanvas.topUi.a;
                 if (LoadingPage.o == 0 && this.a == 1) {
                     LoadingPage.h = 0;
                     this.uiSceneController.sceneSubState = 2;
@@ -176,8 +176,8 @@ public final class cc {
                 }
 
                 if (LoadingPage.o == 1 && this.a == 1 || LoadingPage.o == 0 && this.a == 0) {
-                    this.a = (short) this.mainCanvas.as.a;
-                    String var8 = this.a == 0 ? this.p[this.g] : this.A[this.mainCanvas.ar.g() - 1];
+                    this.a = (short) this.mainCanvas.topUi.a;
+                    String var8 = this.a == 0 ? this.p[this.g] : this.A[this.mainCanvas.gunDongListUi.g() - 1];
                     byte[] var4;
                     if ((var4 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, var8, (byte) 0)) == null) {
                         this.mainCanvas.processException("获取上传指令数据错误!");
@@ -187,8 +187,8 @@ public final class cc {
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4110, var4));
                     this.mainCanvas.a((String) null);
                 } else {
-                    this.a = (short) this.mainCanvas.as.a;
-                    String var2 = this.a == 0 ? this.p[this.g] : this.A[this.mainCanvas.ar.g() - 1];
+                    this.a = (short) this.mainCanvas.topUi.a;
+                    String var2 = this.a == 0 ? this.p[this.g] : this.A[this.mainCanvas.gunDongListUi.g() - 1];
                     byte[] var3;
                     if ((var3 = NetPayloadBuilder.b((short) 4111, GlobalStatus.ad, var2)) == null) {
                         this.mainCanvas.processException("获取上传指令数据错误!");
@@ -206,7 +206,7 @@ public final class cc {
                     return;
                 }
             } else {
-                String var9 = this.a == 0 ? this.o[this.g] : this.z[this.mainCanvas.ar.g() - 1];
+                String var9 = this.a == 0 ? this.o[this.g] : this.z[this.mainCanvas.gunDongListUi.g() - 1];
                 byte[] var5;
                 if ((var5 = NetPayloadBuilder.d((short) 4690, (byte) 1, var9)) == null) {
                     this.mainCanvas.processException("获取上传指令数据错误!");
@@ -218,9 +218,9 @@ public final class cc {
                 this.mainCanvas.a((String) null);
             }
         } else if (this.uiSceneController.sceneSubState == 3) {
-            this.uiSceneController.T.b(var1);
+            this.uiSceneController.T.onClick(var1);
             if (var1 == 536870912) {
-                this.uiSceneController.T.j();
+                this.uiSceneController.T.clear();
                 this.uiSceneController.sceneSubState = 1;
                 return;
             }
@@ -233,7 +233,7 @@ public final class cc {
                         GlobalStatus.o();
                     }
 
-                    this.uiSceneController.T.j();
+                    this.uiSceneController.T.clear();
                     this.uiSceneController.sceneSubState = 1;
                     return;
                 }
@@ -247,13 +247,13 @@ public final class cc {
     }
 
     public final void a(Graphics var1) {
-        if (this.mainCanvas.aq != null) {
+        if (this.mainCanvas.mixedUi != null) {
             if (this.uiSceneController.sceneSubState == 4) {
                 this.uiSceneController.a(var1, "", UISceneController.q);
                 return;
             }
 
-            this.mainCanvas.aq.a(var1);
+            this.mainCanvas.mixedUi.a(var1);
             if (this.a == 0) {
                 for (int var2 = 0; var2 < this.d.length; ++var2) {
                     LoadingPage.a(var1, (Image) null, this.d[var2][0], this.d[var2][1], this.d[var2][2], this.d[var2][3], var2 == this.g);
@@ -266,8 +266,8 @@ public final class cc {
                     }
                 }
             } else if (this.a != 1 && this.a == 2) {
-                LoadingPage.a(var1, this.mainCanvas.at.b, this.mainCanvas.at.c + this.mainCanvas.at.e + 1, this.mainCanvas.at.d, this.e + 1, 1);
-                UISceneController.K.a(var1, this.mainCanvas.at.b + 10, this.mainCanvas.at.c + this.mainCanvas.at.e + 4, 0);
+                LoadingPage.draw(var1, this.mainCanvas.textPanel.textX, this.mainCanvas.textPanel.textY + this.mainCanvas.textPanel.textH + 1, this.mainCanvas.textPanel.textW, this.e + 1, 1);
+                UISceneController.K.a(var1, this.mainCanvas.textPanel.textX + 10, this.mainCanvas.textPanel.textY + this.mainCanvas.textPanel.textH + 4, 0);
             }
 
             if (this.uiSceneController.sceneSubState == 1) {
@@ -329,7 +329,7 @@ public final class cc {
                 this.n[var3] = var1.readInt();
                 this.o[var3] = var1.readUTF();
                 this.p[var3] = var1.readUTF();
-                this.q[var3] = LoadingPage.a(var1.readInt());
+                this.q[var3] = LoadingPage.pickColor(var1.readInt());
                 this.r[var3] = var1.readByte();
                 this.s[var3] = var1.readUTF();
                 this.t[var3] = var1.readByte();
@@ -362,7 +362,7 @@ public final class cc {
             this.w[0] = "排行";
             this.x[0] = "昵称";
             this.y[0] = "战力";
-            this.B[0] = LoadingPage.a(0);
+            this.B[0] = LoadingPage.pickColor(0);
 
             for (int var5 = 0; var5 < var6; ++var5) {
                 this.w[var5 + 1] = var1.readShort() + "";
@@ -371,7 +371,7 @@ public final class cc {
                 this.z[var5] = var1.readUTF();
                 this.A[var5] = var1.readUTF();
                 int var4 = var1.readInt();
-                this.B[var5 + 1] = LoadingPage.a(var4 == 0 ? 15 : 5);
+                this.B[var5 + 1] = LoadingPage.pickColor(var4 == 0 ? 15 : 5);
             }
         } else {
             this.w = null;

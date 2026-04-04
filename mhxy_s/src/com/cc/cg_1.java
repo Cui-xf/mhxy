@@ -40,8 +40,8 @@ public final class cg_1 {
    public static int c = 0;
    public static boolean d = false;
    private int G;
-   private an_1 H;
-   private an_1 I;
+   private TextPanel H;
+   private TextPanel I;
    private int[][] J;
    private int K;
    private String L;
@@ -184,12 +184,12 @@ public final class cg_1 {
          return LoadingPage.c(var1, var2);
       } else {
          int var3 = 0;
-         if ((var3 = this.f.aq.b(var1, var2)) <= 0) {
-            var3 = this.H.b(var1, var2);
+         if ((var3 = this.f.mixedUi.hintCheck(var1, var2)) <= 0) {
+            var3 = this.H.hintCheck(var1, var2);
          }
 
          if (var3 <= 0) {
-            var3 = this.I.b(var1, var2);
+            var3 = this.I.hintCheck(var1, var2);
          }
 
          if (var3 <= 0) {
@@ -224,8 +224,8 @@ public final class cg_1 {
       }
 
       this.J = new int[2][4];
-      this.H = new an_1();
-      this.I = new an_1();
+      this.H = new TextPanel();
+      this.I = new TextPanel();
       this.L = "继承前\t" + j + "\t" + "星级: \t" + "攻击：" + l + "-" + m + "\t" + "法功：" + n + "-" + o;
       if (k != -1) {
          this.M = "继承后\t" + j + "\t" + "<0>星级: " + p + "\t" + "<2>攻击：" + q + "-" + r + "\t" + "法功：" + s + "-" + t;
@@ -233,11 +233,11 @@ public final class cg_1 {
          this.M = "继承后";
       }
 
-      this.f.aq.b();
-      this.f.aq.a("星级继承");
-      this.f.aq.a(true);
-      this.H.a(this.L, GlobalConfig.font2, (byte)2);
-      this.I.a(this.M, GlobalConfig.font2, (byte)2);
+      this.f.mixedUi.b();
+      this.f.mixedUi.a("星级继承");
+      this.f.mixedUi.a(true);
+      this.H.setFWBText(this.L, GlobalConfig.font2, (byte)2);
+      this.I.setFWBText(this.M, GlobalConfig.font2, (byte)2);
       if (a != -1 && u != -1) {
          UISceneController.a(u, v, w, x);
          this.h = MainCanvas.ah.a(String.valueOf(u + "_0"), v, w, x);
@@ -255,14 +255,14 @@ public final class cg_1 {
       }
 
       if (GlobalConfig.defaultHigh > 220) {
-         this.f.au.a("");
-         this.f.aq.a((al)this.f.au);
+         this.f.bottomUi.a("");
+         this.f.mixedUi.a((BaseUi)this.f.bottomUi);
       }
 
-      this.G = (this.f.aq.d - 32 - GlobalConfig.font2_h) / 3 - 10;
-      this.f.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
-      this.H.a(this.f.aq.a + 5, this.f.aq.b + 32 + this.G, this.f.aq.c - 11, this.G + 10);
-      this.I.a(this.f.aq.a + 5, this.f.aq.b + 32 + 2 * this.G + 10, this.f.aq.c - 11, this.G + 10);
+      this.G = (this.f.mixedUi.d - 32 - GlobalConfig.font2_h) / 3 - 10;
+      this.f.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.H.setTextRect(this.f.mixedUi.a + 5, this.f.mixedUi.b + 32 + this.G, this.f.mixedUi.c - 11, this.G + 10);
+      this.I.setTextRect(this.f.mixedUi.a + 5, this.f.mixedUi.b + 32 + 2 * this.G + 10, this.f.mixedUi.c - 11, this.G + 10);
       LoadingPage.l = 0;
       this.e.sceneSubState = 0;
       this.f.touchPageCase = this.f.k;
@@ -281,10 +281,10 @@ public final class cg_1 {
       }
 
       if (this.e.sceneSubState == 0) {
-         if (this.f.aq != null) {
-            this.f.aq.b(var1);
-            this.H.b(var1);
-            this.I.b(var1);
+         if (this.f.mixedUi != null) {
+            this.f.mixedUi.onClick(var1);
+            this.H.onClick(var1);
+            this.I.onClick(var1);
          }
 
          if (a != -1 && this.h != null) {
@@ -416,30 +416,30 @@ public final class cg_1 {
    }
 
    public final void a(Graphics var1) {
-      if (this.f.aq != null) {
-         this.f.aq.a(var1);
-         this.H.a(var1);
-         this.I.a(var1);
-         LoadingPage.a(var1, this.f.aq.a + 5, this.f.aq.b + 32, this.f.aq.c - 11, this.G, 1);
+      if (this.f.mixedUi != null) {
+         this.f.mixedUi.a(var1);
+         this.H.draw(var1);
+         this.I.draw(var1);
+         LoadingPage.draw(var1, this.f.mixedUi.a + 5, this.f.mixedUi.b + 32, this.f.mixedUi.c - 11, this.G, 1);
       }
 
-      LoadingPage.a(var1, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 50, 50, 1);
+      LoadingPage.draw(var1, this.f.mixedUi.a + 5 + 25, this.f.mixedUi.b + 32 + 10, 50, 50, 1);
       var1.setColor(2917024);
-      var1.fillRect(this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 50, 50);
+      var1.fillRect(this.f.mixedUi.a + 5 + 25 + this.f.mixedUi.c / 2, this.f.mixedUi.b + 32 + 10, 50, 50);
       var1.setColor(9360850);
-      var1.drawRect(this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 49, 49);
-      this.a(0, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 50, 50);
-      this.a(1, this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 50, 50);
+      var1.drawRect(this.f.mixedUi.a + 5 + 25 + this.f.mixedUi.c / 2, this.f.mixedUi.b + 32 + 10, 49, 49);
+      this.a(0, this.f.mixedUi.a + 5 + 25, this.f.mixedUi.b + 32 + 10, 50, 50);
+      this.a(1, this.f.mixedUi.a + 5 + 25 + this.f.mixedUi.c / 2, this.f.mixedUi.b + 32 + 10, 50, 50);
       LoadingPage.d(var1, this.J[this.K][0], this.J[this.K][1], 50, 50);
       if (a != -1 && this.h != null) {
-         this.g.a(var1, (Frame1)this.h, (int[])null, 0, 0, this.f.aq.a + 5 + 25, this.f.aq.b + 32 + 10, 0, 0);
+         this.g.a(var1, (Frame1)this.h, (int[])null, 0, 0, this.f.mixedUi.a + 5 + 25, this.f.mixedUi.b + 32 + 10, 0, 0);
       }
 
       if (k != -1 && this.i != null) {
-         this.g.a(var1, (Frame1)this.i, (int[])null, 0, 0, this.f.aq.a + 5 + 25 + this.f.aq.c / 2, this.f.aq.b + 32 + 10, 0, 0);
+         this.g.a(var1, (Frame1)this.i, (int[])null, 0, 0, this.f.mixedUi.a + 5 + 25 + this.f.mixedUi.c / 2, this.f.mixedUi.b + 32 + 10, 0, 0);
       } else {
          var1.setColor(16776960);
-         var1.drawString("副宠", this.f.aq.a + 5 + 25 + this.f.aq.c / 2 + 25, this.f.aq.b + 32 + 10 + GlobalConfig.font2_h / 4 + 25, 65);
+         var1.drawString("副宠", this.f.mixedUi.a + 5 + 25 + this.f.mixedUi.c / 2 + 25, this.f.mixedUi.b + 32 + 10 + GlobalConfig.font2_h / 4 + 25, 65);
       }
 
       if (this.e.sceneSubState == 1) {

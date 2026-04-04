@@ -5,16 +5,22 @@ import com.yinhan.kjava.main.MainCanvas;
 import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
 
-public final class m_1 extends al {
+// 复合窗口容器：负责统一绘制外框/标题，并按固定区域组合多个 al 子控件。
+public final class MixedUi extends BaseUi {
    private int h = 16776917;
+   // 窗口标题文本。
    private String i;
+   // 是否绘制窗口底色。
    private boolean j = false;
+   // 是否绘制左上角装饰图。
    private boolean k = true;
+   // 窗口矩形区域。
    public int a = 0;
    public int b = 0;
    public int c;
    public int d;
-   private Vector l = new Vector();
+   // 子控件列表，实际会混合放入标题栏、列表、文本区、底部按钮栏等组件。
+   private Vector child = new Vector();
    private int m;
    private int n;
    private int o;
@@ -32,10 +38,12 @@ public final class m_1 extends al {
    private int x = -1;
    private boolean y = false;
 
+   // 控制是否绘制窗口背景色。
    public final void a(boolean var1) {
       this.j = var1;
    }
 
+   // 设置窗口标题，同时初始化标题右侧关闭按钮的点击区域缓存。
    public final void a(String var1) {
       this.i = var1;
       if (var1 == null) {
@@ -52,6 +60,7 @@ public final class m_1 extends al {
       return this.n + this.p + 3;
    }
 
+   // 设置窗口自身位置，并预留标题栏占用的纵向空间。
    private void b(int var1, int var2, int var3, int var4) {
       this.a = var1;
       this.b = var2;
@@ -79,40 +88,41 @@ public final class m_1 extends al {
       return this.r;
    }
 
+   // 标准布局：根据子控件类型自动分配标题栏、列表区、文本区、底栏的显示区域。
    public final void a(int var1, int var2, int var3, int var4) {
       this.b(var1, var2, var3, var4);
       this.c();
       if (this.t != -1) {
-         ((n_1)this.l.elementAt(this.t)).a(this.a + 5, this.s, this.c - 20, GlobalConfig.font2_h + 3);
+         ((TopUi)this.child.elementAt(this.t)).a(this.a + 5, this.s, this.c - 20, GlobalConfig.font2_h + 3);
          this.s += GlobalConfig.font2_h;
       }
 
       if (this.u != -1 && this.v == -1) {
          var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e;
-         ((c_1)this.l.elementAt(this.u)).a(this.a + 5, this.s + this.e, this.c - 11, var1 - this.f);
+         ((GunDongListUi)this.child.elementAt(this.u)).a(this.a + 5, this.s + this.e, this.c - 11, var1 - this.f);
          this.s += var1;
       } else if (this.u == -1 && this.v != -1) {
          var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.r;
-         ((an_1)this.l.elementAt(this.v)).a(this.a + 5, this.s + this.r, this.c - 11, var1 - this.g);
+         ((TextPanel)this.child.elementAt(this.v)).setTextRect(this.a + 5, this.s + this.r, this.c - 11, var1 - this.g);
          this.s += var1;
       } else if (this.u != -1 && this.v != -1) {
          var2 = (var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e) / 2;
          this.s += this.e;
-         ((c_1)this.l.elementAt(this.u)).a(this.a + 5, this.s, this.c - 11, var2);
+         ((GunDongListUi)this.child.elementAt(this.u)).a(this.a + 5, this.s, this.c - 11, var2);
          this.s += var2;
          var1 -= var2;
-         ((an_1)this.l.elementAt(this.v)).a(this.a + 5, this.s, this.c - 11, var1);
+         ((TextPanel)this.child.elementAt(this.v)).setTextRect(this.a + 5, this.s, this.c - 11, var1);
       }
 
       if (this.w != -1) {
-         bm var10000 = (bm)this.l.elementAt(this.w);
+         ButtonUi var10000 = (ButtonUi)this.child.elementAt(this.w);
          int var10001 = this.a + 6;
          int var10002 = this.b;
          int var10003 = this.c - 13;
          int var5 = this.d - 6;
       } else {
          if (this.x != -1) {
-            ((l_1)this.l.elementAt(this.x)).a(this.a, this.b, this.c, this.d - 5);
+            ((BottomUi)this.child.elementAt(this.x)).a(this.a, this.b, this.c, this.d - 5);
          }
 
       }
@@ -122,52 +132,54 @@ public final class m_1 extends al {
       this.b(var1, var2, var3, var4);
       this.c();
       if (this.t != -1) {
-         ((n_1)this.l.elementAt(this.t)).a(this.a + 5, this.s, this.c - 20, GlobalConfig.font2_h + 3);
+         ((TopUi)this.child.elementAt(this.t)).a(this.a + 5, this.s, this.c - 20, GlobalConfig.font2_h + 3);
          this.s += GlobalConfig.font2_h;
       }
 
       if (this.u != -1 && this.v == -1) {
          var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e;
-         ((c_1)this.l.elementAt(this.u)).a(this.a + 5, this.s + this.e, this.c - 11, var1 - this.f);
+         ((GunDongListUi)this.child.elementAt(this.u)).a(this.a + 5, this.s + this.e, this.c - 11, var1 - this.f);
          this.s += var1;
       } else if (this.u == -1 && this.v != -1) {
          var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.r;
-         ((an_1)this.l.elementAt(this.v)).a(this.a + 5, this.s + this.r, this.c - 11, var1 - this.g);
+         ((TextPanel)this.child.elementAt(this.v)).setTextRect(this.a + 5, this.s + this.r, this.c - 11, var1 - this.g);
          this.s += var1;
       } else if (this.u != -1 && this.v != -1) {
          var2 = (var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e) * var5 / var6;
          this.s += this.e;
          if (var7) {
-            ((an_1)this.l.elementAt(this.v)).a(this.a + 5, this.s, this.c - 11, var2);
+            ((TextPanel)this.child.elementAt(this.v)).setTextRect(this.a + 5, this.s, this.c - 11, var2);
             this.s += var2;
             var1 -= var2;
-            ((c_1)this.l.elementAt(this.u)).a(this.a + 5, this.s, this.c - 11, var1);
+            ((GunDongListUi)this.child.elementAt(this.u)).a(this.a + 5, this.s, this.c - 11, var1);
          } else {
-            ((c_1)this.l.elementAt(this.u)).a(this.a + 5, this.s, this.c - 11, var2);
+            ((GunDongListUi)this.child.elementAt(this.u)).a(this.a + 5, this.s, this.c - 11, var2);
             this.s += var2;
             var1 -= var2;
-            ((an_1)this.l.elementAt(this.v)).a(this.a + 5, this.s, this.c - 11, var1);
+            ((TextPanel)this.child.elementAt(this.v)).setTextRect(this.a + 5, this.s, this.c - 11, var1);
          }
       }
 
       if (this.w != -1) {
-         bm var10000 = (bm)this.l.elementAt(this.w);
+         ButtonUi var10000 = (ButtonUi)this.child.elementAt(this.w);
          int var10001 = this.a + 6;
          int var10002 = this.b;
          int var10003 = this.c - 13;
          int var8 = this.d - 6;
       } else {
          if (this.x != -1) {
-            ((l_1)this.l.elementAt(this.x)).a(this.a, this.b, this.c, this.d - 5);
+            ((BottomUi)this.child.elementAt(this.x)).a(this.a, this.b, this.c, this.d - 5);
          }
 
       }
    }
 
-   public final void a(al var1) {
-      this.l.addElement(var1);
+   // 向窗口中注册一个子控件，绘制与输入都会继续向下分发。
+   public final void a(BaseUi var1) {
+      this.child.addElement(var1);
    }
 
+   // 清空窗口内容但保留对象实例，常用于重新组装弹窗。
    public final void b() {
       this.i = null;
       this.j = false;
@@ -175,23 +187,25 @@ public final class m_1 extends al {
       this.e = 0;
       this.f = 0;
       this.g = 0;
-      this.l.removeAllElements();
+      this.child.removeAllElements();
    }
 
-   public final void b(int var1) {
-      for(int var2 = 0; var2 < this.l.size(); ++var2) {
-         ((al)this.l.elementAt(var2)).b(var1);
+   // 将指令继续分发给所有子控件。
+   public final void onClick(int var1) {
+      for(int var2 = 0; var2 < this.child.size(); ++var2) {
+         ((BaseUi)this.child.elementAt(var2)).onClick(var1);
       }
 
    }
 
-   public final int b(int var1, int var2) {
+   // 先检测标题栏关闭按钮，再交给子控件逐个做命中检测。
+   public final int hintCheck(int var1, int var2) {
       if (this.q != null && var1 >= this.q[0] && var1 <= this.q[0] + this.q[2] && var2 >= this.q[1] && var2 <= this.q[1] + this.q[3]) {
          return 536870912;
       } else {
-         for(int var3 = 0; var3 < this.l.size(); ++var3) {
-            if (((al)this.l.elementAt(var3)).b(var1, var2) != 0) {
-               return ((al)this.l.elementAt(var3)).b(var1, var2);
+         for(int var3 = 0; var3 < this.child.size(); ++var3) {
+            if (((BaseUi)this.child.elementAt(var3)).hintCheck(var1, var2) != 0) {
+               return ((BaseUi)this.child.elementAt(var3)).hintCheck(var1, var2);
             }
          }
 
@@ -199,6 +213,7 @@ public final class m_1 extends al {
       }
    }
 
+   // 扫描子控件列表，记录各类固定槽位在 Vector 中的下标，便于统一布局。
    private void c() {
       this.t = -1;
       this.u = -1;
@@ -206,17 +221,17 @@ public final class m_1 extends al {
       this.w = -1;
       this.x = -1;
 
-      for(int var1 = 0; var1 < this.l.size(); ++var1) {
+      for(int var1 = 0; var1 < this.child.size(); ++var1) {
          Object var2;
-         if ((var2 = this.l.elementAt(var1)) instanceof n_1) {
+         if ((var2 = this.child.elementAt(var1)) instanceof TopUi) {
             this.t = var1;
-         } else if (var2 instanceof c_1) {
+         } else if (var2 instanceof GunDongListUi) {
             this.u = var1;
-         } else if (var2 instanceof an_1) {
+         } else if (var2 instanceof TextPanel) {
             this.v = var1;
-         } else if (var2 instanceof bm) {
+         } else if (var2 instanceof ButtonUi) {
             this.w = var1;
-         } else if (var2 instanceof l_1) {
+         } else if (var2 instanceof BottomUi) {
             this.x = var1;
          }
       }
@@ -227,6 +242,7 @@ public final class m_1 extends al {
       this.k = false;
    }
 
+   // 绘制窗口装饰、标题栏以及所有子控件。
    public final void a(Graphics var1) {
       var1.setClip(this.a, this.b, this.c, this.d);
       if (this.j) {
@@ -251,10 +267,10 @@ public final class m_1 extends al {
             this.q[3] = var8;
          }
 
-         int var2 = LoadingPage.a(this.i) != -1 ? LoadingPage.a(this.i) : this.h;
+         int var2 = LoadingPage.parseColor(this.i) != -1 ? LoadingPage.parseColor(this.i) : this.h;
          String var10 = this.i;
          if (var2 != this.h) {
-            if (LoadingPage.m == 2) {
+            if (LoadingPage.fwbColorMode == 2) {
                var10 = this.i.substring(4, this.i.length());
             } else {
                var10 = this.i.substring(3, this.i.length());
@@ -265,33 +281,33 @@ public final class m_1 extends al {
          LoadingPage.a(var1, this.m, this.n + this.p, this.o);
       }
 
-      for(int var9 = 0; var9 < this.l.size(); ++var9) {
+      for(int var9 = 0; var9 < this.child.size(); ++var9) {
          Object var3;
-         if ((var3 = this.l.elementAt(var9)) instanceof n_1) {
-            ((n_1)var3).a(var1);
+         if ((var3 = this.child.elementAt(var9)) instanceof TopUi) {
+            ((TopUi)var3).a(var1);
             this.y = true;
-         } else if (var3 instanceof c_1) {
-            ((c_1)var3).a(var1);
-            ((c_1)var3).a(this.y);
-         } else if (var3 instanceof an_1) {
-            ((an_1)var3).a(var1);
-            an_1 var10000 = (an_1)var3;
+         } else if (var3 instanceof GunDongListUi) {
+            ((GunDongListUi)var3).a(var1);
+            ((GunDongListUi)var3).a(this.y);
+         } else if (var3 instanceof TextPanel) {
+            ((TextPanel)var3).draw(var1);
+            TextPanel var10000 = (TextPanel)var3;
             boolean var4 = this.y;
             var10000.f = var4;
-         } else if (var3 instanceof bm) {
-            bm var11 = (bm)var3;
-         } else if (var3 instanceof l_1) {
-            ((l_1)var3).a(var1);
+         } else if (var3 instanceof ButtonUi) {
+            ButtonUi var11 = (ButtonUi)var3;
+         } else if (var3 instanceof BottomUi) {
+            ((BottomUi)var3).a(var1);
          }
       }
 
-      LoadingPage.a(var1, 2);
+      LoadingPage.setColor(var1, 2);
       var1.drawRect(this.a, this.b, this.c - 1, this.d - 1);
       var1.drawRect(this.a + 4, this.b + 4, this.c - 9, this.d - 9);
-      LoadingPage.a(var1, 3);
+      LoadingPage.setColor(var1, 3);
       var1.drawRect(this.a + 1, this.b + 1, this.c - 3, this.d - 3);
       var1.drawRect(this.a + 3, this.b + 3, this.c - 7, this.d - 7);
-      LoadingPage.a(var1, 4);
+      LoadingPage.setColor(var1, 4);
       var1.drawRect(this.a + 2, this.b + 2, this.c - 5, this.d - 5);
       if (MainCanvas.r.pngImage != null && this.k) {
          var1.drawImage(MainCanvas.r.pngImage, this.a, this.b, 20);
@@ -308,7 +324,8 @@ public final class m_1 extends al {
       var1.setClip(this.a, this.b, this.c, this.d);
    }
 
-   public final void j() {
+   // 释放窗口与全部子控件的状态。
+   public final void clear() {
       this.i = null;
       this.j = false;
       this.r = 0;
@@ -317,10 +334,10 @@ public final class m_1 extends al {
       this.g = 0;
       this.k = true;
 
-      for(int var1 = 0; var1 < this.l.size(); ++var1) {
-         ((al)this.l.elementAt(var1)).j();
+      for(int var1 = 0; var1 < this.child.size(); ++var1) {
+         ((BaseUi)this.child.elementAt(var1)).clear();
       }
 
-      this.l.removeAllElements();
+      this.child.removeAllElements();
    }
 }

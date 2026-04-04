@@ -5,13 +5,17 @@ import com.yinhan.kjava.main.MainCanvas;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
-public final class c_1 extends al {
+// 滚动列表控件：支持图标、主文本、中间列、右侧列、额外图标和跑马灯显示。
+public final class GunDongListUi extends BaseUi {
+   // 列表显示区域。
    private int a;
    private int b;
    private int c;
    private int d;
+   // 当前可见窗口的起始行与当前选中行。
    private int e;
    private int f;
+   // 当前页可显示的行数，以及单行高度。
    private int g;
    private int h;
    private int i;
@@ -21,33 +25,43 @@ public final class c_1 extends al {
    private short m;
    private short n;
    private short o;
+   // 顶部附加提示文本；存在时会额外占用一行。
    private String p;
+   // 选中行旁边绘制的浮动提示文案。
    private String q;
+   // 每行左侧图标与三列文本数据。
    private Image[] r;
    private String[] s;
    private String[] t;
    private String[] u;
+   // 行内附加图标/徽记数据。
    private short[] v;
    private short[] w;
+   // 每行主文本颜色。
    private int[] x = null;
    private byte y;
    private byte z;
    private byte A = 0;
+   // 当前选中行文本超过可视宽度时的跑马灯状态。
    private boolean B = true;
+   // 是否给左侧图标绘制边框；以及是否绘制额外遮罩/高亮效果。
    private boolean C;
    private boolean D = false;
    private boolean E = false;
 
+   // 纯文本列表初始化。
    public final void a(String[] var1, String[] var2, String[] var3) {
       this.a((Image[])null, var1, (short[])null, (String[])null, var3);
    }
 
+   // 带图标/附加列的列表初始化。
    public final void a(Image[] var1, String[] var2, String[] var3, String[] var4) {
       this.a(var1, var2, (short[])null, var3, var4);
    }
 
+   // 统一重建列表数据源，并重置滚动/选中状态。
    private void a(Image[] var1, String[] var2, short[] var3, String[] var4, String[] var5) {
-      this.j();
+      this.clear();
       this.r = var1;
       this.s = var2;
       this.t = var4;
@@ -99,6 +113,7 @@ public final class c_1 extends al {
       return this.f - this.e;
    }
 
+   // 控制是否绘制额外高亮边框。
    public final void a(boolean var1) {
       this.E = var1;
    }
@@ -107,21 +122,25 @@ public final class c_1 extends al {
       this.r = var1;
    }
 
+   // 关闭左侧图标边框绘制；实参未使用，保留原始接口。
    public final void b(boolean var1) {
       this.C = false;
    }
 
+   // 设置顶部附加提示行。
    public final void a(String var1) {
       this.p = var1;
       this.z = 1;
    }
 
+   // 设置选中行旁边的浮动提示及其样式。
    public final void a(String var1, int var2) {
        LoadingPage.l = 0;
       this.q = var1;
       this.y = (byte)var2;
    }
 
+   // 直接设置当前选中行，并自动修正可见窗口范围。
    public final void a(int var1) {
       this.f = var1;
 
@@ -135,6 +154,7 @@ public final class c_1 extends al {
 
    }
 
+   // 同时设置可见起始行与当前选中行。
    public final void a(int var1, int var2) {
       this.e = var1;
       this.f = var2;
@@ -161,6 +181,7 @@ public final class c_1 extends al {
       this.x = var1;
    }
 
+   // 设置列表显示区域。
    public final void a(int var1, int var2, int var3, int var4) {
       this.a = var1;
       this.b = var2;
@@ -168,7 +189,8 @@ public final class c_1 extends al {
       this.d = var4;
    }
 
-   public final void b(int var1) {
+   // 处理上下移动指令，并维护滚动窗口。
+   public final void onClick(int var1) {
       if (var1 != 1 && var1 != 514) {
          if (var1 == 4 || var1 == 520) {
             if (this.s != null) {
@@ -195,7 +217,8 @@ public final class c_1 extends al {
       }
    }
 
-   public final int b(int var1, int var2) {
+   // 命中检测：支持滚动条上下按钮以及列表项点击。
+   public final int hintCheck(int var1, int var2) {
       if (var1 >= this.a + this.c - 2 - MainCanvas.C.b && var1 <= this.a + this.c && var2 >= this.b + 3 && var2 <= this.b + 3 + MainCanvas.C.c) {
          return 1;
       } else if (var1 >= this.a + this.c - 2 - MainCanvas.D.b && var1 <= this.a + this.c && var2 >= this.b + this.d - 2 - MainCanvas.D.c && var2 <= this.b + this.d) {
@@ -219,7 +242,8 @@ public final class c_1 extends al {
       }
    }
 
-   public final void j() {
+   // 释放列表数据引用。
+   public final void clear() {
       this.s = null;
       this.t = null;
       this.u = null;
@@ -231,14 +255,15 @@ public final class c_1 extends al {
       this.w = null;
    }
 
+   // 绘制列表主体、选中高亮、滚动条以及可选的跑马灯文本。
    public final void a(Graphics var1) {
       this.g = Math.min(this.h + this.z, (this.d - 8) / this.i);
-       LoadingPage.a(var1, 6014420);
+       LoadingPage.setColor(var1, 6014420);
       var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
       var1.fillRect(this.a, this.b, this.c, this.d);
-       LoadingPage.a(var1, this.a, this.b, this.c, this.d, 1);
+       LoadingPage.draw(var1, this.a, this.b, this.c, this.d, 1);
       if (this.E) {
-          LoadingPage.a(var1);
+          LoadingPage.draw(var1);
       }
 
       int var2 = 0;
@@ -249,7 +274,7 @@ public final class c_1 extends al {
       for(int var6 = this.e - this.z; var5 < this.g && var6 < this.h; ++var6) {
          var1.setClip(this.a, this.b, this.c, this.d);
          if (this.f == var6 + this.z) {
-             LoadingPage.a(var1, 9);
+             LoadingPage.setColor(var1, 9);
             var1.fillRect(this.a + 4, this.b + 4 + var5 * this.i, this.c - 11, this.i);
          }
 
@@ -285,8 +310,8 @@ public final class c_1 extends al {
             this.o = (short)(this.f == var6 + this.z ? this.n + var4 : 0);
             var1.setClip(this.a + 4 + this.A, this.b, this.c - 6 - this.A - 12, this.d);
             if (this.s != null && this.s[var6] != null) {
-               if ( LoadingPage.a(this.s[var6]) != -1) {
-                  var1.setColor(this.f == var6 + this.z ? 16777215 :  LoadingPage.a(this.s[var6]));
+               if ( LoadingPage.parseColor(this.s[var6]) != -1) {
+                  var1.setColor(this.f == var6 + this.z ? 16777215 :  LoadingPage.parseColor(this.s[var6]));
                   this.a(var1, this.s[var6].substring(3), this.a + 6 + this.A, this.b + 4 + var5 * this.i, this.o > this.a + this.c - 12);
                } else {
                   var1.setColor(this.f == var6 + this.z ? 16777215 : (this.x != null ? this.x[var6] : 2176196));
@@ -342,7 +367,7 @@ public final class c_1 extends al {
                this.j = this.g * (this.d - 16) / this.h > 6 ? this.g * (this.d - 16) / this.h : 6;
             }
 
-             LoadingPage.a(var1, this.a + this.c - 2 - MainCanvas.C.b, this.b + 3, this.d - 5, this.j, this.e, this.h, this.g - this.z);
+             LoadingPage.draw(var1, this.a + this.c - 2 - MainCanvas.C.b, this.b + 3, this.d - 5, this.j, this.e, this.h, this.g - this.z);
          }
 
           LoadingPage.b(var1, this.q, this.a + 5, this.b + (this.f - this.e + 1) * this.i, this.b + this.d, this.y);
@@ -350,6 +375,7 @@ public final class c_1 extends al {
 
    }
 
+   // 绘制可能需要横向滚动的图标。
    private void a(Graphics var1, int var2, int var3, Image var4) {
       if (var4 != null) {
          if (this.o > this.a + this.c - 12) {
@@ -363,6 +389,7 @@ public final class c_1 extends al {
 
    }
 
+   // 绘制可能需要横向滚动的文本。
    private void a(Graphics var1, String var2, int var3, int var4, boolean var5) {
       if (var5) {
          var1.drawString(var2, this.k + var3, var4, 20);

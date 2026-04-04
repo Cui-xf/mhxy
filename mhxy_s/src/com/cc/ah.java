@@ -24,7 +24,7 @@ public final class ah {
    public final void a(Graphics var1, int var2, int var3, int var4, int var5) {
       switch (this.a) {
          case 0:
-            var1.setColor(LoadingPage.a(this.b));
+            var1.setColor(LoadingPage.pickColor(this.b));
             var1.drawString(this.c, var2, var3 + (var4 - GlobalConfig.font2_h) / 2, var5);
             break;
          case 1:

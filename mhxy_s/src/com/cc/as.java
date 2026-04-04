@@ -101,20 +101,20 @@ public final class as {
       }
 
       this.p = new int[4][4];
-      this.a.aq.b();
-      this.a.aq.a("装备升星");
-      this.a.aq.a(false);
+      this.a.mixedUi.b();
+      this.a.mixedUi.a("装备升星");
+      this.a.mixedUi.a(false);
       this.l = Math.max((GlobalConfig.font2_h << 1) + 25, 59);
       this.m = GlobalConfig.font2_h + 13;
-      this.a.aq.a(this.l + this.m);
+      this.a.mixedUi.a(this.l + this.m);
       this.a();
-      this.a.aq.a((al)this.a.at);
-      this.a.au.a("确定");
+      this.a.mixedUi.a((BaseUi)this.a.textPanel);
+      this.a.bottomUi.a("确定");
       if (GlobalConfig.defaultHigh > 220) {
-         this.a.aq.a((al)this.a.au);
+         this.a.mixedUi.a((BaseUi)this.a.bottomUi);
       }
 
-      this.a.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.a.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.b();
       LoadingPage.l = 0;
       this.b.sceneSubState = 0;
@@ -124,22 +124,22 @@ public final class as {
 
    private void a() {
       if (k != null && !k.equals("")) {
-         this.a.at.a(k, GlobalConfig.font2, (byte)1);
+         this.a.textPanel.setFWBText(k, GlobalConfig.font2, (byte)1);
       } else {
-         this.a.at.a((String)null, GlobalConfig.font2, (byte)1);
+         this.a.textPanel.setFWBText((String)null, GlobalConfig.font2, (byte)1);
       }
    }
 
    private void b() {
       if (j != null) {
-         new TextRender(j, (short) GlobalConfig.font2.stringWidth(j));
+         new FWBRender(j, (short) GlobalConfig.font2.stringWidth(j));
       }
 
    }
 
    public final void a(int var1) {
-      if (this.b.sceneSubState == 0 && this.a.aq != null) {
-         this.a.aq.b(var1);
+      if (this.b.sceneSubState == 0 && this.a.mixedUi != null) {
+         this.a.mixedUi.onClick(var1);
       }
 
       if (var1 != 514 && var1 != 520 && var1 != 1 && var1 != 4) {
@@ -164,8 +164,8 @@ public final class as {
    }
 
    public final void a(Graphics var1) {
-      if (this.b.sceneSubState == 0 && this.a.aq != null) {
-         this.a.aq.a(var1);
+      if (this.b.sceneSubState == 0 && this.a.mixedUi != null) {
+         this.a.mixedUi.a(var1);
       }
 
    }

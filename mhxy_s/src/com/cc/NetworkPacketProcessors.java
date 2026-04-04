@@ -108,7 +108,7 @@ public final class NetworkPacketProcessors {
                         if (MainCanvas.uiSceneController.currentSceneModeId == 2 && MainCanvas.uiSceneController.sceneSubState == 4) {
                             String var48 = GlobalConfig.yinLiangFormat(this.mainCanvas.shareSb, GlobalStatus.aq);
                             GlobalConfig.yinLiangFormat(this.mainCanvas.shareSb, GlobalStatus.ap);
-                            MainCanvas.uiSceneController.am = LoadingPage.a(GlobalStatus.t[MainCanvas.uiSceneController.af].b + ":已存入银两" + var48 + "，现有银两" + this.mainCanvas.shareSb.toString(), GlobalConfig.font2, GlobalConfig.defaultWidth == 176 ? 118 : 152, "\t");
+                            MainCanvas.uiSceneController.am = LoadingPage.parseText(GlobalStatus.t[MainCanvas.uiSceneController.af].b + ":已存入银两" + var48 + "，现有银两" + this.mainCanvas.shareSb.toString(), GlobalConfig.font2, GlobalConfig.defaultWidth == 176 ? 118 : 152, "\t");
                             MainCanvas.uiSceneController.ah = MainCanvas.uiSceneController.sceneSubMode == 1 ? GlobalStatus.aq : GlobalStatus.ap;
                         } else if (MainCanvas.uiSceneController.currentSceneModeId == 37 && MainCanvas.uiSceneController.ao) {
                             MainCanvas.uiSceneController.p();
@@ -173,9 +173,9 @@ public final class NetworkPacketProcessors {
                         this.b.readByte();
                         GlobalStatus.n(this.b);
                         if (MainCanvas.uiSceneController.currentSceneModeId == 12) {
-                            if (this.mainCanvas.as.a == 0) {
+                            if (this.mainCanvas.topUi.a == 0) {
                                 MainCanvas.uiSceneController.a((byte) 1, true);
-                            } else if (this.mainCanvas.as.a == 1) {
+                            } else if (this.mainCanvas.topUi.a == 1) {
                                 MainCanvas.uiSceneController.a((byte) 0, true);
                             }
                             break;
@@ -413,14 +413,14 @@ public final class NetworkPacketProcessors {
                     case 8224:
                         GlobalStatus.bH = this.b.readUTF();
                         if (MainCanvas.uiSceneController.currentSceneModeId == 6) {
-                            this.mainCanvas.aq.b();
-                            this.mainCanvas.aq.a("任务详细");
-                            this.mainCanvas.at.a(GlobalStatus.bH, GlobalConfig.font2, (byte) 2);
-                            this.mainCanvas.at.a((byte) 0);
-                            this.mainCanvas.au.a("确定");
-                            this.mainCanvas.aq.a((al) this.mainCanvas.at);
-                            this.mainCanvas.aq.a((al) this.mainCanvas.au);
-                            this.mainCanvas.aq.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+                            this.mainCanvas.mixedUi.b();
+                            this.mainCanvas.mixedUi.a("任务详细");
+                            this.mainCanvas.textPanel.setFWBText(GlobalStatus.bH, GlobalConfig.font2, (byte) 2);
+                            this.mainCanvas.textPanel.setShuRuMoShi((byte) 0);
+                            this.mainCanvas.bottomUi.a("确定");
+                            this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.textPanel);
+                            this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.bottomUi);
+                            this.mainCanvas.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
                             this.mainCanvas.touchPageCase = this.mainCanvas.k;
                             MainCanvas.uiSceneController.sceneSubState = 3;
                         }
@@ -728,8 +728,8 @@ public final class NetworkPacketProcessors {
                         if (MainCanvas.uiSceneController.currentSceneModeId == 2) {
                             MainCanvas.uiSceneController.M.b(false);
                         } else if (MainCanvas.uiSceneController.currentSceneModeId == 50) {
-                            this.mainCanvas.at.b(GlobalStatus.iI[this.mainCanvas.ar.g()], GlobalConfig.font2, (byte) 2);
-                            this.mainCanvas.at.a((byte) 1);
+                            this.mainCanvas.textPanel.setText(GlobalStatus.iI[this.mainCanvas.gunDongListUi.g()], GlobalConfig.font2, (byte) 2);
+                            this.mainCanvas.textPanel.setShuRuMoShi((byte) 1);
                             break;
                         }
 
@@ -905,7 +905,7 @@ public final class NetworkPacketProcessors {
 
                         MainCanvas.uiSceneController.M.p();
                         if (var39 == 3 || var39 == 4) {
-                            this.mainCanvas.at.a((byte) 1);
+                            this.mainCanvas.textPanel.setShuRuMoShi((byte) 1);
                         }
 
                         if (var39 == 5) {
@@ -1354,11 +1354,11 @@ public final class NetworkPacketProcessors {
                     case 8969:
                         GlobalStatus.aB(this.b);
                         if (MainCanvas.uiSceneController.currentSceneModeId == 76) {
-                            int var34 = this.mainCanvas.as.a;
-                            int var52 = this.mainCanvas.ar.g();
+                            int var34 = this.mainCanvas.topUi.a;
+                            int var52 = this.mainCanvas.gunDongListUi.g();
                             MainCanvas.uiSceneController.d((byte) var34);
                             var34 = var34 == 0 ? GlobalStatus.O.f.length : GlobalStatus.P.b.length;
-                            this.mainCanvas.ar.a(Math.min(var52, var34));
+                            this.mainCanvas.gunDongListUi.a(Math.min(var52, var34));
                         }
 
                         return;
@@ -1385,10 +1385,10 @@ public final class NetworkPacketProcessors {
                     case 8972:
                         GlobalStatus.aA(this.b);
                         if (MainCanvas.uiSceneController.currentSceneModeId == 76) {
-                            byte var50 = this.mainCanvas.as.a;
-                            int var32 = this.mainCanvas.ar.g();
+                            byte var50 = this.mainCanvas.topUi.a;
+                            int var32 = this.mainCanvas.gunDongListUi.g();
                             MainCanvas.uiSceneController.d((byte) var50);
-                            this.mainCanvas.ar.a(var32);
+                            this.mainCanvas.gunDongListUi.a(var32);
                         }
 
                         if (MainCanvas.uiSceneController.currentSceneModeId == 111) {
@@ -1397,10 +1397,10 @@ public final class NetworkPacketProcessors {
                             }
 
                             if (MainCanvas.uiSceneController.sceneStateShadow == 76) {
-                                byte var51 = this.mainCanvas.as.a;
-                                int var33 = this.mainCanvas.ar.g();
+                                byte var51 = this.mainCanvas.topUi.a;
+                                int var33 = this.mainCanvas.gunDongListUi.g();
                                 MainCanvas.uiSceneController.d((byte) var51);
-                                this.mainCanvas.ar.a(var33);
+                                this.mainCanvas.gunDongListUi.a(var33);
                                 break;
                             }
                         }
@@ -1965,7 +1965,7 @@ public final class NetworkPacketProcessors {
         }
 
         if (MainCanvas.uiSceneController.currentSceneModeId == 2) {
-            UISceneController.K = new TextRender(GlobalStatus.bH, (short) (GlobalConfig.defaultWidth - 20));
+            UISceneController.K = new FWBRender(GlobalStatus.bH, (short) (GlobalConfig.defaultWidth - 20));
             if (GlobalStatus.bE) {
                 MainCanvas.uiSceneController.an = new String[]{"接受", "返回"};
             } else if (GlobalStatus.bK[MainCanvas.uiSceneController.ai] == -1) {
@@ -2041,7 +2041,7 @@ public final class NetworkPacketProcessors {
                 }
 
                 if (MainCanvas.uiSceneController.currentSceneModeId == 120) {
-                    MainCanvas.uiSceneController.t(this.mainCanvas.ar.g());
+                    MainCanvas.uiSceneController.t(this.mainCanvas.gunDongListUi.g());
                 }
             }
         }

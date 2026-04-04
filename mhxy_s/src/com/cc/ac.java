@@ -208,7 +208,7 @@ public final class ac extends ar {
          }
 
          if (GlobalStatus.ah != null && !GlobalStatus.ah.equals("")) {
-           LoadingPage.a(var1, GlobalStatus.ah, super.j + 8 - var3, super.k - var4 - (GlobalConfig.font2_h << 1) - super.g.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.ai);
+           LoadingPage.drawString(var1, GlobalStatus.ah, super.j + 8 - var3, super.k - var4 - (GlobalConfig.font2_h << 1) - super.g.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.ai);
          }
 
          if (GlobalStatus.bs == 1) {
