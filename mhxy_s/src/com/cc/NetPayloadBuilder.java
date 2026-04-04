@@ -42,15 +42,15 @@ public final class NetPayloadBuilder {
      * 携带渠道号、设备ID(bb_1.a/b)、内存大小、版本号、渠道子类型、服务器编号等建连信息。
      * 与其他方法不同，此包不含账号/角色信息，用于建立初始连接。
      */
-    public static NetPacket login(byte var0, byte var1, String zhanghaoPwd) {
+    public static NetPacket buildLogin(byte var0, byte var1, String zhanghaoPwd) {
         try {
             ByteArrayOutputStream var3 = new ByteArrayOutputStream();
             DataOutputStream var4;
             (var4 = new DataOutputStream(var3)).writeByte(-82);
             var4.writeShort(6400);
             var4.writeByte(var0);
-            var4.writeInt(bb_1.a);
-            var4.writeInt(bb_1.b);
+            var4.writeInt(ChongZhiModel.CpId);
+            var4.writeInt(ChongZhiModel.GameId);
             var4.writeUTF(GlobalConfig.PopularizeChannel);
             var4.writeUTF(GlobalConfig.model);
             var4.writeInt(-1);

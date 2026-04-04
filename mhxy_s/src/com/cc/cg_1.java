@@ -260,7 +260,7 @@ public final class cg_1 {
       }
 
       this.G = (this.f.mixedUi.d - 32 - GlobalConfig.font2_h) / 3 - 10;
-      this.f.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.f.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.H.setTextRect(this.f.mixedUi.a + 5, this.f.mixedUi.b + 32 + this.G, this.f.mixedUi.c - 11, this.G + 10);
       this.I.setTextRect(this.f.mixedUi.a + 5, this.f.mixedUi.b + 32 + 2 * this.G + 10, this.f.mixedUi.c - 11, this.G + 10);
       LoadingPage.l = 0;
@@ -367,7 +367,7 @@ public final class cg_1 {
 
                   NetPacket var4 = new NetPacket((short)4691, var3);
                   MainCanvas.netUtils.sendPacket(var4);
-                  this.f.a((String)null);
+                  this.f.showDLZ((String)null);
                } else if (LoadingPage.o == 1) {
                   GlobalStatus.fw = null;
                   if (GlobalStatus.fA != null && GlobalStatus.fA.length > 0) {

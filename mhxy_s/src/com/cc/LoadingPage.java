@@ -28,12 +28,13 @@ public final class LoadingPage {
     public static int[] j = new int[3];
     private static byte L = 0;
     public static int k = 0;
-    private static int M;
-    private static int N;
-    private static int O;
-    private static int P;
+
+    private static int DLZ_X;
+    private static int DLZ_Y;
+    private static int DLZ_W;
+    private static int DLZ_H;
     public static int l = 0;
-    private static String Q;
+    private static String DLZ_Str;
     private static short R;
     private static short S;
     private static int T;
@@ -72,7 +73,7 @@ public final class LoadingPage {
     public static int y;
     public static int z;
     private static int[] an;              // 加载进度条位置和尺寸 [x, y, width, height]
-    public static int A = 0;              // 加载进度百分比（0-100）
+    public static int loadProgressPercentage = 0;              // 加载进度百分比（0-100）
     private static String[] tips = new String[]{"系统菜单内可进行动态NPC和小地图等设置", "按“3”键可打开角色物品栏", "按“1”键可查看周围玩家", "按“0”键可打开宠物栏", "按“7”键可打开地图", "按“9”键可打开社交栏", "按“*”键可打开聊天栏", "按“#”键可打开任务栏"};
     private static FWBRender ap;               // 加载画面顶部提示文字的富文本渲染组件
     private static Random aq = new Random();
@@ -571,32 +572,33 @@ public final class LoadingPage {
         var0.drawLine(var1, var2 + 1, var1 + var3 - 1, var2 + 1);
     }
 
-    public static void a(int var0, int var1, int var2, int var3, String var4) {
-        M = var0;
-        N = var1;
-        O = var2;
-        Q = var4 == null ? "载入中…" : var4;
-        P = M + (O - GlobalConfig.font2.stringWidth(Q)) / 2;
+    //展示"请求中..."
+    public static void showDLZ(int x, int y, int w, int h, String tips) {
+        DLZ_X = x;
+        DLZ_Y = y;
+        DLZ_W = w;
+        DLZ_Str = tips == null ? "载入中…" : tips;
+        DLZ_H = DLZ_X + (DLZ_W - GlobalConfig.font2.stringWidth(DLZ_Str)) / 2;
     }
 
     public static void b(Graphics var0) {
         var0.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-        a(var0, 1808583, 95, M, N - (4 + GlobalConfig.font2_h), O, 8 + GlobalConfig.font2_h + 18);
+        a(var0, 1808583, 95, DLZ_X, DLZ_Y - (4 + GlobalConfig.font2_h), DLZ_W, 8 + GlobalConfig.font2_h + 18);
         var0.setColor(26540);
-        var0.drawRect(M, N - (4 + GlobalConfig.font2_h), O, 8 + GlobalConfig.font2_h + 18);
-        var0.drawRect(M + 2, N - (2 + GlobalConfig.font2_h), O - 4, 8 + GlobalConfig.font2_h + 14);
+        var0.drawRect(DLZ_X, DLZ_Y - (4 + GlobalConfig.font2_h), DLZ_W, 8 + GlobalConfig.font2_h + 18);
+        var0.drawRect(DLZ_X + 2, DLZ_Y - (2 + GlobalConfig.font2_h), DLZ_W - 4, 8 + GlobalConfig.font2_h + 14);
         var0.setColor(11267556);
-        var0.drawRect(M + 1, N - (3 + GlobalConfig.font2_h), O - 2, 8 + GlobalConfig.font2_h + 16);
-        drawString(var0, (String) Q, (int) P, N, 36, 16777215, 727632);
+        var0.drawRect(DLZ_X + 1, DLZ_Y - (3 + GlobalConfig.font2_h), DLZ_W - 2, 8 + GlobalConfig.font2_h + 16);
+        drawString(var0, (String) DLZ_Str, (int) DLZ_H, DLZ_Y, 36, 16777215, 727632);
         var0.setColor(539727);
-        var0.fillRect(M + 2, N, O - 4, 18);
+        var0.fillRect(DLZ_X + 2, DLZ_Y, DLZ_W - 4, 18);
         var0.setColor(4448748);
-        var0.drawRect(M + 3, N + 1, O - 6, 15);
+        var0.drawRect(DLZ_X + 3, DLZ_Y + 1, DLZ_W - 6, 15);
         var0.setColor(1265510);
-        var0.fillRect(M + 4, N + 3, O - 8, 12);
-        var0.setClip(M + 4, N + 3, O - 8, 12);
-        int var10001 = M + 3 + l % (O + 15) - 20;
-        int var3 = N + 3;
+        var0.fillRect(DLZ_X + 4, DLZ_Y + 3, DLZ_W - 8, 12);
+        var0.setClip(DLZ_X + 4, DLZ_Y + 3, DLZ_W - 8, 12);
+        int var10001 = DLZ_X + 3 + l % (DLZ_W + 15) - 20;
+        int var3 = DLZ_Y + 3;
         int var2 = var10001;
         var0.setColor(4432868);
         var0.fillRect(var2 + 1, var3 + 1, 23, 10);
@@ -704,8 +706,8 @@ public final class LoadingPage {
                 W = parseText(str.trim(), GlobalConfig.font2, X - 8, "\t");
                 Y = (GlobalConfig.font2_h * W.length) + 8;
             }
-            Z = i2 + X <= GlobalConfig.f + GlobalConfig.realWidth ? i2 : i2 - X >= GlobalConfig.f ? i2 - X : GlobalConfig.f + ((GlobalConfig.realWidth - X) / 2);
-            aa = i3 + Y <= i4 ? i3 : i3 - Y >= GlobalConfig.g ? i3 - Y : GlobalConfig.g + ((GlobalConfig.realHigh - Y) / 2);
+            Z = i2 + X <= GlobalConfig.gameX + GlobalConfig.realWidth ? i2 : i2 - X >= GlobalConfig.gameX ? i2 - X : GlobalConfig.gameX + ((GlobalConfig.realWidth - X) / 2);
+            aa = i3 + Y <= i4 ? i3 : i3 - Y >= GlobalConfig.gameY ? i3 - Y : GlobalConfig.gameY + ((GlobalConfig.realHigh - Y) / 2);
             if (l == 15) {
                 a(graphics, 1009050, 210, Z, aa, X / 4, Y / 4);
             } else if (l == 16) {
@@ -773,7 +775,7 @@ public final class LoadingPage {
                         a(var0, 1009050, 210, Z - X / 4, var5 - Y / 4, X / 4, Y / 4);
                     }
                 } else if (var6 == 36) {
-                    if (Z + X > GlobalConfig.f + GlobalConfig.realWidth) {
+                    if (Z + X > GlobalConfig.gameX + GlobalConfig.realWidth) {
                         a(var0, 1009050, 210, Z - X / 4, var5 - Y / 4, X / 4, Y / 4);
                     } else {
                         a(var0, 1009050, 210, Z, var5 - Y / 4, X / 4, Y / 4);
@@ -784,7 +786,7 @@ public final class LoadingPage {
                     } else {
                         a(var0, 1009050, 210, Z - X / 4, var5, X / 4, Y / 4);
                     }
-                } else if (var4 + X <= GlobalConfig.f + GlobalConfig.realWidth) {
+                } else if (var4 + X <= GlobalConfig.gameX + GlobalConfig.realWidth) {
                     a(var0, 1009050, 210, Z, var5, X / 4, Y / 4);
                 } else {
                     a(var0, 1009050, 210, Z - X / 4, var5, X / 4, Y / 4);
@@ -797,7 +799,7 @@ public final class LoadingPage {
                         a(var0, 1009050, 210, Z - X / 2, var5 - Y / 2, X / 2, Y / 2);
                     }
                 } else if (var6 == 36) {
-                    if (Z + X > GlobalConfig.f + GlobalConfig.realWidth) {
+                    if (Z + X > GlobalConfig.gameX + GlobalConfig.realWidth) {
                         a(var0, 1009050, 210, Z - X / 2, var5 - Y / 2, X / 2, Y / 2);
                     } else {
                         a(var0, 1009050, 210, Z, var5 - Y / 2, X / 2, Y / 2);
@@ -808,7 +810,7 @@ public final class LoadingPage {
                     } else {
                         a(var0, 1009050, 210, Z - X / 2, var5, X / 2, Y / 2);
                     }
-                } else if (var4 + X <= GlobalConfig.f + GlobalConfig.realWidth) {
+                } else if (var4 + X <= GlobalConfig.gameX + GlobalConfig.realWidth) {
                     a(var0, 1009050, 210, Z, var5, X / 2, Y / 2);
                 } else {
                     a(var0, 1009050, 210, Z - X / 2, var5, X / 2, Y / 4);
@@ -821,7 +823,7 @@ public final class LoadingPage {
                         a(var0, 1009050, 210, Z - X / 4 * 3, var5 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                     }
                 } else if (var6 == 36) {
-                    if (Z + X > GlobalConfig.f + GlobalConfig.realWidth) {
+                    if (Z + X > GlobalConfig.gameX + GlobalConfig.realWidth) {
                         a(var0, 1009050, 210, Z - X / 4 * 3, var5 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                     } else {
                         a(var0, 1009050, 210, Z, var5 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
@@ -832,7 +834,7 @@ public final class LoadingPage {
                     } else {
                         a(var0, 1009050, 210, Z - X / 4 * 3, var5, X / 4 * 3, Y / 4 * 3);
                     }
-                } else if (var4 + X <= GlobalConfig.f + GlobalConfig.realWidth) {
+                } else if (var4 + X <= GlobalConfig.gameX + GlobalConfig.realWidth) {
                     a(var0, 1009050, 210, Z, var5, X / 4 * 3, Y / 4 * 3);
                 } else {
                     a(var0, 1009050, 210, Z - X / 4 * 3, var5, X / 4 * 3, Y / 4 * 3);
@@ -858,7 +860,7 @@ public final class LoadingPage {
                         }
                     }
                 } else if (var6 == 36) {
-                    if (Z + X > GlobalConfig.f + GlobalConfig.realWidth) {
+                    if (Z + X > GlobalConfig.gameX + GlobalConfig.realWidth) {
                         a(var0, 1009050, 210, Z - X, var5 - Y, X, Y);
                         var0.drawRect(Z - X, var5 - Y, X, Y);
                         var0.setColor(ab);
@@ -896,7 +898,7 @@ public final class LoadingPage {
                 } else {
                     int var8 = Z;
                     int var7 = aa;
-                    if (var4 + X > GlobalConfig.f + GlobalConfig.realWidth && (var8 -= X) < 0) {
+                    if (var4 + X > GlobalConfig.gameX + GlobalConfig.realWidth && (var8 -= X) < 0) {
                         var8 = 0;
                     }
 
@@ -1579,7 +1581,7 @@ public final class LoadingPage {
      */
     public static void a() {
         an = new int[]{(GlobalConfig.defaultWidth - 100) / 2, (GlobalConfig.defaultHigh / 3 << 1) + 20, 100, 3};  // 进度条 [x, y, w, h]
-        A = 0;  // 进度归零
+        loadProgressPercentage = 0;  // 进度归零
         // 从 ao 提示语数组中随机选一条，创建富文本渲染组件，最大宽度为屏幕宽-20
         ap = new FWBRender(tips[f(1, 100) % 7], (short) (GlobalConfig.defaultWidth - 20));
     }
@@ -1607,13 +1609,13 @@ public final class LoadingPage {
             graphics.setColor(16777215);                      // 白色
             graphics.drawString("正在载入资源...", GlobalConfig.defaultWidth / 2, GlobalConfig.defaultHigh / 2, 17);  // 屏幕中央
             graphics.setColor(14459464);                      // 浅蓝色
-            graphics.drawString(100 * A / 100 + "%", GlobalConfig.defaultWidth / 2, an[1] + 10, 17);  // 百分比数字
+            graphics.drawString(100 * loadProgressPercentage / 100 + "%", GlobalConfig.defaultWidth / 2, an[1] + 10, 17);  // 百分比数字
             graphics.drawImage(jindutiao, an[0] - 5, an[1] - 4, 20);   // 进度条背景图
             graphics.setColor(16382066);                      // 进度条前景色1
-            graphics.fillRect(an[0], an[1], 100 * A / 100, 3);
+            graphics.fillRect(an[0], an[1], 100 * loadProgressPercentage / 100, 3);
             graphics.setColor(14459464);                      // 进度条前景色2（高光层）
-            graphics.fillRect(an[0], an[1] + 1, 100 * A / 100, 2);
-            A = ++A > 100 ? 100 : A;                     // 进度递增，上限100
+            graphics.fillRect(an[0], an[1] + 1, 100 * loadProgressPercentage / 100, 2);
+            loadProgressPercentage = ++loadProgressPercentage > 100 ? 100 : loadProgressPercentage;                     // 进度递增，上限100
         }
     }
 

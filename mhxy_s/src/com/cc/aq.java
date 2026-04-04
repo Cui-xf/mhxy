@@ -55,7 +55,7 @@ public final class aq {
       this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
       this.b.mixedUi.a((BaseUi)this.b.textPanel);
       this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.a.mainCanvasRef.touchPageCase = this.a.mainCanvasRef.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 41;
@@ -142,7 +142,7 @@ public final class aq {
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short)4224, var2));
-            this.a.mainCanvasRef.a((String)null);
+            this.a.mainCanvasRef.showDLZ((String)null);
          }
       }
 
@@ -152,7 +152,7 @@ public final class aq {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.g((short)4198, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4198, var1));
-         this.a.mainCanvasRef.a((String)null);
+         this.a.mainCanvasRef.showDLZ((String)null);
       } else {
          this.a.mainCanvasRef.processException("获取上传指令数据错误!");
       }
@@ -173,7 +173,7 @@ public final class aq {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.j((short)4225, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4225, var1));
-         this.a.mainCanvasRef.a((String)null);
+         this.a.mainCanvasRef.showDLZ((String)null);
       } else {
          this.a.mainCanvasRef.processException("获取上传指令数据错误!");
       }
@@ -200,7 +200,7 @@ public final class aq {
       this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
       this.b.mixedUi.a((BaseUi)this.b.textPanel);
       this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 42;
@@ -218,7 +218,7 @@ public final class aq {
          }
 
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, GlobalStatus.io[this.b.gunDongListUi.g()] == 1 ? new String[]{"取消响应"} : new String[]{"响应"}, false);
+            LoadingPage.a(80 + GlobalConfig.gameX, GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, GlobalStatus.io[this.b.gunDongListUi.g()] == 1 ? new String[]{"取消响应"} : new String[]{"响应"}, false);
             this.a.sceneSubState = 1;
             return;
          }
@@ -279,7 +279,7 @@ public final class aq {
                   this.b.processException("获取上传指令数据错误!");
                }
 
-               this.b.a((String)null);
+               this.b.showDLZ((String)null);
                return;
             }
 
@@ -291,7 +291,7 @@ public final class aq {
                this.b.processException("获取上传指令数据错误!");
             }
 
-            this.b.a((String)null);
+            this.b.showDLZ((String)null);
             return;
          }
       }
@@ -310,7 +310,7 @@ public final class aq {
       this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
       this.b.mixedUi.a((BaseUi)this.b.textPanel);
       this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 43;
@@ -330,7 +330,7 @@ public final class aq {
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-               LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, GlobalStatus.is[this.b.gunDongListUi.g()] == 1 ? new String[]{"取消申请"} : new String[]{"申请"}, false);
+               LoadingPage.a(80 + GlobalConfig.gameX, GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, GlobalStatus.is[this.b.gunDongListUi.g()] == 1 ? new String[]{"取消申请"} : new String[]{"申请"}, false);
                this.a.sceneSubState = 1;
             }
          }
@@ -391,7 +391,7 @@ public final class aq {
                }
 
                MainCanvas.netUtils.sendPacket(new NetPacket((short)4242, var3));
-               this.b.a((String)null);
+               this.b.showDLZ((String)null);
             } else {
                String var4 = GlobalStatus.ip[this.b.gunDongListUi.g()];
                byte[] var5;
@@ -401,7 +401,7 @@ public final class aq {
                }
 
                MainCanvas.netUtils.sendPacket(new NetPacket((short)4226, var5));
-               this.b.a((String)null);
+               this.b.showDLZ((String)null);
             }
          }
       }
@@ -412,7 +412,7 @@ public final class aq {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.m((short)4209, GlobalStatus.ad)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4209, var1));
-         this.b.a((String)null);
+         this.b.showDLZ((String)null);
       } else {
          this.b.processException("获取上传指令数据错误!");
       }
@@ -435,7 +435,7 @@ public final class aq {
       this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
       this.b.mixedUi.a((BaseUi)this.b.textPanel);
       this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 45;
@@ -494,7 +494,7 @@ public final class aq {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.i((short)4227, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4227, var1));
-         this.b.a((String)null);
+         this.b.showDLZ((String)null);
       } else {
          this.b.processException("获取上传指令数据错误!");
       }
@@ -521,7 +521,7 @@ public final class aq {
       this.b.bottomUi.a(true);
       this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
       this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 46;
@@ -534,7 +534,7 @@ public final class aq {
          }
 
          if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-            LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"详情", "接纳", "拒绝"}, false);
+            LoadingPage.a(80 + GlobalConfig.gameX, GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"详情", "接纳", "拒绝"}, false);
             this.a.sceneSubState = 1;
             return;
          }
@@ -599,7 +599,7 @@ public final class aq {
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short)4110, var2));
-            this.b.a((String)null);
+            this.b.showDLZ((String)null);
          } else if (LoadingPage.o == 1) {
             byte[] var3;
             if ((var3 = NetPayloadBuilder.m((short)4228, GlobalStatus.ad, GlobalStatus.it[this.b.gunDongListUi.g()])) == null) {
@@ -608,7 +608,7 @@ public final class aq {
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short)4228, var3));
-            this.b.a((String)null);
+            this.b.showDLZ((String)null);
          } else if (LoadingPage.o == 2) {
             byte[] var4;
             if ((var4 = NetPayloadBuilder.m((short)4229, GlobalStatus.ad, GlobalStatus.it[this.b.gunDongListUi.g()])) == null) {
@@ -617,7 +617,7 @@ public final class aq {
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short)4229, var4));
-            this.b.a((String)null);
+            this.b.showDLZ((String)null);
          }
       } else if (this.a.sceneSubState == 2) {
          this.a.T.onClick(var1);
@@ -643,7 +643,7 @@ public final class aq {
             this.b.processException("获取上传指令数据错误!");
          }
 
-         this.b.a((String)null);
+         this.b.showDLZ((String)null);
       }
 
    }
@@ -653,7 +653,7 @@ public final class aq {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.h((short)4212, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4212, var2));
-         this.b.a((String)null);
+         this.b.showDLZ((String)null);
       } else {
          this.b.processException("获取上传指令数据错误!");
       }
@@ -663,7 +663,7 @@ public final class aq {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.o((short)4211, GlobalStatus.ad)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4211, var1));
-         this.b.a((String)null);
+         this.b.showDLZ((String)null);
       } else {
          this.b.processException("获取上传指令数据错误!");
       }
@@ -673,7 +673,7 @@ public final class aq {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.k((short)4263, GlobalStatus.ad, (byte)var1)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4263, var2));
-         this.b.a((String)null);
+         this.b.showDLZ((String)null);
       } else {
          this.b.processException("获取上传指令数据错误!");
       }
@@ -695,12 +695,12 @@ public final class aq {
          this.b.bottomUi.a(true);
          this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
          this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-         this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+         this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       } else if (var1 == 1) {
          this.b.topUi.a = 1;
          this.b.textPanel.setText(GlobalStatus.iH, GlobalConfig.font2, (byte)2);
          this.b.mixedUi.a((BaseUi)this.b.textPanel);
-         this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+         this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       } else if (var1 == 2) {
          this.b.topUi.a = 2;
          String[] var4 = null;
@@ -729,7 +729,7 @@ public final class aq {
          this.b.bottomUi.a(true);
          this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
          this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-         this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+         this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
          LoadingPage.l = 0;
       } else if (var1 == 3) {
          this.b.topUi.a = 3;
@@ -738,7 +738,7 @@ public final class aq {
          this.b.bottomUi.a(true);
          this.b.mixedUi.a((BaseUi)this.b.textPanel);
          this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-         this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+         this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       }
 
       this.a.sceneSubState = 0;
@@ -784,13 +784,13 @@ public final class aq {
                   }
                } else if (GlobalStatus.iD[this.b.gunDongListUi.g()] == 1) {
                   if (!GlobalStatus.iy[this.b.gunDongListUi.g()].equals(GlobalStatus.ad)) {
-                     LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+                     LoadingPage.a(80 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
                      this.a.sceneSubState = 1;
                      this.a.aE = this.b.gunDongListUi.g();
                      this.a.aA = this.b.gunDongListUi.h();
                   }
                } else if (!GlobalStatus.iy[this.b.gunDongListUi.g()].equals(GlobalStatus.ad)) {
-                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看"}, false);
+                  LoadingPage.a(80 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"查看"}, false);
                   this.a.sceneSubState = 1;
                   this.a.aE = this.b.gunDongListUi.g();
                   this.a.aA = this.b.gunDongListUi.h();
@@ -875,7 +875,7 @@ public final class aq {
                if (this.b.gunDongListUi.g() == this.b.gunDongListUi.h()) {
                   this.b.a((String)"请输入要搜索的帮派名称", (int)0);
                } else if (GlobalStatus.jY != null) {
-                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "外交", "宣战"}, true);
+                  LoadingPage.a(80 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"查看", "外交", "宣战"}, true);
                   this.a.sceneSubState = 7;
                }
             }
@@ -964,7 +964,7 @@ public final class aq {
             }
          } else {
             if (LoadingPage.o == 0) {
-               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"属性", "装备"}, false);
+               LoadingPage.a(80 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"属性", "装备"}, false);
                this.a.sceneSubState = 2;
                return;
             }
@@ -978,7 +978,7 @@ public final class aq {
 
             if (LoadingPage.o == 2) {
                if (GlobalStatus.bs == -1) {
-                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"自由", "跟随"}, false);
+                  LoadingPage.a(80 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"自由", "跟随"}, false);
                   this.a.sceneSubState = 6;
                   return;
                }
@@ -988,7 +988,7 @@ public final class aq {
             }
 
             if (LoadingPage.o == 3) {
-               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"物品", "宠物"}, false);
+               LoadingPage.a(80 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"物品", "宠物"}, false);
                this.a.sceneSubState = 5;
                return;
             }
@@ -1010,9 +1010,9 @@ public final class aq {
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
                if (GlobalStatus.iD[this.b.gunDongListUi.g()] == 1) {
-                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+                  LoadingPage.a(80 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
                } else {
-                  LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看"}, false);
+                  LoadingPage.a(80 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"查看"}, false);
                }
 
                this.a.sceneSubState = 1;
@@ -1026,7 +1026,7 @@ public final class aq {
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short)4110, var6));
-            this.b.a((String)null);
+            this.b.showDLZ((String)null);
          } else if (LoadingPage.o == 1) {
             byte[] var7;
             if ((var7 = NetPayloadBuilder.b((short)4111, GlobalStatus.ad, GlobalStatus.iy[this.b.gunDongListUi.g()])) == null) {
@@ -1035,7 +1035,7 @@ public final class aq {
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short)4111, var7));
-            this.b.a((String)null);
+            this.b.showDLZ((String)null);
          }
       } else if (this.a.sceneSubState == 3) {
          this.a.T.onClick(var1);
@@ -1068,7 +1068,7 @@ public final class aq {
          LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
-               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+               LoadingPage.a(80 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
                LoadingPage.o = 3;
                this.a.sceneSubState = 1;
                return;
@@ -1081,13 +1081,13 @@ public final class aq {
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short)4124, var8));
-            this.b.a((String)null);
+            this.b.showDLZ((String)null);
          }
       } else if (this.a.sceneSubState == 6) {
          LoadingPage.b(var1);
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
             if (var1 == 536870912) {
-               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
+               LoadingPage.a(80 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单"}, false);
                LoadingPage.o = 2;
                this.a.sceneSubState = 1;
                return;
@@ -1125,7 +1125,7 @@ public final class aq {
             }
 
             if (LoadingPage.o == 1) {
-               LoadingPage.a(80 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"中立", "敌对"}, true);
+               LoadingPage.a(80 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"中立", "敌对"}, true);
                this.a.sceneSubState = 8;
                return;
             }
@@ -1189,7 +1189,7 @@ public final class aq {
       this.b.bottomUi.a(true);
       this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
       this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 48;
@@ -1216,7 +1216,7 @@ public final class aq {
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-               LoadingPage.a(80 + GlobalConfig.f, GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"任免", "开除"}, false);
+               LoadingPage.a(80 + GlobalConfig.gameX, GlobalConfig.font2_h + 20 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"任免", "开除"}, false);
                this.a.sceneSubState = 1;
                this.v = this.b.gunDongListUi.g();
             }
@@ -1283,7 +1283,7 @@ public final class aq {
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short)4241, var3));
-            this.b.a((String)null);
+            this.b.showDLZ((String)null);
          } else if (LoadingPage.o == 1) {
             this.a.sceneSubState = 3;
             LoadingPage.h = 0;
@@ -1315,7 +1315,7 @@ public final class aq {
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short)4217, var5));
-            this.b.a((String)null);
+            this.b.showDLZ((String)null);
          }
       } else if (this.a.sceneSubState == 3) {
          if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -1331,7 +1331,7 @@ public final class aq {
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short)4208, var7));
-            this.b.a((String)null);
+            this.b.showDLZ((String)null);
          }
       }
 
@@ -1348,7 +1348,7 @@ public final class aq {
       this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
       this.b.mixedUi.a((BaseUi)this.b.textPanel);
       this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 2;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 48;
@@ -1375,7 +1375,7 @@ public final class aq {
       this.b.bottomUi.a("确定");
       this.b.mixedUi.a((BaseUi)this.b.textPanel);
       this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 49;
@@ -1398,7 +1398,7 @@ public final class aq {
       this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
       this.b.mixedUi.a((BaseUi)this.b.textPanel);
       this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       LoadingPage.h = 0;
       LoadingPage.g = 0;
       this.b.touchAction = 0;
@@ -1499,7 +1499,7 @@ public final class aq {
                      byte[] var4;
                      if ((var4 = NetPayloadBuilder.b((short)4264, (byte)2, this.a.n(), GlobalStatus.ad)) != null) {
                         MainCanvas.netUtils.sendPacket(new NetPacket((short)4264, var4));
-                        this.b.a((String)null);
+                        this.b.showDLZ((String)null);
                      } else {
                         this.b.processException("获取上传指令数据错误!");
                      }
@@ -1579,7 +1579,7 @@ public final class aq {
             byte[] var3;
             if ((var3 = NetPayloadBuilder.a((short)4368, (int)this.a.ag, (byte)((byte)(this.a.sceneSubState == 3 ? 1 : 2)), GlobalStatus.ad)) != null) {
                MainCanvas.netUtils.sendPacket(new NetPacket((short)4368, var3));
-               this.b.a((String)null);
+               this.b.showDLZ((String)null);
             } else {
                this.b.processException("获取上传指令数据错误!");
             }
@@ -1608,7 +1608,7 @@ public final class aq {
             byte[] var2;
             if ((var2 = NetPayloadBuilder.b((short)4264, (byte)(this.a.sceneSubState == 1 ? 1 : 3), this.a.n(), GlobalStatus.ad)) != null) {
                MainCanvas.netUtils.sendPacket(new NetPacket((short)4264, var2));
-               this.b.a((String)null);
+               this.b.showDLZ((String)null);
             } else {
                this.b.processException("获取上传指令数据错误!");
             }
@@ -1627,7 +1627,7 @@ public final class aq {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.C(var1, GlobalStatus.ad)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket(var1, var2));
-         this.b.a((String)null);
+         this.b.showDLZ((String)null);
       } else {
          this.b.processException("获取上传指令数据错误!");
       }
@@ -1637,7 +1637,7 @@ public final class aq {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.a((short)4239, var1, this.i, GlobalStatus.ad)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4239, var2));
-         this.b.a((String)null);
+         this.b.showDLZ((String)null);
       } else {
          this.b.processException("获取上传指令数据错误!");
       }
@@ -1660,7 +1660,7 @@ public final class aq {
       this.b.bottomUi.a(new String[]{"确定", "返回"});
       this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
       this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 51;
@@ -1670,7 +1670,7 @@ public final class aq {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.r((short)4221, GlobalStatus.ad)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4221, var1));
-         this.b.a((String)null);
+         this.b.showDLZ((String)null);
       } else {
          this.b.processException("获取上传指令数据错误!");
       }
@@ -1968,7 +1968,7 @@ public final class aq {
                }
 
                MainCanvas.netUtils.sendPacket(new NetPacket((short)4220, var2));
-               this.b.a((String)null);
+               this.b.showDLZ((String)null);
             } else if (var1 == 536870912) {
                this.q();
                this.b(true);
@@ -1996,7 +1996,7 @@ public final class aq {
       this.b.bottomUi.a(new String[]{"确定", "返回"});
       this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
       this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 114;
@@ -2278,7 +2278,7 @@ public final class aq {
       this.b.mixedUi.a((BaseUi)this.b.topUi);
       this.b.mixedUi.a((BaseUi)this.b.textPanel);
       this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 115;
    }
@@ -2365,7 +2365,7 @@ public final class aq {
                      }
 
                      this.b.mixedUi.a((BaseUi)this.b.textPanel);
-                     this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+                     this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
                      this.a.sceneSubState = 2;
                   } else {
                      var1 = var2;
@@ -2429,7 +2429,7 @@ public final class aq {
                   byte[] var6;
                   if ((var6 = NetPayloadBuilder.C((short)4366, GlobalStatus.ad)) != null) {
                      MainCanvas.netUtils.sendPacket(new NetPacket((short)4366, var6));
-                     this.a.mainCanvasRef.a((String)null);
+                     this.a.mainCanvasRef.showDLZ((String)null);
                   } else {
                      this.a.mainCanvasRef.processException("获取上传指令数据错误!");
                   }
@@ -2518,7 +2518,7 @@ public final class aq {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.b((short)4246, GlobalStatus.iN[(this.b.topUi.a << 5) + (this.a.ar << 3) + this.a.aq], (byte)var1, GlobalStatus.ad)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4246, var2));
-         this.a.mainCanvasRef.a((String)null);
+         this.a.mainCanvasRef.showDLZ((String)null);
       } else {
          this.a.mainCanvasRef.processException("获取上传指令数据错误!");
       }
@@ -2594,7 +2594,7 @@ public final class aq {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.b((short)4245, GlobalStatus.iN[(this.b.topUi.a << 5) + (this.a.ar << 3) + this.a.aq], (byte)var1, GlobalStatus.ad)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4245, var2));
-         this.a.mainCanvasRef.a((String)null);
+         this.a.mainCanvasRef.showDLZ((String)null);
       } else {
          this.a.mainCanvasRef.processException("获取上传指令数据错误!");
       }
@@ -2650,7 +2650,7 @@ public final class aq {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.s((short)4236, GlobalStatus.ad)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4236, var1));
-         this.b.a((String)null);
+         this.b.showDLZ((String)null);
       } else {
          this.b.processException("获取上传指令数据错误!");
       }
@@ -2660,7 +2660,7 @@ public final class aq {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.k((short)(var1 == 0 ? 4230 : 4232), GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)(var1 == 0 ? 4230 : 4232), var2));
-         this.b.a((String)null);
+         this.b.showDLZ((String)null);
       } else {
          this.b.processException("获取上传指令数据错误!");
       }
@@ -2680,7 +2680,7 @@ public final class aq {
       this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
       this.b.mixedUi.a((BaseUi)this.b.textPanel);
       this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 52;
@@ -2775,13 +2775,13 @@ public final class aq {
             }
          } else {
             if (this.b.topUi.a == 0 && GlobalStatus.jo != null) {
-               LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"购买"}, true);
+               LoadingPage.a(0 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 11 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"购买"}, true);
                this.a.sceneSubState = 1;
                return;
             }
 
             if (this.b.topUi.a == 1 && GlobalStatus.jr != null) {
-               LoadingPage.a(0 + GlobalConfig.f, 2 * GlobalConfig.font2_h + 11 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"布置", "卖出"}, true);
+               LoadingPage.a(0 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 11 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"布置", "卖出"}, true);
                this.a.sceneSubState = 2;
                return;
             }
@@ -2801,7 +2801,7 @@ public final class aq {
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short)4233, var2));
-            this.b.a((String)null);
+            this.b.showDLZ((String)null);
          }
       } else if (this.a.sceneSubState == 2) {
          LoadingPage.b(var1);
@@ -2823,7 +2823,7 @@ public final class aq {
                }
 
                MainCanvas.netUtils.sendPacket(new NetPacket((short)4237, var3));
-               this.b.a((String)null);
+               this.b.showDLZ((String)null);
             }
          }
       }
@@ -2834,7 +2834,7 @@ public final class aq {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.d((short)4864, var1, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4864, var2));
-         this.b.a((String)null);
+         this.b.showDLZ((String)null);
       } else {
          this.b.processException("获取上传指令数据错误!");
       }
@@ -2844,7 +2844,7 @@ public final class aq {
       byte[] var3;
       if ((var3 = NetPayloadBuilder.a((short)4865, var2, (byte)var1, (String) GlobalStatus.ad)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4865, var3));
-         this.b.a((String)null);
+         this.b.showDLZ((String)null);
       } else {
          this.b.processException("获取上传指令数据错误!");
       }
@@ -2880,7 +2880,7 @@ public final class aq {
       this.b.bottomUi.a(true);
       this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
       this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       LoadingPage.l = 0;
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
@@ -2974,7 +2974,7 @@ public final class aq {
             }
 
             if (GlobalStatus.jY != null) {
-               LoadingPage.a(GlobalConfig.f, GlobalConfig.font2_h + 11 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"查看", "外交", "宣战"}, true);
+               LoadingPage.a(GlobalConfig.gameX, GlobalConfig.font2_h + 11 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"查看", "外交", "宣战"}, true);
                this.a.sceneSubState = 1;
                return;
             }
@@ -2994,7 +2994,7 @@ public final class aq {
             }
 
             if (LoadingPage.o == 1) {
-               LoadingPage.a(0, GlobalConfig.font2_h + 11 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.g, new String[]{"中立", "敌对"}, true);
+               LoadingPage.a(0, GlobalConfig.font2_h + 11 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"中立", "敌对"}, true);
                this.a.sceneSubState = 2;
                return;
             }
@@ -3040,7 +3040,7 @@ public final class aq {
       byte[] var3;
       if ((var3 = NetPayloadBuilder.b((short)4866, var1, var2, GlobalStatus.ad)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4866, var3));
-         this.b.a((String)null);
+         this.b.showDLZ((String)null);
       } else {
          this.b.processException("获取上传指令数据错误!");
       }
@@ -3089,7 +3089,7 @@ public final class aq {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.l((short)4869, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4869, var1));
-         this.b.a((String)null);
+         this.b.showDLZ((String)null);
       } else {
          this.b.processException("获取上传指令数据错误!");
       }
@@ -3117,7 +3117,7 @@ public final class aq {
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short)4871, var2));
-            this.b.a((String)null);
+            this.b.showDLZ((String)null);
          }
       }
 
@@ -3140,7 +3140,7 @@ public final class aq {
          MixedUi var1 = var10000;
          var10000.e = var2;
          int var3 = var1.e;
-         this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+         this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
          this.a.sceneSubState = 0;
          this.b.touchPageCase = this.b.k;
          this.a.sceneStateShadow = this.a.currentSceneModeId = 63;
@@ -3204,7 +3204,7 @@ public final class aq {
          this.b.mixedUi.a((BaseUi)this.b.bottomUi);
       }
 
-      this.b.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.touchPageCase = this.b.k;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 113;

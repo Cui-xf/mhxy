@@ -84,7 +84,7 @@ public final class o_1 {
             this.j.mixedUi.a((BaseUi) this.j.bottomUi);
         }
 
-        this.j.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.j.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         var1 = this.j.mixedUi.a + 10 + GlobalConfig.font2.stringWidth("宝石:");
         int var2_t = this.j.mixedUi.b + 37;
         if (this.l != null) {
@@ -254,7 +254,7 @@ public final class o_1 {
 
                     NetPacket var14 = new NetPacket((short) 4687, var6);
                     MainCanvas.netUtils.sendPacket(var14);
-                    this.j.a((String) null);
+                    this.j.showDLZ((String) null);
                 }
             }
         } else if (this.i.sceneSubState == 2) {
@@ -273,7 +273,7 @@ public final class o_1 {
 
                     NetPacket var15 = new NetPacket((short) 4687, var7);
                     MainCanvas.netUtils.sendPacket(var15);
-                    this.j.a((String) null);
+                    this.j.showDLZ((String) null);
                 } else {
                     byte[] var8;
                     if ((var8 = NetPayloadBuilder.g((short) 4647, GlobalStatus.ad, GlobalStatus.ko, (byte) this.b)) == null) {
@@ -283,7 +283,7 @@ public final class o_1 {
 
                     NetPacket var16 = new NetPacket((short) 4647, var8);
                     MainCanvas.netUtils.sendPacket(var16);
-                    this.j.a((String) null);
+                    this.j.showDLZ((String) null);
                 }
             } else if (LoadingPage.o == 1) {
                 e = 1;
@@ -296,7 +296,7 @@ public final class o_1 {
 
                     NetPacket var17 = new NetPacket((short) 4687, var9);
                     MainCanvas.netUtils.sendPacket(var17);
-                    this.j.a((String) null);
+                    this.j.showDLZ((String) null);
                 } else {
                     byte[] var10;
                     if ((var10 = NetPayloadBuilder.f((short) 4646, GlobalStatus.ad, GlobalStatus.ko, (byte) this.b)) == null) {
@@ -306,7 +306,7 @@ public final class o_1 {
 
                     NetPacket var18 = new NetPacket((short) 4646, var10);
                     MainCanvas.netUtils.sendPacket(var18);
-                    this.j.a((String) null);
+                    this.j.showDLZ((String) null);
                 }
             } else if (LoadingPage.o == 2) {
                 e = 1;
@@ -318,7 +318,7 @@ public final class o_1 {
 
                 NetPacket var19 = new NetPacket((short) 4687, var11);
                 MainCanvas.netUtils.sendPacket(var19);
-                this.j.a((String) null);
+                this.j.showDLZ((String) null);
             }
         }
 
@@ -393,7 +393,7 @@ public final class o_1 {
             this.j.mixedUi.a((BaseUi) this.j.bottomUi);
         }
 
-        this.j.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.j.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.j.touchPageCase = this.j.k = 7;
         this.i.sceneStateShadow = this.i.currentSceneModeId = 65;
     }
@@ -528,7 +528,7 @@ public final class o_1 {
             this.j.mixedUi.a((BaseUi) this.j.bottomUi);
         }
 
-        this.j.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.j.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.j.touchPageCase = this.j.k = 7;
         this.i.sceneStateShadow = this.i.currentSceneModeId = 67;
     }
@@ -690,7 +690,7 @@ public final class o_1 {
         this.j.textPanel.setShuRuMoShi((byte) 1);
         this.j.bottomUi.a("确定");
         this.j.mixedUi.a((BaseUi) this.j.bottomUi);
-        this.j.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.j.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         int var1_t = 0;
         int var2 = 0;
         if (this.G != null) {
@@ -823,7 +823,7 @@ public final class o_1 {
                 if (var4 != null) {
                     NetPacket var6 = new NetPacket((short) 4688, var4);
                     MainCanvas.netUtils.sendPacket(var6);
-                    this.j.a((String) null);
+                    this.j.showDLZ((String) null);
                 } else {
                     this.j.processException("获取上传指令数据错误!");
                 }

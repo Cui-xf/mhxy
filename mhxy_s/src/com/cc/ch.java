@@ -177,7 +177,7 @@ public final class ch {
          this.d.mixedUi.a((BaseUi)this.d.bottomUi);
       }
 
-      this.d.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.d.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.d.textPanel.setTextRect(this.d.textPanel.textX, this.d.textPanel.textY, this.d.mixedUi.c / 2 - 6, this.d.textPanel.textH);
       int var1_t = 0;
       int var2 = 0;
@@ -337,7 +337,7 @@ public final class ch {
                if ((var7 = NetPayloadBuilder.a((short)4689, h, (byte)1, p, GlobalStatus.ad)) != null) {
                   NetPacket var12 = new NetPacket((short)4689, var7);
                   MainCanvas.netUtils.sendPacket(var12);
-                  this.d.a((String)null);
+                  this.d.showDLZ((String)null);
                } else {
                   this.d.processException("获取上传指令数据错误!");
                }
@@ -352,7 +352,7 @@ public final class ch {
 
             NetPacket var13 = new NetPacket((short)4689, var9);
             MainCanvas.netUtils.sendPacket(var13);
-            this.d.a((String)null);
+            this.d.showDLZ((String)null);
          } else {
             if (LoadingPage.o == 1) {
                if (this.c.aw && !this.A) {

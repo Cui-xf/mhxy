@@ -1,7 +1,6 @@
 package com.cc;
 
 import com.yinhan.kjava.main.MainCanvas;
-import com.yinhan.kjava.main.c_3;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
@@ -420,7 +419,7 @@ public final class NetworkPacketProcessors {
                             this.mainCanvas.bottomUi.a("确定");
                             this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.textPanel);
                             this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.bottomUi);
-                            this.mainCanvas.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+                            this.mainCanvas.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
                             this.mainCanvas.touchPageCase = this.mainCanvas.k;
                             MainCanvas.uiSceneController.sceneSubState = 3;
                         }
@@ -927,7 +926,7 @@ public final class NetworkPacketProcessors {
                                     this.mainCanvas.processException("充值卡充值暂时关闭");
                                 }
                             } else if (GlobalStatus.jy == 1) {
-                                c_3.g();
+//                                LoginController.ggggggggggggggggggg();
                             } else {
                                 this.mainCanvas.processException("充值功能暂时关闭");
                             }
@@ -1305,7 +1304,7 @@ public final class NetworkPacketProcessors {
                         return;
                     case 8739:
                         GlobalStatus.aN(this.b);
-                        c_3.a("游客注册 第2步: ", "创建一哥哥通行证密码");
+//                        LoginController.aaaaa("游客注册 第2步: ", "创建一哥哥通行证密码");
                         this.mainCanvas.touchPageCase = 7;
                         return;
                     case 8960:
@@ -1604,20 +1603,20 @@ public final class NetworkPacketProcessors {
                         this.b.readByte();
                         if (var30 == 4) {
                             String[] var3;
-                            bb_1.j = (var3 = ZhangHaoUtils.a(this.b.readUTF(), ':'))[0].trim();
-                            bb_1.i = var3[1].trim();
-                            bb_1.m = bb_1.j;
-                            bb_1.n = bb_1.i;
-                            bb_1.b();
+                            ChongZhiModel.j = (var3 = ZhangHaoUtils.a(this.b.readUTF(), ':'))[0].trim();
+                            ChongZhiModel.i = var3[1].trim();
+                            ChongZhiModel.zhanghao = ChongZhiModel.j;
+                            ChongZhiModel.pwd = ChongZhiModel.i;
+                            ChongZhiModel.saveZhangHaoPwd();
                             String var4 = this.b.readUTF();
                             this.mainCanvas.processException(var4);
                         } else if (var30 == 2) {
                             String[] var49;
-                            bb_1.j = (var49 = ZhangHaoUtils.a(this.b.readUTF(), ':'))[0].trim();
-                            bb_1.i = var49[1].trim();
-                            bb_1.m = bb_1.j;
-                            bb_1.n = bb_1.i;
-                            bb_1.b();
+                            ChongZhiModel.j = (var49 = ZhangHaoUtils.a(this.b.readUTF(), ':'))[0].trim();
+                            ChongZhiModel.i = var49[1].trim();
+                            ChongZhiModel.zhanghao = ChongZhiModel.j;
+                            ChongZhiModel.pwd = ChongZhiModel.i;
+                            ChongZhiModel.saveZhangHaoPwd();
                             String var58 = this.b.readUTF();
                             this.mainCanvas.processException(var58);
                             break;

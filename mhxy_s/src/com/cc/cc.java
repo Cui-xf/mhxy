@@ -72,7 +72,7 @@ public final class cc {
             this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.textPanel);
             this.mainCanvas.bottomUi.a(new String[]{"操作", "返回"});
             this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.bottomUi);
-            this.mainCanvas.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvas.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
             this.e = this.mainCanvas.textPanel.textH;
             int var5 = (this.mainCanvas.mixedUi.c - 16 - 2) / 2;
             int var1_t = (this.mainCanvas.textPanel.textH - 6) / 2;
@@ -87,13 +87,13 @@ public final class cc {
             this.mainCanvas.gunDongListUi.a((Image[]) null, this.w, this.x, this.y);
             this.mainCanvas.gunDongListUi.a(this.B);
             this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.gunDongListUi);
-            this.mainCanvas.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvas.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         } else if (this.a == 2) {
             this.mainCanvas.textPanel.setText(this.C, GlobalConfig.font2, (byte) 1);
             this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.textPanel);
             this.mainCanvas.bottomUi.a(new String[]{"购买次数", "返回"});
             this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.bottomUi);
-            this.mainCanvas.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvas.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
             this.e = GlobalConfig.font2_h * 3 + 4;
             this.mainCanvas.textPanel.setTextRect(this.mainCanvas.textPanel.textX, this.mainCanvas.textPanel.textY, this.mainCanvas.textPanel.textW, this.mainCanvas.textPanel.textH - this.e - 2);
             UISceneController.K = new FWBRender("当前排名：" + (this.h <= 0 ? "无" : "第" + this.h + "名") + "\t剩余挑战：" + this.i + "次\t当前积分：" + this.j, (short) (this.mainCanvas.textPanel.textW - 20));
@@ -158,7 +158,7 @@ public final class cc {
 
                 NetPacket var7 = new NetPacket((short) 4690, var11);
                 MainCanvas.netUtils.sendPacket(var7);
-                this.mainCanvas.a((String) null);
+                this.mainCanvas.showDLZ((String) null);
             }
         } else if (this.uiSceneController.sceneSubState == 1) {
             LoadingPage.b(var1);
@@ -185,7 +185,7 @@ public final class cc {
                     }
 
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4110, var4));
-                    this.mainCanvas.a((String) null);
+                    this.mainCanvas.showDLZ((String) null);
                 } else {
                     this.a = (short) this.mainCanvas.topUi.a;
                     String var2 = this.a == 0 ? this.p[this.g] : this.A[this.mainCanvas.gunDongListUi.g() - 1];
@@ -196,7 +196,7 @@ public final class cc {
                     }
 
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4111, var3));
-                    this.mainCanvas.a((String) null);
+                    this.mainCanvas.showDLZ((String) null);
                 }
             }
         } else if (this.uiSceneController.sceneSubState == 2) {
@@ -215,7 +215,7 @@ public final class cc {
 
                 NetPacket var6 = new NetPacket((short) 4690, var5);
                 MainCanvas.netUtils.sendPacket(var6);
-                this.mainCanvas.a((String) null);
+                this.mainCanvas.showDLZ((String) null);
             }
         } else if (this.uiSceneController.sceneSubState == 3) {
             this.uiSceneController.T.onClick(var1);

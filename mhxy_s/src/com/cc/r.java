@@ -242,7 +242,7 @@ public final class r {
          this.j.mixedUi.a((BaseUi)this.j.bottomUi);
       }
 
-      this.j.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.j.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a();
       this.e();
       LoadingPage.l = 0;
@@ -346,7 +346,7 @@ public final class r {
                if ((var4 = NetPayloadBuilder.a((short)4262, this.c, this.d, (byte)2, this.e, this.f, this.d(this.a), (byte)this.a, GlobalStatus.ad)) != null) {
                   NetPacket var5 = new NetPacket((short)4262, var4);
                   MainCanvas.netUtils.sendPacket(var5);
-                  this.j.a((String)null);
+                  this.j.showDLZ((String)null);
                } else {
                   this.j.processException("获取上传指令数据错误!");
                }
@@ -361,7 +361,7 @@ public final class r {
                if (var6 != null) {
                   NetPacket var7 = new NetPacket((short)4262, var6);
                   MainCanvas.netUtils.sendPacket(var7);
-                  this.j.a((String)null);
+                  this.j.showDLZ((String)null);
                } else {
                   this.j.processException("获取上传指令数据错误!");
                }

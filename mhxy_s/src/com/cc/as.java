@@ -114,7 +114,7 @@ public final class as {
          this.a.mixedUi.a((BaseUi)this.a.bottomUi);
       }
 
-      this.a.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.a.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.b();
       LoadingPage.l = 0;
       this.b.sceneSubState = 0;

@@ -26,7 +26,7 @@ public final class ba {
          var1.mixedUi.a((BaseUi)var1.bottomUi);
       }
 
-      var1.mixedUi.a(GlobalConfig.f, GlobalConfig.g, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      var1.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.d = (short)(var1.textPanel.textH >> 1);
       this.e = var1.textPanel.textX;
       this.f = var1.textPanel.textY;

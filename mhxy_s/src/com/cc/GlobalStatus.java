@@ -4628,10 +4628,10 @@ public final class GlobalStatus {
     public static void M(DataInputStream var0) throws IOException {
         if (GlobalConfig.channel == 1) {
             if (GlobalConfig.logined) {
-                bb_1.g = var0.readUTF();
-                bb_1.h = var0.readUTF();
-                bb_1.b = var0.readInt();
-                bb_1.a = var0.readInt();
+                ChongZhiModel.g = var0.readUTF();
+                ChongZhiModel.h = var0.readUTF();
+                ChongZhiModel.GameId = var0.readInt();
+                ChongZhiModel.CpId = var0.readInt();
             } else {
                 hw = var0.readByte() > 0;
                 hx = var0.readByte();
@@ -4701,25 +4701,25 @@ public final class GlobalStatus {
 
         var0.readUTF();
         var0.readByte();
-        bb_1.g = var0.readUTF();
-        bb_1.h = var0.readUTF();
+        ChongZhiModel.g = var0.readUTF();
+        ChongZhiModel.h = var0.readUTF();
         hy = var0.readUTF();
         hz = var0.readUTF();
         if (var0.readByte() > 0) {
             String var4 = var0.readUTF();
             String var3 = var0.readUTF();
             if (!"".equals(var4)) {
-                MainCanvas.am = var4;
-                bb_1.m = var4;
+                MainCanvas.zhanghao = var4;
+                ChongZhiModel.zhanghao = var4;
             }
 
             if (!"".equals(var3)) {
-                MainCanvas.an = var3;
-                bb_1.n = var3;
+                MainCanvas.pwd = var3;
+                ChongZhiModel.pwd = var3;
             }
 
-            bb_1.k = true;
-            bb_1.b();
+            ChongZhiModel.rememberPwd = true;
+            ChongZhiModel.saveZhangHaoPwd();
         }
 
     }
@@ -6333,8 +6333,8 @@ public final class GlobalStatus {
             var1.e = var0.readInt();
             var1.f = var0.readInt();
         } else {
-            var1.c = GlobalConfig.f;
-            var1.d = GlobalConfig.g;
+            var1.c = GlobalConfig.gameX;
+            var1.d = GlobalConfig.gameY;
             var1.e = GlobalConfig.realWidth;
             var1.f = GlobalConfig.realHigh;
         }

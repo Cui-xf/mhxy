@@ -37,11 +37,11 @@ public final class GlobalConfig {
     /**
      * 屏幕尺寸辅助参数
      */
-    public static short f;
+    public static short gameX;
     /**
      * 屏幕尺寸辅助参数
      */
-    public static short g;
+    public static short gameY;
 
     /**
      * 普通字体
