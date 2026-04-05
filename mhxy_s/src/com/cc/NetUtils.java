@@ -21,6 +21,7 @@ public final class NetUtils {
     private NetworkPacketProcessors networkPacketProcessors = new NetworkPacketProcessors();
     private SocketWristLooper socketWristLooper;
     public SocketReadLooper socketReadLooper;
+    // 接收包队列：SocketReadLooper 线程写入，主线程（run()）通过 processNetPacket() 消费
     private Vector receivePacketQueue = new Vector();
 
     public NetUtils() {
@@ -72,6 +73,10 @@ public final class NetUtils {
         return false;
     }
 
+    /**
+     * 每帧由主线程（MainCanvas.run）调用，从接收队列取出一个数据包交给业务处理器。
+     * 每次调用只处理一个包，避免单帧阻塞过久。
+     */
     public void processNetPacket() {
         if (!this.receivePacketQueue.isEmpty()) {
             for (int var1 = 0; var1 < this.receivePacketQueue.size(); ++var1) {
@@ -81,7 +86,7 @@ public final class NetUtils {
                         if (this.networkPacketProcessors != null) {
                             this.networkPacketProcessors.process(netPacket);
                         } else {
-                            this.mainCanvas.processException("网络数据包处理器未启动");
+                            this.mainCanvas.showTips("网络数据包处理器未启动");
                         }
                     } catch (Exception var3) {
                         if (this.mainCanvas != null) {
@@ -98,6 +103,10 @@ public final class NetUtils {
 
     }
 
+    /**
+     * 由主线程调用，将数据包放入发送队列，由 SocketWristLooper 线程异步发出。
+     * 心跳包（4101）放入 heartbeatQueue；普通包去重后放入 packetQueue。
+     */
     public void sendPacket(NetPacket packet) {
         GlobalConfig.printStr("sendPacket:" + Integer.toHexString(packet.getCode()));
         //心跳包

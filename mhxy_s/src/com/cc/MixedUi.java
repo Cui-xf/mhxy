@@ -67,8 +67,8 @@ public final class MixedUi extends BaseUi {
       this.c = var3;
       this.d = var4;
       this.s = this.b + 5;
-      if (this.i != null && MainCanvas.v != null) {
-         var4 = MainCanvas.v.c;
+      if (this.i != null && MainCanvas.title != null) {
+         var4 = MainCanvas.title.c;
          var3 = this.c;
          var2 = this.s;
          var1 = this.a;
@@ -98,15 +98,15 @@ public final class MixedUi extends BaseUi {
       }
 
       if (this.u != -1 && this.v == -1) {
-         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e;
+         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.button1.c : 0) - this.e;
          ((GunDongListUi)this.child.elementAt(this.u)).a(this.a + 5, this.s + this.e, this.c - 11, var1 - this.f);
          this.s += var1;
       } else if (this.u == -1 && this.v != -1) {
-         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.r;
+         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.button1.c : 0) - this.r;
          ((TextPanel)this.child.elementAt(this.v)).setTextRect(this.a + 5, this.s + this.r, this.c - 11, var1 - this.g);
          this.s += var1;
       } else if (this.u != -1 && this.v != -1) {
-         var2 = (var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e) / 2;
+         var2 = (var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.button1.c : 0) - this.e) / 2;
          this.s += this.e;
          ((GunDongListUi)this.child.elementAt(this.u)).a(this.a + 5, this.s, this.c - 11, var2);
          this.s += var2;
@@ -137,15 +137,15 @@ public final class MixedUi extends BaseUi {
       }
 
       if (this.u != -1 && this.v == -1) {
-         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e;
+         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.button1.c : 0) - this.e;
          ((GunDongListUi)this.child.elementAt(this.u)).a(this.a + 5, this.s + this.e, this.c - 11, var1 - this.f);
          this.s += var1;
       } else if (this.u == -1 && this.v != -1) {
-         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.r;
+         var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.button1.c : 0) - this.r;
          ((TextPanel)this.child.elementAt(this.v)).setTextRect(this.a + 5, this.s + this.r, this.c - 11, var1 - this.g);
          this.s += var1;
       } else if (this.u != -1 && this.v != -1) {
-         var2 = (var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.E.c : 0) - this.e) * var5 / var6;
+         var2 = (var1 = this.b + this.d - this.s - 6 - (this.w != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.x != -1 ? MainCanvas.button1.c : 0) - this.e) * var5 / var6;
          this.s += this.e;
          if (var7) {
             ((TextPanel)this.child.elementAt(this.v)).setTextRect(this.a + 5, this.s, this.c - 11, var2);
@@ -252,12 +252,12 @@ public final class MixedUi extends BaseUi {
 
       this.y = false;
       if (this.i != null && this.i != null) {
-         LoadingPage.a(var1, MainCanvas.v.pngImage, MainCanvas.v.b, this.m, this.n, this.o, this.p);
-         var1.drawImage(MainCanvas.u.pngImage, this.m + this.o - 5 - MainCanvas.u.b, this.n + 1, 20);
-         int var10001 = this.m + this.o - 5 - MainCanvas.u.b;
+         LoadingPage.a(var1, MainCanvas.title.pngImage, MainCanvas.title.b, this.m, this.n, this.o, this.p);
+         var1.drawImage(MainCanvas.close.pngImage, this.m + this.o - 5 - MainCanvas.close.b, this.n + 1, 20);
+         int var10001 = this.m + this.o - 5 - MainCanvas.close.b;
          int var10002 = this.n + 1;
-         short var8 = MainCanvas.u.c;
-         short var7 = MainCanvas.u.b;
+         short var8 = MainCanvas.close.c;
+         short var7 = MainCanvas.close.b;
          int var6 = var10002;
          int var5 = var10001;
          if (this.q != null) {
@@ -277,7 +277,7 @@ public final class MixedUi extends BaseUi {
             }
          }
 
-         LoadingPage.drawString(var1, (String)var10, (int)(this.m + this.o / 2), this.n + GlobalConfig.getCzjz(MainCanvas.v.c), 17, var2, 0);
+         LoadingPage.drawString(var1, (String)var10, (int)(this.m + this.o / 2), this.n + GlobalConfig.getCzjz(MainCanvas.title.c), 17, var2, 0);
          LoadingPage.a(var1, this.m, this.n + this.p, this.o);
       }
 
@@ -309,16 +309,16 @@ public final class MixedUi extends BaseUi {
       var1.drawRect(this.a + 3, this.b + 3, this.c - 7, this.d - 7);
       LoadingPage.setColor(var1, 4);
       var1.drawRect(this.a + 2, this.b + 2, this.c - 5, this.d - 5);
-      if (MainCanvas.r.pngImage != null && this.k) {
-         var1.drawImage(MainCanvas.r.pngImage, this.a, this.b, 20);
+      if (MainCanvas.lu.pngImage != null && this.k) {
+         var1.drawImage(MainCanvas.lu.pngImage, this.a, this.b, 20);
       }
 
-      if (MainCanvas.s.pngImage != null) {
-         var1.drawImage(MainCanvas.s.pngImage, this.a, this.b + this.d - MainCanvas.s.c, 20);
+      if (MainCanvas.ld.pngImage != null) {
+         var1.drawImage(MainCanvas.ld.pngImage, this.a, this.b + this.d - MainCanvas.ld.c, 20);
       }
 
-      if (MainCanvas.t.pngImage != null) {
-         var1.drawImage(MainCanvas.t.pngImage, this.a + this.c - MainCanvas.t.b, this.b + this.d - MainCanvas.t.c, 20);
+      if (MainCanvas.rd.pngImage != null) {
+         var1.drawImage(MainCanvas.rd.pngImage, this.a + this.c - MainCanvas.rd.b, this.b + this.d - MainCanvas.rd.c, 20);
       }
 
       var1.setClip(this.a, this.b, this.c, this.d);

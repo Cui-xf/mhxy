@@ -76,17 +76,17 @@ public final class ac extends ar {
          var2 = 0;
       }
 
-      super.g = MainCanvas.ab.a(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
+      super.g = MainCanvas.role.a(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
       if (super.g == null) {
          MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)5, GlobalStatus.ay, this.t, var2, var3, var4);
-         super.g = MainCanvas.ab.a(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
+         super.g = MainCanvas.role.a(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
          if (super.g == null) {
             GlobalStatus.ay = 0;
             this.s();
-            super.g = MainCanvas.ab.c(var1 ? this.v[super.h] : this.u[super.h]);
+            super.g = MainCanvas.role.c(var1 ? this.v[super.h] : this.u[super.h]);
             if (super.g == null) {
                MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)5, GlobalStatus.ay, this.t, var2, var3, var4);
-               super.g = MainCanvas.ab.c(var1 ? this.v[super.h] : this.u[super.h]);
+               super.g = MainCanvas.role.c(var1 ? this.v[super.h] : this.u[super.h]);
                return;
             }
          }
@@ -266,7 +266,7 @@ public final class ac extends ar {
    }
 
    public final int a(MainCanvas var1) {
-      if ((GlobalStatus.bs != 0 || GlobalStatus.bs == 0 && GlobalStatus.s != 0) && GlobalStatus.ab != null && var1.touchPageCase != 1) {
+      if ((GlobalStatus.bs != 0 || GlobalStatus.bs == 0 && GlobalStatus.s != 0) && GlobalStatus.ab != null && var1.pageStatus != 1) {
          for(int var2 = 0; var2 < GlobalStatus.ab.length; ++var2) {
             if (a(super.j, super.k, GlobalStatus.ab[var2], GlobalStatus.ac[var2]) || a(super.j + 8, super.k + 8, GlobalStatus.ab[var2], GlobalStatus.ac[var2])) {
                this.B = this.B == 0 ? 1 : this.B;

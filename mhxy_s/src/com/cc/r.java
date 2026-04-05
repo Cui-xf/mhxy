@@ -247,7 +247,7 @@ public final class r {
       this.e();
       LoadingPage.l = 0;
       this.i.sceneSubState = 0;
-      this.j.touchPageCase = this.j.k;
+      this.j.pageStatus = this.j.lastPageStatus;
       this.i.sceneStateShadow = this.i.currentSceneModeId = 110;
    }
 
@@ -306,22 +306,22 @@ public final class r {
                   }
                } else if (this.a == 1) {
                   if (this.c == -1) {
-                     this.j.processException("请先放入需要附魔的装备");
+                     this.j.showTips("请先放入需要附魔的装备");
                   } else if (this.d == -1L) {
                      this.i.a((byte)0, (byte[])(new byte[]{3}));
                   } else {
-                     LoadingPage.a(this.j.mixedUi.c - 3 * UISceneController.x.b - 21, this.j.mixedUi.b + 49, new String[]{"取出"}, false);
+                     LoadingPage.a(this.j.mixedUi.c - 3 * UISceneController.goods.b - 21, this.j.mixedUi.b + 49, new String[]{"取出"}, false);
                      this.i.sceneSubState = 1;
                   }
                }
             } else if (this.b == 1) {
                if (this.d(this.a) != -1) {
-                  LoadingPage.a(this.j.mixedUi.c - 10 - UISceneController.x.b - (this.a + 2 * (1 - this.a)) * (UISceneController.x.b + 10) - LoadingPage.q / 2 + 9, this.j.mixedUi.b + UISceneController.x.c + 69, new String[]{"取出"}, false);
+                  LoadingPage.a(this.j.mixedUi.c - 10 - UISceneController.goods.b - (this.a + 2 * (1 - this.a)) * (UISceneController.goods.b + 10) - LoadingPage.q / 2 + 9, this.j.mixedUi.b + UISceneController.goods.c + 69, new String[]{"取出"}, false);
                   this.i.sceneSubState = 1;
                } else if (this.c != -1 && this.d != -1L) {
                   this.i.a((byte)0, (byte[])(new byte[]{4}));
                } else {
-                  this.j.processException("请先放入附魔装备与附魔符");
+                  this.j.showTips("请先放入附魔装备与附魔符");
                }
             }
          } else {
@@ -346,9 +346,9 @@ public final class r {
                if ((var4 = NetPayloadBuilder.a((short)4262, this.c, this.d, (byte)2, this.e, this.f, this.d(this.a), (byte)this.a, GlobalStatus.ad)) != null) {
                   NetPacket var5 = new NetPacket((short)4262, var4);
                   MainCanvas.netUtils.sendPacket(var5);
-                  this.j.showDLZ((String)null);
+                  this.j.showPending((String)null);
                } else {
-                  this.j.processException("获取上传指令数据错误!");
+                  this.j.showTips("获取上传指令数据错误!");
                }
             } else {
                byte[] var6 = null;
@@ -361,9 +361,9 @@ public final class r {
                if (var6 != null) {
                   NetPacket var7 = new NetPacket((short)4262, var6);
                   MainCanvas.netUtils.sendPacket(var7);
-                  this.j.showDLZ((String)null);
+                  this.j.showPending((String)null);
                } else {
-                  this.j.processException("获取上传指令数据错误!");
+                  this.j.showTips("获取上传指令数据错误!");
                }
             }
          } else if (LoadingPage.o == 1) {
@@ -396,7 +396,7 @@ public final class r {
                if (var10000 != null) {
                   GlobalStatus.a(var9);
                } else {
-                  this.j.processException("装备不存在");
+                  this.j.showTips("装备不存在");
                }
             }
 
@@ -410,11 +410,11 @@ public final class r {
          }
       }
 
-      this.j.touchAction = 0;
+      this.j.inputAction = 0;
    }
 
    public final void a(Graphics var1) {
-      short var2 = UISceneController.x.b;
+      short var2 = UISceneController.goods.b;
       if (this.j.mixedUi != null) {
          this.j.mixedUi.a(var1);
          LoadingPage.draw(var1, this.j.mixedUi.a + 5, this.j.mixedUi.b + 32, this.j.mixedUi.c - 11, this.v, 1);
@@ -442,7 +442,7 @@ public final class r {
             this.g[var5][3] = 17;
          }
 
-         var1.drawImage(UISceneController.x.pngImage, this.g[var5][0], this.g[var5][1], 20);
+         var1.drawImage(UISceneController.goods.pngImage, this.g[var5][0], this.g[var5][1], 20);
       }
 
       var1.setColor(255);
@@ -477,16 +477,16 @@ public final class r {
       if (this.i.sceneSubState == 0) {
          if (this.u != null || this.u != "") {
             if (this.b == 0 && this.a == 1) {
-               LoadingPage.b(var1, this.u, this.j.mixedUi.c - 10 - UISceneController.x.b - 2 * (UISceneController.x.b + 10) - 6 - GlobalConfig.font2.stringWidth("装备孔"), this.j.mixedUi.b + 32 + 8 + UISceneController.x.c, GlobalConfig.defaultHigh - 5, 1);
+               LoadingPage.b(var1, this.u, this.j.mixedUi.c - 10 - UISceneController.goods.b - 2 * (UISceneController.goods.b + 10) - 6 - GlobalConfig.font2.stringWidth("装备孔"), this.j.mixedUi.b + 32 + 8 + UISceneController.goods.c, GlobalConfig.defaultHigh - 5, 1);
                return;
             }
 
             if (this.b == 1) {
-               LoadingPage.b(var1, this.u, this.j.mixedUi.c - (UISceneController.x.b + 10) * 3, this.j.mixedUi.b + 32 + 8 + 10 + (UISceneController.x.c << 1), GlobalConfig.defaultHigh - 5, 1);
+               LoadingPage.b(var1, this.u, this.j.mixedUi.c - (UISceneController.goods.b + 10) * 3, this.j.mixedUi.b + 32 + 8 + 10 + (UISceneController.goods.c << 1), GlobalConfig.defaultHigh - 5, 1);
                return;
             }
 
-            LoadingPage.b(var1, this.u, this.j.mixedUi.a + 5 + 2, this.j.mixedUi.b + 32 + 8 + UISceneController.x.c, GlobalConfig.defaultHigh - 5, 1);
+            LoadingPage.b(var1, this.u, this.j.mixedUi.a + 5 + 2, this.j.mixedUi.b + 32 + 8 + UISceneController.goods.c, GlobalConfig.defaultHigh - 5, 1);
             return;
          }
       } else if (this.i.sceneSubState == 1) {

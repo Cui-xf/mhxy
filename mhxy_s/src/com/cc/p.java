@@ -85,25 +85,25 @@ public final class p {
             GlobalConfig.sbTemp.append("f").append(this.i).append(0).append(this.t).append(var1);
          }
 
-         this.j = MainCanvas.ab.getFrame1(GlobalConfig.sbTemp.toString());
+         this.j = MainCanvas.role.getFrame1(GlobalConfig.sbTemp.toString());
          if (this.j == null && var1 != 4) {
             GlobalConfig.sbTemp.delete(0, GlobalConfig.sbTemp.length());
             GlobalConfig.sbTemp.append("f").append(this.i).append(0).append(1).append(var1);
-            this.j = MainCanvas.ab.getFrame1(GlobalConfig.sbTemp.toString());
+            this.j = MainCanvas.role.getFrame1(GlobalConfig.sbTemp.toString());
             return;
          }
       } else if (this.b == 1) {
          GlobalConfig.sbTemp.append(this.i).append(var1 > 3 ? 3 : var1);
-         this.j = MainCanvas.ah.a(GlobalConfig.sbTemp.toString(), this.p, this.q, this.r);
+         this.j = MainCanvas.petfight.a(GlobalConfig.sbTemp.toString(), this.p, this.q, this.r);
          if (this.j == null) {
             GlobalConfig.sbTemp.delete(0, GlobalConfig.sbTemp.length());
             GlobalConfig.sbTemp.append(100).append(var1 > 3 ? 3 : var1);
-            this.j = MainCanvas.ah.a(GlobalConfig.sbTemp.toString(), this.p, this.q, this.r);
+            this.j = MainCanvas.petfight.a(GlobalConfig.sbTemp.toString(), this.p, this.q, this.r);
             return;
          }
       } else if (this.b == 2) {
          GlobalConfig.sbTemp.append(this.i).append(var1 > 3 ? 3 : var1);
-         this.j = MainCanvas.ah.a(GlobalConfig.sbTemp.toString(), this.p, this.q, this.r);
+         this.j = MainCanvas.petfight.a(GlobalConfig.sbTemp.toString(), this.p, this.q, this.r);
       }
 
    }

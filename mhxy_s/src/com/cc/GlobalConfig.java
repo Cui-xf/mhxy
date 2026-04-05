@@ -71,7 +71,7 @@ public final class GlobalConfig {
     /**
      * 布尔标志（初始true）
      */
-    public static boolean o = true;
+    public static boolean supportTouch = true;
 
     /**
      * 是否包含坐骑资源（从 JAD hasRideRes 或 LargeClient 属性读取）

@@ -118,7 +118,7 @@ public final class as {
       this.b();
       LoadingPage.l = 0;
       this.b.sceneSubState = 0;
-      this.a.touchPageCase = this.a.k;
+      this.a.pageStatus = this.a.lastPageStatus;
       this.b.sceneStateShadow = this.b.currentSceneModeId = 102;
    }
 

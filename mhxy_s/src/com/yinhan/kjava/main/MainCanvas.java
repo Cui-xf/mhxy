@@ -11,269 +11,725 @@ import java.util.Vector;
 
 //public  class a_MainCanvas extends Canvas implements Runnable, CommandListener {
 public class MainCanvas extends Canvas implements Runnable, CommandListener {
-    public int touchAction;
-    public int b;
+    public StringBuffer shareSb = new StringBuffer();
+
+    // -------------------------------------------------------------------------
+    // 输入状态
+    // -------------------------------------------------------------------------
+    /**
+     * 当前帧的触摸/按键动作编码（由 keyPressed/pointerPressed 等回调写入，主循环消费后清零）
+     */
+    public int inputAction;
+    /**
+     * 方向键组合状态（按位标记：UP=1, DOWN=8, LEFT=2, RIGHT=4；多向同时按下时按位或叠加）
+     */
+    public int keyCombination;
+    /**
+     * 触摸子状态，用于区分同一页面内的多个交互阶段（0=正常，1=二次确认等）
+     */
     public short touch4Status = 0;
+
+    // -------------------------------------------------------------------------
+    // 核心引用
+    // -------------------------------------------------------------------------
+    /**
+     * MIDlet 入口对象，用于调用 display/exit 等系统接口
+     */
     public MainMidlet mainMidlet;
+    /**
+     * 游戏主场景控制器（进入游戏后创建，退出时置 null）
+     */
     public static UISceneController uiSceneController;
+    /**
+     * 精灵帧渲染工具
+     */
     public static PngUtil pngUtil;
-    private boolean aJ = true;
-    public boolean g;
-    public boolean h;
+    /**
+     * 主循环运行标志，false 时循环退出，随后停止网络并退出 MIDlet
+     */
+    private boolean gameRunning = true;
+    /**
+     * 图像资源是否已加载完成
+     */
+    public boolean resourceLoaded;
+    /**
+     * 是否处于聊天界面
+     */
+    public boolean inChat;
+    /**
+     * 是否启用触屏控制（true 时初始化 TouchController）
+     */
+    public boolean touchEnable;
+    /**
+     * 全局加载遮罩标志，true 时 paint() 直接绘制加载遮罩覆盖所有内容
+     */
+    public boolean globalLoadingMask;
+    /**
+     * 网络工具（含 Socket 读线程和发包线程）
+     */
     public static NetUtils netUtils;
-    public short touchPageCase;
-    public short k;
-    public StringBuffer shareSb;
-    public int m;
-    public static Frame0 num;
-    public boolean o;
-    public boolean p;
-    public Display display;
-    public static Frame0 r;
-    public static Frame0 s;
-    public static Frame0 t;
-    public static Frame0 u;
-    public static Frame0 v;
-    public static Frame0 w;
-    public static Frame0 x;
-    public static Frame0 y;
-    public static Frame0 z;
-    public static Frame1 A;
-    public static Frame1 B;
-    public static Frame0 C;
-    public static Frame0 D;
-    public static Frame0 E;
-    public static az_1 F;
-    public static Frame0 G;
-    public static Frame0 H;
-    public static Frame0 I;
-    public static Frame0 J;
-    public static Frame0 K;
-    public static Frame0 L;
-    public static Frame0 M;
-    public static Frame0 N;
-    public static Frame0 O;
-    public static Frame0 P;
-    public static Frame0 Q;
-    public static Frame0[] R;
-    public static Frame0[] S;
-    public static Frame0 T;
-    public static Frame0 U;
-    public static Frame0 V;
-    public static Frame0 W;
-    public static Frame0 X;
-    public static Frame0 Y;
-    public static Frame0 Z;
-    private static Image[] aL = null;
-    private static Image mz_1 = null;
-    public static Image aa = null;
-    public static Page ab;
-    public static Page ui;
-    public static Page ad;
-    public static Page ae;
-    public static Page af;
-    public static Page publicUI;
-    public static Page ah;
-    public static LoginController loginController = null;
+
+    // -------------------------------------------------------------------------
+    // 页面状态机
+    // -------------------------------------------------------------------------
+    /**
+     * 当前页面状态，驱动 run() 逻辑分发和 paint() 渲染分发。
+     * 0=资源加载  1=等待响应  2=错误弹窗  3=登录  4=选服  5=角色列表
+     * 6=创建角色  7=游戏主场景  9=Logo动画  14=账号选择  15~17=退出/推广  20=更新提示
+     *
+     * @see com.cc.PageStatus
+     */
+    public short pageStatus;
+    /**
+     * 上一个稳定页面状态（用于错误恢复后回退到正确的页面），
+     * 通常与 touchPageCase 保持同步，异常处理时用于区分来源页。
+     */
+    public short lastPageStatus;
+
+    // -------------------------------------------------------------------------
+    // 分辨率 / 视口
+    // -------------------------------------------------------------------------
+    /**
+     * 分辨率档位（宽 < 240 时为 10，宽 >= 240 时为 8，影响字体和布局参数）
+     */
+    public int fenBianLv;
+    /**
+     * 触屏控制器（GlobalConfig.o=true 时初始化）
+     */
     public TouchController touchController;
-    public long ak;
-    public long al;
+    /**
+     * MIDlet Display 对象，用于切换当前显示的 Displayable
+     */
+    public Display display;
+
+    // -------------------------------------------------------------------------
+    // 公共 UI 图集帧（从 publicUI 图集加载，全局共享）
+    // -------------------------------------------------------------------------
+    public static Frame0 num;       // 数字帧（金币/数量显示）
+    public static Frame0 lu;         // 左上角圆角边框
+    public static Frame0 ld;         // 左下角圆角边框
+    public static Frame0 rd;         // 右下角圆角边框
+    public static Frame0 close;         // 关闭按钮图标
+    public static Frame0 title;         // 标题栏背景
+    public static Frame0 ru0;         // 右上角圆角边框（带背景）
+    public static Frame0 rd0;         // 右下角圆角边框（空）
+    public static Frame0 lu0;         // 左上角圆角边框（空）
+    public static Frame0 ld0;         // 左下角圆角边框（空）
+    public static Frame1 go_left;         // 向左滚动箭头（动画帧）
+    public static Frame1 go_right;         // 向右滚动箭头（动画帧）
+    public static Frame0 up;         // 向上箭头
+    public static Frame0 down;         // 向下箭头
+    public static Frame0 button1;         // 通用按钮背景
+    public static az_1 F;
+    public static Frame0 tradetitle;         // 交易面板标题栏
+    public static Frame0 tradelock01;         // 交易锁定图标01
+    public static Frame0 tradelock_02;         // 交易锁定图标02
+    public static Frame0 tradelock_03;         // 交易锁定图标03
+    public static Frame0 moneybutton;         // 金币按钮
+    public static Frame0 tradebottom;         // 交易底部栏
+    public static Frame0 plus;         // 加号按钮
+    public static Frame0 subtraction;         // 减号按钮
+    public static Frame0 equip;         // 装备图标
+    public static Frame0 nextpage;         // 下一页按钮
+    public static Frame0 backpage;         // 上一页按钮
+    public static Frame0[] equipSolt;       // 装备槽图标数组（8个，equip_0~equip_7）
+    public static Frame0[] submenu;       // 子菜单图标数组（4个，submenu_0~submenu_3）
+    public static Frame0 button_ok;         // 确认按钮（button_ok）
+    public static Frame0 button_back;         // 返回按钮（button_back）
+    public static Frame0 trigon_u;         // 向上三角箭头
+    public static Frame0 trigon_d;         // 向下三角箭头
+    public static Frame0 trigon_l;         // 向左三角箭头
+    public static Frame0 trigon_r;         // 向右三角箭头
+    public static Frame0 rim;         // 选中边框（rim）
+    /**
+     * 充值特效图标数组（chq-1 ~ chq-7，共7张）
+     */
+    private static Image[] chq = null;
+    /**
+     * 特殊装饰图片（/images/mz_1.png）
+     */
+    private static Image mz_1 = null;
+    /**
+     * 聊天气泡背景图片（talk_01）
+     */
+    public static Image talk_01 = null;
+
+    // -------------------------------------------------------------------------
+    // 图集 Page 资源
+    // -------------------------------------------------------------------------
+    /**
+     * 角色图集（/role/role.rpg）
+     */
+    public static Page role;
+    /**
+     * 通用 UI 图集（/ui.rpg）
+     */
+    public static Page ui;
+    /**
+     * 游戏场景存档数据 Page
+     */
+    public static Page ad;
+    /**
+     * UI 系统初始化用 Page
+     */
+    public static Page ae;
+    /**
+     * 图标图集（/icon/icon.rpg）
+     */
+    public static Page icon;
+    /**
+     * 公共 UI 图集（/publicUI.rpg，存放全局共用帧）
+     */
+    public static Page publicUI;
+    /**
+     * 宠物战斗图集（/petfight/petfight.rpg）
+     */
+    public static Page petfight;
+
+    // -------------------------------------------------------------------------
+    // 控制器 / 辅助工具
+    // -------------------------------------------------------------------------
+    /**
+     * 登录流程控制器
+     */
+    public static LoginController loginController = null;
+    /**
+     * 当前帧开始时间戳（毫秒），用于帧率控制和超时判断
+     */
+    public long frameStartTs;
+    /**
+     * 通用帧计数器：Logo 动画阶段计数到 520 触发资源加载；其他阶段复用
+     */
+    public long frameCounter;
+    /**
+     * 字体资源路径拼接临时 Vector（复用以避免频繁分配）
+     */
     private static Vector aN = new Vector();
+    /**
+     * 字体资源路径拼接临时 StringBuffer（复用以避免频繁分配）
+     */
     private static StringBuffer aO = new StringBuffer();
-    private long aP;
-    private long aQ;
-    private boolean aR;
-    private String aS;
-    private FWBRender aT;
-    private int aV;
-    private int aW;
-    private int aX;
-    private int aY;
+
+    // -------------------------------------------------------------------------
+    // 等待响应 / 超时
+    // -------------------------------------------------------------------------
+    /**
+     * 最近一次 showDLZ（显示等待转圈）时的时间戳，用于 60 秒响应超时检测
+     */
+    private long pendingTs;
+
+    // -------------------------------------------------------------------------
+    // 错误弹窗
+    // -------------------------------------------------------------------------
+    /**
+     * 最近一次 processException 触发时的时间戳，用于弹窗自动消失（6.6秒）计时
+     */
+    private long tipsTs;
+    /**
+     * 是否有待显示的错误弹窗
+     */
+    private boolean inTips;
+    /**
+     * 当前错误信息文本（"系统异常"开头时触发强制重启流程）
+     */
+    private String tipsMsg;
+    /**
+     * 错误信息的多行文本渲染器
+     */
+    private FWBRender tipsRender;
+    /**
+     * 错误弹窗左边距（= (屏幕宽 - 弹窗宽) / 2）
+     */
+    private int tipsX;
+    /**
+     * 错误弹窗上边距（= (屏幕高 - 弹窗高) / 2）
+     */
+    private int tipsY;
+    /**
+     * 错误弹窗宽度（最小屏幕宽 5/7，最大屏幕宽）
+     */
+    private int tipsW;
+    /**
+     * 错误弹窗高度（行数 × 字体高 + 14px 边距）
+     */
+    private int tispH;
+
+    // -------------------------------------------------------------------------
+    // 登录表单
+    // -------------------------------------------------------------------------
+    /**
+     * 是否已准备好提交登录（true 时主循环下一帧发送登录包 5379）
+     */
     private boolean aZ;
+    /**
+     * 登录渠道选择索引（0=官方账号，1=当乐账号）
+     */
     private int ba;
+    /**
+     * 登录渠道选择组件（"官方帐号登录" / "当乐帐号登录"）
+     */
     private ChoiceGroup bb;
+    /**
+     * 登录界面服务器/渠道选择组件
+     */
     private ChoiceGroup bc;
+    /**
+     * "记住密码"复选框
+     */
     private ChoiceGroup bd;
+    // bN: 账号输入框（最多 20 字符），bO: Token/密码输入框（最多 20 字符，密码模式）
+    // 字段声明见下方"聊天/邮件表单"区
+
+    // -------------------------------------------------------------------------
+    // Logo / 启动动画
+    // -------------------------------------------------------------------------
+    /**
+     * Logo 图片（/logo.png）
+     */
     private Image logo;
+    /**
+     * 加载进度背景图（/images/loading.png）
+     */
     private Image loading;
+    /**
+     * 菜单背景图
+     */
     private Image menuBG;
+    /**
+     * Logo 标题图片
+     */
     private Image logoTitle = null;
+    /**
+     * 菜单项图片
+     */
     private Image menuItem;
+    /**
+     * 光效图片0
+     */
     private Image light_0;
+    /**
+     * 光效图片1
+     */
     private Image light_1;
+    /**
+     * Logo 动画 Page（包含蝴蝶飞舞帧）
+     */
     private static Page cartoon = null;
+    /**
+     * 蝴蝶飞舞主动画帧
+     */
     private static Frame1 hudie;
+    /**
+     * 蝴蝶飞舞备用动画帧（循环播放时交替使用）
+     */
     private static Frame1 hudie_2;
-    private String[] bo;
-    private int[][] bp;
-    private int[] bq;
-    private int br;
-    private int bs;
-    private int bt;
-    private int bu;
-    private static boolean isShow = false;
-    //账号
+    /**
+     * 主菜单页是否已完成初始化
+     */
+    private static boolean mainPageReady = false;
+    /**
+     * Logo 淡出透明度（从 515 递减至 0，用于 logo 渐隐效果）
+     */
+    private int logoAlpha;
+
+    // -------------------------------------------------------------------------
+    // 账号选择页（case 14）
+    // -------------------------------------------------------------------------
+    /**
+     * 账号选择页按钮文本数组（"登陆游戏" / "注册游戏" / "修改密码"）
+     */
+    private String[] mainPageButton;
+    /**
+     * 账号选择页各按钮的坐标数组
+     */
+    private int[][] mainPageButtonXY;
+    /**
+     * 账号选择页各按钮 Y 坐标数组
+     */
+    private int[] mainPageButton_Y;
+    /**
+     * 菜单按钮顶部 Y 坐标基准（Logo 标题下方）
+     */
+    private int mainPageTop_Y;
+    /**
+     * 当前选中的账号选择页按钮索引
+     */
+    private int mainPageIndex;
+    /**
+     * 飘动特效奇偶帧计数器（按帧交替更新特效粒子）
+     */
+    private int piaoDongTeXiao;
+
+    // -------------------------------------------------------------------------
+    // 账号信息
+    // -------------------------------------------------------------------------
+    /**
+     * 当前账号
+     */
     public static String zhanghao = null;
-    //密码
+    /**
+     * 当前密码
+     */
     public static String pwd = null;
+    /**
+     * 登录类型（0=普通，其他值由渠道定义）
+     */
     public static byte loginType = 0;
-    //记住密码
+    /**
+     * 是否记住密码
+     */
     public static boolean rememberPwd = true;
 
-    private int bw = -1;
+    // -------------------------------------------------------------------------
+    // UI 组件
+    // -------------------------------------------------------------------------
+    /**
+     * 混合弹窗 UI（用于创建角色、充值等页面的浮层）
+     */
     public MixedUi mixedUi;
+    /**
+     * 滚动列表 UI（选服、角色列表等页面使用）
+     */
     public GunDongListUi gunDongListUi;
+    /**
+     * 顶部状态栏 UI
+     */
     public TopUi topUi;
+    /**
+     * 文本输入面板
+     */
     public TextPanel textPanel;
+    /**
+     * 底部操作栏 UI
+     */
     public BottomUi bottomUi;
-    public y_1 av;
-    public int aw;
-    private Frame1[] bx;
-    private Frame1[] by;
+    /**
+     * 触控区域布局辅助对象
+     */
+    public PopUpWindow popUpWindow;
+    /**
+     * 当前已充值档位索引（渠道 1 用于检测充值状态变化，发生变化时刷新页面）
+     */
+    private int bw = -1;
 
-    //选中角色的行/列
+    // -------------------------------------------------------------------------
+    // 角色列表（case 5）
+    // -------------------------------------------------------------------------
+    /**
+     * 当前选中角色的索引（= selectActorRow << 1 + selectActorClo）
+     */
+    public int aw;
+    /**
+     * 选中角色的动画帧数组（用于角色预览）
+     */
+    private Frame1[] bx;
+    /**
+     * 未选中角色的静止帧数组
+     */
+    private Frame1[] by;
+    /**
+     * 选中角色所在列（0 或 1）
+     */
     private byte selectActorClo;
+    /**
+     * 选中角色所在行
+     */
     private byte selectActorRow;
+    /**
+     * 角色列表每页可显示的行数
+     */
     private int bB;
-    //角色列表
+    /**
+     * 角色数据二维数组（服务端返回）
+     */
     private int[][] actorList;
+    /**
+     * 当前操作的角色槽位索引
+     */
     public int ax;
+
+    // -------------------------------------------------------------------------
+    // 创建角色（case 6）
+    // -------------------------------------------------------------------------
+    /**
+     * 角色昵称输入框的当前内容
+     */
     public String ay = "";
+    /**
+     * 随机名字按钮图片
+     */
     private Image logo_btn_random;
+    /**
+     * 选中的门派索引（0=方寸/2，1=普通门派，循环 0~2）
+     */
     private byte bE;
+    /**
+     * 选中的性别（0=男，1=女）
+     */
     private byte bF;
+    /**
+     * 昵称输入框与随机按钮的子焦点索引（0=输入框，1=随机按钮）
+     */
     private int bG;
+    /**
+     * 创建角色页当前焦点组（0=门派，1=性别，2=昵称）
+     */
     private int bH;
+    /**
+     * UI 场景控制器是否处于活跃状态
+     */
     public boolean az;
+    /**
+     * 临时触摸状态暂存（用于多步操作中间态保存）
+     */
     public int tempTouchStatus;
-    private int bI = -1;
-    private long bJ;
-    private static byte bK = 1;
-    public static byte aB = 2;
-    //聊天
+
+    // -------------------------------------------------------------------------
+    // 双击检测
+    // -------------------------------------------------------------------------
+    /**
+     * 上一次动作编码（初值 -1），用于判断是否连续两次相同操作（双击）
+     */
+    private int shuangJiCheck = -1;
+    /**
+     * 上一次操作的时间戳，配合 bI 判断 600ms 内的双击
+     */
+    private long lastClickTs;
+
+    // -------------------------------------------------------------------------
+    // 聊天 / 邮件表单
+    // -------------------------------------------------------------------------
+    /**
+     * 聊天输入框
+     */
     public TextField liaoTian;
-    //邮件
+    /**
+     * 邮件内容输入框
+     */
     private TextField youjian;
+    /**
+     * 聊天/邮件通用内容输入框
+     */
     private TextField bM;
+    /**
+     * 账号输入框（登录时）/ 邮件发件人输入框（最多 20 字符）
+     */
     private TextField bN;
+    /**
+     * Token/密码输入框（登录时）/ 举报内容输入框（最多 20 字符，密码模式）
+     */
     private TextField bO;
+    /**
+     * 确认命令按钮
+     */
     private Command ok;
+    /**
+     * 返回命令按钮
+     */
     private Command back;
+    /**
+     * 辅助命令按钮
+     */
     private Command bR;
+    /**
+     * 表单容器（用于 LCDUI 表单页面）
+     */
     public Form aD;
+    /**
+     * 邮件头部/提示 StringItem
+     */
     private StringItem bS;
+    /**
+     * 发件人 StringItem
+     */
     private StringItem bT;
+    /**
+     * 邮件标题 StringItem
+     */
     private StringItem bU;
+    /**
+     * 邮件正文 StringItem
+     */
     private StringItem bV;
+    /**
+     * 邮件接收者名称
+     */
     private String bW;
+    /**
+     * 邮件类型或收件人列表选择组件
+     */
     private ChoiceGroup bX;
+    /**
+     * 邮件发送状态（-1=未发送，0=已提交）
+     */
     private byte bY = -1;
+    /**
+     * 服务器/渠道选择列表组件（选服页）
+     */
     public ChoiceGroup aE;
+    /**
+     * 聊天/邮件文本缓存（保存输入框文本，避免重复读取）
+     */
     private String bZ;
+
+    // -------------------------------------------------------------------------
+    // 触摸坐标 / 场景网格
+    // -------------------------------------------------------------------------
+    /**
+     * 最近一次触摸/点击的屏幕 X 坐标
+     */
     public int aF;
+    /**
+     * 最近一次触摸/点击的屏幕 Y 坐标
+     */
     public int aG;
+    /**
+     * 当前摄像机位置的网格 X 坐标（16px 精度）
+     */
     private int ca;
+    /**
+     * 当前摄像机位置的网格 Y 坐标（16px 精度）
+     */
     private int cb;
+    /**
+     * 玩家操作目标位置的网格 X 坐标
+     */
     private int cc;
+    /**
+     * 玩家操作目标位置的网格 Y 坐标
+     */
     private int cd;
+    /**
+     * NPC 装备等级（从存档读取）
+     */
     private short ce;
+
+    // -------------------------------------------------------------------------
+    // 全局弹窗 / 跳转链接
+    // -------------------------------------------------------------------------
+    /**
+     * 全局弹窗显示的提示文本（如版本更新说明）
+     */
     public static String aH;
+    /**
+     * 全局弹窗关联的 WebView URL（"更多游戏"等跳转地址）
+     */
     public static String aI;
 
+
+    /**
+     * 构造函数：由 MIDlet 启动时调用，完成初始化并启动游戏主线程。
+     * <p>
+     * 启动流程：
+     * 1. GlobalConfig.init()     — 初始化全局配置（字体、渠道等）
+     * 2. 计算屏幕分辨率           — 根据屏幕宽度决定游戏视口大小与偏移（宽 < 240 时全屏，否则留边）
+     * 3. loading()               — 加载 logo/loading 图片，将 touchPageCase 设为 9（Logo 动画页）
+     * 4. new Thread(this).start()— 启动游戏主线程，进入 run() 主循环
+     * <p>
+     * 启动后的页面状态机流转：
+     * 9（Logo 动画）
+     * → al 计数到 520 帧后，new b_3() 在后台线程加载游戏资源，同时 touchPageCase 跳 0
+     * 0（资源加载进度页）
+     * → b_3 加载完成后调用 loginController.init() + c()，touchPageCase 跳 14 或直接登录
+     * 14（账号选择页）→ 3（登录）→ 4（选服）→ 5（角色列表）→ 6（创角）→ 7（游戏主场景）
+     */
     public MainCanvas(MainMidlet midlet, Display display) {
+        // 初始化全局配置（字体、渠道号等）
         GlobalConfig.init(midlet);
         this.setFullScreenMode(true);
         this.display = display;
         this.mainMidlet = midlet;
         loginController = new LoginController(midlet, display);
+        // 读取屏幕物理尺寸，作为默认分辨率基准
         GlobalConfig.defaultWidth = (short) this.getWidth();
         GlobalConfig.defaultHigh = (short) this.getHeight();
         UISceneController.gameViewportWidth = GlobalConfig.realWidth = GlobalConfig.defaultWidth;
         UISceneController.gameViewportHeight = GlobalConfig.realHigh = GlobalConfig.defaultHigh;
-        this.m = 10;
+        this.fenBianLv = 10;
         if (GlobalConfig.defaultWidth >= 240) {
-            this.m = 8;
+            // 宽屏设备：游戏视口缩小留边，居中显示（gameX/gameY 为视口左上角偏移）
+            this.fenBianLv = 8;
             UISceneController.gameViewportWidth = GlobalConfig.realWidth = (short) (GlobalConfig.defaultWidth * 95 / 100);
             UISceneController.gameViewportHeight = GlobalConfig.realHigh = (short) (GlobalConfig.defaultHigh * (GlobalConfig.defaultHigh > 320 ? 80 : 95) / 100);
             GlobalConfig.gameX = UISceneController.gameX = (short) ((GlobalConfig.defaultWidth - UISceneController.gameViewportWidth) / 2);
             GlobalConfig.gameY = UISceneController.gameY = (short) ((GlobalConfig.defaultHigh - UISceneController.gameViewportHeight) / 2);
         }
 
-        y_1.c().a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.loading();
+        PopUpWindow.getInst().setBox(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        // 加载 logo/loading 图片，设置 touchPageCase=9 进入 Logo 动画页
+        this.startLogo();
+        // 启动游戏主线程，进入 run() 主循环
         new Thread(this).start();
     }
 
-    public void a() {
-        ab.c();
-        ae.c();
-        af.c();
-        ah.c();
-        this.shareSb = new StringBuffer();
-        this.mixedUi = new MixedUi();
-        this.gunDongListUi = new GunDongListUi();
-        this.bottomUi = new BottomUi();
-        this.topUi = new TopUi();
-        this.textPanel = new TextPanel();
-    }
-
-    public void init() {
-        if (netUtils == null) {
-            netUtils = new NetUtils();
-        } else {
-            netUtils.start();
-        }
-        netUtils.setMainCanvas(this);
-    }
-
-    private static void stopNet() {
-        if (netUtils != null) {
-            netUtils.stop();
-            netUtils = null;
-        }
-
-    }
-
+    /**
+     * 游戏主循环（运行在独立线程，由构造函数 new Thread(this).start() 启动）。
+     * <p>
+     * 每帧执行顺序：
+     * 1. 从网络接收队列消费数据包（processNetPacket），将服务端推送的业务包交给业务处理器
+     * 2. 按 touchPageCase（页面状态机）分发当前页面的输入/逻辑处理
+     * 3. 调用 uiSceneController.d() 驱动游戏场景逻辑更新
+     * 4. repaint() 请求重绘 + serviceRepaints() 等待本帧 paint() 回调完成
+     * 5. sleep 补足剩余时间，目标帧间隔 35ms（约 28fps）
+     * <p>
+     * 循环退出（aJ=false）后：停止网络、释放场景控制器、退出 MIDlet。
+     * <p>
+     * touchPageCase 页面状态说明：
+     * 0  = 启动资源加载页
+     * 1  = 等待服务器响应（DLZ 转圈），超时 60s 报错
+     * 2  = 错误/异常弹窗页，处理重连/退出逻辑
+     * 3  = 登录流程（发送登录包 5379）
+     * 4  = 选服页（选择服务器，发包 4196/4098）
+     * 5  = 角色列表页
+     * 6  = 创建角色页（门派/性别/昵称选择，发包）
+     * 7  = 游戏主场景（由 UISceneController 接管逻辑）
+     * 9  = Logo 启动动画（al 计数到 520 后跳 case 0）
+     * 14 = 账号选择页（登录/注册/改密码）
+     * 15~17 = 退出确认/更多游戏页
+     * 20 = 版本更新提示页
+     */
     public void run() {
-        while (this.aJ) {
-            this.ak = System.currentTimeMillis();
+        while (this.gameRunning) {
+            this.frameStartTs = System.currentTimeMillis();
 
             try {
+                // 消费网络接收队列中的数据包（生产者：SocketReadLooper 线程；消费者：此处主线程）
                 if (netUtils != null) {
                     netUtils.processNetPacket();
                 }
 
-                if (this.aJ) {
-                    switch (this.touchPageCase) {
-                        case 1:
-                            ++this.al;
-                            if (this.ak - this.aP >= 60000L) {
-                                this.processException("响应超时");
+                if (this.gameRunning) {
+                    // 页面状态机：根据当前页面处理触摸输入与业务逻辑
+                    switch (this.pageStatus) {
+                        case 1: // 等待服务器响应，超时 60 秒则报错
+                            ++this.frameCounter;
+                            if (this.frameStartTs - this.pendingTs >= 60000L) {
+                                this.showTips("响应超时");
                             }
                             break;
-                        case 2:
-                            if ((this.ak - this.aQ >= 6600L || this.k == 7 && uiSceneController.overlayDialogController != null && uiSceneController.currentSceneModeId == 25 && this.ak - this.aQ >= 2000L) && this.aR || this.touchAction == 1073741824 || this.touchAction == 517 || this.touchAction == 536870912 || this.touchAction == 268435456 || u()) {
-                                if (this.aS != null && this.aS.startsWith("系统异常")) {
-                                    this.t();
+                        case 2: // 错误/异常弹窗页：弹窗超时或用户点击后，根据错误类型决定重连/重登/退出
+                            if ((this.frameStartTs - this.tipsTs >= 6600L || this.lastPageStatus == 7 && uiSceneController.overlayDialogController != null && uiSceneController.currentSceneModeId == 25 && this.frameStartTs - this.tipsTs >= 2000L) && this.inTips || this.inputAction == 1073741824 || this.inputAction == 517 || this.inputAction == 536870912 || this.inputAction == 268435456 || u()) {
+                                if (this.tipsMsg != null && this.tipsMsg.startsWith("系统异常")) {
+                                    this.reStart();
                                     break;
                                 }
 
-                                if (GlobalStatus.eC.startsWith("异常离线") || GlobalStatus.eB == 0 || this.k == 9) {
+                                if (GlobalStatus.eC.startsWith("异常离线") || GlobalStatus.eB == 0 || this.lastPageStatus == 9) {
                                     this.G();
                                     break;
                                 }
 
-                                if (GlobalStatus.eC != null && (GlobalStatus.eC.startsWith("连接超时") || GlobalStatus.eC.startsWith("响应超时"))) {
+                                if (GlobalStatus.eC.startsWith("连接超时") || GlobalStatus.eC.startsWith("响应超时")) {
                                     if (netUtils != null) {
                                         netUtils.stop();
                                         netUtils = null;
                                     }
 
-                                    this.loading();
+                                    this.startLogo();
                                     break;
                                 }
 
-                                if (GlobalStatus.eC != null && uiSceneController != null) {
+                                if (uiSceneController != null) {
                                     if (GlobalStatus.aC == 1 && (GlobalStatus.eC.endsWith("超Q用户才可兑换") || GlobalStatus.eC.endsWith("超Q用户才可接取"))) {
                                         uiSceneController.af();
                                     }
@@ -284,27 +740,27 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 }
 
                                 if (GlobalStatus.eC != null && GlobalStatus.eC.equals("您已短信申请开通VIP服务")) {
-                                    this.touchPageCase = this.k = 7;
+                                    this.pageStatus = this.lastPageStatus = 7;
                                 }
 
-                                if (this.k != 3 && GlobalStatus.eB != -4) {
-                                    if (this.k == 4) {
+                                if (this.lastPageStatus != 3 && GlobalStatus.eB != -4) {
+                                    if (this.lastPageStatus == 4) {
                                         if (GlobalConfig.channel == 1) {
                                             if (GlobalStatus.hw) {
-                                                this.c();
+                                                this.startMainPage();
                                             } else {
                                                 this.d();
                                             }
                                         } else {
                                             this.d();
                                         }
-                                    } else if (this.k == 5) {
+                                    } else if (this.lastPageStatus == 5) {
                                         this.b(GlobalStatus.Y.length);
-                                    } else if (this.k == 6) {
+                                    } else if (this.lastPageStatus == 6) {
                                         this.C();
-                                    } else if (this.k == 10) {
+                                    } else if (this.lastPageStatus == 10) {
                                         this.G();
-                                    } else if (this.k == 7) {
+                                    } else if (this.lastPageStatus == 7) {
                                         if (uiSceneController.currentSceneModeId == 71) {
                                             uiSceneController.e(this.topUi.a);
                                             this.gunDongListUi.a(uiSceneController.aE);
@@ -320,14 +776,14 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                         } else {
                                             this.i();
                                         }
-                                    } else if (this.k == 9) {
+                                    } else if (this.lastPageStatus == 9) {
                                         this.G();
-                                    } else if (this.k == 14) {
-                                        this.c();
+                                    } else if (this.lastPageStatus == 14) {
+                                        this.startMainPage();
                                     }
                                 } else if (GlobalConfig.channel == 1) {
                                     if (ChongZhiModel.g != null) {
-                                        this.aJ = false;
+                                        this.gameRunning = false;
                                     } else {
                                         this.showLoginPage();
                                     }
@@ -336,17 +792,16 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 }
                             }
 
-                            this.b = 0;
-                            this.touchAction = 0;
-                            if (GlobalConfig.o && this.touchController != null) {
+                            this.keyCombination = 0;
+                            this.inputAction = 0;
+                            if (GlobalConfig.supportTouch && this.touchController != null) {
                                 this.touchController.c = 0;
                                 this.touchController.d = 0;
                             }
                             break;
-                        case 3:
+                        case 3: // 登录流程：提交账号/token，发送登录包（协议 5379）
                             if (this.aZ) {
                                 this.init();
-                                GlobalConfig.clearStr(this.shareSb);
                                 GlobalStatus.zhangHao = this.bN.getString();
                                 GlobalStatus.token = this.bO.getString();
                                 this.F();
@@ -356,15 +811,15 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                     (var21 = new NetPacket((short) 5379, var16)).firstPacket = true;
                                     netUtils.sendPacket(var21);
                                     this.aZ = false;
-                                    this.showDLZ((String) null);
+                                    this.showPending((String) null);
                                 } else {
-                                    this.processException("获取上传指令数据错误!");
+                                    this.showTips("获取上传指令数据错误!");
                                 }
                             }
 
-                            this.touchAction = 0;
+                            this.inputAction = 0;
                             break;
-                        case 4:
+                        case 4: // 选服页：用户选择服务器后，发送连接包（协议 4196/4098）
                             if (this.touch4Status == 0) {
                                 if (GlobalConfig.channel == 1 && this.bw != ChongZhiModel.d) {
                                     this.bw = ChongZhiModel.d;
@@ -372,12 +827,12 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 }
 
                                 if (this.mixedUi != null) {
-                                    this.mixedUi.onClick(this.touchAction);
+                                    this.mixedUi.onClick(this.inputAction);
                                 }
 
-                                if (this.touchAction != 268435456 && this.touchAction != 1073741824 && this.touchAction != 517) {
-                                    if (this.touchAction == 536870912) {
-                                        this.c();
+                                if (this.inputAction != 268435456 && this.inputAction != 1073741824 && this.inputAction != 517) {
+                                    if (this.inputAction == 536870912) {
+                                        this.startMainPage();
                                     }
                                 } else if (GlobalStatus.hA != null || GlobalStatus.hA.length > 0) {
                                     if (GlobalConfig.channel == 0) {
@@ -386,14 +841,14 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                         String var20 = null;
                                         if (false) {
                                             if (GlobalStatus.hB[var13].equals("")) {
-                                                this.processException(GlobalStatus.hA[var13] + "繁忙,请选择其他服!");
+                                                this.showTips(GlobalStatus.hA[var13] + "繁忙,请选择其他服!");
                                             } else {
                                                 var20 = GlobalStatus.hB[var13];
                                                 NetPayloadBuilder.channelFlag = GlobalStatus.hE[var13];
                                                 this.a(GlobalStatus.hE[var13]);
                                             }
                                         } else if (GlobalStatus.hC[var13].equals("")) {
-                                            this.processException(GlobalStatus.hA[var13] + "繁忙,请选择其他服!");
+                                            this.showTips(GlobalStatus.hA[var13] + "繁忙,请选择其他服!");
                                         } else {
                                             this.a(GlobalStatus.hE[var13]);
                                         }
@@ -406,9 +861,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                             (var15 = new NetPacket((short) 4196, var14)).firstPacket = true;
                                             netUtils.sendPacket(var15);
                                             this.aZ = false;
-                                            this.showDLZ((String) null);
+                                            this.showPending((String) null);
                                         } else {
-                                            this.processException("获取上传指令数据错误!");
+                                            this.showTips("获取上传指令数据错误!");
                                         }
                                     } else if (GlobalConfig.logined) {
                                         this.a(this.gunDongListUi.g());
@@ -418,32 +873,32 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 }
                             }
 
-                            this.touchAction = 0;
+                            this.inputAction = 0;
                             break;
-                        case 5:
+                        case 5: // 角色列表页
                             this.B();
                             break;
-                        case 6:
+                        case 6: // 创建角色页：处理门派/性别/昵称的上下切换与确认提交
                             if (this.mixedUi != null) {
-                                this.mixedUi.onClick(this.touchAction);
+                                this.mixedUi.onClick(this.inputAction);
                             }
 
-                            if (this.touchAction != 1 && this.touchAction != 514) {
-                                if (this.touchAction != 4 && this.touchAction != 520) {
-                                    if (this.touchAction != 8 && this.touchAction != 516) {
-                                        if (this.touchAction != 2 && this.touchAction != 518) {
-                                            if (this.touchAction == 268435456) {
+                            if (this.inputAction != 1 && this.inputAction != 514) {
+                                if (this.inputAction != 4 && this.inputAction != 520) {
+                                    if (this.inputAction != 8 && this.inputAction != 516) {
+                                        if (this.inputAction != 2 && this.inputAction != 518) {
+                                            if (this.inputAction == 268435456) {
                                                 boolean var12 = false;
                                                 String var18 = this.ay;
                                                 Object var3 = null;
                                                 byte[] var8;
                                                 if ((var8 = NetPayloadBuilder.a((short) 4099, var18, (byte) this.bF, (byte) this.bE)) != null) {
                                                     netUtils.sendPacket(new NetPacket((short) 4099, var8));
-                                                    this.showDLZ((String) null);
+                                                    this.showPending((String) null);
                                                 } else {
-                                                    this.processException("获取上传指令数据错误!");
+                                                    this.showTips("获取上传指令数据错误!");
                                                 }
-                                            } else if (this.touchAction == 536870912) {
+                                            } else if (this.inputAction == 536870912) {
                                                 if (GlobalStatus.W != null) {
                                                     this.b(GlobalStatus.W.length);
                                                     break;
@@ -452,20 +907,20 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                                 byte[] var19;
                                                 if ((var19 = NetPayloadBuilder.a((short) 4098, (String) GlobalStatus.d, (String) GlobalStatus.zhangHao)) != null) {
                                                     netUtils.sendPacket(new NetPacket((short) 4098, var19));
-                                                    this.showDLZ((String) null);
+                                                    this.showPending((String) null);
                                                 } else {
-                                                    this.processException("获取上传指令数据错误!");
+                                                    this.showTips("获取上传指令数据错误!");
                                                 }
-                                            } else if ((this.touchAction == 1073741824 || this.touchAction == 517) && this.bH == 2) {
+                                            } else if ((this.inputAction == 1073741824 || this.inputAction == 517) && this.bH == 2) {
                                                 if (this.bG == 0) {
                                                     this.b((String) null, (String) null);
                                                 } else {
                                                     byte[] var9;
                                                     if ((var9 = NetPayloadBuilder.a((short) 4372, this.bF)) != null) {
                                                         netUtils.sendPacket(new NetPacket((short) 4372, var9));
-                                                        this.showDLZ((String) null);
+                                                        this.showPending((String) null);
                                                     } else {
-                                                        this.processException("获取上传指令数据错误!");
+                                                        this.showTips("获取上传指令数据错误!");
                                                     }
                                                 }
                                             }
@@ -495,108 +950,98 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             }
 
                             if (this.bx != null && this.bF * 3 + this.bE < this.bx.length) {
-                                PngUtil.a(this.bx[this.bF * 3 + this.bE], this.ak);
+                                PngUtil.a(this.bx[this.bF * 3 + this.bE], this.frameStartTs);
                             }
 
-                            this.touchAction = 0;
+                            this.inputAction = 0;
                             break;
-                        case 7:
+                        case 7: // 游戏主场景：逻辑委托给 UISceneController
                             this.E();
                             break;
-                        case 9:
-                            if (this.al >= 520L) {
-                                this.al = 0L;
+                        case PageStatus.LOGO_LOADING: // Logo 启动动画：al 计数到 520 帧后跳转到资源加载页（case 0）
+                            if (this.frameCounter >= 520L) {
+                                this.frameCounter = 0L;
                                 this.logo = null;
-                                LoadingPage.a();
-                                this.k = this.touchPageCase = 0;
-                                new b_3(this, bK);
+                                LoadingPage.initLoadingPage();
+                                this.lastPageStatus = this.pageStatus = PageStatus.RESOURCE_LOADING;
+                                new ResourceLoader(this);
                             }
                             break;
-                        case 14:
+                        case PageStatus.MAIN_PAGE: // 账号选择页：登录/注册/改密码按钮处理
                             if (this.touch4Status == 0) {
-                                if (this.touchAction != 1 && this.touchAction != 50 && this.touchAction != 8 && this.touchAction != 516) {
-                                    if (this.touchAction != 4 && this.touchAction != 520 && this.touchAction != 2 && this.touchAction != 518) {
-                                        if (this.touchAction != 268435456 && this.touchAction != 1073741824 && this.touchAction != 517) {
-                                            if (this.touchAction == 536870912 && GlobalConfig.channel == 1) {
-                                                LoadingPage.h = 0;
-                                                this.k = this.touchPageCase = 16;
-                                            }
-                                        } else if (GlobalConfig.channel == 0) {
-                                            switch (this.bs) {
-                                                case 2:
-                                                    this.G();
-                                            }
-                                        } else {
-                                            switch (this.bs) {
-                                                case 0:
-                                                    LoginController.showLoginForm();
-                                                    break;
-                                                case 1:
-//                                                    LoginController.eeeeeeeeeeeeeee();
-                                                    break;
-                                                case 2:
-                                                    LoginController.showChangePwd();
-                                            }
-                                        }
-                                    } else {
-                                        this.bs = this.bs < this.bo.length - 1 ? ++this.bs : 0;
+                                if (this.inputAction == 1 || this.inputAction == 50 || this.inputAction == 8 || this.inputAction == 516) {
+                                    this.mainPageIndex = this.mainPageIndex > 0 ? --this.mainPageIndex : this.mainPageButton.length - 1;
+                                } else if (this.inputAction == 4 || this.inputAction == 520 || this.inputAction == 2 || this.inputAction == 518) {
+                                    this.mainPageIndex = this.mainPageIndex < this.mainPageButton.length - 1 ? ++this.mainPageIndex : 0;
+                                } else if (this.inputAction == 268435456 || this.inputAction == InputAction.CONFIRM || this.inputAction == 517) {
+                                    switch (this.mainPageIndex) {
+                                        case 0: //登录
+                                            LoginController.showLoginForm();
+                                            break;
+                                        case 1: //注册
+                                            //                                                    LoginController.eeeeeeeeeeeeeee();
+                                            break;
+                                        case 2: //改密码
+                                            LoginController.showChangePwd();
                                     }
                                 } else {
-                                    this.bs = this.bs > 0 ? --this.bs : this.bo.length - 1;
+                                    if (this.inputAction == 536870912 && GlobalConfig.channel == 1) {
+                                        LoadingPage.h = 0;
+                                        this.lastPageStatus = this.pageStatus = 16;
+                                    }
                                 }
                             } else if (this.touch4Status == 1) {
-                                if (this.touchAction != 268435456 && this.touchAction != 1073741824) {
-                                    if (this.touchAction == 536870912) {
-                                        this.touch4Status = 0;
-                                    }
-                                } else {
+                                if (this.inputAction == 268435456 || this.inputAction == 1073741824) {
                                     this.touch4Status = 0;
                                     GlobalConfig.logined = false;
                                     loginController.sendFirstPacket();
+                                } else {
+                                    if (this.inputAction == 536870912) {
+                                        this.touch4Status = 0;
+                                    }
                                 }
                             }
-
-                            this.touchAction = 0;
+                            this.inputAction = 0;
                             break;
                         case 15:
-                            if (this.touchAction == 268435456) {
+                            if (this.inputAction == 268435456) {
                                 this.openWebView("http://3g.01234.com.cn/game/gameAction.do?m=gameIndex&sId=");
-                                this.aJ = false;
-                            } else if (this.touchAction == 536870912) {
-                                this.c();
-                                this.bs = 1;
+                                this.gameRunning = false;
+                            } else if (this.inputAction == 536870912) {
+                                this.startMainPage();
+                                this.mainPageIndex = 1;
                             }
 
-                            this.touchAction = 0;
+                            this.inputAction = 0;
                             break;
                         case 16:
-                            if (this.touchAction == 268435456) {
+                            if (this.inputAction == 268435456) {
                                 LoadingPage.h = 0;
-                                this.k = this.touchPageCase = 17;
-                            } else if (this.touchAction == 536870912) {
-                                this.k = this.touchPageCase = 14;
+                                this.lastPageStatus = this.pageStatus = 17;
+                            } else if (this.inputAction == 536870912) {
+                                this.lastPageStatus = this.pageStatus = 14;
                             }
 
-                            this.touchAction = 0;
+                            this.inputAction = 0;
                             break;
                         case 17:
-                            if (this.touchAction == 268435456) {
+                            if (this.inputAction == 268435456) {
                                 this.openWebView("");
-                                this.aJ = false;
-                            } else if (this.touchAction == 536870912) {
+                                this.gameRunning = false;
+                            } else if (this.inputAction == 536870912) {
                                 this.touch4Status = 0;
                                 this.G();
                             }
 
-                            this.touchAction = 0;
+                            this.inputAction = 0;
                             break;
                         case 20:
-                            if (this.touchAction != 8 && this.touchAction != 516) {
-                                if (this.touchAction != 2 && this.touchAction != 518) {
-                                    if (this.touchAction != 268435456 && this.touchAction != 1073741824) {
-                                        if (this.touchAction == 536870912) {
-                                            this.c();
-                                            this.bs = 0;
+                            if (this.inputAction != 8 && this.inputAction != 516) {
+                                if (this.inputAction != 2 && this.inputAction != 518) {
+                                    if (this.inputAction != 268435456 && this.inputAction != 1073741824) {
+                                        if (this.inputAction == 536870912) {
+                                            this.startMainPage();
+                                            this.mainPageIndex = 0;
                                         }
                                     } else {
                                         this.openWebView(aI);
@@ -608,12 +1053,12 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 LoadingPage.e = LoadingPage.e - LoadingPage.d >= 0 ? LoadingPage.e - LoadingPage.d : 0;
                             }
 
-                            this.touchAction = 0;
+                            this.inputAction = 0;
                     }
 
                     if (uiSceneController != null) {
                         uiSceneController.d();
-                        if (this.touchPageCase == 7) {
+                        if (this.pageStatus == 7) {
                             uiSceneController.c();
                         }
                     }
@@ -623,9 +1068,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 ((Throwable) var7).printStackTrace();
             }
 
-            ((Canvas) this).repaint();
-            ((Canvas) this).serviceRepaints();
-            long var1 = 35L - (System.currentTimeMillis() - this.ak);
+            // 请求重绘；serviceRepaints() 会阻塞直到 paint() 回调执行完毕，保证本帧渲染完成后再开始下一帧
+            this.repaint();
+            this.serviceRepaints();
+            // 帧率控制：目标帧间隔 35ms（约 28fps），剩余时间 sleep 补足；帧超时则至少 sleep 1ms 让出 CPU
+            long var1 = 35L - (System.currentTimeMillis() - this.frameStartTs);
 
             try {
                 if (var1 > 0L) {
@@ -638,50 +1085,73 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             }
         }
 
+        // 主循环退出（aJ=false）：停止网络连接、释放场景控制器、退出 MIDlet
         if (netUtils != null) {
             netUtils.stop();
         }
 
         uiSceneController = null;
-        this.J();
+        this.exit();
     }
 
+    /**
+     * 渲染回调（由 MIDlet 框架在主线程上调用，由 run() 末尾的 repaint()+serviceRepaints() 触发）。
+     * 纯渲染，不修改任何游戏状态。
+     * <p>
+     * p=true 时直接绘制全局加载遮罩（LoadingPage.b），覆盖所有内容。
+     * 否则按 touchPageCase 渲染对应页面：
+     * 0  = 资源加载进度页
+     * 1  = 等待响应时的背景场景 + DLZ 转圈遮罩
+     * 2  = 错误弹窗（系统异常时只显示弹窗，否则背景场景+弹窗叠加）
+     * 3  = 账号登录页
+     * 4  = 选服页
+     * 5  = 角色列表页
+     * 6  = 创建角色页（背景 + 混合UI：门派/性别/昵称/角色预览动画）
+     * 7  = 游戏主场景（委托给 UISceneController）
+     * 9  = Logo 启动动画页
+     * 14 = 账号选择页
+     * 15 = 更多游戏推广页 + 对话框覆盖层
+     * 16 = 退出确认对话框
+     * 17 = 更多游戏推广页（渠道 1 专用）
+     * 20 = 版本更新提示对话框
+     */
     protected void paint(Graphics graphics) {
         try {
-            if (this.touchPageCase == 9) {
+            if (this.pageStatus == PageStatus.LOGO_LOADING) {
                 graphics.setColor(0);
                 graphics.fillRect(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
             }
 
             graphics.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
             graphics.setFont(GlobalConfig.font2);
-            if (this.p) {
-                LoadingPage.b(graphics);
+            if (this.globalLoadingMask) {
+                // p=true：显示全局加载遮罩，覆盖当前所有内容
+                LoadingPage.globalLoadingMask(graphics);
             } else {
-                if (this.aJ) {
-                    switch (this.touchPageCase) {
-                        case 0:  // 加载阶段：绘制加载画面（提示文字 + "正在载入资源..." + 进度条）
+                if (this.gameRunning) {
+                    switch (this.pageStatus) {
+                        case PageStatus.RESOURCE_LOADING:  // 资源加载页：绘制加载画面（提示文字 + "正在载入资源..." + 进度条）
                             LoadingPage.drawLoadingPage(graphics, this.loading);
                             return;
-                        case 1:
+                        case 1: // 等待服务器响应：绘制背景场景，再叠加 DLZ 转圈遮罩
                             if (uiSceneController != null) {
                                 uiSceneController.a(graphics);
-                            } else if (this.k == 9) {
-                                this.b(graphics);
-                            } else if (this.k != 14 && this.k != 3) {
-                                if (this.k == 4) {
+                            } else if (this.lastPageStatus == PageStatus.LOGO_LOADING) {
+                                this.renderLogo(graphics);
+                            } else if (this.lastPageStatus != 14 && this.lastPageStatus != 3) {
+                                if (this.lastPageStatus == 4) {
                                     this.e(graphics);
-                                } else if (this.k == 5) {
+                                } else if (this.lastPageStatus == 5) {
                                     this.f(graphics);
                                 }
                             } else {
-                                this.d(graphics);
+                                this.renderMainPage(graphics);
                             }
 
-                            LoadingPage.b(graphics);
+                            LoadingPage.globalLoadingMask(graphics);
                             return;
-                        case 2:
-                            if (this.aS != null && this.aS.startsWith("系统异常")) {
+                        case 2: // 错误弹窗：系统异常时只显示弹窗；否则背景场景与弹窗叠加
+                            if (this.tipsMsg != null && this.tipsMsg.startsWith("系统异常")) {
                                 this.a(graphics);
                             } else {
                                 if (uiSceneController != null) {
@@ -692,17 +1162,17 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             }
 
                             return;
-                        case 3:
-                            this.d(graphics);
+                        case 3: // 账号登录页
+                            this.renderMainPage(graphics);
                             return;
-                        case 4:
+                        case 4: // 选服页
                             this.e(graphics);
                             return;
-                        case 5:
+                        case 5: // 角色列表页
                             this.f(graphics);
                             return;
-                        case 6:
-                            this.c(graphics);
+                        case 6: // 创建角色页：背景 + 混合UI（门派/性别/昵称输入 + 角色预览动画）
+                            this.renderMainPageBase(graphics);
                             if (this.mixedUi != null) {
                                 this.mixedUi.a(graphics);
                                 LoadingPage.draw(graphics, this.mixedUi.a + 5, this.mixedUi.b + 32, this.mixedUi.c - 11, this.mixedUi.a(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150), 1);
@@ -712,15 +1182,15 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 int var3 = this.mixedUi.b + 45;
                                 int var4 = this.mixedUi.a + 5 + 80 + (this.mixedUi.c - 80 - 13 - var2) / 2;
                                 graphics.drawString(GlobalConfig.manPaiName[this.bE], this.bE == 2 ? var4 + GlobalConfig.font2_w / 2 : var4, var3, 20);
-                                graphics.drawImage(X.pngImage, var4 - 20, var3, 20);
-                                this.a(0, var4 - 20, var3, X.b, X.c);
-                                graphics.drawImage(Y.pngImage, var4 + var2 + 15, var3, 20);
-                                this.a(1, var4 + var2 + 15, var3, Y.b, Y.c);
+                                graphics.drawImage(trigon_l.pngImage, var4 - 20, var3, 20);
+                                this.a(0, var4 - 20, var3, trigon_l.b, trigon_l.c);
+                                graphics.drawImage(trigon_r.pngImage, var4 + var2 + 15, var3, 20);
+                                this.a(1, var4 + var2 + 15, var3, trigon_r.b, trigon_r.c);
                                 graphics.drawString(this.bF == 0 ? "男" : "女", this.mixedUi.a + 5 + 80 + (this.mixedUi.c - 80 - 13 - GlobalConfig.font2_w) / 2, var3 + GlobalConfig.font2_h + 10, 20);
-                                graphics.drawImage(X.pngImage, var4 - 20, var3 + GlobalConfig.font2_h + 10, 20);
-                                this.a(2, var4 - 20, var3 + GlobalConfig.font2_h + 10, X.b, X.c);
-                                graphics.drawImage(Y.pngImage, var4 + var2 + 15, var3 + GlobalConfig.font2_h + 10, 20);
-                                this.a(3, var4 + var2 + 15, var3 + GlobalConfig.font2_h + 10, X.b, X.c);
+                                graphics.drawImage(trigon_l.pngImage, var4 - 20, var3 + GlobalConfig.font2_h + 10, 20);
+                                this.a(2, var4 - 20, var3 + GlobalConfig.font2_h + 10, trigon_l.b, trigon_l.c);
+                                graphics.drawImage(trigon_r.pngImage, var4 + var2 + 15, var3 + GlobalConfig.font2_h + 10, 20);
+                                this.a(3, var4 + var2 + 15, var3 + GlobalConfig.font2_h + 10, trigon_l.b, trigon_l.c);
                                 graphics.drawString("昵称：", this.mixedUi.a + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10 << 1), 20);
                                 LoadingPage.c(graphics, this.mixedUi.a + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10) * 3 - 1, this.mixedUi.c - 80 - this.logo_btn_random.getWidth() - 20, GlobalConfig.font2_h, 0);
                                 LoadingPage.drawString(graphics, this.ay, this.mixedUi.a + 5 + 80 + 5 + 2, var3 + (GlobalConfig.font2_h + 10) * 3, 20, 16711639);
@@ -742,55 +1212,451 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                     pngUtil.a(graphics, (Frame1) this.bx[this.bF * 3 + this.bE], (int[]) null, 0, 0, this.mixedUi.a + 40 + 5, this.mixedUi.b + 32 + this.bx[this.bF * 3 + this.bE].j() + (this.mixedUi.a(GlobalConfig.realHigh <= 240 ? (this.bB << 1) + 6 : 120) - this.bx[this.bF * 3 + this.bE].j()) / 2, 20, 0);
                                 }
                             }
-
                             return;
-                        case 7:
+                        case 7: // 游戏主场景：委托给 UISceneController 绘制
                             uiSceneController.a(graphics);
                             return;
-                        case 8:
-                        case 10:
-                        case 11:
-                        case 12:
-                        case 13:
-                        case 18:
-                        case 19:
-                        default:
-                            break;
-                        case 9:
-                            this.b(graphics);
+                        case PageStatus.LOGO_LOADING: // Logo 启动动画页
+                            this.renderLogo(graphics);
                             return;
-                        case 14:
-                            this.d(graphics);
+                        case PageStatus.MAIN_PAGE: // 账号选择页（登录/注册/改密码）
+                            this.renderMainPage(graphics);
                             return;
-                        case 15:
-                            this.c(graphics);
+                        case 15: // 更多游戏推广页 + 对话框覆盖层（按渠道显示不同文案）
+                            this.renderMainPageBase(graphics);
                             if (GlobalConfig.channel == 0) {
-                                LoadingPage.a(graphics, "更多精彩游戏尽在腾讯游戏频道\t(3g.qq.com)", new String[]{"更多", "退出"});
+                                LoadingPage.drawString(graphics, "更多精彩游戏尽在腾讯游戏频道\t(3g.qq.com)", new String[]{"更多", "退出"});
                             } else {
                                 if (GlobalConfig.channel != 1) {
-                                    LoadingPage.a(graphics, "更多精彩游戏尽在当乐网\t(com.cc.d.cn)", new String[]{"更多", "返回"});
+                                    LoadingPage.drawString(graphics, "更多精彩游戏尽在当乐网\t(com.cc.d.cn)", new String[]{"更多", "返回"});
                                     return;
                                 }
 
-                                LoadingPage.a(graphics, "更多精彩游戏尽在一哥哥网游戏频道\t(3g.01234.com.cn)", new String[]{"更多", "返回"});
+                                LoadingPage.drawString(graphics, "更多精彩游戏尽在一哥哥网游戏频道\t(3g.01234.com.cn)", new String[]{"更多", "返回"});
                             }
                             break;
-                        case 16:
-                            this.d(graphics);
-                            LoadingPage.a(graphics, "确认退出？", new String[]{"确认", "返回"});
+                        case 16: // 退出确认对话框：背景账号页 + "确认退出？"弹窗
+                            this.renderMainPage(graphics);
+                            LoadingPage.drawString(graphics, "确认退出？", new String[]{"确认", "返回"});
                             return;
-                        case 17:
-                            this.d(graphics);
-                            LoadingPage.a(graphics, "更多精彩游戏尽在一哥哥网游戏频道\t(3g.01234.com.cn)", new String[]{"更多", "退出"});
+                        case 17: // 渠道 1 专用更多游戏推广页 + 对话框
+                            this.renderMainPage(graphics);
+                            LoadingPage.drawString(graphics, "更多精彩游戏尽在一哥哥网游戏频道\t(3g.01234.com.cn)", new String[]{"更多", "退出"});
                             return;
-                        case 20:
-                            this.c(graphics);
-                            LoadingPage.a(graphics, aH, new String[]{"下载", "取消"});
+                        case 20: // 版本更新提示：背景 + 下载/取消对话框
+                            this.renderMainPageBase(graphics);
+                            LoadingPage.drawString(graphics, aH, new String[]{"下载", "取消"});
                     }
                 }
             }
         } catch (Exception var5) {
             ((Throwable) var5).printStackTrace();
+        }
+
+    }
+
+    protected void keyPressed(int code) {
+        int var10001 = this.inputAction;
+        int var4 = 0;
+        switch (code) {
+            case -22:
+            case -11:
+            case -7:
+                var4 = 536870912;
+                break;
+            case -21:
+            case -6:
+                var4 = 268435456;
+                break;
+            case 35:
+                var4 = 2048;
+                break;
+            case 42:
+                var4 = 1024;
+                break;
+            case 48:
+                var4 = 48;
+                break;
+            case 49:
+                var4 = 513;
+                break;
+            case 50:
+                var4 = 514;
+                break;
+            case 51:
+                var4 = 515;
+                break;
+            case 52:
+                var4 = 516;
+                break;
+            case 53:
+                var4 = 517;
+                break;
+            case 54:
+                var4 = 518;
+                break;
+            case 55:
+                var4 = 519;
+                break;
+            case 56:
+                var4 = 520;
+                break;
+            case 57:
+                var4 = 521;
+                break;
+            default:
+                switch (((Canvas) this).getGameAction(code)) {
+                    case 1:
+                        var4 = 1;
+                        break;
+                    case 2:
+                        var4 = 8;
+                    case 3:
+                    case 4:
+                    case 7:
+                    default:
+                        break;
+                    case 5:
+                        var4 = 2;
+                        break;
+                    case 6:
+                        var4 = 4;
+                        break;
+                    case 8:
+                        var4 = 1073741824;
+                }
+        }
+
+        this.inputAction = var10001 | var4;
+        if (this.shuangJiCheck == this.inputAction && System.currentTimeMillis() - this.lastClickTs <= 600L) {
+            if (uiSceneController != null && uiSceneController.currentSceneModeId == 0) {
+                if (this.shuangJiCheck != 1 && this.shuangJiCheck != 514) {
+                    if (this.shuangJiCheck != 8 && this.shuangJiCheck != 516) {
+                        if (this.shuangJiCheck != 4 && this.shuangJiCheck != 520) {
+                            if (this.shuangJiCheck != 2 && this.shuangJiCheck != 518) {
+                                uiSceneController.d = -1;
+                            } else {
+                                uiSceneController.d = 2;
+                            }
+                        } else {
+                            uiSceneController.d = 3;
+                        }
+                    } else {
+                        uiSceneController.d = 0;
+                    }
+                } else {
+                    uiSceneController.d = 1;
+                }
+            }
+        } else {
+            if (uiSceneController != null) {
+                uiSceneController.d = -1;
+            }
+
+            this.shuangJiCheck = this.inputAction;
+        }
+
+        this.lastClickTs = System.currentTimeMillis();
+        var10001 = this.keyCombination;
+        var4 = 0;
+        label58:
+        switch (((Canvas) this).getGameAction(code)) {
+            case 1:
+                var4 = 1;
+                break;
+            case 2:
+                var4 = 8;
+                break;
+            case 3:
+            case 4:
+            case 7:
+            case 8:
+            default:
+                switch (code) {
+                    case 50:
+                        var4 = 514;
+                        break label58;
+                    case 51:
+                    case 53:
+                    case 55:
+                    default:
+                        var4 = 0;
+                        break label58;
+                    case 52:
+                        var4 = 516;
+                        break label58;
+                    case 54:
+                        var4 = 518;
+                        break label58;
+                    case 56:
+                        var4 = 520;
+                        break label58;
+                }
+            case 5:
+                var4 = 2;
+                break;
+            case 6:
+                var4 = 4;
+        }
+
+        this.keyCombination = var10001 | var4;
+        this.tempTouchStatus = 0;
+    }
+
+    protected void keyReleased(int code) {
+        this.inputAction = 0;
+        this.keyCombination = 0;
+        this.tempTouchStatus = 0;
+    }
+
+
+    /**
+     * 手工梳理后的触屏按下逻辑。
+     * 保留原始 pointerPressed 不动，后续如果需要替换，可直接把本方法改名。
+     * <p>
+     * 已修正的反编译问题：
+     * 1. case 5 命中角色格子后，结果不应在循环结束后被默认值覆盖。
+     * 2. case 6 最后两个按钮是确认动作，命中后不应再落回左右切换。
+     * 3. case 14 实际是遍历主菜单项；未命中时再检查右下角“退出”区域。
+     */
+    protected void pointerPressed(int x, int y) {
+        if (!GlobalConfig.supportTouch || this.touchController == null) {
+            return;
+        }
+        // aj: 触屏输入控制器，负责保存当前触点坐标、拖动状态，并把点击分发到当前画面。
+        this.touchController.pointX = x;
+        this.touchController.pointY = y;
+        // aA: 当前触摸附带的临时状态位，这里按下时先清零。
+        this.tempTouchStatus = 0;
+        this.touchController.a(this.touchController.pointX, this.touchController.pointY);
+        // canvas: 实际处理这次点击的主画布对象，也就是当前 this。
+//        MainCanvas canvas = this.touchController.canvas;
+        int touchX = this.touchController.pointX;
+        int touchY = this.touchController.pointY;
+        // j: 当前主画布所处的大界面状态。
+        switch (this.pageStatus) {
+            case 2:
+                // case 2: 游戏主场景，点击地图/场景对象后直接换算成场景命令。
+                // a: 当前输入转换出的“命令码”，后续主循环会按这个值执行动作。
+                this.inputAction = this.buildTouchAction(touchX, touchY);
+                return;
+            case 4:
+                // case 4: 服务器/分线/登录前选择类界面。
+                // c: 当前大界面下的子状态。
+                if (this.touch4Status == 0) {
+                    if (this.mixedUi != null) {
+                        // aq: 通用弹窗/面板命中检测对象，负责把坐标转换成按钮/列表命令。
+                        this.inputAction = this.mixedUi.hintCheck(touchX, touchY);
+                    }
+                    return;
+                }
+                if (this.touch4Status == 2) {
+                    this.inputAction = this.buildTouchAction(touchX, touchY);
+                }
+                return;
+            case 5:
+                // case 5: 角色列表界面。
+                if (this.mixedUi != null) {
+                    // 先让通用面板逻辑处理一次，再叠加角色列表自己的格子命中逻辑。
+                    this.inputAction = this.mixedUi.hintCheck(touchX, touchY);
+                    int action = this.inputAction;
+                    if (this.actorList != null) {
+                        // bC: 角色列表 6 个格子的点击区域 [x, y, width, height]
+                        for (int slotIndex = 0; slotIndex < this.actorList.length; slotIndex++) {
+                            int[] rect = this.actorList[slotIndex];
+                            if (touchX >= rect[0] && touchX <= rect[0] + rect[2] && touchY >= rect[1] && touchY <= rect[1] + rect[3]) {
+                                byte col = (byte) (slotIndex % 2);
+                                byte row = (byte) (slotIndex / 2);
+                                // bz / bA: 当前角色列表选中的列、行
+                                if (col == this.selectActorClo && row == this.selectActorRow) {
+                                    // 再次点击当前已选角色，触发确认进入。
+                                    action = 1073741824;
+                                } else {
+                                    // 第一次点击只切换高亮，不直接进入。
+                                    this.selectActorClo = col;
+                                    this.selectActorRow = (byte) (row == 0 ? 1 : 0);
+                                    action = 4;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    this.inputAction = action;
+                }
+                if (this.touch4Status == 1) {
+                    this.inputAction = LoadingPage.c(touchX, touchY);
+                    return;
+                }
+                if (this.touch4Status != 2) {
+                    return;
+                }
+                break;
+            case 6:
+                // case 6: 创建角色界面。
+                if (this.mixedUi != null) {
+                    // 创建角色界面同样先走通用面板命中，再补自己的热点区域判断。
+                    this.inputAction = this.mixedUi.hintCheck(touchX, touchY);
+                    int action = this.inputAction;
+                    if (this.actorList != null) {
+                        // bC: 创建角色界面的 6 个热点区域
+                        for (int hotAreaIndex = 0; hotAreaIndex < this.actorList.length; hotAreaIndex++) {
+                            int[] rect = this.actorList[hotAreaIndex];
+                            if (touchX >= rect[0] && touchX <= rect[0] + rect[2] && touchY >= rect[1] && touchY <= rect[1] + rect[3]) {
+                                if (hotAreaIndex < 2) {
+                                    // 第一组：头像/形象左右切换。
+                                    // bH: 当前创建角色界面的焦点组
+                                    this.bH = 0;
+                                    action = hotAreaIndex % 2 == 0 ? 8 : 2;
+                                } else if (hotAreaIndex < 4) {
+                                    // 第二组：性别左右切换。
+                                    this.bH = 1;
+                                    action = hotAreaIndex % 2 == 0 ? 8 : 2;
+                                } else {
+                                    // 第三组：名字输入框 / 随机名按钮，点击后是确认选中。
+                                    // bG: 第三组中的子选项，0=输入框，1=随机名按钮
+                                    this.bH = 2;
+                                    this.bG = hotAreaIndex % 2;
+                                    action = 1073741824;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    this.inputAction = action;
+                    return;
+                }
+                return;
+            case 10:
+                // case 10: 只依赖通用面板命中的功能页。
+                if (this.mixedUi != null) {
+                    // aq: 这里仅依赖通用面板返回命令，不额外叠加界面专属逻辑。
+                    this.inputAction = this.mixedUi.hintCheck(touchX, touchY);
+                }
+                return;
+            case PageStatus.MAIN_PAGE:
+                // case 14: 标题/启动主菜单界面。
+                if (this.touch4Status != 0) {
+                    this.inputAction = LoadingPage.b(touchX, touchY);
+                    return;
+                }
+                int action = 0;
+                // bo: 标题界面的主菜单文案数组；bs: 当前命中的菜单项索引
+                for (int menuIndex = 0; menuIndex < this.mainPageButton.length; menuIndex++) {
+                    int left = (GlobalConfig.defaultWidth - this.menuItem.getWidth()) >> 1;
+                    int right = left + this.menuItem.getWidth();
+                    int top = (this.mainPageTop_Y << 1) + this.logoTitle.getHeight() + (this.menuItem.getHeight() * menuIndex);
+                    int bottom = (this.mainPageTop_Y << 1) + this.logoTitle.getHeight() + (this.menuItem.getHeight() * (menuIndex + 1));
+                    if (touchX > left && touchX < right && touchY > top && touchY < bottom) {
+                        this.mainPageIndex = menuIndex;
+                        // al: 菜单项选中后的计时/节奏控制字段，点中后清零以便立即触发
+                        this.frameCounter = 0L;
+                        action = InputAction.CONFIRM;
+                        break;
+                    }
+                }
+                if (action == 0 && GlobalConfig.channel == 1) {
+                    int left = (GlobalConfig.defaultWidth - GlobalConfig.font2.stringWidth("退出")) - 4;
+                    int right = GlobalConfig.defaultWidth - 4;
+                    int top = (GlobalConfig.defaultHigh - GlobalConfig.font2_h) - 4;
+                    int bottom = GlobalConfig.defaultHigh - 4;
+                    if (touchX >= left && touchX <= right && touchY >= top && touchY <= bottom) {
+                        action = InputAction.QUIT;
+                    }
+                }
+                this.inputAction = action;
+                return;
+            case 15:
+            case 16:
+            case 17:
+                // case 15/16/17: 使用 ca.b() 的通用确认/取消类界面。
+                this.inputAction = LoadingPage.b(touchX, touchY);
+                return;
+            case 18:
+            case 19:
+                // case 18/19: 使用 ca.a() 的另一组通用弹框/菜单界面。
+                this.inputAction = LoadingPage.a(touchX, touchY);
+                return;
+            case 20:
+                // case 20: 下载/提示类界面，走 switch 末尾的 ca.b() 默认处理。
+                break;
+            case 3:
+            case 7:
+            case 8:
+            case 9:
+            case 11:
+            case 12:
+            case 13:
+            default:
+                // 这些状态当前没有额外的 pointerPressed 逻辑，直接返回。
+                return;
+        }
+        this.inputAction = LoadingPage.b(touchX, touchY);
+    }
+
+    protected void pointerReleased(int var1, int var2) {
+        if (GlobalConfig.supportTouch && this.touchController != null) {
+            this.touchController.c = 0;
+            this.touchController.d = 0;
+            this.keyCombination = 0;
+            this.inputAction = 0;
+            this.tempTouchStatus = 0;
+        }
+
+    }
+
+    protected void pointerDragged(int var1, int var2) {
+        if (GlobalConfig.supportTouch && this.touchController != null && uiSceneController != null) {
+            if (uiSceneController.currentSceneModeId == 0 && uiSceneController.J != null) {
+                return;
+            }
+
+            switch (uiSceneController.currentSceneModeId) {
+                case 0:
+                    this.touchController.d = 1;
+                    this.aF = var1;
+                    this.aG = var2;
+                    return;
+                case 39:
+                    if (this.touchController.c == 1) {
+                        this.touchController.d = 1;
+                        this.aF = var1;
+                        this.aG = var2;
+                    }
+            }
+        }
+
+    }
+
+    public void a() {
+        role.c();
+        ae.c();
+        icon.c();
+        petfight.c();
+        this.mixedUi = new MixedUi();
+        this.gunDongListUi = new GunDongListUi();
+        this.bottomUi = new BottomUi();
+        this.topUi = new TopUi();
+        this.textPanel = new TextPanel();
+    }
+
+    /**
+     * 初始化（或重启）网络连接。
+     * 首次调用时创建 NetUtils（同时启动 SocketReadLooper 和 SocketWristLooper 两个网络线程）；
+     * 后续调用（重连）则复用已有实例并重新 start。
+     */
+    public void init() {
+        if (netUtils == null) {
+            netUtils = new NetUtils();
+        } else {
+            netUtils.start();
+        }
+        netUtils.setMainCanvas(this);
+    }
+
+    private static void stopNet() {
+        if (netUtils != null) {
+            netUtils.stop();
+            netUtils = null;
         }
 
     }
@@ -806,7 +1672,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             }
 
             uiSceneController.sceneStateShadow = uiSceneController.currentSceneModeId = 0;
-            this.touchPageCase = this.k = 7;
+            this.pageStatus = this.lastPageStatus = 7;
         }
 
         GlobalStatus.H = null;
@@ -814,14 +1680,15 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         GlobalStatus.I = null;
         GlobalStatus.N = null;
         GlobalStatus.as = -1;
-        this.p = false;
+        this.globalLoadingMask = false;
         if (var2 == 1) {
-            this.processException("系统异常<" + var2 + ">");
+            this.showTips("系统异常<" + var2 + ">");
         }
 
     }
 
-    public void clear() {
+    //触发重绘
+    public void doRepaint() {
         this.repaint();
         this.serviceRepaints();
     }
@@ -841,7 +1708,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         }
 
         for (int var8 = 0; var8 < aN.size(); ++var8) {
-            ab.b((String) aN.elementAt(var8), var5, var6, var7);
+            role.b((String) aN.elementAt(var8), var5, var6, var7);
         }
 
         aN.removeAllElements();
@@ -875,7 +1742,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         }
     }
 
-    public void showDLZ(String var1) {
+    public void showPending(String msg) {
         int w = GlobalConfig.defaultWidth * 6 / 11;
         if (w < 110) {
             w = 110;
@@ -883,18 +1750,18 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             w = 160;
         }
 
-        LoadingPage.showDLZ((GlobalConfig.defaultWidth - w) / 2, GlobalConfig.defaultHigh / 2 + 15, w, 20, var1);
-        this.aP = this.ak;
-        this.touchPageCase = 1;
+        LoadingPage.showDLZ((GlobalConfig.defaultWidth - w) / 2, GlobalConfig.defaultHigh / 2 + 15, w, 20, msg);
+        this.pendingTs = this.frameStartTs;
+        this.pageStatus = 1;
     }
 
-    public void processException(String msg) {
-        if (this.aS != null && this.aS.startsWith("系统异常")) {
-            this.t();
+    public void showTips(String msg) {
+        if (this.tipsMsg != null && this.tipsMsg.startsWith("系统异常")) {
+            this.reStart();
         }
 
         if (msg != null && msg.startsWith("系统异常")) {
-            this.aS = msg;
+            this.tipsMsg = msg;
         }
 
         if (GlobalStatus.bs == 1 && GlobalStatus.s == 0 && GlobalStatus.eC != null && GlobalStatus.eC.startsWith("队伍成员位置信息不一致")) {
@@ -903,29 +1770,29 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             this.i();
         } else {
             GlobalStatus.eC = msg;
-            this.aT = new FWBRender(GlobalStatus.eC, (short) (GlobalConfig.defaultWidth - 20));
+            this.tipsRender = new FWBRender(GlobalStatus.eC, (short) (GlobalConfig.defaultWidth - 20));
             if (uiSceneController == null || uiSceneController.currentSceneModeId != 25) {
                 ((Canvas) this).setFullScreenMode(true);
                 this.mainMidlet.display.setCurrent(this);
             }
 
-            this.aQ = this.ak;
-            this.aR = true;
-            if (this.aT != null) {
-                this.aX = 0;
-                this.aX = this.aT.a;
-                this.aX = this.aX + 20 > GlobalConfig.defaultWidth ? GlobalConfig.defaultWidth : this.aX + 20;
-                if (this.aX < GlobalConfig.defaultWidth * 5 / 7) {
-                    this.aX = GlobalConfig.defaultWidth * 5 / 7;
+            this.tipsTs = this.frameStartTs;
+            this.inTips = true;
+            if (this.tipsRender != null) {
+                this.tipsW = 0;
+                this.tipsW = this.tipsRender.a;
+                this.tipsW = this.tipsW + 20 > GlobalConfig.defaultWidth ? GlobalConfig.defaultWidth : this.tipsW + 20;
+                if (this.tipsW < GlobalConfig.defaultWidth * 5 / 7) {
+                    this.tipsW = GlobalConfig.defaultWidth * 5 / 7;
                 }
 
-                this.aV = (GlobalConfig.defaultWidth - this.aX) / 2;
-                this.aY = this.aT.getLines() * GlobalConfig.font2_h + 14;
-                this.aW = (GlobalConfig.defaultHigh - this.aY) / 2;
+                this.tipsX = (GlobalConfig.defaultWidth - this.tipsW) / 2;
+                this.tispH = this.tipsRender.getLines() * GlobalConfig.font2_h + 14;
+                this.tipsY = (GlobalConfig.defaultHigh - this.tispH) / 2;
             }
 
-            this.touchPageCase = 2;
-            if (GlobalConfig.o && this.touchController != null) {
+            this.pageStatus = 2;
+            if (GlobalConfig.supportTouch && this.touchController != null) {
                 this.touchController.pointX = -1;
                 this.touchController.pointY = -1;
             }
@@ -934,29 +1801,29 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     }
 
     public void a(boolean var1) {
-        this.aR = false;
+        this.inTips = false;
     }
 
-    private void t() {
+    private void reStart() {
         if (uiSceneController == null) {
-            this.loading();
+            this.startLogo();
         } else {
-            uiSceneController.h((byte) 1);
-            this.showDLZ((String) null);
+            uiSceneController.sendNet4195((byte) 1);
+            this.showPending(null);
         }
 
-        this.aS = null;
+        this.tipsMsg = null;
     }
 
     public int buildTouchAction(int var1, int var2) {
-        return var1 >= this.aV && var1 <= this.aV + this.aX && var2 >= this.aW && var2 <= this.aW + this.aY ? 0 : 536870912;
+        return var1 >= this.tipsX && var1 <= this.tipsX + this.tipsW && var2 >= this.tipsY && var2 <= this.tipsY + this.tispH ? 0 : 536870912;
     }
 
     private void a(Graphics var1) {
         if (!u()) {
-            LoadingPage.a(var1, this.aV, this.aW, this.aX, this.aY);
-            if (this.aT != null) {
-                this.aT.a(var1, GlobalConfig.defaultWidth / 2, this.aW + 7);
+            LoadingPage.a(var1, this.tipsX, this.tipsY, this.tipsW, this.tispH);
+            if (this.tipsRender != null) {
+                this.tipsRender.a(var1, GlobalConfig.defaultWidth / 2, this.tipsY + 7);
             }
         }
 
@@ -983,7 +1850,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             this.display.setCurrent(this.aD);
         }
 
-        this.k = this.touchPageCase = 3;
+        this.lastPageStatus = this.pageStatus = 3;
     }
 
     private void v() {
@@ -1051,23 +1918,24 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         return new ChoiceGroup("方式", 4, var2, (Image[]) null);
     }
 
-    private void show() {
-        if (!isShow) {
-            this.reset();
+    //加载游戏主页资源，三个选项
+    private void loadingMainPage() {
+        if (!mainPageReady) {
+            this.releaseLogoResource();
             this.light_0 = createImage("/images/light_0.png");
             this.light_1 = createImage("/images/light_1.png");
-            int var2 = GlobalConfig.defaultWidth / 9;
-            this.bq = new int[8];
+            int t_w = GlobalConfig.defaultWidth / 9;
+            this.mainPageButton_Y = new int[8];
 
-            for (int var3 = 0; var3 < this.bq.length; ++var3) {
-                this.bq[var3] = var2 * (var3 + 1);
+            for (int i = 0; i < this.mainPageButton_Y.length; ++i) {
+                this.mainPageButton_Y[i] = t_w * (i + 1);
             }
 
-            this.bp = new int[8][5];
+            this.mainPageButtonXY = new int[8][5];
 
-            for (int var5 = 0; var5 < this.bp.length; ++var5) {
-                for (int var4 = 0; var4 < this.bp[var5].length; ++var4) {
-                    this.bp[var5] = this.z();
+            for (int i = 0; i < this.mainPageButtonXY.length; ++i) {
+                for (int var4 = 0; var4 < this.mainPageButtonXY[i].length; ++var4) {
+                    this.mainPageButtonXY[i] = this.z();
                 }
             }
 
@@ -1082,11 +1950,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             this.logoTitle = createImage("/images/" + (GlobalConfig.defaultHigh <= 220 ? "logoTitle_M.png" : "logoTitle_B.png"));
             this.menuBG = createImage("/images/menuBG.png");
             this.menuItem = createImage("/images/menuItem.png");
-            isShow = true;
+            mainPageReady = true;
         }
     }
 
-    private void reset() {
+    private void releaseLogoResource() {
         this.light_0 = null;
         this.light_1 = null;
         hudie = null;
@@ -1095,148 +1963,137 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         this.logoTitle = null;
         this.menuBG = null;
         this.menuItem = null;
-        isShow = false;
+        mainPageReady = false;
     }
 
-    private void loading() {
+    /**
+     * 进入 Logo 动画页的准备工作：加载 logo 和 loading 图片，将页面状态设为 9（Logo 动画）。
+     * 由构造函数和重连流程调用。
+     */
+    private void startLogo() {
         this.logo = createImage("/logo.png");
         this.loading = createImage("/images/loading.png");
-        this.al = 0L;
-        this.k = this.touchPageCase = 9;
-        this.clear();
+        this.frameCounter = 0L;
+        this.lastPageStatus = this.pageStatus = PageStatus.LOGO_LOADING;
+        this.doRepaint();
     }
 
-    private void b(Graphics graphics) {
-        if (this.al < 260L) {
-            this.al = 260L;
+    private void renderLogo(Graphics graphics) {
+        if (this.frameCounter < 260L) {
+            this.frameCounter = 260L;
         }
-
-        if (this.al >= 260L) {
-            graphics.setColor(0);
-            graphics.fillRect(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-            graphics.drawImage(this.logo, GlobalConfig.defaultWidth - this.logo.getWidth() >> 1, GlobalConfig.defaultHigh - this.logo.getHeight() >> 1, 20);
-            this.bu = (int) (515L - this.al > 0L ? 515L - this.al : 0L);
-            LoadingPage.a(graphics, 0, this.bu, GlobalConfig.defaultWidth - this.logo.getWidth() >> 1, GlobalConfig.defaultHigh - this.logo.getHeight() >> 1, this.logo.getWidth(), this.logo.getHeight());
-            this.al += 5L;
-        }
-
+        graphics.setColor(0);
+        graphics.fillRect(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
+        graphics.drawImage(this.logo, GlobalConfig.defaultWidth - this.logo.getWidth() >> 1, GlobalConfig.defaultHigh - this.logo.getHeight() >> 1, 20);
+        this.logoAlpha = (int) (Math.max(515L - this.frameCounter, 0L));
+        LoadingPage.fillRect(graphics, 0, this.logoAlpha, GlobalConfig.defaultWidth - this.logo.getWidth() >> 1, GlobalConfig.defaultHigh - this.logo.getHeight() >> 1, this.logo.getWidth(), this.logo.getHeight());
+        this.frameCounter += 5L;
     }
 
-    public void c() {
-        NetPayloadBuilder.hands1 = 90;
-        this.show();
-        if (GlobalConfig.channel == 1) {
-            this.bo = new String[]{"登陆游戏", "注册游戏", "修改密码"};
-        }
+    //启动游戏主面
+    public void startMainPage() {
+//        NetPayloadBuilder.hands1 = 90;
+        this.loadingMainPage();
+        this.mainPageButton = new String[]{"登陆游戏", "注册游戏", "修改密码"};
 
         this.touch4Status = 0;
-        this.bu = 0;
+        this.logoAlpha = 0;
         LoadingPage.l = 0;
         LoadingPage.h = 0;
-        if (GlobalConfig.channel != 0) {
-            if (zhanghao == null && ChongZhiModel.zhanghao != null) {
-                zhanghao = ChongZhiModel.zhanghao;
-                pwd = ChongZhiModel.pwd;
-                loginType = ChongZhiModel.loginType;
-                rememberPwd = ChongZhiModel.rememberPwd;
-            }
-
-            if (zhanghao == null) {
-                zhanghao = "";
-                if ("mhxy011".equals(GlobalConfig.PopularizeChannel) || "mhxy278".equals(GlobalConfig.PopularizeChannel)) {
-                    this.touch4Status = 1;
-                }
-            }
-
-            if (pwd == null) {
-                pwd = "";
-            }
-
-            if (NetPayloadBuilder.hands2 != 72) {
-                stopNet();
-                netUtils = null;
-            }
-        } else if (NetPayloadBuilder.channelFlag != 162) {
-            NetPayloadBuilder.channelFlag = 162;
-            stopNet();
+        if (zhanghao == null && ChongZhiModel.zhanghao != null) {
+            zhanghao = ChongZhiModel.zhanghao;
+            pwd = ChongZhiModel.pwd;
+            loginType = ChongZhiModel.loginType;
+            rememberPwd = ChongZhiModel.rememberPwd;
         }
 
-        GlobalStatus.O();
-        this.A();
-        this.al = 8L;
-        this.bs = 0;
-        this.k = this.touchPageCase = 14;
+        if (zhanghao == null) {
+            zhanghao = "";
+        }
+
+        if (pwd == null) {
+            pwd = "";
+        }
+
+        if (NetPayloadBuilder.hands2 != 72) {
+            stopNet();
+            netUtils = null;
+        }
+
+        GlobalStatus.clearXXX();
+        this.clearUIController();
+        this.frameCounter = 8L;
+        this.mainPageIndex = 0;
+        this.lastPageStatus = this.pageStatus = PageStatus.MAIN_PAGE;
     }
 
-    private void c(Graphics graphics) {
-        this.bt = GlobalConfig.defaultHigh <= 240 ? 2 : (GlobalConfig.defaultHigh - this.logoTitle.getHeight() - this.menuItem.getHeight() * 7) / 3;
+    //渲染主页面基础元素
+    private void renderMainPageBase(Graphics graphics) {
+        this.mainPageTop_Y = GlobalConfig.defaultHigh <= 240 ? 2 : (GlobalConfig.defaultHigh - this.logoTitle.getHeight() - this.menuItem.getHeight() * 7) / 3;
         if (this.menuBG != null) {
             graphics.drawImage(this.menuBG, GlobalConfig.defaultWidth - this.menuBG.getWidth() >> 1, GlobalConfig.defaultHigh - this.menuBG.getHeight() >> 1, 20);
         }
 
         if (this.logoTitle != null) {
-            graphics.drawImage(this.logoTitle, GlobalConfig.defaultWidth - this.logoTitle.getWidth() >> 1, this.bt, 20);
+            graphics.drawImage(this.logoTitle, GlobalConfig.defaultWidth - this.logoTitle.getWidth() >> 1, this.mainPageTop_Y, 20);
         }
 
         if (hudie != null) {
-            PngUtil.a(hudie, this.ak);
+            PngUtil.a(hudie, this.frameStartTs);
             pngUtil.a(graphics, (Frame1) hudie, (int[]) null, 0, 0, GlobalConfig.defaultWidth - 100, GlobalConfig.defaultHigh - 100, 0, 0);
         }
 
         if (hudie_2 != null) {
-            PngUtil.a(hudie_2, this.ak);
+            PngUtil.a(hudie_2, this.frameStartTs);
             pngUtil.a(graphics, (Frame1) hudie_2, (int[]) null, 0, 0, GlobalConfig.defaultWidth - 100, GlobalConfig.defaultHigh - 100, 0, 0);
         }
 
-        if (this.light_0 != null && this.light_1 != null && this.bp != null) {
-            for (int var2 = 0; var2 < this.bp.length; ++var2) {
-                for (int var3 = 0; var3 < this.bp[var2].length; ++var3) {
-                    if (this.bp[var2][0] >= 0 && this.bp[var2][0] <= GlobalConfig.defaultWidth && this.bp[var2][1] >= 0) {
-                        if ((this.br & 1) == 0) {
-                            this.bp[var2][0] += LoadingPage.f(10, 40) % 2 == 0 ? -this.bp[var2][2] : this.bp[var2][2];
-                            this.bp[var2][1] -= this.bp[var2][3];
+        if (this.light_0 != null && this.light_1 != null && this.mainPageButtonXY != null) {
+            for (int var2 = 0; var2 < this.mainPageButtonXY.length; ++var2) {
+                for (int var3 = 0; var3 < this.mainPageButtonXY[var2].length; ++var3) {
+                    if (this.mainPageButtonXY[var2][0] >= 0 && this.mainPageButtonXY[var2][0] <= GlobalConfig.defaultWidth && this.mainPageButtonXY[var2][1] >= 0) {
+                        if ((this.piaoDongTeXiao & 1) == 0) {
+                            this.mainPageButtonXY[var2][0] += LoadingPage.randomInt(10, 40) % 2 == 0 ? -this.mainPageButtonXY[var2][2] : this.mainPageButtonXY[var2][2];
+                            this.mainPageButtonXY[var2][1] -= this.mainPageButtonXY[var2][3];
                         }
                     } else {
-                        this.bp[var2] = this.z();
+                        this.mainPageButtonXY[var2] = this.z();
                     }
 
-                    graphics.drawImage(this.bp[var2][4] == 0 ? this.light_0 : this.light_1, this.bp[var2][0], this.bp[var2][1], 20);
+                    graphics.drawImage(this.mainPageButtonXY[var2][4] == 0 ? this.light_0 : this.light_1, this.mainPageButtonXY[var2][0], this.mainPageButtonXY[var2][1], 20);
                 }
             }
 
-            ++this.br;
+            ++this.piaoDongTeXiao;
         }
     }
 
     private int[] z() {
-        int[] var1;
-        (var1 = new int[5])[0] = this.bq[LoadingPage.f(1, 100) % 8];
-        var1[1] = GlobalConfig.defaultHigh + LoadingPage.f(1, 200);
+        int[] var1 = new int[5];
+        var1[0] = this.mainPageButton_Y[LoadingPage.randomInt(1, 100) % 8];
+        var1[1] = GlobalConfig.defaultHigh + LoadingPage.randomInt(1, 200);
         var1[2] = 1;
         var1[3] = 1;
-        var1[4] = LoadingPage.f(1, 100) % 2;
+        var1[4] = LoadingPage.randomInt(1, 100) % 2;
         return var1;
     }
 
-    private void d(Graphics var1) {
-        this.c(var1);
+    private void renderMainPage(Graphics var1) {
+        this.renderMainPageBase(var1);
         LoadingPage.drawString(var1, GlobalConfig.appVersion, (int) 5, GlobalConfig.defaultHigh - 3, 36, 6160358, 335925);
-        if (GlobalConfig.channel == 1) {
-            LoadingPage.drawString(var1, "退出", (int) (GlobalConfig.defaultWidth - 5), GlobalConfig.defaultHigh - 3, 40, 16777215, 335925);
-        }
+        LoadingPage.drawString(var1, "退出", (int) (GlobalConfig.defaultWidth - 5), GlobalConfig.defaultHigh - 3, 40, 16777215, 335925);
 
-        for (int var2 = 0; var2 < this.bo.length; ++var2) {
-            if (var2 == this.bs) {
-                var1.drawImage(this.menuItem, GlobalConfig.defaultWidth - this.menuItem.getWidth() >> 1, (this.bt << 1) + this.logoTitle.getHeight() + var2 * this.menuItem.getHeight(), 20);
+        for (int var2 = 0; var2 < this.mainPageButton.length; ++var2) {
+            if (var2 == this.mainPageIndex) {
+                var1.drawImage(this.menuItem, GlobalConfig.defaultWidth - this.menuItem.getWidth() >> 1, (this.mainPageTop_Y << 1) + this.logoTitle.getHeight() + var2 * this.menuItem.getHeight(), 20);
             }
 
-            LoadingPage.drawString(var1, (String) this.bo[var2], (int) (GlobalConfig.defaultWidth >> 1), (this.bt << 1) + this.logoTitle.getHeight() + var2 * this.menuItem.getHeight() + (this.menuItem.getHeight() - GlobalConfig.font2_h) / 2, 17, 16777215, 335925);
+            LoadingPage.drawString(var1, (String) this.mainPageButton[var2], (int) (GlobalConfig.defaultWidth >> 1), (this.mainPageTop_Y << 1) + this.logoTitle.getHeight() + var2 * this.menuItem.getHeight() + (this.menuItem.getHeight() - GlobalConfig.font2_h) / 2, 17, 16777215, 335925);
         }
 
         if (this.touch4Status == 1) {
-            LoadingPage.a(var1, "当前没有账号信息，是否自动注册？", new String[]{"确定", "返回"});
+            LoadingPage.drawString(var1, "当前没有账号信息，是否自动注册？", new String[]{"确定", "返回"});
         }
-
     }
 
     public void openWebView(String var1) {
@@ -1307,16 +2164,16 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         this.bottomUi.a(new String[]{"进入选区", ""});
         this.mixedUi.a((BaseUi) this.bottomUi);
         this.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.k = this.touchPageCase = 4;
+        this.lastPageStatus = this.pageStatus = 4;
         this.touch4Status = 0;
-        this.touchAction = 0;
-        this.b = 0;
+        this.inputAction = 0;
+        this.keyCombination = 0;
     }
 
     public void a(int var1) {
         stopNet();
         if (GlobalStatus.hC[var1].equals("")) {
-            this.processException(GlobalStatus.hA[var1] + "繁忙,请选择其他服!");
+            this.showTips(GlobalStatus.hA[var1] + "繁忙,请选择其他服!");
         } else {
             NetPayloadBuilder.hands1 = (byte) GlobalStatus.hD[var1];
             NetPayloadBuilder.hands2 = (byte) GlobalStatus.hE[var1];
@@ -1330,15 +2187,15 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             var4.firstPacket = true;
             netUtils.sendPacket(var4);
             this.aZ = false;
-            this.showDLZ((String) null);
+            this.showPending((String) null);
         } else {
-            this.processException("获取上传指令数据错误!");
+            this.showTips("获取上传指令数据错误!");
         }
     }
 
     private void e(Graphics var1) {
         if (GlobalConfig.channel != 1 || GlobalConfig.logined || !GlobalStatus.hw) {
-            this.c(var1);
+            this.renderMainPageBase(var1);
             if (this.mixedUi != null) {
                 this.mixedUi.a(var1);
             }
@@ -1372,24 +2229,22 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         }
     }
 
-    private void A() {
+    private void clearUIController() {
         if (uiSceneController != null) {
-            uiSceneController.b();
+            uiSceneController.clear();
             uiSceneController = null;
-            if (GlobalConfig.o && this.touchController != null) {
-                Object var1 = null;
-                this.touchController.a = (UISceneController) var1;
+            if (GlobalConfig.supportTouch && this.touchController != null) {
+                this.touchController.uISceneController = null;
             }
         }
-
     }
 
     public Frame1 a(Frame1 var1, byte var2, byte var3, byte var4, byte var5, boolean var6) {
         GlobalConfig.sbTemp.delete(0, GlobalConfig.sbTemp.length());
         GlobalConfig.sbTemp.append("f").append(GlobalConfig.V[var2]).append(GlobalConfig.W[var3]).append(var5).append(GlobalConfig.X[3]).append(var6 ? 1 : 2);
         String var8 = GlobalConfig.sbTemp.toString();
-        ab.d(var8);
-        if ((var1 = ab.getFrame1(var8)) != null) {
+        role.d(var8);
+        if ((var1 = role.getFrame1(var8)) != null) {
             var1 = var1.b();
         }
 
@@ -1397,17 +2252,17 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     }
 
     public void b(int var1) {
-        this.show();
+        this.loadingMainPage();
         this.actorList = new int[6][4];
         LoadingPage.l = 0;
         LoadingPage.h = 0;
         LoadingPage.o = 0;
         this.touch4Status = 0;
-        this.touchAction = 0;
-        this.b = 0;
-        GlobalStatus.O();
-        this.A();
-        if (var1 <= 0 && this.k != 6) {
+        this.inputAction = 0;
+        this.keyCombination = 0;
+        GlobalStatus.clearXXX();
+        this.clearUIController();
+        if (var1 <= 0 && this.lastPageStatus != 6) {
             this.bx = null;
             this.by = null;
             this.bB = 45;
@@ -1436,22 +2291,18 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             }
 
             this.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
-            this.show();
-            this.k = this.touchPageCase = 5;
+            this.loadingMainPage();
+            this.lastPageStatus = this.pageStatus = 5;
         }
     }
 
     private String f(int var1) {
-        if (GlobalStatus.aa != null && var1 < GlobalStatus.aa.length) {
-            GlobalConfig.clearStr(this.shareSb);
-            this.shareSb.append("昵称：" + GlobalStatus.aa[var1] + '\t');
-            if (GlobalConfig.channel == 0) {
-                this.shareSb.append("ID：" + GlobalStatus.W[var1] + '\t');
-            }
-
-            this.shareSb.append("等级：" + GlobalStatus.X[var1] + '\t');
+        if (GlobalStatus.nickNames != null && var1 < GlobalStatus.nickNames.length) {
+            StringBuffer sb = new StringBuffer();
+            sb.append("昵称：" + GlobalStatus.nickNames[var1] + '\t');
+            sb.append("等级：" + GlobalStatus.levels[var1] + '\t');
             this.bottomUi.a(new String[]{"进入游戏", ""});
-            return this.shareSb.toString();
+            return sb.toString();
         } else {
             this.bottomUi.a(new String[]{"创 建", ""});
             return "创建角色";
@@ -1461,22 +2312,22 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     private void B() {
         if (this.touch4Status == 0) {
             if (this.mixedUi != null) {
-                this.mixedUi.onClick(this.touchAction);
+                this.mixedUi.onClick(this.inputAction);
             }
 
-            if (this.touchAction != 1 && this.touchAction != 514) {
-                if (this.touchAction != 4 && this.touchAction != 520) {
-                    if (this.touchAction != 8 && this.touchAction != 516) {
-                        if (this.touchAction != 2 && this.touchAction != 518) {
-                            if (this.touchAction == 268435456) {
+            if (this.inputAction != 1 && this.inputAction != 514) {
+                if (this.inputAction != 4 && this.inputAction != 520) {
+                    if (this.inputAction != 8 && this.inputAction != 516) {
+                        if (this.inputAction != 2 && this.inputAction != 518) {
+                            if (this.inputAction == 268435456) {
                                 if (GlobalStatus.W != null && (this.selectActorRow << 1) + this.selectActorClo < GlobalStatus.W.length) {
                                     this.g(GlobalStatus.W[(this.selectActorRow << 1) + this.selectActorClo]);
                                 } else {
                                     this.C();
                                 }
-                            } else if (this.touchAction != 1073741824 && this.touchAction != 517) {
-                                if (this.touchAction == 536870912) {
-                                    this.c();
+                            } else if (this.inputAction != 1073741824 && this.inputAction != 517) {
+                                if (this.inputAction == 536870912) {
+                                    this.startMainPage();
                                 }
                             } else if (GlobalStatus.W != null && (this.selectActorRow << 1) + this.selectActorClo < GlobalStatus.W.length) {
                                 if (GlobalStatus.W.length >= 4) {
@@ -1508,33 +2359,33 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
             if (this.bx != null) {
                 for (int var2 = 0; var2 < this.bx.length; ++var2) {
-                    PngUtil.a(this.bx[var2], this.ak);
+                    PngUtil.a(this.bx[var2], this.frameStartTs);
                 }
             }
 
             if (this.by != null) {
                 for (int var3 = 0; var3 < this.by.length; ++var3) {
-                    PngUtil.a(this.by[var3], this.ak);
+                    PngUtil.a(this.by[var3], this.frameStartTs);
                 }
             }
 
-            this.touchAction = 0;
+            this.inputAction = 0;
         } else if (this.touch4Status != 1) {
             if (this.touch4Status == 2) {
-                if (this.touchAction == 268435456) {
+                if (this.inputAction == 268435456) {
                     this.a((String) "输入“OK” 删除角色", (int) 0);
                     this.touch4Status = 0;
-                } else if (this.touchAction == 536870912) {
+                } else if (this.inputAction == 536870912) {
                     this.touch4Status = 1;
                 }
 
-                this.touchAction = 0;
+                this.inputAction = 0;
             }
 
         } else {
-            LoadingPage.b(this.touchAction);
-            if (this.touchAction != 268435456 && this.touchAction != 1073741824 && this.touchAction != 517) {
-                if (this.touchAction == 536870912) {
+            LoadingPage.b(this.inputAction);
+            if (this.inputAction != 268435456 && this.inputAction != 1073741824 && this.inputAction != 517) {
+                if (this.inputAction == 536870912) {
                     this.b(GlobalStatus.W.length);
                     this.touch4Status = 0;
                 }
@@ -1545,7 +2396,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 this.touch4Status = 2;
             }
 
-            this.touchAction = 0;
+            this.inputAction = 0;
         }
     }
 
@@ -1560,7 +2411,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     }
 
     private void f(Graphics var1) {
-        this.c(var1);
+        this.renderMainPageBase(var1);
         if (this.mixedUi != null) {
             this.mixedUi.a(var1);
             LoadingPage.draw(var1, this.mixedUi.a + 5, this.mixedUi.b + 32, this.mixedUi.c - 11, this.mixedUi.a((this.bB << 1) + 6), 1);
@@ -1574,8 +2425,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 }
             }
 
-            if (this.bx != null && GlobalStatus.aa != null && GlobalStatus.aa.length > 0) {
-                for (int var6 = 0; var6 < GlobalStatus.aa.length; ++var6) {
+            if (this.bx != null && GlobalStatus.nickNames != null && GlobalStatus.nickNames.length > 0) {
+                for (int var6 = 0; var6 < GlobalStatus.nickNames.length; ++var6) {
                     if (this.bx[var6] != null && var6 == (this.selectActorRow << 1) + this.selectActorClo) {
                         if (GlobalStatus.Z[var6] == 0) {
                             if (GlobalStatus.Y[var6] == 0) {
@@ -1605,7 +2456,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             LoadingPage.c(var1);
         } else {
             if (this.touch4Status == 2) {
-                LoadingPage.a(var1, "确认删除？", new String[]{"确认", "返回"});
+                LoadingPage.drawString(var1, "确认删除？", new String[]{"确认", "返回"});
             }
 
         }
@@ -1616,9 +2467,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         if ((var2 = NetPayloadBuilder.c((short) 4250, var1)) != null) {
             NetPacket var3 = new NetPacket((short) 4250, var2);
             netUtils.sendPacket(var3);
-            this.showDLZ((String) null);
+            this.showPending((String) null);
         } else {
-            this.processException("获取上传指令数据错误!");
+            this.showTips("获取上传指令数据错误!");
         }
     }
 
@@ -1627,9 +2478,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         if ((var2 = NetPayloadBuilder.c((short) 4251, var1)) != null) {
             NetPacket var3 = new NetPacket((short) 4251, var2);
             netUtils.sendPacket(var3);
-            this.showDLZ((String) null);
+            this.showPending((String) null);
         } else {
-            this.processException("获取上传指令数据错误!");
+            this.showTips("获取上传指令数据错误!");
         }
     }
 
@@ -1639,14 +2490,14 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         if ((var2 = NetPayloadBuilder.b((short) 4103, var1)) != null) {
             NetPacket var3 = new NetPacket((short) 4103, var2);
             netUtils.sendPacket(var3);
-            this.showDLZ((String) null);
+            this.showPending((String) null);
         } else {
-            this.processException("获取上传指令数据错误!");
+            this.showTips("获取上传指令数据错误!");
         }
     }
 
     private void C() {
-        this.show();
+        this.loadingMainPage();
         this.logo_btn_random = createImage("/images/logo_btn_random.png");
         this.bx = new Frame1[6];
 
@@ -1670,9 +2521,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         }
 
         this.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.touchAction = 0;
-        this.b = 0;
-        this.k = this.touchPageCase = 6;
+        this.inputAction = 0;
+        this.keyCombination = 0;
+        this.lastPageStatus = this.pageStatus = 6;
     }
 
     public void b(String var1, String var2) {
@@ -1709,21 +2560,20 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     }
 
     public void g() {
-        this.reset();
+        this.releaseLogoResource();
         this.h();
         uiSceneController = new UISceneController(this, pngUtil);
         if (this.touchController != null) {
             UISceneController var2 = uiSceneController;
-            this.touchController.a = var2;
+            this.touchController.uISceneController = var2;
         }
 
         uiSceneController.c("欢迎来到<梦回西游>世界");
-        this.k = this.touchPageCase = 7;
+        this.lastPageStatus = this.pageStatus = 7;
     }
 
     public void h() {
         GlobalStatus.e();
-        GlobalConfig.clearStr(this.shareSb);
         if (this.bx != null) {
             for (int var1 = 0; var1 < this.bx.length; ++var1) {
                 if (this.bx[var1] != null) {
@@ -1837,7 +2687,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             uiSceneController.currentSceneModeId = uiSceneController.sceneStateShadow;
         }
 
-        this.k = this.touchPageCase = 7;
+        this.lastPageStatus = this.pageStatus = 7;
     }
 
     private void E() {
@@ -1845,7 +2695,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             if (uiSceneController != null) {
                 uiSceneController.a();
                 if (uiSceneController.currentSceneModeId != 0) {
-                    this.touchAction = 0;
+                    this.inputAction = 0;
                 }
 
             }
@@ -1957,163 +2807,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         }
     }
 
-    protected void keyPressed(int code) {
-        int var10001 = this.touchAction;
-        int var4 = 0;
-        switch (code) {
-            case -22:
-            case -11:
-            case -7:
-                var4 = 536870912;
-                break;
-            case -21:
-            case -6:
-                var4 = 268435456;
-                break;
-            case 35:
-                var4 = 2048;
-                break;
-            case 42:
-                var4 = 1024;
-                break;
-            case 48:
-                var4 = 48;
-                break;
-            case 49:
-                var4 = 513;
-                break;
-            case 50:
-                var4 = 514;
-                break;
-            case 51:
-                var4 = 515;
-                break;
-            case 52:
-                var4 = 516;
-                break;
-            case 53:
-                var4 = 517;
-                break;
-            case 54:
-                var4 = 518;
-                break;
-            case 55:
-                var4 = 519;
-                break;
-            case 56:
-                var4 = 520;
-                break;
-            case 57:
-                var4 = 521;
-                break;
-            default:
-                switch (((Canvas) this).getGameAction(code)) {
-                    case 1:
-                        var4 = 1;
-                        break;
-                    case 2:
-                        var4 = 8;
-                    case 3:
-                    case 4:
-                    case 7:
-                    default:
-                        break;
-                    case 5:
-                        var4 = 2;
-                        break;
-                    case 6:
-                        var4 = 4;
-                        break;
-                    case 8:
-                        var4 = 1073741824;
-                }
-        }
-
-        this.touchAction = var10001 | var4;
-        if (this.bI == this.touchAction && System.currentTimeMillis() - this.bJ <= 600L) {
-            if (uiSceneController != null && uiSceneController.currentSceneModeId == 0) {
-                if (this.bI != 1 && this.bI != 514) {
-                    if (this.bI != 8 && this.bI != 516) {
-                        if (this.bI != 4 && this.bI != 520) {
-                            if (this.bI != 2 && this.bI != 518) {
-                                uiSceneController.d = -1;
-                            } else {
-                                uiSceneController.d = 2;
-                            }
-                        } else {
-                            uiSceneController.d = 3;
-                        }
-                    } else {
-                        uiSceneController.d = 0;
-                    }
-                } else {
-                    uiSceneController.d = 1;
-                }
-            }
-        } else {
-            if (uiSceneController != null) {
-                uiSceneController.d = -1;
-            }
-
-            this.bI = this.touchAction;
-        }
-
-        this.bJ = System.currentTimeMillis();
-        var10001 = this.b;
-        var4 = 0;
-        label58:
-        switch (((Canvas) this).getGameAction(code)) {
-            case 1:
-                var4 = 1;
-                break;
-            case 2:
-                var4 = 8;
-                break;
-            case 3:
-            case 4:
-            case 7:
-            case 8:
-            default:
-                switch (code) {
-                    case 50:
-                        var4 = 514;
-                        break label58;
-                    case 51:
-                    case 53:
-                    case 55:
-                    default:
-                        var4 = 0;
-                        break label58;
-                    case 52:
-                        var4 = 516;
-                        break label58;
-                    case 54:
-                        var4 = 518;
-                        break label58;
-                    case 56:
-                        var4 = 520;
-                        break label58;
-                }
-            case 5:
-                var4 = 2;
-                break;
-            case 6:
-                var4 = 4;
-        }
-
-        this.b = var10001 | var4;
-        this.tempTouchStatus = 0;
-    }
-
-    protected void keyReleased(int code) {
-        this.touchAction = 0;
-        this.b = 0;
-        this.tempTouchStatus = 0;
-    }
-
     private void G() {
-        this.aJ = false;
-        this.reset();
+        this.gameRunning = false;
+        this.releaseLogoResource();
     }
 
     private void H() {
@@ -2324,7 +3020,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         this.liaoTian = new TextField("新名称:", "", 5, 0);
         this.aD.append(this.liaoTian);
         this.display.setCurrent(this.aD);
-        this.h = false;
+        this.inChat = false;
     }
 
     public void m() {
@@ -2338,7 +3034,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         this.back = null;
         this.liaoTian = null;
         this.aD = null;
-        this.h = false;
+        this.inChat = false;
     }
 
     public void n() {
@@ -2396,9 +3092,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     String var50;
                     if (!(var50 = var1.getLabel()).equals("登陆")) {
                         if (var50.equals("返回")) {
-                            this.c();
-                            this.touchAction = 0;
-                            this.b = 0;
+                            this.startMainPage();
+                            this.inputAction = 0;
+                            this.keyCombination = 0;
                             this.mainMidlet.start();
                         }
 
@@ -2409,20 +3105,20 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         this.aZ = true;
                         this.mainMidlet.start();
                     } else if (this.bN.getString().equals("")) {
-                        this.processException("帐号不能为空!");
+                        this.showTips("帐号不能为空!");
                     } else {
                         if (!this.bO.getString().equals("")) {
                             return;
                         }
 
-                        this.processException("密码不能为空!");
+                        this.showTips("密码不能为空!");
                     }
                 } else if (var51.equals("角色昵称")) {
                     String var49;
                     if (!(var49 = var1.getLabel()).equals("确定")) {
                         if (var49.equals("返回")) {
-                            this.touchAction = 0;
-                            this.b = 0;
+                            this.inputAction = 0;
+                            this.keyCombination = 0;
                             this.mainMidlet.start();
                         }
 
@@ -2434,14 +3130,14 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         this.D();
                         this.mainMidlet.start();
                     } else {
-                        this.processException("昵称不能为空！");
+                        this.showTips("昵称不能为空！");
                     }
                 } else if (var51.equals("聊天")) {
                     String var48;
                     if ((var48 = var1.getLabel()).equals("确定")) {
                         if (this.liaoTian.getString() == null || this.liaoTian.getString().equals("")) {
                             this.mainMidlet.start();
-                            this.processException("不能发送空消息");
+                            this.showTips("不能发送空消息");
                             return;
                         }
 
@@ -2451,14 +3147,14 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             uiSceneController.currentSceneModeId = uiSceneController.sceneStateShadow;
                         }
 
-                        this.touchAction = 0;
-                        this.b = 0;
+                        this.inputAction = 0;
+                        this.keyCombination = 0;
                         this.mainMidlet.start();
                         if (uiSceneController.currentSceneModeId == 0) {
                             pngUtil.a(uiSceneController.f, UISceneController.h, UISceneController.i, true, false, 1009050);
                         }
 
-                        this.g = true;
+                        this.resourceLoaded = true;
                     } else {
                         if (!var48.equals("返回")) {
                             if (var48.equals("表情")) {
@@ -2477,8 +3173,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             uiSceneController.currentSceneModeId = uiSceneController.sceneStateShadow;
                         }
 
-                        this.touchAction = 0;
-                        this.b = 0;
+                        this.inputAction = 0;
+                        this.keyCombination = 0;
                         this.mainMidlet.start();
                         if (uiSceneController.currentSceneModeId != 0) {
                             return;
@@ -2493,8 +3189,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         if (var47.equals("返回")) {
                             this.aD = null;
                             this.liaoTian = null;
-                            this.touchAction = 0;
-                            this.b = 0;
+                            this.inputAction = 0;
+                            this.keyCombination = 0;
                             this.mainMidlet.start();
                         }
 
@@ -2508,7 +3204,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     uiSceneController.aN = 0;
                     uiSceneController.a(uiSceneController.aK, uiSceneController.aL, uiSceneController.aM, uiSceneController.aN);
                     this.mainMidlet.start();
-                    this.showDLZ((String) null);
+                    this.showPending((String) null);
                 } else if (var51.equals("宠物关键字搜索")) {
                     String var46 = var1.getLabel();
                     String var77 = this.liaoTian.getString();
@@ -2516,8 +3212,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         if (var46.equals("返回")) {
                             this.aD = null;
                             this.liaoTian = null;
-                            this.touchAction = 0;
-                            this.b = 0;
+                            this.inputAction = 0;
+                            this.keyCombination = 0;
                             this.mainMidlet.start();
                         }
 
@@ -2531,7 +3227,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     uiSceneController.aN = 0;
                     uiSceneController.b(uiSceneController.aK, uiSceneController.aL, uiSceneController.aM, uiSceneController.aN);
                     this.mainMidlet.start();
-                    this.showDLZ((String) null);
+                    this.showPending((String) null);
                 } else if (var51.equals("宠物名称")) {
                     String var45 = var1.getLabel();
                     String var76 = this.liaoTian.getString();
@@ -2545,9 +3241,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     }
 
                     if (var76.length() == 0) {
-                        this.processException("名称为空！");
+                        this.showTips("名称为空！");
                     } else {
-                        this.h = true;
+                        this.inChat = true;
                         this.mainMidlet.start();
                     }
                 } else if (var51.equals("服务地址")) {
@@ -2555,10 +3251,10 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     if (!(var44 = var1.getLabel()).equals("确定")) {
                         if (var44.equals("返回")) {
                             this.H();
-                            this.loading();
+                            this.startLogo();
                             this.mainMidlet.start();
-                            this.touchAction = 0;
-                            this.b = 0;
+                            this.inputAction = 0;
+                            this.keyCombination = 0;
                         }
 
                         return;
@@ -2584,7 +3280,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
 
                         if (var74.length() == 0) {
-                            this.processException("名字输入错误！");
+                            this.showTips("名字输入错误！");
                         } else {
                             uiSceneController.M.c = var74;
                             this.I();
@@ -2607,7 +3303,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
 
                         if (var73.length() == 0) {
-                            this.processException("请输入帮派宗旨！");
+                            this.showTips("请输入帮派宗旨！");
                         } else {
                             uiSceneController.M.d = var73;
                             this.I();
@@ -2618,10 +3314,10 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                     NetPacket var92 = new NetPacket((short) 4197, var87);
                                     netUtils.sendPacket(var92);
                                 } else {
-                                    var42.a.mainCanvasRef.processException("获取上传指令数据错误!");
+                                    var42.a.mainCanvasRef.showTips("获取上传指令数据错误!");
                                 }
 
-                                var42.a.mainCanvasRef.showDLZ((String) null);
+                                var42.a.mainCanvasRef.showPending((String) null);
                             }
 
                             this.mainMidlet.start();
@@ -2641,7 +3337,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
 
                         if (var72.length() == 0) {
-                            this.processException("请输入帮派宗旨！");
+                            this.showTips("请输入帮派宗旨！");
                         } else {
                             uiSceneController.M.e = var72;
                             this.I();
@@ -2652,10 +3348,10 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                     NetPacket var91 = new NetPacket((short) 4216, var86);
                                     netUtils.sendPacket(var91);
                                 } else {
-                                    var40.b.processException("获取上传指令数据错误!");
+                                    var40.b.showTips("获取上传指令数据错误!");
                                 }
 
-                                var40.b.showDLZ((String) null);
+                                var40.b.showPending((String) null);
                             }
 
                             this.mainMidlet.start();
@@ -2673,7 +3369,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
 
                         if (var71.length() == 0) {
-                            this.processException("名称不能为空！");
+                            this.showTips("名称不能为空！");
                         } else {
                             uiSceneController.M.f = var71;
                             this.I();
@@ -2703,7 +3399,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             uiSceneController.M.a();
                             this.mainMidlet.start();
                         } else {
-                            this.processException("输入有误,请重新输入");
+                            this.showTips("输入有误,请重新输入");
                         }
                     } else if (var51.equals("请输入贡献金额")) {
                         String var36;
@@ -2722,16 +3418,16 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             uiSceneController.ak.append(this.liaoTian.getString());
                             if (uiSceneController.n() >= 0L) {
                                 if (uiSceneController.n() > GlobalStatus.ap) {
-                                    this.processException("您没有这么多银两,请重新输入！");
+                                    this.showTips("您没有这么多银两,请重新输入！");
                                 } else {
                                     uiSceneController.M.k[0] = (int) (uiSceneController.M.j = uiSceneController.n());
                                     this.mainMidlet.start();
                                 }
                             } else {
-                                this.processException("输入有误,请重新输入");
+                                this.showTips("输入有误,请重新输入");
                             }
                         } else {
-                            this.processException("请输入金额");
+                            this.showTips("请输入金额");
                         }
                     } else if (var51.equals("请输入银两奖励")) {
                         String var35;
@@ -2750,16 +3446,16 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             uiSceneController.ak.append(this.liaoTian.getString());
                             if (uiSceneController.n() >= 0L) {
                                 if (uiSceneController.n() > (long) GlobalStatus.iM[1]) {
-                                    this.processException("最多只能配置" + GlobalStatus.a((long) GlobalStatus.iM[1]) + ",请重新输入！");
+                                    this.showTips("最多只能配置" + GlobalStatus.a((long) GlobalStatus.iM[1]) + ",请重新输入！");
                                 } else {
                                     uiSceneController.M.i[1] = GlobalStatus.iM[0] = (int) uiSceneController.n();
                                     this.mainMidlet.start();
                                 }
                             } else {
-                                this.processException("输入有误,请重新输入");
+                                this.showTips("输入有误,请重新输入");
                             }
                         } else {
-                            this.processException("请输入银两");
+                            this.showTips("请输入银两");
                         }
                     } else if (var51.equals("请输入物品掉率")) {
                         String var34;
@@ -2778,16 +3474,16 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             uiSceneController.ak.append(this.liaoTian.getString());
                             if (uiSceneController.n() >= 0L) {
                                 if (uiSceneController.n() > (long) GlobalStatus.iK[1]) {
-                                    this.processException("最多只能配置" + GlobalStatus.iK[1] + "%,请重新输入！");
+                                    this.showTips("最多只能配置" + GlobalStatus.iK[1] + "%,请重新输入！");
                                 } else {
                                     uiSceneController.M.i[0] = GlobalStatus.iK[0] = (byte) ((int) uiSceneController.n());
                                     this.mainMidlet.start();
                                 }
                             } else {
-                                this.processException("输入有误,请重新输入");
+                                this.showTips("输入有误,请重新输入");
                             }
                         } else {
-                            this.processException("请输入掉率");
+                            this.showTips("请输入掉率");
                         }
                     } else if (var51.equals("请输入经验加成")) {
                         String var33;
@@ -2806,16 +3502,16 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             uiSceneController.ak.append(this.liaoTian.getString());
                             if (uiSceneController.n() >= 0L) {
                                 if (uiSceneController.n() > (long) GlobalStatus.iL[1]) {
-                                    this.processException("最多只能配置" + GlobalStatus.iL[1] + "%,请重新输入！");
+                                    this.showTips("最多只能配置" + GlobalStatus.iL[1] + "%,请重新输入！");
                                 } else {
                                     uiSceneController.M.i[2] = GlobalStatus.iL[0] = (byte) ((int) uiSceneController.n());
                                     this.mainMidlet.start();
                                 }
                             } else {
-                                this.processException("输入有误,请重新输入");
+                                this.showTips("输入有误,请重新输入");
                             }
                         } else {
-                            this.processException("请输入加成");
+                            this.showTips("请输入加成");
                         }
                     } else if (var51.equals("输入公告")) {
                         String var31 = var1.getLabel();
@@ -2832,7 +3528,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
 
                         if (var70.length() == 0) {
-                            this.processException("请输入公告！");
+                            this.showTips("请输入公告！");
                         } else {
                             uiSceneController.M.h = var70;
                             this.I();
@@ -2840,9 +3536,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             byte[] var85;
                             if ((var85 = NetPayloadBuilder.n((short) 4218, GlobalStatus.ad, var32.h)) != null) {
                                 netUtils.sendPacket(new NetPacket((short) 4218, var85));
-                                var32.b.showDLZ((String) null);
+                                var32.b.showPending((String) null);
                             } else {
-                                var32.b.processException("获取上传指令数据错误!");
+                                var32.b.showTips("获取上传指令数据错误!");
                             }
 
                             this.mainMidlet.start();
@@ -2863,14 +3559,14 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             byte[] var84;
                             if ((var84 = NetPayloadBuilder.a((short) 4100, GlobalStatus.W[this.aw])) != null) {
                                 netUtils.sendPacket(new NetPacket((short) 4100, var84));
-                                this.showDLZ((String) null);
+                                this.showPending((String) null);
                             } else {
-                                this.processException("获取上传指令数据错误!");
+                                this.showTips("获取上传指令数据错误!");
                             }
 
                             this.mainMidlet.start();
                         } else {
-                            this.processException("请输入“OK” ！");
+                            this.showTips("请输入“OK” ！");
                         }
                     } else if (var51.equals("请输入好友昵称")) {
                         String var29;
@@ -2878,8 +3574,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             if (var29.equals("返回")) {
                                 this.aD = null;
                                 this.liaoTian = null;
-                                this.touchAction = 0;
-                                this.b = 0;
+                                this.inputAction = 0;
+                                this.keyCombination = 0;
                                 this.mainMidlet.start();
                             }
 
@@ -2887,11 +3583,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
 
                         if (this.liaoTian.getString().equals("")) {
-                            this.processException("昵称不能为空！");
+                            this.showTips("昵称不能为空！");
                         } else {
                             uiSceneController.a(this.liaoTian.getString(), true);
-                            this.touchAction = 0;
-                            this.b = 0;
+                            this.inputAction = 0;
+                            this.keyCombination = 0;
                             this.mainMidlet.start();
                         }
                     } else if (var51.equals("重要物品输入OK丢弃")) {
@@ -2901,8 +3597,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             if (var28.equals("返回")) {
                                 this.aD = null;
                                 this.liaoTian = null;
-                                this.touchAction = 0;
-                                this.b = 0;
+                                this.inputAction = 0;
+                                this.keyCombination = 0;
                                 this.mainMidlet.start();
                             }
 
@@ -2911,11 +3607,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
                         if (var68.equals("OK")) {
                             uiSceneController.f(uiSceneController.ag);
-                            this.touchAction = 0;
-                            this.b = 0;
+                            this.inputAction = 0;
+                            this.keyCombination = 0;
                             this.mainMidlet.start();
                         } else {
-                            this.processException("请输入“OK” ！");
+                            this.showTips("请输入“OK” ！");
                         }
                     } else if (var51.equals("输入OK确认解散帮派")) {
                         String var26 = var1.getLabel();
@@ -2924,8 +3620,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             if (var26.equals("返回")) {
                                 this.aD = null;
                                 this.liaoTian = null;
-                                this.touchAction = 0;
-                                this.b = 0;
+                                this.inputAction = 0;
+                                this.keyCombination = 0;
                                 uiSceneController.sceneSubState = 0;
                                 this.mainMidlet.start();
                             }
@@ -2938,16 +3634,16 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             byte[] var83;
                             if ((var83 = NetPayloadBuilder.n((short) 4214, GlobalStatus.ad)) != null) {
                                 netUtils.sendPacket(new NetPacket((short) 4214, var83));
-                                var27.b.showDLZ((String) null);
+                                var27.b.showPending((String) null);
                             } else {
-                                var27.b.processException("获取上传指令数据错误!");
+                                var27.b.showTips("获取上传指令数据错误!");
                             }
 
-                            this.touchAction = 0;
-                            this.b = 0;
+                            this.inputAction = 0;
+                            this.keyCombination = 0;
                             this.mainMidlet.start();
                         } else {
-                            this.processException("如需要解散帮派，请输入“OK”！");
+                            this.showTips("如需要解散帮派，请输入“OK”！");
                         }
                     } else if (var51.equals("请输入要搜索的帮派名称")) {
                         String var25 = var1.getLabel();
@@ -2955,8 +3651,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         if (!var25.equals("确定") || var66 == null) {
                             if (var25.equals("返回")) {
                                 this.I();
-                                this.touchAction = 0;
-                                this.b = 0;
+                                this.inputAction = 0;
+                                this.keyCombination = 0;
                                 this.mainMidlet.start();
                             }
 
@@ -2973,8 +3669,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
 
                         this.I();
-                        this.touchAction = 0;
-                        this.b = 0;
+                        this.inputAction = 0;
+                        this.keyCombination = 0;
                         this.mainMidlet.start();
                     } else if (var51.equals("输入OK确认宣战")) {
                         String var24 = var1.getLabel();
@@ -2983,8 +3679,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             if (var24.equals("返回")) {
                                 this.aD = null;
                                 this.liaoTian = null;
-                                this.touchAction = 0;
-                                this.b = 0;
+                                this.inputAction = 0;
+                                this.keyCombination = 0;
                                 uiSceneController.sceneSubState = 0;
                                 this.mainMidlet.start();
                             }
@@ -2994,11 +3690,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
                         if (var65.equals("OK")) {
                             uiSceneController.M.a((byte) 3, GlobalStatus.jY[this.gunDongListUi.g() - 1]);
-                            this.touchAction = 0;
-                            this.b = 0;
+                            this.inputAction = 0;
+                            this.keyCombination = 0;
                             this.mainMidlet.start();
                         } else {
-                            this.processException("确定宣战，请输入“OK”！");
+                            this.showTips("确定宣战，请输入“OK”！");
                         }
                     } else if (var51.equals("重要物品输入OK卖出")) {
                         String var23 = var1.getLabel();
@@ -3007,8 +3703,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             if (var23.equals("返回")) {
                                 this.aD = null;
                                 this.liaoTian = null;
-                                this.touchAction = 0;
-                                this.b = 0;
+                                this.inputAction = 0;
+                                this.keyCombination = 0;
                                 this.mainMidlet.start();
                             }
 
@@ -3017,11 +3713,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
                         if (var64.equals("OK")) {
                             uiSceneController.m(uiSceneController.ag);
-                            this.touchAction = 0;
-                            this.b = 0;
+                            this.inputAction = 0;
+                            this.keyCombination = 0;
                             this.mainMidlet.start();
                         } else {
-                            this.processException("请输入“OK” ！");
+                            this.showTips("请输入“OK” ！");
                         }
                     } else if (var51.equals("请输入警告语（30个字符内）")) {
                         String var22 = var1.getLabel();
@@ -3030,8 +3726,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             if (var22.equals("返回")) {
                                 this.aD = null;
                                 this.liaoTian = null;
-                                this.touchAction = 0;
-                                this.b = 0;
+                                this.inputAction = 0;
+                                this.keyCombination = 0;
                                 this.mainMidlet.start();
                             }
 
@@ -3039,8 +3735,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
 
                         uiSceneController.M.b((byte) 0, var63);
-                        this.touchAction = 0;
-                        this.b = 0;
+                        this.inputAction = 0;
+                        this.keyCombination = 0;
                         this.mainMidlet.start();
                     } else if (var51.equals("输入OK确定遗忘宠物技能")) {
                         String var21 = var1.getLabel();
@@ -3049,8 +3745,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             if (var21.equals("返回")) {
                                 this.aD = null;
                                 this.liaoTian = null;
-                                this.touchAction = 0;
-                                this.b = 0;
+                                this.inputAction = 0;
+                                this.keyCombination = 0;
                                 this.mainMidlet.start();
                             }
 
@@ -3059,11 +3755,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
                         if (var62.equals("OK")) {
                             uiSceneController.y();
-                            this.touchAction = 0;
-                            this.b = 0;
+                            this.inputAction = 0;
+                            this.keyCombination = 0;
                             this.mainMidlet.start();
                         } else {
-                            this.processException("请输入“OK” ！");
+                            this.showTips("请输入“OK” ！");
                         }
                     } else if (var51.equals("发布求爱宣言")) {
                         String var19 = var1.getLabel();
@@ -3076,8 +3772,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 this.liaoTian = null;
                                 this.youjian = null;
                                 this.bM = null;
-                                this.touchAction = 0;
-                                this.b = 0;
+                                this.inputAction = 0;
+                                this.keyCombination = 0;
                                 this.mainMidlet.start();
                             }
 
@@ -3090,8 +3786,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             long var96;
                             if ((var96 = uiSceneController.n()) > 0L) {
                                 uiSceneController.S.a(var61, var82, var96);
-                                this.touchAction = 0;
-                                this.b = 0;
+                                this.inputAction = 0;
+                                this.keyCombination = 0;
                                 this.mainMidlet.start();
                                 return;
                             }
@@ -3135,7 +3831,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
                             uiSceneController.S.b((byte) 1);
                         } else {
-                            this.processException("请输入“OK” ！");
+                            this.showTips("请输入“OK” ！");
                         }
                     } else if (var51.equals("输入兑换码")) {
                         String var17 = var1.getLabel();
@@ -3152,11 +3848,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         byte[] var81;
                         if ((var81 = NetPayloadBuilder.q((short) 4880, GlobalStatus.ad, this.liaoTian.getString())) != null) {
                             netUtils.sendPacket(new NetPacket((short) 4880, var81));
-                            this.showDLZ((String) null);
+                            this.showPending((String) null);
                             return;
                         }
 
-                        this.processException("获取上传指令数据错误!");
+                        this.showTips("获取上传指令数据错误!");
                     } else if (!var51.equals("发送邮件") && !var51.equals("回复邮件")) {
                         if (var51.equals("选择收件人")) {
                             if (var1.getLabel().equals("确定")) {
@@ -3194,7 +3890,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 return;
                             }
 
-                            this.processException("信息长度不足，不能少于5字，请重新输入");
+                            this.showTips("信息长度不足，不能少于5字，请重新输入");
                         } else {
                             this.aD = null;
                             this.mainMidlet.start();
@@ -3256,8 +3952,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             this.aD = null;
                             this.liaoTian = null;
                             this.mainMidlet.start();
-                            this.touchAction = 0;
-                            this.b = 0;
+                            this.inputAction = 0;
+                            this.keyCombination = 0;
                         }
 
                         return;
@@ -3267,15 +3963,15 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         uiSceneController.o();
                         uiSceneController.ak.append(this.liaoTian.getString());
                         this.mainMidlet.start();
-                        this.touchAction = 0;
-                        this.b = 0;
+                        this.inputAction = 0;
+                        this.keyCombination = 0;
                     } else {
-                        this.processException("输入有误,请重新输入");
+                        this.showTips("输入有误,请重新输入");
                     }
                 }
             } else {
                 if (!var1.getLabel().equals("登陆")) {
-                    this.c();
+                    this.startMainPage();
                     this.mainMidlet.start();
                     return;
                 }
@@ -3316,249 +4012,32 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     byte[] var97 = NetPayloadBuilder.a((short) 5392, (byte) 1, ChongZhiModel.CpId, ChongZhiModel.GameId, var80, var90, var8, GlobalConfig.PopularizeChannel, GlobalConfig.model, (int) Runtime.getRuntime().totalMemory(), GlobalConfig.shuZiBiaoShi);
                     this.init();
                     if (var97 == null) {
-                        this.processException("获取上传指令数据错误!");
+                        this.showTips("获取上传指令数据错误!");
                         return;
                     }
 
                     netUtils.sendPacket(new NetPacket((short) 5392, var97));
                     this.mainMidlet.start();
-                    this.showDLZ("正在登录...");
+                    this.showPending("正在登录...");
                 } else {
                     GlobalConfig.logined = false;
                     loginController.sendFirstPacket((byte) (var3 + 1), var5, var8);
                     this.mainMidlet.start();
-                    this.showDLZ("请求中...");
+                    this.showPending("请求中...");
                 }
             }
 
         }
     }
 
-    private void J() {
-        this.aJ = false;
+    private void exit() {
+        this.gameRunning = false;
         netUtils = null;
 
         this.mainMidlet.destroyApp(true);
         this.mainMidlet.notifyDestroyed();
     }
 
-    /**
-     * 手工梳理后的触屏按下逻辑。
-     * 保留原始 pointerPressed 不动，后续如果需要替换，可直接把本方法改名。
-     * <p>
-     * 已修正的反编译问题：
-     * 1. case 5 命中角色格子后，结果不应在循环结束后被默认值覆盖。
-     * 2. case 6 最后两个按钮是确认动作，命中后不应再落回左右切换。
-     * 3. case 14 实际是遍历主菜单项；未命中时再检查右下角“退出”区域。
-     */
-    protected void pointerPressed(int x, int y) {
-        if (!GlobalConfig.o || this.touchController == null) {
-            return;
-        }
-        // aj: 触屏输入控制器，负责保存当前触点坐标、拖动状态，并把点击分发到当前画面。
-        this.touchController.pointX = x;
-        this.touchController.pointY = y;
-        // aA: 当前触摸附带的临时状态位，这里按下时先清零。
-        this.tempTouchStatus = 0;
-        this.touchController.a(this.touchController.pointX, this.touchController.pointY);
-        // canvas: 实际处理这次点击的主画布对象，也就是当前 this。
-//        MainCanvas canvas = this.touchController.canvas;
-        int touchX = this.touchController.pointX;
-        int touchY = this.touchController.pointY;
-        // j: 当前主画布所处的大界面状态。
-        switch (this.touchPageCase) {
-            case 2:
-                // case 2: 游戏主场景，点击地图/场景对象后直接换算成场景命令。
-                // a: 当前输入转换出的“命令码”，后续主循环会按这个值执行动作。
-                this.touchAction = this.buildTouchAction(touchX, touchY);
-                return;
-            case 4:
-                // case 4: 服务器/分线/登录前选择类界面。
-                // c: 当前大界面下的子状态。
-                if (this.touch4Status == 0) {
-                    if (this.mixedUi != null) {
-                        // aq: 通用弹窗/面板命中检测对象，负责把坐标转换成按钮/列表命令。
-                        this.touchAction = this.mixedUi.hintCheck(touchX, touchY);
-                    }
-                    return;
-                }
-                if (this.touch4Status == 2) {
-                    this.touchAction = this.buildTouchAction(touchX, touchY);
-                }
-                return;
-            case 5:
-                // case 5: 角色列表界面。
-                if (this.mixedUi != null) {
-                    // 先让通用面板逻辑处理一次，再叠加角色列表自己的格子命中逻辑。
-                    this.touchAction = this.mixedUi.hintCheck(touchX, touchY);
-                    int action = this.touchAction;
-                    if (this.actorList != null) {
-                        // bC: 角色列表 6 个格子的点击区域 [x, y, width, height]
-                        for (int slotIndex = 0; slotIndex < this.actorList.length; slotIndex++) {
-                            int[] rect = this.actorList[slotIndex];
-                            if (touchX >= rect[0] && touchX <= rect[0] + rect[2] && touchY >= rect[1] && touchY <= rect[1] + rect[3]) {
-                                byte col = (byte) (slotIndex % 2);
-                                byte row = (byte) (slotIndex / 2);
-                                // bz / bA: 当前角色列表选中的列、行
-                                if (col == this.selectActorClo && row == this.selectActorRow) {
-                                    // 再次点击当前已选角色，触发确认进入。
-                                    action = 1073741824;
-                                } else {
-                                    // 第一次点击只切换高亮，不直接进入。
-                                    this.selectActorClo = col;
-                                    this.selectActorRow = (byte) (row == 0 ? 1 : 0);
-                                    action = 4;
-                                }
-                                break;
-                            }
-                        }
-                    }
-                    this.touchAction = action;
-                }
-                if (this.touch4Status == 1) {
-                    this.touchAction = LoadingPage.c(touchX, touchY);
-                    return;
-                }
-                if (this.touch4Status != 2) {
-                    return;
-                }
-                break;
-            case 6:
-                // case 6: 创建角色界面。
-                if (this.mixedUi != null) {
-                    // 创建角色界面同样先走通用面板命中，再补自己的热点区域判断。
-                    this.touchAction = this.mixedUi.hintCheck(touchX, touchY);
-                    int action = this.touchAction;
-                    if (this.actorList != null) {
-                        // bC: 创建角色界面的 6 个热点区域
-                        for (int hotAreaIndex = 0; hotAreaIndex < this.actorList.length; hotAreaIndex++) {
-                            int[] rect = this.actorList[hotAreaIndex];
-                            if (touchX >= rect[0] && touchX <= rect[0] + rect[2] && touchY >= rect[1] && touchY <= rect[1] + rect[3]) {
-                                if (hotAreaIndex < 2) {
-                                    // 第一组：头像/形象左右切换。
-                                    // bH: 当前创建角色界面的焦点组
-                                    this.bH = 0;
-                                    action = hotAreaIndex % 2 == 0 ? 8 : 2;
-                                } else if (hotAreaIndex < 4) {
-                                    // 第二组：性别左右切换。
-                                    this.bH = 1;
-                                    action = hotAreaIndex % 2 == 0 ? 8 : 2;
-                                } else {
-                                    // 第三组：名字输入框 / 随机名按钮，点击后是确认选中。
-                                    // bG: 第三组中的子选项，0=输入框，1=随机名按钮
-                                    this.bH = 2;
-                                    this.bG = hotAreaIndex % 2;
-                                    action = 1073741824;
-                                }
-                                break;
-                            }
-                        }
-                    }
-                    this.touchAction = action;
-                    return;
-                }
-                return;
-            case 10:
-                // case 10: 只依赖通用面板命中的功能页。
-                if (this.mixedUi != null) {
-                    // aq: 这里仅依赖通用面板返回命令，不额外叠加界面专属逻辑。
-                    this.touchAction = this.mixedUi.hintCheck(touchX, touchY);
-                }
-                return;
-            case 14:
-                // case 14: 标题/启动主菜单界面。
-                if (this.touch4Status != 0) {
-                    this.touchAction = LoadingPage.b(touchX, touchY);
-                    return;
-                }
-                int action = 0;
-                // bo: 标题界面的主菜单文案数组；bs: 当前命中的菜单项索引
-                for (int menuIndex = 0; menuIndex < this.bo.length; menuIndex++) {
-                    int left = (GlobalConfig.defaultWidth - this.menuItem.getWidth()) >> 1;
-                    int right = left + this.menuItem.getWidth();
-                    int top = (this.bt << 1) + this.logoTitle.getHeight() + (this.menuItem.getHeight() * menuIndex);
-                    int bottom = (this.bt << 1) + this.logoTitle.getHeight() + (this.menuItem.getHeight() * (menuIndex + 1));
-                    if (touchX > left && touchX < right && touchY > top && touchY < bottom) {
-                        this.bs = menuIndex;
-                        // al: 菜单项选中后的计时/节奏控制字段，点中后清零以便立即触发
-                        this.al = 0L;
-                        action = 1073741824;
-                        break;
-                    }
-                }
-                if (action == 0 && GlobalConfig.channel == 1) {
-                    int left = (GlobalConfig.defaultWidth - GlobalConfig.font2.stringWidth("退出")) - 4;
-                    int right = GlobalConfig.defaultWidth - 4;
-                    int top = (GlobalConfig.defaultHigh - GlobalConfig.font2_h) - 4;
-                    int bottom = GlobalConfig.defaultHigh - 4;
-                    if (touchX >= left && touchX <= right && touchY >= top && touchY <= bottom) {
-                        action = 536870912;
-                    }
-                }
-                this.touchAction = action;
-                return;
-            case 15:
-            case 16:
-            case 17:
-                // case 15/16/17: 使用 ca.b() 的通用确认/取消类界面。
-                this.touchAction = LoadingPage.b(touchX, touchY);
-                return;
-            case 18:
-            case 19:
-                // case 18/19: 使用 ca.a() 的另一组通用弹框/菜单界面。
-                this.touchAction = LoadingPage.a(touchX, touchY);
-                return;
-            case 20:
-                // case 20: 下载/提示类界面，走 switch 末尾的 ca.b() 默认处理。
-                break;
-            case 3:
-            case 7:
-            case 8:
-            case 9:
-            case 11:
-            case 12:
-            case 13:
-            default:
-                // 这些状态当前没有额外的 pointerPressed 逻辑，直接返回。
-                return;
-        }
-        this.touchAction = LoadingPage.b(touchX, touchY);
-    }
-
-
-    protected void pointerReleased(int var1, int var2) {
-        if (GlobalConfig.o && this.touchController != null) {
-            this.touchController.c = 0;
-            this.touchController.d = 0;
-            this.b = 0;
-            this.touchAction = 0;
-            this.tempTouchStatus = 0;
-        }
-
-    }
-
-    protected void pointerDragged(int var1, int var2) {
-        if (GlobalConfig.o && this.touchController != null && uiSceneController != null) {
-            if (uiSceneController.currentSceneModeId == 0 && uiSceneController.J != null) {
-                return;
-            }
-
-            switch (uiSceneController.currentSceneModeId) {
-                case 0:
-                    this.touchController.d = 1;
-                    this.aF = var1;
-                    this.aG = var2;
-                    return;
-                case 39:
-                    if (this.touchController.c == 1) {
-                        this.touchController.d = 1;
-                        this.aF = var1;
-                        this.aG = var2;
-                    }
-            }
-        }
-
-    }
 
     public void b(int var1, int var2) {
         var1 -= 8;
@@ -3677,7 +4156,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
     public void q() {
         LoadingPage.h = 0;
-        this.k = this.touchPageCase = 20;
+        this.lastPageStatus = this.pageStatus = 20;
     }
 
     public void c(String var1, String var2) {
@@ -3689,7 +4168,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     }
 
     public static Image d(int var0) {
-        return var0 > 0 && var0 < 8 ? aL[var0 - 1] : null;
+        return var0 > 0 && var0 < 8 ? chq[var0 - 1] : null;
     }
 
     private static Image createImage(String path) {
@@ -3703,7 +4182,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
     public void startGame() {
         LoadingPage.loadProgressPercentage = 100;
-        this.clear();
+        this.doRepaint();
         this.mainMidlet.start();
     }
 
@@ -3723,24 +4202,37 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         return var0.bc;
     }
 
-    static void c(MainCanvas mainCanvas) {
+    /**
+     * 游戏资源加载主体（由 b_3 后台线程调用，与主线程的加载进度渲染并发执行）。
+     * <p>
+     * 加载内容：
+     * 1. ui、publicUI      — 通用 UI 图集（金币、道具、聊天、按钮、方向键等公共帧）
+     * 2. ab(role)          — 角色图集
+     * 3. ah(petfight)      — 宠物战斗图集
+     * 4. af(icon)          — 图标图集
+     * 5. 初始化各 UI 组件  — MixedUi、GunDongListUi、TopUi 等
+     * 6. loginController.init() — 初始化登录控制器
+     * 7. c()               — 跳转到登录/账号选择页（设置 touchPageCase）
+     */
+    static void loadResource(MainCanvas mainCanvas) {
         ui = new Page("/", "ui");
         ui.loadRpg();
 
         publicUI = new Page("/", "publicUI");
         publicUI.loadRpg();
+
         if (publicUI.framesNum() != 0) {
-            UISceneController.w = publicUI.getFrame("money");
-            UISceneController.x = publicUI.getFrame("goods");
-            UISceneController.C = publicUI.getFrame("chat");
-            UISceneController.D = publicUI.getFrame("elite");
+            UISceneController.money = publicUI.getFrame("money");
+            UISceneController.goods = publicUI.getFrame("goods");
+            UISceneController.chat = publicUI.getFrame("chat");
+            UISceneController.elite = publicUI.getFrame("elite");
             num = publicUI.getFrame("num");
-            publicUI.getFrame1("email");
-            Frame0 var2 = publicUI.getFrame("mail_2");
-            aj[] var1 = var2.d;
+//            publicUI.getFrame1("email");
+            Frame0 mail_2 = publicUI.getFrame("mail_2");
+            aj[] var1 = mail_2.d;
 
             for (int var3 = 1; var3 < var1.length; ++var3) {
-                Image var4 = Image.createImage(var2.pngImage, var1[var3].a, var1[var3].b, var1[var3].c, var1[var3].d, 0);
+                Image var4 = Image.createImage(mail_2.pngImage, var1[var3].a, var1[var3].b, var1[var3].c, var1[var3].d, 0);
                 if ((var3 & 1) == 0) {
                     be_1.e[var3 >> 2] = var4;
                 } else {
@@ -3748,85 +4240,82 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 }
             }
 
-            aa = publicUI.getFrame("talk_01").pngImage;
-            u = publicUI.getFrame("close");
-            v = publicUI.getFrame("title");
-            E = publicUI.getFrame("button1");
-            r = publicUI.getFrame("lu");
-            s = publicUI.getFrame("ld");
-            t = publicUI.getFrame("rd");
-            x = publicUI.getFrame("rd0");
-            w = publicUI.getFrame("ru0");
-            y = publicUI.getFrame("lu0");
-            z = publicUI.getFrame("ld0");
-            C = publicUI.getFrame("up");
-            D = publicUI.getFrame("down");
-            A = publicUI.getFrame1("go-left");
-            B = publicUI.getFrame1("go-right");
-            y_1.a = v;
-            y_1.b = u;
-            y_1.c = r;
-            y_1.d = z;
-            y_1.e = x;
-            G = publicUI.getFrame("tradetitle");
-            L = publicUI.getFrame("tradebottom");
-            K = publicUI.getFrame("moneybutton");
-            H = publicUI.getFrame("tradelock01");
-            I = publicUI.getFrame("tradelock_02");
-            J = publicUI.getFrame("tradelock_03");
-            M = publicUI.getFrame("plus");
-            N = publicUI.getFrame("subtraction");
-            O = publicUI.getFrame("equip");
-            P = publicUI.getFrame("nextpage");
-            Q = publicUI.getFrame("backpage");
-            R = new Frame0[8];
+            talk_01 = publicUI.getFrame("talk_01").pngImage;
+            close = publicUI.getFrame("close");
+            title = publicUI.getFrame("title");
+            button1 = publicUI.getFrame("button1");
+            lu = publicUI.getFrame("lu");
+            ld = publicUI.getFrame("ld");
+            rd = publicUI.getFrame("rd");
+            rd0 = publicUI.getFrame("rd0");
+            ru0 = publicUI.getFrame("ru0");
+            lu0 = publicUI.getFrame("lu0");
+            ld0 = publicUI.getFrame("ld0");
+            up = publicUI.getFrame("up");
+            down = publicUI.getFrame("down");
+            go_left = publicUI.getFrame1("go-left");
+            go_right = publicUI.getFrame1("go-right");
+            PopUpWindow.backImage = title;
+            PopUpWindow.closeButton = close;
+            PopUpWindow.zhuangShi1 = lu;
+            PopUpWindow.zhuangShi2 = ld0;
+            PopUpWindow.zhuangShi3 = rd0;
+            tradetitle = publicUI.getFrame("tradetitle");
+            tradebottom = publicUI.getFrame("tradebottom");
+            moneybutton = publicUI.getFrame("moneybutton");
+            tradelock01 = publicUI.getFrame("tradelock01");
+            tradelock_02 = publicUI.getFrame("tradelock_02");
+            tradelock_03 = publicUI.getFrame("tradelock_03");
+            plus = publicUI.getFrame("plus");
+            subtraction = publicUI.getFrame("subtraction");
+            equip = publicUI.getFrame("equip");
+            nextpage = publicUI.getFrame("nextpage");
+            backpage = publicUI.getFrame("backpage");
 
-            for (int var20 = 0; var20 < R.length; ++var20) {
-                R[var20] = publicUI.getFrame("equip_" + var20);
+            equipSolt = new Frame0[8];
+            for (int i = 0; i < equipSolt.length; ++i) {
+                equipSolt[i] = publicUI.getFrame("equip_" + i);
             }
 
-            S = new Frame0[4];
-
-            for (int var21 = 0; var21 < S.length; ++var21) {
-                S[var21] = publicUI.getFrame("submenu_" + var21);
+            submenu = new Frame0[4];
+            for (int var21 = 0; var21 < submenu.length; ++var21) {
+                submenu[var21] = publicUI.getFrame("submenu_" + var21);
             }
 
-            T = publicUI.getFrame("button_ok");
-            U = publicUI.getFrame("button_back");
-            V = publicUI.getFrame("trigon_u");
-            W = publicUI.getFrame("trigon_d");
-            X = publicUI.getFrame("trigon_l");
-            Y = publicUI.getFrame("trigon_r");
-            UISceneController.r = publicUI.getFrame1("select");
-            Z = publicUI.getFrame("rim");
-            publicUI.getFrame("cursor");
-            publicUI.getFrame("scorebar");
-            aL = new Image[7];
+            button_ok = publicUI.getFrame("button_ok");
+            button_back = publicUI.getFrame("button_back");
+            trigon_u = publicUI.getFrame("trigon_u");
+            trigon_d = publicUI.getFrame("trigon_d");
+            trigon_l = publicUI.getFrame("trigon_l");
+            trigon_r = publicUI.getFrame("trigon_r");
+            UISceneController.select = publicUI.getFrame1("select");
+            rim = publicUI.getFrame("rim");
+//            publicUI.getFrame("cursor");
+//            publicUI.getFrame("scorebar");
 
-            for (int var22 = 0; var22 < aL.length; ++var22) {
-                aL[var22] = publicUI.getFrame("chq-" + (var22 + 1)).pngImage;
+            chq = new Image[7];
+            for (int var22 = 0; var22 < chq.length; ++var22) {
+                chq[var22] = publicUI.getFrame("chq-" + (var22 + 1)).pngImage;
             }
 
             mz_1 = createImage("/images/mz_1.png");
         }
 
-        ab = new Page("/role/", "role");
-        ah = new Page("/petfight/", "petfight");
-        af = new Page("/icon/", "icon");
+        role = new Page("/role/", "role");
+        petfight = new Page("/petfight/", "petfight");
+        icon = new Page("/icon/", "icon");
 
-        mainCanvas.shareSb = new StringBuffer();
         mainCanvas.mixedUi = new MixedUi();
-        mainCanvas.av = y_1.c();
+        mainCanvas.popUpWindow = PopUpWindow.getInst();
         mainCanvas.gunDongListUi = new GunDongListUi();
         mainCanvas.bottomUi = new BottomUi();
         mainCanvas.topUi = new TopUi();
         mainCanvas.textPanel = new TextPanel();
         pngUtil = new PngUtil();
-        if (GlobalConfig.o) {
+        if (GlobalConfig.supportTouch) {
             mainCanvas.touchController = new TouchController(mainCanvas, pngUtil);
         }
-
         loginController.init();
-        mainCanvas.c();
+        mainCanvas.startMainPage();
     }
 }

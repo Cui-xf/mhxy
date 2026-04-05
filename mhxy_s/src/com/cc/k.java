@@ -264,7 +264,7 @@ public final class k {
       this.f();
       LoadingPage.l = 0;
       this.i.sceneSubState = 0;
-      this.j.touchPageCase = this.j.k;
+      this.j.pageStatus = this.j.lastPageStatus;
       this.i.sceneStateShadow = this.i.currentSceneModeId = 118;
    }
 
@@ -303,28 +303,28 @@ public final class k {
                      if (this.c == -1) {
                         this.i.a((byte)0, (byte[])(new byte[]{7}));
                      } else {
-                        LoadingPage.a(this.g[this.a][0] + UISceneController.x.b / 2, this.g[this.a][1] + UISceneController.x.b / 2, new String[]{"合成", "查看", "取消"}, false);
+                        LoadingPage.a(this.g[this.a][0] + UISceneController.goods.b / 2, this.g[this.a][1] + UISceneController.goods.b / 2, new String[]{"合成", "查看", "取消"}, false);
                         this.i.sceneSubState = 1;
                      }
                   } else if (this.a == 1) {
                      if (this.c == -1) {
-                        this.j.processException("请先放入主材料一");
+                        this.j.showTips("请先放入主材料一");
                      } else if (this.d == -1) {
                         this.i.a((byte)0, (byte[])(new byte[]{7}));
                      } else {
-                        LoadingPage.a(this.g[this.a][0] + UISceneController.x.b / 2, this.g[this.a][1] + UISceneController.x.b / 2, new String[]{"取出"}, false);
-                        System.out.println("GameSys.goods.width:" + UISceneController.x.b);
+                        LoadingPage.a(this.g[this.a][0] + UISceneController.goods.b / 2, this.g[this.a][1] + UISceneController.goods.b / 2, new String[]{"取出"}, false);
+                        System.out.println("GameSys.goods.width:" + UISceneController.goods.b);
                         this.i.sceneSubState = 1;
                      }
                   }
                } else if (this.b == 1) {
                   if (this.d(this.a) != -1) {
-                     LoadingPage.a(this.g[this.a + 2][0] + UISceneController.x.b / 2, this.g[this.a + 2][1] + UISceneController.x.b / 2, new String[]{"取出"}, false);
+                     LoadingPage.a(this.g[this.a + 2][0] + UISceneController.goods.b / 2, this.g[this.a + 2][1] + UISceneController.goods.b / 2, new String[]{"取出"}, false);
                      this.i.sceneSubState = 1;
                   } else if (this.c != -1 && this.d != -1) {
                      this.i.a((byte)0, (byte[])(new byte[]{8}));
                   } else {
-                     this.j.processException("请先放满主材料");
+                     this.j.showTips("请先放满主材料");
                   }
                }
             }
@@ -361,9 +361,9 @@ public final class k {
                if ((var2 = NetPayloadBuilder.a((byte)5, this.c, this.d, this.e, this.f, this.d(this.a), (byte)this.a, GlobalStatus.ad)) != null) {
                   NetPacket var3 = new NetPacket((short)4266, var2);
                   MainCanvas.netUtils.sendPacket(var3);
-                  this.j.showDLZ((String)null);
+                  this.j.showPending((String)null);
                } else {
-                  this.j.processException("获取上传指令数据错误!");
+                  this.j.showTips("获取上传指令数据错误!");
                }
             } else {
                byte[] var4 = null;
@@ -376,9 +376,9 @@ public final class k {
                if (var4 != null) {
                   NetPacket var5 = new NetPacket((short)4266, var4);
                   MainCanvas.netUtils.sendPacket(var5);
-                  this.j.showDLZ((String)null);
+                  this.j.showPending((String)null);
                } else {
-                  this.j.processException("获取上传指令数据错误!");
+                  this.j.showTips("获取上传指令数据错误!");
                }
             }
          } else if (LoadingPage.o == 1) {
@@ -394,11 +394,11 @@ public final class k {
          }
       }
 
-      this.j.touchAction = 0;
+      this.j.inputAction = 0;
    }
 
    public final void a(Graphics var1) {
-      short var2 = UISceneController.x.b;
+      short var2 = UISceneController.goods.b;
       if (this.j.mixedUi != null) {
          this.j.mixedUi.a(var1);
          LoadingPage.draw(var1, this.j.mixedUi.a + 5, this.j.mixedUi.b + 32, this.j.mixedUi.c - 11, this.w, 1);
@@ -429,7 +429,7 @@ public final class k {
             this.g[var5][3] = 17;
          }
 
-         var1.drawImage(UISceneController.x.pngImage, this.g[var5][0], this.g[var5][1], 20);
+         var1.drawImage(UISceneController.goods.pngImage, this.g[var5][0], this.g[var5][1], 20);
       }
 
       var1.setColor(255);
@@ -474,9 +474,9 @@ public final class k {
 
       if (this.i.sceneSubState == 0 && (this.v != null || this.v != "")) {
          if ((this.b != 0 || this.a != 1) && this.b == 1) {
-            LoadingPage.b(var1, this.v, this.g[this.a + 2][0] + UISceneController.x.b / 2, this.g[this.a + 2][1] + UISceneController.x.b / 2, GlobalConfig.defaultHigh - 5, 1);
+            LoadingPage.b(var1, this.v, this.g[this.a + 2][0] + UISceneController.goods.b / 2, this.g[this.a + 2][1] + UISceneController.goods.b / 2, GlobalConfig.defaultHigh - 5, 1);
          } else {
-            LoadingPage.b(var1, this.v, this.g[this.a][0] + UISceneController.x.b / 2, this.g[this.a][1] + UISceneController.x.b / 2, GlobalConfig.defaultHigh - 5, 1);
+            LoadingPage.b(var1, this.v, this.g[this.a][0] + UISceneController.goods.b / 2, this.g[this.a][1] + UISceneController.goods.b / 2, GlobalConfig.defaultHigh - 5, 1);
          }
       }
 

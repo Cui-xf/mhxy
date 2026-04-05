@@ -210,7 +210,7 @@ public final class az_1 {
                int var7 = this.Y[3];
                int var6 = var10003;
                var4 = var10001;
-               LoadingPage.a(var1, 1009050, 150, var4, var9, var6, var7);
+               LoadingPage.fillRect(var1, 1009050, 150, var4, var9, var6, var7);
                if (this.Z >= 3) {
                   this.X.a(var1, this.Y[0] + 5, var9 + 5, 20);
                }

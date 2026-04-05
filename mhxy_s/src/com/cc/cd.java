@@ -13,24 +13,24 @@ public final class cd {
    public int[] j = null;
    public int[] k = null;
    public int[] l = null;
-   public y_1 m = null;
+   public PopUpWindow m = null;
 
-   public final void a(y_1 var1) {
+   public final void a(PopUpWindow var1) {
       this.m = var1;
    }
 
    public final void a() {
-      this.m.a(this.c, this.d, this.e, this.f);
+      this.m.setBox(this.c, this.d, this.e, this.f);
    }
 
    public final void b() {
       if (this.g != null) {
-         this.m.a(this.g);
+         this.m.setTitle(this.g);
       }
 
-      this.m.a((bk)(new bi(this.h)));
+      this.m.addChild((UIComponent)(new FWBUIComponent(this.h)));
       if (this.i != null) {
-         u var1 = new u();
+         BottomUIComponent var1 = new BottomUIComponent();
          if (this.i[0] != null) {
             var1.a(this.i[0]);
          }
@@ -43,9 +43,9 @@ public final class cd {
             var1.c(this.i[2]);
          }
 
-         this.m.a((bk)var1);
+         this.m.addChild((UIComponent)var1);
       }
 
-      this.m.d();
+      this.m.layout();
    }
 }

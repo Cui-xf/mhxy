@@ -72,14 +72,16 @@ public final class LoadingPage {
     public static int x;
     public static int y;
     public static int z;
-    private static int[] an;              // 加载进度条位置和尺寸 [x, y, width, height]
+    // 加载进度条位置和尺寸 [x, y, width, height]
+    private static int[] progressBarXYWH;
     public static int loadProgressPercentage = 0;              // 加载进度百分比（0-100）
     private static String[] tips = new String[]{"系统菜单内可进行动态NPC和小地图等设置", "按“3”键可打开角色物品栏", "按“1”键可查看周围玩家", "按“0”键可打开宠物栏", "按“7”键可打开地图", "按“9”键可打开社交栏", "按“*”键可打开聊天栏", "按“#”键可打开任务栏"};
-    private static FWBRender ap;               // 加载画面顶部提示文字的富文本渲染组件
-    private static Random aq = new Random();
+    // 加载画面顶部提示文字的富文本渲染组件
+    private static FWBRender loadingTips;
+    private static Random random = new Random();
 
-    public static void a(Graphics var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-        ax.a(var0, var1, var2, var3, var4, var5, var6);
+    public static void fillRect(Graphics graphics, int color, int alpha, int x, int y, int w, int h) {
+        SolidColorCache.fillRect(graphics, color, alpha, x, y, w, h);
     }
 
     //anchor 定位锚点（决定文字相对于 (x,y) 的摆放位置）
@@ -199,20 +201,20 @@ public final class LoadingPage {
                 var5.drawLine(var0, 10, var2 + 12 + (var10 - e) * GlobalConfig.font2_h, var10, 20);
             }
 
-            if (MainCanvas.A != null) {
+            if (MainCanvas.go_left != null) {
                 if (e != 0) {
-                    PngUtil.a(MainCanvas.A, System.currentTimeMillis());
-                    MainCanvas.pngUtil.a(var0, (Frame1) MainCanvas.A, (int[]) null, 0, 0, 16, var2 + 5, 20, 0);
+                    PngUtil.a(MainCanvas.go_left, System.currentTimeMillis());
+                    MainCanvas.pngUtil.a(var0, (Frame1) MainCanvas.go_left, (int[]) null, 0, 0, 16, var2 + 5, 20, 0);
                     a((int[]) (E != null ? E[0] : null), 16, var2 + 5, 16, 9);
                 } else {
                     a((int[]) (E != null ? E[0] : null), 0, 0, 0, 0);
                 }
             }
 
-            if (MainCanvas.B != null) {
+            if (MainCanvas.go_right != null) {
                 if (e + d < var5.getLines()) {
-                    PngUtil.a(MainCanvas.B, System.currentTimeMillis());
-                    MainCanvas.pngUtil.a(var0, (Frame1) MainCanvas.B, (int[]) null, 0, 0, var3 - 32, var2 + 5, 20, 0);
+                    PngUtil.a(MainCanvas.go_right, System.currentTimeMillis());
+                    MainCanvas.pngUtil.a(var0, (Frame1) MainCanvas.go_right, (int[]) null, 0, 0, var3 - 32, var2 + 5, 20, 0);
                     a((int[]) (E != null ? E[1] : null), var3 - 32, var2 + 5, 16, 9);
                 } else {
                     a((int[]) (E != null ? E[1] : null), 0, 0, 0, 0);
@@ -229,7 +231,7 @@ public final class LoadingPage {
 
     }
 
-    public static void a(Graphics var0, String var1, String[] var2) {
+    public static void drawString(Graphics var0, String var1, String[] var2) {
         if (var1 != null) {
             l = 0;
             var0.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
@@ -301,7 +303,7 @@ public final class LoadingPage {
 
     public static void a(Graphics var0, int var1, int var2, int var3, int var4) {
         var0.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-        a(var0, 1009050, 180, var1, var2, var3, var4);
+        fillRect(var0, 1009050, 180, var1, var2, var3, var4);
         setColor(var0, 2);
         var0.drawRect(var1, var2, var3 - 1, var4 - 1);
         var0.drawRect(var1 + 4, var2 + 4, var3 - 9, var4 - 9);
@@ -310,20 +312,20 @@ public final class LoadingPage {
         var0.drawRect(var1 + 3, var2 + 3, var3 - 7, var4 - 7);
         setColor(var0, 4);
         var0.drawRect(var1 + 2, var2 + 2, var3 - 5, var4 - 5);
-        if (MainCanvas.y != null) {
-            var0.drawImage(MainCanvas.y.pngImage, var1, var2, 20);
+        if (MainCanvas.lu0 != null) {
+            var0.drawImage(MainCanvas.lu0.pngImage, var1, var2, 20);
         }
 
-        if (MainCanvas.z != null) {
-            var0.drawImage(MainCanvas.z.pngImage, var1, var2 + var4 - MainCanvas.z.c, 20);
+        if (MainCanvas.ld0 != null) {
+            var0.drawImage(MainCanvas.ld0.pngImage, var1, var2 + var4 - MainCanvas.ld0.c, 20);
         }
 
-        if (MainCanvas.w != null) {
-            var0.drawImage(MainCanvas.w.pngImage, var1 + var3 - MainCanvas.w.b, var2, 20);
+        if (MainCanvas.ru0 != null) {
+            var0.drawImage(MainCanvas.ru0.pngImage, var1 + var3 - MainCanvas.ru0.b, var2, 20);
         }
 
-        if (MainCanvas.x != null) {
-            var0.drawImage(MainCanvas.x.pngImage, var1 + var3 - MainCanvas.x.b, var2 + var4 - MainCanvas.x.c, 20);
+        if (MainCanvas.rd0 != null) {
+            var0.drawImage(MainCanvas.rd0.pngImage, var1 + var3 - MainCanvas.rd0.b, var2 + var4 - MainCanvas.rd0.c, 20);
         }
 
     }
@@ -366,7 +368,7 @@ public final class LoadingPage {
             graphics.setColor(6793943);
             graphics.fillRect(x, y, w, h);
         } else if (color == 4) {
-            a(graphics, 8634850, 210, x, y, w, h);
+            fillRect(graphics, 8634850, 210, x, y, w, h);
         }
 
         graphics.setColor(26540);
@@ -409,22 +411,22 @@ public final class LoadingPage {
         var0.fillRect(var1 + 4, var2, 4, var3);
         var0.setColor(1152942);
         var0.fillRect(var1 + 5, var2, 2, var3);
-        var0.drawImage(MainCanvas.C.pngImage, var1, var2, 20);
-        var0.drawImage(MainCanvas.D.pngImage, var1, var2 + var3 - MainCanvas.D.c, 20);
+        var0.drawImage(MainCanvas.up.pngImage, var1, var2, 20);
+        var0.drawImage(MainCanvas.down.pngImage, var1, var2 + var3 - MainCanvas.down.c, 20);
         int var8 = 0;
         if (var6 == var7) {
             var4 = 0;
         }
 
         if (var4 > 0) {
-            var8 = var2 + MainCanvas.C.c + (var3 - MainCanvas.C.c - MainCanvas.D.c - var4) * var5 / (var6 - var7);
+            var8 = var2 + MainCanvas.up.c + (var3 - MainCanvas.up.c - MainCanvas.down.c - var4) * var5 / (var6 - var7);
         } else if (var4 <= 0) {
-            var8 = var2 + MainCanvas.C.c;
-            var4 = var3 - MainCanvas.C.c - MainCanvas.D.c;
+            var8 = var2 + MainCanvas.up.c;
+            var4 = var3 - MainCanvas.up.c - MainCanvas.down.c;
         }
 
         var0.setColor(11267556);
-        var0.fillRect(var1, var8, MainCanvas.C.b - 1, var4 - 1);
+        var0.fillRect(var1, var8, MainCanvas.up.b - 1, var4 - 1);
         var0.setColor(5555146);
         var0.fillRect(var1 + 2, var8 + 2, 8, var4 - 4);
         var0.setColor(1801628);
@@ -432,7 +434,7 @@ public final class LoadingPage {
         var0.setColor(1464956);
         var0.fillRect(var1 + 6, var8 + 4, 2, var4 - 8);
         var0.setColor(150092);
-        var0.drawRect(var1, var8, MainCanvas.C.b - 1, var4 - 1);
+        var0.drawRect(var1, var8, MainCanvas.up.b - 1, var4 - 1);
     }
 
     public static void b(Graphics var0, int var1, int var2, int var3, int var4, int var5) {
@@ -581,9 +583,9 @@ public final class LoadingPage {
         DLZ_H = DLZ_X + (DLZ_W - GlobalConfig.font2.stringWidth(DLZ_Str)) / 2;
     }
 
-    public static void b(Graphics var0) {
+    public static void globalLoadingMask(Graphics var0) {
         var0.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-        a(var0, 1808583, 95, DLZ_X, DLZ_Y - (4 + GlobalConfig.font2_h), DLZ_W, 8 + GlobalConfig.font2_h + 18);
+        fillRect(var0, 1808583, 95, DLZ_X, DLZ_Y - (4 + GlobalConfig.font2_h), DLZ_W, 8 + GlobalConfig.font2_h + 18);
         var0.setColor(26540);
         var0.drawRect(DLZ_X, DLZ_Y - (4 + GlobalConfig.font2_h), DLZ_W, 8 + GlobalConfig.font2_h + 18);
         var0.drawRect(DLZ_X + 2, DLZ_Y - (2 + GlobalConfig.font2_h), DLZ_W - 4, 8 + GlobalConfig.font2_h + 14);
@@ -709,13 +711,13 @@ public final class LoadingPage {
             Z = i2 + X <= GlobalConfig.gameX + GlobalConfig.realWidth ? i2 : i2 - X >= GlobalConfig.gameX ? i2 - X : GlobalConfig.gameX + ((GlobalConfig.realWidth - X) / 2);
             aa = i3 + Y <= i4 ? i3 : i3 - Y >= GlobalConfig.gameY ? i3 - Y : GlobalConfig.gameY + ((GlobalConfig.realHigh - Y) / 2);
             if (l == 15) {
-                a(graphics, 1009050, 210, Z, aa, X / 4, Y / 4);
+                fillRect(graphics, 1009050, 210, Z, aa, X / 4, Y / 4);
             } else if (l == 16) {
-                a(graphics, 1009050, 210, Z, aa, X / 2, Y / 2);
+                fillRect(graphics, 1009050, 210, Z, aa, X / 2, Y / 2);
             } else if (l == 17) {
-                a(graphics, 1009050, 210, Z, aa, (X / 4) * 3, (Y / 4) * 3);
+                fillRect(graphics, 1009050, 210, Z, aa, (X / 4) * 3, (Y / 4) * 3);
             } else {
-                a(graphics, 1009050, 210, Z, aa, X, Y);
+                fillRect(graphics, 1009050, 210, Z, aa, X, Y);
                 graphics.setColor(16230);
                 graphics.drawRect(Z, aa, X, Y);
                 if (i5 == 1) {
@@ -770,80 +772,80 @@ public final class LoadingPage {
                 aa = var5;
                 if (var6 == 40) {
                     if (Z - X < 0) {
-                        a(var0, 1009050, 210, Z, var5 - Y / 4, X / 4, Y / 4);
+                        fillRect(var0, 1009050, 210, Z, var5 - Y / 4, X / 4, Y / 4);
                     } else {
-                        a(var0, 1009050, 210, Z - X / 4, var5 - Y / 4, X / 4, Y / 4);
+                        fillRect(var0, 1009050, 210, Z - X / 4, var5 - Y / 4, X / 4, Y / 4);
                     }
                 } else if (var6 == 36) {
                     if (Z + X > GlobalConfig.gameX + GlobalConfig.realWidth) {
-                        a(var0, 1009050, 210, Z - X / 4, var5 - Y / 4, X / 4, Y / 4);
+                        fillRect(var0, 1009050, 210, Z - X / 4, var5 - Y / 4, X / 4, Y / 4);
                     } else {
-                        a(var0, 1009050, 210, Z, var5 - Y / 4, X / 4, Y / 4);
+                        fillRect(var0, 1009050, 210, Z, var5 - Y / 4, X / 4, Y / 4);
                     }
                 } else if (var6 == 24) {
                     if (Z - X < 0) {
-                        a(var0, 1009050, 210, Z, var5, X / 4, Y / 4);
+                        fillRect(var0, 1009050, 210, Z, var5, X / 4, Y / 4);
                     } else {
-                        a(var0, 1009050, 210, Z - X / 4, var5, X / 4, Y / 4);
+                        fillRect(var0, 1009050, 210, Z - X / 4, var5, X / 4, Y / 4);
                     }
                 } else if (var4 + X <= GlobalConfig.gameX + GlobalConfig.realWidth) {
-                    a(var0, 1009050, 210, Z, var5, X / 4, Y / 4);
+                    fillRect(var0, 1009050, 210, Z, var5, X / 4, Y / 4);
                 } else {
-                    a(var0, 1009050, 210, Z - X / 4, var5, X / 4, Y / 4);
+                    fillRect(var0, 1009050, 210, Z - X / 4, var5, X / 4, Y / 4);
                 }
             } else if (l == 16) {
                 if (var6 == 40) {
                     if (Z - X < 0) {
-                        a(var0, 1009050, 210, Z, var5 - Y / 4, X / 4, Y / 4);
+                        fillRect(var0, 1009050, 210, Z, var5 - Y / 4, X / 4, Y / 4);
                     } else {
-                        a(var0, 1009050, 210, Z - X / 2, var5 - Y / 2, X / 2, Y / 2);
+                        fillRect(var0, 1009050, 210, Z - X / 2, var5 - Y / 2, X / 2, Y / 2);
                     }
                 } else if (var6 == 36) {
                     if (Z + X > GlobalConfig.gameX + GlobalConfig.realWidth) {
-                        a(var0, 1009050, 210, Z - X / 2, var5 - Y / 2, X / 2, Y / 2);
+                        fillRect(var0, 1009050, 210, Z - X / 2, var5 - Y / 2, X / 2, Y / 2);
                     } else {
-                        a(var0, 1009050, 210, Z, var5 - Y / 2, X / 2, Y / 2);
+                        fillRect(var0, 1009050, 210, Z, var5 - Y / 2, X / 2, Y / 2);
                     }
                 } else if (var6 == 24) {
                     if (Z - X < 0) {
-                        a(var0, 1009050, 210, Z, var5, X / 2, Y / 2);
+                        fillRect(var0, 1009050, 210, Z, var5, X / 2, Y / 2);
                     } else {
-                        a(var0, 1009050, 210, Z - X / 2, var5, X / 2, Y / 2);
+                        fillRect(var0, 1009050, 210, Z - X / 2, var5, X / 2, Y / 2);
                     }
                 } else if (var4 + X <= GlobalConfig.gameX + GlobalConfig.realWidth) {
-                    a(var0, 1009050, 210, Z, var5, X / 2, Y / 2);
+                    fillRect(var0, 1009050, 210, Z, var5, X / 2, Y / 2);
                 } else {
-                    a(var0, 1009050, 210, Z - X / 2, var5, X / 2, Y / 4);
+                    fillRect(var0, 1009050, 210, Z - X / 2, var5, X / 2, Y / 4);
                 }
             } else if (l == 17) {
                 if (var6 == 40) {
                     if (Z - X < 0) {
-                        a(var0, 1009050, 210, Z, var5 - Y / 2, X / 2, Y / 2);
+                        fillRect(var0, 1009050, 210, Z, var5 - Y / 2, X / 2, Y / 2);
                     } else {
-                        a(var0, 1009050, 210, Z - X / 4 * 3, var5 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
+                        fillRect(var0, 1009050, 210, Z - X / 4 * 3, var5 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                     }
                 } else if (var6 == 36) {
                     if (Z + X > GlobalConfig.gameX + GlobalConfig.realWidth) {
-                        a(var0, 1009050, 210, Z - X / 4 * 3, var5 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
+                        fillRect(var0, 1009050, 210, Z - X / 4 * 3, var5 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                     } else {
-                        a(var0, 1009050, 210, Z, var5 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
+                        fillRect(var0, 1009050, 210, Z, var5 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                     }
                 } else if (var6 == 24) {
                     if (Z - X < 0) {
-                        a(var0, 1009050, 210, Z, var5, X / 4 * 3, Y / 4 * 3);
+                        fillRect(var0, 1009050, 210, Z, var5, X / 4 * 3, Y / 4 * 3);
                     } else {
-                        a(var0, 1009050, 210, Z - X / 4 * 3, var5, X / 4 * 3, Y / 4 * 3);
+                        fillRect(var0, 1009050, 210, Z - X / 4 * 3, var5, X / 4 * 3, Y / 4 * 3);
                     }
                 } else if (var4 + X <= GlobalConfig.gameX + GlobalConfig.realWidth) {
-                    a(var0, 1009050, 210, Z, var5, X / 4 * 3, Y / 4 * 3);
+                    fillRect(var0, 1009050, 210, Z, var5, X / 4 * 3, Y / 4 * 3);
                 } else {
-                    a(var0, 1009050, 210, Z - X / 4 * 3, var5, X / 4 * 3, Y / 4 * 3);
+                    fillRect(var0, 1009050, 210, Z - X / 4 * 3, var5, X / 4 * 3, Y / 4 * 3);
                 }
             } else {
                 var0.setColor(16230);
                 if (var6 == 40) {
                     if (Z - X < 0) {
-                        a(var0, 1009050, 210, Z, var5 - Y, X, Y);
+                        fillRect(var0, 1009050, 210, Z, var5 - Y, X, Y);
                         var0.drawRect(Z, var5 - Y, X, Y);
                         var0.setColor(ab);
                         var0.drawString(ac, Z + 4, var5 - Y + 4, 20);
@@ -851,7 +853,7 @@ public final class LoadingPage {
                             var0.drawString(ad, Z + 4, var5 - Y + 4 + GlobalConfig.font2_h, 20);
                         }
                     } else {
-                        a(var0, 1009050, 210, Z - X, var5 - Y, X, Y);
+                        fillRect(var0, 1009050, 210, Z - X, var5 - Y, X, Y);
                         var0.drawRect(Z - X, var5 - Y, X, Y);
                         var0.setColor(ab);
                         var0.drawString(ac, Z - X + 4, var5 - Y + 4, 20);
@@ -861,7 +863,7 @@ public final class LoadingPage {
                     }
                 } else if (var6 == 36) {
                     if (Z + X > GlobalConfig.gameX + GlobalConfig.realWidth) {
-                        a(var0, 1009050, 210, Z - X, var5 - Y, X, Y);
+                        fillRect(var0, 1009050, 210, Z - X, var5 - Y, X, Y);
                         var0.drawRect(Z - X, var5 - Y, X, Y);
                         var0.setColor(ab);
                         var0.drawString(ac, Z - X + 4, var5 - Y + 4, 20);
@@ -869,7 +871,7 @@ public final class LoadingPage {
                             var0.drawString(ad, Z - X + 4, var5 - Y + 4 + GlobalConfig.font2_h, 20);
                         }
                     } else {
-                        a(var0, 1009050, 210, Z, var5 - Y, X, Y);
+                        fillRect(var0, 1009050, 210, Z, var5 - Y, X, Y);
                         var0.drawRect(Z, var5 - Y, X, Y);
                         var0.setColor(ab);
                         var0.drawString(ac, Z + 4, var5 - Y + 4, 20);
@@ -879,7 +881,7 @@ public final class LoadingPage {
                     }
                 } else if (var6 == 24) {
                     if (Z - X < 0) {
-                        a(var0, 1009050, 210, Z, var5, X, Y);
+                        fillRect(var0, 1009050, 210, Z, var5, X, Y);
                         var0.drawRect(Z, var5, X, Y);
                         var0.setColor(ab);
                         var0.drawString(ac, Z + 4, var5 + 4, 20);
@@ -887,7 +889,7 @@ public final class LoadingPage {
                             var0.drawString(ad, Z + 4, var5 + 4 + GlobalConfig.font2_h, 20);
                         }
                     } else {
-                        a(var0, 1009050, 210, Z - X, var5, X, Y);
+                        fillRect(var0, 1009050, 210, Z - X, var5, X, Y);
                         var0.drawRect(Z - X, var5, X, Y);
                         var0.setColor(ab);
                         var0.drawString(ac, Z - X + 4, var5 + 4, 20);
@@ -902,7 +904,7 @@ public final class LoadingPage {
                         var8 = 0;
                     }
 
-                    a(var0, 1009050, 210, var8, var7, X, Y);
+                    fillRect(var0, 1009050, 210, var8, var7, X, Y);
                     var0.drawRect(var8, var7, X, Y);
                     var0.setColor(ab);
                     var0.drawString(ac, var8 + 4, var7 + 4, 20);
@@ -953,14 +955,14 @@ public final class LoadingPage {
                 if (var5 == 40) {
                     if (Z - X < 0) {
                         if (var4 < Y) {
-                            a(var0, 1009050, 210, Z, var4, X / 4, Y / 4);
+                            fillRect(var0, 1009050, 210, Z, var4, X / 4, Y / 4);
                         } else {
-                            a(var0, 1009050, 210, Z, var4 - Y / 4, X / 4, Y / 4);
+                            fillRect(var0, 1009050, 210, Z, var4 - Y / 4, X / 4, Y / 4);
                         }
                     } else if (var4 < Y) {
-                        a(var0, 1009050, 210, Z, var4, X / 4, Y / 4);
+                        fillRect(var0, 1009050, 210, Z, var4, X / 4, Y / 4);
                     } else {
-                        a(var0, 1009050, 210, Z - X / 4, var4 - Y / 4, X / 4, Y / 4);
+                        fillRect(var0, 1009050, 210, Z - X / 4, var4 - Y / 4, X / 4, Y / 4);
                     }
                 } else {
                     label279:
@@ -968,153 +970,153 @@ public final class LoadingPage {
                         if (var5 == 36) {
                             if (Z + X <= GlobalConfig.defaultWidth) {
                                 if (var4 < Y) {
-                                    a(var0, 1009050, 210, Z, var4, X / 4, Y / 4);
+                                    fillRect(var0, 1009050, 210, Z, var4, X / 4, Y / 4);
                                 } else {
-                                    a(var0, 1009050, 210, Z, var4 - Y / 4, X / 4, Y / 4);
+                                    fillRect(var0, 1009050, 210, Z, var4 - Y / 4, X / 4, Y / 4);
                                 }
                                 break label279;
                             }
 
                             if (var4 >= Y) {
-                                a(var0, 1009050, 210, Z - X / 4, var4 - Y / 4, X / 4, Y / 4);
+                                fillRect(var0, 1009050, 210, Z - X / 4, var4 - Y / 4, X / 4, Y / 4);
                                 break label279;
                             }
                         } else {
                             if (var5 == 24) {
                                 if (Z - X < 0) {
                                     if (var4 + Y >= GlobalConfig.defaultHigh) {
-                                        a(var0, 1009050, 210, Z, var4 - Y / 4, X / 4, Y / 4);
+                                        fillRect(var0, 1009050, 210, Z, var4 - Y / 4, X / 4, Y / 4);
                                     } else {
-                                        a(var0, 1009050, 210, Z, var4, X / 4, Y / 4);
+                                        fillRect(var0, 1009050, 210, Z, var4, X / 4, Y / 4);
                                     }
                                 } else if (var4 + Y >= GlobalConfig.defaultHigh) {
-                                    a(var0, 1009050, 210, Z, var4 - Y / 4, X / 4, Y / 4);
+                                    fillRect(var0, 1009050, 210, Z, var4 - Y / 4, X / 4, Y / 4);
                                 } else {
-                                    a(var0, 1009050, 210, Z - X / 4, var4, X / 4, Y / 4);
+                                    fillRect(var0, 1009050, 210, Z - X / 4, var4, X / 4, Y / 4);
                                 }
                                 break label279;
                             }
 
                             if (var3 + X <= GlobalConfig.defaultWidth) {
                                 if (var4 + Y >= GlobalConfig.defaultHigh) {
-                                    a(var0, 1009050, 210, Z - X / 4, var4 - Y / 4, X / 4, Y / 4);
+                                    fillRect(var0, 1009050, 210, Z - X / 4, var4 - Y / 4, X / 4, Y / 4);
                                 } else {
-                                    a(var0, 1009050, 210, Z, var4, X / 4, Y / 4);
+                                    fillRect(var0, 1009050, 210, Z, var4, X / 4, Y / 4);
                                 }
                                 break label279;
                             }
 
                             if (var4 + Y >= GlobalConfig.defaultHigh) {
-                                a(var0, 1009050, 210, Z - X / 4, var4 - Y / 4, X / 4, Y / 4);
+                                fillRect(var0, 1009050, 210, Z - X / 4, var4 - Y / 4, X / 4, Y / 4);
                                 break label279;
                             }
                         }
 
-                        a(var0, 1009050, 210, Z - X / 4, var4, X / 4, Y / 4);
+                        fillRect(var0, 1009050, 210, Z - X / 4, var4, X / 4, Y / 4);
                     }
                 }
             } else if (l == 16) {
                 if (var5 == 40) {
                     if (Z - X < 0) {
                         if (var4 < Y) {
-                            a(var0, 1009050, 210, Z, var4, X / 4, Y / 4);
+                            fillRect(var0, 1009050, 210, Z, var4, X / 4, Y / 4);
                         } else {
-                            a(var0, 1009050, 210, Z, var4 - Y / 4, X / 4, Y / 4);
+                            fillRect(var0, 1009050, 210, Z, var4 - Y / 4, X / 4, Y / 4);
                         }
                     } else if (var4 < Y) {
-                        a(var0, 1009050, 210, Z, var4, X / 2, Y / 2);
+                        fillRect(var0, 1009050, 210, Z, var4, X / 2, Y / 2);
                     } else {
-                        a(var0, 1009050, 210, Z - X / 2, var4 - Y / 2, X / 2, Y / 2);
+                        fillRect(var0, 1009050, 210, Z - X / 2, var4 - Y / 2, X / 2, Y / 2);
                     }
                 } else if (var5 == 36) {
                     if (Z + X > GlobalConfig.defaultWidth) {
                         if (var4 < Y) {
-                            a(var0, 1009050, 210, Z - X / 2, var4, X / 2, Y / 2);
+                            fillRect(var0, 1009050, 210, Z - X / 2, var4, X / 2, Y / 2);
                         } else {
-                            a(var0, 1009050, 210, Z - X / 2, var4 - Y / 2, X / 2, Y / 2);
+                            fillRect(var0, 1009050, 210, Z - X / 2, var4 - Y / 2, X / 2, Y / 2);
                         }
                     } else if (var4 < Y) {
-                        a(var0, 1009050, 210, Z, var4, X / 2, Y / 2);
+                        fillRect(var0, 1009050, 210, Z, var4, X / 2, Y / 2);
                     } else {
-                        a(var0, 1009050, 210, Z, var4 - Y / 2, X / 2, Y / 2);
+                        fillRect(var0, 1009050, 210, Z, var4 - Y / 2, X / 2, Y / 2);
                     }
                 } else if (var5 == 24) {
                     if (Z - X < 0) {
                         if (var4 + Y >= GlobalConfig.defaultHigh) {
-                            a(var0, 1009050, 210, Z, var4 - Y / 2, X / 2, Y / 2);
+                            fillRect(var0, 1009050, 210, Z, var4 - Y / 2, X / 2, Y / 2);
                         } else {
-                            a(var0, 1009050, 210, Z, var4, X / 2, Y / 2);
+                            fillRect(var0, 1009050, 210, Z, var4, X / 2, Y / 2);
                         }
                     } else if (var4 + Y >= GlobalConfig.defaultHigh) {
-                        a(var0, 1009050, 210, Z, var4 - Y / 2, X / 2, Y / 2);
+                        fillRect(var0, 1009050, 210, Z, var4 - Y / 2, X / 2, Y / 2);
                     } else {
-                        a(var0, 1009050, 210, Z - X / 2, var4, X / 2, Y / 2);
+                        fillRect(var0, 1009050, 210, Z - X / 2, var4, X / 2, Y / 2);
                     }
                 } else if (var3 + X <= GlobalConfig.defaultWidth) {
                     if (var4 + Y >= GlobalConfig.defaultHigh) {
-                        a(var0, 1009050, 210, Z - X / 2, var4 - Y / 2, X / 2, Y / 2);
+                        fillRect(var0, 1009050, 210, Z - X / 2, var4 - Y / 2, X / 2, Y / 2);
                     } else {
-                        a(var0, 1009050, 210, Z, var4, X / 2, Y / 2);
+                        fillRect(var0, 1009050, 210, Z, var4, X / 2, Y / 2);
                     }
                 } else if (var4 + Y >= GlobalConfig.defaultHigh) {
-                    a(var0, 1009050, 210, Z - X / 2, var4 - Y / 2, X / 2, Y / 4);
+                    fillRect(var0, 1009050, 210, Z - X / 2, var4 - Y / 2, X / 2, Y / 4);
                 } else {
-                    a(var0, 1009050, 210, Z - X / 2, var4, X / 2, Y / 4);
+                    fillRect(var0, 1009050, 210, Z - X / 2, var4, X / 2, Y / 4);
                 }
             } else if (l == 17) {
                 if (var5 == 40) {
                     if (Z - X < 0) {
                         if (var4 < Y) {
-                            a(var0, 1009050, 210, Z, var4, X / 2, Y / 2);
+                            fillRect(var0, 1009050, 210, Z, var4, X / 2, Y / 2);
                         } else {
-                            a(var0, 1009050, 210, Z, var4 - Y / 2, X / 2, Y / 2);
+                            fillRect(var0, 1009050, 210, Z, var4 - Y / 2, X / 2, Y / 2);
                         }
                     } else if (var4 < Y) {
-                        a(var0, 1009050, 210, Z, var4, X / 4 * 3, Y / 4 * 3);
+                        fillRect(var0, 1009050, 210, Z, var4, X / 4 * 3, Y / 4 * 3);
                     } else {
-                        a(var0, 1009050, 210, Z - X / 4 * 3, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
+                        fillRect(var0, 1009050, 210, Z - X / 4 * 3, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                     }
                 } else if (var5 == 36) {
                     if (Z + X > GlobalConfig.defaultWidth) {
                         if (var4 < Y) {
-                            a(var0, 1009050, 210, Z - X / 4 * 3, var4, X / 4 * 3, Y / 4 * 3);
+                            fillRect(var0, 1009050, 210, Z - X / 4 * 3, var4, X / 4 * 3, Y / 4 * 3);
                         } else {
-                            a(var0, 1009050, 210, Z - X / 4 * 3, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
+                            fillRect(var0, 1009050, 210, Z - X / 4 * 3, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                         }
                     } else if (var4 < Y) {
-                        a(var0, 1009050, 210, Z, var4, X / 4 * 3, Y / 4 * 3);
+                        fillRect(var0, 1009050, 210, Z, var4, X / 4 * 3, Y / 4 * 3);
                     } else {
-                        a(var0, 1009050, 210, Z, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
+                        fillRect(var0, 1009050, 210, Z, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                     }
                 } else if (var5 == 24) {
                     if (Z - X < 0) {
                         if (var4 + Y >= GlobalConfig.defaultHigh) {
-                            a(var0, 1009050, 210, Z, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
+                            fillRect(var0, 1009050, 210, Z, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                         } else {
-                            a(var0, 1009050, 210, Z, var4, X / 4 * 3, Y / 4 * 3);
+                            fillRect(var0, 1009050, 210, Z, var4, X / 4 * 3, Y / 4 * 3);
                         }
                     } else if (var4 + Y >= GlobalConfig.defaultHigh) {
-                        a(var0, 1009050, 210, Z, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
+                        fillRect(var0, 1009050, 210, Z, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                     } else {
-                        a(var0, 1009050, 210, Z - X / 4 * 3, var4, X / 4 * 3, Y / 4 * 3);
+                        fillRect(var0, 1009050, 210, Z - X / 4 * 3, var4, X / 4 * 3, Y / 4 * 3);
                     }
                 } else if (var3 + X <= GlobalConfig.defaultWidth) {
                     if (var4 + Y >= GlobalConfig.defaultHigh) {
-                        a(var0, 1009050, 210, Z - X / 4 * 3, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
+                        fillRect(var0, 1009050, 210, Z - X / 4 * 3, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                     } else {
-                        a(var0, 1009050, 210, Z, var4, X / 4 * 3, Y / 4 * 3);
+                        fillRect(var0, 1009050, 210, Z, var4, X / 4 * 3, Y / 4 * 3);
                     }
                 } else if (var4 + Y >= GlobalConfig.defaultHigh) {
-                    a(var0, 1009050, 210, Z - X / 4 * 3, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
+                    fillRect(var0, 1009050, 210, Z - X / 4 * 3, var4 - Y / 4 * 3, X / 4 * 3, Y / 4 * 3);
                 } else {
-                    a(var0, 1009050, 210, Z - X / 4 * 3, var4, X / 4 * 3, Y / 4 * 3);
+                    fillRect(var0, 1009050, 210, Z - X / 4 * 3, var4, X / 4 * 3, Y / 4 * 3);
                 }
             } else {
                 var0.setColor(16230);
                 if (var5 == 40) {
                     if (Z - X < 0) {
                         if (var4 < Y) {
-                            a(var0, 1009050, 210, Z, var4, X, Y);
+                            fillRect(var0, 1009050, 210, Z, var4, X, Y);
                             var0.drawRect(Z, var4, X, Y);
                             var0.setColor(ab);
                             var0.drawString(ac, Z + 4, var4 + 4, 20);
@@ -1122,7 +1124,7 @@ public final class LoadingPage {
                                 ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                             }
                         } else {
-                            a(var0, 1009050, 210, Z, var4 - Y, X, Y);
+                            fillRect(var0, 1009050, 210, Z, var4 - Y, X, Y);
                             var0.drawRect(Z, var4 - Y, X, Y);
                             var0.setColor(ab);
                             var0.drawString(ac, Z + 4, var4 - Y + 4, 20);
@@ -1131,7 +1133,7 @@ public final class LoadingPage {
                             }
                         }
                     } else if (var4 < Y) {
-                        a(var0, 1009050, 210, Z, var4, X, Y);
+                        fillRect(var0, 1009050, 210, Z, var4, X, Y);
                         var0.drawRect(Z, var4, X, Y);
                         var0.setColor(ab);
                         var0.drawString(ac, Z + 4, var4 + 4, 20);
@@ -1139,7 +1141,7 @@ public final class LoadingPage {
                             ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                         }
                     } else {
-                        a(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
+                        fillRect(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
                         var0.drawRect(Z - X, var4 - Y, X, Y);
                         var0.setColor(ab);
                         var0.drawString(ac, Z - X + 4, var4 - Y + 4, 20);
@@ -1150,7 +1152,7 @@ public final class LoadingPage {
                 } else if (var5 == 36) {
                     if (Z + X > GlobalConfig.defaultWidth) {
                         if (var4 < Y) {
-                            a(var0, 1009050, 210, Z, var4, X, Y);
+                            fillRect(var0, 1009050, 210, Z, var4, X, Y);
                             var0.drawRect(Z, var4, X, Y);
                             var0.setColor(ab);
                             var0.drawString(ac, Z + 4, var4 + 4, 20);
@@ -1158,7 +1160,7 @@ public final class LoadingPage {
                                 ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                             }
                         } else {
-                            a(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
+                            fillRect(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
                             var0.drawRect(Z - X, var4 - Y, X, Y);
                             var0.setColor(ab);
                             var0.drawString(ac, Z - X + 4, var4 - Y + 4, 20);
@@ -1167,7 +1169,7 @@ public final class LoadingPage {
                             }
                         }
                     } else if (var4 < Y) {
-                        a(var0, 1009050, 210, Z, var4, X, Y);
+                        fillRect(var0, 1009050, 210, Z, var4, X, Y);
                         var0.drawRect(Z, var4, X, Y);
                         var0.setColor(ab);
                         var0.drawString(ac, Z + 4, var4 + 4, 20);
@@ -1175,7 +1177,7 @@ public final class LoadingPage {
                             ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                         }
                     } else {
-                        a(var0, 1009050, 210, Z, var4 - Y, X, Y);
+                        fillRect(var0, 1009050, 210, Z, var4 - Y, X, Y);
                         var0.drawRect(Z, var4 - Y, X, Y);
                         var0.setColor(ab);
                         var0.drawString(ac, Z + 4, var4 - Y + 4, 20);
@@ -1186,7 +1188,7 @@ public final class LoadingPage {
                 } else if (var5 == 24) {
                     if (Z - X < 0) {
                         if (var4 + Y >= GlobalConfig.defaultHigh) {
-                            a(var0, 1009050, 210, Z, var4 - Y, X, Y);
+                            fillRect(var0, 1009050, 210, Z, var4 - Y, X, Y);
                             var0.drawRect(Z, var4 - Y, X, Y);
                             var0.setColor(ab);
                             var0.drawString(ac, Z + 4, var4 + 4 - Y, 20);
@@ -1194,7 +1196,7 @@ public final class LoadingPage {
                                 ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h - Y, 0);
                             }
                         } else {
-                            a(var0, 1009050, 210, Z, var4, X, Y);
+                            fillRect(var0, 1009050, 210, Z, var4, X, Y);
                             var0.drawRect(Z, var4, X, Y);
                             var0.setColor(ab);
                             var0.drawString(ac, Z + 4, var4 + 4, 20);
@@ -1203,7 +1205,7 @@ public final class LoadingPage {
                             }
                         }
                     } else if (var4 + Y >= GlobalConfig.defaultHigh) {
-                        a(var0, 1009050, 210, Z, var4 - Y, X, Y);
+                        fillRect(var0, 1009050, 210, Z, var4 - Y, X, Y);
                         var0.drawRect(Z, var4 - Y, X, Y);
                         var0.setColor(ab);
                         var0.drawString(ac, Z + 4, var4 + 4 - Y, 20);
@@ -1211,7 +1213,7 @@ public final class LoadingPage {
                             ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h - Y, 0);
                         }
                     } else {
-                        a(var0, 1009050, 210, Z - X, var4, X, Y);
+                        fillRect(var0, 1009050, 210, Z - X, var4, X, Y);
                         var0.drawRect(Z - X, var4, X, Y);
                         var0.setColor(ab);
                         var0.drawString(ac, Z - X + 4, var4 + 4, 20);
@@ -1221,7 +1223,7 @@ public final class LoadingPage {
                     }
                 } else if (var3 + X <= GlobalConfig.defaultWidth) {
                     if (var4 + Y >= GlobalConfig.defaultHigh) {
-                        a(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
+                        fillRect(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
                         var0.drawRect(Z - X, var4 - Y, X, Y);
                         var0.setColor(ab);
                         var0.drawString(ac, Z + 4 - X, var4 + 4 - Y, 20);
@@ -1229,7 +1231,7 @@ public final class LoadingPage {
                             ae.a(var0, Z + 4 - X, var4 + 4 + GlobalConfig.font2_h - Y, 0);
                         }
                     } else {
-                        a(var0, 1009050, 210, Z, var4, X, Y);
+                        fillRect(var0, 1009050, 210, Z, var4, X, Y);
                         var0.drawRect(Z, var4, X, Y);
                         var0.setColor(ab);
                         var0.drawString(ac, Z + 4, var4 + 4, 20);
@@ -1238,7 +1240,7 @@ public final class LoadingPage {
                         }
                     }
                 } else if (var4 + Y >= GlobalConfig.defaultHigh) {
-                    a(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
+                    fillRect(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
                     if (Z < X) {
                         Z = X;
                     }
@@ -1250,7 +1252,7 @@ public final class LoadingPage {
                         ae.a(var0, Z - X + 4, var4 + 4 + GlobalConfig.font2_h - Y, 0);
                     }
                 } else {
-                    a(var0, 1009050, 210, Z - X, var4, X, Y);
+                    fillRect(var0, 1009050, 210, Z - X, var4, X, Y);
                     var0.drawRect(Z - X, var4, X, Y);
                     var0.setColor(ab);
                     var0.drawString(ac, Z - X + 4, var4 + 4, 20);
@@ -1371,11 +1373,11 @@ public final class LoadingPage {
             var0.drawString(p[var1], af[0] + q / 2, af[1] + 2 + (GlobalConfig.font2_h + 3) * var1, 17);
         }
 
-        if (MainCanvas.S != null && MainCanvas.S.length == 4) {
-            var0.drawImage(MainCanvas.S[0].pngImage, af[0], af[1], 20);
-            var0.drawImage(MainCanvas.S[1].pngImage, af[0] + q - MainCanvas.S[1].b, af[1], 20);
-            var0.drawImage(MainCanvas.S[2].pngImage, af[0], af[1] + ag - MainCanvas.S[2].c, 20);
-            var0.drawImage(MainCanvas.S[3].pngImage, af[0] + q - MainCanvas.S[3].b, af[1] + ag - MainCanvas.S[3].c, 20);
+        if (MainCanvas.submenu != null && MainCanvas.submenu.length == 4) {
+            var0.drawImage(MainCanvas.submenu[0].pngImage, af[0], af[1], 20);
+            var0.drawImage(MainCanvas.submenu[1].pngImage, af[0] + q - MainCanvas.submenu[1].b, af[1], 20);
+            var0.drawImage(MainCanvas.submenu[2].pngImage, af[0], af[1] + ag - MainCanvas.submenu[2].c, 20);
+            var0.drawImage(MainCanvas.submenu[3].pngImage, af[0] + q - MainCanvas.submenu[3].b, af[1] + ag - MainCanvas.submenu[3].c, 20);
         }
 
     }
@@ -1406,29 +1408,29 @@ public final class LoadingPage {
             drawString(var0, "" + var2, var5 + 70, var6 + 6 + GlobalConfig.font2_h + 12, 17, 16711639);
         }
 
-        if (var3 && MainCanvas.X != null && MainCanvas.Y != null && MainCanvas.V != null && MainCanvas.W != null) {
-            var0.drawImage(MainCanvas.V.pngImage, var5 + (140 - MainCanvas.V.b) / 2, var6 + 7 + GlobalConfig.font2_h, 20);
-            a(aj[0], var5 + (140 - MainCanvas.V.b) / 2, var6 + 7 + GlobalConfig.font2_h, MainCanvas.V.pngImage.getWidth(), MainCanvas.V.pngImage.getHeight());
-            var0.drawImage(MainCanvas.W.pngImage, var5 + (140 - MainCanvas.V.b) / 2, var6 + 5 + (GlobalConfig.font2_h << 1) + 14, 20);
-            a(aj[1], var5 + (140 - MainCanvas.V.b) / 2, var6 + 5 + (GlobalConfig.font2_h << 1) + 14, MainCanvas.W.pngImage.getWidth(), MainCanvas.W.pngImage.getHeight());
-            var0.drawImage(MainCanvas.X.pngImage, var5 + 5, var6 + 5 + GlobalConfig.font2_h + 12, 20);
-            a(aj[2], var5 + 5, var6 + 5 + GlobalConfig.font2_h + 12, MainCanvas.X.pngImage.getWidth(), MainCanvas.X.pngImage.getHeight());
-            var0.drawImage(MainCanvas.Y.pngImage, var5 + 140 - 5 - MainCanvas.Y.b, var6 + 5 + GlobalConfig.font2_h + 12, 20);
-            a(aj[3], var5 + 140 - 5 - MainCanvas.Y.b, var6 + 5 + GlobalConfig.font2_h + 12, MainCanvas.Y.pngImage.getWidth(), MainCanvas.Y.pngImage.getHeight());
+        if (var3 && MainCanvas.trigon_l != null && MainCanvas.trigon_r != null && MainCanvas.trigon_u != null && MainCanvas.trigon_d != null) {
+            var0.drawImage(MainCanvas.trigon_u.pngImage, var5 + (140 - MainCanvas.trigon_u.b) / 2, var6 + 7 + GlobalConfig.font2_h, 20);
+            a(aj[0], var5 + (140 - MainCanvas.trigon_u.b) / 2, var6 + 7 + GlobalConfig.font2_h, MainCanvas.trigon_u.pngImage.getWidth(), MainCanvas.trigon_u.pngImage.getHeight());
+            var0.drawImage(MainCanvas.trigon_d.pngImage, var5 + (140 - MainCanvas.trigon_u.b) / 2, var6 + 5 + (GlobalConfig.font2_h << 1) + 14, 20);
+            a(aj[1], var5 + (140 - MainCanvas.trigon_u.b) / 2, var6 + 5 + (GlobalConfig.font2_h << 1) + 14, MainCanvas.trigon_d.pngImage.getWidth(), MainCanvas.trigon_d.pngImage.getHeight());
+            var0.drawImage(MainCanvas.trigon_l.pngImage, var5 + 5, var6 + 5 + GlobalConfig.font2_h + 12, 20);
+            a(aj[2], var5 + 5, var6 + 5 + GlobalConfig.font2_h + 12, MainCanvas.trigon_l.pngImage.getWidth(), MainCanvas.trigon_l.pngImage.getHeight());
+            var0.drawImage(MainCanvas.trigon_r.pngImage, var5 + 140 - 5 - MainCanvas.trigon_r.b, var6 + 5 + GlobalConfig.font2_h + 12, 20);
+            a(aj[3], var5 + 140 - 5 - MainCanvas.trigon_r.b, var6 + 5 + GlobalConfig.font2_h + 12, MainCanvas.trigon_r.pngImage.getWidth(), MainCanvas.trigon_r.pngImage.getHeight());
         }
 
-        if (MainCanvas.T != null && MainCanvas.U != null) {
-            var0.drawImage(MainCanvas.T.pngImage, var5 + 5, var6 + var4 - 5 - MainCanvas.T.c, 20);
-            a(ak[0], var5 + 5, var6 + var4 - 5 - MainCanvas.T.c, MainCanvas.T.pngImage.getWidth(), MainCanvas.T.pngImage.getHeight());
-            var0.drawImage(MainCanvas.U.pngImage, var5 + 140 - 5 - MainCanvas.U.b, var6 + var4 - 5 - MainCanvas.U.c, 20);
-            a(ak[1], var5 + 140 - 5 - MainCanvas.U.b, var6 + var4 - 5 - MainCanvas.U.c, MainCanvas.U.pngImage.getWidth(), MainCanvas.U.pngImage.getHeight());
+        if (MainCanvas.button_ok != null && MainCanvas.button_back != null) {
+            var0.drawImage(MainCanvas.button_ok.pngImage, var5 + 5, var6 + var4 - 5 - MainCanvas.button_ok.c, 20);
+            a(ak[0], var5 + 5, var6 + var4 - 5 - MainCanvas.button_ok.c, MainCanvas.button_ok.pngImage.getWidth(), MainCanvas.button_ok.pngImage.getHeight());
+            var0.drawImage(MainCanvas.button_back.pngImage, var5 + 140 - 5 - MainCanvas.button_back.b, var6 + var4 - 5 - MainCanvas.button_back.c, 20);
+            a(ak[1], var5 + 140 - 5 - MainCanvas.button_back.b, var6 + var4 - 5 - MainCanvas.button_back.c, MainCanvas.button_back.pngImage.getWidth(), MainCanvas.button_back.pngImage.getHeight());
         }
 
     }
 
     public static void c(Graphics var0, int var1, int var2, int var3, int var4, int var5) {
         if (var5 == 0) {
-            a(var0, 2511520, 210, var1, var2, var3, var4);
+            fillRect(var0, 2511520, 210, var1, var2, var3, var4);
         } else if (var5 == 1) {
             var0.setColor(15990);
             var0.fillRect(var1, var2, var3, var4);
@@ -1442,9 +1444,9 @@ public final class LoadingPage {
     }
 
     public static void a(Graphics var0, String var1, int var2, int var3, int var4) {
-        var0.drawImage(MainCanvas.X.pngImage, var2, var3 + 3, 20);
+        var0.drawImage(MainCanvas.trigon_l.pngImage, var2, var3 + 3, 20);
         c(var0, var2 + 12, var3, var4 - 24, GlobalConfig.font2_h, 1);
-        var0.drawImage(MainCanvas.Y.pngImage, var2 + var4 - 9, var3 + 3, 20);
+        var0.drawImage(MainCanvas.trigon_r.pngImage, var2 + var4 - 9, var3 + 3, 20);
         drawString(var0, var1, var2 + var4 / 2, var3 + 3, 17, 16711639);
     }
 
@@ -1563,7 +1565,7 @@ public final class LoadingPage {
         var0.fillRect(var1 + 1, var2 + 1, var3, 2);
         var0.setColor(var4 == 0 ? 10945027 : 230064);
         var0.fillRect(var1 + 1, var2 + 2, var3, 1);
-        var0.drawImage(MainCanvas.Z.pngImage, var1, var2, 20);
+        var0.drawImage(MainCanvas.rim.pngImage, var1, var2, 20);
     }
 
     private static void a(int[] var0, int var1, int var2, int var3, int var4) {
@@ -1579,11 +1581,11 @@ public final class LoadingPage {
     /**
      * 初始化加载画面：设置进度条位置，重置进度，随机选择一条提示语创建富文本组件
      */
-    public static void a() {
-        an = new int[]{(GlobalConfig.defaultWidth - 100) / 2, (GlobalConfig.defaultHigh / 3 << 1) + 20, 100, 3};  // 进度条 [x, y, w, h]
+    public static void initLoadingPage() {
+        progressBarXYWH = new int[]{(GlobalConfig.defaultWidth - 100) / 2, (GlobalConfig.defaultHigh / 3 << 1) + 20, 100, 3};  // 进度条 [x, y, w, h]
         loadProgressPercentage = 0;  // 进度归零
         // 从 ao 提示语数组中随机选一条，创建富文本渲染组件，最大宽度为屏幕宽-20
-        ap = new FWBRender(tips[f(1, 100) % 7], (short) (GlobalConfig.defaultWidth - 20));
+        loadingTips = new FWBRender(tips[randomInt(1, 100) % 7], (short) (GlobalConfig.defaultWidth - 20));
     }
 
     /**
@@ -1599,30 +1601,30 @@ public final class LoadingPage {
      * @param jindutiao 进度条背景图片
      */
     public static void drawLoadingPage(Graphics graphics, Image jindutiao) {
-        if (an != null && jindutiao != null) {
+        if (progressBarXYWH != null && jindutiao != null) {
             graphics.setColor(0);
             graphics.fillRect(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);          // 黑色填充整个屏幕
-            if (ap != null) {
-                ap.a(graphics, GlobalConfig.defaultWidth / 2, 20, 17);            // 顶部居中绘制提示文字（anchor=TOP|HCENTER）
+            if (loadingTips != null) {
+                loadingTips.a(graphics, GlobalConfig.defaultWidth / 2, 20, 17);            // 顶部居中绘制提示文字（anchor=TOP|HCENTER）
             }
 
             graphics.setColor(16777215);                      // 白色
             graphics.drawString("正在载入资源...", GlobalConfig.defaultWidth / 2, GlobalConfig.defaultHigh / 2, 17);  // 屏幕中央
             graphics.setColor(14459464);                      // 浅蓝色
-            graphics.drawString(100 * loadProgressPercentage / 100 + "%", GlobalConfig.defaultWidth / 2, an[1] + 10, 17);  // 百分比数字
-            graphics.drawImage(jindutiao, an[0] - 5, an[1] - 4, 20);   // 进度条背景图
+            graphics.drawString(100 * loadProgressPercentage / 100 + "%", GlobalConfig.defaultWidth / 2, progressBarXYWH[1] + 10, 17);  // 百分比数字
+            graphics.drawImage(jindutiao, progressBarXYWH[0] - 5, progressBarXYWH[1] - 4, 20);   // 进度条背景图
             graphics.setColor(16382066);                      // 进度条前景色1
-            graphics.fillRect(an[0], an[1], 100 * loadProgressPercentage / 100, 3);
+            graphics.fillRect(progressBarXYWH[0], progressBarXYWH[1], 100 * loadProgressPercentage / 100, 3);
             graphics.setColor(14459464);                      // 进度条前景色2（高光层）
-            graphics.fillRect(an[0], an[1] + 1, 100 * loadProgressPercentage / 100, 2);
+            graphics.fillRect(progressBarXYWH[0], progressBarXYWH[1] + 1, 100 * loadProgressPercentage / 100, 2);
             loadProgressPercentage = ++loadProgressPercentage > 100 ? 100 : loadProgressPercentage;                     // 进度递增，上限100
         }
     }
 
-    public static int f(int var0, int var1) {
-        int var2;
-        int var3;
-        return (var3 = (var2 = var0 + aq.nextInt() % (var1 - var0)) < 0 ? -var2 : var2) == 0 ? 1 : var3;
+    public static int randomInt(int start, int end) {
+        int var2 = start + random.nextInt() % (end - start);
+        int var3 = var2 < 0 ? -var2 : var2;
+        return var3 == 0 ? 1 : var3;
     }
 
     public static void f(Graphics var0, int var1, int var2, int var3, int var4) {
@@ -1635,20 +1637,20 @@ public final class LoadingPage {
         var0.drawRect(var1 - 1, var2 - 1, var3 + 1, var4 + 1);
         setColor(var0, 4);
         var0.drawRect(var1 - 2, var2 - 2, var3 + 3, var4 + 3);
-        if (MainCanvas.y != null) {
-            var0.drawImage(MainCanvas.y.pngImage, var1 - 4, var2 - 4, 20);
+        if (MainCanvas.lu0 != null) {
+            var0.drawImage(MainCanvas.lu0.pngImage, var1 - 4, var2 - 4, 20);
         }
 
-        if (MainCanvas.z != null) {
-            var0.drawImage(MainCanvas.z.pngImage, var1 - 4, var2 + var4 + 4 - MainCanvas.z.c, 20);
+        if (MainCanvas.ld0 != null) {
+            var0.drawImage(MainCanvas.ld0.pngImage, var1 - 4, var2 + var4 + 4 - MainCanvas.ld0.c, 20);
         }
 
-        if (MainCanvas.w != null) {
-            var0.drawImage(MainCanvas.w.pngImage, var1 + 4 + var3 - MainCanvas.w.b, var2 - 4, 20);
+        if (MainCanvas.ru0 != null) {
+            var0.drawImage(MainCanvas.ru0.pngImage, var1 + 4 + var3 - MainCanvas.ru0.b, var2 - 4, 20);
         }
 
-        if (MainCanvas.x != null) {
-            var0.drawImage(MainCanvas.x.pngImage, var1 + 4 + var3 - MainCanvas.x.b, var2 + var4 + 4 - MainCanvas.x.c, 20);
+        if (MainCanvas.rd0 != null) {
+            var0.drawImage(MainCanvas.rd0.pngImage, var1 + 4 + var3 - MainCanvas.rd0.b, var2 + var4 + 4 - MainCanvas.rd0.c, 20);
         }
 
     }

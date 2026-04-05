@@ -11,13 +11,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Vector;
 
+/**
+ * Socket 读线程 + 发包执行者。
+ *
+ * 职责：
+ *   - run()：独立线程，阻塞读 Socket InputStream，将收到的数据包放入 NetUtils.receivePacketQueue（生产者）
+ *   - write()：由 SocketWristLooper 线程每 15ms 调用，从 packetQueue/heartbeatQueue 取包写入 Socket（消费者）
+ *
+ * 发包队列由主线程（MainCanvas.run → netUtils.sendPacket）写入。
+ */
 public final class SocketReadLooper implements Runnable {
     private SocketConnection socketConnection;
     private DataOutputStream os;
     private DataInputStream is;
     private NetUtils netUtils;
     private long g;
+    // 普通数据包发送队列（主线程生产，SocketWristLooper 消费）
     public Vector packetQueue = new Vector();
+    // 心跳包发送队列（间隔 2s 发一次，优先级低于普通包）
     public Vector heartbeatQueue = new Vector();
     private boolean isStart = true;
     private boolean firstHands;
@@ -71,17 +82,17 @@ public final class SocketReadLooper implements Runnable {
                 if (this.socketConnection != null) {
                     if (!this.packetQueue.isEmpty()) {
                         this.doWrite(this.packetQueue);
-                        this.g = this.netUtils.mainCanvas.ak;
+                        this.g = this.netUtils.mainCanvas.frameStartTs;
                         return;
                     }
 
                     if (!this.heartbeatQueue.isEmpty()) {
-                        if (this.netUtils.mainCanvas.ak - this.g < 2000L) {
+                        if (this.netUtils.mainCanvas.frameStartTs - this.g < 2000L) {
                             return;
                         }
 
                         this.doWrite(this.heartbeatQueue);
-                        this.g = this.netUtils.mainCanvas.ak;
+                        this.g = this.netUtils.mainCanvas.frameStartTs;
                     }
                 }
 
@@ -95,7 +106,7 @@ public final class SocketReadLooper implements Runnable {
                 }
 
                 this.stop();
-                this.g = this.netUtils.mainCanvas.ak;
+                this.g = this.netUtils.mainCanvas.frameStartTs;
             }
         }
     }
@@ -134,7 +145,7 @@ public final class SocketReadLooper implements Runnable {
             GlobalStatus.lastSyncTime = System.currentTimeMillis();
         }
 
-        this.g = this.netUtils.mainCanvas.ak;
+        this.g = this.netUtils.mainCanvas.frameStartTs;
         this.netUtils.retryCount = 0;
         queue.removeElementAt(0);
         if (packet.getCode() == 4352) {
@@ -144,6 +155,9 @@ public final class SocketReadLooper implements Runnable {
         GlobalConfig.printStr("完成数据包发送|" + packet.getCode());
     }
 
+    /**
+     * Socket 读线程：阻塞读取服务端数据，解析后放入 receivePacketQueue，由主线程消费。
+     */
     public void run() {
         while (this.isStart && NetUtils.status != 3) {
             try {
@@ -159,7 +173,7 @@ public final class SocketReadLooper implements Runnable {
                         if (MainCanvas.uiSceneController.overlayDialogController != null) {
                             MainCanvas.uiSceneController.overlayDialogController.l();
                         }
-                    } else if (this.netUtils.mainCanvas.k != 3 && this.netUtils.mainCanvas.k != 9 && this.netUtils.mainCanvas.k != 4) {
+                    } else if (this.netUtils.mainCanvas.lastPageStatus != 3 && this.netUtils.mainCanvas.lastPageStatus != 9 && this.netUtils.mainCanvas.lastPageStatus != 4) {
                         this.netUtils.toast("数据更新失败:");
                     }
                 } catch (Exception var2) {

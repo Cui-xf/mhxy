@@ -54,12 +54,12 @@ public final class bq_1 {
       this.y = var1;
       this.z = var2;
       t = (short)var3;
-      var1.clear();
+      var1.doRepaint();
       GlobalConfig.printStr("[FIGHT] bq_1构造: w=" + GlobalStatus.w + " -> 设置v=w");
       GlobalStatus.v = GlobalStatus.w;
       GlobalConfig.printStr("[FIGHT] bq_1构造后: v=" + GlobalStatus.v);
       this.a();
-      var1.clear();
+      var1.doRepaint();
    }
 
    public final void a() {
@@ -197,22 +197,22 @@ public final class bq_1 {
          if (this.f != 10) {
             bq_1 var2 = this;
             if (UISceneController.ac != null) {
-               PngUtil.a(UISceneController.ac, this.y.ak);
+               PngUtil.a(UISceneController.ac, this.y.frameStartTs);
             }
 
             if (UISceneController.ad != null) {
-               PngUtil.a(UISceneController.ad, this.y.ak);
+               PngUtil.a(UISceneController.ad, this.y.frameStartTs);
             }
 
             if (UISceneController.ae != null) {
-               PngUtil.a(UISceneController.ae, this.y.ak);
+               PngUtil.a(UISceneController.ae, this.y.frameStartTs);
             }
 
             if (GlobalStatus.H != null) {
                for(byte var3 = 0; var3 < GlobalStatus.H.length; ++var3) {
                   if (GlobalStatus.H[var3].k == 1) {
                      p var10000 = GlobalStatus.H[var3];
-                     long var10 = var2.y.ak;
+                     long var10 = var2.y.frameStartTs;
                      PngUtil var7 = MainCanvas.pngUtil;
                      p var6 = var10000;
                      if (var10000.j != null && !var6.d()) {
@@ -229,7 +229,7 @@ public final class bq_1 {
                         }
                      }
                   } else if (GlobalStatus.H[var3].k == 2) {
-                     if (GlobalStatus.H[var3].j == null || PngUtil.a(GlobalStatus.H[var3].j, var2.y.ak) == 2) {
+                     if (GlobalStatus.H[var3].j == null || PngUtil.a(GlobalStatus.H[var3].j, var2.y.frameStartTs) == 2) {
                         GlobalStatus.H[var3].b((byte)1);
                         if (var2.F != null) {
                            for(byte var28 = 0; var28 < var2.F.length; ++var28) {
@@ -264,11 +264,11 @@ public final class bq_1 {
                               }
                            }
 
-                           var2.B = var2.y.ak;
+                           var2.B = var2.y.frameStartTs;
                            var2.f = 3;
                         }
                      }
-                  } else if (GlobalStatus.H[var3].k == 4 && (GlobalStatus.H[var3].j == null || PngUtil.a(GlobalStatus.H[var3].j, var2.y.ak) == 2)) {
+                  } else if (GlobalStatus.H[var3].k == 4 && (GlobalStatus.H[var3].j == null || PngUtil.a(GlobalStatus.H[var3].j, var2.y.frameStartTs) == 2)) {
                      if (var2.F != null) {
                         for(byte var4 = 0; var4 < var2.F.length; ++var4) {
                            if (var2.F[var4].b == 0 && var2.F[var4].c == GlobalStatus.H[var3].a) {
@@ -285,9 +285,9 @@ public final class bq_1 {
             if (GlobalStatus.M != null) {
                for(byte var24 = 0; var24 < GlobalStatus.M.length; ++var24) {
                   if (GlobalStatus.M[var24].n == 1) {
-                     GlobalStatus.M[var24].a(MainCanvas.pngUtil, var2.y.ak);
+                     GlobalStatus.M[var24].a(MainCanvas.pngUtil, var2.y.frameStartTs);
                   } else if (GlobalStatus.M[var24].n == 2) {
-                     if (GlobalStatus.M[var24].m == null || PngUtil.a(GlobalStatus.M[var24].m, var2.y.ak) == 2) {
+                     if (GlobalStatus.M[var24].m == null || PngUtil.a(GlobalStatus.M[var24].m, var2.y.frameStartTs) == 2) {
                         GlobalStatus.M[var24].b((byte)1);
                         if (var2.A != null) {
                            var2.f = 5;
@@ -314,11 +314,11 @@ public final class bq_1 {
                               }
                            }
 
-                           var2.B = var2.y.ak;
+                           var2.B = var2.y.frameStartTs;
                            var2.f = 3;
                         }
                      }
-                  } else if (GlobalStatus.M[var24].n != 3 && GlobalStatus.M[var24].n == 4 && (GlobalStatus.M[var24].m == null || PngUtil.a(GlobalStatus.M[var24].m, var2.y.ak) == 2)) {
+                  } else if (GlobalStatus.M[var24].n != 3 && GlobalStatus.M[var24].n == 4 && (GlobalStatus.M[var24].m == null || PngUtil.a(GlobalStatus.M[var24].m, var2.y.frameStartTs) == 2)) {
                      if (var2.F != null) {
                         for(byte var32 = 0; var32 < var2.F.length; ++var32) {
                            if (var2.F[var32].b == 1 && var2.F[var32].c == GlobalStatus.M[var24].a) {
@@ -460,7 +460,7 @@ public final class bq_1 {
                      if (GlobalStatus.dB != null && GlobalStatus.dB.length > 0) {
                         this.z.h((int)3);
                      } else {
-                        this.y.processException("没有可用技能");
+                        this.y.showTips("没有可用技能");
                      }
                   } else if (this.e == 3) {
                      this.z.e((int)6);
@@ -469,16 +469,16 @@ public final class bq_1 {
                         this.k = 1;
                         this.q = 1;
                         if (t == 1) {
-                           this.y.processException("决斗时不能逃跑!");
+                           this.y.showTips("决斗时不能逃跑!");
                         } else if (GlobalStatus.bs == 0 && GlobalStatus.s == 0) {
-                           this.y.processException("队员不能逃跑");
+                           this.y.showTips("队员不能逃跑");
                         } else {
                            this.a((byte)4, -1, (byte)0, this.o, this.k, this.q, (byte)1, GlobalStatus.M[this.h].a);
                            this.f = -1;
                            this.e = 5;
                         }
                      } else if (t == 1) {
-                        this.y.processException("决斗时不能逃跑!");
+                        this.y.showTips("决斗时不能逃跑!");
                      } else {
                         this.j = 4;
                         this.p = 1;
@@ -761,7 +761,7 @@ public final class bq_1 {
                         if (GlobalStatus.cR != null && GlobalStatus.cR.length > 0) {
                            this.z.a(false, true);
                         } else {
-                           this.y.processException("宠物没有技能!");
+                           this.y.showTips("宠物没有技能!");
                         }
                      } else if (this.e == 3 && GlobalStatus.et[this.z.az] != -1) {
                         this.r();
@@ -810,7 +810,7 @@ public final class bq_1 {
                      }
                   } else if (var1 == 536870912) {
                      if (y()) {
-                        this.y.processException("你已被锁定\t无法进行该操作");
+                        this.y.showTips("你已被锁定\t无法进行该操作");
                      } else {
                         this.d = 0;
                      }
@@ -849,7 +849,7 @@ public final class bq_1 {
                      }
                   }
                } else if (h()) {
-                  this.y.processException("只能对自己使用复活道具");
+                  this.y.showTips("只能对自己使用复活道具");
                } else {
                   this.i = c(this.i);
                }
@@ -1149,10 +1149,10 @@ public final class bq_1 {
             }
          } else if (this.f == 2) {
             if (this.D == -1L) {
-               this.D = this.y.ak;
+               this.D = this.y.frameStartTs;
             }
          } else if (this.f == 3 && x()) {
-            if (this.u != null && this.y.ak - this.B >= 1450L) {
+            if (this.u != null && this.y.frameStartTs - this.B >= 1450L) {
                this.f = 1;
             } else if (this.u == null) {
                this.f = 1;
@@ -1190,15 +1190,15 @@ public final class bq_1 {
                   }
                }
 
-               this.B = this.y.ak;
+               this.B = this.y.frameStartTs;
                this.f = 3;
             }
          } else if (this.f == 6) {
-            if (PngUtil.a(UISceneController.ab, this.y.ak) == 2) {
+            if (PngUtil.a(UISceneController.ab, this.y.frameStartTs) == 2) {
                this.f = 1;
             }
          } else if (this.f == 7) {
-            if (PngUtil.a(UISceneController.aa, this.y.ak) == 2) {
+            if (PngUtil.a(UISceneController.aa, this.y.frameStartTs) == 2) {
                this.f = 8;
             }
          } else if (this.f == 8) {
@@ -1440,7 +1440,7 @@ public final class bq_1 {
                }
 
                if (var9.h == var13 && GlobalStatus.M[var13].l == 1) {
-                  MainCanvas.pngUtil.a(var3, UISceneController.D, (int[])null, -1, 0, 0, 4 + GlobalConfig.font2.stringWidth(GlobalStatus.M[var13].d), 6, 0, 0);
+                  MainCanvas.pngUtil.a(var3, UISceneController.elite, (int[])null, -1, 0, 0, 4 + GlobalConfig.font2.stringWidth(GlobalStatus.M[var13].d), 6, 0, 0);
                }
             }
          }
@@ -1449,12 +1449,12 @@ public final class bq_1 {
       if (this.f == 0 || this.f == 1) {
          if (this.d != 4 && this.d != 5 && this.d != 6 && this.d != 7 && this.d != 8) {
             if (this.h >= 0 && this.h <= GlobalStatus.M.length - 1) {
-               PngUtil.a(UISceneController.r, this.y.ak);
-               MainCanvas.pngUtil.a(var2, (Frame1) UISceneController.r, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[this.h].a][0], GlobalConfig.R[GlobalStatus.M[this.h].a][1] - 10 - GlobalStatus.M[this.h].d(), 20, 0);
+               PngUtil.a(UISceneController.select, this.y.frameStartTs);
+               MainCanvas.pngUtil.a(var2, (Frame1) UISceneController.select, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[this.h].a][0], GlobalConfig.R[GlobalStatus.M[this.h].a][1] - 10 - GlobalStatus.M[this.h].d(), 20, 0);
             }
          } else if (this.i >= 0 && this.i <= GlobalStatus.H.length - 1 && GlobalStatus.H[this.i].j != null) {
-            PngUtil.a(UISceneController.r, this.y.ak);
-            MainCanvas.pngUtil.a(var2, (Frame1) UISceneController.r, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[this.i].a][0], GlobalConfig.Q[GlobalStatus.H[this.i].a][1] - 10 - GlobalStatus.H[this.i].i(), 20, 0);
+            PngUtil.a(UISceneController.select, this.y.frameStartTs);
+            MainCanvas.pngUtil.a(var2, (Frame1) UISceneController.select, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[this.i].a][0], GlobalConfig.Q[GlobalStatus.H[this.i].a][1] - 10 - GlobalStatus.H[this.i].i(), 20, 0);
          }
       }
 
@@ -1490,8 +1490,8 @@ public final class bq_1 {
          LoadingPage.drawString(var2, (String)("自动回合:" + c), (int)(GlobalConfig.defaultWidth - GlobalConfig.font2.stringWidth("自动回合:" + c) / 2 - 45), 2, 17, 16777215, 0);
       }
 
-      if (GlobalConfig.o) {
-         var2.drawImage(MainCanvas.U.pngImage, GlobalConfig.defaultWidth - MainCanvas.U.b, GlobalConfig.defaultHigh - MainCanvas.U.c, 20);
+      if (GlobalConfig.supportTouch) {
+         var2.drawImage(MainCanvas.button_back.pngImage, GlobalConfig.defaultWidth - MainCanvas.button_back.b, GlobalConfig.defaultHigh - MainCanvas.button_back.c, 20);
       }
 
       var2.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
@@ -1508,7 +1508,7 @@ public final class bq_1 {
          }
       }
 
-      this.B = this.y.ak;
+      this.B = this.y.frameStartTs;
       this.f = 3;
    }
 
@@ -1534,7 +1534,7 @@ public final class bq_1 {
                         return;
                      }
 
-                     this.B = this.y.ak;
+                     this.B = this.y.frameStartTs;
                      this.f = 3;
                   }
                   break;
@@ -1607,7 +1607,7 @@ public final class bq_1 {
 
                GlobalStatus.H[var4].b((byte)2);
                this.f = 2;
-               this.D = this.y.ak;
+               this.D = this.y.frameStartTs;
                break;
             }
 
@@ -1685,7 +1685,7 @@ public final class bq_1 {
                   }
 
                   this.f = 2;
-                  this.D = this.y.ak;
+                  this.D = this.y.frameStartTs;
                   return;
                }
 
@@ -1701,7 +1701,7 @@ public final class bq_1 {
                }
 
                if (this.E[0].d == -1) {
-                  this.B = this.y.ak;
+                  this.B = this.y.frameStartTs;
                   this.f = 3;
                   return;
                }
@@ -1734,7 +1734,7 @@ public final class bq_1 {
 
    private void p() {
       if (this.I - this.C >= 1000L) {
-         this.C = this.y.ak;
+         this.C = this.y.frameStartTs;
          if (--s <= 0) {
             if (GlobalStatus.bt && c <= 0) {
                this.z.O();
@@ -1764,7 +1764,7 @@ public final class bq_1 {
          this.j = 0;
          this.p = GlobalStatus.ej[this.z.az];
          if (h() && GlobalStatus.ek[this.z.az] != 2) {
-            this.y.processException("只能使用复活道具");
+            this.y.showTips("只能使用复活道具");
             return;
          }
 
@@ -1919,7 +1919,7 @@ public final class bq_1 {
          }
 
          if (!var10000) {
-            this.y.processException("不能对死亡目标使用");
+            this.y.showTips("不能对死亡目标使用");
             return;
          }
       }
@@ -1948,7 +1948,7 @@ public final class bq_1 {
          }
 
          if (!var17) {
-            this.y.processException("不能对死亡目标使用");
+            this.y.showTips("不能对死亡目标使用");
             return;
          }
       }
@@ -1960,7 +1960,7 @@ public final class bq_1 {
          this.J = false;
          this.d = 0;
       } else {
-         this.y.processException("获取上传指令数据错误!");
+         this.y.showTips("获取上传指令数据错误!");
       }
    }
 
@@ -2059,7 +2059,7 @@ public final class bq_1 {
    }
 
    private void a(Graphics var1, String var2) {
-      if (this.y.touchPageCase != 2) {
+      if (this.y.pageStatus != 2) {
          if (this.K == null) {
             this.K = LoadingPage.parseText(var2, GlobalConfig.font2, GlobalConfig.defaultWidth / 2 - 20, "/t");
          }
@@ -2076,8 +2076,8 @@ public final class bq_1 {
    }
 
    public final void d() {
-      this.y.p = true;
-      this.y.clear();
+      this.y.globalLoadingMask = true;
+      this.y.doRepaint();
       if (this.v != null) {
          this.v.removeAllElements();
          this.v = null;
@@ -2093,21 +2093,21 @@ public final class bq_1 {
       }
 
       e();
-      this.y.clear();
+      this.y.doRepaint();
       GlobalStatus.p();
-      this.y.clear();
+      this.y.doRepaint();
       this.z.c = false;
-      this.y.clear();
+      this.y.doRepaint();
       this.u = null;
       this.z.T();
-      this.y.clear();
+      this.y.doRepaint();
       GlobalStatus.g();
-      this.y.clear();
+      this.y.doRepaint();
       MainCanvas.pngUtil.a(this.z.f, UISceneController.h, UISceneController.i, true, false, 1283472);
-      this.y.clear();
+      this.y.doRepaint();
       this.z.j();
-      this.y.clear();
-      this.y.p = false;
+      this.y.doRepaint();
+      this.y.globalLoadingMask = false;
       r = System.currentTimeMillis();
       g = -1;
    }
@@ -2381,7 +2381,7 @@ public final class bq_1 {
    private int s() {
       if (this.A != null) {
          cj var10000 = this.A;
-         long var3 = this.y.ak;
+         long var3 = this.y.frameStartTs;
          PngUtil var5 = MainCanvas.pngUtil;
          return PngUtil.a(var10000.a, var3);
       } else {

@@ -102,7 +102,7 @@ public final class o_1 {
             }
         }
 
-        this.j.touchPageCase = this.j.k;
+        this.j.pageStatus = this.j.lastPageStatus;
         this.i.sceneStateShadow = this.i.currentSceneModeId = 64;
     }
 
@@ -248,13 +248,13 @@ public final class o_1 {
                     e = 1;
                     byte[] var6;
                     if ((var6 = NetPayloadBuilder.a((short) 4687, GlobalStatus.ko, (byte) 2, this.c == 13 ? GlobalStatus.jG : 0, 0, (byte) 0, "", GlobalStatus.ad)) == null) {
-                        this.j.processException("获取上传指令数据错误!");
+                        this.j.showTips("获取上传指令数据错误!");
                         return;
                     }
 
                     NetPacket var14 = new NetPacket((short) 4687, var6);
                     MainCanvas.netUtils.sendPacket(var14);
-                    this.j.showDLZ((String) null);
+                    this.j.showPending((String) null);
                 }
             }
         } else if (this.i.sceneSubState == 2) {
@@ -267,58 +267,58 @@ public final class o_1 {
                 if (this.c == 13) {
                     byte[] var7;
                     if ((var7 = NetPayloadBuilder.a((short) 4687, GlobalStatus.ko, (byte) 0, GlobalStatus.jG, 0, this.b, "", GlobalStatus.ad)) == null) {
-                        this.j.processException("获取上传指令数据错误!");
+                        this.j.showTips("获取上传指令数据错误!");
                         return;
                     }
 
                     NetPacket var15 = new NetPacket((short) 4687, var7);
                     MainCanvas.netUtils.sendPacket(var15);
-                    this.j.showDLZ((String) null);
+                    this.j.showPending((String) null);
                 } else {
                     byte[] var8;
                     if ((var8 = NetPayloadBuilder.g((short) 4647, GlobalStatus.ad, GlobalStatus.ko, (byte) this.b)) == null) {
-                        this.j.processException("获取上传指令数据错误!");
+                        this.j.showTips("获取上传指令数据错误!");
                         return;
                     }
 
                     NetPacket var16 = new NetPacket((short) 4647, var8);
                     MainCanvas.netUtils.sendPacket(var16);
-                    this.j.showDLZ((String) null);
+                    this.j.showPending((String) null);
                 }
             } else if (LoadingPage.o == 1) {
                 e = 1;
                 if (this.c == 13) {
                     byte[] var9;
                     if ((var9 = NetPayloadBuilder.a((short) 4687, GlobalStatus.ko, (byte) 1, GlobalStatus.jG, 0, this.b, "", GlobalStatus.ad)) == null) {
-                        this.j.processException("获取上传指令数据错误!");
+                        this.j.showTips("获取上传指令数据错误!");
                         return;
                     }
 
                     NetPacket var17 = new NetPacket((short) 4687, var9);
                     MainCanvas.netUtils.sendPacket(var17);
-                    this.j.showDLZ((String) null);
+                    this.j.showPending((String) null);
                 } else {
                     byte[] var10;
                     if ((var10 = NetPayloadBuilder.f((short) 4646, GlobalStatus.ad, GlobalStatus.ko, (byte) this.b)) == null) {
-                        this.j.processException("获取上传指令数据错误!");
+                        this.j.showTips("获取上传指令数据错误!");
                         return;
                     }
 
                     NetPacket var18 = new NetPacket((short) 4646, var10);
                     MainCanvas.netUtils.sendPacket(var18);
-                    this.j.showDLZ((String) null);
+                    this.j.showPending((String) null);
                 }
             } else if (LoadingPage.o == 2) {
                 e = 1;
                 byte[] var11;
                 if ((var11 = NetPayloadBuilder.a((short) 4687, GlobalStatus.ko, (byte) 2, this.c == 13 ? GlobalStatus.jG : 0, 0, (byte) 0, "", GlobalStatus.ad)) == null) {
-                    this.j.processException("获取上传指令数据错误!");
+                    this.j.showTips("获取上传指令数据错误!");
                     return;
                 }
 
                 NetPacket var19 = new NetPacket((short) 4687, var11);
                 MainCanvas.netUtils.sendPacket(var19);
-                this.j.showDLZ((String) null);
+                this.j.showPending((String) null);
             }
         }
 
@@ -337,7 +337,7 @@ public final class o_1 {
 
             for (byte var2 = 0; var2 < GlobalStatus.kr.length; ++var2) {
                 if (GlobalStatus.kr[var2] <= -1) {
-                    LoadingPage.a(var1, 125269879, 207, this.j.mixedUi.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var2 * 17, this.j.mixedUi.b + 39, 17, 17);
+                    LoadingPage.fillRect(var1, 125269879, 207, this.j.mixedUi.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var2 * 17, this.j.mixedUi.b + 39, 17, 17);
                 }
 
                 if (GlobalStatus.kr[var2] > 0) {
@@ -394,7 +394,7 @@ public final class o_1 {
         }
 
         this.j.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.j.touchPageCase = this.j.k = 7;
+        this.j.pageStatus = this.j.lastPageStatus = 7;
         this.i.sceneStateShadow = this.i.currentSceneModeId = 65;
     }
 
@@ -445,7 +445,7 @@ public final class o_1 {
     }
 
     public final void b() {
-        this.j.processException("此界面正在维护，如有不便之处请谅解!");
+        this.j.showTips("此界面正在维护，如有不便之处请谅解!");
     }
 
     public final void c(int var1) {
@@ -529,7 +529,7 @@ public final class o_1 {
         }
 
         this.j.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.j.touchPageCase = this.j.k = 7;
+        this.j.pageStatus = this.j.lastPageStatus = 7;
         this.i.sceneStateShadow = this.i.currentSceneModeId = 67;
     }
 
@@ -681,8 +681,8 @@ public final class o_1 {
         this.j.mixedUi.b();
         this.j.mixedUi.a("装备洗炼");
         this.j.mixedUi.a(false);
-        this.J = Math.max(UISceneController.x.c, GlobalConfig.font2_h) * 7 + 16;
-        this.H = UISceneController.x.c + GlobalConfig.font2_h + 8;
+        this.J = Math.max(UISceneController.goods.c, GlobalConfig.font2_h) * 7 + 16;
+        this.H = UISceneController.goods.c + GlobalConfig.font2_h + 8;
         this.I = GlobalConfig.realHigh - 32 - BottomUi.b() - (this.J + 4) - this.H;
         this.j.mixedUi.a(this.H + this.I);
         this.j.textPanel.setFWBText((String) null, GlobalConfig.font2, (byte) 1);
@@ -702,7 +702,7 @@ public final class o_1 {
                     var1_t = this.j.mixedUi.a + this.j.mixedUi.c / 4 * 3 - 8;
                 } else if (var3 > 1) {
                     var1_t = this.j.mixedUi.a + (this.j.mixedUi.c - 17) / 2;
-                    var2 = this.j.mixedUi.b + 32 + this.H + this.I + 4 + 2 + (var3 - 1) * (Math.max(UISceneController.x.c, GlobalConfig.font2_h) + 1);
+                    var2 = this.j.mixedUi.b + 32 + this.H + this.I + 4 + 2 + (var3 - 1) * (Math.max(UISceneController.goods.c, GlobalConfig.font2_h) + 1);
                 }
 
                 boolean var10001 = true;
@@ -713,7 +713,7 @@ public final class o_1 {
         this.g();
         LoadingPage.l = 0;
         this.i.sceneSubState = 0;
-        this.j.touchPageCase = this.j.k;
+        this.j.pageStatus = this.j.lastPageStatus;
         this.i.sceneStateShadow = this.i.currentSceneModeId = 106;
     }
 
@@ -751,7 +751,7 @@ public final class o_1 {
                         }
                     } else if (this.f == 1) {
                         if (g == -1) {
-                            this.j.processException("请先放入洗炼装备");
+                            this.j.showTips("请先放入洗炼装备");
                         } else if (x == -1L) {
                             this.i.a((byte) 0, (byte[]) (new byte[]{5}));
                         } else {
@@ -761,7 +761,7 @@ public final class o_1 {
                     } else if (this.O != null && this.f - 2 < this.O.length) {
                         if (!this.O[this.f - 2]) {
                             if (this.M + 1 > E) {
-                                this.j.processException("没有足够的洗炼锁");
+                                this.j.showTips("没有足够的洗炼锁");
                             } else {
                                 this.O[this.f - 2] = true;
                                 ++this.M;
@@ -823,9 +823,9 @@ public final class o_1 {
                 if (var4 != null) {
                     NetPacket var6 = new NetPacket((short) 4688, var4);
                     MainCanvas.netUtils.sendPacket(var6);
-                    this.j.showDLZ((String) null);
+                    this.j.showPending((String) null);
                 } else {
-                    this.j.processException("获取上传指令数据错误!");
+                    this.j.showTips("获取上传指令数据错误!");
                 }
             } else if (LoadingPage.o == 1) {
                 if (this.i.aw && !this.N) {
@@ -857,7 +857,7 @@ public final class o_1 {
                     if (var10000 != null) {
                         GlobalStatus.a(var8);
                     } else {
-                        this.j.processException("装备不存在");
+                        this.j.showTips("装备不存在");
                     }
                 }
 
@@ -870,7 +870,7 @@ public final class o_1 {
             }
         }
 
-        this.j.touchAction = 0;
+        this.j.inputAction = 0;
     }
 
     private void a(int var1, int var2, int var3, int var4, int var5) {
@@ -923,7 +923,7 @@ public final class o_1 {
                 if (var6 < 2) {
                     var10000 = this.k;
                     var10001 = var1;
-                    var10002 = UISceneController.x;
+                    var10002 = UISceneController.goods;
                 } else {
                     if (this.O == null || var6 - 2 >= this.O.length) {
                         continue;
@@ -953,7 +953,7 @@ public final class o_1 {
         var1.drawString("洗炼锁", this.G[0][0] + 17, this.j.mixedUi.b + 32 + this.H + 3, 20);
         var1.drawString(this.M + " / " + E, this.G[1][0] - 5, this.j.mixedUi.b + 32 + this.H + 3, 20);
         int var9 = var2 + 2;
-        var2 = Math.max(UISceneController.x.c, GlobalConfig.font2_h);
+        var2 = Math.max(UISceneController.goods.c, GlobalConfig.font2_h);
         var1.drawString("当    前", var4 + var3 / 2, var9, 17);
         var1.drawString("最    大", var5 + var3 / 2, var9, 17);
         if (C != null) {

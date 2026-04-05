@@ -32,66 +32,6 @@ public final class Frame0 extends Frame {
         return var1 >= 0 && var1 < this.d.length ? this.d[var1] : null;
     }
 
-    // public final void a(byte[][] bArr, boolean z) throws IOException {
-//    public void draw(byte[][] data, boolean var2) throws IOException {
-//        if (this.e == 0 && this.f == 0 && this.g == 0) {
-//            byte[][] var21 = data;
-//            ByteArrayOutputStream var22 = new ByteArrayOutputStream();
-//            (var22 = ).write(ai_1.b);
-//
-//            for (int var11 = 1; var11 < var21.length; ++var11) {
-//                if (var21[var11] != null && var21[var11].length > 4) {
-//                    ((OutputStream) var22).write(a(ai_1.a[var11 > 4 ? 4 : var11], var21[var11]));
-//                }
-//            }
-//
-//            ((OutputStream) var22).write(ai_1.c);
-//            byte[] var12 = var22.toByteArray();
-//            this.a = Image.createImage(new ByteArrayInputStream(var12));
-//            var22.close();
-//        } else {
-//            ByteArrayOutputStream var13;
-//            (var13 = new ByteArrayOutputStream()).write(ai_1.b);
-//
-//            for (int var3 = 1; var3 < data.length; ++var3) {
-//                if (data[var3] != null && data[var3].length > 4) {
-//                    if (ai_1.a[var3 > 4 ? 4 : var3].equals("PLTE")) {
-//                        byte[] var4;
-//                        byte[] var5 = new byte[(var4 = data[var3]).length - 4];
-//                        System.arraycopy(var4, 0, var5, 0, var5.length);
-//                        int[] var19 = a(a((byte[]) var5, (byte[]) null), (long) this.e * 100000L, (long) this.f * 100000L, (long) this.g * 100000L, 0L, false);
-//                        a(var4 = new byte[var5.length], (byte[]) null, var19);
-//                        System.arraycopy(var4, 0, data[var3], 0, var4.length);
-//                        this.a(true, var4);
-//                        byte[] var10000 = data[var3];
-//                        int var10001 = var4.length;
-//                        int var6 = this.i;
-//                        int var20 = var10001;
-//                        var4 = var10000;
-//                        var10000[var20] = (byte) (var6 >> 24);
-//                        var4[var20 + 1] = (byte) (var6 >>> 16);
-//                        var4[var20 + 2] = (byte) (var6 >>> 8);
-//                        var4[var20 + 3] = (byte) var6;
-//                    }
-//
-//                    ((OutputStream) var13).write(a(ai_1.a[var3 > 4 ? 4 : var3], data[var3]));
-//                }
-//            }
-//
-//            ((OutputStream) var13).write(ai_1.c);
-//            byte[] var14 = var13.toByteArray();
-//
-//            try {
-//                this.a = Image.createImage(var14, 0, var14.length);
-//                return;
-//            } catch (Exception var9) {
-//            } finally {
-//                var13.close();
-//            }
-//
-//        }
-//    }
-
     public void draw(byte[][] bArr, boolean z) throws IOException {
         if (this.e == 0 && this.f == 0 && this.g == 0) {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

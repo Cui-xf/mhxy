@@ -303,7 +303,7 @@ public final class LoginModel implements CommandListener {
                                 if ((var6 = NetPayloadBuilder.buildLogin((byte) 1, (byte) 4, var7.toString())) != null) {
                                     var15.loginUiController.sendFirstPacket(var6);
                                     var15.loginUiController.mainMidlet.start();
-                                    var15.loginUiController.mainMidlet.mainCanvas.showDLZ("请求中...");
+                                    var15.loginUiController.mainMidlet.mainCanvas.showPending("请求中...");
                                 }
 
                                 var7.delete(0, var7.capacity());
@@ -379,7 +379,7 @@ public final class LoginModel implements CommandListener {
                 ChongZhiModel.saveZhangHaoPwd();
                 this.loginUiController.sendFirstPacket(netPacket);
                 this.loginUiController.mainMidlet.start();
-                this.loginUiController.mainMidlet.mainCanvas.showDLZ("请求中...");
+                this.loginUiController.mainMidlet.mainCanvas.showPending("请求中...");
             }
 
             zhanghaoPwd.delete(0, zhanghaoPwd.capacity());

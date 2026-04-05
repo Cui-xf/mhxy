@@ -207,14 +207,14 @@ public final class ch {
 
       LoadingPage.l = 0;
       this.c.sceneSubState = 0;
-      this.d.touchPageCase = this.d.k;
+      this.d.pageStatus = this.d.lastPageStatus;
       this.c.sceneStateShadow = this.c.currentSceneModeId = 102;
    }
 
    public final void a(int var1) {
       if (t == 1) {
          t = 0;
-         this.d.processException("升星成功");
+         this.d.showTips("升星成功");
       }
 
       if (this.c.sceneSubState == 0) {
@@ -287,9 +287,9 @@ public final class ch {
                   q[var1] = false;
                   l -= 0.2 + (double)var1 * 0.1 * (double)(var1 + 2);
                } else if (h == -1) {
-                  this.d.processException("请先放入装备");
+                  this.d.showTips("请先放入装备");
                } else if (m.equals("不能升级")) {
-                  this.d.processException("该装备不能升星，请选择其它装备");
+                  this.d.showTips("该装备不能升星，请选择其它装备");
                } else {
                   if (n[var1] >= 1) {
                      for(int var2 = 0; var2 < 3; ++var2) {
@@ -305,7 +305,7 @@ public final class ch {
                      return;
                   }
 
-                  this.d.processException("该材料已经消耗完，请选择其它材料");
+                  this.d.showTips("该材料已经消耗完，请选择其它材料");
                }
             }
          }
@@ -328,31 +328,31 @@ public final class ch {
 
             p = (byte)var1;
             if (h == -1) {
-               this.d.processException("请先放入装备");
+               this.d.showTips("请先放入装备");
             } else if (m.equals("不能升级")) {
-               this.d.processException("该装备不能升星，请选择其它装备");
+               this.d.showTips("该装备不能升星，请选择其它装备");
             } else {
                Object var6 = null;
                byte[] var7;
                if ((var7 = NetPayloadBuilder.a((short)4689, h, (byte)1, p, GlobalStatus.ad)) != null) {
                   NetPacket var12 = new NetPacket((short)4689, var7);
                   MainCanvas.netUtils.sendPacket(var12);
-                  this.d.showDLZ((String)null);
+                  this.d.showPending((String)null);
                } else {
-                  this.d.processException("获取上传指令数据错误!");
+                  this.d.showTips("获取上传指令数据错误!");
                }
             }
 
             Object var8 = null;
             byte[] var9;
             if ((var9 = NetPayloadBuilder.a((short)4689, h, (byte)1, p, GlobalStatus.ad)) == null) {
-               this.d.processException("获取上传指令数据错误!");
+               this.d.showTips("获取上传指令数据错误!");
                return;
             }
 
             NetPacket var13 = new NetPacket((short)4689, var9);
             MainCanvas.netUtils.sendPacket(var13);
-            this.d.showDLZ((String)null);
+            this.d.showPending((String)null);
          } else {
             if (LoadingPage.o == 1) {
                if (this.c.aw && !this.A) {
@@ -384,7 +384,7 @@ public final class ch {
                   if (var10000 != null) {
                      GlobalStatus.a(var11);
                   } else {
-                     this.d.processException("装备不存在");
+                     this.d.showTips("装备不存在");
                   }
                }
 
@@ -417,11 +417,11 @@ public final class ch {
       if (this.a != null) {
          for(int var2 = 0; var2 < this.a.length; ++var2) {
             if (var2 == 0) {
-               this.e.a(var1, UISceneController.x, (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
+               this.e.a(var1, UISceneController.goods, (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
             } else if (var2 < 4) {
                this.e.a(var1, q[var2 - 1] ? this.y : this.z, (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
             } else {
-               MainCanvas.af.e(String.valueOf(1702));
+               MainCanvas.icon.e(String.valueOf(1702));
                MainCanvas.pngUtil.a(var1, UISceneController.b((short)1702), (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
                if (n[var2 - 4] > 99) {
                   MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] / 100, 0, 0, this.a[var2][0] + 13 - 8, this.a[var2][1] + 11, 0, 0);
@@ -470,7 +470,7 @@ public final class ch {
 
       if (this.c.sceneSubState == 0) {
          if (this.b == 0 && (this.f != null || this.f != "")) {
-            LoadingPage.b(var1, this.f, this.d.mixedUi.a + 5 + 2, this.d.mixedUi.b + 32 + 8 + UISceneController.x.c, GlobalConfig.defaultHigh - 5, 1);
+            LoadingPage.b(var1, this.f, this.d.mixedUi.a + 5 + 2, this.d.mixedUi.b + 32 + 8 + UISceneController.goods.c, GlobalConfig.defaultHigh - 5, 1);
             return;
          }
       } else if (this.c.sceneSubState == 1) {

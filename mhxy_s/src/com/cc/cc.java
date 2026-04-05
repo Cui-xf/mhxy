@@ -51,10 +51,10 @@ public final class cc {
 
         if (this.p != null) {
             for (int var2 = 0; var2 < this.f.length && var2 < this.p.length; ++var2) {
-                this.f[var2] = MainCanvas.ab.a((String) this.s[var2], (short) 0, (short) 0, (short) 0);
+                this.f[var2] = MainCanvas.role.a((String) this.s[var2], (short) 0, (short) 0, (short) 0);
                 if (this.f[var2] == null) {
                     MainCanvas.a(this.t[var2], this.u[var2], (byte) 0, (byte) 0, this.s[var2], (short) 0, (short) 0, (short) 0);
-                    this.f[var2] = MainCanvas.ab.a((int) this.v[var2], (short) 0, (short) 0, (short) 0);
+                    this.f[var2] = MainCanvas.role.a((int) this.v[var2], (short) 0, (short) 0, (short) 0);
                 }
             }
         }
@@ -99,7 +99,7 @@ public final class cc {
             UISceneController.K = new FWBRender("当前排名：" + (this.h <= 0 ? "无" : "第" + this.h + "名") + "\t剩余挑战：" + this.i + "次\t当前积分：" + this.j, (short) (this.mainCanvas.textPanel.textW - 20));
         }
 
-        this.mainCanvas.touchPageCase = this.mainCanvas.k;
+        this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus;
         this.uiSceneController.sceneStateShadow = this.uiSceneController.currentSceneModeId = 130;
     }
 
@@ -134,7 +134,7 @@ public final class cc {
 
             if (this.a == 0) {
                 for (int var10 = 0; var10 < this.f.length; ++var10) {
-                    PngUtil.a(this.f[var10], this.mainCanvas.ak);
+                    PngUtil.a(this.f[var10], this.mainCanvas.frameStartTs);
                 }
 
                 if ((var1 == 1073741824 || var1 == 517 || var1 == 268435456) && this.g >= 0 && this.g <= 3 && this.p != null && this.g < this.p.length) {
@@ -152,13 +152,13 @@ public final class cc {
                 this.a = (short) this.mainCanvas.topUi.a;
                 byte[] var11;
                 if ((var11 = NetPayloadBuilder.d((short) 4690, (byte) 2, "")) == null) {
-                    this.mainCanvas.processException("获取上传指令数据错误!");
+                    this.mainCanvas.showTips("获取上传指令数据错误!");
                     return;
                 }
 
                 NetPacket var7 = new NetPacket((short) 4690, var11);
                 MainCanvas.netUtils.sendPacket(var7);
-                this.mainCanvas.showDLZ((String) null);
+                this.mainCanvas.showPending((String) null);
             }
         } else if (this.uiSceneController.sceneSubState == 1) {
             LoadingPage.b(var1);
@@ -180,23 +180,23 @@ public final class cc {
                     String var8 = this.a == 0 ? this.p[this.g] : this.A[this.mainCanvas.gunDongListUi.g() - 1];
                     byte[] var4;
                     if ((var4 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, var8, (byte) 0)) == null) {
-                        this.mainCanvas.processException("获取上传指令数据错误!");
+                        this.mainCanvas.showTips("获取上传指令数据错误!");
                         return;
                     }
 
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4110, var4));
-                    this.mainCanvas.showDLZ((String) null);
+                    this.mainCanvas.showPending((String) null);
                 } else {
                     this.a = (short) this.mainCanvas.topUi.a;
                     String var2 = this.a == 0 ? this.p[this.g] : this.A[this.mainCanvas.gunDongListUi.g() - 1];
                     byte[] var3;
                     if ((var3 = NetPayloadBuilder.b((short) 4111, GlobalStatus.ad, var2)) == null) {
-                        this.mainCanvas.processException("获取上传指令数据错误!");
+                        this.mainCanvas.showTips("获取上传指令数据错误!");
                         return;
                     }
 
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4111, var3));
-                    this.mainCanvas.showDLZ((String) null);
+                    this.mainCanvas.showPending((String) null);
                 }
             }
         } else if (this.uiSceneController.sceneSubState == 2) {
@@ -209,13 +209,13 @@ public final class cc {
                 String var9 = this.a == 0 ? this.o[this.g] : this.z[this.mainCanvas.gunDongListUi.g() - 1];
                 byte[] var5;
                 if ((var5 = NetPayloadBuilder.d((short) 4690, (byte) 1, var9)) == null) {
-                    this.mainCanvas.processException("获取上传指令数据错误!");
+                    this.mainCanvas.showTips("获取上传指令数据错误!");
                     return;
                 }
 
                 NetPacket var6 = new NetPacket((short) 4690, var5);
                 MainCanvas.netUtils.sendPacket(var6);
-                this.mainCanvas.showDLZ((String) null);
+                this.mainCanvas.showPending((String) null);
             }
         } else if (this.uiSceneController.sceneSubState == 3) {
             this.uiSceneController.T.onClick(var1);
@@ -276,7 +276,7 @@ public final class cc {
             }
 
             if (this.uiSceneController.sceneSubState == 2) {
-                LoadingPage.a(var1, "确定挑战该玩家?", new String[]{"确定", "取消"});
+                LoadingPage.drawString(var1, "确定挑战该玩家?", new String[]{"确定", "取消"});
                 return;
             }
 

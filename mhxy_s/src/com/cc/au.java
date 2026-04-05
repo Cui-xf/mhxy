@@ -118,17 +118,17 @@ public class au {
    public final void a(byte var1) {
       this.j = var1;
       if (this.g == 701) {
-         this.f = MainCanvas.ah.a(this.d[0], this.a, this.b, this.c);
+         this.f = MainCanvas.petfight.a(this.d[0], this.a, this.b, this.c);
          if (this.f == null) {
             UISceneController.a(this.g, this.a, this.b, this.c);
-            this.f = MainCanvas.ah.a(this.d[0], this.a, this.b, this.c);
+            this.f = MainCanvas.petfight.a(this.d[0], this.a, this.b, this.c);
             return;
          }
       } else {
-         this.f = MainCanvas.ah.a(this.d[var1], this.a, this.b, this.c);
+         this.f = MainCanvas.petfight.a(this.d[var1], this.a, this.b, this.c);
          if (this.f == null) {
             UISceneController.a(this.g, this.a, this.b, this.c);
-            this.f = MainCanvas.ah.a(this.d[var1], this.a, this.b, this.c);
+            this.f = MainCanvas.petfight.a(this.d[var1], this.a, this.b, this.c);
          }
       }
 

@@ -68,17 +68,17 @@ public final class bp_1 extends ar {
    }
 
    private void a(boolean var1) {
-      super.g = MainCanvas.ab.a(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
+      super.g = MainCanvas.role.a(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
       if (super.g == null) {
          MainCanvas.a(this.q, this.p, (byte)5, this.r, this.v, this.w, this.x, this.y);
-         super.g = MainCanvas.ab.a(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
+         super.g = MainCanvas.role.a(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
          if (super.g == null) {
             this.r = 0;
             this.a();
-            super.g = MainCanvas.ab.c(var1 ? this.A[super.h] : this.z[super.h]);
+            super.g = MainCanvas.role.c(var1 ? this.A[super.h] : this.z[super.h]);
             if (super.g == null) {
                MainCanvas.a(this.q, this.p, super.h, this.r, this.v, this.w, this.x, this.y);
-               super.g = MainCanvas.ab.c(var1 ? this.A[super.h] : this.z[super.h]);
+               super.g = MainCanvas.role.c(var1 ? this.A[super.h] : this.z[super.h]);
             }
          }
       }

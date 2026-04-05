@@ -66,9 +66,9 @@ public final class bl extends ar {
 
    private void a(boolean var1) {
       if (!this.x.equals("")) {
-         super.g = MainCanvas.ab.a(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
+         super.g = MainCanvas.role.a(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
       } else {
-         super.g = MainCanvas.ab.c(var1 ? this.D[super.h] : this.C[super.h]);
+         super.g = MainCanvas.role.c(var1 ? this.D[super.h] : this.C[super.h]);
       }
 
       if (super.g == null && !this.B) {
@@ -79,9 +79,9 @@ public final class bl extends ar {
          }
 
          if (!this.x.equals("")) {
-            super.g = MainCanvas.ab.a(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
+            super.g = MainCanvas.role.a(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
          } else {
-            super.g = MainCanvas.ab.c(var1 ? this.D[super.h] : this.C[super.h]);
+            super.g = MainCanvas.role.c(var1 ? this.D[super.h] : this.C[super.h]);
          }
 
          this.B = true;

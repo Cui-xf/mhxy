@@ -88,7 +88,7 @@ public final class LoginController {
     public void sendFirstPacket() {
         loginUiController.sendFirstPacket(NetPayloadBuilder.buildLogin((byte) 1, (byte) 3, ""));
         this.mainMidlet.start();
-        this.mainMidlet.mainCanvas.showDLZ("请求中...");
+        this.mainMidlet.mainCanvas.showPending("请求中...");
     }
 
 

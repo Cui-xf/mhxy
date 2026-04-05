@@ -297,7 +297,7 @@ public final class PngUtil {
             MainCanvas.pngUtil.m.drawImage(UISceneController.A, this.j - UISceneController.A.getWidth() >> 1, this.k - UISceneController.A.getHeight() - 16 >> 1, 20);
         }
 
-        LoadingPage.a(this.m, 4017771, 159, 0, 0, this.j, this.k);
+        LoadingPage.fillRect(this.m, 4017771, 159, 0, 0, this.j, this.k);
     }
 
     public final void a(aw var1, int var2, int var3, boolean var4, boolean var5, int var6) {
@@ -310,7 +310,7 @@ public final class PngUtil {
 
         this.a(var1, var2, var3, 0, 0, var4);
         if (var5) {
-            LoadingPage.a(this.m, var6, 175, 0, 0, this.j, this.k);
+            LoadingPage.fillRect(this.m, var6, 175, 0, 0, this.j, this.k);
         }
 
     }

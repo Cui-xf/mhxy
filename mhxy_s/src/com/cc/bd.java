@@ -110,9 +110,9 @@ public final class bd implements CommandListener {
       this.d = new TextField((String)null, "", var4, 0);
       this.n.append(this.d);
       this.b.display.setCurrent(this.n);
-      this.b.touchAction = 0;
-      this.b.b = 0;
-      this.b.touchPageCase = this.b.k;
+      this.b.inputAction = 0;
+      this.b.keyCombination = 0;
+      this.b.pageStatus = this.b.lastPageStatus;
       this.a.sceneSubState = 0;
       this.a.currentSceneModeId = 129;
    }
@@ -195,7 +195,7 @@ public final class bd implements CommandListener {
       String var4 = this.d.getString();
       if (var3.equals("确定") && var4 != null) {
          if (var4.length() == 0) {
-            this.b.processException("名称为空！");
+            this.b.showTips("名称为空！");
          } else {
             if (this.a.R != null) {
                this.a.R.c = 1;

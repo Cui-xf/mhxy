@@ -57,10 +57,12 @@ public final class GlobalStatus {
     public static String U;
     public static String V;
     public static String[] W;
-    public static short[] X;
+    //角色等级
+    public static short[] levels;
     public static byte[] Y;
     public static byte[] Z;
-    public static String[] aa;
+    //角色昵称
+    public static String[] nickNames;
     private static byte[] nD;
     public static short[] ab;
     public static short[] ac;
@@ -1101,17 +1103,17 @@ public final class GlobalStatus {
             e();
         } else {
             W = new String[var1];
-            X = new short[var1];
+            levels = new short[var1];
             Y = new byte[var1];
             Z = new byte[var1];
-            aa = new String[var1];
+            nickNames = new String[var1];
 
             for (int var2 = 0; var2 < var1; ++var2) {
                 W[var2] = var0.readUTF();
-                X[var2] = var0.readShort();
+                levels[var2] = var0.readShort();
                 Y[var2] = var0.readByte();
                 Z[var2] = var0.readByte();
-                aa[var2] = var0.readUTF();
+                nickNames[var2] = var0.readUTF();
                 nD[var2] = var0.readByte();
             }
 
@@ -1134,15 +1136,15 @@ public final class GlobalStatus {
             W = null;
         }
 
-        X = null;
+        levels = null;
         Y = null;
         Z = null;
-        if (aa != null) {
-            for (int var1 = 0; var1 < aa.length; ++var1) {
-                aa[var1] = null;
+        if (nickNames != null) {
+            for (int var1 = 0; var1 < nickNames.length; ++var1) {
+                nickNames[var1] = null;
             }
 
-            aa = null;
+            nickNames = null;
         }
 
     }
@@ -7078,7 +7080,7 @@ public final class GlobalStatus {
 
     }
 
-    public static void O() {
+    public static void clearXXX() {
         if (rk != null) {
             rk.removeAllElements();
             rk = null;

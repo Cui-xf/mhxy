@@ -1,5 +1,9 @@
 package com.cc;
 
+/**
+ * 发包驱动线程：每 15ms 调用一次 SocketReadLooper.write()，
+ * 将主线程放入 packetQueue/heartbeatQueue 的数据包依次写入 Socket。
+ */
 final class SocketWristLooper implements Runnable {
     private boolean starting;
     private final NetUtils netUtils;

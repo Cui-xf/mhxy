@@ -35,9 +35,9 @@ public final class v_1 {
       if ((var5 = NetPayloadBuilder.a((short)4857, GlobalStatus.ad, var1, var2, var3)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4857, var5));
          this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
-         this.i.showDLZ((String)null);
+         this.i.showPending((String)null);
       } else {
-         this.i.processException("获取上传指令数据错误!");
+         this.i.showTips("获取上传指令数据错误!");
       }
    }
 
@@ -46,9 +46,9 @@ public final class v_1 {
       if ((var1 = NetPayloadBuilder.m((short)4858, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4858, var1));
          this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
-         this.i.showDLZ((String)null);
+         this.i.showPending((String)null);
       } else {
-         this.i.processException("获取上传指令数据错误!");
+         this.i.showTips("获取上传指令数据错误!");
       }
    }
 
@@ -94,7 +94,7 @@ public final class v_1 {
       this.i.mixedUi.a((BaseUi)this.i.bottomUi);
       this.i.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 0;
-      this.i.touchPageCase = this.i.k;
+      this.i.pageStatus = this.i.lastPageStatus;
       this.h.sceneStateShadow = this.h.currentSceneModeId = 90;
    }
 
@@ -108,7 +108,7 @@ public final class v_1 {
       this.i.mixedUi.a((BaseUi)this.i.bottomUi);
       this.i.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 2;
-      this.i.touchPageCase = this.i.k;
+      this.i.pageStatus = this.i.lastPageStatus;
       this.h.sceneStateShadow = this.h.currentSceneModeId = 90;
    }
 
@@ -177,13 +177,13 @@ public final class v_1 {
             var1 = a[this.i.gunDongListUi.g()];
             byte[] var3;
             if ((var3 = NetPayloadBuilder.A((short)4859, GlobalStatus.ad, var1)) == null) {
-               this.i.processException("获取上传指令数据错误!");
+               this.i.showTips("获取上传指令数据错误!");
                return;
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short)4859, var3));
             this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
-            this.i.showDLZ((String)null);
+            this.i.showPending((String)null);
          }
       } else if (this.h.sceneSubState == 2) {
          if (this.i.mixedUi != null) {
@@ -221,9 +221,9 @@ public final class v_1 {
       if ((var2 = NetPayloadBuilder.m((short)4860, GlobalStatus.ad, (byte)var1)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4860, var2));
          this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
-         this.i.showDLZ((String)null);
+         this.i.showPending((String)null);
       } else {
-         this.i.processException("获取上传指令数据错误!");
+         this.i.showTips("获取上传指令数据错误!");
       }
    }
 
@@ -243,7 +243,7 @@ public final class v_1 {
       this.i.mixedUi.g = var2;
       this.i.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 0;
-      this.i.touchPageCase = this.i.k;
+      this.i.pageStatus = this.i.lastPageStatus;
       this.h.sceneStateShadow = this.h.currentSceneModeId = 91;
    }
 
@@ -317,9 +317,9 @@ public final class v_1 {
       if ((var2 = NetPayloadBuilder.n((short)4861, GlobalStatus.ad, (byte)var1)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4861, var2));
          this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
-         this.i.showDLZ((String)null);
+         this.i.showPending((String)null);
       } else {
-         this.i.processException("获取上传指令数据错误!");
+         this.i.showTips("获取上传指令数据错误!");
       }
    }
 
@@ -338,7 +338,7 @@ public final class v_1 {
       this.i.mixedUi.g = var2;
       this.i.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 0;
-      this.i.touchPageCase = this.i.k;
+      this.i.pageStatus = this.i.lastPageStatus;
       this.h.sceneStateShadow = this.h.currentSceneModeId = 92;
    }
 
@@ -417,9 +417,9 @@ public final class v_1 {
       if ((var1 = NetPayloadBuilder.n((short)4862, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4862, var1));
          this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
-         this.i.showDLZ((String)null);
+         this.i.showPending((String)null);
       } else {
-         this.i.processException("获取上传指令数据错误!");
+         this.i.showTips("获取上传指令数据错误!");
       }
    }
 
@@ -452,7 +452,7 @@ public final class v_1 {
       this.i.mixedUi.a((BaseUi)this.i.bottomUi);
       this.i.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 0;
-      this.i.touchPageCase = this.i.k;
+      this.i.pageStatus = this.i.lastPageStatus;
       this.h.sceneStateShadow = this.h.currentSceneModeId = 93;
    }
 
@@ -468,9 +468,9 @@ public final class v_1 {
             if ((var4 = NetPayloadBuilder.a((short)4863, GlobalStatus.ad, GlobalStatus.t[this.h.af].a, (int)var3, (short)this.h.sceneRefreshCoordinator.j, (short)this.h.sceneRefreshCoordinator.k)) != null) {
                MainCanvas.netUtils.sendPacket(new NetPacket((short)4863, var4));
                this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
-               this.i.showDLZ((String)null);
+               this.i.showPending((String)null);
             } else {
-               this.i.processException("获取上传指令数据错误!");
+               this.i.showTips("获取上传指令数据错误!");
             }
          }
 

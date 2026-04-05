@@ -20,13 +20,13 @@ public final class ab_1 {
          return;
       }
       if (this.c.sceneRefreshCoordinator.c != null && this.c.sceneRefreshCoordinator.c.size() > 0) {
-         if (this.c.mainCanvasRef.ak - this.d < 2500) {
+         if (this.c.mainCanvasRef.frameStartTs - this.d < 2500) {
             return;
          } else {
             this.c.sceneRefreshCoordinator.c.removeAllElements();
          }
       }
-      this.d = this.c.mainCanvasRef.ak;
+      this.d = this.c.mainCanvasRef.frameStartTs;
       if (this.c == null || this.c.aO == null || this.c.aO.size() <= 0) {
          sVar = null;
       } else {
