@@ -201,7 +201,7 @@ public final class TouchController {
 
                         if (var1 < GlobalConfig.defaultWidth - GlobalConfig.font2.stringWidth("聊天") || var1 > GlobalConfig.defaultWidth || var2 < GlobalConfig.defaultHigh - GlobalConfig.font2_h - 1 || var2 > GlobalConfig.defaultHigh - 1) {
                            if (!GlobalStatus.bu) {
-                              this.uISceneController.d = -1;
+                              this.uISceneController.shuangjiAction = -1;
                               this.canvas.b(var1 + UISceneController.h - this.uISceneController.g(), var2 + UISceneController.i - this.uISceneController.h());
                            }
 
@@ -1946,8 +1946,8 @@ public final class TouchController {
    private void af(int var1, int var2) {
       if (this.uISceneController.sceneSubState == 0 && this.canvas.mixedUi != null) {
          this.canvas.inputAction = this.canvas.mixedUi.hintCheck(var1, var2);
-         int var3 = this.canvas.mixedUi.a + 5;
-         int var4 = this.canvas.mixedUi.b + this.canvas.mixedUi.d - (2 * GlobalConfig.font2_h + 16) - 6;
+         int var3 = this.canvas.mixedUi.X + 5;
+         int var4 = this.canvas.mixedUi.Y + this.canvas.mixedUi.H - (2 * GlobalConfig.font2_h + 16) - 6;
          int var5 = GlobalConfig.font2.stringWidth("同意(点击申请结婚)");
          int var6 = GlobalConfig.font2.stringWidth("拒绝");
          if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + GlobalConfig.font2_h) {
@@ -1966,8 +1966,8 @@ public final class TouchController {
    private void ag(int var1, int var2) {
       if (this.uISceneController.sceneSubState == 0 && this.canvas.mixedUi != null) {
          this.canvas.inputAction = this.canvas.mixedUi.hintCheck(var1, var2);
-         int var3 = this.canvas.mixedUi.a + 5;
-         int var4 = this.canvas.mixedUi.b + this.canvas.mixedUi.d - (2 * GlobalConfig.font2_h + 16) - 6;
+         int var3 = this.canvas.mixedUi.X + 5;
+         int var4 = this.canvas.mixedUi.Y + this.canvas.mixedUi.H - (2 * GlobalConfig.font2_h + 16) - 6;
          int var5 = GlobalConfig.font2.stringWidth("离婚(点击申请离婚)");
          int var6 = GlobalConfig.font2.stringWidth("取消离婚");
          if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + GlobalConfig.font2_h) {

@@ -54,27 +54,27 @@ public final class cc {
                 this.f[var2] = MainCanvas.role.a((String) this.s[var2], (short) 0, (short) 0, (short) 0);
                 if (this.f[var2] == null) {
                     MainCanvas.a(this.t[var2], this.u[var2], (byte) 0, (byte) 0, this.s[var2], (short) 0, (short) 0, (short) 0);
-                    this.f[var2] = MainCanvas.role.a((int) this.v[var2], (short) 0, (short) 0, (short) 0);
+                    this.f[var2] = MainCanvas.role.getFrame1((int) this.v[var2], (short) 0, (short) 0, (short) 0);
                 }
             }
         }
 
         this.uiSceneController.sceneSubState = 0;
         this.mainCanvas.mixedUi.clear();
-        this.mainCanvas.mixedUi.a("仙位排位赛");
+        this.mainCanvas.mixedUi.setTitle("仙位排位赛");
         this.mainCanvas.topUi.a(new String[]{"风云榜", "斗法场", "斗法记录"});
         this.mainCanvas.topUi.a = (byte) var1;
         this.a = (short) var1;
-        this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.topUi);
+        this.mainCanvas.mixedUi.addChild((BaseUi) this.mainCanvas.topUi);
         this.mainCanvas.mixedUi.a(true);
         if (this.a == 0) {
             this.mainCanvas.textPanel.setText("", GlobalConfig.font2, (byte) 1);
-            this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.textPanel);
-            this.mainCanvas.bottomUi.a(new String[]{"操作", "返回"});
-            this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.bottomUi);
-            this.mainCanvas.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvas.mixedUi.addChild((BaseUi) this.mainCanvas.textPanel);
+            this.mainCanvas.bottomUi.setButtonText(new String[]{"操作", "返回"});
+            this.mainCanvas.mixedUi.addChild((BaseUi) this.mainCanvas.bottomUi);
+            this.mainCanvas.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
             this.e = this.mainCanvas.textPanel.textH;
-            int var5 = (this.mainCanvas.mixedUi.c - 16 - 2) / 2;
+            int var5 = (this.mainCanvas.mixedUi.W - 16 - 2) / 2;
             int var1_t = (this.mainCanvas.textPanel.textH - 6) / 2;
 
             for (int var3 = 0; var3 < this.d.length; ++var3) {
@@ -86,14 +86,14 @@ public final class cc {
         } else if (this.a == 1) {
             this.mainCanvas.gunDongListUi.a((Image[]) null, this.w, this.x, this.y);
             this.mainCanvas.gunDongListUi.a(this.B);
-            this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.gunDongListUi);
-            this.mainCanvas.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvas.mixedUi.addChild((BaseUi) this.mainCanvas.gunDongListUi);
+            this.mainCanvas.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         } else if (this.a == 2) {
             this.mainCanvas.textPanel.setText(this.C, GlobalConfig.font2, (byte) 1);
-            this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.textPanel);
-            this.mainCanvas.bottomUi.a(new String[]{"购买次数", "返回"});
-            this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.bottomUi);
-            this.mainCanvas.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvas.mixedUi.addChild((BaseUi) this.mainCanvas.textPanel);
+            this.mainCanvas.bottomUi.setButtonText(new String[]{"购买次数", "返回"});
+            this.mainCanvas.mixedUi.addChild((BaseUi) this.mainCanvas.bottomUi);
+            this.mainCanvas.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
             this.e = GlobalConfig.font2_h * 3 + 4;
             this.mainCanvas.textPanel.setTextRect(this.mainCanvas.textPanel.textX, this.mainCanvas.textPanel.textY, this.mainCanvas.textPanel.textW, this.mainCanvas.textPanel.textH - this.e - 2);
             UISceneController.K = new FWBRender("当前排名：" + (this.h <= 0 ? "无" : "第" + this.h + "名") + "\t剩余挑战：" + this.i + "次\t当前积分：" + this.j, (short) (this.mainCanvas.textPanel.textW - 20));
@@ -134,7 +134,7 @@ public final class cc {
 
             if (this.a == 0) {
                 for (int var10 = 0; var10 < this.f.length; ++var10) {
-                    PngUtil.a(this.f[var10], this.mainCanvas.frameStartTs);
+                    PngUtil.animate(this.f[var10], this.mainCanvas.frameStartTs);
                 }
 
                 if ((var1 == 1073741824 || var1 == 517 || var1 == 268435456) && this.g >= 0 && this.g <= 3 && this.p != null && this.g < this.p.length) {
@@ -276,7 +276,7 @@ public final class cc {
             }
 
             if (this.uiSceneController.sceneSubState == 2) {
-                LoadingPage.drawString(var1, "确定挑战该玩家?", new String[]{"确定", "取消"});
+                LoadingPage.drawDialog(var1, "确定挑战该玩家?", new String[]{"确定", "取消"});
                 return;
             }
 

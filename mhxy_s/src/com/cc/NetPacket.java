@@ -9,8 +9,11 @@ public final class NetPacket {
     public byte[] payload;
     public Vector child;
 
-    public NetPacket(short var1) {
-        this.code = 8192;
+    /**
+     * @see NetPacketCode
+     */
+    public NetPacket(short code) {
+        this.code = code;
         this.child = new Vector();
     }
 

@@ -45,17 +45,17 @@ public final class aq {
 
    public final void a(int var1) {
       this.b.mixedUi.clear();
-      this.b.mixedUi.a("帮派");
+      this.b.mixedUi.setTitle("帮派");
       this.b.mixedUi.a(false);
       this.b.gunDongListUi.a((Image[])null, GlobalConfig.BangPaiCaoZuo, (String[])null, (String[])null);
       this.b.gunDongListUi.a(var1);
       this.b.textPanel.setText(GlobalConfig.BangPaiShuoMing[var1], GlobalConfig.font2, (byte)2);
       this.b.textPanel.setShuRuMoShi((byte)1);
       this.b.bottomUi.a("选择");
-      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
-      this.b.mixedUi.a((BaseUi)this.b.textPanel);
-      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.addChild((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.addChild((BaseUi)this.b.textPanel);
+      this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.a.mainCanvasRef.pageStatus = this.a.mainCanvasRef.lastPageStatus;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 41;
@@ -181,7 +181,7 @@ public final class aq {
 
    public final void b() {
       this.b.mixedUi.clear();
-      this.b.mixedUi.a("等待响应");
+      this.b.mixedUi.setTitle("等待响应");
       this.b.mixedUi.a(false);
       GunDongListUi var10000 = this.b.gunDongListUi;
       String[] var10002 = GlobalStatus.il;
@@ -197,10 +197,10 @@ public final class aq {
       this.b.textPanel.setShuRuMoShi((byte)1);
       this.b.bottomUi.a("响应");
       this.b.bottomUi.a(true);
-      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
-      this.b.mixedUi.a((BaseUi)this.b.textPanel);
-      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.addChild((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.addChild((BaseUi)this.b.textPanel);
+      this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.pageStatus = this.b.lastPageStatus;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 42;
@@ -300,17 +300,17 @@ public final class aq {
 
    public final void c() {
       this.b.mixedUi.clear();
-      this.b.mixedUi.a("帮派招募");
+      this.b.mixedUi.setTitle("帮派招募");
       this.b.mixedUi.a(false);
       this.b.gunDongListUi.a((Image[])null, GlobalStatus.iq, (String[])null, (String[])null);
       this.b.textPanel.setText(GlobalStatus.ir == null ? null : GlobalStatus.ir[0], GlobalConfig.font2, (byte)2);
       this.b.textPanel.setShuRuMoShi((byte)1);
       this.b.bottomUi.a("申请");
       this.b.bottomUi.a(true);
-      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
-      this.b.mixedUi.a((BaseUi)this.b.textPanel);
-      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.addChild((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.addChild((BaseUi)this.b.textPanel);
+      this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.pageStatus = this.b.lastPageStatus;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 43;
@@ -420,7 +420,7 @@ public final class aq {
 
    public final void a(boolean var1) {
       this.b.mixedUi.clear();
-      this.b.mixedUi.a("帮派管理");
+      this.b.mixedUi.setTitle("帮派管理");
       this.b.mixedUi.a(false);
       this.b.gunDongListUi.a((Image[])null, GlobalConfig.BangPaiGuanLi, (String[])null, (String[])null);
       if (var1) {
@@ -432,10 +432,10 @@ public final class aq {
 
       this.b.textPanel.setShuRuMoShi((byte)1);
       this.b.bottomUi.a("确定");
-      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
-      this.b.mixedUi.a((BaseUi)this.b.textPanel);
-      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.addChild((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.addChild((BaseUi)this.b.textPanel);
+      this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.pageStatus = this.b.lastPageStatus;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 45;
@@ -502,7 +502,7 @@ public final class aq {
 
    public final void f() {
       this.b.mixedUi.clear();
-      this.b.mixedUi.a("申请列表");
+      this.b.mixedUi.setTitle("申请列表");
       this.b.mixedUi.a(false);
       GunDongListUi var10000 = this.b.gunDongListUi;
       String[] var10002 = GlobalStatus.iu;
@@ -519,9 +519,9 @@ public final class aq {
       var10000.a((Image[])null, var10002, var2, GlobalStatus.iw);
       this.b.bottomUi.a("确定");
       this.b.bottomUi.a(true);
-      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
-      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.addChild((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.pageStatus = this.b.lastPageStatus;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 46;
@@ -681,10 +681,10 @@ public final class aq {
 
    public final void h(int var1) {
       this.b.mixedUi.clear();
-      this.b.mixedUi.a("帮派信息");
+      this.b.mixedUi.setTitle("帮派信息");
       this.b.mixedUi.a(true);
       this.b.topUi.a(new String[]{"成员", "帮派", "外交", "帮战"});
-      this.b.mixedUi.a((BaseUi)this.b.topUi);
+      this.b.mixedUi.addChild((BaseUi)this.b.topUi);
       if (var1 == 0) {
          this.b.topUi.a = 0;
          this.b.gunDongListUi.a((Image[])null, GlobalStatus.iz, GlobalStatus.iA, a(GlobalStatus.iC, "战力"));
@@ -693,14 +693,14 @@ public final class aq {
          this.b.gunDongListUi.a(GlobalStatus.iG);
          this.b.bottomUi.a("确定");
          this.b.bottomUi.a(true);
-         this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
-         this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-         this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+         this.b.mixedUi.addChild((BaseUi)this.b.gunDongListUi);
+         this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       } else if (var1 == 1) {
          this.b.topUi.a = 1;
          this.b.textPanel.setText(GlobalStatus.iH, GlobalConfig.font2, (byte)2);
-         this.b.mixedUi.a((BaseUi)this.b.textPanel);
-         this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+         this.b.mixedUi.addChild((BaseUi)this.b.textPanel);
+         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       } else if (var1 == 2) {
          this.b.topUi.a = 2;
          String[] var4 = null;
@@ -727,18 +727,18 @@ public final class aq {
          this.b.gunDongListUi.a("帮派搜索", 1);
          this.b.bottomUi.a("确定");
          this.b.bottomUi.a(true);
-         this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
-         this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-         this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+         this.b.mixedUi.addChild((BaseUi)this.b.gunDongListUi);
+         this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
          LoadingPage.l = 0;
       } else if (var1 == 3) {
          this.b.topUi.a = 3;
          this.b.textPanel.setText(GlobalStatus.kl, GlobalConfig.font2, (byte)2);
          this.b.bottomUi.a("确定");
          this.b.bottomUi.a(true);
-         this.b.mixedUi.a((BaseUi)this.b.textPanel);
-         this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-         this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+         this.b.mixedUi.addChild((BaseUi)this.b.textPanel);
+         this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       }
 
       this.a.sceneSubState = 0;
@@ -1179,7 +1179,7 @@ public final class aq {
 
    public final void i() {
       this.b.mixedUi.clear();
-      this.b.mixedUi.a("成员列表");
+      this.b.mixedUi.setTitle("成员列表");
       this.b.mixedUi.a(false);
       this.b.gunDongListUi.a((Image[])null, GlobalStatus.iz, GlobalStatus.iA, a(GlobalStatus.iB, "功勋"));
       this.b.gunDongListUi.a(GlobalStatus.aC == 1 ? GlobalStatus.iE : null);
@@ -1187,9 +1187,9 @@ public final class aq {
       this.b.gunDongListUi.a(GlobalStatus.iG);
       this.b.bottomUi.a("任免");
       this.b.bottomUi.a(true);
-      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
-      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.addChild((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.pageStatus = this.b.lastPageStatus;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 48;
@@ -1339,16 +1339,16 @@ public final class aq {
 
    public final void j() {
       this.b.mixedUi.clear();
-      this.b.mixedUi.a("职务列表");
+      this.b.mixedUi.setTitle("职务列表");
       this.b.mixedUi.a(true);
       this.b.gunDongListUi.a((Image[])null, GlobalStatus.jd, (String[])null, (String[])null);
       this.b.textPanel.setText(GlobalStatus.je[this.b.gunDongListUi.g()], GlobalConfig.font2, (byte)2);
       this.b.textPanel.setShuRuMoShi((byte)1);
       this.b.bottomUi.a("确定");
-      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
-      this.b.mixedUi.a((BaseUi)this.b.textPanel);
-      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.addChild((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.addChild((BaseUi)this.b.textPanel);
+      this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 2;
       this.b.pageStatus = this.b.lastPageStatus;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 48;
@@ -1369,13 +1369,13 @@ public final class aq {
 
    public final void k() {
       this.b.mixedUi.clear();
-      this.b.mixedUi.a("帮派公告");
+      this.b.mixedUi.setTitle("帮派公告");
       this.b.mixedUi.a(false);
       this.b.textPanel.setText(GlobalStatus.jf, GlobalConfig.font2, (byte)2);
       this.b.bottomUi.a("确定");
-      this.b.mixedUi.a((BaseUi)this.b.textPanel);
-      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.addChild((BaseUi)this.b.textPanel);
+      this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.pageStatus = this.b.lastPageStatus;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 49;
@@ -1383,7 +1383,7 @@ public final class aq {
 
    public final void b(boolean var1) {
       this.b.mixedUi.clear();
-      this.b.mixedUi.a("宝库管理");
+      this.b.mixedUi.setTitle("宝库管理");
       this.b.mixedUi.a(false);
       this.b.gunDongListUi.a((Image[])null, GlobalConfig.BaoKuCaoZuo, (String[])null, (String[])null);
       if (var1) {
@@ -1395,10 +1395,10 @@ public final class aq {
 
       this.b.textPanel.setShuRuMoShi((byte)1);
       this.b.bottomUi.a("确定");
-      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
-      this.b.mixedUi.a((BaseUi)this.b.textPanel);
-      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.addChild((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.addChild((BaseUi)this.b.textPanel);
+      this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       LoadingPage.h = 0;
       LoadingPage.g = 0;
       this.b.inputAction = 0;
@@ -1650,17 +1650,17 @@ public final class aq {
       this.m = new int[5][4];
       this.n = new int[4];
       this.b.mixedUi.clear();
-      this.b.mixedUi.a("贡献物品");
+      this.b.mixedUi.setTitle("贡献物品");
       this.b.mixedUi.a(false);
       String[] var1 = GlobalConfig.defaultWidth <= 176 ? new String[]{"", "", "", "", ""} : GlobalConfig.HuoBiType;
       this.b.gunDongListUi.a(UISceneController.b(this.w), var1, (String[])null, (String[])null);
       short var2 = MainCanvas.tradebottom.c;
       this.b.mixedUi.f = var2;
       this.b.gunDongListUi.b(false);
-      this.b.bottomUi.a(new String[]{"确定", "返回"});
-      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
-      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.bottomUi.setButtonText(new String[]{"确定", "返回"});
+      this.b.mixedUi.addChild((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.pageStatus = this.b.lastPageStatus;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 51;
@@ -1990,13 +1990,13 @@ public final class aq {
       this.y = new int[3][4];
       this.z = new int[3][4];
       this.b.mixedUi.clear();
-      this.b.mixedUi.a("宝库配置");
+      this.b.mixedUi.setTitle("宝库配置");
       this.b.mixedUi.a(false);
       this.b.gunDongListUi.a(UISceneController.b(this.A), GlobalConfig.JiangLiType, (String[])null, (String[])null);
-      this.b.bottomUi.a(new String[]{"确定", "返回"});
-      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
-      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.bottomUi.setButtonText(new String[]{"确定", "返回"});
+      this.b.mixedUi.addChild((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.pageStatus = this.b.lastPageStatus;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 114;
@@ -2251,12 +2251,12 @@ public final class aq {
       this.a.sceneSubState = 0;
       this.b.aw = 0;
       LoadingPage.l = 0;
-      this.b.mixedUi.b();
-      this.b.mixedUi.a("帮派宝库");
+      this.b.mixedUi.clean();
+      this.b.mixedUi.setTitle("帮派宝库");
       this.b.mixedUi.a(true);
       this.b.topUi.a(new String[]{"宝库一", "宝库二", "宝库三"});
       this.b.topUi.a((byte)1);
-      this.b.mixedUi.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
+      this.b.mixedUi.setR(GlobalConfig.realHigh <= 240 ? 79 : 120);
       if (this.a.sceneStateShadow != 115 && this.a.sceneStateShadow != 64) {
          this.a.aq = this.a.ar = 0;
       } else {
@@ -2275,10 +2275,10 @@ public final class aq {
       this.b.bottomUi.a("操作");
       this.b.bottomUi.a(true);
       this.b.textPanel.setShuRuMoShi((byte)1);
-      this.b.mixedUi.a((BaseUi)this.b.topUi);
-      this.b.mixedUi.a((BaseUi)this.b.textPanel);
-      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.addChild((BaseUi)this.b.topUi);
+      this.b.mixedUi.addChild((BaseUi)this.b.textPanel);
+      this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.b.pageStatus = this.b.lastPageStatus;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 115;
    }
@@ -2358,14 +2358,14 @@ public final class aq {
                case 0:
                   if (!GlobalStatus.a(GlobalStatus.iP[var2])) {
                      this.b.mixedUi.clear();
-                     this.b.mixedUi.b();
-                     this.b.mixedUi.a("宝物详情");
+                     this.b.mixedUi.clean();
+                     this.b.mixedUi.setTitle("宝物详情");
                      if (GlobalStatus.ja != null && var2 < GlobalStatus.ja.length && GlobalStatus.ja[var2] != null) {
                         this.b.textPanel.setFWBText(GlobalStatus.iO[var2] + "：\t" + GlobalStatus.ja[var2], GlobalConfig.font2, (byte)1);
                      }
 
-                     this.b.mixedUi.a((BaseUi)this.b.textPanel);
-                     this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+                     this.b.mixedUi.addChild((BaseUi)this.b.textPanel);
+                     this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
                      this.a.sceneSubState = 2;
                   } else {
                      var1 = var2;
@@ -2528,14 +2528,14 @@ public final class aq {
       if (this.b.mixedUi != null) {
          int var2 = GlobalConfig.realHigh <= 240 ? 79 : 120;
          this.b.mixedUi.a(var1);
-         LoadingPage.draw(var1, this.b.mixedUi.a + 5, this.b.mixedUi.b + 29 + this.b.topUi.b, this.b.mixedUi.c - 11, var2, 1);
+         LoadingPage.draw(var1, this.b.mixedUi.X + 5, this.b.mixedUi.Y + 29 + this.b.topUi.b, this.b.mixedUi.W - 11, var2, 1);
          LoadingPage.draw(var1);
          Graphics var3 = var1;
          aq var11 = this;
-         int var4 = (this.b.mixedUi.c - 11 - (UISceneController.goods.b << 3)) / 9;
+         int var4 = (this.b.mixedUi.W - 11 - (UISceneController.goods.b << 3)) / 9;
          int var5 = ((GlobalConfig.realHigh <= 240 ? 79 : 120) - 6 - (UISceneController.goods.b << 2)) / 5;
-         int var6 = this.b.mixedUi.a + 8 + var4;
-         int var7 = this.b.mixedUi.b + 33 + this.b.topUi.b + var5;
+         int var6 = this.b.mixedUi.X + 8 + var4;
+         int var7 = this.b.mixedUi.Y + 33 + this.b.topUi.b + var5;
 
          for(int var8 = 0; var8 < 32; ++var8) {
             MainCanvas.pngUtil.a(var3, UISceneController.goods, (int[])null, (aj)null, 0, 0, var8 % 8 * (UISceneController.goods.b + var4) + var6, var8 / 8 * (UISceneController.goods.b + var5) + var7, 0, 0);
@@ -2583,7 +2583,7 @@ public final class aq {
             }
 
             if (this.a.sceneSubState == 5 || this.a.sceneSubState == 4) {
-               LoadingPage.drawString(var1, this.a.at, new String[]{"确定", "取消"});
+               LoadingPage.drawDialog(var1, this.a.at, new String[]{"确定", "取消"});
             }
          }
 
@@ -2610,7 +2610,7 @@ public final class aq {
 
    public final void c(Graphics var1) {
       if (this.a.sceneSubState == 0 && this.b.mixedUi != null) {
-         LoadingPage.a(var1, (Image) MainCanvas.tradebottom.pngImage, (short) MainCanvas.tradebottom.b, this.b.mixedUi.a + 5, this.b.mixedUi.b + this.b.mixedUi.d - 53, this.b.mixedUi.c - 10, MainCanvas.tradebottom.c);
+         LoadingPage.a(var1, (Image) MainCanvas.tradebottom.pngImage, (short) MainCanvas.tradebottom.b, this.b.mixedUi.X + 5, this.b.mixedUi.Y + this.b.mixedUi.H - 53, this.b.mixedUi.W - 10, MainCanvas.tradebottom.c);
          this.b.mixedUi.a(var1);
 
          for(int var2 = 0; var2 < this.b.gunDongListUi.f(); ++var2) {
@@ -2641,7 +2641,7 @@ public final class aq {
          }
 
          long var7 = (this.j + (long)this.B * GlobalStatus.jg + (long)this.C * GlobalStatus.ji + (long)this.D * GlobalStatus.jk + (long)this.E * GlobalStatus.jm) / 300L;
-         LoadingPage.drawString(var1, (String)("得到功勋：" + var7), (int)(this.b.mixedUi.a + this.b.mixedUi.c / 2), this.b.mixedUi.b + this.b.mixedUi.d - 51 + (MainCanvas.plus.pngImage.getHeight() - GlobalConfig.font2_h) / 2, 17, 16776666, 0);
+         LoadingPage.drawString(var1, (String)("得到功勋：" + var7), (int)(this.b.mixedUi.X + this.b.mixedUi.W / 2), this.b.mixedUi.Y + this.b.mixedUi.H - 51 + (MainCanvas.plus.pngImage.getHeight() - GlobalConfig.font2_h) / 2, 17, 16776666, 0);
       }
 
    }
@@ -2668,7 +2668,7 @@ public final class aq {
 
    public final void s() {
       this.b.mixedUi.clear();
-      this.b.mixedUi.a("区域建设");
+      this.b.mixedUi.setTitle("区域建设");
       this.b.mixedUi.a(true);
       this.b.topUi.a(new String[]{"购买", "仓库"});
       this.b.gunDongListUi.a((Image[])null, GlobalStatus.jp, (String[])null, (String[])null);
@@ -2676,11 +2676,11 @@ public final class aq {
       this.b.textPanel.setShuRuMoShi((byte)1);
       this.b.bottomUi.a("购买");
       this.b.bottomUi.a(true);
-      this.b.mixedUi.a((BaseUi)this.b.topUi);
-      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
-      this.b.mixedUi.a((BaseUi)this.b.textPanel);
-      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.addChild((BaseUi)this.b.topUi);
+      this.b.mixedUi.addChild((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.addChild((BaseUi)this.b.textPanel);
+      this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.pageStatus = this.b.lastPageStatus;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 52;
@@ -2852,7 +2852,7 @@ public final class aq {
 
    public final void u() {
       this.b.mixedUi.clear();
-      this.b.mixedUi.a("帮派外交");
+      this.b.mixedUi.setTitle("帮派外交");
       this.b.mixedUi.a(false);
       String[] var1 = null;
       int[] var2 = null;
@@ -2878,9 +2878,9 @@ public final class aq {
       this.b.gunDongListUi.a("帮派搜索", 1);
       this.b.bottomUi.a("确定");
       this.b.bottomUi.a(true);
-      this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
-      this.b.mixedUi.a((BaseUi)this.b.bottomUi);
-      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.addChild((BaseUi)this.b.gunDongListUi);
+      this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
+      this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       LoadingPage.l = 0;
       this.a.sceneSubState = 0;
       this.b.pageStatus = this.b.lastPageStatus;
@@ -3126,21 +3126,21 @@ public final class aq {
    public final void x() {
       if (GlobalStatus.kE != null) {
          this.b.mixedUi.clear();
-         this.b.mixedUi.a("战争捷报");
+         this.b.mixedUi.setTitle("战争捷报");
          this.b.mixedUi.a(false);
          this.b.gunDongListUi.a((Image[])null, GlobalStatus.kE, (String[])null, (String[])null);
          this.b.textPanel.setText(GlobalStatus.kF[0], GlobalConfig.font2, (byte)2);
          this.b.textPanel.setShuRuMoShi((byte)1);
          this.b.bottomUi.a("确定");
-         this.b.mixedUi.a((BaseUi)this.b.gunDongListUi);
-         this.b.mixedUi.a((BaseUi)this.b.textPanel);
-         this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+         this.b.mixedUi.addChild((BaseUi)this.b.gunDongListUi);
+         this.b.mixedUi.addChild((BaseUi)this.b.textPanel);
+         this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
          MixedUi var10000 = this.b.mixedUi;
          int var2 = 2 * GlobalConfig.font2_h + 8;
          MixedUi var1 = var10000;
          var10000.e = var2;
          int var3 = var1.e;
-         this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
          this.a.sceneSubState = 0;
          this.b.pageStatus = this.b.lastPageStatus;
          this.a.sceneStateShadow = this.a.currentSceneModeId = 63;
@@ -3193,18 +3193,18 @@ public final class aq {
    }
 
    public final void y() {
-      this.b.mixedUi.b();
-      this.b.mixedUi.a("帮派升级");
+      this.b.mixedUi.clean();
+      this.b.mixedUi.setTitle("帮派升级");
       this.b.mixedUi.a(false);
       this.b.textPanel.setText(GlobalStatus.mw == null ? "暂无帮派升级信息" : GlobalStatus.mw, GlobalConfig.font2, (byte)0);
-      this.b.mixedUi.a((BaseUi)this.b.textPanel);
+      this.b.mixedUi.addChild((BaseUi)this.b.textPanel);
       this.b.bottomUi.a("升级");
-      this.b.mixedUi.a((BaseUi)this.b.textPanel);
+      this.b.mixedUi.addChild((BaseUi)this.b.textPanel);
       if (GlobalConfig.defaultHigh > 220) {
-         this.b.mixedUi.a((BaseUi)this.b.bottomUi);
+         this.b.mixedUi.addChild((BaseUi)this.b.bottomUi);
       }
 
-      this.b.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a.sceneSubState = 0;
       this.b.pageStatus = this.b.lastPageStatus;
       this.a.sceneStateShadow = this.a.currentSceneModeId = 113;

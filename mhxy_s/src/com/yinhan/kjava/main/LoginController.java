@@ -82,17 +82,6 @@ public final class LoginController {
     }
 
     /**
-     * 发送游客/快速登录握手包（opcode=6400，渠道类型=3），并将主画布切换到前台，
-     * 同时在画布上显示"请求中..."提示。
-     */
-    public void sendFirstPacket() {
-        loginUiController.sendFirstPacket(NetPayloadBuilder.buildLogin((byte) 1, (byte) 3, ""));
-        this.mainMidlet.start();
-        this.mainMidlet.mainCanvas.showPending("请求中...");
-    }
-
-
-    /**
      * 显示登录主界面（LoginModel 的初始界面）。
      */
     public static void showChangePwd() {

@@ -23,7 +23,8 @@ public final class UISceneController {
      */
     public static short gameViewportHeight = 208;
     public boolean c = false;
-    public byte d = -1;
+    //双击检测后得到的action
+    public byte shuangjiAction = -1;
     private byte bi = -1;
     /**
      * 所属主画布引用 | English: mainCanvasRef
@@ -295,7 +296,7 @@ public final class UISceneController {
         this.j();
         GlobalStatus.a = false;
         this.mainCanvasRef.globalLoadingMask = true;
-        this.d = -1;
+        this.shuangjiAction = -1;
         this.mainCanvasRef.doRepaint();
         this.mainCanvasRef.k();
         this.mainCanvasRef.doRepaint();
@@ -350,7 +351,7 @@ public final class UISceneController {
             }
 
             if (this.currentSceneModeId != 0) {
-                this.d = -1;
+                this.shuangjiAction = -1;
             }
 
             if (this.currentSceneModeId != this.bx) {
@@ -965,11 +966,11 @@ public final class UISceneController {
                     UISceneController var5 = this;
                     if (q != null) {
                         if (GlobalStatus.ay != this.bX) {
-                            q = this.mainCanvasRef.a(q, GlobalStatus.ax, GlobalStatus.aj, (byte) 3, (byte) 1, false);
+                            q = this.mainCanvasRef.loadRoleFrame(q, GlobalStatus.ax, GlobalStatus.aj, (byte) 3, (byte) 1, false);
                             this.bX = GlobalStatus.ay;
                         }
 
-                        PngUtil.a(q, this.mainCanvasRef.frameStartTs);
+                        PngUtil.animate(q, this.mainCanvasRef.frameStartTs);
                     }
 
                     if (this.sceneSubState == 0) {
@@ -1265,11 +1266,11 @@ public final class UISceneController {
                 case 30:
                     int var14 = this.mainCanvasRef.inputAction;
                     if (t_2 != null) {
-                        PngUtil.a(t_2, this.mainCanvasRef.frameStartTs);
+                        PngUtil.animate(t_2, this.mainCanvasRef.frameStartTs);
                     }
 
                     if (s != null) {
-                        PngUtil.a(s, this.mainCanvasRef.frameStartTs);
+                        PngUtil.animate(s, this.mainCanvasRef.frameStartTs);
                     }
 
                     if (var14 == 268435456 || var14 == 1073741824 || var14 == 536870912 || var14 == 517) {
@@ -1684,7 +1685,7 @@ public final class UISceneController {
         }
 
         if (this.currentSceneModeId == 0 && this.J != null) {
-            LoadingPage.drawString(var1, this.J, new String[]{"确定", "取消"});
+            LoadingPage.drawDialog(var1, this.J, new String[]{"确定", "取消"});
         }
 
         switch (this.currentSceneModeId) {
@@ -1737,7 +1738,7 @@ public final class UISceneController {
                         } else {
                             if (this.sceneSubMode != 4) {
                                 if (this.sceneSubMode == 5 || this.sceneSubMode == 6) {
-                                    LoadingPage.drawString(var1, this.at, new String[]{"确定", "取消"});
+                                    LoadingPage.drawDialog(var1, this.at, new String[]{"确定", "取消"});
                                 }
 
                                 return;
@@ -1884,7 +1885,7 @@ public final class UISceneController {
                         return;
                     }
 
-                    LoadingPage.drawString(var1, "删除好友将清空对该好友的好感度，确认删除？", new String[]{"确定", "取消"});
+                    LoadingPage.drawDialog(var1, "删除好友将清空对该好友的好感度，确认删除？", new String[]{"确定", "取消"});
                 } else {
                     LoadingPage.c(var1);
                 }
@@ -1935,13 +1936,13 @@ public final class UISceneController {
                 } else {
                     if (this.sceneSubState != 3) {
                         if (this.sceneSubState == 4) {
-                            LoadingPage.drawString(var1, "您确认以" + GlobalStatus.a(GlobalStatus.eg[this.mainCanvasRef.gunDongListUi.g()]) + "两的价格购买该物品" + this.ag + "个", new String[]{"确定", "取消"});
+                            LoadingPage.drawDialog(var1, "您确认以" + GlobalStatus.a(GlobalStatus.eg[this.mainCanvasRef.gunDongListUi.g()]) + "两的价格购买该物品" + this.ag + "个", new String[]{"确定", "取消"});
                         }
 
                         return;
                     }
 
-                    LoadingPage.drawString(var1, "您确认以" + GlobalStatus.eg[this.mainCanvasRef.gunDongListUi.g()] + "两的价格购买该物品" + GlobalStatus.eb[this.mainCanvasRef.gunDongListUi.g()] + "个", new String[]{"确定", "取消"});
+                    LoadingPage.drawDialog(var1, "您确认以" + GlobalStatus.eg[this.mainCanvasRef.gunDongListUi.g()] + "两的价格购买该物品" + GlobalStatus.eb[this.mainCanvasRef.gunDongListUi.g()] + "个", new String[]{"确定", "取消"});
                 }
                 break;
             case 24:
@@ -2006,30 +2007,30 @@ public final class UISceneController {
             case 33:
                 if (this.mainCanvasRef.mixedUi != null) {
                     this.mainCanvasRef.mixedUi.a(var1);
-                    LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.a + 5, this.mainCanvasRef.mixedUi.b + 32, this.mainCanvasRef.mixedUi.c - 11, this.bQ, 1);
-                    LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.a + 62, this.mainCanvasRef.mixedUi.b + 35, this.mainCanvasRef.mixedUi.a + 62, this.mainCanvasRef.mixedUi.b + 29 + this.bQ);
+                    LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 32, this.mainCanvasRef.mixedUi.W - 11, this.bQ, 1);
+                    LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 62, this.mainCanvasRef.mixedUi.Y + 35, this.mainCanvasRef.mixedUi.X + 62, this.mainCanvasRef.mixedUi.Y + 29 + this.bQ);
                 }
 
                 if (bp != null) {
-                    MainCanvas.pngUtil.a(var1, (Frame1) bp, (int[]) null, 0, 0, this.mainCanvasRef.mixedUi.a + 5 + 30, this.mainCanvasRef.mixedUi.b + 35 + (this.bQ + bp.j()) / 2, 20, 0);
+                    MainCanvas.pngUtil.a(var1, (Frame1) bp, (int[]) null, 0, 0, this.mainCanvasRef.mixedUi.X + 5 + 30, this.mainCanvasRef.mixedUi.Y + 35 + (this.bQ + bp.j()) / 2, 20, 0);
                 }
 
-                int var21 = this.mainCanvasRef.mixedUi.a + 8;
+                int var21 = this.mainCanvasRef.mixedUi.X + 8;
                 Image var27;
                 if (GlobalStatus.aC == 1 && (var27 = MainCanvas.d(GlobalStatus.kU)) != null) {
-                    var1.drawImage(var27, var21, this.mainCanvasRef.mixedUi.b + 35, 20);
+                    var1.drawImage(var27, var21, this.mainCanvasRef.mixedUi.Y + 35, 20);
                     var21 += var27.getWidth();
                 }
 
                 if (GlobalStatus.aH == 1 && (var27 = MainCanvas.c(GlobalStatus.aI)) != null) {
-                    var1.drawImage(var27, var21, this.mainCanvasRef.mixedUi.b + 34, 20);
+                    var1.drawImage(var27, var21, this.mainCanvasRef.mixedUi.Y + 34, 20);
                 }
 
                 var1.setColor(1539988);
-                var1.fillRect(this.mainCanvasRef.mixedUi.a + 68, this.mainCanvasRef.mixedUi.b + 30 + this.bQ / 2, this.mainCanvasRef.mixedUi.c - 80, GlobalConfig.font2_h);
+                var1.fillRect(this.mainCanvasRef.mixedUi.X + 68, this.mainCanvasRef.mixedUi.Y + 30 + this.bQ / 2, this.mainCanvasRef.mixedUi.W - 80, GlobalConfig.font2_h);
                 var1.setColor(16776960);
-                var1.drawString("超Q等级：" + GlobalStatus.kU, this.mainCanvasRef.mixedUi.a + 70, this.mainCanvasRef.mixedUi.b + 30 + this.bQ / 2 - GlobalConfig.font2_h, 20);
-                var1.drawString("超Q特权礼包：" + (GlobalStatus.kV == 1 ? "领取" : "未领取"), this.mainCanvasRef.mixedUi.a + 70, this.mainCanvasRef.mixedUi.b + 30 + this.bQ / 2, 20);
+                var1.drawString("超Q等级：" + GlobalStatus.kU, this.mainCanvasRef.mixedUi.X + 70, this.mainCanvasRef.mixedUi.Y + 30 + this.bQ / 2 - GlobalConfig.font2_h, 20);
+                var1.drawString("超Q特权礼包：" + (GlobalStatus.kV == 1 ? "领取" : "未领取"), this.mainCanvasRef.mixedUi.X + 70, this.mainCanvasRef.mixedUi.Y + 30 + this.bQ / 2, 20);
                 if (this.sceneSubState == 1) {
                     LoadingPage.c(var1);
                 }
@@ -2057,7 +2058,7 @@ public final class UISceneController {
                 }
 
                 if (this.sceneSubState == 9) {
-                    LoadingPage.drawString(var1, "您确定招募" + GlobalStatus.hU[this.mainCanvasRef.gunDongListUi.g()] + "？", new String[]{"确定", "返回"});
+                    LoadingPage.drawDialog(var1, "您确定招募" + GlobalStatus.hU[this.mainCanvasRef.gunDongListUi.g()] + "？", new String[]{"确定", "返回"});
                 }
 
                 return;
@@ -2110,17 +2111,17 @@ public final class UISceneController {
                 }
 
                 if (var18.a.sceneSubState == 1) {
-                    LoadingPage.drawString(var1, "您真的要退出帮派吗？", new String[]{"确定", "返回"});
+                    LoadingPage.drawDialog(var1, "您真的要退出帮派吗？", new String[]{"确定", "返回"});
                 } else {
                     if (var18.a.sceneSubState != 2) {
                         if (var18.a.sceneSubState == 3) {
-                            LoadingPage.drawString(var1, "您真的要发布招募吗？", new String[]{"确定", "返回"});
+                            LoadingPage.drawDialog(var1, "您真的要发布招募吗？", new String[]{"确定", "返回"});
                         }
 
                         return;
                     }
 
-                    LoadingPage.drawString(var1, "您真的要解散帮派吗？", new String[]{"确定", "返回"});
+                    LoadingPage.drawDialog(var1, "您真的要解散帮派吗？", new String[]{"确定", "返回"});
                 }
                 break;
             case 42:
@@ -2188,7 +2189,7 @@ public final class UISceneController {
                     } else {
                         if (var13.a.sceneSubState != 4) {
                             if (var13.a.sceneSubState == 9) {
-                                LoadingPage.drawString(var1, "需要消耗基金300万和20点军力，一旦宣战必须等到战争结束后才能再次宣战！", new String[]{"确定", "取消"});
+                                LoadingPage.drawDialog(var1, "需要消耗基金300万和20点军力，一旦宣战必须等到战争结束后才能再次宣战！", new String[]{"确定", "取消"});
                             }
 
                             return;
@@ -2221,7 +2222,7 @@ public final class UISceneController {
                         return;
                     }
 
-                    LoadingPage.drawString(var1, "要开除" + GlobalStatus.iz[var12.b.gunDongListUi.g()] + "出帮派吗？", new String[]{"确定", "取消"});
+                    LoadingPage.drawDialog(var1, "要开除" + GlobalStatus.iz[var12.b.gunDongListUi.g()] + "出帮派吗？", new String[]{"确定", "取消"});
                 }
                 break;
             case 49:
@@ -2258,7 +2259,7 @@ public final class UISceneController {
                         }
                     }
 
-                    LoadingPage.drawString(var1, var10.a.at, new String[]{"确定", "取消"});
+                    LoadingPage.drawDialog(var1, var10.a.at, new String[]{"确定", "取消"});
                     return;
                 }
                 break;
@@ -2308,9 +2309,9 @@ public final class UISceneController {
                 if (this.sceneSubState != 1 && this.sceneSubState != 2) {
                     if (this.sceneSubState == 3) {
                         if (LoadingPage.parseColor(GlobalStatus.jO[this.mainCanvasRef.gunDongListUi.g()]) != -1) {
-                            LoadingPage.drawString(var1, "是否将" + GlobalStatus.jO[this.mainCanvasRef.gunDongListUi.g()].substring(3, GlobalStatus.jO[this.mainCanvasRef.gunDongListUi.g()].length()) + "从拍卖场中撤下？", new String[]{"确定", "取消"});
+                            LoadingPage.drawDialog(var1, "是否将" + GlobalStatus.jO[this.mainCanvasRef.gunDongListUi.g()].substring(3, GlobalStatus.jO[this.mainCanvasRef.gunDongListUi.g()].length()) + "从拍卖场中撤下？", new String[]{"确定", "取消"});
                         } else {
-                            LoadingPage.drawString(var1, "是否将" + GlobalStatus.jO[this.mainCanvasRef.gunDongListUi.g()] + "从拍卖场中撤下？", new String[]{"确定", "取消"});
+                            LoadingPage.drawDialog(var1, "是否将" + GlobalStatus.jO[this.mainCanvasRef.gunDongListUi.g()] + "从拍卖场中撤下？", new String[]{"确定", "取消"});
                         }
                     } else {
                         if (this.sceneSubState != 5) {
@@ -2321,7 +2322,7 @@ public final class UISceneController {
                             return;
                         }
 
-                        LoadingPage.drawString(var1, "您确定以" + this.bR + "两的价格拍卖此物品?", new String[]{"确定", "取消"});
+                        LoadingPage.drawDialog(var1, "您确定以" + this.bR + "两的价格拍卖此物品?", new String[]{"确定", "取消"});
                     }
                 } else {
                     LoadingPage.c(var1);
@@ -2335,7 +2336,7 @@ public final class UISceneController {
 
                 if (var8.a.sceneSubState != 1 && var8.a.sceneSubState != 2) {
                     if (var8.a.sceneSubState == 3) {
-                        LoadingPage.drawString(var1, "需要消耗基金300万和20点军力，一旦宣战必须等到战争结束后才能再次宣战！", new String[]{"确定", "取消"});
+                        LoadingPage.drawDialog(var1, "需要消耗基金300万和20点军力，一旦宣战必须等到战争结束后才能再次宣战！", new String[]{"确定", "取消"});
                     }
 
                     return;
@@ -2348,12 +2349,12 @@ public final class UISceneController {
                 LoadingPage.drawString(var1, (String) var3, (int) ((GlobalConfig.defaultWidth - GlobalConfig.font2.stringWidth(var3)) / 2), (GlobalConfig.defaultHigh - GlobalConfig.font2_h) / 2, 20, 16711680, 0);
                 return;
             case 62:
-                LoadingPage.drawString(var1, GlobalStatus.kC, new String[]{"确定", "取消"});
+                LoadingPage.drawDialog(var1, GlobalStatus.kC, new String[]{"确定", "取消"});
                 return;
             case 63:
                 aq var2;
                 if ((var2 = this.M).a.sceneSubState == 0 && var2.b.mixedUi != null) {
-                    LoadingPage.draw(var1, var2.b.mixedUi.a + 5, var2.b.mixedUi.a(), var2.b.mixedUi.c - 11, 2 * GlobalConfig.font2_h + 8, 1);
+                    LoadingPage.draw(var1, var2.b.mixedUi.X + 5, var2.b.mixedUi.a(), var2.b.mixedUi.W - 11, 2 * GlobalConfig.font2_h + 8, 1);
                     var1.setColor(16711680);
                     var1.drawString("处置战败方：", GlobalConfig.gameX + GlobalConfig.realWidth / 2, var2.b.mixedUi.a() + 2, 17);
                     var1.drawString("（" + GlobalStatus.kD + "分钟限时）", GlobalConfig.gameX + GlobalConfig.realWidth / 2, var2.b.mixedUi.a() + 2 + GlobalConfig.font2_h + 4, 17);
@@ -2586,7 +2587,7 @@ public final class UISceneController {
     }
 
     public final void c() {
-        PngUtil.a(bn, this.mainCanvasRef.frameStartTs);
+        PngUtil.animate(bn, this.mainCanvasRef.frameStartTs);
         this.P();
         if (this.cM) {
             this.aR();
@@ -2826,7 +2827,7 @@ public final class UISceneController {
 
     public final void e() {
         this.mainCanvasRef.globalLoadingMask = true;
-        this.d = -1;
+        this.shuangjiAction = -1;
         this.aU();
         this.mainCanvasRef.h();
         if (this.currentSceneModeId != 25) {
@@ -2949,7 +2950,7 @@ public final class UISceneController {
 
     public static void a(short var0, short var1, short var2, short var3) {
         for (int var4 = 0; var4 < (var0 == 701 ? 1 : 4); ++var4) {
-            MainCanvas.petfight.b(var0 + "_" + var4, var1, var2, var3);
+            MainCanvas.petfight.loadResource(var0 + "_" + var4, var1, var2, var3);
         }
 
     }
@@ -3008,7 +3009,7 @@ public final class UISceneController {
         } else {
             GlobalStatus.kj = 0;
             if (bk.size() > 0) {
-                MainCanvas.role.d((String) bk.elementAt(0));
+                MainCanvas.role.loadResource((String) bk.elementAt(0));
                 bk.removeElementAt(0);
             }
 
@@ -3215,8 +3216,8 @@ public final class UISceneController {
 
             if (this.J == null) {
                 if (!GlobalStatus.bu) {
-                    if (this.d != -1) {
-                        this.sceneRefreshCoordinator.a(this.d);
+                    if (this.shuangjiAction != -1) {
+                        this.sceneRefreshCoordinator.a(this.shuangjiAction);
                     } else if (this.mainCanvasRef.keyCombination != 8 && this.mainCanvasRef.keyCombination != 516) {
                         if (this.mainCanvasRef.keyCombination != 2 && this.mainCanvasRef.keyCombination != 518) {
                             if (this.mainCanvasRef.keyCombination != 1 && this.mainCanvasRef.keyCombination != 514) {
@@ -3481,9 +3482,9 @@ public final class UISceneController {
 
         LoadingPage.f(var1, var4, var5, this.bC * var2, this.bD * var3);
         if (this.sceneSubState == 6) {
-            LoadingPage.drawString(var1, "您真的要退出帮派吗？", new String[]{"确定", "返回"});
+            LoadingPage.drawDialog(var1, "您真的要退出帮派吗？", new String[]{"确定", "返回"});
         } else if (this.sceneSubState == 7) {
-            LoadingPage.drawString(var1, "您确定要退出游戏吗？", new String[]{"确定", "返回"});
+            LoadingPage.drawDialog(var1, "您确定要退出游戏吗？", new String[]{"确定", "返回"});
         }
 
         if (this.sceneSubState == 8) {
@@ -3493,16 +3494,16 @@ public final class UISceneController {
     }
 
     private void az() {
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("商城必看");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("商城必看");
         if (GlobalStatus.n != null && !GlobalStatus.n.equals("")) {
             this.mainCanvasRef.textPanel.setText(GlobalStatus.n, GlobalConfig.font2, (byte) 2);
         } else {
             this.mainCanvasRef.textPanel.setText("正在同步数据，请稍候！", GlobalConfig.font2, (byte) 2);
         }
 
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.sceneStateShadow = this.currentSceneModeId = 94;
     }
 
@@ -4552,7 +4553,7 @@ public final class UISceneController {
         this.mainCanvasRef.keyCombination = 0;
         this.sceneSubState = 0;
         this.mainCanvasRef.mixedUi.clear();
-        this.mainCanvasRef.mixedUi.a("传送目的地");
+        this.mainCanvasRef.mixedUi.setTitle("传送目的地");
         String[] var3 = new String[GlobalStatus.cs.length];
 
         for (int var2 = 0; var2 < var3.length; ++var2) {
@@ -4560,8 +4561,8 @@ public final class UISceneController {
         }
 
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, var3, GlobalStatus.cs, (String[]) null);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 10;
     }
@@ -4655,10 +4656,10 @@ public final class UISceneController {
     public final void a(byte var1) {
         GlobalConfig.clearStr(this.mainCanvasRef.shareSb);
         this.mainCanvasRef.mixedUi.clear();
-        this.mainCanvasRef.mixedUi.a("人物属性-战力" + GlobalStatus.ao);
+        this.mainCanvasRef.mixedUi.setTitle("人物属性-战力" + GlobalStatus.ao);
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.topUi.a(new String[]{"状态", "属性", "修炼", "声望", "加成", "记录"});
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
         this.mainCanvasRef.topUi.a = (byte) var1;
         switch (var1) {
             case 0:
@@ -4698,10 +4699,10 @@ public final class UISceneController {
                 this.mainCanvasRef.textPanel.setText("开启经验修炼模式后，杀怪、任务、使用道具获得的经验将会全部转入修炼经验，修炼经验可用于学习心法技能", GlobalConfig.font2, (byte) 2);
                 this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
                 this.mainCanvasRef.bottomUi.a("确定");
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
                 if (GlobalConfig.defaultHigh > 220) {
-                    this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+                    this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
                 }
                 break;
             case 3:
@@ -4715,7 +4716,7 @@ public final class UISceneController {
                 }
 
                 this.mainCanvasRef.gunDongListUi.a((Image[]) null, GlobalStatus.jE, (String[]) null, var4);
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
                 break;
             case 4:
                 this.mainCanvasRef.shareSb.append("住宅：" + GlobalStatus.bi + '\t');
@@ -4735,14 +4736,14 @@ public final class UISceneController {
                 this.aB();
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 3;
     }
 
     private void aB() {
         this.mainCanvasRef.textPanel.setText(this.mainCanvasRef.shareSb.toString(), GlobalConfig.font2, (byte) 2);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
     }
 
     public final void p() {
@@ -4772,16 +4773,16 @@ public final class UISceneController {
             this.bO[var1] = this.bL[var1][0] + (this.bL[var1][1] != -1 ? "/" + this.bL[var1][1] : "");
         }
 
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("属性分配");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("属性分配");
         this.mainCanvasRef.mixedUi.a(false);
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, this.bN, (String[]) null, this.bO);
         short var2 = MainCanvas.tradebottom.c;
         this.mainCanvasRef.mixedUi.f = var2;
-        this.mainCanvasRef.bottomUi.a(new String[]{"确定", "取消"});
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.bottomUi.setButtonText(new String[]{"确定", "取消"});
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.sceneStateShadow = this.currentSceneModeId;
         this.currentSceneModeId = 37;
     }
@@ -4974,20 +4975,20 @@ public final class UISceneController {
         }
 
         int var3 = 0;
-        var1.drawImage(MainCanvas.tradebottom.pngImage, this.mainCanvasRef.mixedUi.a + 5, this.mainCanvasRef.mixedUi.b + this.mainCanvasRef.mixedUi.d - 53, 20);
-        var1.drawImage(MainCanvas.tradebottom.pngImage, this.mainCanvasRef.mixedUi.a + this.mainCanvasRef.mixedUi.c - 5 - MainCanvas.tradebottom.b, this.mainCanvasRef.mixedUi.b + this.mainCanvasRef.mixedUi.d - 53, 20);
-        int var4 = Math.max(this.mainCanvasRef.mixedUi.c - (MainCanvas.tradebottom.b << 1), GlobalConfig.font2.stringWidth(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE))));
-        var3 = this.mainCanvasRef.mixedUi.a + (this.mainCanvasRef.mixedUi.c - var4) / 2;
+        var1.drawImage(MainCanvas.tradebottom.pngImage, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + this.mainCanvasRef.mixedUi.H - 53, 20);
+        var1.drawImage(MainCanvas.tradebottom.pngImage, this.mainCanvasRef.mixedUi.X + this.mainCanvasRef.mixedUi.W - 5 - MainCanvas.tradebottom.b, this.mainCanvasRef.mixedUi.Y + this.mainCanvasRef.mixedUi.H - 53, 20);
+        int var4 = Math.max(this.mainCanvasRef.mixedUi.W - (MainCanvas.tradebottom.b << 1), GlobalConfig.font2.stringWidth(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE))));
+        var3 = this.mainCanvasRef.mixedUi.X + (this.mainCanvasRef.mixedUi.W - var4) / 2;
         var1.setColor(79948);
-        var1.fillRect(var3, this.mainCanvasRef.mixedUi.b + this.mainCanvasRef.mixedUi.d - 53, var4, MainCanvas.tradebottom.c);
+        var1.fillRect(var3, this.mainCanvasRef.mixedUi.Y + this.mainCanvasRef.mixedUi.H - 53, var4, MainCanvas.tradebottom.c);
         if (var2 == 0) {
             var1.setColor(this.aC() < GlobalStatus.bf ? 16776960 : 16777215);
         } else {
             var1.setColor(this.S(this.aE) < GlobalStatus.fW[this.aE] ? 16776960 : 16777215);
         }
 
-        var1.fillRect(var3 - 15, this.mainCanvasRef.mixedUi.b + this.mainCanvasRef.mixedUi.d - 42, 10, 2);
-        this.b(0, var3 - MainCanvas.subtraction.b, this.mainCanvasRef.mixedUi.b + this.mainCanvasRef.mixedUi.d - 51, MainCanvas.subtraction.b, MainCanvas.subtraction.c);
+        var1.fillRect(var3 - 15, this.mainCanvasRef.mixedUi.Y + this.mainCanvasRef.mixedUi.H - 42, 10, 2);
+        this.b(0, var3 - MainCanvas.subtraction.b, this.mainCanvasRef.mixedUi.Y + this.mainCanvasRef.mixedUi.H - 51, MainCanvas.subtraction.b, MainCanvas.subtraction.c);
         var1.drawImage(MainCanvas.subtraction.pngImage, this.bP[0][0], this.bP[0][1], 20);
         if (var2 == 0) {
             var1.setColor(this.aC() > 0 ? 16776960 : 16777215);
@@ -4995,11 +4996,11 @@ public final class UISceneController {
             var1.setColor(this.S(this.aE) > 0 ? 16776960 : 16777215);
         }
 
-        var1.fillRect(var3 + var4 + 5, this.mainCanvasRef.mixedUi.b + this.mainCanvasRef.mixedUi.d - 46, 10, 10);
-        this.b(1, var3 + var4, this.mainCanvasRef.mixedUi.b + this.mainCanvasRef.mixedUi.d - 51, MainCanvas.plus.b, MainCanvas.plus.c);
+        var1.fillRect(var3 + var4 + 5, this.mainCanvasRef.mixedUi.Y + this.mainCanvasRef.mixedUi.H - 46, 10, 10);
+        this.b(1, var3 + var4, this.mainCanvasRef.mixedUi.Y + this.mainCanvasRef.mixedUi.H - 51, MainCanvas.plus.b, MainCanvas.plus.c);
         var1.drawImage(MainCanvas.plus.pngImage, this.bP[1][0], this.bP[1][1], 20);
         var1.setColor(16776960);
-        var1.drawString(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE)), GlobalConfig.defaultWidth >> 1, this.mainCanvasRef.mixedUi.b + this.mainCanvasRef.mixedUi.d - 51 + (MainCanvas.plus.pngImage.getHeight() - GlobalConfig.font2_h) / 2, 17);
+        var1.drawString(String.valueOf(var2 == 0 ? this.aC() : this.S(this.aE)), GlobalConfig.defaultWidth >> 1, this.mainCanvasRef.mixedUi.Y + this.mainCanvasRef.mixedUi.H - 51 + (MainCanvas.plus.pngImage.getHeight() - GlobalConfig.font2_h) / 2, 17);
     }
 
     public final void e(int var1) {
@@ -5019,13 +5020,13 @@ public final class UISceneController {
         }
 
         LoadingPage.l = 0;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("");
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.topUi.a(new String[]{" 一 ", " 二 ", " 三 ", " 四 ", " 五 "});
         this.mainCanvasRef.topUi.a = this.aH;
         this.mainCanvasRef.topUi.a((byte) 1);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
+        this.mainCanvasRef.mixedUi.setR(GlobalConfig.realHigh <= 240 ? 79 : 120);
         bn var2;
         if ((var2 = this.y(0)) != null && (this.as != 4 && this.as != 15 && this.as != 16 && this.as != 20 || var2.g - var2.v > 0)) {
             this.q();
@@ -5045,10 +5046,10 @@ public final class UISceneController {
         }
 
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 4;
     }
@@ -5606,11 +5607,11 @@ public final class UISceneController {
                             this.O.a(0, (short) this.currentSceneModeId, this.as);
                         } else {
                             this.mainCanvasRef.mixedUi.clear();
-                            this.mainCanvasRef.mixedUi.b();
-                            this.mainCanvasRef.mixedUi.a("物品详情");
+                            this.mainCanvasRef.mixedUi.clean();
+                            this.mainCanvasRef.mixedUi.setTitle("物品详情");
                             this.mainCanvasRef.textPanel.setFWBText(this.A((this.ar << 3) + this.aq), GlobalConfig.font2, (byte) 1);
-                            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-                            this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+                            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+                            this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
                             this.sceneSubState = 17;
                         }
 
@@ -6181,17 +6182,17 @@ public final class UISceneController {
 
     private void c(Graphics var1, String var2) {
         if (this.mainCanvasRef.mixedUi != null) {
-            this.mainCanvasRef.mixedUi.a(var2);
+            this.mainCanvasRef.mixedUi.setTitle(var2);
             int var12 = GlobalConfig.realHigh <= 240 ? 79 : 120;
             this.mainCanvasRef.mixedUi.a(var1);
-            LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.a + 5, this.mainCanvasRef.mixedUi.b + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.c - 11, var12, 1);
+            LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.W - 11, var12, 1);
             LoadingPage.draw(var1);
             Graphics var3 = var1;
             UISceneController var13 = this;
-            int var4 = (this.mainCanvasRef.mixedUi.c - 11 - (goods.b << 3)) / 9;
+            int var4 = (this.mainCanvasRef.mixedUi.W - 11 - (goods.b << 3)) / 9;
             int var5 = ((GlobalConfig.realHigh <= 240 ? 79 : 120) - 6 - (goods.b << 2)) / 5;
-            int var6 = this.mainCanvasRef.mixedUi.a + 8 + var4;
-            int var7 = this.mainCanvasRef.mixedUi.b + 33 + this.mainCanvasRef.topUi.b + var5;
+            int var6 = this.mainCanvasRef.mixedUi.X + 8 + var4;
+            int var7 = this.mainCanvasRef.mixedUi.Y + 33 + this.mainCanvasRef.topUi.b + var5;
 
             for (int var8 = 0; var8 < 32; ++var8) {
                 MainCanvas.pngUtil.a(var3, goods, (int[]) null, (aj) null, 0, 0, var8 % 8 * (goods.b + var4) + var6, var8 / 8 * (goods.b + var5) + var7, 0, 0);
@@ -6263,18 +6264,18 @@ public final class UISceneController {
                             }
                         } else {
                             if (this.sceneSubState == 10 || this.sceneSubState == 13) {
-                                LoadingPage.drawString(var1, "使用该物品将与你绑定，是否确认使用？", new String[]{"确定", "取消"});
+                                LoadingPage.drawDialog(var1, "使用该物品将与你绑定，是否确认使用？", new String[]{"确定", "取消"});
                                 return;
                             }
 
                             if (this.sceneSubState == 17 && this.mainCanvasRef.mixedUi != null) {
-                                this.mainCanvasRef.mixedUi.a("物品详情");
+                                this.mainCanvasRef.mixedUi.setTitle("物品详情");
                                 this.mainCanvasRef.mixedUi.a(var1);
                             }
                         }
 
                     } else {
-                        LoadingPage.drawString(var1, this.at, new String[]{"确定", "取消"});
+                        LoadingPage.drawDialog(var1, this.at, new String[]{"确定", "取消"});
                     }
                 } else if (this.sceneSubState == 6) {
                     this.b(var1, "拍卖价格");
@@ -6319,12 +6320,12 @@ public final class UISceneController {
         }
 
         LoadingPage.l = 0;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("可选物品");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("可选物品");
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.topUi.a(new String[]{" 一 ", " 二 ", " 三 ", " 四 ", " 五 "});
         this.mainCanvasRef.topUi.a((byte) 1);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
+        this.mainCanvasRef.mixedUi.setR(GlobalConfig.realHigh <= 240 ? 79 : 120);
         if (this.bU.size() > 0) {
             this.mainCanvasRef.textPanel.setFWBText(a((bn) this.bU.elementAt(0)), GlobalConfig.font2, (byte) 1);
         } else {
@@ -6334,10 +6335,10 @@ public final class UISceneController {
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
         LoadingPage.l = 0;
         this.mainCanvasRef.bottomUi.a("");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.currentSceneModeId = 126;
     }
@@ -6537,14 +6538,14 @@ public final class UISceneController {
         if (this.mainCanvasRef.mixedUi != null) {
             this.mainCanvasRef.mixedUi.a(var1);
             int var2 = GlobalConfig.realHigh <= 240 ? 79 : 120;
-            LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.a + 5, this.mainCanvasRef.mixedUi.b + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.c - 11, var2, 1);
+            LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.W - 11, var2, 1);
             LoadingPage.draw(var1);
             Graphics var3 = var1;
             UISceneController var12 = this;
-            int var4 = (this.mainCanvasRef.mixedUi.c - 11 - (goods.b << 3)) / 9;
+            int var4 = (this.mainCanvasRef.mixedUi.W - 11 - (goods.b << 3)) / 9;
             int var5 = ((GlobalConfig.realHigh <= 240 ? 79 : 120) - 6 - (goods.b << 2)) / 5;
-            int var6 = this.mainCanvasRef.mixedUi.a + 8 + var4;
-            int var7 = this.mainCanvasRef.mixedUi.b + 33 + this.mainCanvasRef.topUi.b + var5;
+            int var6 = this.mainCanvasRef.mixedUi.X + 8 + var4;
+            int var7 = this.mainCanvasRef.mixedUi.Y + 33 + this.mainCanvasRef.topUi.b + var5;
 
             for (int var8 = 0; var8 < 32; ++var8) {
                 MainCanvas.pngUtil.a(var3, goods, (int[]) null, (aj) null, 0, 0, var8 % 8 * (goods.b + var4) + var6, var8 / 8 * (goods.b + var5) + var7, 0, 0);
@@ -6667,7 +6668,7 @@ public final class UISceneController {
         this.sceneSubState = 0;
         this.sceneSubMode = 0;
         LoadingPage.l = 0;
-        q = this.mainCanvasRef.a(q, GlobalStatus.ax, GlobalStatus.aj, (byte) 3, (byte) 1, false);
+        q = this.mainCanvasRef.loadRoleFrame(q, GlobalStatus.ax, GlobalStatus.aj, (byte) 3, (byte) 1, false);
         if (GlobalStatus.cz != null) {
             for (byte var1 = 0; var1 < GlobalStatus.cz.length; ++var1) {
                 this.a(GlobalStatus.cD[var1]);
@@ -6741,24 +6742,24 @@ public final class UISceneController {
         } else {
             if (this.sceneSubState == 2) {
                 if (this.mainCanvasRef.mixedUi != null) {
-                    this.mainCanvasRef.mixedUi.a(30);
+                    this.mainCanvasRef.mixedUi.setR(30);
                     this.mainCanvasRef.mixedUi.a(var1);
-                    LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.a + 5, this.mainCanvasRef.mixedUi.b + 32, this.mainCanvasRef.mixedUi.c - 11, 30, 1);
-                    LoadingPage.drawString(var1, (String) "宝石", (int) (this.mainCanvasRef.mixedUi.a + 10), this.mainCanvasRef.mixedUi.b + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
+                    LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 32, this.mainCanvasRef.mixedUi.W - 11, 30, 1);
+                    LoadingPage.drawString(var1, (String) "宝石", (int) (this.mainCanvasRef.mixedUi.X + 10), this.mainCanvasRef.mixedUi.Y + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
                 }
 
                 if (GlobalStatus.cD != null) {
                     for (int var2 = 0; var2 < GlobalStatus.cD.length; ++var2) {
                         if (GlobalStatus.cB[var2] == this.av && GlobalStatus.cD[var2] != null) {
-                            this.a(var1, this.mainCanvasRef.mixedUi.a + 10 + GlobalConfig.font2.stringWidth("宝石:"), this.mainCanvasRef.mixedUi.b + 37, 17, 17, GlobalStatus.cD[var2].length, 1);
+                            this.a(var1, this.mainCanvasRef.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:"), this.mainCanvasRef.mixedUi.Y + 37, 17, 17, GlobalStatus.cD[var2].length, 1);
 
                             for (byte var3 = 0; var3 < GlobalStatus.cD[var2].length; ++var3) {
                                 if (GlobalStatus.cD[var2][var3] <= -1) {
-                                    LoadingPage.fillRect(var1, 125269879, 207, this.mainCanvasRef.mixedUi.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var3 * 17, this.mainCanvasRef.mixedUi.b + 39, 17, 17);
+                                    LoadingPage.fillRect(var1, 125269879, 207, this.mainCanvasRef.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var3 * 17, this.mainCanvasRef.mixedUi.Y + 39, 17, 17);
                                 }
 
                                 if (GlobalStatus.cD[var2][var3] > 0) {
-                                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.cD[var2][var3]), (int[]) null, (aj) null, 0, 0, this.mainCanvasRef.mixedUi.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var3 * 17, this.mainCanvasRef.mixedUi.b + 39, 0, 0);
+                                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.cD[var2][var3]), (int[]) null, (aj) null, 0, 0, this.mainCanvasRef.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var3 * 17, this.mainCanvasRef.mixedUi.Y + 39, 0, 0);
                                 }
                             }
                         }
@@ -6771,8 +6772,8 @@ public final class UISceneController {
 
     public final void b(byte var1) {
         this.sceneSubState = 0;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("周围" + (GlobalStatus.r != null && GlobalStatus.r.trim().length() > 0 ? GlobalStatus.r : ""));
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("周围" + (GlobalStatus.r != null && GlobalStatus.r.trim().length() > 0 ? GlobalStatus.r : ""));
         this.mainCanvasRef.mixedUi.a(true);
         if (this.sceneStateShadow != 7) {
             this.mainCanvasRef.topUi.a(new String[]{"全部", "空闲", "好友", "队伍"});
@@ -6782,13 +6783,13 @@ public final class UISceneController {
         this.m(var1);
         this.mainCanvasRef.bottomUi.a("操作");
         this.mainCanvasRef.bottomUi.a(true);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.df = null;
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 7;
@@ -6812,11 +6813,11 @@ public final class UISceneController {
     public final void u() {
         this.sceneSubState = 0;
         this.mainCanvasRef.mixedUi.clear();
-        this.mainCanvasRef.mixedUi.a("定购服务");
+        this.mainCanvasRef.mixedUi.setTitle("定购服务");
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, GlobalStatus.P.j, (String[]) null, (String[]) null);
         this.mainCanvasRef.gunDongListUi.a(GlobalStatus.P.n);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
         this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh, 0, 0, false);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId;
@@ -6828,8 +6829,8 @@ public final class UISceneController {
             this.mainCanvasRef.showTips(GlobalStatus.R);
         } else {
             this.sceneSubState = 0;
-            this.mainCanvasRef.mixedUi.b();
-            this.mainCanvasRef.mixedUi.a("邮件服务");
+            this.mainCanvasRef.mixedUi.clean();
+            this.mainCanvasRef.mixedUi.setTitle("邮件服务");
             this.mainCanvasRef.mixedUi.a(true);
             this.mainCanvasRef.topUi.a(new String[]{"我的邮件", "系统邮件"});
             this.mainCanvasRef.topUi.a((byte) 0);
@@ -6845,9 +6846,9 @@ public final class UISceneController {
                 this.mainCanvasRef.gunDongListUi.a((String) null, 1);
                 int var2 = Math.min(this.mainCanvasRef.gunDongListUi.g(), GlobalStatus.O.j.length);
                 this.mainCanvasRef.textPanel.setFWBText(GlobalStatus.O.j[var2], GlobalConfig.font2, (byte) 1);
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
                 this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh, 50, 100, false);
             } else {
                 if (GlobalStatus.P.d == null) {
@@ -6858,8 +6859,8 @@ public final class UISceneController {
                 this.mainCanvasRef.gunDongListUi.a(GlobalStatus.P.h);
                 this.mainCanvasRef.gunDongListUi.b(false);
                 this.mainCanvasRef.gunDongListUi.a((String) null, 1);
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
                 this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh, 0, 0, false);
             }
 
@@ -6873,8 +6874,8 @@ public final class UISceneController {
     public final void e(byte var1) {
         if (GlobalStatus.lF != null) {
             this.sceneSubState = 0;
-            this.mainCanvasRef.mixedUi.b();
-            this.mainCanvasRef.mixedUi.a(GlobalStatus.lF);
+            this.mainCanvasRef.mixedUi.clean();
+            this.mainCanvasRef.mixedUi.setTitle(GlobalStatus.lF);
             this.mainCanvasRef.mixedUi.a(true);
             this.mainCanvasRef.topUi.a(GlobalStatus.lJ);
             this.mainCanvasRef.topUi.a((byte) 0);
@@ -6909,13 +6910,13 @@ public final class UISceneController {
                         }
                     }
 
-                    this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
+                    this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
                     if (var2) {
-                        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+                        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
                     }
 
                     if (var3) {
-                        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+                        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
                     }
 
                     this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh, GlobalStatus.lG != null ? GlobalStatus.lG[var1] : 66, GlobalStatus.lH != null ? GlobalStatus.lH[var1] : 100, GlobalStatus.lI != null ? GlobalStatus.lI[var1] == 1 : false);
@@ -6946,13 +6947,13 @@ public final class UISceneController {
                         this.mainCanvasRef.gunDongListUi.a(GlobalStatus.lW[this.mainCanvasRef.gunDongListUi.g()], 1);
                     }
 
-                    this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
+                    this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
                     if (var3) {
-                        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+                        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
                     }
 
                     if (var2) {
-                        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+                        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
                     }
 
                     this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh, GlobalStatus.lG != null ? GlobalStatus.lG[var1] : 66, GlobalStatus.lH != null ? GlobalStatus.lH[var1] : 100, GlobalStatus.lI == null || GlobalStatus.lI[var1] == 1);
@@ -6983,13 +6984,13 @@ public final class UISceneController {
                         }
                     }
 
-                    this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
+                    this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
                     if (var2) {
-                        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+                        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
                     }
 
                     if (var3) {
-                        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+                        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
                     }
 
                     this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh, GlobalStatus.lG != null ? GlobalStatus.lG[var1] : 66, GlobalStatus.lH != null ? GlobalStatus.lH[var1] : 100, GlobalStatus.lI != null ? GlobalStatus.lI[var1] == 1 : false);
@@ -7812,12 +7813,12 @@ public final class UISceneController {
         this.mainCanvasRef.shareSb.append("好感度：" + GlobalStatus.fd + '\t');
         this.mainCanvasRef.shareSb.append(GlobalStatus.fe);
         this.T.clear();
-        this.T.a("玩家详细");
+        this.T.setTitle("玩家详细");
         this.T.a(true);
         TextPanel var1;
         (var1 = new TextPanel()).setText(this.mainCanvasRef.shareSb.toString(), GlobalConfig.font2, (byte) 2);
-        this.T.a((BaseUi) var1);
-        this.T.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.T.addChild((BaseUi) var1);
+        this.T.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         if (this.currentSceneModeId == 7) {
             if (this.sceneSubState == 10) {
@@ -7854,7 +7855,7 @@ public final class UISceneController {
 
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         if (this.currentSceneModeId == 7) {
-            q = this.mainCanvasRef.a(q, GlobalStatus.cE, GlobalStatus.cF, (byte) 3, (byte) 1, false);
+            q = this.mainCanvasRef.loadRoleFrame(q, GlobalStatus.cE, GlobalStatus.cF, (byte) 3, (byte) 1, false);
             if (this.sceneSubState == 10) {
                 this.sceneSubState = 12;
             } else {
@@ -7862,15 +7863,15 @@ public final class UISceneController {
             }
         } else if (this.currentSceneModeId == 21) {
             if (this.mainCanvasRef.gunDongListUi.g() < GlobalStatus.q.length) {
-                q = this.mainCanvasRef.a(q, GlobalStatus.q[this.mainCanvasRef.gunDongListUi.g()].q, GlobalStatus.q[this.mainCanvasRef.gunDongListUi.g()].p, (byte) 3, GlobalStatus.q[this.mainCanvasRef.gunDongListUi.g()].r, false);
+                q = this.mainCanvasRef.loadRoleFrame(q, GlobalStatus.q[this.mainCanvasRef.gunDongListUi.g()].q, GlobalStatus.q[this.mainCanvasRef.gunDongListUi.g()].p, (byte) 3, GlobalStatus.q[this.mainCanvasRef.gunDongListUi.g()].r, false);
             }
 
             this.sceneSubState = 5;
         } else if (this.currentSceneModeId == 47) {
-            q = this.mainCanvasRef.a(q, GlobalStatus.cE, GlobalStatus.cF, (byte) 3, (byte) 0, false);
+            q = this.mainCanvasRef.loadRoleFrame(q, GlobalStatus.cE, GlobalStatus.cF, (byte) 3, (byte) 0, false);
             this.sceneSubState = 4;
         } else if (this.currentSceneModeId == 130) {
-            q = this.mainCanvasRef.a(q, GlobalStatus.cE, GlobalStatus.cF, (byte) 3, (byte) 0, false);
+            q = this.mainCanvasRef.loadRoleFrame(q, GlobalStatus.cE, GlobalStatus.cF, (byte) 3, (byte) 0, false);
             this.sceneSubState = 4;
         }
 
@@ -7930,18 +7931,18 @@ public final class UISceneController {
         if (this.sceneSubMode == 1) {
             this.T.onClick(var1);
         } else if (this.sceneSubMode == 0) {
-            PngUtil.a(q, this.mainCanvasRef.frameStartTs);
+            PngUtil.animate(q, this.mainCanvasRef.frameStartTs);
             if (var1 != 8 && var1 != 516) {
                 if (var1 != 2 && var1 != 518) {
                     if (var1 == 1073741824 || var1 == 268435456 || var1 == 517) {
                         this.T.clear();
-                        this.T.a("装备属性");
+                        this.T.setTitle("装备属性");
                         this.T.a(true);
                         TextPanel var2;
                         (var2 = new TextPanel()).setFWBText(this.a(this.aq, true), GlobalConfig.font2, (byte) 2);
-                        this.T.a(30);
-                        this.T.a((BaseUi) var2);
-                        this.T.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+                        this.T.setR(30);
+                        this.T.addChild((BaseUi) var2);
+                        this.T.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
                         this.sceneSubMode = 1;
                     }
 
@@ -8067,16 +8068,16 @@ public final class UISceneController {
             }
         } else if (this.sceneSubMode == 1) {
             this.T.a(var1);
-            LoadingPage.draw(var1, this.T.a + 5, this.T.b + 32, this.T.c - 11, 30, 1);
-            LoadingPage.drawString(var1, (String) "宝石", (int) (this.T.a + 10), this.T.b + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
+            LoadingPage.draw(var1, this.T.X + 5, this.T.Y + 32, this.T.W - 11, 30, 1);
+            LoadingPage.drawString(var1, (String) "宝石", (int) (this.T.X + 10), this.T.Y + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
             if (GlobalStatus.cQ != null) {
                 for (int var8 = 0; var8 < GlobalStatus.cG.length; ++var8) {
                     if (GlobalStatus.cI[var8] == this.aq && GlobalStatus.cQ[var8] != null) {
-                        this.a(var1, this.T.a + 10 + GlobalConfig.font2.stringWidth("宝石:"), this.T.b + 37, 17, 17, GlobalStatus.cQ[var8].length, 1);
+                        this.a(var1, this.T.X + 10 + GlobalConfig.font2.stringWidth("宝石:"), this.T.Y + 37, 17, 17, GlobalStatus.cQ[var8].length, 1);
 
                         for (byte var9 = 0; var9 < GlobalStatus.cQ[var8].length; ++var9) {
                             if (GlobalStatus.cQ[var8][var9] > 0) {
-                                MainCanvas.pngUtil.a(var1, b(GlobalStatus.cQ[var8][var9]), (int[]) null, (aj) null, 0, 0, this.T.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.T.b + 39, 0, 0);
+                                MainCanvas.pngUtil.a(var1, b(GlobalStatus.cQ[var8][var9]), (int[]) null, (aj) null, 0, 0, this.T.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.T.Y + 39, 0, 0);
                             }
                         }
                     }
@@ -8088,20 +8089,20 @@ public final class UISceneController {
 
     public final void x() {
         this.sceneSubState = 0;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("任务");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("任务");
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.topUi.a(new String[]{"已接", "剧情", "活动", "增值", "其他"});
         this.I(0);
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, this.cd, (String[]) null, this.ce);
         this.mainCanvasRef.bottomUi.a("操作");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         if (GlobalStatus.bV != null && GlobalStatus.bV.length > 0) {
             this.mainCanvasRef.gunDongListUi.a(GlobalStatus.bV[0], 1);
         }
@@ -8324,8 +8325,8 @@ public final class UISceneController {
     public final void b(boolean var1) {
         int var2;
         if ((var2 = this.cg ? GlobalStatus.db.length : GlobalStatus.cR.length) >= 0) {
-            this.mainCanvasRef.mixedUi.b();
-            this.mainCanvasRef.mixedUi.a("宠物技能");
+            this.mainCanvasRef.mixedUi.clean();
+            this.mainCanvasRef.mixedUi.setTitle("宠物技能");
             if (var2 > 0) {
                 GlobalStatus.dl = new int[var2];
                 GlobalStatus.dm = new String[var2];
@@ -8388,11 +8389,11 @@ public final class UISceneController {
             if (!var1) {
                 this.mainCanvasRef.textPanel.setFWBText("".equals(GlobalStatus.dt[this.mainCanvasRef.gunDongListUi.g()]) ? "<0>当前已经最高等级" : GlobalStatus.dt[this.mainCanvasRef.gunDongListUi.g()], GlobalConfig.font2, (byte) 1);
                 this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
             }
 
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-            this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+            this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         }
 
     }
@@ -8712,7 +8713,7 @@ public final class UISceneController {
         } else {
             this.sceneSubState = 0;
             this.mainCanvasRef.mixedUi.clear();
-            this.mainCanvasRef.mixedUi.a("技能特效");
+            this.mainCanvasRef.mixedUi.setTitle("技能特效");
             this.mainCanvasRef.mixedUi.a(true);
             String[] var1 = new String[GlobalStatus.mP.length];
 
@@ -8721,10 +8722,10 @@ public final class UISceneController {
             }
 
             this.mainCanvasRef.gunDongListUi.a((Image[]) null, GlobalStatus.mP, (String[]) null, var1);
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-            this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
-            this.mainCanvasRef.gunDongListUi.a(this.mainCanvasRef.mixedUi.a + this.mainCanvasRef.mixedUi.c / 2 - 2, this.mainCanvasRef.gunDongListUi.b(), this.mainCanvasRef.mixedUi.c / 2 - 4, this.mainCanvasRef.gunDongListUi.d());
-            this.ci = new int[]{this.mainCanvasRef.mixedUi.a, this.mainCanvasRef.gunDongListUi.b(), this.mainCanvasRef.mixedUi.c / 2, this.mainCanvasRef.gunDongListUi.d()};
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+            this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.gunDongListUi.a(this.mainCanvasRef.mixedUi.X + this.mainCanvasRef.mixedUi.W / 2 - 2, this.mainCanvasRef.gunDongListUi.b(), this.mainCanvasRef.mixedUi.W / 2 - 4, this.mainCanvasRef.gunDongListUi.d());
+            this.ci = new int[]{this.mainCanvasRef.mixedUi.X, this.mainCanvasRef.gunDongListUi.b(), this.mainCanvasRef.mixedUi.W / 2, this.mainCanvasRef.gunDongListUi.d()};
             if (MainCanvas.ad == null) {
                 (MainCanvas.ad = new Page("/", "skill")).loadRpg();
             }
@@ -8780,8 +8781,8 @@ public final class UISceneController {
         this.mainCanvasRef.mixedUi.a(var1);
         if (this.sceneSubState == 0) {
             if (this.ch != null) {
-                PngUtil.a(this.ch, this.mainCanvasRef.frameStartTs);
-                MainCanvas.pngUtil.a(var1, (Frame1) this.ch, this.ci, 0, 0, this.mainCanvasRef.mixedUi.a + this.mainCanvasRef.mixedUi.c / 4, this.mainCanvasRef.gunDongListUi.b() + this.mainCanvasRef.gunDongListUi.d() / 2 + this.ch.h() / 2, 0, 0);
+                PngUtil.animate(this.ch, this.mainCanvasRef.frameStartTs);
+                MainCanvas.pngUtil.a(var1, (Frame1) this.ch, this.ci, 0, 0, this.mainCanvasRef.mixedUi.X + this.mainCanvasRef.mixedUi.W / 4, this.mainCanvasRef.gunDongListUi.b() + this.mainCanvasRef.gunDongListUi.d() / 2 + this.ch.h() / 2, 0, 0);
                 return;
             }
         } else if (this.sceneSubState == 1) {
@@ -8793,19 +8794,19 @@ public final class UISceneController {
     public final void A() {
         if (GlobalStatus.nb == null) {
             this.mainCanvasRef.mixedUi.clear();
-            this.mainCanvasRef.mixedUi.a("消除特效");
+            this.mainCanvasRef.mixedUi.setTitle("消除特效");
             this.mainCanvasRef.mixedUi.a(true);
             this.mainCanvasRef.gunDongListUi.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
             this.mainCanvasRef.bottomUi.a("");
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
             if (GlobalConfig.defaultHigh > 220) {
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
             }
 
-            this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         } else {
             this.mainCanvasRef.mixedUi.clear();
-            this.mainCanvasRef.mixedUi.a("消除特效");
+            this.mainCanvasRef.mixedUi.setTitle("消除特效");
             this.mainCanvasRef.mixedUi.a(true);
             String[] var1 = new String[GlobalStatus.nb.length];
 
@@ -8815,12 +8816,12 @@ public final class UISceneController {
 
             this.mainCanvasRef.gunDongListUi.a((Image[]) null, var1, GlobalStatus.nc, GlobalStatus.nd);
             this.mainCanvasRef.bottomUi.a("");
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
             if (GlobalConfig.defaultHigh > 220) {
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
             }
 
-            this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         }
 
         this.sceneSubState = 0;
@@ -8848,20 +8849,20 @@ public final class UISceneController {
     public final void B() {
         this.sceneSubState = 0;
         this.mainCanvasRef.mixedUi.clear();
-        this.mainCanvasRef.mixedUi.a("激活特效");
+        this.mainCanvasRef.mixedUi.setTitle("激活特效");
         this.mainCanvasRef.mixedUi.a(true);
         this.a(GlobalStatus.mX);
         this.mainCanvasRef.gunDongListUi.a(b(GlobalStatus.mX), GlobalStatus.mW, (String[]) null, GlobalStatus.mY);
         this.mainCanvasRef.textPanel.setText((String) null, GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
         this.mainCanvasRef.bottomUi.a("");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 122;
     }
@@ -8967,15 +8968,15 @@ public final class UISceneController {
                 GlobalStatus.p();
             }
 
-            this.mainCanvasRef.mixedUi.b();
-            this.mainCanvasRef.mixedUi.a("人物技能");
+            this.mainCanvasRef.mixedUi.clean();
+            this.mainCanvasRef.mixedUi.setTitle("人物技能");
             this.mainCanvasRef.mixedUi.a(true);
             if (this.as == 0) {
                 if (this.sceneStateShadow != 12) {
                     this.mainCanvasRef.topUi.a(new String[]{" 技能   ", "  心法  ", "  附魔  "});
                 }
 
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
                 this.mainCanvasRef.gunDongListUi.a(b(GlobalStatus.dr), GlobalStatus.dm, (String[]) null, var1 == 2 ? null : e(GlobalStatus.dq));
                 if (var2) {
                     this.mainCanvasRef.gunDongListUi.a(this.aA, this.aE);
@@ -8994,17 +8995,17 @@ public final class UISceneController {
                 }
 
                 if (var1 == 1) {
-                    this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+                    this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
                 } else if (var1 == 0) {
-                    this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+                    this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
                     this.mainCanvasRef.bottomUi.a("升级");
-                    this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+                    this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
                 }
 
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
             } else {
                 this.mainCanvasRef.topUi.a(new String[]{" 技能   "});
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
                 this.mainCanvasRef.gunDongListUi.a(b(GlobalStatus.dr), GlobalStatus.dm, (String[]) null, var1 == 2 ? null : e(GlobalStatus.dq));
                 if (GlobalStatus.dl == null) {
                     this.mainCanvasRef.gunDongListUi.a("没有技能,按3、9键可以上下翻滚此属性描述框", 2);
@@ -9012,10 +9013,10 @@ public final class UISceneController {
                     this.mainCanvasRef.gunDongListUi.a(GlobalStatus.ds[0], 2);
                 }
 
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
             }
 
-            this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         }
 
     }
@@ -9249,8 +9250,8 @@ public final class UISceneController {
         }
 
         if (this.sceneStateShadow != 34 || this.sceneStateShadow == 34 && this.mainCanvasRef.topUi.a != 2) {
-            this.mainCanvasRef.mixedUi.b();
-            this.mainCanvasRef.mixedUi.a("宠物拍卖详情");
+            this.mainCanvasRef.mixedUi.clean();
+            this.mainCanvasRef.mixedUi.setTitle("宠物拍卖详情");
             this.mainCanvasRef.gunDongListUi.a((Image[]) null, GlobalStatus.gt, e(GlobalStatus.gu), this.a(GlobalStatus.gv));
             if (this.mainCanvasRef.topUi.a == 0) {
                 this.mainCanvasRef.bottomUi.a("下架");
@@ -9261,11 +9262,11 @@ public final class UISceneController {
             this.mainCanvasRef.bottomUi.a(true);
             this.mainCanvasRef.textPanel.setFWBText(GlobalStatus.a((StringBuffer) this.mainCanvasRef.shareSb, (int) 0, (byte) this.mainCanvasRef.topUi.a), GlobalConfig.font2, (byte) 2);
             this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
-            this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
             this.mainCanvasRef.mixedUi.a(true);
             if (GlobalStatus.gw != null) {
                 a(GlobalStatus.gw[0], GlobalStatus.gx[0], GlobalStatus.gy[0], GlobalStatus.gz[0]);
@@ -9275,20 +9276,20 @@ public final class UISceneController {
             this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
             this.sceneStateShadow = this.currentSceneModeId = 34;
         } else {
-            this.mainCanvasRef.mixedUi.b();
-            this.mainCanvasRef.mixedUi.a("宠物拍卖详情");
+            this.mainCanvasRef.mixedUi.clean();
+            this.mainCanvasRef.mixedUi.setTitle("宠物拍卖详情");
             this.mainCanvasRef.mixedUi.a(true);
             this.mainCanvasRef.bottomUi.a("确定");
             this.mainCanvasRef.bottomUi.a(true);
             this.mainCanvasRef.textPanel.setFWBText(this.aY(), GlobalConfig.font2, (byte) 2);
             this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 0);
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
             if (GlobalConfig.defaultHigh > 220) {
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
             }
 
-            this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
             this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
             this.sceneStateShadow = this.currentSceneModeId = 34;
         }
@@ -9354,7 +9355,7 @@ public final class UISceneController {
                     this.aI = MainCanvas.petfight.a(String.valueOf(GlobalStatus.gw[this.mainCanvasRef.gunDongListUi.g()] + "_0"), GlobalStatus.gx[this.mainCanvasRef.gunDongListUi.g()], GlobalStatus.gy[this.mainCanvasRef.gunDongListUi.g()], GlobalStatus.gz[this.mainCanvasRef.gunDongListUi.g()]);
                 }
 
-                PngUtil.a(this.aI, this.mainCanvasRef.frameStartTs);
+                PngUtil.animate(this.aI, this.mainCanvasRef.frameStartTs);
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                     if (this.mainCanvasRef.topUi.a == 0 && GlobalStatus.gs != null) {
                         LoadingPage.a(35 + GlobalConfig.gameX, (3 + this.mainCanvasRef.gunDongListUi.i()) * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"取消拍卖"}, false);
@@ -9504,12 +9505,12 @@ public final class UISceneController {
 
         if (this.sceneSubState != 1 && this.sceneSubState != 2) {
             if (this.sceneSubState == 3) {
-                LoadingPage.drawString(var1, "是否将" + GlobalStatus.gt[this.mainCanvasRef.gunDongListUi.g()] + "从拍卖场中撤下？", new String[]{"确定", "取消"});
+                LoadingPage.drawDialog(var1, "是否将" + GlobalStatus.gt[this.mainCanvasRef.gunDongListUi.g()] + "从拍卖场中撤下？", new String[]{"确定", "取消"});
             } else if (this.sceneSubState == 4) {
                 this.b(var1, "拍卖价格");
             } else {
                 if (this.sceneSubState == 5) {
-                    LoadingPage.drawString(var1, "您确定以" + this.bR + "两的价格拍卖此物品?", new String[]{"确定", "取消"});
+                    LoadingPage.drawDialog(var1, "您确定以" + this.bR + "两的价格拍卖此物品?", new String[]{"确定", "取消"});
                 }
 
             }
@@ -9520,8 +9521,8 @@ public final class UISceneController {
 
     private void aF() {
         this.sceneSubState = 0;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("宠物仓库");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("宠物仓库");
         if (GlobalStatus.gs != null && GlobalStatus.gs.length > 0) {
             this.mainCanvasRef.gunDongListUi.a((Image[]) null, GlobalStatus.gt, (String[]) null, e(GlobalStatus.gu));
             this.mainCanvasRef.textPanel.setFWBText(GlobalStatus.g(this.mainCanvasRef.shareSb, 0), GlobalConfig.font2, (byte) 2);
@@ -9532,13 +9533,13 @@ public final class UISceneController {
 
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
         this.mainCanvasRef.bottomUi.a("取回");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         if (GlobalStatus.gw != null) {
             a(GlobalStatus.gw[0], GlobalStatus.gx[0], GlobalStatus.gy[0], GlobalStatus.gz[0]);
             this.aI = MainCanvas.petfight.a(String.valueOf(GlobalStatus.gw[0] + "_0"), GlobalStatus.gx[0], GlobalStatus.gy[0], GlobalStatus.gz[0]);
@@ -9580,7 +9581,7 @@ public final class UISceneController {
                     this.aI = MainCanvas.petfight.a(String.valueOf(GlobalStatus.gw[this.mainCanvasRef.gunDongListUi.g()] + "_0"), GlobalStatus.gx[this.mainCanvasRef.gunDongListUi.g()], GlobalStatus.gy[this.mainCanvasRef.gunDongListUi.g()], GlobalStatus.gz[this.mainCanvasRef.gunDongListUi.g()]);
                 }
 
-                PngUtil.a(this.aI, this.mainCanvasRef.frameStartTs);
+                PngUtil.animate(this.aI, this.mainCanvasRef.frameStartTs);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
                         this.al = null;
@@ -9661,8 +9662,8 @@ public final class UISceneController {
 
     public final void i(int var1) {
         this.sceneSubState = 0;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("升级技能");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("升级技能");
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.topUi.a(new String[]{"武功"});
         GunDongListUi var10000 = this.mainCanvasRef.gunDongListUi;
@@ -9685,13 +9686,13 @@ public final class UISceneController {
 
         this.mainCanvasRef.gunDongListUi.a(var1);
         this.mainCanvasRef.bottomUi.a("升级");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.sceneStateShadow = this.currentSceneModeId = 29;
     }
 
@@ -9815,8 +9816,8 @@ public final class UISceneController {
         this.sceneSubState = 0;
         this.as = var1;
         this.bR = 0L;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("宠物列表");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("宠物列表");
         if (this.as != 4 && this.as != 10 && this.as != 11) {
             if (GlobalStatus.fA != null && GlobalStatus.fA.length > 0) {
                 this.am = new String[GlobalStatus.fA.length];
@@ -9871,13 +9872,13 @@ public final class UISceneController {
         }
 
         this.mainCanvasRef.bottomUi.a("确定");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.sceneStateShadow = this.currentSceneModeId = 13;
     }
 
@@ -9928,16 +9929,16 @@ public final class UISceneController {
             this.bO[var3] = this.bL[var3][0] + (this.bL[var3][1] != -1 ? "/" + this.bL[var3][1] : "");
         }
 
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("宠物属性分配");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("宠物属性分配");
         this.mainCanvasRef.mixedUi.a(false);
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, this.bN, (String[]) null, this.bO);
         short var2 = MainCanvas.tradebottom.c;
         this.mainCanvasRef.mixedUi.f = var2;
-        this.mainCanvasRef.bottomUi.a(new String[]{"确定", "取消"});
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.bottomUi.setButtonText(new String[]{"确定", "取消"});
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.sceneStateShadow = this.currentSceneModeId = 96;
     }
 
@@ -10027,7 +10028,7 @@ public final class UISceneController {
                         this.aI = MainCanvas.petfight.a(String.valueOf(GlobalStatus.fE[var22] + "_0"), GlobalStatus.fF[var22], GlobalStatus.fG[var22], GlobalStatus.fH[var22]);
                     }
 
-                    PngUtil.a(this.aI, this.mainCanvasRef.frameStartTs);
+                    PngUtil.animate(this.aI, this.mainCanvasRef.frameStartTs);
                     if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                         if (var1 != 536870912 && GlobalStatus.fA != null) {
                             return;
@@ -10386,7 +10387,7 @@ public final class UISceneController {
                     }
                 } else if (this.sceneSubState == 7) {
                     this.a(GlobalStatus.jK);
-                    PngUtil.a(this.aI, this.mainCanvasRef.frameStartTs);
+                    PngUtil.animate(this.aI, this.mainCanvasRef.frameStartTs);
                     if (var1 != 8 && var1 != 516) {
                         if (var1 != 2 && var1 != 518) {
                             if (var1 == 536870912) {
@@ -10724,7 +10725,7 @@ public final class UISceneController {
                     if (this.sceneSubState == 3) {
                         this.b(var1, "请输入拍卖价格:");
                     } else if (this.sceneSubState == 4) {
-                        LoadingPage.drawString(var1, "您确定以" + this.bR + "两的价格拍卖此宠物1只?", new String[]{"确定", "取消"});
+                        LoadingPage.drawDialog(var1, "您确定以" + this.bR + "两的价格拍卖此宠物1只?", new String[]{"确定", "取消"});
                     } else if (this.sceneSubState == 6) {
                         this.a((Graphics) var1, (int) 1);
                     } else if (this.sceneSubState == 7) {
@@ -10735,28 +10736,28 @@ public final class UISceneController {
                     } else {
                         if (this.sceneSubState == 10) {
                             if (this.mainCanvasRef.mixedUi != null) {
-                                this.mainCanvasRef.mixedUi.a(30);
+                                this.mainCanvasRef.mixedUi.setR(30);
                                 this.mainCanvasRef.mixedUi.a(var1);
-                                LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.a + 5, this.mainCanvasRef.mixedUi.b + 32, this.mainCanvasRef.mixedUi.c - 11, 30, 1);
-                                LoadingPage.drawString(var1, (String) "宝石", (int) (this.mainCanvasRef.mixedUi.a + 10), this.mainCanvasRef.mixedUi.b + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
+                                LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 32, this.mainCanvasRef.mixedUi.W - 11, 30, 1);
+                                LoadingPage.drawString(var1, (String) "宝石", (int) (this.mainCanvasRef.mixedUi.X + 10), this.mainCanvasRef.mixedUi.Y + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
                             }
 
                             if (GlobalStatus.jM != null) {
                                 for (int var14 = 0; var14 < GlobalStatus.jH.length; ++var14) {
                                     if (n(GlobalStatus.jJ[var14]) == this.aq && GlobalStatus.jM[var14] != null) {
-                                        this.a(var1, this.mainCanvasRef.mixedUi.a + 10 + GlobalConfig.font2.stringWidth("宝石:"), this.mainCanvasRef.mixedUi.b + 37, 17, 17, GlobalStatus.jM[var14].length, 1);
+                                        this.a(var1, this.mainCanvasRef.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:"), this.mainCanvasRef.mixedUi.Y + 37, 17, 17, GlobalStatus.jM[var14].length, 1);
 
                                         for (byte var9 = 0; var9 < GlobalStatus.jM[var14].length; ++var9) {
                                             if (GlobalStatus.jM[var14][var9] <= -1) {
-                                                LoadingPage.fillRect(var1, 125269879, 207, this.mainCanvasRef.mixedUi.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.mixedUi.b + 39, 17, 17);
+                                                LoadingPage.fillRect(var1, 125269879, 207, this.mainCanvasRef.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.mixedUi.Y + 39, 17, 17);
                                             }
 
                                             if (GlobalStatus.jM[var14][var9] > 0) {
-                                                MainCanvas.pngUtil.a(var1, b(GlobalStatus.jM[var14][var9]), (int[]) null, (aj) null, 0, 0, this.mainCanvasRef.mixedUi.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.mixedUi.b + 39, 0, 0);
+                                                MainCanvas.pngUtil.a(var1, b(GlobalStatus.jM[var14][var9]), (int[]) null, (aj) null, 0, 0, this.mainCanvasRef.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.mixedUi.Y + 39, 0, 0);
                                             }
 
                                             var1.setColor(16776960);
-                                            var1.drawRect(this.mainCanvasRef.mixedUi.a + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.mixedUi.b + 39, 17, 17);
+                                            var1.drawRect(this.mainCanvasRef.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.mixedUi.Y + 39, 17, 17);
                                         }
                                     }
                                 }
@@ -10767,7 +10768,7 @@ public final class UISceneController {
                             String var15 = "炼化条件:" + GlobalStatus.nC[0] + "\t";
                             var15 = var15 + "炼化所得:" + GlobalStatus.nC[2] + "\t";
                             var15 = var15 + "消耗:" + GlobalStatus.nC[1] + "\t";
-                            LoadingPage.drawString(var1, var15, new String[]{"确定", "取消"});
+                            LoadingPage.drawDialog(var1, var15, new String[]{"确定", "取消"});
                         }
 
                     }
@@ -10846,11 +10847,11 @@ public final class UISceneController {
         }
 
         this.mainCanvasRef.mixedUi.clear();
-        this.mainCanvasRef.mixedUi.a("宠物属性");
+        this.mainCanvasRef.mixedUi.setTitle("宠物属性");
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.textPanel.setFWBText(this.mainCanvasRef.shareSb.toString(), GlobalConfig.font2, (byte) 2);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.sceneStateShadow = this.currentSceneModeId = 95;
     }
 
@@ -10879,12 +10880,12 @@ public final class UISceneController {
         this.mainCanvasRef.aw = 0;
         LoadingPage.l = 0;
         this.aq = this.ar = 0;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("买东西");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("买东西");
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.topUi.a(new String[]{"货柜一"});
         this.mainCanvasRef.topUi.a((byte) 1);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
+        this.mainCanvasRef.mixedUi.setR(GlobalConfig.realHigh <= 240 ? 79 : 120);
         if (GlobalStatus.bY != null && GlobalStatus.bY.length > 0) {
             this.mainCanvasRef.textPanel.setFWBText(Y((this.ar << 3) + this.aq), GlobalConfig.font2, (byte) 1);
         } else {
@@ -10893,10 +10894,10 @@ public final class UISceneController {
 
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
         this.mainCanvasRef.bottomUi.a("");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 8;
     }
@@ -11023,14 +11024,14 @@ public final class UISceneController {
     private void q(Graphics var1) {
         if (this.mainCanvasRef.mixedUi != null) {
             int var2 = GlobalConfig.realHigh <= 240 ? 79 : 120;
-            this.mainCanvasRef.mixedUi.a(var2);
+            this.mainCanvasRef.mixedUi.setR(var2);
             this.mainCanvasRef.mixedUi.a(var1);
-            LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.a + 5, this.mainCanvasRef.mixedUi.b + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.c - 11, var2, 1);
+            LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.W - 11, var2, 1);
             LoadingPage.draw(var1);
-            var2 = (this.mainCanvasRef.mixedUi.c - 11 - (goods.b << 3)) / 9;
+            var2 = (this.mainCanvasRef.mixedUi.W - 11 - (goods.b << 3)) / 9;
             int var3 = ((GlobalConfig.realHigh <= 240 ? 79 : 120) - 6 - (goods.b << 2)) / 5;
-            int var4 = this.mainCanvasRef.mixedUi.a + 8 + var2;
-            int var5 = this.mainCanvasRef.mixedUi.b + 33 + this.mainCanvasRef.topUi.b + var3;
+            int var4 = this.mainCanvasRef.mixedUi.X + 8 + var2;
+            int var5 = this.mainCanvasRef.mixedUi.Y + 33 + this.mainCanvasRef.topUi.b + var3;
 
             for (int var6 = 0; var6 < 32; ++var6) {
                 MainCanvas.pngUtil.a(var1, goods, (int[]) null, (aj) null, 0, 0, var6 % 8 * (goods.b + var2) + var4, var6 / 8 * (goods.b + var3) + var5, 0, 0);
@@ -11179,12 +11180,12 @@ public final class UISceneController {
         this.mainCanvasRef.aw = 0;
         this.as = var1;
         LoadingPage.l = 0;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("");
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.topUi.a(new String[]{" 一 ", " 二 ", " 三 ", " 四 ", " 五 "});
         this.mainCanvasRef.topUi.a((byte) 1);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.realHigh <= 240 ? 79 : 120);
+        this.mainCanvasRef.mixedUi.setR(GlobalConfig.realHigh <= 240 ? 79 : 120);
         this.mainCanvasRef.topUi.a = this.aH;
         this.aq = this.aF;
         this.ar = this.aG;
@@ -11196,13 +11197,13 @@ public final class UISceneController {
 
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
         this.mainCanvasRef.bottomUi.a("");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 11;
     }
@@ -11412,16 +11413,16 @@ public final class UISceneController {
     private void r(Graphics var1) {
         if (GlobalStatus.ct != null && GlobalStatus.ct.length > 0) {
             if (this.mainCanvasRef.mixedUi != null) {
-                this.mainCanvasRef.mixedUi.a("仓库");
+                this.mainCanvasRef.mixedUi.setTitle("仓库");
                 int var2 = GlobalConfig.realHigh <= 240 ? 79 : 120;
-                this.mainCanvasRef.mixedUi.a(var2);
+                this.mainCanvasRef.mixedUi.setR(var2);
                 this.mainCanvasRef.mixedUi.a(var1);
-                LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.a + 5, this.mainCanvasRef.mixedUi.b + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.c - 11, var2, 1);
+                LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.W - 11, var2, 1);
                 LoadingPage.draw(var1);
-                var2 = (this.mainCanvasRef.mixedUi.c - 11 - (goods.b << 3)) / 9;
+                var2 = (this.mainCanvasRef.mixedUi.W - 11 - (goods.b << 3)) / 9;
                 int var3 = ((GlobalConfig.realHigh <= 240 ? 79 : 120) - 6 - (goods.b << 2)) / 5;
-                int var4 = this.mainCanvasRef.mixedUi.a + 8 + var2;
-                int var5 = this.mainCanvasRef.mixedUi.b + 33 + this.mainCanvasRef.topUi.b + var3;
+                int var4 = this.mainCanvasRef.mixedUi.X + 8 + var2;
+                int var5 = this.mainCanvasRef.mixedUi.Y + 33 + this.mainCanvasRef.topUi.b + var3;
 
                 for (int var6 = 0; var6 < 32; ++var6) {
                     MainCanvas.pngUtil.a(var1, goods, (int[]) null, (aj) null, 0, 0, var6 % 8 * (goods.b + var2) + var4, var6 / 8 * (goods.b + var3) + var5, 0, 0);
@@ -11463,16 +11464,16 @@ public final class UISceneController {
     }
 
     public final void H() {
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("物品拍卖场");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("物品拍卖场");
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, new String[]{"关键字", "武器", "头盔", "衣甲", "鞋子", "饰品", "书籍", "材料", "打造"}, (String[]) null, (String[]) null);
         this.mainCanvasRef.bottomUi.a("搜索");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.sceneStateShadow = this.currentSceneModeId = 14;
     }
 
@@ -11533,7 +11534,7 @@ public final class UISceneController {
 
     public final void I() {
         this.a(GlobalStatus.ec);
-        this.mainCanvasRef.mixedUi.b();
+        this.mainCanvasRef.mixedUi.clean();
         if (this.currentSceneModeId != 23) {
             this.mainCanvasRef.topUi.a(new String[]{"低价", "高价"});
             this.mainCanvasRef.topUi.a((byte) 0);
@@ -11551,17 +11552,17 @@ public final class UISceneController {
             this.mainCanvasRef.gunDongListUi.a((Image[]) null, (String[]) null, (String[]) null, (String[]) null);
         }
 
-        this.mainCanvasRef.mixedUi.a("物品拍卖场");
+        this.mainCanvasRef.mixedUi.setTitle("物品拍卖场");
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.bottomUi.a("购买");
         this.mainCanvasRef.bottomUi.a(true);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.sceneSubState = 0;
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 23;
@@ -11738,16 +11739,16 @@ public final class UISceneController {
     }
 
     private void aI() {
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("宠物拍卖场");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("宠物拍卖场");
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, new String[]{"关键字", "雷属性", "火属性", "冰属性", "无属性"}, (String[]) null, (String[]) null);
         this.mainCanvasRef.bottomUi.a("搜索");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 15;
     }
@@ -11782,8 +11783,8 @@ public final class UISceneController {
             this.aI = MainCanvas.petfight.a(String.valueOf(GlobalStatus.gw[0] + "_0"), GlobalStatus.gx[0], GlobalStatus.gy[0], GlobalStatus.gz[0]);
         }
 
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("宠物拍卖场");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("宠物拍卖场");
         if (this.sceneStateShadow != 24) {
             this.mainCanvasRef.topUi.a(new String[]{"低价", "高价"});
             this.mainCanvasRef.topUi.a((byte) 0);
@@ -11794,14 +11795,14 @@ public final class UISceneController {
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
         this.mainCanvasRef.bottomUi.a("购买");
         this.mainCanvasRef.bottomUi.a(true);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.mixedUi.a(true);
         this.sceneSubState = 0;
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
@@ -11823,7 +11824,7 @@ public final class UISceneController {
                     }
                 }
 
-                PngUtil.a(this.aI, this.mainCanvasRef.frameStartTs);
+                PngUtil.animate(this.aI, this.mainCanvasRef.frameStartTs);
                 if (var1 == 1 || var1 == 4 || var1 == 514 || var1 == 520) {
                     this.mainCanvasRef.textPanel.setFWBText(GlobalStatus.g(this.mainCanvasRef.shareSb, this.mainCanvasRef.gunDongListUi.g()), GlobalConfig.font2, (byte) 2);
                     this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
@@ -11972,7 +11973,7 @@ public final class UISceneController {
                 LoadingPage.c(var1);
             } else {
                 if (this.sceneSubState == 2) {
-                    LoadingPage.drawString(var1, "您确认以" + GlobalStatus.a(GlobalStatus.gv[this.mainCanvasRef.gunDongListUi.g()]) + "的价格购买该宠物1只", new String[]{"确定", "取消"});
+                    LoadingPage.drawDialog(var1, "您确认以" + GlobalStatus.a(GlobalStatus.gv[this.mainCanvasRef.gunDongListUi.g()]) + "的价格购买该宠物1只", new String[]{"确定", "取消"});
                 }
 
             }
@@ -12065,10 +12066,10 @@ public final class UISceneController {
         this.mainCanvasRef.mixedUi.clear();
         this.mainCanvasRef.mixedUi.a(false);
         this.mainCanvasRef.mixedUi.b(false);
-        this.mainCanvasRef.mixedUi.a((String) null);
+        this.mainCanvasRef.mixedUi.setTitle((String) null);
         this.mainCanvasRef.topUi.a(new String[]{"全", "系", "世", "帮", "区", "队", "私", "跨"});
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-        this.mainCanvasRef.mixedUi.a(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+        this.mainCanvasRef.mixedUi.layout(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
         MainCanvas.pngUtil.a(this.f, h, i, false, true, 2109231);
         this.sceneStateShadow = this.currentSceneModeId = 18;
     }
@@ -12724,8 +12725,8 @@ public final class UISceneController {
     public final void p(int var1) {
         if (i()) {
             this.sceneSubState = 0;
-            this.mainCanvasRef.mixedUi.b();
-            this.mainCanvasRef.mixedUi.a("社交关系");
+            this.mainCanvasRef.mixedUi.clean();
+            this.mainCanvasRef.mixedUi.setTitle("社交关系");
             if (this.sceneStateShadow != 19) {
                 this.mainCanvasRef.topUi.a(new String[]{"好友", "师徒", "黑名单"});
             }
@@ -12752,13 +12753,13 @@ public final class UISceneController {
 
             this.mainCanvasRef.gunDongListUi.a(GlobalStatus.dR);
             this.mainCanvasRef.bottomUi.a("确定");
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
             if (GlobalConfig.defaultHigh > 220) {
-                this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+                this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
             }
 
-            this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
             this.mainCanvasRef.mixedUi.a(true);
             this.de = null;
             this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
@@ -13161,14 +13162,14 @@ public final class UISceneController {
         if (this.sceneStateShadow != 21) {
             this.sceneSubState = 0;
             this.mainCanvasRef.mixedUi.clear();
-            this.mainCanvasRef.mixedUi.a("队伍(" + (GlobalStatus.s == 0 ? "跟随" : "自由") + ")信息");
+            this.mainCanvasRef.mixedUi.setTitle("队伍(" + (GlobalStatus.s == 0 ? "跟随" : "自由") + ")信息");
             this.mainCanvasRef.gunDongListUi.a(var1, this.am, (String[]) null, this.al);
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-            this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+            this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
             this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
             this.sceneStateShadow = this.currentSceneModeId = 21;
         } else {
-            this.mainCanvasRef.mixedUi.a("队伍(" + (GlobalStatus.s == 0 ? "跟随" : "自由") + ")信息");
+            this.mainCanvasRef.mixedUi.setTitle("队伍(" + (GlobalStatus.s == 0 ? "跟随" : "自由") + ")信息");
             this.mainCanvasRef.gunDongListUi.a(var1, this.am, (String[]) null, this.al);
         }
     }
@@ -13446,11 +13447,11 @@ public final class UISceneController {
 
         this.aU = this.ar = 1;
         this.aP();
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.bottomUi.a(new String[]{"交易", "取消"});
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
-        this.mainCanvasRef.mixedUi.a(GlobalStatus.ff);
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.bottomUi.setButtonText(new String[]{"交易", "取消"});
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.setTitle(GlobalStatus.ff);
         this.sceneStateShadow = this.currentSceneModeId = 22;
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus = 7;
     }
@@ -13527,7 +13528,7 @@ public final class UISceneController {
                             }
 
                             if (var1 == 1024) {
-                                if (GlobalStatus.i == 0) {
+                                if (GlobalStatus.i_1 == 0) {
                                     this.mainCanvasRef.showTips("交易已锁定");
                                     return;
                                 }
@@ -13542,7 +13543,7 @@ public final class UISceneController {
                                 this.mainCanvasRef.showPending((String) null);
                             } else {
                                 if (var1 == 2048) {
-                                    if (GlobalStatus.i == 0) {
+                                    if (GlobalStatus.i_1 == 0) {
                                         this.mainCanvasRef.showTips("交易已锁定");
                                         return;
                                     }
@@ -13686,7 +13687,7 @@ public final class UISceneController {
                 }
 
                 if (LoadingPage.o == 1) {
-                    if (GlobalStatus.i == 0) {
+                    if (GlobalStatus.i_1 == 0) {
                         this.mainCanvasRef.showTips("交易已锁定");
                         return;
                     }
@@ -13738,7 +13739,7 @@ public final class UISceneController {
                     }
                 } else {
                     if (LoadingPage.o == 2) {
-                        if (GlobalStatus.i == 0) {
+                        if (GlobalStatus.i_1 == 0) {
                             this.mainCanvasRef.showTips("交易已锁定");
                             return;
                         }
@@ -13755,7 +13756,7 @@ public final class UISceneController {
                     }
 
                     if (LoadingPage.o == 3) {
-                        if (GlobalStatus.i == 0) {
+                        if (GlobalStatus.i_1 == 0) {
                             this.mainCanvasRef.showTips("交易已锁定");
                             return;
                         }
@@ -13784,7 +13785,7 @@ public final class UISceneController {
                     }
                 }
             } else if (LoadingPage.o == 0) {
-                if (GlobalStatus.i == 0) {
+                if (GlobalStatus.i_1 == 0) {
                     this.mainCanvasRef.showTips("交易已锁定");
                     return;
                 }
@@ -13836,7 +13837,7 @@ public final class UISceneController {
                 }
             } else {
                 if (LoadingPage.o == 1) {
-                    if (GlobalStatus.i == 0) {
+                    if (GlobalStatus.i_1 == 0) {
                         this.mainCanvasRef.showTips("交易已锁定");
                         return;
                     }
@@ -13853,7 +13854,7 @@ public final class UISceneController {
                 }
 
                 if (LoadingPage.o == 2) {
-                    if (GlobalStatus.i == 0) {
+                    if (GlobalStatus.i_1 == 0) {
                         this.mainCanvasRef.showTips("交易已锁定");
                         return;
                     }
@@ -14099,12 +14100,12 @@ public final class UISceneController {
 
     private void v(Graphics var1) {
         this.mainCanvasRef.mixedUi.a(var1);
-        LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.a + 5, this.mainCanvasRef.mixedUi.b + 29, this.mainCanvasRef.mixedUi.c - 11, this.mainCanvasRef.mixedUi.d - 30 - BottomUi.b(), 1);
-        int var2 = this.mainCanvasRef.mixedUi.a + 8;
-        int var3 = this.mainCanvasRef.mixedUi.b + 32;
-        int var4 = this.mainCanvasRef.mixedUi.c - 16;
+        LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 29, this.mainCanvasRef.mixedUi.W - 11, this.mainCanvasRef.mixedUi.H - 30 - BottomUi.b(), 1);
+        int var2 = this.mainCanvasRef.mixedUi.X + 8;
+        int var3 = this.mainCanvasRef.mixedUi.Y + 32;
+        int var4 = this.mainCanvasRef.mixedUi.W - 16;
         int var5;
-        int var6 = ((var5 = this.mainCanvasRef.mixedUi.d - 29 - 24 - 10) - (MainCanvas.tradebottom.c << 1) - MainCanvas.tradelock01.c - MainCanvas.tradetitle.c - (goods.c << 1)) / 7;
+        int var6 = ((var5 = this.mainCanvasRef.mixedUi.H - 29 - 24 - 10) - (MainCanvas.tradebottom.c << 1) - MainCanvas.tradelock01.c - MainCanvas.tradetitle.c - (goods.c << 1)) / 7;
         int var7 = 0;
         var3 = var3 + (var5 - (MainCanvas.tradebottom.c << 1) - MainCanvas.tradelock01.c - MainCanvas.tradetitle.c - (goods.c << 1)) % 7 / 2 + var6;
 
@@ -14205,11 +14206,11 @@ public final class UISceneController {
         var3 += 5;
         var3 = var3 + var6 + (var5 - (MainCanvas.tradebottom.c << 1) - MainCanvas.tradelock01.c - MainCanvas.tradetitle.c - (goods.c << 1)) % 7 / 2;
         this.d(0, var2 + var4 / 4 - MainCanvas.moneybutton.b / 2, var3, MainCanvas.tradelock01.b, MainCanvas.tradelock01.c);
-        if (GlobalStatus.i == 0 && GlobalStatus.j == -1) {
+        if (GlobalStatus.i_1 == 0 && GlobalStatus.j == -1) {
             MainCanvas.pngUtil.a(var1, MainCanvas.tradelock_02, (int[]) null, (aj) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
-        } else if (GlobalStatus.j == 0 && GlobalStatus.i == -1) {
+        } else if (GlobalStatus.j == 0 && GlobalStatus.i_1 == -1) {
             MainCanvas.pngUtil.a(var1, MainCanvas.tradelock_02, (int[]) null, (aj) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
-        } else if (GlobalStatus.i == 0 && GlobalStatus.j == 0) {
+        } else if (GlobalStatus.i_1 == 0 && GlobalStatus.j == 0) {
             MainCanvas.pngUtil.a(var1, MainCanvas.tradelock_03, (int[]) null, (aj) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
         } else {
             MainCanvas.pngUtil.a(var1, MainCanvas.tradelock01, (int[]) null, (aj) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
@@ -14224,7 +14225,7 @@ public final class UISceneController {
 
         if ((this.ar != 1 || this.sceneSubState != 1 && this.sceneSubState != 2) && (this.ar != 0 || this.sceneSubState != 3)) {
             if (this.sceneSubState == 5) {
-                LoadingPage.drawString(var1, "确定放弃该次交易?", new String[]{"确定", "取消"});
+                LoadingPage.drawDialog(var1, "确定放弃该次交易?", new String[]{"确定", "取消"});
             } else {
                 if (this.sceneSubState == 6) {
                     this.b(var1, "输入交易银两");
@@ -14240,9 +14241,9 @@ public final class UISceneController {
         this.bb = var1;
         this.sceneSubState = 0;
         this.cy = var2;
-        this.mainCanvasRef.mixedUi.b();
+        this.mainCanvasRef.mixedUi.clean();
         this.mainCanvasRef.mixedUi.a(true);
-        this.mainCanvasRef.mixedUi.a(this.cy == 2 ? "锻造列表" : "兑换列表");
+        this.mainCanvasRef.mixedUi.setTitle(this.cy == 2 ? "锻造列表" : "兑换列表");
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, GlobalStatus.ex, (String[]) null, (String[]) null);
         this.mainCanvasRef.bottomUi.a(this.cy == 2 ? "锻造" : "兑换");
         if (GlobalStatus.ew != null && GlobalStatus.ew.length > 0) {
@@ -14252,13 +14253,13 @@ public final class UISceneController {
         }
 
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus = 7;
         this.sceneStateShadow = this.currentSceneModeId = 31;
     }
@@ -14513,10 +14514,10 @@ public final class UISceneController {
             this.mainCanvasRef.k();
             this.d(true);
             this.mainCanvasRef.mixedUi.clear();
-            this.mainCanvasRef.mixedUi.a("游戏设置");
+            this.mainCanvasRef.mixedUi.setTitle("游戏设置");
             this.mainCanvasRef.gunDongListUi.a((Image[]) null, this.al, (String[]) null, this.am);
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-            this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+            this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
             this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
             this.sceneStateShadow = this.currentSceneModeId = 28;
         } else {
@@ -15091,9 +15092,9 @@ public final class UISceneController {
             try {
                 this.sceneRefreshCoordinator.a(this.f, MainCanvas.pngUtil, this.mainCanvasRef.frameStartTs);
                 bl.removeAllElements();
-                PngUtil.a(u, this.mainCanvasRef.frameStartTs);
-                PngUtil.a(t_2, this.mainCanvasRef.frameStartTs);
-                PngUtil.a(s, this.mainCanvasRef.frameStartTs);
+                PngUtil.animate(u, this.mainCanvasRef.frameStartTs);
+                PngUtil.animate(t_2, this.mainCanvasRef.frameStartTs);
+                PngUtil.animate(s, this.mainCanvasRef.frameStartTs);
                 if (GlobalStatus.s != 0 && this.sceneRefreshCoordinator.d != null && this.sceneRefreshCoordinator.d.f != null) {
                     if (c((int) this.sceneRefreshCoordinator.d.h, (int) this.sceneRefreshCoordinator.d.i, (int) this.sceneRefreshCoordinator.d.f.g(), (int) this.sceneRefreshCoordinator.d.f.h())) {
                         bl.addElement(new by((byte) 4, this.sceneRefreshCoordinator.d, true));
@@ -15358,7 +15359,7 @@ public final class UISceneController {
                                 PngUtil var24 = MainCanvas.pngUtil;
                                 az_1 var17 = var37;
                                 if (var37.w != null && aW[10] == 0) {
-                                    PngUtil.a(var17.w, var28);
+                                    PngUtil.animate(var17.w, var28);
                                 }
                             } else if (var16.b == 4) {
                                 ((au) var16.c).a(this.f, MainCanvas.pngUtil, this.mainCanvasRef.frameStartTs);
@@ -15504,7 +15505,7 @@ public final class UISceneController {
                 var6.bj.removeAllElements();
 
                 for (int var10 = 0; var10 < GlobalStatus.t.length; ++var10) {
-                    GlobalStatus.t[var10].w = MainCanvas.petfight.a(GlobalStatus.t[var10].v, GlobalStatus.t[var10].y, GlobalStatus.t[var10].z, GlobalStatus.t[var10].A);
+                    GlobalStatus.t[var10].w = MainCanvas.petfight.getFrame1(GlobalStatus.t[var10].v, GlobalStatus.t[var10].y, GlobalStatus.t[var10].z, GlobalStatus.t[var10].A);
                 }
 
                 var6.cV = 1;
@@ -15824,7 +15825,7 @@ public final class UISceneController {
         bk.addElement(MainCanvas.a(var0, var1, (byte) 2, var2, true, var3));
 
         for (int var7 = 0; var7 < bk.size(); ++var7) {
-            MainCanvas.role.b((String) bk.elementAt(var7), var4, var5, var6);
+            MainCanvas.role.loadResource((String) bk.elementAt(var7), var4, var5, var6);
         }
 
         bk.removeAllElements();
@@ -16094,15 +16095,15 @@ public final class UISceneController {
             var3 = new String[]{"购买", "仓库", "招募", "家属"};
         }
 
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a(var2);
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle(var2);
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.topUi.a(var3);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
         if (this.as != 7 && this.as != 8 && this.as != 9 && this.as != 10) {
             this.j((byte) this.as);
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
         } else {
             int var4 = this.as;
             this.as = var4;
@@ -16124,15 +16125,15 @@ public final class UISceneController {
             }
 
             this.mainCanvasRef.topUi.a = (byte) this.aU;
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
         }
 
         this.mainCanvasRef.bottomUi.a("确定");
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.aw = 0;
         this.sceneSubState = 0;
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
@@ -16159,8 +16160,8 @@ public final class UISceneController {
 
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, var2, (String[]) null, (String[]) null);
         if (this.aZ == 8 || this.aZ == 7 || this.aZ == 9 || this.aZ == 10) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-            this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+            this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         }
 
     }
@@ -16711,8 +16712,8 @@ public final class UISceneController {
 
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
         if (this.aZ == 7 || this.aZ == 8 || this.aZ == 9 || this.aZ == 10) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-            this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+            this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         }
 
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
@@ -16726,10 +16727,10 @@ public final class UISceneController {
         if (this.cX == 5) {
             MainCanvas.petfight.loadFrame((String[]) (new String[]{String.valueOf(var3)}), (short[]) null, (short[]) null, (short[]) null);
             bv var10000 = this.ba;
-            Frame1 var6 = MainCanvas.petfight.a((int) Page.hashKey(Page.wrapName(String.valueOf(var3), (byte) 2).toCharArray()), (short) 0, (short) 0, (short) 0);
+            Frame1 var6 = MainCanvas.petfight.getFrame1((int) Page.hashKey(Page.wrapName(String.valueOf(var3), (byte) 2).toCharArray()), (short) 0, (short) 0, (short) 0);
             var10000.d = var6;
         } else {
-            MainCanvas.ae.d(String.valueOf(this.ba.g));
+            MainCanvas.ae.loadResource(String.valueOf(this.ba.g));
             bv var8 = this.ba;
             Frame1 var7 = MainCanvas.ae.getFrame1(String.valueOf(this.ba.g));
             var8.d = var7;
@@ -17124,13 +17125,13 @@ public final class UISceneController {
 
     public final void d(String var1) {
         this.mainCanvasRef.mixedUi.clear();
-        this.mainCanvasRef.mixedUi.a("详细信息");
+        this.mainCanvasRef.mixedUi.setTitle("详细信息");
         this.mainCanvasRef.mixedUi.a(false);
         this.mainCanvasRef.textPanel.setFWBText(var1, GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.bottomUi.a("确定");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.currentSceneModeId = 40;
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneSubState = 1;
@@ -17172,8 +17173,8 @@ public final class UISceneController {
 
     public final void W() {
         this.sceneSubState = 0;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("增值仓库");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("增值仓库");
         GunDongListUi var10000 = this.mainCanvasRef.gunDongListUi;
         Image[] var10001 = b(GlobalStatus.jC);
         String[] var10002 = GlobalStatus.jA;
@@ -17198,10 +17199,10 @@ public final class UISceneController {
         this.mainCanvasRef.textPanel.setFWBText(GlobalStatus.jD != null ? GlobalStatus.jD[0] : null, GlobalConfig.font2, (byte) 1);
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
         this.mainCanvasRef.bottomUi.a("取出");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 53;
     }
@@ -17279,16 +17280,16 @@ public final class UISceneController {
     }
 
     public final void X() {
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("住宅列表");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("住宅列表");
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, GlobalStatus.hQ, (String[]) null, (String[]) null);
         this.mainCanvasRef.bottomUi.a("进入");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.sceneSubState = 0;
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 57;
@@ -17404,8 +17405,8 @@ public final class UISceneController {
     public final void l(byte var1) {
         this.sceneSubState = 0;
         this.cZ = var1;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("物品拍卖详情");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("物品拍卖详情");
         if (var1 == 0) {
             if (this.sceneStateShadow != 59) {
                 this.aV = 0;
@@ -17446,15 +17447,15 @@ public final class UISceneController {
         }
 
         this.mainCanvasRef.bottomUi.a(true);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
         if (var1 == 2) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
         } else {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
         }
 
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 59;
@@ -17709,16 +17710,16 @@ public final class UISceneController {
 
     public final void Y() {
         this.sceneSubState = 0;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a(GlobalStatus.kI == 0 ? "金豆商城" : "万能果商城");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle(GlobalStatus.kI == 0 ? "金豆商城" : "万能果商城");
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, GlobalStatus.kH, (String[]) null, (String[]) null);
         this.mainCanvasRef.bottomUi.a("确定");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 68;
     }
@@ -17752,8 +17753,8 @@ public final class UISceneController {
     public final void c(short var1) {
         this.bb = var1;
         this.sceneSubState = 0;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a(LoadingPage.parseColor(GlobalStatus.kH[GlobalStatus.kN]) == -1 ? GlobalStatus.kH[GlobalStatus.kN] : GlobalStatus.kH[GlobalStatus.kN].substring(3, GlobalStatus.kH[GlobalStatus.kN].length()));
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle(LoadingPage.parseColor(GlobalStatus.kH[GlobalStatus.kN]) == -1 ? GlobalStatus.kH[GlobalStatus.kN] : GlobalStatus.kH[GlobalStatus.kN].substring(3, GlobalStatus.kH[GlobalStatus.kN].length()));
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, GlobalStatus.kK, (String[]) null, (String[]) null);
         this.mainCanvasRef.bottomUi.a("兑换");
         if (GlobalStatus.kJ != null && GlobalStatus.kJ.length > 0) {
@@ -17763,13 +17764,13 @@ public final class UISceneController {
         }
 
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 69;
     }
@@ -17902,17 +17903,17 @@ public final class UISceneController {
 
     public final void aa() {
         this.sceneSubState = 0;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a(GlobalStatus.bz == null ? "" : GlobalStatus.bz);
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle(GlobalStatus.bz == null ? "" : GlobalStatus.bz);
         this.mainCanvasRef.textPanel.setFWBText(GlobalStatus.by, GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 0);
         this.mainCanvasRef.bottomUi.a("确定");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 75;
     }
@@ -18540,7 +18541,7 @@ public final class UISceneController {
             if (this.sceneSubState == 2 && this.mainCanvasRef.popUpWindow != null) {
                 this.mainCanvasRef.popUpWindow.draw(var1);
                 ak var2 = GlobalStatus.P.c[GlobalStatus.P.i];
-                LoadingPage.drawString(var1, var2.e, new String[]{"确定", "取消"});
+                LoadingPage.drawDialog(var1, var2.e, new String[]{"确定", "取消"});
             }
 
         }
@@ -18571,7 +18572,7 @@ public final class UISceneController {
     private void F(Graphics var1) {
         LoadingPage.a(var1, 0, GlobalConfig.defaultHigh - LoadingPage.f, GlobalConfig.defaultWidth, LoadingPage.f, K, GlobalStatus.lz, (String[]) null);
         if (this.sceneSubState == 1) {
-            LoadingPage.drawString(var1, GlobalStatus.lB[LoadingPage.g], new String[]{"确定", "取消"});
+            LoadingPage.drawDialog(var1, GlobalStatus.lB[LoadingPage.g], new String[]{"确定", "取消"});
         }
 
     }
@@ -18653,21 +18654,21 @@ public final class UISceneController {
 
     public final void d(short var1) {
         this.sceneSubState = var1;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a((GlobalStatus.lg == 1 ? GlobalStatus.lf : "帮派") + "的成就");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle((GlobalStatus.lg == 1 ? GlobalStatus.lf : "帮派") + "的成就");
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, GlobalStatus.lb, (String[]) null, GlobalStatus.lc);
         this.mainCanvasRef.textPanel.setFWBText(aK(0), GlobalConfig.font2, (byte) 1);
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
         this.mainCanvasRef.bottomUi.a("操作");
         this.mainCanvasRef.bottomUi.a(true);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId;
         this.currentSceneModeId = 104;
@@ -18684,8 +18685,8 @@ public final class UISceneController {
 
     public final void e(short var1) {
         this.sceneSubState = var1;
-        this.T.b();
-        this.T.a(GlobalStatus.lh);
+        this.T.clean();
+        this.T.setTitle(GlobalStatus.lh);
         this.T.a(true);
         this.bu.a((Image[]) null, GlobalStatus.li, (String[]) null, GlobalStatus.lj);
         this.bu.a(GlobalStatus.ln);
@@ -18693,13 +18694,13 @@ public final class UISceneController {
         this.bv.setShuRuMoShi((byte) 1);
         this.bw.a("操作");
         this.bw.a(true);
-        this.T.a((BaseUi) this.bu);
-        this.T.a((BaseUi) this.bv);
+        this.T.addChild((BaseUi) this.bu);
+        this.T.addChild((BaseUi) this.bv);
         if (GlobalConfig.defaultHigh > 220) {
-            this.T.a((BaseUi) this.bw);
+            this.T.addChild((BaseUi) this.bw);
         }
 
-        this.T.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.T.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId;
         this.currentSceneModeId = 105;
@@ -19104,18 +19105,18 @@ public final class UISceneController {
 
     public final void ac() {
         this.mainCanvasRef.mixedUi.clear();
-        this.mainCanvasRef.mixedUi.a("称号列表");
+        this.mainCanvasRef.mixedUi.setTitle("称号列表");
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.topUi.a(new String[]{"活动", "成就", "职业", "特殊"});
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, GlobalStatus.ml, (String[]) null, GlobalStatus.mn);
         this.mainCanvasRef.gunDongListUi.a(GlobalStatus.mp);
         this.mainCanvasRef.textPanel.setFWBText(aN(0), GlobalConfig.font2, (byte) 1);
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.topUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
         this.mainCanvasRef.topUi.a = GlobalStatus.mj;
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.sceneSubState = 0;
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 103;
@@ -19245,20 +19246,20 @@ public final class UISceneController {
     }
 
     public final void ae() {
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a(GlobalStatus.mr);
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle(GlobalStatus.mr);
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, GlobalStatus.mu, (String[]) null, (String[]) null);
         this.mainCanvasRef.textPanel.setFWBText(GlobalStatus.mv == null ? null : GlobalStatus.mv[0], GlobalConfig.font2, (byte) 1);
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
         this.mainCanvasRef.bottomUi.a("确认");
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.sceneSubState = 0;
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 107;
@@ -19332,13 +19333,13 @@ public final class UISceneController {
 
     private void a(String var1, String var2, short var3) {
         this.mainCanvasRef.mixedUi.clear();
-        this.mainCanvasRef.mixedUi.a(var1);
+        this.mainCanvasRef.mixedUi.setTitle(var1);
         this.mainCanvasRef.mixedUi.a(false);
         this.mainCanvasRef.textPanel.setFWBText(var2, GlobalConfig.font2, (byte) 2);
-        this.mainCanvasRef.bottomUi.a(new String[]{"开 通", "取 消"});
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.bottomUi.setButtonText(new String[]{"开 通", "取 消"});
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.sceneSubState = 0;
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = var3;
@@ -19358,15 +19359,15 @@ public final class UISceneController {
                 if (this.currentSceneModeId == 108) {
                     this.sceneSubState = 1;
                     this.mainCanvasRef.mixedUi.clear();
-                    this.mainCanvasRef.mixedUi.a("开通超Q");
+                    this.mainCanvasRef.mixedUi.setTitle("开通超Q");
                     this.mainCanvasRef.mixedUi.a(false);
                     this.mainCanvasRef.gunDongListUi.a(new String[]{"中国移动", "中国联通"}, (String[]) null, (String[]) null);
                     this.mainCanvasRef.textPanel.setText(GlobalConfig.ChaoQ[0], GlobalConfig.font2, (byte) 2);
-                    this.mainCanvasRef.bottomUi.a(new String[]{"开通", "取消"});
-                    this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-                    this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-                    this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
-                    this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+                    this.mainCanvasRef.bottomUi.setButtonText(new String[]{"开通", "取消"});
+                    this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+                    this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+                    this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
+                    this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
                     return;
                 }
             }
@@ -19420,28 +19421,28 @@ public final class UISceneController {
 
         if (this.sceneSubState == 2) {
             String var2 = this.currentSceneModeId == 108 ? "确认以发送短信方式开通超Q？ " : "确认以发送短信方式开通魔钻？";
-            LoadingPage.drawString(var1, var2, new String[]{"确 认", "取 消"});
+            LoadingPage.drawDialog(var1, var2, new String[]{"确 认", "取 消"});
         }
 
         if (this.sceneSubState == 3) {
-            LoadingPage.drawString(var1, "进入超Q官网开通超Q？", new String[]{"进入", "返回"});
+            LoadingPage.drawDialog(var1, "进入超Q官网开通超Q？", new String[]{"进入", "返回"});
         }
 
     }
 
     public final void ah() {
-        MainCanvas.petfight.d("3762");
+        MainCanvas.petfight.loadResource("3762");
         bp = MainCanvas.petfight.getFrame1("3762");
         this.mainCanvasRef.mixedUi.clear();
-        this.mainCanvasRef.mixedUi.a("超Q精灵");
+        this.mainCanvasRef.mixedUi.setTitle("超Q精灵");
         this.mainCanvasRef.mixedUi.a(true);
         this.bQ = Math.max(GlobalConfig.font2_h * 3 + 10, bp.j() + 10);
-        this.mainCanvasRef.mixedUi.a(this.bQ);
+        this.mainCanvasRef.mixedUi.setR(this.bQ);
         this.mainCanvasRef.textPanel.setText(GlobalStatus.kW, GlobalConfig.font2, (byte) 1);
-        this.mainCanvasRef.bottomUi.a(new String[]{"领取", "返回"});
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.bottomUi.setButtonText(new String[]{"领取", "返回"});
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.sceneSubState = 0;
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 33;
@@ -19463,7 +19464,7 @@ public final class UISceneController {
             switch (this.sceneSubState) {
                 case 0:
                     this.sceneSubState = 1;
-                    LoadingPage.a(this.mainCanvasRef.mixedUi.a + this.mainCanvasRef.mixedUi.c / 2, this.mainCanvasRef.mixedUi.b + 45 + this.bQ / 2, new String[]{"领取"}, false);
+                    LoadingPage.a(this.mainCanvasRef.mixedUi.X + this.mainCanvasRef.mixedUi.W / 2, this.mainCanvasRef.mixedUi.Y + 45 + this.bQ / 2, new String[]{"领取"}, false);
                     break;
                 case 1:
                     byte[] var2;
@@ -19483,7 +19484,7 @@ public final class UISceneController {
     }
 
     public final int f(int var1, int var2) {
-        return var1 >= this.mainCanvasRef.mixedUi.a + 68 && var1 <= this.mainCanvasRef.mixedUi.a + this.mainCanvasRef.mixedUi.c - 12 && var2 >= this.mainCanvasRef.mixedUi.b + 30 + this.bQ / 2 && var2 < this.mainCanvasRef.mixedUi.b + 30 + this.bQ / 2 + GlobalConfig.font2_h ? 268435456 : 0;
+        return var1 >= this.mainCanvasRef.mixedUi.X + 68 && var1 <= this.mainCanvasRef.mixedUi.X + this.mainCanvasRef.mixedUi.W - 12 && var2 >= this.mainCanvasRef.mixedUi.Y + 30 + this.bQ / 2 && var2 < this.mainCanvasRef.mixedUi.Y + 30 + this.bQ / 2 + GlobalConfig.font2_h ? 268435456 : 0;
     }
 
     private void aT(int var1) {
@@ -19641,7 +19642,7 @@ public final class UISceneController {
     }
 
     private static void P(Graphics var0) {
-        LoadingPage.drawString(var0, GlobalStatus.eD, new String[]{"确定", "取消"});
+        LoadingPage.drawDialog(var0, GlobalStatus.eD, new String[]{"确定", "取消"});
     }
 
     public final void aj() {
@@ -19794,11 +19795,11 @@ public final class UISceneController {
     private void aY(int var1) {
         if (this.sceneSubState == 0) {
             if (GlobalStatus.mx != -1 && this.aI != null) {
-                PngUtil.a(this.aI, this.mainCanvasRef.frameStartTs);
+                PngUtil.animate(this.aI, this.mainCanvasRef.frameStartTs);
             }
 
             if (GlobalStatus.mD != -1 && this.bd != null) {
-                PngUtil.a(this.bd, this.mainCanvasRef.frameStartTs);
+                PngUtil.animate(this.bd, this.mainCanvasRef.frameStartTs);
             }
 
             this.mainCanvasRef.textPanel.onClick(var1);
@@ -19960,8 +19961,8 @@ public final class UISceneController {
         this.bg = var1;
         GlobalConfig.printStr("pet index=" + var1);
         this.sceneSubState = 0;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("宠物附魂");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("宠物附魂");
         String[] var2;
         (var2 = new String[10])[0] = "技能附魂";
         var2[5] = "状态附魂";
@@ -19981,11 +19982,11 @@ public final class UISceneController {
         }
 
         this.mainCanvasRef.gunDongListUi.a((Image[]) null, var2, (String[]) null, (String[]) null);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
         this.mainCanvasRef.textPanel.setFWBText("", GlobalConfig.font2, (byte) 2);
         this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 120;
     }
@@ -20149,8 +20150,8 @@ public final class UISceneController {
         this.di = new TextPanel();
         this.dj = new TextPanel();
         this.sceneSubState = 0;
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("坐骑");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("坐骑");
         this.mainCanvasRef.mixedUi.a(true);
 
         for (byte var1 = 0; var1 < GlobalStatus.nu.length; ++var1) {
@@ -20175,23 +20176,23 @@ public final class UISceneController {
                     String var7 = var10002;
                     Object var3 = null;
                     int var8 = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte) 0, GlobalStatus.ay, false, var7), (byte) 2);
-                    MainCanvas.role.b((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte) 0, GlobalStatus.ay, false, var7), (short) 0, (short) 0, (short) 0);
-                    var10000[var4] = MainCanvas.role.a((int) var8, (short) 0, (short) 0, (short) 0);
+                    MainCanvas.role.loadResource((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte) 0, GlobalStatus.ay, false, var7), (short) 0, (short) 0, (short) 0);
+                    var10000[var4] = MainCanvas.role.getFrame1((int) var8, (short) 0, (short) 0, (short) 0);
                 }
             }
         } else {
-            this.mainCanvasRef.bottomUi.a(this.dr);
+            this.mainCanvasRef.bottomUi.setButtonText(this.dr);
         }
 
         this.mainCanvasRef.textPanel.setFWBText(GlobalStatus.nt, GlobalConfig.font2, (byte) 2);
         this.di.setFWBText(GlobalStatus.nr, GlobalConfig.font2, (byte) 2);
         this.dj.setText(GlobalStatus.ns, GlobalConfig.font2, (byte) 2);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.mainCanvasRef.textPanel.setTextRect(this.mainCanvasRef.textPanel.textX, this.mainCanvasRef.textPanel.textY, this.mainCanvasRef.textPanel.textW, this.mainCanvasRef.textPanel.textH / 3);
         this.di.setTextRect(this.mainCanvasRef.textPanel.textX, this.mainCanvasRef.textPanel.textY + this.mainCanvasRef.textPanel.textH, this.mainCanvasRef.textPanel.textW / 2, this.mainCanvasRef.textPanel.textH << 1);
         this.dj.setTextRect(this.di.textX + this.di.textW, this.di.textY, this.di.textW, this.di.textH);
@@ -20202,15 +20203,15 @@ public final class UISceneController {
     private void be() {
         if (GlobalStatus.nu[this.dl] == GlobalStatus.nm) {
             if (!GlobalStatus.nn.equals("")) {
-                this.mainCanvasRef.bottomUi.a(this.do_2);
+                this.mainCanvasRef.bottomUi.setButtonText(this.do_2);
                 return;
             }
         } else if (GlobalStatus.nw[this.dl] == 0) {
-            this.mainCanvasRef.bottomUi.a(this.dq);
+            this.mainCanvasRef.bottomUi.setButtonText(this.dq);
             return;
         }
 
-        this.mainCanvasRef.bottomUi.a(this.dp);
+        this.mainCanvasRef.bottomUi.setButtonText(this.dp);
     }
 
     private void ba(int var1) {
@@ -20219,7 +20220,7 @@ public final class UISceneController {
         this.dj.onClick(var1);
         if (this.dk != null && this.dk.length > 0) {
             for (int var2 = 0; var2 < this.dk.length; ++var2) {
-                PngUtil.a(this.dk[var2], this.mainCanvasRef.frameStartTs);
+                PngUtil.animate(this.dk[var2], this.mainCanvasRef.frameStartTs);
             }
         }
 
@@ -20276,9 +20277,9 @@ public final class UISceneController {
         this.dj.draw(var1);
         if (this.dk != null && this.dk.length > 0) {
             var1.setColor(2176196);
-            int var2 = this.mainCanvasRef.mixedUi.b + 45 + 15;
-            int var3 = this.mainCanvasRef.mixedUi.a + this.mainCanvasRef.mixedUi.c * 3 / 4;
-            int var4 = this.mainCanvasRef.mixedUi.b + 45 + this.dk[0].j();
+            int var2 = this.mainCanvasRef.mixedUi.Y + 45 + 15;
+            int var3 = this.mainCanvasRef.mixedUi.X + this.mainCanvasRef.mixedUi.W * 3 / 4;
+            int var4 = this.mainCanvasRef.mixedUi.Y + 45 + this.dk[0].j();
             if (this.dl == 2) {
                 var4 += 30;
             }
@@ -20337,17 +20338,17 @@ public final class UISceneController {
         this.sceneSubState = 0;
         this.aq = 0;
         this.dv = new FWBRender(GlobalStatus.nh, (short) 120);
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("见钱开箱");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("见钱开箱");
         this.mainCanvasRef.mixedUi.a(true);
         this.mainCanvasRef.bottomUi.a("开启");
         this.mainCanvasRef.textPanel.setText(GlobalStatus.ni, GlobalConfig.font2, (byte) 2);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
         if (GlobalConfig.defaultHigh > 220) {
-            this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.bottomUi);
+            this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.bottomUi);
         }
 
-        this.mainCanvasRef.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+        this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.ds = this.mainCanvasRef.textPanel.textX;
         this.dt = this.mainCanvasRef.textPanel.textY;
         this.mainCanvasRef.textPanel.setTextRect(this.mainCanvasRef.textPanel.textX, this.mainCanvasRef.textPanel.textY + (this.mainCanvasRef.textPanel.textH >> 1), this.mainCanvasRef.textPanel.textW, this.mainCanvasRef.textPanel.textH >> 1);
@@ -20459,13 +20460,13 @@ public final class UISceneController {
 
     public final void an() {
         this.aU = this.mainCanvasRef.gunDongListUi.g();
-        this.mainCanvasRef.mixedUi.b();
-        this.mainCanvasRef.mixedUi.a("特效");
+        this.mainCanvasRef.mixedUi.clean();
+        this.mainCanvasRef.mixedUi.setTitle("特效");
         this.mainCanvasRef.gunDongListUi.a(GlobalStatus.ny, (String[]) null, GlobalStatus.nz);
         this.mainCanvasRef.textPanel.setText(GlobalStatus.nA[0], GlobalConfig.font2, (byte) 2);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.gunDongListUi);
-        this.mainCanvasRef.mixedUi.a((BaseUi) this.mainCanvasRef.textPanel);
-        this.mainCanvasRef.mixedUi.a(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
+        this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
+        this.mainCanvasRef.mixedUi.layout(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
         this.sceneSubState = 0;
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
         this.sceneStateShadow = this.currentSceneModeId = 128;

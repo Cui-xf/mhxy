@@ -47,7 +47,7 @@ public final class NetPayloadBuilder {
             ByteArrayOutputStream var3 = new ByteArrayOutputStream();
             DataOutputStream var4;
             (var4 = new DataOutputStream(var3)).writeByte(-82);
-            var4.writeShort(6400);
+            var4.writeShort(NetPacketCode.Login);
             var4.writeByte(var0);
             var4.writeInt(ChongZhiModel.CpId);
             var4.writeInt(ChongZhiModel.GameId);
@@ -61,7 +61,7 @@ public final class NetPayloadBuilder {
             var4.writeByte(var1);
             var4.writeUTF(zhanghaoPwd);
             var4.writeByte(-81);
-            return new NetPacket((short) 6400, var3.toByteArray());
+            return new NetPacket(NetPacketCode.Login, var3.toByteArray());
         } catch (IOException var5) {
             ((Throwable) var5).printStackTrace();
             return null;
@@ -124,7 +124,7 @@ public final class NetPayloadBuilder {
             var5.writeShort(var3);
             var5.writeShort(var4);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -166,7 +166,7 @@ public final class NetPayloadBuilder {
             var5.writeByte(var2);
             var5.writeByte(var3);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeByte(-81);
             return var4.toByteArray();
         } catch (IOException var6) {
@@ -185,7 +185,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4100);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -207,7 +207,7 @@ public final class NetPayloadBuilder {
             var2.writeShort(GlobalConfig.defaultWidth);
             var2.writeShort(GlobalConfig.defaultHigh);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -217,18 +217,15 @@ public final class NetPayloadBuilder {
         }
     }
 
-    /**
-     * [opcode=var0] 通用登录变体，格式与 a(short,String) 相似但 opcode 动态传入。
-     */
-    public static byte[] c(short var0, String var1) {
+    public static byte[] buildSelectRolePacket(short var0, String roleId) {
         try {
             ByteArrayOutputStream var2 = new ByteArrayOutputStream();
             DataOutputStream var3;
             (var3 = new DataOutputStream(var2)).writeByte(-82);
             var3.writeShort(var0);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
-            var3.writeUTF(var1);
+            var3.writeUTF(GlobalStatus.token);
+            var3.writeUTF(roleId);
             var3.writeByte(-81);
             return var2.toByteArray();
         } catch (IOException var4) {
@@ -247,7 +244,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4641);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -268,7 +265,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4194);
             var3.writeByte(var2 == 1 ? 0 : 1);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -289,7 +286,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4608);
             var3.writeByte(var2 == 1 ? 0 : 1);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -310,7 +307,7 @@ public final class NetPayloadBuilder {
             var4.writeShort(var0);
             var4.writeByte(var2 == 1 ? 0 : 1);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var3.toByteArray();
@@ -332,7 +329,7 @@ public final class NetPayloadBuilder {
             var4.writeByte(var2);
             var4.writeByte(var3 == 0 ? 1 : 0);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -353,7 +350,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(5120);
             var3.writeByte(var2 == 1 ? 0 : 1);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -374,7 +371,7 @@ public final class NetPayloadBuilder {
             var2.writeShort(5123);
             var2.writeByte(1);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -395,7 +392,7 @@ public final class NetPayloadBuilder {
             var4.writeShort(var0);
             var4.writeInt(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var3.toByteArray();
@@ -416,7 +413,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4352);
             var3.writeByte(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -439,7 +436,7 @@ public final class NetPayloadBuilder {
             var5.writeShort(var3);
             var5.writeShort(var4);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -460,7 +457,7 @@ public final class NetPayloadBuilder {
             var7.writeShort(var4);
             var7.writeLong(var5);
             var7.writeUTF(GlobalStatus.zhangHao);
-            var7.writeUTF(GlobalStatus.d);
+            var7.writeUTF(GlobalStatus.token);
             var7.writeUTF(var1);
             var7.writeByte(-81);
             return var9.toByteArray();
@@ -492,7 +489,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4105);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -511,7 +508,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -529,7 +526,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4106);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -548,7 +545,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeInt(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -566,7 +563,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4140);
             var3.writeShort(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -584,7 +581,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4132);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -603,7 +600,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeInt(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -622,7 +619,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeInt(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -640,7 +637,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4133);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -660,7 +657,7 @@ public final class NetPayloadBuilder {
             var5.writeInt(var3);
             var5.writeByte(var4);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -679,7 +676,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeShort(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -698,7 +695,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeShort(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -717,7 +714,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeByte((byte) var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -736,7 +733,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeByte((byte) var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -755,7 +752,7 @@ public final class NetPayloadBuilder {
             var5.writeLong(var2);
             var5.writeByte(var4);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -774,7 +771,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -792,7 +789,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4136);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -811,7 +808,7 @@ public final class NetPayloadBuilder {
             var4.writeUTF(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -829,7 +826,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4111);
             var3.writeUTF(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -847,7 +844,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4165);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -865,7 +862,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4163);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -883,7 +880,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4164);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -902,7 +899,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeInt(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -921,7 +918,7 @@ public final class NetPayloadBuilder {
             var5.writeInt(var2);
             var5.writeInt(var3);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             return var4.toByteArray();
@@ -941,7 +938,7 @@ public final class NetPayloadBuilder {
             var5.writeUTF(var3);
             var5.writeUTF(var4);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -960,7 +957,7 @@ public final class NetPayloadBuilder {
             var4.writeUTF(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -979,7 +976,7 @@ public final class NetPayloadBuilder {
             var4.writeUTF(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -996,7 +993,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4168);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -1013,7 +1010,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4169);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -1032,7 +1029,7 @@ public final class NetPayloadBuilder {
             var4.writeUTF(var2);
             var4.writeShort(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -1050,7 +1047,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4170);
             var3.writeUTF(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1069,7 +1066,7 @@ public final class NetPayloadBuilder {
             var4.writeUTF(var2);
             var4.writeShort(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -1087,7 +1084,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4171);
             var3.writeUTF(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1106,7 +1103,7 @@ public final class NetPayloadBuilder {
             var5.writeUTF(var2);
             var5.writeLong(var3);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -1125,7 +1122,7 @@ public final class NetPayloadBuilder {
             var4.writeUTF(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -1143,7 +1140,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4115);
             var3.writeByte(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1161,7 +1158,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4114);
             var3.writeUTF(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1179,7 +1176,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4119);
             var3.writeUTF(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1196,7 +1193,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4120);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -1213,7 +1210,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4121);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -1231,7 +1228,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4177);
             var3.writeByte((byte) var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1249,7 +1246,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4161);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1267,7 +1264,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4125);
             var3.writeByte(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1288,7 +1285,7 @@ public final class NetPayloadBuilder {
                 var5.writeByte((byte) var3);
                 var5.writeByte((byte) var4);
                 var5.writeUTF(GlobalStatus.zhangHao);
-                var5.writeUTF(GlobalStatus.d);
+                var5.writeUTF(GlobalStatus.token);
                 var5.writeUTF(var1);
                 var5.writeByte(-81);
                 return var7.toByteArray();
@@ -1310,7 +1307,7 @@ public final class NetPayloadBuilder {
             var4.writeByte(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -1329,7 +1326,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -1348,7 +1345,7 @@ public final class NetPayloadBuilder {
             var5.writeLong(var2);
             var5.writeByte(var4);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -1366,7 +1363,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4128);
             var3.writeByte(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1384,7 +1381,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4129);
             var3.writeByte(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1404,7 +1401,7 @@ public final class NetPayloadBuilder {
             var8.writeByte(1);
             var8.writeLong(var4);
             var8.writeUTF(GlobalStatus.zhangHao);
-            var8.writeUTF(GlobalStatus.d);
+            var8.writeUTF(GlobalStatus.token);
             var8.writeUTF(var1);
             var8.writeByte(-81);
             return var7.toByteArray();
@@ -1424,7 +1421,7 @@ public final class NetPayloadBuilder {
             var6.writeByte((byte) var3);
             var6.writeLong(var4);
             var6.writeUTF(GlobalStatus.zhangHao);
-            var6.writeUTF(GlobalStatus.d);
+            var6.writeUTF(GlobalStatus.token);
             var6.writeUTF(var1);
             var6.writeByte(-81);
             return var8.toByteArray();
@@ -1445,7 +1442,7 @@ public final class NetPayloadBuilder {
             var6.writeShort((short) var4);
             var6.writeByte((byte) var5);
             var6.writeUTF(GlobalStatus.zhangHao);
-            var6.writeUTF(GlobalStatus.d);
+            var6.writeUTF(GlobalStatus.token);
             var6.writeUTF(var1);
             var6.writeByte(-81);
             return var8.toByteArray();
@@ -1466,7 +1463,7 @@ public final class NetPayloadBuilder {
             var6.writeShort((short) var4);
             var6.writeByte((byte) var5);
             var6.writeUTF(GlobalStatus.zhangHao);
-            var6.writeUTF(GlobalStatus.d);
+            var6.writeUTF(GlobalStatus.token);
             var6.writeUTF(var1);
             var6.writeByte(-81);
             return var8.toByteArray();
@@ -1484,7 +1481,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4154);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1502,7 +1499,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4149);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1520,7 +1517,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4151);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1538,7 +1535,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4162);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1556,7 +1553,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4155);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1574,7 +1571,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4167);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1593,7 +1590,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeInt(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -1611,7 +1608,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4118);
             var3.writeShort(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1639,7 +1636,7 @@ public final class NetPayloadBuilder {
             var14.writeByte(var12);
             var14.writeByte(var13);
             var14.writeUTF(GlobalStatus.zhangHao);
-            var14.writeUTF(GlobalStatus.d);
+            var14.writeUTF(GlobalStatus.token);
             var14.writeUTF(var1);
             var14.writeByte(-81);
             return var16.toByteArray();
@@ -1657,7 +1654,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4146);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1674,7 +1671,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4143);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -1694,7 +1691,7 @@ public final class NetPayloadBuilder {
             var5.writeByte(var3);
             var5.writeInt(var4);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -1715,7 +1712,7 @@ public final class NetPayloadBuilder {
             var6.writeByte(var4);
             var6.writeInt(var5);
             var6.writeUTF(GlobalStatus.zhangHao);
-            var6.writeUTF(GlobalStatus.d);
+            var6.writeUTF(GlobalStatus.token);
             var6.writeUTF(var1);
             var6.writeByte(-81);
             return var8.toByteArray();
@@ -1733,7 +1730,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4145);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1752,7 +1749,7 @@ public final class NetPayloadBuilder {
             var5.writeInt(var2);
             var5.writeShort(var3);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             return var4.toByteArray();
@@ -1774,7 +1771,7 @@ public final class NetPayloadBuilder {
             }
 
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var6.toByteArray();
@@ -1797,7 +1794,7 @@ public final class NetPayloadBuilder {
             }
 
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -1817,7 +1814,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(var1[1]);
             var3.writeShort(var1[2]);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var2);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1839,7 +1836,7 @@ public final class NetPayloadBuilder {
             var7.writeShort(var5);
             var7.writeUTF(var6);
             var7.writeUTF(GlobalStatus.zhangHao);
-            var7.writeUTF(GlobalStatus.d);
+            var7.writeUTF(GlobalStatus.token);
             var7.writeUTF(var1);
             var7.writeByte(-81);
             return var9.toByteArray();
@@ -1858,7 +1855,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeUTF(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -1876,7 +1873,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4192);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1894,7 +1891,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4189);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1911,7 +1908,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4190);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -1929,7 +1926,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4191);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -1986,7 +1983,7 @@ public final class NetPayloadBuilder {
             var4.writeShort(var0);
             var4.writeShort(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             byte[] var9 = var3.toByteArray();
@@ -2010,7 +2007,7 @@ public final class NetPayloadBuilder {
             var5.writeShort(var2);
             var5.writeByte(var3);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             byte[] var10 = var4.toByteArray();
@@ -2033,7 +2030,7 @@ public final class NetPayloadBuilder {
             var4.writeShort(var0);
             var4.writeShort(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             byte[] var9 = var3.toByteArray();
@@ -2056,7 +2053,7 @@ public final class NetPayloadBuilder {
             var4.writeShort(var0);
             var4.writeShort(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             byte[] var9 = var3.toByteArray();
@@ -2082,7 +2079,7 @@ public final class NetPayloadBuilder {
             var7.writeUTF(var4);
             var7.writeInt(var5);
             var7.writeUTF(GlobalStatus.zhangHao);
-            var7.writeUTF(GlobalStatus.d);
+            var7.writeUTF(GlobalStatus.token);
             var7.writeUTF(var1);
             var7.writeByte(-81);
             byte[] var12 = var6.toByteArray();
@@ -2106,7 +2103,7 @@ public final class NetPayloadBuilder {
             var5.writeInt(var3);
             var5.writeShort(var2);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             byte[] var10 = var4.toByteArray();
@@ -2129,7 +2126,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4355);
             var3.writeByte(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             byte[] var9 = var8.toByteArray();
@@ -2155,7 +2152,7 @@ public final class NetPayloadBuilder {
             var6.writeUTF(var4);
             var6.writeUTF(var5 == null ? "" : var5);
             var6.writeUTF(GlobalStatus.zhangHao);
-            var6.writeUTF(GlobalStatus.d);
+            var6.writeUTF(GlobalStatus.token);
             var6.writeUTF(var1);
             var6.writeByte(-81);
             byte[] var12 = var11.toByteArray();
@@ -2182,7 +2179,7 @@ public final class NetPayloadBuilder {
             var7.writeShort(var5);
             var7.writeShort(var6);
             var7.writeUTF(GlobalStatus.zhangHao);
-            var7.writeUTF(GlobalStatus.d);
+            var7.writeUTF(GlobalStatus.token);
             var7.writeUTF(var1);
             var7.writeByte(-81);
             byte[] var13 = var12.toByteArray();
@@ -2205,7 +2202,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4357);
             var3.writeByte(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             byte[] var9 = var8.toByteArray();
@@ -2231,7 +2228,7 @@ public final class NetPayloadBuilder {
             var4.writeShort(var3.e);
             var4.writeShort(var3.f);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             byte[] var10 = var9.toByteArray();
@@ -2253,7 +2250,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4673);
             var3.writeUTF(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -2270,7 +2267,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4672);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -2289,7 +2286,7 @@ public final class NetPayloadBuilder {
             var4.writeUTF(var2);
             var4.writeInt(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -2307,7 +2304,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4668);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -2328,7 +2325,7 @@ public final class NetPayloadBuilder {
             var5.writeUTF(var3);
             var5.writeInt(var4);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             byte[] var11 = var10.toByteArray();
@@ -2354,7 +2351,7 @@ public final class NetPayloadBuilder {
             var6.writeUTF(var5);
             var6.writeInt(var4);
             var6.writeUTF(GlobalStatus.zhangHao);
-            var6.writeUTF(GlobalStatus.d);
+            var6.writeUTF(GlobalStatus.token);
             var6.writeUTF(var1);
             var6.writeByte(-81);
             byte[] var12 = var11.toByteArray();
@@ -2379,7 +2376,7 @@ public final class NetPayloadBuilder {
             var5.writeShort(var3);
             var5.writeShort(var4);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             byte[] var11 = var10.toByteArray();
@@ -2404,7 +2401,7 @@ public final class NetPayloadBuilder {
             var5.writeByte(var2);
             var5.writeInt(var3);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             byte[] var11 = var10.toByteArray();
@@ -2429,7 +2426,7 @@ public final class NetPayloadBuilder {
             var5.writeByte(var2);
             var5.writeInt(var3);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             byte[] var11 = var10.toByteArray();
@@ -2466,7 +2463,7 @@ public final class NetPayloadBuilder {
             var4.writeUTF(var2);
             var4.writeUTF(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -2484,7 +2481,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4216);
             var3.writeUTF(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -2502,7 +2499,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4198);
             var3.writeShort(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -2520,7 +2517,7 @@ public final class NetPayloadBuilder {
             var4.writeShort(var0);
             var4.writeInt(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var3.toByteArray();
@@ -2537,7 +2534,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4209);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -2554,7 +2551,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4214);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -2572,7 +2569,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4201);
             var3.writeUTF(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -2590,7 +2587,7 @@ public final class NetPayloadBuilder {
             var4.writeShort(var0);
             var4.writeShort(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var3.toByteArray();
@@ -2607,7 +2604,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4211);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -2625,7 +2622,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4263);
             var3.writeByte(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -2642,7 +2639,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4241);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -2661,7 +2658,7 @@ public final class NetPayloadBuilder {
             var4.writeUTF(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -2679,7 +2676,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4227);
             var3.writeShort(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -2697,7 +2694,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4208);
             var3.writeUTF(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -2715,7 +2712,7 @@ public final class NetPayloadBuilder {
             var4.writeShort(4224);
             var4.writeLong(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -2733,7 +2730,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4225);
             var3.writeShort(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -2751,7 +2748,7 @@ public final class NetPayloadBuilder {
             var4.writeShort(var0);
             var4.writeUTF(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var3.toByteArray();
@@ -2769,7 +2766,7 @@ public final class NetPayloadBuilder {
             var4.writeShort(var0);
             var4.writeUTF(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var3.toByteArray();
@@ -2786,7 +2783,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4219);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -2804,7 +2801,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4218);
             var3.writeUTF(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -2821,7 +2818,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4221);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -2843,7 +2840,7 @@ public final class NetPayloadBuilder {
             var8.writeShort(var6);
             var8.writeShort(var7);
             var8.writeUTF(GlobalStatus.zhangHao);
-            var8.writeUTF(GlobalStatus.d);
+            var8.writeUTF(GlobalStatus.token);
             var8.writeUTF(var1);
             var8.writeByte(-81);
             return var10.toByteArray();
@@ -2861,7 +2858,7 @@ public final class NetPayloadBuilder {
             var4.writeShort(var0);
             var4.writeShort(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var3.toByteArray();
@@ -2879,7 +2876,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4233);
             var3.writeByte(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -2897,7 +2894,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4237);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -2914,7 +2911,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4236);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -2934,7 +2931,7 @@ public final class NetPayloadBuilder {
             var5.writeShort(var3);
             var5.writeShort(var4);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -2953,7 +2950,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeInt(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -2970,7 +2967,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4248);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -2989,7 +2986,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3008,7 +3005,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var7)).writeByte(-82);
             var2.writeShort(4612);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             byte[] var8 = var7.toByteArray();
@@ -3031,7 +3028,7 @@ public final class NetPayloadBuilder {
             var4.writeUTF(var2);
             var4.writeByte(var3 ? 1 : 0);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3050,7 +3047,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeInt(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3068,7 +3065,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4613);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -3088,7 +3085,7 @@ public final class NetPayloadBuilder {
             var5.writeInt(var3);
             var5.writeByte(var4);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -3107,7 +3104,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3126,7 +3123,7 @@ public final class NetPayloadBuilder {
             var4.writeByte(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3145,7 +3142,7 @@ public final class NetPayloadBuilder {
             var4.writeByte(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3164,7 +3161,7 @@ public final class NetPayloadBuilder {
             var4.writeByte(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3183,7 +3180,7 @@ public final class NetPayloadBuilder {
             var4.writeByte(var3);
             var4.writeInt(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3203,7 +3200,7 @@ public final class NetPayloadBuilder {
             var6.writeInt(var2);
             var6.writeLong(var4);
             var6.writeUTF(GlobalStatus.zhangHao);
-            var6.writeUTF(GlobalStatus.d);
+            var6.writeUTF(GlobalStatus.token);
             var6.writeUTF(var1);
             var6.writeByte(-81);
             return var8.toByteArray();
@@ -3222,7 +3219,7 @@ public final class NetPayloadBuilder {
             var4.writeUTF(var1);
             var4.writeShort(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var2);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3241,7 +3238,7 @@ public final class NetPayloadBuilder {
             var4.writeUTF(var1);
             var4.writeByte(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var3);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3260,7 +3257,7 @@ public final class NetPayloadBuilder {
             var4.writeUTF(var1);
             var4.writeByte(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var3);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3278,7 +3275,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4868);
             var3.writeUTF(var1);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var2);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -3296,7 +3293,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4869);
             var3.writeShort(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -3316,7 +3313,7 @@ public final class NetPayloadBuilder {
             var5.writeInt(var3);
             var5.writeShort(var4);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -3336,7 +3333,7 @@ public final class NetPayloadBuilder {
             var5.writeInt(var3);
             var5.writeByte(var4);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -3355,7 +3352,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3374,7 +3371,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var2);
             var4.writeByte(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3391,7 +3388,7 @@ public final class NetPayloadBuilder {
             (var3 = new DataOutputStream(var2)).writeByte(-82);
             var3.writeShort(var0);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var2.toByteArray();
@@ -3413,7 +3410,7 @@ public final class NetPayloadBuilder {
             }
 
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3431,7 +3428,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4648);
             var3.writeByte(var1);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var2);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -3450,7 +3447,7 @@ public final class NetPayloadBuilder {
             var4.writeByte(var1);
             var4.writeShort(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var3);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3469,7 +3466,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var1);
             var4.writeInt(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var3);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3489,7 +3486,7 @@ public final class NetPayloadBuilder {
             var6.writeUTF(var3);
             var6.writeLong(var4);
             var6.writeUTF(GlobalStatus.zhangHao);
-            var6.writeUTF(GlobalStatus.d);
+            var6.writeUTF(GlobalStatus.token);
             var6.writeUTF(var1);
             var6.writeByte(-81);
             return var8.toByteArray();
@@ -3507,7 +3504,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4858);
             var3.writeShort(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -3525,7 +3522,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4859);
             var3.writeInt(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -3543,7 +3540,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4860);
             var3.writeByte(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -3561,7 +3558,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4861);
             var3.writeByte(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -3579,7 +3576,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4862);
             var3.writeShort(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -3600,7 +3597,7 @@ public final class NetPayloadBuilder {
             var6.writeShort(var4);
             var6.writeShort(var5);
             var6.writeUTF(GlobalStatus.zhangHao);
-            var6.writeUTF(GlobalStatus.d);
+            var6.writeUTF(GlobalStatus.token);
             var6.writeUTF(var1);
             var6.writeByte(-81);
             return var8.toByteArray();
@@ -3619,7 +3616,7 @@ public final class NetPayloadBuilder {
             var4.writeUTF(var2);
             var4.writeInt(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -3637,7 +3634,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4651);
             var3.writeUTF(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -3657,7 +3654,7 @@ public final class NetPayloadBuilder {
             var5.writeByte(var4);
             var5.writeByte(var3);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var1);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -3674,7 +3671,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4653);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -3691,7 +3688,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4658);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -3708,7 +3705,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4659);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -3729,7 +3726,7 @@ public final class NetPayloadBuilder {
             var6.writeByte(var3);
             var6.writeByte(var4);
             var6.writeUTF(GlobalStatus.zhangHao);
-            var6.writeUTF(GlobalStatus.d);
+            var6.writeUTF(GlobalStatus.token);
             var6.writeUTF(var5);
             var6.writeByte(-81);
             return var8.toByteArray();
@@ -3746,7 +3743,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4223);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -3764,7 +3761,7 @@ public final class NetPayloadBuilder {
             var4.writeShort(var0);
             var4.writeShort(var1);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var2);
             var4.writeByte(-81);
             return var3.toByteArray();
@@ -3781,7 +3778,7 @@ public final class NetPayloadBuilder {
             (var3 = new DataOutputStream(var5)).writeByte(-82);
             var3.writeShort(4880);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeUTF(var2);
             var3.writeByte(-81);
@@ -3802,7 +3799,7 @@ public final class NetPayloadBuilder {
             var5.writeInt(var2);
             var5.writeByte(var3);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var4);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -3822,7 +3819,7 @@ public final class NetPayloadBuilder {
             var5.writeInt(var1);
             var5.writeByte(var3);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var4);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -3856,7 +3853,7 @@ public final class NetPayloadBuilder {
             }
 
             var9.writeUTF(GlobalStatus.zhangHao);
-            var9.writeUTF(GlobalStatus.d);
+            var9.writeUTF(GlobalStatus.token);
             var9.writeUTF(var8);
             var9.writeByte(-81);
             return var11.toByteArray();
@@ -3894,7 +3891,7 @@ public final class NetPayloadBuilder {
             }
 
             var10.writeUTF(GlobalStatus.zhangHao);
-            var10.writeUTF(GlobalStatus.d);
+            var10.writeUTF(GlobalStatus.token);
             var10.writeUTF(var9);
             var10.writeByte(-81);
             return var12.toByteArray();
@@ -3932,7 +3929,7 @@ public final class NetPayloadBuilder {
             }
 
             var9.writeUTF(GlobalStatus.zhangHao);
-            var9.writeUTF(GlobalStatus.d);
+            var9.writeUTF(GlobalStatus.token);
             var9.writeUTF(var7);
             var9.writeByte(-81);
             return var8.toByteArray();
@@ -3968,7 +3965,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4254);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -4004,7 +4001,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4881);
             var3.writeByte(var1);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var2);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -4024,7 +4021,7 @@ public final class NetPayloadBuilder {
             var5.writeUTF(var2);
             var5.writeByte(var3);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var4);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -4067,7 +4064,7 @@ public final class NetPayloadBuilder {
             var4.writeUTF(var2);
             var4.writeUTF(var3);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var1);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -4085,7 +4082,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4678);
             var3.writeUTF(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -4103,7 +4100,7 @@ public final class NetPayloadBuilder {
             var3.writeShort(4675);
             var3.writeUTF(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var5.toByteArray();
@@ -4122,7 +4119,7 @@ public final class NetPayloadBuilder {
             var5.writeByte(var1);
             var5.writeLong(var2);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var4);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -4139,7 +4136,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4222);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -4163,7 +4160,7 @@ public final class NetPayloadBuilder {
             }
 
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var3);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -4182,7 +4179,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var1);
             var4.writeByte((byte) var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var3);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -4201,7 +4198,7 @@ public final class NetPayloadBuilder {
             var5.writeByte(var1);
             var5.writeLong(var2);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var4);
             var5.writeByte(-81);
             return var7.toByteArray();
@@ -4218,7 +4215,7 @@ public final class NetPayloadBuilder {
             (var3 = new DataOutputStream(var2)).writeByte(-82);
             var3.writeShort(var0);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var1);
             var3.writeByte(-81);
             return var2.toByteArray();
@@ -4237,7 +4234,7 @@ public final class NetPayloadBuilder {
             var4.writeInt(var1);
             var4.writeByte(var2);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(var3);
             var4.writeByte(-81);
             return var6.toByteArray();
@@ -4256,7 +4253,7 @@ public final class NetPayloadBuilder {
             var5.writeInt(var1);
             var5.writeByte(var2);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(var3);
             var5.writeByte(-81);
             return var4.toByteArray();
@@ -4273,7 +4270,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4369);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
             var2.writeShort(GlobalStatus.eE[0]);
             var2.writeShort(GlobalStatus.eE[1]);
@@ -4318,7 +4315,7 @@ public final class NetPayloadBuilder {
             (var3 = new DataOutputStream(var5)).writeByte(-82);
             var3.writeShort(4370);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(var2);
             var3.writeByte(var1);
             var3.writeShort(GlobalStatus.eM[0]);
@@ -4364,7 +4361,7 @@ public final class NetPayloadBuilder {
             (var2 = new DataOutputStream(var4)).writeByte(-82);
             var2.writeShort(4372);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeByte(var1);
             var2.writeByte(-81);
             return var4.toByteArray();
@@ -4396,7 +4393,7 @@ public final class NetPayloadBuilder {
             }
 
             var7.writeUTF(GlobalStatus.zhangHao);
-            var7.writeUTF(GlobalStatus.d);
+            var7.writeUTF(GlobalStatus.token);
             var7.writeUTF(GlobalStatus.ad);
             var7.writeByte(-81);
             return var6.toByteArray();
@@ -4414,7 +4411,7 @@ public final class NetPayloadBuilder {
             var2.writeShort(4682);
             var2.writeInt(var0);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(GlobalStatus.ad);
             var2.writeByte(-81);
             return var1.toByteArray();
@@ -4436,7 +4433,7 @@ public final class NetPayloadBuilder {
             var6.writeByte(var0);
             var6.writeByte(var4);
             var6.writeUTF(GlobalStatus.zhangHao);
-            var6.writeUTF(GlobalStatus.d);
+            var6.writeUTF(GlobalStatus.token);
             var6.writeUTF(GlobalStatus.ad);
             var6.writeByte(-81);
             return var5.toByteArray();
@@ -4453,7 +4450,7 @@ public final class NetPayloadBuilder {
             (var1 = new DataOutputStream(var3)).writeByte(-82);
             var1.writeShort(4267);
             var1.writeUTF(GlobalStatus.zhangHao);
-            var1.writeUTF(GlobalStatus.d);
+            var1.writeUTF(GlobalStatus.token);
             var1.writeUTF(GlobalStatus.ad);
             var1.writeByte(-81);
             return var3.toByteArray();
@@ -4470,7 +4467,7 @@ public final class NetPayloadBuilder {
             (var4 = new DataOutputStream(var3)).writeByte(-82);
             var4.writeShort(4374);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(GlobalStatus.ad);
             var4.writeByte(var0);
             if (var0 > 0 && var0 != 5) {
@@ -4496,7 +4493,7 @@ public final class NetPayloadBuilder {
             (var4 = new DataOutputStream(var3)).writeByte(-82);
             var4.writeShort(4685);
             var4.writeUTF(GlobalStatus.zhangHao);
-            var4.writeUTF(GlobalStatus.d);
+            var4.writeUTF(GlobalStatus.token);
             var4.writeUTF(GlobalStatus.ad);
             var4.writeByte(var0);
             if (var0 != 2 && var0 != 5) {
@@ -4526,7 +4523,7 @@ public final class NetPayloadBuilder {
             var5.writeInt(var2);
             var5.writeInt(var3);
             var5.writeUTF(GlobalStatus.zhangHao);
-            var5.writeUTF(GlobalStatus.d);
+            var5.writeUTF(GlobalStatus.token);
             var5.writeUTF(GlobalStatus.ad);
             var5.writeByte(-81);
             return var4.toByteArray();
@@ -4544,7 +4541,7 @@ public final class NetPayloadBuilder {
             var2.writeShort(4683);
             var2.writeByte(var0);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(GlobalStatus.ad);
             var2.writeByte(-81);
             return var1.toByteArray();
@@ -4562,7 +4559,7 @@ public final class NetPayloadBuilder {
             var2.writeShort(4686);
             var2.writeInt(var0);
             var2.writeUTF(GlobalStatus.zhangHao);
-            var2.writeUTF(GlobalStatus.d);
+            var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(GlobalStatus.ad);
             var2.writeByte(-81);
             return var1.toByteArray();
@@ -4585,7 +4582,7 @@ public final class NetPayloadBuilder {
             var8.writeByte(var5);
             var8.writeUTF(var6);
             var8.writeUTF(GlobalStatus.zhangHao);
-            var8.writeUTF(GlobalStatus.d);
+            var8.writeUTF(GlobalStatus.token);
             var8.writeUTF(var7);
             var8.writeByte(-81);
             return var10.toByteArray();
@@ -4604,7 +4601,7 @@ public final class NetPayloadBuilder {
             var3.writeByte(var1);
             var3.writeUTF(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
-            var3.writeUTF(GlobalStatus.d);
+            var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(GlobalStatus.ad);
             var3.writeByte(-81);
             return var5.toByteArray();

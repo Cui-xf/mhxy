@@ -124,7 +124,7 @@ public final class bd implements CommandListener {
          (var4 = new DataOutputStream(var6)).writeByte(-82);
          var4.writeShort(4375);
          var4.writeUTF(GlobalStatus.zhangHao);
-         var4.writeUTF(GlobalStatus.d);
+         var4.writeUTF(GlobalStatus.token);
          var4.writeUTF(var2);
          var4.writeUTF(var3);
          var4.writeShort(this.h[0]);

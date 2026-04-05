@@ -9,9 +9,8 @@ import java.util.Vector;
 
 public final class NetworkPacketProcessors {
     private MainCanvas mainCanvas;
-    private DataInputStream b;
+    private DataInputStream dis;
     private ByteArrayInputStream bis;
-    private short d = -1;
     private int e;
     private int f;
     private int g;
@@ -23,59 +22,56 @@ public final class NetworkPacketProcessors {
         this.mainCanvas = var1;
     }
 
-    public void process(NetPacket var1) {
-        if (var1 != null) {
+    public void process(NetPacket code) {
+        if (code != null) {
             try {
-                this.d = var1.getCode();
-                if (this.d != 8192) {
-                    if (var1.payload == null) {
+                short packetCode = code.getCode();
+                if (packetCode != NetPacketCode.MultiPackContainer) {
+                    if (code.payload == null) {
                         return;
                     }
 
-                    this.bis = new ByteArrayInputStream(var1.payload);
-                    this.b = new DataInputStream(this.bis);
+                    this.bis = new ByteArrayInputStream(code.payload);
+                    this.dis = new DataInputStream(this.bis);
                 }
 
-                switch (this.d) {
-                    case 8192:
-                        if (var1.child == null) {
+                switch (packetCode) {
+                    case NetPacketCode.MultiPackContainer:
+                        if (code.child == null) {
                             return;
                         }
-
-                        while (var1.child.size() > 0) {
-                            this.process((NetPacket) var1.child.elementAt(0));
-                            var1.child.removeElementAt(0);
+                        while (!code.child.isEmpty()) {
+                            this.process((NetPacket) code.child.elementAt(0));
+                            code.child.removeElementAt(0);
                         }
-
                         return;
-                    case 8193:
-                        GlobalStatus.w(this.b);
-                        if (GlobalStatus.eB == 53) {
+                    case NetPacketCode.LoginFail:
+                        GlobalStatus.parseLoginFail(this.dis);
+                        if (GlobalStatus.exceptionCode == 53) {
                             if (MainCanvas.uiSceneController.overlayDialogController != null) {
                                 MainCanvas.uiSceneController.overlayDialogController.d();
                                 MainCanvas.uiSceneController.sceneStateShadow = MainCanvas.uiSceneController.currentSceneModeId = 0;
-                                this.mainCanvas.showTips(GlobalConfig.YiChangTiShi[GlobalStatus.eB]);
+                                this.mainCanvas.showTips(GlobalConfig.YiChangTiShi[GlobalStatus.exceptionCode]);
                             }
-
                             return;
                         }
 
-                        if (GlobalStatus.eB == 48) {
+                        if (GlobalStatus.exceptionCode == 48) {
                             if (MainCanvas.uiSceneController.overlayDialogController != null) {
                                 MainCanvas.uiSceneController.overlayDialogController.f = -2;
                             } else {
-                                this.mainCanvas.showTips(GlobalConfig.YiChangTiShi[GlobalStatus.eB]);
+                                this.mainCanvas.showTips(GlobalConfig.YiChangTiShi[GlobalStatus.exceptionCode]);
                             }
 
                             return;
                         }
 
-                        if (GlobalStatus.eB != -2) {
-                            if (MainCanvas.uiSceneController == null || MainCanvas.uiSceneController.overlayDialogController == null || MainCanvas.uiSceneController.overlayDialogController.f != -1 || GlobalStatus.eC == null || !GlobalStatus.eC.startsWith("等待他人操作")) {
-                                if (GlobalStatus.eC != null) {
-                                    this.mainCanvas.showTips(GlobalStatus.eC);
+                        if (GlobalStatus.exceptionCode != -2) {
+                            if (MainCanvas.uiSceneController == null || MainCanvas.uiSceneController.overlayDialogController == null || MainCanvas.uiSceneController.overlayDialogController.f != -1 || GlobalStatus.exceptionMsg == null || !GlobalStatus.exceptionMsg.startsWith("等待他人操作")) {
+                                if (GlobalStatus.exceptionMsg != null) {
+                                    this.mainCanvas.showTips(GlobalStatus.exceptionMsg);
                                 } else {
-                                    this.mainCanvas.showTips(GlobalConfig.YiChangTiShi[GlobalStatus.eB < 0 ? 0 : GlobalStatus.eB]);
+                                    this.mainCanvas.showTips(GlobalConfig.YiChangTiShi[GlobalStatus.exceptionCode < 0 ? 0 : GlobalStatus.exceptionCode]);
                                 }
                                 break;
                             }
@@ -88,17 +84,16 @@ public final class NetworkPacketProcessors {
                         }
 
                         return;
-                    case 8194:
-                        GlobalStatus.zhangHao = this.b.readUTF();
-                        GlobalStatus.d = this.b.readUTF();
+                    case NetPacketCode.LoginSuccess:
+                        GlobalStatus.zhangHao = this.dis.readUTF();
+                        GlobalStatus.token = this.dis.readUTF();
                         return;
-                    case 8195:
-                        GlobalConfig.printStr("exec角色列表:");
-                        GlobalStatus.a(this.b);
-                        this.mainCanvas.b(GlobalStatus.W == null ? 0 : GlobalStatus.W.length);
+                    case NetPacketCode.RoleList:
+                        GlobalStatus.parseRoleList(this.dis);
+                        this.mainCanvas.startRoleListPage(GlobalStatus.roleIdList == null ? 0 : GlobalStatus.roleIdList.length);
                         return;
                     case 8197:
-                        GlobalStatus.d(this.b);
+                        GlobalStatus.d(this.dis);
                         if (MainCanvas.uiSceneController == null) {
                             return;
                         }
@@ -118,12 +113,12 @@ public final class NetworkPacketProcessors {
                         return;
                     case 8198:
                         byte var47;
-                        if ((var47 = this.b.readByte()) > 0) {
+                        if ((var47 = this.dis.readByte()) > 0) {
                             az_1[] var57 = new az_1[var47];
 
                             for (int var64 = 0; var64 < var47; ++var64) {
                                 var57[var64] = new az_1();
-                                var57[var64].a(this.b);
+                                var57[var64].a(this.dis);
                             }
 
                             GlobalStatus.u.addElement(var57);
@@ -139,11 +134,11 @@ public final class NetworkPacketProcessors {
                         this.b();
                         return;
                     case 8200:
-                        GlobalStatus.b(this.b);
+                        GlobalStatus.b(this.dis);
                         return;
                     case 8201:
-                        byte var56 = this.b.readByte();
-                        GlobalStatus.e(this.b);
+                        byte var56 = this.dis.readByte();
+                        GlobalStatus.e(this.dis);
                         if (var56 == 1) {
                             this.mainCanvas.i();
                         } else if (var56 == 2 && MainCanvas.uiSceneController != null) {
@@ -161,7 +156,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8202:
-                        GlobalStatus.l(this.b);
+                        GlobalStatus.l(this.dis);
                         if (MainCanvas.uiSceneController != null && MainCanvas.uiSceneController.currentSceneModeId == 5) {
                             MainCanvas.uiSceneController.sceneSubState = 0;
                             this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus = 7;
@@ -169,8 +164,8 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8203:
-                        this.b.readByte();
-                        GlobalStatus.n(this.b);
+                        this.dis.readByte();
+                        GlobalStatus.n(this.dis);
                         if (MainCanvas.uiSceneController.currentSceneModeId == 12) {
                             if (this.mainCanvas.topUi.a == 0) {
                                 MainCanvas.uiSceneController.a((byte) 1, true);
@@ -182,17 +177,17 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8204:
-                        this.a(this.b);
+                        this.a(this.dis);
                         return;
                     case 8205:
-                        GlobalStatus.A(this.b);
+                        GlobalStatus.A(this.dis);
                         return;
                     case 8206:
-                        b(this.b);
+                        b(this.dis);
                         return;
                     case 8207:
                         if (UISceneController.i()) {
-                            GlobalStatus.g(this.b);
+                            GlobalStatus.g(this.dis);
                             MainCanvas.uiSceneController.sceneSubState = 0;
                             MainCanvas.uiSceneController.m();
                             return;
@@ -200,8 +195,8 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8208:
-                        byte var46 = this.b.readByte();
-                        GlobalStatus.b(this.b, var46);
+                        byte var46 = this.dis.readByte();
+                        GlobalStatus.b(this.dis, var46);
                         if (var46 == 1) {
                             MainCanvas.uiSceneController.M.y();
                         } else {
@@ -218,7 +213,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8210:
-                        GlobalStatus.t(this.b);
+                        GlobalStatus.t(this.dis);
                         if (MainCanvas.uiSceneController != null) {
                             if (MainCanvas.uiSceneController.currentSceneModeId == 12 && MainCanvas.uiSceneController.sceneSubState >= 6) {
                                 if (this.mainCanvas.pageStatus != 2) {
@@ -244,7 +239,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8211:
-                        GlobalStatus.D(this.b);
+                        GlobalStatus.D(this.dis);
                         MainCanvas.uiSceneController.a(GlobalStatus.fs);
                         MainCanvas.uiSceneController.a(GlobalStatus.fl);
                         if (this.mainCanvas.pageStatus == 1) {
@@ -253,14 +248,14 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8212:
-                        GlobalStatus.E(this.b);
+                        GlobalStatus.E(this.dis);
                         if (this.mainCanvas.pageStatus == 1) {
                             this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus;
                         }
 
                         return;
                     case 8213:
-                        GlobalStatus.q(this.b);
+                        GlobalStatus.q(this.dis);
                         if (MainCanvas.uiSceneController == null) {
                             return;
                         }
@@ -280,7 +275,7 @@ public final class NetworkPacketProcessors {
                         return;
                     case 8214:
                         byte var45;
-                        if ((var45 = this.b.readByte()) <= 0) {
+                        if ((var45 = this.dis.readByte()) <= 0) {
                             return;
                         }
 
@@ -288,7 +283,7 @@ public final class NetworkPacketProcessors {
 
                         for (int var63 = 0; var63 < var45; ++var63) {
                             var55[var63] = new ce();
-                            var55[var63].a(this.b);
+                            var55[var63].a(this.dis);
                         }
 
                         if (MainCanvas.uiSceneController != null) {
@@ -297,7 +292,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8215:
-                        GlobalStatus.B(this.b);
+                        GlobalStatus.B(this.dis);
                         if (UISceneController.i()) {
                             MainCanvas.uiSceneController.v();
                             return;
@@ -306,7 +301,7 @@ public final class NetworkPacketProcessors {
                         this.mainCanvas.showTips("战斗中不能进行该操作");
                         return;
                     case 8216:
-                        GlobalStatus.m(this.b);
+                        GlobalStatus.m(this.dis);
                         if (GlobalStatus.cG == null || GlobalStatus.cG.length <= 0) {
                             this.mainCanvas.showTips("该玩家没有武器装备!");
                             return;
@@ -330,8 +325,8 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8218:
-                        long var6 = this.b.readLong();
-                        byte var44 = this.b.readByte();
+                        long var6 = this.dis.readLong();
+                        byte var44 = this.dis.readByte();
                         GlobalConfig.printStr("[FIGHT] 8218包: 服务器fightId=" + var6 + " 本地v=" + GlobalStatus.v + " bq_1.g=" + bq_1.g);
                         if (var6 == -1L) {
                             if (MainCanvas.uiSceneController.overlayDialogController != null) {
@@ -361,9 +356,9 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8219:
-                        byte var54 = this.b.readByte();
-                        this.b.readLong();
-                        GlobalStatus.C(this.b);
+                        byte var54 = this.dis.readByte();
+                        this.dis.readLong();
+                        GlobalStatus.C(this.dis);
                         if (UISceneController.i()) {
                             if (var54 == 0) {
                                 GlobalStatus.N();
@@ -381,7 +376,7 @@ public final class NetworkPacketProcessors {
                         this.f();
                         return;
                     case 8221:
-                        GlobalStatus.F(this.b);
+                        GlobalStatus.F(this.dis);
                         return;
                     case 8222:
                         GlobalConfig.printStr("exec宠物列表:");
@@ -393,7 +388,7 @@ public final class NetworkPacketProcessors {
                                 return;
                             }
 
-                            GlobalStatus.h(this.b);
+                            GlobalStatus.h(this.dis);
                             if (MainCanvas.uiSceneController.currentSceneModeId != 6) {
                                 return;
                             }
@@ -407,33 +402,33 @@ public final class NetworkPacketProcessors {
                             return;
                         }
 
-                        GlobalStatus.h(this.b);
+                        GlobalStatus.h(this.dis);
                         return;
                     case 8224:
-                        GlobalStatus.bH = this.b.readUTF();
+                        GlobalStatus.bH = this.dis.readUTF();
                         if (MainCanvas.uiSceneController.currentSceneModeId == 6) {
-                            this.mainCanvas.mixedUi.b();
-                            this.mainCanvas.mixedUi.a("任务详细");
+                            this.mainCanvas.mixedUi.clean();
+                            this.mainCanvas.mixedUi.setTitle("任务详细");
                             this.mainCanvas.textPanel.setFWBText(GlobalStatus.bH, GlobalConfig.font2, (byte) 2);
                             this.mainCanvas.textPanel.setShuRuMoShi((byte) 0);
                             this.mainCanvas.bottomUi.a("确定");
-                            this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.textPanel);
-                            this.mainCanvas.mixedUi.a((BaseUi) this.mainCanvas.bottomUi);
-                            this.mainCanvas.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+                            this.mainCanvas.mixedUi.addChild((BaseUi) this.mainCanvas.textPanel);
+                            this.mainCanvas.mixedUi.addChild((BaseUi) this.mainCanvas.bottomUi);
+                            this.mainCanvas.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
                             this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus;
                             MainCanvas.uiSceneController.sceneSubState = 3;
                         }
 
                         return;
                     case 8225:
-                        GlobalStatus.i(this.b);
+                        GlobalStatus.i(this.dis);
                         if (GlobalStatus.bW) {
                             MainCanvas.uiSceneController.F();
                         }
 
                         return;
                     case 8226:
-                        GlobalStatus.J(this.b);
+                        GlobalStatus.J(this.dis);
                         if (GlobalStatus.gS == null) {
                             this.mainCanvas.showTips("附近没有玩家!");
                             return;
@@ -452,7 +447,7 @@ public final class NetworkPacketProcessors {
                         this.mainCanvas.showTips("战斗中不能查看周围玩家");
                         return;
                     case 8227:
-                        GlobalStatus.j(this.b);
+                        GlobalStatus.j(this.dis);
                         if (GlobalStatus.cs == null) {
                             this.mainCanvas.showTips("没有可传送的目的地!");
                             return;
@@ -464,7 +459,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8228:
-                        GlobalStatus.s(this.b);
+                        GlobalStatus.s(this.dis);
                         if (GlobalStatus.gs != null) {
                             boolean var62 = false;
                             MainCanvas.uiSceneController.J();
@@ -482,14 +477,14 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8229:
-                        c(this.b);
+                        c(this.dis);
                         return;
                     case 8230:
-                        GlobalStatus.H(this.b);
+                        GlobalStatus.H(this.dis);
                         MainCanvas.uiSceneController.C();
                         return;
                     case 8231:
-                        GlobalStatus.r(this.b);
+                        GlobalStatus.r(this.dis);
                         if (GlobalStatus.dY != null) {
                             boolean var61 = false;
                             MainCanvas.uiSceneController.I();
@@ -506,7 +501,7 @@ public final class NetworkPacketProcessors {
                             break;
                         }
                     case 8232:
-                        GlobalStatus.k(this.b);
+                        GlobalStatus.k(this.dis);
                         if (MainCanvas.uiSceneController.currentSceneModeId == 11) {
                             if (GlobalStatus.ct == null) {
                                 this.mainCanvas.showTips("仓库没有物品");
@@ -518,7 +513,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8233:
-                        GlobalStatus.G(this.b);
+                        GlobalStatus.G(this.dis);
                         if (MainCanvas.uiSceneController.sceneStateShadow == 35) {
                             if (GlobalStatus.gs != null) {
                                 MainCanvas.uiSceneController.D();
@@ -533,7 +528,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8234:
-                        GlobalStatus.o(this.b);
+                        GlobalStatus.o(this.dis);
                         if (MainCanvas.uiSceneController.currentSceneModeId == 29 && GlobalStatus.dE != null) {
                             MainCanvas.uiSceneController.i(MainCanvas.uiSceneController.aE > GlobalStatus.dE.length - 1 ? GlobalStatus.dE.length - 1 : MainCanvas.uiSceneController.aE);
                         }
@@ -541,7 +536,7 @@ public final class NetworkPacketProcessors {
                         return;
                     case 8235:
                         if (UISceneController.i()) {
-                            GlobalStatus.p(this.b);
+                            GlobalStatus.p(this.dis);
                         } else {
                             GlobalStatus.s();
                         }
@@ -557,14 +552,14 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8236:
-                        GlobalStatus.p(this.b);
+                        GlobalStatus.p(this.dis);
                         if (MainCanvas.uiSceneController.currentSceneModeId != 7) {
                             MainCanvas.uiSceneController.p((int) 2);
                         }
 
                         return;
                     case 8238:
-                        GlobalStatus.v(this.b);
+                        GlobalStatus.v(this.dis);
                         if (!UISceneController.aj || GlobalStatus.ev) {
                             if (GlobalStatus.ew != null) {
                                 MainCanvas.uiSceneController.a((short) MainCanvas.uiSceneController.currentSceneModeId, (byte) 1);
@@ -576,7 +571,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8239:
-                        if (this.b.readByte() == 0) {
+                        if (this.dis.readByte() == 0) {
                             GlobalStatus.bt = false;
                         } else {
                             GlobalStatus.bt = true;
@@ -589,18 +584,18 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8240:
-                        GlobalStatus.z(this.b);
+                        GlobalStatus.z(this.dis);
                         MainCanvas.uiSceneController.f((byte) 1);
                         return;
                     case 8241:
-                        GlobalStatus.L(this.b);
+                        GlobalStatus.L(this.dis);
                         return;
                     case 8242:
-                        GlobalStatus.K(this.b);
+                        GlobalStatus.K(this.dis);
                         return;
                     case 8243:
-                        byte var60 = this.b.readByte();
-                        GlobalStatus.a(this.b, var60);
+                        byte var60 = this.dis.readByte();
+                        GlobalStatus.a(this.dis, var60);
                         if (GlobalStatus.db != null && GlobalStatus.db.length > 0) {
                             MainCanvas.uiSceneController.a(GlobalStatus.fz[MainCanvas.uiSceneController.ay] == 0, false);
                             return;
@@ -609,7 +604,7 @@ public final class NetworkPacketProcessors {
                         this.mainCanvas.showTips("宠物没有技能!");
                         return;
                     case 8244:
-                        GlobalStatus.u(this.b);
+                        GlobalStatus.u(this.dis);
                         if (MainCanvas.uiSceneController != null) {
                             if (MainCanvas.uiSceneController.currentSceneModeId == 36 && MainCanvas.uiSceneController.sceneSubState >= 2) {
                                 if (this.mainCanvas.pageStatus != 2) {
@@ -625,17 +620,16 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8245:
-                        GlobalStatus.aI(this.b);
-                        if (this.b.readByte() == 1) {
+                        GlobalStatus.aI(this.dis);
+                        if (this.dis.readByte() == 1) {
                             this.mainCanvas.e();
                         }
-
                         return;
                     case 8246:
-                        GlobalStatus.N(this.b);
+                        GlobalStatus.N(this.dis);
                         return;
                     case 8247:
-                        GlobalStatus.z = this.b.readByte();
+                        GlobalStatus.z = this.dis.readByte();
                         if (MainCanvas.uiSceneController != null) {
                             if (MainCanvas.uiSceneController.currentSceneModeId == 3) {
                                 MainCanvas.uiSceneController.a((byte) 2);
@@ -649,14 +643,14 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8248:
-                        GlobalStatus.A = this.b.readByte();
+                        GlobalStatus.A = this.dis.readByte();
                         if (MainCanvas.uiSceneController != null) {
                             MainCanvas.uiSceneController.d(false);
                         }
 
                         return;
                     case 8249:
-                        GlobalStatus.B = this.b.readByte();
+                        GlobalStatus.B = this.dis.readByte();
                         if (MainCanvas.uiSceneController != null) {
                             MainCanvas.uiSceneController.d(false);
                         }
@@ -670,15 +664,15 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8251:
-                        GlobalStatus.D = this.b.readByte();
+                        GlobalStatus.D = this.dis.readByte();
                         if (MainCanvas.uiSceneController != null) {
                             MainCanvas.uiSceneController.d(false);
                         }
 
                         return;
                     case 8252:
-                        byte var59 = this.b.readByte();
-                        GlobalStatus.f(this.b);
+                        byte var59 = this.dis.readByte();
+                        GlobalStatus.f(this.dis);
                         if (var59 == 1) {
                             this.mainCanvas.i();
                         }
@@ -694,36 +688,36 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8253:
-                        GlobalStatus.aD(this.b);
+                        GlobalStatus.aD(this.dis);
                         if (MainCanvas.uiSceneController.currentSceneModeId != 20) {
                             MainCanvas.uiSceneController.Y();
                         }
 
                         return;
                     case 8254:
-                        GlobalStatus.aE(this.b);
+                        GlobalStatus.aE(this.dis);
                         MainCanvas.uiSceneController.c(MainCanvas.uiSceneController.currentSceneModeId);
                         return;
                     case 8255:
-                        GlobalStatus.aG(this.b);
+                        GlobalStatus.aG(this.dis);
                         MainCanvas.uiSceneController.Z();
                         return;
                     case 8257:
-                        GlobalStatus.E = this.b.readByte();
+                        GlobalStatus.E = this.dis.readByte();
                         if (MainCanvas.uiSceneController != null) {
                             MainCanvas.uiSceneController.d(false);
                         }
 
                         return;
                     case 8258:
-                        GlobalStatus.aH(this.b);
+                        GlobalStatus.aH(this.dis);
                         if (MainCanvas.uiSceneController.sceneStateShadow != 4 && MainCanvas.uiSceneController.sceneStateShadow != 33) {
                             MainCanvas.uiSceneController.ah();
                         }
 
                         return;
                     case 8259:
-                        GlobalStatus.Y(this.b);
+                        GlobalStatus.Y(this.dis);
                         if (MainCanvas.uiSceneController.currentSceneModeId == 2) {
                             MainCanvas.uiSceneController.M.b(false);
                         } else if (MainCanvas.uiSceneController.currentSceneModeId == 50) {
@@ -733,20 +727,20 @@ public final class NetworkPacketProcessors {
                         }
 
                         return;
-                    case 8260:
-                        int var42;
-                        if ((var42 = this.b.readInt()) > 0) {
-                            byte[] var43 = new byte[var42];
-                            GlobalStatus.kX = this.b.readUTF();
-                            this.b.read(var43);
-                            MainCanvas.ae = new Page(GlobalStatus.kX, var43);
+                    case NetPacketCode.LoadMap: {
+                        int var42 = this.dis.readInt();
+                        if (var42 > 0) {
+                            byte[] frameInfo = new byte[var42];
+                            GlobalStatus.currentMapName = this.dis.readUTF();
+                            this.dis.read(frameInfo);
+                            MainCanvas.ae = new Page(GlobalStatus.currentMapName, frameInfo);
                         }
-
-                        GlobalStatus.aJ(this.b);
+                        GlobalStatus.skip(this.dis);
                         return;
+                    }
                     case 8261:
-                        GlobalStatus.aK(this.b);
-                        if (this.b.readByte() == 1) {
+                        GlobalStatus.aK(this.dis);
+                        if (this.dis.readByte() == 1) {
                             this.mainCanvas.f();
                         }
 
@@ -766,7 +760,7 @@ public final class NetworkPacketProcessors {
                     default:
                         return;
                     case 8264:
-                        if (GlobalStatus.bu = this.b.readByte() != 0) {
+                        if (GlobalStatus.bu = this.dis.readByte() != 0) {
                             ab_1.b = true;
                         }
 
@@ -780,11 +774,11 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8265:
-                        GlobalStatus.bv = this.b.readInt();
+                        GlobalStatus.bv = this.dis.readInt();
                         return;
                     case 8267:
-                        GlobalStatus.bz = this.b.readUTF();
-                        GlobalStatus.by = this.b.readUTF();
+                        GlobalStatus.bz = this.dis.readUTF();
+                        GlobalStatus.by = this.dis.readUTF();
                         if (MainCanvas.uiSceneController != null) {
                             MainCanvas.uiSceneController.aa();
                         }
@@ -792,20 +786,20 @@ public final class NetworkPacketProcessors {
                         return;
                     case 8269:
                         if (MainCanvas.uiSceneController != null) {
-                            MainCanvas.uiSceneController.U.a(this.b);
+                            MainCanvas.uiSceneController.U.a(this.dis);
                             MainCanvas.uiSceneController.U.a(false);
                         }
 
                         return;
                     case 8270:
                         if (MainCanvas.uiSceneController != null) {
-                            MainCanvas.uiSceneController.O.b(this.b);
+                            MainCanvas.uiSceneController.O.b(this.dis);
                             MainCanvas.uiSceneController.O.a(false);
                         }
 
                         return;
                     case 8271:
-                        GlobalStatus.aR(this.b);
+                        GlobalStatus.aR(this.dis);
                         if (MainCanvas.uiSceneController != null) {
                             if (GlobalStatus.mq < 4) {
                                 MainCanvas.uiSceneController.ae();
@@ -827,7 +821,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8273:
-                        MainCanvas.uiSceneController.J = this.b.readUTF();
+                        MainCanvas.uiSceneController.J = this.dis.readUTF();
                         LoadingPage.h = 0;
                         if (!MainCanvas.uiSceneController.c && MainCanvas.uiSceneController.currentSceneModeId != 0 && MainCanvas.uiSceneController.currentSceneModeId != 25) {
                             this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus = 7;
@@ -836,8 +830,8 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8274:
-                        int var41 = this.b.readInt();
-                        int var53 = this.b.readInt();
+                        int var41 = this.dis.readInt();
+                        int var53 = this.dis.readInt();
                         if (MainCanvas.uiSceneController.currentSceneModeId != 0 && MainCanvas.uiSceneController.currentSceneModeId != 25 && GlobalStatus.H == null) {
                             this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus = 7;
                             MainCanvas.uiSceneController.N();
@@ -846,58 +840,56 @@ public final class NetworkPacketProcessors {
                         this.mainCanvas.b(var41 + 8, var53 + 16);
                         return;
                     case 8275:
-                        byte var40 = this.b.readByte();
+                        byte var40 = this.dis.readByte();
                         GlobalStatus.F = null;
                         GlobalStatus.G = null;
                         if (var40 == 1) {
-                            GlobalStatus.F = this.b.readUTF();
-                            GlobalStatus.G = this.b.readUTF();
+                            GlobalStatus.F = this.dis.readUTF();
+                            GlobalStatus.G = this.dis.readUTF();
                         }
 
                         this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus = 7;
                         return;
                     case 8277:
                         if (MainCanvas.uiSceneController != null && MainCanvas.uiSceneController.P != null) {
-                            MainCanvas.uiSceneController.P.a(this.b);
+                            MainCanvas.uiSceneController.P.a(this.dis);
                             MainCanvas.uiSceneController.P.a(false);
                         }
 
                         return;
                     case 8278:
-                        GlobalStatus.Z(this.b);
+                        GlobalStatus.Z(this.dis);
                         MainCanvas.uiSceneController.M.n();
                         return;
                     case 8280:
-                        GlobalStatus.p(this.b);
+                        GlobalStatus.p(this.dis);
                         if (MainCanvas.uiSceneController.currentSceneModeId != 7) {
                             MainCanvas.uiSceneController.p((int) 1);
                         }
 
                         return;
                     case 8286:
-                        GlobalStatus.l = this.b.readByte();
-                        if ((GlobalStatus.k = this.b.readUTF()) != null) {
-                            MainCanvas.uiSceneController.ab();
-                        }
-
+                        GlobalStatus.l = this.dis.readByte();
+                        GlobalStatus.k = this.dis.readUTF();
+                        MainCanvas.uiSceneController.ab();
                         return;
                     case 8288:
-                        MainCanvas.aH = this.b.readUTF();
-                        MainCanvas.aI = this.b.readUTF();
+                        MainCanvas.aH = this.dis.readUTF();
+                        MainCanvas.aI = this.dis.readUTF();
                         this.mainCanvas.q();
                         return;
                     case 8290:
-                        GlobalStatus.zhangHao = this.b.readUTF();
-                        GlobalStatus.d = this.b.readUTF();
+                        GlobalStatus.zhangHao = this.dis.readUTF();
+                        GlobalStatus.token = this.dis.readUTF();
                         if (GlobalConfig.channel == 1) {
-                            this.b.readUTF();
-                            GlobalStatus.m = this.b.readUTF();
+                            this.dis.readUTF();
+                            GlobalStatus.m = this.dis.readUTF();
                         }
 
                         return;
                     case 8291:
-                        byte var39 = this.b.readByte();
-                        GlobalStatus.aa(this.b);
+                        byte var39 = this.dis.readByte();
+                        GlobalStatus.aa(this.dis);
                         if (MainCanvas.uiSceneController.currentSceneModeId != 115) {
                             return;
                         }
@@ -914,7 +906,7 @@ public final class NetworkPacketProcessors {
                         return;
                     case 8293:
                         if (MainCanvas.uiSceneController != null && MainCanvas.uiSceneController.Q != null) {
-                            MainCanvas.uiSceneController.Q.a(this.b);
+                            MainCanvas.uiSceneController.Q.a(this.dis);
                             MainCanvas.uiSceneController.Q.a(false);
                         }
 
@@ -936,7 +928,7 @@ public final class NetworkPacketProcessors {
                         return;
                     case 8295:
                         GlobalConfig.printStr("exec宠物升星");
-                        GlobalStatus.aS(this.b);
+                        GlobalStatus.aS(this.dis);
                         if (MainCanvas.uiSceneController != null) {
                             MainCanvas.uiSceneController.e(false);
                         }
@@ -944,12 +936,12 @@ public final class NetworkPacketProcessors {
                         return;
                     case 8296:
                         GlobalConfig.printStr("exec抽奖");
-                        GlobalStatus.aW(this.b);
+                        GlobalStatus.aW(this.dis);
                         MainCanvas.uiSceneController.am();
                         return;
                     case 8297:
                         GlobalConfig.printStr("exec抽奖结果");
-                        GlobalStatus.aX(this.b);
+                        GlobalStatus.aX(this.dis);
                         if (MainCanvas.uiSceneController.currentSceneModeId == 127) {
                             MainCanvas.uiSceneController.am();
                             this.mainCanvas.showTips("恭喜您，抽中了" + GlobalStatus.nj + "×" + GlobalStatus.nk);
@@ -958,7 +950,7 @@ public final class NetworkPacketProcessors {
                         return;
                     case 8298:
                         GlobalConfig.printStr("exec宠物升星结果");
-                        GlobalStatus.bc(this.b);
+                        GlobalStatus.bc(this.dis);
                         if (GlobalStatus.nB == 1) {
                             this.mainCanvas.showTips("升星成功");
                         } else {
@@ -968,14 +960,14 @@ public final class NetworkPacketProcessors {
                         return;
                     case 8300:
                         if (MainCanvas.uiSceneController != null) {
-                            MainCanvas.uiSceneController.O.b(this.b);
+                            MainCanvas.uiSceneController.O.b(this.dis);
                             MainCanvas.uiSceneController.O.a(false);
                         }
 
                         return;
                     case 8301:
                         if (MainCanvas.uiSceneController != null) {
-                            MainCanvas.uiSceneController.V.a(this.b);
+                            MainCanvas.uiSceneController.V.a(this.dis);
                             MainCanvas.uiSceneController.V.a(false);
                         }
 
@@ -985,38 +977,38 @@ public final class NetworkPacketProcessors {
                             MainCanvas.uiSceneController.N = new cc(MainCanvas.uiSceneController, this.mainCanvas);
                         }
 
-                        MainCanvas.uiSceneController.N.a(this.b);
+                        MainCanvas.uiSceneController.N.a(this.dis);
                         MainCanvas.uiSceneController.N.a((short) 0);
                         return;
                     case 8303:
                         GlobalConfig.printStr("宠物继承");
                         cg_1.a(cg_1.b);
-                        cg_1.a(this.b);
+                        cg_1.a(this.dis);
                         MainCanvas.uiSceneController.W.b();
                         return;
                     case 8304:
-                        if (this.b.readInt() == 1) {
+                        if (this.dis.readInt() == 1) {
                             if (MainCanvas.uiSceneController.N == null) {
                                 MainCanvas.uiSceneController.N = new cc(MainCanvas.uiSceneController, this.mainCanvas);
                             }
 
-                            MainCanvas.uiSceneController.N.b(this.b);
+                            MainCanvas.uiSceneController.N.b(this.dis);
                             MainCanvas.uiSceneController.N.a((short) 2);
                         }
 
                         return;
                     case 8448:
-                        if (this.b.readByte() == 1) {
+                        if (this.dis.readByte() == 1) {
                             this.mainCanvas.startMainPage();
                         }
 
                         return;
                     case 8449:
-                        GlobalStatus.O(this.b);
+                        GlobalStatus.O(this.dis);
                         MainCanvas.uiSceneController.i((byte) 0);
                         return;
                     case 8450:
-                        GlobalStatus.P(this.b);
+                        GlobalStatus.P(this.dis);
                         if (MainCanvas.uiSceneController.currentSceneModeId == 1) {
                             MainCanvas.uiSceneController.X();
                         } else {
@@ -1025,22 +1017,22 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8451:
-                        GlobalStatus.O(this.b);
+                        GlobalStatus.O(this.dis);
                         MainCanvas.uiSceneController.i((byte) 2);
                         return;
                     case 8452:
-                        GlobalStatus.P(this.b);
+                        GlobalStatus.P(this.dis);
                         MainCanvas.uiSceneController.k((byte) 3);
                         return;
                     case 8453:
-                        GlobalStatus.S(this.b);
+                        GlobalStatus.S(this.dis);
                         if (MainCanvas.uiSceneController != null) {
                             MainCanvas.uiSceneController.U();
                         }
 
                         return;
                     case 8454:
-                        GlobalStatus.O(this.b);
+                        GlobalStatus.O(this.dis);
                         if (MainCanvas.uiSceneController.as != 5 && MainCanvas.uiSceneController.aZ != 4 && MainCanvas.uiSceneController.as != 9 && MainCanvas.uiSceneController.as != 10) {
                             MainCanvas.uiSceneController.i((byte) 4);
                             return;
@@ -1055,18 +1047,18 @@ public final class NetworkPacketProcessors {
                         MainCanvas.uiSceneController.sceneStateShadow = MainCanvas.uiSceneController.currentSceneModeId = 38;
                         return;
                     case 8455:
-                        GlobalStatus.P(this.b);
+                        GlobalStatus.P(this.dis);
                         MainCanvas.uiSceneController.k((byte) 5);
                         return;
                     case 8456:
-                        String var38 = this.b.readUTF();
+                        String var38 = this.dis.readUTF();
                         if (MainCanvas.uiSceneController != null) {
                             MainCanvas.uiSceneController.d(var38);
                         }
 
                         return;
                     case 8704:
-                        GlobalStatus.T(this.b);
+                        GlobalStatus.T(this.dis);
                         if (GlobalStatus.ik != null && GlobalStatus.ik.length > 0) {
                             MainCanvas.uiSceneController.M.b();
                             return;
@@ -1075,15 +1067,15 @@ public final class NetworkPacketProcessors {
                         this.mainCanvas.showTips("没有等待响应的帮派!");
                         return;
                     case 8705:
-                        GlobalStatus.W(this.b);
+                        GlobalStatus.W(this.dis);
                         MainCanvas.uiSceneController.M.h(0);
                         return;
                     case 8706:
-                        GlobalStatus.X(this.b);
+                        GlobalStatus.X(this.dis);
                         MainCanvas.uiSceneController.M.h(1);
                         return;
                     case 8708:
-                        GlobalStatus.U(this.b);
+                        GlobalStatus.U(this.dis);
                         if (GlobalStatus.ip != null) {
                             MainCanvas.uiSceneController.M.c();
                         } else {
@@ -1092,7 +1084,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8709:
-                        GlobalStatus.V(this.b);
+                        GlobalStatus.V(this.dis);
                         if (GlobalStatus.it != null) {
                             MainCanvas.uiSceneController.M.f();
                         } else {
@@ -1101,7 +1093,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8710:
-                        GlobalStatus.W(this.b);
+                        GlobalStatus.W(this.dis);
                         if (GlobalStatus.iy != null) {
                             MainCanvas.uiSceneController.M.i();
                             return;
@@ -1115,19 +1107,19 @@ public final class NetworkPacketProcessors {
                             break;
                         }
                     case 8711:
-                        GlobalStatus.ab(this.b);
+                        GlobalStatus.ab(this.dis);
                         MainCanvas.uiSceneController.M.j();
                         return;
                     case 8712:
-                        GlobalStatus.ac(this.b);
+                        GlobalStatus.ac(this.dis);
                         MainCanvas.uiSceneController.M.k();
                         return;
                     case 8713:
-                        GlobalStatus.ad(this.b);
+                        GlobalStatus.ad(this.dis);
                         MainCanvas.uiSceneController.M.l();
                         return;
                     case 8714:
-                        GlobalStatus.ae(this.b);
+                        GlobalStatus.ae(this.dis);
                         if (GlobalStatus.jo != null) {
                             MainCanvas.uiSceneController.M.s();
                         } else {
@@ -1136,18 +1128,18 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8715:
-                        GlobalStatus.ag(this.b);
+                        GlobalStatus.ag(this.dis);
                         if (MainCanvas.uiSceneController != null) {
                             MainCanvas.uiSceneController.U();
                         }
 
                         return;
                     case 8716:
-                        GlobalStatus.af(this.b);
+                        GlobalStatus.af(this.dis);
                         MainCanvas.uiSceneController.M.t();
                         return;
                     case 8717:
-                        GlobalStatus.ah(this.b);
+                        GlobalStatus.ah(this.dis);
                         if (GlobalStatus.jz != null) {
                             MainCanvas.uiSceneController.W();
                         } else {
@@ -1156,14 +1148,14 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8718:
-                        GlobalStatus.ai(this.b);
+                        GlobalStatus.ai(this.dis);
                         MainCanvas.uiSceneController.a((byte) 3);
                         return;
                     case 8722:
-                        GlobalStatus.jv = this.b.readByte() == 1;
-                        GlobalStatus.jw = this.b.readByte() == 1;
-                        GlobalStatus.jx = this.b.readByte();
-                        GlobalStatus.jy = this.b.readByte();
+                        GlobalStatus.jv = this.dis.readByte() == 1;
+                        GlobalStatus.jw = this.dis.readByte() == 1;
+                        GlobalStatus.jx = this.dis.readByte();
+                        GlobalStatus.jy = this.dis.readByte();
                         return;
                     case 8723:
                         GlobalStatus.f = System.currentTimeMillis();
@@ -1180,7 +1172,7 @@ public final class NetworkPacketProcessors {
                             break;
                         }
                     case 8724:
-                        GlobalStatus.aj(this.b);
+                        GlobalStatus.aj(this.dis);
                         if (!UISceneController.i()) {
                             this.mainCanvas.showTips("战斗中不能进行该操作");
                             return;
@@ -1193,32 +1185,32 @@ public final class NetworkPacketProcessors {
                         MainCanvas.uiSceneController.c(false);
                         return;
                     case 8725:
-                        GlobalStatus.ak(this.b);
+                        GlobalStatus.ak(this.dis);
                         MainCanvas.uiSceneController.l((byte) 0);
                         return;
                     case 8726:
-                        GlobalStatus.H(this.b);
+                        GlobalStatus.H(this.dis);
                         MainCanvas.uiSceneController.C();
                         return;
                     case 8727:
-                        GlobalStatus.al(this.b);
+                        GlobalStatus.al(this.dis);
                         MainCanvas.uiSceneController.l((byte) 2);
                         return;
                     case 8728:
-                        GlobalStatus.an(this.b);
+                        GlobalStatus.an(this.dis);
                         MainCanvas.uiSceneController.C();
                         return;
                     case 8729:
-                        GlobalStatus.aF(this.b);
+                        GlobalStatus.aF(this.dis);
                         return;
                     case 8730:
-                        GlobalStatus.at(this.b);
+                        GlobalStatus.at(this.dis);
                         return;
                     case 8731:
-                        GlobalStatus.aw(this.b);
+                        GlobalStatus.aw(this.dis);
                         return;
                     case 8732:
-                        GlobalStatus.av(this.b);
+                        GlobalStatus.av(this.dis);
                         if (o_1.e == 1) {
                             MainCanvas.uiSceneController.O.a(MainCanvas.uiSceneController.O.a, (short) MainCanvas.uiSceneController.O.c, MainCanvas.uiSceneController.O.d);
                         } else {
@@ -1227,11 +1219,11 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8733:
-                        o_1.a(this.b);
+                        o_1.a(this.dis);
                         MainCanvas.uiSceneController.O.c();
                         return;
                     case 8734:
-                        GlobalStatus.Q(this.b);
+                        GlobalStatus.Q(this.dis);
                         if (MainCanvas.uiSceneController.as != 3 && MainCanvas.uiSceneController.as != 8 && MainCanvas.uiSceneController.as != 7 && MainCanvas.uiSceneController.as != 2) {
                             if (MainCanvas.uiSceneController.as == 4 || MainCanvas.uiSceneController.as == 5 || MainCanvas.uiSceneController.as == 6 || MainCanvas.uiSceneController.as == 10) {
                                 MainCanvas.uiSceneController.i((byte) 9);
@@ -1243,7 +1235,7 @@ public final class NetworkPacketProcessors {
                         MainCanvas.uiSceneController.i((byte) 7);
                         return;
                     case 8735:
-                        GlobalStatus.R(this.b);
+                        GlobalStatus.R(this.dis);
                         if (MainCanvas.uiSceneController.as != 7 && MainCanvas.uiSceneController.as != 2 && MainCanvas.uiSceneController.as != 3 && MainCanvas.uiSceneController.as != 8) {
                             if (MainCanvas.uiSceneController.as == 9 || MainCanvas.uiSceneController.as == 4 || MainCanvas.uiSceneController.as == 5 || MainCanvas.uiSceneController.as == 6) {
                                 MainCanvas.uiSceneController.i((byte) 10);
@@ -1255,7 +1247,7 @@ public final class NetworkPacketProcessors {
                         MainCanvas.uiSceneController.i((byte) 8);
                         return;
                     case 8736:
-                        GlobalStatus.aP(this.b);
+                        GlobalStatus.aP(this.dis);
                         if (MainCanvas.uiSceneController != null && MainCanvas.uiSceneController.ad()) {
                             MainCanvas.uiSceneController.e((byte) 0);
                             GlobalStatus.lt[0] = -1;
@@ -1282,7 +1274,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8738:
-                        GlobalStatus.aO(this.b);
+                        GlobalStatus.aO(this.dis);
                         if (MainCanvas.uiSceneController != null && MainCanvas.uiSceneController.ad()) {
                             MainCanvas.uiSceneController.sceneSubState = 0;
                             MainCanvas.uiSceneController.c((byte) 0);
@@ -1303,12 +1295,12 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8739:
-                        GlobalStatus.aN(this.b);
+                        GlobalStatus.aN(this.dis);
 //                        LoginController.aaaaa("游客注册 第2步: ", "创建一哥哥通行证密码");
                         this.mainCanvas.pageStatus = 7;
                         return;
                     case 8960:
-                        GlobalStatus.ao(this.b);
+                        GlobalStatus.ao(this.dis);
                         if (MainCanvas.uiSceneController.M.p == 0) {
                             MainCanvas.uiSceneController.M.u();
                         } else {
@@ -1317,17 +1309,17 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8961:
-                        GlobalStatus.ap(this.b);
+                        GlobalStatus.ap(this.dis);
                         MainCanvas.uiSceneController.f((byte) 2);
                         return;
                     case 8962:
-                        GlobalStatus.aq(this.b);
+                        GlobalStatus.aq(this.dis);
                         return;
                     case 8963:
-                        GlobalStatus.kj = this.b.readShort();
+                        GlobalStatus.kj = this.dis.readShort();
                         return;
                     case 8964:
-                        GlobalStatus.ar(this.b);
+                        GlobalStatus.ar(this.dis);
                         if (GlobalStatus.kk != null) {
                             this.mainCanvas.showTips(GlobalStatus.kk);
                             this.mainCanvas.a(false);
@@ -1335,23 +1327,23 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8965:
-                        GlobalStatus.as(this.b);
+                        GlobalStatus.as(this.dis);
                         MainCanvas.uiSceneController.M.h(3);
                         return;
                     case 8966:
-                        GlobalStatus.ax(this.b);
+                        GlobalStatus.ax(this.dis);
                         MainCanvas.uiSceneController.M.w();
                         return;
                     case 8967:
-                        GlobalStatus.ay(this.b);
+                        GlobalStatus.ay(this.dis);
                         MainCanvas.uiSceneController.M.x();
                         return;
                     case 8968:
-                        GlobalStatus.aC(this.b);
+                        GlobalStatus.aC(this.dis);
                         GlobalStatus.O.a();
                         return;
                     case 8969:
-                        GlobalStatus.aB(this.b);
+                        GlobalStatus.aB(this.dis);
                         if (MainCanvas.uiSceneController.currentSceneModeId == 76) {
                             int var34 = this.mainCanvas.topUi.a;
                             int var52 = this.mainCanvas.gunDongListUi.g();
@@ -1362,11 +1354,11 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8970:
-                        GlobalStatus.a(this.b.readByte(), this.b);
+                        GlobalStatus.a(this.dis.readByte(), this.dis);
                         return;
                     case 8971:
                         if (MainCanvas.uiSceneController.currentSceneModeId != 111) {
-                            GlobalStatus.au(this.b);
+                            GlobalStatus.au(this.dis);
                             if (GlobalStatus.Q.b != null && GlobalStatus.Q.b.length() > 0) {
                                 this.mainCanvas.popUpWindow.destroy();
                                 GlobalStatus.Q.a(this.mainCanvas.popUpWindow);
@@ -1382,7 +1374,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8972:
-                        GlobalStatus.aA(this.b);
+                        GlobalStatus.aA(this.dis);
                         if (MainCanvas.uiSceneController.currentSceneModeId == 76) {
                             byte var50 = this.mainCanvas.topUi.a;
                             int var32 = this.mainCanvas.gunDongListUi.g();
@@ -1406,58 +1398,58 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 8973:
-                        GlobalStatus.az(this.b);
+                        GlobalStatus.az(this.dis);
                         GlobalStatus.P.c();
                         MainCanvas.uiSceneController.u();
                         return;
                     case 8974:
                         GlobalConfig.printStr("exec特效查看");
-                        GlobalStatus.aT(this.b);
+                        GlobalStatus.aT(this.dis);
                         MainCanvas.uiSceneController.z();
                         return;
                     case 8975:
                         GlobalConfig.printStr("exec特效激活");
-                        GlobalStatus.aU(this.b);
+                        GlobalStatus.aU(this.dis);
                         MainCanvas.uiSceneController.B();
                         return;
                     case 8976:
                         GlobalConfig.printStr("exec特效消除");
-                        GlobalStatus.aV(this.b);
+                        GlobalStatus.aV(this.dis);
                         MainCanvas.uiSceneController.A();
                         return;
                     case 8977:
                         GlobalConfig.printStr("exec查看坐骑");
-                        GlobalStatus.aY(this.b);
+                        GlobalStatus.aY(this.dis);
                         MainCanvas.uiSceneController.al();
                         MainCanvas.uiSceneController.sceneRefreshCoordinator.a(true);
                         return;
                     case 8978:
                         GlobalConfig.printStr("exec坐骑升星");
-                        GlobalStatus.aZ(this.b);
+                        GlobalStatus.aZ(this.dis);
                         MainCanvas.uiSceneController.al();
                         return;
                     case 8979:
                         GlobalConfig.printStr("exec更换坐骑");
-                        GlobalStatus.ba(this.b);
+                        GlobalStatus.ba(this.dis);
                         MainCanvas.uiSceneController.al();
                         MainCanvas.uiSceneController.sceneRefreshCoordinator.a(true);
                         return;
                     case 8981:
                         GlobalConfig.printStr("exec特效技能");
-                        GlobalStatus.bb(this.b);
+                        GlobalStatus.bb(this.dis);
                         MainCanvas.uiSceneController.an();
                         return;
                     case 8982:
                         GlobalConfig.printStr("exec宠物炼化需 求");
-                        (GlobalStatus.nC = new String[3])[0] = this.b.readUTF();
-                        GlobalStatus.nC[1] = this.b.readUTF();
-                        GlobalStatus.nC[2] = this.b.readUTF();
+                        (GlobalStatus.nC = new String[3])[0] = this.dis.readUTF();
+                        GlobalStatus.nC[1] = this.dis.readUTF();
+                        GlobalStatus.nC[2] = this.dis.readUTF();
                         MainCanvas.uiSceneController.sceneSubState = 11;
                         LoadingPage.h = 0;
                         this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus;
                         return;
                     case 9216:
-                        v_1.a(this.b);
+                        v_1.a(this.dis);
                         if (v_1.a != null) {
                             MainCanvas.uiSceneController.S.a((int) 0);
                         } else {
@@ -1466,7 +1458,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 9217:
-                        v_1.b(this.b);
+                        v_1.b(this.dis);
                         if (v_1.b != null) {
                             MainCanvas.uiSceneController.S.b();
                         } else {
@@ -1475,15 +1467,15 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 9218:
-                        v_1.c(this.b);
+                        v_1.c(this.dis);
                         MainCanvas.uiSceneController.S.c();
                         return;
                     case 9219:
-                        v_1.d(this.b);
+                        v_1.d(this.dis);
                         MainCanvas.uiSceneController.S.d();
                         return;
                     case 9220:
-                        v_1.e(this.b);
+                        v_1.e(this.dis);
                         MainCanvas.uiSceneController.S.f();
                         return;
                     case 9221:
@@ -1492,17 +1484,17 @@ public final class NetworkPacketProcessors {
                             MainCanvas.uiSceneController.sceneStateShadow = MainCanvas.uiSceneController.currentSceneModeId = 0;
                         }
 
-                        this.mainCanvas.showTips(this.b.readUTF());
+                        this.mainCanvas.showTips(this.dis.readUTF());
                         return;
                     case 9222:
-                        GlobalStatus.aQ(this.b);
+                        GlobalStatus.aQ(this.dis);
                         if (MainCanvas.uiSceneController != null) {
                             MainCanvas.uiSceneController.ac();
                         }
 
                         return;
                     case 9223:
-                        byte var31 = this.b.readByte();
+                        byte var31 = this.dis.readByte();
                         if (MainCanvas.uiSceneController != null) {
                             if (var31 == 1) {
                                 MainCanvas.uiSceneController.af();
@@ -1514,7 +1506,7 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 9472:
-                        GlobalStatus.M(this.b);
+                        GlobalStatus.M(this.dis);
                         if (GlobalConfig.channel != 0 && !GlobalConfig.logined) {
                             if (GlobalStatus.hw) {
                                 if (GlobalStatus.hw && GlobalStatus.hA.length <= 0) {
@@ -1542,13 +1534,13 @@ public final class NetworkPacketProcessors {
                         this.mainCanvas.d();
                         return;
                     case 9473:
-                        GlobalStatus.lq = this.b.readByte();
-                        GlobalStatus.lp = this.b.readShort();
-                        GlobalStatus.kZ = this.b.readShort();
-                        GlobalStatus.lf = this.b.readUTF();
-                        GlobalStatus.lg = this.b.readByte();
-                        if ((GlobalStatus.le = this.b.readShort()) > 0) {
-                            GlobalStatus.aL(this.b);
+                        GlobalStatus.lq = this.dis.readByte();
+                        GlobalStatus.lp = this.dis.readShort();
+                        GlobalStatus.kZ = this.dis.readShort();
+                        GlobalStatus.lf = this.dis.readUTF();
+                        GlobalStatus.lg = this.dis.readByte();
+                        if ((GlobalStatus.le = this.dis.readShort()) > 0) {
+                            GlobalStatus.aL(this.dis);
                             MainCanvas.uiSceneController.d(GlobalStatus.kZ);
                         } else {
                             this.mainCanvas.showTips("没有更多的成就!");
@@ -1556,15 +1548,15 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 9474:
-                        GlobalStatus.ls = this.b.readByte();
-                        GlobalStatus.lr = this.b.readShort();
-                        GlobalStatus.kZ = this.b.readShort();
-                        this.b.readUTF();
-                        this.b.readByte();
-                        GlobalStatus.lm = this.b.readByte();
-                        GlobalStatus.lh = this.b.readUTF();
-                        if ((GlobalStatus.ll = this.b.readShort()) > 0) {
-                            GlobalStatus.aM(this.b);
+                        GlobalStatus.ls = this.dis.readByte();
+                        GlobalStatus.lr = this.dis.readShort();
+                        GlobalStatus.kZ = this.dis.readShort();
+                        this.dis.readUTF();
+                        this.dis.readByte();
+                        GlobalStatus.lm = this.dis.readByte();
+                        GlobalStatus.lh = this.dis.readUTF();
+                        if ((GlobalStatus.ll = this.dis.readShort()) > 0) {
+                            GlobalStatus.aM(this.dis);
                             MainCanvas.uiSceneController.e(GlobalStatus.kZ);
                         } else {
                             this.mainCanvas.showTips("没有更多的成就!");
@@ -1572,16 +1564,16 @@ public final class NetworkPacketProcessors {
 
                         return;
                     case 9488:
-                        GlobalStatus.x(this.b);
+                        GlobalStatus.x(this.dis);
                         MainCanvas.uiSceneController.ai();
                         return;
                     case 9489:
-                        GlobalStatus.y(this.b);
+                        GlobalStatus.y(this.dis);
                         MainCanvas.uiSceneController.aj();
                         return;
                     case 9491:
                         GlobalConfig.printStr("exec 随机名称");
-                        this.mainCanvas.ay = this.b.readUTF();
+                        this.mainCanvas.ay = this.dis.readUTF();
                         if (this.mainCanvas.lastPageStatus == 6) {
                             this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus;
                         }
@@ -1593,80 +1585,74 @@ public final class NetworkPacketProcessors {
                                 MainCanvas.uiSceneController.R = new bd(MainCanvas.uiSceneController, MainCanvas.uiSceneController.mainCanvasRef, MainCanvas.pngUtil);
                             }
 
-                            MainCanvas.uiSceneController.R.a(this.b);
+                            MainCanvas.uiSceneController.R.a(this.dis);
                             MainCanvas.uiSceneController.R.a();
                         }
 
                         return;
                     case 10496:
-                        byte var30 = this.b.readByte();
-                        this.b.readByte();
+                        byte var30 = this.dis.readByte();
+                        this.dis.readByte();
                         if (var30 == 4) {
                             String[] var3;
-                            ChongZhiModel.j = (var3 = ZhangHaoUtils.a(this.b.readUTF(), ':'))[0].trim();
+                            ChongZhiModel.j = (var3 = ZhangHaoUtils.a(this.dis.readUTF(), ':'))[0].trim();
                             ChongZhiModel.i = var3[1].trim();
                             ChongZhiModel.zhanghao = ChongZhiModel.j;
                             ChongZhiModel.pwd = ChongZhiModel.i;
                             ChongZhiModel.saveZhangHaoPwd();
-                            String var4 = this.b.readUTF();
+                            String var4 = this.dis.readUTF();
                             this.mainCanvas.showTips(var4);
                         } else if (var30 == 2) {
                             String[] var49;
-                            ChongZhiModel.j = (var49 = ZhangHaoUtils.a(this.b.readUTF(), ':'))[0].trim();
+                            ChongZhiModel.j = (var49 = ZhangHaoUtils.a(this.dis.readUTF(), ':'))[0].trim();
                             ChongZhiModel.i = var49[1].trim();
                             ChongZhiModel.zhanghao = ChongZhiModel.j;
                             ChongZhiModel.pwd = ChongZhiModel.i;
                             ChongZhiModel.saveZhangHaoPwd();
-                            String var58 = this.b.readUTF();
+                            String var58 = this.dis.readUTF();
                             this.mainCanvas.showTips(var58);
                             break;
                         }
 
                         return;
                     case 12289:
-                        byte var2 = this.b.readByte();
+                        byte var2 = this.dis.readByte();
                         GlobalStatus.ke = -1;
                         GlobalStatus.kf = -1;
                         GlobalStatus.kg = -1;
                         if (var2 == 0) {
-                            GlobalStatus.ke = this.b.readInt();
-                            GlobalStatus.kf = this.b.readInt();
-                            GlobalStatus.kg = this.b.readInt();
+                            GlobalStatus.ke = this.dis.readInt();
+                            GlobalStatus.kf = this.dis.readInt();
+                            GlobalStatus.kg = this.dis.readInt();
                         }
 
                         return;
                 }
-            } catch (Exception var28) {
-                ((Throwable) var28).printStackTrace();
-                this.mainCanvas.a((Exception) var28, (byte) 5);
-                return;
+            } catch (Exception e) {
+                e.printStackTrace();
+                this.mainCanvas.showException(e, (byte) 5);
             } finally {
-                if (var1 != null) {
-                    this.d = var1.getCode();
-                }
-
                 try {
-                    if (this.b != null) {
-                        this.b.close();
+                    if (this.dis != null) {
+                        this.dis.close();
                     }
 
                     if (this.bis != null) {
                         this.bis.close();
                     }
-                } catch (IOException var27) {
-                    ((Throwable) var27).printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
 
             }
-
         }
     }
 
     private void a() throws IOException {
-        GlobalStatus.C = new byte[this.b.readByte()];
+        GlobalStatus.C = new byte[this.dis.readByte()];
 
         for (byte var1 = 0; var1 < GlobalStatus.C.length; ++var1) {
-            GlobalStatus.C[var1] = this.b.readByte();
+            GlobalStatus.C[var1] = this.dis.readByte();
         }
 
     }
@@ -1825,7 +1811,7 @@ public final class NetworkPacketProcessors {
     }
 
     private void b() throws IOException {
-        GlobalStatus.c(this.b);
+        GlobalStatus.c(this.dis);
         if (MainCanvas.uiSceneController != null && MainCanvas.uiSceneController.sceneRefreshCoordinator != null) {
             if (GlobalConfig.supportTouch && this.mainCanvas.touchController != null) {
                 if (!MainCanvas.uiSceneController.sceneRefreshCoordinator.c.isEmpty()) {
@@ -1951,14 +1937,14 @@ public final class NetworkPacketProcessors {
     }
 
     private void c() throws IOException {
-        if (GlobalStatus.bE = this.b.readByte() == 1) {
-            GlobalStatus.bF = this.b.readInt();
+        if (GlobalStatus.bE = this.dis.readByte() == 1) {
+            GlobalStatus.bF = this.dis.readInt();
         } else {
             GlobalStatus.bF = -1;
         }
 
-        GlobalStatus.bG = this.b.readInt();
-        GlobalStatus.bH = this.b.readUTF();
+        GlobalStatus.bG = this.dis.readInt();
+        GlobalStatus.bH = this.dis.readUTF();
         if (GlobalStatus.bE) {
             MainCanvas.uiSceneController.currentSceneModeId = 2;
         }
@@ -1987,7 +1973,7 @@ public final class NetworkPacketProcessors {
     }
 
     private void d() throws IOException {
-        GlobalStatus.I(this.b);
+        GlobalStatus.I(this.dis);
         if (MainCanvas.uiSceneController != null) {
             if (!UISceneController.i()) {
                 return;
@@ -2119,19 +2105,19 @@ public final class NetworkPacketProcessors {
 
     private void e() throws IOException {
         byte var1;
-        if ((var1 = this.b.readByte()) <= 0) {
+        if ((var1 = this.dis.readByte()) <= 0) {
             if (MainCanvas.uiSceneController != null) {
                 MainCanvas.uiSceneController.a((bp_1[]) null);
             }
 
         } else {
-            GlobalStatus.s = (short) this.b.readByte();
+            GlobalStatus.s = (short) this.dis.readByte();
             bp_1[] var2 = new bp_1[var1];
             byte var3 = 1;
 
             for (int var4 = 0; var4 < var1; ++var4) {
                 var2[var4] = new bp_1();
-                var2[var4].a(MainCanvas.uiSceneController, this.b);
+                var2[var4].a(MainCanvas.uiSceneController, this.dis);
                 if (var2[var4].s == 1) {
                     var2[var4].a = 0;
                 } else {
@@ -2160,7 +2146,7 @@ public final class NetworkPacketProcessors {
     }
 
     private void f() throws IOException {
-        byte var1 = this.b.readByte();
+        byte var1 = this.dis.readByte();
         if (GlobalStatus.fl != null) {
             GlobalStatus.v();
         }
@@ -2188,7 +2174,7 @@ public final class NetworkPacketProcessors {
             this.mainCanvas.showTips("交易取消!");
         } else {
             if (var1 == -1) {
-                this.mainCanvas.showTips(this.b.readUTF());
+                this.mainCanvas.showTips(this.dis.readUTF());
             }
 
         }

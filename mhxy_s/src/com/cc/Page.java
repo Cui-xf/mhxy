@@ -20,10 +20,10 @@ public final class Page {
         this.loadRule();
     }
 
-    public Page(String var1, byte[] var2) {
-        this.name = var1;
+    public Page(String name, byte[] frameInfo) {
+        this.name = name;
         this.path = "/" + this.name + "/";
-        this.c(var2);
+        this.parseFrameInfo(frameInfo);
     }
 
     public final Vector a() {
@@ -95,19 +95,19 @@ public final class Page {
 
     public final Frame1 getFrame1(String var1) {
         var1 = wrapName(var1, (byte) 2);
-        return this.a((int) hashKey(var1.toCharArray()), (short) 0, (short) 0, (short) 0);
+        return this.getFrame1((int) hashKey(var1.toCharArray()), (short) 0, (short) 0, (short) 0);
     }
 
     public final Frame1 a(String var1, short var2, short var3, short var4) {
         var1 = wrapName(var1, (byte) 2);
-        return this.a(hashKey(var1.toCharArray()), var2, var3, var4);
+        return this.getFrame1(hashKey(var1.toCharArray()), var2, var3, var4);
     }
 
     public final Frame1 c(int var1) {
-        return this.a((int) var1, (short) 0, (short) 0, (short) 0);
+        return this.getFrame1((int) var1, (short) 0, (short) 0, (short) 0);
     }
 
-    public Frame1 a(int var1, short var2, short var3, short var4) {
+    public Frame1 getFrame1(int var1, short var2, short var3, short var4) {
         Frame1 var5 = null;
 
         for (int var6 = 0; var6 < this.frameCache.size(); ++var6) {
@@ -247,8 +247,8 @@ public final class Page {
         }
     }
 
-    public final void d(String var1) {
-        this.b((String) var1, (short) 0, (short) 0, (short) 0);
+    public void loadResource(String path) {
+        this.loadResource((String) path, (short) 0, (short) 0, (short) 0);
     }
 
     public void loadFrame(String[] var1) {
@@ -347,8 +347,8 @@ public final class Page {
         }
     }
 
-    public final void b(String var1, short var2, short var3, short var4) {
-        int var21 = buildResourceId((String) var1, (byte) 2);
+    public void loadResource(String path, short var2, short var3, short var4) {
+        int var21 = buildResourceId((String) path, (byte) 2);
         short var9 = var4;
         short var8 = var3;
         short var7 = var2;
@@ -618,10 +618,7 @@ public final class Page {
                 } else {
                     // 检查后续是否有参数完全相同的重复条目，有则当前跳过（让后面那个来加载）
                     for (int j = i + 1; j < resourceIds.length; j++) {
-                        if (resourceIds[j] >= 0 && resourceIds[i] == resourceIds[j]
-                                && variantA == (hasVariantParams ? var2[j] : 0)
-                                && variantB == (hasVariantParams ? var3[j] : 0)
-                                && variantC == (hasVariantParams ? var4[j] : 0)) {
+                        if (resourceIds[j] >= 0 && resourceIds[i] == resourceIds[j] && variantA == (hasVariantParams ? var2[j] : 0) && variantB == (hasVariantParams ? var3[j] : 0) && variantC == (hasVariantParams ? var4[j] : 0)) {
                             resourceIds[i] = -1;
                         }
                     }
@@ -632,10 +629,7 @@ public final class Page {
         // 加载循环：对所有未被置 -1 的条目，调用 b(short,short,short,short) 执行实际的 Frame0 加载
         for (int i = 0; i < resourceIds.length; i++) {
             if (resourceIds[i] >= 0) {
-                this.loadFrame(resourceIds[i],
-                        hasVariantParams ? var2[i] : 0,
-                        hasVariantParams ? var3[i] : 0,
-                        hasVariantParams ? var4[i] : 0);
+                this.loadFrame(resourceIds[i], hasVariantParams ? var2[i] : 0, hasVariantParams ? var3[i] : 0, hasVariantParams ? var4[i] : 0);
             }
         }
     }
@@ -953,7 +947,7 @@ public final class Page {
 
     private DataInputStream getFrameStream(FrameInfo frameInfo) {
         byte[] var2 = null;
-        if (this.name.equals(GlobalStatus.kX) && GlobalStatus.kY != null) {
+        if (this.name.equals(GlobalStatus.currentMapName) && GlobalStatus.kY != null) {
             g var3 = null;
 
             for (short var4 = 0; var4 < GlobalStatus.kY.size(); ++var4) {
@@ -973,7 +967,7 @@ public final class Page {
         } else {
             Object var8 = null;
             InputStream var9;
-            if (this.name.equals(GlobalStatus.kX) && (var9 = this.getClass().getResourceAsStream(this.path + frameInfo.key + ".rpg")) != null) {
+            if (this.name.equals(GlobalStatus.currentMapName) && (var9 = this.getClass().getResourceAsStream(this.path + frameInfo.key + ".rpg")) != null) {
                 var6 = new DataInputStream(var9);
             }
 
@@ -1009,51 +1003,24 @@ public final class Page {
         return null;
     }
 
-    private void c(byte[] var1) {
-        ByteArrayInputStream var15 = new ByteArrayInputStream(var1);
+    private void parseFrameInfo(byte[] bytes) {
+        ByteArrayInputStream var15 = new ByteArrayInputStream(bytes);
         DataInputStream var16 = new DataInputStream(var15);
-        boolean var9 = false;
-
-        label78:
-        {
-            try {
-                var9 = true;
-                short var2 = var16.readShort();
-                this.frameInfos = new FrameInfo[var2];
-
-                for (int var3 = 0; var3 < var2; ++var3) {
-                    this.frameInfos[var3] = new FrameInfo(var16.readInt(), var16.readShort());
-                }
-
-                var9 = false;
-                break label78;
-            } catch (IOException var13) {
-                ((Throwable) var13).printStackTrace();
-                var9 = false;
-            } finally {
-                if (var9) {
-                    try {
-                        var16.close();
-                        var16.close();
-                    } catch (IOException var10) {
-                    }
-
-                }
-            }
-
-            try {
-                var16.close();
-                var16.close();
-                return;
-            } catch (IOException var11) {
-                return;
-            }
-        }
-
         try {
-            var16.close();
-            var16.close();
-        } catch (IOException var12) {
+            short num = var16.readShort();
+            this.frameInfos = new FrameInfo[num];
+            for (int i = 0; i < num; ++i) {
+                this.frameInfos[i] = new FrameInfo(var16.readInt(), var16.readShort());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                var15.close();
+                var16.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

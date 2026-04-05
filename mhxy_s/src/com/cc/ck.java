@@ -57,7 +57,7 @@ public final class ck {
       }
 
       if (this.m != null) {
-         this.m = this.m.b();
+         this.m = this.m.copy();
       }
 
    }
@@ -70,7 +70,7 @@ public final class ck {
          }
 
          if (this.x != 2) {
-            this.x = PngUtil.a(this.m, var2);
+            this.x = PngUtil.animate(this.m, var2);
          }
 
          if (this.x == 2) {

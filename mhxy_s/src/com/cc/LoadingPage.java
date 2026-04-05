@@ -203,7 +203,7 @@ public final class LoadingPage {
 
             if (MainCanvas.go_left != null) {
                 if (e != 0) {
-                    PngUtil.a(MainCanvas.go_left, System.currentTimeMillis());
+                    PngUtil.animate(MainCanvas.go_left, System.currentTimeMillis());
                     MainCanvas.pngUtil.a(var0, (Frame1) MainCanvas.go_left, (int[]) null, 0, 0, 16, var2 + 5, 20, 0);
                     a((int[]) (E != null ? E[0] : null), 16, var2 + 5, 16, 9);
                 } else {
@@ -213,7 +213,7 @@ public final class LoadingPage {
 
             if (MainCanvas.go_right != null) {
                 if (e + d < var5.getLines()) {
-                    PngUtil.a(MainCanvas.go_right, System.currentTimeMillis());
+                    PngUtil.animate(MainCanvas.go_right, System.currentTimeMillis());
                     MainCanvas.pngUtil.a(var0, (Frame1) MainCanvas.go_right, (int[]) null, 0, 0, var3 - 32, var2 + 5, 20, 0);
                     a((int[]) (E != null ? E[1] : null), var3 - 32, var2 + 5, 16, 9);
                 } else {
@@ -231,7 +231,7 @@ public final class LoadingPage {
 
     }
 
-    public static void drawString(Graphics var0, String var1, String[] var2) {
+    public static void drawDialog(Graphics var0, String var1, String[] var2) {
         if (var1 != null) {
             l = 0;
             var0.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);

@@ -51,7 +51,7 @@ public final class BottomUi extends BaseUi {
    }
 
    // 设置多按钮模式的文案。
-   public final void a(String[] var1) {
+   public final void setButtonText(String[] var1) {
       this.buttonText = var1;
       this.a = null;
       this.u = false;

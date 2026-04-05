@@ -172,33 +172,6 @@ public final class LoginModel implements CommandListener {
         this.changePwdZH = null;
     }
 
-    //展示充值帮助表单
-//    private void showChongzhi(Display var1, String title, String[] var3, String[] var4) {
-//        this.currentFormId = 5;
-//    }
-
-
-//    public final void 银元购买金豆数量(Display var1, int var2) {
-//        this.currentFormId = 7;
-//    }
-
-    // 充值中心 1元=1银元
-//    private void e(Display var1) {
-//        this.currentFormId = 6;
-//    }
-
-
-    //充值中心 金豆
-//    public final void b(Display var1) {
-//        this.currentFormId = 10;
-//    }
-
-    //余额查询
-//    public final void showYuEChaXun(Display var1) {
-//        this.currentFormId = 9;
-//    }
-
-
     public void commandAction(Command cmd, Displayable displayable) {
         String label = cmd.getLabel();
         if (label != null) {
@@ -239,19 +212,19 @@ public final class LoginModel implements CommandListener {
                 case 3: //登录表单
                     String var33 = this.zhanghaoTF.getString();
                     String var43 = this.pwdTF.getString();
-                    byte var50 = getChoiceGroupSelected(this.loginTypechoiceGroup);
+                    byte loginType = getChoiceGroupSelected(this.loginTypechoiceGroup);
                     if (label.equals("提交")) {
-                        if (var50 == 0) {
+                        if (loginType == 0) {
                             if (var33.equals("") || var33.length() < 4) {
                                 this.showTips((String) "通行证用户名输入错误，请重新输入", (byte) 2);
                                 return;
                             }
-                        } else if (var50 == 1) {
+                        } else if (loginType == 1) {
                             if (var33.equals("") || var33.length() < 11) {
                                 this.showTips((String) "通行证请输入11位手机号码，请重新输入", (byte) 2);
                                 return;
                             }
-                        } else if (var50 == 2 && (var33.equals("") || var33.length() < 4)) {
+                        } else if (loginType == 2 && (var33.equals("") || var33.length() < 4)) {
                             this.showTips((String) "通行证ID号输入长度错误，请重新输入", (byte) 2);
                             return;
                         }

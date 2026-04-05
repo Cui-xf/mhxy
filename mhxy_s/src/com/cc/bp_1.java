@@ -68,10 +68,10 @@ public final class bp_1 extends ar {
    }
 
    private void a(boolean var1) {
-      super.g = MainCanvas.role.a(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
+      super.g = MainCanvas.role.getFrame1(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
       if (super.g == null) {
          MainCanvas.a(this.q, this.p, (byte)5, this.r, this.v, this.w, this.x, this.y);
-         super.g = MainCanvas.role.a(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
+         super.g = MainCanvas.role.getFrame1(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
          if (super.g == null) {
             this.r = 0;
             this.a();
@@ -129,22 +129,22 @@ public final class bp_1 extends ar {
                      this.a(true);
                   }
 
-                  PngUtil.a(super.g, var2);
+                  PngUtil.animate(super.g, var2);
                   return;
                }
 
                this.a(true);
-               PngUtil.a(super.g, var2);
+               PngUtil.animate(super.g, var2);
                return;
             }
 
             this.a(true);
-            PngUtil.a(super.g, var2);
+            PngUtil.animate(super.g, var2);
             return;
          }
 
          if (this.a(this.a, 1)) {
-            PngUtil.a(super.g, var2);
+            PngUtil.animate(super.g, var2);
             int var4;
             if ((var4 = super.f.size()) < 7) {
                this.a(true);
@@ -186,7 +186,7 @@ public final class bp_1 extends ar {
             }
          } else {
             this.a(true);
-            PngUtil.a(super.g, var2);
+            PngUtil.animate(super.g, var2);
          }
       }
 

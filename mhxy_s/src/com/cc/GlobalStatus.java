@@ -4,19 +4,20 @@ import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Vector;
 
 //public final class bGlobalConfig {
 public final class GlobalStatus {
     public static boolean a = false;
     public static String zhangHao;
+    public static String token_1;
     public static String token;
-    public static String d;
     public static long lastSyncTime;
     public static long f;
     public static boolean g;
     public static byte h;
-    public static byte i = -1;
+    public static byte i_1 = -1;
     public static byte j = -1;
     public static String k;
     public static byte l;
@@ -56,14 +57,15 @@ public final class GlobalStatus {
     public static String T;
     public static String U;
     public static String V;
-    public static String[] W;
+    public static String[] roleIdList;
     //角色等级
-    public static short[] levels;
-    public static byte[] Y;
-    public static byte[] Z;
+    public static short[] roleLevelList;
+    public static byte[] roleJobList;
+    public static byte[] roleGenderList;
     //角色昵称
-    public static String[] nickNames;
-    private static byte[] nD;
+    public static String[] roleNicknameList;
+
+
     public static short[] ab;
     public static short[] ac;
     public static String ad;
@@ -346,8 +348,8 @@ public final class GlobalStatus {
     public static String[] ey;
     public static String[] ez;
     public static String[] eA;
-    public static byte eB;
-    public static String eC;
+    public static byte exceptionCode;
+    public static String exceptionMsg;
     public static String eD;
     public static short[] eE;
     public static short eF;
@@ -822,8 +824,7 @@ public final class GlobalStatus {
     private static int[] rj;
     public static String kW;
     private static Vector rk;
-    public static String kX;
-    private static Vector rl;
+    public static String currentMapName;
     public static Vector kY;
     public static short kZ;
     public static String[] la;
@@ -1097,56 +1098,50 @@ public final class GlobalStatus {
 
     }
 
-    public static void a(DataInputStream var0) throws IOException {
-        byte var1;
-        if ((var1 = var0.readByte()) == 0) {
-            e();
+    public static void parseRoleList(DataInputStream dis) throws IOException {
+        byte roleNum = dis.readByte();
+        if (roleNum == 0) {
+            clearRoleList();
         } else {
-            W = new String[var1];
-            levels = new short[var1];
-            Y = new byte[var1];
-            Z = new byte[var1];
-            nickNames = new String[var1];
+            roleIdList = new String[roleNum];
+            roleLevelList = new short[roleNum];
+            roleJobList = new byte[roleNum];
+            roleGenderList = new byte[roleNum];
+            roleNicknameList = new String[roleNum];
 
-            for (int var2 = 0; var2 < var1; ++var2) {
-                W[var2] = var0.readUTF();
-                levels[var2] = var0.readShort();
-                Y[var2] = var0.readByte();
-                Z[var2] = var0.readByte();
-                nickNames[var2] = var0.readUTF();
-                nD[var2] = var0.readByte();
+            for (int i = 0; i < roleNum; ++i) {
+                roleIdList[i] = dis.readUTF();
+                roleLevelList[i] = dis.readShort();
+                roleJobList[i] = dis.readByte();
+                roleGenderList[i] = dis.readByte();
+                roleNicknameList[i] = dis.readUTF();
+                //roleFlagList
+                dis.readByte();
             }
 
-            for (int var3 = 0; var3 < var1; ++var3) {
-                var0.readUTF();
-                var0.readUTF();
-                var0.readUTF();
+            for (int i = 0; i < roleNum; ++i) {
+                dis.readUTF();
+                dis.readUTF();
+                dis.readUTF();
             }
 
-            var0.readUTF();
+            dis.readUTF();
         }
     }
 
-    public static void e() {
-        if (W != null) {
-            for (int var0 = 0; var0 < W.length; ++var0) {
-                W[var0] = null;
-            }
-
-            W = null;
+    public static void clearRoleList() {
+        if (roleIdList != null) {
+            Arrays.fill(roleIdList, null);
+            roleIdList = null;
         }
 
-        levels = null;
-        Y = null;
-        Z = null;
-        if (nickNames != null) {
-            for (int var1 = 0; var1 < nickNames.length; ++var1) {
-                nickNames[var1] = null;
-            }
-
-            nickNames = null;
+        roleLevelList = null;
+        roleJobList = null;
+        roleGenderList = null;
+        if (roleNicknameList != null) {
+            Arrays.fill(roleNicknameList, null);
+            roleNicknameList = null;
         }
-
     }
 
     public static void b(DataInputStream var0) throws IOException {
@@ -2674,11 +2669,12 @@ public final class GlobalStatus {
 
     }
 
-    public static void w(DataInputStream var0) throws IOException {
-        if ((eB = var0.readByte()) <= 0) {
-            eC = var0.readUTF();
+    public static void parseLoginFail(DataInputStream var0) throws IOException {
+        exceptionCode = var0.readByte();
+        if (exceptionCode <= 0) {
+            exceptionMsg = var0.readUTF();
         } else {
-            eC = GlobalConfig.YiChangTiShi[eB];
+            exceptionMsg = GlobalConfig.YiChangTiShi[exceptionCode];
         }
     }
 
@@ -2920,7 +2916,7 @@ public final class GlobalStatus {
     }
 
     public static void C(DataInputStream var0) throws IOException {
-        i = var0.readByte();
+        i_1 = var0.readByte();
         j = var0.readByte();
         var0.readUTF();
         ff = var0.readUTF();
@@ -2931,7 +2927,7 @@ public final class GlobalStatus {
         var0.readLong();
         j = var0.readByte();
         fn = var0.readLong();
-        i = var0.readByte();
+        i_1 = var0.readByte();
         fg = var0.readLong();
         DataInputStream var1 = var0;
         byte var2;
@@ -3075,7 +3071,7 @@ public final class GlobalStatus {
         var0.readLong();
         j = var0.readByte();
         fn = var0.readLong();
-        i = var0.readByte();
+        i_1 = var0.readByte();
         fg = var0.readLong();
         byte var1 = var0.readByte();
         int var4 = var1;
@@ -3301,7 +3297,7 @@ public final class GlobalStatus {
 
     public static void F(DataInputStream var0) throws IOException {
         j = var0.readByte();
-        i = var0.readByte();
+        i_1 = var0.readByte();
     }
 
     public static boolean a(byte var0, int var1) {
@@ -6942,44 +6938,41 @@ public final class GlobalStatus {
         kW = var0.readUTF();
     }
 
-    public static void aI(DataInputStream var0) throws IOException {
-        short var1 = var0.readShort();
-        short var2 = var0.readShort();
+    public static void aI(DataInputStream dis) throws IOException {
+        short var1 = dis.readShort();
+        short var2 = dis.readShort();
         if (rk == null) {
             rk = new Vector();
         }
 
-        if (rk.size() <= 0) {
-            byte[] var9 = new byte[var0.readInt()];
-            var0.read(var9);
+        if (rk.isEmpty()) {
+            byte[] var9 = new byte[dis.readInt()];
+            dis.read(var9);
             rk.addElement(new br(var1, var9));
         } else {
             boolean var3 = false;
-            Object var4 = null;
-
-            for (byte var5 = (byte) (rk.size() - 1); var5 >= 0; --var5) {
-                br var7;
-                if ((var7 = (br) rk.elementAt(var5)) != null && var7.a == var1) {
+            for (int i = rk.size() - 1; i >= 0; --i) {
+                br var7 = (br) rk.elementAt(i);
+                if (var7 != null && var7.a == var1) {
                     var3 = true;
                     break;
                 }
             }
 
             if (!var3) {
-                byte[] var6 = new byte[var0.readInt()];
-                var0.read(var6);
+                byte[] var6 = new byte[dis.readInt()];
+                dis.read(var6);
                 rk.addElement(new br(var1, var6));
             }
 
             if (var2 >= 0) {
-                for (byte var10 = (byte) (rk.size() - 1); var10 >= 0; --var10) {
-                    br var8;
-                    if ((var8 = (br) rk.elementAt(var10)) != null && var8.a == var2) {
-                        rk.removeElementAt(var10);
+                for (int i = rk.size() - 1; i >= 0; --i) {
+                    br var8 = (br) rk.elementAt(i);
+                    if (var8 != null && var8.a == var2) {
+                        rk.removeElementAt(i);
                     }
                 }
             }
-
         }
     }
 
@@ -6991,7 +6984,7 @@ public final class GlobalStatus {
                 br var4;
                 if ((var4 = (br) rk.elementAt(var2)) != null && var4.a == var0) {
                     try {
-                        return ci_1.a(var4.b);
+                        return GzipUtil.unZip(var4.b);
                     } catch (Exception var3) {
 
                     }
@@ -7002,20 +6995,15 @@ public final class GlobalStatus {
         return null;
     }
 
-    public static void aJ(DataInputStream var0) throws IOException {
-        short var1;
-        if ((var1 = var0.readShort()) > 0) {
-            if (rl == null) {
-                rl = new Vector();
-            }
-
-            Object var2 = null;
-
-            for (short var4 = 0; var4 < var1; ++var4) {
-                int var3 = var0.readInt();
-                byte[] var5 = new byte[var0.readInt()];
-                var0.read(var5);
-                rl.addElement(new g(var3, var5));
+    //似乎是无效数据
+    public static void skip(DataInputStream dis) throws IOException {
+        short var1 = dis.readShort();
+        if (var1 > 0) {
+            for (short i = 0; i < var1; ++i) {
+                int var3 = dis.readInt();
+                byte[] var5 = new byte[dis.readInt()];
+                dis.read(var5);
+//                rl.addElement(new g(var3, var5));
             }
         }
 
@@ -7091,10 +7079,10 @@ public final class GlobalStatus {
             kY = null;
         }
 
-        if (rl != null) {
-            rl.removeAllElements();
-            rl = null;
-        }
+//        if (rl != null) {
+//            rl.removeAllElements();
+//            rl = null;
+//        }
 
     }
 
@@ -8151,7 +8139,6 @@ public final class GlobalStatus {
         T = null;
         U = null;
         V = null;
-        nD = new byte[]{1, 1, 1, 1};
         ai = 16776960;
         ao = 0L;
         ar = -1;
@@ -8189,7 +8176,7 @@ public final class GlobalStatus {
         dJ = true;
         oh = 0;
         ev = false;
-        eB = -1;
+        exceptionCode = -1;
         eE = new short[3];
         eM = new short[3];
         oJ = false;

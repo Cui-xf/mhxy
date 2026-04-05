@@ -233,8 +233,8 @@ public final class cg_1 {
          this.M = "继承后";
       }
 
-      this.f.mixedUi.b();
-      this.f.mixedUi.a("星级继承");
+      this.f.mixedUi.clean();
+      this.f.mixedUi.setTitle("星级继承");
       this.f.mixedUi.a(true);
       this.H.setFWBText(this.L, GlobalConfig.font2, (byte)2);
       this.I.setFWBText(this.M, GlobalConfig.font2, (byte)2);
@@ -256,13 +256,13 @@ public final class cg_1 {
 
       if (GlobalConfig.defaultHigh > 220) {
          this.f.bottomUi.a("");
-         this.f.mixedUi.a((BaseUi)this.f.bottomUi);
+         this.f.mixedUi.addChild((BaseUi)this.f.bottomUi);
       }
 
-      this.G = (this.f.mixedUi.d - 32 - GlobalConfig.font2_h) / 3 - 10;
-      this.f.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
-      this.H.setTextRect(this.f.mixedUi.a + 5, this.f.mixedUi.b + 32 + this.G, this.f.mixedUi.c - 11, this.G + 10);
-      this.I.setTextRect(this.f.mixedUi.a + 5, this.f.mixedUi.b + 32 + 2 * this.G + 10, this.f.mixedUi.c - 11, this.G + 10);
+      this.G = (this.f.mixedUi.H - 32 - GlobalConfig.font2_h) / 3 - 10;
+      this.f.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.H.setTextRect(this.f.mixedUi.X + 5, this.f.mixedUi.Y + 32 + this.G, this.f.mixedUi.W - 11, this.G + 10);
+      this.I.setTextRect(this.f.mixedUi.X + 5, this.f.mixedUi.Y + 32 + 2 * this.G + 10, this.f.mixedUi.W - 11, this.G + 10);
       LoadingPage.l = 0;
       this.e.sceneSubState = 0;
       this.f.pageStatus = this.f.lastPageStatus;
@@ -288,11 +288,11 @@ public final class cg_1 {
          }
 
          if (a != -1 && this.h != null) {
-            PngUtil.a(this.h, this.f.frameStartTs);
+            PngUtil.animate(this.h, this.f.frameStartTs);
          }
 
          if (k != -1 && this.i != null) {
-            PngUtil.a(this.i, this.f.frameStartTs);
+            PngUtil.animate(this.i, this.f.frameStartTs);
          }
 
          if (var1 == 8 || var1 == 2) {
@@ -420,26 +420,26 @@ public final class cg_1 {
          this.f.mixedUi.a(var1);
          this.H.draw(var1);
          this.I.draw(var1);
-         LoadingPage.draw(var1, this.f.mixedUi.a + 5, this.f.mixedUi.b + 32, this.f.mixedUi.c - 11, this.G, 1);
+         LoadingPage.draw(var1, this.f.mixedUi.X + 5, this.f.mixedUi.Y + 32, this.f.mixedUi.W - 11, this.G, 1);
       }
 
-      LoadingPage.draw(var1, this.f.mixedUi.a + 5 + 25, this.f.mixedUi.b + 32 + 10, 50, 50, 1);
+      LoadingPage.draw(var1, this.f.mixedUi.X + 5 + 25, this.f.mixedUi.Y + 32 + 10, 50, 50, 1);
       var1.setColor(2917024);
-      var1.fillRect(this.f.mixedUi.a + 5 + 25 + this.f.mixedUi.c / 2, this.f.mixedUi.b + 32 + 10, 50, 50);
+      var1.fillRect(this.f.mixedUi.X + 5 + 25 + this.f.mixedUi.W / 2, this.f.mixedUi.Y + 32 + 10, 50, 50);
       var1.setColor(9360850);
-      var1.drawRect(this.f.mixedUi.a + 5 + 25 + this.f.mixedUi.c / 2, this.f.mixedUi.b + 32 + 10, 49, 49);
-      this.a(0, this.f.mixedUi.a + 5 + 25, this.f.mixedUi.b + 32 + 10, 50, 50);
-      this.a(1, this.f.mixedUi.a + 5 + 25 + this.f.mixedUi.c / 2, this.f.mixedUi.b + 32 + 10, 50, 50);
+      var1.drawRect(this.f.mixedUi.X + 5 + 25 + this.f.mixedUi.W / 2, this.f.mixedUi.Y + 32 + 10, 49, 49);
+      this.a(0, this.f.mixedUi.X + 5 + 25, this.f.mixedUi.Y + 32 + 10, 50, 50);
+      this.a(1, this.f.mixedUi.X + 5 + 25 + this.f.mixedUi.W / 2, this.f.mixedUi.Y + 32 + 10, 50, 50);
       LoadingPage.d(var1, this.J[this.K][0], this.J[this.K][1], 50, 50);
       if (a != -1 && this.h != null) {
-         this.g.a(var1, (Frame1)this.h, (int[])null, 0, 0, this.f.mixedUi.a + 5 + 25, this.f.mixedUi.b + 32 + 10, 0, 0);
+         this.g.a(var1, (Frame1)this.h, (int[])null, 0, 0, this.f.mixedUi.X + 5 + 25, this.f.mixedUi.Y + 32 + 10, 0, 0);
       }
 
       if (k != -1 && this.i != null) {
-         this.g.a(var1, (Frame1)this.i, (int[])null, 0, 0, this.f.mixedUi.a + 5 + 25 + this.f.mixedUi.c / 2, this.f.mixedUi.b + 32 + 10, 0, 0);
+         this.g.a(var1, (Frame1)this.i, (int[])null, 0, 0, this.f.mixedUi.X + 5 + 25 + this.f.mixedUi.W / 2, this.f.mixedUi.Y + 32 + 10, 0, 0);
       } else {
          var1.setColor(16776960);
-         var1.drawString("副宠", this.f.mixedUi.a + 5 + 25 + this.f.mixedUi.c / 2 + 25, this.f.mixedUi.b + 32 + 10 + GlobalConfig.font2_h / 4 + 25, 65);
+         var1.drawString("副宠", this.f.mixedUi.X + 5 + 25 + this.f.mixedUi.W / 2 + 25, this.f.mixedUi.Y + 32 + 10 + GlobalConfig.font2_h / 4 + 25, 65);
       }
 
       if (this.e.sceneSubState == 1) {

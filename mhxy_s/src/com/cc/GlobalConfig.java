@@ -163,13 +163,13 @@ public final class GlobalConfig {
      */
     public static final short[] U = new short[]{-1, 191, 192, 193, 194, 195, 196};
     /**
-     * 数字字符映射：{'1','2','3'}，用于资源路径构建
+     * 角色性别资源id
      */
-    public static char[] V = new char[]{'1', '2', '3'};
+    public static char[] roleGenderResIds = new char[]{'1', '2', '3'};
     /**
      * 数字字符映射：{'0','1'}，用于资源路径构建
      */
-    public static char[] W = new char[]{'0', '1'};
+    public static char[] roleJobResIds = new char[]{'0', '1'};
     /**
      * 参数字符映射：{'0','0','1','1','4'}，用于资源路径构建
      */
@@ -265,7 +265,7 @@ public final class GlobalConfig {
      * 将 V[var0] 和 W[var1] 拼接为字符串后解析为 short，用于编码转换
      */
     public static short a(byte var0, byte var1) {
-        return (short) Integer.parseInt("" + V[var0] + W[var1]);
+        return (short) Integer.parseInt("" + roleGenderResIds[var0] + roleJobResIds[var1]);
     }
 
     /**

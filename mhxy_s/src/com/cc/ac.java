@@ -76,10 +76,10 @@ public final class ac extends ar {
          var2 = 0;
       }
 
-      super.g = MainCanvas.role.a(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
+      super.g = MainCanvas.role.getFrame1(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
       if (super.g == null) {
          MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)5, GlobalStatus.ay, this.t, var2, var3, var4);
-         super.g = MainCanvas.role.a(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
+         super.g = MainCanvas.role.getFrame1(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
          if (super.g == null) {
             GlobalStatus.ay = 0;
             this.s();
@@ -165,7 +165,7 @@ public final class ac extends ar {
             }
          }
 
-         PngUtil.a(super.g, var3);
+         PngUtil.animate(super.g, var3);
          if (super.d != null) {
             super.d.a(var1, var2, var3);
          }

@@ -101,20 +101,20 @@ public final class as {
       }
 
       this.p = new int[4][4];
-      this.a.mixedUi.b();
-      this.a.mixedUi.a("装备升星");
+      this.a.mixedUi.clean();
+      this.a.mixedUi.setTitle("装备升星");
       this.a.mixedUi.a(false);
       this.l = Math.max((GlobalConfig.font2_h << 1) + 25, 59);
       this.m = GlobalConfig.font2_h + 13;
-      this.a.mixedUi.a(this.l + this.m);
+      this.a.mixedUi.setR(this.l + this.m);
       this.a();
-      this.a.mixedUi.a((BaseUi)this.a.textPanel);
+      this.a.mixedUi.addChild((BaseUi)this.a.textPanel);
       this.a.bottomUi.a("确定");
       if (GlobalConfig.defaultHigh > 220) {
-         this.a.mixedUi.a((BaseUi)this.a.bottomUi);
+         this.a.mixedUi.addChild((BaseUi)this.a.bottomUi);
       }
 
-      this.a.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.a.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.b();
       LoadingPage.l = 0;
       this.b.sceneSubState = 0;

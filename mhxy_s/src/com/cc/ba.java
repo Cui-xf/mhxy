@@ -18,15 +18,15 @@ public final class ba {
       this.c = var1;
       this.a = var2;
       this.b = var3;
-      var1.mixedUi.b();
-      var1.mixedUi.a("宠物升星");
-      var1.mixedUi.a((BaseUi)var1.textPanel);
+      var1.mixedUi.clean();
+      var1.mixedUi.setTitle("宠物升星");
+      var1.mixedUi.addChild((BaseUi)var1.textPanel);
       if (GlobalConfig.defaultHigh > 220) {
          var1.bottomUi.a("");
-         var1.mixedUi.a((BaseUi)var1.bottomUi);
+         var1.mixedUi.addChild((BaseUi)var1.bottomUi);
       }
 
-      var1.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      var1.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.d = (short)(var1.textPanel.textH >> 1);
       this.e = var1.textPanel.textX;
       this.f = var1.textPanel.textY;
@@ -36,15 +36,15 @@ public final class ba {
    }
 
    public final void a() {
-      this.c.mixedUi.b();
-      this.c.mixedUi.a("宠物升星");
-      this.c.mixedUi.a((BaseUi)this.c.textPanel);
+      this.c.mixedUi.clean();
+      this.c.mixedUi.setTitle("宠物升星");
+      this.c.mixedUi.addChild((BaseUi)this.c.textPanel);
       if (GlobalConfig.defaultHigh > 220) {
          this.c.bottomUi.a("");
-         this.c.mixedUi.a((BaseUi)this.c.bottomUi);
+         this.c.mixedUi.addChild((BaseUi)this.c.bottomUi);
       }
 
-      this.c.mixedUi.a("宠物升星");
+      this.c.mixedUi.setTitle("宠物升星");
       this.c.textPanel.setTextRect(this.e, this.f + this.h + 1, this.g, this.d);
    }
 

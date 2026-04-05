@@ -244,21 +244,21 @@ public final class k {
 
       this.b();
       this.g = new int[5][4];
-      this.j.mixedUi.b();
-      this.j.mixedUi.a("物品合成");
+      this.j.mixedUi.clean();
+      this.j.mixedUi.setTitle("物品合成");
       this.j.mixedUi.a(false);
       this.w = (Math.max(GlobalConfig.font2_h, 17) << 1) + 10;
       this.x = GlobalConfig.font2_h + 26 + 5;
-      this.j.mixedUi.a(this.w + this.x);
+      this.j.mixedUi.setR(this.w + this.x);
       this.c();
-      this.j.mixedUi.a((BaseUi)this.j.textPanel);
+      this.j.mixedUi.addChild((BaseUi)this.j.textPanel);
       this.j.textPanel.setShuRuMoShi((byte)1);
       this.j.bottomUi.a("确定");
       if (GlobalConfig.defaultHigh > 220) {
-         this.j.mixedUi.a((BaseUi)this.j.bottomUi);
+         this.j.mixedUi.addChild((BaseUi)this.j.bottomUi);
       }
 
-      this.j.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.j.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.d();
       this.e();
       this.f();
@@ -401,19 +401,19 @@ public final class k {
       short var2 = UISceneController.goods.b;
       if (this.j.mixedUi != null) {
          this.j.mixedUi.a(var1);
-         LoadingPage.draw(var1, this.j.mixedUi.a + 5, this.j.mixedUi.b + 32, this.j.mixedUi.c - 11, this.w, 1);
-         LoadingPage.draw(var1, this.j.mixedUi.a + 5, this.j.mixedUi.b + 32 + this.w + 1, this.j.mixedUi.c - 11, this.x - 2, 1);
+         LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32, this.j.mixedUi.W - 11, this.w, 1);
+         LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32 + this.w + 1, this.j.mixedUi.W - 11, this.x - 2, 1);
       }
 
-      int var3 = this.j.mixedUi.a + GlobalConfig.font2.stringWidth(this.h[0]) + 10;
-      int var4 = this.j.mixedUi.b + 40;
+      int var3 = this.j.mixedUi.X + GlobalConfig.font2.stringWidth(this.h[0]) + 10;
+      int var4 = this.j.mixedUi.Y + 40;
       if (this.g == null) {
          this.g = new int[5][4];
       }
 
       for(int var5 = 0; var5 < this.g.length; ++var5) {
          if (var5 > 1) {
-            var3 = this.j.mixedUi.a + this.j.mixedUi.c - 3 * (var2 + 5) - 8;
+            var3 = this.j.mixedUi.X + this.j.mixedUi.W - 3 * (var2 + 5) - 8;
          }
 
          int var10002 = var3 + 2 + (var5 < 2 ? (var5 == 0 ? 0 : var2 + 5) : (var5 - 2) * (var2 + 5));
@@ -458,7 +458,7 @@ public final class k {
       LoadingPage.d(var1, this.g[var17][0], this.g[var17][1], 17, 17);
       if (this.t != null) {
          try {
-            this.t.a(var1, this.j.mixedUi.a + 5 + 6, this.j.mixedUi.b + this.w + 8, 0);
+            this.t.a(var1, this.j.mixedUi.X + 5 + 6, this.j.mixedUi.Y + this.w + 8, 0);
          } catch (Exception var11) {
             ((Throwable)var11).printStackTrace();
          }
@@ -466,7 +466,7 @@ public final class k {
 
       if (this.r != null) {
          try {
-            this.u.a(var1, this.j.mixedUi.a + 5 + 6, this.j.mixedUi.b + 32 + this.w + 1 + 3, 0);
+            this.u.a(var1, this.j.mixedUi.X + 5 + 6, this.j.mixedUi.Y + 32 + this.w + 1 + 3, 0);
          } catch (Exception var10) {
             ((Throwable)var10).printStackTrace();
          }

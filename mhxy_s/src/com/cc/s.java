@@ -97,7 +97,7 @@ public final class s extends au {
             this.n = var3;
          }
 
-         PngUtil.a(super.f, var3);
+         PngUtil.animate(super.f, var3);
       }
 
    }

@@ -66,7 +66,7 @@ public final class bl extends ar {
 
    private void a(boolean var1) {
       if (!this.x.equals("")) {
-         super.g = MainCanvas.role.a(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
+         super.g = MainCanvas.role.getFrame1(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
       } else {
          super.g = MainCanvas.role.c(var1 ? this.D[super.h] : this.C[super.h]);
       }
@@ -79,7 +79,7 @@ public final class bl extends ar {
          }
 
          if (!this.x.equals("")) {
-            super.g = MainCanvas.role.a(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
+            super.g = MainCanvas.role.getFrame1(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
          } else {
             super.g = MainCanvas.role.c(var1 ? this.D[super.h] : this.C[super.h]);
          }
@@ -137,10 +137,10 @@ public final class bl extends ar {
                   this.a(false);
                }
 
-               PngUtil.a(super.g, var3);
+               PngUtil.animate(super.g, var3);
             } else {
                this.a(true);
-               PngUtil.a(super.g, var3);
+               PngUtil.animate(super.g, var3);
             }
 
             if (super.d != null) {

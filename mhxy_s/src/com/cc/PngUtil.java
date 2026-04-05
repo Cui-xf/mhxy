@@ -79,19 +79,20 @@ public final class PngUtil {
         }
     }
 
-    public static int a(Frame1 var0, long var1) {
-        if (var0 != null && var0.k != null) {
+    //动画
+    public static int animate(Frame1 frame1, long var1) {
+        if (frame1 != null && frame1.k != null) {
             byte var3 = 0;
-            if (var1 - var0.e - (long) var0.d > 0L) {
-                ++var0.f;
-                if (var0.f >= var0.k.length) {
-                    var0.f = 0;
+            if (var1 - frame1.e - (long) frame1.d > 0L) {
+                ++frame1.f;
+                if (frame1.f >= frame1.k.length) {
+                    frame1.f = 0;
                     var3 = 2;
                 } else {
                     var3 = 1;
                 }
 
-                var0.e = var1;
+                frame1.e = var1;
             }
 
             return var3;

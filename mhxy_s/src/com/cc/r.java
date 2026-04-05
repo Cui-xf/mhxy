@@ -228,21 +228,21 @@ public final class r {
 
       this.c();
       this.g = new int[5][4];
-      this.j.mixedUi.b();
-      this.j.mixedUi.a("装备附魔");
+      this.j.mixedUi.clean();
+      this.j.mixedUi.setTitle("装备附魔");
       this.j.mixedUi.a(false);
       this.v = Math.max((GlobalConfig.font2_h << 1) + 25, 59);
       this.w = GlobalConfig.font2_h + 26 + 5;
-      this.j.mixedUi.a(this.v + this.w);
+      this.j.mixedUi.setR(this.v + this.w);
       this.d();
-      this.j.mixedUi.a((BaseUi)this.j.textPanel);
+      this.j.mixedUi.addChild((BaseUi)this.j.textPanel);
       this.j.textPanel.setShuRuMoShi((byte)1);
       this.j.bottomUi.a("确定");
       if (GlobalConfig.defaultHigh > 220) {
-         this.j.mixedUi.a((BaseUi)this.j.bottomUi);
+         this.j.mixedUi.addChild((BaseUi)this.j.bottomUi);
       }
 
-      this.j.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.j.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.a();
       this.e();
       LoadingPage.l = 0;
@@ -301,7 +301,7 @@ public final class r {
                      this.x = true;
                      this.i.a((byte)0, (byte[])(new byte[]{0}));
                   } else {
-                     LoadingPage.a(this.j.mixedUi.a + GlobalConfig.font2_w * 3 + 29, this.j.mixedUi.b + 49, new String[]{"附魔", "查看", "取出"}, false);
+                     LoadingPage.a(this.j.mixedUi.X + GlobalConfig.font2_w * 3 + 29, this.j.mixedUi.Y + 49, new String[]{"附魔", "查看", "取出"}, false);
                      this.i.sceneSubState = 1;
                   }
                } else if (this.a == 1) {
@@ -310,13 +310,13 @@ public final class r {
                   } else if (this.d == -1L) {
                      this.i.a((byte)0, (byte[])(new byte[]{3}));
                   } else {
-                     LoadingPage.a(this.j.mixedUi.c - 3 * UISceneController.goods.b - 21, this.j.mixedUi.b + 49, new String[]{"取出"}, false);
+                     LoadingPage.a(this.j.mixedUi.W - 3 * UISceneController.goods.b - 21, this.j.mixedUi.Y + 49, new String[]{"取出"}, false);
                      this.i.sceneSubState = 1;
                   }
                }
             } else if (this.b == 1) {
                if (this.d(this.a) != -1) {
-                  LoadingPage.a(this.j.mixedUi.c - 10 - UISceneController.goods.b - (this.a + 2 * (1 - this.a)) * (UISceneController.goods.b + 10) - LoadingPage.q / 2 + 9, this.j.mixedUi.b + UISceneController.goods.c + 69, new String[]{"取出"}, false);
+                  LoadingPage.a(this.j.mixedUi.W - 10 - UISceneController.goods.b - (this.a + 2 * (1 - this.a)) * (UISceneController.goods.b + 10) - LoadingPage.q / 2 + 9, this.j.mixedUi.Y + UISceneController.goods.c + 69, new String[]{"取出"}, false);
                   this.i.sceneSubState = 1;
                } else if (this.c != -1 && this.d != -1L) {
                   this.i.a((byte)0, (byte[])(new byte[]{4}));
@@ -417,16 +417,16 @@ public final class r {
       short var2 = UISceneController.goods.b;
       if (this.j.mixedUi != null) {
          this.j.mixedUi.a(var1);
-         LoadingPage.draw(var1, this.j.mixedUi.a + 5, this.j.mixedUi.b + 32, this.j.mixedUi.c - 11, this.v, 1);
-         LoadingPage.draw(var1, this.j.mixedUi.a + 5, this.j.mixedUi.b + 32 + this.v + 1, this.j.mixedUi.c - 11, this.w - 2, 1);
+         LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32, this.j.mixedUi.W - 11, this.v, 1);
+         LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32 + this.v + 1, this.j.mixedUi.W - 11, this.w - 2, 1);
       }
 
-      int var3 = this.j.mixedUi.a + GlobalConfig.font2.stringWidth("装备孔") + 10;
-      int var4 = this.j.mixedUi.b + 40;
+      int var3 = this.j.mixedUi.X + GlobalConfig.font2.stringWidth("装备孔") + 10;
+      int var4 = this.j.mixedUi.Y + 40;
 
       for(int var5 = 0; var5 < this.g.length; ++var5) {
          if (var5 > 0) {
-            var3 = this.j.mixedUi.a + this.j.mixedUi.c - 3 * (var2 + 5) - 8;
+            var3 = this.j.mixedUi.X + this.j.mixedUi.W - 3 * (var2 + 5) - 8;
          }
 
          int var10002 = var3 + 2 + (var5 < 2 ? 0 : (var5 - 2) * (var2 + 5));
@@ -471,22 +471,22 @@ public final class r {
       int var15 = this.a + (this.b << 1);
       LoadingPage.d(var1, this.g[var15][0], this.g[var15][1], 17, 17);
       if (this.r != null || this.o != null) {
-         this.t.a(var1, this.j.mixedUi.a + 5 + 6, this.j.mixedUi.b + 32 + this.v + 1 + 3, 0);
+         this.t.a(var1, this.j.mixedUi.X + 5 + 6, this.j.mixedUi.Y + 32 + this.v + 1 + 3, 0);
       }
 
       if (this.i.sceneSubState == 0) {
          if (this.u != null || this.u != "") {
             if (this.b == 0 && this.a == 1) {
-               LoadingPage.b(var1, this.u, this.j.mixedUi.c - 10 - UISceneController.goods.b - 2 * (UISceneController.goods.b + 10) - 6 - GlobalConfig.font2.stringWidth("装备孔"), this.j.mixedUi.b + 32 + 8 + UISceneController.goods.c, GlobalConfig.defaultHigh - 5, 1);
+               LoadingPage.b(var1, this.u, this.j.mixedUi.W - 10 - UISceneController.goods.b - 2 * (UISceneController.goods.b + 10) - 6 - GlobalConfig.font2.stringWidth("装备孔"), this.j.mixedUi.Y + 32 + 8 + UISceneController.goods.c, GlobalConfig.defaultHigh - 5, 1);
                return;
             }
 
             if (this.b == 1) {
-               LoadingPage.b(var1, this.u, this.j.mixedUi.c - (UISceneController.goods.b + 10) * 3, this.j.mixedUi.b + 32 + 8 + 10 + (UISceneController.goods.c << 1), GlobalConfig.defaultHigh - 5, 1);
+               LoadingPage.b(var1, this.u, this.j.mixedUi.W - (UISceneController.goods.b + 10) * 3, this.j.mixedUi.Y + 32 + 8 + 10 + (UISceneController.goods.c << 1), GlobalConfig.defaultHigh - 5, 1);
                return;
             }
 
-            LoadingPage.b(var1, this.u, this.j.mixedUi.a + 5 + 2, this.j.mixedUi.b + 32 + 8 + UISceneController.goods.c, GlobalConfig.defaultHigh - 5, 1);
+            LoadingPage.b(var1, this.u, this.j.mixedUi.X + 5 + 2, this.j.mixedUi.Y + 32 + 8 + UISceneController.goods.c, GlobalConfig.defaultHigh - 5, 1);
             return;
          }
       } else if (this.i.sceneSubState == 1) {

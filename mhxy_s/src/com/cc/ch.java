@@ -163,35 +163,35 @@ public final class ch {
 
       this.c();
       this.a = new int[7][4];
-      this.d.mixedUi.b();
-      this.d.mixedUi.a("装备升星");
+      this.d.mixedUi.clean();
+      this.d.mixedUi.setTitle("装备升星");
       this.d.mixedUi.a(false);
       this.w = Math.max((GlobalConfig.font2_h << 1) + 25, 59);
       this.x = GlobalConfig.font2_h + 13;
-      this.d.mixedUi.a(this.w + this.x);
+      this.d.mixedUi.setR(this.w + this.x);
       this.d();
       this.b();
-      this.d.mixedUi.a((BaseUi)this.d.textPanel);
+      this.d.mixedUi.addChild((BaseUi)this.d.textPanel);
       this.d.bottomUi.a("确定");
       if (GlobalConfig.defaultHigh > 220) {
-         this.d.mixedUi.a((BaseUi)this.d.bottomUi);
+         this.d.mixedUi.addChild((BaseUi)this.d.bottomUi);
       }
 
-      this.d.mixedUi.a(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
-      this.d.textPanel.setTextRect(this.d.textPanel.textX, this.d.textPanel.textY, this.d.mixedUi.c / 2 - 6, this.d.textPanel.textH);
+      this.d.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
+      this.d.textPanel.setTextRect(this.d.textPanel.textX, this.d.textPanel.textY, this.d.mixedUi.W / 2 - 6, this.d.textPanel.textH);
       int var1_t = 0;
       int var2 = 0;
       if (this.a != null) {
          for(int var3 = 0; var3 < this.a.length; ++var3) {
             if (var3 == 0) {
-               var1_t = this.d.mixedUi.a + this.d.mixedUi.c / 4 - 8;
-               var2 = this.d.mixedUi.b + 32 + this.w - 30;
+               var1_t = this.d.mixedUi.X + this.d.mixedUi.W / 4 - 8;
+               var2 = this.d.mixedUi.Y + 32 + this.w - 30;
             } else if (var3 < 4) {
-               var1_t = this.d.mixedUi.a + this.d.mixedUi.c / 2 + 13;
-               var2 = this.d.mixedUi.b + 32 + this.d.mixedUi.d / 4 + (var3 - 1) * 40 - 20;
+               var1_t = this.d.mixedUi.X + this.d.mixedUi.W / 2 + 13;
+               var2 = this.d.mixedUi.Y + 32 + this.d.mixedUi.H / 4 + (var3 - 1) * 40 - 20;
             } else {
-               var1_t = this.d.mixedUi.a + this.d.mixedUi.c * 3 / 4 - 18;
-               var2 = this.d.mixedUi.b + 32 + this.d.mixedUi.d / 4 + (var3 - 4) * 40 - 20;
+               var1_t = this.d.mixedUi.X + this.d.mixedUi.W * 3 / 4 - 18;
+               var2 = this.d.mixedUi.Y + 32 + this.d.mixedUi.H / 4 + (var3 - 4) * 40 - 20;
             }
 
             var1_t = 17;
@@ -276,7 +276,7 @@ public final class ch {
                   return;
                }
 
-               LoadingPage.a(this.d.mixedUi.a + 24, this.d.mixedUi.b + 49, new String[]{"升星", "查看", "取出"}, false);
+               LoadingPage.a(this.d.mixedUi.X + 24, this.d.mixedUi.Y + 49, new String[]{"升星", "查看", "取出"}, false);
                this.c.sceneSubState = 1;
                return;
             }
@@ -409,9 +409,9 @@ public final class ch {
    public final void a(Graphics var1) {
       if (this.d.mixedUi != null) {
          this.d.mixedUi.a(var1);
-         LoadingPage.draw(var1, this.d.mixedUi.a + 5, this.d.mixedUi.b + 32, (this.d.mixedUi.c - 11) / 2, this.w, 1);
-         LoadingPage.draw(var1, this.d.mixedUi.a + 5, this.d.mixedUi.b + 32 + this.w + 1, (this.d.mixedUi.c - 11) / 2, this.x - 2, 1);
-         LoadingPage.draw(var1, this.d.mixedUi.a + 5 + (this.d.mixedUi.c - 11) / 2, this.d.mixedUi.b + 32, (this.d.mixedUi.c - 10) / 2, this.d.mixedUi.d - 62, 1);
+         LoadingPage.draw(var1, this.d.mixedUi.X + 5, this.d.mixedUi.Y + 32, (this.d.mixedUi.W - 11) / 2, this.w, 1);
+         LoadingPage.draw(var1, this.d.mixedUi.X + 5, this.d.mixedUi.Y + 32 + this.w + 1, (this.d.mixedUi.W - 11) / 2, this.x - 2, 1);
+         LoadingPage.draw(var1, this.d.mixedUi.X + 5 + (this.d.mixedUi.W - 11) / 2, this.d.mixedUi.Y + 32, (this.d.mixedUi.W - 10) / 2, this.d.mixedUi.H - 62, 1);
       }
 
       if (this.a != null) {
@@ -464,13 +464,13 @@ public final class ch {
          u = var3.toString();
          this.e();
          if (u != null) {
-            this.g.a(var1, this.d.mixedUi.a + 5 + 6, this.d.mixedUi.b + 32 + this.w + 6, 0);
+            this.g.a(var1, this.d.mixedUi.X + 5 + 6, this.d.mixedUi.Y + 32 + this.w + 6, 0);
          }
       }
 
       if (this.c.sceneSubState == 0) {
          if (this.b == 0 && (this.f != null || this.f != "")) {
-            LoadingPage.b(var1, this.f, this.d.mixedUi.a + 5 + 2, this.d.mixedUi.b + 32 + 8 + UISceneController.goods.c, GlobalConfig.defaultHigh - 5, 1);
+            LoadingPage.b(var1, this.f, this.d.mixedUi.X + 5 + 2, this.d.mixedUi.Y + 32 + 8 + UISceneController.goods.c, GlobalConfig.defaultHigh - 5, 1);
             return;
          }
       } else if (this.c.sceneSubState == 1) {

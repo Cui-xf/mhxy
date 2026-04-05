@@ -197,15 +197,15 @@ public final class bq_1 {
          if (this.f != 10) {
             bq_1 var2 = this;
             if (UISceneController.ac != null) {
-               PngUtil.a(UISceneController.ac, this.y.frameStartTs);
+               PngUtil.animate(UISceneController.ac, this.y.frameStartTs);
             }
 
             if (UISceneController.ad != null) {
-               PngUtil.a(UISceneController.ad, this.y.frameStartTs);
+               PngUtil.animate(UISceneController.ad, this.y.frameStartTs);
             }
 
             if (UISceneController.ae != null) {
-               PngUtil.a(UISceneController.ae, this.y.frameStartTs);
+               PngUtil.animate(UISceneController.ae, this.y.frameStartTs);
             }
 
             if (GlobalStatus.H != null) {
@@ -216,7 +216,7 @@ public final class bq_1 {
                      PngUtil var7 = MainCanvas.pngUtil;
                      p var6 = var10000;
                      if (var10000.j != null && !var6.d()) {
-                        PngUtil.a(var6.j, var10);
+                        PngUtil.animate(var6.j, var10);
                      } else {
                         boolean var50 = true;
                      }
@@ -229,7 +229,7 @@ public final class bq_1 {
                         }
                      }
                   } else if (GlobalStatus.H[var3].k == 2) {
-                     if (GlobalStatus.H[var3].j == null || PngUtil.a(GlobalStatus.H[var3].j, var2.y.frameStartTs) == 2) {
+                     if (GlobalStatus.H[var3].j == null || PngUtil.animate(GlobalStatus.H[var3].j, var2.y.frameStartTs) == 2) {
                         GlobalStatus.H[var3].b((byte)1);
                         if (var2.F != null) {
                            for(byte var28 = 0; var28 < var2.F.length; ++var28) {
@@ -268,7 +268,7 @@ public final class bq_1 {
                            var2.f = 3;
                         }
                      }
-                  } else if (GlobalStatus.H[var3].k == 4 && (GlobalStatus.H[var3].j == null || PngUtil.a(GlobalStatus.H[var3].j, var2.y.frameStartTs) == 2)) {
+                  } else if (GlobalStatus.H[var3].k == 4 && (GlobalStatus.H[var3].j == null || PngUtil.animate(GlobalStatus.H[var3].j, var2.y.frameStartTs) == 2)) {
                      if (var2.F != null) {
                         for(byte var4 = 0; var4 < var2.F.length; ++var4) {
                            if (var2.F[var4].b == 0 && var2.F[var4].c == GlobalStatus.H[var3].a) {
@@ -287,7 +287,7 @@ public final class bq_1 {
                   if (GlobalStatus.M[var24].n == 1) {
                      GlobalStatus.M[var24].a(MainCanvas.pngUtil, var2.y.frameStartTs);
                   } else if (GlobalStatus.M[var24].n == 2) {
-                     if (GlobalStatus.M[var24].m == null || PngUtil.a(GlobalStatus.M[var24].m, var2.y.frameStartTs) == 2) {
+                     if (GlobalStatus.M[var24].m == null || PngUtil.animate(GlobalStatus.M[var24].m, var2.y.frameStartTs) == 2) {
                         GlobalStatus.M[var24].b((byte)1);
                         if (var2.A != null) {
                            var2.f = 5;
@@ -318,7 +318,7 @@ public final class bq_1 {
                            var2.f = 3;
                         }
                      }
-                  } else if (GlobalStatus.M[var24].n != 3 && GlobalStatus.M[var24].n == 4 && (GlobalStatus.M[var24].m == null || PngUtil.a(GlobalStatus.M[var24].m, var2.y.frameStartTs) == 2)) {
+                  } else if (GlobalStatus.M[var24].n != 3 && GlobalStatus.M[var24].n == 4 && (GlobalStatus.M[var24].m == null || PngUtil.animate(GlobalStatus.M[var24].m, var2.y.frameStartTs) == 2)) {
                      if (var2.F != null) {
                         for(byte var32 = 0; var32 < var2.F.length; ++var32) {
                            if (var2.F[var32].b == 1 && var2.F[var32].c == GlobalStatus.M[var24].a) {
@@ -1194,11 +1194,11 @@ public final class bq_1 {
                this.f = 3;
             }
          } else if (this.f == 6) {
-            if (PngUtil.a(UISceneController.ab, this.y.frameStartTs) == 2) {
+            if (PngUtil.animate(UISceneController.ab, this.y.frameStartTs) == 2) {
                this.f = 1;
             }
          } else if (this.f == 7) {
-            if (PngUtil.a(UISceneController.aa, this.y.frameStartTs) == 2) {
+            if (PngUtil.animate(UISceneController.aa, this.y.frameStartTs) == 2) {
                this.f = 8;
             }
          } else if (this.f == 8) {
@@ -1449,11 +1449,11 @@ public final class bq_1 {
       if (this.f == 0 || this.f == 1) {
          if (this.d != 4 && this.d != 5 && this.d != 6 && this.d != 7 && this.d != 8) {
             if (this.h >= 0 && this.h <= GlobalStatus.M.length - 1) {
-               PngUtil.a(UISceneController.select, this.y.frameStartTs);
+               PngUtil.animate(UISceneController.select, this.y.frameStartTs);
                MainCanvas.pngUtil.a(var2, (Frame1) UISceneController.select, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[this.h].a][0], GlobalConfig.R[GlobalStatus.M[this.h].a][1] - 10 - GlobalStatus.M[this.h].d(), 20, 0);
             }
          } else if (this.i >= 0 && this.i <= GlobalStatus.H.length - 1 && GlobalStatus.H[this.i].j != null) {
-            PngUtil.a(UISceneController.select, this.y.frameStartTs);
+            PngUtil.animate(UISceneController.select, this.y.frameStartTs);
             MainCanvas.pngUtil.a(var2, (Frame1) UISceneController.select, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[this.i].a][0], GlobalConfig.Q[GlobalStatus.H[this.i].a][1] - 10 - GlobalStatus.H[this.i].i(), 20, 0);
          }
       }
@@ -2383,7 +2383,7 @@ public final class bq_1 {
          cj var10000 = this.A;
          long var3 = this.y.frameStartTs;
          PngUtil var5 = MainCanvas.pngUtil;
-         return PngUtil.a(var10000.a, var3);
+         return PngUtil.animate(var10000.a, var3);
       } else {
          return 0;
       }
