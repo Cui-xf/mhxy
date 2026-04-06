@@ -5,7 +5,11 @@ import com.yinhan.kjava.main.MainCanvas;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public final class bl extends ar {
+/**
+ * 场景角色/NPC 实体：继承 {@link SceneEntity} 基类，持有名称、职业、性别、坐标、朝向及四方向动画帧资源 id，
+ * 用于 NetworkPacketProcessors 中 j[] 数组存储移动路径上的实体。
+ */
+public final class bl extends SceneEntity {
    public String a = "";
    public String b;
    private int w;
@@ -27,9 +31,10 @@ public final class bl extends ar {
    public byte u;
    public byte v;
 
+   /** 从数据流反序列化角色实体：读取名称、职业、性别、坐标、装备及四方向动画帧资源 id。 */
    public final void a(DataInputStream var1) throws IOException {
       this.a = var1.readUTF();
-      super.e = var1.readUTF();
+      super.name = var1.readUTF();
       this.b = var1.readUTF();
       this.w = LoadingPage.pickColor(var1.readByte());
       var1.readShort();
@@ -66,22 +71,22 @@ public final class bl extends ar {
 
    private void a(boolean var1) {
       if (!this.x.equals("")) {
-         super.g = MainCanvas.role.getFrame1(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
+         super.frame1 = MainCanvas.role.getFrame1(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
       } else {
-         super.g = MainCanvas.role.c(var1 ? this.D[super.h] : this.C[super.h]);
+         super.frame1 = MainCanvas.role.c(var1 ? this.D[super.h] : this.C[super.h]);
       }
 
-      if (super.g == null && !this.B) {
+      if (super.frame1 == null && !this.B) {
          if (!this.x.equals("")) {
-            UISceneController.a(this.c, this.n, this.o, this.x, this.y, this.z, this.A);
+            GameSceneController.a(this.c, this.n, this.o, this.x, this.y, this.z, this.A);
          } else {
-            UISceneController.a(this.c, this.n, this.o, "", (short)0, (short)0, (short)0);
+            GameSceneController.a(this.c, this.n, this.o, "", (short)0, (short)0, (short)0);
          }
 
          if (!this.x.equals("")) {
-            super.g = MainCanvas.role.getFrame1(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
+            super.frame1 = MainCanvas.role.getFrame1(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
          } else {
-            super.g = MainCanvas.role.c(var1 ? this.D[super.h] : this.C[super.h]);
+            super.frame1 = MainCanvas.role.c(var1 ? this.D[super.h] : this.C[super.h]);
          }
 
          this.B = true;
@@ -91,7 +96,7 @@ public final class bl extends ar {
 
    public final void a(aw var1, PngUtil var2, long var3) {
       try {
-         if (super.g != null) {
+         if (super.frame1 != null) {
             if (super.f != null && super.f.size() > 3) {
                short[] var5;
                byte var10000;
@@ -131,16 +136,16 @@ public final class bl extends ar {
                   this.a(false);
                   super.j = var5[0];
                   super.k = var5[1];
-                  ((ar)this).r();
+                  ((SceneEntity)this).r();
                   super.f.removeElementAt(super.f.size() - 1);
                } else {
                   this.a(false);
                }
 
-               PngUtil.animate(super.g, var3);
+               PngUtil.animate(super.frame1, var3);
             } else {
                this.a(true);
-               PngUtil.animate(super.g, var3);
+               PngUtil.animate(super.frame1, var3);
             }
 
             if (super.d != null) {

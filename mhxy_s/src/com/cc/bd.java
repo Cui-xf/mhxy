@@ -13,7 +13,7 @@ import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.TextField;
 
 public final class bd implements CommandListener {
-   public UISceneController a;
+   public GameSceneController a;
    public MainCanvas b;
    public byte c = 0;
    private String e;
@@ -30,7 +30,7 @@ public final class bd implements CommandListener {
    private Command o;
    private Command p;
 
-   public bd(UISceneController var1, MainCanvas var2, PngUtil var3) {
+   public bd(GameSceneController var1, MainCanvas var2, PngUtil var3) {
       this.a = var1;
       this.b = var2;
    }

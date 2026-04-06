@@ -5,7 +5,7 @@ import com.yinhan.kjava.main.MainCanvas;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public final class bp_1 extends ar {
+public final class bp_1 extends SceneEntity {
    public byte a;
    public String b = "";
    public String c;
@@ -24,10 +24,10 @@ public final class bp_1 extends ar {
    private int[] z = new int[4];
    private int[] A = new int[4];
 
-   public final void a(UISceneController var1, DataInputStream var2) throws IOException {
+   public final void a(GameSceneController var1, DataInputStream var2) throws IOException {
       var2.readByte();
       this.b = var2.readUTF();
-      super.e = var2.readUTF();
+      super.name = var2.readUTF();
       this.c = var2.readUTF();
       this.n = LoadingPage.pickColor(var2.readByte());
       this.o = var2.readShort();
@@ -44,7 +44,7 @@ public final class bp_1 extends ar {
          this.y = var2.readShort();
       }
 
-      if (this.b.equals(GlobalStatus.ad)) {
+      if (this.b.equals(GlobalStatus.roleId_2)) {
          GlobalStatus.bs = (short)this.s;
       }
 
@@ -68,17 +68,17 @@ public final class bp_1 extends ar {
    }
 
    private void a(boolean var1) {
-      super.g = MainCanvas.role.getFrame1(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
-      if (super.g == null) {
+      super.frame1 = MainCanvas.role.getFrame1(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
+      if (super.frame1 == null) {
          MainCanvas.a(this.q, this.p, (byte)5, this.r, this.v, this.w, this.x, this.y);
-         super.g = MainCanvas.role.getFrame1(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
-         if (super.g == null) {
+         super.frame1 = MainCanvas.role.getFrame1(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
+         if (super.frame1 == null) {
             this.r = 0;
             this.a();
-            super.g = MainCanvas.role.c(var1 ? this.A[super.h] : this.z[super.h]);
-            if (super.g == null) {
+            super.frame1 = MainCanvas.role.c(var1 ? this.A[super.h] : this.z[super.h]);
+            if (super.frame1 == null) {
                MainCanvas.a(this.q, this.p, super.h, this.r, this.v, this.w, this.x, this.y);
-               super.g = MainCanvas.role.c(var1 ? this.A[super.h] : this.z[super.h]);
+               super.frame1 = MainCanvas.role.c(var1 ? this.A[super.h] : this.z[super.h]);
             }
          }
       }
@@ -86,7 +86,7 @@ public final class bp_1 extends ar {
    }
 
    public final void a(PngUtil var1, long var2) {
-      if (super.g != null) {
+      if (super.frame1 != null) {
          if (GlobalStatus.bs == 0) {
             if (this.a(this.a, 0)) {
                if (super.f != null && super.f.size() >= 1) {
@@ -129,22 +129,22 @@ public final class bp_1 extends ar {
                      this.a(true);
                   }
 
-                  PngUtil.animate(super.g, var2);
+                  PngUtil.animate(super.frame1, var2);
                   return;
                }
 
                this.a(true);
-               PngUtil.animate(super.g, var2);
+               PngUtil.animate(super.frame1, var2);
                return;
             }
 
             this.a(true);
-            PngUtil.animate(super.g, var2);
+            PngUtil.animate(super.frame1, var2);
             return;
          }
 
          if (this.a(this.a, 1)) {
-            PngUtil.animate(super.g, var2);
+            PngUtil.animate(super.frame1, var2);
             int var4;
             if ((var4 = super.f.size()) < 7) {
                this.a(true);
@@ -186,7 +186,7 @@ public final class bp_1 extends ar {
             }
          } else {
             this.a(true);
-            PngUtil.animate(super.g, var2);
+            PngUtil.animate(super.frame1, var2);
          }
       }
 

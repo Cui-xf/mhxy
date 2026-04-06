@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
 public final class as {
-   private UISceneController b;
+   private GameSceneController b;
    public MainCanvas a;
    private static int c;
    private static short d;
@@ -24,7 +24,7 @@ public final class as {
    private int o;
    private int[][] p;
 
-   public as(UISceneController var1, MainCanvas var2, PngUtil var3) {
+   public as(GameSceneController var1, MainCanvas var2, PngUtil var3) {
       this.b = var1;
       this.a = var2;
    }
@@ -103,7 +103,7 @@ public final class as {
       this.p = new int[4][4];
       this.a.mixedUi.clean();
       this.a.mixedUi.setTitle("装备升星");
-      this.a.mixedUi.a(false);
+      this.a.mixedUi.setDrawBackground(false);
       this.l = Math.max((GlobalConfig.font2_h << 1) + 25, 59);
       this.m = GlobalConfig.font2_h + 13;
       this.a.mixedUi.setR(this.l + this.m);

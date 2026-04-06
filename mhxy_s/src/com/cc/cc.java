@@ -8,7 +8,7 @@ import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
 public final class cc {
-    private UISceneController uiSceneController;
+    private GameSceneController uiSceneController;
     private MainCanvas mainCanvas;
     private int[][] d = null;
     private int e;
@@ -38,7 +38,7 @@ public final class cc {
     private int[] B = null;
     private String C = null;
 
-    public cc(UISceneController var1, MainCanvas var2) {
+    public cc(GameSceneController var1, MainCanvas var2) {
         this.uiSceneController = var1;
         this.mainCanvas = var2;
     }
@@ -66,7 +66,7 @@ public final class cc {
         this.mainCanvas.topUi.a = (byte) var1;
         this.a = (short) var1;
         this.mainCanvas.mixedUi.addChild((BaseUi) this.mainCanvas.topUi);
-        this.mainCanvas.mixedUi.a(true);
+        this.mainCanvas.mixedUi.setDrawBackground(true);
         if (this.a == 0) {
             this.mainCanvas.textPanel.setText("", GlobalConfig.font2, (byte) 1);
             this.mainCanvas.mixedUi.addChild((BaseUi) this.mainCanvas.textPanel);
@@ -84,7 +84,7 @@ public final class cc {
                 this.d[var3][3] = var1_t;
             }
         } else if (this.a == 1) {
-            this.mainCanvas.gunDongListUi.a((Image[]) null, this.w, this.x, this.y);
+            this.mainCanvas.gunDongListUi.setValue((Image[]) null, this.w, this.x, this.y);
             this.mainCanvas.gunDongListUi.a(this.B);
             this.mainCanvas.mixedUi.addChild((BaseUi) this.mainCanvas.gunDongListUi);
             this.mainCanvas.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
@@ -96,7 +96,7 @@ public final class cc {
             this.mainCanvas.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
             this.e = GlobalConfig.font2_h * 3 + 4;
             this.mainCanvas.textPanel.setTextRect(this.mainCanvas.textPanel.textX, this.mainCanvas.textPanel.textY, this.mainCanvas.textPanel.textW, this.mainCanvas.textPanel.textH - this.e - 2);
-            UISceneController.K = new FWBRender("当前排名：" + (this.h <= 0 ? "无" : "第" + this.h + "名") + "\t剩余挑战：" + this.i + "次\t当前积分：" + this.j, (short) (this.mainCanvas.textPanel.textW - 20));
+            GameSceneController.K = new FWBRender("当前排名：" + (this.h <= 0 ? "无" : "第" + this.h + "名") + "\t剩余挑战：" + this.i + "次\t当前积分：" + this.j, (short) (this.mainCanvas.textPanel.textW - 20));
         }
 
         this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus;
@@ -179,7 +179,7 @@ public final class cc {
                     this.a = (short) this.mainCanvas.topUi.a;
                     String var8 = this.a == 0 ? this.p[this.g] : this.A[this.mainCanvas.gunDongListUi.g() - 1];
                     byte[] var4;
-                    if ((var4 = NetPayloadBuilder.a((short) 4110, GlobalStatus.ad, var8, (byte) 0)) == null) {
+                    if ((var4 = NetPayloadBuilder.a((short) 4110, GlobalStatus.roleId_2, var8, (byte) 0)) == null) {
                         this.mainCanvas.showTips("获取上传指令数据错误!");
                         return;
                     }
@@ -190,7 +190,7 @@ public final class cc {
                     this.a = (short) this.mainCanvas.topUi.a;
                     String var2 = this.a == 0 ? this.p[this.g] : this.A[this.mainCanvas.gunDongListUi.g() - 1];
                     byte[] var3;
-                    if ((var3 = NetPayloadBuilder.b((short) 4111, GlobalStatus.ad, var2)) == null) {
+                    if ((var3 = NetPayloadBuilder.b((short) 4111, GlobalStatus.roleId_2, var2)) == null) {
                         this.mainCanvas.showTips("获取上传指令数据错误!");
                         return;
                     }
@@ -249,7 +249,7 @@ public final class cc {
     public final void a(Graphics var1) {
         if (this.mainCanvas.mixedUi != null) {
             if (this.uiSceneController.sceneSubState == 4) {
-                this.uiSceneController.a(var1, "", UISceneController.q);
+                this.uiSceneController.a(var1, "", GameSceneController.q);
                 return;
             }
 
@@ -267,7 +267,7 @@ public final class cc {
                 }
             } else if (this.a != 1 && this.a == 2) {
                 LoadingPage.draw(var1, this.mainCanvas.textPanel.textX, this.mainCanvas.textPanel.textY + this.mainCanvas.textPanel.textH + 1, this.mainCanvas.textPanel.textW, this.e + 1, 1);
-                UISceneController.K.a(var1, this.mainCanvas.textPanel.textX + 10, this.mainCanvas.textPanel.textY + this.mainCanvas.textPanel.textH + 4, 0);
+                GameSceneController.K.a(var1, this.mainCanvas.textPanel.textX + 10, this.mainCanvas.textPanel.textY + this.mainCanvas.textPanel.textH + 4, 0);
             }
 
             if (this.uiSceneController.sceneSubState == 1) {

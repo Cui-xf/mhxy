@@ -11,7 +11,7 @@ public final class MixedUi extends BaseUi {
     // 窗口标题文本。
     private String title;
     // 是否绘制窗口底色。
-    private boolean j = false;
+    private boolean drawBackground = false;
     // 是否绘制左上角装饰图。
     private boolean k = true;
     // 窗口矩形区域。
@@ -39,8 +39,8 @@ public final class MixedUi extends BaseUi {
     private boolean y = false;
 
     // 控制是否绘制窗口背景色。
-    public final void a(boolean var1) {
-        this.j = var1;
+    public void setDrawBackground(boolean var1) {
+        this.drawBackground = var1;
     }
 
     // 设置窗口标题，同时初始化标题右侧关闭按钮的点击区域缓存。
@@ -178,7 +178,7 @@ public final class MixedUi extends BaseUi {
     // 清空窗口内容但保留对象实例，常用于重新组装弹窗。
     public void clean() {
         this.title = null;
-        this.j = false;
+        this.drawBackground = false;
         this.r = 0;
         this.e = 0;
         this.f = 0;
@@ -240,7 +240,7 @@ public final class MixedUi extends BaseUi {
     // 绘制窗口装饰、标题栏以及所有子控件。
     public final void a(Graphics var1) {
         var1.setClip(this.X, this.Y, this.W, this.H);
-        if (this.j) {
+        if (this.drawBackground) {
             var1.setColor(2780801);
             var1.fillRect(this.X, this.Y, this.W, this.H);
         }
@@ -322,7 +322,7 @@ public final class MixedUi extends BaseUi {
     // 释放窗口与全部子控件的状态。
     public final void clear() {
         this.title = null;
-        this.j = false;
+        this.drawBackground = false;
         this.r = 0;
         this.e = 0;
         this.f = 0;

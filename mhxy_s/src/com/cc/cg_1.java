@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
 public final class cg_1 {
-   private UISceneController e;
+   private GameSceneController e;
    private MainCanvas f;
    private PngUtil g;
    private Frame1 h;
@@ -47,7 +47,7 @@ public final class cg_1 {
    private String L;
    private String M;
 
-   public cg_1(UISceneController var1, MainCanvas var2, PngUtil var3) {
+   public cg_1(GameSceneController var1, MainCanvas var2, PngUtil var3) {
       this.e = var1;
       this.f = var2;
       this.g = var3;
@@ -235,11 +235,11 @@ public final class cg_1 {
 
       this.f.mixedUi.clean();
       this.f.mixedUi.setTitle("星级继承");
-      this.f.mixedUi.a(true);
+      this.f.mixedUi.setDrawBackground(true);
       this.H.setFWBText(this.L, GlobalConfig.font2, (byte)2);
       this.I.setFWBText(this.M, GlobalConfig.font2, (byte)2);
       if (a != -1 && u != -1) {
-         UISceneController.a(u, v, w, x);
+         GameSceneController.a(u, v, w, x);
          this.h = MainCanvas.petfight.a(String.valueOf(u + "_0"), v, w, x);
       } else if (this.h != null) {
          this.h.a();
@@ -247,7 +247,7 @@ public final class cg_1 {
       }
 
       if (k != -1 && y != -1) {
-         UISceneController.a(y, z, A, B);
+         GameSceneController.a(y, z, A, B);
          this.i = MainCanvas.petfight.a(String.valueOf(y + "_0"), z, A, B);
       } else if (this.i != null) {
          this.i.a();

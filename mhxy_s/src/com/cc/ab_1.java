@@ -5,12 +5,12 @@ import com.yinhan.kjava.main.MainCanvas;
 import java.util.Vector;
 
 public final class ab_1 {
-   private UISceneController c;
+   private GameSceneController c;
    private long d = 0L;
    public int a = -1;
    public static boolean b;
 
-   public ab_1(UISceneController var1) {
+   public ab_1(GameSceneController var1) {
       this.c = var1;
    }
 
@@ -80,7 +80,7 @@ public final class ab_1 {
             return GlobalStatus.bu;
          } else {
             for(int var0 = 0; var0 < GlobalStatus.q.length; ++var0) {
-               if (GlobalStatus.q[var0].b.equals(GlobalStatus.ad)) {
+               if (GlobalStatus.q[var0].b.equals(GlobalStatus.roleId_2)) {
                   if (GlobalStatus.q[var0].s == 1) {
                      if (GlobalStatus.bu) {
                         return true;

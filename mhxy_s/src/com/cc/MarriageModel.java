@@ -7,32 +7,34 @@ import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
-public final class v_1 {
-   private UISceneController h;
+public final class MarriageModel {
+   private GameSceneController h;
    private MainCanvas i;
    public static int[] a;
    private static String[] j;
    private static String[] k;
    public static String b;
    private static byte l = 0;
-   public static String c = "结婚守则：\t1.游戏中未婚状态的一对异性玩家可申请结婚\t2.双方好感度均需达到1000点或以上\t3.双方等级需达到40级或以上\t4.双方需各自支付100万两的结婚申请费用";
+   /** 结婚守则文字，由服务器配置包8729下发覆盖，默认值为本地硬编码内容 */
+   public static String marriageTips = "结婚守则：\t1.游戏中未婚状态的一对异性玩家可申请结婚\t2.双方好感度均需达到1000点或以上\t3.双方等级需达到40级或以上\t4.双方需各自支付100万两的结婚申请费用";
    public int d = 0;
    private String[] m = new String[]{"同意(点击申请结婚)", "拒绝"};
    public static byte e = 0;
-   public static String f = "离婚守则：\t1.离婚后夫妻双方好感度降低为0\t2.离婚后不可使用夫妻饰物、接取夫妻任务和获得夫妻声望\t3.一方申请离婚，在对方同意离婚后，离婚效果即时生效\t4.一方申请离婚，如对方不进行确认，则离婚效果在申请离婚后72时自动生效";
+   /** 离婚守则文字，由服务器配置包8729下发覆盖，默认值为本地硬编码内容 */
+   public static String divorceTips = "离婚守则：\t1.离婚后夫妻双方好感度降低为0\t2.离婚后不可使用夫妻饰物、接取夫妻任务和获得夫妻声望\t3.一方申请离婚，在对方同意离婚后，离婚效果即时生效\t4.一方申请离婚，如对方不进行确认，则离婚效果在申请离婚后72时自动生效";
    public int g = 0;
    private String[] n = new String[]{"离婚(点击申请离婚)", "取消离婚"};
    private static int[] o;
    private static String[] p;
 
-   public v_1(UISceneController var1, MainCanvas var2) {
+   public MarriageModel(GameSceneController var1, MainCanvas var2) {
       this.h = var1;
       this.i = var2;
    }
 
    public final void a(String var1, String var2, long var3) {
       byte[] var5;
-      if ((var5 = NetPayloadBuilder.a((short)4857, GlobalStatus.ad, var1, var2, var3)) != null) {
+      if ((var5 = NetPayloadBuilder.a((short)4857, GlobalStatus.roleId_2, var1, var2, var3)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4857, var5));
          this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
          this.i.showPending((String)null);
@@ -43,7 +45,7 @@ public final class v_1 {
 
    public final void a() {
       byte[] var1;
-      if ((var1 = NetPayloadBuilder.m((short)4858, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
+      if ((var1 = NetPayloadBuilder.m((short)4858, GlobalStatus.roleId_2, (short) GlobalStatus.gQ)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4858, var1));
          this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
          this.i.showPending((String)null);
@@ -85,8 +87,8 @@ public final class v_1 {
    public final void a(int var1) {
       this.i.mixedUi.clear();
       this.i.mixedUi.setTitle("求爱宣言");
-      this.i.mixedUi.a(false);
-      this.i.gunDongListUi.a((Image[])null, k, (String[])null, j);
+      this.i.mixedUi.setDrawBackground(false);
+      this.i.gunDongListUi.setValue((Image[])null, k, (String[])null, j);
       this.i.gunDongListUi.a(var1);
       this.i.bottomUi.a("查看");
       this.i.bottomUi.a(true);
@@ -101,7 +103,7 @@ public final class v_1 {
    public final void b() {
       this.i.mixedUi.clear();
       this.i.mixedUi.setTitle("求爱宣言");
-      this.i.mixedUi.a(false);
+      this.i.mixedUi.setDrawBackground(false);
       this.i.textPanel.setFWBText(b, GlobalConfig.font2, (byte)2);
       this.i.bottomUi.a("确定");
       this.i.mixedUi.addChild((BaseUi)this.i.textPanel);
@@ -176,7 +178,7 @@ public final class v_1 {
          } else if ( LoadingPage.o == 0) {
             var1 = a[this.i.gunDongListUi.g()];
             byte[] var3;
-            if ((var3 = NetPayloadBuilder.A((short)4859, GlobalStatus.ad, var1)) == null) {
+            if ((var3 = NetPayloadBuilder.A((short)4859, GlobalStatus.roleId_2, var1)) == null) {
                this.i.showTips("获取上传指令数据错误!");
                return;
             }
@@ -218,7 +220,7 @@ public final class v_1 {
 
    public final void a(byte var1) {
       byte[] var2;
-      if ((var2 = NetPayloadBuilder.m((short)4860, GlobalStatus.ad, (byte)var1)) != null) {
+      if ((var2 = NetPayloadBuilder.m((short)4860, GlobalStatus.roleId_2, (byte)var1)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4860, var2));
          this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
          this.i.showPending((String)null);
@@ -235,8 +237,8 @@ public final class v_1 {
       this.i.mainMidlet.start();
       this.i.mixedUi.clear();
       this.i.mixedUi.setTitle("申请结婚");
-      this.i.mixedUi.a(false);
-      this.i.textPanel.setText(c, GlobalConfig.font2, (byte)2);
+      this.i.mixedUi.setDrawBackground(false);
+      this.i.textPanel.setText(marriageTips, GlobalConfig.font2, (byte)2);
       this.i.textPanel.setShuRuMoShi((byte)1);
       this.i.mixedUi.addChild((BaseUi)this.i.textPanel);
       int var2 = 2 * GlobalConfig.font2_h + 16;
@@ -314,7 +316,7 @@ public final class v_1 {
 
    public final void b(byte var1) {
       byte[] var2;
-      if ((var2 = NetPayloadBuilder.n((short)4861, GlobalStatus.ad, (byte)var1)) != null) {
+      if ((var2 = NetPayloadBuilder.n((short)4861, GlobalStatus.roleId_2, (byte)var1)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4861, var2));
          this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
          this.i.showPending((String)null);
@@ -330,8 +332,8 @@ public final class v_1 {
    public final void d() {
       this.i.mixedUi.clear();
       this.i.mixedUi.setTitle("申请离婚");
-      this.i.mixedUi.a(false);
-      this.i.textPanel.setText(f, GlobalConfig.font2, (byte)2);
+      this.i.mixedUi.setDrawBackground(false);
+      this.i.textPanel.setText(divorceTips, GlobalConfig.font2, (byte)2);
       this.i.textPanel.setShuRuMoShi((byte)1);
       this.i.mixedUi.addChild((BaseUi)this.i.textPanel);
       int var2 = 2 * GlobalConfig.font2_h + 16;
@@ -414,7 +416,7 @@ public final class v_1 {
 
    public final void e() {
       byte[] var1;
-      if ((var1 = NetPayloadBuilder.n((short)4862, GlobalStatus.ad, (short) GlobalStatus.gQ)) != null) {
+      if ((var1 = NetPayloadBuilder.n((short)4862, GlobalStatus.roleId_2, (short) GlobalStatus.gQ)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4862, var1));
          this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
          this.i.showPending((String)null);
@@ -444,8 +446,8 @@ public final class v_1 {
    public final void f() {
       this.i.mixedUi.clear();
       this.i.mixedUi.setTitle("新人礼堂");
-      this.i.mixedUi.a(false);
-      this.i.gunDongListUi.a((Image[])null, p, (String[])null, (String[])null);
+      this.i.mixedUi.setDrawBackground(false);
+      this.i.gunDongListUi.setValue((Image[])null, p, (String[])null, (String[])null);
       this.i.bottomUi.a("进入");
       this.i.bottomUi.a(true);
       this.i.mixedUi.addChild((BaseUi)this.i.gunDongListUi);
@@ -465,7 +467,7 @@ public final class v_1 {
          if (o != null && (var1 == 268435456 || var1 == 1073741824 || var1 == 517)) {
             int var3 = o[this.i.gunDongListUi.g()];
             byte[] var4;
-            if ((var4 = NetPayloadBuilder.a((short)4863, GlobalStatus.ad, GlobalStatus.t[this.h.af].a, (int)var3, (short)this.h.sceneRefreshCoordinator.j, (short)this.h.sceneRefreshCoordinator.k)) != null) {
+            if ((var4 = NetPayloadBuilder.a((short)4863, GlobalStatus.roleId_2, GlobalStatus.npcObjects[this.h.af].a, (int)var3, (short)this.h.sceneRefreshCoordinator.j, (short)this.h.sceneRefreshCoordinator.k)) != null) {
                MainCanvas.netUtils.sendPacket(new NetPacket((short)4863, var4));
                this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
                this.i.showPending((String)null);

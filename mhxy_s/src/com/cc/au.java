@@ -120,14 +120,14 @@ public class au {
       if (this.g == 701) {
          this.f = MainCanvas.petfight.getFrame1(this.d[0], this.a, this.b, this.c);
          if (this.f == null) {
-            UISceneController.a(this.g, this.a, this.b, this.c);
+            GameSceneController.a(this.g, this.a, this.b, this.c);
             this.f = MainCanvas.petfight.getFrame1(this.d[0], this.a, this.b, this.c);
             return;
          }
       } else {
          this.f = MainCanvas.petfight.getFrame1(this.d[var1], this.a, this.b, this.c);
          if (this.f == null) {
-            UISceneController.a(this.g, this.a, this.b, this.c);
+            GameSceneController.a(this.g, this.a, this.b, this.c);
             this.f = MainCanvas.petfight.getFrame1(this.d[var1], this.a, this.b, this.c);
          }
       }

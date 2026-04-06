@@ -7,395 +7,395 @@ import javax.microedition.lcdui.Image;
 
 // 滚动列表控件：支持图标、主文本、中间列、右侧列、额外图标和跑马灯显示。
 public final class GunDongListUi extends BaseUi {
-   // 列表显示区域。
-   private int a;
-   private int b;
-   private int c;
-   private int d;
-   // 当前可见窗口的起始行与当前选中行。
-   private int e;
-   private int f;
-   // 当前页可显示的行数，以及单行高度。
-   private int g;
-   private int h;
-   private int i;
-   private int j;
-   private int k;
-   private int l;
-   private short m;
-   private short n;
-   private short o;
-   // 顶部附加提示文本；存在时会额外占用一行。
-   private String p;
-   // 选中行旁边绘制的浮动提示文案。
-   private String q;
-   // 每行左侧图标与三列文本数据。
-   private Image[] r;
-   private String[] s;
-   private String[] t;
-   private String[] u;
-   // 行内附加图标/徽记数据。
-   private short[] v;
-   private short[] w;
-   // 每行主文本颜色。
-   private int[] x = null;
-   private byte y;
-   private byte z;
-   private byte A = 0;
-   // 当前选中行文本超过可视宽度时的跑马灯状态。
-   private boolean B = true;
-   // 是否给左侧图标绘制边框；以及是否绘制额外遮罩/高亮效果。
-   private boolean C;
-   private boolean D = false;
-   private boolean E = false;
+    // 列表显示区域。
+    private int a;
+    private int b;
+    private int c;
+    private int d;
+    // 当前可见窗口的起始行与当前选中行。
+    private int e;
+    private int f;
+    // 当前页可显示的行数，以及单行高度。
+    private int g;
+    private int h;
+    private int i;
+    private int j;
+    private int k;
+    private int l;
+    private short m;
+    private short n;
+    private short o;
+    // 顶部附加提示文本；存在时会额外占用一行。
+    private String p;
+    // 选中行旁边绘制的浮动提示文案。
+    private String q;
+    // 每行左侧图标与三列文本数据。
+    private Image[] r;
+    private String[] s;
+    private String[] t;
+    private String[] u;
+    // 行内附加图标/徽记数据。
+    private short[] icon;
+    private short[] w;
+    // 每行主文本颜色。
+    private int[] x = null;
+    private byte y;
+    private byte z;
+    private byte A = 0;
+    // 当前选中行文本超过可视宽度时的跑马灯状态。
+    private boolean B = true;
+    // 是否给左侧图标绘制边框；以及是否绘制额外遮罩/高亮效果。
+    private boolean C;
+    private boolean D = false;
+    private boolean E = false;
 
-   // 纯文本列表初始化。
-   public final void a(String[] var1, String[] var2, String[] var3) {
-      this.a((Image[])null, var1, (short[])null, (String[])null, var3);
-   }
+    // 纯文本列表初始化。
+    public final void a(String[] var1, String[] var2, String[] var3) {
+        this.setValue((Image[]) null, var1, (short[]) null, (String[]) null, var3);
+    }
 
-   // 带图标/附加列的列表初始化。
-   public final void a(Image[] var1, String[] var2, String[] var3, String[] var4) {
-      this.a(var1, var2, (short[])null, var3, var4);
-   }
+    // 带图标/附加列的列表初始化。
+    public void setValue(Image[] var1, String[] var2, String[] var3, String[] var4) {
+        this.setValue(var1, var2, (short[]) null, var3, var4);
+    }
 
-   // 统一重建列表数据源，并重置滚动/选中状态。
-   private void a(Image[] var1, String[] var2, short[] var3, String[] var4, String[] var5) {
-      this.clear();
-      this.r = var1;
-      this.s = var2;
-      this.t = var4;
-      this.u = var5;
-      this.v = null;
-      this.C = true;
-      this.D = false;
-      this.e = 0;
-      this.f = 0;
-      this.z = 0;
-      this.i = GlobalConfig.font2_h;
-      this.h = var2 == null ? 0 : var2.length;
-      this.g = Math.min(this.h + this.z, (this.d - 8) / this.i);
-   }
+    // 统一重建列表数据源，并重置滚动/选中状态。
+    private void setValue(Image[] var1, String[] var2, short[] var3, String[] var4, String[] var5) {
+        this.clear();
+        this.r = var1;
+        this.s = var2;
+        this.t = var4;
+        this.u = var5;
+        this.icon = null;
+        this.C = true;
+        this.D = false;
+        this.e = 0;
+        this.f = 0;
+        this.z = 0;
+        this.i = GlobalConfig.font2_h;
+        this.h = var2 == null ? 0 : var2.length;
+        this.g = Math.min(this.h + this.z, (this.d - 8) / this.i);
+    }
 
-   public final int a() {
-      return this.a;
-   }
+    public final int a() {
+        return this.a;
+    }
 
-   public final int b() {
-      return this.b;
-   }
+    public final int b() {
+        return this.b;
+    }
 
-   public final int c() {
-      return this.c;
-   }
+    public final int c() {
+        return this.c;
+    }
 
-   public final int d() {
-      return this.d;
-   }
+    public final int d() {
+        return this.d;
+    }
 
-   public final int e() {
-      return this.i;
-   }
+    public final int e() {
+        return this.i;
+    }
 
-   public final int f() {
-      return this.g;
-   }
+    public final int f() {
+        return this.g;
+    }
 
-   public final int g() {
-      return this.f;
-   }
+    public final int g() {
+        return this.f;
+    }
 
-   public final int h() {
-      return this.e;
-   }
+    public final int h() {
+        return this.e;
+    }
 
-   public final int i() {
-      return this.f - this.e;
-   }
+    public final int i() {
+        return this.f - this.e;
+    }
 
-   // 控制是否绘制额外高亮边框。
-   public final void a(boolean var1) {
-      this.E = var1;
-   }
+    // 控制是否绘制额外高亮边框。
+    public final void a(boolean var1) {
+        this.E = var1;
+    }
 
-   public final void a(Image[] var1) {
-      this.r = var1;
-   }
+    public final void a(Image[] var1) {
+        this.r = var1;
+    }
 
-   // 关闭左侧图标边框绘制；实参未使用，保留原始接口。
-   public final void b(boolean var1) {
-      this.C = false;
-   }
+    // 关闭左侧图标边框绘制；实参未使用，保留原始接口。
+    public final void b(boolean var1) {
+        this.C = false;
+    }
 
-   // 设置顶部附加提示行。
-   public final void a(String var1) {
-      this.p = var1;
-      this.z = 1;
-   }
+    // 设置顶部附加提示行。
+    public final void a(String var1) {
+        this.p = var1;
+        this.z = 1;
+    }
 
-   // 设置选中行旁边的浮动提示及其样式。
-   public final void a(String var1, int var2) {
-       LoadingPage.l = 0;
-      this.q = var1;
-      this.y = (byte)var2;
-   }
+    // 设置选中行旁边的浮动提示及其样式。
+    public final void a(String var1, int var2) {
+        LoadingPage.l = 0;
+        this.q = var1;
+        this.y = (byte) var2;
+    }
 
-   // 直接设置当前选中行，并自动修正可见窗口范围。
-   public final void a(int var1) {
-      this.f = var1;
+    // 直接设置当前选中行，并自动修正可见窗口范围。
+    public final void a(int var1) {
+        this.f = var1;
 
-      for(this.g = Math.min(this.h + this.z, (this.d - 8) / this.i); this.e < this.f && this.f - this.e + 1 > this.g; ++this.e) {
-      }
+        for (this.g = Math.min(this.h + this.z, (this.d - 8) / this.i); this.e < this.f && this.f - this.e + 1 > this.g; ++this.e) {
+        }
 
-      if (this.e > this.h || this.f > this.h) {
-         this.e = 0;
-         this.f = 0;
-      }
+        if (this.e > this.h || this.f > this.h) {
+            this.e = 0;
+            this.f = 0;
+        }
 
-   }
+    }
 
-   // 同时设置可见起始行与当前选中行。
-   public final void a(int var1, int var2) {
-      this.e = var1;
-      this.f = var2;
-      if (this.f == this.h - 1 + this.z) {
-         this.e = Math.max(0, this.f - this.g + 1);
-      }
+    // 同时设置可见起始行与当前选中行。
+    public final void a(int var1, int var2) {
+        this.e = var1;
+        this.f = var2;
+        if (this.f == this.h - 1 + this.z) {
+            this.e = Math.max(0, this.f - this.g + 1);
+        }
 
-      if (this.e > this.h || this.f > this.h) {
-         this.e = 0;
-         this.f = 0;
-      }
+        if (this.e > this.h || this.f > this.h) {
+            this.e = 0;
+            this.f = 0;
+        }
 
-   }
+    }
 
-   public final void a(short[] var1) {
-      this.v = var1;
-   }
+    public void setIcon(short[] var1) {
+        this.icon = var1;
+    }
 
-   public final void b(short[] var1) {
-      this.w = var1;
-   }
+    public final void b(short[] var1) {
+        this.w = var1;
+    }
 
-   public final void a(int[] var1) {
-      this.x = var1;
-   }
+    public final void a(int[] var1) {
+        this.x = var1;
+    }
 
-   // 设置列表显示区域。
-   public final void a(int var1, int var2, int var3, int var4) {
-      this.a = var1;
-      this.b = var2;
-      this.c = var3;
-      this.d = var4;
-   }
+    // 设置列表显示区域。
+    public final void a(int var1, int var2, int var3, int var4) {
+        this.a = var1;
+        this.b = var2;
+        this.c = var3;
+        this.d = var4;
+    }
 
-   // 处理上下移动指令，并维护滚动窗口。
-   public final void onClick(int var1) {
-      if (var1 != 1 && var1 != 514) {
-         if (var1 == 4 || var1 == 520) {
+    // 处理上下移动指令，并维护滚动窗口。
+    public final void onClick(int var1) {
+        if (var1 != 1 && var1 != 514) {
+            if (var1 == 4 || var1 == 520) {
+                if (this.s != null) {
+                    this.f = this.f >= this.s.length - 1 + this.z ? 0 : ++this.f;
+                    this.e = this.f - this.e >= this.g ? ++this.e : (this.f == 0 ? 0 : this.e);
+                }
+
+                this.B = true;
+            }
+
+        } else {
             if (this.s != null) {
-               this.f = this.f >= this.s.length - 1 + this.z ? 0 : ++this.f;
-               this.e = this.f - this.e >= this.g ? ++this.e : (this.f == 0 ? 0 : this.e);
+                this.f = this.f <= 0 ? this.s.length - 1 + this.z : --this.f;
+                if (this.e > 0 && this.e + this.z > this.f) {
+                    --this.e;
+                }
+
+                if (this.f == this.s.length - 1 + this.z) {
+                    this.e = this.f - this.g + 1;
+                }
             }
 
             this.B = true;
-         }
+        }
+    }
 
-      } else {
-         if (this.s != null) {
-            this.f = this.f <= 0 ? this.s.length - 1 + this.z : --this.f;
-            if (this.e > 0 && this.e + this.z > this.f) {
-               --this.e;
+    // 命中检测：支持滚动条上下按钮以及列表项点击。
+    public final int hintCheck(int var1, int var2) {
+        if (var1 >= this.a + this.c - 2 - MainCanvas.up.b && var1 <= this.a + this.c && var2 >= this.b + 3 && var2 <= this.b + 3 + MainCanvas.up.c) {
+            return 1;
+        } else if (var1 >= this.a + this.c - 2 - MainCanvas.down.b && var1 <= this.a + this.c && var2 >= this.b + this.d - 2 - MainCanvas.down.c && var2 <= this.b + this.d) {
+            return 4;
+        } else {
+            var2 = var2;
+            var1 = var1;
+            for (int var3 = 0; var3 < this.g; ++var3) {
+                if (var1 > this.a + 4 && var1 < this.a + this.c - 8 && var2 > this.b + 4 + var3 * this.i && var2 < this.b + 4 + (var3 + 1) * this.i) {
+                    if (this.f == this.e + var3) {
+                        return 1073741824;
+                    }
+
+                    this.B = true;
+                    this.f = this.e + var3 - 1;
+                    return 4;
+                }
             }
 
-            if (this.f == this.s.length - 1 + this.z) {
-               this.e = this.f - this.g + 1;
-            }
-         }
+            return 0;
+        }
+    }
 
-         this.B = true;
-      }
-   }
+    // 释放列表数据引用。
+    public final void clear() {
+        this.s = null;
+        this.t = null;
+        this.u = null;
+        this.x = null;
+        this.p = null;
+        this.r = null;
+        this.q = null;
+        this.icon = null;
+        this.w = null;
+    }
 
-   // 命中检测：支持滚动条上下按钮以及列表项点击。
-   public final int hintCheck(int var1, int var2) {
-      if (var1 >= this.a + this.c - 2 - MainCanvas.up.b && var1 <= this.a + this.c && var2 >= this.b + 3 && var2 <= this.b + 3 + MainCanvas.up.c) {
-         return 1;
-      } else if (var1 >= this.a + this.c - 2 - MainCanvas.down.b && var1 <= this.a + this.c && var2 >= this.b + this.d - 2 - MainCanvas.down.c && var2 <= this.b + this.d) {
-         return 4;
-      } else {
-         var2 = var2;
-         var1 = var1;
-         for(int var3 = 0; var3 < this.g; ++var3) {
-            if (var1 > this.a + 4 && var1 < this.a + this.c - 8 && var2 > this.b + 4 + var3 * this.i && var2 < this.b + 4 + (var3 + 1) * this.i) {
-               if (this.f == this.e + var3) {
-                  return 1073741824;
-               }
+    // 绘制列表主体、选中高亮、滚动条以及可选的跑马灯文本。
+    public final void a(Graphics var1) {
+        this.g = Math.min(this.h + this.z, (this.d - 8) / this.i);
+        LoadingPage.setColor(var1, 6014420);
+        var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
+        var1.fillRect(this.a, this.b, this.c, this.d);
+        LoadingPage.draw(var1, this.a, this.b, this.c, this.d, 1);
+        if (this.E) {
+            LoadingPage.draw(var1);
+        }
 
-               this.B = true;
-               this.f = this.e + var3 - 1;
-               return 4;
-            }
-         }
+        int var2 = 0;
+        int var3 = 0;
+        int var4 = 0;
+        int var5 = 0;
 
-         return 0;
-      }
-   }
-
-   // 释放列表数据引用。
-   public final void clear() {
-      this.s = null;
-      this.t = null;
-      this.u = null;
-      this.x = null;
-      this.p = null;
-      this.r = null;
-      this.q = null;
-      this.v = null;
-      this.w = null;
-   }
-
-   // 绘制列表主体、选中高亮、滚动条以及可选的跑马灯文本。
-   public final void a(Graphics var1) {
-      this.g = Math.min(this.h + this.z, (this.d - 8) / this.i);
-       LoadingPage.setColor(var1, 6014420);
-      var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-      var1.fillRect(this.a, this.b, this.c, this.d);
-       LoadingPage.draw(var1, this.a, this.b, this.c, this.d, 1);
-      if (this.E) {
-          LoadingPage.draw(var1);
-      }
-
-      int var2 = 0;
-      int var3 = 0;
-      int var4 = 0;
-      int var5 = 0;
-
-      for(int var6 = this.e - this.z; var5 < this.g && var6 < this.h; ++var6) {
-         var1.setClip(this.a, this.b, this.c, this.d);
-         if (this.f == var6 + this.z) {
-             LoadingPage.setColor(var1, 9);
-            var1.fillRect(this.a + 4, this.b + 4 + var5 * this.i, this.c - 11, this.i);
-         }
-
-         if (var6 + this.z == this.e && this.p != null) {
-            var1.setColor(16776960);
-            var1.drawString(this.p, this.a + 6, this.b + 4 + var5 * this.i, 20);
-         } else {
-            var3 = var4 = this.A = 0;
-            if (this.r != null && this.r[var6] != null) {
-               this.A = (byte)this.r[var6].getWidth();
-               var1.drawImage(this.r[var6], this.a + 4, this.b + 4 + var5 * this.i + (this.i - this.r[var6].getHeight()) / 2, 20);
-               if (this.C) {
-                  var1.setColor(16515586);
-                  var1.drawRect(this.a + 4, this.b + 4 + var5 * this.i + (this.i - this.r[var6].getHeight()) / 2, this.r[var6].getWidth(), this.r[var6].getHeight());
-               }
+        for (int var6 = this.e - this.z; var5 < this.g && var6 < this.h; ++var6) {
+            var1.setClip(this.a, this.b, this.c, this.d);
+            if (this.f == var6 + this.z) {
+                LoadingPage.setColor(var1, 9);
+                var1.fillRect(this.a + 4, this.b + 4 + var5 * this.i, this.c - 11, this.i);
             }
 
-            var2 = (var2 = 0 + this.A + (this.v != null && this.v[var6] > 0 ? 16 : 0)) + (this.w != null && this.w[var6] > 0 ? 18 : 0);
-            if (this.s[var6] != null) {
-               var2 += GlobalConfig.font2.stringWidth(this.s[var6]);
+            if (var6 + this.z == this.e && this.p != null) {
+                var1.setColor(16776960);
+                var1.drawString(this.p, this.a + 6, this.b + 4 + var5 * this.i, 20);
+            } else {
+                var3 = var4 = this.A = 0;
+                if (this.r != null && this.r[var6] != null) {
+                    this.A = (byte) this.r[var6].getWidth();
+                    var1.drawImage(this.r[var6], this.a + 4, this.b + 4 + var5 * this.i + (this.i - this.r[var6].getHeight()) / 2, 20);
+                    if (this.C) {
+                        var1.setColor(16515586);
+                        var1.drawRect(this.a + 4, this.b + 4 + var5 * this.i + (this.i - this.r[var6].getHeight()) / 2, this.r[var6].getWidth(), this.r[var6].getHeight());
+                    }
+                }
+
+                var2 = (var2 = 0 + this.A + (this.icon != null && this.icon[var6] > 0 ? 16 : 0)) + (this.w != null && this.w[var6] > 0 ? 18 : 0);
+                if (this.s[var6] != null) {
+                    var2 += GlobalConfig.font2.stringWidth(this.s[var6]);
+                }
+
+                if (this.t != null && this.t[var6] != null) {
+                    var3 = GlobalConfig.font2.stringWidth(this.t[var6]);
+                }
+
+                if (this.u != null && this.u[var6] != null) {
+                    var4 = GlobalConfig.font2.stringWidth(this.u[var6]);
+                }
+
+                this.m = (short) (this.a + 4 + var2 + Math.max(4, this.c - var2 - var3 - var4 - 20 >> 1));
+                this.n = (short) (this.m + var3 + Math.max(4, this.c - var2 - var3 - var4 - 20 >> 1));
+                this.o = (short) (this.f == var6 + this.z ? this.n + var4 : 0);
+                var1.setClip(this.a + 4 + this.A, this.b, this.c - 6 - this.A - 12, this.d);
+                if (this.s != null && this.s[var6] != null) {
+                    if (LoadingPage.parseColor(this.s[var6]) != -1) {
+                        var1.setColor(this.f == var6 + this.z ? 16777215 : LoadingPage.parseColor(this.s[var6]));
+                        this.a(var1, this.s[var6].substring(3), this.a + 6 + this.A, this.b + 4 + var5 * this.i, this.o > this.a + this.c - 12);
+                    } else {
+                        var1.setColor(this.f == var6 + this.z ? 16777215 : (this.x != null ? this.x[var6] : 2176196));
+                        this.a(var1, this.s[var6], this.a + 6 + this.A, this.b + 4 + var5 * this.i, this.o > this.a + this.c - 12);
+                    }
+                }
+
+                if (this.icon != null && this.icon[var6] > 0) {
+                    this.a(var1, this.a + 4 + this.A + GlobalConfig.font2.stringWidth(this.s[var6]) + 2, this.b + 4 + var5 * this.i, MainCanvas.d(this.icon[var6]));
+                }
+
+                if (this.w != null && this.w[var6] > 0) {
+                    this.a(var1, this.a + 4 + var2 - 18, this.b + 4 + var5 * this.i, MainCanvas.c(this.w[var6]));
+                }
+
+                if (this.t != null && this.t[var6] != null) {
+                    this.a(var1, this.t[var6], this.m, this.b + 4 + var5 * this.i, this.o > this.a + this.c - 12);
+                }
+
+                if (this.u != null && this.u[var6] != null) {
+                    if (this.n + var4 < this.a + this.c - 12) {
+                        var1.drawString(this.u[var6], this.a + this.c - 16, this.b + 4 + var5 * this.i, 24);
+                    } else {
+                        this.a(var1, this.u[var6], this.n, this.b + 4 + var5 * this.i, this.o > this.a + this.c - 12);
+                    }
+                }
+
+                if (this.f == var6 + this.z && this.o > this.a + this.c - 12) {
+                    if (this.B) {
+                        this.B = false;
+                        this.k = 0;
+                        this.l = this.o + 10;
+                    }
+
+                    if (this.k + this.o >= 0) {
+                        --this.k;
+                        --this.l;
+                    } else {
+                        this.k = this.l;
+                        this.l = this.k + this.o + 10;
+                    }
+                }
             }
 
-            if (this.t != null && this.t[var6] != null) {
-               var3 = GlobalConfig.font2.stringWidth(this.t[var6]);
+            ++var5;
+        }
+
+        if (this.g > 0) {
+            var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
+            if (MainCanvas.up != null) {
+                this.j = 0;
+                if (this.g < this.h && this.h != 0) {
+                    this.j = this.g * (this.d - 16) / this.h > 6 ? this.g * (this.d - 16) / this.h : 6;
+                }
+
+                LoadingPage.draw(var1, this.a + this.c - 2 - MainCanvas.up.b, this.b + 3, this.d - 5, this.j, this.e, this.h, this.g - this.z);
             }
 
-            if (this.u != null && this.u[var6] != null) {
-               var4 = GlobalConfig.font2.stringWidth(this.u[var6]);
+            LoadingPage.b(var1, this.q, this.a + 5, this.b + (this.f - this.e + 1) * this.i, this.b + this.d, this.y);
+        }
+
+    }
+
+    // 绘制可能需要横向滚动的图标。
+    private void a(Graphics var1, int var2, int var3, Image var4) {
+        if (var4 != null) {
+            if (this.o > this.a + this.c - 12) {
+                var1.drawImage(var4, this.k + var2, var3 + (this.i - var4.getHeight()) / 2, 20);
+                var1.drawImage(var4, this.l + var2, var3 + (this.i - var4.getHeight()) / 2, 20);
+                return;
             }
 
-            this.m = (short)(this.a + 4 + var2 + Math.max(4, this.c - var2 - var3 - var4 - 20 >> 1));
-            this.n = (short)(this.m + var3 + Math.max(4, this.c - var2 - var3 - var4 - 20 >> 1));
-            this.o = (short)(this.f == var6 + this.z ? this.n + var4 : 0);
-            var1.setClip(this.a + 4 + this.A, this.b, this.c - 6 - this.A - 12, this.d);
-            if (this.s != null && this.s[var6] != null) {
-               if ( LoadingPage.parseColor(this.s[var6]) != -1) {
-                  var1.setColor(this.f == var6 + this.z ? 16777215 :  LoadingPage.parseColor(this.s[var6]));
-                  this.a(var1, this.s[var6].substring(3), this.a + 6 + this.A, this.b + 4 + var5 * this.i, this.o > this.a + this.c - 12);
-               } else {
-                  var1.setColor(this.f == var6 + this.z ? 16777215 : (this.x != null ? this.x[var6] : 2176196));
-                  this.a(var1, this.s[var6], this.a + 6 + this.A, this.b + 4 + var5 * this.i, this.o > this.a + this.c - 12);
-               }
-            }
+            var1.drawImage(var4, var2, var3 + (this.i - var4.getHeight()) / 2, 20);
+        }
 
-            if (this.v != null && this.v[var6] > 0) {
-               this.a(var1, this.a + 4 + this.A + GlobalConfig.font2.stringWidth(this.s[var6]) + 2, this.b + 4 + var5 * this.i, MainCanvas.d(this.v[var6]));
-            }
+    }
 
-            if (this.w != null && this.w[var6] > 0) {
-               this.a(var1, this.a + 4 + var2 - 18, this.b + 4 + var5 * this.i, MainCanvas.c(this.w[var6]));
-            }
-
-            if (this.t != null && this.t[var6] != null) {
-               this.a(var1, this.t[var6], this.m, this.b + 4 + var5 * this.i, this.o > this.a + this.c - 12);
-            }
-
-            if (this.u != null && this.u[var6] != null) {
-               if (this.n + var4 < this.a + this.c - 12) {
-                  var1.drawString(this.u[var6], this.a + this.c - 16, this.b + 4 + var5 * this.i, 24);
-               } else {
-                  this.a(var1, this.u[var6], this.n, this.b + 4 + var5 * this.i, this.o > this.a + this.c - 12);
-               }
-            }
-
-            if (this.f == var6 + this.z && this.o > this.a + this.c - 12) {
-               if (this.B) {
-                  this.B = false;
-                  this.k = 0;
-                  this.l = this.o + 10;
-               }
-
-               if (this.k + this.o >= 0) {
-                  --this.k;
-                  --this.l;
-               } else {
-                  this.k = this.l;
-                  this.l = this.k + this.o + 10;
-               }
-            }
-         }
-
-         ++var5;
-      }
-
-      if (this.g > 0) {
-         var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-         if (MainCanvas.up != null) {
-            this.j = 0;
-            if (this.g < this.h && this.h != 0) {
-               this.j = this.g * (this.d - 16) / this.h > 6 ? this.g * (this.d - 16) / this.h : 6;
-            }
-
-             LoadingPage.draw(var1, this.a + this.c - 2 - MainCanvas.up.b, this.b + 3, this.d - 5, this.j, this.e, this.h, this.g - this.z);
-         }
-
-          LoadingPage.b(var1, this.q, this.a + 5, this.b + (this.f - this.e + 1) * this.i, this.b + this.d, this.y);
-      }
-
-   }
-
-   // 绘制可能需要横向滚动的图标。
-   private void a(Graphics var1, int var2, int var3, Image var4) {
-      if (var4 != null) {
-         if (this.o > this.a + this.c - 12) {
-            var1.drawImage(var4, this.k + var2, var3 + (this.i - var4.getHeight()) / 2, 20);
-            var1.drawImage(var4, this.l + var2, var3 + (this.i - var4.getHeight()) / 2, 20);
-            return;
-         }
-
-         var1.drawImage(var4, var2, var3 + (this.i - var4.getHeight()) / 2, 20);
-      }
-
-   }
-
-   // 绘制可能需要横向滚动的文本。
-   private void a(Graphics var1, String var2, int var3, int var4, boolean var5) {
-      if (var5) {
-         var1.drawString(var2, this.k + var3, var4, 20);
-         var1.drawString(var2, this.l + var3, var4, 20);
-      } else {
-         var1.drawString(var2, var3, var4, 20);
-      }
-   }
+    // 绘制可能需要横向滚动的文本。
+    private void a(Graphics var1, String var2, int var3, int var4, boolean var5) {
+        if (var5) {
+            var1.drawString(var2, this.k + var3, var4, 20);
+            var1.drawString(var2, this.l + var3, var4, 20);
+        } else {
+            var1.drawString(var2, var3, var4, 20);
+        }
+    }
 }

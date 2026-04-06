@@ -5,9 +5,11 @@ import com.yinhan.kjava.main.MainCanvas;
 import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
 
-public final class bq_1 {
-   public static byte a = 25;
-   public static short b = (short)25;
+public final class FightModel {
+   /** 对话/战斗文字滚动速度（帧间隔），由服务器配置包8729写入，进入战斗时同步到 s */
+   public static byte serverFightTextSpeed = 25;
+   /** 对话文字滚动速度的 short 副本，与 a 保持同步（parseServerConfig 末尾赋值） */
+   public static short serverFightTextSpeed_2 = (short)25;
    public static short c;
    private static short t;
    private String[] u;
@@ -15,7 +17,7 @@ public final class bq_1 {
    private Vector w = new Vector();
    private Vector x = new Vector();
    private MainCanvas y;
-   private UISceneController z;
+   private GameSceneController z;
    private cj A;
    public int d;
    public int e;
@@ -50,7 +52,7 @@ public final class bq_1 {
    private static short P;
    private boolean Q = true;
 
-   public bq_1(MainCanvas var1, UISceneController var2, byte var3) {
+   public FightModel(MainCanvas var1, GameSceneController var2, byte var3) {
       this.y = var1;
       this.z = var2;
       t = (short)var3;
@@ -90,7 +92,7 @@ public final class bq_1 {
       GlobalConfig.Q[4][1] = (short)(GlobalConfig.ZhanDouZuoBiao1[4][1] + (var3 << 2));
       GlobalConfig.Q[5][0] = (short)(GlobalConfig.ZhanDouZuoBiao1[5][0] + var2 * 3);
       GlobalConfig.Q[5][1] = (short)(GlobalConfig.ZhanDouZuoBiao1[5][1] + (var3 << 2));
-      GlobalStatus.H = new p[GlobalStatus.I.length];
+      GlobalStatus.fightData = new p[GlobalStatus.I.length];
       if (t == 0) {
          GlobalStatus.M = new ck[GlobalStatus.N.length];
       } else if (t == 1 || t == 2) {
@@ -98,8 +100,8 @@ public final class bq_1 {
       }
 
       for(int var1 = 0; var1 < GlobalStatus.I.length; ++var1) {
-         GlobalStatus.H[var1] = GlobalStatus.I[var1].c();
-         GlobalStatus.H[var1].b((byte)1);
+         GlobalStatus.fightData[var1] = GlobalStatus.I[var1].c();
+         GlobalStatus.fightData[var1].b((byte)1);
       }
 
       if (t == 0) {
@@ -180,11 +182,11 @@ public final class bq_1 {
       this.e = 5;
       this.z.az = 0;
       if (GlobalStatus.bt) {
-         b = 1;
+         serverFightTextSpeed_2 = 1;
          s = 1;
-         P = (short)a;
+         P = (short) serverFightTextSpeed;
       } else {
-         P = s = b = (short)a;
+         P = s = serverFightTextSpeed_2 = (short) serverFightTextSpeed;
       }
 
       this.C = System.currentTimeMillis();
@@ -195,23 +197,23 @@ public final class bq_1 {
          this.d();
       } else {
          if (this.f != 10) {
-            bq_1 var2 = this;
-            if (UISceneController.ac != null) {
-               PngUtil.animate(UISceneController.ac, this.y.frameStartTs);
+            FightModel var2 = this;
+            if (GameSceneController.ac != null) {
+               PngUtil.animate(GameSceneController.ac, this.y.frameStartTs);
             }
 
-            if (UISceneController.ad != null) {
-               PngUtil.animate(UISceneController.ad, this.y.frameStartTs);
+            if (GameSceneController.ad != null) {
+               PngUtil.animate(GameSceneController.ad, this.y.frameStartTs);
             }
 
-            if (UISceneController.ae != null) {
-               PngUtil.animate(UISceneController.ae, this.y.frameStartTs);
+            if (GameSceneController.ae != null) {
+               PngUtil.animate(GameSceneController.ae, this.y.frameStartTs);
             }
 
-            if (GlobalStatus.H != null) {
-               for(byte var3 = 0; var3 < GlobalStatus.H.length; ++var3) {
-                  if (GlobalStatus.H[var3].k == 1) {
-                     p var10000 = GlobalStatus.H[var3];
+            if (GlobalStatus.fightData != null) {
+               for(byte var3 = 0; var3 < GlobalStatus.fightData.length; ++var3) {
+                  if (GlobalStatus.fightData[var3].k == 1) {
+                     p var10000 = GlobalStatus.fightData[var3];
                      long var10 = var2.y.frameStartTs;
                      PngUtil var7 = MainCanvas.pngUtil;
                      p var6 = var10000;
@@ -223,18 +225,18 @@ public final class bq_1 {
 
                      if (var2.F != null) {
                         for(byte var31 = 0; var31 < var2.F.length; ++var31) {
-                           if (var2.F[var31].b == 0 && var2.F[var31].c == GlobalStatus.H[var3].a) {
-                              a(GlobalStatus.H[var3], var2.F[var31]);
+                           if (var2.F[var31].b == 0 && var2.F[var31].c == GlobalStatus.fightData[var3].a) {
+                              a(GlobalStatus.fightData[var3], var2.F[var31]);
                            }
                         }
                      }
-                  } else if (GlobalStatus.H[var3].k == 2) {
-                     if (GlobalStatus.H[var3].j == null || PngUtil.animate(GlobalStatus.H[var3].j, var2.y.frameStartTs) == 2) {
-                        GlobalStatus.H[var3].b((byte)1);
+                  } else if (GlobalStatus.fightData[var3].k == 2) {
+                     if (GlobalStatus.fightData[var3].j == null || PngUtil.animate(GlobalStatus.fightData[var3].j, var2.y.frameStartTs) == 2) {
+                        GlobalStatus.fightData[var3].b((byte)1);
                         if (var2.F != null) {
                            for(byte var28 = 0; var28 < var2.F.length; ++var28) {
-                              if (var2.F[var28].b == 0 && var2.F[var28].c == GlobalStatus.H[var3].a) {
-                                 a(GlobalStatus.H[var3], var2.F[var28]);
+                              if (var2.F[var28].b == 0 && var2.F[var28].c == GlobalStatus.fightData[var3].a) {
+                                 a(GlobalStatus.fightData[var3], var2.F[var28]);
                               }
                            }
                         }
@@ -253,11 +255,11 @@ public final class bq_1 {
                               }
                            }
 
-                           for(byte var30 = 0; var30 < GlobalStatus.H.length; ++var30) {
+                           for(byte var30 = 0; var30 < GlobalStatus.fightData.length; ++var30) {
                               if (var2.F != null) {
                                  for(byte var38 = 0; var38 < var2.F.length; ++var38) {
-                                    if (var2.F[var38].b == 0 && GlobalStatus.H[var30].a == var2.F[var38].c) {
-                                       GlobalStatus.H[var30].b((byte)4);
+                                    if (var2.F[var38].b == 0 && GlobalStatus.fightData[var30].a == var2.F[var38].c) {
+                                       GlobalStatus.fightData[var30].b((byte)4);
                                        break;
                                     }
                                  }
@@ -268,16 +270,16 @@ public final class bq_1 {
                            var2.f = 3;
                         }
                      }
-                  } else if (GlobalStatus.H[var3].k == 4 && (GlobalStatus.H[var3].j == null || PngUtil.animate(GlobalStatus.H[var3].j, var2.y.frameStartTs) == 2)) {
+                  } else if (GlobalStatus.fightData[var3].k == 4 && (GlobalStatus.fightData[var3].j == null || PngUtil.animate(GlobalStatus.fightData[var3].j, var2.y.frameStartTs) == 2)) {
                      if (var2.F != null) {
                         for(byte var4 = 0; var4 < var2.F.length; ++var4) {
-                           if (var2.F[var4].b == 0 && var2.F[var4].c == GlobalStatus.H[var3].a) {
-                              a(GlobalStatus.H[var3], var2.F[var4]);
+                           if (var2.F[var4].b == 0 && var2.F[var4].c == GlobalStatus.fightData[var3].a) {
+                              a(GlobalStatus.fightData[var3], var2.F[var4]);
                            }
                         }
                      }
 
-                     GlobalStatus.H[var3].b((byte)1);
+                     GlobalStatus.fightData[var3].b((byte)1);
                   }
                }
             }
@@ -292,11 +294,11 @@ public final class bq_1 {
                         if (var2.A != null) {
                            var2.f = 5;
                         } else {
-                           for(byte var33 = 0; var33 < GlobalStatus.H.length; ++var33) {
+                           for(byte var33 = 0; var33 < GlobalStatus.fightData.length; ++var33) {
                               if (var2.F != null) {
                                  for(byte var39 = 0; var39 < var2.F.length; ++var39) {
-                                    if (var2.F[var39].b == 0 && GlobalStatus.H[var33].a == var2.F[var39].c) {
-                                       GlobalStatus.H[var33].b((byte)4);
+                                    if (var2.F[var39].b == 0 && GlobalStatus.fightData[var33].a == var2.F[var39].c) {
+                                       GlobalStatus.fightData[var33].b((byte)4);
                                        break;
                                     }
                                  }
@@ -394,7 +396,7 @@ public final class bq_1 {
 
          if (this.f == 0) {
             this.I = System.currentTimeMillis();
-            if (h() && this.f != -1 && !UISceneController.r()) {
+            if (h() && this.f != -1 && !GameSceneController.r()) {
                this.j = 0;
                this.p = GlobalStatus.ej[this.z.az];
                this.n = 1;
@@ -720,12 +722,12 @@ public final class bq_1 {
 
                boolean var53;
                while(true) {
-                  if (var41 >= GlobalStatus.H.length) {
+                  if (var41 >= GlobalStatus.fightData.length) {
                      var53 = false;
                      break;
                   }
 
-                  if (GlobalStatus.H[var41].b != 0 && GlobalStatus.H[var41].a == i() + 3 && GlobalStatus.H[var41].o) {
+                  if (GlobalStatus.fightData[var41].b != 0 && GlobalStatus.fightData[var41].a == i() + 3 && GlobalStatus.fightData[var41].o) {
                      var53 = true;
                      break;
                   }
@@ -838,7 +840,7 @@ public final class bq_1 {
                         this.d = 0;
                      }
                   } else {
-                     this.o = GlobalStatus.H[this.i].a;
+                     this.o = GlobalStatus.fightData[this.i].a;
                      if (!this.j()) {
                         this.d = 2;
                         this.e = 3;
@@ -860,7 +862,7 @@ public final class bq_1 {
                         this.d = 0;
                      }
                   } else {
-                     this.o = GlobalStatus.H[this.i].a;
+                     this.o = GlobalStatus.fightData[this.i].a;
                      this.j = 1;
                      this.p = GlobalStatus.dl[this.y.gunDongListUi.g()];
                      this.n = 0;
@@ -887,7 +889,7 @@ public final class bq_1 {
                      this.k = 1;
                      this.q = GlobalStatus.dl[this.y.gunDongListUi.g()];
                      this.l = 0;
-                     this.a(this.j, this.p, this.n, this.o, this.k, this.q, this.l, GlobalStatus.H[this.i].a);
+                     this.a(this.j, this.p, this.n, this.o, this.k, this.q, this.l, GlobalStatus.fightData[this.i].a);
                      this.f = -1;
                      this.e = 5;
                   }
@@ -901,7 +903,7 @@ public final class bq_1 {
                         this.d = 0;
                      }
                   } else {
-                     this.o = GlobalStatus.H[this.i].a;
+                     this.o = GlobalStatus.fightData[this.i].a;
                      if (!this.j()) {
                         this.d = 2;
                         this.e = 3;
@@ -922,7 +924,7 @@ public final class bq_1 {
                         this.e = 3;
                      }
                   } else {
-                     this.a(this.j, this.p, this.n, this.o, this.k, this.q, this.l, GlobalStatus.H[this.i].a);
+                     this.a(this.j, this.p, this.n, this.o, this.k, this.q, this.l, GlobalStatus.fightData[this.i].a);
                      this.f = -1;
                      this.e = 5;
                   }
@@ -951,7 +953,7 @@ public final class bq_1 {
                }
             }
          } else if (this.f == 1) {
-            bq_1 var20 = this;
+            FightModel var20 = this;
             if (this.Q) {
                this.Q = false;
                boolean var25 = false;
@@ -960,12 +962,12 @@ public final class bq_1 {
 
                byte var54;
                while(true) {
-                  if (var1 >= GlobalStatus.H.length) {
+                  if (var1 >= GlobalStatus.fightData.length) {
                      var54 = -1;
                      break;
                   }
 
-                  if (GlobalStatus.H[var1].b == 0 && GlobalStatus.H[var1].c.equals(GlobalStatus.ad)) {
+                  if (GlobalStatus.fightData[var1].b == 0 && GlobalStatus.fightData[var1].c.equals(GlobalStatus.roleId_2)) {
                      var54 = (byte)var1;
                      break;
                   }
@@ -977,12 +979,12 @@ public final class bq_1 {
                var1 = 0;
 
                while(true) {
-                  if (var1 >= GlobalStatus.H.length) {
+                  if (var1 >= GlobalStatus.fightData.length) {
                      var54 = -1;
                      break;
                   }
 
-                  if (GlobalStatus.H[var1].b != 0 && GlobalStatus.H[var1].a == i() + 3) {
+                  if (GlobalStatus.fightData[var1].b != 0 && GlobalStatus.fightData[var1].a == i() + 3) {
                      var54 = (byte)var1;
                      break;
                   }
@@ -997,13 +999,13 @@ public final class bq_1 {
                      ae[] var11 = (ae[])var20.w.elementAt(var49);
 
                      for(int var14 = 0; var14 < var11.length; ++var14) {
-                        if (var11[var14].b == 0 && GlobalStatus.H[var42].a == var11[var14].c && d(var11[var14].k)) {
-                           GlobalStatus.H[var42].o = true;
+                        if (var11[var14].b == 0 && GlobalStatus.fightData[var42].a == var11[var14].c && d(var11[var14].k)) {
+                           GlobalStatus.fightData[var42].o = true;
                            var25 = true;
                         }
 
-                        if (GlobalStatus.be > 0 && var11[var14].b == 0 && GlobalStatus.H[var46].a == var11[var14].c && d(var11[var14].k)) {
-                           GlobalStatus.H[var46].o = true;
+                        if (GlobalStatus.be > 0 && var11[var14].b == 0 && GlobalStatus.fightData[var46].a == var11[var14].c && d(var11[var14].k)) {
+                           GlobalStatus.fightData[var46].o = true;
                            var35 = true;
                         }
                      }
@@ -1011,11 +1013,11 @@ public final class bq_1 {
                }
 
                if (!var25) {
-                  GlobalStatus.H[var42].o = false;
+                  GlobalStatus.fightData[var42].o = false;
                }
 
                if (!var35 && GlobalStatus.be > 0) {
-                  GlobalStatus.H[var46].o = false;
+                  GlobalStatus.fightData[var46].o = false;
                }
             }
 
@@ -1037,10 +1039,10 @@ public final class bq_1 {
 
                   var20 = this;
                   if (this.E[0].d == 7 || this.E[0].d == 5 || this.E[0].d == 9 || this.E[0].d == 1 || this.E[0].d == 2 || this.E[0].d == 3) {
-                     for(byte var26 = 0; var26 < GlobalStatus.H.length; ++var26) {
-                        if (GlobalStatus.H[var26] != null && !GlobalStatus.H[var26].d()) {
+                     for(byte var26 = 0; var26 < GlobalStatus.fightData.length; ++var26) {
+                        if (GlobalStatus.fightData[var26] != null && !GlobalStatus.fightData[var26].d()) {
                            for(byte var36 = 0; var36 < var20.F.length; ++var36) {
-                              if (var20.F[var36].k >= 0 && var20.F[var36].b == 0 && var20.F[var36].c == GlobalStatus.H[var26].a) {
+                              if (var20.F[var36].k >= 0 && var20.F[var36].b == 0 && var20.F[var36].c == GlobalStatus.fightData[var26].a) {
                                  var20.G = MainCanvas.ui.getFrame(String.valueOf(var20.F[var36].k));
                                  if (var20.G != null && !var20.H.contains(var20.G)) {
                                     boolean var43 = true;
@@ -1059,7 +1061,7 @@ public final class bq_1 {
                            }
                         }
 
-                        a(GlobalStatus.H[var26].s, var20.H);
+                        a(GlobalStatus.fightData[var26].s, var20.H);
                         var20.H.removeAllElements();
                      }
 
@@ -1111,9 +1113,9 @@ public final class bq_1 {
             } else {
                this.E = null;
                if (h()) {
-                  if (UISceneController.r()) {
+                  if (GameSceneController.r()) {
                      this.f = 0;
-                     s = b;
+                     s = serverFightTextSpeed_2;
                   } else {
                      this.j = 0;
                      this.p = GlobalStatus.ej[this.z.az];
@@ -1129,14 +1131,14 @@ public final class bq_1 {
                   this.d = 0;
                } else if (this.f != 0) {
                   this.d = 0;
-                  s = b;
+                  s = serverFightTextSpeed_2;
                   this.f = 0;
                }
 
-               for(byte var16 = 0; var16 < GlobalStatus.H.length; ++var16) {
-                  GlobalStatus.H[var16].m = false;
-                  GlobalStatus.H[var16].l = false;
-                  GlobalStatus.H[var16].n = false;
+               for(byte var16 = 0; var16 < GlobalStatus.fightData.length; ++var16) {
+                  GlobalStatus.fightData[var16].m = false;
+                  GlobalStatus.fightData[var16].l = false;
+                  GlobalStatus.fightData[var16].n = false;
                }
 
                for(byte var17 = 0; var17 < GlobalStatus.M.length; ++var17) {
@@ -1168,11 +1170,11 @@ public final class bq_1 {
             this.z.sceneStateShadow = this.z.currentSceneModeId = 0;
          } else if (this.f == 5) {
             if (this.s() == 2) {
-               for(byte var18 = 0; var18 < GlobalStatus.H.length; ++var18) {
+               for(byte var18 = 0; var18 < GlobalStatus.fightData.length; ++var18) {
                   if (this.F != null) {
                      for(byte var22 = 0; var22 < this.F.length; ++var22) {
-                        if (this.F[var22].b == 0 && GlobalStatus.H[var18].a == this.F[var22].c) {
-                           GlobalStatus.H[var18].b((byte)4);
+                        if (this.F[var22].b == 0 && GlobalStatus.fightData[var18].a == this.F[var22].c) {
+                           GlobalStatus.fightData[var18].b((byte)4);
                            break;
                         }
                      }
@@ -1194,11 +1196,11 @@ public final class bq_1 {
                this.f = 3;
             }
          } else if (this.f == 6) {
-            if (PngUtil.animate(UISceneController.ab, this.y.frameStartTs) == 2) {
+            if (PngUtil.animate(GameSceneController.ab, this.y.frameStartTs) == 2) {
                this.f = 1;
             }
          } else if (this.f == 7) {
-            if (PngUtil.animate(UISceneController.aa, this.y.frameStartTs) == 2) {
+            if (PngUtil.animate(GameSceneController.aa, this.y.frameStartTs) == 2) {
                this.f = 8;
             }
          } else if (this.f == 8) {
@@ -1229,77 +1231,77 @@ public final class bq_1 {
 
       if (this.f != 4 && this.f != 8) {
          Graphics var5 = var2;
-         bq_1 var4 = this;
-         if (GlobalStatus.H != null) {
-            for(byte var6 = (byte)(GlobalStatus.H.length - 1); var6 >= 0; --var6) {
-               if (GlobalStatus.H[var6].j != null) {
-                  if (GlobalStatus.H[var6].d()) {
-                     MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ad, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var6].a][0], GlobalConfig.Q[GlobalStatus.H[var6].a][1], 0, 0);
-                  } else if (GlobalStatus.H[var6].b != 0 && GlobalStatus.H[var6].j != null) {
-                     if (GlobalStatus.H[var6].k == 1 || GlobalStatus.H[var6].k == 4) {
-                        GlobalStatus.H[var6].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.H[var6].a][0], GlobalConfig.Q[GlobalStatus.H[var6].a][1], (byte)0);
+         FightModel var4 = this;
+         if (GlobalStatus.fightData != null) {
+            for(byte var6 = (byte)(GlobalStatus.fightData.length - 1); var6 >= 0; --var6) {
+               if (GlobalStatus.fightData[var6].j != null) {
+                  if (GlobalStatus.fightData[var6].d()) {
+                     MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ad, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
+                  } else if (GlobalStatus.fightData[var6].b != 0 && GlobalStatus.fightData[var6].j != null) {
+                     if (GlobalStatus.fightData[var6].k == 1 || GlobalStatus.fightData[var6].k == 4) {
+                        GlobalStatus.fightData[var6].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], (byte)0);
                      }
 
-                     if (var4.f != -1 && var4.f != 0 && var4.f != 7 && GlobalStatus.H[var6].m) {
-                        MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var6].a][0], GlobalConfig.Q[GlobalStatus.H[var6].a][1], 0, 0);
-                     } else if (var4.f == 6 && GlobalStatus.H[var6].l) {
-                        MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var6].a][0], GlobalConfig.Q[GlobalStatus.H[var6].a][1], 0, 0);
+                     if (var4.f != -1 && var4.f != 0 && var4.f != 7 && GlobalStatus.fightData[var6].m) {
+                        MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
+                     } else if (var4.f == 6 && GlobalStatus.fightData[var6].l) {
+                        MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
                      }
                   }
                }
             }
 
-            for(byte var17 = 0; var17 < GlobalStatus.H.length; ++var17) {
-               if (GlobalStatus.H[var17].b == 0 && GlobalStatus.H[var17].j != null) {
-                  if (GlobalStatus.H[var17].c.equals(GlobalStatus.ad)) {
-                     var5.drawImage(UISceneController.H.pngImage, GlobalConfig.Q[GlobalStatus.H[var17].a][0] - UISceneController.H.b / 2, GlobalConfig.Q[GlobalStatus.H[var17].a][1] - UISceneController.H.c / 2, 20);
+            for(byte var17 = 0; var17 < GlobalStatus.fightData.length; ++var17) {
+               if (GlobalStatus.fightData[var17].b == 0 && GlobalStatus.fightData[var17].j != null) {
+                  if (GlobalStatus.fightData[var17].c.equals(GlobalStatus.roleId_2)) {
+                     var5.drawImage(GameSceneController.H.pngImage, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0] - GameSceneController.H.b / 2, GlobalConfig.Q[GlobalStatus.fightData[var17].a][1] - GameSceneController.H.c / 2, 20);
                      if ((var4.f != 7 || GlobalStatus.bs != 1) && (var4.f != 7 || GlobalStatus.bs != -1) && (var4.f != 7 || GlobalStatus.s != 1)) {
-                        if (!GlobalStatus.H[var17].d()) {
-                           if (GlobalStatus.H[var17].k == 1 || GlobalStatus.H[var17].k == 4) {
-                              GlobalStatus.H[var17].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], (byte)0);
+                        if (!GlobalStatus.fightData[var17].d()) {
+                           if (GlobalStatus.fightData[var17].k == 1 || GlobalStatus.fightData[var17].k == 4) {
+                              GlobalStatus.fightData[var17].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], (byte)0);
                            }
 
-                           if (var4.f != -1 && var4.f != 0 && GlobalStatus.H[var17].m) {
-                              MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
-                           } else if (var4.f == 6 && GlobalStatus.H[var17].l) {
-                              MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
+                           if (var4.f != -1 && var4.f != 0 && GlobalStatus.fightData[var17].m) {
+                              MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                           } else if (var4.f == 6 && GlobalStatus.fightData[var17].l) {
+                              MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                            }
                         }
                      } else {
-                        MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
+                        MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                      }
                   } else if (var4.f == 7) {
                      for(int var7 = 0; var7 < GlobalStatus.q.length; ++var7) {
-                        if (GlobalStatus.q[var7].e.equals(GlobalStatus.H[var17].d) && GlobalStatus.q[var7].s == 1) {
-                           MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
-                        } else if (GlobalStatus.q[var7].e.equals(GlobalStatus.H[var17].d) && GlobalStatus.q[var7].s == 0 && !GlobalStatus.H[var17].d()) {
-                           if (GlobalStatus.H[var17].k == 1 || GlobalStatus.H[var17].k == 4) {
-                              GlobalStatus.H[var17].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], (byte)0);
+                        if (GlobalStatus.q[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.q[var7].s == 1) {
+                           MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                        } else if (GlobalStatus.q[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.q[var7].s == 0 && !GlobalStatus.fightData[var17].d()) {
+                           if (GlobalStatus.fightData[var17].k == 1 || GlobalStatus.fightData[var17].k == 4) {
+                              GlobalStatus.fightData[var17].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], (byte)0);
                            }
 
-                           if (var4.f != -1 && var4.f != 0 && GlobalStatus.H[var17].m) {
-                              MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
-                           } else if (var4.f == 6 && GlobalStatus.H[var17].l) {
-                              MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
+                           if (var4.f != -1 && var4.f != 0 && GlobalStatus.fightData[var17].m) {
+                              MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                           } else if (var4.f == 6 && GlobalStatus.fightData[var17].l) {
+                              MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                            }
                         }
                      }
-                  } else if (!GlobalStatus.H[var17].d()) {
-                     if (GlobalStatus.H[var17].k == 1 || GlobalStatus.H[var17].k == 4) {
-                        GlobalStatus.H[var17].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], (byte)0);
+                  } else if (!GlobalStatus.fightData[var17].d()) {
+                     if (GlobalStatus.fightData[var17].k == 1 || GlobalStatus.fightData[var17].k == 4) {
+                        GlobalStatus.fightData[var17].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], (byte)0);
                      }
 
-                     if (var4.f != -1 && var4.f != 0 && GlobalStatus.H[var17].m) {
-                        MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
-                     } else if (var4.f == 6 && GlobalStatus.H[var17].l) {
-                        MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0], GlobalConfig.Q[GlobalStatus.H[var17].a][1], 0, 0);
+                     if (var4.f != -1 && var4.f != 0 && GlobalStatus.fightData[var17].m) {
+                        MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                     } else if (var4.f == 6 && GlobalStatus.fightData[var17].l) {
+                        MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                      }
                   }
                }
 
-               if (GlobalStatus.H[var17].s.size() > 0 && GlobalStatus.H[var17].j != null) {
-                  for(byte var22 = 0; var22 < GlobalStatus.H[var17].s.size(); ++var22) {
-                     MainCanvas.pngUtil.a(var5, (Frame0) GlobalStatus.H[var17].s.elementAt(var22), (int[])null, 0, 0, 0, GlobalConfig.Q[GlobalStatus.H[var17].a][0] - GlobalStatus.H[var17].h() / 2, GlobalConfig.Q[GlobalStatus.H[var17].a][1] + var22 * 11 - GlobalStatus.H[var17].i(), 0, 0);
+               if (GlobalStatus.fightData[var17].s.size() > 0 && GlobalStatus.fightData[var17].j != null) {
+                  for(byte var22 = 0; var22 < GlobalStatus.fightData[var17].s.size(); ++var22) {
+                     MainCanvas.pngUtil.a(var5, (Frame0) GlobalStatus.fightData[var17].s.elementAt(var22), (int[])null, 0, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0] - GlobalStatus.fightData[var17].h() / 2, GlobalConfig.Q[GlobalStatus.fightData[var17].a][1] + var22 * 11 - GlobalStatus.fightData[var17].i(), 0, 0);
                   }
                }
             }
@@ -1312,7 +1314,7 @@ public final class bq_1 {
                if (GlobalStatus.M[var18].m != null) {
                   if (GlobalStatus.M[var18].a()) {
                      if (t == 1 || t == 2) {
-                        MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ac, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
+                        MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ac, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
                      }
                   } else {
                      if (GlobalStatus.M[var18].n != 1 && GlobalStatus.M[var18].n != 4) {
@@ -1323,16 +1325,16 @@ public final class bq_1 {
                               if (c((int)var4.E[0].c) >= 0 && c((int)var4.E[0].c) < GlobalStatus.M.length) {
                                  GlobalStatus.M[var18].a(var5, MainCanvas.pngUtil, GlobalConfig.R[GlobalStatus.M[c((int)var4.E[0].c)].a][0], GlobalConfig.R[GlobalStatus.M[c((int)var4.E[0].c)].a][1], (byte)0);
                               }
-                           } else if (a(var4.E[0].c) >= 0 && a(var4.E[0].c) < GlobalStatus.H.length) {
-                              GlobalStatus.M[var18].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.H[a(var4.E[0].c)].a][0] - GlobalStatus.H[a(var4.E[0].c)].h() / 2, GlobalConfig.Q[GlobalStatus.H[a(var4.E[0].c)].a][1], (byte)0);
+                           } else if (a(var4.E[0].c) >= 0 && a(var4.E[0].c) < GlobalStatus.fightData.length) {
+                              GlobalStatus.M[var18].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[a(var4.E[0].c)].a][0] - GlobalStatus.fightData[a(var4.E[0].c)].h() / 2, GlobalConfig.Q[GlobalStatus.fightData[a(var4.E[0].c)].a][1], (byte)0);
                            }
                         }
                      } else {
                         GlobalStatus.M[var18].a(var5, MainCanvas.pngUtil, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], (byte)0);
                         if (var4.f != -1 && var4.f != 0 && GlobalStatus.M[var18].p) {
-                           MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ae, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
+                           MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
                         } else if (var4.f == 6 && GlobalStatus.M[var18].o) {
-                           MainCanvas.pngUtil.a(var5, (Frame1) UISceneController.ab, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
+                           MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
                         }
                      }
 
@@ -1349,19 +1351,19 @@ public final class bq_1 {
 
          var5 = var2;
          var4 = this;
-         if (GlobalStatus.H != null && this.f != 7) {
-            for(byte var19 = 0; var19 < GlobalStatus.H.length; ++var19) {
-               if (!GlobalStatus.H[var19].d() && GlobalStatus.H[var19].k == 2 && var4.E[0].c >= 0) {
+         if (GlobalStatus.fightData != null && this.f != 7) {
+            for(byte var19 = 0; var19 < GlobalStatus.fightData.length; ++var19) {
+               if (!GlobalStatus.fightData[var19].d() && GlobalStatus.fightData[var19].k == 2 && var4.E[0].c >= 0) {
                   if (var4.A != null && var4.A.b.length > 0) {
-                     GlobalStatus.H[var19].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.H[var19].a][0], GlobalConfig.Q[GlobalStatus.H[var19].a][1], (byte)0);
+                     GlobalStatus.fightData[var19].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[var19].a][0], GlobalConfig.Q[GlobalStatus.fightData[var19].a][1], (byte)0);
                   } else {
                      byte var24 = 0;
-                     if (GlobalStatus.H[var19].n) {
-                        if ((var24 = (byte)a(var4.E[0].c)) >= 0 && var24 <= GlobalStatus.H.length - 1) {
-                           GlobalStatus.H[var19].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.H[a(var4.E[0].c)].a][0], GlobalConfig.Q[GlobalStatus.H[a(var4.E[0].c)].a][1], (byte)0);
+                     if (GlobalStatus.fightData[var19].n) {
+                        if ((var24 = (byte)a(var4.E[0].c)) >= 0 && var24 <= GlobalStatus.fightData.length - 1) {
+                           GlobalStatus.fightData[var19].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[a(var4.E[0].c)].a][0], GlobalConfig.Q[GlobalStatus.fightData[a(var4.E[0].c)].a][1], (byte)0);
                         }
                      } else if ((var24 = (byte)c((int)var4.E[0].c)) >= 0 && var24 <= GlobalStatus.M.length - 1) {
-                        GlobalStatus.H[var19].a(var5, MainCanvas.pngUtil, GlobalConfig.R[GlobalStatus.M[c((int)var4.E[0].c)].a][0] + GlobalStatus.M[c((int)var4.E[0].c)].c() / 2, GlobalConfig.R[GlobalStatus.M[c((int)var4.E[0].c)].a][1], (byte)0);
+                        GlobalStatus.fightData[var19].a(var5, MainCanvas.pngUtil, GlobalConfig.R[GlobalStatus.M[c((int)var4.E[0].c)].a][0] + GlobalStatus.M[c((int)var4.E[0].c)].c() / 2, GlobalConfig.R[GlobalStatus.M[c((int)var4.E[0].c)].a][1], (byte)0);
                      }
                   }
                }
@@ -1369,53 +1371,53 @@ public final class bq_1 {
          }
 
          Graphics var3 = var2;
-         bq_1 var9 = this;
+         FightModel var9 = this;
          if (this.d != 4 && this.d != 5 && this.d != 6) {
             if (this.d != 0 && this.d != 1) {
                if (this.d == 2 || this.d == 3) {
                   Graphics var21 = var2;
 
-                  for(byte var27 = 0; var27 < GlobalStatus.H.length; ++var27) {
-                     if (GlobalStatus.H[var27].e > 0 && GlobalStatus.H[var27].b != 0 && GlobalStatus.H[var27].a == i() + 3) {
-                        LoadingPage.e(var21, GlobalConfig.Q[GlobalStatus.H[var27].a][0] - 10, GlobalConfig.Q[GlobalStatus.H[var27].a][1] - 9 - GlobalStatus.H[var27].i(), GlobalStatus.H[var27].e * 19 / (GlobalStatus.H[var27].f <= 0 ? 1 : GlobalStatus.H[var27].f), 0);
-                        LoadingPage.e(var21, GlobalConfig.Q[GlobalStatus.H[var27].a][0] - 10, GlobalConfig.Q[GlobalStatus.H[var27].a][1] - 4 - GlobalStatus.H[var27].i(), GlobalStatus.H[var27].g * 19 / (GlobalStatus.H[var27].h <= 0 ? 1 : GlobalStatus.H[var27].h), 1);
+                  for(byte var27 = 0; var27 < GlobalStatus.fightData.length; ++var27) {
+                     if (GlobalStatus.fightData[var27].e > 0 && GlobalStatus.fightData[var27].b != 0 && GlobalStatus.fightData[var27].a == i() + 3) {
+                        LoadingPage.e(var21, GlobalConfig.Q[GlobalStatus.fightData[var27].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var27].a][1] - 9 - GlobalStatus.fightData[var27].i(), GlobalStatus.fightData[var27].e * 19 / (GlobalStatus.fightData[var27].f <= 0 ? 1 : GlobalStatus.fightData[var27].f), 0);
+                        LoadingPage.e(var21, GlobalConfig.Q[GlobalStatus.fightData[var27].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var27].a][1] - 4 - GlobalStatus.fightData[var27].i(), GlobalStatus.fightData[var27].g * 19 / (GlobalStatus.fightData[var27].h <= 0 ? 1 : GlobalStatus.fightData[var27].h), 1);
                      }
                   }
                }
             } else {
                var5 = var2;
 
-               for(byte var20 = 0; var20 < GlobalStatus.H.length; ++var20) {
-                  if (GlobalStatus.H[var20].e > 0 && GlobalStatus.H[var20].b == 0 && GlobalStatus.H[var20].c.equals(GlobalStatus.ad)) {
-                     if (GlobalStatus.H[var20].i == 291) {
-                        LoadingPage.e(var5, GlobalConfig.Q[GlobalStatus.H[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.H[var20].a][1] - 2 - GlobalStatus.H[var20].i(), GlobalStatus.H[var20].e * 19 / (GlobalStatus.H[var20].f <= 0 ? 1 : GlobalStatus.H[var20].f), 0);
-                        LoadingPage.e(var5, GlobalConfig.Q[GlobalStatus.H[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.H[var20].a][1] + 3 - GlobalStatus.H[var20].i(), GlobalStatus.H[var20].g * 19 / (GlobalStatus.H[var20].h <= 0 ? 1 : GlobalStatus.H[var20].h), 1);
+               for(byte var20 = 0; var20 < GlobalStatus.fightData.length; ++var20) {
+                  if (GlobalStatus.fightData[var20].e > 0 && GlobalStatus.fightData[var20].b == 0 && GlobalStatus.fightData[var20].c.equals(GlobalStatus.roleId_2)) {
+                     if (GlobalStatus.fightData[var20].i == 291) {
+                        LoadingPage.e(var5, GlobalConfig.Q[GlobalStatus.fightData[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var20].a][1] - 2 - GlobalStatus.fightData[var20].i(), GlobalStatus.fightData[var20].e * 19 / (GlobalStatus.fightData[var20].f <= 0 ? 1 : GlobalStatus.fightData[var20].f), 0);
+                        LoadingPage.e(var5, GlobalConfig.Q[GlobalStatus.fightData[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var20].a][1] + 3 - GlobalStatus.fightData[var20].i(), GlobalStatus.fightData[var20].g * 19 / (GlobalStatus.fightData[var20].h <= 0 ? 1 : GlobalStatus.fightData[var20].h), 1);
                      } else {
-                        LoadingPage.e(var5, GlobalConfig.Q[GlobalStatus.H[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.H[var20].a][1] - 9 - GlobalStatus.H[var20].i(), GlobalStatus.H[var20].e * 19 / (GlobalStatus.H[var20].f <= 0 ? 1 : GlobalStatus.H[var20].f), 0);
-                        LoadingPage.e(var5, GlobalConfig.Q[GlobalStatus.H[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.H[var20].a][1] - 4 - GlobalStatus.H[var20].i(), GlobalStatus.H[var20].g * 19 / (GlobalStatus.H[var20].h <= 0 ? 1 : GlobalStatus.H[var20].h), 1);
+                        LoadingPage.e(var5, GlobalConfig.Q[GlobalStatus.fightData[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var20].a][1] - 9 - GlobalStatus.fightData[var20].i(), GlobalStatus.fightData[var20].e * 19 / (GlobalStatus.fightData[var20].f <= 0 ? 1 : GlobalStatus.fightData[var20].f), 0);
+                        LoadingPage.e(var5, GlobalConfig.Q[GlobalStatus.fightData[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var20].a][1] - 4 - GlobalStatus.fightData[var20].i(), GlobalStatus.fightData[var20].g * 19 / (GlobalStatus.fightData[var20].h <= 0 ? 1 : GlobalStatus.fightData[var20].h), 1);
                      }
                   }
                }
             }
          }
 
-         for(byte var12 = 0; var12 < GlobalStatus.H.length; ++var12) {
-            if (GlobalStatus.H != null && var12 >= 0 && var12 <= GlobalStatus.H.length - 1 && var12 >= 0 && !GlobalStatus.H[var12].d()) {
+         for(byte var12 = 0; var12 < GlobalStatus.fightData.length; ++var12) {
+            if (GlobalStatus.fightData != null && var12 >= 0 && var12 <= GlobalStatus.fightData.length - 1 && var12 >= 0 && !GlobalStatus.fightData[var12].d()) {
                if (var9.i == var12 && (var9.d == 4 || var9.d == 5)) {
-                  LoadingPage.drawString(var3, (String) GlobalStatus.H[var9.i].d, (int)2, 2, 20, 14337302, 0);
+                  LoadingPage.drawString(var3, (String) GlobalStatus.fightData[var9.i].d, (int)2, 2, 20, 14337302, 0);
                }
 
-               if (GlobalStatus.H[var12].b == 0) {
-                  if (GlobalStatus.H[var12].i == 291) {
-                     LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.H[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.H[var12].a][1] - 2 - GlobalStatus.H[var12].i(), GlobalStatus.H[var12].e * 19 / GlobalStatus.H[var12].f, 0);
-                     LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.H[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.H[var12].a][1] + 3 - GlobalStatus.H[var12].i(), GlobalStatus.H[var12].g * 19 / GlobalStatus.H[var12].h, 1);
+               if (GlobalStatus.fightData[var12].b == 0) {
+                  if (GlobalStatus.fightData[var12].i == 291) {
+                     LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] - 2 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].e * 19 / GlobalStatus.fightData[var12].f, 0);
+                     LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] + 3 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].g * 19 / GlobalStatus.fightData[var12].h, 1);
                   } else {
-                     LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.H[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.H[var12].a][1] - 9 - GlobalStatus.H[var12].i(), GlobalStatus.H[var12].e * 19 / GlobalStatus.H[var12].f, 0);
-                     LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.H[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.H[var12].a][1] - 4 - GlobalStatus.H[var12].i(), GlobalStatus.H[var12].g * 19 / GlobalStatus.H[var12].h, 1);
+                     LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] - 9 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].e * 19 / GlobalStatus.fightData[var12].f, 0);
+                     LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] - 4 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].g * 19 / GlobalStatus.fightData[var12].h, 1);
                   }
-               } else if (GlobalStatus.H[var12].b == 2) {
-                  LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.H[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.H[var12].a][1] - 9 - GlobalStatus.H[var12].i(), GlobalStatus.H[var12].e * 19 / GlobalStatus.H[var12].f, 0);
-                  LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.H[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.H[var12].a][1] - 4 - GlobalStatus.H[var12].i(), GlobalStatus.H[var12].g * 19 / GlobalStatus.H[var12].h, 1);
+               } else if (GlobalStatus.fightData[var12].b == 2) {
+                  LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] - 9 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].e * 19 / GlobalStatus.fightData[var12].f, 0);
+                  LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] - 4 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].g * 19 / GlobalStatus.fightData[var12].h, 1);
                }
             }
          }
@@ -1429,18 +1431,18 @@ public final class bq_1 {
                }
 
                if (GlobalStatus.M[var13].i > 99) {
-                  MainCanvas.pngUtil.a(var3, UISceneController.B, (int[])null, GlobalStatus.M[var13].i / 100 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 15, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
-                  MainCanvas.pngUtil.a(var3, UISceneController.B, (int[])null, (GlobalStatus.M[var13].i - 100) / 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
-                  MainCanvas.pngUtil.a(var3, UISceneController.B, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 7, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, GameSceneController.B, (int[])null, GlobalStatus.M[var13].i / 100 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 15, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, GameSceneController.B, (int[])null, (GlobalStatus.M[var13].i - 100) / 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, GameSceneController.B, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 7, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
                } else if (GlobalStatus.M[var13].i > 9) {
-                  MainCanvas.pngUtil.a(var3, UISceneController.B, (int[])null, GlobalStatus.M[var13].i / 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
-                  MainCanvas.pngUtil.a(var3, UISceneController.B, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 7, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, GameSceneController.B, (int[])null, GlobalStatus.M[var13].i / 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, GameSceneController.B, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 7, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
                } else if (GlobalStatus.M[var13].i > 1) {
-                  MainCanvas.pngUtil.a(var3, UISceneController.B, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, GameSceneController.B, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
                }
 
                if (var9.h == var13 && GlobalStatus.M[var13].l == 1) {
-                  MainCanvas.pngUtil.a(var3, UISceneController.elite, (int[])null, -1, 0, 0, 4 + GlobalConfig.font2.stringWidth(GlobalStatus.M[var13].d), 6, 0, 0);
+                  MainCanvas.pngUtil.a(var3, GameSceneController.elite, (int[])null, -1, 0, 0, 4 + GlobalConfig.font2.stringWidth(GlobalStatus.M[var13].d), 6, 0, 0);
                }
             }
          }
@@ -1449,12 +1451,12 @@ public final class bq_1 {
       if (this.f == 0 || this.f == 1) {
          if (this.d != 4 && this.d != 5 && this.d != 6 && this.d != 7 && this.d != 8) {
             if (this.h >= 0 && this.h <= GlobalStatus.M.length - 1) {
-               PngUtil.animate(UISceneController.select, this.y.frameStartTs);
-               MainCanvas.pngUtil.a(var2, (Frame1) UISceneController.select, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[this.h].a][0], GlobalConfig.R[GlobalStatus.M[this.h].a][1] - 10 - GlobalStatus.M[this.h].d(), 20, 0);
+               PngUtil.animate(GameSceneController.select, this.y.frameStartTs);
+               MainCanvas.pngUtil.a(var2, (Frame1) GameSceneController.select, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[this.h].a][0], GlobalConfig.R[GlobalStatus.M[this.h].a][1] - 10 - GlobalStatus.M[this.h].d(), 20, 0);
             }
-         } else if (this.i >= 0 && this.i <= GlobalStatus.H.length - 1 && GlobalStatus.H[this.i].j != null) {
-            PngUtil.animate(UISceneController.select, this.y.frameStartTs);
-            MainCanvas.pngUtil.a(var2, (Frame1) UISceneController.select, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.H[this.i].a][0], GlobalConfig.Q[GlobalStatus.H[this.i].a][1] - 10 - GlobalStatus.H[this.i].i(), 20, 0);
+         } else if (this.i >= 0 && this.i <= GlobalStatus.fightData.length - 1 && GlobalStatus.fightData[this.i].j != null) {
+            PngUtil.animate(GameSceneController.select, this.y.frameStartTs);
+            MainCanvas.pngUtil.a(var2, (Frame1) GameSceneController.select, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[this.i].a][0], GlobalConfig.Q[GlobalStatus.fightData[this.i].a][1] - 10 - GlobalStatus.fightData[this.i].i(), 20, 0);
          }
       }
 
@@ -1517,18 +1519,18 @@ public final class bq_1 {
          byte var4 = 0;
 
          while(true) {
-            if (var4 >= GlobalStatus.H.length) {
+            if (var4 >= GlobalStatus.fightData.length) {
                return;
             }
 
-            GlobalStatus.H[var4].l = false;
-            if (GlobalStatus.H[var4].a == this.E[0].b) {
+            GlobalStatus.fightData[var4].l = false;
+            if (GlobalStatus.fightData[var4].a == this.E[0].b) {
                if (this.E[0].d != 1 && this.E[0].d != 5 && this.E[0].d != 8 && this.E[0].d != 10) {
                   if (this.E[0].d == 2) {
-                     GlobalStatus.H[var4].l = true;
+                     GlobalStatus.fightData[var4].l = true;
                      this.f = 6;
                   } else if (this.E[0].d == 3) {
-                     GlobalStatus.H[var4].m = true;
+                     GlobalStatus.fightData[var4].m = true;
                   } else {
                      if (this.E[0].d != -1) {
                         return;
@@ -1541,7 +1543,7 @@ public final class bq_1 {
                }
 
                if (this.E[0].d == 8) {
-                  GlobalStatus.H[var4].n = true;
+                  GlobalStatus.fightData[var4].n = true;
                }
 
                this.A = null;
@@ -1562,7 +1564,7 @@ public final class bq_1 {
 
                               if (this.F[var12].b == 0 && this.F[var12].l == 0) {
                                  this.F[var12].l = 1;
-                                 if (GlobalStatus.H[a(this.F[var12].c)].j != null) {
+                                 if (GlobalStatus.fightData[a(this.F[var12].c)].j != null) {
                                     this.A.a(var9, GlobalConfig.Q[this.F[var12].c][0], GlobalConfig.Q[this.F[var12].c][1]);
                                  }
                                  break;
@@ -1605,7 +1607,7 @@ public final class bq_1 {
                   }
                }
 
-               GlobalStatus.H[var4].b((byte)2);
+               GlobalStatus.fightData[var4].b((byte)2);
                this.f = 2;
                this.D = this.y.frameStartTs;
                break;
@@ -1637,7 +1639,7 @@ public final class bq_1 {
                               for(byte var3 = 0; var3 < this.F.length; ++var3) {
                                  if (this.F[var3].b == 0 && this.F[var3].l == 0) {
                                     this.F[var3].l = 1;
-                                    if (a(this.F[var3].c) >= 0 && a(this.F[var3].c) <= GlobalStatus.H.length - 1 && GlobalStatus.H[a(this.F[var3].c)].j != null) {
+                                    if (a(this.F[var3].c) >= 0 && a(this.F[var3].c) <= GlobalStatus.fightData.length - 1 && GlobalStatus.fightData[a(this.F[var3].c)].j != null) {
                                        this.A.a(var2, GlobalConfig.Q[this.F[var3].c][0], GlobalConfig.Q[this.F[var3].c][1]);
                                        break;
                                     }
@@ -1674,7 +1676,7 @@ public final class bq_1 {
                      for(byte var6 = 0; var6 < this.A.b.length; ++var6) {
                         if (this.F != null) {
                            for(byte var10 = 0; var10 < this.F.length; ++var10) {
-                              if (this.F[var10].b == 0 && this.F[var10].l == 0 && a(this.F[var10].c) >= 0 && a(this.F[var10].c) <= GlobalStatus.H.length - 1 && GlobalStatus.H[a(this.F[var10].c)].j != null) {
+                              if (this.F[var10].b == 0 && this.F[var10].l == 0 && a(this.F[var10].c) >= 0 && a(this.F[var10].c) <= GlobalStatus.fightData.length - 1 && GlobalStatus.fightData[a(this.F[var10].c)].j != null) {
                                  this.F[var10].l = 1;
                                  this.A.a(var6, GlobalConfig.Q[this.F[var10].c][0], GlobalConfig.Q[this.F[var10].c][1]);
                                  break;
@@ -1860,8 +1862,8 @@ public final class bq_1 {
    public static int b() {
       byte var0 = 0;
 
-      for(byte var1 = 0; var1 < GlobalStatus.H.length; ++var1) {
-         if (GlobalStatus.H[var1].e > 0) {
+      for(byte var1 = 0; var1 < GlobalStatus.fightData.length; ++var1) {
+         if (GlobalStatus.fightData[var1].e > 0) {
             ++var0;
          }
       }
@@ -1955,7 +1957,7 @@ public final class bq_1 {
 
       byte[] var12;
       GlobalConfig.printStr("[FIGHT] 发送攻击包4180: v(fightId)=" + GlobalStatus.v + " g=" + g + " t=" + t);
-      if ((var12 = NetPayloadBuilder.a((short)4180, GlobalStatus.ad, GlobalStatus.v, g, t, var1, var2, var3, var4, (short)var5, var6, var7, var8)) != null) {
+      if ((var12 = NetPayloadBuilder.a((short)4180, GlobalStatus.roleId_2, GlobalStatus.v, g, t, var1, var2, var3, var4, (short)var5, var6, var7, var8)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4180, var12));
          this.J = false;
          this.d = 0;
@@ -1966,8 +1968,8 @@ public final class bq_1 {
 
    private static boolean a(byte var0, byte var1) {
       if (var0 == 0) {
-         for(int var2 = 0; var2 < GlobalStatus.H.length; ++var2) {
-            if (GlobalStatus.H[var2].a == var1 && GlobalStatus.H[var2].e <= 0) {
+         for(int var2 = 0; var2 < GlobalStatus.fightData.length; ++var2) {
+            if (GlobalStatus.fightData[var2].a == var1 && GlobalStatus.fightData[var2].e <= 0) {
                return true;
             }
          }
@@ -2022,10 +2024,10 @@ public final class bq_1 {
                ++var3;
             }
 
-            if (this.F[var6].b == 0 && this.F[var6].d != 0 && a(this.F[var6].c) >= 0 && a(this.F[var6].c) < GlobalStatus.H.length) {
+            if (this.F[var6].b == 0 && this.F[var6].d != 0 && a(this.F[var6].c) >= 0 && a(this.F[var6].c) < GlobalStatus.fightData.length) {
                int var8 = this.F[var6].d;
                int var11 = GlobalConfig.Q[this.F[var6].c][0] + 10;
-               int var14 = GlobalConfig.Q[this.F[var6].c][1] - GlobalStatus.H[a(this.F[var6].c)].i();
+               int var14 = GlobalConfig.Q[this.F[var6].c][1] - GlobalStatus.fightData[a(this.F[var6].c)].i();
                int var20;
                if (this.F[var6].f <= 24) {
                   ae var19 = this.F[var6];
@@ -2038,10 +2040,10 @@ public final class bq_1 {
                ++var4;
             }
 
-            if (this.F[var6].b == 0 && this.F[var6].e != 0 && a(this.F[var6].c) >= 0 && a(this.F[var6].c) < GlobalStatus.H.length) {
+            if (this.F[var6].b == 0 && this.F[var6].e != 0 && a(this.F[var6].c) >= 0 && a(this.F[var6].c) < GlobalStatus.fightData.length) {
                int var9 = this.F[var6].e;
                int var12 = GlobalConfig.Q[this.F[var6].c][0] + 10;
-               int var15 = GlobalConfig.Q[this.F[var6].c][1] - GlobalStatus.H[a(this.F[var6].c)].i();
+               int var15 = GlobalConfig.Q[this.F[var6].c][1] - GlobalStatus.fightData[a(this.F[var6].c)].i();
                int var22;
                if (this.F[var6].f <= 24) {
                   ae var21 = this.F[var6];
@@ -2103,7 +2105,7 @@ public final class bq_1 {
       this.y.doRepaint();
       GlobalStatus.g();
       this.y.doRepaint();
-      MainCanvas.pngUtil.a(this.z.f, UISceneController.h, UISceneController.i, true, false, 1283472);
+      MainCanvas.pngUtil.a(this.z.f, GameSceneController.h, GameSceneController.i_1, true, false, 1283472);
       this.y.doRepaint();
       this.z.j();
       this.y.doRepaint();
@@ -2124,15 +2126,15 @@ public final class bq_1 {
          GlobalStatus.M = null;
       }
 
-      if (GlobalStatus.H != null) {
-         for(byte var1 = 0; var1 < GlobalStatus.H.length; ++var1) {
-            if (GlobalStatus.H[var1] != null) {
-               GlobalStatus.H[var1].e();
-               GlobalStatus.H[var1] = null;
+      if (GlobalStatus.fightData != null) {
+         for(byte var1 = 0; var1 < GlobalStatus.fightData.length; ++var1) {
+            if (GlobalStatus.fightData[var1] != null) {
+               GlobalStatus.fightData[var1].e();
+               GlobalStatus.fightData[var1] = null;
             }
          }
 
-         GlobalStatus.H = null;
+         GlobalStatus.fightData = null;
       }
 
    }
@@ -2142,7 +2144,7 @@ public final class bq_1 {
       var0.g = var1.h;
       var0.f = var1.i;
       var0.h = var1.j;
-      if (var0.c.equals(GlobalStatus.ad) && GlobalStatus.x != -1) {
+      if (var0.c.equals(GlobalStatus.roleId_2) && GlobalStatus.x != -1) {
          GlobalStatus.aN = var0.e;
          GlobalStatus.aP = var0.g;
          GlobalStatus.totalShengMing = var0.f;
@@ -2165,10 +2167,10 @@ public final class bq_1 {
    }
 
    private void b(Graphics var1) {
-      if (UISceneController.Z != null) {
+      if (GameSceneController.Z != null) {
          for(byte var2 = 0; var2 < 5; ++var2) {
             int var10003 = GlobalConfig.defaultHigh - 102 + (var2 << 4);
-            short var6 = UISceneController.Z.c;
+            short var6 = GameSceneController.Z.c;
             boolean var3 = true;
             int var5 = var10003;
             var3 = true;
@@ -2179,7 +2181,7 @@ public final class bq_1 {
                this.L[var2][3] = var6;
             }
 
-            MainCanvas.pngUtil.a(var1, UISceneController.Z, (int[])null, var2 + 1, 0, 0, 1, GlobalConfig.defaultHigh - 102 + (var2 << 4), 0, 0);
+            MainCanvas.pngUtil.a(var1, GameSceneController.Z, (int[])null, var2 + 1, 0, 0, 1, GlobalConfig.defaultHigh - 102 + (var2 << 4), 0, 0);
             if (var2 == this.e) {
                var1.setColor(16711680);
                LoadingPage.d(var1, 1, GlobalConfig.defaultHigh - 102 + (this.e << 4), 25, 15);
@@ -2219,10 +2221,10 @@ public final class bq_1 {
    }
 
    private void c(Graphics var1) {
-      if (UISceneController.Z != null) {
+      if (GameSceneController.Z != null) {
          for(byte var2 = 0; var2 < 3; ++var2) {
             int var10003 = GlobalConfig.defaultHigh - 70 + (var2 << 4);
-            short var6 = UISceneController.Z.c;
+            short var6 = GameSceneController.Z.c;
             boolean var3 = true;
             int var5 = var10003;
             var3 = true;
@@ -2233,7 +2235,7 @@ public final class bq_1 {
                this.M[var2][3] = var6;
             }
 
-            MainCanvas.pngUtil.a(var1, UISceneController.Z, (int[])null, var2 + 1, 0, 0, 1, GlobalConfig.defaultHigh - 70 + (var2 << 4), 0, 0);
+            MainCanvas.pngUtil.a(var1, GameSceneController.Z, (int[])null, var2 + 1, 0, 0, 1, GlobalConfig.defaultHigh - 70 + (var2 << 4), 0, 0);
             if (var2 == this.e) {
                var1.setColor(16711680);
                LoadingPage.d(var1, 1, GlobalConfig.defaultHigh - 70 + (var2 << 4), 25, 15);
@@ -2298,10 +2300,10 @@ public final class bq_1 {
                var10003 = null;
                var10004 = var2 + 1;
             } else {
-               MainCanvas.pngUtil.a(var1, UISceneController.F, (int[])null, var2 == 8 ? 0 : 2, 0, 0, 3 + GlobalStatus.ej[var2] * 17, GlobalConfig.defaultHigh - 19, 0, 0);
+               MainCanvas.pngUtil.a(var1, GameSceneController.F, (int[])null, var2 == 8 ? 0 : 2, 0, 0, 3 + GlobalStatus.ej[var2] * 17, GlobalConfig.defaultHigh - 19, 0, 0);
                var10000 = MainCanvas.pngUtil;
                var10001 = var1;
-               var10002 = UISceneController.G;
+               var10002 = GameSceneController.G;
                var10003 = null;
                var10004 = var2 == 8 ? 0 : 1;
             }
@@ -2391,10 +2393,10 @@ public final class bq_1 {
 
    public final void a(i[] var1) {
       if (this.v != null) {
-         for(int var2 = 0; var2 < GlobalStatus.H.length; ++var2) {
-            if (GlobalStatus.H[var2] != null) {
-               GlobalStatus.H[var2].m = false;
-               GlobalStatus.H[var2].l = false;
+         for(int var2 = 0; var2 < GlobalStatus.fightData.length; ++var2) {
+            if (GlobalStatus.fightData[var2] != null) {
+               GlobalStatus.fightData[var2].m = false;
+               GlobalStatus.fightData[var2].l = false;
             }
          }
 
@@ -2421,8 +2423,8 @@ public final class bq_1 {
    }
 
    public static byte f() {
-      for(byte var0 = 0; var0 < GlobalStatus.H.length; ++var0) {
-         if (GlobalStatus.H[var0].c.equals(GlobalStatus.ad)) {
+      for(byte var0 = 0; var0 < GlobalStatus.fightData.length; ++var0) {
+         if (GlobalStatus.fightData[var0].c.equals(GlobalStatus.roleId_2)) {
             return var0;
          }
       }
@@ -2431,8 +2433,8 @@ public final class bq_1 {
    }
 
    public final byte g() {
-      for(byte var1 = 0; var1 < GlobalStatus.H.length; ++var1) {
-         if (GlobalStatus.H[var1].b != 0 && GlobalStatus.H[var1].a == i() + 3) {
+      for(byte var1 = 0; var1 < GlobalStatus.fightData.length; ++var1) {
+         if (GlobalStatus.fightData[var1].b != 0 && GlobalStatus.fightData[var1].a == i() + 3) {
             return var1;
          }
       }
@@ -2453,9 +2455,9 @@ public final class bq_1 {
    }
 
    private static boolean u() {
-      if (GlobalStatus.H != null) {
-         for(byte var0 = 0; var0 < GlobalStatus.H.length; ++var0) {
-            if (GlobalStatus.H[var0] != null && GlobalStatus.H[var0].e > 0 && GlobalStatus.H[var0].b != 2) {
+      if (GlobalStatus.fightData != null) {
+         for(byte var0 = 0; var0 < GlobalStatus.fightData.length; ++var0) {
+            if (GlobalStatus.fightData[var0] != null && GlobalStatus.fightData[var0].e > 0 && GlobalStatus.fightData[var0].b != 2) {
                return false;
             }
          }
@@ -2465,8 +2467,8 @@ public final class bq_1 {
    }
 
    private static int a(byte var0) {
-      for(byte var1 = 0; var1 < GlobalStatus.H.length; ++var1) {
-         if (GlobalStatus.H[var1].a == var0) {
+      for(byte var1 = 0; var1 < GlobalStatus.fightData.length; ++var1) {
+         if (GlobalStatus.fightData[var1].a == var0) {
             return var1;
          }
       }
@@ -2485,8 +2487,8 @@ public final class bq_1 {
    }
 
    public static boolean h() {
-      for(byte var0 = 0; var0 < GlobalStatus.H.length; ++var0) {
-         if (GlobalStatus.H[var0].b == 0 && GlobalStatus.H[var0].c.equals(GlobalStatus.ad) && GlobalStatus.H[var0].e <= 0) {
+      for(byte var0 = 0; var0 < GlobalStatus.fightData.length; ++var0) {
+         if (GlobalStatus.fightData[var0].b == 0 && GlobalStatus.fightData[var0].c.equals(GlobalStatus.roleId_2) && GlobalStatus.fightData[var0].e <= 0) {
             return true;
          }
       }
@@ -2495,9 +2497,9 @@ public final class bq_1 {
    }
 
    public static byte i() {
-      for(byte var0 = 0; var0 < GlobalStatus.H.length; ++var0) {
-         if (GlobalStatus.H[var0].b == 0 && GlobalStatus.H[var0].c.equals(GlobalStatus.ad)) {
-            return GlobalStatus.H[var0].a;
+      for(byte var0 = 0; var0 < GlobalStatus.fightData.length; ++var0) {
+         if (GlobalStatus.fightData[var0].b == 0 && GlobalStatus.fightData[var0].c.equals(GlobalStatus.roleId_2)) {
+            return GlobalStatus.fightData[var0].a;
          }
       }
 
@@ -2505,8 +2507,8 @@ public final class bq_1 {
    }
 
    public final boolean j() {
-      for(byte var1 = 0; var1 < GlobalStatus.H.length; ++var1) {
-         if (GlobalStatus.H[var1].b != 0 && GlobalStatus.H[var1].a == i() + 3 && GlobalStatus.H[var1].e > 0) {
+      for(byte var1 = 0; var1 < GlobalStatus.fightData.length; ++var1) {
+         if (GlobalStatus.fightData[var1].b != 0 && GlobalStatus.fightData[var1].a == i() + 3 && GlobalStatus.fightData[var1].e > 0) {
             return false;
          }
       }
@@ -2530,7 +2532,7 @@ public final class bq_1 {
 
    private static byte c(byte var0) {
       if (--var0 < 0) {
-         var0 = (byte)(GlobalStatus.H.length - 1);
+         var0 = (byte)(GlobalStatus.fightData.length - 1);
       }
 
       return var0;
@@ -2563,8 +2565,8 @@ public final class bq_1 {
    }
 
    private static boolean x() {
-      for(byte var0 = 0; var0 < GlobalStatus.H.length; ++var0) {
-         if (!GlobalStatus.H[var0].d() && GlobalStatus.H[var0].k != 1) {
+      for(byte var0 = 0; var0 < GlobalStatus.fightData.length; ++var0) {
+         if (!GlobalStatus.fightData[var0].d() && GlobalStatus.fightData[var0].k != 1) {
             return false;
          }
       }
@@ -2584,17 +2586,17 @@ public final class bq_1 {
             P = 1;
          }
 
-         b = 1;
+         serverFightTextSpeed_2 = 1;
          s = 1;
       } else {
          s = P;
       }
 
-      short var10000 = GlobalStatus.bt ? 1 : (short)a;
-      b = var10000;
+      short var10000 = GlobalStatus.bt ? 1 : (short) serverFightTextSpeed;
+      serverFightTextSpeed_2 = var10000;
       s = var10000;
       c = (short)(GlobalStatus.bt ? 25 : 0);
-      UISceneController.aW[15] = (byte)(GlobalStatus.bt ? 0 : 1);
+      GameSceneController.aW[15] = (byte)(GlobalStatus.bt ? 0 : 1);
    }
 
    public final void l() {
@@ -2603,8 +2605,8 @@ public final class bq_1 {
    }
 
    public final void m() {
-      for(int var1 = 0; var1 < GlobalStatus.H.length; ++var1) {
-         if (GlobalStatus.H[var1].c.equals(GlobalStatus.ad)) {
+      for(int var1 = 0; var1 < GlobalStatus.fightData.length; ++var1) {
+         if (GlobalStatus.fightData[var1].c.equals(GlobalStatus.roleId_2)) {
             this.i = (byte)var1;
             return;
          }
@@ -2613,8 +2615,8 @@ public final class bq_1 {
    }
 
    private static boolean y() {
-      for(int var0 = 0; var0 < GlobalStatus.H.length; ++var0) {
-         if (GlobalStatus.H[var0].c.equals(GlobalStatus.ad) && GlobalStatus.H[var0].o) {
+      for(int var0 = 0; var0 < GlobalStatus.fightData.length; ++var0) {
+         if (GlobalStatus.fightData[var0].c.equals(GlobalStatus.roleId_2) && GlobalStatus.fightData[var0].o) {
             return true;
          }
       }
@@ -2641,11 +2643,11 @@ public final class bq_1 {
          var13 = (var9 + 2) * 7;
       }
 
-      var1.drawRegion(UISceneController.E.pngImage, var2 >= 0 ? 8 : 0, var5 == 0 ? 0 : 10, 8, 10, 0, var3 - var13, var4, 0);
+      var1.drawRegion(GameSceneController.E.pngImage, var2 >= 0 ? 8 : 0, var5 == 0 ? 0 : 10, 8, 10, 0, var3 - var13, var4, 0);
       var6 = var2 >= 0 ? var2 : -var2;
 
       for(int var10 = var9; var10 >= 0; --var10) {
-         var1.drawRegion(UISceneController.E.pngImage, 16 + var6 / d(var10) * 7, var5 == 0 ? 0 : 10, 7, 10, 0, var3 + 8 + (var9 - var10) * 7 - var13, var4, 0);
+         var1.drawRegion(GameSceneController.E.pngImage, 16 + var6 / d(var10) * 7, var5 == 0 ? 0 : 10, 7, 10, 0, var3 + 8 + (var9 - var10) * 7 - var13, var4, 0);
          var6 %= d(var10);
       }
 
@@ -2662,7 +2664,7 @@ public final class bq_1 {
    }
 
    static {
-      s = b;
-      P = (short)a;
+      s = serverFightTextSpeed_2;
+      P = (short) serverFightTextSpeed;
    }
 }

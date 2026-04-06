@@ -14,7 +14,7 @@ public class by {
    public short a() {
       switch (this.b) {
          case 1:
-            return ((ar)this.c).m();
+            return ((SceneEntity)this.c).m();
          case 2:
             return ((bl)this.c).m();
          case 3:
@@ -22,7 +22,7 @@ public class by {
          case 4:
             return ((au)this.c).a();
          case 5:
-            return ((az_1)this.c).d;
+            return ((NpcObject)this.c).d;
          case 6:
          default:
             return 0;

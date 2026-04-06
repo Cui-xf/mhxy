@@ -5,7 +5,7 @@ import com.yinhan.kjava.main.MainCanvas;
 import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
 
-public final class ac extends ar {
+public final class ac extends SceneEntity {
    private static short n = 4;
    public short a;
    public short b;
@@ -76,24 +76,24 @@ public final class ac extends ar {
          var2 = 0;
       }
 
-      super.g = MainCanvas.role.getFrame1(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
-      if (super.g == null) {
+      super.frame1 = MainCanvas.role.getFrame1(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
+      if (super.frame1 == null) {
          MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)5, GlobalStatus.ay, this.t, var2, var3, var4);
-         super.g = MainCanvas.role.getFrame1(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
-         if (super.g == null) {
+         super.frame1 = MainCanvas.role.getFrame1(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
+         if (super.frame1 == null) {
             GlobalStatus.ay = 0;
             this.s();
-            super.g = MainCanvas.role.c(var1 ? this.v[super.h] : this.u[super.h]);
-            if (super.g == null) {
+            super.frame1 = MainCanvas.role.c(var1 ? this.v[super.h] : this.u[super.h]);
+            if (super.frame1 == null) {
                MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)5, GlobalStatus.ay, this.t, var2, var3, var4);
-               super.g = MainCanvas.role.c(var1 ? this.v[super.h] : this.u[super.h]);
+               super.frame1 = MainCanvas.role.c(var1 ? this.v[super.h] : this.u[super.h]);
                return;
             }
          }
       } else if (!GlobalStatus.nn.equals("")) {
-         super.g.a = GlobalStatus.no;
-         super.g.b = GlobalStatus.nq;
-         super.g.c = GlobalStatus.np;
+         super.frame1.a = GlobalStatus.no;
+         super.frame1.b = GlobalStatus.nq;
+         super.frame1.c = GlobalStatus.np;
       }
 
    }
@@ -138,7 +138,7 @@ public final class ac extends ar {
    }
 
    public final void a(aw var1, PngUtil var2, long var3) {
-      if (super.g != null && var1 != null) {
+      if (super.frame1 != null && var1 != null) {
          if (!this.y && !this.A) {
             if (this.a == 0 && this.b < 0) {
                if (var2.a(var1, super.j + this.a + 8, super.k + this.b + 16) == 0 && var2.a(var1, super.j + this.a + 10, super.k + this.b + 16) == 0 && !var2.a(super.j + this.a + 8, super.k + this.b + 16) && !var2.a(super.j + this.a + 10, super.k + this.b + 16)) {
@@ -165,7 +165,7 @@ public final class ac extends ar {
             }
          }
 
-         PngUtil.animate(super.g, var3);
+         PngUtil.animate(super.frame1, var3);
          if (super.d != null) {
             super.d.a(var1, var2, var3);
          }
@@ -183,7 +183,7 @@ public final class ac extends ar {
       } else if (super.k >= var1.b) {
          super.k = var1.b;
       } else {
-         ((ar)this).r();
+         ((SceneEntity)this).r();
          this.u();
       }
    }
@@ -191,7 +191,7 @@ public final class ac extends ar {
    private void u() {
       if (GlobalStatus.q != null && GlobalStatus.s == 0) {
          for(int var1 = 0; var1 < GlobalStatus.q.length; ++var1) {
-            if (!GlobalStatus.q[var1].b.equals(GlobalStatus.ad)) {
+            if (!GlobalStatus.q[var1].b.equals(GlobalStatus.roleId_2)) {
                GlobalStatus.q[var1].f.addElement(new short[]{super.j, super.k});
             }
          }
@@ -200,24 +200,24 @@ public final class ac extends ar {
    }
 
    public final void a(Graphics var1, PngUtil var2, int var3, int var4, byte var5) {
-      if (super.g != null) {
-         var2.a(var1, (Frame1)super.g, (int[])null, var3, var4, super.j + 8, super.k + 16, 20, 0);
-         if (GlobalStatus.ag != null) {
-            this.w = GlobalStatus.ag;
-           LoadingPage.drawString(var1, (String)this.w, (int)(super.j + 8 - var3), super.k - var4 - GlobalConfig.font2_h - super.g.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.ai, 0);
+      if (super.frame1 != null) {
+         var2.a(var1, (Frame1)super.frame1, (int[])null, var3, var4, super.j + 8, super.k + 16, 20, 0);
+         if (GlobalStatus.roleName != null) {
+            this.w = GlobalStatus.roleName;
+           LoadingPage.drawString(var1, (String)this.w, (int)(super.j + 8 - var3), super.k - var4 - GlobalConfig.font2_h - super.frame1.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.ai, 0);
          }
 
          if (GlobalStatus.ah != null && !GlobalStatus.ah.equals("")) {
-           LoadingPage.drawString(var1, GlobalStatus.ah, super.j + 8 - var3, super.k - var4 - (GlobalConfig.font2_h << 1) - super.g.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.ai);
+           LoadingPage.drawString(var1, GlobalStatus.ah, super.j + 8 - var3, super.k - var4 - (GlobalConfig.font2_h << 1) - super.frame1.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.ai);
          }
 
          if (GlobalStatus.bs == 1) {
-            var2.a(var1, UISceneController.y, (int[])null, (aj)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - UISceneController.y.b, super.k - GlobalConfig.font2_h - 18, 20, 0);
+            var2.a(var1, GameSceneController.y, (int[])null, (aj)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - GameSceneController.y.b, super.k - GlobalConfig.font2_h - 18, 20, 0);
             return;
          }
 
          if (GlobalStatus.bs == 0) {
-            var2.a(var1, UISceneController.z, (int[])null, (aj)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - UISceneController.z.b, super.k - GlobalConfig.font2_h - 18, 20, 0);
+            var2.a(var1, GameSceneController.z, (int[])null, (aj)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - GameSceneController.z.b, super.k - GlobalConfig.font2_h - 18, 20, 0);
          }
       }
 
@@ -286,7 +286,7 @@ public final class ac extends ar {
    public final s a(Vector var1) {
       for(int var2 = 0; var2 < var1.size(); ++var2) {
          this.E = (s)var1.elementAt(var2);
-         if (super.g == null) {
+         if (super.frame1 == null) {
             return null;
          }
 
@@ -301,14 +301,14 @@ public final class ac extends ar {
    }
 
    public final bv b(Vector var1) {
-      if (var1 != null && super.g != null) {
+      if (var1 != null && super.frame1 != null) {
          for(int var2 = 0; var2 < var1.size(); ++var2) {
             this.F = (bv)var1.elementAt(var2);
             if (this.F.d != null) {
                short var10000 = super.j;
                short var10001 = super.k;
-               short var10002 = super.g.g();
-               short var10003 = super.g.h();
+               short var10002 = super.frame1.g();
+               short var10003 = super.frame1.h();
                int var10004 = this.F.e - 16;
                int var10005 = this.F.f - 16;
                int var10006 = this.F.d.g() + 32;
@@ -429,7 +429,7 @@ public final class ac extends ar {
                if (!this.A) {
                   super.j = var2[0];
                   super.k = var2[1];
-                  ((ar)this).r();
+                  ((SceneEntity)this).r();
                   this.u();
                   this.c.removeElementAt(var3);
                   this.y = false;
@@ -449,11 +449,11 @@ public final class ac extends ar {
       if (var1 != null) {
          for(int var2 = 0; var2 < var1.length; ++var2) {
             this.H = var1[var2];
-            if (super.g == null) {
+            if (super.frame1 == null) {
                return null;
             }
 
-            if ((this.H.u == 2 || this.H.u == 3) && (a(super.j + super.g.g() / 2, super.k + 16 - super.g.h(), this.H.j, this.H.k) || a(super.j + super.g.g() / 2, super.k + 32 - super.g.h(), this.H.j, this.H.k))) {
+            if ((this.H.u == 2 || this.H.u == 3) && (a(super.j + super.frame1.g() / 2, super.k + 16 - super.frame1.h(), this.H.j, this.H.k) || a(super.j + super.frame1.g() / 2, super.k + 32 - super.frame1.h(), this.H.j, this.H.k))) {
                this.G = this.G == 0 ? 1 : this.G;
                if (this.G != 2 && this.G != 0) {
                   return this.H;

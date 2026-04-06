@@ -7,6 +7,11 @@ import java.io.InputStream;
 import java.util.Vector;
 
 //public final class bu_1 {
+
+/**
+ * 地图页面：封装地图名称、路径及帧动画数据(FrameInfo[])，由服务器包 8260(LoadMap) 下发的字节流构建，
+ * 提供帧缓存管理和资源 id 构建能力，赋值给 {@link com.yinhan.kjava.main.MainCanvas#ae}。
+ */
 public final class Page {
     private String name;
     private String path;
@@ -34,7 +39,7 @@ public final class Page {
         return (short) this.frameCache.size();
     }
 
-    public final void c() {
+    public void clear() {
         this.frameCache.removeAllElements();
     }
 
@@ -261,7 +266,7 @@ public final class Page {
         this.doLoadFrame(var5, var2, var3, var4);
     }
 
-    public final void a(Vector var1, short[] var2, short[] var3, short[] var4) {
+    public final void loadFrame(Vector var1, short[] var2, short[] var3, short[] var4) {
         int[] var5 = batchHashKey((Vector) var1, (byte) 2);
         this.doLoadFrame(var5, var2, var3, var4);
     }

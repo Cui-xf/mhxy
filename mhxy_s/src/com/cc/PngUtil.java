@@ -18,7 +18,7 @@ public final class PngUtil {
     private int j = 0;
     private int k = 0;
     private Image l = null;
-    private Graphics m = null;
+    private Graphics graphics = null;
     private int n = 0;
     private int o = 0;
     private int p = -1;
@@ -211,7 +211,7 @@ public final class PngUtil {
         this.o = -1;
         if (this.l == null) {
             this.l = Image.createImage(var5 + 2 * this.t, var6 + 2 * this.t);
-            this.m = this.l.getGraphics();
+            this.graphics = this.l.getGraphics();
         }
 
         this.p = var1;
@@ -223,46 +223,46 @@ public final class PngUtil {
     }
 
     private void a(aw var1, int var2, int var3, int var4, int var5, boolean var6) {
-        this.m.setClip(0, 0, this.j, this.k);
+        this.graphics.setClip(0, 0, this.j, this.k);
         if (this.n == -1 && this.o == -1) {
-            this.a(this.m, var1, var2 - this.t, var3 - this.t, var5, var6);
+            this.a(this.graphics, var1, var2 - this.t, var3 - this.t, var5, var6);
             this.n = var2;
             this.o = var3;
         } else if (this.n - var2 >= this.t) {
             this.n -= this.t;
 
             for (int var8 = this.j / this.t; var8 > 0; --var8) {
-                this.m.setClip(var8 * this.t, 0, this.t, this.k);
-                this.m.drawImage(this.l, this.t, 0, 0);
+                this.graphics.setClip(var8 * this.t, 0, this.t, this.k);
+                this.graphics.drawImage(this.l, this.t, 0, 0);
             }
 
-            this.m.setClip(0, 0, this.t, this.k);
-            this.a(this.m, var1, this.n - this.t, this.o - this.t, var5, var6);
+            this.graphics.setClip(0, 0, this.t, this.k);
+            this.a(this.graphics, var1, this.n - this.t, this.o - this.t, var5, var6);
         } else if (this.n - var2 <= -this.t) {
             this.n += this.t;
-            this.m.setClip(0, 0, this.j - this.t, this.k);
-            this.m.drawImage(this.l, -this.t, 0, 0);
-            this.m.setClip(this.j - this.t, 0, this.t, this.k);
-            this.a(this.m, var1, this.n - this.t, this.o - this.t, var5, var6);
+            this.graphics.setClip(0, 0, this.j - this.t, this.k);
+            this.graphics.drawImage(this.l, -this.t, 0, 0);
+            this.graphics.setClip(this.j - this.t, 0, this.t, this.k);
+            this.a(this.graphics, var1, this.n - this.t, this.o - this.t, var5, var6);
         } else if (this.o - var3 < this.t) {
             if (this.o - var3 <= -this.t) {
                 this.o += this.t;
-                this.m.setClip(0, 0, this.j, this.k - this.t);
-                this.m.drawImage(this.l, 0, -this.t, 0);
-                this.m.setClip(0, this.k - this.t, this.j, this.t);
-                this.a(this.m, var1, this.n - this.t, this.o - this.t, var5, var6);
+                this.graphics.setClip(0, 0, this.j, this.k - this.t);
+                this.graphics.drawImage(this.l, 0, -this.t, 0);
+                this.graphics.setClip(0, this.k - this.t, this.j, this.t);
+                this.a(this.graphics, var1, this.n - this.t, this.o - this.t, var5, var6);
             }
 
         } else {
             this.o -= this.t;
 
             for (int var7 = this.k / this.t; var7 > 0; --var7) {
-                this.m.setClip(0, var7 * this.t, this.j, this.t);
-                this.m.drawImage(this.l, 0, this.t, 0);
+                this.graphics.setClip(0, var7 * this.t, this.j, this.t);
+                this.graphics.drawImage(this.l, 0, this.t, 0);
             }
 
-            this.m.setClip(0, 0, this.j, this.t);
-            this.a(this.m, var1, this.n - this.t, this.o - this.t, var5, var6);
+            this.graphics.setClip(0, 0, this.j, this.t);
+            this.a(this.graphics, var1, this.n - this.t, this.o - this.t, var5, var6);
         }
     }
 
@@ -289,29 +289,29 @@ public final class PngUtil {
         this.n = -1;
         this.o = -1;
         if (this.p != 0 || this.q != 0) {
-            this.m.setColor(0);
-            this.m.fillRect(0, 0, this.j, this.k);
+            this.graphics.setColor(0);
+            this.graphics.fillRect(0, 0, this.j, this.k);
         }
 
         this.a(var1, var2, var3, 0, 0, false);
-        if (UISceneController.A != null) {
-            MainCanvas.pngUtil.m.drawImage(UISceneController.A, this.j - UISceneController.A.getWidth() >> 1, this.k - UISceneController.A.getHeight() - 16 >> 1, 20);
+        if (GameSceneController.A != null) {
+            MainCanvas.pngUtil.graphics.drawImage(GameSceneController.A, this.j - GameSceneController.A.getWidth() >> 1, this.k - GameSceneController.A.getHeight() - 16 >> 1, 20);
         }
 
-        LoadingPage.fillRect(this.m, 4017771, 159, 0, 0, this.j, this.k);
+        LoadingPage.fillRect(this.graphics, 4017771, 159, 0, 0, this.j, this.k);
     }
 
     public final void a(aw var1, int var2, int var3, boolean var4, boolean var5, int var6) {
         this.n = -1;
         this.o = -1;
         if (this.p != 0 || this.q != 0) {
-            this.m.setColor(0);
-            this.m.fillRect(0, 0, this.j, this.k);
+            this.graphics.setColor(0);
+            this.graphics.fillRect(0, 0, this.j, this.k);
         }
 
         this.a(var1, var2, var3, 0, 0, var4);
         if (var5) {
-            LoadingPage.fillRect(this.m, var6, 175, 0, 0, this.j, this.k);
+            LoadingPage.fillRect(this.graphics, var6, 175, 0, 0, this.j, this.k);
         }
 
     }
@@ -357,16 +357,16 @@ public final class PngUtil {
             }
         }
 
-        if (GlobalStatus.t != null && var6) {
-            for (int var11 = 0; var11 < GlobalStatus.t.length; ++var11) {
-                if (GlobalStatus.t[var11] != null) {
-                    if (UISceneController.aW[3] == 0 && GlobalStatus.t[var11].b != null) {
+        if (GlobalStatus.npcObjects != null && var6) {
+            for (int var11 = 0; var11 < GlobalStatus.npcObjects.length; ++var11) {
+                if (GlobalStatus.npcObjects[var11] != null) {
+                    if (GameSceneController.aW[3] == 0 && GlobalStatus.npcObjects[var11].b != null) {
                         var1.setFont(GlobalConfig.font2);
-                        LoadingPage.drawString(var1, (String) GlobalStatus.t[var11].b, (int) (GlobalStatus.t[var11].c - var3), GlobalStatus.t[var11].d - (GlobalStatus.t[var11].w == null ? 30 : GlobalStatus.t[var11].w.j()) - GlobalConfig.font2_h - var4, 17, 255, 16777215);
+                        LoadingPage.drawString(var1, (String) GlobalStatus.npcObjects[var11].b, (int) (GlobalStatus.npcObjects[var11].c - var3), GlobalStatus.npcObjects[var11].d - (GlobalStatus.npcObjects[var11].frame1 == null ? 30 : GlobalStatus.npcObjects[var11].frame1.j()) - GlobalConfig.font2_h - var4, 17, 255, 16777215);
                     }
 
-                    if (GlobalStatus.t[var11].w != null && GlobalStatus.t[var11].w.k != null && UISceneController.aW[10] == 1) {
-                        this.a(var1, GlobalStatus.t[var11].w.k[GlobalStatus.t[var11].w.f], GlobalStatus.t[var11].w.g(), GlobalStatus.t[var11].w.h(), (int[]) null, var3, var4, GlobalStatus.t[var11].c, GlobalStatus.t[var11].d, 20, var5);
+                    if (GlobalStatus.npcObjects[var11].frame1 != null && GlobalStatus.npcObjects[var11].frame1.k != null && GameSceneController.aW[10] == 1) {
+                        this.a(var1, GlobalStatus.npcObjects[var11].frame1.k[GlobalStatus.npcObjects[var11].frame1.f], GlobalStatus.npcObjects[var11].frame1.g(), GlobalStatus.npcObjects[var11].frame1.h(), (int[]) null, var3, var4, GlobalStatus.npcObjects[var11].c, GlobalStatus.npcObjects[var11].d, 20, var5);
                         var1.setFont(GlobalConfig.font2);
                     }
                 }

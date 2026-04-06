@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
 
 public final class ch {
-   private UISceneController c;
+   private GameSceneController c;
    private MainCanvas d;
    private PngUtil e;
    private String f;
@@ -35,7 +35,7 @@ public final class ch {
    private Frame0 z;
    private boolean A = false;
 
-   public ch(UISceneController var1, MainCanvas var2, PngUtil var3) {
+   public ch(GameSceneController var1, MainCanvas var2, PngUtil var3) {
       this.c = var1;
       this.d = var2;
       this.e = var3;
@@ -165,7 +165,7 @@ public final class ch {
       this.a = new int[7][4];
       this.d.mixedUi.clean();
       this.d.mixedUi.setTitle("装备升星");
-      this.d.mixedUi.a(false);
+      this.d.mixedUi.setDrawBackground(false);
       this.w = Math.max((GlobalConfig.font2_h << 1) + 25, 59);
       this.x = GlobalConfig.font2_h + 13;
       this.d.mixedUi.setR(this.w + this.x);
@@ -334,7 +334,7 @@ public final class ch {
             } else {
                Object var6 = null;
                byte[] var7;
-               if ((var7 = NetPayloadBuilder.a((short)4689, h, (byte)1, p, GlobalStatus.ad)) != null) {
+               if ((var7 = NetPayloadBuilder.a((short)4689, h, (byte)1, p, GlobalStatus.roleId_2)) != null) {
                   NetPacket var12 = new NetPacket((short)4689, var7);
                   MainCanvas.netUtils.sendPacket(var12);
                   this.d.showPending((String)null);
@@ -345,7 +345,7 @@ public final class ch {
 
             Object var8 = null;
             byte[] var9;
-            if ((var9 = NetPayloadBuilder.a((short)4689, h, (byte)1, p, GlobalStatus.ad)) == null) {
+            if ((var9 = NetPayloadBuilder.a((short)4689, h, (byte)1, p, GlobalStatus.roleId_2)) == null) {
                this.d.showTips("获取上传指令数据错误!");
                return;
             }
@@ -358,7 +358,7 @@ public final class ch {
                if (this.c.aw && !this.A) {
                   GlobalStatus.a(this.c.av);
                } else if (this.c.aJ && !this.A) {
-                  GlobalStatus.b((int) UISceneController.l(this.c.aq));
+                  GlobalStatus.b((int) GameSceneController.l(this.c.aq));
                } else {
                   var1 = h;
                   Object var14 = null;
@@ -417,12 +417,12 @@ public final class ch {
       if (this.a != null) {
          for(int var2 = 0; var2 < this.a.length; ++var2) {
             if (var2 == 0) {
-               this.e.a(var1, UISceneController.goods, (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
+               this.e.a(var1, GameSceneController.goods, (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
             } else if (var2 < 4) {
                this.e.a(var1, q[var2 - 1] ? this.y : this.z, (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
             } else {
                MainCanvas.icon.e(String.valueOf(1702));
-               MainCanvas.pngUtil.a(var1, UISceneController.b((short)1702), (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
+               MainCanvas.pngUtil.a(var1, GameSceneController.b((short)1702), (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
                if (n[var2 - 4] > 99) {
                   MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] / 100, 0, 0, this.a[var2][0] + 13 - 8, this.a[var2][1] + 11, 0, 0);
                   MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] % 100 / 10, 0, 0, this.a[var2][0] + 13 - 4, this.a[var2][1] + 11, 0, 0);
@@ -446,7 +446,7 @@ public final class ch {
       var1.drawString("+50%", this.a[5][0] + 42, this.a[5][1] + 18, 33);
       var1.drawString("+100%", this.a[6][0] + 42, this.a[6][1] + 18, 33);
       if (h != -1) {
-         this.e.a(var1, UISceneController.b(j), (int[])null, (aj)null, 0, 0, this.a[0][0], this.a[0][1], 0, 0);
+         this.e.a(var1, GameSceneController.b(j), (int[])null, (aj)null, 0, 0, this.a[0][0], this.a[0][1], 0, 0);
       }
 
       LoadingPage.d(var1, this.a[this.b][0], this.a[this.b][1], 17, 17);
@@ -470,7 +470,7 @@ public final class ch {
 
       if (this.c.sceneSubState == 0) {
          if (this.b == 0 && (this.f != null || this.f != "")) {
-            LoadingPage.b(var1, this.f, this.d.mixedUi.X + 5 + 2, this.d.mixedUi.Y + 32 + 8 + UISceneController.goods.c, GlobalConfig.defaultHigh - 5, 1);
+            LoadingPage.b(var1, this.f, this.d.mixedUi.X + 5 + 2, this.d.mixedUi.Y + 32 + 8 + GameSceneController.goods.c, GlobalConfig.defaultHigh - 5, 1);
             return;
          }
       } else if (this.c.sceneSubState == 1) {

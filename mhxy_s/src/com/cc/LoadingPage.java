@@ -51,6 +51,7 @@ public final class LoadingPage {
     private static FWBRender ae;
     //富文本颜色模式 1-单字符颜色<int1> 2-双字符颜色<int2>
     public static int fwbColorMode = 1;
+    /** 全局UI调色板：由服务器配置包8729下发覆盖，富文本/UI着色时按索引取色 */
     public static int[] colors = new int[]{16711680, 4194166, 15588145, 12066995, 12066995, 16776960, 2241484, 16777215, 15138723, 4521983, 16755438, 15095, 14221536, 31834, 13513984, 8750469, 65280, 0, 16514810, 65532, 65316, 16490750, 16197367};
     private static int[] af = new int[2];
     public static int o = 0;
@@ -90,7 +91,7 @@ public final class LoadingPage {
         var0.drawString(string, x, y, anchor);
     }
 
-    public static void a(az_1 var0, FWBRender var1, String[] var2, String[] var3, boolean var4) {
+    public static void a(NpcObject var0, FWBRender var1, String[] var2, String[] var3, boolean var4) {
         C = 0;
         d = 0;
         e = 0;

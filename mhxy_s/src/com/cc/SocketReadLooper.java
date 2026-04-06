@@ -169,9 +169,9 @@ public final class SocketReadLooper implements Runnable {
                 GlobalConfig.printStr("数据读取异常" + ((Throwable) e).getMessage());
                 try {
                     this.stop();
-                    if (MainCanvas.uiSceneController != null && MainCanvas.uiSceneController.currentSceneModeId == 25) {
-                        if (MainCanvas.uiSceneController.overlayDialogController != null) {
-                            MainCanvas.uiSceneController.overlayDialogController.l();
+                    if (MainCanvas.gameSceneController != null && MainCanvas.gameSceneController.currentSceneModeId == 25) {
+                        if (MainCanvas.gameSceneController.overlayDialogController != null) {
+                            MainCanvas.gameSceneController.overlayDialogController.l();
                         }
                     } else if (this.netUtils.mainCanvas.lastPageStatus != 3 && this.netUtils.mainCanvas.lastPageStatus != 9 && this.netUtils.mainCanvas.lastPageStatus != 4) {
                         this.netUtils.toast("数据更新失败:");

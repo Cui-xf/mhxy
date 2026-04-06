@@ -8,8 +8,13 @@ import java.util.Arrays;
 import java.util.Vector;
 
 //public final class bGlobalConfig {
+
+/**
+ * 全局游戏状态仓库：存储从服务器数据包解析出的所有角色、背包、装备、宠物、技能、外观、任务等运行时数据。
+ * 所有字段均为 static，供 NetworkPacketProcessors、UISceneController、MainCanvas 等全局访问。
+ */
 public final class GlobalStatus {
-    public static boolean a = false;
+    public static boolean serverConfigSuccess = false;
     public static String zhangHao;
     public static String token_1;
     public static String token;
@@ -21,15 +26,20 @@ public final class GlobalStatus {
     public static byte j = -1;
     public static String k;
     public static byte l;
-    public static String m;
-    public static String n;
+    //当前角色id？
+    public static String roleId;
+    /**
+     * 商城公告/必看文字内容（来自服务器配置包8729，scene=商城时展示）
+     */
+    public static String mallTips;
     public static bl[] o;
     public static Vector p = new Vector();
     public static bp_1[] q;
     public static String r;
     public static short s;
-    public static az_1[] t;
-    public static Vector u;
+    public static NpcObject[] npcObjects;
+    //服务器下发的所有对象 List<NpcObject[]>
+    public static Vector npcArrayList;
     public static long v;
     public static long w;
     public static short x;
@@ -42,7 +52,7 @@ public final class GlobalStatus {
     public static byte E;
     public static String F;
     public static String G;
-    public static p[] H;
+    public static p[] fightData;
     public static p[] I;
     public static p[] J;
     public static short K;
@@ -68,15 +78,16 @@ public final class GlobalStatus {
 
     public static short[] ab;
     public static short[] ac;
-    public static String ad;
+    public static String roleId_2;
     public static String ae;
     public static String af;
-    public static String ag;
+    public static String roleName;
     public static String ah;
     public static int ai;
     public static byte aj;
     public static short ak;
-    public static String al;
+    //经验
+    public static String jingyan;
     public static long am;
     public static long an;
     public static long ao;
@@ -93,16 +104,22 @@ public final class GlobalStatus {
     public static String az;
     public static String aA;
     public static int aB;
-    public static byte aC;
-    public static String aD;
-    public static String aE;
-    public static String aF;
-    public static String aG;
+
+//
+//    public static byte aCccccccccccccccc;
+//    public static String aDddddddddddddddddd;
+//    public static String aEEEEEEEEEEEEEEEEEE;
+//    public static String aFFFFFFFFFFFFFFFFFF;
+//    public static String aGGGGGGGGGGGGGGGGGG;
+
+
+    //超Q相关
     public static byte aH;
     public static byte aI;
-    public static String aJ;
-    public static String aK;
-    public static String aL;
+
+//    public static String aJjjjjjjjjjjjjjjjjj;
+//    public static String aKkkkkkkkkkkkkk;
+//    public static String aLllllllllllllllllll;
     //总生命值
     public static int totalShengMing;
     public static int aN;
@@ -803,7 +820,7 @@ public final class GlobalStatus {
     public static byte kD;
     public static String[] kE;
     public static String[] kF;
-    public static byte kG;
+
     public static String[] kH;
     private static short[] rh;
     public static byte kI;
@@ -823,7 +840,7 @@ public final class GlobalStatus {
     public static byte kV;
     private static int[] rj;
     public static String kW;
-    private static Vector rk;
+    private static Vector serverZipResList;
     public static String currentMapName;
     public static Vector kY;
     public static short kZ;
@@ -1030,14 +1047,14 @@ public final class GlobalStatus {
             for (int var0 = 0; var0 < q.length; ++var0) {
                 if (q[var0] != null) {
                     bp_1 var1;
-                    if ((var1 = q[var0]).g != null) {
-                        Frame1 var2 = var1.g;
+                    if ((var1 = q[var0]).frame1 != null) {
+                        Frame1 var2 = var1.frame1;
                     }
 
                     var1.b = null;
-                    var1.e = null;
+                    var1.name = null;
                     var1.c = null;
-                    var1.g = null;
+                    var1.frame1 = null;
                     if (var1.f != null) {
                         var1.f.removeAllElements();
                         var1.f = null;
@@ -1058,13 +1075,13 @@ public final class GlobalStatus {
                 if (o[var0] != null) {
                     bl var1;
                     (var1 = o[var0]).a = null;
-                    var1.e = null;
+                    var1.name = null;
                     var1.b = null;
-                    if (var1.g != null) {
-                        Frame1 var2 = var1.g;
+                    if (var1.frame1 != null) {
+                        Frame1 var2 = var1.frame1;
                     }
 
-                    var1.g = null;
+                    var1.frame1 = null;
                     if (var1.f != null) {
                         var1.f.removeAllElements();
                         var1.f = null;
@@ -1080,24 +1097,27 @@ public final class GlobalStatus {
     }
 
     public static void d() {
-        if (t != null) {
-            for (int var0 = 0; var0 < t.length; ++var0) {
-                if (t[var0] != null) {
-                    az_1 var1;
-                    if ((var1 = t[var0]).w != null) {
-                        Frame1 var2 = var1.w;
+        if (npcObjects != null) {
+            for (int var0 = 0; var0 < npcObjects.length; ++var0) {
+                if (npcObjects[var0] != null) {
+                    NpcObject var1;
+                    if ((var1 = npcObjects[var0]).frame1 != null) {
+                        Frame1 var2 = var1.frame1;
                     }
 
                     var1.b = null;
-                    t[var0] = null;
+                    npcObjects[var0] = null;
                 }
             }
 
-            t = null;
+            npcObjects = null;
         }
 
     }
 
+    /**
+     * 解析角色列表包(8195)：读取账号下所有角色的 id/昵称/职业/性别/等级，存入 roleIdList 等数组。
+     */
     public static void parseRoleList(DataInputStream dis) throws IOException {
         byte roleNum = dis.readByte();
         if (roleNum == 0) {
@@ -1144,6 +1164,9 @@ public final class GlobalStatus {
         }
     }
 
+    /**
+     * 解析装备数据包(8200)：读取装备槽数量及各槽位 id/耐久，存入 ab/ac 数组。
+     */
     public static void b(DataInputStream var0) throws IOException {
         byte var1;
         ab = new short[var1 = var0.readByte()];
@@ -1161,6 +1184,9 @@ public final class GlobalStatus {
         ac = null;
     }
 
+    /**
+     * 解析角色移动/位置包(8199)：读取场景id、地图名称、目标坐标及方向标志，存入 ar/ae/at/au/av/aw 等字段。
+     */
     public static void c(DataInputStream var0) throws IOException {
         ar = var0.readShort();
         ae = var0.readUTF();
@@ -1187,82 +1213,85 @@ public final class GlobalStatus {
     }
 
     public static void h() {
-        ad = null;
+        roleId_2 = null;
         af = null;
-        ag = null;
+        roleName = null;
         ah = null;
         ai = 16776960;
-        al = null;
+        jingyan = null;
     }
 
-    public static void d(DataInputStream var0) throws IOException {
-        ad = var0.readUTF();
-        ak = var0.readShort();
-        ag = var0.readUTF();
-        aj = var0.readByte();
-        ax = var0.readByte();
-        ah = var0.readUTF();
-        ai = LoadingPage.pickColor(var0.readByte());
-        ap = var0.readLong();
-        aq = var0.readLong();
-        al = var0.readUTF();
-        am = var0.readLong();
-        an = var0.readLong();
-        ao = var0.readLong();
-        aN = var0.readInt();
-        totalShengMing = var0.readInt();
-        aP = var0.readInt();
-        aO = var0.readInt();
-        aR = var0.readInt();
-        aQ = var0.readInt();
-        aT = var0.readInt();
-        aS = var0.readInt();
-        aV = var0.readInt();
-        aU = var0.readInt();
-        aZ = var0.readInt();
-        bc = var0.readInt();
-        ba = var0.readInt();
-        bb = var0.readInt();
-        if ((be = var0.readShort()) > -1) {
-            bp = var0.readShort();
-            bq = var0.readShort();
-            br = var0.readShort();
+    /**
+     * 解析背包数据包(8197)：读取背包名称、银两、容量等元信息及物品列表，存入 ad/ak/ag 等字段及 p[] 数组。
+     */
+    public static void parseBackPack(DataInputStream dis) throws IOException {
+        roleId_2 = dis.readUTF();
+        ak = dis.readShort();
+        roleName = dis.readUTF();
+        aj = dis.readByte();
+        ax = dis.readByte();
+        ah = dis.readUTF();
+        ai = LoadingPage.pickColor(dis.readByte());
+        ap = dis.readLong();
+        aq = dis.readLong();
+        jingyan = dis.readUTF();
+        am = dis.readLong();
+        an = dis.readLong();
+        ao = dis.readLong();
+        aN = dis.readInt();
+        totalShengMing = dis.readInt();
+        aP = dis.readInt();
+        aO = dis.readInt();
+        aR = dis.readInt();
+        aQ = dis.readInt();
+        aT = dis.readInt();
+        aS = dis.readInt();
+        aV = dis.readInt();
+        aU = dis.readInt();
+        aZ = dis.readInt();
+        bc = dis.readInt();
+        ba = dis.readInt();
+        bb = dis.readInt();
+        if ((be = dis.readShort()) > -1) {
+            bp = dis.readShort();
+            bq = dis.readShort();
+            br = dis.readShort();
         }
 
-        bh = var0.readUTF();
-        bf = var0.readShort();
-        bg = var0.readByte();
-        az = var0.readUTF();
-        aA = var0.readUTF();
-        aB = var0.readInt();
-        ay = var0.readByte();
-        bi = var0.readUTF();
-        bj = var0.readUTF();
-        bk = var0.readUTF();
-        bl = var0.readUTF();
-        bm = var0.readUTF();
-        aW = var0.readInt();
-        aX = var0.readInt();
-        aY = var0.readInt();
-        bA = var0.readByte();
-        af = ag;
-        if (ag.endsWith("(VIP" + bA + ")")) {
-            af = ag.substring(0, ag.length() - ("(VIP" + bA + ")").length());
+        bh = dis.readUTF();
+        bf = dis.readShort();
+        bg = dis.readByte();
+        az = dis.readUTF();
+        aA = dis.readUTF();
+        aB = dis.readInt();
+        ay = dis.readByte();
+        bi = dis.readUTF();
+        bj = dis.readUTF();
+        bk = dis.readUTF();
+        bl = dis.readUTF();
+        bm = dis.readUTF();
+        aW = dis.readInt();
+        aX = dis.readInt();
+        aY = dis.readInt();
+        bA = dis.readByte();
+        af = roleName;
+        if (roleName.endsWith("(VIP" + bA + ")")) {
+            af = roleName.substring(0, roleName.length() - ("(VIP" + bA + ")").length());
         }
 
-        bB = var0.readUTF();
-        bn = var0.readUTF();
-        bo = var0.readUTF();
+        bB = dis.readUTF();
+        bn = dis.readUTF();
+        bo = dis.readUTF();
         if (bn == null || bn.equals("")) {
             bn = "暂无记录。";
         }
 
-        aI = var0.readByte();
-        if ((nm = var0.readByte()) > 0) {
-            nn = var0.readUTF();
-            no = var0.readShort();
-            np = var0.readShort();
-            nq = var0.readShort();
+        aI = dis.readByte();
+        if ((nm = dis.readByte()) > 0) {
+            nn = dis.readUTF();
+            no = dis.readShort();
+            np = dis.readShort();
+            nq = dis.readShort();
         } else {
             nn = "";
             no = 0;
@@ -1270,9 +1299,12 @@ public final class GlobalStatus {
             nq = 0;
         }
 
-        bd = var0.readUTF();
+        bd = dis.readUTF();
     }
 
+    /**
+     * 解析装备槽数据包(8201)：读取装备槽更新列表，重建 bC 集合中的装备槽对象。
+     */
     public static void e(DataInputStream var0) throws IOException {
         short var1;
         if ((var1 = var0.readShort()) > 0) {
@@ -1434,6 +1466,9 @@ public final class GlobalStatus {
         bH = null;
     }
 
+    /**
+     * 解析任务列表包(8223)：读取进行中及可接取的任务 id/名称/等级/类型，分别存入 bR/bS/bT/bU 及 bL/bM/bN/bO 数组。
+     */
     public static void h(DataInputStream var0) throws IOException {
         short var1;
         if ((var1 = var0.readShort()) > 0) {
@@ -1760,6 +1795,9 @@ public final class GlobalStatus {
 
     }
 
+    /**
+     * 解析宠物详细数据包(8202)：读取宠物完整属性（技能、攻防、等级、亲密度等），存入 cz/cA 等数组；无宠物时调用 n() 清空。
+     */
     public static void l(DataInputStream var0) throws IOException {
         byte var1;
         if ((var1 = var0.readByte()) <= 0) {
@@ -2199,6 +2237,9 @@ public final class GlobalStatus {
         du = null;
     }
 
+    /**
+     * 解析技能列表包(8203)：读取技能数量及各技能 id/名称/等级/冷却/属性，存入 dv/dw/dx 等数组；无技能时调用 q() 清空。
+     */
     public static void n(DataInputStream var0) throws IOException {
         short var1;
         if ((var1 = var0.readShort()) <= 0) {
@@ -2524,6 +2565,9 @@ public final class GlobalStatus {
         Y();
     }
 
+    /**
+     * 解析外观/时装数据包(8210)：读取主套装扮槽数量及各槽位配置，存入 oo/op/oq/or 等数组。
+     */
     public static void t(DataInputStream var0) throws IOException {
         byte var1;
         if ((var1 = var0.readByte()) > 0) {
@@ -2572,6 +2616,9 @@ public final class GlobalStatus {
 
     }
 
+    /**
+     * 解析次要外观数据包(8244)：读取第二套装扮槽数量及各槽位配置，存入 ou/ov/ow/ox 等数组。
+     */
     public static void u(DataInputStream var0) throws IOException {
         byte var1;
         if ((var1 = var0.readByte()) > 0) {
@@ -2669,6 +2716,9 @@ public final class GlobalStatus {
 
     }
 
+    /**
+     * 解析登录/操作失败包(8193)：读取异常码(exceptionCode)，若为负值则继续读取异常消息(exceptionMsg)。
+     */
     public static void parseLoginFail(DataInputStream var0) throws IOException {
         exceptionCode = var0.readByte();
         if (exceptionCode <= 0) {
@@ -3030,8 +3080,8 @@ public final class GlobalStatus {
             }
         } else {
             v();
-            UISceneController.c(fs);
-            UISceneController.c(fl);
+            GameSceneController.c(fs);
+            GameSceneController.c(fl);
         }
 
         if (var1.readByte() == 1) {
@@ -3849,6 +3899,9 @@ public final class GlobalStatus {
         Y();
     }
 
+    /**
+     * 解析宠物列表包(8222)：读取角色所有宠物的类型/id/名称/等级/经验，存入 fz/fA/fB/fC 等数组。
+     */
     public static void I(DataInputStream var0) throws IOException {
         short var1 = var0.readShort();
         GlobalConfig.printStr("readRolePet size:" + var1);
@@ -6686,6 +6739,9 @@ public final class GlobalStatus {
 
     }
 
+    /**
+     * 解析活动列表包(8972)：初始化活动容器(ag_1)并填充活动条目数组(be_1[])，存入静态字段 P。
+     */
     public static void aA(DataInputStream var0) throws IOException {
         if (P == null) {
             P = new ag_1();
@@ -6863,37 +6919,41 @@ public final class GlobalStatus {
         }
     }
 
-    public static void aF(DataInputStream var0) throws IOException {
-        byte var1;
-        if ((var1 = var0.readByte()) > 0) {
-            LoadingPage.colors = new int[var1];
-
-            for (byte var2 = 0; var2 < var1; ++var2) {
-                LoadingPage.colors[var2] = var0.readInt();
+    /**
+     * 解析服务器配置包(8729)：读取界面颜色板、loading 提示文字、服务器名称、公告 URL 等全局配置。
+     */
+    public static void parseServerConfig(DataInputStream dis) throws IOException {
+        byte colorNum = dis.readByte();
+        if (colorNum > 0) {
+            LoadingPage.colors = new int[colorNum];
+            for (byte i = 0; i < colorNum; ++i) {
+                LoadingPage.colors[i] = dis.readInt();
             }
         }
 
-        n = var0.readUTF();
-        bq_1.a = var0.readByte();
-        kG = var0.readByte();
-        v_1.c = var0.readUTF();
-        v_1.f = var0.readUTF();
-        if ((aC = var0.readByte()) == 1) {
-            aD = var0.readUTF();
-            aE = var0.readUTF();
-            aF = var0.readUTF();
-            aG = var0.readUTF();
+        mallTips = dis.readUTF();
+        FightModel.serverFightTextSpeed = dis.readByte();
+        //超Q
+        dis.readByte();
+        MarriageModel.marriageTips = dis.readUTF();
+        MarriageModel.divorceTips = dis.readUTF();
+        //是否开启"超Q"功能：1=开启，服务器配置包8729下发
+        if (dis.readByte() == 1) {
+            dis.readUTF();
+            dis.readUTF();
+            dis.readUTF();
+            dis.readUTF();
+        }
+        //是否开启"魔钻"功能：1=开启，服务器配置包8729下发
+        if (dis.readByte() == 1) {
+            dis.readUTF();
+            dis.readUTF();
+            dis.readUTF();
+            dis.readUTF();
         }
 
-        if ((aH = var0.readByte()) == 1) {
-            aJ = var0.readUTF();
-            aK = var0.readUTF();
-            aL = var0.readUTF();
-            var0.readUTF();
-        }
-
-        bq_1.b = (short) bq_1.a;
-        a = true;
+        FightModel.serverFightTextSpeed_2 = (short) FightModel.serverFightTextSpeed;
+        serverConfigSuccess = true;
     }
 
     public static void aG(DataInputStream var0) throws IOException {
@@ -6938,38 +6998,41 @@ public final class GlobalStatus {
         kW = var0.readUTF();
     }
 
-    public static void aI(DataInputStream dis) throws IOException {
-        short var1 = dis.readShort();
-        short var2 = dis.readShort();
-        if (rk == null) {
-            rk = new Vector();
+    /**
+     * 解析资源包数据包(8245)：读取压缩资源包的索引和数据，gzip 解压后按 key 缓存到 rk 列表，供后续 UI 动态加载。
+     */
+    public static void parseServerRes(DataInputStream dis) throws IOException {
+        short key = dis.readShort();
+        short delKey = dis.readShort();
+        if (serverZipResList == null) {
+            serverZipResList = new Vector();
         }
 
-        if (rk.isEmpty()) {
-            byte[] var9 = new byte[dis.readInt()];
-            dis.read(var9);
-            rk.addElement(new br(var1, var9));
+        if (serverZipResList.isEmpty()) {
+            byte[] bytes = new byte[dis.readInt()];
+            dis.read(bytes);
+            serverZipResList.addElement(new ZipRes(key, bytes));
         } else {
-            boolean var3 = false;
-            for (int i = rk.size() - 1; i >= 0; --i) {
-                br var7 = (br) rk.elementAt(i);
-                if (var7 != null && var7.a == var1) {
-                    var3 = true;
+            boolean cached = false;
+            for (int i = serverZipResList.size() - 1; i >= 0; --i) {
+                ZipRes zipRes = (ZipRes) serverZipResList.elementAt(i);
+                if (zipRes != null && zipRes.key == key) {
+                    cached = true;
                     break;
                 }
             }
 
-            if (!var3) {
-                byte[] var6 = new byte[dis.readInt()];
-                dis.read(var6);
-                rk.addElement(new br(var1, var6));
+            if (!cached) { //缓存
+                byte[] bytes = new byte[dis.readInt()];
+                dis.read(bytes);
+                serverZipResList.addElement(new ZipRes(key, bytes));
             }
 
-            if (var2 >= 0) {
-                for (int i = rk.size() - 1; i >= 0; --i) {
-                    br var8 = (br) rk.elementAt(i);
-                    if (var8 != null && var8.a == var2) {
-                        rk.removeElementAt(i);
+            if (delKey >= 0) {
+                for (int i = serverZipResList.size() - 1; i >= 0; --i) {
+                    ZipRes zipRes = (ZipRes) serverZipResList.elementAt(i);
+                    if (zipRes != null && zipRes.key == delKey) {
+                        serverZipResList.removeElementAt(i);
                     }
                 }
             }
@@ -6977,14 +7040,14 @@ public final class GlobalStatus {
     }
 
     public static byte[] a(short var0) {
-        if (rk != null && rk.size() > 0) {
+        if (serverZipResList != null && serverZipResList.size() > 0) {
             Object var1 = null;
 
-            for (byte var2 = (byte) (rk.size() - 1); var2 >= 0; --var2) {
-                br var4;
-                if ((var4 = (br) rk.elementAt(var2)) != null && var4.a == var0) {
+            for (byte var2 = (byte) (serverZipResList.size() - 1); var2 >= 0; --var2) {
+                ZipRes var4;
+                if ((var4 = (ZipRes) serverZipResList.elementAt(var2)) != null && var4.key == var0) {
                     try {
-                        return GzipUtil.unZip(var4.b);
+                        return GzipUtil.unZip(var4.data);
                     } catch (Exception var3) {
 
                     }
@@ -6995,6 +7058,9 @@ public final class GlobalStatus {
         return null;
     }
 
+    /**
+     * 跳过地图包(8260)附带的额外资源数据：逐条读取但不存储，用于兼容包格式中的冗余段。
+     */
     //似乎是无效数据
     public static void skip(DataInputStream dis) throws IOException {
         short var1 = dis.readShort();
@@ -7069,9 +7135,9 @@ public final class GlobalStatus {
     }
 
     public static void clearXXX() {
-        if (rk != null) {
-            rk.removeAllElements();
-            rk = null;
+        if (serverZipResList != null) {
+            serverZipResList.removeAllElements();
+            serverZipResList = null;
         }
 
         if (kY != null) {
@@ -8123,9 +8189,8 @@ public final class GlobalStatus {
     }
 
     static {
-        new Vector();
         s = -1;
-        u = new Vector();
+        npcArrayList = new Vector();
         C = new byte[]{0, 0, 0, 0, 0, 0};
         F = null;
         G = null;
@@ -8145,15 +8210,7 @@ public final class GlobalStatus {
         as = -1;
         av = -1;
         ay = 0;
-        aC = 0;
-        aD = null;
-        aE = "10661700";
-        aF = "8086";
-        aG = "http://vip.3g.qq.com/index.jsp?rm=1028&g_f=6772";
         aH = 0;
-        aJ = "";
-        aK = "106617006";
-        aL = "29";
         nE = -1;
         nF = -1;
         nG = -1;
@@ -8199,7 +8256,6 @@ public final class GlobalStatus {
         kg = -1;
         kh = 100;
         ki = 100;
-        kG = 0;
         kI = 0;
         kP = 0;
         kQ = null;

@@ -217,12 +217,12 @@ public final class NetPayloadBuilder {
         }
     }
 
-    public static byte[] buildSelectRolePacket(short var0, String roleId) {
+    public static byte[] buildSelectRolePacket(short code, String roleId) {
         try {
             ByteArrayOutputStream var2 = new ByteArrayOutputStream();
             DataOutputStream var3;
             (var3 = new DataOutputStream(var2)).writeByte(-82);
-            var3.writeShort(var0);
+            var3.writeShort(code);
             var3.writeUTF(GlobalStatus.zhangHao);
             var3.writeUTF(GlobalStatus.token);
             var3.writeUTF(roleId);
@@ -237,12 +237,12 @@ public final class NetPayloadBuilder {
     /**
      * [opcode=4641] 切换服务器/重连请求。
      */
-    public static byte[] d(short var0, String var1) {
+    public static byte[] buildServerConfigRequest(short var0, String var1) {
         try {
             ByteArrayOutputStream var4 = new ByteArrayOutputStream();
             DataOutputStream var2;
             (var2 = new DataOutputStream(var4)).writeByte(-82);
-            var2.writeShort(4641);
+            var2.writeShort(var0);
             var2.writeUTF(GlobalStatus.zhangHao);
             var2.writeUTF(GlobalStatus.token);
             var2.writeUTF(var1);
@@ -4394,7 +4394,7 @@ public final class NetPayloadBuilder {
 
             var7.writeUTF(GlobalStatus.zhangHao);
             var7.writeUTF(GlobalStatus.token);
-            var7.writeUTF(GlobalStatus.ad);
+            var7.writeUTF(GlobalStatus.roleId_2);
             var7.writeByte(-81);
             return var6.toByteArray();
         } catch (IOException var8) {
@@ -4412,7 +4412,7 @@ public final class NetPayloadBuilder {
             var2.writeInt(var0);
             var2.writeUTF(GlobalStatus.zhangHao);
             var2.writeUTF(GlobalStatus.token);
-            var2.writeUTF(GlobalStatus.ad);
+            var2.writeUTF(GlobalStatus.roleId_2);
             var2.writeByte(-81);
             return var1.toByteArray();
         } catch (IOException var3) {
@@ -4434,7 +4434,7 @@ public final class NetPayloadBuilder {
             var6.writeByte(var4);
             var6.writeUTF(GlobalStatus.zhangHao);
             var6.writeUTF(GlobalStatus.token);
-            var6.writeUTF(GlobalStatus.ad);
+            var6.writeUTF(GlobalStatus.roleId_2);
             var6.writeByte(-81);
             return var5.toByteArray();
         } catch (IOException var7) {
@@ -4451,7 +4451,7 @@ public final class NetPayloadBuilder {
             var1.writeShort(4267);
             var1.writeUTF(GlobalStatus.zhangHao);
             var1.writeUTF(GlobalStatus.token);
-            var1.writeUTF(GlobalStatus.ad);
+            var1.writeUTF(GlobalStatus.roleId_2);
             var1.writeByte(-81);
             return var3.toByteArray();
         } catch (IOException var2) {
@@ -4468,7 +4468,7 @@ public final class NetPayloadBuilder {
             var4.writeShort(4374);
             var4.writeUTF(GlobalStatus.zhangHao);
             var4.writeUTF(GlobalStatus.token);
-            var4.writeUTF(GlobalStatus.ad);
+            var4.writeUTF(GlobalStatus.roleId_2);
             var4.writeByte(var0);
             if (var0 > 0 && var0 != 5) {
                 var4.writeUTF(var1);
@@ -4494,7 +4494,7 @@ public final class NetPayloadBuilder {
             var4.writeShort(4685);
             var4.writeUTF(GlobalStatus.zhangHao);
             var4.writeUTF(GlobalStatus.token);
-            var4.writeUTF(GlobalStatus.ad);
+            var4.writeUTF(GlobalStatus.roleId_2);
             var4.writeByte(var0);
             if (var0 != 2 && var0 != 5) {
                 if (var0 == 3) {
@@ -4524,7 +4524,7 @@ public final class NetPayloadBuilder {
             var5.writeInt(var3);
             var5.writeUTF(GlobalStatus.zhangHao);
             var5.writeUTF(GlobalStatus.token);
-            var5.writeUTF(GlobalStatus.ad);
+            var5.writeUTF(GlobalStatus.roleId_2);
             var5.writeByte(-81);
             return var4.toByteArray();
         } catch (IOException var6) {
@@ -4542,7 +4542,7 @@ public final class NetPayloadBuilder {
             var2.writeByte(var0);
             var2.writeUTF(GlobalStatus.zhangHao);
             var2.writeUTF(GlobalStatus.token);
-            var2.writeUTF(GlobalStatus.ad);
+            var2.writeUTF(GlobalStatus.roleId_2);
             var2.writeByte(-81);
             return var1.toByteArray();
         } catch (IOException var3) {
@@ -4560,7 +4560,7 @@ public final class NetPayloadBuilder {
             var2.writeInt(var0);
             var2.writeUTF(GlobalStatus.zhangHao);
             var2.writeUTF(GlobalStatus.token);
-            var2.writeUTF(GlobalStatus.ad);
+            var2.writeUTF(GlobalStatus.roleId_2);
             var2.writeByte(-81);
             return var1.toByteArray();
         } catch (IOException var3) {
@@ -4602,7 +4602,7 @@ public final class NetPayloadBuilder {
             var3.writeUTF(var2);
             var3.writeUTF(GlobalStatus.zhangHao);
             var3.writeUTF(GlobalStatus.token);
-            var3.writeUTF(GlobalStatus.ad);
+            var3.writeUTF(GlobalStatus.roleId_2);
             var3.writeByte(-81);
             return var5.toByteArray();
         } catch (IOException var4) {
