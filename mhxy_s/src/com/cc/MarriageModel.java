@@ -36,7 +36,7 @@ public final class MarriageModel {
       byte[] var5;
       if ((var5 = NetPayloadBuilder.a((short)4857, GlobalStatus.roleId_2, var1, var2, var3)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4857, var5));
-         this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
+         this.h.lastSceneModeId = this.h.currentSceneModeId = 0;
          this.i.showPending((String)null);
       } else {
          this.i.showTips("获取上传指令数据错误!");
@@ -47,7 +47,7 @@ public final class MarriageModel {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.m((short)4858, GlobalStatus.roleId_2, (short) GlobalStatus.gQ)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4858, var1));
-         this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
+         this.h.lastSceneModeId = this.h.currentSceneModeId = 0;
          this.i.showPending((String)null);
       } else {
          this.i.showTips("获取上传指令数据错误!");
@@ -97,7 +97,7 @@ public final class MarriageModel {
       this.i.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 0;
       this.i.pageStatus = this.i.lastPageStatus;
-      this.h.sceneStateShadow = this.h.currentSceneModeId = 90;
+      this.h.lastSceneModeId = this.h.currentSceneModeId = 90;
    }
 
    public final void b() {
@@ -111,7 +111,7 @@ public final class MarriageModel {
       this.i.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 2;
       this.i.pageStatus = this.i.lastPageStatus;
-      this.h.sceneStateShadow = this.h.currentSceneModeId = 90;
+      this.h.lastSceneModeId = this.h.currentSceneModeId = 90;
    }
 
    public final void b(int var1) {
@@ -129,7 +129,7 @@ public final class MarriageModel {
 
          if (var1 == 536870912) {
             this.h.sceneSubState = 0;
-            this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
+            this.h.lastSceneModeId = this.h.currentSceneModeId = 0;
             return;
          }
 
@@ -184,7 +184,7 @@ public final class MarriageModel {
             }
 
             MainCanvas.netUtils.sendPacket(new NetPacket((short)4859, var3));
-            this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
+            this.h.lastSceneModeId = this.h.currentSceneModeId = 0;
             this.i.showPending((String)null);
          }
       } else if (this.h.sceneSubState == 2) {
@@ -203,11 +203,11 @@ public final class MarriageModel {
    public final void a(Graphics var1) {
       if (this.h.sceneSubState != 0 && this.h.sceneSubState != 1) {
          if (this.h.sceneSubState == 2 && this.i.mixedUi != null) {
-            this.i.mixedUi.a(var1);
+            this.i.mixedUi.draw(var1);
          }
       } else {
          if (this.i.mixedUi != null) {
-            this.i.mixedUi.a(var1);
+            this.i.mixedUi.draw(var1);
          }
 
          if (this.h.sceneSubState == 1) {
@@ -222,7 +222,7 @@ public final class MarriageModel {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.m((short)4860, GlobalStatus.roleId_2, (byte)var1)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4860, var2));
-         this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
+         this.h.lastSceneModeId = this.h.currentSceneModeId = 0;
          this.i.showPending((String)null);
       } else {
          this.i.showTips("获取上传指令数据错误!");
@@ -246,7 +246,7 @@ public final class MarriageModel {
       this.i.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 0;
       this.i.pageStatus = this.i.lastPageStatus;
-      this.h.sceneStateShadow = this.h.currentSceneModeId = 91;
+      this.h.lastSceneModeId = this.h.currentSceneModeId = 91;
    }
 
    public final void c(int var1) {
@@ -262,7 +262,7 @@ public final class MarriageModel {
                      this.d = 0;
                      this.a((byte)2);
                      this.h.sceneSubState = 0;
-                     this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
+                     this.h.lastSceneModeId = this.h.currentSceneModeId = 0;
                   }
                } else {
                   if (this.d == 0) {
@@ -294,7 +294,7 @@ public final class MarriageModel {
             var2 = this.i.mixedUi.X + 5;
             var3 = this.i.mixedUi.Y + this.i.mixedUi.H - (2 * GlobalConfig.font2_h + 16) - 6;
              LoadingPage.draw(var1, var2, var3, this.i.mixedUi.W - 11, 2 * GlobalConfig.font2_h + 16, 1);
-            this.i.mixedUi.a(var1);
+            this.i.mixedUi.draw(var1);
          }
 
          int var4 = 0;
@@ -318,7 +318,7 @@ public final class MarriageModel {
       byte[] var2;
       if ((var2 = NetPayloadBuilder.n((short)4861, GlobalStatus.roleId_2, (byte)var1)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4861, var2));
-         this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
+         this.h.lastSceneModeId = this.h.currentSceneModeId = 0;
          this.i.showPending((String)null);
       } else {
          this.i.showTips("获取上传指令数据错误!");
@@ -341,7 +341,7 @@ public final class MarriageModel {
       this.i.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 0;
       this.i.pageStatus = this.i.lastPageStatus;
-      this.h.sceneStateShadow = this.h.currentSceneModeId = 92;
+      this.h.lastSceneModeId = this.h.currentSceneModeId = 92;
    }
 
    public final void d(int var1) {
@@ -356,7 +356,7 @@ public final class MarriageModel {
                   if (var1 == 536870912) {
                      this.g = 0;
                      this.h.sceneSubState = 0;
-                     this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
+                     this.h.lastSceneModeId = this.h.currentSceneModeId = 0;
                   }
                } else {
                   if (this.g == 0) {
@@ -372,7 +372,7 @@ public final class MarriageModel {
                      }
 
                      this.h.sceneSubState = 0;
-                     this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
+                     this.h.lastSceneModeId = this.h.currentSceneModeId = 0;
                      return;
                   }
 
@@ -394,7 +394,7 @@ public final class MarriageModel {
             var2 = this.i.mixedUi.X + 5;
             var3 = this.i.mixedUi.Y + this.i.mixedUi.H - (2 * GlobalConfig.font2_h + 16) - 6;
              LoadingPage.draw(var1, var2, var3, this.i.mixedUi.W - 11, 2 * GlobalConfig.font2_h + 16, 1);
-            this.i.mixedUi.a(var1);
+            this.i.mixedUi.draw(var1);
          }
 
          int var4 = 0;
@@ -418,7 +418,7 @@ public final class MarriageModel {
       byte[] var1;
       if ((var1 = NetPayloadBuilder.n((short)4862, GlobalStatus.roleId_2, (short) GlobalStatus.gQ)) != null) {
          MainCanvas.netUtils.sendPacket(new NetPacket((short)4862, var1));
-         this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
+         this.h.lastSceneModeId = this.h.currentSceneModeId = 0;
          this.i.showPending((String)null);
       } else {
          this.i.showTips("获取上传指令数据错误!");
@@ -455,7 +455,7 @@ public final class MarriageModel {
       this.i.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
       this.h.sceneSubState = 0;
       this.i.pageStatus = this.i.lastPageStatus;
-      this.h.sceneStateShadow = this.h.currentSceneModeId = 93;
+      this.h.lastSceneModeId = this.h.currentSceneModeId = 93;
    }
 
    public final void e(int var1) {
@@ -467,9 +467,9 @@ public final class MarriageModel {
          if (o != null && (var1 == 268435456 || var1 == 1073741824 || var1 == 517)) {
             int var3 = o[this.i.gunDongListUi.g()];
             byte[] var4;
-            if ((var4 = NetPayloadBuilder.a((short)4863, GlobalStatus.roleId_2, GlobalStatus.npcObjects[this.h.af].a, (int)var3, (short)this.h.sceneRefreshCoordinator.j, (short)this.h.sceneRefreshCoordinator.k)) != null) {
+            if ((var4 = NetPayloadBuilder.a((short)4863, GlobalStatus.roleId_2, GlobalStatus.npcObjects[this.h.selectNpcIndex].a, (int)var3, (short)this.h.sceneRefreshCoordinator.j, (short)this.h.sceneRefreshCoordinator.k)) != null) {
                MainCanvas.netUtils.sendPacket(new NetPacket((short)4863, var4));
-               this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
+               this.h.lastSceneModeId = this.h.currentSceneModeId = 0;
                this.i.showPending((String)null);
             } else {
                this.i.showTips("获取上传指令数据错误!");
@@ -478,7 +478,7 @@ public final class MarriageModel {
 
          if (var1 == 536870912) {
             this.h.sceneSubState = 0;
-            this.h.sceneStateShadow = this.h.currentSceneModeId = 0;
+            this.h.lastSceneModeId = this.h.currentSceneModeId = 0;
             return;
          }
 
@@ -522,7 +522,7 @@ public final class MarriageModel {
 
    public final void d(Graphics var1) {
       if (this.h.sceneSubState == 0 && this.i.mixedUi != null) {
-         this.i.mixedUi.a(var1);
+         this.i.mixedUi.draw(var1);
       }
 
    }

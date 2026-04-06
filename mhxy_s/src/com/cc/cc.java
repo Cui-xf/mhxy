@@ -100,7 +100,7 @@ public final class cc {
         }
 
         this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus;
-        this.uiSceneController.sceneStateShadow = this.uiSceneController.currentSceneModeId = 130;
+        this.uiSceneController.lastSceneModeId = this.uiSceneController.currentSceneModeId = 130;
     }
 
     public final void a(int var1) {
@@ -253,7 +253,7 @@ public final class cc {
                 return;
             }
 
-            this.mainCanvas.mixedUi.a(var1);
+            this.mainCanvas.mixedUi.draw(var1);
             if (this.a == 0) {
                 for (int var2 = 0; var2 < this.d.length; ++var2) {
                     LoadingPage.a(var1, (Image) null, this.d[var2][0], this.d[var2][1], this.d[var2][2], this.d[var2][3], var2 == this.g);
@@ -281,7 +281,7 @@ public final class cc {
             }
 
             if (this.uiSceneController.sceneSubState == 3) {
-                this.uiSceneController.T.a(var1);
+                this.uiSceneController.T.draw(var1);
             }
         }
 

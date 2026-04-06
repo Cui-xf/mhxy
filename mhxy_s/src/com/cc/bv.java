@@ -63,7 +63,7 @@ public final class bv {
    }
 
    public final void a(byte var1) {
-      if (GlobalStatus.bs != 0 || GlobalStatus.s != 0) {
+      if (GlobalStatus.bs != 0 || GlobalStatus.followStatus != 0) {
          if (var1 == 0) {
             this.a = -4;
             this.b = 0;

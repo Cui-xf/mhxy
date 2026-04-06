@@ -26,7 +26,7 @@ public final class GunDongListUi extends BaseUi {
     private short n;
     private short o;
     // 顶部附加提示文本；存在时会额外占用一行。
-    private String p;
+    private String topTips;
     // 选中行旁边绘制的浮动提示文案。
     private String q;
     // 每行左侧图标与三列文本数据。
@@ -36,7 +36,7 @@ public final class GunDongListUi extends BaseUi {
     private String[] u;
     // 行内附加图标/徽记数据。
     private short[] icon;
-    private short[] w;
+    private short[] icon2;
     // 每行主文本颜色。
     private int[] x = null;
     private byte y;
@@ -128,8 +128,8 @@ public final class GunDongListUi extends BaseUi {
     }
 
     // 设置顶部附加提示行。
-    public final void a(String var1) {
-        this.p = var1;
+    public final void setTopTips(String var1) {
+        this.topTips = var1;
         this.z = 1;
     }
 
@@ -173,8 +173,8 @@ public final class GunDongListUi extends BaseUi {
         this.icon = var1;
     }
 
-    public final void b(short[] var1) {
-        this.w = var1;
+    public void setIcon2(short[] var1) {
+        this.icon2 = var1;
     }
 
     public final void a(int[] var1) {
@@ -248,11 +248,11 @@ public final class GunDongListUi extends BaseUi {
         this.t = null;
         this.u = null;
         this.x = null;
-        this.p = null;
+        this.topTips = null;
         this.r = null;
         this.q = null;
         this.icon = null;
-        this.w = null;
+        this.icon2 = null;
     }
 
     // 绘制列表主体、选中高亮、滚动条以及可选的跑马灯文本。
@@ -278,9 +278,9 @@ public final class GunDongListUi extends BaseUi {
                 var1.fillRect(this.a + 4, this.b + 4 + var5 * this.i, this.c - 11, this.i);
             }
 
-            if (var6 + this.z == this.e && this.p != null) {
+            if (var6 + this.z == this.e && this.topTips != null) {
                 var1.setColor(16776960);
-                var1.drawString(this.p, this.a + 6, this.b + 4 + var5 * this.i, 20);
+                var1.drawString(this.topTips, this.a + 6, this.b + 4 + var5 * this.i, 20);
             } else {
                 var3 = var4 = this.A = 0;
                 if (this.r != null && this.r[var6] != null) {
@@ -292,7 +292,7 @@ public final class GunDongListUi extends BaseUi {
                     }
                 }
 
-                var2 = (var2 = 0 + this.A + (this.icon != null && this.icon[var6] > 0 ? 16 : 0)) + (this.w != null && this.w[var6] > 0 ? 18 : 0);
+                var2 = (var2 = 0 + this.A + (this.icon != null && this.icon[var6] > 0 ? 16 : 0)) + (this.icon2 != null && this.icon2[var6] > 0 ? 18 : 0);
                 if (this.s[var6] != null) {
                     var2 += GlobalConfig.font2.stringWidth(this.s[var6]);
                 }
@@ -323,8 +323,8 @@ public final class GunDongListUi extends BaseUi {
                     this.a(var1, this.a + 4 + this.A + GlobalConfig.font2.stringWidth(this.s[var6]) + 2, this.b + 4 + var5 * this.i, MainCanvas.d(this.icon[var6]));
                 }
 
-                if (this.w != null && this.w[var6] > 0) {
-                    this.a(var1, this.a + 4 + var2 - 18, this.b + 4 + var5 * this.i, MainCanvas.c(this.w[var6]));
+                if (this.icon2 != null && this.icon2[var6] > 0) {
+                    this.a(var1, this.a + 4 + var2 - 18, this.b + 4 + var5 * this.i, null);
                 }
 
                 if (this.t != null && this.t[var6] != null) {

@@ -68,7 +68,7 @@ public final class NetworkPacketProcessors {
                         if (GlobalStatus.exceptionCode == 53) {
                             if (MainCanvas.gameSceneController.overlayDialogController != null) {
                                 MainCanvas.gameSceneController.overlayDialogController.d();
-                                MainCanvas.gameSceneController.sceneStateShadow = MainCanvas.gameSceneController.currentSceneModeId = 0;
+                                MainCanvas.gameSceneController.lastSceneModeId = MainCanvas.gameSceneController.currentSceneModeId = 0;
                                 this.mainCanvas.showTips(GlobalConfig.YiChangTiShi[GlobalStatus.exceptionCode]);
                             }
                             return;
@@ -97,8 +97,8 @@ public final class NetworkPacketProcessors {
                             return;
                         }
 
-                        if (MainCanvas.gameSceneController.currentSceneModeId == 111 && MainCanvas.gameSceneController.sceneStateShadow == 0) {
-                            MainCanvas.gameSceneController.currentSceneModeId = MainCanvas.gameSceneController.sceneStateShadow;
+                        if (MainCanvas.gameSceneController.currentSceneModeId == 111 && MainCanvas.gameSceneController.lastSceneModeId == 0) {
+                            MainCanvas.gameSceneController.currentSceneModeId = MainCanvas.gameSceneController.lastSceneModeId;
                         }
 
                         return;
@@ -119,15 +119,15 @@ public final class NetworkPacketProcessors {
                             return;
                         }
 
-                        MainCanvas.gameSceneController.aX = false;
+                        MainCanvas.gameSceneController.moveRequestFlag = false;
                         if (MainCanvas.gameSceneController.currentSceneModeId == 2 && MainCanvas.gameSceneController.sceneSubState == 4) {
-                            String var48 = GlobalConfig.yinLiangFormat(this.mainCanvas.shareSb, GlobalStatus.aq);
-                            GlobalConfig.yinLiangFormat(this.mainCanvas.shareSb, GlobalStatus.ap);
-                            MainCanvas.gameSceneController.am = LoadingPage.parseText(GlobalStatus.npcObjects[MainCanvas.gameSceneController.af].b + ":已存入银两" + var48 + "，现有银两" + this.mainCanvas.shareSb.toString(), GlobalConfig.font2, GlobalConfig.defaultWidth == 176 ? 118 : 152, "\t");
-                            MainCanvas.gameSceneController.ah = MainCanvas.gameSceneController.sceneSubMode == 1 ? GlobalStatus.aq : GlobalStatus.ap;
-                        } else if (MainCanvas.gameSceneController.currentSceneModeId == 37 && MainCanvas.gameSceneController.ao) {
-                            MainCanvas.gameSceneController.p();
-                            MainCanvas.gameSceneController.ao = false;
+                            String var48 = GlobalConfig.yinLiangFormat(this.mainCanvas.shareSb, GlobalStatus.bullions);
+                            GlobalConfig.yinLiangFormat(this.mainCanvas.shareSb, GlobalStatus.versus);
+                            MainCanvas.gameSceneController.npcActionList = LoadingPage.parseText(GlobalStatus.npcObjects[MainCanvas.gameSceneController.selectNpcIndex].b + ":已存入银两" + var48 + "，现有银两" + this.mainCanvas.shareSb.toString(), GlobalConfig.font2, GlobalConfig.defaultWidth == 176 ? 118 : 152, "\t");
+                            MainCanvas.gameSceneController.actionLimit = MainCanvas.gameSceneController.sceneSubMode == 1 ? GlobalStatus.bullions : GlobalStatus.versus;
+                        } else if (MainCanvas.gameSceneController.currentSceneModeId == 37 && MainCanvas.gameSceneController.confirmSubmitStatus) {
+                            MainCanvas.gameSceneController.startAttributeAssignment();
+                            MainCanvas.gameSceneController.confirmSubmitStatus = false;
                         }
 
                         MainCanvas.gameSceneController.sceneRefreshCoordinator.a();
@@ -166,7 +166,7 @@ public final class NetworkPacketProcessors {
                             MainCanvas.gameSceneController.e((int) 0);
                         }
 
-                        if (MainCanvas.gameSceneController != null && MainCanvas.gameSceneController.sceneStateShadow == 4) {
+                        if (MainCanvas.gameSceneController != null && MainCanvas.gameSceneController.lastSceneModeId == 4) {
                             MainCanvas.gameSceneController.s();
                             return;
                         }
@@ -459,7 +459,7 @@ public final class NetworkPacketProcessors {
                         }
 
                         if (GameSceneController.notInFighting()) {
-                            if (MainCanvas.gameSceneController.sceneStateShadow != 7) {
+                            if (MainCanvas.gameSceneController.lastSceneModeId != 7) {
                                 MainCanvas.gameSceneController.b((byte) 0);
                             } else {
                                 MainCanvas.gameSceneController.b((byte) MainCanvas.gameSceneController.aV);
@@ -520,7 +520,7 @@ public final class NetworkPacketProcessors {
                                 this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus;
                             } else {
                                 this.mainCanvas.showTips("拍卖场没有对应物品!");
-                                MainCanvas.gameSceneController.sceneStateShadow = 14;
+                                MainCanvas.gameSceneController.lastSceneModeId = 14;
                             }
                             break;
                         }
@@ -538,7 +538,7 @@ public final class NetworkPacketProcessors {
                         return;
                     case 8233:
                         GlobalStatus.G(this.dis);
-                        if (MainCanvas.gameSceneController.sceneStateShadow == 35) {
+                        if (MainCanvas.gameSceneController.lastSceneModeId == 35) {
                             if (GlobalStatus.gs != null) {
                                 MainCanvas.gameSceneController.D();
                                 if (this.mainCanvas.pageStatus != 2) {
@@ -702,7 +702,7 @@ public final class NetworkPacketProcessors {
                             this.mainCanvas.i();
                         }
 
-                        if (MainCanvas.gameSceneController != null && MainCanvas.gameSceneController.sceneStateShadow == 4) {
+                        if (MainCanvas.gameSceneController != null && MainCanvas.gameSceneController.lastSceneModeId == 4) {
                             MainCanvas.gameSceneController.s();
                             return;
                         }
@@ -736,7 +736,7 @@ public final class NetworkPacketProcessors {
                         return;
                     case 8258:
                         GlobalStatus.aH(this.dis);
-                        if (MainCanvas.gameSceneController.sceneStateShadow != 4 && MainCanvas.gameSceneController.sceneStateShadow != 33) {
+                        if (MainCanvas.gameSceneController.lastSceneModeId != 4 && MainCanvas.gameSceneController.lastSceneModeId != 33) {
                             MainCanvas.gameSceneController.ah();
                         }
 
@@ -1070,7 +1070,7 @@ public final class NetworkPacketProcessors {
 
                         MainCanvas.gameSceneController.j((byte) 6);
                         this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus;
-                        MainCanvas.gameSceneController.sceneStateShadow = MainCanvas.gameSceneController.currentSceneModeId = 38;
+                        MainCanvas.gameSceneController.lastSceneModeId = MainCanvas.gameSceneController.currentSceneModeId = 38;
                         return;
                     case 8455:
                         GlobalStatus.P(this.dis);
@@ -1392,7 +1392,7 @@ public final class NetworkPacketProcessors {
                                 GlobalStatus.Q.a(this.mainCanvas.popUpWindow);
                                 GlobalStatus.Q.a();
                                 GlobalStatus.Q.b();
-                                MainCanvas.gameSceneController.sceneStateShadow = MainCanvas.gameSceneController.currentSceneModeId;
+                                MainCanvas.gameSceneController.lastSceneModeId = MainCanvas.gameSceneController.currentSceneModeId;
                                 MainCanvas.gameSceneController.currentSceneModeId = 111;
                                 this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus;
                             }
@@ -1415,7 +1415,7 @@ public final class NetworkPacketProcessors {
                                 this.mainCanvas.pageStatus = 7;
                             }
 
-                            if (MainCanvas.gameSceneController.sceneStateShadow == 76) {
+                            if (MainCanvas.gameSceneController.lastSceneModeId == 76) {
                                 byte var51 = this.mainCanvas.topUi.a;
                                 int var33 = this.mainCanvas.gunDongListUi.g();
                                 MainCanvas.gameSceneController.d((byte) var51);
@@ -1509,7 +1509,7 @@ public final class NetworkPacketProcessors {
                     case 9221:
                         if (GameSceneController.notInFighting()) {
                             this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus = 7;
-                            MainCanvas.gameSceneController.sceneStateShadow = MainCanvas.gameSceneController.currentSceneModeId = 0;
+                            MainCanvas.gameSceneController.lastSceneModeId = MainCanvas.gameSceneController.currentSceneModeId = 0;
                         }
 
                         this.mainCanvas.showTips(this.dis.readUTF());
@@ -1857,16 +1857,16 @@ public final class NetworkPacketProcessors {
             MainCanvas.gameSceneController.sceneRefreshCoordinator.k = GlobalStatus.au;
         }
 
-        if (GlobalStatus.bs == 0 && GlobalStatus.q != null && GlobalStatus.s == 0) {
-            for (int var1 = 0; var1 < GlobalStatus.q.length; ++var1) {
-                GlobalStatus.q[var1].f.removeAllElements();
-                if (GlobalStatus.q[var1].j == -1 && GlobalStatus.q[var1].k == -1) {
-                    GlobalStatus.q[var1].j = GlobalStatus.at;
-                    GlobalStatus.q[var1].k = GlobalStatus.au;
+        if (GlobalStatus.bs == 0 && GlobalStatus.teamBonus != null && GlobalStatus.followStatus == 0) {
+            for (int i = 0; i < GlobalStatus.teamBonus.length; ++i) {
+                GlobalStatus.teamBonus[i].f.removeAllElements();
+                if (GlobalStatus.teamBonus[i].j == -1 && GlobalStatus.teamBonus[i].k == -1) {
+                    GlobalStatus.teamBonus[i].j = GlobalStatus.at;
+                    GlobalStatus.teamBonus[i].k = GlobalStatus.au;
                 }
 
-                GlobalStatus.q[var1].l = GlobalStatus.at;
-                GlobalStatus.q[var1].m = GlobalStatus.au;
+                GlobalStatus.teamBonus[i].l = GlobalStatus.at;
+                GlobalStatus.teamBonus[i].m = GlobalStatus.au;
             }
         }
 
@@ -1877,23 +1877,23 @@ public final class NetworkPacketProcessors {
             MainCanvas.gameSceneController.sceneRefreshCoordinator.a((int) GlobalStatus.av);
 
             if (MainCanvas.gameSceneController.Y == GlobalStatus.ar && !MainCanvas.gameSceneController.sceneRefreshCoordinator.h()) {
-                if (GlobalStatus.bs == 0 && GlobalStatus.q != null && GlobalStatus.s == 0) {
+                if (GlobalStatus.bs == 0 && GlobalStatus.teamBonus != null && GlobalStatus.followStatus == 0) {
                     MainCanvas var6 = this.mainCanvas;
                     Vector var9 = new Vector();
-                    this.e = GlobalStatus.q[0].j / 16 + (GlobalStatus.q[0].j % 16 == 0 ? 0 : 1);
-                    this.f = GlobalStatus.q[0].k / 16 + (GlobalStatus.q[0].k % 16 == 0 ? 0 : 1);
-                    this.g = GlobalStatus.q[0].l / 16 + (GlobalStatus.q[0].l % 16 == 0 ? 0 : 1);
-                    this.h = GlobalStatus.q[0].m / 16 + (GlobalStatus.q[0].m % 16 == 0 ? 0 : 1);
+                    this.e = GlobalStatus.teamBonus[0].j / 16 + (GlobalStatus.teamBonus[0].j % 16 == 0 ? 0 : 1);
+                    this.f = GlobalStatus.teamBonus[0].k / 16 + (GlobalStatus.teamBonus[0].k % 16 == 0 ? 0 : 1);
+                    this.g = GlobalStatus.teamBonus[0].l / 16 + (GlobalStatus.teamBonus[0].l % 16 == 0 ? 0 : 1);
+                    this.h = GlobalStatus.teamBonus[0].m / 16 + (GlobalStatus.teamBonus[0].m % 16 == 0 ? 0 : 1);
                     if (this.e != this.g || this.f != this.h) {
-                        if (GlobalStatus.q[0].f == null) {
-                            GlobalStatus.q[0].f = new Vector();
+                        if (GlobalStatus.teamBonus[0].f == null) {
+                            GlobalStatus.teamBonus[0].f = new Vector();
                         }
 
                         Vector var10;
                         int var3 = (var10 = this.a(MainCanvas.gameSceneController.f, var9, new bs(this.e, this.f), new bs(this.g, this.h))).size();
 
-                        for (int var4 = 0; var4 < GlobalStatus.q.length; ++var4) {
-                            GlobalStatus.q[var4].f.removeAllElements();
+                        for (int var4 = 0; var4 < GlobalStatus.teamBonus.length; ++var4) {
+                            GlobalStatus.teamBonus[var4].f.removeAllElements();
 
                             for (int var5 = 0; var5 < var3; ++var5) {
                                 bs var8 = (bs) var10.elementAt(var5);
@@ -1907,21 +1907,21 @@ public final class NetworkPacketProcessors {
                                 if (var8.a != var2.a) {
                                     if (var8.a > var2.a) {
                                         for (int var14 = 0; var14 < 4; ++var14) {
-                                            GlobalStatus.q[var4].f.addElement(new short[]{(short) ((var8.a << 4) - (var14 << 2)), (short) (var8.b << 4)});
+                                            GlobalStatus.teamBonus[var4].f.addElement(new short[]{(short) ((var8.a << 4) - (var14 << 2)), (short) (var8.b << 4)});
                                         }
                                     } else {
                                         for (int var13 = 0; var13 < 4; ++var13) {
-                                            GlobalStatus.q[var4].f.addElement(new short[]{(short) ((var8.a << 4) + (var13 << 2)), (short) (var8.b << 4)});
+                                            GlobalStatus.teamBonus[var4].f.addElement(new short[]{(short) ((var8.a << 4) + (var13 << 2)), (short) (var8.b << 4)});
                                         }
                                     }
                                 } else if (var8.b != var2.b) {
                                     if (var8.b > var2.b) {
                                         for (int var12 = 0; var12 < 4; ++var12) {
-                                            GlobalStatus.q[var4].f.addElement(new short[]{(short) (var8.a << 4), (short) ((var8.b << 4) - (var12 << 2))});
+                                            GlobalStatus.teamBonus[var4].f.addElement(new short[]{(short) (var8.a << 4), (short) ((var8.b << 4) - (var12 << 2))});
                                         }
                                     } else {
                                         for (int var11 = 0; var11 < 4; ++var11) {
-                                            GlobalStatus.q[var4].f.addElement(new short[]{(short) (var8.a << 4), (short) ((var8.b << 4) + (var11 << 2))});
+                                            GlobalStatus.teamBonus[var4].f.addElement(new short[]{(short) (var8.a << 4), (short) ((var8.b << 4) + (var11 << 2))});
                                         }
                                     }
                                 }
@@ -2137,7 +2137,7 @@ public final class NetworkPacketProcessors {
             }
 
         } else {
-            GlobalStatus.s = (short) this.dis.readByte();
+            GlobalStatus.followStatus = (short) this.dis.readByte();
             bp_1[] var2 = new bp_1[var1];
             byte var3 = 1;
 
@@ -2186,12 +2186,12 @@ public final class NetworkPacketProcessors {
         GlobalStatus.z();
         GlobalStatus.fg = 0L;
         GlobalStatus.fn = 0L;
-        MainCanvas.gameSceneController.am = null;
+        MainCanvas.gameSceneController.npcActionList = null;
         MainCanvas.gameSceneController.al = null;
         if (GameSceneController.notInFighting()) {
             MainCanvas.pngUtil.a(MainCanvas.gameSceneController.f, GameSceneController.h, GameSceneController.i_1, true, false, 2109231);
             this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus = 7;
-            MainCanvas.gameSceneController.sceneStateShadow = MainCanvas.gameSceneController.currentSceneModeId = 0;
+            MainCanvas.gameSceneController.lastSceneModeId = MainCanvas.gameSceneController.currentSceneModeId = 0;
         }
 
         if (var1 == 1) {

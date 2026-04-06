@@ -150,7 +150,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     /**
      * 特殊装饰图片（/images/mz_1.png）
      */
-    private static Image mz_1 = null;
+    private static Image moZhuan1 = null;
     /**
      * 聊天气泡背景图片（talk_01）
      */
@@ -1143,7 +1143,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         case PageStatus.CREATE_CHARACTER: // 创建角色页：背景 + 混合UI（门派/性别/昵称输入 + 角色预览动画）
                             this.renderMainPageBase(graphics);
                             if (this.mixedUi != null) {
-                                this.mixedUi.a(graphics);
+                                this.mixedUi.draw(graphics);
                                 LoadingPage.draw(graphics, this.mixedUi.X + 5, this.mixedUi.Y + 32, this.mixedUi.W - 11, this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150), 1);
                                 LoadingPage.b(graphics, this.mixedUi.X + 80, this.mixedUi.Y + 35, this.mixedUi.X + 80, this.mixedUi.Y + 35 + this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150) - 5);
                                 graphics.setColor(2176196);
@@ -1507,7 +1507,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 gameSceneController.overlayDialogController.l();
             }
 
-            gameSceneController.sceneStateShadow = gameSceneController.currentSceneModeId = 0;
+            gameSceneController.lastSceneModeId = gameSceneController.currentSceneModeId = 0;
             this.pageStatus = this.lastPageStatus = 7;
         }
 
@@ -1603,7 +1603,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             this.tipsMsg = msg;
         }
 
-        if (GlobalStatus.bs == 1 && GlobalStatus.s == 0 && GlobalStatus.exceptionMsg != null && GlobalStatus.exceptionMsg.startsWith("队伍成员位置信息不一致")) {
+        if (GlobalStatus.bs == 1 && GlobalStatus.followStatus == 0 && GlobalStatus.exceptionMsg != null && GlobalStatus.exceptionMsg.startsWith("队伍成员位置信息不一致")) {
             gameSceneController.S();
             GlobalStatus.exceptionMsg = null;
             this.i();
@@ -2036,7 +2036,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         if (GlobalConfig.channel != 1 || GlobalConfig.logined || !GlobalStatus.hw) {
             this.renderMainPageBase(var1);
             if (this.mixedUi != null) {
-                this.mixedUi.a(var1);
+                this.mixedUi.draw(var1);
             }
 
             if (this.subInputAction == 2) {
@@ -2247,7 +2247,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     private void renderRoleListPage(Graphics var1) {
         this.renderMainPageBase(var1);
         if (this.mixedUi != null) {
-            this.mixedUi.a(var1);
+            this.mixedUi.draw(var1);
             LoadingPage.draw(var1, this.mixedUi.X + 5, this.mixedUi.Y + 32, this.mixedUi.W - 11, this.mixedUi.setR((this.bB << 1) + 6), 1);
             int var2 = (this.mixedUi.W - (this.bB << 1) - 16) / 3;
             int var3 = (this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? (this.bB << 1) + 6 : 111) - (this.bB << 1) - 6) / 3;
@@ -2444,7 +2444,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             gameSceneController.a(gameSceneController.bb);
         } else if (gameSceneController.currentSceneModeId == 18) {
             gameSceneController.sceneSubState = 1;
-            gameSceneController.currentSceneModeId = gameSceneController.sceneStateShadow;
+            gameSceneController.currentSceneModeId = gameSceneController.lastSceneModeId;
         } else if (gameSceneController.currentSceneModeId == 13) {
             if (var1 == 6) {
                 gameSceneController.k(gameSceneController.aE);
@@ -2512,14 +2512,14 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             gameSceneController.sceneSubState = var1;
         } else if (gameSceneController.currentSceneModeId == 130) {
             gameSceneController.sceneSubState = var1;
-        } else if (gameSceneController.sceneStateShadow == 4 && gameSceneController.as == 7) {
+        } else if (gameSceneController.lastSceneModeId == 4 && gameSceneController.as == 7) {
             gameSceneController.t();
-        } else if (gameSceneController.sceneStateShadow == 14) {
+        } else if (gameSceneController.lastSceneModeId == 14) {
             if (gameSceneController.currentSceneModeId != 14) {
                 gameSceneController.H();
             }
-        } else if (gameSceneController.sceneStateShadow != 32) {
-            gameSceneController.currentSceneModeId = gameSceneController.sceneStateShadow;
+        } else if (gameSceneController.lastSceneModeId != 32) {
+            gameSceneController.currentSceneModeId = gameSceneController.lastSceneModeId;
         }
 
         this.lastPageStatus = this.pageStatus = 7;
@@ -2673,13 +2673,13 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     if (LoadingPage.o == 3) {
                         this.liaoTian = new TextField("群聊", (String) null, 30, var2);
                     } else if (LoadingPage.o == 4) {
-                        this.liaoTian = new TextField("与" + GlobalStatus.q[this.gunDongListUi.g()].name + "私聊", (String) null, 30, var2);
+                        this.liaoTian = new TextField("与" + GlobalStatus.teamBonus[this.gunDongListUi.g()].name + "私聊", (String) null, 30, var2);
                     }
                 } else if (GlobalStatus.bs == 0) {
                     if (LoadingPage.o == 0) {
                         this.liaoTian = new TextField("群聊", (String) null, 30, var2);
                     } else if (LoadingPage.o == 1) {
-                        this.liaoTian = new TextField("与" + GlobalStatus.q[this.gunDongListUi.g()].name + "私聊", (String) null, 30, var2);
+                        this.liaoTian = new TextField("与" + GlobalStatus.teamBonus[this.gunDongListUi.g()].name + "私聊", (String) null, 30, var2);
                     }
                 }
             } else if (gameSceneController.currentSceneModeId == 19) {
@@ -2979,10 +2979,10 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             return;
                         }
 
-                        if (gameSceneController.sceneStateShadow == 1) {
-                            gameSceneController.sceneStateShadow = gameSceneController.currentSceneModeId = 0;
+                        if (gameSceneController.lastSceneModeId == 1) {
+                            gameSceneController.lastSceneModeId = gameSceneController.currentSceneModeId = 0;
                         } else {
-                            gameSceneController.currentSceneModeId = gameSceneController.sceneStateShadow;
+                            gameSceneController.currentSceneModeId = gameSceneController.lastSceneModeId;
                         }
 
                         this.inputAction = 0;
@@ -3004,11 +3004,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         }
 
                         this.n();
-                        if (gameSceneController.sceneStateShadow == 1) {
-                            gameSceneController.sceneStateShadow = 0;
+                        if (gameSceneController.lastSceneModeId == 1) {
+                            gameSceneController.lastSceneModeId = 0;
                             gameSceneController.currentSceneModeId = 0;
                         } else {
-                            gameSceneController.currentSceneModeId = gameSceneController.sceneStateShadow;
+                            gameSceneController.currentSceneModeId = gameSceneController.lastSceneModeId;
                         }
 
                         this.inputAction = 0;
@@ -3255,7 +3255,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             gameSceneController.o();
                             gameSceneController.ak.append(this.liaoTian.getString());
                             if (gameSceneController.n() >= 0L) {
-                                if (gameSceneController.n() > GlobalStatus.ap) {
+                                if (gameSceneController.n() > GlobalStatus.versus) {
                                     this.showTips("您没有这么多银两,请重新输入！");
                                 } else {
                                     gameSceneController.M.k[0] = (int) (gameSceneController.M.j = gameSceneController.n());
@@ -3997,11 +3997,6 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         this.lastPageStatus = this.pageStatus = 20;
     }
 
-
-    public static Image c(int var0) {
-        return var0 == 1 ? mz_1 : null;
-    }
-
     public static Image d(int var0) {
         return var0 > 0 && var0 < 8 ? chq[var0 - 1] : null;
     }
@@ -4133,7 +4128,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 chq[var22] = publicUI.getFrame("chq-" + (var22 + 1)).pngImage;
             }
 
-            mz_1 = createImage("/images/mz_1.png");
+            moZhuan1 = createImage("/images/mz_1.png");
         }
 
         role = new Page("/role/", "role");

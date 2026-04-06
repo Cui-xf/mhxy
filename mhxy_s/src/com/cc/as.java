@@ -119,7 +119,7 @@ public final class as {
       LoadingPage.l = 0;
       this.b.sceneSubState = 0;
       this.a.pageStatus = this.a.lastPageStatus;
-      this.b.sceneStateShadow = this.b.currentSceneModeId = 102;
+      this.b.lastSceneModeId = this.b.currentSceneModeId = 102;
    }
 
    private void a() {
@@ -165,7 +165,7 @@ public final class as {
 
    public final void a(Graphics var1) {
       if (this.b.sceneSubState == 0 && this.a.mixedUi != null) {
-         this.a.mixedUi.a(var1);
+         this.a.mixedUi.draw(var1);
       }
 
    }

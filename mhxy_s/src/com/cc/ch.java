@@ -208,7 +208,7 @@ public final class ch {
       LoadingPage.l = 0;
       this.c.sceneSubState = 0;
       this.d.pageStatus = this.d.lastPageStatus;
-      this.c.sceneStateShadow = this.c.currentSceneModeId = 102;
+      this.c.lastSceneModeId = this.c.currentSceneModeId = 102;
    }
 
    public final void a(int var1) {
@@ -408,7 +408,7 @@ public final class ch {
 
    public final void a(Graphics var1) {
       if (this.d.mixedUi != null) {
-         this.d.mixedUi.a(var1);
+         this.d.mixedUi.draw(var1);
          LoadingPage.draw(var1, this.d.mixedUi.X + 5, this.d.mixedUi.Y + 32, (this.d.mixedUi.W - 11) / 2, this.w, 1);
          LoadingPage.draw(var1, this.d.mixedUi.X + 5, this.d.mixedUi.Y + 32 + this.w + 1, (this.d.mixedUi.W - 11) / 2, this.x - 2, 1);
          LoadingPage.draw(var1, this.d.mixedUi.X + 5 + (this.d.mixedUi.W - 11) / 2, this.d.mixedUi.Y + 32, (this.d.mixedUi.W - 10) / 2, this.d.mixedUi.H - 62, 1);

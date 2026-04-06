@@ -49,7 +49,7 @@ public final class ba {
    }
 
    public final void a(Graphics var1) {
-      this.c.mixedUi.a(var1);
+      this.c.mixedUi.draw(var1);
       LoadingPage.draw(var1, this.e, this.f, this.g, this.h - 32, 1);
       LoadingPage.draw(var1, this.e, this.f, 80, this.h - 32, 1);
       if (this.a.bf == 0 && this.a.be == 0) {

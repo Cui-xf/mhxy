@@ -75,13 +75,13 @@ public final class ab_1 {
    }
 
    public static boolean c() {
-      if (GlobalStatus.q != null && GlobalStatus.q.length > 0) {
-         if (GlobalStatus.s == 1) {
+      if (GlobalStatus.teamBonus != null && GlobalStatus.teamBonus.length > 0) {
+         if (GlobalStatus.followStatus == 1) {
             return GlobalStatus.bu;
          } else {
-            for(int var0 = 0; var0 < GlobalStatus.q.length; ++var0) {
-               if (GlobalStatus.q[var0].b.equals(GlobalStatus.roleId_2)) {
-                  if (GlobalStatus.q[var0].s == 1) {
+            for(int var0 = 0; var0 < GlobalStatus.teamBonus.length; ++var0) {
+               if (GlobalStatus.teamBonus[var0].b.equals(GlobalStatus.roleId_2)) {
+                  if (GlobalStatus.teamBonus[var0].s == 1) {
                      if (GlobalStatus.bu) {
                         return true;
                      }

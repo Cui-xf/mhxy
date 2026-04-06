@@ -33,21 +33,21 @@ public final class ac extends SceneEntity {
 
    public ac() {
       this.s = (short) GlobalStatus.ay;
-      this.t = GlobalStatus.nn;
+      this.t = GlobalStatus.roleCurrentRideIcon;
       this.s();
       this.a(false);
       this.t();
    }
 
    private void s() {
-      this.u[1] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)1, GlobalStatus.ay, false, GlobalStatus.nn), (byte)2);
-      this.v[1] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)1, GlobalStatus.ay, true, GlobalStatus.nn), (byte)2);
-      this.u[3] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)3, GlobalStatus.ay, false, GlobalStatus.nn), (byte)2);
-      this.v[3] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)3, GlobalStatus.ay, true, GlobalStatus.nn), (byte)2);
-      this.u[0] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)0, GlobalStatus.ay, false, GlobalStatus.nn), (byte)2);
-      this.v[0] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)0, GlobalStatus.ay, true, GlobalStatus.nn), (byte)2);
-      this.u[2] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)2, GlobalStatus.ay, false, GlobalStatus.nn), (byte)2);
-      this.v[2] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)2, GlobalStatus.ay, true, GlobalStatus.nn), (byte)2);
+      this.u[1] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)1, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[1] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)1, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.u[3] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)3, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[3] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)3, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.u[0] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)0, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[0] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)0, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.u[2] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)2, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[2] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)2, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
    }
 
    public final void a() {
@@ -58,18 +58,18 @@ public final class ac extends SceneEntity {
       if (this.s != GlobalStatus.ay) {
          this.s = (short) GlobalStatus.ay;
          this.s();
-      } else if (!this.t.equals(GlobalStatus.nn)) {
-         this.t = GlobalStatus.nn;
+      } else if (!this.t.equals(GlobalStatus.roleCurrentRideIcon)) {
+         this.t = GlobalStatus.roleCurrentRideIcon;
          this.s();
       }
 
       short var2;
       short var3;
       short var4;
-      if (!GlobalStatus.nn.equals("") && GlobalConfig.hasRideRes) {
-         var2 = GlobalStatus.no;
-         var3 = GlobalStatus.nq;
-         var4 = GlobalStatus.np;
+      if (!GlobalStatus.roleCurrentRideIcon.equals("") && GlobalConfig.hasRideRes) {
+         var2 = GlobalStatus.rideAttr1;
+         var3 = GlobalStatus.rideAttr3;
+         var4 = GlobalStatus.rideAttr2;
       } else {
          var4 = 0;
          var3 = 0;
@@ -78,22 +78,22 @@ public final class ac extends SceneEntity {
 
       super.frame1 = MainCanvas.role.getFrame1(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
       if (super.frame1 == null) {
-         MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)5, GlobalStatus.ay, this.t, var2, var3, var4);
+         MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)5, GlobalStatus.ay, this.t, var2, var3, var4);
          super.frame1 = MainCanvas.role.getFrame1(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
          if (super.frame1 == null) {
             GlobalStatus.ay = 0;
             this.s();
             super.frame1 = MainCanvas.role.c(var1 ? this.v[super.h] : this.u[super.h]);
             if (super.frame1 == null) {
-               MainCanvas.a(GlobalStatus.ax, GlobalStatus.aj, (byte)5, GlobalStatus.ay, this.t, var2, var3, var4);
+               MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)5, GlobalStatus.ay, this.t, var2, var3, var4);
                super.frame1 = MainCanvas.role.c(var1 ? this.v[super.h] : this.u[super.h]);
                return;
             }
          }
-      } else if (!GlobalStatus.nn.equals("")) {
-         super.frame1.a = GlobalStatus.no;
-         super.frame1.b = GlobalStatus.nq;
-         super.frame1.c = GlobalStatus.np;
+      } else if (!GlobalStatus.roleCurrentRideIcon.equals("")) {
+         super.frame1.a = GlobalStatus.rideAttr1;
+         super.frame1.b = GlobalStatus.rideAttr3;
+         super.frame1.c = GlobalStatus.rideAttr2;
       }
 
    }
@@ -103,7 +103,7 @@ public final class ac extends SceneEntity {
    }
 
    private void t() {
-      if (GlobalStatus.be <= 0 && super.d != null) {
+      if (GlobalStatus.selectedMount <= 0 && super.d != null) {
          au var1;
          if ((var1 = super.d).e != null) {
             var1.e.removeAllElements();
@@ -118,13 +118,13 @@ public final class ac extends SceneEntity {
          super.d = null;
       }
 
-      if (GlobalStatus.be > 0) {
-         if (super.d == null || this.o != GlobalStatus.be || this.p != GlobalStatus.bp || this.q != GlobalStatus.bq || this.r != GlobalStatus.br) {
-            this.o = GlobalStatus.be;
-            this.p = GlobalStatus.bp;
-            this.q = GlobalStatus.bq;
-            this.r = GlobalStatus.br;
-            super.d = new au((byte)1, GlobalStatus.be, GlobalStatus.bp, GlobalStatus.bq, GlobalStatus.br);
+      if (GlobalStatus.selectedMount > 0) {
+         if (super.d == null || this.o != GlobalStatus.selectedMount || this.p != GlobalStatus.mountX || this.q != GlobalStatus.mountY || this.r != GlobalStatus.mountDirection) {
+            this.o = GlobalStatus.selectedMount;
+            this.p = GlobalStatus.mountX;
+            this.q = GlobalStatus.mountY;
+            this.r = GlobalStatus.mountDirection;
+            super.d = new au((byte)1, GlobalStatus.selectedMount, GlobalStatus.mountX, GlobalStatus.mountY, GlobalStatus.mountDirection);
          }
 
          if (super.d.h == 0 && super.d.i == 0) {
@@ -189,10 +189,10 @@ public final class ac extends SceneEntity {
    }
 
    private void u() {
-      if (GlobalStatus.q != null && GlobalStatus.s == 0) {
-         for(int var1 = 0; var1 < GlobalStatus.q.length; ++var1) {
-            if (!GlobalStatus.q[var1].b.equals(GlobalStatus.roleId_2)) {
-               GlobalStatus.q[var1].f.addElement(new short[]{super.j, super.k});
+      if (GlobalStatus.teamBonus != null && GlobalStatus.followStatus == 0) {
+         for(int var1 = 0; var1 < GlobalStatus.teamBonus.length; ++var1) {
+            if (!GlobalStatus.teamBonus[var1].b.equals(GlobalStatus.roleId_2)) {
+               GlobalStatus.teamBonus[var1].f.addElement(new short[]{super.j, super.k});
             }
          }
       }
@@ -202,13 +202,13 @@ public final class ac extends SceneEntity {
    public final void a(Graphics var1, PngUtil var2, int var3, int var4, byte var5) {
       if (super.frame1 != null) {
          var2.a(var1, (Frame1)super.frame1, (int[])null, var3, var4, super.j + 8, super.k + 16, 20, 0);
-         if (GlobalStatus.roleName != null) {
-            this.w = GlobalStatus.roleName;
-           LoadingPage.drawString(var1, (String)this.w, (int)(super.j + 8 - var3), super.k - var4 - GlobalConfig.font2_h - super.frame1.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.ai, 0);
+         if (GlobalStatus.roleNameVip != null) {
+            this.w = GlobalStatus.roleNameVip;
+           LoadingPage.drawString(var1, (String)this.w, (int)(super.j + 8 - var3), super.k - var4 - GlobalConfig.font2_h - super.frame1.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.roleNameColor, 0);
          }
 
-         if (GlobalStatus.ah != null && !GlobalStatus.ah.equals("")) {
-           LoadingPage.drawString(var1, GlobalStatus.ah, super.j + 8 - var3, super.k - var4 - (GlobalConfig.font2_h << 1) - super.frame1.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.ai);
+         if (GlobalStatus.roleTitle != null && !GlobalStatus.roleTitle.equals("")) {
+           LoadingPage.drawString(var1, GlobalStatus.roleTitle, super.j + 8 - var3, super.k - var4 - (GlobalConfig.font2_h << 1) - super.frame1.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.roleNameColor);
          }
 
          if (GlobalStatus.bs == 1) {
@@ -224,7 +224,7 @@ public final class ac extends SceneEntity {
    }
 
    public final void a(byte var1) {
-      if (GlobalStatus.bs != 0 || GlobalStatus.s != 0) {
+      if (GlobalStatus.bs != 0 || GlobalStatus.followStatus != 0) {
          super.h = var1;
          if (var1 == 0) {
             this.a = (short)(-n);
@@ -266,7 +266,7 @@ public final class ac extends SceneEntity {
    }
 
    public final int a(MainCanvas var1) {
-      if ((GlobalStatus.bs != 0 || GlobalStatus.bs == 0 && GlobalStatus.s != 0) && GlobalStatus.ab != null && var1.pageStatus != 1) {
+      if ((GlobalStatus.bs != 0 || GlobalStatus.bs == 0 && GlobalStatus.followStatus != 0) && GlobalStatus.ab != null && var1.pageStatus != 1) {
          for(int var2 = 0; var2 < GlobalStatus.ab.length; ++var2) {
             if (a(super.j, super.k, GlobalStatus.ab[var2], GlobalStatus.ac[var2]) || a(super.j + 8, super.k + 8, GlobalStatus.ab[var2], GlobalStatus.ac[var2])) {
                this.B = this.B == 0 ? 1 : this.B;
@@ -379,7 +379,7 @@ public final class ac extends SceneEntity {
    }
 
    public final void j() {
-      if (GlobalStatus.bs != 0 || GlobalStatus.s != 0) {
+      if (GlobalStatus.bs != 0 || GlobalStatus.followStatus != 0) {
          if (this.c.size() > 0) {
             int var3;
             if ((var3 = this.c.size() - 1) >= 0) {

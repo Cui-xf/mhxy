@@ -265,7 +265,7 @@ public final class k {
       LoadingPage.l = 0;
       this.i.sceneSubState = 0;
       this.j.pageStatus = this.j.lastPageStatus;
-      this.i.sceneStateShadow = this.i.currentSceneModeId = 118;
+      this.i.lastSceneModeId = this.i.currentSceneModeId = 118;
    }
 
    public final void a(int var1) {
@@ -400,7 +400,7 @@ public final class k {
    public final void a(Graphics var1) {
       short var2 = GameSceneController.goods.b;
       if (this.j.mixedUi != null) {
-         this.j.mixedUi.a(var1);
+         this.j.mixedUi.draw(var1);
          LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32, this.j.mixedUi.W - 11, this.w, 1);
          LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32 + this.w + 1, this.j.mixedUi.W - 11, this.x - 2, 1);
       }

@@ -101,7 +101,7 @@ public final class TouchController {
                   int var5 = var2;
                   int var38 = var1;
                   TouchController var40 = this;
-                  if (GlobalStatus.fz != null && GlobalStatus.fz.length > 0 && GlobalStatus.s != 0) {
+                  if (GlobalStatus.fz != null && GlobalStatus.fz.length > 0 && GlobalStatus.followStatus != 0) {
                      label719:
                      for(int var6 = 0; var6 < GlobalStatus.fz.length; ++var6) {
                         if (GlobalStatus.fz[var6] == 1 && var40.gameSceneController.sceneRefreshCoordinator.d.f != null) {
@@ -192,7 +192,7 @@ public final class TouchController {
                            return;
                         }
 
-                        this.gameSceneController.p();
+                        this.gameSceneController.startAttributeAssignment();
                      } else {
                         if (var1 >= 1 && var1 <= 1 + GlobalConfig.font2.stringWidth("菜单") && var2 >= GlobalConfig.defaultHigh - GlobalConfig.font2_h - 1 && var2 <= GlobalConfig.defaultHigh - 1) {
                            this.canvas.inputAction = 268435456;

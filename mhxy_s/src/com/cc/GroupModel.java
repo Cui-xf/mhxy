@@ -58,7 +58,7 @@ public final class GroupModel {
         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.a.sceneSubState = 0;
         this.a.mainCanvasRef.pageStatus = this.a.mainCanvasRef.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 41;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 41;
     }
 
     public final void b(int var1) {
@@ -74,7 +74,7 @@ public final class GroupModel {
 
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.a.sceneStateShadow = this.a.currentSceneModeId = 0;
+                    this.a.lastSceneModeId = this.a.currentSceneModeId = 0;
                     return;
                 }
             } else {
@@ -164,7 +164,7 @@ public final class GroupModel {
     }
 
     public final void a() {
-        this.a.am = LoadingPage.parseText("将交付" + this.u + "帮派基金作为招募费用，持续一周？", GlobalConfig.font2, 140, "\t");
+        this.a.npcActionList = LoadingPage.parseText("将交付" + this.u + "帮派基金作为招募费用，持续一周？", GlobalConfig.font2, 140, "\t");
         this.a.sceneSubState = 3;
         LoadingPage.h = 0;
     }
@@ -203,7 +203,7 @@ public final class GroupModel {
         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.a.sceneSubState = 0;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 42;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 42;
     }
 
     public final void c(int var1) {
@@ -313,7 +313,7 @@ public final class GroupModel {
         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.a.sceneSubState = 0;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 43;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 43;
     }
 
     public final void d(int var1) {
@@ -438,7 +438,7 @@ public final class GroupModel {
         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.a.sceneSubState = 0;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 45;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 45;
     }
 
     public final void e(int var1) {
@@ -456,7 +456,7 @@ public final class GroupModel {
                 if (var1 == 536870912) {
                     this.a.aA = 0;
                     this.a.aE = 0;
-                    this.a.sceneStateShadow = this.a.currentSceneModeId = 0;
+                    this.a.lastSceneModeId = this.a.currentSceneModeId = 0;
                 }
             } else {
                 this.a.aA = this.b.gunDongListUi.h();
@@ -524,7 +524,7 @@ public final class GroupModel {
         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.a.sceneSubState = 0;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 46;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 46;
     }
 
     public final void f(int var1) {
@@ -689,7 +689,7 @@ public final class GroupModel {
             this.b.topUi.a = 0;
             this.b.gunDongListUi.setValue((Image[]) null, GlobalStatus.iz, GlobalStatus.iA, a(GlobalStatus.iC, "战力"));
             this.b.gunDongListUi.setIcon(null);
-            this.b.gunDongListUi.b(GlobalStatus.aH == 1 ? GlobalStatus.iF : null);
+            this.b.gunDongListUi.setIcon2(null);
             this.b.gunDongListUi.a(GlobalStatus.iG);
             this.b.bottomUi.a("确定");
             this.b.bottomUi.a(true);
@@ -722,7 +722,7 @@ public final class GroupModel {
             }
 
             this.b.gunDongListUi.setValue((Image[]) null, GlobalStatus.jZ, (String[]) null, var4);
-            this.b.gunDongListUi.a("搜索...");
+            this.b.gunDongListUi.setTopTips("搜索...");
             this.b.gunDongListUi.a(var2);
             this.b.gunDongListUi.a("帮派搜索", 1);
             this.b.bottomUi.a("确定");
@@ -743,7 +743,7 @@ public final class GroupModel {
 
         this.a.sceneSubState = 0;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 47;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 47;
     }
 
     public final void i(int var1) {
@@ -983,7 +983,7 @@ public final class GroupModel {
                         return;
                     }
 
-                    this.a.a(GlobalStatus.s, GlobalStatus.iy[this.b.gunDongListUi.g()]);
+                    this.a.a(GlobalStatus.followStatus, GlobalStatus.iy[this.b.gunDongListUi.g()]);
                     return;
                 }
 
@@ -1096,7 +1096,7 @@ public final class GroupModel {
                 var1 = LoadingPage.o == 0 ? 1 : 0;
                 if (GlobalStatus.bs == 0) {
                     this.b.showTips("队员不能发送组队邀请！");
-                } else if (GlobalStatus.bs == 1 && GlobalStatus.q != null && GlobalStatus.q.length >= 3) {
+                } else if (GlobalStatus.bs == 1 && GlobalStatus.teamBonus != null && GlobalStatus.teamBonus.length >= 3) {
                     this.b.showTips("队伍已满，无法邀请！");
                 } else {
                     byte[] var4;
@@ -1185,7 +1185,7 @@ public final class GroupModel {
         //展示超Q？
 //      this.b.gunDongListUi.setIcon(GlobalStatus.aC == 1 ? GlobalStatus.iE : null);
         this.b.gunDongListUi.setIcon((short[]) null);
-        this.b.gunDongListUi.b(GlobalStatus.aH == 1 ? GlobalStatus.iF : null);
+        this.b.gunDongListUi.setIcon2(null);
         this.b.gunDongListUi.a(GlobalStatus.iG);
         this.b.bottomUi.a("任免");
         this.b.bottomUi.a(true);
@@ -1194,7 +1194,7 @@ public final class GroupModel {
         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.a.sceneSubState = 0;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 48;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 48;
     }
 
     private static String[] a(int[] var0, String var1) {
@@ -1353,7 +1353,7 @@ public final class GroupModel {
         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.a.sceneSubState = 2;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 48;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 48;
     }
 
     public final void l(int var1) {
@@ -1380,7 +1380,7 @@ public final class GroupModel {
         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.a.sceneSubState = 0;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 49;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 49;
     }
 
     public final void b(boolean var1) {
@@ -1406,7 +1406,7 @@ public final class GroupModel {
         this.b.inputAction = 0;
         this.a.sceneSubState = 0;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 50;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 50;
     }
 
     public final void m(int var1) {
@@ -1423,7 +1423,7 @@ public final class GroupModel {
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
                     GlobalStatus.H();
-                    this.a.sceneStateShadow = this.a.currentSceneModeId = 0;
+                    this.a.lastSceneModeId = this.a.currentSceneModeId = 0;
                     return;
                 }
             } else {
@@ -1439,7 +1439,7 @@ public final class GroupModel {
                     case 2:
                         this.a.o();
                         this.a.sceneSubState = 1;
-                        this.a.a(GlobalStatus.ap);
+                        this.a.a(GlobalStatus.versus);
                         break;
                     case 3:
                         this.a.o();
@@ -1449,7 +1449,7 @@ public final class GroupModel {
                     case 4:
                         this.a.o();
                         this.a.sceneSubState = 2;
-                        this.a.a(GlobalStatus.am);
+                        this.a.a(GlobalStatus.xiulian);
                         break;
                     case 5:
                         this.m();
@@ -1493,7 +1493,7 @@ public final class GroupModel {
                         }
 
                         if (this.a.n() != -1L) {
-                            if (this.a.n() > this.a.ah) {
+                            if (this.a.n() > this.a.actionLimit) {
                                 this.b.showTips("超出最大值,请重新输入");
                                 return;
                             }
@@ -1602,7 +1602,7 @@ public final class GroupModel {
             }
 
             if (this.a.n() != -1L) {
-                if (this.a.n() > this.a.ah) {
+                if (this.a.n() > this.a.actionLimit) {
                     this.b.showTips("超出最大值,请重新输入");
                     return;
                 }
@@ -1665,7 +1665,7 @@ public final class GroupModel {
         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.a.sceneSubState = 0;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 51;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 51;
     }
 
     public final void m() {
@@ -1755,7 +1755,7 @@ public final class GroupModel {
                 } else {
                     switch (this.b.gunDongListUi.g()) {
                         case 0:
-                            this.k[0] = (int) (this.j = this.j + 100L <= GlobalStatus.ap ? this.j + 100L : GlobalStatus.ap);
+                            this.k[0] = (int) (this.j = this.j + 100L <= GlobalStatus.versus ? this.j + 100L : GlobalStatus.versus);
                             break;
                         case 1:
                             int[] var14 = this.k;
@@ -1889,7 +1889,7 @@ public final class GroupModel {
                 } else {
                     switch (this.b.gunDongListUi.g()) {
                         case 0:
-                            this.k[0] = (int) (this.j = this.j + 100L <= GlobalStatus.ap ? this.j + 100L : GlobalStatus.ap);
+                            this.k[0] = (int) (this.j = this.j + 100L <= GlobalStatus.versus ? this.j + 100L : GlobalStatus.versus);
                             break;
                         case 1:
                             int[] var5 = this.k;
@@ -2001,7 +2001,7 @@ public final class GroupModel {
         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.a.sceneSubState = 0;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 114;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 114;
     }
 
     public final void o(int var1) {
@@ -2197,7 +2197,7 @@ public final class GroupModel {
 
     public final void a(Graphics var1) {
         if (this.b.mixedUi != null) {
-            this.b.mixedUi.a(var1);
+            this.b.mixedUi.draw(var1);
 
             for (int var2 = 0; var2 < this.b.gunDongListUi.f(); ++var2) {
                 int var3 = this.b.gunDongListUi.a() + this.b.gunDongListUi.c() - MainCanvas.up.b - 126;
@@ -2259,7 +2259,7 @@ public final class GroupModel {
         this.b.topUi.a(new String[]{"宝库一", "宝库二", "宝库三"});
         this.b.topUi.a((byte) 1);
         this.b.mixedUi.setR(GlobalConfig.realHigh <= 240 ? 79 : 120);
-        if (this.a.sceneStateShadow != 115 && this.a.sceneStateShadow != 64) {
+        if (this.a.lastSceneModeId != 115 && this.a.lastSceneModeId != 64) {
             this.a.aq = this.a.ar = 0;
         } else {
             this.a.aq = this.a.aF;
@@ -2282,7 +2282,7 @@ public final class GroupModel {
         this.b.mixedUi.addChild((BaseUi) this.b.bottomUi);
         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 115;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 115;
     }
 
     public final void p() {
@@ -2316,7 +2316,7 @@ public final class GroupModel {
                         if (var1 != 1 && var1 != 514) {
                             if (var1 != 4 && var1 != 520) {
                                 if (var1 == 536870912) {
-                                    this.a.am = null;
+                                    this.a.npcActionList = null;
                                     this.b(true);
                                     return;
                                 }
@@ -2529,7 +2529,7 @@ public final class GroupModel {
     public final void b(Graphics var1) {
         if (this.b.mixedUi != null) {
             int var2 = GlobalConfig.realHigh <= 240 ? 79 : 120;
-            this.b.mixedUi.a(var1);
+            this.b.mixedUi.draw(var1);
             LoadingPage.draw(var1, this.b.mixedUi.X + 5, this.b.mixedUi.Y + 29 + this.b.topUi.b, this.b.mixedUi.W - 11, var2, 1);
             LoadingPage.draw(var1);
             Graphics var3 = var1;
@@ -2575,7 +2575,7 @@ public final class GroupModel {
         } else {
             if (this.a.sceneSubState == 2) {
                 if (this.b.mixedUi != null) {
-                    this.b.mixedUi.a(var1);
+                    this.b.mixedUi.draw(var1);
                     return;
                 }
             } else {
@@ -2613,7 +2613,7 @@ public final class GroupModel {
     public final void c(Graphics var1) {
         if (this.a.sceneSubState == 0 && this.b.mixedUi != null) {
             LoadingPage.a(var1, (Image) MainCanvas.tradebottom.pngImage, (short) MainCanvas.tradebottom.b, this.b.mixedUi.X + 5, this.b.mixedUi.Y + this.b.mixedUi.H - 53, this.b.mixedUi.W - 10, MainCanvas.tradebottom.c);
-            this.b.mixedUi.a(var1);
+            this.b.mixedUi.draw(var1);
 
             for (int var2 = 0; var2 < this.b.gunDongListUi.f(); ++var2) {
                 int var3 = this.b.gunDongListUi.a() + this.b.gunDongListUi.c() - MainCanvas.up.b - 130;
@@ -2685,7 +2685,7 @@ public final class GroupModel {
         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.a.sceneSubState = 0;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 52;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 52;
     }
 
     public final void t() {
@@ -2696,7 +2696,7 @@ public final class GroupModel {
         this.b.bottomUi.a(true);
         this.a.sceneSubState = 0;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 52;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 52;
     }
 
     public final void r(int var1) {
@@ -2737,7 +2737,7 @@ public final class GroupModel {
                 if (var1 == 536870912) {
                     GlobalStatus.I();
                     GlobalStatus.J();
-                    this.a.sceneStateShadow = this.a.currentSceneModeId = 0;
+                    this.a.lastSceneModeId = this.a.currentSceneModeId = 0;
                     return;
                 }
 
@@ -2876,7 +2876,7 @@ public final class GroupModel {
         }
 
         this.b.gunDongListUi.setValue((Image[]) null, GlobalStatus.jZ, (String[]) null, var1);
-        this.b.gunDongListUi.a("搜索...");
+        this.b.gunDongListUi.setTopTips("搜索...");
         this.b.gunDongListUi.a(var2);
         this.b.gunDongListUi.a("帮派搜索", 1);
         this.b.bottomUi.a("确定");
@@ -2887,7 +2887,7 @@ public final class GroupModel {
         LoadingPage.l = 0;
         this.a.sceneSubState = 0;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 60;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 60;
     }
 
     private static String w(int var0) {
@@ -2929,7 +2929,7 @@ public final class GroupModel {
 
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    this.a.sceneStateShadow = this.a.currentSceneModeId = 0;
+                    this.a.lastSceneModeId = this.a.currentSceneModeId = 0;
                     return;
                 }
 
@@ -3072,7 +3072,7 @@ public final class GroupModel {
             GameSceneController.h = this.s;
             GameSceneController.i_1 = this.t;
             this.a.sceneSubState = 0;
-            this.a.sceneStateShadow = this.a.currentSceneModeId = 0;
+            this.a.lastSceneModeId = this.a.currentSceneModeId = 0;
             this.b.keyCombination = 0;
             this.b.inputAction = 0;
         }
@@ -3102,7 +3102,7 @@ public final class GroupModel {
         LoadingPage.h = 0;
         this.a.sceneSubState = 0;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 62;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 62;
     }
 
     public final void t(int var1) {
@@ -3110,7 +3110,7 @@ public final class GroupModel {
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
                     this.a.al = null;
-                    this.a.sceneStateShadow = this.a.currentSceneModeId = 0;
+                    this.a.lastSceneModeId = this.a.currentSceneModeId = 0;
                 }
             } else {
                 byte[] var2;
@@ -3146,7 +3146,7 @@ public final class GroupModel {
             this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
             this.a.sceneSubState = 0;
             this.b.pageStatus = this.b.lastPageStatus;
-            this.a.sceneStateShadow = this.a.currentSceneModeId = 63;
+            this.a.lastSceneModeId = this.a.currentSceneModeId = 63;
         }
 
     }
@@ -3165,7 +3165,7 @@ public final class GroupModel {
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
                     this.a.sceneSubState = 0;
-                    this.a.sceneStateShadow = this.a.currentSceneModeId = 0;
+                    this.a.lastSceneModeId = this.a.currentSceneModeId = 0;
                 }
             } else {
                 this.a.aA = this.b.gunDongListUi.h();
@@ -3210,7 +3210,7 @@ public final class GroupModel {
         this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.a.sceneSubState = 0;
         this.b.pageStatus = this.b.lastPageStatus;
-        this.a.sceneStateShadow = this.a.currentSceneModeId = 113;
+        this.a.lastSceneModeId = this.a.currentSceneModeId = 113;
     }
 
     public final void v(int var1) {
@@ -3233,7 +3233,7 @@ public final class GroupModel {
 
     public final void d(Graphics var1) {
         if (this.a.sceneSubState == 0 && this.b.mixedUi != null) {
-            this.b.mixedUi.a(var1);
+            this.b.mixedUi.draw(var1);
         }
 
     }

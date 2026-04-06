@@ -103,7 +103,7 @@ public final class o_1 {
         }
 
         this.j.pageStatus = this.j.lastPageStatus;
-        this.i.sceneStateShadow = this.i.currentSceneModeId = 64;
+        this.i.lastSceneModeId = this.i.currentSceneModeId = 64;
     }
 
     private void e() {
@@ -206,7 +206,7 @@ public final class o_1 {
                             }
 
                             this.i.sceneSubState = 0;
-                            this.i.sceneStateShadow = this.i.currentSceneModeId = 0;
+                            this.i.lastSceneModeId = this.i.currentSceneModeId = 0;
                             MainCanvas.pngUtil.a(this.i.f, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
                             return;
                         }
@@ -327,7 +327,7 @@ public final class o_1 {
     public final void a(Graphics var1) {
         if (this.j.mixedUi != null) {
             this.j.mixedUi.setR(30);
-            this.j.mixedUi.a(var1);
+            this.j.mixedUi.draw(var1);
             LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32, this.j.mixedUi.W - 11, 30, 1);
             LoadingPage.drawString(var1, (String) "宝石", (int) (this.j.mixedUi.X + 10), this.j.mixedUi.Y + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
         }
@@ -395,7 +395,7 @@ public final class o_1 {
 
         this.j.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.j.pageStatus = this.j.lastPageStatus = 7;
-        this.i.sceneStateShadow = this.i.currentSceneModeId = 65;
+        this.i.lastSceneModeId = this.i.currentSceneModeId = 65;
     }
 
     public final void b(int var1) {
@@ -435,7 +435,7 @@ public final class o_1 {
 
     public final void b(Graphics var1) {
         if (this.i.sceneSubState == 0 && this.j.mixedUi != null) {
-            this.j.mixedUi.a(var1);
+            this.j.mixedUi.draw(var1);
         }
 
         if (this.i.sceneSubState == 1) {
@@ -450,7 +450,7 @@ public final class o_1 {
 
     public final void c(int var1) {
         if (var1 == 536870912) {
-            this.i.sceneStateShadow = this.i.currentSceneModeId = 0;
+            this.i.lastSceneModeId = this.i.currentSceneModeId = 0;
         }
 
     }
@@ -530,7 +530,7 @@ public final class o_1 {
 
         this.j.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.j.pageStatus = this.j.lastPageStatus = 7;
-        this.i.sceneStateShadow = this.i.currentSceneModeId = 67;
+        this.i.lastSceneModeId = this.i.currentSceneModeId = 67;
     }
 
     public final void d(int var1) {
@@ -553,7 +553,7 @@ public final class o_1 {
 
     public final void c(Graphics var1) {
         if (this.j.mixedUi != null) {
-            this.j.mixedUi.a(var1);
+            this.j.mixedUi.draw(var1);
         }
 
     }
@@ -714,7 +714,7 @@ public final class o_1 {
         LoadingPage.l = 0;
         this.i.sceneSubState = 0;
         this.j.pageStatus = this.j.lastPageStatus;
-        this.i.sceneStateShadow = this.i.currentSceneModeId = 106;
+        this.i.lastSceneModeId = this.i.currentSceneModeId = 106;
     }
 
     public final void e(int var1) {
@@ -908,7 +908,7 @@ public final class o_1 {
         int var4;
         int var5 = (var4 = this.j.mixedUi.X + 10) + var3 + 31;
         if (this.j.mixedUi != null) {
-            this.j.mixedUi.a(var1);
+            this.j.mixedUi.draw(var1);
             LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32, this.j.mixedUi.W - 11, this.H, 1);
             LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32 + this.H + 1, this.j.mixedUi.W - 11, this.I - 2, 1);
             LoadingPage.draw(var1, var4, var2, var3, this.J - 9, 1);

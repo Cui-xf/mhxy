@@ -238,7 +238,7 @@ public final class MixedUi extends BaseUi {
     }
 
     // 绘制窗口装饰、标题栏以及所有子控件。
-    public final void a(Graphics var1) {
+    public void draw(Graphics var1) {
         var1.setClip(this.X, this.Y, this.W, this.H);
         if (this.drawBackground) {
             var1.setColor(2780801);

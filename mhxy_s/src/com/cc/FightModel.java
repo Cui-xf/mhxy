@@ -171,7 +171,7 @@ public final class FightModel {
 
       GlobalStatus.K = GlobalStatus.L;
       GlobalStatus.L = -1;
-      if (GlobalStatus.K == 2 && GlobalStatus.bs != -1 && GlobalStatus.s == 0) {
+      if (GlobalStatus.K == 2 && GlobalStatus.bs != -1 && GlobalStatus.followStatus == 0) {
          this.f = 9;
       } else {
          this.f = 0;
@@ -193,7 +193,7 @@ public final class FightModel {
    }
 
    public final void a(int var1) {
-      if (GlobalStatus.bs == 0 && GlobalStatus.s == 0 && g > 0) {
+      if (GlobalStatus.bs == 0 && GlobalStatus.followStatus == 0 && g > 0) {
          this.d();
       } else {
          if (this.f != 10) {
@@ -472,7 +472,7 @@ public final class FightModel {
                         this.q = 1;
                         if (t == 1) {
                            this.y.showTips("决斗时不能逃跑!");
-                        } else if (GlobalStatus.bs == 0 && GlobalStatus.s == 0) {
+                        } else if (GlobalStatus.bs == 0 && GlobalStatus.followStatus == 0) {
                            this.y.showTips("队员不能逃跑");
                         } else {
                            this.a((byte)4, -1, (byte)0, this.o, this.k, this.q, (byte)1, GlobalStatus.M[this.h].a);
@@ -1004,7 +1004,7 @@ public final class FightModel {
                            var25 = true;
                         }
 
-                        if (GlobalStatus.be > 0 && var11[var14].b == 0 && GlobalStatus.fightData[var46].a == var11[var14].c && d(var11[var14].k)) {
+                        if (GlobalStatus.selectedMount > 0 && var11[var14].b == 0 && GlobalStatus.fightData[var46].a == var11[var14].c && d(var11[var14].k)) {
                            GlobalStatus.fightData[var46].o = true;
                            var35 = true;
                         }
@@ -1016,7 +1016,7 @@ public final class FightModel {
                   GlobalStatus.fightData[var42].o = false;
                }
 
-               if (!var35 && GlobalStatus.be > 0) {
+               if (!var35 && GlobalStatus.selectedMount > 0) {
                   GlobalStatus.fightData[var46].o = false;
                }
             }
@@ -1167,7 +1167,7 @@ public final class FightModel {
             }
 
             this.d();
-            this.z.sceneStateShadow = this.z.currentSceneModeId = 0;
+            this.z.lastSceneModeId = this.z.currentSceneModeId = 0;
          } else if (this.f == 5) {
             if (this.s() == 2) {
                for(byte var18 = 0; var18 < GlobalStatus.fightData.length; ++var18) {
@@ -1206,7 +1206,7 @@ public final class FightModel {
          } else if (this.f == 8) {
             this.y.mainMidlet.start();
             this.d();
-            this.z.sceneStateShadow = this.z.currentSceneModeId = 0;
+            this.z.lastSceneModeId = this.z.currentSceneModeId = 0;
          }
 
          if (this.f == 0 || this.f == 1) {
@@ -1215,7 +1215,7 @@ public final class FightModel {
                   this.f = 4;
                   return;
                }
-            } else if (this.f != 9 && (GlobalStatus.bs >= 0 && GlobalStatus.s == 0 || t == 1 || t == 2 || GlobalStatus.bt) && s > 0) {
+            } else if (this.f != 9 && (GlobalStatus.bs >= 0 && GlobalStatus.followStatus == 0 || t == 1 || t == 2 || GlobalStatus.bt) && s > 0) {
                this.p();
             }
          }
@@ -1255,7 +1255,7 @@ public final class FightModel {
                if (GlobalStatus.fightData[var17].b == 0 && GlobalStatus.fightData[var17].j != null) {
                   if (GlobalStatus.fightData[var17].c.equals(GlobalStatus.roleId_2)) {
                      var5.drawImage(GameSceneController.H.pngImage, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0] - GameSceneController.H.b / 2, GlobalConfig.Q[GlobalStatus.fightData[var17].a][1] - GameSceneController.H.c / 2, 20);
-                     if ((var4.f != 7 || GlobalStatus.bs != 1) && (var4.f != 7 || GlobalStatus.bs != -1) && (var4.f != 7 || GlobalStatus.s != 1)) {
+                     if ((var4.f != 7 || GlobalStatus.bs != 1) && (var4.f != 7 || GlobalStatus.bs != -1) && (var4.f != 7 || GlobalStatus.followStatus != 1)) {
                         if (!GlobalStatus.fightData[var17].d()) {
                            if (GlobalStatus.fightData[var17].k == 1 || GlobalStatus.fightData[var17].k == 4) {
                               GlobalStatus.fightData[var17].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], (byte)0);
@@ -1271,10 +1271,10 @@ public final class FightModel {
                         MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                      }
                   } else if (var4.f == 7) {
-                     for(int var7 = 0; var7 < GlobalStatus.q.length; ++var7) {
-                        if (GlobalStatus.q[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.q[var7].s == 1) {
+                     for(int var7 = 0; var7 < GlobalStatus.teamBonus.length; ++var7) {
+                        if (GlobalStatus.teamBonus[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.teamBonus[var7].s == 1) {
                            MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
-                        } else if (GlobalStatus.q[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.q[var7].s == 0 && !GlobalStatus.fightData[var17].d()) {
+                        } else if (GlobalStatus.teamBonus[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.teamBonus[var7].s == 0 && !GlobalStatus.fightData[var17].d()) {
                            if (GlobalStatus.fightData[var17].k == 1 || GlobalStatus.fightData[var17].k == 4) {
                               GlobalStatus.fightData[var17].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], (byte)0);
                            }
@@ -1467,7 +1467,7 @@ public final class FightModel {
             this.c(var2);
          }
 
-         if ((GlobalStatus.bs >= 0 && GlobalStatus.s == 0 || t == 1 || t == 2) && s >= 0) {
+         if ((GlobalStatus.bs >= 0 && GlobalStatus.followStatus == 0 || t == 1 || t == 2) && s >= 0) {
             LoadingPage.drawString(var2, (String)String.valueOf(s), (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh / 2 - (GlobalConfig.defaultHigh <= 240 ? GlobalConfig.font2_h : GlobalConfig.font2_h / 2), 17, 16711680, 0);
          }
       } else if (this.f == 3) {
@@ -2145,10 +2145,10 @@ public final class FightModel {
       var0.f = var1.i;
       var0.h = var1.j;
       if (var0.c.equals(GlobalStatus.roleId_2) && GlobalStatus.x != -1) {
-         GlobalStatus.aN = var0.e;
-         GlobalStatus.aP = var0.g;
-         GlobalStatus.totalShengMing = var0.f;
-         GlobalStatus.aO = var0.h;
+         GlobalStatus.currentHealth = var0.e;
+         GlobalStatus.totalMana = var0.g;
+         GlobalStatus.totalHealth = var0.f;
+         GlobalStatus.currentMana = var0.h;
       }
 
    }
@@ -2601,7 +2601,7 @@ public final class FightModel {
 
    public final void l() {
       this.d();
-      this.z.sceneStateShadow = this.z.currentSceneModeId = 0;
+      this.z.lastSceneModeId = this.z.currentSceneModeId = 0;
    }
 
    public final void m() {

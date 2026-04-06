@@ -14,984 +14,3989 @@ import java.util.Vector;
  * 所有字段均为 static，供 NetworkPacketProcessors、UISceneController、MainCanvas 等全局访问。
  */
 public final class GlobalStatus {
+
+    // ==================== 账号认证 ====================
+    /**
+     * 服务器配置包(8729)是否已成功解析
+     */
     public static boolean serverConfigSuccess = false;
+    /**
+     * 登录账号名
+     */
     public static String zhangHao;
+    /**
+     * 登录令牌备份/第一步令牌
+     */
     public static String token_1;
+    /**
+     * 当前会话令牌
+     */
     public static String token;
+    /**
+     * 上次同步时间戳
+     */
     public static long lastSyncTime;
+    /**
+     * 未知 long 类型时间或标志
+     */
     public static long f;
+    /**
+     * 未知 boolean 标志
+     */
     public static boolean g;
+    /**
+     * 未知 byte 标志
+     */
     public static byte h;
+    /**
+     * 坐骑/场景状态标志，初始=-1
+     */
     public static byte i_1 = -1;
+    /**
+     * 坐骑/场景状态标志2，与 i_1 配对，初始=-1
+     */
     public static byte j = -1;
+    /**
+     * 未知 String
+     */
     public static String k;
+    /**
+     * 未知 byte
+     */
     public static byte l;
-    //当前角色id？
+
+    // ==================== 当前角色基础信息 ====================
+    /**
+     * 当前角色 ID
+     */
     public static String roleId;
     /**
      * 商城公告/必看文字内容（来自服务器配置包8729，scene=商城时展示）
      */
     public static String mallTips;
+
+    // ==================== 场景对象数组 ====================
+    /**
+     * bl 类型对象数组（背包物品/地图场景对象列表，从 c() 释放逻辑推断）
+     */
     public static bl[] o;
+    /**
+     * 背包物品 Vector（背包数据包8197解析后的物品集合）
+     */
     public static Vector p = new Vector();
-    public static bp_1[] q;
+    /**
+     * 队伍加成
+     */
+    public static bp_1[] teamBonus;
+    /**
+     * 当前场景/战斗标识 UTF 字符串（J()中赋值）
+     */
     public static String r;
-    public static short s;
+    /**
+     * 跟随状态 0-自由 1-跟随
+     */
+    public static short followStatus = -1;
+    /**
+     * 场景中的 NPC 对象数组
+     */
     public static NpcObject[] npcObjects;
-    //服务器下发的所有对象 List<NpcObject[]>
+    /**
+     * 服务器下发的所有对象列表（Vector of NpcObject[]）
+     */
     public static Vector npcArrayList;
+
+    // ==================== 战斗会话 ====================
+    /**
+     * 战斗会话 ID（进入战斗包 z() 中赋值）
+     */
     public static long v;
+    /**
+     * 战斗会话 ID 当前值（与 v 配对，新一轮战斗更新）
+     */
     public static long w;
+    /**
+     * 战斗内计数器/状态 short，进战斗时置0
+     */
     public static short x;
+    /**
+     * 未知 long
+     */
     public static long y;
+    /**
+     * 未知 byte
+     */
     public static byte z;
+    /**
+     * 未知 byte
+     */
     public static byte A;
+    /**
+     * 未知 byte
+     */
     public static byte B;
+    /**
+     * 未知 byte[6]，静态块初始化全0
+     */
     public static byte[] C;
+    /**
+     * 未知 byte
+     */
     public static byte D;
+    /**
+     * 未知 byte
+     */
     public static byte E;
+    /**
+     * 未知 String
+     */
     public static String F;
+    /**
+     * 未知 String
+     */
     public static String G;
+
+    // ==================== 战斗数据 ====================
+    /**
+     * 战斗中己方参战角色数据（p[] 类型）
+     */
     public static p[] fightData;
+    /**
+     * 己方参战角色数据数组（方法 e() 解析）
+     */
     public static p[] I;
+    /**
+     * 敌方参战角色/召唤物数据数组（方法 d() 解析）
+     */
     public static p[] J;
+    /**
+     * 战斗相关计数，初始=-1
+     */
     public static short K;
+    /**
+     * 战斗状态标志，初始=-1，进战斗时置1
+     */
     public static short L;
+    /**
+     * 己方战斗单元扩展数组（ck[]）
+     */
     public static ck[] M;
+    /**
+     * 敌方战斗单元数组（ck[]，方法 A() 中解析）
+     */
     public static ck[] N;
+    /**
+     * 主场景/战斗控制器对象（f_1）
+     */
     public static f_1 O;
+    /**
+     * 活动容器对象（ag_1）
+     */
     public static ag_1 P;
+    /**
+     * 弹窗/公告对象（cd）
+     */
     public static cd Q;
+    /**
+     * 角色外观标志字符串1（方法 aC() 按位解析）
+     */
     public static String R;
+    /**
+     * 角色外观标志字符串2
+     */
     public static String S;
+    /**
+     * 角色外观标志字符串3
+     */
     public static String T;
+    /**
+     * 角色外观标志字符串4
+     */
     public static String U;
+    /**
+     * 角色外观标志字符串5
+     */
     public static String V;
+
+    // ==================== 角色列表（账号下多角色） ====================
+    /**
+     * 账号下所有角色的 ID 列表
+     */
     public static String[] roleIdList;
-    //角色等级
+    /**
+     * 角色等级列表
+     */
     public static short[] roleLevelList;
+    /**
+     * 角色职业列表
+     */
     public static byte[] roleJobList;
+    /**
+     * 角色性别列表
+     */
     public static byte[] roleGenderList;
-    //角色昵称
+    /**
+     * 角色昵称列表
+     */
     public static String[] roleNicknameList;
 
-
+    // ==================== 装备槽 ====================
+    /**
+     * 装备槽物品 ID 数组（方法 b(DataInputStream) 解析装备包8200）
+     */
     public static short[] ab;
+    /**
+     * 装备槽耐久度数组（与 ab 配对）
+     */
     public static short[] ac;
+
+    // ==================== 当前角色详细信息 ====================
+    /**
+     * 当前角色 ID（备用/第2个）
+     */
     public static String roleId_2;
+    /**
+     * 场景名称/地图名称字符串（方法 c(DataInputStream) 解析位置包8199时读取）
+     */
     public static String ae;
-    public static String af;
-    public static String roleName;
-    public static String ah;
-    public static int ai;
-    public static byte aj;
-    public static short ak;
-    //经验
+    /**
+     * 角色名称（去掉VIP后缀的纯净名，从 roleName 派生）
+     */
+    public static String roleNamePure;
+    /**
+     * 角色全名（含VIP标记，parseBackPack中赋值）
+     */
+    public static String roleNameVip;
+    /**
+     * 角色称号/头衔字符串（parseBackPack/h()中赋值）
+     */
+    public static String roleTitle;
+    /**
+     * 角色名称颜色（int 色值，parseBackPack中赋值，默认16776960即黄色）
+     */
+    public static int roleNameColor = 16776960;
+    /**
+     * 背包标志字节（parseBackPack中读取，如银行标识）
+     */
+    public static byte backPackFlag;
+    /**
+     * 背包容量上限
+     */
+    public static short backpackCapacityLimit;
+    /**
+     * 经验值字符串
+     */
     public static String jingyan;
-    public static long am;
-    public static long an;
-    public static long ao;
-    public static long ap;
-    public static long aq;
+    /**
+     * 修炼(道行)
+     */
+    public static long xiulian;
+    /**
+     * 修炼上限
+     */
+    public static long xiulianLimit;
+    /**
+     * 战力
+     */
+    public static long combatPower = 0L;
+    /**
+     * 银两（当前持有，parseBackPack中readLong）
+     */
+    public static long versus;
+    /**
+     * 元宝/点券数量（parseBackPack中readLong）
+     */
+    public static long bullions;
+    /**
+     * 场景/地图 ID，初始=-1
+     */
     public static short ar;
+    /**
+     * 未知 short，初始=-1
+     */
     public static short as;
+    /**
+     * 角色目标坐标 X（位置包8199解析）
+     */
     public static short at;
+    /**
+     * 角色目标坐标 Y（位置包8199解析）
+     */
     public static short au;
+    /**
+     * 移动方向/朝向标志 byte，初始=-1
+     */
     public static byte av;
+    /**
+     * 另一移动方向标志 byte
+     */
     public static byte aw;
-    public static byte ax;
-    public static byte ay;
-    public static String az;
-    public static String aA;
-    public static int aB;
+    /**
+     * 背包行数/格子数（parseBackPack中读取）
+     */
+    public static byte backpackRows;
+    /**
+     * 背包相关字节（parseBackPack中读取，初始0）
+     */
+    public static byte ay = 0;
+    /**
+     * 帮派
+     */
+    public static String gangs2;
+    /**
+     * 职务
+     */
+    public static String gangsJob;
+    /**
+     * 功勋
+     */
+    public static int meritorious;
 
-//
-//    public static byte aCccccccccccccccc;
-//    public static String aDddddddddddddddddd;
-//    public static String aEEEEEEEEEEEEEEEEEE;
-//    public static String aFFFFFFFFFFFFFFFFFF;
-//    public static String aGGGGGGGGGGGGGGGGGG;
-
-
-    //超Q相关
-    public static byte aH;
-    public static byte aI;
-
-//    public static String aJjjjjjjjjjjjjjjjjj;
-//    public static String aKkkkkkkkkkkkkk;
-//    public static String aLllllllllllllllllll;
-    //总生命值
-    public static int totalShengMing;
-    public static int aN;
+    // ==================== 角色战斗属性 ====================
+    /**
+     * 总生命值上限（parseBackPack中readInt）
+     */
+    public static int totalHealth;
+    /**
+     * 当前生命值（方法 g() 同步 nF→aN）
+     */
+    public static int currentHealth;
+    /**
+     * 临时暂存生命值上限（方法 g() 中 nE→totalShengMing）
+     */
     private static int nE;
+    /**
+     * 临时暂存当前生命值（方法 g() 中 nF→aN）
+     */
     private static int nF;
-    public static int aO;
-    public static int aP;
+    /**
+     * 当前魔法/法力值（parseBackPack中readInt）
+     */
+    public static int currentMana;
+    /**
+     * 总魔法/法力值上限（方法 g() 同步 nH→aP）
+     */
+    public static int totalMana;
+    /**
+     * 临时暂存法力值（方法 g() 中 nG→aO）
+     */
     private static int nG;
+    /**
+     * 临时暂存法力值上限（方法 g() 中 nH→aP）
+     */
     private static int nH;
-    public static int aQ;
-    public static int aR;
-    public static int aS;
-    public static int aT;
-    public static int aU;
-    public static int aV;
-    public static int aW;
-    public static int aX;
-    public static int aY;
-    public static int aZ;
-    public static int ba;
-    public static int bb;
-    public static int bc;
-    public static String bd;
-    public static short be;
+    /**
+     * 角色属性：物攻2
+     */
+    public static int attack2;
+    /**
+     * 角色属性：物攻
+     */
+    public static int attack;
+    /**
+     * 角色属性：物防2
+     */
+    public static int defense2;
+    /**
+     * 角色属性：物防
+     */
+    public static int defense;
+    /**
+     * 角色属性：法攻
+     */
+    public static int magicAttack_1_2;
+    /**
+     * 角色属性值 法攻
+     */
+    public static int magicAttack_1;
+    /**
+     * 角色属性值 法伤
+     */
+    public static int spellDamage;
+    /**
+     * 角色属性值 法攻2
+     */
+    public static int magicAttack2;
+    /**
+     * 角色属性值 法攻
+     */
+    public static int magicAttack;
+    /**
+     * 角色属性值
+     */
+    public static int speed;
+    /**
+     * 角色属性值 火抗
+     */
+    public static int fireResistance;
+    /**
+     * 角色属性值 雷抗
+     */
+    public static int lightningResistance;
+    /**
+     * 角色属性值 冰抗
+     */
+    public static int iceResistance;
+
+    // ==================== 背包杂项信息 ====================
+    /**
+     * 未知 String（parseBackPack最后读取）
+     */
+    public static String finalDesc;
+    /**
+     * 未知 short（parseBackPack中读取）
+     */
     public static short bf;
-    public static byte bg;
-    public static String bh;
-    public static String bi;
-    public static String bj;
-    public static String bk;
-    public static String bl;
-    public static String bm;
-    public static String bn;
-    public static String bo;
-    public static short bp;
-    public static short bq;
-    public static short br;
-    public static short bs;
+    /**
+     * 队伍属性加成
+     */
+    public static byte attributeBonus;
+    /**
+     * 祝福
+     */
+    public static String bless;
+    /**
+     * 住宅
+     */
+    public static String houseName;
+    /**
+     * 帮派
+     */
+    public static String gangs;
+    /**
+     * 装备
+     */
+    public static String equip;
+    /**
+     * 配偶
+     */
+    public static String spouse;
+    /**
+     * 师傅
+     */
+    public static String master;
+    /**
+     * 背包记录/帮派战报等最近记录字符串（静态块初始化"暂无记录。"）
+     */
+    public static String xxRecords = "暂无记录。";
+    /**
+     * 成就
+     */
+    public static String achievement = null;
+
+    // ==================== 坐骑坐标 ====================
+    /**
+     * 宠物槽/骑宠选中槽位（>-1则读取坐骑坐标）
+     */
+    public static short selectedMount;
+    /**
+     * 坐骑坐标 X（be>-1时在parseBackPack中读取）
+     */
+    public static short mountX;
+    /**
+     * 坐骑坐标 Y
+     */
+    public static short mountY;
+    /**
+     * 坐骑方向
+     */
+    public static short mountDirection;
+    /**
+     * 未知 short，初始=-1
+     */
+    public static short bs = -1;
+    /**
+     * 未知 boolean
+     */
     public static boolean bt;
+    /**
+     * 未知 boolean，初始=false
+     */
     public static boolean bu;
+    /**
+     * 未知 int，初始=0
+     */
     public static int bv;
+    /**
+     * 地图/场景版本或标志 byte（位置包8199中读取，>=1时在J()中读取ha）
+     */
     public static byte bw;
+    /**
+     * 未知 byte，初始=0（位置包8199中读取）
+     */
     public static byte bx;
+    /**
+     * 未知 String，初始=""
+     */
     public static String by;
+    /**
+     * 未知 String，初始=""
+     */
     public static String bz;
-    public static byte bA;
-    public static String bB;
+    /**
+     * VIP等级 byte（parseBackPack中读取，用于构造"(VIPx)"后缀，初始0）
+     */
+    public static byte vipLevel = 0;
+    /**
+     * 称号
+     */
+    public static String title;
+    /**
+     * 背包装备槽对象列表 Vector（bn 对象集合）
+     */
     public static Vector bC;
+    /**
+     * 装备槽数据就绪标志（方法 e()/f(DataInputStream) 解析后置true）
+     */
     public static boolean bD;
+    /**
+     * 未知 boolean，初始=false
+     */
     public static boolean bE;
+    /**
+     * 未知 int，初始=-1
+     */
     public static int bF;
+    /**
+     * 未知 int，初始=-1
+     */
     public static int bG;
+    /**
+     * 未知 String（方法 j() 中清空）
+     */
     public static String bH;
+
+    // ==================== 快捷栏 ====================
+    /**
+     * 物品/快捷栏 ID 数组（方法 g(DataInputStream) 解析）
+     */
     public static int[] bI;
+    /**
+     * 快捷栏物品名称数组
+     */
     public static String[] bJ;
+    /**
+     * 快捷栏辅助 short 数组（私有，方法 g() 解析）
+     */
     private static short[] nI;
+    /**
+     * 快捷栏物品类型数组
+     */
     public static byte[] bK;
+
+    // ==================== 可接任务列表 ====================
+    /**
+     * 可接任务 ID 数组（h(DataInputStream) 解析任务列表包8223）
+     */
     public static int[] bL;
+    /**
+     * 可接任务名称数组
+     */
     public static String[] bM;
+    /**
+     * 可接任务等级要求数组
+     */
     public static short[] bN;
+    /**
+     * 可接任务类型或数量数组
+     */
     public static int[] bO;
+    /**
+     * 可接任务附加描述数组
+     */
     public static String[] bP;
+    /**
+     * 任务列表头信息 UTF 字符串
+     */
     public static String bQ;
+
+    // ==================== 进行中任务列表 ====================
+    /**
+     * 进行中任务 ID 数组（h(DataInputStream) 解析任务列表包8223）
+     */
     public static int[] bR;
+    /**
+     * 进行中任务名称数组
+     */
     public static String[] bS;
+    /**
+     * 进行中任务等级限制数组
+     */
     public static short[] bT;
+    /**
+     * 进行中任务类型数组
+     */
     public static byte[] bU;
+    /**
+     * 进行中任务进度描述数组
+     */
     public static String[] bV;
+    /**
+     * 战斗/寻路开关标志，初始=false（i(DataInputStream) 中读取）
+     */
     public static boolean bW;
+    /**
+     * 战斗/寻路目标 ID，初始=-1（i() 中读取）
+     */
     public static int bX;
+
+    // ==================== 背包格子数据 ====================
+    /**
+     * 背包格子 ID 数组（i(DataInputStream) 解析）
+     */
     public static int[] bY;
+    /**
+     * 背包格子名称数组
+     */
     public static String[] bZ;
+    /**
+     * 物品类型标志数组
+     */
     public static byte[] ca;
+    /**
+     * 物品属性数组1
+     */
     public static short[] cb;
+    /**
+     * 物品属性数组2
+     */
     public static short[] cc;
+    /**
+     * 物品属性数组3
+     */
     public static short[] cd;
+    /**
+     * 物品属性数组4
+     */
     public static short[] ce;
+    /**
+     * 物品属性数组5
+     */
     public static short[] cf;
+    /**
+     * 物品属性数组6
+     */
     public static short[] cg;
+    /**
+     * 物品属性数组7
+     */
     public static short[] ch;
+    /**
+     * 物品属性数组8
+     */
     public static short[] ci;
+    /**
+     * 物品属性数组9
+     */
     public static short[] cj;
+    /**
+     * 物品属性数组10（注意与类名 ck 同名）
+     */
     public static short[] ck;
+    /**
+     * 物品属性数组11
+     */
     public static short[] cl;
+    /**
+     * 物品属性数组12
+     */
     public static short[] cm;
+    /**
+     * 物品属性数组13
+     */
     public static short[] cn;
+    /**
+     * 物品属性数组14
+     */
     public static short[] co;
+    /**
+     * 物品过期时间/价格 long 数组
+     */
     public static long[] cp;
+    /**
+     * 物品附加描述字符串数组（可选）
+     */
     public static String[] cq;
+
+    // ==================== 装备配方/合成 ====================
+    /**
+     * 装备配方/合成 ID 数组（j(DataInputStream) 解析）
+     */
     public static short[] cr;
+    /**
+     * 装备配方/合成名称数组
+     */
     public static String[] cs;
+
+    // ==================== 背包/仓库物品 ====================
+    /**
+     * 背包/仓库物品 ID 数组（k(DataInputStream) 解析）
+     */
     public static int[] ct;
+    /**
+     * 背包/仓库物品名称数组
+     */
     public static String[] cu;
+    /**
+     * 物品类型数组
+     */
     public static byte[] cv;
+    /**
+     * 物品子类型数组
+     */
     public static byte[] cw;
+    /**
+     * 物品等级需求数组
+     */
     public static short[] cx;
+    /**
+     * 物品描述字段1（属性描述行1，私有）
+     */
     private static String[] nJ;
+    /**
+     * 物品描述字段2（属性描述行2，私有）
+     */
     private static String[] nK;
+    /**
+     * 物品描述字段3（属性描述行3，私有）
+     */
     private static String[] nL;
+    /**
+     * 物品描述字段4（属性描述行4，私有）
+     */
     private static String[] nM;
+    /**
+     * 物品描述字段5（属性描述行5，私有）
+     */
     private static String[] nN;
+    /**
+     * 物品描述字段6（属性描述行6，私有）
+     */
     private static String[] nO;
+    /**
+     * 物品等级 short 数组（私有）
+     */
     private static short[] nP;
+    /**
+     * 物品过期时间 long 数组（k(DataInputStream) 解析）
+     */
     public static long[] cy;
+    /**
+     * 物品附加说明字符串（可选，私有）
+     */
     private static String[] nQ;
+    /**
+     * 物品附加属性二维数组（每项可有多个短属性值，私有）
+     */
     private static short[][] nR;
+    /**
+     * 背包物品保存/剩余时间 long 数组（am() 方法解析，私有）
+     */
     private static long[] nS;
+
+    // ==================== 已装备宠物（槽位1） ====================
+    /**
+     * 已装备宠物 ID 数组（l(DataInputStream) 解析宠物包8202）
+     */
     public static int[] cz;
+    /**
+     * 已装备宠物名称数组
+     */
     public static String[] cA;
+    /**
+     * 宠物类型/槽位 byte 数组
+     */
     public static byte[] cB;
+    /**
+     * 宠物等级 short 数组
+     */
     public static short[] cC;
+    /**
+     * 宠物等级（可用于显示，私有）
+     */
     private static short[] nT;
+    /**
+     * 宠物属性描述行1（私有）
+     */
     private static String[] nU;
+    /**
+     * 宠物属性描述行2（私有）
+     */
     private static String[] nV;
+    /**
+     * 宠物属性描述行3（私有）
+     */
     private static String[] nW;
+    /**
+     * 宠物属性描述行4（私有）
+     */
     private static String[] nX;
+    /**
+     * 宠物属性描述行5（私有）
+     */
     private static String[] nY;
+    /**
+     * 宠物属性描述行6（私有）
+     */
     private static String[] nZ;
+    /**
+     * 宠物过期时间 long 数组（私有）
+     */
     private static long[] oa;
+    /**
+     * 宠物附加技能说明字符串（可选，私有）
+     */
     private static String[] ob;
+    /**
+     * 宠物附属技能/属性 ID 二维数组
+     */
     public static short[][] cD;
+    /**
+     * 已装备宠物1标志（m(DataInputStream) 解析时读取）
+     */
     public static byte cE;
+    /**
+     * 已装备宠物2标志
+     */
     public static byte cF;
+
+    // ==================== 已装备宠物（槽位2） ====================
+    /**
+     * 另一宠物槽 ID 数组（m(DataInputStream) 解析）
+     */
     public static int[] cG;
+    /**
+     * 另一宠物槽名称数组
+     */
     public static String[] cH;
+    /**
+     * 另一宠物槽类型数组
+     */
     public static byte[] cI;
+    /**
+     * 另一宠物槽等级数组
+     */
     public static short[] cJ;
+    /**
+     * 另一宠物槽属性描述行1
+     */
     public static String[] cK;
+    /**
+     * 另一宠物槽属性描述行2
+     */
     public static String[] cL;
+    /**
+     * 另一宠物槽属性描述行3
+     */
     public static String[] cM;
+    /**
+     * 另一宠物槽描述行4（私有）
+     */
     private static String[] oc;
+    /**
+     * 另一宠物槽描述行5（私有）
+     */
     private static String[] od;
+    /**
+     * 另一宠物槽描述行6（私有）
+     */
     private static String[] oe;
+    /**
+     * 另一宠物槽等级（显示用）
+     */
     public static short[] cN;
+    /**
+     * 另一宠物槽过期时间
+     */
     public static long[] cO;
+    /**
+     * 另一宠物槽技能说明（可选）
+     */
     public static String[] cP;
+    /**
+     * 另一宠物槽附属技能二维数组
+     */
     public static short[][] cQ;
+
+    // ==================== 主装备格 ====================
+    /**
+     * 主装备格 ID 数组（c(DataInputStream, byte) 解析）
+     */
     public static int[] cR;
+    /**
+     * 主装备格名称数组
+     */
     public static String[] cS;
+    /**
+     * 主装备格类型数组
+     */
     public static byte[] cT;
+    /**
+     * 主装备格子类型数组
+     */
     public static byte[] cU;
+    /**
+     * 主装备格标志 byte 数组
+     */
     public static byte[] cV;
+    /**
+     * 主装备格等级 short 数组
+     */
     public static short[] cW;
+    /**
+     * 主装备格附加属性 short 数组
+     */
     public static short[] cX;
+    /**
+     * 主装备格隐藏属性 short 数组（方法 c() 中读取，私有）
+     */
     private static short[] of;
+    /**
+     * 主装备格显示名称数组
+     */
     public static String[] cY;
+    /**
+     * 主装备格绑定标志 byte 数组
+     */
     public static byte[] cZ;
+    /**
+     * 主装备格附加描述字符串数组
+     */
     public static String[] da;
+
+    // ==================== 副装备格 ====================
+    /**
+     * 副装备格 ID 数组（a(DataInputStream, byte) 解析）
+     */
     public static int[] db;
+    /**
+     * 副装备格名称数组
+     */
     public static String[] dc;
+    /**
+     * 副装备格类型数组
+     */
     public static byte[] dd;
+    /**
+     * 副装备格子类型数组
+     */
     public static byte[] de;
+    /**
+     * 副装备格标志数组
+     */
     public static byte[] df;
+    /**
+     * 副装备格等级 short 数组
+     */
     public static short[] dg;
+    /**
+     * 副装备格附加属性 short 数组
+     */
     public static short[] dh;
+    /**
+     * 副装备格显示名称数组
+     */
     public static String[] di;
+    /**
+     * 副装备格绑定标志 byte 数组
+     */
     public static byte[] dj;
+    /**
+     * 副装备格附加描述字符串数组
+     */
     public static String[] dk;
+
+    // ==================== 仓库/地面物品 ====================
+    /**
+     * 仓库/地面物品 ID 数组（p() 方法清空）
+     */
     public static int[] dl;
+    /**
+     * 仓库/地面物品名称数组（p() 清空）
+     */
     public static String[] dm;
+    /**
+     * 仓库物品类型数组
+     */
     public static byte[] dn;
+    /**
+     * 仓库物品子类型数组（命名避免与 do 关键字冲突）
+     */
     public static byte[] do_2;
+    /**
+     * 仓库物品标志数组
+     */
     public static byte[] dp;
+    /**
+     * 仓库物品等级 short 数组
+     */
     public static short[] dq;
+    /**
+     * 仓库物品附加属性 short 数组
+     */
     public static short[] dr;
+    /**
+     * 仓库物品显示名称数组
+     */
     public static String[] ds;
+    /**
+     * 仓库物品附加描述字符串数组
+     */
     public static String[] dt;
+    /**
+     * 仓库物品绑定标志 byte 数组（p() 中清空）
+     */
     public static byte[] du;
+
+    // ==================== 技能列表 ====================
+    /**
+     * 技能 ID 数组（n(DataInputStream) 解析技能包8203）
+     */
     public static int[] dv;
+    /**
+     * 技能名称数组
+     */
     public static String[] dw;
+    /**
+     * 技能类型 byte 数组
+     */
     public static byte[] dx;
+    /**
+     * 技能子类型 byte 数组
+     */
     public static byte[] dy;
+    /**
+     * 技能状态标志 byte 数组
+     */
     public static byte[] dz;
+    /**
+     * 技能等级/冷却值1 short 数组
+     */
     public static short[] dA;
+    /**
+     * 技能冷却值2 short 数组
+     */
     public static short[] dB;
+    /**
+     * 技能附加描述字符串数组
+     */
     public static String[] dC;
+    /**
+     * 技能描述字符串数组
+     */
     public static String[] dD;
+
+    // ==================== 另一技能/称号列表 ====================
+    /**
+     * 另一技能/称号 ID 数组（o(DataInputStream) 解析）
+     */
     public static int[] dE;
+    /**
+     * 另一技能名称数组
+     */
     public static String[] dF;
+    /**
+     * 另一技能类型 byte 数组（o() 方法解析，私有）
+     */
     private static byte[] og;
+    /**
+     * 另一技能等级 short 数组
+     */
     public static short[] dG;
+    /**
+     * 另一技能冷却 short 数组
+     */
     public static short[] dH;
+    /**
+     * 另一技能附加描述数组
+     */
     public static String[] dI;
+    /**
+     * 地图行走可用标志，初始=true
+     */
     public static boolean dJ;
+    /**
+     * 地图行走模式标志（p(DataInputStream) 中读取，初始0，私有）
+     */
     private static byte oh;
+
+    // ==================== 地图图标/NPC ====================
+    /**
+     * 地图图标/NPC名称数组（p(DataInputStream) 解析）
+     */
     public static String[] dK;
+    /**
+     * 地图图标 ID/NPC ID 字符串数组
+     */
     public static String[] dL;
+    /**
+     * 地图图标类型 byte 数组
+     */
     public static byte[] dM;
+    /**
+     * 地图图标 X 坐标 short 数组
+     */
     public static short[] dN;
+    /**
+     * 地图图标 Y 坐标 short 数组
+     */
     public static short[] dO;
+    /**
+     * 地图图标方向 short 数组
+     */
     public static short[] dP;
+    /**
+     * 地图图标附加描述字符串数组
+     */
     public static String[] dQ;
+    /**
+     * 地图图标颜色 int 数组（由 pickColor 转换）
+     */
     public static int[] dR;
+    /**
+     * 未知 String 数组（p() 方法中声明但未初始化）
+     */
     public static String[] dS;
+
+    // ==================== 对话/台词 ====================
+    /**
+     * 对话/场景台词数组（q(DataInputStream) 解析4条 UTF 字符串）
+     */
     public static String[] dT;
+    /**
+     * 未知 byte
+     */
     public static byte dU;
+    /**
+     * 对话标志1（q(DataInputStream) 读取）
+     */
     public static byte dV;
+    /**
+     * 未知 byte
+     */
     public static byte dW;
+    /**
+     * 对话标志2（q(DataInputStream) 读取）
+     */
     public static byte dX;
+
+    // ==================== 动画/特效列表 ====================
+    /**
+     * 动画/特效 ID 数组（r(DataInputStream) 解析）
+     */
     public static int[] dY;
+    /**
+     * 动画名称数组
+     */
     public static String[] dZ;
+    /**
+     * 动画类型 byte 数组
+     */
     public static byte[] ea;
+    /**
+     * 动画子类型 byte 数组
+     */
     public static byte[] eb;
+    /**
+     * 动画等级/属性 short 数组
+     */
     public static short[] ec;
+    /**
+     * 动画描述行1
+     */
     public static String[] ed;
+    /**
+     * 动画描述行2（私有）
+     */
     private static String[] oi;
+    /**
+     * 动画描述行3
+     */
     public static String[] ee;
+    /**
+     * 动画描述行4（私有）
+     */
     private static String[] oj;
+    /**
+     * 动画描述行5（私有）
+     */
     private static String[] ok;
+    /**
+     * 动画描述行6（私有）
+     */
     private static String[] ol;
+    /**
+     * 动画等级 short 数组（r() 方法解析）
+     */
     public static short[] ef;
+    /**
+     * 动画过期时间/价格 long 数组
+     */
     public static long[] eg;
+    /**
+     * 动画附加技能说明（可选）
+     */
     public static String[] eh;
+    /**
+     * 动画附属技能二维数组（r() 方法解析，私有）
+     */
     private static short[][] om;
+    /**
+     * 战斗/动画场景标志（r()/s() 方法读取）
+     */
     public static byte ei;
+
+    // ==================== 主外观槽位 ====================
+    /**
+     * 主外观槽位类型数组（t() 解析外观包8210时从 oo 复制）
+     */
     public static byte[] ej;
+    /**
+     * 主外观槽位状态1数组（从 op 复制）
+     */
     public static byte[] ek;
+    /**
+     * 主外观槽位状态2数组（从 oq 复制）
+     */
     public static byte[] el;
+    /**
+     * 主外观槽位状态3数组（从 or 复制）
+     */
     public static byte[] em;
+    /**
+     * 主外观槽位名称（从 eo 复制存入私有字段，私有）
+     */
     private static String[] on;
+    /**
+     * 主外观槽位 ID short 数组（从 os 复制）
+     */
     public static short[] en;
+    /**
+     * 主外观槽位类型原始数组（t() 方法读入，私有）
+     */
     private static byte[] oo;
+    /**
+     * 主外观槽位状态1原始数组（私有）
+     */
     private static byte[] op;
+    /**
+     * 主外观槽位状态2原始数组（私有）
+     */
     private static byte[] oq;
+    /**
+     * 主外观槽位状态3原始数组（私有）
+     */
     private static byte[] or;
+    /**
+     * 主外观槽位 ID 原始数组（私有）
+     */
     private static short[] os;
+    /**
+     * 主外观槽位名称/资源路径（t() 方法读取）
+     */
     public static String[] eo;
+
+    // ==================== 次外观槽位 ====================
+    /**
+     * 次外观槽位类型数组（u() 解析次外观包8244时从 ou 复制）
+     */
     public static byte[] ep;
+    /**
+     * 次外观槽位状态1数组
+     */
     public static byte[] eq;
+    /**
+     * 次外观槽位状态2数组
+     */
     public static byte[] er;
+    /**
+     * 次外观槽位状态3数组
+     */
     public static byte[] es;
+    /**
+     * 次外观槽位名称（从 eu 复制到私有，私有）
+     */
     private static String[] ot;
+    /**
+     * 次外观槽位 ID 数组（从 oy 复制）
+     */
     public static short[] et;
+    /**
+     * 次外观槽位类型原始数组（私有）
+     */
     private static byte[] ou;
+    /**
+     * 次外观槽位状态1原始数组（私有）
+     */
     private static byte[] ov;
+    /**
+     * 次外观槽位状态2原始数组（私有）
+     */
     private static byte[] ow;
+    /**
+     * 次外观槽位状态3原始数组（私有）
+     */
     private static byte[] ox;
+    /**
+     * 次外观槽位 ID 原始数组（私有）
+     */
     private static short[] oy;
+    /**
+     * 次外观槽位名称/资源路径（u() 方法读取）
+     */
     public static String[] eu;
+
+    // ==================== 背包功能列表 ====================
+    /**
+     * 是否已激活/开启某功能标志（v(DataInputStream) 读取，初始=false）
+     */
     public static boolean ev;
+    /**
+     * 背包功能列表 ID 数组（v() 方法解析）
+     */
     public static int[] ew;
+    /**
+     * 功能名称数组
+     */
     public static String[] ex;
+    /**
+     * 功能描述字符串数组
+     */
     public static String[] ey;
+    /**
+     * 功能附加描述字符串数组
+     */
     public static String[] ez;
+    /**
+     * 功能额外字段数组
+     */
     public static String[] eA;
+
+    // ==================== 登录/操作异常 ====================
+    /**
+     * 登录/操作失败码（parseLoginFail 解析包8193，初始=-1）
+     */
     public static byte exceptionCode;
+    /**
+     * 登录/操作失败消息字符串
+     */
     public static String exceptionMsg;
+
+    // ==================== 战斗数值组1 ====================
+    /**
+     * 未知 UTF 字符串（x(DataInputStream) 读取）
+     */
     public static String eD;
+    /**
+     * 战斗中3个数值槽（初始化为 new short[3]，x() 方法填入）
+     */
     public static short[] eE;
+    /**
+     * 格式控制字 short，各位分别决定 eG/eH/eI/eJ 的长度
+     */
     public static short eF;
+    /**
+     * 战斗数值 byte 数组（eF%10 决定长度）
+     */
     public static byte[] eG;
+    /**
+     * 战斗数值 short 数组（eF/10%10 决定长度）
+     */
     public static short[] eH;
+    /**
+     * 战斗数值 int 数组（eF/100%10 决定长度）
+     */
     public static int[] eI;
+    /**
+     * 战斗数值 String 数组（eF/1000%10 决定长度）
+     */
     public static String[] eJ;
+
+    // ==================== 战斗数值组2 ====================
+    /**
+     * 另一组数值的 UTF 头字符串（y(DataInputStream) 读取）
+     */
     public static String eK;
+    /**
+     * 另一组附属字符串数组（y() 读取）
+     */
     public static String[] eL;
+    /**
+     * 另一组3个数值槽（初始化为 new short[3]，y() 方法填入）
+     */
     public static short[] eM;
+    /**
+     * 另一组格式控制字（y() 方法读取）
+     */
     public static short eN;
+    /**
+     * 另一组数值 byte 数组
+     */
     public static byte[] eO;
+    /**
+     * 另一组数值 short 数组
+     */
     public static short[] eP;
+    /**
+     * 另一组数值 int 数组
+     */
     public static int[] eQ;
+    /**
+     * 另一组数值 String 数组
+     */
     public static String[] eR;
+
+    // ==================== 商城信息 ====================
+    /**
+     * 商城/公告 UTF 字符串（B(DataInputStream) 读取）
+     */
     public static String eS;
+    /**
+     * 商城相关 short
+     */
     public static short eT;
+    /**
+     * 商城相关 byte1
+     */
     public static byte eU;
+    /**
+     * 商城相关 byte2
+     */
     public static byte eV;
+    /**
+     * 商城相关字符串1
+     */
     public static String eW;
+    /**
+     * 商城相关字符串2
+     */
     public static String eX;
+    /**
+     * 商城相关 int
+     */
     public static int eY;
+    /**
+     * 商城相关字符串3
+     */
     public static String eZ;
+    /**
+     * 商城相关 int（B() 读取）
+     */
     public static int fa;
+    /**
+     * 商城相关字符串4
+     */
     public static String fb;
+    /**
+     * 商城相关字符串5
+     */
     public static String fc;
+    /**
+     * 商城相关 int
+     */
     public static int fd;
+    /**
+     * 商城相关字符串6（B() 最后读取）
+     */
     public static String fe;
+    /**
+     * 坐骑/频道相关 UTF 字符串（C(DataInputStream) 读取）
+     */
     public static String ff;
+    /**
+     * 另一时间戳/版本 long（D()/E() 方法读取）
+     */
     public static long fg;
+
+    // ==================== 商城物品列表1 ====================
+    /**
+     * 背包内物品商城 ID 数组（D() 方法解析，v() 清空）
+     */
     public static int[] fh;
+    /**
+     * 商城物品名称数组（D() 方法解析，私有）
+     */
     private static String[] oz;
+    /**
+     * 商城物品类型 byte 数组
+     */
     public static byte[] fi;
+    /**
+     * 商城物品子类型数组
+     */
     public static byte[] fj;
+    /**
+     * 商城物品等级/属性 short 数组
+     */
     public static short[] fk;
+    /**
+     * 商城物品另一属性 short 数组
+     */
     public static short[] fl;
+    /**
+     * 商城物品描述行1（私有）
+     */
     private static String[] oA;
+    /**
+     * 商城物品描述行2（私有）
+     */
     private static String[] oB;
+    /**
+     * 商城物品描述行3（私有）
+     */
     private static String[] oC;
+    /**
+     * 商城物品描述行4（私有）
+     */
     private static String[] oD;
+    /**
+     * 商城物品描述行5（私有）
+     */
     private static String[] oE;
+    /**
+     * 商城物品描述行6（私有）
+     */
     private static String[] oF;
+    /**
+     * 商城物品等级 short 数组（私有）
+     */
     private static short[] oG;
+    /**
+     * 商城物品价格 long 数组（私有）
+     */
     private static long[] oH;
+    /**
+     * 商城物品附加技能说明（可选）
+     */
     public static String[] fm;
+    /**
+     * 商城物品附属技能二维数组（私有）
+     */
     private static short[][] oI;
+    /**
+     * 背包/装备槽标记（D() 方法中由 readByte==1 赋值，初始=false，私有）
+     */
     private static boolean oJ;
+    /**
+     * 关联背包槽 ID（oJ 为 true 时有效，初始=-1，私有）
+     */
     private static int oK;
+    /**
+     * 关联背包槽附加标志（初始=0，私有）
+     */
     private static byte oL;
+    /**
+     * 时间戳（D()/E() 方法读取）
+     */
     public static long fn;
+
+    // ==================== 商城物品列表2 ====================
+    /**
+     * 另一组商城/坐骑物品 ID 数组（D() 方法解析，w() 清空）
+     */
     public static int[] fo;
+    /**
+     * 另一组商城物品名称数组（y() 清空，私有）
+     */
     private static String[] oM;
+    /**
+     * 另一组物品类型 byte 数组
+     */
     public static byte[] fp;
+    /**
+     * 另一组物品子类型数组
+     */
     public static byte[] fq;
+    /**
+     * 另一组物品等级/属性 short 数组
+     */
     public static short[] fr;
+    /**
+     * 另一组物品另一属性 short 数组
+     */
     public static short[] fs;
+    /**
+     * 另一组描述行1（私有）
+     */
     private static String[] oN;
+    /**
+     * 另一组描述行2（私有）
+     */
     private static String[] oO;
+    /**
+     * 另一组描述行3（私有）
+     */
     private static String[] oP;
+    /**
+     * 另一组描述行4（私有）
+     */
     private static String[] oQ;
+    /**
+     * 另一组描述行5（私有）
+     */
     private static String[] oR;
+    /**
+     * 另一组描述行6（私有）
+     */
     private static String[] oS;
+    /**
+     * 另一组物品等级 short 数组（私有）
+     */
     private static short[] oT;
+    /**
+     * 另一组物品价格 long 数组（私有）
+     */
     private static long[] oU;
+    /**
+     * 另一组物品技能说明（可选）
+     */
     public static String[] ft;
+    /**
+     * 另一组物品附属技能二维数组（私有）
+     */
     private static short[][] oV;
+
+    // ==================== 可购买宠物列表 ====================
+    /**
+     * 可购买/可选宠物/坐骑 ID 数组（E() 方法解析，y() 清空）
+     */
     public static int[] fu;
+    /**
+     * 可购宠物/坐骑名称数组（y() 清空，私有）
+     */
     private static String[] oW;
+    /**
+     * 可购宠物类型标志 byte 数组
+     */
     public static byte[] fv;
+    /**
+     * 宠物等级（私有）
+     */
     private static short[] oX;
+    /**
+     * 宠物攻击最小值（私有）
+     */
     private static short[] oY;
+    /**
+     * 宠物攻击最大值（私有）
+     */
     private static short[] oZ;
+    /**
+     * 宠物法攻最小值（私有）
+     */
     private static short[] pa;
+    /**
+     * 宠物法攻最大值（私有）
+     */
     private static short[] pb;
+    /**
+     * 宠物当前经验 long 数组（私有）
+     */
     private static long[] pc;
+    /**
+     * 宠物经验上限 long 数组（私有）
+     */
     private static long[] pd;
+    /**
+     * 宠物价格 long 数组（私有）
+     */
     private static long[] pe;
+    /**
+     * 宠物技能说明（可选，私有）
+     */
     private static String[] pf;
+    /**
+     * 宠物附属技能 ID 二维数组（私有）
+     */
     private static short[][] pg;
+    /**
+     * 宠物附属技能名称二维数组（私有）
+     */
     private static String[][] ph;
+    /**
+     * "排除已拥有宠物"模式标志（E() 方法解析后设置，私有）
+     */
     private static boolean pi;
+    /**
+     * 宠物星级/品阶 byte 数组（私有）
+     */
     private static byte[] pj;
+    /**
+     * 宠物附属技能品质二维数组（私有）
+     */
     private static byte[][] pk;
+    /**
+     * 宠物星级字符串数组（私有）
+     */
     private static String[] pl;
+    /**
+     * 宠物技能附魂名称二维数组（私有）
+     */
     private static String[][] pm;
+    /**
+     * 宠物状态附魂名称二维数组（私有）
+     */
     private static String[][] pn;
+    /**
+     * 可购买宠物在全列表中的索引（排除已拥有后的空槽索引）
+     */
     public static int[] fw;
+
+    // ==================== 可购买坐骑列表 ====================
+    /**
+     * 可购买坐骑/宠物 ID 数组（E() 方法解析，z() 清空）
+     */
     public static int[] fx;
+    /**
+     * 可购坐骑/宠物名称数组（z() 清空，私有）
+     */
     private static String[] po;
+    /**
+     * 可购坐骑类型标志 byte 数组
+     */
     public static byte[] fy;
+    /**
+     * 坐骑等级（私有）
+     */
     private static short[] pp;
+    /**
+     * 坐骑攻击最小值（私有）
+     */
     private static short[] pq;
+    /**
+     * 坐骑攻击最大值（私有）
+     */
     private static short[] pr;
+    /**
+     * 坐骑法攻最小值（私有）
+     */
     private static short[] ps;
+    /**
+     * 坐骑法攻最大值（私有）
+     */
     private static short[] pt;
+    /**
+     * 坐骑当前经验 long 数组（私有）
+     */
     private static long[] pu;
+    /**
+     * 坐骑经验上限 long 数组（私有）
+     */
     private static long[] pv;
+    /**
+     * 坐骑价格 long 数组（私有）
+     */
     private static long[] pw;
+    /**
+     * 坐骑技能说明（可选，私有）
+     */
     private static String[] px;
+    /**
+     * 坐骑附属技能 ID 二维数组（私有）
+     */
     private static short[][] py;
+    /**
+     * 坐骑附属技能名称二维数组（私有）
+     */
     private static String[][] pz;
+    /**
+     * 坐骑星级/品阶 byte 数组（私有）
+     */
     private static byte[] pA;
+    /**
+     * 坐骑附属技能品质二维数组（私有）
+     */
     private static byte[][] pB;
+    /**
+     * 坐骑星级字符串数组（私有）
+     */
     private static String[] pC;
+    /**
+     * 坐骑技能附魂名称二维数组（私有）
+     */
     private static String[][] pD;
+    /**
+     * 坐骑状态附魂名称二维数组（私有）
+     */
     private static String[][] pE;
+
+    // ==================== 宠物列表（完整） ====================
+    /**
+     * 宠物列表类型标志 byte 数组（I(DataInputStream) 解析宠物列表包8222）
+     */
     public static byte[] fz;
+    /**
+     * 宠物列表唯一 ID 数组
+     */
     public static int[] fA;
+    /**
+     * 宠物名称数组
+     */
     public static String[] fB;
+    /**
+     * 宠物种类/图标名称数组
+     */
     public static String[] fC;
+    /**
+     * 宠物等级 short 数组
+     */
     public static short[] fD;
+    /**
+     * 宠物属性1（如攻击最小，b() 方法中用于 my 赋值）
+     */
     public static short[] fE;
+    /**
+     * 宠物属性2（如攻击最大）
+     */
     public static short[] fF;
+    /**
+     * 宠物属性3（如法攻最小）
+     */
     public static short[] fG;
+    /**
+     * 宠物属性4（如法攻最大）
+     */
     public static short[] fH;
+    /**
+     * 宠物基础属性 int1
+     */
     public static int[] fI;
+    /**
+     * 宠物基础属性 int2
+     */
     public static int[] fJ;
+    /**
+     * 宠物基础属性 int3
+     */
     public static int[] fK;
+    /**
+     * 宠物基础属性 int4
+     */
     public static int[] fL;
+    /**
+     * 宠物攻击下限（e()/f() 方法中显示"攻击:fM-fN"）
+     */
     public static int[] fM;
+    /**
+     * 宠物攻击上限
+     */
     public static int[] fN;
+    /**
+     * 宠物法攻下限
+     */
     public static int[] fO;
+    /**
+     * 宠物法攻上限
+     */
     public static int[] fP;
+    /**
+     * 宠物基础属性 int9
+     */
     public static int[] fQ;
+    /**
+     * 宠物基础属性 int10
+     */
     public static int[] fR;
+    /**
+     * 宠物基础属性 int11
+     */
     public static int[] fS;
+    /**
+     * 宠物基础属性 int12
+     */
     public static int[] fT;
+    /**
+     * 宠物基础属性 int13
+     */
     public static int[] fU;
+    /**
+     * 宠物基础属性 int14
+     */
     public static int[] fV;
+    /**
+     * 宠物当前品质/星级 short 数组
+     */
     public static short[] fW;
+    /**
+     * 宠物附加字符串（如自定义名/说明）
+     */
     public static String[] fX;
+    /**
+     * 宠物当前经验 long 数组（e() 方法显示"经验:fY/fZ"）
+     */
     public static long[] fY;
+    /**
+     * 宠物经验上限 long 数组
+     */
     public static long[] fZ;
+    /**
+     * 宠物另一时间/价格 long 数组（B() 方法清空）
+     */
     public static long[] ga;
+    /**
+     * 宠物价格 long 数组（e() 方法显示"价格:"，私有）
+     */
     private static long[] pF;
+    /**
+     * 宠物技能 ID 二维数组（I() 方法解析）
+     */
     public static short[][] gb;
+    /**
+     * 宠物技能名称二维数组（e() 方法显示"技能:"）
+     */
     public static String[][] gc;
+    /**
+     * 宠物技能品质二维数组
+     */
     public static byte[][] gd;
+    /**
+     * 宠物特殊标志 byte 数组
+     */
     public static byte[] ge;
+    /**
+     * 宠物星级字符串数组（e()/f() 方法显示"星级:"）
+     */
     public static String[] gf;
+    /**
+     * 宠物技能附魂 ID 二维数组（仅4格）
+     */
     public static int[][] gg;
+    /**
+     * 宠物技能附魂名称二维数组（e() 方法显示"技能附魂:"）
+     */
     public static String[][] gh;
+    /**
+     * 宠物技能附魂描述二维数组
+     */
     public static String[][] gi;
+    /**
+     * 宠物技能附魂辅助 int 二维数组（私有）
+     */
     private static int[][] pG;
+    /**
+     * 宠物技能附魂槽位标记二维数组
+     */
     public static byte[][] gj;
+    /**
+     * 宠物状态附魂 ID 二维数组
+     */
     public static int[][] gk;
+    /**
+     * 宠物状态附魂名称二维数组（e() 方法显示"状态附魂:"）
+     */
     public static String[][] gl;
+    /**
+     * 宠物状态附魂描述二维数组
+     */
     public static String[][] gm;
+    /**
+     * 宠物状态附魂辅助 int 二维数组（私有）
+     */
     private static int[][] pH;
+    /**
+     * 宠物状态附魂槽位标记二维数组
+     */
     public static byte[][] gn;
+    /**
+     * 特殊宠物（fz==1）的额外属性1（I() 方法中读取）
+     */
     public static short go;
+    /**
+     * 特殊宠物额外属性2
+     */
     public static short gp;
+    /**
+     * 特殊宠物额外属性3
+     */
     public static short gq;
+    /**
+     * 特殊宠物额外属性4
+     */
     public static short gr;
+
+    // ==================== 商城宠物/坐骑商品 ====================
+    /**
+     * 商城宠物/坐骑商品 ID 数组（b(short) 分配，Y() 清空）
+     */
     public static int[] gs;
+    /**
+     * 商城商品名称数组
+     */
     public static String[] gt;
+    /**
+     * 商城商品等级 short 数组
+     */
     public static short[] gu;
+    /**
+     * 商品攻击最小值（私有）
+     */
     private static short[] pI;
+    /**
+     * 商品攻击最大值（私有）
+     */
     private static short[] pJ;
+    /**
+     * 商品法攻最小值（私有）
+     */
     private static short[] pK;
+    /**
+     * 商品法攻最大值（私有）
+     */
     private static short[] pL;
+    /**
+     * 商品当前经验 long 数组（私有）
+     */
     private static long[] pM;
+    /**
+     * 商品经验上限 long 数组（私有）
+     */
     private static long[] pN;
+    /**
+     * 商品价格 long 数组（g() 方法显示"价格:"）
+     */
     public static long[] gv;
+    /**
+     * 商品技能说明（g() 方法显示"技能:"，可选，私有）
+     */
     private static String[] pO;
+    /**
+     * 商品额外属性1（a(DataInputStream, int) 解析）
+     */
     public static short[] gw;
+    /**
+     * 商品额外属性2
+     */
     public static short[] gx;
+    /**
+     * 商品额外属性3
+     */
     public static short[] gy;
+    /**
+     * 商品额外属性4
+     */
     public static short[] gz;
+    /**
+     * 商品附属技能 ID 二维数组
+     */
     public static short[][] gA;
+    /**
+     * 商品附属技能名称二维数组（私有）
+     */
     private static String[][] pP;
+    /**
+     * 商品附属技能品质二维数组
+     */
     public static byte[][] gB;
+    /**
+     * 商品属性 int1（a(DataInputStream, int) 解析）
+     */
     public static int[] gC;
+    /**
+     * 商品属性 int2
+     */
     public static int[] gD;
+    /**
+     * 商品属性 int3
+     */
     public static int[] gE;
+    /**
+     * 商品属性 int4
+     */
     public static int[] gF;
+    /**
+     * 商品剩余/保存时间 long 数组（H() 方法解析并使用"剩余时间/保存时间"，私有）
+     */
     private static long[] pQ;
+    /**
+     * 商品品质/星级 byte 数组
+     */
     public static byte[] gG;
+    /**
+     * 商品星级字符串（g() 方法显示"星级:"，私有）
+     */
     private static String[] pR;
+    /**
+     * 商品技能附魂名称二维数组（g() 方法显示"技能附魂:"，私有）
+     */
     private static String[][] pS;
+    /**
+     * 商品状态附魂名称二维数组（g() 方法显示"状态附魂:"，私有）
+     */
     private static String[][] pT;
+
+    // ==================== 未知字段组（待解析） ====================
+    /**
+     * 未知 String 数组（C() 方法清空）
+     */
     public static String[] gH;
+    /**
+     * 未知 int 数组
+     */
     public static int[] gI;
+    /**
+     * 未知 String 数组
+     */
     public static String[] gJ;
+    /**
+     * 未知 short 数组
+     */
     public static short[] gK;
+    /**
+     * 未知 byte 数组
+     */
     public static byte[] gL;
+    /**
+     * 未知 byte 数组
+     */
     public static byte[] gM;
+    /**
+     * 未知 short 数组
+     */
     public static short[] gN;
+    /**
+     * 未知 short 数组
+     */
     public static short[] gO;
+    /**
+     * 未知 byte 数组
+     */
     public static byte[] gP;
+    /**
+     * 场景/频道当前页/标签 short（多处读取，初始=1）
+     */
     public static short gQ;
+    /**
+     * 场景/频道类型标志 byte
+     */
     public static byte gR;
+
+    // ==================== 场景内人物列表 ====================
+    /**
+     * 场景内 NPC/人物名称数组（J(DataInputStream) 解析）
+     */
     public static String[] gS;
+    /**
+     * 场景人物类型 byte 数组
+     */
     public static byte[] gT;
+    /**
+     * 场景人物头像/图标名称数组
+     */
     public static String[] gU;
+    /**
+     * 场景人物等级/属性 short 数组
+     */
     public static short[] gV;
+    /**
+     * 场景人物标志 byte1 数组
+     */
     public static byte[] gW;
+    /**
+     * 场景人物标志 byte2 数组
+     */
     public static byte[] gX;
+    /**
+     * 场景人物属性1 short 数组
+     */
     public static short[] gY;
+    /**
+     * 场景人物属性2 short 数组
+     */
     public static short[] gZ;
+    /**
+     * 场景人物附加属性1（私有）
+     */
     private static short[] pU;
+    /**
+     * 场景人物附加属性2（pU>0时读取，私有）
+     */
     private static short[] pV;
+    /**
+     * 场景人物附加属性3（私有）
+     */
     private static short[] pW;
+    /**
+     * 场景人物附加属性4（私有）
+     */
     private static short[] pX;
+    /**
+     * 场景人物附加标志 byte 数组（bw>=1时在J()中读取）
+     */
     public static byte[] ha;
+    /**
+     * 银两格式化缓冲区（a(long) 方法使用，私有）
+     */
     private static StringBuffer pY;
+
+    // ==================== 符文/颜色列表 ====================
+    /**
+     * 符文/颜色 ID 数组（K(DataInputStream) 解析）
+     */
     public static int[] hb;
+    /**
+     * 符文附属 short 二维数组（K() 方法解析）
+     */
     public static short[][] hc;
+    /**
+     * 符文颜色分量1（16*readByte）
+     */
     public static short[] hd;
+    /**
+     * 符文颜色分量2
+     */
     public static short[] he;
+    /**
+     * 符文颜色分量3
+     */
     public static short[] hf;
+    /**
+     * 符文属性 short1
+     */
     public static short[] hg;
+    /**
+     * 符文属性 short2
+     */
     public static short[] hh;
+    /**
+     * 符文属性 short3
+     */
     public static short[] hi;
+    /**
+     * 符文属性 short4
+     */
     public static short[] hj;
+    /**
+     * 符文附加标志 byte 数组（K() 方法单独读取）
+     */
     public static byte[] hk;
+
+    // ==================== 好友/帮派成员列表 ====================
+    /**
+     * 好友/帮派成员 ID short 数组（L(DataInputStream) 解析）
+     */
     public static short[] hl;
+    /**
+     * 好友/帮派成员名称数组
+     */
     public static String[] hm;
+    /**
+     * 成员属性 int1（L() 方法读取）
+     */
     public static int[] hn;
+    /**
+     * 成员属性 int2
+     */
     public static int[] ho;
+    /**
+     * 成员等级/属性 short 数组
+     */
     public static short[] hp;
+    /**
+     * 成员类型 byte1 数组
+     */
     public static byte[] hq;
+    /**
+     * 成员类型 byte2 数组
+     */
     public static byte[] hr;
+    /**
+     * 成员属性 short1 数组
+     */
     public static short[] hs;
+    /**
+     * 成员属性 short2 数组
+     */
     public static short[] ht;
+    /**
+     * 成员属性 short3 数组
+     */
     public static short[] hu;
+    /**
+     * 成员属性 short4 数组
+     */
     public static short[] hv;
+
+    // ==================== 服务器列表/渠道 ====================
+    /**
+     * 渠道相关标志（M(DataInputStream) 中渠道!=1时读取）
+     */
     public static boolean hw;
+    /**
+     * 渠道相关 byte（M() 中读取）
+     */
     public static byte hx;
+    /**
+     * 登录相关字符串1（M() 最后读取）
+     */
     public static String hy;
+    /**
+     * 登录相关字符串2
+     */
     public static String hz;
+    /**
+     * 服务器列表名称数组（M(DataInputStream) 解析）
+     */
     public static String[] hA;
+    /**
+     * 服务器列表 IP/URL 数组
+     */
     public static String[] hB;
+    /**
+     * 服务器列表附加描述数组
+     */
     public static String[] hC;
+    /**
+     * 服务器列表 prefix/前缀 short 数组（渠道!=0时读取）
+     */
     public static short[] hD;
+    /**
+     * 服务器列表等级/属性 short 数组
+     */
     public static short[] hE;
+    /**
+     * 服务器列表另一描述数组
+     */
     public static String[] hF;
+
+    // ==================== 战斗动画 ====================
+    /**
+     * 战斗动画总帧数 short（N(DataInputStream) 解析，初始=-1）
+     */
     public static short hG;
+    /**
+     * 战斗动画帧对象（N() 方法解析）
+     */
     public static Frame0 hH;
+    /**
+     * 战斗动画类型标志（N() 方法读取，F() 清空初始=-1）
+     */
     public static byte hI;
+    /**
+     * 战斗动画帧数据1（N() 方法解析）
+     */
     public static byte[] hJ;
+    /**
+     * 战斗动画帧数据2
+     */
     public static byte[] hK;
+
+    // ==================== 好友/黑名单列表 ====================
+    /**
+     * 好友/黑名单 ID short 数组（O(DataInputStream) 解析）
+     */
     public static short[] hL;
+    /**
+     * 好友/黑名单名称数组
+     */
     public static String[] hM;
+    /**
+     * 好友/黑名单时间戳 long 数组（私有）
+     */
     private static long[] pZ;
+    /**
+     * 好友/黑名单附加描述数组
+     */
     public static String[] hN;
+    /**
+     * 好友列表附加 int 数组（O() 方法解析）
+     */
     public static int[] hO;
+
+    // ==================== 邮件/交易列表 ====================
+    /**
+     * 邮件/交易 ID int 数组（P(DataInputStream) 解析）
+     */
     public static int[] hP;
+    /**
+     * 邮件/交易标题字符串数组
+     */
     public static String[] hQ;
+    /**
+     * 邮件/交易内容字符串数组
+     */
     public static String[] hR;
+    /**
+     * 邮件/交易属性 short 数组
+     */
     public static short[] hS;
+    /**
+     * 邮件/交易类型 byte 数组
+     */
     public static byte[] hT;
+
+    // ==================== 公告/系统消息 ====================
+    /**
+     * 公告/系统消息标题数组（Q(DataInputStream) 解析）
+     */
     public static String[] hU;
+    /**
+     * 公告内容字符串数组
+     */
     public static String[] hV;
+    /**
+     * 公告附加字符串数组
+     */
     public static String[] hW;
+
+    // ==================== 奖励/排行榜 ====================
+    /**
+     * 奖励/排行榜 ID 数组（R(DataInputStream) 解析）
+     */
     public static int[] hX;
+    /**
+     * 排行榜名称数组
+     */
     public static String[] hY;
+    /**
+     * 排行榜内容字符串数组
+     */
     public static String[] hZ;
+    /**
+     * 排行榜附加字符串数组
+     */
     public static String[] ia;
+    /**
+     * 排行榜属性1（私有）
+     */
     private static short[] qa;
+    /**
+     * 排行榜属性2（私有）
+     */
     private static short[] qb;
+    /**
+     * 排行榜属性3（私有）
+     */
     private static short[] qc;
+    /**
+     * 帮派/组队当前 ID（S(DataInputStream) 赋值，初始=-1；G() 检查是否>=0，私有）
+     */
     private static int qd;
+
+    // ==================== 帮派/组队信息 ====================
+    /**
+     * 帮派/组队状态标志（S(DataInputStream) 读取）
+     */
     public static byte ib;
+    /**
+     * 帮派/组队属性 short1
+     */
     public static short ic;
+    /**
+     * 帮派/组队属性 short2
+     */
     public static short id;
+    /**
+     * 帮派/组队槽位 ID1 数组（S() 读取）
+     */
     public static short[] ie;
+    /**
+     * 帮派/组队槽位 ID2 数组（命名避免与 if 关键字冲突）
+     */
     public static short[] if_2;
+    /**
+     * 帮派/组队槽位属性 short3 数组
+     */
     public static short[] ig;
+    /**
+     * 帮派/组队槽位属性 short4 数组
+     */
     public static short[] ih;
+    /**
+     * 帮派/组队槽位附加 byte 数据二维数组
+     */
     public static byte[][] ii;
+    /**
+     * 待处理事件/对象集合（bv 对象，a(bv) 方法添加）
+     */
     public static Vector ij;
+
+    // ==================== 帮派成员列表 ====================
+    /**
+     * 帮派成员 ID 数组（T(DataInputStream) 解析）
+     */
     public static int[] ik;
+    /**
+     * 帮派成员名称数组
+     */
     public static String[] il;
+    /**
+     * 帮派成员另一字符串数组
+     */
     public static String[] im;
+    /**
+     * 帮派成员状态 byte 数组
+     */
     public static byte[] in;
+    /**
+     * 帮派成员另一状态 byte 数组（T() 读取第二段）
+     */
     public static byte[] io;
+
+    // ==================== 好友列表 ====================
+    /**
+     * 好友列表字符串1（U(DataInputStream) 解析）
+     */
     public static String[] ip;
+    /**
+     * 好友列表字符串2
+     */
     public static String[] iq;
+    /**
+     * 好友列表字符串3
+     */
     public static String[] ir;
+    /**
+     * 好友列表状态 byte 数组（U() 读取第二段）
+     */
     public static byte[] is;
+
+    // ==================== 黑名单列表 ====================
+    /**
+     * 黑名单列表字符串1（V(DataInputStream) 解析）
+     */
     public static String[] it;
+    /**
+     * 黑名单列表字符串2
+     */
     public static String[] iu;
+    /**
+     * 黑名单列表 short 属性数组
+     */
     public static short[] iv;
+    /**
+     * 黑名单列表字符串3
+     */
     public static String[] iw;
+    /**
+     * 黑名单列表类型 byte 数组
+     */
     public static byte[] ix;
+
+    // ==================== 聊天/交易请求 ====================
+    /**
+     * 聊天/交易请求者名称数组（W(DataInputStream) 解析）
+     */
     public static String[] iy;
+    /**
+     * 请求内容字符串数组
+     */
     public static String[] iz;
+    /**
+     * 请求附加字符串数组
+     */
     public static String[] iA;
+    /**
+     * 请求相关 int1 数组（W() 读取）
+     */
     public static int[] iB;
+    /**
+     * 请求相关 int2 数组
+     */
     public static int[] iC;
+    /**
+     * 请求类型 byte 数组（W() 读取）
+     */
     public static byte[] iD;
+    /**
+     * 请求属性 short1 数组
+     */
     public static short[] iE;
+    /**
+     * 请求属性 short2 数组（W() 方法中复用 if_2 字段）
+     */
     public static short[] iF;
+    /**
+     * 请求颜色 int 数组（W() 中 pickColor 转换）
+     */
     public static int[] iG;
+    /**
+     * 当前场景/聊天频道文本（X(DataInputStream) 读取单个 UTF）
+     */
     public static String iH;
+
+    // ==================== 背包操作 ====================
+    /**
+     * 背包操作名称数组（Y(DataInputStream) 按 BaoKuCaoZuo 长度填充）
+     */
     public static String[] iI;
+    /**
+     * 背包操作状态标志（Y() 读取）
+     */
     public static byte iJ;
+    /**
+     * 双槽操作类型 byte[2]（Z() 中 index0/1 分别读取）
+     */
     public static byte[] iK;
+    /**
+     * 双槽操作另一标志 byte[2]
+     */
     public static byte[] iL;
+    /**
+     * 双槽操作 int 值 int[2]
+     */
     public static int[] iM;
+    /**
+     * Z() 方法中的操作模式标志（初始=0，私有）
+     */
     private static byte qe;
+
+    // ==================== 物品合成/强化 ====================
+    /**
+     * 物品合成/强化 ID 数组（aa(DataInputStream) 解析）
+     */
     public static int[] iN;
+    /**
+     * 合成物品名称数组
+     */
     public static String[] iO;
+    /**
+     * 合成物品类型 byte 数组
+     */
     public static byte[] iP;
+    /**
+     * 合成物品子类型 byte 数组
+     */
     public static byte[] iQ;
+    /**
+     * 合成物品等级 short 数组
+     */
     public static short[] iR;
+    /**
+     * 合成描述行1
+     */
     public static String[] iS;
+    /**
+     * 合成描述行2
+     */
     public static String[] iT;
+    /**
+     * 合成描述行3
+     */
     public static String[] iU;
+    /**
+     * 合成描述行4
+     */
     public static String[] iV;
+    /**
+     * 合成描述行5
+     */
     public static String[] iW;
+    /**
+     * 合成描述行6
+     */
     public static String[] iX;
+    /**
+     * 合成物品等级显示 short 数组
+     */
     public static short[] iY;
+    /**
+     * 合成物品过期时间 long 数组
+     */
     public static long[] iZ;
+    /**
+     * 合成物品附加技能说明（可选）
+     */
     public static String[] ja;
+    /**
+     * 合成物品附属 ID 二维数组
+     */
     public static short[][] jb;
+
+    // ==================== 坐骑/特效列表 ====================
+    /**
+     * 坐骑/特效类型 byte 数组（ab(DataInputStream) 解析）
+     */
     public static byte[] jc;
+    /**
+     * 坐骑/特效名称数组
+     */
     public static String[] jd;
+    /**
+     * 坐骑/特效附加描述数组
+     */
     public static String[] je;
+
+    // ==================== 通知/公告 ====================
+    /**
+     * 单条通知/公告 UTF 字符串（ac(DataInputStream) 读取）
+     */
     public static String jf;
+
+    // ==================== 资源计数（4组时间戳+short） ====================
+    /**
+     * 资源1时间戳/计数（ad() 方法读取）
+     */
     public static long jg;
+    /**
+     * 资源1属性 short
+     */
     public static short jh;
+    /**
+     * 资源2时间戳
+     */
     public static long ji;
+    /**
+     * 资源2属性 short
+     */
     public static short jj;
+    /**
+     * 资源3时间戳
+     */
     public static long jk;
+    /**
+     * 资源3属性 short
+     */
     public static short jl;
+    /**
+     * 资源4时间戳
+     */
     public static long jm;
+    /**
+     * 资源4属性 short
+     */
     public static short jn;
+
+    // ==================== 交易物品 ====================
+    /**
+     * 交易/仓库操作类型 byte 数组（ae(DataInputStream) 解析）
+     */
     public static byte[] jo;
+    /**
+     * 交易物品名称数组
+     */
     public static String[] jp;
+    /**
+     * 交易附加描述数组
+     */
     public static String[] jq;
+    /**
+     * 交易物品属性 short 数组（私有）
+     */
     private static short[] qf;
+
+    // ==================== 仓库物品列表 ====================
+    /**
+     * 另一交易/仓库 ID 数组（af(DataInputStream) 解析）
+     */
     public static int[] jr;
+    /**
+     * 仓库物品名称数组
+     */
     public static String[] js;
+    /**
+     * 仓库附加描述数组
+     */
     public static String[] jt;
+    /**
+     * 仓库物品属性 short 数组
+     */
     public static short[] ju;
+    /**
+     * 未知 boolean 标志
+     */
     public static boolean jv;
+    /**
+     * 未知 boolean 标志
+     */
     public static boolean jw;
+    /**
+     * 战斗状态标志 byte1，初始=0
+     */
     public static byte jx;
+    /**
+     * 战斗状态标志 byte2，初始=0
+     */
     public static byte jy;
+
+    // ==================== 帮派建筑/功能 ====================
+    /**
+     * 帮派建筑/功能 ID 数组（ah(DataInputStream) 解析）
+     */
     public static int[] jz;
+    /**
+     * 帮派建筑名称数组
+     */
     public static String[] jA;
+    /**
+     * 帮派建筑属性 int 数组
+     */
     public static int[] jB;
+    /**
+     * 帮派建筑等级 short 数组
+     */
     public static short[] jC;
+    /**
+     * 帮派建筑附加说明（可选）
+     */
     public static String[] jD;
+
+    // ==================== 日志/奖励列表 ====================
+    /**
+     * 日志/奖励名称数组（ai(DataInputStream) 解析）
+     */
     public static String[] jE;
+    /**
+     * 日志/奖励时间戳 long 数组
+     */
     public static long[] jF;
+    /**
+     * 帮派/活动总记录数（aj() 方法读取）
+     */
     public static int jG;
+
+    // ==================== 帮派成员/活动记录 ====================
+    /**
+     * 帮派成员/活动记录 ID 数组（aj() 解析）
+     */
     public static int[] jH;
+    /**
+     * 帮派成员/活动记录名称数组
+     */
     public static String[] jI;
+    /**
+     * 帮派记录类型 byte 数组
+     */
     public static byte[] jJ;
+    /**
+     * 帮派记录等级 short 数组
+     */
     public static short[] jK;
+    /**
+     * 帮派记录附加属性 short（私有）
+     */
     private static short[] qg;
+    /**
+     * 帮派记录描述行1（私有）
+     */
     private static String[] qh;
+    /**
+     * 帮派记录描述行2（私有）
+     */
     private static String[] qi;
+    /**
+     * 帮派记录描述行3（私有）
+     */
     private static String[] qj;
+    /**
+     * 帮派记录描述行4（私有）
+     */
     private static String[] qk;
+    /**
+     * 帮派记录描述行5（私有）
+     */
     private static String[] ql;
+    /**
+     * 帮派记录描述行6（私有）
+     */
     private static String[] qm;
+    /**
+     * 帮派记录过期时间 long 数组
+     */
     public static long[] jL;
+    /**
+     * 帮派记录附加技能说明（可选，私有）
+     */
     private static String[] qn;
+    /**
+     * 帮派记录附属 ID 二维数组
+     */
     public static short[][] jM;
+
+    // ==================== 商城/帮派商品 ====================
+    /**
+     * 商城/帮派商品 ID 数组（ak() 解析）
+     */
     public static int[] jN;
+    /**
+     * 商城商品名称数组（h() 方法显示）
+     */
     public static String[] jO;
+    /**
+     * 商品类型 byte 数组
+     */
     public static byte[] jP;
+    /**
+     * 商品子类型 byte 数组
+     */
     public static byte[] jQ;
+    /**
+     * 商品等级 short 数组
+     */
     public static short[] jR;
+    /**
+     * 商品描述行1（私有）
+     */
     private static String[] qo;
+    /**
+     * 商品描述行2（私有）
+     */
     private static String[] qp;
+    /**
+     * 商品描述行3（私有）
+     */
     private static String[] qq;
+    /**
+     * 商品描述行4（私有）
+     */
     private static String[] qr;
+    /**
+     * 商品描述行5（私有）
+     */
     private static String[] qs;
+    /**
+     * 商品描述行6（私有）
+     */
     private static String[] qt;
+    /**
+     * 商品等级 short 数组（h() 方法显示"等级:"，私有）
+     */
     private static short[] qu;
+    /**
+     * 商品价格 long 数组（h() 方法显示"价格:"，私有）
+     */
     private static long[] qv;
+    /**
+     * 商品技能说明（h() 方法显示，可选，私有）
+     */
     private static String[] qw;
+    /**
+     * 商品附属 ID 二维数组（私有）
+     */
     private static short[][] qx;
+    /**
+     * 商品剩余时间 long 数组（h() 方法显示"剩余时间:"，私有）
+     */
     private static long[] qy;
+
+    // ==================== 限时活动/坐骑名称 ====================
+    /**
+     * 限时活动/坐骑名称数组（al() 解析）
+     */
     public static String[] jS;
+    /**
+     * 限时活动剩余时间 long 数组（al() 解析，私有）
+     */
     private static long[] qz;
+    /**
+     * 限时活动另一字符串数组（al() 解析）
+     */
     public static String[] jT;
+    /**
+     * 限时活动类型 byte 数组（al() 解析，私有）
+     */
     private static byte[] qA;
+    /**
+     * 限时活动另一时间戳 long 数组
+     */
     public static long[] jU;
+
+    // ==================== 帮派/活动列表 ====================
+    /**
+     * 帮派/活动另一名称数组（an() 解析）
+     */
     public static String[] jV;
+    /**
+     * 帮派/活动时间戳 long 数组（私有）
+     */
     private static long[] qB;
+    /**
+     * 帮派/活动另一描述字符串数组
+     */
     public static String[] jW;
+    /**
+     * 帮派/活动另一时间戳 long 数组
+     */
     public static long[] jX;
+
+    // ==================== 野外场景 NPC ====================
+    /**
+     * 野外场景 NPC 名称数组（ao() 解析）
+     */
     public static String[] jY;
+    /**
+     * 野外场景 NPC 描述数组
+     */
     public static String[] jZ;
+    /**
+     * 野外 NPC 类型 byte 数组
+     */
     public static byte[] ka;
+    /**
+     * 野外 NPC 子类型 byte 数组
+     */
     public static byte[] kb;
+    /**
+     * 野外 NPC 标志 byte3 数组
+     */
     public static byte[] kc;
+    /**
+     * 野外 NPC 标志 byte4 数组
+     */
     public static byte[] kd;
+    /**
+     * 未知 int 计数，初始=-1
+     */
     public static int ke;
+    /**
+     * 未知 int 计数，初始=-1
+     */
     public static int kf;
+    /**
+     * 未知 int 计数，初始=-1
+     */
     public static int kg;
+    /**
+     * 战斗/物理相关数值（aq() 解析，初始=100）
+     */
     public static int kh;
+    /**
+     * 战斗/物理相关数值2（aq() 解析，初始=100）
+     */
     public static int ki;
+    /**
+     * 未知 short
+     */
     public static short kj;
+
+    // ==================== 服务器通知 ====================
+    /**
+     * 服务器通知 UTF 字符串（ar() 方法读取单条）
+     */
     public static String kk;
+    /**
+     * 频道/场景通知 UTF 字符串（as() 方法读取）
+     */
     public static String kl;
+
+    // ==================== 合成/强化配方 ====================
+    /**
+     * 合成/强化配方 ID short 数组（at() 解析）
+     */
     public static short[] km;
+    /**
+     * 配方名称数组
+     */
     public static String[] kn;
+    /**
+     * 配方类型 byte 数组（at() 解析，私有）
+     */
     private static byte[] qC;
+    /**
+     * 配方人物等级要求（i() 方法显示"人物等级:"，私有）
+     */
     private static short[] qD;
+    /**
+     * 配方装备等级要求（i() 方法显示"装备等级:"，私有）
+     */
     private static short[] qE;
+    /**
+     * 配方金钱要求（i() 方法显示"要求金钱:"，私有）
+     */
     private static long[] qF;
+    /**
+     * 配方经验要求（i() 方法显示"要求经验:"，私有）
+     */
     private static long[] qG;
+    /**
+     * 配方声望要求（i() 方法显示"要求声望:"，私有）
+     */
     private static String[] qH;
+    /**
+     * 配方需求原料名称二维数组（i() 方法显示"需求原料:"，私有）
+     */
     private static String[][] qI;
+    /**
+     * 配方需求原料数量二维数组（私有）
+     */
     private static short[][] qJ;
+    /**
+     * 配方需求原料数量另一维数组（i() 方法中显示"Xn"，私有）
+     */
     private static short[][] qK;
+    /**
+     * 配方附加描述（i() 方法显示，私有）
+     */
     private static String[] qL;
+
+    // ==================== 当前选中物品详情（单例） ====================
+    /**
+     * 当前选中物品的 ID（多个方法赋值，K() 清空置0）
+     */
     public static int ko;
+    /**
+     * 当前选中物品名称
+     */
     public static String kp;
+    /**
+     * 当前选中物品副名称（a(StringBuffer) 方法使用）
+     */
     public static String kq;
+    /**
+     * 当前选中物品附属 ID 数组（a(StringBuffer) 方法使用）
+     */
     public static short[] kr;
+    /**
+     * 当前选中物品属性描述行1（a(StringBuffer) 中显示）
+     */
     public static String ks;
+    /**
+     * 当前选中物品属性描述行2
+     */
     public static String kt;
+    /**
+     * 当前选中物品属性描述行3
+     */
     public static String ku;
+    /**
+     * 当前选中物品属性描述行4
+     */
     public static String kv;
+    /**
+     * 当前选中物品属性描述行5
+     */
     public static String kw;
+    /**
+     * 当前选中物品属性描述行6
+     */
     public static String kx;
+    /**
+     * 当前选中物品等级要求（a(StringBuffer) 中显示"要求等级:"）
+     */
     public static short ky;
+    /**
+     * 当前选中物品绑定状态（a(StringBuffer) 中显示"状态:已绑定/装备绑定"）
+     */
     public static byte kz;
+    /**
+     * 当前选中物品附加技能说明（a(StringBuffer) 中显示）
+     */
     public static String kA;
+
+    // ==================== 装备强化/附魔 ====================
+    /**
+     * 装备强化/附魔物品 ID 数组（aw() 解析）
+     */
     public static int[] kB;
+    /**
+     * 装备强化名称数组（aw() 解析，私有）
+     */
     private static String[] qM;
+    /**
+     * 装备强化附加描述数组（私有）
+     */
     private static String[] qN;
+    /**
+     * 强化等级 short 数组（私有）
+     */
     private static short[] qO;
+    /**
+     * 强化附属 ID 二维数组（私有）
+     */
     private static short[][] qP;
+    /**
+     * 强化属性 short1（私有）
+     */
     private static short[] qQ;
+    /**
+     * 强化属性 short2（私有）
+     */
     private static short[] qR;
+    /**
+     * 强化属性 short3（私有）
+     */
     private static short[] qS;
+    /**
+     * 强化属性 short4（私有）
+     */
     private static short[] qT;
+    /**
+     * 强化属性 short5（私有）
+     */
     private static short[] qU;
+    /**
+     * 强化属性 short6（私有）
+     */
     private static short[] qV;
+    /**
+     * 强化属性 short7（私有）
+     */
     private static short[] qW;
+    /**
+     * 强化属性 short8（私有）
+     */
     private static short[] qX;
+    /**
+     * 强化属性 short9（私有）
+     */
     private static short[] qY;
+    /**
+     * 强化属性 short10（私有）
+     */
     private static short[] qZ;
+    /**
+     * 强化属性 short11（私有）
+     */
     private static short[] ra;
+    /**
+     * 强化属性 short12（私有）
+     */
     private static short[] rb;
+    /**
+     * 强化过期时间 long 数组（私有）
+     */
     private static long[] rc;
+    /**
+     * 强化附加描述（可选字符串，私有）
+     */
     private static String[] rd;
+    /**
+     * 强化附属名称二维数组（私有）
+     */
     private static String[][] re;
+    /**
+     * 强化附属 ID 二维数组（私有）
+     */
     private static short[][] rf;
+    /**
+     * 强化附属另一 ID 二维数组（私有）
+     */
     private static short[][] rg;
+    /**
+     * 聊天/系统通知 UTF 字符串（ax() 方法读取）
+     */
     public static String kC;
+    /**
+     * 展示物品/图标类型标志（ay() 方法读取）
+     */
     public static byte kD;
+    /**
+     * 展示物品名称数组（ay() 解析）
+     */
     public static String[] kE;
+    /**
+     * 展示物品描述字符串数组
+     */
     public static String[] kF;
 
+    // ==================== 任务快捷入口 ====================
+    /**
+     * 任务快捷入口名称数组（aD() 解析）
+     */
     public static String[] kH;
+    /**
+     * 任务快捷入口属性 short 数组（aD() 解析，私有）
+     */
     private static short[] rh;
+    /**
+     * 任务/功能类型标志 byte（aD()/aE() 方法读取，初始=0）
+     */
     public static byte kI;
+
+    // ==================== 副本/活动列表 ====================
+    /**
+     * 副本/活动 ID 数组（aE() 解析）
+     */
     public static int[] kJ;
+    /**
+     * 副本/活动名称数组
+     */
     public static String[] kK;
+    /**
+     * 副本/活动描述1数组
+     */
     public static String[] kL;
+    /**
+     * 副本/活动描述2数组
+     */
     public static String[] kM;
+    /**
+     * 副本/活动属性 short 数组（aE() 解析，私有）
+     */
     private static short[] ri;
+    /**
+     * 副本总数 short（aE() 读取）
+     */
     public static short kN;
+    /**
+     * 当前副本/活动选中 ID（aG() 读取）
+     */
     public static int kO;
+    /**
+     * 副本状态标志（aG() 读取，0或3时读取 kS，初始=0）
+     */
     public static byte kP;
+    /**
+     * 副本/活动公告字符串（aG() 读取，初始=null）
+     */
     public static String kQ;
+    /**
+     * 副本活动奖励列表字符串数组（aG() 解析）
+     */
     public static String[] kR;
+    /**
+     * 副本/活动附加 short（kP==0或3时读取）
+     */
     public static short kS;
+    /**
+     * 副本/活动数据就绪标志（aG() 中置true）
+     */
     public static boolean kT;
-    public static byte kU;
-    public static byte kV;
+
+    // ==================== 帮派/功能类型 ====================
+//    /**
+//     * 帮派/功能类型 byte1（aH() 读取）
+//     */
+//    public static byte kUUUUUU;
+//    /**
+//     * 帮派/功能类型 byte2
+//     */
+//    public static byte kVVVVVVV;
+    /**
+     * 帮派/功能相关 9个 int 值（aH() 读取，长度固定9，私有）
+     */
     private static int[] rj;
+    /**
+     * 帮派/功能相关 UTF 字符串（aH() 读取，初始=""）
+     */
     public static String kW;
+
+    // ==================== 地图/场景资源 ====================
+    /**
+     * 服务器压缩资源(ZipRes)缓存列表（parseServerRes 解析8245包，私有）
+     */
     private static Vector serverZipResList;
+    /**
+     * 当前地图名称字符串
+     */
     public static String currentMapName;
+    /**
+     * 地图附加资源(g对象)列表（aK() 维护）
+     */
     public static Vector kY;
+    /**
+     * 未知 short，初始=0
+     */
     public static short kZ;
+
+    // ==================== 地图/任务标签 ====================
+    /**
+     * 地图/任务标签名称数组（aL() 解析，由 le 控制数量）
+     */
     public static String[] la;
+    /**
+     * 地图/任务标签描述1数组
+     */
     public static String[] lb;
+    /**
+     * 地图/任务标签描述2数组
+     */
     public static String[] lc;
+    /**
+     * 地图/任务标签描述3数组
+     */
     public static String[] ld;
+    /**
+     * 任务标签总数（用于 aL() 初始化 la/lb/lc/ld 数组大小，初始=0）
+     */
     public static short le;
+    /**
+     * 未知 String
+     */
     public static String lf;
+    /**
+     * 任务/成就颜色标志 byte（初始=1）
+     */
     public static byte lg;
+    /**
+     * 未知 String（初始=null）
+     */
     public static String lh;
+
+    // ==================== 任务分类/详情 ====================
+    /**
+     * 任务分类名称数组（aM() 解析，由 ll 控制数量，私有）
+     */
     private static String[] rm;
+    /**
+     * 任务详情描述数组（aM() 解析）
+     */
     public static String[] li;
+    /**
+     * 任务完成状态 short 数组（aM() 中判断1=已完成，私有）
+     */
     private static short[] rn;
+    /**
+     * 任务完成状态文字（aM() 中赋值"已完成"/"未完成"，Q() 清空）
+     */
     public static String[] lj;
+    /**
+     * 任务详情附加字符串（aM() 解析）
+     */
     public static String[] lk;
+    /**
+     * 任务详情总数（用于 aM() 初始化数组，初始=0）
+     */
     public static short ll;
+    /**
+     * 任务完成颜色标志（初始=0，aM() 中用于 pickColor）
+     */
     public static byte lm;
+    /**
+     * 任务完成状态颜色 int 数组（aM() 中 pickColor 赋值，Q() 清空）
+     */
     public static int[] ln;
+    /**
+     * 未知 String（初始=null）
+     */
     public static String lo;
+    /**
+     * 任务分页当前页，初始=1（P() 中重置为1）
+     */
     public static short lp;
+    /**
+     * 任务分页附加标志（P() 中重置为0）
+     */
     public static byte lq;
+    /**
+     * 任务详情当前页，初始=1（Q() 中重置为1）
+     */
     public static short lr;
+    /**
+     * 任务详情附加标志（Q() 中重置为0）
+     */
     public static byte ls;
+
+    // ==================== 多场景/任务 ====================
+    /**
+     * 多场景/任务 short 数组（初始化为{-1,-1,-1}，aO()/aP() 中赋值）
+     */
     public static short[] lt;
+    /**
+     * aO() 中读取并赋给 lt[1] 的场景 ID，初始=-1
+     */
     public static short lu;
+    /**
+     * 场景类型 int（aO() 读取，==2时读 lC，初始=-1）
+     */
     public static int lv;
+    /**
+     * 场景说明字符串（aO() 读取，初始=null）
+     */
     public static String lw;
+    /**
+     * 场景开关标志（aO() 中 readByte==1，初始=false）
+     */
     public static boolean lx;
+    /**
+     * 场景附加标志 byte（aO() 读取，初始=0）
+     */
     public static byte ly;
+    /**
+     * 场景选项名称数组（aO() 读取）
+     */
     public static String[] lz;
+    /**
+     * 场景选项描述数组
+     */
     public static String[] lA;
+    /**
+     * 场景选项附加描述数组
+     */
     public static String[] lB;
+    /**
+     * 场景附加文字（lv==2时读取，初始=null）
+     */
     public static String lC;
+    /**
+     * aP() 中读取并赋给 lt[0] 的场景 ID，初始=-1
+     */
     public static short lD;
+    /**
+     * 另一场景类型（aP() 读取，==2时读 mi，初始=-1）
+     */
     public static int lE;
+    /**
+     * 另一场景说明字符串（aP() 读取，初始=null）
+     */
     public static String lF;
+    /**
+     * 场景选项类型 int 数组（从 readByte 扩展，aP() 解析）
+     */
     public static int[] lG;
+    /**
+     * 场景选项属性 int 数组（从 readShort 扩展）
+     */
     public static int[] lH;
+    /**
+     * 场景选项另一属性（从 readByte 扩展）
+     */
     public static int[] lI;
+
+    // ==================== 场景奖励列表 ====================
+    /**
+     * 场景奖励名称字符串数组（aP() 解析）
+     */
     public static String[] lJ;
+    /**
+     * 场景奖励描述1字符串数组
+     */
     public static String[] lK;
+    /**
+     * 场景奖励描述2数组
+     */
     public static String[] lL;
+    /**
+     * 场景奖励描述3数组
+     */
     public static String[] lM;
+    /**
+     * 场景奖励描述4数组
+     */
     public static String[] lN;
+    /**
+     * 场景奖励描述5数组
+     */
     public static String[] lO;
+    /**
+     * 场景奖励图标/图片路径（aP() 解析，空串置null）
+     */
     public static String[] lP;
+    /**
+     * 场景奖励属性 short 数组
+     */
     public static short[] lQ;
+    /**
+     * 场景奖励颜色 int 数组（pickColor 转换）
+     */
     public static int[] lR;
+    /**
+     * 场景奖励描述6数组
+     */
     public static String[] lS;
+    /**
+     * 场景奖励描述7数组
+     */
     public static String[] lT;
+    /**
+     * 场景奖励描述8数组
+     */
     public static String[] lU;
+    /**
+     * 场景奖励描述9数组
+     */
     public static String[] lV;
+    /**
+     * 场景奖励描述10数组
+     */
     public static String[] lW;
+    /**
+     * 场景奖励另一图标路径（aP() 解析，空串置null）
+     */
     public static String[] lX;
+    /**
+     * 场景奖励另一属性 short 数组
+     */
     public static short[] lY;
+    /**
+     * 场景奖励另一颜色 int 数组
+     */
     public static int[] lZ;
+    /**
+     * 场景奖励批次/附加描述1数组
+     */
     public static String[] ma;
+    /**
+     * 场景奖励批次/附加描述2数组
+     */
     public static String[] mb;
+    /**
+     * 场景奖励批次/附加描述3数组
+     */
     public static String[] mc;
+    /**
+     * 场景奖励批次/附加描述4数组
+     */
     public static String[] md;
+    /**
+     * 场景奖励批次/附加描述5数组
+     */
     public static String[] me;
+    /**
+     * 场景奖励另一图标路径2（aP() 解析，空串置null）
+     */
     public static String[] mf;
+    /**
+     * 场景奖励另一 short 属性2数组
+     */
     public static short[] mg;
+    /**
+     * 场景奖励颜色2 int 数组
+     */
     public static int[] mh;
+    /**
+     * 另一场景附加文字（lE==2时读取）
+     */
     public static String mi;
+
+    // ==================== 帮派/公会排行 ====================
+    /**
+     * 帮派/公会排行标志 byte（aQ() 读取）
+     */
     public static byte mj;
+    /**
+     * 帮派/公会排行名称数组（aQ() 解析）
+     */
     public static String[] mk;
+    /**
+     * 帮派/公会排行描述数组
+     */
     public static String[] ml;
+    /**
+     * 帮派排行类型 int 数组（aQ() 读取，用于索引 ro 数组）
+     */
     public static int[] mm;
+    /**
+     * 帮派排行状态文字（由 mm 索引 ro 静态数组获取）
+     */
     public static String[] mn;
+    /**
+     * 帮派排行附加描述数组
+     */
     public static String[] mo;
+    /**
+     * 帮派排行颜色 int 数组（pickColor 转换）
+     */
     public static int[] mp;
+    /**
+     * 帮派排行状态枚举（静态块初始化{"已获得","激活","未获得"}，私有）
+     */
     private static String[] ro;
+
+    // ==================== 联赛/广播消息 ====================
+    /**
+     * 联赛/广播消息类型标志（aR() 读取）
+     */
     public static byte mq;
+    /**
+     * 联赛/广播消息内容（aR() 读取）
+     */
     public static String mr;
+    /**
+     * 消息附加标志 byte1（aR() 读取）
+     */
     public static byte ms;
+    /**
+     * 消息附加标志 byte2
+     */
     public static byte mt;
+    /**
+     * 联赛/广播消息列表1（aR() 读取）
+     */
     public static String[] mu;
+    /**
+     * 联赛/广播消息列表2（aR() 读取，R() 清空）
+     */
     public static String[] mv;
+    /**
+     * 战斗/战报 UTF 字符串（b(DataInputStream, byte) 中 var1==1时读取）
+     */
     public static String mw;
+
+    // ==================== 战斗宠物（主/副/三阶） ====================
+    /**
+     * 主战斗宠物在 fA 中的 ID（aS() 中 rp==0时赋值，T() 重置为-1）
+     */
     public static int mx;
+    /**
+     * 主战斗宠物属性1 short（b(byte,int) 中 fE[var3] 赋值）
+     */
     public static short my;
+    /**
+     * 主战斗宠物属性2 short
+     */
     public static short mz;
+    /**
+     * 主战斗宠物属性3 short
+     */
     public static short mA;
+    /**
+     * 主战斗宠物属性4 short
+     */
     public static short mB;
+    /**
+     * 主战斗宠物描述字符串（b() 中格式化"名称:/等级:/星级:"）
+     */
     public static String mC;
+    /**
+     * 副战斗宠物在 fA 中的 ID（aS() 中 rp==1时赋值，T() 重置为-1）
+     */
     public static int mD;
+    /**
+     * 副战斗宠物属性1 short
+     */
     public static short mE;
+    /**
+     * 副战斗宠物属性2 short
+     */
     public static short mF;
+    /**
+     * 副战斗宠物属性3 short
+     */
     public static short mG;
+    /**
+     * 副战斗宠物属性4 short
+     */
     public static short mH;
+    /**
+     * 副战斗宠物描述字符串
+     */
     public static String mI;
+    /**
+     * 第三槽/三阶战斗宠物 ID 数组（aS() 中 rp==2时按槽位赋值，T() 重置为-1，3个元素）
+     */
     public static int[] mJ;
+    /**
+     * 三阶战斗宠物等级 short 数组（3个元素）
+     */
     public static short[] mK;
+    /**
+     * 三阶战斗宠物名称数组（3个元素）
+     */
     public static String[] mL;
+    /**
+     * 战斗宠物操作类型（aS() 读取，0/1/2/3/4/5/6各代表不同操作，私有）
+     */
     private static byte rp;
+    /**
+     * 战斗宠物操作提示字符串（aS() 多种 rp 情况下读取）
+     */
     public static String mM;
+    /**
+     * 主战斗宠物附加字符串（aS() 中 rp==0时读取）
+     */
     public static String mN;
+
+    // ==================== 特效/动态展示 ====================
+    /**
+     * 特效/动态展示名称数组（aT() 解析）
+     */
     public static String[] mO;
+    /**
+     * 特效描述字符串数组
+     */
     public static String[] mP;
+    /**
+     * 特效类型 int 数组
+     */
     public static int[] mQ;
+    /**
+     * 特效动画索引 short 数组
+     */
     public static short[] mR;
+    /**
+     * 特效附加字符串数组
+     */
     public static String[] mS;
+
+    // ==================== 开关/福利 ====================
+    /**
+     * 开关/福利类型标志 UTF（aU() 读取，长度<=0置null）
+     */
     public static String mT;
+    /**
+     * 开关/福利另一字符串（aU() 声明但清空分支未赋值）
+     */
     public static String mU;
+    /**
+     * 福利物品 ID 数组（aU() 解析）
+     */
     public static int[] mV;
+    /**
+     * 福利物品名称数组
+     */
     public static String[] mW;
+    /**
+     * 福利物品属性 short 数组
+     */
     public static short[] mX;
+    /**
+     * 福利物品描述字符串数组
+     */
     public static String[] mY;
+
+    // ==================== 抽奖/签到活动 ====================
+    /**
+     * 抽奖/签到活动名称1（aV() 读取，长度<=0置null）
+     */
     public static String mZ;
+    /**
+     * 抽奖/签到活动名称2（aV() 读取，与 mZ 配对）
+     */
     public static String na;
+    /**
+     * 抽奖/签到奖励 ID 数组（aV() 解析）
+     */
     public static int[] nb;
+    /**
+     * 抽奖奖励名称数组
+     */
     public static String[] nc;
+    /**
+     * 抽奖奖励描述数组
+     */
     public static String[] nd;
+
+    // ==================== 抽奖/转盘槽位 ====================
+    /**
+     * 抽奖/转盘槽位类型标识数组（aW() 初始化为"MONEY"，最多4格）
+     */
     public static String[] ne;
+    /**
+     * 抽奖槽位数量值（私有）
+     */
     private static int[] rq;
+    /**
+     * 抽奖槽位描述1数组（aW() 解析）
+     */
     public static String[] nf;
+    /**
+     * 抽奖槽位描述2数组
+     */
     public static String[] ng;
+    /**
+     * 抽奖需求说明 UTF（aW() 最后读取）
+     */
     public static String nh;
+    /**
+     * 抽奖结果消息（aX() 读取，W() 清空）
+     */
     public static String ni;
+    /**
+     * 抽奖所得物品 ID/类型（aX() 中 readByte!=-1时读取，W() 清空）
+     */
     public static String nj;
+    /**
+     * 抽奖所得物品数量（aX() 读取，W() 置0）
+     */
     public static int nk;
+    /**
+     * 抽奖所得物品名称（nj!="MONEY"时读取，W() 清空）
+     */
     public static String nl;
+
+    // ==================== 骑术/坐骑信息 ====================
+    /**
+     * 骑术等级 short（aY()/aZ() 读取，nt 中拼接"当前骑术等级为{rr}"，私有）
+     */
     private static short rr;
-    public static byte nm;
-    public static String nn;
-    public static short no;
-    public static short np;
-    public static short nq;
+    /**
+     * 当前骑乘状态标志（aY()/ba() 读取；parseBackPack中也读取，>0表示有坐骑）
+     */
+    public static byte currentCycling;
+    /**
+     * 当前坐骑图标名称（nm>0时读取；parseBackPack中也读取）
+     */
+    public static String roleCurrentRideIcon = "";
+    /**
+     * 坐骑属性 short1（nm>0时读取）
+     */
+    public static short rideAttr1;
+    /**
+     * 坐骑属性 short2
+     */
+    public static short rideAttr2;
+    /**
+     * 坐骑属性 short3
+     */
+    public static short rideAttr3;
+    /**
+     * 骑术相关说明字符串（aY()/aZ() 读取）
+     */
     public static String nr;
+    /**
+     * 骑术附加说明字符串（aY()/aZ() 读取）
+     */
     public static String ns;
+    /**
+     * 骑术等级描述字符串（aY()/aZ() 中格式化"当前骑术等级为{rr}\t..."）
+     */
     public static String nt;
+    /**
+     * 坐骑颜色/外观 ID short 数组（aY()/ba() 中 nm>0时解析，私有）
+     */
     private static short[] rs;
+    /**
+     * 坐骑颜色名称数组（私有）
+     */
     private static String[] rt;
+    /**
+     * 坐骑颜色属性1（私有）
+     */
     private static short[] ru;
+    /**
+     * 坐骑颜色属性2（私有）
+     */
     private static short[] rv;
+    /**
+     * 坐骑颜色属性3（私有）
+     */
     private static short[] rw;
+    /**
+     * 坐骑颜色附加描述数组（私有）
+     */
     private static String[] rx;
+    /**
+     * 坐骑颜色颜色 int 数组（aY() 中 readInt 赋值，私有）
+     */
     private static int[] ry;
+    /**
+     * 坐骑颜色另一颜色 int 数组（aY() 中 readInt 赋值，私有）
+     */
     private static int[] rz;
+    /**
+     * 另一坐骑/骑行等级 byte 数组（aY() 末尾解析）
+     */
     public static byte[] nu;
+    /**
+     * 坐骑等级名称数组（aY() 解析，私有）
+     */
     private static String[] rA;
+    /**
+     * 坐骑等级描述字符串数组
+     */
     public static String[] nv;
+    /**
+     * 坐骑等级 short 数组（私有）
+     */
     private static short[] rB;
+    /**
+     * 坐骑等级类型/状态标志 byte 数组
+     */
     public static byte[] nw;
+
+    // ==================== 成就/称号 ====================
+    /**
+     * 成就/称号名称数组（bb() 解析）
+     */
     public static String[] nx;
+    /**
+     * 成就/称号描述1数组
+     */
     public static String[] ny;
+    /**
+     * 成就/称号描述2数组
+     */
     public static String[] nz;
+    /**
+     * 成就/称号描述3数组
+     */
     public static String[] nA;
+    /**
+     * 未知 byte（bc() 读取）
+     */
     public static byte nB;
+    /**
+     * 未知 String 数组（从代码结尾声明，未见赋值方法）
+     */
     public static String[] nC;
 
     public static boolean a(byte var0) {
@@ -1043,11 +4048,11 @@ public final class GlobalStatus {
     }
 
     public static void b() {
-        if (q != null) {
-            for (int var0 = 0; var0 < q.length; ++var0) {
-                if (q[var0] != null) {
+        if (teamBonus != null) {
+            for (int var0 = 0; var0 < teamBonus.length; ++var0) {
+                if (teamBonus[var0] != null) {
                     bp_1 var1;
-                    if ((var1 = q[var0]).frame1 != null) {
+                    if ((var1 = teamBonus[var0]).frame1 != null) {
                         Frame1 var2 = var1.frame1;
                     }
 
@@ -1060,11 +4065,11 @@ public final class GlobalStatus {
                         var1.f = null;
                     }
 
-                    q[var0] = null;
+                    teamBonus[var0] = null;
                 }
             }
 
-            q = null;
+            teamBonus = null;
         }
 
     }
@@ -1200,10 +4205,10 @@ public final class GlobalStatus {
 
     public static void g() {
         if (nF != -1) {
-            aN = nF;
-            aP = nH;
-            totalShengMing = nE;
-            aO = nG;
+            currentHealth = nF;
+            totalMana = nH;
+            totalHealth = nE;
+            currentMana = nG;
         }
 
         nF = -1;
@@ -1212,12 +4217,12 @@ public final class GlobalStatus {
         nG = -1;
     }
 
-    public static void h() {
+    public static void clearRoleInfo() {
         roleId_2 = null;
-        af = null;
-        roleName = null;
-        ah = null;
-        ai = 16776960;
+        roleNamePure = null;
+        roleNameVip = null;
+        roleTitle = null;
+        roleNameColor = 16776960;
         jingyan = null;
     }
 
@@ -1226,80 +4231,82 @@ public final class GlobalStatus {
      */
     public static void parseBackPack(DataInputStream dis) throws IOException {
         roleId_2 = dis.readUTF();
-        ak = dis.readShort();
-        roleName = dis.readUTF();
-        aj = dis.readByte();
-        ax = dis.readByte();
-        ah = dis.readUTF();
-        ai = LoadingPage.pickColor(dis.readByte());
-        ap = dis.readLong();
-        aq = dis.readLong();
+        backpackCapacityLimit = dis.readShort();
+        roleNameVip = dis.readUTF();
+        backPackFlag = dis.readByte();
+        backpackRows = dis.readByte();
+        roleTitle = dis.readUTF();
+        roleNameColor = LoadingPage.pickColor(dis.readByte());
+        versus = dis.readLong();
+        bullions = dis.readLong();
         jingyan = dis.readUTF();
-        am = dis.readLong();
-        an = dis.readLong();
-        ao = dis.readLong();
-        aN = dis.readInt();
-        totalShengMing = dis.readInt();
-        aP = dis.readInt();
-        aO = dis.readInt();
-        aR = dis.readInt();
-        aQ = dis.readInt();
-        aT = dis.readInt();
-        aS = dis.readInt();
-        aV = dis.readInt();
-        aU = dis.readInt();
-        aZ = dis.readInt();
-        bc = dis.readInt();
-        ba = dis.readInt();
-        bb = dis.readInt();
-        if ((be = dis.readShort()) > -1) {
-            bp = dis.readShort();
-            bq = dis.readShort();
-            br = dis.readShort();
+        xiulian = dis.readLong();
+        xiulianLimit = dis.readLong();
+        combatPower = dis.readLong();
+        currentHealth = dis.readInt();
+        totalHealth = dis.readInt();
+        totalMana = dis.readInt();
+        currentMana = dis.readInt();
+        attack = dis.readInt();
+        attack2 = dis.readInt();
+        defense = dis.readInt();
+        defense2 = dis.readInt();
+        magicAttack_1 = dis.readInt();
+        magicAttack_1_2 = dis.readInt();
+        speed = dis.readInt();
+        iceResistance = dis.readInt();
+        fireResistance = dis.readInt();
+        lightningResistance = dis.readInt();
+        if ((selectedMount = dis.readShort()) > -1) {
+            mountX = dis.readShort();
+            mountY = dis.readShort();
+            mountDirection = dis.readShort();
         }
 
-        bh = dis.readUTF();
+        bless = dis.readUTF();
         bf = dis.readShort();
-        bg = dis.readByte();
-        az = dis.readUTF();
-        aA = dis.readUTF();
-        aB = dis.readInt();
+        attributeBonus = dis.readByte();
+        gangs2 = dis.readUTF();
+        gangsJob = dis.readUTF();
+        meritorious = dis.readInt();
         ay = dis.readByte();
-        bi = dis.readUTF();
-        bj = dis.readUTF();
-        bk = dis.readUTF();
-        bl = dis.readUTF();
-        bm = dis.readUTF();
-        aW = dis.readInt();
-        aX = dis.readInt();
-        aY = dis.readInt();
-        bA = dis.readByte();
-        af = roleName;
-        if (roleName.endsWith("(VIP" + bA + ")")) {
-            af = roleName.substring(0, roleName.length() - ("(VIP" + bA + ")").length());
-        }
-
-        bB = dis.readUTF();
-        bn = dis.readUTF();
-        bo = dis.readUTF();
-        if (bn == null || bn.equals("")) {
-            bn = "暂无记录。";
-        }
-
-        aI = dis.readByte();
-        if ((nm = dis.readByte()) > 0) {
-            nn = dis.readUTF();
-            no = dis.readShort();
-            np = dis.readShort();
-            nq = dis.readShort();
+        houseName = dis.readUTF();
+        gangs = dis.readUTF();
+        equip = dis.readUTF();
+        spouse = dis.readUTF();
+        master = dis.readUTF();
+        spellDamage = dis.readInt();
+        magicAttack2 = dis.readInt();
+        magicAttack = dis.readInt();
+        vipLevel = dis.readByte();
+        if (roleNameVip.endsWith("(VIP" + vipLevel + ")")) {
+            roleNamePure = roleNameVip.substring(0, roleNameVip.length() - ("(VIP" + vipLevel + ")").length());
         } else {
-            nn = "";
-            no = 0;
-            np = 0;
-            nq = 0;
+            roleNamePure = roleNameVip;
         }
 
-        bd = dis.readUTF();
+        title = dis.readUTF();
+        xxRecords = dis.readUTF();
+        achievement = dis.readUTF();
+        if (xxRecords == null || xxRecords.length() == 0) {
+            xxRecords = "暂无记录。";
+        }
+
+        //超Q等级或类型
+        dis.readByte();
+        if ((currentCycling = dis.readByte()) > 0) {
+            roleCurrentRideIcon = dis.readUTF();
+            rideAttr1 = dis.readShort();
+            rideAttr2 = dis.readShort();
+            rideAttr3 = dis.readShort();
+        } else {
+            roleCurrentRideIcon = "";
+            rideAttr1 = 0;
+            rideAttr2 = 0;
+            rideAttr3 = 0;
+        }
+
+        finalDesc = dis.readUTF();
     }
 
     /**
@@ -6986,10 +9993,12 @@ public final class GlobalStatus {
     public static void aH(DataInputStream var0) throws IOException {
         rj = new int[9];
         var0.readUTF();
-        kU = var0.readByte();
+        //超Q
+        var0.readByte();
         var0.readShort();
         var0.readUTF();
-        kV = var0.readByte();
+        //等级
+        var0.readByte();
 
         for (int var1 = 0; var1 < 9; ++var1) {
             rj[var1] = var0.readInt();
@@ -8003,15 +11012,15 @@ public final class GlobalStatus {
 
     public static void aY(DataInputStream var0) throws IOException {
         rr = var0.readShort();
-        nm = var0.readByte();
+        currentCycling = var0.readByte();
         byte var1 = 0;
-        if (nm > 0) {
-            nn = var0.readUTF();
-            System.out.println("rolecurrentrideicon = " + nn);
+        if (currentCycling > 0) {
+            roleCurrentRideIcon = var0.readUTF();
+            System.out.println("rolecurrentrideicon = " + roleCurrentRideIcon);
             var0.readShort();
-            no = var0.readShort();
-            np = var0.readShort();
-            nq = var0.readShort();
+            rideAttr1 = var0.readShort();
+            rideAttr2 = var0.readShort();
+            rideAttr3 = var0.readShort();
             var1 = var0.readByte();
             GlobalConfig.printStr("color size=" + var1);
             if (var1 > 0) {
@@ -8044,7 +11053,7 @@ public final class GlobalStatus {
                 ry = null;
             }
         } else {
-            nn = "";
+            roleCurrentRideIcon = "";
         }
 
         nr = var0.readUTF();
@@ -8082,12 +11091,12 @@ public final class GlobalStatus {
     }
 
     public static void ba(DataInputStream var0) throws IOException {
-        if ((nn = var0.readUTF()).length() > 1) {
-            nm = var0.readByte();
+        if ((roleCurrentRideIcon = var0.readUTF()).length() > 1) {
+            currentCycling = var0.readByte();
             var0.readShort();
-            no = var0.readShort();
-            np = var0.readShort();
-            nq = var0.readShort();
+            rideAttr1 = var0.readShort();
+            rideAttr2 = var0.readShort();
+            rideAttr3 = var0.readShort();
             byte var1 = var0.readByte();
             GlobalConfig.printStr("size=" + var1);
             if (var1 <= 0) {
@@ -8122,8 +11131,8 @@ public final class GlobalStatus {
                 rz[var2] = var0.readInt();
             }
         } else {
-            nn = "";
-            nm = 0;
+            roleCurrentRideIcon = "";
+            currentCycling = 0;
         }
 
     }
@@ -8189,7 +11198,6 @@ public final class GlobalStatus {
     }
 
     static {
-        s = -1;
         npcArrayList = new Vector();
         C = new byte[]{0, 0, 0, 0, 0, 0};
         F = null;
@@ -8204,26 +11212,18 @@ public final class GlobalStatus {
         T = null;
         U = null;
         V = null;
-        ai = 16776960;
-        ao = 0L;
         ar = -1;
         as = -1;
         av = -1;
-        ay = 0;
-        aH = 0;
         nE = -1;
         nF = -1;
         nG = -1;
         nH = -1;
-        bn = "暂无记录。";
-        bo = null;
-        bs = -1;
         bu = false;
         bv = 0;
         bx = 0;
         by = "";
         bz = "";
-        bA = 0;
         bC = new Vector();
         bE = false;
         bF = -1;
@@ -8322,9 +11322,8 @@ public final class GlobalStatus {
         mh = null;
         mi = null;
         ro = new String[]{"已获得", "激活", "未获得"};
-        nn = "";
-        no = 0;
-        np = 0;
-        nq = 0;
+        rideAttr1 = 0;
+        rideAttr2 = 0;
+        rideAttr3 = 0;
     }
 }

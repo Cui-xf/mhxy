@@ -197,10 +197,10 @@ public final class bp_1 extends SceneEntity {
       if (this.s == 1) {
          return true;
       }
-      if (GlobalStatus.q != null) {
-         for (int i2 = 0; i2 < GlobalStatus.q.length; i2++) {
-            if (GlobalStatus.q[i2].s == 1) {
-               bpVar = GlobalStatus.q[i2];
+      if (GlobalStatus.teamBonus != null) {
+         for (int i2 = 0; i2 < GlobalStatus.teamBonus.length; i2++) {
+            if (GlobalStatus.teamBonus[i2].s == 1) {
+               bpVar = GlobalStatus.teamBonus[i2];
                break;
             }
          }
@@ -212,19 +212,19 @@ public final class bp_1 extends SceneEntity {
       if (i == 0) {
          if (bpVar2.a == 0) {
             if (b == 1) {
-               return bpVar2.f.size() <= 0 || Math.abs(GlobalStatus.q[b].f.size() - GlobalStatus.q[0].f.size()) > 7;
+               return bpVar2.f.size() <= 0 || Math.abs(GlobalStatus.teamBonus[b].f.size() - GlobalStatus.teamBonus[0].f.size()) > 7;
             }
             if (b == 2) {
-               return GlobalStatus.q[1].f.size() <= 0 || Math.abs(GlobalStatus.q[b].f.size() - GlobalStatus.q[1].f.size()) > 7;
+               return GlobalStatus.teamBonus[1].f.size() <= 0 || Math.abs(GlobalStatus.teamBonus[b].f.size() - GlobalStatus.teamBonus[1].f.size()) > 7;
             }
             return false;
          }
          if (bpVar2.a == 1) {
             if (b == 0) {
-               return GlobalStatus.q[1].f.size() <= 0 || Math.abs(GlobalStatus.q[b].f.size() - GlobalStatus.q[1].f.size()) > 7;
+               return GlobalStatus.teamBonus[1].f.size() <= 0 || Math.abs(GlobalStatus.teamBonus[b].f.size() - GlobalStatus.teamBonus[1].f.size()) > 7;
             }
             if (b == 2) {
-               return GlobalStatus.q[0].f.size() <= 0 || Math.abs(GlobalStatus.q[b].f.size() - GlobalStatus.q[0].f.size()) > 7;
+               return GlobalStatus.teamBonus[0].f.size() <= 0 || Math.abs(GlobalStatus.teamBonus[b].f.size() - GlobalStatus.teamBonus[0].f.size()) > 7;
             }
             return false;
          }
@@ -232,10 +232,10 @@ public final class bp_1 extends SceneEntity {
             return false;
          }
          if (b == 0) {
-            return GlobalStatus.q[2].f.size() <= 0 || Math.abs(GlobalStatus.q[b].f.size() - GlobalStatus.q[2].f.size()) > 7;
+            return GlobalStatus.teamBonus[2].f.size() <= 0 || Math.abs(GlobalStatus.teamBonus[b].f.size() - GlobalStatus.teamBonus[2].f.size()) > 7;
          }
          if (b == 1) {
-            return GlobalStatus.q[0].f.size() <= 0 || Math.abs(GlobalStatus.q[b].f.size() - GlobalStatus.q[0].f.size()) > 7;
+            return GlobalStatus.teamBonus[0].f.size() <= 0 || Math.abs(GlobalStatus.teamBonus[b].f.size() - GlobalStatus.teamBonus[0].f.size()) > 7;
          }
          return false;
       }
@@ -244,19 +244,19 @@ public final class bp_1 extends SceneEntity {
       }
       if (bpVar2.a == 0) {
          if (b == 1) {
-            return GlobalStatus.q[b].f.size() > 2;
+            return GlobalStatus.teamBonus[b].f.size() > 2;
          }
          if (b == 2) {
-            return GlobalStatus.q[1].f.size() <= 2 || Math.abs(GlobalStatus.q[b].f.size() - GlobalStatus.q[1].f.size()) > 5;
+            return GlobalStatus.teamBonus[1].f.size() <= 2 || Math.abs(GlobalStatus.teamBonus[b].f.size() - GlobalStatus.teamBonus[1].f.size()) > 5;
          }
          return false;
       }
       if (bpVar2.a == 1) {
          if (b == 0) {
-            return GlobalStatus.q[b].f.size() > 2;
+            return GlobalStatus.teamBonus[b].f.size() > 2;
          }
          if (b == 2) {
-            return GlobalStatus.q[0].f.size() <= 2 || Math.abs(GlobalStatus.q[b].f.size() - GlobalStatus.q[0].f.size()) > 5;
+            return GlobalStatus.teamBonus[0].f.size() <= 2 || Math.abs(GlobalStatus.teamBonus[b].f.size() - GlobalStatus.teamBonus[0].f.size()) > 5;
          }
          return false;
       }
@@ -264,10 +264,10 @@ public final class bp_1 extends SceneEntity {
          return false;
       }
       if (b == 0) {
-         return GlobalStatus.q[b].f.size() > 2;
+         return GlobalStatus.teamBonus[b].f.size() > 2;
       }
       if (b == 1) {
-         return GlobalStatus.q[0].f.size() <= 2 || Math.abs(GlobalStatus.q[b].f.size() - GlobalStatus.q[0].f.size()) > 5;
+         return GlobalStatus.teamBonus[0].f.size() <= 2 || Math.abs(GlobalStatus.teamBonus[b].f.size() - GlobalStatus.teamBonus[0].f.size()) > 5;
       }
       return false;
    }
