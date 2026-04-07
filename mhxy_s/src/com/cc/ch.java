@@ -31,8 +31,8 @@ public final class ch {
    private int v;
    private int w;
    private int x;
-   private Frame0 y;
-   private Frame0 z;
+   private Sprite y;
+   private Sprite z;
    private boolean A = false;
 
    public ch(GameSceneController var1, MainCanvas var2, PngUtil var3) {
@@ -157,8 +157,8 @@ public final class ch {
       }
 
       if (this.y == null) {
-         this.y = MainCanvas.publicUI.getFrame("jianding_02");
-         this.z = MainCanvas.publicUI.getFrame("jianding_01");
+         this.y = MainCanvas.publicUI.getSpriteByNameFromCache("jianding_02");
+         this.z = MainCanvas.publicUI.getSpriteByNameFromCache("jianding_01");
       }
 
       this.c();
@@ -417,12 +417,12 @@ public final class ch {
       if (this.a != null) {
          for(int var2 = 0; var2 < this.a.length; ++var2) {
             if (var2 == 0) {
-               this.e.a(var1, GameSceneController.goods, (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
+               this.e.a(var1, GameSceneController.goods, (int[])null, (ImageSlice)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
             } else if (var2 < 4) {
-               this.e.a(var1, q[var2 - 1] ? this.y : this.z, (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
+               this.e.a(var1, q[var2 - 1] ? this.y : this.z, (int[])null, (ImageSlice)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
             } else {
                MainCanvas.icon.e(String.valueOf(1702));
-               MainCanvas.pngUtil.a(var1, GameSceneController.b((short)1702), (int[])null, (aj)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
+               MainCanvas.pngUtil.a(var1, GameSceneController.b((short)1702), (int[])null, (ImageSlice)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
                if (n[var2 - 4] > 99) {
                   MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] / 100, 0, 0, this.a[var2][0] + 13 - 8, this.a[var2][1] + 11, 0, 0);
                   MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] % 100 / 10, 0, 0, this.a[var2][0] + 13 - 4, this.a[var2][1] + 11, 0, 0);
@@ -446,7 +446,7 @@ public final class ch {
       var1.drawString("+50%", this.a[5][0] + 42, this.a[5][1] + 18, 33);
       var1.drawString("+100%", this.a[6][0] + 42, this.a[6][1] + 18, 33);
       if (h != -1) {
-         this.e.a(var1, GameSceneController.b(j), (int[])null, (aj)null, 0, 0, this.a[0][0], this.a[0][1], 0, 0);
+         this.e.a(var1, GameSceneController.b(j), (int[])null, (ImageSlice)null, 0, 0, this.a[0][0], this.a[0][1], 0, 0);
       }
 
       LoadingPage.d(var1, this.a[this.b][0], this.a[this.b][1], 17, 17);
@@ -470,7 +470,7 @@ public final class ch {
 
       if (this.c.sceneSubState == 0) {
          if (this.b == 0 && (this.f != null || this.f != "")) {
-            LoadingPage.b(var1, this.f, this.d.mixedUi.X + 5 + 2, this.d.mixedUi.Y + 32 + 8 + GameSceneController.goods.c, GlobalConfig.defaultHigh - 5, 1);
+            LoadingPage.b(var1, this.f, this.d.mixedUi.X + 5 + 2, this.d.mixedUi.Y + 32 + 8 + GameSceneController.goods.h, GlobalConfig.defaultHigh - 5, 1);
             return;
          }
       } else if (this.c.sceneSubState == 1) {

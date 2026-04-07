@@ -1,5 +1,6 @@
 package com.cc;
 
+import com.cc.resource.ResourceManager;
 import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
@@ -57,28 +58,28 @@ public final class bp_1 extends SceneEntity {
    }
 
    private void a() {
-      this.z[1] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)1, this.r, false, this.v), (byte)2);
-      this.A[1] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)1, this.r, true, this.v), (byte)2);
-      this.z[3] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)3, this.r, false, this.v), (byte)2);
-      this.A[3] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)3, this.r, true, this.v), (byte)2);
-      this.z[0] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)0, this.r, false, this.v), (byte)2);
-      this.A[0] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)0, this.r, true, this.v), (byte)2);
-      this.z[2] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)2, this.r, false, this.v), (byte)2);
-      this.A[2] = Page.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)2, this.r, true, this.v), (byte)2);
+      this.z[1] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)1, this.r, false, this.v), (byte)2);
+      this.A[1] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)1, this.r, true, this.v), (byte)2);
+      this.z[3] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)3, this.r, false, this.v), (byte)2);
+      this.A[3] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)3, this.r, true, this.v), (byte)2);
+      this.z[0] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)0, this.r, false, this.v), (byte)2);
+      this.A[0] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)0, this.r, true, this.v), (byte)2);
+      this.z[2] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)2, this.r, false, this.v), (byte)2);
+      this.A[2] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)2, this.r, true, this.v), (byte)2);
    }
 
    private void a(boolean var1) {
-      super.frame1 = MainCanvas.role.getFrame1(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
+      super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
       if (super.frame1 == null) {
          MainCanvas.a(this.q, this.p, (byte)5, this.r, this.v, this.w, this.x, this.y);
-         super.frame1 = MainCanvas.role.getFrame1(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
+         super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
          if (super.frame1 == null) {
             this.r = 0;
             this.a();
-            super.frame1 = MainCanvas.role.c(var1 ? this.A[super.h] : this.z[super.h]);
+            super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.A[super.h] : this.z[super.h]);
             if (super.frame1 == null) {
                MainCanvas.a(this.q, this.p, super.h, this.r, this.v, this.w, this.x, this.y);
-               super.frame1 = MainCanvas.role.c(var1 ? this.A[super.h] : this.z[super.h]);
+               super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.A[super.h] : this.z[super.h]);
             }
          }
       }

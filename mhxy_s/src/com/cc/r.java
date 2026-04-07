@@ -310,13 +310,13 @@ public final class r {
                   } else if (this.d == -1L) {
                      this.i.a((byte)0, (byte[])(new byte[]{3}));
                   } else {
-                     LoadingPage.a(this.j.mixedUi.W - 3 * GameSceneController.goods.b - 21, this.j.mixedUi.Y + 49, new String[]{"取出"}, false);
+                     LoadingPage.a(this.j.mixedUi.W - 3 * GameSceneController.goods.w - 21, this.j.mixedUi.Y + 49, new String[]{"取出"}, false);
                      this.i.sceneSubState = 1;
                   }
                }
             } else if (this.b == 1) {
                if (this.d(this.a) != -1) {
-                  LoadingPage.a(this.j.mixedUi.W - 10 - GameSceneController.goods.b - (this.a + 2 * (1 - this.a)) * (GameSceneController.goods.b + 10) - LoadingPage.q / 2 + 9, this.j.mixedUi.Y + GameSceneController.goods.c + 69, new String[]{"取出"}, false);
+                  LoadingPage.a(this.j.mixedUi.W - 10 - GameSceneController.goods.w - (this.a + 2 * (1 - this.a)) * (GameSceneController.goods.w + 10) - LoadingPage.q / 2 + 9, this.j.mixedUi.Y + GameSceneController.goods.h + 69, new String[]{"取出"}, false);
                   this.i.sceneSubState = 1;
                } else if (this.c != -1 && this.d != -1L) {
                   this.i.a((byte)0, (byte[])(new byte[]{4}));
@@ -414,7 +414,7 @@ public final class r {
    }
 
    public final void a(Graphics var1) {
-      short var2 = GameSceneController.goods.b;
+      short var2 = GameSceneController.goods.w;
       if (this.j.mixedUi != null) {
          this.j.mixedUi.draw(var1);
          LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32, this.j.mixedUi.W - 11, this.v, 1);
@@ -442,20 +442,20 @@ public final class r {
             this.g[var5][3] = 17;
          }
 
-         var1.drawImage(GameSceneController.goods.pngImage, this.g[var5][0], this.g[var5][1], 20);
+         var1.drawImage(GameSceneController.goods.image, this.g[var5][0], this.g[var5][1], 20);
       }
 
       var1.setColor(255);
       var1.drawString(this.h[0], this.g[0][0] - 2, this.g[0][1] + (var2 - GlobalConfig.font2_h) / 2, 24);
       var1.drawString(this.h[1], this.g[1][0] - 2, this.g[1][1] + (var2 - GlobalConfig.font2_h) / 2, 24);
       var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] + (var2 - GlobalConfig.font2_h) / 2, 24);
-      Frame0 var11;
+      Sprite var11;
       if (this.c != -1 && (var11 = GameSceneController.b(this.k)) != null) {
-         var1.drawImage(var11.pngImage, this.g[0][0], this.g[0][1], 20);
+         var1.drawImage(var11.image, this.g[0][0], this.g[0][1], 20);
       }
 
       if (this.d != -1L && (var11 = GameSceneController.b(this.n)) != null) {
-         var1.drawImage(var11.pngImage, this.g[1][0], this.g[1][1], 20);
+         var1.drawImage(var11.image, this.g[1][0], this.g[1][1], 20);
       }
 
       if (this.p != null && this.p.length > 0) {
@@ -463,7 +463,7 @@ public final class r {
 
          for(int var10 = 0; var10 < this.p.length; ++var10) {
             if ((var11 = GameSceneController.b(this.p[var10])) != null) {
-               var1.drawImage(var11.pngImage, this.g[2 + this.f[var10]][0], this.g[2 + this.f[var10]][1], 20);
+               var1.drawImage(var11.image, this.g[2 + this.f[var10]][0], this.g[2 + this.f[var10]][1], 20);
             }
          }
       }
@@ -477,16 +477,16 @@ public final class r {
       if (this.i.sceneSubState == 0) {
          if (this.u != null || this.u != "") {
             if (this.b == 0 && this.a == 1) {
-               LoadingPage.b(var1, this.u, this.j.mixedUi.W - 10 - GameSceneController.goods.b - 2 * (GameSceneController.goods.b + 10) - 6 - GlobalConfig.font2.stringWidth("装备孔"), this.j.mixedUi.Y + 32 + 8 + GameSceneController.goods.c, GlobalConfig.defaultHigh - 5, 1);
+               LoadingPage.b(var1, this.u, this.j.mixedUi.W - 10 - GameSceneController.goods.w - 2 * (GameSceneController.goods.w + 10) - 6 - GlobalConfig.font2.stringWidth("装备孔"), this.j.mixedUi.Y + 32 + 8 + GameSceneController.goods.h, GlobalConfig.defaultHigh - 5, 1);
                return;
             }
 
             if (this.b == 1) {
-               LoadingPage.b(var1, this.u, this.j.mixedUi.W - (GameSceneController.goods.b + 10) * 3, this.j.mixedUi.Y + 32 + 8 + 10 + (GameSceneController.goods.c << 1), GlobalConfig.defaultHigh - 5, 1);
+               LoadingPage.b(var1, this.u, this.j.mixedUi.W - (GameSceneController.goods.w + 10) * 3, this.j.mixedUi.Y + 32 + 8 + 10 + (GameSceneController.goods.h << 1), GlobalConfig.defaultHigh - 5, 1);
                return;
             }
 
-            LoadingPage.b(var1, this.u, this.j.mixedUi.X + 5 + 2, this.j.mixedUi.Y + 32 + 8 + GameSceneController.goods.c, GlobalConfig.defaultHigh - 5, 1);
+            LoadingPage.b(var1, this.u, this.j.mixedUi.X + 5 + 2, this.j.mixedUi.Y + 32 + 8 + GameSceneController.goods.h, GlobalConfig.defaultHigh - 5, 1);
             return;
          }
       } else if (this.i.sceneSubState == 1) {

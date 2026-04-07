@@ -130,7 +130,7 @@ public final class GunDongListUIComponent extends UIComponent {
       graphics.setClip(super.X + 4, super.Y + 3, super.W - 4, super.H - 6);
       if (this.e > 0) {
          graphics.setClip(super.X, super.Y, super.W, super.H);
-         LoadingPage.draw(graphics, super.X + super.W - 2 - MainCanvas.up.b, super.Y + 2, super.H - 4, this.e, this.b, 0, super.H - 6);
+         LoadingPage.draw(graphics, super.X + super.W - 2 - MainCanvas.up.w, super.Y + 2, super.H - 4, this.e, this.b, 0, super.H - 6);
       }
 
    }

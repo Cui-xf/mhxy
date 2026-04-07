@@ -39,23 +39,23 @@ public final class PopUpWindow extends UIComponent {
     /**
      * 标题栏背景图（横向平铺）
      */
-    public static Frame0 backImage;
+    public static Sprite backImage;
     /**
      * 关闭按钮图标（右上角）
      */
-    public static Frame0 closeButton;
+    public static Sprite closeButton;
     /**
      * 左上角装饰图
      */
-    public static Frame0 zhuangShi1;
+    public static Sprite zhuangShi1;
     /**
      * 左下角装饰图
      */
-    public static Frame0 zhuangShi2;
+    public static Sprite zhuangShi2;
     /**
      * 右下角装饰图
      */
-    public static Frame0 zhuangShi3;
+    public static Sprite zhuangShi3;
     /**
      * af 子组件在 u 列表中的索引（-1 表示不存在）
      */
@@ -203,21 +203,21 @@ public final class PopUpWindow extends UIComponent {
             graphics.fillRect(super.X, super.Y, super.W, super.H);
         }
 
-        int var2 = super.W / backImage.b + (super.W % backImage.b != 0 ? 1 : 0);
-        graphics.setClip(super.X, super.Y + 5, super.W, backImage.c);
+        int var2 = super.W / backImage.w + (super.W % backImage.w != 0 ? 1 : 0);
+        graphics.setClip(super.X, super.Y + 5, super.W, backImage.h);
 
         for (int var3 = 0; var3 < var2; ++var3) {
-            graphics.drawImage(backImage.pngImage, super.X + var3 * backImage.b, super.Y + 5, 20);
+            graphics.drawImage(backImage.image, super.X + var3 * backImage.w, super.Y + 5, 20);
         }
 
         graphics.setClip(super.X, super.Y, super.W, super.H);
-        graphics.drawImage(closeButton.pngImage, super.X + super.W - closeButton.b - 5, super.Y + 6, 20);
+        graphics.drawImage(closeButton.image, super.X + super.W - closeButton.w - 5, super.Y + 6, 20);
         if (this.title != null) {
-            LoadingPage.drawString(graphics, (String) this.title, (int) this.titleX, this.titleY + (backImage.c - GlobalConfig.font2_h) / 2, 0, 16776917, 0);
+            LoadingPage.drawString(graphics, (String) this.title, (int) this.titleX, this.titleY + (backImage.h - GlobalConfig.font2_h) / 2, 0, 16776917, 0);
         }
 
         graphics.setColor(11267556);
-        graphics.drawLine(super.X, super.Y + 6 + backImage.c, super.X + super.W - 1, super.Y + 6 + backImage.c);
+        graphics.drawLine(super.X, super.Y + 6 + backImage.h, super.X + super.W - 1, super.Y + 6 + backImage.h);
 
         for (int var4 = 0; var4 < this.child.size(); ++var4) {
             ((UIComponent) this.child.elementAt(var4)).draw(graphics);
@@ -230,8 +230,8 @@ public final class PopUpWindow extends UIComponent {
             graphics.drawRect(super.X + var5, super.Y + var5, super.W - var5 * 2 - 1, super.H - var5 * 2 - 1);
         }
 
-        graphics.drawImage(zhuangShi1.pngImage, super.X, super.Y, 20);
-        graphics.drawImage(zhuangShi2.pngImage, super.X, super.Y + super.H - zhuangShi2.c, 20);
-        graphics.drawImage(zhuangShi3.pngImage, super.X + super.W - zhuangShi3.b, super.Y + super.H - zhuangShi3.c, 20);
+        graphics.drawImage(zhuangShi1.image, super.X, super.Y, 20);
+        graphics.drawImage(zhuangShi2.image, super.X, super.Y + super.H - zhuangShi2.h, 20);
+        graphics.drawImage(zhuangShi3.image, super.X + super.W - zhuangShi3.w, super.Y + super.H - zhuangShi3.h, 20);
     }
 }

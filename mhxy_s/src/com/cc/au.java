@@ -1,5 +1,8 @@
 package com.cc;
 
+import com.cc.resource.Animation;
+import com.cc.resource.ResourceManager;
+import com.cc.resource.TileMap;
 import com.yinhan.kjava.main.MainCanvas;
 
 import java.util.Vector;
@@ -7,7 +10,7 @@ import javax.microedition.lcdui.Graphics;
 
 public class au {
    public Vector e = new Vector();
-   public Frame1 f;
+   public Animation f;
    public short g;
    public short h;
    public short i;
@@ -43,12 +46,12 @@ public class au {
    private void f() {
       if (this.g == 701) {
          this.d = new int[1];
-         this.d[0] = Page.buildResourceId((String)(this.g + "_" + 0), (byte)2);
+         this.d[0] = ResourceManager.buildResourceId((String)(this.g + "_" + 0), (byte)2);
       } else {
          this.d = new int[4];
 
          for(int var1 = 0; var1 < 4; ++var1) {
-            this.d[var1] = Page.buildResourceId((String)(this.g + "_" + (var1 / 2 << 1)), (byte)2);
+            this.d[var1] = ResourceManager.buildResourceId((String)(this.g + "_" + (var1 / 2 << 1)), (byte)2);
          }
 
       }
@@ -118,23 +121,23 @@ public class au {
    public final void a(byte var1) {
       this.j = var1;
       if (this.g == 701) {
-         this.f = MainCanvas.petfight.getFrame1(this.d[0], this.a, this.b, this.c);
+         this.f = MainCanvas.petfight.getAnimationByKeyFromCache(this.d[0], this.a, this.b, this.c);
          if (this.f == null) {
             GameSceneController.a(this.g, this.a, this.b, this.c);
-            this.f = MainCanvas.petfight.getFrame1(this.d[0], this.a, this.b, this.c);
+            this.f = MainCanvas.petfight.getAnimationByKeyFromCache(this.d[0], this.a, this.b, this.c);
             return;
          }
       } else {
-         this.f = MainCanvas.petfight.getFrame1(this.d[var1], this.a, this.b, this.c);
+         this.f = MainCanvas.petfight.getAnimationByKeyFromCache(this.d[var1], this.a, this.b, this.c);
          if (this.f == null) {
             GameSceneController.a(this.g, this.a, this.b, this.c);
-            this.f = MainCanvas.petfight.getFrame1(this.d[var1], this.a, this.b, this.c);
+            this.f = MainCanvas.petfight.getAnimationByKeyFromCache(this.d[var1], this.a, this.b, this.c);
          }
       }
 
    }
 
-   public void a(aw var1, PngUtil var2, long var3) {
+   public void a(TileMap var1, PngUtil var2, long var3) {
       if (this.f != null && this.e.size() >= 6) {
          short[] var5 = (short[])this.e.elementAt(0);
          this.a(var5);
@@ -175,16 +178,16 @@ public class au {
       if (this.f != null) {
          switch (this.j) {
             case 0:
-               var2.a(var1, (Frame1)this.f, (int[])null, var3, var4, this.h + 16 - this.f.i() / 2, this.i + 16 - this.f.h(), 20, 0);
+               var2.a(var1, (Animation)this.f, (int[])null, var3, var4, this.h + 16 - this.f.i() / 2, this.i + 16 - this.f.h(), 20, 0);
                return;
             case 1:
-               var2.a(var1, (Frame1)this.f, (int[])null, var3, var4, this.h + 8 - this.f.i() / 2, this.i, 20, 0);
+               var2.a(var1, (Animation)this.f, (int[])null, var3, var4, this.h + 8 - this.f.i() / 2, this.i, 20, 0);
                return;
             case 2:
-               var2.a(var1, (Frame1)this.f, (int[])null, var3, var4, this.h - this.f.i() / 2, this.i + 16 - this.f.h(), 20, 0);
+               var2.a(var1, (Animation)this.f, (int[])null, var3, var4, this.h - this.f.i() / 2, this.i + 16 - this.f.h(), 20, 0);
                break;
             case 3:
-               var2.a(var1, (Frame1)this.f, (int[])null, var3, var4, this.h + 8 - this.f.i() / 2, this.i + 8 - this.f.h(), 20, 0);
+               var2.a(var1, (Animation)this.f, (int[])null, var3, var4, this.h + 8 - this.f.i() / 2, this.i + 8 - this.f.h(), 20, 0);
                return;
          }
       }

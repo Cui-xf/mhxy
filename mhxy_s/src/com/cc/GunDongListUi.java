@@ -219,9 +219,9 @@ public final class GunDongListUi extends BaseUi {
 
     // 命中检测：支持滚动条上下按钮以及列表项点击。
     public final int hintCheck(int var1, int var2) {
-        if (var1 >= this.a + this.c - 2 - MainCanvas.up.b && var1 <= this.a + this.c && var2 >= this.b + 3 && var2 <= this.b + 3 + MainCanvas.up.c) {
+        if (var1 >= this.a + this.c - 2 - MainCanvas.up.w && var1 <= this.a + this.c && var2 >= this.b + 3 && var2 <= this.b + 3 + MainCanvas.up.h) {
             return 1;
-        } else if (var1 >= this.a + this.c - 2 - MainCanvas.down.b && var1 <= this.a + this.c && var2 >= this.b + this.d - 2 - MainCanvas.down.c && var2 <= this.b + this.d) {
+        } else if (var1 >= this.a + this.c - 2 - MainCanvas.down.w && var1 <= this.a + this.c && var2 >= this.b + this.d - 2 - MainCanvas.down.h && var2 <= this.b + this.d) {
             return 4;
         } else {
             var2 = var2;
@@ -367,7 +367,7 @@ public final class GunDongListUi extends BaseUi {
                     this.j = this.g * (this.d - 16) / this.h > 6 ? this.g * (this.d - 16) / this.h : 6;
                 }
 
-                LoadingPage.draw(var1, this.a + this.c - 2 - MainCanvas.up.b, this.b + 3, this.d - 5, this.j, this.e, this.h, this.g - this.z);
+                LoadingPage.draw(var1, this.a + this.c - 2 - MainCanvas.up.w, this.b + 3, this.d - 5, this.j, this.e, this.h, this.g - this.z);
             }
 
             LoadingPage.b(var1, this.q, this.a + 5, this.b + (this.f - this.e + 1) * this.i, this.b + this.d, this.y);

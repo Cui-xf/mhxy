@@ -1656,7 +1656,7 @@ public final class GroupModel {
         this.b.mixedUi.setDrawBackground(false);
         String[] var1 = GlobalConfig.defaultWidth <= 176 ? new String[]{"", "", "", "", ""} : GlobalConfig.HuoBiType;
         this.b.gunDongListUi.setValue(GameSceneController.b(this.w), var1, (String[]) null, (String[]) null);
-        short var2 = MainCanvas.tradebottom.c;
+        short var2 = MainCanvas.tradebottom.h;
         this.b.mixedUi.f = var2;
         this.b.gunDongListUi.b(false);
         this.b.bottomUi.setButtonText(new String[]{"确定", "返回"});
@@ -2200,7 +2200,7 @@ public final class GroupModel {
             this.b.mixedUi.draw(var1);
 
             for (int var2 = 0; var2 < this.b.gunDongListUi.f(); ++var2) {
-                int var3 = this.b.gunDongListUi.a() + this.b.gunDongListUi.c() - MainCanvas.up.b - 126;
+                int var3 = this.b.gunDongListUi.a() + this.b.gunDongListUi.c() - MainCanvas.up.w - 126;
                 int var4 = this.b.gunDongListUi.b() + 4 + var2 * this.b.gunDongListUi.e();
                 LoadingPage.a(var1, var2 == 1 ? GameSceneController.a(this.b.shareSb, (long) this.i[var2]) : this.i[var2] + "%", var3, var4, 122);
                 var3 = 122;
@@ -2534,27 +2534,27 @@ public final class GroupModel {
             LoadingPage.draw(var1);
             Graphics var3 = var1;
             GroupModel var11 = this;
-            int var4 = (this.b.mixedUi.W - 11 - (GameSceneController.goods.b << 3)) / 9;
-            int var5 = ((GlobalConfig.realHigh <= 240 ? 79 : 120) - 6 - (GameSceneController.goods.b << 2)) / 5;
+            int var4 = (this.b.mixedUi.W - 11 - (GameSceneController.goods.w << 3)) / 9;
+            int var5 = ((GlobalConfig.realHigh <= 240 ? 79 : 120) - 6 - (GameSceneController.goods.w << 2)) / 5;
             int var6 = this.b.mixedUi.X + 8 + var4;
             int var7 = this.b.mixedUi.Y + 33 + this.b.topUi.b + var5;
 
             for (int var8 = 0; var8 < 32; ++var8) {
-                MainCanvas.pngUtil.a(var3, GameSceneController.goods, (int[]) null, (aj) null, 0, 0, var8 % 8 * (GameSceneController.goods.b + var4) + var6, var8 / 8 * (GameSceneController.goods.b + var5) + var7, 0, 0);
-                var11.a.a((int) var8, var8 % 8 * (GameSceneController.goods.b + var4) + var6, var8 / 8 * (GameSceneController.goods.b + var5) + var7, (int) GameSceneController.goods.b, (int) GameSceneController.goods.c);
+                MainCanvas.pngUtil.a(var3, GameSceneController.goods, (int[]) null, (ImageSlice) null, 0, 0, var8 % 8 * (GameSceneController.goods.w + var4) + var6, var8 / 8 * (GameSceneController.goods.w + var5) + var7, 0, 0);
+                var11.a.a((int) var8, var8 % 8 * (GameSceneController.goods.w + var4) + var6, var8 / 8 * (GameSceneController.goods.w + var5) + var7, (int) GameSceneController.goods.w, (int) GameSceneController.goods.h);
             }
 
             int var12 = 0;
-            LoadingPage.d(var3, var6 + var11.a.aq * (GameSceneController.goods.b + var4), var7 + var11.a.ar * (GameSceneController.goods.b + var5), 17, 17);
+            LoadingPage.d(var3, var6 + var11.a.aq * (GameSceneController.goods.w + var4), var7 + var11.a.ar * (GameSceneController.goods.w + var5), 17, 17);
             if (GlobalStatus.iR != null) {
                 for (int var9 = var11.b.topUi.a << 5; var9 < (GlobalStatus.iR.length > var11.b.topUi.a + 1 << 5 ? var11.b.topUi.a + 1 << 5 : GlobalStatus.iR.length); ++var9) {
                     int var10 = var9 % 32;
-                    MainCanvas.pngUtil.a(var3, GameSceneController.b(GlobalStatus.iR[var9]), (int[]) null, (aj) null, 0, 0, var10 % 8 * (GameSceneController.goods.b + var4) + var6 + 1, var10 / 8 * (GameSceneController.goods.b + var5) + var7 + 1, 0, 0);
+                    MainCanvas.pngUtil.a(var3, GameSceneController.b(GlobalStatus.iR[var9]), (int[]) null, (ImageSlice) null, 0, 0, var10 % 8 * (GameSceneController.goods.w + var4) + var6 + 1, var10 / 8 * (GameSceneController.goods.w + var5) + var7 + 1, 0, 0);
                     if (GlobalStatus.iQ[var9] > 9) {
-                        MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, GlobalStatus.iQ[var9] / 10, 0, 0, 10 + var10 % 8 * (GameSceneController.goods.b + var4) + var6, var10 / 8 * (GameSceneController.goods.b + var5) + var7 + 12, 0, 0);
-                        MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, GlobalStatus.iQ[var9] % 10, 0, 0, 14 + var10 % 8 * (GameSceneController.goods.b + var4) + var6, var10 / 8 * (GameSceneController.goods.b + var5) + var7 + 12, 0, 0);
+                        MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, GlobalStatus.iQ[var9] / 10, 0, 0, 10 + var10 % 8 * (GameSceneController.goods.w + var4) + var6, var10 / 8 * (GameSceneController.goods.w + var5) + var7 + 12, 0, 0);
+                        MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, GlobalStatus.iQ[var9] % 10, 0, 0, 14 + var10 % 8 * (GameSceneController.goods.w + var4) + var6, var10 / 8 * (GameSceneController.goods.w + var5) + var7 + 12, 0, 0);
                     } else if (GlobalStatus.iQ[var9] > 1) {
-                        MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, GlobalStatus.iQ[var9] % 10, 0, 0, 14 + var10 % 8 * (GameSceneController.goods.b + var4) + var6, var10 / 8 * (GameSceneController.goods.b + var5) + var7 + 12, 0, 0);
+                        MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, GlobalStatus.iQ[var9] % 10, 0, 0, 14 + var10 % 8 * (GameSceneController.goods.w + var4) + var6, var10 / 8 * (GameSceneController.goods.w + var5) + var7 + 12, 0, 0);
                     }
 
                     if (var9 == (var11.a.ar << 3) + var11.a.aq + 32 * var11.b.topUi.a) {
@@ -2563,9 +2563,9 @@ public final class GroupModel {
                 }
 
                 if (var12 >= 0 && var12 < GlobalStatus.iR.length && var12 == (var11.a.ar << 3) + var11.a.aq + 32 * var11.b.topUi.a) {
-                    LoadingPage.a(var3, GlobalStatus.iO[var12] + "X" + GlobalStatus.iQ[var12], GlobalStatus.iZ[var12], var6 + var11.a.aq * (GameSceneController.goods.b + var4) + GameSceneController.goods.b / 2, var7 + var11.a.ar * (GameSceneController.goods.b + var5) + GameSceneController.goods.b / 2);
+                    LoadingPage.a(var3, GlobalStatus.iO[var12] + "X" + GlobalStatus.iQ[var12], GlobalStatus.iZ[var12], var6 + var11.a.aq * (GameSceneController.goods.w + var4) + GameSceneController.goods.w / 2, var7 + var11.a.ar * (GameSceneController.goods.w + var5) + GameSceneController.goods.w / 2);
                 } else if ((var11.b.topUi.a << 5) + (var11.a.ar << 3) + var11.a.aq >= GlobalStatus.iJ) {
-                    LoadingPage.a(var3, "未开启", -1L, var6 + var11.a.aq * (GameSceneController.goods.b + var4) + GameSceneController.goods.b / 2, var7 + var11.a.ar * (GameSceneController.goods.b + var5) + GameSceneController.goods.b / 2);
+                    LoadingPage.a(var3, "未开启", -1L, var6 + var11.a.aq * (GameSceneController.goods.w + var4) + GameSceneController.goods.w / 2, var7 + var11.a.ar * (GameSceneController.goods.w + var5) + GameSceneController.goods.w / 2);
                 }
             }
         }
@@ -2612,11 +2612,11 @@ public final class GroupModel {
 
     public final void c(Graphics var1) {
         if (this.a.sceneSubState == 0 && this.b.mixedUi != null) {
-            LoadingPage.a(var1, (Image) MainCanvas.tradebottom.pngImage, (short) MainCanvas.tradebottom.b, this.b.mixedUi.X + 5, this.b.mixedUi.Y + this.b.mixedUi.H - 53, this.b.mixedUi.W - 10, MainCanvas.tradebottom.c);
+            LoadingPage.a(var1, (Image) MainCanvas.tradebottom.image, (short) MainCanvas.tradebottom.w, this.b.mixedUi.X + 5, this.b.mixedUi.Y + this.b.mixedUi.H - 53, this.b.mixedUi.W - 10, MainCanvas.tradebottom.h);
             this.b.mixedUi.draw(var1);
 
             for (int var2 = 0; var2 < this.b.gunDongListUi.f(); ++var2) {
-                int var3 = this.b.gunDongListUi.a() + this.b.gunDongListUi.c() - MainCanvas.up.b - 130;
+                int var3 = this.b.gunDongListUi.a() + this.b.gunDongListUi.c() - MainCanvas.up.w - 130;
                 int var4 = this.b.gunDongListUi.b() + 4 + var2 * this.b.gunDongListUi.e();
                 LoadingPage.a(var1, var2 == 0 ? GameSceneController.a(this.b.shareSb, this.j) : "" + this.k[var2], var3, var4, 124);
                 var3 = 124;
@@ -2643,7 +2643,7 @@ public final class GroupModel {
             }
 
             long var7 = (this.j + (long) this.B * GlobalStatus.jg + (long) this.C * GlobalStatus.ji + (long) this.D * GlobalStatus.jk + (long) this.E * GlobalStatus.jm) / 300L;
-            LoadingPage.drawString(var1, (String) ("得到功勋：" + var7), (int) (this.b.mixedUi.X + this.b.mixedUi.W / 2), this.b.mixedUi.Y + this.b.mixedUi.H - 51 + (MainCanvas.plus.pngImage.getHeight() - GlobalConfig.font2_h) / 2, 17, 16776666, 0);
+            LoadingPage.drawString(var1, (String) ("得到功勋：" + var7), (int) (this.b.mixedUi.X + this.b.mixedUi.W / 2), this.b.mixedUi.Y + this.b.mixedUi.H - 51 + (MainCanvas.plus.image.getHeight() - GlobalConfig.font2_h) / 2, 17, 16776666, 0);
         }
 
     }
@@ -3055,13 +3055,13 @@ public final class GroupModel {
             if (this.b.keyCombination != 2 && this.b.keyCombination != 518) {
                 if (this.b.keyCombination != 1 && this.b.keyCombination != 514) {
                     if (this.b.keyCombination == 4 || this.b.keyCombination == 520) {
-                        GameSceneController.i_1 = GameSceneController.i_1 + 4 > this.a.f.b - GlobalConfig.defaultHigh ? this.a.f.b - GlobalConfig.defaultHigh : GameSceneController.i_1 + 4;
+                        GameSceneController.i_1 = GameSceneController.i_1 + 4 > this.a.f.mapH - GlobalConfig.defaultHigh ? this.a.f.mapH - GlobalConfig.defaultHigh : GameSceneController.i_1 + 4;
                     }
                 } else {
                     GameSceneController.i_1 = GameSceneController.i_1 - 4 < 0 ? 0 : GameSceneController.i_1 - 4;
                 }
             } else {
-                GameSceneController.h = GameSceneController.h + 4 > this.a.f.a - GlobalConfig.defaultWidth ? this.a.f.a - GlobalConfig.defaultWidth : GameSceneController.h + 4;
+                GameSceneController.h = GameSceneController.h + 4 > this.a.f.mapW - GlobalConfig.defaultWidth ? this.a.f.mapW - GlobalConfig.defaultWidth : GameSceneController.h + 4;
             }
         } else {
             GameSceneController.h = GameSceneController.h - 4 < 0 ? 0 : GameSceneController.h - 4;

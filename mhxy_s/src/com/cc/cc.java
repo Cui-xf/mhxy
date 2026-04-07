@@ -1,5 +1,7 @@
 package com.cc;
 
+import com.cc.resource.Animation;
+import com.cc.resource.ResourceManager;
 import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
@@ -12,7 +14,7 @@ public final class cc {
     private MainCanvas mainCanvas;
     private int[][] d = null;
     private int e;
-    private Frame1[] f = null;
+    private Animation[] f = null;
     private int g = 0;
     public short a = 0;
     private short h = 0;
@@ -46,15 +48,15 @@ public final class cc {
     public final void a(short var1) {
         if (this.d == null) {
             this.d = new int[4][4];
-            this.f = new Frame1[4];
+            this.f = new Animation[4];
         }
 
         if (this.p != null) {
             for (int var2 = 0; var2 < this.f.length && var2 < this.p.length; ++var2) {
-                this.f[var2] = MainCanvas.role.a((String) this.s[var2], (short) 0, (short) 0, (short) 0);
+                this.f[var2] = MainCanvas.role.getAnimationByNameFromCache((String) this.s[var2], (short) 0, (short) 0, (short) 0);
                 if (this.f[var2] == null) {
                     MainCanvas.a(this.t[var2], this.u[var2], (byte) 0, (byte) 0, this.s[var2], (short) 0, (short) 0, (short) 0);
-                    this.f[var2] = MainCanvas.role.getFrame1((int) this.v[var2], (short) 0, (short) 0, (short) 0);
+                    this.f[var2] = MainCanvas.role.getAnimationByKeyFromCache((int) this.v[var2], (short) 0, (short) 0, (short) 0);
                 }
             }
         }
@@ -262,7 +264,7 @@ public final class cc {
                         var1.drawString(this.l[var2], this.d[var2][0] + (this.d[var2][2] - GlobalConfig.font2.stringWidth(this.l[var2])) / 2, this.d[var2][1] + 4, 20);
                         var1.setColor(16777215);
                         var1.drawString(this.k[var2], this.d[var2][0] + (this.d[var2][2] - GlobalConfig.font2.stringWidth(this.k[var2])) / 2, this.d[var2][1] + this.d[var2][3] - GlobalConfig.font2_h - 4, 20);
-                        MainCanvas.pngUtil.a(var1, (Frame1) this.f[var2], (int[]) null, 0, 0, this.d[var2][0] + this.d[var2][2] / 2, this.d[var2][1] + this.d[var2][3] / 4 * 3, 20, 0);
+                        MainCanvas.pngUtil.a(var1, (Animation) this.f[var2], (int[]) null, 0, 0, this.d[var2][0] + this.d[var2][2] / 2, this.d[var2][1] + this.d[var2][3] / 4 * 3, 20, 0);
                     }
                 }
             } else if (this.a != 1 && this.a == 2) {
@@ -334,7 +336,7 @@ public final class cc {
                 this.s[var3] = var1.readUTF();
                 this.t[var3] = var1.readByte();
                 this.u[var3] = var1.readByte();
-                this.v[var3] = Page.buildResourceId((String) MainCanvas.a(this.t[var3], this.u[var3], (byte) 0, (byte) 0, false, this.s[var3]), (byte) 2);
+                this.v[var3] = ResourceManager.buildResourceId((String) MainCanvas.a(this.t[var3], this.u[var3], (byte) 0, (byte) 0, false, this.s[var3]), (byte) 2);
             }
         } else {
             this.k = null;

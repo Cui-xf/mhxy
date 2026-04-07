@@ -1,6 +1,8 @@
 package com.yinhan.kjava.main;
 
 import com.cc.*;
+import com.cc.resource.Animation;
+import com.cc.resource.ResourceManager;
 
 import javax.microedition.lcdui.*;
 import javax.microedition.rms.RecordStore;
@@ -107,42 +109,42 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     // -------------------------------------------------------------------------
     // 公共 UI 图集帧（从 publicUI 图集加载，全局共享）
     // -------------------------------------------------------------------------
-    public static Frame0 num;       // 数字帧（金币/数量显示）
-    public static Frame0 lu;         // 左上角圆角边框
-    public static Frame0 ld;         // 左下角圆角边框
-    public static Frame0 rd;         // 右下角圆角边框
-    public static Frame0 close;         // 关闭按钮图标
-    public static Frame0 title;         // 标题栏背景
-    public static Frame0 ru0;         // 右上角圆角边框（带背景）
-    public static Frame0 rd0;         // 右下角圆角边框（空）
-    public static Frame0 lu0;         // 左上角圆角边框（空）
-    public static Frame0 ld0;         // 左下角圆角边框（空）
-    public static Frame1 go_left;         // 向左滚动箭头（动画帧）
-    public static Frame1 go_right;         // 向右滚动箭头（动画帧）
-    public static Frame0 up;         // 向上箭头
-    public static Frame0 down;         // 向下箭头
-    public static Frame0 button1;         // 通用按钮背景
+    public static Sprite num;       // 数字帧（金币/数量显示）
+    public static Sprite lu;         // 左上角圆角边框
+    public static Sprite ld;         // 左下角圆角边框
+    public static Sprite rd;         // 右下角圆角边框
+    public static Sprite close;         // 关闭按钮图标
+    public static Sprite title;         // 标题栏背景
+    public static Sprite ru0;         // 右上角圆角边框（带背景）
+    public static Sprite rd0;         // 右下角圆角边框（空）
+    public static Sprite lu0;         // 左上角圆角边框（空）
+    public static Sprite ld0;         // 左下角圆角边框（空）
+    public static Animation go_left;         // 向左滚动箭头（动画帧）
+    public static Animation go_right;         // 向右滚动箭头（动画帧）
+    public static Sprite up;         // 向上箭头
+    public static Sprite down;         // 向下箭头
+    public static Sprite button1;         // 通用按钮背景
     public static NpcObject F;
-    public static Frame0 tradetitle;         // 交易面板标题栏
-    public static Frame0 tradelock01;         // 交易锁定图标01
-    public static Frame0 tradelock_02;         // 交易锁定图标02
-    public static Frame0 tradelock_03;         // 交易锁定图标03
-    public static Frame0 moneybutton;         // 金币按钮
-    public static Frame0 tradebottom;         // 交易底部栏
-    public static Frame0 plus;         // 加号按钮
-    public static Frame0 subtraction;         // 减号按钮
-    public static Frame0 equip;         // 装备图标
-    public static Frame0 nextpage;         // 下一页按钮
-    public static Frame0 backpage;         // 上一页按钮
-    public static Frame0[] equipSolt;       // 装备槽图标数组（8个，equip_0~equip_7）
-    public static Frame0[] submenu;       // 子菜单图标数组（4个，submenu_0~submenu_3）
-    public static Frame0 button_ok;         // 确认按钮（button_ok）
-    public static Frame0 button_back;         // 返回按钮（button_back）
-    public static Frame0 trigon_u;         // 向上三角箭头
-    public static Frame0 trigon_d;         // 向下三角箭头
-    public static Frame0 trigon_l;         // 向左三角箭头
-    public static Frame0 trigon_r;         // 向右三角箭头
-    public static Frame0 rim;         // 选中边框（rim）
+    public static Sprite tradetitle;         // 交易面板标题栏
+    public static Sprite tradelock01;         // 交易锁定图标01
+    public static Sprite tradelock_02;         // 交易锁定图标02
+    public static Sprite tradelock_03;         // 交易锁定图标03
+    public static Sprite moneybutton;         // 金币按钮
+    public static Sprite tradebottom;         // 交易底部栏
+    public static Sprite plus;         // 加号按钮
+    public static Sprite subtraction;         // 减号按钮
+    public static Sprite equip;         // 装备图标
+    public static Sprite nextpage;         // 下一页按钮
+    public static Sprite backpage;         // 上一页按钮
+    public static Sprite[] equipSolt;       // 装备槽图标数组（8个，equip_0~equip_7）
+    public static Sprite[] submenu;       // 子菜单图标数组（4个，submenu_0~submenu_3）
+    public static Sprite button_ok;         // 确认按钮（button_ok）
+    public static Sprite button_back;         // 返回按钮（button_back）
+    public static Sprite trigon_u;         // 向上三角箭头
+    public static Sprite trigon_d;         // 向下三角箭头
+    public static Sprite trigon_l;         // 向左三角箭头
+    public static Sprite trigon_r;         // 向右三角箭头
+    public static Sprite rim;         // 选中边框（rim）
     /**
      * 充值特效图标数组（chq-1 ~ chq-7，共7张）
      */
@@ -162,31 +164,31 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     /**
      * 角色图集（/role/role.rpg）
      */
-    public static Page role;
+    public static ResourceManager role;
     /**
      * 通用 UI 图集（/ui.rpg）
      */
-    public static Page ui;
+    public static ResourceManager ui;
     /**
      * 游戏场景存档数据 Page
      */
-    public static Page ad;
+    public static ResourceManager ad;
     /**
      * UI 系统初始化用 Page
      */
-    public static Page ae;
+    public static ResourceManager ae;
     /**
      * 图标图集（/icon/icon.rpg）
      */
-    public static Page icon;
+    public static ResourceManager icon;
     /**
      * 公共 UI 图集（/publicUI.rpg，存放全局共用帧）
      */
-    public static Page publicUI;
+    public static ResourceManager publicUI;
     /**
      * 宠物战斗图集（/petfight/petfight.rpg）
      */
-    public static Page petfight;
+    public static ResourceManager petfight;
 
     // -------------------------------------------------------------------------
     // 控制器 / 辅助工具
@@ -316,15 +318,15 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     /**
      * Logo 动画 Page（包含蝴蝶飞舞帧）
      */
-    private static Page cartoon = null;
+    private static ResourceManager cartoon = null;
     /**
      * 蝴蝶飞舞主动画帧
      */
-    private static Frame1 hudie;
+    private static Animation hudie;
     /**
      * 蝴蝶飞舞备用动画帧（循环播放时交替使用）
      */
-    private static Frame1 hudie_2;
+    private static Animation hudie_2;
     /**
      * 主菜单页是否已完成初始化
      */
@@ -424,11 +426,11 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     /**
      * 选中角色的动画帧数组（用于角色预览）
      */
-    private Frame1[] roleFrame_1;
+    private Animation[] roleFrame_1;
     /**
      * 未选中角色的静止帧数组
      */
-    private Frame1[] roleFrame_2;
+    private Animation[] roleFrame_2;
     /**
      * 选中角色所在列（0 或 1）
      */
@@ -1151,15 +1153,15 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 int var3 = this.mixedUi.Y + 45;
                                 int var4 = this.mixedUi.X + 5 + 80 + (this.mixedUi.W - 80 - 13 - var2) / 2;
                                 graphics.drawString(GlobalConfig.manPaiName[this.bE], this.bE == 2 ? var4 + GlobalConfig.font2_w / 2 : var4, var3, 20);
-                                graphics.drawImage(trigon_l.pngImage, var4 - 20, var3, 20);
-                                this.a(0, var4 - 20, var3, trigon_l.b, trigon_l.c);
-                                graphics.drawImage(trigon_r.pngImage, var4 + var2 + 15, var3, 20);
-                                this.a(1, var4 + var2 + 15, var3, trigon_r.b, trigon_r.c);
+                                graphics.drawImage(trigon_l.image, var4 - 20, var3, 20);
+                                this.a(0, var4 - 20, var3, trigon_l.w, trigon_l.h);
+                                graphics.drawImage(trigon_r.image, var4 + var2 + 15, var3, 20);
+                                this.a(1, var4 + var2 + 15, var3, trigon_r.w, trigon_r.h);
                                 graphics.drawString(this.bF == 0 ? "男" : "女", this.mixedUi.X + 5 + 80 + (this.mixedUi.W - 80 - 13 - GlobalConfig.font2_w) / 2, var3 + GlobalConfig.font2_h + 10, 20);
-                                graphics.drawImage(trigon_l.pngImage, var4 - 20, var3 + GlobalConfig.font2_h + 10, 20);
-                                this.a(2, var4 - 20, var3 + GlobalConfig.font2_h + 10, trigon_l.b, trigon_l.c);
-                                graphics.drawImage(trigon_r.pngImage, var4 + var2 + 15, var3 + GlobalConfig.font2_h + 10, 20);
-                                this.a(3, var4 + var2 + 15, var3 + GlobalConfig.font2_h + 10, trigon_l.b, trigon_l.c);
+                                graphics.drawImage(trigon_l.image, var4 - 20, var3 + GlobalConfig.font2_h + 10, 20);
+                                this.a(2, var4 - 20, var3 + GlobalConfig.font2_h + 10, trigon_l.w, trigon_l.h);
+                                graphics.drawImage(trigon_r.image, var4 + var2 + 15, var3 + GlobalConfig.font2_h + 10, 20);
+                                this.a(3, var4 + var2 + 15, var3 + GlobalConfig.font2_h + 10, trigon_l.w, trigon_l.h);
                                 graphics.drawString("昵称：", this.mixedUi.X + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10 << 1), 20);
                                 LoadingPage.c(graphics, this.mixedUi.X + 5 + 80 + 5, var3 + (GlobalConfig.font2_h + 10) * 3 - 1, this.mixedUi.W - 80 - this.logo_btn_random.getWidth() - 20, GlobalConfig.font2_h, 0);
                                 LoadingPage.drawString(graphics, this.ay, this.mixedUi.X + 5 + 80 + 5 + 2, var3 + (GlobalConfig.font2_h + 10) * 3, 20, 16711639);
@@ -1178,7 +1180,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 }
 
                                 if (this.roleFrame_1 != null && this.roleFrame_1[this.bF * 3 + this.bE] != null) {
-                                    pngUtil.a(graphics, (Frame1) this.roleFrame_1[this.bF * 3 + this.bE], (int[]) null, 0, 0, this.mixedUi.X + 40 + 5, this.mixedUi.Y + 32 + this.roleFrame_1[this.bF * 3 + this.bE].j() + (this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? (this.bB << 1) + 6 : 120) - this.roleFrame_1[this.bF * 3 + this.bE].j()) / 2, 20, 0);
+                                    pngUtil.a(graphics, (Animation) this.roleFrame_1[this.bF * 3 + this.bE], (int[]) null, 0, 0, this.mixedUi.X + 40 + 5, this.mixedUi.Y + 32 + this.roleFrame_1[this.bF * 3 + this.bE].j() + (this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? (this.bB << 1) + 6 : 120) - this.roleFrame_1[this.bF * 3 + this.bE].j()) / 2, 20, 0);
                                 }
                             }
                             return;
@@ -1465,10 +1467,10 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     }
 
     public void a() {
-        role.clear();
-        ae.clear();
-        icon.clear();
-        petfight.clear();
+        role.clearAllFrame();
+        ae.clearAllFrame();
+        icon.clearAllFrame();
+        petfight.clearAllFrame();
         this.mixedUi = new MixedUi();
         this.gunDongListUi = new GunDongListUi();
         this.bottomUi = new BottomUi();
@@ -1779,10 +1781,10 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             }
 
             if (cartoon == null) {
-                (cartoon = new Page("/", "cartoon")).loadRpg();
-                if (cartoon.framesNum() != 0) {
-                    hudie = cartoon.getFrame1("hudie");
-                    hudie_2 = cartoon.getFrame1("hudie_2");
+                (cartoon = new ResourceManager("/", "cartoon")).loadResource();
+                if (cartoon.getFrameSize() != 0) {
+                    hudie = cartoon.getAnimationByNameFromCache("hudie");
+                    hudie_2 = cartoon.getAnimationByNameFromCache("hudie_2");
                 }
             }
 
@@ -1879,12 +1881,12 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
         if (hudie != null) {
             PngUtil.animate(hudie, this.frameStartTs);
-            pngUtil.a(graphics, (Frame1) hudie, (int[]) null, 0, 0, GlobalConfig.defaultWidth - 100, GlobalConfig.defaultHigh - 100, 0, 0);
+            pngUtil.a(graphics, (Animation) hudie, (int[]) null, 0, 0, GlobalConfig.defaultWidth - 100, GlobalConfig.defaultHigh - 100, 0, 0);
         }
 
         if (hudie_2 != null) {
             PngUtil.animate(hudie_2, this.frameStartTs);
-            pngUtil.a(graphics, (Frame1) hudie_2, (int[]) null, 0, 0, GlobalConfig.defaultWidth - 100, GlobalConfig.defaultHigh - 100, 0, 0);
+            pngUtil.a(graphics, (Animation) hudie_2, (int[]) null, 0, 0, GlobalConfig.defaultWidth - 100, GlobalConfig.defaultHigh - 100, 0, 0);
         }
 
         if (this.light_0 != null && this.light_1 != null && this.mainPageButtonXY != null) {
@@ -2080,10 +2082,10 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         }
     }
 
-    public Frame1 loadRoleFrame(Frame1 var1, byte roleGender, byte roleJob, byte var4, byte var5, boolean var6) {
+    public Animation loadRoleFrame(Animation var1, byte roleGender, byte roleJob, byte var4, byte var5, boolean var6) {
         String resId = "f" + GlobalConfig.roleGenderResIds[roleGender] + GlobalConfig.roleJobResIds[roleJob] + var5 + GlobalConfig.X[3] + (var6 ? 1 : 2);
         role.loadResource(resId);
-        Frame1 frame = role.getFrame1(resId);
+        Animation frame = role.getAnimationByNameFromCache(resId);
         if (frame != null) {
             frame = frame.copy();
         }
@@ -2110,8 +2112,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             this.bB = 45;
             this.startCreateRolePage();
         } else {
-            this.roleFrame_1 = new Frame1[roleNum];
-            this.roleFrame_2 = new Frame1[roleNum];
+            this.roleFrame_1 = new Animation[roleNum];
+            this.roleFrame_2 = new Animation[roleNum];
 
             for (int i = 0; i < roleNum; ++i) {
                 this.roleFrame_1[i] = this.loadRoleFrame(this.roleFrame_1[i], GlobalStatus.roleGenderList[i], GlobalStatus.roleJobList[i], (byte) 3, (byte) 1, false);
@@ -2264,23 +2266,23 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     if (this.roleFrame_1[var6] != null && var6 == (this.selectActorRow << 1) + this.selectActorClo) {
                         if (GlobalStatus.roleGenderList[var6] == 0) {
                             if (GlobalStatus.roleJobList[var6] == 0) {
-                                pngUtil.a(var1, (Frame1) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 + 6, this.actorList[var6][1] + 45 + 1, 20, 0);
+                                pngUtil.a(var1, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 + 6, this.actorList[var6][1] + 45 + 1, 20, 0);
                             } else {
-                                pngUtil.a(var1, (Frame1) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 + 9, this.actorList[var6][1] + 45 + 16, 20, 0);
+                                pngUtil.a(var1, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 + 9, this.actorList[var6][1] + 45 + 16, 20, 0);
                             }
                         } else if (GlobalStatus.roleGenderList[var6] == 1) {
                             if (GlobalStatus.roleJobList[var6] == 0) {
-                                pngUtil.a(var1, (Frame1) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 + 8, this.actorList[var6][1] + 45 + 14, 20, 0);
+                                pngUtil.a(var1, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 + 8, this.actorList[var6][1] + 45 + 14, 20, 0);
                             } else {
-                                pngUtil.a(var1, (Frame1) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 1, this.actorList[var6][1] + 45 + 9, 20, 0);
+                                pngUtil.a(var1, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 1, this.actorList[var6][1] + 45 + 9, 20, 0);
                             }
                         } else if (GlobalStatus.roleJobList[var6] == 0) {
-                            pngUtil.a(var1, (Frame1) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 9, this.actorList[var6][1] + 45 + 10, 20, 0);
+                            pngUtil.a(var1, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 9, this.actorList[var6][1] + 45 + 10, 20, 0);
                         } else {
-                            pngUtil.a(var1, (Frame1) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 3, this.actorList[var6][1] + 45 + 12, 20, 0);
+                            pngUtil.a(var1, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 3, this.actorList[var6][1] + 45 + 12, 20, 0);
                         }
                     } else if (this.roleFrame_2 != null && var6 != (this.selectActorRow << 1) + this.selectActorClo) {
-                        pngUtil.a(var1, (Frame1) this.roleFrame_2[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 18, this.actorList[var6][1] + 45, 20, 0);
+                        pngUtil.a(var1, (Animation) this.roleFrame_2[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 18, this.actorList[var6][1] + 45, 20, 0);
                     }
                 }
             }
@@ -2333,7 +2335,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     private void startCreateRolePage() {
         this.loadingMainPageBase();
         this.logo_btn_random = createImage("/images/logo_btn_random.png");
-        this.roleFrame_1 = new Frame1[6];
+        this.roleFrame_1 = new Animation[6];
 
         for (int var1 = 0; var1 < this.roleFrame_1.length; ++var1) {
             this.roleFrame_1[var1] = this.loadRoleFrame(this.roleFrame_1[var1], (byte) (var1 % 3), (byte) (var1 < 3 ? 0 : 1), (byte) 3, (byte) 1, false);
@@ -3886,9 +3888,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         this.cc = var1 / 16 + (var1 % 16 == 0 ? 0 : 1);
         this.cd = var2 / 16 + (var2 % 16 == 0 ? 0 : 1);
         if (this.ca != this.cc || this.cb != this.cd) {
-            for (int var4 = 0; var4 < gameSceneController.f.i.length; ++var4) {
-                for (int var5 = 0; var5 < gameSceneController.f.i[var4].length; ++var5) {
-                    if (gameSceneController.f.i[var4][var5] == 1 && var1 >= var4 * gameSceneController.f.e - 15 && var1 < var4 * gameSceneController.f.e + gameSceneController.f.e - 15 && var2 >= var5 * gameSceneController.f.f - gameSceneController.f.f && var2 < var5 * gameSceneController.f.f) {
+            for (int var4 = 0; var4 < gameSceneController.f.collisionMap.length; ++var4) {
+                for (int var5 = 0; var5 < gameSceneController.f.collisionMap[var4].length; ++var5) {
+                    if (gameSceneController.f.collisionMap[var4][var5] == 1 && var1 >= var4 * gameSceneController.f.collisionW - 15 && var1 < var4 * gameSceneController.f.collisionW + gameSceneController.f.collisionW - 15 && var2 >= var5 * gameSceneController.f.collisionH - gameSceneController.f.collisionH && var2 < var5 * gameSceneController.f.collisionH) {
                         return;
                     }
                 }
@@ -4045,24 +4047,24 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
      * 7. c()               — 跳转到登录/账号选择页（设置 touchPageCase）
      */
     static void loadResource(MainCanvas mainCanvas) {
-        ui = new Page("/", "ui");
-        ui.loadRpg();
+        ui = new ResourceManager("/", "ui");
+        ui.loadResource();
 
-        publicUI = new Page("/", "publicUI");
-        publicUI.loadRpg();
+        publicUI = new ResourceManager("/", "publicUI");
+        publicUI.loadResource();
 
-        if (publicUI.framesNum() != 0) {
-            GameSceneController.money = publicUI.getFrame("money");
-            GameSceneController.goods = publicUI.getFrame("goods");
-            GameSceneController.chat = publicUI.getFrame("chat");
-            GameSceneController.elite = publicUI.getFrame("elite");
-            num = publicUI.getFrame("num");
+        if (publicUI.getFrameSize() != 0) {
+            GameSceneController.money = publicUI.getSpriteByNameFromCache("money");
+            GameSceneController.goods = publicUI.getSpriteByNameFromCache("goods");
+            GameSceneController.chat = publicUI.getSpriteByNameFromCache("chat");
+            GameSceneController.elite = publicUI.getSpriteByNameFromCache("elite");
+            num = publicUI.getSpriteByNameFromCache("num");
 //            publicUI.getFrame1("email");
-            Frame0 mail_2 = publicUI.getFrame("mail_2");
-            aj[] var1 = mail_2.d;
+            Sprite mail_2 = publicUI.getSpriteByNameFromCache("mail_2");
+            ImageSlice[] var1 = mail_2.slices;
 
             for (int var3 = 1; var3 < var1.length; ++var3) {
-                Image var4 = Image.createImage(mail_2.pngImage, var1[var3].a, var1[var3].b, var1[var3].c, var1[var3].d, 0);
+                Image var4 = Image.createImage(mail_2.image, var1[var3].x, var1[var3].y, var1[var3].w, var1[var3].h, 0);
                 if ((var3 & 1) == 0) {
                     be_1.e[var3 >> 2] = var4;
                 } else {
@@ -4070,70 +4072,70 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 }
             }
 
-            talk_01 = publicUI.getFrame("talk_01").pngImage;
-            close = publicUI.getFrame("close");
-            title = publicUI.getFrame("title");
-            button1 = publicUI.getFrame("button1");
-            lu = publicUI.getFrame("lu");
-            ld = publicUI.getFrame("ld");
-            rd = publicUI.getFrame("rd");
-            rd0 = publicUI.getFrame("rd0");
-            ru0 = publicUI.getFrame("ru0");
-            lu0 = publicUI.getFrame("lu0");
-            ld0 = publicUI.getFrame("ld0");
-            up = publicUI.getFrame("up");
-            down = publicUI.getFrame("down");
-            go_left = publicUI.getFrame1("go-left");
-            go_right = publicUI.getFrame1("go-right");
+            talk_01 = publicUI.getSpriteByNameFromCache("talk_01").image;
+            close = publicUI.getSpriteByNameFromCache("close");
+            title = publicUI.getSpriteByNameFromCache("title");
+            button1 = publicUI.getSpriteByNameFromCache("button1");
+            lu = publicUI.getSpriteByNameFromCache("lu");
+            ld = publicUI.getSpriteByNameFromCache("ld");
+            rd = publicUI.getSpriteByNameFromCache("rd");
+            rd0 = publicUI.getSpriteByNameFromCache("rd0");
+            ru0 = publicUI.getSpriteByNameFromCache("ru0");
+            lu0 = publicUI.getSpriteByNameFromCache("lu0");
+            ld0 = publicUI.getSpriteByNameFromCache("ld0");
+            up = publicUI.getSpriteByNameFromCache("up");
+            down = publicUI.getSpriteByNameFromCache("down");
+            go_left = publicUI.getAnimationByNameFromCache("go-left");
+            go_right = publicUI.getAnimationByNameFromCache("go-right");
             PopUpWindow.backImage = title;
             PopUpWindow.closeButton = close;
             PopUpWindow.zhuangShi1 = lu;
             PopUpWindow.zhuangShi2 = ld0;
             PopUpWindow.zhuangShi3 = rd0;
-            tradetitle = publicUI.getFrame("tradetitle");
-            tradebottom = publicUI.getFrame("tradebottom");
-            moneybutton = publicUI.getFrame("moneybutton");
-            tradelock01 = publicUI.getFrame("tradelock01");
-            tradelock_02 = publicUI.getFrame("tradelock_02");
-            tradelock_03 = publicUI.getFrame("tradelock_03");
-            plus = publicUI.getFrame("plus");
-            subtraction = publicUI.getFrame("subtraction");
-            equip = publicUI.getFrame("equip");
-            nextpage = publicUI.getFrame("nextpage");
-            backpage = publicUI.getFrame("backpage");
+            tradetitle = publicUI.getSpriteByNameFromCache("tradetitle");
+            tradebottom = publicUI.getSpriteByNameFromCache("tradebottom");
+            moneybutton = publicUI.getSpriteByNameFromCache("moneybutton");
+            tradelock01 = publicUI.getSpriteByNameFromCache("tradelock01");
+            tradelock_02 = publicUI.getSpriteByNameFromCache("tradelock_02");
+            tradelock_03 = publicUI.getSpriteByNameFromCache("tradelock_03");
+            plus = publicUI.getSpriteByNameFromCache("plus");
+            subtraction = publicUI.getSpriteByNameFromCache("subtraction");
+            equip = publicUI.getSpriteByNameFromCache("equip");
+            nextpage = publicUI.getSpriteByNameFromCache("nextpage");
+            backpage = publicUI.getSpriteByNameFromCache("backpage");
 
-            equipSolt = new Frame0[8];
+            equipSolt = new Sprite[8];
             for (int i = 0; i < equipSolt.length; ++i) {
-                equipSolt[i] = publicUI.getFrame("equip_" + i);
+                equipSolt[i] = publicUI.getSpriteByNameFromCache("equip_" + i);
             }
 
-            submenu = new Frame0[4];
+            submenu = new Sprite[4];
             for (int var21 = 0; var21 < submenu.length; ++var21) {
-                submenu[var21] = publicUI.getFrame("submenu_" + var21);
+                submenu[var21] = publicUI.getSpriteByNameFromCache("submenu_" + var21);
             }
 
-            button_ok = publicUI.getFrame("button_ok");
-            button_back = publicUI.getFrame("button_back");
-            trigon_u = publicUI.getFrame("trigon_u");
-            trigon_d = publicUI.getFrame("trigon_d");
-            trigon_l = publicUI.getFrame("trigon_l");
-            trigon_r = publicUI.getFrame("trigon_r");
-            GameSceneController.select = publicUI.getFrame1("select");
-            rim = publicUI.getFrame("rim");
+            button_ok = publicUI.getSpriteByNameFromCache("button_ok");
+            button_back = publicUI.getSpriteByNameFromCache("button_back");
+            trigon_u = publicUI.getSpriteByNameFromCache("trigon_u");
+            trigon_d = publicUI.getSpriteByNameFromCache("trigon_d");
+            trigon_l = publicUI.getSpriteByNameFromCache("trigon_l");
+            trigon_r = publicUI.getSpriteByNameFromCache("trigon_r");
+            GameSceneController.select = publicUI.getAnimationByNameFromCache("select");
+            rim = publicUI.getSpriteByNameFromCache("rim");
 //            publicUI.getFrame("cursor");
 //            publicUI.getFrame("scorebar");
 
             chq = new Image[7];
             for (int var22 = 0; var22 < chq.length; ++var22) {
-                chq[var22] = publicUI.getFrame("chq-" + (var22 + 1)).pngImage;
+                chq[var22] = publicUI.getSpriteByNameFromCache("chq-" + (var22 + 1)).image;
             }
 
             moZhuan1 = createImage("/images/mz_1.png");
         }
 
-        role = new Page("/role/", "role");
-        petfight = new Page("/petfight/", "petfight");
-        icon = new Page("/icon/", "icon");
+        role = new ResourceManager("/role/", "role");
+        petfight = new ResourceManager("/petfight/", "petfight");
+        icon = new ResourceManager("/icon/", "icon");
 
         mainCanvas.mixedUi = new MixedUi();
         mainCanvas.popUpWindow = PopUpWindow.getInst();

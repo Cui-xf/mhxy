@@ -303,7 +303,7 @@ public final class k {
                      if (this.c == -1) {
                         this.i.a((byte)0, (byte[])(new byte[]{7}));
                      } else {
-                        LoadingPage.a(this.g[this.a][0] + GameSceneController.goods.b / 2, this.g[this.a][1] + GameSceneController.goods.b / 2, new String[]{"合成", "查看", "取消"}, false);
+                        LoadingPage.a(this.g[this.a][0] + GameSceneController.goods.w / 2, this.g[this.a][1] + GameSceneController.goods.w / 2, new String[]{"合成", "查看", "取消"}, false);
                         this.i.sceneSubState = 1;
                      }
                   } else if (this.a == 1) {
@@ -312,14 +312,14 @@ public final class k {
                      } else if (this.d == -1) {
                         this.i.a((byte)0, (byte[])(new byte[]{7}));
                      } else {
-                        LoadingPage.a(this.g[this.a][0] + GameSceneController.goods.b / 2, this.g[this.a][1] + GameSceneController.goods.b / 2, new String[]{"取出"}, false);
-                        System.out.println("GameSys.goods.width:" + GameSceneController.goods.b);
+                        LoadingPage.a(this.g[this.a][0] + GameSceneController.goods.w / 2, this.g[this.a][1] + GameSceneController.goods.w / 2, new String[]{"取出"}, false);
+                        System.out.println("GameSys.goods.width:" + GameSceneController.goods.w);
                         this.i.sceneSubState = 1;
                      }
                   }
                } else if (this.b == 1) {
                   if (this.d(this.a) != -1) {
-                     LoadingPage.a(this.g[this.a + 2][0] + GameSceneController.goods.b / 2, this.g[this.a + 2][1] + GameSceneController.goods.b / 2, new String[]{"取出"}, false);
+                     LoadingPage.a(this.g[this.a + 2][0] + GameSceneController.goods.w / 2, this.g[this.a + 2][1] + GameSceneController.goods.w / 2, new String[]{"取出"}, false);
                      this.i.sceneSubState = 1;
                   } else if (this.c != -1 && this.d != -1) {
                      this.i.a((byte)0, (byte[])(new byte[]{8}));
@@ -398,7 +398,7 @@ public final class k {
    }
 
    public final void a(Graphics var1) {
-      short var2 = GameSceneController.goods.b;
+      short var2 = GameSceneController.goods.w;
       if (this.j.mixedUi != null) {
          this.j.mixedUi.draw(var1);
          LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32, this.j.mixedUi.W - 11, this.w, 1);
@@ -429,19 +429,19 @@ public final class k {
             this.g[var5][3] = 17;
          }
 
-         var1.drawImage(GameSceneController.goods.pngImage, this.g[var5][0], this.g[var5][1], 20);
+         var1.drawImage(GameSceneController.goods.image, this.g[var5][0], this.g[var5][1], 20);
       }
 
       var1.setColor(255);
       var1.drawString(this.h[0], this.g[0][0] - 2, this.g[0][1] + (var2 - GlobalConfig.font2_h) / 2, 24);
       var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] - var2 + (var2 - GlobalConfig.font2_h) / 2, 20);
-      Frame0 var13;
+      Sprite var13;
       if (this.c != -1 && (var13 = GameSceneController.b(this.k)) != null) {
-         var1.drawImage(var13.pngImage, this.g[0][0] + 1, this.g[0][1] + 1, 20);
+         var1.drawImage(var13.image, this.g[0][0] + 1, this.g[0][1] + 1, 20);
       }
 
       if (this.d != -1 && (var13 = GameSceneController.b(this.n)) != null) {
-         var1.drawImage(var13.pngImage, this.g[1][0] + 1, this.g[1][1] + 1, 20);
+         var1.drawImage(var13.image, this.g[1][0] + 1, this.g[1][1] + 1, 20);
       }
 
       if (this.p != null && this.p.length > 0) {
@@ -449,7 +449,7 @@ public final class k {
 
          for(int var12 = 0; var12 < this.p.length; ++var12) {
             if ((var13 = GameSceneController.b(this.p[var12])) != null) {
-               var1.drawImage(var13.pngImage, this.g[2 + this.f[var12]][0] + 1, this.g[2 + this.f[var12]][1] + 1, 20);
+               var1.drawImage(var13.image, this.g[2 + this.f[var12]][0] + 1, this.g[2 + this.f[var12]][1] + 1, 20);
             }
          }
       }
@@ -474,9 +474,9 @@ public final class k {
 
       if (this.i.sceneSubState == 0 && (this.v != null || this.v != "")) {
          if ((this.b != 0 || this.a != 1) && this.b == 1) {
-            LoadingPage.b(var1, this.v, this.g[this.a + 2][0] + GameSceneController.goods.b / 2, this.g[this.a + 2][1] + GameSceneController.goods.b / 2, GlobalConfig.defaultHigh - 5, 1);
+            LoadingPage.b(var1, this.v, this.g[this.a + 2][0] + GameSceneController.goods.w / 2, this.g[this.a + 2][1] + GameSceneController.goods.w / 2, GlobalConfig.defaultHigh - 5, 1);
          } else {
-            LoadingPage.b(var1, this.v, this.g[this.a][0] + GameSceneController.goods.b / 2, this.g[this.a][1] + GameSceneController.goods.b / 2, GlobalConfig.defaultHigh - 5, 1);
+            LoadingPage.b(var1, this.v, this.g[this.a][0] + GameSceneController.goods.w / 2, this.g[this.a][1] + GameSceneController.goods.w / 2, GlobalConfig.defaultHigh - 5, 1);
          }
       }
 

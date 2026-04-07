@@ -1,5 +1,8 @@
 package com.cc;
 
+import com.cc.resource.Animation;
+import com.cc.resource.ResourceManager;
+
 import java.io.DataInputStream;
 import java.io.IOException;
 import javax.microedition.lcdui.Graphics;
@@ -8,7 +11,7 @@ public final class bv {
    public short a = 4;
    public short b = 4;
    public int c;
-   public Frame1 d;
+   public Animation d;
    public short e;
    public short f;
    public short g;
@@ -37,7 +40,7 @@ public final class bv {
       byte var2 = var1.readByte();
       this.j = new int[var2];
       this.k = new String[var2];
-      this.h = Page.buildResourceId((String)String.valueOf(this.g), (byte)2);
+      this.h = ResourceManager.buildResourceId((String)String.valueOf(this.g), (byte)2);
 
       for(int var3 = 0; var3 < var2; ++var3) {
          this.j[var3] = var1.readInt();
@@ -84,8 +87,8 @@ public final class bv {
    }
 
    public final void a(Graphics var1, PngUtil var2, int var3, int var4, byte var5) {
-      if (this.d != null && this.d.k != null) {
-         var2.a(var1, this.d.k[this.d.f], this.d.g(), this.d.h(), (int[])null, var3, var4, this.e, this.f, 20, 0);
+      if (this.d != null && this.d.spritePieces != null) {
+         var2.a(var1, this.d.spritePieces[this.d.currentFrameIndex], this.d.g(), this.d.h(), (int[])null, var3, var4, this.e, this.f, 20, 0);
       }
 
    }

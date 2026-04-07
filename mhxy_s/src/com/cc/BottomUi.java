@@ -40,7 +40,7 @@ public final class BottomUi extends BaseUi {
    }
 
    public static int b() {
-      return MainCanvas.button1 != null ? MainCanvas.button1.c : GlobalConfig.font2_h;
+      return MainCanvas.button1 != null ? MainCanvas.button1.h : GlobalConfig.font2_h;
    }
 
    // 设置单按钮模式的文案。
@@ -60,20 +60,20 @@ public final class BottomUi extends BaseUi {
    // 根据当前文案数量，计算按钮栏内各个按钮的落点和点击区域。
    public final void a(int var1, int var2, int var3, int var4) {
       this.c = var1;
-      this.d = var2 + var4 - MainCanvas.button1.c;
+      this.d = var2 + var4 - MainCanvas.button1.h;
       this.e = var3;
       if (this.a != null) {
-         this.b(var1 + (var3 - GlobalConfig.font2.stringWidth(this.a)) / 2, this.d, GlobalConfig.font2.stringWidth(this.a), MainCanvas.button1.c);
+         this.b(var1 + (var3 - GlobalConfig.font2.stringWidth(this.a)) / 2, this.d, GlobalConfig.font2.stringWidth(this.a), MainCanvas.button1.h);
       } else if (this.buttonText != null && this.buttonText.length == 2) {
-         this.b(var1 + 10, this.d, GlobalConfig.font2.stringWidth(this.buttonText[0]), MainCanvas.button1.c);
-         this.c(var1 + var3 - 10 - GlobalConfig.font2.stringWidth(this.buttonText[1]), this.d, GlobalConfig.font2.stringWidth(this.buttonText[1]), MainCanvas.button1.c);
+         this.b(var1 + 10, this.d, GlobalConfig.font2.stringWidth(this.buttonText[0]), MainCanvas.button1.h);
+         this.c(var1 + var3 - 10 - GlobalConfig.font2.stringWidth(this.buttonText[1]), this.d, GlobalConfig.font2.stringWidth(this.buttonText[1]), MainCanvas.button1.h);
       } else {
          if (this.buttonText != null && this.buttonText.length == 3) {
-            this.b(var1 + 10, this.d, GlobalConfig.font2.stringWidth(this.buttonText[0]), MainCanvas.button1.c);
+            this.b(var1 + 10, this.d, GlobalConfig.font2.stringWidth(this.buttonText[0]), MainCanvas.button1.h);
             int var10001 = (var1 + var3 - 10 - GlobalConfig.font2.stringWidth(this.buttonText[1])) / 2;
             int var10002 = this.d;
             int var10003 = GlobalConfig.font2.stringWidth(this.buttonText[1]);
-            short var7 = MainCanvas.button1.c;
+            short var7 = MainCanvas.button1.h;
             int var6 = var10003;
             int var5 = var10002;
             var4 = var10001;
@@ -81,7 +81,7 @@ public final class BottomUi extends BaseUi {
             this.o = var5;
             this.p = var6;
             this.q = var7;
-            this.c(var1 + var3 - 10 - GlobalConfig.font2.stringWidth(this.buttonText[2]), this.d, GlobalConfig.font2.stringWidth(this.buttonText[2]), MainCanvas.button1.c);
+            this.c(var1 + var3 - 10 - GlobalConfig.font2.stringWidth(this.buttonText[2]), this.d, GlobalConfig.font2.stringWidth(this.buttonText[2]), MainCanvas.button1.h);
          }
 
       }
@@ -160,23 +160,23 @@ public final class BottomUi extends BaseUi {
    // 绘制底部按钮栏及可选的左右翻页箭头。
    public final void a(Graphics var1) {
       if (this.a != null || this.buttonText != null) {
-         LoadingPage.a(var1, (Image) MainCanvas.button1.pngImage, (short) MainCanvas.button1.b, this.c, this.d, this.e, MainCanvas.button1.c);
+         LoadingPage.a(var1, (Image) MainCanvas.button1.image, (short) MainCanvas.button1.w, this.c, this.d, this.e, MainCanvas.button1.h);
          var1.setFont(GlobalConfig.font2);
          if (this.a != null) {
-            LoadingPage.drawString(var1, (String)this.a, (int)this.f, this.g + GlobalConfig.getCzjz(MainCanvas.button1.c), 20, this.r, 0);
-            this.a(var1, this.f - 5 - MainCanvas.backpage.b, this.f + 5 + GlobalConfig.font2.stringWidth(this.a), this.g + 4);
+            LoadingPage.drawString(var1, (String)this.a, (int)this.f, this.g + GlobalConfig.getCzjz(MainCanvas.button1.h), 20, this.r, 0);
+            this.a(var1, this.f - 5 - MainCanvas.backpage.w, this.f + 5 + GlobalConfig.font2.stringWidth(this.a), this.g + 4);
          } else {
             if (this.buttonText != null) {
                if (this.buttonText.length == 2) {
-                  LoadingPage.drawString(var1, (String)this.buttonText[0], (int)this.f, this.g + GlobalConfig.getCzjz(MainCanvas.button1.c), 20, this.r, 0);
-                  LoadingPage.drawString(var1, (String)this.buttonText[1], (int)this.j, this.k + GlobalConfig.getCzjz(MainCanvas.button1.c), 20, this.s, 0);
+                  LoadingPage.drawString(var1, (String)this.buttonText[0], (int)this.f, this.g + GlobalConfig.getCzjz(MainCanvas.button1.h), 20, this.r, 0);
+                  LoadingPage.drawString(var1, (String)this.buttonText[1], (int)this.j, this.k + GlobalConfig.getCzjz(MainCanvas.button1.h), 20, this.s, 0);
                } else if (this.buttonText.length == 3) {
-                  LoadingPage.drawString(var1, (String)this.buttonText[0], (int)this.f, this.g + GlobalConfig.getCzjz(MainCanvas.button1.c), 20, this.r, 0);
-                  LoadingPage.drawString(var1, (String)this.buttonText[1], (int)this.n, this.o + GlobalConfig.getCzjz(MainCanvas.button1.c), 20, this.t, 0);
-                  LoadingPage.drawString(var1, (String)this.buttonText[2], (int)this.j, this.k + GlobalConfig.getCzjz(MainCanvas.button1.c), 20, this.s, 0);
+                  LoadingPage.drawString(var1, (String)this.buttonText[0], (int)this.f, this.g + GlobalConfig.getCzjz(MainCanvas.button1.h), 20, this.r, 0);
+                  LoadingPage.drawString(var1, (String)this.buttonText[1], (int)this.n, this.o + GlobalConfig.getCzjz(MainCanvas.button1.h), 20, this.t, 0);
+                  LoadingPage.drawString(var1, (String)this.buttonText[2], (int)this.j, this.k + GlobalConfig.getCzjz(MainCanvas.button1.h), 20, this.s, 0);
                }
 
-               this.a(var1, this.f + GlobalConfig.font2.stringWidth(this.buttonText[0]) + 10, this.j - 10 - MainCanvas.nextpage.b, this.g + 4);
+               this.a(var1, this.f + GlobalConfig.font2.stringWidth(this.buttonText[0]) + 10, this.j - 10 - MainCanvas.nextpage.w, this.g + 4);
             }
 
          }
@@ -186,16 +186,16 @@ public final class BottomUi extends BaseUi {
    // 绘制左右箭头，同时缓存其触摸区域。
    private void a(Graphics var1, int var2, int var3, int var4) {
       if (this.u) {
-         var1.drawImage(MainCanvas.backpage.pngImage, var2, var4, 20);
-         var1.drawImage(MainCanvas.nextpage.pngImage, var3, var4, 20);
+         var1.drawImage(MainCanvas.backpage.image, var2, var4, 20);
+         var1.drawImage(MainCanvas.nextpage.image, var3, var4, 20);
          this.v[0][0] = var2;
          this.v[0][1] = var4;
-         this.v[0][2] = MainCanvas.backpage.b;
-         this.v[0][3] = MainCanvas.backpage.c;
+         this.v[0][2] = MainCanvas.backpage.w;
+         this.v[0][3] = MainCanvas.backpage.h;
          this.v[1][0] = var3;
          this.v[1][1] = var4;
-         this.v[1][2] = MainCanvas.nextpage.b;
-         this.v[1][3] = MainCanvas.nextpage.c;
+         this.v[1][2] = MainCanvas.nextpage.w;
+         this.v[1][3] = MainCanvas.nextpage.h;
       }
 
    }

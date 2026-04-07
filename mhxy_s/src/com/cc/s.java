@@ -1,5 +1,8 @@
 package com.cc;
 
+import com.cc.resource.Animation;
+import com.cc.resource.TileMap;
+
 import java.util.Random;
 import javax.microedition.lcdui.Graphics;
 
@@ -35,12 +38,12 @@ public final class s extends au {
 
    public final void a(Graphics var1, PngUtil var2, int var3, int var4, byte var5) {
       if (super.f != null) {
-         var2.a(var1, (Frame1)super.f, (int[])null, var3, var4, super.h - super.f.g() / 2, super.i - super.f.h(), 20, 0);
+         var2.a(var1, (Animation)super.f, (int[])null, var3, var4, super.h - super.f.g() / 2, super.i - super.f.h(), 20, 0);
       }
 
    }
 
-   public final void a(aw var1, PngUtil var2, long var3) {
+   public final void a(TileMap var1, PngUtil var2, long var3) {
       if (super.f != null) {
          if (super.e.size() != 0) {
             if (super.e.size() > 0 && var3 - this.n > 200L) {
@@ -56,7 +59,7 @@ public final class s extends au {
             }
          } else {
             PngUtil var6 = var2;
-            aw var5 = var1;
+            TileMap var5 = var1;
             s var14 = this;
             if (this.m != 0) {
                Random var7 = new Random();

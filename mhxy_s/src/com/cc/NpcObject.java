@@ -1,5 +1,8 @@
 package com.cc;
 
+import com.cc.resource.Animation;
+import com.cc.resource.ResourceManager;
+
 import javax.microedition.lcdui.Graphics;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -31,7 +34,7 @@ public final class NpcObject {
     public byte t;
     public short resName;
     public int hashKey;
-    public Frame1 frame1 = null;
+    public Animation frame1 = null;
     public boolean x = false;
     public short y;
     public short z;
@@ -161,7 +164,7 @@ public final class NpcObject {
             this.S = dis.readInt();
         }
 
-        this.hashKey = Page.hashKey(Page.wrapName(String.valueOf(this.resName), (byte) 2).toCharArray());
+        this.hashKey = ResourceManager.hashKey(ResourceManager.wrapName(String.valueOf(this.resName), (byte) 2).toCharArray());
         this.V = 1;
         if (this.U > 0) {
             int var10003 = GlobalConfig.defaultWidth - 40;
@@ -194,13 +197,13 @@ public final class NpcObject {
 
     public final void a(Graphics var1, PngUtil var2, int var3, int var4, byte var5) {
         if (this.t == -1 && GameSceneController.t_2 != null || this.I == 100 && GameSceneController.t_2 != null) {
-            var2.a(var1, (Frame1) GameSceneController.t_2, (int[]) null, var3, var4, this.c - GameSceneController.t_2.i() / 2, this.d - (this.frame1 == null ? 30 : this.frame1.j()) - GlobalConfig.font2_h - GameSceneController.t_2.j(), 20, var5);
+            var2.a(var1, (Animation) GameSceneController.t_2, (int[]) null, var3, var4, this.c - GameSceneController.t_2.i() / 2, this.d - (this.frame1 == null ? 30 : this.frame1.j()) - GlobalConfig.font2_h - GameSceneController.t_2.j(), 20, var5);
         } else if (this.t == 1 && GameSceneController.s != null) {
-            var2.a(var1, (Frame1) GameSceneController.s, (int[]) null, var3, var4, this.c - GameSceneController.s.i() / 2, this.d - (this.frame1 == null ? 30 : this.frame1.j()) - GlobalConfig.font2_h - GameSceneController.s.j(), 20, var5);
+            var2.a(var1, (Animation) GameSceneController.s, (int[]) null, var3, var4, this.c - GameSceneController.s.i() / 2, this.d - (this.frame1 == null ? 30 : this.frame1.j()) - GlobalConfig.font2_h - GameSceneController.s.j(), 20, var5);
         }
 
         if (this.x && GameSceneController.u != null) {
-            var2.a(var1, (Frame1) GameSceneController.u, (int[]) null, var3, var4, this.c + (this.frame1 == null ? 8 : this.frame1.i() / 2), this.d - (this.frame1 == null ? 30 : this.frame1.j()), 20, var5);
+            var2.a(var1, (Animation) GameSceneController.u, (int[]) null, var3, var4, this.c + (this.frame1 == null ? 8 : this.frame1.i() / 2), this.d - (this.frame1 == null ? 30 : this.frame1.j()), 20, var5);
             if (this.X != null && this.Y != null && this.U != 0) {
                 var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
                 if (this.Z >= 0) {

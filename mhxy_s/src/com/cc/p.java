@@ -1,5 +1,6 @@
 package com.cc;
 
+import com.cc.resource.Animation;
 import com.yinhan.kjava.main.MainCanvas;
 
 import java.util.Vector;
@@ -16,7 +17,7 @@ public final class p {
    public int h;
    public short i;
    private byte t;
-   public Frame1 j;
+   public Animation j;
    public byte k;
    public boolean l = false;
    public boolean m = false;
@@ -85,32 +86,32 @@ public final class p {
             GlobalConfig.sbTemp.append("f").append(this.i).append(0).append(this.t).append(var1);
          }
 
-         this.j = MainCanvas.role.getFrame1(GlobalConfig.sbTemp.toString());
+         this.j = MainCanvas.role.getAnimationByNameFromCache(GlobalConfig.sbTemp.toString());
          if (this.j == null && var1 != 4) {
             GlobalConfig.sbTemp.delete(0, GlobalConfig.sbTemp.length());
             GlobalConfig.sbTemp.append("f").append(this.i).append(0).append(1).append(var1);
-            this.j = MainCanvas.role.getFrame1(GlobalConfig.sbTemp.toString());
+            this.j = MainCanvas.role.getAnimationByNameFromCache(GlobalConfig.sbTemp.toString());
             return;
          }
       } else if (this.b == 1) {
          GlobalConfig.sbTemp.append(this.i).append(var1 > 3 ? 3 : var1);
-         this.j = MainCanvas.petfight.a(GlobalConfig.sbTemp.toString(), this.p, this.q, this.r);
+         this.j = MainCanvas.petfight.getAnimationByNameFromCache(GlobalConfig.sbTemp.toString(), this.p, this.q, this.r);
          if (this.j == null) {
             GlobalConfig.sbTemp.delete(0, GlobalConfig.sbTemp.length());
             GlobalConfig.sbTemp.append(100).append(var1 > 3 ? 3 : var1);
-            this.j = MainCanvas.petfight.a(GlobalConfig.sbTemp.toString(), this.p, this.q, this.r);
+            this.j = MainCanvas.petfight.getAnimationByNameFromCache(GlobalConfig.sbTemp.toString(), this.p, this.q, this.r);
             return;
          }
       } else if (this.b == 2) {
          GlobalConfig.sbTemp.append(this.i).append(var1 > 3 ? 3 : var1);
-         this.j = MainCanvas.petfight.a(GlobalConfig.sbTemp.toString(), this.p, this.q, this.r);
+         this.j = MainCanvas.petfight.getAnimationByNameFromCache(GlobalConfig.sbTemp.toString(), this.p, this.q, this.r);
       }
 
    }
 
    public final void a(Graphics var1, PngUtil var2, int var3, int var4, byte var5) {
       if (!this.d() && this.j != null) {
-         var2.a(var1, (Frame1)this.j, (int[])null, 0, 0, var3, var4, 20, 0);
+         var2.a(var1, (Animation)this.j, (int[])null, 0, 0, var3, var4, 20, 0);
       }
 
    }
@@ -123,25 +124,25 @@ public final class p {
       this.c = null;
       this.d = null;
       if (this.j != null) {
-         Frame1 var1 = this.j;
+         Animation var1 = this.j;
       }
 
       this.j = null;
    }
 
    public final short f() {
-      return this.j != null && this.j.g != null ? this.j.g[this.j.f] : 0;
+      return this.j != null && this.j.frameW != null ? this.j.frameW[this.j.currentFrameIndex] : 0;
    }
 
    public final short g() {
-      return this.j != null && this.j.h != null ? this.j.h[this.j.f] : 0;
+      return this.j != null && this.j.frameH != null ? this.j.frameH[this.j.currentFrameIndex] : 0;
    }
 
    public final short h() {
-      return this.j != null && this.j.g != null ? this.j.g[0] : 0;
+      return this.j != null && this.j.frameW != null ? this.j.frameW[0] : 0;
    }
 
    public final short i() {
-      return this.j != null && this.j.h != null ? this.j.h[0] : 0;
+      return this.j != null && this.j.frameH != null ? this.j.frameH[0] : 0;
    }
 }

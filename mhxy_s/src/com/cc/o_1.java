@@ -43,8 +43,8 @@ public final class o_1 {
     private int H;
     private int I;
     private int J;
-    private Frame0 K;
-    private Frame0 L;
+    private Sprite K;
+    private Sprite L;
     private int M;
     public static byte h = 0;
     private boolean N;
@@ -341,7 +341,7 @@ public final class o_1 {
                 }
 
                 if (GlobalStatus.kr[var2] > 0) {
-                    MainCanvas.pngUtil.a(var1, GameSceneController.b(GlobalStatus.kr[var2]), (int[]) null, (aj) null, 0, 0, this.j.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var2 * 17, this.j.mixedUi.Y + 39, 0, 0);
+                    MainCanvas.pngUtil.a(var1, GameSceneController.b(GlobalStatus.kr[var2]), (int[]) null, (ImageSlice) null, 0, 0, this.j.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var2 * 17, this.j.mixedUi.Y + 39, 0, 0);
                 }
             }
 
@@ -666,8 +666,8 @@ public final class o_1 {
         }
 
         if (this.K == null) {
-            this.K = MainCanvas.publicUI.getFrame("jianding_02");
-            this.L = MainCanvas.publicUI.getFrame("jianding_01");
+            this.K = MainCanvas.publicUI.getSpriteByNameFromCache("jianding_02");
+            this.L = MainCanvas.publicUI.getSpriteByNameFromCache("jianding_01");
         }
 
         if (g != -1) {
@@ -681,8 +681,8 @@ public final class o_1 {
         this.j.mixedUi.clean();
         this.j.mixedUi.setTitle("装备洗炼");
         this.j.mixedUi.setDrawBackground(false);
-        this.J = Math.max(GameSceneController.goods.c, GlobalConfig.font2_h) * 7 + 16;
-        this.H = GameSceneController.goods.c + GlobalConfig.font2_h + 8;
+        this.J = Math.max(GameSceneController.goods.h, GlobalConfig.font2_h) * 7 + 16;
+        this.H = GameSceneController.goods.h + GlobalConfig.font2_h + 8;
         this.I = GlobalConfig.realHigh - 32 - BottomUi.b() - (this.J + 4) - this.H;
         this.j.mixedUi.setR(this.H + this.I);
         this.j.textPanel.setFWBText((String) null, GlobalConfig.font2, (byte) 1);
@@ -702,7 +702,7 @@ public final class o_1 {
                     var1_t = this.j.mixedUi.X + this.j.mixedUi.W / 4 * 3 - 8;
                 } else if (var3 > 1) {
                     var1_t = this.j.mixedUi.X + (this.j.mixedUi.W - 17) / 2;
-                    var2 = this.j.mixedUi.Y + 32 + this.H + this.I + 4 + 2 + (var3 - 1) * (Math.max(GameSceneController.goods.c, GlobalConfig.font2_h) + 1);
+                    var2 = this.j.mixedUi.Y + 32 + this.H + this.I + 4 + 2 + (var3 - 1) * (Math.max(GameSceneController.goods.h, GlobalConfig.font2_h) + 1);
                 }
 
                 boolean var10001 = true;
@@ -919,7 +919,7 @@ public final class o_1 {
             for (int var6 = 0; var6 < this.G.length; ++var6) {
                 PngUtil var10000;
                 Graphics var10001;
-                Frame0 var10002;
+                Sprite var10002;
                 if (var6 < 2) {
                     var10000 = this.k;
                     var10001 = var1;
@@ -934,26 +934,26 @@ public final class o_1 {
                     var10002 = this.O[var6 - 2] ? this.K : this.L;
                 }
 
-                var10000.a(var10001, var10002, (int[]) null, (aj) null, 0, 0, this.G[var6][0], this.G[var6][1], 0, 0);
+                var10000.a(var10001, var10002, (int[]) null, (ImageSlice) null, 0, 0, this.G[var6][0], this.G[var6][1], 0, 0);
             }
         }
 
         var1.setColor(255);
         var1.drawString("装备孔", this.G[0][0] + 8, this.G[0][1] - 2, 33);
         if (g != -1) {
-            this.k.a(var1, GameSceneController.b(v), (int[]) null, (aj) null, 0, 0, this.G[0][0], this.G[0][1], 0, 0);
+            this.k.a(var1, GameSceneController.b(v), (int[]) null, (ImageSlice) null, 0, 0, this.G[0][0], this.G[0][1], 0, 0);
         }
 
         var1.setColor(255);
         var1.drawString("洗炼符", this.G[1][0] + 8, this.G[1][1] - 2, 33);
         if (x != -1L) {
-            this.k.a(var1, GameSceneController.b(z), (int[]) null, (aj) null, 0, 0, this.G[1][0], this.G[1][1], 0, 0);
+            this.k.a(var1, GameSceneController.b(z), (int[]) null, (ImageSlice) null, 0, 0, this.G[1][0], this.G[1][1], 0, 0);
         }
 
         var1.drawString("洗炼锁", this.G[0][0] + 17, this.j.mixedUi.Y + 32 + this.H + 3, 20);
         var1.drawString(this.M + " / " + E, this.G[1][0] - 5, this.j.mixedUi.Y + 32 + this.H + 3, 20);
         int var9 = var2 + 2;
-        var2 = Math.max(GameSceneController.goods.c, GlobalConfig.font2_h);
+        var2 = Math.max(GameSceneController.goods.h, GlobalConfig.font2_h);
         var1.drawString("当    前", var4 + var3 / 2, var9, 17);
         var1.drawString("最    大", var5 + var3 / 2, var9, 17);
         if (C != null) {

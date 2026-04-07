@@ -89,7 +89,7 @@ public final class ag_1 {
       this.e[0] = p[1];
       this.f[0] = p[2];
       this.r[0] = "";
-      this.g[0] = MainCanvas.icon.getFrame("103").pngImage;
+      this.g[0] = MainCanvas.icon.getSpriteByNameFromCache("103").image;
       this.h[0] = 4915330;
       ++var1;
 

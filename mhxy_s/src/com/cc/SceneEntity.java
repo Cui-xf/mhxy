@@ -1,5 +1,7 @@
 package com.cc;
 
+import com.cc.resource.Animation;
+
 import java.util.Vector;
 
 /**
@@ -10,7 +12,7 @@ public abstract class SceneEntity {
    public au d;
    public String name;
    public Vector f = new Vector();
-   public Frame1 frame1;
+   public Animation frame1;
    public byte h = 3;
    short[] i;
    public short j = -1;

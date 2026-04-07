@@ -68,7 +68,7 @@ public final class MixedUi extends BaseUi {
         this.H = h;
         this.Y_5 = this.Y + 5;
         if (this.title != null && MainCanvas.title != null) {
-            h = MainCanvas.title.c;
+            h = MainCanvas.title.h;
             y = this.Y_5;
             this.m = x;
             this.n = y;
@@ -94,15 +94,15 @@ public final class MixedUi extends BaseUi {
         }
 
         if (this.gunDongIndex != -1 && this.textPanelIndex == -1) {
-            x = this.Y + this.H - this.Y_5 - 6 - (this.buttonIndex != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.bottomIndex != -1 ? MainCanvas.button1.c : 0) - this.e;
+            x = this.Y + this.H - this.Y_5 - 6 - (this.buttonIndex != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.bottomIndex != -1 ? MainCanvas.button1.h : 0) - this.e;
             ((GunDongListUi) this.child.elementAt(this.gunDongIndex)).a(this.X + 5, this.Y_5 + this.e, this.W - 11, x - this.f);
             this.Y_5 += x;
         } else if (this.gunDongIndex == -1 && this.textPanelIndex != -1) {
-            x = this.Y + this.H - this.Y_5 - 6 - (this.buttonIndex != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.bottomIndex != -1 ? MainCanvas.button1.c : 0) - this.r;
+            x = this.Y + this.H - this.Y_5 - 6 - (this.buttonIndex != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.bottomIndex != -1 ? MainCanvas.button1.h : 0) - this.r;
             ((TextPanel) this.child.elementAt(this.textPanelIndex)).setTextRect(this.X + 5, this.Y_5 + this.r, this.W - 11, x - this.g);
             this.Y_5 += x;
         } else if (this.gunDongIndex != -1 && this.textPanelIndex != -1) {
-            y = (x = this.Y + this.H - this.Y_5 - 6 - (this.buttonIndex != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.bottomIndex != -1 ? MainCanvas.button1.c : 0) - this.e) / 2;
+            y = (x = this.Y + this.H - this.Y_5 - 6 - (this.buttonIndex != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.bottomIndex != -1 ? MainCanvas.button1.h : 0) - this.e) / 2;
             this.Y_5 += this.e;
             ((GunDongListUi) this.child.elementAt(this.gunDongIndex)).a(this.X + 5, this.Y_5, this.W - 11, y);
             this.Y_5 += y;
@@ -133,15 +133,15 @@ public final class MixedUi extends BaseUi {
         }
 
         if (this.gunDongIndex != -1 && this.textPanelIndex == -1) {
-            var1 = this.Y + this.H - this.Y_5 - 6 - (this.buttonIndex != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.bottomIndex != -1 ? MainCanvas.button1.c : 0) - this.e;
+            var1 = this.Y + this.H - this.Y_5 - 6 - (this.buttonIndex != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.bottomIndex != -1 ? MainCanvas.button1.h : 0) - this.e;
             ((GunDongListUi) this.child.elementAt(this.gunDongIndex)).a(this.X + 5, this.Y_5 + this.e, this.W - 11, var1 - this.f);
             this.Y_5 += var1;
         } else if (this.gunDongIndex == -1 && this.textPanelIndex != -1) {
-            var1 = this.Y + this.H - this.Y_5 - 6 - (this.buttonIndex != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.bottomIndex != -1 ? MainCanvas.button1.c : 0) - this.r;
+            var1 = this.Y + this.H - this.Y_5 - 6 - (this.buttonIndex != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.bottomIndex != -1 ? MainCanvas.button1.h : 0) - this.r;
             ((TextPanel) this.child.elementAt(this.textPanelIndex)).setTextRect(this.X + 5, this.Y_5 + this.r, this.W - 11, var1 - this.g);
             this.Y_5 += var1;
         } else if (this.gunDongIndex != -1 && this.textPanelIndex != -1) {
-            var2 = (var1 = this.Y + this.H - this.Y_5 - 6 - (this.buttonIndex != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.bottomIndex != -1 ? MainCanvas.button1.c : 0) - this.e) * var5 / var6;
+            var2 = (var1 = this.Y + this.H - this.Y_5 - 6 - (this.buttonIndex != -1 ? GlobalConfig.font2_h + 4 : 0) - (this.bottomIndex != -1 ? MainCanvas.button1.h : 0) - this.e) * var5 / var6;
             this.Y_5 += this.e;
             if (var7) {
                 ((TextPanel) this.child.elementAt(this.textPanelIndex)).setTextRect(this.X + 5, this.Y_5, this.W - 11, var2);
@@ -247,12 +247,12 @@ public final class MixedUi extends BaseUi {
 
         this.y = false;
         if (this.title != null && this.title != null) {
-            LoadingPage.a(var1, MainCanvas.title.pngImage, MainCanvas.title.b, this.m, this.n, this.o, this.p);
-            var1.drawImage(MainCanvas.close.pngImage, this.m + this.o - 5 - MainCanvas.close.b, this.n + 1, 20);
-            int var10001 = this.m + this.o - 5 - MainCanvas.close.b;
+            LoadingPage.a(var1, MainCanvas.title.image, MainCanvas.title.w, this.m, this.n, this.o, this.p);
+            var1.drawImage(MainCanvas.close.image, this.m + this.o - 5 - MainCanvas.close.w, this.n + 1, 20);
+            int var10001 = this.m + this.o - 5 - MainCanvas.close.w;
             int var10002 = this.n + 1;
-            short var8 = MainCanvas.close.c;
-            short var7 = MainCanvas.close.b;
+            short var8 = MainCanvas.close.h;
+            short var7 = MainCanvas.close.w;
             int var6 = var10002;
             int var5 = var10001;
             if (this.q != null) {
@@ -272,7 +272,7 @@ public final class MixedUi extends BaseUi {
                 }
             }
 
-            LoadingPage.drawString(var1, (String) var10, (int) (this.m + this.o / 2), this.n + GlobalConfig.getCzjz(MainCanvas.title.c), 17, var2, 0);
+            LoadingPage.drawString(var1, (String) var10, (int) (this.m + this.o / 2), this.n + GlobalConfig.getCzjz(MainCanvas.title.h), 17, var2, 0);
             LoadingPage.a(var1, this.m, this.n + this.p, this.o);
         }
 
@@ -304,16 +304,16 @@ public final class MixedUi extends BaseUi {
         var1.drawRect(this.X + 3, this.Y + 3, this.W - 7, this.H - 7);
         LoadingPage.setColor(var1, 4);
         var1.drawRect(this.X + 2, this.Y + 2, this.W - 5, this.H - 5);
-        if (MainCanvas.lu.pngImage != null && this.k) {
-            var1.drawImage(MainCanvas.lu.pngImage, this.X, this.Y, 20);
+        if (MainCanvas.lu.image != null && this.k) {
+            var1.drawImage(MainCanvas.lu.image, this.X, this.Y, 20);
         }
 
-        if (MainCanvas.ld.pngImage != null) {
-            var1.drawImage(MainCanvas.ld.pngImage, this.X, this.Y + this.H - MainCanvas.ld.c, 20);
+        if (MainCanvas.ld.image != null) {
+            var1.drawImage(MainCanvas.ld.image, this.X, this.Y + this.H - MainCanvas.ld.h, 20);
         }
 
-        if (MainCanvas.rd.pngImage != null) {
-            var1.drawImage(MainCanvas.rd.pngImage, this.X + this.W - MainCanvas.rd.b, this.Y + this.H - MainCanvas.rd.c, 20);
+        if (MainCanvas.rd.image != null) {
+            var1.drawImage(MainCanvas.rd.image, this.X + this.W - MainCanvas.rd.w, this.Y + this.H - MainCanvas.rd.h, 20);
         }
 
         var1.setClip(this.X, this.Y, this.W, this.H);

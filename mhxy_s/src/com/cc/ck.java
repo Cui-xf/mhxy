@@ -1,5 +1,6 @@
 package com.cc;
 
+import com.cc.resource.Animation;
 import com.yinhan.kjava.main.MainCanvas;
 
 import java.util.Vector;
@@ -19,7 +20,7 @@ public final class ck {
    private byte v;
    public byte k;
    public byte l;
-   public Frame1 m;
+   public Animation m;
    public byte n;
    private int[] w;
    public boolean o = false;
@@ -45,15 +46,15 @@ public final class ck {
             GlobalConfig.sbTemp.append("f").append(this.j).append(1).append(this.v).append(var1);
          }
 
-         this.m = MainCanvas.role.getFrame1(GlobalConfig.sbTemp.toString());
+         this.m = MainCanvas.role.getAnimationByNameFromCache(GlobalConfig.sbTemp.toString());
          if (this.m == null && var1 != 4) {
             GlobalConfig.sbTemp.delete(0, GlobalConfig.sbTemp.length());
             GlobalConfig.sbTemp.append("f").append(this.j).append(1).append(1).append(var1);
-            this.m = MainCanvas.role.getFrame1(GlobalConfig.sbTemp.toString());
+            this.m = MainCanvas.role.getAnimationByNameFromCache(GlobalConfig.sbTemp.toString());
          }
       } else if (this.b == 1) {
          GlobalConfig.sbTemp.append(this.j).append(var1 > 3 ? 3 : var1);
-         this.m = MainCanvas.petfight.a(GlobalConfig.sbTemp.toString(), this.r, this.s, this.t);
+         this.m = MainCanvas.petfight.getAnimationByNameFromCache(GlobalConfig.sbTemp.toString(), this.r, this.s, this.t);
       }
 
       if (this.m != null) {
@@ -90,7 +91,7 @@ public final class ck {
             PngUtil.a(this.m, this.w);
          }
 
-         var2.a(var1, (Frame1)this.m, (int[])null, 0, 0, var3, var4, 20, 0);
+         var2.a(var1, (Animation)this.m, (int[])null, 0, 0, var3, var4, 20, 0);
       }
 
    }
@@ -103,17 +104,17 @@ public final class ck {
       this.d = null;
       this.w = null;
       if (this.m != null) {
-         Frame1 var1 = this.m;
+         Animation var1 = this.m;
       }
 
       this.m = null;
    }
 
    public final short c() {
-      return this.m != null && this.m.g != null ? this.m.g[this.m.f] : 0;
+      return this.m != null && this.m.frameW != null ? this.m.frameW[this.m.currentFrameIndex] : 0;
    }
 
    public final short d() {
-      return this.m != null && this.m.h != null ? this.m.h[0] : 0;
+      return this.m != null && this.m.frameH != null ? this.m.frameH[0] : 0;
    }
 }

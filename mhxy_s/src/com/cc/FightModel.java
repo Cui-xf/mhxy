@@ -1,5 +1,6 @@
 package com.cc;
 
+import com.cc.resource.Animation;
 import com.yinhan.kjava.main.MainCanvas;
 
 import java.util.Vector;
@@ -28,7 +29,7 @@ public final class FightModel {
    private ae[] F;
    public short f;
    public static int g = -1;
-   private Frame0 G = null;
+   private Sprite G = null;
    private Vector H = new Vector();
    private long I = 0L;
    public byte h;
@@ -1043,7 +1044,7 @@ public final class FightModel {
                         if (GlobalStatus.fightData[var26] != null && !GlobalStatus.fightData[var26].d()) {
                            for(byte var36 = 0; var36 < var20.F.length; ++var36) {
                               if (var20.F[var36].k >= 0 && var20.F[var36].b == 0 && var20.F[var36].c == GlobalStatus.fightData[var26].a) {
-                                 var20.G = MainCanvas.ui.getFrame(String.valueOf(var20.F[var36].k));
+                                 var20.G = MainCanvas.ui.getSpriteByNameFromCache(String.valueOf(var20.F[var36].k));
                                  if (var20.G != null && !var20.H.contains(var20.G)) {
                                     boolean var43 = true;
 
@@ -1069,7 +1070,7 @@ public final class FightModel {
                         if (GlobalStatus.M[var27] != null && !GlobalStatus.M[var27].a()) {
                            for(byte var37 = 0; var37 < var20.F.length; ++var37) {
                               if (var20.F[var37].k >= 0 && var20.F[var37].b == 1 && var20.F[var37].c == GlobalStatus.M[var27].a) {
-                                 var20.G = MainCanvas.ui.getFrame(String.valueOf(var20.F[var37].k));
+                                 var20.G = MainCanvas.ui.getSpriteByNameFromCache(String.valueOf(var20.F[var37].k));
                                  if (var20.G != null && !var20.H.contains(var20.G)) {
                                     boolean var44 = true;
 
@@ -1236,16 +1237,16 @@ public final class FightModel {
             for(byte var6 = (byte)(GlobalStatus.fightData.length - 1); var6 >= 0; --var6) {
                if (GlobalStatus.fightData[var6].j != null) {
                   if (GlobalStatus.fightData[var6].d()) {
-                     MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ad, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
+                     MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ad, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
                   } else if (GlobalStatus.fightData[var6].b != 0 && GlobalStatus.fightData[var6].j != null) {
                      if (GlobalStatus.fightData[var6].k == 1 || GlobalStatus.fightData[var6].k == 4) {
                         GlobalStatus.fightData[var6].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], (byte)0);
                      }
 
                      if (var4.f != -1 && var4.f != 0 && var4.f != 7 && GlobalStatus.fightData[var6].m) {
-                        MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
+                        MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
                      } else if (var4.f == 6 && GlobalStatus.fightData[var6].l) {
-                        MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
+                        MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
                      }
                   }
                }
@@ -1254,7 +1255,7 @@ public final class FightModel {
             for(byte var17 = 0; var17 < GlobalStatus.fightData.length; ++var17) {
                if (GlobalStatus.fightData[var17].b == 0 && GlobalStatus.fightData[var17].j != null) {
                   if (GlobalStatus.fightData[var17].c.equals(GlobalStatus.roleId_2)) {
-                     var5.drawImage(GameSceneController.H.pngImage, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0] - GameSceneController.H.b / 2, GlobalConfig.Q[GlobalStatus.fightData[var17].a][1] - GameSceneController.H.c / 2, 20);
+                     var5.drawImage(GameSceneController.H.image, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0] - GameSceneController.H.w / 2, GlobalConfig.Q[GlobalStatus.fightData[var17].a][1] - GameSceneController.H.h / 2, 20);
                      if ((var4.f != 7 || GlobalStatus.bs != 1) && (var4.f != 7 || GlobalStatus.bs != -1) && (var4.f != 7 || GlobalStatus.followStatus != 1)) {
                         if (!GlobalStatus.fightData[var17].d()) {
                            if (GlobalStatus.fightData[var17].k == 1 || GlobalStatus.fightData[var17].k == 4) {
@@ -1262,27 +1263,27 @@ public final class FightModel {
                            }
 
                            if (var4.f != -1 && var4.f != 0 && GlobalStatus.fightData[var17].m) {
-                              MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                            } else if (var4.f == 6 && GlobalStatus.fightData[var17].l) {
-                              MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                            }
                         }
                      } else {
-                        MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                        MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                      }
                   } else if (var4.f == 7) {
                      for(int var7 = 0; var7 < GlobalStatus.teamBonus.length; ++var7) {
                         if (GlobalStatus.teamBonus[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.teamBonus[var7].s == 1) {
-                           MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                           MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                         } else if (GlobalStatus.teamBonus[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.teamBonus[var7].s == 0 && !GlobalStatus.fightData[var17].d()) {
                            if (GlobalStatus.fightData[var17].k == 1 || GlobalStatus.fightData[var17].k == 4) {
                               GlobalStatus.fightData[var17].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], (byte)0);
                            }
 
                            if (var4.f != -1 && var4.f != 0 && GlobalStatus.fightData[var17].m) {
-                              MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                            } else if (var4.f == 6 && GlobalStatus.fightData[var17].l) {
-                              MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                            }
                         }
                      }
@@ -1292,16 +1293,16 @@ public final class FightModel {
                      }
 
                      if (var4.f != -1 && var4.f != 0 && GlobalStatus.fightData[var17].m) {
-                        MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                        MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                      } else if (var4.f == 6 && GlobalStatus.fightData[var17].l) {
-                        MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                        MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                      }
                   }
                }
 
                if (GlobalStatus.fightData[var17].s.size() > 0 && GlobalStatus.fightData[var17].j != null) {
                   for(byte var22 = 0; var22 < GlobalStatus.fightData[var17].s.size(); ++var22) {
-                     MainCanvas.pngUtil.a(var5, (Frame0) GlobalStatus.fightData[var17].s.elementAt(var22), (int[])null, 0, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0] - GlobalStatus.fightData[var17].h() / 2, GlobalConfig.Q[GlobalStatus.fightData[var17].a][1] + var22 * 11 - GlobalStatus.fightData[var17].i(), 0, 0);
+                     MainCanvas.pngUtil.a(var5, (Sprite) GlobalStatus.fightData[var17].s.elementAt(var22), (int[])null, 0, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0] - GlobalStatus.fightData[var17].h() / 2, GlobalConfig.Q[GlobalStatus.fightData[var17].a][1] + var22 * 11 - GlobalStatus.fightData[var17].i(), 0, 0);
                   }
                }
             }
@@ -1314,7 +1315,7 @@ public final class FightModel {
                if (GlobalStatus.M[var18].m != null) {
                   if (GlobalStatus.M[var18].a()) {
                      if (t == 1 || t == 2) {
-                        MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ac, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
+                        MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ac, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
                      }
                   } else {
                      if (GlobalStatus.M[var18].n != 1 && GlobalStatus.M[var18].n != 4) {
@@ -1332,16 +1333,16 @@ public final class FightModel {
                      } else {
                         GlobalStatus.M[var18].a(var5, MainCanvas.pngUtil, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], (byte)0);
                         if (var4.f != -1 && var4.f != 0 && GlobalStatus.M[var18].p) {
-                           MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
+                           MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
                         } else if (var4.f == 6 && GlobalStatus.M[var18].o) {
-                           MainCanvas.pngUtil.a(var5, (Frame1) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
+                           MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
                         }
                      }
 
                      if (GlobalStatus.M[var18].u.size() > 0) {
                         for(byte var23 = 0; var23 < GlobalStatus.M[var18].u.size(); ++var23) {
                            ck var8;
-                           MainCanvas.pngUtil.a(var5, (Frame0) GlobalStatus.M[var18].u.elementAt(var23), (int[])null, 0, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0] - ((var8 = GlobalStatus.M[var18]).m != null && var8.m.g != null ? var8.m.g[0] : 0) / 2, GlobalConfig.R[GlobalStatus.M[var18].a][1] + var23 * 11 - GlobalStatus.M[var18].d(), 0, 0);
+                           MainCanvas.pngUtil.a(var5, (Sprite) GlobalStatus.M[var18].u.elementAt(var23), (int[])null, 0, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0] - ((var8 = GlobalStatus.M[var18]).m != null && var8.m.frameW != null ? var8.m.frameW[0] : 0) / 2, GlobalConfig.R[GlobalStatus.M[var18].a][1] + var23 * 11 - GlobalStatus.M[var18].d(), 0, 0);
                         }
                      }
                   }
@@ -1452,11 +1453,11 @@ public final class FightModel {
          if (this.d != 4 && this.d != 5 && this.d != 6 && this.d != 7 && this.d != 8) {
             if (this.h >= 0 && this.h <= GlobalStatus.M.length - 1) {
                PngUtil.animate(GameSceneController.select, this.y.frameStartTs);
-               MainCanvas.pngUtil.a(var2, (Frame1) GameSceneController.select, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[this.h].a][0], GlobalConfig.R[GlobalStatus.M[this.h].a][1] - 10 - GlobalStatus.M[this.h].d(), 20, 0);
+               MainCanvas.pngUtil.a(var2, (Animation) GameSceneController.select, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[this.h].a][0], GlobalConfig.R[GlobalStatus.M[this.h].a][1] - 10 - GlobalStatus.M[this.h].d(), 20, 0);
             }
          } else if (this.i >= 0 && this.i <= GlobalStatus.fightData.length - 1 && GlobalStatus.fightData[this.i].j != null) {
             PngUtil.animate(GameSceneController.select, this.y.frameStartTs);
-            MainCanvas.pngUtil.a(var2, (Frame1) GameSceneController.select, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[this.i].a][0], GlobalConfig.Q[GlobalStatus.fightData[this.i].a][1] - 10 - GlobalStatus.fightData[this.i].i(), 20, 0);
+            MainCanvas.pngUtil.a(var2, (Animation) GameSceneController.select, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[this.i].a][0], GlobalConfig.Q[GlobalStatus.fightData[this.i].a][1] - 10 - GlobalStatus.fightData[this.i].i(), 20, 0);
          }
       }
 
@@ -1493,7 +1494,7 @@ public final class FightModel {
       }
 
       if (GlobalConfig.supportTouch) {
-         var2.drawImage(MainCanvas.button_back.pngImage, GlobalConfig.defaultWidth - MainCanvas.button_back.b, GlobalConfig.defaultHigh - MainCanvas.button_back.c, 20);
+         var2.drawImage(MainCanvas.button_back.image, GlobalConfig.defaultWidth - MainCanvas.button_back.w, GlobalConfig.defaultHigh - MainCanvas.button_back.h, 20);
       }
 
       var2.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
@@ -1718,7 +1719,7 @@ public final class FightModel {
       Object var2 = null;
 
       for(int var3 = 0; var3 < var0.size(); ++var3) {
-         Frame0 var4 = (Frame0)var0.elementAt(var3);
+         Sprite var4 = (Sprite)var0.elementAt(var3);
          if (!var1.contains(var4)) {
             var0.removeElementAt(var3);
             var3 = 0;
@@ -1726,7 +1727,7 @@ public final class FightModel {
       }
 
       for(int var6 = 0; var6 < var1.size(); ++var6) {
-         Frame0 var5 = (Frame0)var1.elementAt(var6);
+         Sprite var5 = (Sprite)var1.elementAt(var6);
          if (!var0.contains(var5)) {
             var0.addElement(var5);
          }
@@ -2170,7 +2171,7 @@ public final class FightModel {
       if (GameSceneController.Z != null) {
          for(byte var2 = 0; var2 < 5; ++var2) {
             int var10003 = GlobalConfig.defaultHigh - 102 + (var2 << 4);
-            short var6 = GameSceneController.Z.c;
+            short var6 = GameSceneController.Z.h;
             boolean var3 = true;
             int var5 = var10003;
             var3 = true;
@@ -2224,7 +2225,7 @@ public final class FightModel {
       if (GameSceneController.Z != null) {
          for(byte var2 = 0; var2 < 3; ++var2) {
             int var10003 = GlobalConfig.defaultHigh - 70 + (var2 << 4);
-            short var6 = GameSceneController.Z.c;
+            short var6 = GameSceneController.Z.h;
             boolean var3 = true;
             int var5 = var10003;
             var3 = true;
@@ -2290,7 +2291,7 @@ public final class FightModel {
          for(byte var2 = 0; var2 < GlobalStatus.ej.length; ++var2) {
             PngUtil var10000;
             Graphics var10001;
-            Frame0 var10002;
+            Sprite var10002;
             Object var10003;
             int var10004;
             if (var2 >= 0 && var2 < 8) {
@@ -2643,11 +2644,11 @@ public final class FightModel {
          var13 = (var9 + 2) * 7;
       }
 
-      var1.drawRegion(GameSceneController.E.pngImage, var2 >= 0 ? 8 : 0, var5 == 0 ? 0 : 10, 8, 10, 0, var3 - var13, var4, 0);
+      var1.drawRegion(GameSceneController.E.image, var2 >= 0 ? 8 : 0, var5 == 0 ? 0 : 10, 8, 10, 0, var3 - var13, var4, 0);
       var6 = var2 >= 0 ? var2 : -var2;
 
       for(int var10 = var9; var10 >= 0; --var10) {
-         var1.drawRegion(GameSceneController.E.pngImage, 16 + var6 / d(var10) * 7, var5 == 0 ? 0 : 10, 7, 10, 0, var3 + 8 + (var9 - var10) * 7 - var13, var4, 0);
+         var1.drawRegion(GameSceneController.E.image, 16 + var6 / d(var10) * 7, var5 == 0 ? 0 : 10, 7, 10, 0, var3 + 8 + (var9 - var10) * 7 - var13, var4, 0);
          var6 %= d(var10);
       }
 

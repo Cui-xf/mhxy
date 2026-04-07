@@ -180,8 +180,8 @@ public final class TouchController {
                            this.gameSceneController.sceneRefreshCoordinator.c.removeAllElements();
                            this.gameSceneController.sceneRefreshCoordinator.a(true);
                         }
-                     } else if (var1 >= GlobalConfig.defaultWidth - 67 + 37 && var1 <= GlobalConfig.defaultWidth - 67 + 37 + GameSceneController.v.pngImage.getWidth() && var2 >= 8 && var2 <=
-                     GameSceneController.v.pngImage.getHeight() + 8) {
+                     } else if (var1 >= GlobalConfig.defaultWidth - 67 + 37 && var1 <= GlobalConfig.defaultWidth - 67 + 37 + GameSceneController.v.image.getWidth() && var2 >= 8 && var2 <=
+                     GameSceneController.v.image.getHeight() + 8) {
                         this.canvas.inputAction = 2048;
                      } else if (var1 >= GlobalConfig.defaultWidth - 67 && var1 <= GlobalConfig.defaultWidth - 67 + 33 && var2 >= 5 && var2 <= 18) {
                         this.canvas.inputAction = 515;
@@ -568,7 +568,7 @@ public final class TouchController {
                } else if (GlobalStatus.M != null) {
                   for(byte var3 = (byte)(GlobalStatus.M.length - 1); var3 >= 0; --var3) {
                      ck var4;
-                     if (GlobalStatus.M[var3].m != null && !GlobalStatus.M[var3].a() && (GlobalStatus.M[var3].n == 1 || GlobalStatus.M[var3].n == 4) && var1 >= GlobalConfig.R[GlobalStatus.M[var3].a][0] - GlobalStatus.M[var3].c() / 2 && var1 <= GlobalConfig.R[GlobalStatus.M[var3].a][0] + GlobalStatus.M[var3].c() / 2 && var2 >= GlobalConfig.R[GlobalStatus.M[var3].a][1] - ((var4 = GlobalStatus.M[var3]).m != null && var4.m.h != null ? var4.m.h[var4.m.f] : 0) && var2 <= GlobalConfig.R[GlobalStatus.M[var3].a][1]) {
+                     if (GlobalStatus.M[var3].m != null && !GlobalStatus.M[var3].a() && (GlobalStatus.M[var3].n == 1 || GlobalStatus.M[var3].n == 4) && var1 >= GlobalConfig.R[GlobalStatus.M[var3].a][0] - GlobalStatus.M[var3].c() / 2 && var1 <= GlobalConfig.R[GlobalStatus.M[var3].a][0] + GlobalStatus.M[var3].c() / 2 && var2 >= GlobalConfig.R[GlobalStatus.M[var3].a][1] - ((var4 = GlobalStatus.M[var3]).m != null && var4.m.frameH != null ? var4.m.frameH[var4.m.currentFrameIndex] : 0) && var2 <= GlobalConfig.R[GlobalStatus.M[var3].a][1]) {
                         if (this.gameSceneController.overlayDialogController.h != var3) {
                            this.gameSceneController.overlayDialogController.h = var3;
                         } else {
@@ -578,7 +578,7 @@ public final class TouchController {
                   }
                }
 
-               if (var1 >= GlobalConfig.defaultWidth - MainCanvas.button_back.b && var1 <= GlobalConfig.defaultWidth && var2 >= GlobalConfig.defaultHigh - MainCanvas.button_back.c && var2 <= GlobalConfig.defaultHigh) {
+               if (var1 >= GlobalConfig.defaultWidth - MainCanvas.button_back.w && var1 <= GlobalConfig.defaultWidth && var2 >= GlobalConfig.defaultHigh - MainCanvas.button_back.h && var2 <= GlobalConfig.defaultHigh) {
                   this.canvas.inputAction = 536870912;
                }
 
@@ -1124,7 +1124,7 @@ public final class TouchController {
          }
       }
 
-      if (MainCanvas.close != null && var1 >= GlobalConfig.defaultWidth - 4 - MainCanvas.close.pngImage.getWidth() && var1 < GlobalConfig.defaultWidth - 4 && var2 >= 4 && var2 <= MainCanvas.close.pngImage.getHeight() + 4) {
+      if (MainCanvas.close != null && var1 >= GlobalConfig.defaultWidth - 4 - MainCanvas.close.image.getWidth() && var1 < GlobalConfig.defaultWidth - 4 && var2 >= 4 && var2 <= MainCanvas.close.image.getHeight() + 4) {
          this.canvas.inputAction = 536870912;
       }
 
@@ -1241,7 +1241,7 @@ public final class TouchController {
    }
 
    private void w(int var1, int var2) {
-      if (var1 < this.gameSceneController.aB || var1 > this.gameSceneController.aB + this.gameSceneController.f.a * this.gameSceneController.aD / 16 || var2 < this.gameSceneController.aC || var2 > this.gameSceneController.aC + this.gameSceneController.f.b * this.gameSceneController.aD / 16) {
+      if (var1 < this.gameSceneController.aB || var1 > this.gameSceneController.aB + this.gameSceneController.f.mapW * this.gameSceneController.aD / 16 || var2 < this.gameSceneController.aC || var2 > this.gameSceneController.aC + this.gameSceneController.f.mapH * this.gameSceneController.aD / 16) {
          this.canvas.inputAction = 536870912;
       }
 

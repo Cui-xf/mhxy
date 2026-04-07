@@ -124,7 +124,7 @@ public final class FWBUIComponent extends UIComponent {
 
       if (this.b > 0) {
          graphics.setClip(super.X, super.Y, super.W, super.H);
-         LoadingPage.draw(graphics, super.X + super.W - 2 - MainCanvas.up.b, super.Y + 4, super.H - 6, this.b, this.a, this.l * this.d, super.H - 6);
+         LoadingPage.draw(graphics, super.X + super.W - 2 - MainCanvas.up.w, super.Y + 4, super.H - 6, this.b, this.a, this.l * this.d, super.H - 6);
       }
 
    }

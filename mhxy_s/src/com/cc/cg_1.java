@@ -1,5 +1,6 @@
 package com.cc;
 
+import com.cc.resource.Animation;
 import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
@@ -10,8 +11,8 @@ public final class cg_1 {
    private GameSceneController e;
    private MainCanvas f;
    private PngUtil g;
-   private Frame1 h;
-   private Frame1 i;
+   private Animation h;
+   private Animation i;
    public static int a;
    private static String j;
    private static int k;
@@ -240,17 +241,17 @@ public final class cg_1 {
       this.I.setFWBText(this.M, GlobalConfig.font2, (byte)2);
       if (a != -1 && u != -1) {
          GameSceneController.a(u, v, w, x);
-         this.h = MainCanvas.petfight.a(String.valueOf(u + "_0"), v, w, x);
+         this.h = MainCanvas.petfight.getAnimationByNameFromCache(String.valueOf(u + "_0"), v, w, x);
       } else if (this.h != null) {
-         this.h.a();
+         this.h.clear();
          this.h = null;
       }
 
       if (k != -1 && y != -1) {
          GameSceneController.a(y, z, A, B);
-         this.i = MainCanvas.petfight.a(String.valueOf(y + "_0"), z, A, B);
+         this.i = MainCanvas.petfight.getAnimationByNameFromCache(String.valueOf(y + "_0"), z, A, B);
       } else if (this.i != null) {
-         this.i.a();
+         this.i.clear();
          this.i = null;
       }
 
@@ -432,11 +433,11 @@ public final class cg_1 {
       this.a(1, this.f.mixedUi.X + 5 + 25 + this.f.mixedUi.W / 2, this.f.mixedUi.Y + 32 + 10, 50, 50);
       LoadingPage.d(var1, this.J[this.K][0], this.J[this.K][1], 50, 50);
       if (a != -1 && this.h != null) {
-         this.g.a(var1, (Frame1)this.h, (int[])null, 0, 0, this.f.mixedUi.X + 5 + 25, this.f.mixedUi.Y + 32 + 10, 0, 0);
+         this.g.a(var1, (Animation)this.h, (int[])null, 0, 0, this.f.mixedUi.X + 5 + 25, this.f.mixedUi.Y + 32 + 10, 0, 0);
       }
 
       if (k != -1 && this.i != null) {
-         this.g.a(var1, (Frame1)this.i, (int[])null, 0, 0, this.f.mixedUi.X + 5 + 25 + this.f.mixedUi.W / 2, this.f.mixedUi.Y + 32 + 10, 0, 0);
+         this.g.a(var1, (Animation)this.i, (int[])null, 0, 0, this.f.mixedUi.X + 5 + 25 + this.f.mixedUi.W / 2, this.f.mixedUi.Y + 32 + 10, 0, 0);
       } else {
          var1.setColor(16776960);
          var1.drawString("副宠", this.f.mixedUi.X + 5 + 25 + this.f.mixedUi.W / 2 + 25, this.f.mixedUi.Y + 32 + 10 + GlobalConfig.font2_h / 4 + 25, 65);

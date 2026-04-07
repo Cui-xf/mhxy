@@ -58,7 +58,7 @@ public final class TextPanel extends BaseUi {
     public final void onClick(int var1) {
         if (this.fuWenBen) {
             if (this.fwbText != null && this.fwbText.length() != 0) {
-                this.fwbRender = new FWBRender(this.fwbText, (short) (this.textW - 8 - MainCanvas.up.b));
+                this.fwbRender = new FWBRender(this.fwbText, (short) (this.textW - 8 - MainCanvas.up.w));
                 this.lines = this.fwbRender.getLines();
             } else {
                 this.lines = 0;
@@ -66,7 +66,7 @@ public final class TextPanel extends BaseUi {
             }
         } else {
             if (this.puTongText != null && this.puTongText.length() != 0) {
-                this.huanHangWenBen = LoadingPage.parseText(this.puTongText, this.font, this.textW - 8 - MainCanvas.up.b, this.zhiBiaoFu);
+                this.huanHangWenBen = LoadingPage.parseText(this.puTongText, this.font, this.textW - 8 - MainCanvas.up.w, this.zhiBiaoFu);
                 int color = LoadingPage.parseColor(this.huanHangWenBen[0]);
                 this.wenBenColor = color != -1 ? color : 2176196;
                 if (this.wenBenColor != 2176196) {
@@ -241,9 +241,9 @@ public final class TextPanel extends BaseUi {
                 if (var3 == this.h && this.gaoLiang) {
                     LoadingPage.setColor(graphics, 9);
                     if (this.h >= this.pageLines) {
-                        graphics.fillRect(this.textX + 4, this.textY + 4 + (this.pageLines - 1) * this.lineH, this.textW - MainCanvas.up.b - 8, this.lineH);
+                        graphics.fillRect(this.textX + 4, this.textY + 4 + (this.pageLines - 1) * this.lineH, this.textW - MainCanvas.up.w - 8, this.lineH);
                     } else {
-                        graphics.fillRect(this.textX + 4, this.textY + 4 + this.h * this.lineH, this.textW - MainCanvas.up.b - 8, this.lineH);
+                        graphics.fillRect(this.textX + 4, this.textY + 4 + this.h * this.lineH, this.textW - MainCanvas.up.w - 8, this.lineH);
                     }
                 }
 
@@ -255,8 +255,8 @@ public final class TextPanel extends BaseUi {
             }
 
             if (this.gunDongH > 0) {
-                LoadingPage.draw(graphics, this.textX + this.textW - 2 - MainCanvas.up.b, this.textY + 3, this.textH - 5, this.gunDongH, this.a, this.lines, this.pageLines);
-                this.setGundongQuYu(this.textX + this.textW - 2 - MainCanvas.up.b, this.textY + 3, this.textX + this.textW - 2 - MainCanvas.up.b, this.textY + 3 + this.textH - 5 - MainCanvas.down.c, MainCanvas.down.b, MainCanvas.down.c);
+                LoadingPage.draw(graphics, this.textX + this.textW - 2 - MainCanvas.up.w, this.textY + 3, this.textH - 5, this.gunDongH, this.a, this.lines, this.pageLines);
+                this.setGundongQuYu(this.textX + this.textW - 2 - MainCanvas.up.w, this.textY + 3, this.textX + this.textW - 2 - MainCanvas.up.w, this.textY + 3 + this.textH - 5 - MainCanvas.down.h, MainCanvas.down.w, MainCanvas.down.h);
             }
         } else if (this.fuWenBen && this.fwbRender != null) {
             for (int var2 = this.a; var2 < this.fwbRender.getLines() && var2 < this.a + this.pageLines; ++var2) {
@@ -264,8 +264,8 @@ public final class TextPanel extends BaseUi {
             }
 
             if (this.gunDongH > 0) {
-                LoadingPage.draw(graphics, this.textX + this.textW - 2 - MainCanvas.up.b, this.textY + 3, this.textH - 5, this.gunDongH, this.a, this.lines, this.pageLines);
-                this.setGundongQuYu(this.textX + this.textW - 2 - MainCanvas.up.b, this.textY + 3, this.textX + this.textW - 2 - MainCanvas.up.b, this.textY + 3 + this.textH - 5 - MainCanvas.down.c, MainCanvas.down.b, MainCanvas.down.c);
+                LoadingPage.draw(graphics, this.textX + this.textW - 2 - MainCanvas.up.w, this.textY + 3, this.textH - 5, this.gunDongH, this.a, this.lines, this.pageLines);
+                this.setGundongQuYu(this.textX + this.textW - 2 - MainCanvas.up.w, this.textY + 3, this.textX + this.textW - 2 - MainCanvas.up.w, this.textY + 3 + this.textH - 5 - MainCanvas.down.h, MainCanvas.down.w, MainCanvas.down.h);
             }
         }
 

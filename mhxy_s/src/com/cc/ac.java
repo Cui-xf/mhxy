@@ -1,5 +1,8 @@
 package com.cc;
 
+import com.cc.resource.Animation;
+import com.cc.resource.ResourceManager;
+import com.cc.resource.TileMap;
 import com.yinhan.kjava.main.MainCanvas;
 
 import java.util.Vector;
@@ -40,14 +43,14 @@ public final class ac extends SceneEntity {
    }
 
    private void s() {
-      this.u[1] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)1, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.v[1] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)1, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.u[3] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)3, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.v[3] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)3, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.u[0] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)0, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.v[0] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)0, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.u[2] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)2, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.v[2] = Page.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)2, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.u[1] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)1, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[1] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)1, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.u[3] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)3, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[3] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)3, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.u[0] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)0, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[0] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)0, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.u[2] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)2, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[2] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)2, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
    }
 
    public final void a() {
@@ -76,24 +79,24 @@ public final class ac extends SceneEntity {
          var2 = 0;
       }
 
-      super.frame1 = MainCanvas.role.getFrame1(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
+      super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
       if (super.frame1 == null) {
          MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)5, GlobalStatus.ay, this.t, var2, var3, var4);
-         super.frame1 = MainCanvas.role.getFrame1(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
+         super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
          if (super.frame1 == null) {
             GlobalStatus.ay = 0;
             this.s();
-            super.frame1 = MainCanvas.role.c(var1 ? this.v[super.h] : this.u[super.h]);
+            super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h] : this.u[super.h]);
             if (super.frame1 == null) {
                MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)5, GlobalStatus.ay, this.t, var2, var3, var4);
-               super.frame1 = MainCanvas.role.c(var1 ? this.v[super.h] : this.u[super.h]);
+               super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h] : this.u[super.h]);
                return;
             }
          }
       } else if (!GlobalStatus.roleCurrentRideIcon.equals("")) {
-         super.frame1.a = GlobalStatus.rideAttr1;
-         super.frame1.b = GlobalStatus.rideAttr3;
-         super.frame1.c = GlobalStatus.rideAttr2;
+         super.frame1.hsl_h = GlobalStatus.rideAttr1;
+         super.frame1.hsl_s = GlobalStatus.rideAttr3;
+         super.frame1.hsl_l = GlobalStatus.rideAttr2;
       }
 
    }
@@ -111,7 +114,7 @@ public final class ac extends SceneEntity {
          }
 
          if (var1.f != null) {
-            Frame1 var2 = var1.f;
+            Animation var2 = var1.f;
          }
 
          var1.f = null;
@@ -137,7 +140,7 @@ public final class ac extends SceneEntity {
 
    }
 
-   public final void a(aw var1, PngUtil var2, long var3) {
+   public final void a(TileMap var1, PngUtil var2, long var3) {
       if (super.frame1 != null && var1 != null) {
          if (!this.y && !this.A) {
             if (this.a == 0 && this.b < 0) {
@@ -173,15 +176,15 @@ public final class ac extends SceneEntity {
 
    }
 
-   private void a(aw var1) {
+   private void a(TileMap var1) {
       if (super.j < 0) {
          super.j = 0;
-      } else if (super.j >= var1.a) {
-         super.j = (short)(var1.a - n);
+      } else if (super.j >= var1.mapW) {
+         super.j = (short)(var1.mapW - n);
       } else if (super.k <= -8) {
          super.k = -8;
-      } else if (super.k >= var1.b) {
-         super.k = var1.b;
+      } else if (super.k >= var1.mapH) {
+         super.k = var1.mapH;
       } else {
          ((SceneEntity)this).r();
          this.u();
@@ -201,7 +204,7 @@ public final class ac extends SceneEntity {
 
    public final void a(Graphics var1, PngUtil var2, int var3, int var4, byte var5) {
       if (super.frame1 != null) {
-         var2.a(var1, (Frame1)super.frame1, (int[])null, var3, var4, super.j + 8, super.k + 16, 20, 0);
+         var2.a(var1, (Animation)super.frame1, (int[])null, var3, var4, super.j + 8, super.k + 16, 20, 0);
          if (GlobalStatus.roleNameVip != null) {
             this.w = GlobalStatus.roleNameVip;
            LoadingPage.drawString(var1, (String)this.w, (int)(super.j + 8 - var3), super.k - var4 - GlobalConfig.font2_h - super.frame1.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.roleNameColor, 0);
@@ -212,12 +215,12 @@ public final class ac extends SceneEntity {
          }
 
          if (GlobalStatus.bs == 1) {
-            var2.a(var1, GameSceneController.y, (int[])null, (aj)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - GameSceneController.y.b, super.k - GlobalConfig.font2_h - 18, 20, 0);
+            var2.a(var1, GameSceneController.y, (int[])null, (ImageSlice)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - GameSceneController.y.w, super.k - GlobalConfig.font2_h - 18, 20, 0);
             return;
          }
 
          if (GlobalStatus.bs == 0) {
-            var2.a(var1, GameSceneController.z, (int[])null, (aj)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - GameSceneController.z.b, super.k - GlobalConfig.font2_h - 18, 20, 0);
+            var2.a(var1, GameSceneController.z, (int[])null, (ImageSlice)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - GameSceneController.z.w, super.k - GlobalConfig.font2_h - 18, 20, 0);
          }
       }
 

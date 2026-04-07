@@ -1,5 +1,6 @@
 package com.cc;
 
+import com.cc.resource.Animation;
 import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
@@ -2365,7 +2366,7 @@ public final class GlobalStatus {
     /**
      * 战斗动画帧对象（N() 方法解析）
      */
-    public static Frame0 hH;
+    public static Sprite hH;
     /**
      * 战斗动画类型标志（N() 方法读取，F() 清空初始=-1）
      */
@@ -4053,7 +4054,7 @@ public final class GlobalStatus {
                 if (teamBonus[var0] != null) {
                     bp_1 var1;
                     if ((var1 = teamBonus[var0]).frame1 != null) {
-                        Frame1 var2 = var1.frame1;
+                        Animation var2 = var1.frame1;
                     }
 
                     var1.b = null;
@@ -4083,7 +4084,7 @@ public final class GlobalStatus {
                     var1.name = null;
                     var1.b = null;
                     if (var1.frame1 != null) {
-                        Frame1 var2 = var1.frame1;
+                        Animation var2 = var1.frame1;
                     }
 
                     var1.frame1 = null;
@@ -4107,7 +4108,7 @@ public final class GlobalStatus {
                 if (npcObjects[var0] != null) {
                     NpcObject var1;
                     if ((var1 = npcObjects[var0]).frame1 != null) {
-                        Frame1 var2 = var1.frame1;
+                        Animation var2 = var1.frame1;
                     }
 
                     var1.b = null;
@@ -7794,7 +7795,7 @@ public final class GlobalStatus {
             }
 
             MainCanvas.ae.e(String.valueOf(var2));
-            hH = MainCanvas.ae.getFrame(String.valueOf(var2));
+            hH = MainCanvas.ae.getSpriteByNameFromCache(String.valueOf(var2));
             hJ = new byte[var1];
             hK = new byte[var1];
 

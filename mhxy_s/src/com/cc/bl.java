@@ -1,5 +1,7 @@
 package com.cc;
 
+import com.cc.resource.ResourceManager;
+import com.cc.resource.TileMap;
 import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.DataInputStream;
@@ -58,22 +60,22 @@ public final class bl extends SceneEntity {
          this.A = var1.readShort();
       }
 
-      this.C[1] = Page.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)1, this.o, false, this.x), (byte)2);
-      this.D[1] = Page.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)1, this.o, true, this.x), (byte)2);
-      this.C[3] = Page.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)3, this.o, false, this.x), (byte)2);
-      this.D[3] = Page.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)3, this.o, true, this.x), (byte)2);
-      this.C[0] = Page.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)0, this.o, false, this.x), (byte)2);
-      this.D[0] = Page.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)0, this.o, true, this.x), (byte)2);
-      this.C[2] = Page.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)2, this.o, false, this.x), (byte)2);
-      this.D[2] = Page.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)2, this.o, true, this.x), (byte)2);
+      this.C[1] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)1, this.o, false, this.x), (byte)2);
+      this.D[1] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)1, this.o, true, this.x), (byte)2);
+      this.C[3] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)3, this.o, false, this.x), (byte)2);
+      this.D[3] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)3, this.o, true, this.x), (byte)2);
+      this.C[0] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)0, this.o, false, this.x), (byte)2);
+      this.D[0] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)0, this.o, true, this.x), (byte)2);
+      this.C[2] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)2, this.o, false, this.x), (byte)2);
+      this.D[2] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)2, this.o, true, this.x), (byte)2);
       this.a(true);
    }
 
    private void a(boolean var1) {
       if (!this.x.equals("")) {
-         super.frame1 = MainCanvas.role.getFrame1(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
+         super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
       } else {
-         super.frame1 = MainCanvas.role.c(var1 ? this.D[super.h] : this.C[super.h]);
+         super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.D[super.h] : this.C[super.h]);
       }
 
       if (super.frame1 == null && !this.B) {
@@ -84,9 +86,9 @@ public final class bl extends SceneEntity {
          }
 
          if (!this.x.equals("")) {
-            super.frame1 = MainCanvas.role.getFrame1(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
+            super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
          } else {
-            super.frame1 = MainCanvas.role.c(var1 ? this.D[super.h] : this.C[super.h]);
+            super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.D[super.h] : this.C[super.h]);
          }
 
          this.B = true;
@@ -94,7 +96,7 @@ public final class bl extends SceneEntity {
 
    }
 
-   public final void a(aw var1, PngUtil var2, long var3) {
+   public final void a(TileMap var1, PngUtil var2, long var3) {
       try {
          if (super.frame1 != null) {
             if (super.f != null && super.f.size() > 3) {

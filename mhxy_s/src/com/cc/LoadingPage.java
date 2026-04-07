@@ -1,5 +1,6 @@
 package com.cc;
 
+import com.cc.resource.Animation;
 import com.yinhan.kjava.main.MainCanvas;
 
 import javax.microedition.lcdui.Font;
@@ -205,7 +206,7 @@ public final class LoadingPage {
             if (MainCanvas.go_left != null) {
                 if (e != 0) {
                     PngUtil.animate(MainCanvas.go_left, System.currentTimeMillis());
-                    MainCanvas.pngUtil.a(var0, (Frame1) MainCanvas.go_left, (int[]) null, 0, 0, 16, var2 + 5, 20, 0);
+                    MainCanvas.pngUtil.a(var0, (Animation) MainCanvas.go_left, (int[]) null, 0, 0, 16, var2 + 5, 20, 0);
                     a((int[]) (E != null ? E[0] : null), 16, var2 + 5, 16, 9);
                 } else {
                     a((int[]) (E != null ? E[0] : null), 0, 0, 0, 0);
@@ -215,7 +216,7 @@ public final class LoadingPage {
             if (MainCanvas.go_right != null) {
                 if (e + d < var5.getLines()) {
                     PngUtil.animate(MainCanvas.go_right, System.currentTimeMillis());
-                    MainCanvas.pngUtil.a(var0, (Frame1) MainCanvas.go_right, (int[]) null, 0, 0, var3 - 32, var2 + 5, 20, 0);
+                    MainCanvas.pngUtil.a(var0, (Animation) MainCanvas.go_right, (int[]) null, 0, 0, var3 - 32, var2 + 5, 20, 0);
                     a((int[]) (E != null ? E[1] : null), var3 - 32, var2 + 5, 16, 9);
                 } else {
                     a((int[]) (E != null ? E[1] : null), 0, 0, 0, 0);
@@ -314,19 +315,19 @@ public final class LoadingPage {
         setColor(var0, 4);
         var0.drawRect(var1 + 2, var2 + 2, var3 - 5, var4 - 5);
         if (MainCanvas.lu0 != null) {
-            var0.drawImage(MainCanvas.lu0.pngImage, var1, var2, 20);
+            var0.drawImage(MainCanvas.lu0.image, var1, var2, 20);
         }
 
         if (MainCanvas.ld0 != null) {
-            var0.drawImage(MainCanvas.ld0.pngImage, var1, var2 + var4 - MainCanvas.ld0.c, 20);
+            var0.drawImage(MainCanvas.ld0.image, var1, var2 + var4 - MainCanvas.ld0.h, 20);
         }
 
         if (MainCanvas.ru0 != null) {
-            var0.drawImage(MainCanvas.ru0.pngImage, var1 + var3 - MainCanvas.ru0.b, var2, 20);
+            var0.drawImage(MainCanvas.ru0.image, var1 + var3 - MainCanvas.ru0.w, var2, 20);
         }
 
         if (MainCanvas.rd0 != null) {
-            var0.drawImage(MainCanvas.rd0.pngImage, var1 + var3 - MainCanvas.rd0.b, var2 + var4 - MainCanvas.rd0.c, 20);
+            var0.drawImage(MainCanvas.rd0.image, var1 + var3 - MainCanvas.rd0.w, var2 + var4 - MainCanvas.rd0.h, 20);
         }
 
     }
@@ -412,22 +413,22 @@ public final class LoadingPage {
         var0.fillRect(var1 + 4, var2, 4, var3);
         var0.setColor(1152942);
         var0.fillRect(var1 + 5, var2, 2, var3);
-        var0.drawImage(MainCanvas.up.pngImage, var1, var2, 20);
-        var0.drawImage(MainCanvas.down.pngImage, var1, var2 + var3 - MainCanvas.down.c, 20);
+        var0.drawImage(MainCanvas.up.image, var1, var2, 20);
+        var0.drawImage(MainCanvas.down.image, var1, var2 + var3 - MainCanvas.down.h, 20);
         int var8 = 0;
         if (var6 == var7) {
             var4 = 0;
         }
 
         if (var4 > 0) {
-            var8 = var2 + MainCanvas.up.c + (var3 - MainCanvas.up.c - MainCanvas.down.c - var4) * var5 / (var6 - var7);
+            var8 = var2 + MainCanvas.up.h + (var3 - MainCanvas.up.h - MainCanvas.down.h - var4) * var5 / (var6 - var7);
         } else if (var4 <= 0) {
-            var8 = var2 + MainCanvas.up.c;
-            var4 = var3 - MainCanvas.up.c - MainCanvas.down.c;
+            var8 = var2 + MainCanvas.up.h;
+            var4 = var3 - MainCanvas.up.h - MainCanvas.down.h;
         }
 
         var0.setColor(11267556);
-        var0.fillRect(var1, var8, MainCanvas.up.b - 1, var4 - 1);
+        var0.fillRect(var1, var8, MainCanvas.up.w - 1, var4 - 1);
         var0.setColor(5555146);
         var0.fillRect(var1 + 2, var8 + 2, 8, var4 - 4);
         var0.setColor(1801628);
@@ -435,7 +436,7 @@ public final class LoadingPage {
         var0.setColor(1464956);
         var0.fillRect(var1 + 6, var8 + 4, 2, var4 - 8);
         var0.setColor(150092);
-        var0.drawRect(var1, var8, MainCanvas.up.b - 1, var4 - 1);
+        var0.drawRect(var1, var8, MainCanvas.up.w - 1, var4 - 1);
     }
 
     public static void b(Graphics var0, int var1, int var2, int var3, int var4, int var5) {
@@ -1375,10 +1376,10 @@ public final class LoadingPage {
         }
 
         if (MainCanvas.submenu != null && MainCanvas.submenu.length == 4) {
-            var0.drawImage(MainCanvas.submenu[0].pngImage, af[0], af[1], 20);
-            var0.drawImage(MainCanvas.submenu[1].pngImage, af[0] + q - MainCanvas.submenu[1].b, af[1], 20);
-            var0.drawImage(MainCanvas.submenu[2].pngImage, af[0], af[1] + ag - MainCanvas.submenu[2].c, 20);
-            var0.drawImage(MainCanvas.submenu[3].pngImage, af[0] + q - MainCanvas.submenu[3].b, af[1] + ag - MainCanvas.submenu[3].c, 20);
+            var0.drawImage(MainCanvas.submenu[0].image, af[0], af[1], 20);
+            var0.drawImage(MainCanvas.submenu[1].image, af[0] + q - MainCanvas.submenu[1].w, af[1], 20);
+            var0.drawImage(MainCanvas.submenu[2].image, af[0], af[1] + ag - MainCanvas.submenu[2].h, 20);
+            var0.drawImage(MainCanvas.submenu[3].image, af[0] + q - MainCanvas.submenu[3].w, af[1] + ag - MainCanvas.submenu[3].h, 20);
         }
 
     }
@@ -1410,21 +1411,21 @@ public final class LoadingPage {
         }
 
         if (var3 && MainCanvas.trigon_l != null && MainCanvas.trigon_r != null && MainCanvas.trigon_u != null && MainCanvas.trigon_d != null) {
-            var0.drawImage(MainCanvas.trigon_u.pngImage, var5 + (140 - MainCanvas.trigon_u.b) / 2, var6 + 7 + GlobalConfig.font2_h, 20);
-            a(aj[0], var5 + (140 - MainCanvas.trigon_u.b) / 2, var6 + 7 + GlobalConfig.font2_h, MainCanvas.trigon_u.pngImage.getWidth(), MainCanvas.trigon_u.pngImage.getHeight());
-            var0.drawImage(MainCanvas.trigon_d.pngImage, var5 + (140 - MainCanvas.trigon_u.b) / 2, var6 + 5 + (GlobalConfig.font2_h << 1) + 14, 20);
-            a(aj[1], var5 + (140 - MainCanvas.trigon_u.b) / 2, var6 + 5 + (GlobalConfig.font2_h << 1) + 14, MainCanvas.trigon_d.pngImage.getWidth(), MainCanvas.trigon_d.pngImage.getHeight());
-            var0.drawImage(MainCanvas.trigon_l.pngImage, var5 + 5, var6 + 5 + GlobalConfig.font2_h + 12, 20);
-            a(aj[2], var5 + 5, var6 + 5 + GlobalConfig.font2_h + 12, MainCanvas.trigon_l.pngImage.getWidth(), MainCanvas.trigon_l.pngImage.getHeight());
-            var0.drawImage(MainCanvas.trigon_r.pngImage, var5 + 140 - 5 - MainCanvas.trigon_r.b, var6 + 5 + GlobalConfig.font2_h + 12, 20);
-            a(aj[3], var5 + 140 - 5 - MainCanvas.trigon_r.b, var6 + 5 + GlobalConfig.font2_h + 12, MainCanvas.trigon_r.pngImage.getWidth(), MainCanvas.trigon_r.pngImage.getHeight());
+            var0.drawImage(MainCanvas.trigon_u.image, var5 + (140 - MainCanvas.trigon_u.w) / 2, var6 + 7 + GlobalConfig.font2_h, 20);
+            a(aj[0], var5 + (140 - MainCanvas.trigon_u.w) / 2, var6 + 7 + GlobalConfig.font2_h, MainCanvas.trigon_u.image.getWidth(), MainCanvas.trigon_u.image.getHeight());
+            var0.drawImage(MainCanvas.trigon_d.image, var5 + (140 - MainCanvas.trigon_u.w) / 2, var6 + 5 + (GlobalConfig.font2_h << 1) + 14, 20);
+            a(aj[1], var5 + (140 - MainCanvas.trigon_u.w) / 2, var6 + 5 + (GlobalConfig.font2_h << 1) + 14, MainCanvas.trigon_d.image.getWidth(), MainCanvas.trigon_d.image.getHeight());
+            var0.drawImage(MainCanvas.trigon_l.image, var5 + 5, var6 + 5 + GlobalConfig.font2_h + 12, 20);
+            a(aj[2], var5 + 5, var6 + 5 + GlobalConfig.font2_h + 12, MainCanvas.trigon_l.image.getWidth(), MainCanvas.trigon_l.image.getHeight());
+            var0.drawImage(MainCanvas.trigon_r.image, var5 + 140 - 5 - MainCanvas.trigon_r.w, var6 + 5 + GlobalConfig.font2_h + 12, 20);
+            a(aj[3], var5 + 140 - 5 - MainCanvas.trigon_r.w, var6 + 5 + GlobalConfig.font2_h + 12, MainCanvas.trigon_r.image.getWidth(), MainCanvas.trigon_r.image.getHeight());
         }
 
         if (MainCanvas.button_ok != null && MainCanvas.button_back != null) {
-            var0.drawImage(MainCanvas.button_ok.pngImage, var5 + 5, var6 + var4 - 5 - MainCanvas.button_ok.c, 20);
-            a(ak[0], var5 + 5, var6 + var4 - 5 - MainCanvas.button_ok.c, MainCanvas.button_ok.pngImage.getWidth(), MainCanvas.button_ok.pngImage.getHeight());
-            var0.drawImage(MainCanvas.button_back.pngImage, var5 + 140 - 5 - MainCanvas.button_back.b, var6 + var4 - 5 - MainCanvas.button_back.c, 20);
-            a(ak[1], var5 + 140 - 5 - MainCanvas.button_back.b, var6 + var4 - 5 - MainCanvas.button_back.c, MainCanvas.button_back.pngImage.getWidth(), MainCanvas.button_back.pngImage.getHeight());
+            var0.drawImage(MainCanvas.button_ok.image, var5 + 5, var6 + var4 - 5 - MainCanvas.button_ok.h, 20);
+            a(ak[0], var5 + 5, var6 + var4 - 5 - MainCanvas.button_ok.h, MainCanvas.button_ok.image.getWidth(), MainCanvas.button_ok.image.getHeight());
+            var0.drawImage(MainCanvas.button_back.image, var5 + 140 - 5 - MainCanvas.button_back.w, var6 + var4 - 5 - MainCanvas.button_back.h, 20);
+            a(ak[1], var5 + 140 - 5 - MainCanvas.button_back.w, var6 + var4 - 5 - MainCanvas.button_back.h, MainCanvas.button_back.image.getWidth(), MainCanvas.button_back.image.getHeight());
         }
 
     }
@@ -1445,9 +1446,9 @@ public final class LoadingPage {
     }
 
     public static void a(Graphics var0, String var1, int var2, int var3, int var4) {
-        var0.drawImage(MainCanvas.trigon_l.pngImage, var2, var3 + 3, 20);
+        var0.drawImage(MainCanvas.trigon_l.image, var2, var3 + 3, 20);
         c(var0, var2 + 12, var3, var4 - 24, GlobalConfig.font2_h, 1);
-        var0.drawImage(MainCanvas.trigon_r.pngImage, var2 + var4 - 9, var3 + 3, 20);
+        var0.drawImage(MainCanvas.trigon_r.image, var2 + var4 - 9, var3 + 3, 20);
         drawString(var0, var1, var2 + var4 / 2, var3 + 3, 17, 16711639);
     }
 
@@ -1566,7 +1567,7 @@ public final class LoadingPage {
         var0.fillRect(var1 + 1, var2 + 1, var3, 2);
         var0.setColor(var4 == 0 ? 10945027 : 230064);
         var0.fillRect(var1 + 1, var2 + 2, var3, 1);
-        var0.drawImage(MainCanvas.rim.pngImage, var1, var2, 20);
+        var0.drawImage(MainCanvas.rim.image, var1, var2, 20);
     }
 
     private static void a(int[] var0, int var1, int var2, int var3, int var4) {
@@ -1639,19 +1640,19 @@ public final class LoadingPage {
         setColor(var0, 4);
         var0.drawRect(var1 - 2, var2 - 2, var3 + 3, var4 + 3);
         if (MainCanvas.lu0 != null) {
-            var0.drawImage(MainCanvas.lu0.pngImage, var1 - 4, var2 - 4, 20);
+            var0.drawImage(MainCanvas.lu0.image, var1 - 4, var2 - 4, 20);
         }
 
         if (MainCanvas.ld0 != null) {
-            var0.drawImage(MainCanvas.ld0.pngImage, var1 - 4, var2 + var4 + 4 - MainCanvas.ld0.c, 20);
+            var0.drawImage(MainCanvas.ld0.image, var1 - 4, var2 + var4 + 4 - MainCanvas.ld0.h, 20);
         }
 
         if (MainCanvas.ru0 != null) {
-            var0.drawImage(MainCanvas.ru0.pngImage, var1 + 4 + var3 - MainCanvas.ru0.b, var2 - 4, 20);
+            var0.drawImage(MainCanvas.ru0.image, var1 + 4 + var3 - MainCanvas.ru0.w, var2 - 4, 20);
         }
 
         if (MainCanvas.rd0 != null) {
-            var0.drawImage(MainCanvas.rd0.pngImage, var1 + 4 + var3 - MainCanvas.rd0.b, var2 + var4 + 4 - MainCanvas.rd0.c, 20);
+            var0.drawImage(MainCanvas.rd0.image, var1 + 4 + var3 - MainCanvas.rd0.w, var2 + var4 + 4 - MainCanvas.rd0.h, 20);
         }
 
     }

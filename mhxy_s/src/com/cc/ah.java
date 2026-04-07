@@ -28,9 +28,9 @@ public final class ah {
             var1.drawString(this.c, var2, var3 + (var4 - GlobalConfig.font2_h) / 2, var5);
             break;
          case 1:
-            Frame0 var6;
+            Sprite var6;
             if ((var6 = GameSceneController.b(this.b)) != null) {
-               var1.drawImage(var6.pngImage, var2, var3 + (var4 - var6.c) / 2, var5);
+               var1.drawImage(var6.image, var2, var3 + (var4 - var6.h) / 2, var5);
                return;
             }
       }

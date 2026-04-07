@@ -1,5 +1,7 @@
 package com.cc;
 
+import com.cc.resource.ResourceManager;
+import com.cc.resource.TileMap;
 import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.ByteArrayInputStream;
@@ -758,7 +760,7 @@ public final class NetworkPacketProcessors {
                             byte[] frameInfo = new byte[var42];
                             GlobalStatus.currentMapName = this.dis.readUTF();
                             this.dis.read(frameInfo);
-                            MainCanvas.ae = new Page(GlobalStatus.currentMapName, frameInfo);
+                            MainCanvas.ae = new ResourceManager(GlobalStatus.currentMapName, frameInfo);
                         }
                         GlobalStatus.skip(this.dis);
                         return;
@@ -2211,9 +2213,9 @@ public final class NetworkPacketProcessors {
         MainCanvas.gameSceneController.l((byte) 1);
     }
 
-    public final Vector a(aw var1, Vector var2, bs var3, bs var4) {
+    public final Vector a(TileMap var1, Vector var2, bs var3, bs var4) {
         try {
-            if (var1 == null || var2 == null || var1.i == null) {
+            if (var1 == null || var2 == null || var1.collisionMap == null) {
                 return new Vector();
             }
 
@@ -2246,7 +2248,7 @@ public final class NetworkPacketProcessors {
                 bs[] var7 = new bs[]{new bs(var6.a, var6.b - 1), new bs(var6.a, var6.b + 1), new bs(var6.a - 1, var6.b), new bs(var6.a + 1, var6.b)};
 
                 for (int var8 = 0; var8 < var7.length; ++var8) {
-                    if ((var7[var8].a != var6.a || var7[var8].b != var6.b) && var7[var8].a >= 0 && var7[var8].a < var1.a / 16 + (var1.a % 16 == 0 ? 0 : 1) + 1 && var7[var8].b >= 0 && var7[var8].b < var1.b / 16 + (var1.b % 16 == 0 ? 0 : 1) + 1 && !a(var2, var7[var8].a, var7[var8].b) && !b(var10, var7[var8].a, var7[var8].b) && MainCanvas.pngUtil.a(var1, (var7[var8].a << 4) + 8, var7[var8].b << 4) == 0 && !MainCanvas.pngUtil.a((var7[var8].a << 4) + 8, var7[var8].b << 4)) {
+                    if ((var7[var8].a != var6.a || var7[var8].b != var6.b) && var7[var8].a >= 0 && var7[var8].a < var1.mapW / 16 + (var1.mapW % 16 == 0 ? 0 : 1) + 1 && var7[var8].b >= 0 && var7[var8].b < var1.mapH / 16 + (var1.mapH % 16 == 0 ? 0 : 1) + 1 && !a(var2, var7[var8].a, var7[var8].b) && !b(var10, var7[var8].a, var7[var8].b) && MainCanvas.pngUtil.a(var1, (var7[var8].a << 4) + 8, var7[var8].b << 4) == 0 && !MainCanvas.pngUtil.a((var7[var8].a << 4) + 8, var7[var8].b << 4)) {
                         var2.addElement(new bs(var7[var8].a, var7[var8].b, var6));
                     }
                 }

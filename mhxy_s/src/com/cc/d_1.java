@@ -90,8 +90,8 @@ public final class d_1 {
                var6 = (byte)(var5.length() > 0 ? var5.charAt(var5.length() - 1) - 48 : -1);
                if (var9 == 'f' || var9 == 'i') {
                   MainCanvas.icon.e(String.valueOf(var8));
-                  Frame0 var19;
-                  short var20 = (var19 = GameSceneController.b(var8)) == null ? 0 : var19.b;
+                  Sprite var19;
+                  short var20 = (var19 = GameSceneController.b(var8)) == null ? 0 : var19.w;
                   if ((var7 += var20) > var1) {
                      var7 = var20;
                      var11.addElement(new d_1(var10));

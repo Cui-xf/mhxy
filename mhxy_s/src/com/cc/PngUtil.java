@@ -1,5 +1,8 @@
 package com.cc;
 
+import com.cc.resource.Animation;
+import com.cc.resource.SpritePiece;
+import com.cc.resource.TileMap;
 import com.yinhan.kjava.main.MainCanvas;
 
 import javax.microedition.lcdui.Graphics;
@@ -45,14 +48,14 @@ public final class PngUtil {
         }
     }
 
-    public final byte a(aw var1, int var2, int var3) {
-        if (var1 != null && var1.i != null) {
-            if (var2 >= 0 && var2 <= var1.a && var3 >= 0 && var3 < var1.b) {
-                var2 /= var1.e;
-                var3 /= var1.f;
-                var2 = var2 < 0 ? 0 : (var2 >= var1.i.length ? var1.i.length - 1 : var2);
-                var3 = var3 < 0 ? 0 : (var3 >= var1.i[0].length ? var1.i[0].length - 1 : var3);
-                return b(var2, var3) ? 0 : var1.i[var2][var3];
+    public final byte a(TileMap var1, int var2, int var3) {
+        if (var1 != null && var1.collisionMap != null) {
+            if (var2 >= 0 && var2 <= var1.mapW && var3 >= 0 && var3 < var1.mapH) {
+                var2 /= var1.collisionW;
+                var3 /= var1.collisionH;
+                var2 = var2 < 0 ? 0 : (var2 >= var1.collisionMap.length ? var1.collisionMap.length - 1 : var2);
+                var3 = var3 < 0 ? 0 : (var3 >= var1.collisionMap[0].length ? var1.collisionMap[0].length - 1 : var3);
+                return b(var2, var3) ? 0 : var1.collisionMap[var2][var3];
             } else {
                 return 1;
             }
@@ -80,19 +83,19 @@ public final class PngUtil {
     }
 
     //动画
-    public static int animate(Frame1 frame1, long var1) {
-        if (frame1 != null && frame1.k != null) {
+    public static int animate(Animation frame1, long var1) {
+        if (frame1 != null && frame1.spritePieces != null) {
             byte var3 = 0;
-            if (var1 - frame1.e - (long) frame1.d > 0L) {
-                ++frame1.f;
-                if (frame1.f >= frame1.k.length) {
-                    frame1.f = 0;
+            if (var1 - frame1.lastTs - (long) frame1.frameInterval > 0L) {
+                ++frame1.currentFrameIndex;
+                if (frame1.currentFrameIndex >= frame1.spritePieces.length) {
+                    frame1.currentFrameIndex = 0;
                     var3 = 2;
                 } else {
                     var3 = 1;
                 }
 
-                frame1.e = var1;
+                frame1.lastTs = var1;
             }
 
             return var3;
@@ -101,79 +104,79 @@ public final class PngUtil {
         }
     }
 
-    public final void a(Graphics var1, bx var2, int[] var3, int var4, int var5, int var6, int var7, int var8) {
-        if (var2 != null && var2.a != null) {
-            switch (var2.a.type) {
+    public final void a(Graphics var1, SpritePiece var2, int[] var3, int var4, int var5, int var6, int var7, int var8) {
+        if (var2 != null && var2.frame != null) {
+            switch (var2.frame.type) {
                 case 0:
-                    this.a(var1, (Frame0) var2.a, var3, var2.a(), var4, var5, var6, var7, 0, var2.g);
+                    this.a(var1, (Sprite) var2.frame, var3, var2.getImageSlice(), var4, var5, var6, var7, 0, var2.transformFlag);
                     return;
                 case 2:
-                    this.a(var1, (Frame1) ((Frame1) var2.a), var3, var4, var5, var6, var7, 0, var8);
+                    this.a(var1, (Animation) ((Animation) var2.frame), var3, var4, var5, var6, var7, 0, var8);
             }
         }
 
     }
 
-    private void a(Graphics var1, bx var2, int[] var3, int var4, int var5, int var6, int var7, int var8, int var9) {
-        if (var2 != null && var2.a != null) {
-            switch (var2.a.type) {
+    private void a(Graphics var1, SpritePiece var2, int[] var3, int var4, int var5, int var6, int var7, int var8, int var9) {
+        if (var2 != null && var2.frame != null) {
+            switch (var2.frame.type) {
                 case 0:
-                    var6 += var2.e;
-                    var7 += var2.f;
-                    this.a(var1, (Frame0) var2.a, var3, var2.a(), var4, var5, var6, var7, 20, var2.g);
+                    var6 += var2.transformX;
+                    var7 += var2.transformY;
+                    this.a(var1, (Sprite) var2.frame, var3, var2.getImageSlice(), var4, var5, var6, var7, 20, var2.transformFlag);
                     return;
                 case 2:
-                    var6 += var2.e;
-                    var7 += var2.f;
-                    this.a(var1, (Frame1) ((Frame1) var2.a), var3, var4, var5, var6, var7, 20, var9);
+                    var6 += var2.transformX;
+                    var7 += var2.transformY;
+                    this.a(var1, (Animation) ((Animation) var2.frame), var3, var4, var5, var6, var7, 20, var9);
             }
         }
 
     }
 
-    public final void a(Graphics var1, Frame0 var2, int[] var3, aj var4, int var5, int var6, int var7, int var8, int var9, int var10) {
+    public final void a(Graphics var1, Sprite var2, int[] var3, ImageSlice var4, int var5, int var6, int var7, int var8, int var9, int var10) {
         var7 -= var5;
         var8 -= var6;
-        if (var2 != null && var2.pngImage != null) {
+        if (var2 != null && var2.image != null) {
             if (var3 != null && var3[2] > 0 && var3[3] > 0) {
                 if (var4 == null) {
                     var1.setClip(var3[0] - var5, var3[1] - var6, var3[2], var3[3]);
-                    var1.drawRegion(var2.pngImage, 0, 0, var2.b, var2.c, i[var10], var7, var8, var9);
+                    var1.drawRegion(var2.image, 0, 0, var2.w, var2.h, i[var10], var7, var8, var9);
                 } else {
                     a(var2, this.h, var4);
                     short var15 = (short) this.h[0];
                     short var18 = (short) this.h[1];
                     short var19 = (short) this.h[2];
                     short var20 = (short) this.h[3];
-                    if (var15 >= 0 && var15 + var19 <= var2.b && var18 >= 0 && var18 + var20 <= var2.c && var15 < var2.b && var18 < var2.c && var19 > 0 && var20 > 0) {
+                    if (var15 >= 0 && var15 + var19 <= var2.w && var18 >= 0 && var18 + var20 <= var2.h && var15 < var2.w && var18 < var2.h && var19 > 0 && var20 > 0) {
                         var1.setClip(var3[0] - var5, var3[1] - var6, var3[2], var3[3]);
-                        var1.drawRegion(var2.pngImage, var15, var18, var19, var20, i[var10], var7, var8, var9);
+                        var1.drawRegion(var2.image, var15, var18, var19, var20, i[var10], var7, var8, var9);
                         var1.setClip(this.p, this.q, this.r, this.s);
                     }
                 }
             } else if (var4 == null) {
-                var1.drawRegion(var2.pngImage, 0, 0, var2.b, var2.c, i[var10], var7, var8, var9);
+                var1.drawRegion(var2.image, 0, 0, var2.w, var2.h, i[var10], var7, var8, var9);
             } else {
                 a(var2, this.h, var4);
                 short var14 = (short) this.h[0];
                 short var11 = (short) this.h[1];
                 short var12 = (short) this.h[2];
                 short var13 = (short) this.h[3];
-                if (var14 >= 0 && var14 + var12 <= var2.b && var11 >= 0 && var11 + var13 <= var2.c && var14 < var2.b && var11 < var2.c && var12 > 0 && var13 > 0) {
-                    var1.drawRegion(var2.pngImage, var14, var11, var12, var13, i[var10], var7, var8, var9);
+                if (var14 >= 0 && var14 + var12 <= var2.w && var11 >= 0 && var11 + var13 <= var2.h && var14 < var2.w && var11 < var2.h && var12 > 0 && var13 > 0) {
+                    var1.drawRegion(var2.image, var14, var11, var12, var13, i[var10], var7, var8, var9);
                 }
             }
         }
     }
 
-    public final void a(Graphics var1, Frame0 var2, int[] var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10) {
-        if (var2 != null && var2.d != null && var4 >= 0 && var4 < var2.d.length) {
-            this.a(var1, var2, (int[]) null, var2.d[var4], 0, 0, var7, var8, 0, var10);
+    public final void a(Graphics var1, Sprite var2, int[] var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10) {
+        if (var2 != null && var2.slices != null && var4 >= 0 && var4 < var2.slices.length) {
+            this.a(var1, var2, (int[]) null, var2.slices[var4], 0, 0, var7, var8, 0, var10);
         }
     }
 
-    public final void a(Graphics var1, Frame1 var2, int[] var3, int var4, int var5, int var6, int var7, int var8, int var9) {
-        if (var2 != null && var2.k != null && var2.f < var2.k.length && var2.k[var2.f] != null) {
+    public final void a(Graphics var1, Animation var2, int[] var3, int var4, int var5, int var6, int var7, int var8, int var9) {
+        if (var2 != null && var2.spritePieces != null && var2.currentFrameIndex < var2.spritePieces.length && var2.spritePieces[var2.currentFrameIndex] != null) {
             if (var8 == 3) {
                 var6 -= var2.g() >> 1;
                 var7 -= var2.h() >> 1;
@@ -186,19 +189,19 @@ public final class PngUtil {
                 var7 -= var2.h();
             }
 
-            for (int var10 = 0; var10 < var2.k[var2.f].length; ++var10) {
-                if (var2.k[var2.f][var10] != null) {
-                    this.a(var1, (bx) var2.k[var2.f][var10], var3, var4, var5, var6, var7, 20, var9);
+            for (int var10 = 0; var10 < var2.spritePieces[var2.currentFrameIndex].length; ++var10) {
+                if (var2.spritePieces[var2.currentFrameIndex][var10] != null) {
+                    this.a(var1, (SpritePiece) var2.spritePieces[var2.currentFrameIndex][var10], var3, var4, var5, var6, var7, 20, var9);
                 }
             }
         }
 
     }
 
-    public final void a(Graphics var1, bx[] var2, short var3, short var4, int[] var5, int var6, int var7, int var8, int var9, int var10, int var11) {
+    public final void a(Graphics var1, SpritePiece[] var2, short var3, short var4, int[] var5, int var6, int var7, int var8, int var9, int var10, int var11) {
         if (var2 != null) {
             for (int var12 = 0; var12 < var2.length; ++var12) {
-                this.a(var1, (bx) var2[var12], var5, var6, var7, var8, var9, 20, var11);
+                this.a(var1, (SpritePiece) var2[var12], var5, var6, var7, var8, var9, 20, var11);
             }
 
         }
@@ -222,7 +225,7 @@ public final class PngUtil {
         this.k = var6 + 2 * this.t;
     }
 
-    private void a(aw var1, int var2, int var3, int var4, int var5, boolean var6) {
+    private void a(TileMap var1, int var2, int var3, int var4, int var5, boolean var6) {
         this.graphics.setClip(0, 0, this.j, this.k);
         if (this.n == -1 && this.o == -1) {
             this.a(this.graphics, var1, var2 - this.t, var3 - this.t, var5, var6);
@@ -266,17 +269,17 @@ public final class PngUtil {
         }
     }
 
-    public final void a(Graphics var1, aw var2, int var3, int var4, int var5, int var6, boolean var7, boolean var8) {
-        var1.setClip(this.p, this.q, var2.a < this.r ? var2.a : this.r, var2.b < this.s ? var2.b : this.s);
+    public final void a(Graphics var1, TileMap var2, int var3, int var4, int var5, int var6, boolean var7, boolean var8) {
+        var1.setClip(this.p, this.q, var2.mapW < this.r ? var2.mapW : this.r, var2.mapH < this.s ? var2.mapH : this.s);
         this.a(var2, var3, var4, 0, 0, true);
-        var1.setClip(this.p, this.q, var2.a < this.r ? var2.a : this.r, var2.b < this.s ? var2.b : this.s);
+        var1.setClip(this.p, this.q, var2.mapW < this.r ? var2.mapW : this.r, var2.mapH < this.s ? var2.mapH : this.s);
         var1.drawImage(this.l, this.p + (this.n - var3) - this.t, this.q + (this.o - var4) - this.t, 0);
         var1.setClip(0, 0, this.j, this.k);
     }
 
-    public final void a(Graphics var1, aw var2, int var3, int var4) {
-        if (GlobalConfig.defaultWidth - var2.a > 0) {
-            var1.setClip((GlobalConfig.defaultWidth - var2.a) / 2, this.q, var2.a, var2.b);
+    public final void a(Graphics var1, TileMap var2, int var3, int var4) {
+        if (GlobalConfig.defaultWidth - var2.mapW > 0) {
+            var1.setClip((GlobalConfig.defaultWidth - var2.mapW) / 2, this.q, var2.mapW, var2.mapH);
         } else {
             var1.setClip(this.p, this.q, this.r, this.s);
         }
@@ -285,7 +288,7 @@ public final class PngUtil {
         var1.setClip(0, 0, this.j, this.k);
     }
 
-    public final void a(aw var1, int var2, int var3, boolean var4) {
+    public final void a(TileMap var1, int var2, int var3, boolean var4) {
         this.n = -1;
         this.o = -1;
         if (this.p != 0 || this.q != 0) {
@@ -301,7 +304,7 @@ public final class PngUtil {
         LoadingPage.fillRect(this.graphics, 4017771, 159, 0, 0, this.j, this.k);
     }
 
-    public final void a(aw var1, int var2, int var3, boolean var4, boolean var5, int var6) {
+    public final void a(TileMap var1, int var2, int var3, boolean var4, boolean var5, int var6) {
         this.n = -1;
         this.o = -1;
         if (this.p != 0 || this.q != 0) {
@@ -316,42 +319,42 @@ public final class PngUtil {
 
     }
 
-    private void a(Graphics var1, aw var2, int var3, int var4, int var5, boolean var6) {
-        this.u = Math.max(0, var3 / var2.c + var1.getClipX() / var2.c);
-        this.v = Math.max(0, var4 / var2.d + var1.getClipY() / var2.d);
-        this.w = Math.min(var2.g, this.u + var1.getClipWidth() / var2.c + 1);
-        this.x = Math.min(var2.h, this.v + var1.getClipHeight() / var2.d + 1);
-        if (var2.j != null) {
+    private void a(Graphics var1, TileMap var2, int var3, int var4, int var5, boolean var6) {
+        this.u = Math.max(0, var3 / var2.blockW + var1.getClipX() / var2.blockW);
+        this.v = Math.max(0, var4 / var2.blockH + var1.getClipY() / var2.blockH);
+        this.w = Math.min(var2.column, this.u + var1.getClipWidth() / var2.blockW + 1);
+        this.x = Math.min(var2.row, this.v + var1.getClipHeight() / var2.blockH + 1);
+        if (var2.mapBlock != null) {
             for (int var7 = this.u; var7 < this.w; ++var7) {
                 for (int var8 = this.v; var8 < this.x; ++var8) {
-                    if (var2.j[var7][var8] != null && var7 * var2.c - var3 + var2.c - var1.getClipX() > 0 && var7 * var2.c - var3 - var1.getClipX() < var1.getClipWidth() && var8 * var2.d - var4 + var2.d - var1.getClipY() > 0 && var8 * var2.d - var4 - var1.getClipY() < var1.getClipHeight()) {
+                    if (var2.mapBlock[var7][var8] != null && var7 * var2.blockW - var3 + var2.blockW - var1.getClipX() > 0 && var7 * var2.blockW - var3 - var1.getClipX() < var1.getClipWidth() && var8 * var2.blockH - var4 + var2.blockH - var1.getClipY() > 0 && var8 * var2.blockH - var4 - var1.getClipY() < var1.getClipHeight()) {
                         if (b(var7, var8) && GlobalStatus.hH != null) {
-                            this.a(var1, GlobalStatus.hH, (int[]) null, GlobalStatus.hI, 0, 0, var7 * var2.c - var3, var8 * var2.d - var4, 0, var5);
+                            this.a(var1, GlobalStatus.hH, (int[]) null, GlobalStatus.hI, 0, 0, var7 * var2.blockW - var3, var8 * var2.blockH - var4, 0, var5);
                         } else {
-                            this.a(var1, var2.j[var7][var8], (int[]) null, 0, 0, var7 * var2.c - var3, var8 * var2.d - var4, var5);
+                            this.a(var1, var2.mapBlock[var7][var8], (int[]) null, 0, 0, var7 * var2.blockW - var3, var8 * var2.blockH - var4, var5);
                         }
                     }
                 }
             }
         }
 
-        if (var2.k != null) {
-            for (int var9 = 0; var9 < var2.k.length; ++var9) {
-                if (var2.k[var9] != null) {
-                    this.a(var2.k[var9], this.g);
-                    if (var2.k[var9].e - var3 + this.g[0] - var1.getClipX() > 0 && var2.k[var9].e - var3 - var1.getClipX() < var1.getClipWidth() && var2.k[var9].f - var4 + this.g[1] - var1.getClipY() > 0 && var2.k[var9].f - var4 - var1.getClipY() < var1.getClipHeight()) {
-                        this.a(var1, var2.k[var9], (int[]) null, var3, var4, var2.k[var9].e, var2.k[var9].f, var5);
+        if (var2.fixedObj != null) {
+            for (int var9 = 0; var9 < var2.fixedObj.length; ++var9) {
+                if (var2.fixedObj[var9] != null) {
+                    this.a(var2.fixedObj[var9], this.g);
+                    if (var2.fixedObj[var9].transformX - var3 + this.g[0] - var1.getClipX() > 0 && var2.fixedObj[var9].transformX - var3 - var1.getClipX() < var1.getClipWidth() && var2.fixedObj[var9].transformY - var4 + this.g[1] - var1.getClipY() > 0 && var2.fixedObj[var9].transformY - var4 - var1.getClipY() < var1.getClipHeight()) {
+                        this.a(var1, var2.fixedObj[var9], (int[]) null, var3, var4, var2.fixedObj[var9].transformX, var2.fixedObj[var9].transformY, var5);
                     }
                 }
             }
         }
 
-        if (var2.l != null) {
-            for (int var10 = 0; var10 < var2.l.length; ++var10) {
-                if (var2.l[var10] != null && var2.l[var10].a != null && (var2.l[var10].a.type != 2 || ((Frame1) var2.l[var10].a).k == null || ((Frame1) var2.l[var10].a).k.length <= 1)) {
-                    this.a(var2.l[var10], this.g);
-                    if (var2.l[var10].e - var3 + this.g[0] - var1.getClipX() > 0 && var2.l[var10].e - var3 - var1.getClipX() < var1.getClipWidth() && var2.l[var10].f - var4 + this.g[1] - var1.getClipY() > 0 && var2.l[var10].f - var4 - var1.getClipY() < var1.getClipHeight()) {
-                        this.a(var1, var2.l[var10], (int[]) null, var3, var4, var2.l[var10].e, var2.l[var10].f, var5);
+        if (var2.animationObj != null) {
+            for (int var10 = 0; var10 < var2.animationObj.length; ++var10) {
+                if (var2.animationObj[var10] != null && var2.animationObj[var10].frame != null && (var2.animationObj[var10].frame.type != 2 || ((Animation) var2.animationObj[var10].frame).spritePieces == null || ((Animation) var2.animationObj[var10].frame).spritePieces.length <= 1)) {
+                    this.a(var2.animationObj[var10], this.g);
+                    if (var2.animationObj[var10].transformX - var3 + this.g[0] - var1.getClipX() > 0 && var2.animationObj[var10].transformX - var3 - var1.getClipX() < var1.getClipWidth() && var2.animationObj[var10].transformY - var4 + this.g[1] - var1.getClipY() > 0 && var2.animationObj[var10].transformY - var4 - var1.getClipY() < var1.getClipHeight()) {
+                        this.a(var1, var2.animationObj[var10], (int[]) null, var3, var4, var2.animationObj[var10].transformX, var2.animationObj[var10].transformY, var5);
                     }
                 }
             }
@@ -365,8 +368,8 @@ public final class PngUtil {
                         LoadingPage.drawString(var1, (String) GlobalStatus.npcObjects[var11].b, (int) (GlobalStatus.npcObjects[var11].c - var3), GlobalStatus.npcObjects[var11].d - (GlobalStatus.npcObjects[var11].frame1 == null ? 30 : GlobalStatus.npcObjects[var11].frame1.j()) - GlobalConfig.font2_h - var4, 17, 255, 16777215);
                     }
 
-                    if (GlobalStatus.npcObjects[var11].frame1 != null && GlobalStatus.npcObjects[var11].frame1.k != null && GameSceneController.aW[10] == 1) {
-                        this.a(var1, GlobalStatus.npcObjects[var11].frame1.k[GlobalStatus.npcObjects[var11].frame1.f], GlobalStatus.npcObjects[var11].frame1.g(), GlobalStatus.npcObjects[var11].frame1.h(), (int[]) null, var3, var4, GlobalStatus.npcObjects[var11].c, GlobalStatus.npcObjects[var11].d, 20, var5);
+                    if (GlobalStatus.npcObjects[var11].frame1 != null && GlobalStatus.npcObjects[var11].frame1.spritePieces != null && GameSceneController.aW[10] == 1) {
+                        this.a(var1, GlobalStatus.npcObjects[var11].frame1.spritePieces[GlobalStatus.npcObjects[var11].frame1.currentFrameIndex], GlobalStatus.npcObjects[var11].frame1.g(), GlobalStatus.npcObjects[var11].frame1.h(), (int[]) null, var3, var4, GlobalStatus.npcObjects[var11].c, GlobalStatus.npcObjects[var11].d, 20, var5);
                         var1.setFont(GlobalConfig.font2);
                     }
                 }
@@ -375,19 +378,19 @@ public final class PngUtil {
 
     }
 
-    public final void a(aw var1, int var2) {
-        this.e = var1.a / var2;
-        this.f = var1.b / var2;
+    public final void a(TileMap var1, int var2) {
+        this.e = var1.mapW / var2;
+        this.f = var1.mapH / var2;
         this.y = Image.createImage(this.e, this.f);
         this.z = this.y.getGraphics();
         this.z.setColor(8487297);
         this.z.fillRect(0, 0, this.e, this.f);
         this.z.setColor(352261);
-        if (var1.i != null) {
-            for (int var3 = 0; var3 < var1.i.length; ++var3) {
-                for (int var4 = 0; var4 < var1.i[var3].length; ++var4) {
-                    if (var1.i[var3][var4] == 1) {
-                        this.z.fillRect(var3 * var1.e / var2, var4 * var1.f / var2, 2, 2);
+        if (var1.collisionMap != null) {
+            for (int var3 = 0; var3 < var1.collisionMap.length; ++var3) {
+                for (int var4 = 0; var4 < var1.collisionMap[var3].length; ++var4) {
+                    if (var1.collisionMap[var3][var4] == 1) {
+                        this.z.fillRect(var3 * var1.collisionW / var2, var4 * var1.collisionH / var2, 2, 2);
                     }
                 }
             }
@@ -411,29 +414,29 @@ public final class PngUtil {
 
     }
 
-    public final void a(bx var1, int[] var2) {
-        if (var1.a != null) {
-            switch (var1.a.type) {
+    public final void a(SpritePiece var1, int[] var2) {
+        if (var1.frame != null) {
+            switch (var1.frame.type) {
                 case 0:
-                    Frame0 var10000 = (Frame0) var1.a;
+                    Sprite var10000 = (Sprite) var1.frame;
                     int[] var10001 = this.g;
-                    aj var5 = ((Frame0) var1.a).a(var1.d);
+                    ImageSlice var5 = ((Sprite) var1.frame).getImageSlice(var1.imageSliceIndex);
                     int[] var4 = var10001;
-                    Frame0 var3 = var10000;
+                    Sprite var3 = var10000;
                     if (var10000 != null) {
                         if (var5 == null) {
-                            var4[0] = var3.b;
-                            var4[1] = var3.c;
+                            var4[0] = var3.w;
+                            var4[1] = var3.h;
                         } else {
-                            var4[0] = var5.c;
-                            var4[1] = var5.d;
+                            var4[0] = var5.w;
+                            var4[1] = var5.h;
                         }
                     }
 
                     int var10002 = this.g[0];
                     int var6 = this.g[1];
                     int var7 = var10002;
-                    switch (var1.g) {
+                    switch (var1.transformFlag) {
                         case 0:
                             var2[0] = var7;
                             var2[1] = var6;
@@ -472,7 +475,7 @@ public final class PngUtil {
                             return;
                     }
                 case 2:
-                    a((Frame1) var1.a, var2);
+                    a((Animation) var1.frame, var2);
                     return;
                 default:
                     var2[0] = 0;
@@ -481,25 +484,25 @@ public final class PngUtil {
         }
     }
 
-    private static void a(Frame0 var0, int[] var1, aj var2) {
+    private static void a(Sprite var0, int[] var1, ImageSlice var2) {
         if (var0 != null) {
             if (var2 == null) {
                 var1[0] = 0;
                 var1[1] = 0;
-                var1[2] = var0.b;
-                var1[3] = var0.c;
+                var1[2] = var0.w;
+                var1[3] = var0.h;
                 return;
             }
 
-            var1[0] = var2.a;
-            var1[1] = var2.b;
-            var1[2] = var2.c;
-            var1[3] = var2.d;
+            var1[0] = var2.x;
+            var1[1] = var2.y;
+            var1[2] = var2.w;
+            var1[3] = var2.h;
         }
 
     }
 
-    public static void a(Frame1 var0, int[] var1) {
+    public static void a(Animation var0, int[] var1) {
         if (var0 != null) {
             var1[0] = var0.g();
             var1[1] = var0.h();
