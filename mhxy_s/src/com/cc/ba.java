@@ -67,9 +67,9 @@ public final class ba {
 
       var1.setColor(255);
       var1.drawString("幸运材料", this.e + 80 + 4, this.f + 8, 0);
-      MainCanvas.pngUtil.a(var1, GameSceneController.goods, (int[])null, (ImageSlice)null, 0, 0, this.e + 80 + 8 + 24, this.f + this.h - 32 - 44, 0, 0);
+      MainCanvas.pngUtil.draw(var1, GameSceneController.goods, (int[])null, (ImageSlice)null, 0, 0, this.e + 80 + 8 + 24, this.f + this.h - 32 - 44, 0, 0);
       if (GlobalStatus.mK[0] > 0) {
-         this.b.a(var1, GameSceneController.b(GlobalStatus.mK[0]), (int[])null, (ImageSlice)null, 0, 0, this.e + 80 + 8 + 24, this.f + this.h - 32 - 44, 0, 0);
+         this.b.draw(var1, GameSceneController.getIconFrame0(GlobalStatus.mK[0]), (int[])null, (ImageSlice)null, 0, 0, this.e + 80 + 8 + 24, this.f + this.h - 32 - 44, 0, 0);
       }
 
       if (this.a.bf == 0 && this.a.be == 1) {

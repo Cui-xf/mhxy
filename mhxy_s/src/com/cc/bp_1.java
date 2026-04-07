@@ -71,14 +71,14 @@ public final class bp_1 extends SceneEntity {
    private void a(boolean var1) {
       super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
       if (super.frame1 == null) {
-         MainCanvas.a(this.q, this.p, (byte)5, this.r, this.v, this.w, this.x, this.y);
+         MainCanvas.loadRoleRes(this.q, this.p, (byte)5, this.r, this.v, this.w, this.x, this.y);
          super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
          if (super.frame1 == null) {
             this.r = 0;
             this.a();
             super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.A[super.h] : this.z[super.h]);
             if (super.frame1 == null) {
-               MainCanvas.a(this.q, this.p, super.h, this.r, this.v, this.w, this.x, this.y);
+               MainCanvas.loadRoleRes(this.q, this.p, super.h, this.r, this.v, this.w, this.x, this.y);
                super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.A[super.h] : this.z[super.h]);
             }
          }

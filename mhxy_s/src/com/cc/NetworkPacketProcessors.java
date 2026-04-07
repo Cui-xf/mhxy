@@ -144,7 +144,7 @@ public final class NetworkPacketProcessors {
                         if (MainCanvas.gameSceneController.currentSceneModeId == 2 && MainCanvas.gameSceneController.sceneSubState == 4) {
                             String var48 = GlobalConfig.yinLiangFormat(this.mainCanvas.shareSb, GlobalStatus.bullions);
                             GlobalConfig.yinLiangFormat(this.mainCanvas.shareSb, GlobalStatus.versus);
-                            MainCanvas.gameSceneController.npcActionList = LoadingPage.parseText(GlobalStatus.npcObjects[MainCanvas.gameSceneController.selectNpcIndex].b + ":已存入银两" + var48 + "，现有银两" + this.mainCanvas.shareSb.toString(), GlobalConfig.font2, GlobalConfig.defaultWidth == 176 ? 118 : 152, "\t");
+                            MainCanvas.gameSceneController.npcActionList = LoadingPage.parseText(GlobalStatus.npcObjects[MainCanvas.gameSceneController.selectNpcIndex].npcName + ":已存入银两" + var48 + "，现有银两" + this.mainCanvas.shareSb.toString(), GlobalConfig.font2, GlobalConfig.defaultWidth == 176 ? 118 : 152, "\t");
                             MainCanvas.gameSceneController.actionLimit = MainCanvas.gameSceneController.sceneSubMode == 1 ? GlobalStatus.bullions : GlobalStatus.versus;
                         } else if (MainCanvas.gameSceneController.currentSceneModeId == 37 && MainCanvas.gameSceneController.confirmSubmitStatus) {
                             MainCanvas.gameSceneController.startAttributeAssignment();
@@ -174,13 +174,13 @@ public final class NetworkPacketProcessors {
                         this.processRoleMove();
                         return;
                     }
-                    case 8200: {// 装备数据：解析装备栏数据（GlobalStatus.b(dis)）
-                        GlobalStatus.b(this.dis);
+                    case NetPacketCode.Equipment: {// 装备数据：解析装备栏数据（GlobalStatus.b(dis)）
+                        GlobalStatus.parseEquipment(this.dis);
                         return;
                     }
-                    case 8201: {// 装备槽数据：读取更新类型(byte)后解析装备槽(GlobalStatus.e(dis))，完成后刷新主界面
+                    case NetPacketCode.EquipmentSlot: {// 装备槽数据：读取更新类型(byte)后解析装备槽(GlobalStatus.e(dis))，完成后刷新主界面
                         byte var56 = this.dis.readByte();
-                        GlobalStatus.e(this.dis);
+                        GlobalStatus.parseEquipmentSlot(this.dis);
                         if (var56 == 1) {
                             this.mainCanvas.i();
                         } else if (var56 == 2 && MainCanvas.gameSceneController != null) {
@@ -198,22 +198,21 @@ public final class NetworkPacketProcessors {
 
                         return;
                     }
-                    case 8202: {// 宠物详细数据：解析当前宠物完整属性(GlobalStatus.l(dis))，scene=5时重置子状态
-                        GlobalStatus.l(this.dis);
+                    case NetPacketCode.PetDetail: {// 宠物详细数据：解析当前宠物完整属性(GlobalStatus.l(dis))，scene=5时重置子状态
+                        GlobalStatus.parsePetDetail(this.dis);
                         if (MainCanvas.gameSceneController != null && MainCanvas.gameSceneController.currentSceneModeId == 5) {
                             MainCanvas.gameSceneController.sceneSubState = 0;
                             this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus = 7;
                         }
-
                         return;
                     }
-                    case 8203: {// 技能数据：跳过1字节后解析技能列表(GlobalStatus.n(dis))，scene=12时切换技能标签页
+                    case NetPacketCode.SkillList: {// 技能数据：跳过1字节后解析技能列表(GlobalStatus.n(dis))，scene=12时切换技能标签页
                         this.dis.readByte();
-                        GlobalStatus.n(this.dis);
+                        GlobalStatus.parseSkillList(this.dis);
                         if (MainCanvas.gameSceneController.currentSceneModeId == 12) {
-                            if (this.mainCanvas.topUi.a == 0) {
+                            if (this.mainCanvas.topUi.selectTabIndex == 0) {
                                 MainCanvas.gameSceneController.a((byte) 1, true);
-                            } else if (this.mainCanvas.topUi.a == 1) {
+                            } else if (this.mainCanvas.topUi.selectTabIndex == 1) {
                                 MainCanvas.gameSceneController.a((byte) 0, true);
                             }
                             break;
@@ -230,7 +229,7 @@ public final class NetworkPacketProcessors {
                     case 8206:
                         b(this.dis);
                         return;
-                    case 8207:
+                    case 8207: {
                         if (GameSceneController.notInFighting()) {
                             GlobalStatus.g(this.dis);
                             MainCanvas.gameSceneController.sceneSubState = 0;
@@ -239,7 +238,8 @@ public final class NetworkPacketProcessors {
                         }
 
                         return;
-                    case 8208:
+                    }
+                    case 8208: {
                         byte var46 = this.dis.readByte();
                         GlobalStatus.b(this.dis, var46);
                         if (var46 == 1) {
@@ -249,7 +249,8 @@ public final class NetworkPacketProcessors {
                         }
 
                         return;
-                    case 8209:
+                    }
+                    case 8209: {
                         this.c();
                         if (MainCanvas.gameSceneController.currentSceneModeId == 0) {
                             MainCanvas.gameSceneController.sceneSubState = 0;
@@ -257,8 +258,9 @@ public final class NetworkPacketProcessors {
                         }
 
                         return;
-                    case 8210: // 外观/时装数据：解析角色装扮配置(GlobalStatus.t(dis))，scene=12/4时刷新外观UI
-                        GlobalStatus.t(this.dis);
+                    }
+                    case NetPacketCode.Appearance: {// 外观/时装数据：解析角色装扮配置(GlobalStatus.t(dis))，scene=12/4时刷新外观UI
+                        GlobalStatus.parseAppearance(this.dis);
                         if (MainCanvas.gameSceneController != null) {
                             if (MainCanvas.gameSceneController.currentSceneModeId == 12 && MainCanvas.gameSceneController.sceneSubState >= 6) {
                                 if (this.mainCanvas.pageStatus != 2) {
@@ -278,11 +280,10 @@ public final class NetworkPacketProcessors {
                                 MainCanvas.gameSceneController.a(GlobalStatus.en);
                                 MainCanvas.gameSceneController.sceneSubState = 8;
                             }
-
                             return;
                         }
-
                         return;
+                    }
                     case 8211:
                         GlobalStatus.D(this.dis);
                         MainCanvas.gameSceneController.a(GlobalStatus.fs);
@@ -423,10 +424,11 @@ public final class NetworkPacketProcessors {
                     case 8221:
                         GlobalStatus.F(this.dis);
                         return;
-                    case 8222: // 宠物列表：解析并显示角色所有宠物(委托 d() 处理)
+                    case NetPacketCode.PetList: {// 宠物列表：解析并显示角色所有宠物(委托 d() 处理)
                         GlobalConfig.printStr("exec宠物列表:");
-                        this.d();
+                        this.parsePetList();
                         return;
+                    }
                     case 8223: // 任务数据：解析进行中/可接取任务列表(GlobalStatus.h(dis))，场外显示任务UI
                         if (GameSceneController.notInFighting()) {
                             if (!GameSceneController.notInFighting()) {
@@ -1394,7 +1396,7 @@ public final class NetworkPacketProcessors {
                     case 8969:
                         GlobalStatus.aB(this.dis);
                         if (MainCanvas.gameSceneController.currentSceneModeId == 76) {
-                            int var34 = this.mainCanvas.topUi.a;
+                            int var34 = this.mainCanvas.topUi.selectTabIndex;
                             int var52 = this.mainCanvas.gunDongListUi.g();
                             MainCanvas.gameSceneController.d((byte) var34);
                             var34 = var34 == 0 ? GlobalStatus.O.f.length : GlobalStatus.P.b.length;
@@ -1425,7 +1427,7 @@ public final class NetworkPacketProcessors {
                     case 8972: // 活动/节日事件列表：解析活动对象(ag_1)及活动条目(be_1[])，scene=76/111时刷新活动UI
                         GlobalStatus.aA(this.dis);
                         if (MainCanvas.gameSceneController.currentSceneModeId == 76) {
-                            byte var50 = this.mainCanvas.topUi.a;
+                            byte var50 = this.mainCanvas.topUi.selectTabIndex;
                             int var32 = this.mainCanvas.gunDongListUi.g();
                             MainCanvas.gameSceneController.d((byte) var50);
                             this.mainCanvas.gunDongListUi.a(var32);
@@ -1437,7 +1439,7 @@ public final class NetworkPacketProcessors {
                             }
 
                             if (MainCanvas.gameSceneController.lastSceneModeId == 76) {
-                                byte var51 = this.mainCanvas.topUi.a;
+                                byte var51 = this.mainCanvas.topUi.selectTabIndex;
                                 int var33 = this.mainCanvas.gunDongListUi.g();
                                 MainCanvas.gameSceneController.d((byte) var51);
                                 this.mainCanvas.gunDongListUi.a(var33);
@@ -1857,7 +1859,7 @@ public final class NetworkPacketProcessors {
      * 处理角色移动/位置包(8199)：解析角色坐标和移动路径，重置触控输入并更新场景刷新器的目标坐标。
      */
     private void processRoleMove() throws IOException {
-        GlobalStatus.c(this.dis);
+        GlobalStatus.processRoleMove(this.dis);
         if (MainCanvas.gameSceneController != null && MainCanvas.gameSceneController.sceneRefreshCoordinator != null) {
             if (GlobalConfig.supportTouch && this.mainCanvas.touchController != null) {
                 if (!MainCanvas.gameSceneController.sceneRefreshCoordinator.c.isEmpty()) {
@@ -1874,20 +1876,20 @@ public final class NetworkPacketProcessors {
                 this.mainCanvas.inputAction = 0;
             }
 
-            MainCanvas.gameSceneController.sceneRefreshCoordinator.j = GlobalStatus.at;
-            MainCanvas.gameSceneController.sceneRefreshCoordinator.k = GlobalStatus.au;
+            MainCanvas.gameSceneController.sceneRefreshCoordinator.j = GlobalStatus.roleX;
+            MainCanvas.gameSceneController.sceneRefreshCoordinator.k = GlobalStatus.roleY;
         }
 
         if (GlobalStatus.bs == 0 && GlobalStatus.teamBonus != null && GlobalStatus.followStatus == 0) {
             for (int i = 0; i < GlobalStatus.teamBonus.length; ++i) {
                 GlobalStatus.teamBonus[i].f.removeAllElements();
                 if (GlobalStatus.teamBonus[i].j == -1 && GlobalStatus.teamBonus[i].k == -1) {
-                    GlobalStatus.teamBonus[i].j = GlobalStatus.at;
-                    GlobalStatus.teamBonus[i].k = GlobalStatus.au;
+                    GlobalStatus.teamBonus[i].j = GlobalStatus.roleX;
+                    GlobalStatus.teamBonus[i].k = GlobalStatus.roleY;
                 }
 
-                GlobalStatus.teamBonus[i].l = GlobalStatus.at;
-                GlobalStatus.teamBonus[i].m = GlobalStatus.au;
+                GlobalStatus.teamBonus[i].l = GlobalStatus.roleX;
+                GlobalStatus.teamBonus[i].m = GlobalStatus.roleY;
             }
         }
 
@@ -1895,11 +1897,10 @@ public final class NetworkPacketProcessors {
             this.mainCanvas.startGameScene();
             MainCanvas.gameSceneController.sceneRefreshCoordinator.d();
         } else {
-            MainCanvas.gameSceneController.sceneRefreshCoordinator.a((int) GlobalStatus.av);
+            MainCanvas.gameSceneController.sceneRefreshCoordinator.a((int) GlobalStatus.face);
 
-            if (MainCanvas.gameSceneController.Y == GlobalStatus.ar && !MainCanvas.gameSceneController.sceneRefreshCoordinator.h()) {
+            if (MainCanvas.gameSceneController.lastCurrentSceneMode == GlobalStatus.mapId && !MainCanvas.gameSceneController.sceneRefreshCoordinator.h()) {
                 if (GlobalStatus.bs == 0 && GlobalStatus.teamBonus != null && GlobalStatus.followStatus == 0) {
-                    MainCanvas var6 = this.mainCanvas;
                     Vector var9 = new Vector();
                     this.e = GlobalStatus.teamBonus[0].j / 16 + (GlobalStatus.teamBonus[0].j % 16 == 0 ? 0 : 1);
                     this.f = GlobalStatus.teamBonus[0].k / 16 + (GlobalStatus.teamBonus[0].k % 16 == 0 ? 0 : 1);
@@ -1958,21 +1959,21 @@ public final class NetworkPacketProcessors {
 
                 if (MainCanvas.gameSceneController.sceneRefreshCoordinator.d != null) {
                     MainCanvas.gameSceneController.sceneRefreshCoordinator.d.e.removeAllElements();
-                    MainCanvas.gameSceneController.sceneRefreshCoordinator.d.h = GlobalStatus.at;
-                    MainCanvas.gameSceneController.sceneRefreshCoordinator.d.i = GlobalStatus.au;
+                    MainCanvas.gameSceneController.sceneRefreshCoordinator.d.h = GlobalStatus.roleX;
+                    MainCanvas.gameSceneController.sceneRefreshCoordinator.d.i = GlobalStatus.roleY;
                     MainCanvas.gameSceneController.sceneRefreshCoordinator.d.j = MainCanvas.gameSceneController.sceneRefreshCoordinator.h;
                     MainCanvas.gameSceneController.sceneRefreshCoordinator.d.a(MainCanvas.gameSceneController.sceneRefreshCoordinator.h);
                 }
 
                 if (GameSceneController.notInFighting()) {
-                    if (MainCanvas.gameSceneController.Y != GlobalStatus.ar) {
+                    if (MainCanvas.gameSceneController.lastCurrentSceneMode != GlobalStatus.mapId) {
                         MainCanvas.gameSceneController.e();
                     } else {
                         MainCanvas.gameSceneController.f();
                     }
 
                     MainCanvas.gameSceneController.sceneRefreshCoordinator.i();
-                    MainCanvas.gameSceneController.Y = GlobalStatus.ar;
+                    MainCanvas.gameSceneController.lastCurrentSceneMode = GlobalStatus.mapId;
                 }
 
                 MainCanvas.gameSceneController.sceneRefreshCoordinator.d();
@@ -2019,8 +2020,8 @@ public final class NetworkPacketProcessors {
     /**
      * 处理宠物列表包(8222)：解析所有宠物数据(GlobalStatus.I(dis))，根据当前场景模式显示宠物UI。
      */
-    private void d() throws IOException {
-        GlobalStatus.I(this.dis);
+    private void parsePetList() throws IOException {
+        GlobalStatus.parsePetList(this.dis);
         if (MainCanvas.gameSceneController != null) {
             if (!GameSceneController.notInFighting()) {
                 return;
@@ -2028,7 +2029,7 @@ public final class NetworkPacketProcessors {
 
             if (MainCanvas.gameSceneController.currentSceneModeId == 13) {
                 if (GlobalStatus.fA == null) {
-                    GlobalStatus.B();
+                    GlobalStatus.clearPet();
                     this.mainCanvas.showTips("您没有宠物！");
                     return;
                 }
@@ -2318,14 +2319,14 @@ public final class NetworkPacketProcessors {
         try {
             StringBuffer sb = new StringBuffer();
             sb.append(packet.getCode());
-            sb.append(",");
+            sb.append(",\"");
             byte[] payload = packet.payload;
             for (int i = 0; i < payload.length; i++) {
                 int b = payload[i] & 0xFF;
                 if (b < 16) sb.append('0');
                 sb.append(Integer.toHexString(b));
             }
-            sb.append("\n");
+            sb.append("\"\n");
             netLogWriter.write(sb.toString());
             netLogWriter.flush();
         } catch (IOException e) {

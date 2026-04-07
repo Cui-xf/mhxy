@@ -55,7 +55,7 @@ public final class cc {
             for (int var2 = 0; var2 < this.f.length && var2 < this.p.length; ++var2) {
                 this.f[var2] = MainCanvas.role.getAnimationByNameFromCache((String) this.s[var2], (short) 0, (short) 0, (short) 0);
                 if (this.f[var2] == null) {
-                    MainCanvas.a(this.t[var2], this.u[var2], (byte) 0, (byte) 0, this.s[var2], (short) 0, (short) 0, (short) 0);
+                    MainCanvas.loadRoleRes(this.t[var2], this.u[var2], (byte) 0, (byte) 0, this.s[var2], (short) 0, (short) 0, (short) 0);
                     this.f[var2] = MainCanvas.role.getAnimationByKeyFromCache((int) this.v[var2], (short) 0, (short) 0, (short) 0);
                 }
             }
@@ -65,7 +65,7 @@ public final class cc {
         this.mainCanvas.mixedUi.clear();
         this.mainCanvas.mixedUi.setTitle("仙位排位赛");
         this.mainCanvas.topUi.a(new String[]{"风云榜", "斗法场", "斗法记录"});
-        this.mainCanvas.topUi.a = (byte) var1;
+        this.mainCanvas.topUi.selectTabIndex = (byte) var1;
         this.a = (short) var1;
         this.mainCanvas.mixedUi.addChild((BaseUi) this.mainCanvas.topUi);
         this.mainCanvas.mixedUi.setDrawBackground(true);
@@ -118,7 +118,7 @@ public final class cc {
             }
 
             if (var1 == 8 || var1 == 2 || var1 == 516 || var1 == 518) {
-                this.a((short) this.mainCanvas.topUi.a);
+                this.a((short) this.mainCanvas.topUi.selectTabIndex);
                 return;
             }
 
@@ -151,7 +151,7 @@ public final class cc {
                     return;
                 }
             } else if (this.a == 2 && (var1 == 268435456 || var1 == 1073741824 || var1 == 517)) {
-                this.a = (short) this.mainCanvas.topUi.a;
+                this.a = (short) this.mainCanvas.topUi.selectTabIndex;
                 byte[] var11;
                 if ((var11 = NetPayloadBuilder.d((short) 4690, (byte) 2, "")) == null) {
                     this.mainCanvas.showTips("获取上传指令数据错误!");
@@ -170,7 +170,7 @@ public final class cc {
                     return;
                 }
             } else {
-                this.a = (short) this.mainCanvas.topUi.a;
+                this.a = (short) this.mainCanvas.topUi.selectTabIndex;
                 if (LoadingPage.o == 0 && this.a == 1) {
                     LoadingPage.h = 0;
                     this.uiSceneController.sceneSubState = 2;
@@ -178,7 +178,7 @@ public final class cc {
                 }
 
                 if (LoadingPage.o == 1 && this.a == 1 || LoadingPage.o == 0 && this.a == 0) {
-                    this.a = (short) this.mainCanvas.topUi.a;
+                    this.a = (short) this.mainCanvas.topUi.selectTabIndex;
                     String var8 = this.a == 0 ? this.p[this.g] : this.A[this.mainCanvas.gunDongListUi.g() - 1];
                     byte[] var4;
                     if ((var4 = NetPayloadBuilder.a((short) 4110, GlobalStatus.roleId_2, var8, (byte) 0)) == null) {
@@ -189,7 +189,7 @@ public final class cc {
                     MainCanvas.netUtils.sendPacket(new NetPacket((short) 4110, var4));
                     this.mainCanvas.showPending((String) null);
                 } else {
-                    this.a = (short) this.mainCanvas.topUi.a;
+                    this.a = (short) this.mainCanvas.topUi.selectTabIndex;
                     String var2 = this.a == 0 ? this.p[this.g] : this.A[this.mainCanvas.gunDongListUi.g() - 1];
                     byte[] var3;
                     if ((var3 = NetPayloadBuilder.b((short) 4111, GlobalStatus.roleId_2, var2)) == null) {

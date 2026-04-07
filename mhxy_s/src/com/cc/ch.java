@@ -364,15 +364,15 @@ public final class ch {
                   Object var14 = null;
                   int var3 = 0;
 
-                  bn var10000;
+                  EquipmentSlot var10000;
                   while(true) {
-                     if (var3 >= GlobalStatus.bC.size()) {
+                     if (var3 >= GlobalStatus.equipmentSlot.size()) {
                         var10000 = null;
                         break;
                      }
 
-                     bn var15;
-                     if ((var15 = (bn) GlobalStatus.bC.elementAt(var3)) != null && var15.a == var1) {
+                     EquipmentSlot var15;
+                     if ((var15 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var3)) != null && var15.a == var1) {
                         var10000 = var15;
                         break;
                      }
@@ -380,7 +380,7 @@ public final class ch {
                      ++var3;
                   }
 
-                  bn var11 = var10000;
+                  EquipmentSlot var11 = var10000;
                   if (var10000 != null) {
                      GlobalStatus.a(var11);
                   } else {
@@ -417,12 +417,12 @@ public final class ch {
       if (this.a != null) {
          for(int var2 = 0; var2 < this.a.length; ++var2) {
             if (var2 == 0) {
-               this.e.a(var1, GameSceneController.goods, (int[])null, (ImageSlice)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
+               this.e.draw(var1, GameSceneController.goods, (int[])null, (ImageSlice)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
             } else if (var2 < 4) {
-               this.e.a(var1, q[var2 - 1] ? this.y : this.z, (int[])null, (ImageSlice)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
+               this.e.draw(var1, q[var2 - 1] ? this.y : this.z, (int[])null, (ImageSlice)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
             } else {
                MainCanvas.icon.loadSpriteByName(String.valueOf(1702));
-               MainCanvas.pngUtil.a(var1, GameSceneController.b((short)1702), (int[])null, (ImageSlice)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
+               MainCanvas.pngUtil.draw(var1, GameSceneController.getIconFrame0((short)1702), (int[])null, (ImageSlice)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
                if (n[var2 - 4] > 99) {
                   MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] / 100, 0, 0, this.a[var2][0] + 13 - 8, this.a[var2][1] + 11, 0, 0);
                   MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] % 100 / 10, 0, 0, this.a[var2][0] + 13 - 4, this.a[var2][1] + 11, 0, 0);
@@ -446,7 +446,7 @@ public final class ch {
       var1.drawString("+50%", this.a[5][0] + 42, this.a[5][1] + 18, 33);
       var1.drawString("+100%", this.a[6][0] + 42, this.a[6][1] + 18, 33);
       if (h != -1) {
-         this.e.a(var1, GameSceneController.b(j), (int[])null, (ImageSlice)null, 0, 0, this.a[0][0], this.a[0][1], 0, 0);
+         this.e.draw(var1, GameSceneController.getIconFrame0(j), (int[])null, (ImageSlice)null, 0, 0, this.a[0][0], this.a[0][1], 0, 0);
       }
 
       LoadingPage.d(var1, this.a[this.b][0], this.a[this.b][1], 17, 17);

@@ -29,7 +29,7 @@ public final class ah {
             break;
          case 1:
             Sprite var6;
-            if ((var6 = GameSceneController.b(this.b)) != null) {
+            if ((var6 = GameSceneController.getIconFrame0(this.b)) != null) {
                var1.drawImage(var6.image, var2, var3 + (var4 - var6.h) / 2, var5);
                return;
             }

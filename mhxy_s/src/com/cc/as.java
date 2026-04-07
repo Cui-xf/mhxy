@@ -171,11 +171,11 @@ public final class as {
    }
 
    private static void b(int var0) {
-      if (GlobalStatus.bC != null && GlobalStatus.bC.size() > 0) {
-         bn var1 = null;
+      if (GlobalStatus.equipmentSlot != null && GlobalStatus.equipmentSlot.size() > 0) {
+         EquipmentSlot var1 = null;
 
-         for(int var2 = 0; var2 < GlobalStatus.bC.size(); ++var2) {
-            if ((var1 = (bn) GlobalStatus.bC.elementAt(var2)) != null && var1.a == var0) {
+         for(int var2 = 0; var2 < GlobalStatus.equipmentSlot.size(); ++var2) {
+            if ((var1 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var2)) != null && var1.a == var0) {
                ++var1.v;
             }
          }

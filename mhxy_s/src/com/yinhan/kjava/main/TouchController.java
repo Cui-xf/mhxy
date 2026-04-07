@@ -185,7 +185,7 @@ public final class TouchController {
                         this.canvas.inputAction = 2048;
                      } else if (var1 >= GlobalConfig.defaultWidth - 67 && var1 <= GlobalConfig.defaultWidth - 67 + 33 && var2 >= 5 && var2 <= 18) {
                         this.canvas.inputAction = 515;
-                     } else if (var1 >= 20 && var1 <= 20 + GlobalConfig.font2.stringWidth(GlobalStatus.ae) && var2 >= 2 && var2 <= 2 + GlobalConfig.font2_h) {
+                     } else if (var1 >= 20 && var1 <= 20 + GlobalConfig.font2.stringWidth(GlobalStatus.mapName) && var2 >= 2 && var2 <= 2 + GlobalConfig.font2_h) {
                         this.canvas.inputAction = 513;
                      } else if (var1 >= GlobalConfig.defaultWidth - 67 && var1 <= GlobalConfig.defaultWidth - 67 + 16 && var2 >= 24 && var2 <= 34) {
                         if (GlobalStatus.bf == 0) {
@@ -1117,7 +1117,7 @@ public final class TouchController {
          }
       } else if (this.canvas.mixedUi != null) {
          this.canvas.inputAction = this.canvas.mixedUi.hintCheck(var1, var2);
-         this.canvas.aw = this.canvas.topUi.a;
+         this.canvas.aw = this.canvas.topUi.selectTabIndex;
          this.canvas.inputAction = this.gameSceneController.d(this.canvas.inputAction, var1, var2);
          if (this.canvas.inputAction == 0 && GameSceneController.aP.size() == 0) {
             this.canvas.inputAction = 1073741824;

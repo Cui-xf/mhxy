@@ -94,11 +94,11 @@ public final class k {
    }
 
    private static void b(int var0) {
-      if (GlobalStatus.bC != null && GlobalStatus.bC.size() > 0) {
-         bn var1 = null;
+      if (GlobalStatus.equipmentSlot != null && GlobalStatus.equipmentSlot.size() > 0) {
+         EquipmentSlot var1 = null;
 
-         for(int var2 = 0; var2 < GlobalStatus.bC.size(); ++var2) {
-            if ((var1 = (bn) GlobalStatus.bC.elementAt(var2)) != null && var1.a == var0) {
+         for(int var2 = 0; var2 < GlobalStatus.equipmentSlot.size(); ++var2) {
+            if ((var1 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var2)) != null && var1.a == var0) {
                ++var1.v;
             }
          }
@@ -189,11 +189,11 @@ public final class k {
       }
    }
 
-   private static bn e(int var0) {
-      bn var1 = null;
+   private static EquipmentSlot e(int var0) {
+      EquipmentSlot var1 = null;
 
-      for(int var2 = 0; var2 < GlobalStatus.bC.size(); ++var2) {
-         if ((var1 = (bn) GlobalStatus.bC.elementAt(var2)) != null && var1.a == var0) {
+      for(int var2 = 0; var2 < GlobalStatus.equipmentSlot.size(); ++var2) {
+         if ((var1 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var2)) != null && var1.a == var0) {
             return var1;
          }
       }
@@ -436,11 +436,11 @@ public final class k {
       var1.drawString(this.h[0], this.g[0][0] - 2, this.g[0][1] + (var2 - GlobalConfig.font2_h) / 2, 24);
       var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] - var2 + (var2 - GlobalConfig.font2_h) / 2, 20);
       Sprite var13;
-      if (this.c != -1 && (var13 = GameSceneController.b(this.k)) != null) {
+      if (this.c != -1 && (var13 = GameSceneController.getIconFrame0(this.k)) != null) {
          var1.drawImage(var13.image, this.g[0][0] + 1, this.g[0][1] + 1, 20);
       }
 
-      if (this.d != -1 && (var13 = GameSceneController.b(this.n)) != null) {
+      if (this.d != -1 && (var13 = GameSceneController.getIconFrame0(this.n)) != null) {
          var1.drawImage(var13.image, this.g[1][0] + 1, this.g[1][1] + 1, 20);
       }
 
@@ -448,7 +448,7 @@ public final class k {
          var13 = null;
 
          for(int var12 = 0; var12 < this.p.length; ++var12) {
-            if ((var13 = GameSceneController.b(this.p[var12])) != null) {
+            if ((var13 = GameSceneController.getIconFrame0(this.p[var12])) != null) {
                var1.drawImage(var13.image, this.g[2 + this.f[var12]][0] + 1, this.g[2 + this.f[var12]][1] + 1, 20);
             }
          }

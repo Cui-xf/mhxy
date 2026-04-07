@@ -17,7 +17,7 @@ public final class ac extends SceneEntity {
    private short q;
    private short r;
    private short s = -1;
-   private String t = "";
+   private String roleRideIcon = "";
    private int[] u = new int[4];
    private int[] v = new int[4];
    private String w = "";
@@ -36,7 +36,7 @@ public final class ac extends SceneEntity {
 
    public ac() {
       this.s = (short) GlobalStatus.ay;
-      this.t = GlobalStatus.roleCurrentRideIcon;
+      this.roleRideIcon = GlobalStatus.roleCurrentRideIcon;
       this.s();
       this.a(false);
       this.t();
@@ -61,8 +61,8 @@ public final class ac extends SceneEntity {
       if (this.s != GlobalStatus.ay) {
          this.s = (short) GlobalStatus.ay;
          this.s();
-      } else if (!this.t.equals(GlobalStatus.roleCurrentRideIcon)) {
-         this.t = GlobalStatus.roleCurrentRideIcon;
+      } else if (!this.roleRideIcon.equals(GlobalStatus.roleCurrentRideIcon)) {
+         this.roleRideIcon = GlobalStatus.roleCurrentRideIcon;
          this.s();
       }
 
@@ -81,14 +81,14 @@ public final class ac extends SceneEntity {
 
       super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
       if (super.frame1 == null) {
-         MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)5, GlobalStatus.ay, this.t, var2, var3, var4);
+         MainCanvas.loadRoleRes(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)5, GlobalStatus.ay, this.roleRideIcon, var2, var3, var4);
          super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
          if (super.frame1 == null) {
             GlobalStatus.ay = 0;
             this.s();
             super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h] : this.u[super.h]);
             if (super.frame1 == null) {
-               MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)5, GlobalStatus.ay, this.t, var2, var3, var4);
+               MainCanvas.loadRoleRes(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)5, GlobalStatus.ay, this.roleRideIcon, var2, var3, var4);
                super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h] : this.u[super.h]);
                return;
             }
@@ -215,12 +215,12 @@ public final class ac extends SceneEntity {
          }
 
          if (GlobalStatus.bs == 1) {
-            var2.a(var1, GameSceneController.y, (int[])null, (ImageSlice)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - GameSceneController.y.w, super.k - GlobalConfig.font2_h - 18, 20, 0);
+            var2.draw(var1, GameSceneController.y, (int[])null, (ImageSlice)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - GameSceneController.y.w, super.k - GlobalConfig.font2_h - 18, 20, 0);
             return;
          }
 
          if (GlobalStatus.bs == 0) {
-            var2.a(var1, GameSceneController.z, (int[])null, (ImageSlice)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - GameSceneController.z.w, super.k - GlobalConfig.font2_h - 18, 20, 0);
+            var2.draw(var1, GameSceneController.z, (int[])null, (ImageSlice)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - GameSceneController.z.w, super.k - GlobalConfig.font2_h - 18, 20, 0);
          }
       }
 
@@ -269,9 +269,9 @@ public final class ac extends SceneEntity {
    }
 
    public final int a(MainCanvas var1) {
-      if ((GlobalStatus.bs != 0 || GlobalStatus.bs == 0 && GlobalStatus.followStatus != 0) && GlobalStatus.ab != null && var1.pageStatus != 1) {
-         for(int var2 = 0; var2 < GlobalStatus.ab.length; ++var2) {
-            if (a(super.j, super.k, GlobalStatus.ab[var2], GlobalStatus.ac[var2]) || a(super.j + 8, super.k + 8, GlobalStatus.ab[var2], GlobalStatus.ac[var2])) {
+      if ((GlobalStatus.bs != 0 || GlobalStatus.bs == 0 && GlobalStatus.followStatus != 0) && GlobalStatus.equipmentId != null && var1.pageStatus != 1) {
+         for(int var2 = 0; var2 < GlobalStatus.equipmentId.length; ++var2) {
+            if (a(super.j, super.k, GlobalStatus.equipmentId[var2], GlobalStatus.equipmentDurability[var2]) || a(super.j + 8, super.k + 8, GlobalStatus.equipmentId[var2], GlobalStatus.equipmentDurability[var2])) {
                this.B = this.B == 0 ? 1 : this.B;
                if (this.B != 2 && this.B != 0) {
                   return var2;

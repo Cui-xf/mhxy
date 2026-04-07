@@ -208,7 +208,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     /**
      * 字体资源路径拼接临时 Vector（复用以避免频繁分配）
      */
-    private static Vector aN = new Vector();
+    private static Vector tempResNameList = new Vector();
     /**
      * 字体资源路径拼接临时 StringBuffer（复用以避免频繁分配）
      */
@@ -756,10 +756,10 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                         this.G();
                                     } else if (this.lastPageStatus == 7) {
                                         if (gameSceneController.currentSceneModeId == 71) {
-                                            gameSceneController.e(this.topUi.a);
+                                            gameSceneController.e(this.topUi.selectTabIndex);
                                             this.gunDongListUi.a(gameSceneController.aE);
                                         } else if (gameSceneController.currentSceneModeId == 76) {
-                                            byte var10 = this.topUi.a;
+                                            byte var10 = this.topUi.selectTabIndex;
                                             int var17 = this.gunDongListUi.g();
                                             gameSceneController.d((byte) var10);
                                             int var22 = var10 == 0 ? GlobalStatus.O.f.length : GlobalStatus.P.b.length;
@@ -1503,7 +1503,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     public void showException(Exception var1, byte var2) {
         if (gameSceneController != null) {
             gameSceneController.c = false;
-            gameSceneController.Y = -1;
+            gameSceneController.lastCurrentSceneMode = -1;
             GameSceneController.R();
             if (gameSceneController.overlayDialogController != null) {
                 gameSceneController.overlayDialogController.l();
@@ -1531,25 +1531,25 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         this.serviceRepaints();
     }
 
-    public static void a(byte var0, byte var1, byte var2, byte var3, String var4, short var5, short var6, short var7) {
-        aN.removeAllElements();
+    public static void loadRoleRes(byte var0, byte var1, byte var2, byte var3, String var4, short var5, short var6, short var7) {
+        tempResNameList.removeAllElements();
         if (var2 == 5) {
-            aN.addElement(a(var0, var1, (byte) 1, var3, false, var4));
-            aN.addElement(a(var0, var1, (byte) 3, var3, false, var4));
-            aN.addElement(a(var0, var1, (byte) 3, var3, true, var4));
-            aN.addElement(a(var0, var1, (byte) 0, var3, false, var4));
-            aN.addElement(a(var0, var1, (byte) 0, var3, true, var4));
-            aN.addElement(a(var0, var1, (byte) 2, var3, false, var4));
-            aN.addElement(a(var0, var1, (byte) 2, var3, true, var4));
+            tempResNameList.addElement(a(var0, var1, (byte) 1, var3, false, var4));
+            tempResNameList.addElement(a(var0, var1, (byte) 3, var3, false, var4));
+            tempResNameList.addElement(a(var0, var1, (byte) 3, var3, true, var4));
+            tempResNameList.addElement(a(var0, var1, (byte) 0, var3, false, var4));
+            tempResNameList.addElement(a(var0, var1, (byte) 0, var3, true, var4));
+            tempResNameList.addElement(a(var0, var1, (byte) 2, var3, false, var4));
+            tempResNameList.addElement(a(var0, var1, (byte) 2, var3, true, var4));
         } else {
-            aN.addElement(a(var0, var1, var2, var3, false, var4));
+            tempResNameList.addElement(a(var0, var1, var2, var3, false, var4));
         }
 
-        for (int var8 = 0; var8 < aN.size(); ++var8) {
-            role.loadResource((String) aN.elementAt(var8), var5, var6, var7);
+        for (int var8 = 0; var8 < tempResNameList.size(); ++var8) {
+            role.loadResource((String) tempResNameList.elementAt(var8), var5, var6, var7);
         }
 
-        aN.removeAllElements();
+        tempResNameList.removeAllElements();
     }
 
     public static String a(byte var0, byte var1, byte var2, byte var3, boolean var4) {
@@ -2480,7 +2480,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             gameSceneController.M.q();
             gameSceneController.M.m();
         } else if (gameSceneController.currentSceneModeId == 52) {
-            if (var1 == 0 && this.topUi.a == 1) {
+            if (var1 == 0 && this.topUi.selectTabIndex == 1) {
                 gameSceneController.M.t();
             } else if (var1 == 2 && LoadingPage.o == 1) {
                 gameSceneController.M.q(1);
@@ -2669,7 +2669,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     this.liaoTian = new TextField(GlobalConfig.liaoTianPinDao[gameSceneController.aT], (String) null, 30, var2);
                 }
             } else if (gameSceneController.currentSceneModeId == 7) {
-                if (this.topUi.a < 3) {
+                if (this.topUi.selectTabIndex < 3) {
                     this.liaoTian = new TextField("与" + GlobalStatus.gJ[this.gunDongListUi.g()] + "私聊", (String) null, 30, var2);
                 } else if (GlobalStatus.bs == 1) {
                     if (LoadingPage.o == 3) {

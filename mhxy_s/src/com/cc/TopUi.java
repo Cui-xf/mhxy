@@ -7,7 +7,7 @@ public final class TopUi extends BaseUi {
     // 所有页签标题。
     private String[] c;
     // 当前选中的页签下标。
-    public byte a = 0;
+    public byte selectTabIndex = 0;
     // 当前可见页签窗口的起始下标。
     private byte d = 0;
     private int e;
@@ -39,7 +39,7 @@ public final class TopUi extends BaseUi {
         this.c = var1;
         byte var2 = 0;
         this.w = var2;
-        this.a = 0;
+        this.selectTabIndex = 0;
         this.d = 0;
         if (this.c != null) {
             this.j = new int[this.c.length][4];
@@ -67,7 +67,7 @@ public final class TopUi extends BaseUi {
     private int a() {
         int var1 = 0;
 
-        for (byte var2 = this.d; var2 <= this.a; ++var2) {
+        for (byte var2 = this.d; var2 <= this.selectTabIndex; ++var2) {
             var1 += 10 + GlobalConfig.font2.stringWidth(this.c[var2]);
         }
 
@@ -78,20 +78,20 @@ public final class TopUi extends BaseUi {
     public final void onClick(int var1) {
         if ((this.w != 0 || var1 != 8 && var1 != 516) && (this.w != 1 || var1 != 1024)) {
             if (this.w == 0 && (var1 == 2 || var1 == 518) || this.w == 1 && var1 == 2048) {
-                this.a = this.a >= this.c.length - 1 ? 0 : ++this.a;
-                if (this.d < this.a && this.a() > this.g - 22 && this.i) {
+                this.selectTabIndex = this.selectTabIndex >= this.c.length - 1 ? 0 : ++this.selectTabIndex;
+                if (this.d < this.selectTabIndex && this.a() > this.g - 22 && this.i) {
                     ++this.d;
                 }
 
-                while (this.i && this.d > this.a) {
+                while (this.i && this.d > this.selectTabIndex) {
                     --this.d;
                 }
             }
         } else {
-            for (this.a = (byte) (this.a <= 0 ? this.c.length - 1 : --this.a); this.i && this.d > this.a; --this.d) {
+            for (this.selectTabIndex = (byte) (this.selectTabIndex <= 0 ? this.c.length - 1 : --this.selectTabIndex); this.i && this.d > this.selectTabIndex; --this.d) {
             }
 
-            if (this.d < this.a && this.a() > this.g - 22 && this.i) {
+            if (this.d < this.selectTabIndex && this.a() > this.g - 22 && this.i) {
                 ++this.d;
             }
         }
@@ -100,7 +100,7 @@ public final class TopUi extends BaseUi {
             --this.d;
         }
 
-        while (this.d < this.a && this.a() > this.g - 22 && this.i) {
+        while (this.d < this.selectTabIndex && this.a() > this.g - 22 && this.i) {
             ++this.d;
         }
 
@@ -122,9 +122,9 @@ public final class TopUi extends BaseUi {
                 for (int var6 = 0; var6 < var3.j.length; ++var6) {
                     if (var4 >= var3.j[var6][0] && var4 <= var3.j[var6][0] + var3.j[var6][2] && var5 >= var3.j[var6][1] && var5 <= var3.j[var6][1] + var3.j[var6][3]) {
                         if (var6 + 1 >= var3.j.length) {
-                            var3.a = 0;
+                            var3.selectTabIndex = 0;
                         } else {
-                            var3.a = (byte) (var6 + 1);
+                            var3.selectTabIndex = (byte) (var6 + 1);
                         }
 
                         var10000 = true;
@@ -156,7 +156,7 @@ public final class TopUi extends BaseUi {
         for (int var4 = this.d; var4 < this.c.length && var3 <= this.g - 22; ++var4) {
             int var5 = 10 + GlobalConfig.font2.stringWidth(this.c[var4]);
             ++this.k;
-            if (var4 == this.a) {
+            if (var4 == this.selectTabIndex) {
                 LoadingPage.draw(var1, this.e + var2, this.f, var5 - 1, this.b, 1);
                 LoadingPage.j[0] = this.e + var2 + 3;
                 LoadingPage.j[1] = this.f + this.b - 3;
@@ -165,7 +165,7 @@ public final class TopUi extends BaseUi {
                 LoadingPage.draw(var1, this.e + var2, this.f, var5 - 1, this.b, 2);
             }
 
-            LoadingPage.drawString(var1, this.c[var4], this.e + var2 + (var5 - 1) / 2, this.f + GlobalConfig.getCzjz(this.b), 17, var4 == this.a ? this.v : 5426130);
+            LoadingPage.drawString(var1, this.c[var4], this.e + var2 + (var5 - 1) / 2, this.f + GlobalConfig.getCzjz(this.b), 17, var4 == this.selectTabIndex ? this.v : 5426130);
             var2 += var5;
             var3 += var4 < this.c.length - 1 ? 10 + GlobalConfig.font2.stringWidth(this.c[var4 + 1]) : 0;
         }
@@ -219,8 +219,8 @@ public final class TopUi extends BaseUi {
             this.q = var15;
             this.r = 9;
             this.s = var7;
-            LoadingPage.b(var1, this.a == 0 ? 2780801 : this.t, this.e + var2 + 3, this.f + GlobalConfig.font2_h / 2, 6, 1);
-            LoadingPage.b(var1, this.a == this.c.length - 1 ? 2780801 : this.u, this.e + var2 + 16, this.f + GlobalConfig.font2_h / 2, -6, 1);
+            LoadingPage.b(var1, this.selectTabIndex == 0 ? 2780801 : this.t, this.e + var2 + 3, this.f + GlobalConfig.font2_h / 2, 6, 1);
+            LoadingPage.b(var1, this.selectTabIndex == this.c.length - 1 ? 2780801 : this.u, this.e + var2 + 16, this.f + GlobalConfig.font2_h / 2, -6, 1);
         }
 
     }

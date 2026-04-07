@@ -65,7 +65,7 @@ public final class PngUtil {
     }
 
     private static boolean b(int var0, int var1) {
-        if (GlobalStatus.hG != -1 && GlobalStatus.hG == GlobalStatus.ar) {
+        if (GlobalStatus.hG != -1 && GlobalStatus.hG == GlobalStatus.mapId) {
             if (GlobalStatus.hJ != null && GlobalStatus.hK != null) {
                 for (short var2 = 0; var2 < GlobalStatus.hJ.length; ++var2) {
                     if (GlobalStatus.hJ[var2] == var0 && GlobalStatus.hK[var2] == var1) {
@@ -108,7 +108,7 @@ public final class PngUtil {
         if (var2 != null && var2.frame != null) {
             switch (var2.frame.type) {
                 case 0:
-                    this.a(var1, (Sprite) var2.frame, var3, var2.getImageSlice(), var4, var5, var6, var7, 0, var2.transformFlag);
+                    this.draw(var1, (Sprite) var2.frame, var3, var2.getImageSlice(), var4, var5, var6, var7, 0, var2.transformFlag);
                     return;
                 case 2:
                     this.a(var1, (Animation) ((Animation) var2.frame), var3, var4, var5, var6, var7, 0, var8);
@@ -123,7 +123,7 @@ public final class PngUtil {
                 case 0:
                     var6 += var2.transformX;
                     var7 += var2.transformY;
-                    this.a(var1, (Sprite) var2.frame, var3, var2.getImageSlice(), var4, var5, var6, var7, 20, var2.transformFlag);
+                    this.draw(var1, (Sprite) var2.frame, var3, var2.getImageSlice(), var4, var5, var6, var7, 20, var2.transformFlag);
                     return;
                 case 2:
                     var6 += var2.transformX;
@@ -134,7 +134,7 @@ public final class PngUtil {
 
     }
 
-    public final void a(Graphics var1, Sprite var2, int[] var3, ImageSlice var4, int var5, int var6, int var7, int var8, int var9, int var10) {
+    public final void draw(Graphics var1, Sprite var2, int[] var3, ImageSlice var4, int var5, int var6, int var7, int var8, int var9, int var10) {
         var7 -= var5;
         var8 -= var6;
         if (var2 != null && var2.image != null) {
@@ -171,7 +171,7 @@ public final class PngUtil {
 
     public final void a(Graphics var1, Sprite var2, int[] var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10) {
         if (var2 != null && var2.slices != null && var4 >= 0 && var4 < var2.slices.length) {
-            this.a(var1, var2, (int[]) null, var2.slices[var4], 0, 0, var7, var8, 0, var10);
+            this.draw(var1, var2, (int[]) null, var2.slices[var4], 0, 0, var7, var8, 0, var10);
         }
     }
 
@@ -363,9 +363,9 @@ public final class PngUtil {
         if (GlobalStatus.npcObjects != null && var6) {
             for (int var11 = 0; var11 < GlobalStatus.npcObjects.length; ++var11) {
                 if (GlobalStatus.npcObjects[var11] != null) {
-                    if (GameSceneController.aW[3] == 0 && GlobalStatus.npcObjects[var11].b != null) {
+                    if (GameSceneController.aW[3] == 0 && GlobalStatus.npcObjects[var11].npcName != null) {
                         var1.setFont(GlobalConfig.font2);
-                        LoadingPage.drawString(var1, (String) GlobalStatus.npcObjects[var11].b, (int) (GlobalStatus.npcObjects[var11].c - var3), GlobalStatus.npcObjects[var11].d - (GlobalStatus.npcObjects[var11].frame1 == null ? 30 : GlobalStatus.npcObjects[var11].frame1.j()) - GlobalConfig.font2_h - var4, 17, 255, 16777215);
+                        LoadingPage.drawString(var1, (String) GlobalStatus.npcObjects[var11].npcName, (int) (GlobalStatus.npcObjects[var11].c - var3), GlobalStatus.npcObjects[var11].d - (GlobalStatus.npcObjects[var11].frame1 == null ? 30 : GlobalStatus.npcObjects[var11].frame1.j()) - GlobalConfig.font2_h - var4, 17, 255, 16777215);
                     }
 
                     if (GlobalStatus.npcObjects[var11].frame1 != null && GlobalStatus.npcObjects[var11].frame1.spritePieces != null && GameSceneController.aW[10] == 1) {

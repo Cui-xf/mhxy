@@ -298,11 +298,11 @@ public final class GameSceneController {
     /**
      * 上一帧 currentSceneModeId 的缓存（用于模式切换检测，私有）
      */
-    private short bx = 0;
+    private short currentSceneMode = 0;
     /**
      * 上次记录的场景 ID（GlobalStatus.ar 的缓存，切图时检测是否需要重新加载地图）
      */
-    public int Y = -1;
+    public int lastCurrentSceneMode = -1;
 
     // ==================== 底部按钮精灵帧 ====================
     /**
@@ -488,7 +488,7 @@ public final class GameSceneController {
     /**
      * 当前选中的背包物品对象（bn 类型，私有）
      */
-    private bn bT = null;
+    private EquipmentSlot bT = null;
     /**
      * 未见明显用途（Vector，私有）
      */
@@ -1032,7 +1032,7 @@ public final class GameSceneController {
         this.U();
         this.mainCanvasRef.doRepaint();
         this.sceneRefreshCoordinator = new ac();
-        this.sceneRefreshCoordinator.a(GlobalStatus.at, GlobalStatus.au);
+        this.sceneRefreshCoordinator.a(GlobalStatus.roleX, GlobalStatus.roleY);
         MainCanvas.pngUtil.a(this.g(), this.h(), GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
         this.mainCanvasRef.doRepaint();
         this.as();
@@ -1044,7 +1044,7 @@ public final class GameSceneController {
         this.mainCanvasRef.doRepaint();
         GlobalStatus.E();
         this.aO.removeAllElements();
-        this.Y = GlobalStatus.ar;
+        this.lastCurrentSceneMode = GlobalStatus.mapId;
         this.mainCanvasRef.doRepaint();
         this.N();
         //进入游戏主场景
@@ -1075,8 +1075,8 @@ public final class GameSceneController {
             this.shuangjiAction = -1;
         }
 
-        if (this.currentSceneModeId != this.bx) {
-            this.bx = this.currentSceneModeId;
+        if (this.currentSceneModeId != this.currentSceneMode) {
+            this.currentSceneMode = this.currentSceneModeId;
         }
 
         label986:
@@ -1351,7 +1351,7 @@ public final class GameSceneController {
                                                         this.a((byte) 0);
                                                         break label986;
                                                     case 1:
-                                                        if (GlobalStatus.dv != null && GlobalStatus.dv.length > 0) {
+                                                        if (GlobalStatus.skillIds != null && GlobalStatus.skillIds.length > 0) {
                                                             this.h((int) 0);
                                                         } else {
                                                             this.mainCanvasRef.showTips("没有技能");
@@ -1657,7 +1657,7 @@ public final class GameSceneController {
                             this.mainCanvasRef.showTips("获取上传指令数据错误!");
                         }
                     }
-                } else if (this.mainCanvasRef.topUi.a == 3) {
+                } else if (this.mainCanvasRef.topUi.selectTabIndex == 3) {
                     byte[] var19;
                     if ((var19 = NetPayloadBuilder.u((short) 4612, GlobalStatus.roleId_2)) != null) {
                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4612, var19));
@@ -1666,7 +1666,7 @@ public final class GameSceneController {
                         this.mainCanvasRef.showTips("获取上传指令数据错误!");
                     }
                 } else {
-                    this.a(this.mainCanvasRef.topUi.a);
+                    this.a(this.mainCanvasRef.topUi.selectTabIndex);
                 }
                 break;
             case 4:
@@ -1689,7 +1689,7 @@ public final class GameSceneController {
                 }
 
                 if (this.sceneSubState == 0) {
-                    this.a(GlobalStatus.cC);
+                    this.a(GlobalStatus.petIconId);
                     if (var16 != 8 && var16 != 516) {
                         if (var16 != 2 && var16 != 518) {
                             if (var16 != 268435456 && var16 != 1073741824 && var16 != 517) {
@@ -1699,9 +1699,9 @@ public final class GameSceneController {
                                 }
                             } else {
                                 boolean var26 = false;
-                                if (GlobalStatus.cz != null) {
-                                    for (int var32 = 0; var32 < GlobalStatus.cz.length; ++var32) {
-                                        if (GlobalStatus.cB[var32] == var5.av) {
+                                if (GlobalStatus.petIds != null) {
+                                    for (int var32 = 0; var32 < GlobalStatus.petIds.length; ++var32) {
+                                        if (GlobalStatus.petType[var32] == var5.av) {
                                             var26 = true;
                                             break;
                                         }
@@ -1738,9 +1738,9 @@ public final class GameSceneController {
                     } else if (LoadingPage.o == 2) {
                         int var27 = -1;
 
-                        for (int var33 = 0; var33 < GlobalStatus.cz.length; ++var33) {
-                            if (GlobalStatus.cB[var33] == var5.av) {
-                                var27 = GlobalStatus.cz[var33];
+                        for (int var33 = 0; var33 < GlobalStatus.petIds.length; ++var33) {
+                            if (GlobalStatus.petType[var33] == var5.av) {
+                                var27 = GlobalStatus.petIds[var33];
                                 break;
                             }
                         }
@@ -1757,9 +1757,9 @@ public final class GameSceneController {
                         ch.clear();
                         int var28 = -1;
 
-                        for (int var35 = 0; var35 < GlobalStatus.cz.length; ++var35) {
-                            if (GlobalStatus.cB[var35] == var5.av) {
-                                var28 = GlobalStatus.cz[var35];
+                        for (int var35 = 0; var35 < GlobalStatus.petIds.length; ++var35) {
+                            if (GlobalStatus.petType[var35] == var5.av) {
+                                var28 = GlobalStatus.petIds[var35];
                                 break;
                             }
                         }
@@ -1778,9 +1778,9 @@ public final class GameSceneController {
                         this.O.d();
                         int var29 = -1;
 
-                        for (int var38 = 0; var38 < GlobalStatus.cz.length; ++var38) {
-                            if (GlobalStatus.cB[var38] == var5.av) {
-                                var29 = GlobalStatus.cz[var38];
+                        for (int var38 = 0; var38 < GlobalStatus.petIds.length; ++var38) {
+                            if (GlobalStatus.petType[var38] == var5.av) {
+                                var29 = GlobalStatus.petIds[var38];
                                 break;
                             }
                         }
@@ -1802,9 +1802,9 @@ public final class GameSceneController {
                         this.aw = true;
                         int var30 = -1;
 
-                        for (int var40 = 0; var40 < GlobalStatus.cz.length; ++var40) {
-                            if (GlobalStatus.cB[var40] == var5.av) {
-                                var30 = GlobalStatus.cz[var40];
+                        for (int var40 = 0; var40 < GlobalStatus.petIds.length; ++var40) {
+                            if (GlobalStatus.petType[var40] == var5.av) {
+                                var30 = GlobalStatus.petIds[var40];
                                 break;
                             }
                         }
@@ -2296,9 +2296,9 @@ public final class GameSceneController {
             if (this.currentSceneModeId != 5 && (this.currentSceneModeId != 7 || this.sceneSubState != 10) && (this.currentSceneModeId != 7 || this.sceneSubState != 4) && (this.currentSceneModeId != 7 || this.sceneSubState != 12) && (this.currentSceneModeId != 21 || this.sceneSubState != 5) && (this.currentSceneModeId != 47 || this.sceneSubState != 4) && this.currentSceneModeId != 13 && this.currentSceneModeId != 32 && (this.currentSceneModeId != 130 || this.sceneSubState != 4)) {
                 Graphics var4 = var1;
                 GameSceneController var5 = this;
-                if (GlobalStatus.ab != null && bn != null && this.f.collisionMap != null) {
-                    for (int var6 = 0; var6 < GlobalStatus.ab.length; ++var6) {
-                        MainCanvas.pngUtil.a(var4, (Animation) bn, (int[]) null, h - var5.g(), i_1 - var5.h(), GlobalStatus.ab[var6], GlobalStatus.ac[var6] + 16 - bn.h(), 20, 0);
+                if (GlobalStatus.equipmentId != null && bn != null && this.f.collisionMap != null) {
+                    for (int var6 = 0; var6 < GlobalStatus.equipmentId.length; ++var6) {
+                        MainCanvas.pngUtil.a(var4, (Animation) bn, (int[]) null, h - var5.g(), i_1 - var5.h(), GlobalStatus.equipmentId[var6], GlobalStatus.equipmentDurability[var6] + 16 - bn.h(), 20, 0);
                     }
                 }
 
@@ -2313,12 +2313,12 @@ public final class GameSceneController {
                     MainCanvas.pngUtil.a(var1, this.sceneRefreshCoordinator.j / this.mainCanvasRef.fenBianLv, this.sceneRefreshCoordinator.k / this.mainCanvasRef.fenBianLv, 2, var7, 17 / this.mainCanvasRef.fenBianLv, 25 / this.mainCanvasRef.fenBianLv, 0, 0);
                     var1.setColor(16711680);
                     LoadingPage.drawString(var1, (String) (this.sceneRefreshCoordinator.j / 16 + "," + (this.sceneRefreshCoordinator.k + 25) / 16), (int) 2, var7 + MainCanvas.pngUtil.f, 20, 16777215, 0);
-                    if (GlobalStatus.ab != null) {
+                    if (GlobalStatus.equipmentId != null) {
                         var1.setColor(16711680);
 
-                        for (int var33 = 0; var33 < GlobalStatus.ab.length; ++var33) {
+                        for (int var33 = 0; var33 < GlobalStatus.equipmentId.length; ++var33) {
                             if (var25.mainCanvasRef.frameStartTs % 8L == 0L) {
-                                var19.fillRect(2 + GlobalStatus.ab[var33] / var25.mainCanvasRef.fenBianLv, var7 + GlobalStatus.ac[var33] / var25.mainCanvasRef.fenBianLv, 2, 2);
+                                var19.fillRect(2 + GlobalStatus.equipmentId[var33] / var25.mainCanvasRef.fenBianLv, var7 + GlobalStatus.equipmentDurability[var33] / var25.mainCanvasRef.fenBianLv, 2, 2);
                             }
                         }
                     }
@@ -2347,7 +2347,7 @@ public final class GameSceneController {
                 var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
                 this.A(var1);
                 var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
-                LoadingPage.drawString(var1, (String) GlobalStatus.ae, (int) 20, 2, 20, 0, GlobalStatus.bw >= 1 ? 16711680 : 16777215);
+                LoadingPage.drawString(var1, (String) GlobalStatus.mapName, (int) 20, 2, 20, 0, GlobalStatus.bw >= 1 ? 16711680 : 16777215);
             }
         }
 
@@ -3214,16 +3214,16 @@ public final class GameSceneController {
 
     public void clear() {
         this.mainCanvasRef.a();
-        GlobalStatus.f();
+        GlobalStatus.clearEquipment();
         GlobalStatus.j();
-        GlobalStatus.d();
+        GlobalStatus.clearNpcList();
         GlobalStatus.clearRoleInfo();
-        GlobalStatus.i();
+        GlobalStatus.celarEquipmentSlot();
         GlobalStatus.n();
-        GlobalStatus.q();
+        GlobalStatus.clearSkillList();
         GlobalStatus.c();
         GlobalStatus.b();
-        GlobalStatus.B();
+        GlobalStatus.clearPet();
         GlobalStatus.F();
         MainCanvas.icon.clearAllFrame();
         GlobalStatus.bs = -1;
@@ -3326,8 +3326,8 @@ public final class GameSceneController {
                 }
 
                 if (this.currentSceneModeId != 25) {
-                    short var10001 = GlobalStatus.ab[this.cK];
-                    short var10002 = GlobalStatus.ac[this.cK];
+                    short var10001 = GlobalStatus.equipmentId[this.cK];
+                    short var10002 = GlobalStatus.equipmentDurability[this.cK];
                     short var14 = this.currentSceneModeId;
                     short var13 = var10002;
                     short var11 = var10001;
@@ -3522,9 +3522,9 @@ public final class GameSceneController {
         this.mainCanvasRef.clearRoleListPage();
         if (this.currentSceneModeId != 25) {
             this.mainCanvasRef.doRepaint();
-            if (GlobalStatus.aw == 1) {
-                GlobalStatus.d();
-                GlobalStatus.aw = 0;
+            if (GlobalStatus.reflushNpcFlag == 1) {
+                GlobalStatus.clearNpcList();
+                GlobalStatus.reflushNpcFlag = 0;
             }
 
             this.ar();
@@ -3533,7 +3533,7 @@ public final class GameSceneController {
             this.mainCanvasRef.doRepaint();
             this.U();
             this.mainCanvasRef.doRepaint();
-            this.sceneRefreshCoordinator.a(GlobalStatus.at, GlobalStatus.au);
+            this.sceneRefreshCoordinator.a(GlobalStatus.roleX, GlobalStatus.roleY);
             ap();
             this.mainCanvasRef.doRepaint();
             this.as();
@@ -3606,8 +3606,8 @@ public final class GameSceneController {
             for (int var0 = 0; var0 < GlobalStatus.teamBonus.length; ++var0) {
                 if (GlobalStatus.teamBonus[var0] != null) {
                     GlobalStatus.teamBonus[var0].f.removeAllElements();
-                    GlobalStatus.teamBonus[var0].j = GlobalStatus.at;
-                    GlobalStatus.teamBonus[var0].k = GlobalStatus.au;
+                    GlobalStatus.teamBonus[var0].j = GlobalStatus.roleX;
+                    GlobalStatus.teamBonus[var0].k = GlobalStatus.roleY;
                 }
             }
         }
@@ -3654,9 +3654,9 @@ public final class GameSceneController {
     }
 
     private void ar() {
-        if (GlobalStatus.as != GlobalStatus.ar) {
+        if (GlobalStatus.as != GlobalStatus.mapId) {
             this.mainCanvasRef.touchEnable = false;
-            GlobalStatus.as = GlobalStatus.ar;
+            GlobalStatus.as = GlobalStatus.mapId;
             if (GlobalConfig.hangju == 2) {
                 MainCanvas.petfight.clearAllFrame();
                 MainCanvas.petfight.clearAllFrame();
@@ -3664,10 +3664,10 @@ public final class GameSceneController {
 
             this.f = null;
             byte[] var1;
-            if ((var1 = GlobalStatus.a(GlobalStatus.ar)) != null) {
+            if ((var1 = GlobalStatus.a(GlobalStatus.mapId)) != null) {
                 this.f = MainCanvas.ae.buildTileMap(var1);
             } else {
-                this.f = MainCanvas.ae.loadTileMapByName(String.valueOf(GlobalStatus.ar));
+                this.f = MainCanvas.ae.loadTileMapByName(String.valueOf(GlobalStatus.mapId));
             }
 
             MainCanvas.pngUtil.a();
@@ -3678,8 +3678,8 @@ public final class GameSceneController {
 
     public final void a(int var1) {
         if (this.sceneRefreshCoordinator.h()) {
-            if (this.Y != GlobalStatus.ar) {
-                this.Y = GlobalStatus.ar;
+            if (this.lastCurrentSceneMode != GlobalStatus.mapId) {
+                this.lastCurrentSceneMode = GlobalStatus.mapId;
                 this.e();
             } else {
                 this.f();
@@ -3750,7 +3750,7 @@ public final class GameSceneController {
             c(GlobalStatus.fs);
             c(GlobalStatus.fl);
             aW();
-            c(GlobalStatus.dB);
+            c(GlobalStatus.skillCD2);
             this.f((short) -1);
             this.aA();
             if (GlobalStatus.fightData == null && this.mainCanvasRef.keyCombination == 0) {
@@ -3878,7 +3878,7 @@ public final class GameSceneController {
 
                     if (this.selectNpcIndex >= 0 && GlobalStatus.npcObjects != null && this.selectNpcIndex < GlobalStatus.npcObjects.length && GlobalStatus.npcObjects[this.selectNpcIndex] != null && GlobalStatus.npcObjects[this.selectNpcIndex].e == 1) {
                         byte[] var10;
-                        if ((var10 = NetPayloadBuilder.c((short) 4106, GlobalStatus.roleId_2, (int) GlobalStatus.npcObjects[this.selectNpcIndex].a)) != null) {
+                        if ((var10 = NetPayloadBuilder.c((short) 4106, GlobalStatus.roleId_2, (int) GlobalStatus.npcObjects[this.selectNpcIndex].npcId)) != null) {
                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4106, var10));
                             aj = true;
                             this.mainCanvasRef.showPending((String) null);
@@ -4308,7 +4308,7 @@ public final class GameSceneController {
                 if (var2 == 4) {
                     b(new ce("→" + this.aQ, var2, var3, (byte) 21));
                     this.a(new ce("→" + this.aQ, var2, var3, (byte) 21));
-                    if (this.mainCanvasRef.topUi.a == 6) {
+                    if (this.mainCanvasRef.topUi.selectTabIndex == 6) {
                         o(var2);
                     } else {
                         this.aR();
@@ -4613,7 +4613,7 @@ public final class GameSceneController {
                                         break;
                                     case 2:
                                         if (GlobalStatus.totalHealth > 0) {
-                                            byte[] var36 = NetPayloadBuilder.c((short) 4118, GlobalStatus.roleId_2, (short) GlobalStatus.npcObjects[this.selectNpcIndex].a);
+                                            byte[] var36 = NetPayloadBuilder.c((short) 4118, GlobalStatus.roleId_2, (short) GlobalStatus.npcObjects[this.selectNpcIndex].npcId);
                                             this.a((short) 4118, var36, (String) null);
                                         } else {
                                             this.mainCanvasRef.showTips("生命值为0,不能战斗!");
@@ -4630,7 +4630,7 @@ public final class GameSceneController {
                                         this.ar = 0;
                                         this.sceneSubMode = 0;
                                         this.an = new String[]{"取出物品", "存入物品"};
-                                        K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].b + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
+                                        K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].npcName + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
                                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
                                         this.sceneSubState = 3;
                                         break;
@@ -4640,7 +4640,7 @@ public final class GameSceneController {
                                         this.an = new String[]{"取出银两", "存入银两"};
                                         String var10 = GlobalStatus.a(GlobalStatus.bullions);
                                         GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.versus);
-                                        K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].b + ":已存入银两" + var10 + ",现有银两" + this.mainCanvasRef.shareSb.toString(), (short) (GlobalConfig.defaultWidth - 20));
+                                        K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].npcName + ":已存入银两" + var10 + ",现有银两" + this.mainCanvasRef.shareSb.toString(), (short) (GlobalConfig.defaultWidth - 20));
                                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
                                         this.sceneSubState = 4;
                                         break;
@@ -4648,7 +4648,7 @@ public final class GameSceneController {
                                         this.ar = 0;
                                         this.sceneSubMode = 0;
                                         this.an = new String[]{"寄养宠物", "领回宠物"};
-                                        K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].b + ":宠物仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
+                                        K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].npcName + ":宠物仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
                                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
                                         this.sceneSubState = 5;
                                         break;
@@ -4697,7 +4697,7 @@ public final class GameSceneController {
                                             }
                                         } else if (GlobalStatus.bI != null && this.ai < GlobalStatus.bI.length) {
                                             byte[] var25;
-                                            if ((var25 = NetPayloadBuilder.a((short) 4107, GlobalStatus.roleId_2, (int) GlobalStatus.npcObjects[this.selectNpcIndex].a, (int) GlobalStatus.bI[this.ai])) != null) {
+                                            if ((var25 = NetPayloadBuilder.a((short) 4107, GlobalStatus.roleId_2, (int) GlobalStatus.npcObjects[this.selectNpcIndex].npcId, (int) GlobalStatus.bI[this.ai])) != null) {
                                                 MainCanvas.netUtils.sendPacket(new NetPacket((short) 4107, var25));
                                                 this.mainCanvasRef.showPending((String) null);
                                             } else {
@@ -4722,7 +4722,7 @@ public final class GameSceneController {
                                         break;
                                     case 16:
                                         byte[] var35;
-                                        if ((var35 = NetPayloadBuilder.s((short) 4145, GlobalStatus.roleId_2, GlobalStatus.npcObjects[this.selectNpcIndex].a)) != null) {
+                                        if ((var35 = NetPayloadBuilder.s((short) 4145, GlobalStatus.roleId_2, GlobalStatus.npcObjects[this.selectNpcIndex].npcId)) != null) {
                                             NetPacket var9 = new NetPacket((short) 4145, var35);
                                             MainCanvas.netUtils.sendPacket(var9);
                                             this.N();
@@ -4849,7 +4849,7 @@ public final class GameSceneController {
                                         break;
                                     case 38:
                                     case 40:
-                                        byte[] var33 = NetPayloadBuilder.p((short) 4651, GlobalStatus.roleId_2, String.valueOf(GlobalStatus.npcObjects[this.selectNpcIndex].a));
+                                        byte[] var33 = NetPayloadBuilder.p((short) 4651, GlobalStatus.roleId_2, String.valueOf(GlobalStatus.npcObjects[this.selectNpcIndex].npcId));
                                         this.a((short) 4651, var33, (String) null);
                                         break;
                                     case 39:
@@ -4861,7 +4861,7 @@ public final class GameSceneController {
                                         break;
                                     case 41:
                                         byte[] var21;
-                                        if ((var21 = NetPayloadBuilder.a((short) 4660, (short) GlobalStatus.npcObjects[this.selectNpcIndex].a, GlobalStatus.roleId_2)) != null) {
+                                        if ((var21 = NetPayloadBuilder.a((short) 4660, (short) GlobalStatus.npcObjects[this.selectNpcIndex].npcId, GlobalStatus.roleId_2)) != null) {
                                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4660, var21));
                                             this.mainCanvasRef.showPending((String) null);
                                         } else {
@@ -4870,7 +4870,7 @@ public final class GameSceneController {
                                         break;
                                     case 42:
                                         byte[] var20;
-                                        if ((var20 = NetPayloadBuilder.a((short) 4662, (short) GlobalStatus.npcObjects[this.selectNpcIndex].a, GlobalStatus.roleId_2)) != null) {
+                                        if ((var20 = NetPayloadBuilder.a((short) 4662, (short) GlobalStatus.npcObjects[this.selectNpcIndex].npcId, GlobalStatus.roleId_2)) != null) {
                                             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4662, var20));
                                             this.mainCanvasRef.showPending((String) null);
                                         } else {
@@ -4884,7 +4884,7 @@ public final class GameSceneController {
                                         this.U.a.showTips("装备暂不能升星");
                                         break;
                                     case 45:
-                                        this.a((short) 4665, String.valueOf(GlobalStatus.npcObjects[this.selectNpcIndex].a), (byte) 2, "", GlobalStatus.npcObjects[this.selectNpcIndex].S);
+                                        this.a((short) 4665, String.valueOf(GlobalStatus.npcObjects[this.selectNpcIndex].npcId), (byte) 2, "", GlobalStatus.npcObjects[this.selectNpcIndex].S);
                                         this.lastSceneModeId = this.currentSceneModeId = 0;
                                         break;
                                     case 46:
@@ -4904,7 +4904,7 @@ public final class GameSceneController {
                                         this.sceneSubMode = 0;
                                         this.an = new String[]{"银两竞标", "金豆竞标"};
                                         GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.versus);
-                                        K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].b + ":选择银两竞标或金豆竞标，一金豆折合300万银两。", (short) (GlobalConfig.defaultWidth - 20));
+                                        K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].npcName + ":选择银两竞标或金豆竞标，一金豆折合300万银两。", (short) (GlobalConfig.defaultWidth - 20));
                                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
                                         this.sceneSubState = 10;
                                         break;
@@ -4977,7 +4977,7 @@ public final class GameSceneController {
                                 } else if (GlobalStatus.bK[this.ai] == 1) {
                                     this.N();
                                     byte[] var13;
-                                    if ((var13 = NetPayloadBuilder.c((short) 4109, GlobalStatus.roleId_2, (int) GlobalStatus.npcObjects[this.selectNpcIndex].a, (int) GlobalStatus.bI[this.ai])) != null) {
+                                    if ((var13 = NetPayloadBuilder.c((short) 4109, GlobalStatus.roleId_2, (int) GlobalStatus.npcObjects[this.selectNpcIndex].npcId, (int) GlobalStatus.bI[this.ai])) != null) {
                                         MainCanvas.netUtils.sendPacket(new NetPacket((short) 4109, var13));
                                         GlobalStatus.j();
                                         this.mainCanvasRef.showPending((String) null);
@@ -5282,7 +5282,7 @@ public final class GameSceneController {
                 }
             } else {
                 byte[] var2;
-                if ((var2 = NetPayloadBuilder.a((short) 4142, GlobalStatus.roleId_2, (int) (this.bJ ? GlobalStatus.npcObjects[this.selectNpcIndex].a : -1), (short) GlobalStatus.cr[this.mainCanvasRef.gunDongListUi.g()])) == null) {
+                if ((var2 = NetPayloadBuilder.a((short) 4142, GlobalStatus.roleId_2, (int) (this.bJ ? GlobalStatus.npcObjects[this.selectNpcIndex].npcId : -1), (short) GlobalStatus.cr[this.mainCanvasRef.gunDongListUi.g()])) == null) {
                     this.mainCanvasRef.showTips("获取上传指令数据错误!");
                     return;
                 }
@@ -5353,7 +5353,7 @@ public final class GameSceneController {
         this.mainCanvasRef.mixedUi.setDrawBackground(true);
         this.mainCanvasRef.topUi.a(new String[]{"状态", "属性", "修炼", "声望", "加成", "记录"});
         this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
-        this.mainCanvasRef.topUi.a = (byte) var1;
+        this.mainCanvasRef.topUi.selectTabIndex = (byte) var1;
         switch (var1) {
             case 0:
                 this.mainCanvasRef.shareSb.append("昵称：" + GlobalStatus.roleNamePure + '\t');
@@ -5717,10 +5717,10 @@ public final class GameSceneController {
         this.mainCanvasRef.mixedUi.setTitle("");
         this.mainCanvasRef.mixedUi.setDrawBackground(true);
         this.mainCanvasRef.topUi.a(new String[]{" 一 ", " 二 ", " 三 ", " 四 ", " 五 "});
-        this.mainCanvasRef.topUi.a = this.aH;
+        this.mainCanvasRef.topUi.selectTabIndex = this.aH;
         this.mainCanvasRef.topUi.a((byte) 1);
         this.mainCanvasRef.mixedUi.setR(GlobalConfig.realHigh <= 240 ? 79 : 120);
-        bn var2;
+        EquipmentSlot var2;
         if ((var2 = this.y(0)) != null && (this.as != 4 && this.as != 15 && this.as != 16 && this.as != 20 || var2.g - var2.v > 0)) {
             this.q();
         } else {
@@ -5748,7 +5748,7 @@ public final class GameSceneController {
     }
 
     public final void q() {
-        if (GlobalStatus.bC.size() > 0 && this.A((this.ar << 3) + this.aq) != null) {
+        if (GlobalStatus.equipmentSlot.size() > 0 && this.A((this.ar << 3) + this.aq) != null) {
             this.mainCanvasRef.textPanel.setFWBText(this.A((this.ar << 3) + this.aq), GlobalConfig.font2, (byte) 1);
         } else {
             this.mainCanvasRef.textPanel.setFWBText("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
@@ -5758,12 +5758,12 @@ public final class GameSceneController {
         LoadingPage.l = 0;
     }
 
-    private bn y(int var1) {
-        var1 = (this.mainCanvasRef.topUi.a << 5) + var1;
-        bn var3 = null;
+    private EquipmentSlot y(int var1) {
+        var1 = (this.mainCanvasRef.topUi.selectTabIndex << 5) + var1;
+        EquipmentSlot var3 = null;
 
-        for (int var2 = 0; var2 < GlobalStatus.bC.size(); ++var2) {
-            if ((var3 = (bn) GlobalStatus.bC.elementAt(var2)) != null && var3.h == var1) {
+        for (int var2 = 0; var2 < GlobalStatus.equipmentSlot.size(); ++var2) {
+            if ((var3 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var2)) != null && var3.h == var1) {
                 return var3;
             }
         }
@@ -5772,12 +5772,12 @@ public final class GameSceneController {
     }
 
     private int z(int var1) {
-        var1 = (this.mainCanvasRef.topUi.a << 5) + var1;
+        var1 = (this.mainCanvasRef.topUi.selectTabIndex << 5) + var1;
         Object var3 = null;
 
-        for (int var2 = 0; var2 < GlobalStatus.bC.size(); ++var2) {
-            bn var4;
-            if ((var4 = (bn) GlobalStatus.bC.elementAt(var2)) != null && var4.h == var1) {
+        for (int var2 = 0; var2 < GlobalStatus.equipmentSlot.size(); ++var2) {
+            EquipmentSlot var4;
+            if ((var4 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var2)) != null && var4.h == var1) {
                 return var4.a;
             }
         }
@@ -5788,9 +5788,9 @@ public final class GameSceneController {
     public static boolean r() {
         Object var0 = null;
 
-        for (int var1 = 0; var1 < GlobalStatus.bC.size(); ++var1) {
-            bn var2;
-            if ((var2 = (bn) GlobalStatus.bC.elementAt(var1)) != null && var2.f == 2) {
+        for (int var1 = 0; var1 < GlobalStatus.equipmentSlot.size(); ++var1) {
+            EquipmentSlot var2;
+            if ((var2 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var1)) != null && var2.f == 2) {
                 return true;
             }
         }
@@ -5799,12 +5799,12 @@ public final class GameSceneController {
     }
 
     private String A(int var1) {
-        var1 = (this.mainCanvasRef.topUi.a << 5) + var1;
+        var1 = (this.mainCanvasRef.topUi.selectTabIndex << 5) + var1;
         Object var2 = null;
 
-        for (int var3 = 0; var3 < GlobalStatus.bC.size(); ++var3) {
-            bn var5;
-            if ((var5 = (bn) GlobalStatus.bC.elementAt(var3)) != null && var5.h == var1) {
+        for (int var3 = 0; var3 < GlobalStatus.equipmentSlot.size(); ++var3) {
+            EquipmentSlot var5;
+            if ((var5 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var3)) != null && var5.h == var1) {
                 if (this.lastSceneModeId == 4 && this.as == 4 && var5.g - var5.v <= 0) {
                     return null;
                 }
@@ -5816,7 +5816,7 @@ public final class GameSceneController {
         return null;
     }
 
-    private static String a(bn var0) {
+    private static String a(EquipmentSlot var0) {
         StringBuffer var1;
         (var1 = new StringBuffer()).append(var0.b);
         var1.append('\t');
@@ -5903,7 +5903,7 @@ public final class GameSceneController {
                                         this.m();
                                         this.aq = 0;
                                         this.an = new String[]{"取出物品", "存入物品"};
-                                        K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].b + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
+                                        K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].npcName + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
                                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
                                         this.sceneSubState = 3;
                                         return;
@@ -5953,7 +5953,7 @@ public final class GameSceneController {
                                     }
 
                                     if (this.as == 11) {
-                                        this.aH = this.mainCanvasRef.topUi.a;
+                                        this.aH = this.mainCanvasRef.topUi.selectTabIndex;
                                         this.O.a(this.O.a, (short) this.O.c, this.O.d);
                                         return;
                                     }
@@ -6009,7 +6009,7 @@ public final class GameSceneController {
                 this.s();
                 return;
             } else {
-                bn var22;
+                EquipmentSlot var22;
                 if ((var22 = this.y((this.ar << 3) + this.aq)) == null || var22.a <= 0 || this.A((this.ar << 3) + this.aq) == null) {
                     return;
                 }
@@ -6269,7 +6269,7 @@ public final class GameSceneController {
                     return;
                 }
             } else {
-                bn var19;
+                EquipmentSlot var19;
                 if ((var19 = this.y((this.ar << 3) + this.aq)) == null || var19.a <= 0 || var19.g <= 0) {
                     this.sceneSubState = 0;
                     return;
@@ -6294,7 +6294,7 @@ public final class GameSceneController {
                         this.mainCanvasRef.showPending((String) null);
                         break;
                     case 1:
-                        this.aH = this.mainCanvasRef.topUi.a;
+                        this.aH = this.mainCanvasRef.topUi.selectTabIndex;
                         if (GlobalStatus.a(var19.d)) {
                             GlobalStatus.a(var19);
                             this.O.a(0, (short) this.currentSceneModeId, this.as);
@@ -6353,7 +6353,7 @@ public final class GameSceneController {
                     return;
                 }
             } else {
-                bn var18;
+                EquipmentSlot var18;
                 if ((var18 = this.y((this.ar << 3) + this.aq)) == null || var18.a <= 0 || var18.g <= 0) {
                     return;
                 }
@@ -6380,7 +6380,7 @@ public final class GameSceneController {
             LoadingPage.b(var1);
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                 if (var1 == 536870912) {
-                    bn var17;
+                    EquipmentSlot var17;
                     if ((var17 = this.y((this.ar << 3) + this.aq)) == null || var17.a <= 0 || var17.g <= 0) {
                         this.sceneSubState = 0;
                         return;
@@ -6390,7 +6390,7 @@ public final class GameSceneController {
                     this.sceneSubState = 1;
                 }
             } else {
-                bn var16;
+                EquipmentSlot var16;
                 if ((var16 = this.y((this.ar << 3) + this.aq)) == null || var16.a <= 0 || var16.g <= 0) {
                     this.sceneSubState = 0;
                     return;
@@ -6437,7 +6437,7 @@ public final class GameSceneController {
                     return;
                 }
             } else {
-                bn var14;
+                EquipmentSlot var14;
                 if ((var14 = this.y((this.ar << 3) + this.aq)) == null || var14.a <= 0 || var14.g <= 0) {
                     return;
                 }
@@ -6456,7 +6456,7 @@ public final class GameSceneController {
             if (var1 == 268435456 || var1 == 1073741824) {
                 if (this.n() != -1L) {
                     try {
-                        bn var13;
+                        EquipmentSlot var13;
                         if ((var13 = this.y((this.ar << 3) + this.aq)) != null && var13.a > 0 && var13.g > 0) {
                             this.bR = this.n();
                             this.at = "您确定以" + this.bR + "两的价格拍卖此物品" + (this.ag > var13.g ? var13.g : this.ag) + "个?";
@@ -6482,7 +6482,7 @@ public final class GameSceneController {
                 }
 
                 this.mainCanvasRef.o();
-                bn var12;
+                EquipmentSlot var12;
                 if ((var12 = this.y((this.ar << 3) + this.aq)) == null || var12.g <= 1) {
                     this.sceneSubState = 0;
                     return;
@@ -6569,7 +6569,7 @@ public final class GameSceneController {
             if (var1 == 268435456 || var1 == 1073741824) {
                 if (this.n() != -1L) {
                     try {
-                        bn var10;
+                        EquipmentSlot var10;
                         if ((var10 = this.y((this.ar << 3) + this.aq)) != null && var10.a > 0 && var10.g > 0) {
                             this.bR = this.n();
                             this.at = "您确定以" + this.bR + "个金豆的价格拍卖此物品" + (this.ag > var10.g ? var10.g : this.ag) + "个?";
@@ -6594,7 +6594,7 @@ public final class GameSceneController {
             }
 
             this.mainCanvasRef.o();
-            bn var9;
+            EquipmentSlot var9;
             if ((var9 = this.y((this.ar << 3) + this.aq)) == null || var9.g <= 1) {
                 this.sceneSubState = 0;
                 return;
@@ -6634,7 +6634,7 @@ public final class GameSceneController {
                 }
             } else {
                 if (LoadingPage.o == 0) {
-                    this.aH = this.mainCanvasRef.topUi.a;
+                    this.aH = this.mainCanvasRef.topUi.selectTabIndex;
                     GlobalStatus.a(this.y((this.ar << 3) + this.aq));
                     this.O.a(0, (short) this.currentSceneModeId, this.as);
                     return;
@@ -6642,9 +6642,9 @@ public final class GameSceneController {
 
                 if (LoadingPage.o == 1) {
                     o_1.e = 0;
-                    bn var8 = this.y((this.ar << 3) + this.aq);
+                    EquipmentSlot var8 = this.y((this.ar << 3) + this.aq);
                     byte[] var2;
-                    if ((var2 = NetPayloadBuilder.b((short) 4642, GlobalStatus.roleId_2, GlobalStatus.km[this.mainCanvasRef.gunDongListUi.g()], var8.a, (short) GlobalStatus.npcObjects[this.selectNpcIndex].a)) == null) {
+                    if ((var2 = NetPayloadBuilder.b((short) 4642, GlobalStatus.roleId_2, GlobalStatus.km[this.mainCanvasRef.gunDongListUi.g()], var8.a, (short) GlobalStatus.npcObjects[this.selectNpcIndex].npcId)) == null) {
                         this.mainCanvasRef.showTips("获取上传指令数据错误!");
                         return;
                     }
@@ -6661,9 +6661,9 @@ public final class GameSceneController {
                     return;
                 }
             } else {
-                bn var7 = this.y((this.ar << 3) + this.aq);
+                EquipmentSlot var7 = this.y((this.ar << 3) + this.aq);
                 if (LoadingPage.o == 0) {
-                    this.aH = this.mainCanvasRef.topUi.a;
+                    this.aH = this.mainCanvasRef.topUi.selectTabIndex;
                     GlobalStatus.a(var7);
                     this.O.a(0, (short) this.currentSceneModeId, this.as);
                 } else {
@@ -6696,9 +6696,9 @@ public final class GameSceneController {
                     return;
                 }
             } else {
-                bn var6 = this.y((this.ar << 3) + this.aq);
+                EquipmentSlot var6 = this.y((this.ar << 3) + this.aq);
                 if (LoadingPage.o == 0) {
-                    this.aH = this.mainCanvasRef.topUi.a;
+                    this.aH = this.mainCanvasRef.topUi.selectTabIndex;
                     GlobalStatus.a(var6);
                     this.O.a(0, (short) this.currentSceneModeId, this.as);
                 } else {
@@ -6724,7 +6724,7 @@ public final class GameSceneController {
             }
         } else if (this.sceneSubState == 18) {
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                bn var5;
+                EquipmentSlot var5;
                 if ((var5 = this.y((this.ar << 3) + this.aq)).g > 1) {
                     this.C(this.ag);
                 } else {
@@ -6810,7 +6810,7 @@ public final class GameSceneController {
     }
 
     public final void s() {
-        if (GlobalStatus.bC.size() > 0 && this.A((this.ar << 3) + this.aq) != null) {
+        if (GlobalStatus.equipmentSlot.size() > 0 && this.A((this.ar << 3) + this.aq) != null) {
             this.mainCanvasRef.textPanel.setFWBText(this.A((this.ar << 3) + this.aq), GlobalConfig.font2, (byte) 1);
         } else {
             this.mainCanvasRef.textPanel.setFWBText("没有物品，按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
@@ -6888,17 +6888,17 @@ public final class GameSceneController {
             int var7 = this.mainCanvasRef.mixedUi.Y + 33 + this.mainCanvasRef.topUi.b + var5;
 
             for (int var8 = 0; var8 < 32; ++var8) {
-                MainCanvas.pngUtil.a(var3, goods, (int[]) null, (ImageSlice) null, 0, 0, var8 % 8 * (goods.w + var4) + var6, var8 / 8 * (goods.w + var5) + var7, 0, 0);
+                MainCanvas.pngUtil.draw(var3, goods, (int[]) null, (ImageSlice) null, 0, 0, var8 % 8 * (goods.w + var4) + var6, var8 / 8 * (goods.w + var5) + var7, 0, 0);
                 var13.a((int) var8, var8 % 8 * (goods.w + var4) + var6, var8 / 8 * (goods.w + var5) + var7, (int) goods.w, (int) goods.h);
             }
 
-            bn var15 = null;
-            if (GlobalStatus.bC.size() > 0) {
+            EquipmentSlot var15 = null;
+            if (GlobalStatus.equipmentSlot.size() > 0) {
                 int var9 = 0;
                 int var10 = 0;
 
-                for (int var11 = 0; var11 < GlobalStatus.bC.size(); ++var11) {
-                    var13.bT = (bn) GlobalStatus.bC.elementAt(var11);
+                for (int var11 = 0; var11 < GlobalStatus.equipmentSlot.size(); ++var11) {
+                    var13.bT = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var11);
                     if (var13.bT != null && var13.bT.a >= 0) {
                         if (var13.as != 4 && var13.as != 15 && var13.as != 16) {
                             var10 = var13.bT.g;
@@ -6907,8 +6907,8 @@ public final class GameSceneController {
                         }
 
                         var9 = var13.bT.h % 32;
-                        if (var13.bT.h / 32 == var13.mainCanvasRef.topUi.a) {
-                            MainCanvas.pngUtil.a(var3, b(var13.bT.i), (int[]) null, (ImageSlice) null, 0, 0, var9 % 8 * (goods.w + var4) + var6 + 1, var9 / 8 * (goods.w + var5) + var7 + 1, 0, 0);
+                        if (var13.bT.h / 32 == var13.mainCanvasRef.topUi.selectTabIndex) {
+                            MainCanvas.pngUtil.draw(var3, getIconFrame0(var13.bT.i), (int[]) null, (ImageSlice) null, 0, 0, var9 % 8 * (goods.w + var4) + var6 + 1, var9 / 8 * (goods.w + var5) + var7 + 1, 0, 0);
                             if (var10 > 9) {
                                 MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, var10 / 10, 0, 0, 10 + var9 % 8 * (goods.w + var4) + var6, 12 + var9 / 8 * (goods.w + var5) + var7, 0, 0);
                                 MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (goods.w + var4) + var6, 12 + var9 / 8 * (goods.w + var5) + var7, 0, 0);
@@ -6931,7 +6931,7 @@ public final class GameSceneController {
 
             if (this.as != 18) {
                 this.a(var1, GlobalStatus.versus, GlobalConfig.defaultWidth / 2 + goods.w, this.mainCanvasRef.bottomUi.a() + GlobalConfig.getCzjz(MainCanvas.button1.h));
-                MainCanvas.pngUtil.a(var1, money, (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.getSpjzPx(GlobalConfig.defaultWidth, this.mainCanvasRef.shareSb.toString()) - goods.w, this.mainCanvasRef.bottomUi.a() + 4, 0, 0);
+                MainCanvas.pngUtil.draw(var1, money, (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.getSpjzPx(GlobalConfig.defaultWidth, this.mainCanvasRef.shareSb.toString()) - goods.w, this.mainCanvasRef.bottomUi.a() + 4, 0, 0);
             }
         }
 
@@ -6994,18 +6994,18 @@ public final class GameSceneController {
         Object var3 = null;
         if (var1 == 0) {
             for (int var5 = 0; var5 < var2.length; ++var5) {
-                for (int var4 = 0; var4 < GlobalStatus.bC.size(); ++var4) {
-                    bn var7;
-                    if ((var7 = (bn) GlobalStatus.bC.elementAt(var4)) != null && (byte) (var7.t >>> var2[var5] & 1) == 1 && var7.g - var7.v > 0) {
+                for (int var4 = 0; var4 < GlobalStatus.equipmentSlot.size(); ++var4) {
+                    EquipmentSlot var7;
+                    if ((var7 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var4)) != null && (byte) (var7.t >>> var2[var5] & 1) == 1 && var7.g - var7.v > 0) {
                         this.bU.addElement(var7);
                     }
                 }
             }
         } else {
             for (int var6 = 0; var6 < var2.length; ++var6) {
-                for (int var9 = 0; var9 < GlobalStatus.bC.size(); ++var9) {
-                    bn var8;
-                    if ((var8 = (bn) GlobalStatus.bC.elementAt(var9)) != null && var2[var6] == var8.d && var8.g - var8.v > 0) {
+                for (int var9 = 0; var9 < GlobalStatus.equipmentSlot.size(); ++var9) {
+                    EquipmentSlot var8;
+                    if ((var8 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var9)) != null && var2[var6] == var8.d && var8.g - var8.v > 0) {
                         this.bU.addElement(var8);
                     }
                 }
@@ -7020,7 +7020,7 @@ public final class GameSceneController {
         this.mainCanvasRef.topUi.a((byte) 1);
         this.mainCanvasRef.mixedUi.setR(GlobalConfig.realHigh <= 240 ? 79 : 120);
         if (this.bU.size() > 0) {
-            this.mainCanvasRef.textPanel.setFWBText(a((bn) this.bU.elementAt(0)), GlobalConfig.font2, (byte) 1);
+            this.mainCanvasRef.textPanel.setFWBText(a((EquipmentSlot) this.bU.elementAt(0)), GlobalConfig.font2, (byte) 1);
         } else {
             this.mainCanvasRef.textPanel.setFWBText("没有物品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
         }
@@ -7102,10 +7102,10 @@ public final class GameSceneController {
                 this.G((this.ar << 3) + this.aq);
                 return;
             } else {
-                var1 = (this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq;
-                bn var2 = null;
+                var1 = (this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq;
+                EquipmentSlot var2 = null;
                 if (var1 < this.bU.size()) {
-                    var2 = (bn) this.bU.elementAt(var1);
+                    var2 = (EquipmentSlot) this.bU.elementAt(var1);
                 }
 
                 if (var2 == null) {
@@ -7241,22 +7241,22 @@ public final class GameSceneController {
             int var7 = this.mainCanvasRef.mixedUi.Y + 33 + this.mainCanvasRef.topUi.b + var5;
 
             for (int var8 = 0; var8 < 32; ++var8) {
-                MainCanvas.pngUtil.a(var3, goods, (int[]) null, (ImageSlice) null, 0, 0, var8 % 8 * (goods.w + var4) + var6, var8 / 8 * (goods.w + var5) + var7, 0, 0);
+                MainCanvas.pngUtil.draw(var3, goods, (int[]) null, (ImageSlice) null, 0, 0, var8 % 8 * (goods.w + var4) + var6, var8 / 8 * (goods.w + var5) + var7, 0, 0);
                 var12.a((int) var8, var8 % 8 * (goods.w + var4) + var6, var8 / 8 * (goods.w + var5) + var7, (int) goods.w, (int) goods.h);
             }
 
-            bn var13 = null;
+            EquipmentSlot var13 = null;
             if (var12.bU.size() > 0) {
                 int var9 = 0;
                 int var10 = 0;
 
                 for (int var11 = 0; var11 < var12.bU.size(); ++var11) {
-                    var12.bT = (bn) var12.bU.elementAt(var11);
+                    var12.bT = (EquipmentSlot) var12.bU.elementAt(var11);
                     if (var12.bT != null && var12.bT.a >= 0 && var12.bT.g - var12.bT.v >= 1) {
                         var10 = var12.bT.g - var12.bT.v;
                         var9 = var11 % 32;
-                        if (var11 / 32 == var12.mainCanvasRef.topUi.a) {
-                            MainCanvas.pngUtil.a(var3, b(var12.bT.i), (int[]) null, (ImageSlice) null, 0, 0, var9 % 8 * (goods.w + var4) + var6 + 1, var9 / 8 * (goods.w + var5) + var7 + 1, 0, 0);
+                        if (var11 / 32 == var12.mainCanvasRef.topUi.selectTabIndex) {
+                            MainCanvas.pngUtil.draw(var3, getIconFrame0(var12.bT.i), (int[]) null, (ImageSlice) null, 0, 0, var9 % 8 * (goods.w + var4) + var6 + 1, var9 / 8 * (goods.w + var5) + var7 + 1, 0, 0);
                             if (var10 > 9) {
                                 MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, var10 / 10, 0, 0, 10 + var9 % 8 * (goods.w + var4) + var6, 12 + var9 / 8 * (goods.w + var5) + var7, 0, 0);
                                 MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, var10 % 10, 0, 0, 14 + var9 % 8 * (goods.w + var4) + var6, 12 + var9 / 8 * (goods.w + var5) + var7, 0, 0);
@@ -7278,15 +7278,15 @@ public final class GameSceneController {
             }
 
             this.a(var1, GlobalStatus.versus, GlobalConfig.defaultWidth / 2 + 15, this.mainCanvasRef.bottomUi.a() + GlobalConfig.getCzjz(MainCanvas.button1.h));
-            MainCanvas.pngUtil.a(var1, money, (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.getSpjzPx(GlobalConfig.defaultWidth, this.mainCanvasRef.shareSb.toString()) - 15, this.mainCanvasRef.bottomUi.a() + 4, 0, 0);
+            MainCanvas.pngUtil.draw(var1, money, (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.getSpjzPx(GlobalConfig.defaultWidth, this.mainCanvasRef.shareSb.toString()) - 15, this.mainCanvasRef.bottomUi.a() + 4, 0, 0);
         }
 
     }
 
     private void G(int var1) {
-        var1 = (this.mainCanvasRef.topUi.a << 5) + var1;
+        var1 = (this.mainCanvasRef.topUi.selectTabIndex << 5) + var1;
         if (this.bU.size() > 0 && var1 < this.bU.size()) {
-            this.mainCanvasRef.textPanel.setFWBText(a((bn) this.bU.elementAt(var1)), GlobalConfig.font2, (byte) 1);
+            this.mainCanvasRef.textPanel.setFWBText(a((EquipmentSlot) this.bU.elementAt(var1)), GlobalConfig.font2, (byte) 1);
         } else {
             this.mainCanvasRef.textPanel.setFWBText("没有物品，按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
         }
@@ -7362,9 +7362,9 @@ public final class GameSceneController {
         this.sceneSubMode = 0;
         LoadingPage.l = 0;
         q = this.mainCanvasRef.loadRoleFrame(q, GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte) 3, (byte) 1, false);
-        if (GlobalStatus.cz != null) {
-            for (byte var1 = 0; var1 < GlobalStatus.cz.length; ++var1) {
-                this.a(GlobalStatus.cD[var1]);
+        if (GlobalStatus.petIds != null) {
+            for (byte var1 = 0; var1 < GlobalStatus.petIds.length; ++var1) {
+                this.a(GlobalStatus.petAttr8[var1]);
             }
         }
 
@@ -7402,21 +7402,21 @@ public final class GameSceneController {
             var1.setColor(10092544);
             LoadingPage.d(var1, var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 17, 17);
             int[] var8 = new int[]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-            if (GlobalStatus.cz != null) {
-                for (int var5 = 0; var5 < GlobalStatus.cz.length; var8[GlobalStatus.cB[var5]] = var5++) {
-                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.cC[var5]), (int[]) null, (ImageSlice) null, 0, 0, var6 + this.bY[GlobalStatus.cB[var5]][0] + 1, var7 + this.bY[GlobalStatus.cB[var5]][1] + 1, 0, 0);
+            if (GlobalStatus.petIds != null) {
+                for (int var5 = 0; var5 < GlobalStatus.petIds.length; var8[GlobalStatus.petType[var5]] = var5++) {
+                    MainCanvas.pngUtil.draw(var1, getIconFrame0(GlobalStatus.petIconId[var5]), (int[]) null, (ImageSlice) null, 0, 0, var6 + this.bY[GlobalStatus.petType[var5]][0] + 1, var7 + this.bY[GlobalStatus.petType[var5]][1] + 1, 0, 0);
                 }
             }
 
             if (var8[this.av] >= 0) {
                 if (this.av < 3) {
-                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.shareSb, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1], 40);
+                    LoadingPage.a(var1, GlobalStatus.petNames[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.shareSb, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1], 40);
                 } else if (this.av < 5) {
-                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.shareSb, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1] + 16, 24);
+                    LoadingPage.a(var1, GlobalStatus.petNames[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.shareSb, this.av, false), var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1] + 16, 24);
                 } else if (this.av < 7) {
-                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.shareSb, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1] + 16, 20);
+                    LoadingPage.a(var1, GlobalStatus.petNames[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.shareSb, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1] + 16, 20);
                 } else {
-                    LoadingPage.a(var1, GlobalStatus.cA[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.shareSb, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 36);
+                    LoadingPage.a(var1, GlobalStatus.petNames[var8[this.av]], GlobalStatus.a(this.mainCanvasRef.shareSb, this.av, false), var6 + this.bY[this.av][0], var7 + this.bY[this.av][1], 36);
                 }
             } else if (this.av < 3) {
                 LoadingPage.a(var1, GlobalConfig.ZhuangBeiBuWei[this.av], "", var6 + this.bY[this.av][0] + 16, var7 + this.bY[this.av][1], 40);
@@ -7441,18 +7441,18 @@ public final class GameSceneController {
                     LoadingPage.drawString(var1, (String) "宝石", (int) (this.mainCanvasRef.mixedUi.X + 10), this.mainCanvasRef.mixedUi.Y + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
                 }
 
-                if (GlobalStatus.cD != null) {
-                    for (int var2 = 0; var2 < GlobalStatus.cD.length; ++var2) {
-                        if (GlobalStatus.cB[var2] == this.av && GlobalStatus.cD[var2] != null) {
-                            this.a(var1, this.mainCanvasRef.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:"), this.mainCanvasRef.mixedUi.Y + 37, 17, 17, GlobalStatus.cD[var2].length, 1);
+                if (GlobalStatus.petAttr8 != null) {
+                    for (int var2 = 0; var2 < GlobalStatus.petAttr8.length; ++var2) {
+                        if (GlobalStatus.petType[var2] == this.av && GlobalStatus.petAttr8[var2] != null) {
+                            this.a(var1, this.mainCanvasRef.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:"), this.mainCanvasRef.mixedUi.Y + 37, 17, 17, GlobalStatus.petAttr8[var2].length, 1);
 
-                            for (byte var3 = 0; var3 < GlobalStatus.cD[var2].length; ++var3) {
-                                if (GlobalStatus.cD[var2][var3] <= -1) {
+                            for (byte var3 = 0; var3 < GlobalStatus.petAttr8[var2].length; ++var3) {
+                                if (GlobalStatus.petAttr8[var2][var3] <= -1) {
                                     LoadingPage.fillRect(var1, 125269879, 207, this.mainCanvasRef.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var3 * 17, this.mainCanvasRef.mixedUi.Y + 39, 17, 17);
                                 }
 
-                                if (GlobalStatus.cD[var2][var3] > 0) {
-                                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.cD[var2][var3]), (int[]) null, (ImageSlice) null, 0, 0, this.mainCanvasRef.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var3 * 17, this.mainCanvasRef.mixedUi.Y + 39, 0, 0);
+                                if (GlobalStatus.petAttr8[var2][var3] > 0) {
+                                    MainCanvas.pngUtil.draw(var1, getIconFrame0(GlobalStatus.petAttr8[var2][var3]), (int[]) null, (ImageSlice) null, 0, 0, this.mainCanvasRef.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var3 * 17, this.mainCanvasRef.mixedUi.Y + 39, 0, 0);
                                 }
                             }
                         }
@@ -7527,7 +7527,7 @@ public final class GameSceneController {
             this.mainCanvasRef.mixedUi.setDrawBackground(true);
             this.mainCanvasRef.topUi.a(new String[]{"我的邮件", "系统邮件"});
             this.mainCanvasRef.topUi.a((byte) 0);
-            this.mainCanvasRef.topUi.a = var1;
+            this.mainCanvasRef.topUi.selectTabIndex = var1;
             if (var1 == 0) {
                 if (GlobalStatus.O.g == null) {
                     GlobalStatus.O.c();
@@ -7572,7 +7572,7 @@ public final class GameSceneController {
             this.mainCanvasRef.mixedUi.setDrawBackground(true);
             this.mainCanvasRef.topUi.a(GlobalStatus.lJ);
             this.mainCanvasRef.topUi.a((byte) 0);
-            this.mainCanvasRef.topUi.a = var1;
+            this.mainCanvasRef.topUi.selectTabIndex = var1;
             boolean var2 = false;
             boolean var3 = false;
             int var4 = 0;
@@ -7840,9 +7840,9 @@ public final class GameSceneController {
                 this.mainCanvasRef.mixedUi.onClick(var1);
             }
 
-            this.aV = this.mainCanvasRef.topUi.a;
+            this.aV = this.mainCanvasRef.topUi.selectTabIndex;
             if (var1 == 8 || var1 == 2 || var1 == 518 || var1 == 516) {
-                this.b(this.mainCanvasRef.topUi.a);
+                this.b(this.mainCanvasRef.topUi.selectTabIndex);
             }
 
             if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
@@ -7895,17 +7895,17 @@ public final class GameSceneController {
                         return;
                     }
                 } else if (var1 == 513) {
-                    this.mainCanvasRef.topUi.a = 3;
-                    this.b(this.mainCanvasRef.topUi.a);
+                    this.mainCanvasRef.topUi.selectTabIndex = 3;
+                    this.b(this.mainCanvasRef.topUi.selectTabIndex);
                     return;
                 }
-            } else if (this.mainCanvasRef.topUi.a < 3) {
+            } else if (this.mainCanvasRef.topUi.selectTabIndex < 3) {
                 if (GlobalStatus.gH != null) {
                     LoadingPage.a(65 + gameX, 2 * GlobalConfig.font2_h + 10 + this.mainCanvasRef.gunDongListUi.g() * GlobalConfig.font2_h + gameY, new String[]{"查看", "私聊", "组队", "交易", "好友", "黑名单", "PK", "参观住宅"}, false);
                     this.sceneSubState = 1;
                     return;
                 }
-            } else if (this.mainCanvasRef.topUi.a == 3) {
+            } else if (this.mainCanvasRef.topUi.selectTabIndex == 3) {
                 if (GlobalStatus.teamBonus == null) {
                     return;
                 }
@@ -8407,7 +8407,7 @@ public final class GameSceneController {
             this.mainCanvasRef.mixedUi.draw(var1);
         }
 
-        if (this.mainCanvasRef.topUi.a != 3) {
+        if (this.mainCanvasRef.topUi.selectTabIndex != 3) {
             if (this.sceneSubState == 1) {
                 if (GlobalStatus.bw < 1) {
                     LoadingPage.c(var1);
@@ -8458,7 +8458,7 @@ public final class GameSceneController {
                 this.b(var1, "请输入决斗金额");
                 return;
             }
-        } else if (this.mainCanvasRef.topUi.a == 3 && GlobalStatus.teamBonus != null) {
+        } else if (this.mainCanvasRef.topUi.selectTabIndex == 3 && GlobalStatus.teamBonus != null) {
             if (this.sceneSubState == 8 || this.sceneSubState == 9 || this.sceneSubState == 10) {
                 LoadingPage.c(var1);
                 return;
@@ -8676,7 +8676,7 @@ public final class GameSceneController {
         int[] var7 = new int[]{-1, -1, -1, -1, -1, -1};
         if (GlobalStatus.jH != null) {
             for (int var6 = 0; var6 < GlobalStatus.jH.length; var7[n(GlobalStatus.jJ[var6])] = var6++) {
-                MainCanvas.pngUtil.a(var1, b(GlobalStatus.jK[var6]), (int[]) null, (ImageSlice) null, 0, 0, var3 + this.cc[n(GlobalStatus.jJ[var6])][0] + 1, var4 + this.cc[n(GlobalStatus.jJ[var6])][1] + 1, 0, 0);
+                MainCanvas.pngUtil.draw(var1, getIconFrame0(GlobalStatus.jK[var6]), (int[]) null, (ImageSlice) null, 0, 0, var3 + this.cc[n(GlobalStatus.jJ[var6])][0] + 1, var4 + this.cc[n(GlobalStatus.jJ[var6])][1] + 1, 0, 0);
             }
         }
 
@@ -8733,7 +8733,7 @@ public final class GameSceneController {
             int[] var10 = new int[]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
             if (GlobalStatus.cG != null) {
                 for (int var7 = 0; var7 < GlobalStatus.cG.length; var10[GlobalStatus.cI[var7]] = var7++) {
-                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.cJ[var7]), (int[]) null, (ImageSlice) null, 0, 0, var4 + this.bY[GlobalStatus.cI[var7]][0] + 1, var5 + this.bY[GlobalStatus.cI[var7]][1] + 1, 0, 0);
+                    MainCanvas.pngUtil.draw(var1, getIconFrame0(GlobalStatus.cJ[var7]), (int[]) null, (ImageSlice) null, 0, 0, var4 + this.bY[GlobalStatus.cI[var7]][0] + 1, var5 + this.bY[GlobalStatus.cI[var7]][1] + 1, 0, 0);
                 }
             }
 
@@ -8770,7 +8770,7 @@ public final class GameSceneController {
 
                         for (byte var9 = 0; var9 < GlobalStatus.cQ[var8].length; ++var9) {
                             if (GlobalStatus.cQ[var8][var9] > 0) {
-                                MainCanvas.pngUtil.a(var1, b(GlobalStatus.cQ[var8][var9]), (int[]) null, (ImageSlice) null, 0, 0, this.T.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.T.Y + 39, 0, 0);
+                                MainCanvas.pngUtil.draw(var1, getIconFrame0(GlobalStatus.cQ[var8][var9]), (int[]) null, (ImageSlice) null, 0, 0, this.T.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.T.Y + 39, 0, 0);
                             }
                         }
                     }
@@ -8886,7 +8886,7 @@ public final class GameSceneController {
             if (var1 != 8 && var1 != 516 && var1 != 2 && var1 != 518) {
                 if (var1 != 536870912 && (GlobalStatus.bR != null || GlobalStatus.bL != null)) {
                     if (var1 != 1 && var1 != 4 && var1 != 514 && var1 != 520) {
-                        if ((var1 == 268435456 || var1 == 1073741824 || var1 == 517) && this.mainCanvasRef.topUi.a == 0 && GlobalStatus.bR != null && GlobalStatus.bU[this.mainCanvasRef.gunDongListUi.g()] == 0) {
+                        if ((var1 == 268435456 || var1 == 1073741824 || var1 == 517) && this.mainCanvasRef.topUi.selectTabIndex == 0 && GlobalStatus.bR != null && GlobalStatus.bU[this.mainCanvasRef.gunDongListUi.g()] == 0) {
                             this.aE();
                         }
                     } else if (this.cf != null && this.cf.length > 0) {
@@ -8900,7 +8900,7 @@ public final class GameSceneController {
                     this.c((int) 3);
                 }
             } else {
-                this.I(this.mainCanvasRef.topUi.a);
+                this.I(this.mainCanvasRef.topUi.selectTabIndex);
                 this.mainCanvasRef.gunDongListUi.setValue((Image[]) null, this.cd, (String[]) null, this.ce);
                 if (this.cf != null && this.cf.length > 0) {
                     this.mainCanvasRef.gunDongListUi.a(this.cf[this.mainCanvasRef.gunDongListUi.g()], 1);
@@ -9620,13 +9620,13 @@ public final class GameSceneController {
         }
     }
 
-    public final void a(byte var1, boolean var2) {
-        if (GlobalStatus.dv.length > 0) {
-            this.a(GlobalStatus.dB);
+    public void a(byte var1, boolean var2) {
+        if (GlobalStatus.skillIds.length > 0) {
+            this.a(GlobalStatus.skillCD2);
             int var3 = 0;
 
-            for (int var4 = 0; var4 < GlobalStatus.dx.length; ++var4) {
-                if (a(var1, GlobalStatus.dx[var4])) {
+            for (int var4 = 0; var4 < GlobalStatus.skillTypes.length; ++var4) {
+                if (a(var1, GlobalStatus.skillTypes[var4])) {
                     ++var3;
                 }
             }
@@ -9643,17 +9643,17 @@ public final class GameSceneController {
                 GlobalStatus.dt = new String[var3];
                 int var6 = 0;
 
-                for (int var5 = 0; var5 < GlobalStatus.dx.length; ++var5) {
-                    if (var6 < var3 && a(var1, GlobalStatus.dx[var5])) {
-                        GlobalStatus.dl[var6] = GlobalStatus.dv[var5];
-                        GlobalStatus.dm[var6] = GlobalStatus.dw[var5];
-                        GlobalStatus.dn[var6] = GlobalStatus.dx[var5];
-                        GlobalStatus.do_2[var6] = GlobalStatus.dy[var5];
-                        GlobalStatus.dp[var6] = GlobalStatus.dz[var5];
-                        GlobalStatus.dq[var6] = GlobalStatus.dA[var5];
-                        GlobalStatus.dr[var6] = GlobalStatus.dB[var5];
-                        GlobalStatus.ds[var6] = GlobalStatus.dD[var5];
-                        GlobalStatus.dt[var6] = GlobalStatus.dC[var5];
+                for (int var5 = 0; var5 < GlobalStatus.skillTypes.length; ++var5) {
+                    if (var6 < var3 && a(var1, GlobalStatus.skillTypes[var5])) {
+                        GlobalStatus.dl[var6] = GlobalStatus.skillIds[var5];
+                        GlobalStatus.dm[var6] = GlobalStatus.skillNames[var5];
+                        GlobalStatus.dn[var6] = GlobalStatus.skillTypes[var5];
+                        GlobalStatus.do_2[var6] = GlobalStatus.skillSubTypes[var5];
+                        GlobalStatus.dp[var6] = GlobalStatus.skillStatus[var5];
+                        GlobalStatus.dq[var6] = GlobalStatus.skillCD1[var5];
+                        GlobalStatus.dr[var6] = GlobalStatus.skillCD2[var5];
+                        GlobalStatus.ds[var6] = GlobalStatus.skillDesc1[var5];
+                        GlobalStatus.dt[var6] = GlobalStatus.skillDesc2[var5];
                         ++var6;
                     }
                 }
@@ -9721,12 +9721,12 @@ public final class GameSceneController {
             }
 
             if (var1 == 8 || var1 == 2 || var1 == 518 || var1 == 516) {
-                if (this.mainCanvasRef.topUi.a == 0) {
+                if (this.mainCanvasRef.topUi.selectTabIndex == 0) {
                     this.a((byte) 1, false);
-                } else if (this.mainCanvasRef.topUi.a == 1) {
+                } else if (this.mainCanvasRef.topUi.selectTabIndex == 1) {
                     this.a((byte) 0, false);
                 } else {
-                    this.a(this.mainCanvasRef.topUi.a, false);
+                    this.a(this.mainCanvasRef.topUi.selectTabIndex, false);
                 }
             }
 
@@ -9761,14 +9761,14 @@ public final class GameSceneController {
                 }
 
                 if (this.as == 0) {
-                    if (this.mainCanvasRef.topUi.a == 0) {
+                    if (this.mainCanvasRef.topUi.selectTabIndex == 0) {
                         String[] var6 = "".equals(GlobalStatus.dt[this.mainCanvasRef.gunDongListUi.g()]) ? new String[]{"设置", "特效"} : new String[]{"升级", "设置", "特效"};
                         LoadingPage.a(GlobalConfig.realWidth / 3 - GlobalConfig.font2.stringWidth("操作") / 2, 2 * GlobalConfig.font2_h + 28 + this.mainCanvasRef.gunDongListUi.i() * GlobalConfig.font2_h + gameY, var6, true);
                         this.sceneSubState = 1;
                         return;
                     }
 
-                    if (this.mainCanvasRef.topUi.a == 1 && !"".equals(GlobalStatus.dt[this.mainCanvasRef.gunDongListUi.g()])) {
+                    if (this.mainCanvasRef.topUi.selectTabIndex == 1 && !"".equals(GlobalStatus.dt[this.mainCanvasRef.gunDongListUi.g()])) {
                         this.aE = this.mainCanvasRef.gunDongListUi.g();
                         this.aA = this.mainCanvasRef.gunDongListUi.h();
                         byte[] var4;
@@ -9781,7 +9781,7 @@ public final class GameSceneController {
                         MainCanvas.netUtils.sendPacket(var5);
                         this.mainCanvasRef.showPending((String) null);
                     }
-                } else if (this.as == 3 && this.overlayDialogController != null && this.mainCanvasRef.topUi.a != 2) {
+                } else if (this.as == 3 && this.overlayDialogController != null && this.mainCanvasRef.topUi.selectTabIndex != 2) {
                     this.overlayDialogController.j = 1;
                     this.overlayDialogController.p = GlobalStatus.dl[this.mainCanvasRef.gunDongListUi.g()];
                     if (GlobalStatus.do_2[this.mainCanvasRef.gunDongListUi.g()] == 2) {
@@ -9942,18 +9942,18 @@ public final class GameSceneController {
             this.mainCanvasRef.topUi.a(new String[]{"拍卖中", "仓库", "记录"});
         }
 
-        if (this.lastSceneModeId != 34 || this.lastSceneModeId == 34 && this.mainCanvasRef.topUi.a != 2) {
+        if (this.lastSceneModeId != 34 || this.lastSceneModeId == 34 && this.mainCanvasRef.topUi.selectTabIndex != 2) {
             this.mainCanvasRef.mixedUi.clean();
             this.mainCanvasRef.mixedUi.setTitle("宠物拍卖详情");
             this.mainCanvasRef.gunDongListUi.setValue((Image[]) null, GlobalStatus.gt, e(GlobalStatus.gu), this.a(GlobalStatus.gv));
-            if (this.mainCanvasRef.topUi.a == 0) {
+            if (this.mainCanvasRef.topUi.selectTabIndex == 0) {
                 this.mainCanvasRef.bottomUi.a("下架");
             } else {
                 this.mainCanvasRef.bottomUi.a("取回");
             }
 
             this.mainCanvasRef.bottomUi.a(true);
-            this.mainCanvasRef.textPanel.setFWBText(GlobalStatus.a((StringBuffer) this.mainCanvasRef.shareSb, (int) 0, (byte) this.mainCanvasRef.topUi.a), GlobalConfig.font2, (byte) 2);
+            this.mainCanvasRef.textPanel.setFWBText(GlobalStatus.a((StringBuffer) this.mainCanvasRef.shareSb, (int) 0, (byte) this.mainCanvasRef.topUi.selectTabIndex), GlobalConfig.font2, (byte) 2);
             this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
             this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
             this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
@@ -9995,26 +9995,26 @@ public final class GameSceneController {
             }
 
             if (var1 == 8 || var1 == 2) {
-                if (this.mainCanvasRef.topUi.a == 0 && this.aV != 0) {
+                if (this.mainCanvasRef.topUi.selectTabIndex == 0 && this.aV != 0) {
                     GlobalStatus.gQ = 1;
                     this.a((byte) 1, (short) GlobalStatus.gQ);
-                    this.aV = this.mainCanvasRef.topUi.a;
-                } else if (this.mainCanvasRef.topUi.a == 1) {
+                    this.aV = this.mainCanvasRef.topUi.selectTabIndex;
+                } else if (this.mainCanvasRef.topUi.selectTabIndex == 1) {
                     GlobalStatus.gQ = 1;
                     this.c((byte) 1, (short) GlobalStatus.gQ);
-                    this.aV = this.mainCanvasRef.topUi.a;
-                } else if (this.mainCanvasRef.topUi.a == 2 && this.aV != 2) {
+                    this.aV = this.mainCanvasRef.topUi.selectTabIndex;
+                } else if (this.mainCanvasRef.topUi.selectTabIndex == 2 && this.aV != 2) {
                     GlobalStatus.gQ = 1;
                     this.b((byte) 1, (short) GlobalStatus.gQ);
-                    this.aV = this.mainCanvasRef.topUi.a;
+                    this.aV = this.mainCanvasRef.topUi.selectTabIndex;
                 }
             }
 
             if (var1 == 1024) {
                 if (GlobalStatus.gQ > 1) {
-                    if (this.mainCanvasRef.topUi.a == 0) {
+                    if (this.mainCanvasRef.topUi.selectTabIndex == 0) {
                         this.a((byte) 1, (short) ((short) (GlobalStatus.gQ - 1)));
-                    } else if (this.mainCanvasRef.topUi.a == 1) {
+                    } else if (this.mainCanvasRef.topUi.selectTabIndex == 1) {
                         this.c((byte) 1, (short) ((short) (GlobalStatus.gQ - 1)));
                     } else {
                         this.b((byte) 1, (short) ((short) (GlobalStatus.gQ - 1)));
@@ -10022,9 +10022,9 @@ public final class GameSceneController {
                 }
             } else if (var1 == 2048) {
                 if (GlobalStatus.gR == 1) {
-                    if (this.mainCanvasRef.topUi.a == 0) {
+                    if (this.mainCanvasRef.topUi.selectTabIndex == 0) {
                         this.a((byte) 1, (short) ((short) (GlobalStatus.gQ + 1)));
-                    } else if (this.mainCanvasRef.topUi.a == 1) {
+                    } else if (this.mainCanvasRef.topUi.selectTabIndex == 1) {
                         this.c((byte) 1, (short) ((short) (GlobalStatus.gQ + 1)));
                     } else {
                         this.b((byte) 1, (short) ((short) (GlobalStatus.gQ + 1)));
@@ -10034,7 +10034,7 @@ public final class GameSceneController {
                 this.m();
             }
 
-            if (this.mainCanvasRef.topUi.a != 2 && GlobalStatus.gs != null) {
+            if (this.mainCanvasRef.topUi.selectTabIndex != 2 && GlobalStatus.gs != null) {
                 if (GlobalStatus.gA != null && GlobalStatus.gA[this.mainCanvasRef.gunDongListUi.g()] != null && GlobalStatus.gA[this.mainCanvasRef.gunDongListUi.g()].length > 0) {
                     for (byte var4 = 0; var4 < GlobalStatus.gA[this.mainCanvasRef.gunDongListUi.g()].length; ++var4) {
                         this.a(GlobalStatus.gA[this.mainCanvasRef.gunDongListUi.g()]);
@@ -10042,7 +10042,7 @@ public final class GameSceneController {
                 }
 
                 if (var1 == 1 || var1 == 514 || var1 == 520 || var1 == 4) {
-                    this.mainCanvasRef.textPanel.setFWBText(GlobalStatus.a(this.mainCanvasRef.shareSb, this.mainCanvasRef.gunDongListUi.g(), this.mainCanvasRef.topUi.a), GlobalConfig.font2, (byte) 2);
+                    this.mainCanvasRef.textPanel.setFWBText(GlobalStatus.a(this.mainCanvasRef.shareSb, this.mainCanvasRef.gunDongListUi.g(), this.mainCanvasRef.topUi.selectTabIndex), GlobalConfig.font2, (byte) 2);
                     this.mainCanvasRef.textPanel.setShuRuMoShi((byte) 1);
                     a(GlobalStatus.gw[this.mainCanvasRef.gunDongListUi.g()], GlobalStatus.gx[this.mainCanvasRef.gunDongListUi.g()], GlobalStatus.gy[this.mainCanvasRef.gunDongListUi.g()], GlobalStatus.gz[this.mainCanvasRef.gunDongListUi.g()]);
                     this.aI = MainCanvas.petfight.getAnimationByNameFromCache(String.valueOf(GlobalStatus.gw[this.mainCanvasRef.gunDongListUi.g()] + "_0"), GlobalStatus.gx[this.mainCanvasRef.gunDongListUi.g()], GlobalStatus.gy[this.mainCanvasRef.gunDongListUi.g()], GlobalStatus.gz[this.mainCanvasRef.gunDongListUi.g()]);
@@ -10050,13 +10050,13 @@ public final class GameSceneController {
 
                 PngUtil.animate(this.aI, this.mainCanvasRef.frameStartTs);
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                    if (this.mainCanvasRef.topUi.a == 0 && GlobalStatus.gs != null) {
+                    if (this.mainCanvasRef.topUi.selectTabIndex == 0 && GlobalStatus.gs != null) {
                         LoadingPage.a(35 + GlobalConfig.gameX, (3 + this.mainCanvasRef.gunDongListUi.i()) * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"取消拍卖"}, false);
                         this.sceneSubState = 1;
                         return;
                     }
 
-                    if (this.mainCanvasRef.topUi.a == 1 && GlobalStatus.gs != null) {
+                    if (this.mainCanvasRef.topUi.selectTabIndex == 1 && GlobalStatus.gs != null) {
                         LoadingPage.a(35 + GlobalConfig.gameX, (3 + this.mainCanvasRef.gunDongListUi.i()) * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"拍卖", "取回"}, false);
                         this.sceneSubState = 2;
                         return;
@@ -10150,7 +10150,7 @@ public final class GameSceneController {
         }
 
         Object var2 = null;
-        if (this.mainCanvasRef.topUi.a != 2) {
+        if (this.mainCanvasRef.topUi.selectTabIndex != 2) {
             if (GlobalStatus.gw != null && GlobalStatus.gA[this.mainCanvasRef.gunDongListUi.g()] != null && GlobalStatus.gA[this.mainCanvasRef.gunDongListUi.g()].length > 0 && this.mainCanvasRef.textPanel.a == 0) {
                 Vector var4 = a(GlobalStatus.gA[this.mainCanvasRef.gunDongListUi.g()], GlobalStatus.gB[this.mainCanvasRef.gunDongListUi.g()]);
                 if (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] > 11) {
@@ -10163,12 +10163,12 @@ public final class GameSceneController {
                 for (byte var3 = 0; var3 < var4.size(); ++var3) {
                     if (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] > 11) {
                         if (var3 < 11) {
-                            MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (11 - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
+                            MainCanvas.pngUtil.draw(var1, getIconFrame0(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (11 - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
                         } else {
-                            MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2 + 21, 0, 0);
+                            MainCanvas.pngUtil.draw(var1, getIconFrame0(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2 + 21, 0, 0);
                         }
                     } else {
-                        MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
+                        MainCanvas.pngUtil.draw(var1, getIconFrame0(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
                     }
                 }
             }
@@ -10318,12 +10318,12 @@ public final class GameSceneController {
                 for (byte var3 = 0; var3 < var4.size(); ++var3) {
                     if (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] > 11) {
                         if (var3 < 11) {
-                            MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (11 - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
+                            MainCanvas.pngUtil.draw(var1, getIconFrame0(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (11 - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
                         } else {
-                            MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2 + 21, 0, 0);
+                            MainCanvas.pngUtil.draw(var1, getIconFrame0(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2 + 21, 0, 0);
                         }
                     } else {
-                        MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
+                        MainCanvas.pngUtil.draw(var1, getIconFrame0(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
                     }
                 }
             }
@@ -10437,7 +10437,7 @@ public final class GameSceneController {
                     }
 
                     if (var7 != -1 && var6 >= 0 && var6 < 8) {
-                        MainCanvas.pngUtil.a(var1, b(var7), (int[]) null, (ImageSlice) null, 0, 0, var2 + 3 + var5 * 17, var3 + 3, 0, 0);
+                        MainCanvas.pngUtil.draw(var1, getIconFrame0(var7), (int[]) null, (ImageSlice) null, 0, 0, var2 + 3 + var5 * 17, var3 + 3, 0, 0);
                     }
 
                     if (var6 >= 8) {
@@ -10471,11 +10471,11 @@ public final class GameSceneController {
                 }
             }
 
-            if (GlobalStatus.ab != null) {
+            if (GlobalStatus.equipmentId != null) {
                 var1.setColor(16711680);
 
-                for (int var4 = 0; var4 < GlobalStatus.ab.length; ++var4) {
-                    var1.fillRect(this.aB + GlobalStatus.ab[var4] * this.aD / 16, this.aC + GlobalStatus.ac[var4] * this.aD / 16, this.aD, this.aD);
+                for (int var4 = 0; var4 < GlobalStatus.equipmentId.length; ++var4) {
+                    var1.fillRect(this.aB + GlobalStatus.equipmentId[var4] * this.aD / 16, this.aC + GlobalStatus.equipmentDurability[var4] * this.aD / 16, this.aD, this.aD);
                 }
             }
 
@@ -10488,10 +10488,10 @@ public final class GameSceneController {
                             MainCanvas.pngUtil.a(var1, (Animation) s, (int[]) null, 0, 0, this.aB + GlobalStatus.npcObjects[var5].c * this.aD / 16 - 10, this.aC + GlobalStatus.npcObjects[var5].d * this.aD / 16 - s.j() - 5, 0, 0);
                         }
 
-                        if (GlobalStatus.npcObjects[var5].b.length() <= 2) {
-                            LoadingPage.drawString(var1, (String) GlobalStatus.npcObjects[var5].b, (int) (this.aB + GlobalStatus.npcObjects[var5].c * this.aD / 16), this.aC + GlobalStatus.npcObjects[var5].d * this.aD / 16 - GlobalConfig.font2_h - 5, 17, 13883606, 0);
+                        if (GlobalStatus.npcObjects[var5].npcName.length() <= 2) {
+                            LoadingPage.drawString(var1, (String) GlobalStatus.npcObjects[var5].npcName, (int) (this.aB + GlobalStatus.npcObjects[var5].c * this.aD / 16), this.aC + GlobalStatus.npcObjects[var5].d * this.aD / 16 - GlobalConfig.font2_h - 5, 17, 13883606, 0);
                         } else {
-                            LoadingPage.drawString(var1, (String) (GlobalStatus.npcObjects[var5].b.substring(0, 1) + "~"), (int) (this.aB + GlobalStatus.npcObjects[var5].c * this.aD / 16), this.aC + GlobalStatus.npcObjects[var5].d * this.aD / 16 - GlobalConfig.font2_h - 5, 17, 13883606, 0);
+                            LoadingPage.drawString(var1, (String) (GlobalStatus.npcObjects[var5].npcName.substring(0, 1) + "~"), (int) (this.aB + GlobalStatus.npcObjects[var5].c * this.aD / 16), this.aC + GlobalStatus.npcObjects[var5].d * this.aD / 16 - GlobalConfig.font2_h - 5, 17, 13883606, 0);
                         }
 
                         if (bo != null) {
@@ -10834,7 +10834,7 @@ public final class GameSceneController {
                         }
                     } else if (this.as == 0) {
                         if (LoadingPage.o == 0) {
-                            if (GlobalStatus.bC.size() > 0) {
+                            if (GlobalStatus.equipmentSlot.size() > 0) {
                                 this.e((int) 1);
                                 return;
                             }
@@ -10849,7 +10849,7 @@ public final class GameSceneController {
                         }
 
                         if (LoadingPage.o == 2) {
-                            if (GlobalStatus.bC.size() > 0) {
+                            if (GlobalStatus.equipmentSlot.size() > 0) {
                                 this.e((int) 3);
                                 return;
                             }
@@ -11374,12 +11374,12 @@ public final class GameSceneController {
                         for (byte var4 = 0; var4 < var5.size(); ++var4) {
                             if (GlobalStatus.ge[var3] > 11) {
                                 if (var4 < 11) {
-                                    MainCanvas.pngUtil.a(var1, b(((Short) var5.elementAt(var4)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (11 - var4) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
+                                    MainCanvas.pngUtil.draw(var1, getIconFrame0(((Short) var5.elementAt(var4)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (11 - var4) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
                                 } else {
-                                    MainCanvas.pngUtil.a(var1, b(((Short) var5.elementAt(var4)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.ge[var3] - var4) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2 + 21, 0, 0);
+                                    MainCanvas.pngUtil.draw(var1, getIconFrame0(((Short) var5.elementAt(var4)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.ge[var3] - var4) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2 + 21, 0, 0);
                                 }
                             } else {
-                                MainCanvas.pngUtil.a(var1, b(((Short) var5.elementAt(var4)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.ge[var3] - var4) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
+                                MainCanvas.pngUtil.draw(var1, getIconFrame0(((Short) var5.elementAt(var4)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.ge[var3] - var4) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
                             }
                         }
                     }
@@ -11446,7 +11446,7 @@ public final class GameSceneController {
                                             }
 
                                             if (GlobalStatus.jM[var14][var9] > 0) {
-                                                MainCanvas.pngUtil.a(var1, b(GlobalStatus.jM[var14][var9]), (int[]) null, (ImageSlice) null, 0, 0, this.mainCanvasRef.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.mixedUi.Y + 39, 0, 0);
+                                                MainCanvas.pngUtil.draw(var1, getIconFrame0(GlobalStatus.jM[var14][var9]), (int[]) null, (ImageSlice) null, 0, 0, this.mainCanvasRef.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var9 * 17, this.mainCanvasRef.mixedUi.Y + 39, 0, 0);
                                             }
 
                                             var1.setColor(16776960);
@@ -11701,7 +11701,7 @@ public final class GameSceneController {
         if (GlobalStatus.bW) {
             var2 = GlobalStatus.bX;
         } else {
-            var2 = GlobalStatus.npcObjects[this.selectNpcIndex].a;
+            var2 = GlobalStatus.npcObjects[this.selectNpcIndex].npcId;
         }
 
         byte[] var3;
@@ -11727,14 +11727,14 @@ public final class GameSceneController {
             int var5 = this.mainCanvasRef.mixedUi.Y + 33 + this.mainCanvasRef.topUi.b + var3;
 
             for (int var6 = 0; var6 < 32; ++var6) {
-                MainCanvas.pngUtil.a(var1, goods, (int[]) null, (ImageSlice) null, 0, 0, var6 % 8 * (goods.w + var2) + var4, var6 / 8 * (goods.w + var3) + var5, 0, 0);
+                MainCanvas.pngUtil.draw(var1, goods, (int[]) null, (ImageSlice) null, 0, 0, var6 % 8 * (goods.w + var2) + var4, var6 / 8 * (goods.w + var3) + var5, 0, 0);
                 this.a((int) var6, var6 % 8 * (goods.w + var2) + var4, var6 / 8 * (goods.w + var3) + var5, (int) goods.w, (int) goods.h);
             }
 
             int var9 = -1;
 
             for (int var7 = 0; var7 < GlobalStatus.cb.length; ++var7) {
-                MainCanvas.pngUtil.a(var1, b(GlobalStatus.cb[var7]), (int[]) null, (ImageSlice) null, 0, 0, var7 % 8 * (goods.w + var2) + var4 + 1, var7 / 8 * (goods.w + var3) + var5 + 1, 0, 0);
+                MainCanvas.pngUtil.draw(var1, getIconFrame0(GlobalStatus.cb[var7]), (int[]) null, (ImageSlice) null, 0, 0, var7 % 8 * (goods.w + var2) + var4 + 1, var7 / 8 * (goods.w + var3) + var5 + 1, 0, 0);
                 if (var7 == (this.ar << 3) + this.aq) {
                     var9 = var7;
                 }
@@ -11747,7 +11747,7 @@ public final class GameSceneController {
             }
 
             this.a(var1, GlobalStatus.versus, GlobalConfig.defaultWidth / 2 + goods.w, this.mainCanvasRef.bottomUi.a() + GlobalConfig.getCzjz(MainCanvas.button1.h));
-            MainCanvas.pngUtil.a(var1, money, (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.getSpjzPx(GlobalConfig.defaultWidth, this.mainCanvasRef.shareSb.toString()) - goods.w, this.mainCanvasRef.bottomUi.a() + 4, 0, 0);
+            MainCanvas.pngUtil.draw(var1, money, (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.getSpjzPx(GlobalConfig.defaultWidth, this.mainCanvasRef.shareSb.toString()) - goods.w, this.mainCanvasRef.bottomUi.a() + 4, 0, 0);
         }
 
         if (this.sceneSubState == 2) {
@@ -11817,7 +11817,7 @@ public final class GameSceneController {
                 this.s();
                 return;
             } else {
-                bn var2;
+                EquipmentSlot var2;
                 if ((var2 = this.y((this.ar << 3) + this.aq)) == null || var2.a <= 0 || this.A((this.ar << 3) + this.aq) == null) {
                     return;
                 }
@@ -11879,7 +11879,7 @@ public final class GameSceneController {
         this.mainCanvasRef.topUi.a(new String[]{" 一 ", " 二 ", " 三 ", " 四 ", " 五 "});
         this.mainCanvasRef.topUi.a((byte) 1);
         this.mainCanvasRef.mixedUi.setR(GlobalConfig.realHigh <= 240 ? 79 : 120);
-        this.mainCanvasRef.topUi.a = this.aH;
+        this.mainCanvasRef.topUi.selectTabIndex = this.aH;
         this.aq = this.aF;
         this.ar = this.aG;
         if (GlobalStatus.ct != null && GlobalStatus.ct.length > 0) {
@@ -11911,12 +11911,12 @@ public final class GameSceneController {
             this.aq = 0;
             if (this.as == 0) {
                 this.an = new String[]{"取出物品", "存入物品"};
-                K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].b + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
+                K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].npcName + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
                 LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
                 this.sceneSubState = 3;
             } else if (this.as == 1) {
                 this.an = new String[]{"拍卖物品", "拍卖场", "拍卖场仓库"};
-                K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].b + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
+                K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].npcName + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
                 LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
             }
         }
@@ -11939,7 +11939,7 @@ public final class GameSceneController {
                     this.aH = 0;
                     if (this.as == 0) {
                         this.an = new String[]{"取出物品", "存入物品"};
-                        K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].b + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
+                        K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].npcName + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
                         this.sceneSubState = 3;
                         return;
@@ -11947,7 +11947,7 @@ public final class GameSceneController {
 
                     if (this.as == 1) {
                         this.an = new String[]{"拍卖物品", "拍卖场", "拍卖场仓库"};
-                        K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].b + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
+                        K = new FWBRender(GlobalStatus.npcObjects[this.selectNpcIndex].npcName + ":物品仓库已打开", (short) (GlobalConfig.defaultWidth - 20));
                         LoadingPage.a(MainCanvas.F, K, this.an, (String[]) null, true);
                         return;
                     }
@@ -11978,21 +11978,21 @@ public final class GameSceneController {
                     this.G();
                     return;
                 }
-            } else if (GlobalStatus.ct != null && (this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq < GlobalStatus.ct.length) {
+            } else if (GlobalStatus.ct != null && (this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq < GlobalStatus.ct.length) {
                 if (this.as == 0) {
-                    if (GlobalStatus.a(GlobalStatus.cv[(this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq])) {
+                    if (GlobalStatus.a(GlobalStatus.cv[(this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq])) {
                         LoadingPage.a(3 + this.aq * 17 + 8 + gameX, 2 * GlobalConfig.font2_h + 13 + this.ar * 17 + 17 + gameY, new String[]{"查看", "取出"}, false);
                         this.sceneSubState = 4;
                         return;
                     }
 
-                    if (GlobalStatus.cw[(this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq] > 1) {
-                        this.a((long) GlobalStatus.cw[(this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq]);
+                    if (GlobalStatus.cw[(this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq] > 1) {
+                        this.a((long) GlobalStatus.cw[(this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq]);
                         this.sceneSubState = 2;
                         return;
                     }
 
-                    if (GlobalStatus.ct == null || GlobalStatus.cw[(this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq] <= 0) {
+                    if (GlobalStatus.ct == null || GlobalStatus.cw[(this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq] <= 0) {
                         this.sceneSubState = 0;
                         return;
                     }
@@ -12002,8 +12002,8 @@ public final class GameSceneController {
                         return;
                     }
                 } else if (this.as == 1) {
-                    if (GlobalStatus.ct != null && GlobalStatus.cw[(this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq] > 0) {
-                        this.ad(GlobalStatus.ct[(this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq]);
+                    if (GlobalStatus.ct != null && GlobalStatus.cw[(this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq] > 0) {
+                        this.ad(GlobalStatus.ct[(this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq]);
                         return;
                     }
 
@@ -12019,7 +12019,7 @@ public final class GameSceneController {
                     return;
                 }
             } else {
-                if (GlobalStatus.ct == null || GlobalStatus.cw[(this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq] <= 0) {
+                if (GlobalStatus.ct == null || GlobalStatus.cw[(this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq] <= 0) {
                     this.sceneSubState = 0;
                     return;
                 }
@@ -12030,7 +12030,7 @@ public final class GameSceneController {
                 }
 
                 if (this.as == 1) {
-                    this.ad(GlobalStatus.ct[(this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq]);
+                    this.ad(GlobalStatus.ct[(this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq]);
                     return;
                 }
             }
@@ -12042,20 +12042,20 @@ public final class GameSceneController {
                 }
             } else {
                 if (LoadingPage.o == 0) {
-                    this.aH = this.mainCanvasRef.topUi.a;
-                    GlobalStatus.c((this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq);
+                    this.aH = this.mainCanvasRef.topUi.selectTabIndex;
+                    GlobalStatus.c((this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq);
                     this.O.a(0, (short) this.currentSceneModeId, this.as);
                     return;
                 }
 
                 if (LoadingPage.o == 1) {
-                    if (GlobalStatus.cw[(this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq] > 1) {
-                        this.a((long) GlobalStatus.cw[(this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq]);
+                    if (GlobalStatus.cw[(this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq] > 1) {
+                        this.a((long) GlobalStatus.cw[(this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq]);
                         this.sceneSubState = 2;
                         return;
                     }
 
-                    if (GlobalStatus.ct == null || GlobalStatus.cw[(this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq] <= 0) {
+                    if (GlobalStatus.ct == null || GlobalStatus.cw[(this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq] <= 0) {
                         this.sceneSubState = 0;
                         return;
                     }
@@ -12071,8 +12071,8 @@ public final class GameSceneController {
     }
 
     public final void G() {
-        if (GlobalStatus.ct != null && (this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq < GlobalStatus.ct.length) {
-            this.mainCanvasRef.textPanel.setFWBText(GlobalStatus.a(this.currentSceneModeId, this.mainCanvasRef.shareSb, (this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq), GlobalConfig.font2, (byte) 1);
+        if (GlobalStatus.ct != null && (this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq < GlobalStatus.ct.length) {
+            this.mainCanvasRef.textPanel.setFWBText(GlobalStatus.a(this.currentSceneModeId, this.mainCanvasRef.shareSb, (this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq), GlobalConfig.font2, (byte) 1);
         } else {
             this.mainCanvasRef.textPanel.setFWBText("没有商品,按3、9键可以上下翻滚此属性描述框", GlobalConfig.font2, (byte) 1);
         }
@@ -12083,7 +12083,7 @@ public final class GameSceneController {
 
     private void ac(int var1) {
         byte[] var2;
-        if ((var2 = NetPayloadBuilder.f((short) 4158, GlobalStatus.roleId_2, GlobalStatus.ct[(this.mainCanvasRef.topUi.a << 5) + (this.ar << 3) + this.aq], (int) var1)) != null) {
+        if ((var2 = NetPayloadBuilder.f((short) 4158, GlobalStatus.roleId_2, GlobalStatus.ct[(this.mainCanvasRef.topUi.selectTabIndex << 5) + (this.ar << 3) + this.aq], (int) var1)) != null) {
             NetPacket var3 = new NetPacket((short) 4158, var2);
             MainCanvas.netUtils.sendPacket(var3);
             this.mainCanvasRef.showPending((String) null);
@@ -12118,15 +12118,15 @@ public final class GameSceneController {
                 int var5 = this.mainCanvasRef.mixedUi.Y + 33 + this.mainCanvasRef.topUi.b + var3;
 
                 for (int var6 = 0; var6 < 32; ++var6) {
-                    MainCanvas.pngUtil.a(var1, goods, (int[]) null, (ImageSlice) null, 0, 0, var6 % 8 * (goods.w + var2) + var4, var6 / 8 * (goods.w + var3) + var5, 0, 0);
+                    MainCanvas.pngUtil.draw(var1, goods, (int[]) null, (ImageSlice) null, 0, 0, var6 % 8 * (goods.w + var2) + var4, var6 / 8 * (goods.w + var3) + var5, 0, 0);
                     this.a((int) var6, var6 % 8 * (goods.w + var2) + var4, var6 / 8 * (goods.w + var3) + var5, (int) goods.w, (int) goods.h);
                 }
 
                 int var10 = 0;
 
-                for (int var7 = this.mainCanvasRef.topUi.a << 5; var7 < (GlobalStatus.cx.length > this.mainCanvasRef.topUi.a + 1 << 5 ? this.mainCanvasRef.topUi.a + 1 << 5 : GlobalStatus.cx.length); ++var7) {
+                for (int var7 = this.mainCanvasRef.topUi.selectTabIndex << 5; var7 < (GlobalStatus.cx.length > this.mainCanvasRef.topUi.selectTabIndex + 1 << 5 ? this.mainCanvasRef.topUi.selectTabIndex + 1 << 5 : GlobalStatus.cx.length); ++var7) {
                     int var8 = var7 % 32;
-                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.cx[var7]), (int[]) null, (ImageSlice) null, 0, 0, var8 % 8 * (goods.w + var2) + var4 + 1, var8 / 8 * (goods.w + var3) + var5 + 1, 0, 0);
+                    MainCanvas.pngUtil.draw(var1, getIconFrame0(GlobalStatus.cx[var7]), (int[]) null, (ImageSlice) null, 0, 0, var8 % 8 * (goods.w + var2) + var4 + 1, var8 / 8 * (goods.w + var3) + var5 + 1, 0, 0);
                     if (GlobalStatus.cw[var7] > 9) {
                         MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.cw[var7] / 10, 0, 0, 10 + var8 % 8 * (goods.w + var2) + var4, var8 / 8 * (goods.w + var3) + var5 + 12, 0, 0);
                         MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.cw[var7] % 10, 0, 0, 14 + var8 % 8 * (goods.w + var2) + var4, var8 / 8 * (goods.w + var3) + var5 + 12, 0, 0);
@@ -12134,13 +12134,13 @@ public final class GameSceneController {
                         MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.cw[var7] % 10, 0, 0, 14 + var8 % 8 * (goods.w + var2) + var4, var8 / 8 * (goods.w + var3) + var5 + 12, 0, 0);
                     }
 
-                    if (var7 == (this.ar << 3) + this.aq + 32 * this.mainCanvasRef.topUi.a) {
+                    if (var7 == (this.ar << 3) + this.aq + 32 * this.mainCanvasRef.topUi.selectTabIndex) {
                         var10 = var7;
                     }
                 }
 
                 LoadingPage.d(var1, var4 + this.aq * (goods.w + var2), var5 + this.ar * (goods.w + var3), 17, 17);
-                if (var10 >= 0 && var10 < GlobalStatus.cx.length && var10 == (this.ar << 3) + this.aq + 32 * this.mainCanvasRef.topUi.a) {
+                if (var10 >= 0 && var10 < GlobalStatus.cx.length && var10 == (this.ar << 3) + this.aq + 32 * this.mainCanvasRef.topUi.selectTabIndex) {
                     LoadingPage.a(var1, GlobalStatus.cu[var10] + "X" + GlobalStatus.cw[var10], GlobalStatus.cy[var10], var4 + this.aq * (goods.w + var2) + goods.w / 2, var5 + this.ar * (goods.w + var3) + goods.w / 2);
                 }
             }
@@ -12237,7 +12237,7 @@ public final class GameSceneController {
             this.mainCanvasRef.gunDongListUi.setValue(b(GlobalStatus.ec), a(this.mainCanvasRef.shareSb, GlobalStatus.dZ, GlobalStatus.eb), this.a(GlobalStatus.eg), (String[]) null);
             if (this.lastSceneModeId == 64) {
                 this.mainCanvasRef.gunDongListUi.a(this.aA, this.aq);
-                this.mainCanvasRef.topUi.a = this.aH;
+                this.mainCanvasRef.topUi.selectTabIndex = this.aH;
             }
 
             this.mainCanvasRef.gunDongListUi.a(this.af(this.mainCanvasRef.gunDongListUi.g()), 1);
@@ -12312,7 +12312,7 @@ public final class GameSceneController {
                         if (LoadingPage.o == 0) {
                             this.aq = this.mainCanvasRef.gunDongListUi.g();
                             this.aA = this.mainCanvasRef.gunDongListUi.h();
-                            this.aH = this.mainCanvasRef.topUi.a;
+                            this.aH = this.mainCanvasRef.topUi.selectTabIndex;
                             GlobalStatus.d(this.mainCanvasRef.gunDongListUi.g());
                             this.O.a(0, (short) this.currentSceneModeId, this.as);
                             return;
@@ -12367,7 +12367,7 @@ public final class GameSceneController {
                     {
                         if (var1 != 8 && var1 != 2 && var1 != 516 && var1 != 518) {
                             if (var1 == 1024) {
-                                this.aV = this.mainCanvasRef.topUi.a;
+                                this.aV = this.mainCanvasRef.topUi.selectTabIndex;
                                 this.aL = this.aL.equals("") ? this.aL : GlobalConfig.ZhuangBeiLeiXing[this.aU - 1];
                                 --this.aM;
                                 if (this.aM < 1) {
@@ -12375,7 +12375,7 @@ public final class GameSceneController {
                                     return;
                                 }
 
-                                this.aN = this.mainCanvasRef.topUi.a;
+                                this.aN = this.mainCanvasRef.topUi.selectTabIndex;
                                 this.a(this.aK, this.aL, this.aM, this.aN);
                                 this.mainCanvasRef.showPending((String) null);
                                 break label173;
@@ -12385,7 +12385,7 @@ public final class GameSceneController {
                                 break label173;
                             }
 
-                            this.aV = this.mainCanvasRef.topUi.a;
+                            this.aV = this.mainCanvasRef.topUi.selectTabIndex;
                             this.aL = this.aL.equals("") ? this.aL : GlobalConfig.ZhuangBeiLeiXing[this.aU - 1];
                             if (GlobalStatus.ei != 1) {
                                 return;
@@ -12393,12 +12393,12 @@ public final class GameSceneController {
 
                             ++this.aM;
                         } else {
-                            this.aV = this.mainCanvasRef.topUi.a;
+                            this.aV = this.mainCanvasRef.topUi.selectTabIndex;
                             this.aL = this.aL.equals("") ? this.aL : GlobalConfig.ZhuangBeiLeiXing[this.aU - 1];
                             this.aM = 1;
                         }
 
-                        this.aN = this.mainCanvasRef.topUi.a;
+                        this.aN = this.mainCanvasRef.topUi.selectTabIndex;
                         this.a(this.aK, this.aL, this.aM, this.aN);
                         this.mainCanvasRef.showPending((String) null);
                     }
@@ -12527,17 +12527,17 @@ public final class GameSceneController {
                 }
 
                 if (var1 == 8 || var1 == 2 || var1 == 516 || var1 == 518) {
-                    this.aV = this.mainCanvasRef.topUi.a;
+                    this.aV = this.mainCanvasRef.topUi.selectTabIndex;
                     this.aL = this.aL.equals("") ? this.aL : GlobalConfig.LightTag[this.aU - 1];
                     this.aM = 1;
-                    this.aN = this.mainCanvasRef.topUi.a;
+                    this.aN = this.mainCanvasRef.topUi.selectTabIndex;
                     this.b(this.aK, this.aL, this.aM, this.aN);
                     this.mainCanvasRef.showPending((String) null);
                     return;
                 }
 
                 if (var1 == 1024) {
-                    this.aV = this.mainCanvasRef.topUi.a;
+                    this.aV = this.mainCanvasRef.topUi.selectTabIndex;
                     this.aL = this.aL.equals("") ? this.aL : GlobalConfig.LightTag[this.aU - 1];
                     --this.aM;
                     if (this.aM < 1) {
@@ -12545,18 +12545,18 @@ public final class GameSceneController {
                         return;
                     }
 
-                    this.aN = this.mainCanvasRef.topUi.a;
+                    this.aN = this.mainCanvasRef.topUi.selectTabIndex;
                     this.b(this.aK, this.aL, this.aM, this.aN);
                     this.mainCanvasRef.showPending((String) null);
                     return;
                 }
 
                 if (var1 == 2048) {
-                    this.aV = this.mainCanvasRef.topUi.a;
+                    this.aV = this.mainCanvasRef.topUi.selectTabIndex;
                     this.aL = this.aL.equals("") ? this.aL : GlobalConfig.LightTag[this.aU - 1];
                     if (GlobalStatus.ei == 1) {
                         ++this.aM;
-                        this.aN = this.mainCanvasRef.topUi.a;
+                        this.aN = this.mainCanvasRef.topUi.selectTabIndex;
                         this.b(this.aK, this.aL, this.aM, this.aN);
                         this.mainCanvasRef.showPending((String) null);
                         return;
@@ -12630,12 +12630,12 @@ public final class GameSceneController {
                 for (byte var3 = 0; var3 < var4.size(); ++var3) {
                     if (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] > 11) {
                         if (var3 < 11) {
-                            MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (11 - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
+                            MainCanvas.pngUtil.draw(var1, getIconFrame0(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (11 - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
                         } else {
-                            MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2 + 21, 0, 0);
+                            MainCanvas.pngUtil.draw(var1, getIconFrame0(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2 + 21, 0, 0);
                         }
                     } else {
-                        MainCanvas.pngUtil.a(var1, b(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
+                        MainCanvas.pngUtil.draw(var1, getIconFrame0(((Short) var4.elementAt(var3)).shortValue()), (int[]) null, (ImageSlice) null, 0, 0, GlobalConfig.defaultWidth - GlobalConfig.gameX - (GlobalStatus.gG[this.mainCanvasRef.gunDongListUi.g()] - var3) * 17 - 23, this.mainCanvasRef.textPanel.textY + 4 + 2, 0, 0);
                     }
                 }
             }
@@ -12768,27 +12768,27 @@ public final class GameSceneController {
     }
 
     private void aJ() {
-        if (this.mainCanvasRef.topUi.a == 0) {
+        if (this.mainCanvasRef.topUi.selectTabIndex == 0) {
             this.aM();
-        } else if (this.mainCanvasRef.topUi.a == 1) {
+        } else if (this.mainCanvasRef.topUi.selectTabIndex == 1) {
             o((byte) 5);
-        } else if (this.mainCanvasRef.topUi.a == 2) {
+        } else if (this.mainCanvasRef.topUi.selectTabIndex == 2) {
             o((byte) 0);
-        } else if (this.mainCanvasRef.topUi.a == 3) {
+        } else if (this.mainCanvasRef.topUi.selectTabIndex == 3) {
             o((byte) 3);
-        } else if (this.mainCanvasRef.topUi.a == 4) {
+        } else if (this.mainCanvasRef.topUi.selectTabIndex == 4) {
             o((byte) 1);
-        } else if (this.mainCanvasRef.topUi.a == 5) {
+        } else if (this.mainCanvasRef.topUi.selectTabIndex == 5) {
             o((byte) 2);
-        } else if (this.mainCanvasRef.topUi.a == 6) {
+        } else if (this.mainCanvasRef.topUi.selectTabIndex == 6) {
             o((byte) 4);
-        } else if (this.mainCanvasRef.topUi.a == 7) {
+        } else if (this.mainCanvasRef.topUi.selectTabIndex == 7) {
             o((byte) 6);
         }
 
         this.cr = new int[aP.size()][4];
         LoadingPage.a(aP.size(), 4, this.mainCanvasRef.topUi.b + 6, GlobalConfig.defaultWidth - 8, GlobalConfig.defaultHigh - this.mainCanvasRef.topUi.b - 6, (GlobalConfig.defaultHigh - this.mainCanvasRef.topUi.b - 6) / GlobalConfig.font2_h, false);
-        if (this.cp == this.mainCanvasRef.topUi.a) {
+        if (this.cp == this.mainCanvasRef.topUi.selectTabIndex) {
             LoadingPage.w = this.cn;
             LoadingPage.z = this.co;
         }
@@ -12798,21 +12798,21 @@ public final class GameSceneController {
     private void aj(int var1) {
         if (this.mainCanvasRef.liaoTian != null && this.mainCanvasRef.resourceLoaded) {
             if (this.mainCanvasRef.aE == null) {
-                if (this.mainCanvasRef.topUi.a != 6 && !this.aR) {
-                    if (this.mainCanvasRef.topUi.a == 0) {
+                if (this.mainCanvasRef.topUi.selectTabIndex != 6 && !this.aR) {
+                    if (this.mainCanvasRef.topUi.selectTabIndex == 0) {
                         this.a(this.cl, (byte) this.aT);
                         this.mainCanvasRef.n();
-                    } else if (this.mainCanvasRef.topUi.a != 1) {
-                        if (this.mainCanvasRef.topUi.a == 2) {
+                    } else if (this.mainCanvasRef.topUi.selectTabIndex != 1) {
+                        if (this.mainCanvasRef.topUi.selectTabIndex == 2) {
                             this.a((String) this.cl, (byte) 0);
                             this.mainCanvasRef.n();
-                        } else if (this.mainCanvasRef.topUi.a == 3) {
+                        } else if (this.mainCanvasRef.topUi.selectTabIndex == 3) {
                             this.a((String) this.cl, (byte) 3);
                             this.mainCanvasRef.n();
-                        } else if (this.mainCanvasRef.topUi.a == 4) {
+                        } else if (this.mainCanvasRef.topUi.selectTabIndex == 4) {
                             this.a((String) this.cl, (byte) 1);
                             this.mainCanvasRef.n();
-                        } else if (this.mainCanvasRef.topUi.a == 5) {
+                        } else if (this.mainCanvasRef.topUi.selectTabIndex == 5) {
                             this.a((String) this.cl, (byte) 2);
                             this.mainCanvasRef.n();
                         }
@@ -12830,10 +12830,10 @@ public final class GameSceneController {
 
         if (this.sceneSubState == 0) {
             this.mainCanvasRef.mixedUi.onClick(var1);
-            if (this.mainCanvasRef.topUi.a != this.cp) {
+            if (this.mainCanvasRef.topUi.selectTabIndex != this.cp) {
                 this.aL();
                 this.aJ();
-                this.cp = this.mainCanvasRef.topUi.a;
+                this.cp = this.mainCanvasRef.topUi.selectTabIndex;
             }
 
             if (this.mainCanvasRef.tempTouchStatus > 40) {
@@ -12871,10 +12871,10 @@ public final class GameSceneController {
             }
         } else if (this.sceneSubState == 1) {
             this.mainCanvasRef.mixedUi.onClick(var1);
-            if (this.mainCanvasRef.topUi.a != this.cp) {
+            if (this.mainCanvasRef.topUi.selectTabIndex != this.cp) {
                 this.aL();
                 this.aJ();
-                this.cp = this.mainCanvasRef.topUi.a;
+                this.cp = this.mainCanvasRef.topUi.selectTabIndex;
             }
 
             if (this.mainCanvasRef.tempTouchStatus > 40) {
@@ -12913,7 +12913,7 @@ public final class GameSceneController {
                 LoadingPage.b(var1);
                 if (var1 != 268435456 && var1 != 1073741824 && var1 != 517) {
                     if (var1 == 536870912) {
-                        if (this.mainCanvasRef.topUi.a == 5) {
+                        if (this.mainCanvasRef.topUi.selectTabIndex == 5) {
                             if (this.c) {
                                 LoadingPage.a(0, this.sceneSubMode == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单"}, true);
                             } else {
@@ -12942,7 +12942,7 @@ public final class GameSceneController {
                     }
 
                     if (LoadingPage.o == 1) {
-                        if (this.mainCanvasRef.topUi.a == 5) {
+                        if (this.mainCanvasRef.topUi.selectTabIndex == 5) {
                             if (this.c) {
                                 LoadingPage.a(0, this.sceneSubMode == 2 ? 150 : 40, new String[]{"私聊", "好友", "黑名单"}, true);
                             } else {
@@ -13001,7 +13001,7 @@ public final class GameSceneController {
             } else {
                 this.aR = false;
                 if (this.cl != null && !this.cl.equals("")) {
-                    if (this.mainCanvasRef.topUi.a == 6) {
+                    if (this.mainCanvasRef.topUi.selectTabIndex == 6) {
                         if (LoadingPage.o == 0) {
                             this.aR = true;
                             this.aS = this.cl;
@@ -13048,19 +13048,19 @@ public final class GameSceneController {
                         }
 
                         if (LoadingPage.o == 1) {
-                            if (this.mainCanvasRef.topUi.a != 1) {
+                            if (this.mainCanvasRef.topUi.selectTabIndex != 1) {
                                 this.aS = this.cl;
                                 this.aT = this.cm == 4 ? 0 : this.cm;
                                 this.mainCanvasRef.a((String) "聊天", (int) 0);
                                 return;
                             }
 
-                            if (this.mainCanvasRef.topUi.a == 3) {
+                            if (this.mainCanvasRef.topUi.selectTabIndex == 3) {
                                 this.mainCanvasRef.a((String) "聊天", (int) 0);
                                 return;
                             }
 
-                            if (this.mainCanvasRef.topUi.a == 4) {
+                            if (this.mainCanvasRef.topUi.selectTabIndex == 4) {
                                 if (GlobalStatus.bs == -1) {
                                     this.mainCanvasRef.showTips("不在队伍中");
                                     return;
@@ -13134,13 +13134,13 @@ public final class GameSceneController {
     }
 
     private void g(short var1) {
-        if (LoadingPage.v > 0 && this.mainCanvasRef.topUi.a != 1) {
+        if (LoadingPage.v > 0 && this.mainCanvasRef.topUi.selectTabIndex != 1) {
             if (LoadingPage.w >= aP.size() || aP.size() < 1) {
                 this.aK();
                 return;
             }
 
-            if (this.mainCanvasRef.topUi.a == 7) {
+            if (this.mainCanvasRef.topUi.selectTabIndex == 7) {
                 this.aK();
                 return;
             }
@@ -13205,7 +13205,7 @@ public final class GameSceneController {
                     return;
                 }
 
-                if (this.mainCanvasRef.topUi.a != 6) {
+                if (this.mainCanvasRef.topUi.selectTabIndex != 6) {
                     if (this.c) {
                         LoadingPage.a(0, var1 == 2 ? 150 : 40, new String[]{"私聊", "频道聊天", "好友", "黑名单"}, true);
                     } else {
@@ -13225,7 +13225,7 @@ public final class GameSceneController {
                 this.sceneSubMode = this.sceneSubState = var1;
                 break;
             }
-        } else if (this.mainCanvasRef.topUi.a != 6) {
+        } else if (this.mainCanvasRef.topUi.selectTabIndex != 6) {
             this.aK();
         }
 
@@ -13233,16 +13233,16 @@ public final class GameSceneController {
 
     private void aK() {
         this.mainCanvasRef.d("聊天");
-        if (this.mainCanvasRef.topUi.a == 2) {
+        if (this.mainCanvasRef.topUi.selectTabIndex == 2) {
             this.mainCanvasRef.aE.setSelectedIndex(0, true);
-        } else if (this.mainCanvasRef.topUi.a == 3) {
+        } else if (this.mainCanvasRef.topUi.selectTabIndex == 3) {
             this.mainCanvasRef.aE.setSelectedIndex(3, true);
-        } else if (this.mainCanvasRef.topUi.a == 4) {
+        } else if (this.mainCanvasRef.topUi.selectTabIndex == 4) {
             this.mainCanvasRef.aE.setSelectedIndex(1, true);
-        } else if (this.mainCanvasRef.topUi.a == 5) {
+        } else if (this.mainCanvasRef.topUi.selectTabIndex == 5) {
             this.mainCanvasRef.aE.setSelectedIndex(2, true);
         } else {
-            if (this.mainCanvasRef.topUi.a == 7) {
+            if (this.mainCanvasRef.topUi.selectTabIndex == 7) {
                 this.mainCanvasRef.aE.setSelectedIndex(4, true);
             }
 
@@ -13250,38 +13250,38 @@ public final class GameSceneController {
     }
 
     private void aL() {
-        if (this.mainCanvasRef.topUi.a != 0) {
-            if (this.mainCanvasRef.topUi.a == 1) {
+        if (this.mainCanvasRef.topUi.selectTabIndex != 0) {
+            if (this.mainCanvasRef.topUi.selectTabIndex == 1) {
                 o((byte) 5);
                 return;
             }
 
-            if (this.mainCanvasRef.topUi.a == 2) {
+            if (this.mainCanvasRef.topUi.selectTabIndex == 2) {
                 o((byte) 0);
                 return;
             }
 
-            if (this.mainCanvasRef.topUi.a == 3) {
+            if (this.mainCanvasRef.topUi.selectTabIndex == 3) {
                 o((byte) 3);
                 return;
             }
 
-            if (this.mainCanvasRef.topUi.a == 4) {
+            if (this.mainCanvasRef.topUi.selectTabIndex == 4) {
                 o((byte) 1);
                 return;
             }
 
-            if (this.mainCanvasRef.topUi.a == 5) {
+            if (this.mainCanvasRef.topUi.selectTabIndex == 5) {
                 o((byte) 2);
                 return;
             }
 
-            if (this.mainCanvasRef.topUi.a == 6) {
+            if (this.mainCanvasRef.topUi.selectTabIndex == 6) {
                 o((byte) 4);
                 return;
             }
 
-            if (this.mainCanvasRef.topUi.a == 7) {
+            if (this.mainCanvasRef.topUi.selectTabIndex == 7) {
                 o((byte) 6);
                 return;
             }
@@ -13471,7 +13471,7 @@ public final class GameSceneController {
             }
 
             if (var1 == 8 || var1 == 2 || var1 == 516 || var1 == 518) {
-                if (this.mainCanvasRef.topUi.a == 0) {
+                if (this.mainCanvasRef.topUi.selectTabIndex == 0) {
                     byte[] var8;
                     if ((var8 = NetPayloadBuilder.f((short) 4168, GlobalStatus.roleId_2)) != null) {
                         NetPacket var9 = new NetPacket((short) 4168, var8);
@@ -13480,7 +13480,7 @@ public final class GameSceneController {
                     } else {
                         this.mainCanvasRef.showTips("获取上传指令数据错误!");
                     }
-                } else if (this.mainCanvasRef.topUi.a == 1) {
+                } else if (this.mainCanvasRef.topUi.selectTabIndex == 1) {
                     byte[] var10;
                     if ((var10 = NetPayloadBuilder.C((short) 4202, GlobalStatus.roleId_2)) != null) {
                         NetPacket var11 = new NetPacket((short) 4202, var10);
@@ -13488,7 +13488,7 @@ public final class GameSceneController {
                     } else {
                         this.mainCanvasRef.showTips("获取上传指令数据错误!");
                     }
-                } else if (this.mainCanvasRef.topUi.a == 2) {
+                } else if (this.mainCanvasRef.topUi.selectTabIndex == 2) {
                     byte[] var12;
                     if ((var12 = NetPayloadBuilder.g((short) 4169, GlobalStatus.roleId_2)) != null) {
                         NetPacket var13 = new NetPacket((short) 4169, var12);
@@ -13500,7 +13500,7 @@ public final class GameSceneController {
                 }
             }
 
-            if (this.mainCanvasRef.topUi.a == 0) {
+            if (this.mainCanvasRef.topUi.selectTabIndex == 0) {
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
                     if (this.mainCanvasRef.gunDongListUi.g() == this.mainCanvasRef.gunDongListUi.h()) {
                         this.mainCanvasRef.a((String) "请输入好友昵称", (int) 0);
@@ -13514,7 +13514,7 @@ public final class GameSceneController {
                         this.sceneSubState = 1;
                     }
                 }
-            } else if (this.mainCanvasRef.topUi.a == 2 && (var1 == 268435456 || var1 == 1073741824 || var1 == 517) && GlobalStatus.dK != null) {
+            } else if (this.mainCanvasRef.topUi.selectTabIndex == 2 && (var1 == 268435456 || var1 == 1073741824 || var1 == 517) && GlobalStatus.dK != null) {
                 if (GlobalStatus.dM[this.mainCanvasRef.gunDongListUi.g()] == 0 || GlobalStatus.dM[this.mainCanvasRef.gunDongListUi.g()] == 1) {
                     LoadingPage.a(0 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 11 + this.mainCanvasRef.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"删除", "加为好友"}, true);
                 }
@@ -13708,7 +13708,7 @@ public final class GameSceneController {
                     this.mainCanvasRef.showPending((String) null);
                 } else {
                     if (LoadingPage.o == 1) {
-                        if (GlobalStatus.bC.size() > 0) {
+                        if (GlobalStatus.equipmentSlot.size() > 0) {
                             this.e((int) 13);
                             return;
                         }
@@ -14315,7 +14315,7 @@ public final class GameSceneController {
         } else if (this.sceneSubState != 1 && this.sceneSubState != 2) {
             if (this.sceneSubState == 3) {
                 if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
-                    this.aH = this.mainCanvasRef.topUi.a;
+                    this.aH = this.mainCanvasRef.topUi.selectTabIndex;
                     GlobalStatus.a((int) this.mainCanvasRef.ax, 1);
                     this.O.a(0, (short) this.currentSceneModeId, this.ct);
                     return;
@@ -14373,7 +14373,7 @@ public final class GameSceneController {
                 }
             } else if (GlobalStatus.fi != null && GlobalStatus.a((byte) 0, this.mainCanvasRef.ax)) {
                 if (LoadingPage.o == 0) {
-                    this.aH = this.mainCanvasRef.topUi.a;
+                    this.aH = this.mainCanvasRef.topUi.selectTabIndex;
                     GlobalStatus.a((int) this.mainCanvasRef.ax, 0);
                     this.O.a(0, (short) this.currentSceneModeId, this.ct);
                     return;
@@ -14703,8 +14703,8 @@ public final class GameSceneController {
     }
 
     private void a(Graphics var1, int var2, int var3, int var4, byte var5) {
-        MainCanvas.pngUtil.a(var1, MainCanvas.tradebottom, (int[]) null, (ImageSlice) null, 0, 0, var2, var3, 0, 0);
-        MainCanvas.pngUtil.a(var1, MainCanvas.tradebottom, (int[]) null, (ImageSlice) null, 0, 0, var2 + var4 - MainCanvas.tradebottom.w, var3, 0, 0);
+        MainCanvas.pngUtil.draw(var1, MainCanvas.tradebottom, (int[]) null, (ImageSlice) null, 0, 0, var2, var3, 0, 0);
+        MainCanvas.pngUtil.draw(var1, MainCanvas.tradebottom, (int[]) null, (ImageSlice) null, 0, 0, var2 + var4 - MainCanvas.tradebottom.w, var3, 0, 0);
         var1.setColor(79948);
         int var6 = 0;
         if (var5 == 0 && GlobalStatus.fn > 0L && GlobalConfig.font2.stringWidth(GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.fn)) > var4 - (MainCanvas.tradebottom.w << 1)) {
@@ -14725,7 +14725,7 @@ public final class GameSceneController {
             var1.drawString(GlobalConfig.yinLiangFormat(this.mainCanvasRef.shareSb, GlobalStatus.fg), var2 + var4 / 2 + 2, var3, 17);
         }
 
-        MainCanvas.pngUtil.a(var1, money, (int[]) null, (ImageSlice) null, 0, 0, var2 + (var4 - var6) / 2 - money.w - 2, var3 + 2, 0, 0);
+        MainCanvas.pngUtil.draw(var1, money, (int[]) null, (ImageSlice) null, 0, 0, var2 + (var4 - var6) / 2 - money.w - 2, var3 + 2, 0, 0);
     }
 
     private void d(int var1, int var2, int var3, int var4, int var5) {
@@ -14814,13 +14814,13 @@ public final class GameSceneController {
                 this.cv[var8][3] = var14;
             }
 
-            MainCanvas.pngUtil.a(var1, goods, (int[]) null, (ImageSlice) null, 0, 0, this.cv[var8][0], this.cv[var8][1], 0, 0);
+            MainCanvas.pngUtil.draw(var1, goods, (int[]) null, (ImageSlice) null, 0, 0, this.cv[var8][0], this.cv[var8][1], 0, 0);
         }
 
         if (this.ct == 0) {
             if (GlobalStatus.fs != null && GlobalStatus.fs.length > 0) {
                 for (int var27 = 0; var27 < GlobalStatus.fs.length; ++var27) {
-                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.fs[var27]), (int[]) null, (ImageSlice) null, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 1, var3 + 1, 0, 0);
+                    MainCanvas.pngUtil.draw(var1, getIconFrame0(GlobalStatus.fs[var27]), (int[]) null, (ImageSlice) null, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 1, var3 + 1, 0, 0);
                     if (GlobalStatus.fq[var27] > 9) {
                         MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fq[var27] / 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 1, var3 + 1, 0, 0);
                         MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fq[var27] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fr[var27] + 1) + GlobalStatus.fr[var27] * 18 + 5, var3 + 1, 0, 0);
@@ -14830,7 +14830,7 @@ public final class GameSceneController {
                 }
             }
         } else if (this.ct == 1 && GlobalStatus.fx != null) {
-            Image var28 = b((short) 1920).image;
+            Image var28 = getIconFrame0((short) 1920).image;
 
             for (int var9 = 0; var9 < GlobalStatus.fx.length; ++var9) {
                 var1.drawImage(var28, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fy[var9] + 1) + GlobalStatus.fy[var9] * 18 + 1, var3 + 1, 0);
@@ -14848,7 +14848,7 @@ public final class GameSceneController {
         a(var1, var2, var3, var2 + var4, var3);
         var3 += 5;
         var3 += var6;
-        MainCanvas.pngUtil.a(var1, MainCanvas.tradetitle, (int[]) null, (ImageSlice) null, 0, 0, var2 + var4 / 2 - MainCanvas.tradetitle.w / 2, var3, 0, 0);
+        MainCanvas.pngUtil.draw(var1, MainCanvas.tradetitle, (int[]) null, (ImageSlice) null, 0, 0, var2 + var4 / 2 - MainCanvas.tradetitle.w / 2, var3, 0, 0);
         var3 = var3 + MainCanvas.tradetitle.h + var6;
 
         for (int var29 = 0; var29 < 8; ++var29) {
@@ -14863,13 +14863,13 @@ public final class GameSceneController {
                 this.cw[var29][3] = var35;
             }
 
-            MainCanvas.pngUtil.a(var1, goods, (int[]) null, (ImageSlice) null, 0, 0, this.cw[var29][0], this.cw[var29][1], 0, 0);
+            MainCanvas.pngUtil.draw(var1, goods, (int[]) null, (ImageSlice) null, 0, 0, this.cw[var29][0], this.cw[var29][1], 0, 0);
         }
 
         if (this.ct == 0) {
             if (GlobalStatus.fl != null && GlobalStatus.fl.length > 0) {
                 for (int var30 = 0; var30 < GlobalStatus.fl.length; ++var30) {
-                    MainCanvas.pngUtil.a(var1, b(GlobalStatus.fl[var30]), (int[]) null, (ImageSlice) null, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 1, var3 + 1, 0, 0);
+                    MainCanvas.pngUtil.draw(var1, getIconFrame0(GlobalStatus.fl[var30]), (int[]) null, (ImageSlice) null, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 1, var3 + 1, 0, 0);
                     if (GlobalStatus.fj[var30] > 9) {
                         MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fj[var30] / 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 1, var3 + 1, 0, 0);
                         MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[]) null, GlobalStatus.fj[var30] % 10, 0, 0, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fk[var30] + 1) + GlobalStatus.fk[var30] * 18 + 5, var3 + 1, 0, 0);
@@ -14879,7 +14879,7 @@ public final class GameSceneController {
                 }
             }
         } else if (this.ct == 1 && GlobalStatus.fu != null) {
-            Image var31 = b((short) 1920).image;
+            Image var31 = getIconFrame0((short) 1920).image;
 
             for (int var32 = 0; var32 < GlobalStatus.fu.length; ++var32) {
                 var1.drawImage(var31, var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (GlobalStatus.fv[var32] + 1) + GlobalStatus.fv[var32] * 18 + 1, var3 + 1, 0);
@@ -14900,17 +14900,17 @@ public final class GameSceneController {
         var3 = var3 + var6 + (var5 - (MainCanvas.tradebottom.h << 1) - MainCanvas.tradelock01.h - MainCanvas.tradetitle.h - (goods.h << 1)) % 7 / 2;
         this.d(0, var2 + var4 / 4 - MainCanvas.moneybutton.w / 2, var3, MainCanvas.tradelock01.w, MainCanvas.tradelock01.h);
         if (GlobalStatus.i_1 == 0 && GlobalStatus.j == -1) {
-            MainCanvas.pngUtil.a(var1, MainCanvas.tradelock_02, (int[]) null, (ImageSlice) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
+            MainCanvas.pngUtil.draw(var1, MainCanvas.tradelock_02, (int[]) null, (ImageSlice) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
         } else if (GlobalStatus.j == 0 && GlobalStatus.i_1 == -1) {
-            MainCanvas.pngUtil.a(var1, MainCanvas.tradelock_02, (int[]) null, (ImageSlice) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
+            MainCanvas.pngUtil.draw(var1, MainCanvas.tradelock_02, (int[]) null, (ImageSlice) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
         } else if (GlobalStatus.i_1 == 0 && GlobalStatus.j == 0) {
-            MainCanvas.pngUtil.a(var1, MainCanvas.tradelock_03, (int[]) null, (ImageSlice) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
+            MainCanvas.pngUtil.draw(var1, MainCanvas.tradelock_03, (int[]) null, (ImageSlice) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
         } else {
-            MainCanvas.pngUtil.a(var1, MainCanvas.tradelock01, (int[]) null, (ImageSlice) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
+            MainCanvas.pngUtil.draw(var1, MainCanvas.tradelock01, (int[]) null, (ImageSlice) null, 0, 0, this.cx[0][0], this.cx[0][1], 0, 0);
         }
 
         this.d(1, var2 + var4 * 3 / 4 - MainCanvas.moneybutton.w / 2, var3, MainCanvas.moneybutton.w, MainCanvas.moneybutton.h);
-        MainCanvas.pngUtil.a(var1, MainCanvas.moneybutton, (int[]) null, (ImageSlice) null, 0, 0, this.cx[1][0], this.cx[1][1], 0, 0);
+        MainCanvas.pngUtil.draw(var1, MainCanvas.moneybutton, (int[]) null, (ImageSlice) null, 0, 0, this.cx[1][0], this.cx[1][1], 0, 0);
         if (this.cu != null) {
             var2 = var2 + (var4 - 144) % 9 / 2 + (var4 - 144) / 9 * (this.mainCanvasRef.ax + 1) + this.mainCanvasRef.ax * 18 + 16;
             LoadingPage.b(var1, this.cu, var2, var7 + 16, GlobalConfig.gameY + GlobalConfig.realHigh, 1);
@@ -15607,9 +15607,9 @@ public final class GameSceneController {
                             }
 
                             if (var13.p == 1 && y != null) {
-                                var7.a(var1, y, (int[]) null, (ImageSlice) null, var3, var4, var13.j + 8 - (aW[2] == 0 ? GlobalConfig.font2.stringWidth(var13.name) / 2 + y.w : y.w / 2), var13.k - GlobalConfig.font2_h - 18, 20, 0);
+                                var7.draw(var1, y, (int[]) null, (ImageSlice) null, var3, var4, var13.j + 8 - (aW[2] == 0 ? GlobalConfig.font2.stringWidth(var13.name) / 2 + y.w : y.w / 2), var13.k - GlobalConfig.font2_h - 18, 20, 0);
                             } else if (var13.p == 0 && z != null) {
-                                var7.a(var1, z, (int[]) null, (ImageSlice) null, var3, var4, var13.j + 8 - (aW[2] == 0 ? GlobalConfig.font2.stringWidth(var13.name) / 2 + z.w : z.w / 2), var13.k - GlobalConfig.font2_h - 18, 20, 0);
+                                var7.draw(var1, z, (int[]) null, (ImageSlice) null, var3, var4, var13.j + 8 - (aW[2] == 0 ? GlobalConfig.font2.stringWidth(var13.name) / 2 + z.w : z.w / 2), var13.k - GlobalConfig.font2_h - 18, 20, 0);
                             }
                         }
                     } else if (var2.b == 3) {
@@ -15628,9 +15628,9 @@ public final class GameSceneController {
                             }
 
                             if (var15.s == 1) {
-                                var22.a(var1, y, (int[]) null, (ImageSlice) null, var3, var4, var15.j + 8 - (aW[4] == 0 ? GlobalConfig.font2.stringWidth(var15.name) / 2 + y.w : y.w / 2), var15.k - GlobalConfig.font2_h - 18, 20, 0);
+                                var22.draw(var1, y, (int[]) null, (ImageSlice) null, var3, var4, var15.j + 8 - (aW[4] == 0 ? GlobalConfig.font2.stringWidth(var15.name) / 2 + y.w : y.w / 2), var15.k - GlobalConfig.font2_h - 18, 20, 0);
                             } else if (var15.s == 0) {
-                                var22.a(var1, z, (int[]) null, (ImageSlice) null, var3, var4, var15.j + 8 - (aW[4] == 0 ? GlobalConfig.font2.stringWidth(var15.name) / 2 + z.w : z.w / 2), var15.k - GlobalConfig.font2_h - 18, 20, 0);
+                                var22.draw(var1, z, (int[]) null, (ImageSlice) null, var3, var4, var15.j + 8 - (aW[4] == 0 ? GlobalConfig.font2.stringWidth(var15.name) / 2 + z.w : z.w / 2), var15.k - GlobalConfig.font2_h - 18, 20, 0);
                             }
                         }
                     } else if (var2.b == 5) {
@@ -15658,8 +15658,8 @@ public final class GameSceneController {
                             var24.a(var1, (Animation) var20.frame1, (int[]) null, var3, var4, var20.c, var20.d, 20, 0);
                         }
 
-                        if (var20.b != null && var20.x && aW[3] == 1) {
-                            LoadingPage.drawString(var1, (String) var20.b, (int) (var20.c - var3), var20.d - (var20.frame1 == null ? 30 : var20.frame1.j()) - GlobalConfig.font2_h - var4, 17, 255, 16777215);
+                        if (var20.npcName != null && var20.x && aW[3] == 1) {
+                            LoadingPage.drawString(var1, (String) var20.npcName, (int) (var20.c - var3), var20.d - (var20.frame1 == null ? 30 : var20.frame1.j()) - GlobalConfig.font2_h - var4, 17, 255, 16777215);
                         }
 
                         var20.a(var1, var24, var3, var4, (byte) 0);
@@ -16156,7 +16156,7 @@ public final class GameSceneController {
                 oldInfo = new int[GlobalStatus.npcObjects.length][2];
                 for (int i = 0; i < GlobalStatus.npcObjects.length; ++i) {
                     if (GlobalStatus.npcObjects[i] != null) {
-                        oldInfo[i][0] = GlobalStatus.npcObjects[i].a;
+                        oldInfo[i][0] = GlobalStatus.npcObjects[i].npcId;
                         oldInfo[i][1] = GlobalStatus.npcObjects[i].U;
                         GlobalStatus.npcObjects[i] = null;
                     }
@@ -16175,7 +16175,7 @@ public final class GameSceneController {
             if (GlobalStatus.npcObjects != null && oldInfo != null && oldInfo.length > 0) {
                 for (int i = 0; i < GlobalStatus.npcObjects.length; ++i) {
                     for (int j = 0; j < oldInfo.length; ++j) {
-                        if (oldInfo[j] != null && GlobalStatus.npcObjects[i].a == oldInfo[j][0]) {
+                        if (oldInfo[j] != null && GlobalStatus.npcObjects[i].npcId == oldInfo[j][0]) {
                             GlobalStatus.npcObjects[i].U = (byte) oldInfo[j][1];
                         }
                     }
@@ -16187,22 +16187,22 @@ public final class GameSceneController {
                 }
 
                 this.npcResName.removeAllElements();
-                short[] var8 = new short[GlobalStatus.npcObjects.length];
-                short[] var9 = new short[GlobalStatus.npcObjects.length];
-                short[] var4 = new short[GlobalStatus.npcObjects.length];
+                short[] variantA = new short[GlobalStatus.npcObjects.length];
+                short[] variantB = new short[GlobalStatus.npcObjects.length];
+                short[] variantC = new short[GlobalStatus.npcObjects.length];
 
                 for (int i = 0; i < GlobalStatus.npcObjects.length; ++i) {
                     this.npcResName.addElement(String.valueOf(GlobalStatus.npcObjects[i].resName));
-                    var8[i] = GlobalStatus.npcObjects[i].y;
-                    var9[i] = GlobalStatus.npcObjects[i].z;
-                    var4[i] = GlobalStatus.npcObjects[i].A;
+                    variantA[i] = GlobalStatus.npcObjects[i].variantA;
+                    variantB[i] = GlobalStatus.npcObjects[i].variantB;
+                    variantC[i] = GlobalStatus.npcObjects[i].variantC;
                 }
 
-                MainCanvas.petfight.loadFrame(this.npcResName, var8, var9, var4);
+                MainCanvas.petfight.loadFrame(this.npcResName, variantA, variantB, variantC);
                 this.npcResName.removeAllElements();
 
                 for (int i = 0; i < GlobalStatus.npcObjects.length; ++i) {
-                    GlobalStatus.npcObjects[i].frame1 = MainCanvas.petfight.getAnimationByKeyFromCache(GlobalStatus.npcObjects[i].hashKey, GlobalStatus.npcObjects[i].y, GlobalStatus.npcObjects[i].z, GlobalStatus.npcObjects[i].A);
+                    GlobalStatus.npcObjects[i].frame1 = MainCanvas.petfight.getAnimationByKeyFromCache(GlobalStatus.npcObjects[i].hashKey, GlobalStatus.npcObjects[i].variantA, GlobalStatus.npcObjects[i].variantB, GlobalStatus.npcObjects[i].variantC);
                 }
 
                 this.npcInitFinished = 1;
@@ -16391,7 +16391,7 @@ public final class GameSceneController {
         c(GlobalStatus.fs);
         c(GlobalStatus.fl);
         aW();
-        c(GlobalStatus.dB);
+        c(GlobalStatus.skillCD2);
         this.a(GlobalStatus.en);
         this.a(GlobalStatus.et);
         this.a(GlobalStatus.cX);
@@ -16661,11 +16661,11 @@ public final class GameSceneController {
     }
 
     private void aV() {
-        if (GlobalStatus.bC.size() > 0 && GlobalStatus.bD) {
+        if (GlobalStatus.equipmentSlot.size() > 0 && GlobalStatus.equipmentSlotReady) {
             this.npcResName.removeAllElements();
 
-            for (int var1 = 0; var1 < GlobalStatus.bC.size(); ++var1) {
-                this.bT = (bn) GlobalStatus.bC.elementAt(var1);
+            for (int var1 = 0; var1 < GlobalStatus.equipmentSlot.size(); ++var1) {
+                this.bT = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var1);
                 if (this.bT != null && this.bT.i >= 1000) {
                     this.npcResName.addElement(String.valueOf(this.bT.i));
                 }
@@ -16673,11 +16673,11 @@ public final class GameSceneController {
 
             MainCanvas.icon.batchLoadFrame0(this.npcResName, (short[]) null, (short[]) null, (short[]) null);
             this.npcResName.removeAllElements();
-            GlobalStatus.bD = false;
+            GlobalStatus.equipmentSlotReady = false;
         }
     }
 
-    public static Sprite b(short var0) {
+    public static Sprite getIconFrame0(short var0) {
         Sprite var1;
         if ((var1 = MainCanvas.icon.getSpriteByNameFromCache(String.valueOf(var0))) == null) {
             var1 = MainCanvas.icon.getSpriteByNameFromCache(String.valueOf(-1000));
@@ -16694,7 +16694,7 @@ public final class GameSceneController {
 
                 for (int var2 = 0; var2 < var0.length; ++var2) {
                     Sprite var3;
-                    if ((var3 = b(var0[var2])) != null) {
+                    if ((var3 = getIconFrame0(var0[var2])) != null) {
                         var1[var2] = var3.image;
                     } else {
                         var1[var2] = null;
@@ -16759,14 +16759,14 @@ public final class GameSceneController {
     }
 
     private static void aW() {
-        if (MainCanvas.icon.getFrameSize() > 70 && GlobalStatus.bC.size() > 0) {
+        if (MainCanvas.icon.getFrameSize() > 70 && GlobalStatus.equipmentSlot.size() > 0) {
             Object var0 = null;
             var0 = null;
             boolean var3 = false;
 
-            for (int var1 = 0; var1 < GlobalStatus.bC.size(); ++var1) {
-                bn var4;
-                if ((var4 = (bn) GlobalStatus.bC.elementAt(var1)) != null && var4.i != -1) {
+            for (int var1 = 0; var1 < GlobalStatus.equipmentSlot.size(); ++var1) {
+                EquipmentSlot var4;
+                if ((var4 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var1)) != null && var4.i != -1) {
                     int var5 = ResourceManager.hashKey(String.valueOf(var4.i).toCharArray());
                     if (MainCanvas.icon.isFrameCached(var5)) {
                         MainCanvas.icon.removeFrameByKey(var5);
@@ -16824,7 +16824,7 @@ public final class GameSceneController {
                 this.mainCanvasRef.gunDongListUi.a(var3_t, 1);
             }
 
-            this.mainCanvasRef.topUi.a = (byte) this.aU;
+            this.mainCanvasRef.topUi.selectTabIndex = (byte) this.aU;
             this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
         }
 
@@ -16873,7 +16873,7 @@ public final class GameSceneController {
             }
 
             if (var1 == 8 || var1 == 2 || var1 == 518 || var1 == 516) {
-                if (this.mainCanvasRef.topUi.a == 0) {
+                if (this.mainCanvasRef.topUi.selectTabIndex == 0) {
                     if (this.as == 1) {
                         this.j((byte) 0);
                     } else if (this.as != 3 && this.as != 8 && this.as != 7) {
@@ -16886,7 +16886,7 @@ public final class GameSceneController {
                         this.aZ = (byte) this.as;
                         this.j((byte) 2);
                     }
-                } else if (this.mainCanvasRef.topUi.a == 1) {
+                } else if (this.mainCanvasRef.topUi.selectTabIndex == 1) {
                     if (this.as == 0) {
                         this.v((byte) 1);
                     } else if (this.as != 2 && this.as != 7 && this.as != 8) {
@@ -16898,22 +16898,22 @@ public final class GameSceneController {
                         this.v((byte) 2);
                         this.aZ = (byte) this.as;
                     }
-                } else if (this.mainCanvasRef.topUi.a == 2) {
+                } else if (this.mainCanvasRef.topUi.selectTabIndex == 2) {
                     if (this.as != 5 && this.as != 4 && this.as != 9 && this.as != 10) {
                         if (this.as != 3 && this.as != 8 && this.as != 2) {
                             if (this.as == 0) {
                                 this.v((byte) 1);
                             }
                         } else {
-                            this.aU = this.mainCanvasRef.topUi.a;
+                            this.aU = this.mainCanvasRef.topUi.selectTabIndex;
                             this.c((short) 4664, (byte) this.selectNpcIndex);
                         }
                     } else {
                         this.aZ = (byte) this.as;
                         this.c((short) 4361, (byte) this.selectNpcIndex, (byte) 2);
                     }
-                } else if (this.mainCanvasRef.topUi.a == 3) {
-                    this.aU = this.mainCanvasRef.topUi.a;
+                } else if (this.mainCanvasRef.topUi.selectTabIndex == 3) {
+                    this.aU = this.mainCanvasRef.topUi.selectTabIndex;
                     if (this.as != 7 && this.as != 2 && this.as != 3) {
                         if (this.as == 4 || this.as == 5 || this.as == 6 || this.as == 10) {
                             this.c((short) 4664, (byte) this.selectNpcIndex);
@@ -16921,8 +16921,8 @@ public final class GameSceneController {
                     } else {
                         this.d((short) 4666, (byte) this.selectNpcIndex);
                     }
-                } else if (this.mainCanvasRef.topUi.a == 4) {
-                    this.aU = this.mainCanvasRef.topUi.a;
+                } else if (this.mainCanvasRef.topUi.selectTabIndex == 4) {
+                    this.aU = this.mainCanvasRef.topUi.selectTabIndex;
                     if (this.as == 9 || this.as == 4 || this.as == 5 || this.as == 6) {
                         this.d((short) 4666, (byte) this.selectNpcIndex);
                     }
@@ -16964,50 +16964,50 @@ public final class GameSceneController {
                     this.m();
                     return;
                 }
-            } else if (this.as == 0 && this.mainCanvasRef.topUi.a == 0) {
+            } else if (this.as == 0 && this.mainCanvasRef.topUi.selectTabIndex == 0) {
                 if (GlobalStatus.hL != null) {
                     LoadingPage.a(70 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"购买", "取消"}, true);
                     this.sceneSubState = 1;
                     return;
                 }
-            } else if (this.as == 1 && this.mainCanvasRef.topUi.a == 1) {
+            } else if (this.as == 1 && this.mainCanvasRef.topUi.selectTabIndex == 1) {
                 if (GlobalStatus.hP != null) {
                     LoadingPage.a(70 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"进入", "拍卖", "消拍", "卖出"}, true);
                     this.sceneSubState = 2;
                     return;
                 }
-            } else if (this.as == 2 && this.mainCanvasRef.topUi.a == 0) {
+            } else if (this.as == 2 && this.mainCanvasRef.topUi.selectTabIndex == 0) {
                 if (GlobalStatus.hL != null) {
                     LoadingPage.a(70 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"购买"}, true);
                     this.sceneSubState = 3;
                     return;
                 }
-            } else if (this.as == 3 && this.mainCanvasRef.topUi.a == 1) {
+            } else if (this.as == 3 && this.mainCanvasRef.topUi.selectTabIndex == 1) {
                 if (GlobalStatus.hP != null) {
                     LoadingPage.a(70 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"布置", "卖出"}, true);
                     this.sceneSubState = 4;
                     return;
                 }
-            } else if (this.as == 4 && this.mainCanvasRef.topUi.a == 0) {
+            } else if (this.as == 4 && this.mainCanvasRef.topUi.selectTabIndex == 0) {
                 if (GlobalStatus.hL != null) {
                     LoadingPage.a(70 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"购买", "取消"}, true);
                     this.sceneSubState = 5;
                     return;
                 }
-            } else if (this.as == 5 && this.mainCanvasRef.topUi.a == 1) {
+            } else if (this.as == 5 && this.mainCanvasRef.topUi.selectTabIndex == 1) {
                 if (GlobalStatus.hP != null) {
                     LoadingPage.a(70 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"布置", "卖出"}, true);
                     this.sceneSubState = 6;
                     return;
                 }
-            } else if (this.as == 6 && this.mainCanvasRef.topUi.a == 2) {
+            } else if (this.as == 6 && this.mainCanvasRef.topUi.selectTabIndex == 2) {
                 if (GlobalStatus.hL != null) {
                     LoadingPage.a(70 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"升级", "取消"}, true);
                     this.sceneSubState = 8;
                     return;
                 }
-            } else if ((this.as != 7 || this.mainCanvasRef.topUi.a != 2) && (this.as != 9 || this.mainCanvasRef.topUi.a != 3)) {
-                if ((this.as == 8 && this.mainCanvasRef.topUi.a == 3 || this.as == 10 && this.mainCanvasRef.topUi.a == 4) && GlobalStatus.hX != null) {
+            } else if ((this.as != 7 || this.mainCanvasRef.topUi.selectTabIndex != 2) && (this.as != 9 || this.mainCanvasRef.topUi.selectTabIndex != 3)) {
+                if ((this.as == 8 && this.mainCanvasRef.topUi.selectTabIndex == 3 || this.as == 10 && this.mainCanvasRef.topUi.selectTabIndex == 4) && GlobalStatus.hX != null) {
                     LoadingPage.a(70 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 16 + this.mainCanvasRef.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"安排", "解约"}, true);
                     this.sceneSubState = 10;
                     return;
@@ -17048,14 +17048,14 @@ public final class GameSceneController {
                         }
 
                         if (this.as == 8 || this.as == 10) {
-                            this.a((short) 4665, String.valueOf(GlobalStatus.npcObjects[this.selectNpcIndex].a), (byte) 1, "", GlobalStatus.hX[this.mainCanvasRef.gunDongListUi.g()]);
+                            this.a((short) 4665, String.valueOf(GlobalStatus.npcObjects[this.selectNpcIndex].npcId), (byte) 1, "", GlobalStatus.hX[this.mainCanvasRef.gunDongListUi.g()]);
                             return;
                         }
                     }
                 }
             } else if (this.sceneSubState == 9) {
                 if (var1 == 268435456 || var1 == 1073741824) {
-                    this.a((short) 4665, String.valueOf(GlobalStatus.npcObjects[this.selectNpcIndex].a), (byte) 0, GlobalStatus.hV[this.mainCanvasRef.gunDongListUi.g()], 0);
+                    this.a((short) 4665, String.valueOf(GlobalStatus.npcObjects[this.selectNpcIndex].npcId), (byte) 0, GlobalStatus.hV[this.mainCanvasRef.gunDongListUi.g()], 0);
                     return;
                 }
 
@@ -17252,7 +17252,7 @@ public final class GameSceneController {
 
     private void b(short var1, byte var2, byte var3) {
         byte[] var4;
-        if ((var4 = NetPayloadBuilder.a(var1, GlobalStatus.roleId_2, (short) GlobalStatus.hL[var2], (int) GlobalStatus.npcObjects[var3].a)) == null) {
+        if ((var4 = NetPayloadBuilder.a(var1, GlobalStatus.roleId_2, (short) GlobalStatus.hL[var2], (int) GlobalStatus.npcObjects[var3].npcId)) == null) {
             this.mainCanvasRef.showTips("获取上传指令数据错误!");
         } else {
             MainCanvas.netUtils.sendPacket(new NetPacket(var1, var4));
@@ -17262,7 +17262,7 @@ public final class GameSceneController {
 
     private void b(short var1, byte var2) {
         byte[] var3;
-        if ((var3 = NetPayloadBuilder.d(var1, GlobalStatus.roleId_2, GlobalStatus.npcObjects[var2].a)) != null) {
+        if ((var3 = NetPayloadBuilder.d(var1, GlobalStatus.roleId_2, GlobalStatus.npcObjects[var2].npcId)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket(var1, var3));
             this.mainCanvasRef.showPending((String) null);
         } else {
@@ -17272,7 +17272,7 @@ public final class GameSceneController {
 
     private void c(short var1, byte var2, byte var3) {
         byte[] var4;
-        if ((var4 = NetPayloadBuilder.a((short) 4361, GlobalStatus.roleId_2, (short) GlobalStatus.npcObjects[var2].a, (byte) var3)) != null) {
+        if ((var4 = NetPayloadBuilder.a((short) 4361, GlobalStatus.roleId_2, (short) GlobalStatus.npcObjects[var2].npcId, (byte) var3)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4361, var4));
             this.mainCanvasRef.showPending((String) null);
         } else {
@@ -17282,7 +17282,7 @@ public final class GameSceneController {
 
     private void c(short var1, byte var2) {
         byte[] var3;
-        if ((var3 = NetPayloadBuilder.e((short) 4664, GlobalStatus.roleId_2, (short) GlobalStatus.npcObjects[var2].a)) != null) {
+        if ((var3 = NetPayloadBuilder.e((short) 4664, GlobalStatus.roleId_2, (short) GlobalStatus.npcObjects[var2].npcId)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4664, var3));
             this.mainCanvasRef.showPending((String) null);
         } else {
@@ -17292,7 +17292,7 @@ public final class GameSceneController {
 
     private void d(short var1, byte var2) {
         byte[] var3;
-        if ((var3 = NetPayloadBuilder.f((short) 4666, GlobalStatus.roleId_2, (short) GlobalStatus.npcObjects[var2].a)) != null) {
+        if ((var3 = NetPayloadBuilder.f((short) 4666, GlobalStatus.roleId_2, (short) GlobalStatus.npcObjects[var2].npcId)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4666, var3));
             this.mainCanvasRef.showPending((String) null);
         } else {
@@ -17720,12 +17720,12 @@ public final class GameSceneController {
                 }
             }
 
-            if (GlobalStatus.ab != null) {
-                for (int var8 = 0; var8 < GlobalStatus.ab.length; ++var8) {
+            if (GlobalStatus.equipmentId != null) {
+                for (int var8 = 0; var8 < GlobalStatus.equipmentId.length; ++var8) {
                     if (bn != null) {
                         Animation var13;
-                        this.cI[0] = GlobalStatus.ab[var8] + 8 - ((var13 = bn).spritePieces != null ? (short) var13.c_x : 0) / 2;
-                        this.cI[1] = GlobalStatus.ac[var8] + 16 - ((var13 = bn).spritePieces != null ? (short) var13.c_y : 0);
+                        this.cI[0] = GlobalStatus.equipmentId[var8] + 8 - ((var13 = bn).spritePieces != null ? (short) var13.c_x : 0) / 2;
+                        this.cI[1] = GlobalStatus.equipmentDurability[var8] + 16 - ((var13 = bn).spritePieces != null ? (short) var13.c_y : 0);
                         this.cI[2] = 16;
                         this.cI[3] = 16;
                         if (PngUtil.a(this.cH, this.cI)) {
@@ -18175,12 +18175,12 @@ public final class GameSceneController {
 
                         if (var1 == 1024) {
                             if (GlobalStatus.gQ > 1) {
-                                if (this.mainCanvasRef.topUi.a == 0) {
+                                if (this.mainCanvasRef.topUi.selectTabIndex == 0) {
                                     this.a((byte) 0, (short) ((short) (GlobalStatus.gQ - 1 <= 1 ? 1 : GlobalStatus.gQ - 1)));
                                     return;
                                 }
 
-                                if (this.mainCanvasRef.topUi.a == 1) {
+                                if (this.mainCanvasRef.topUi.selectTabIndex == 1) {
                                     this.c((byte) 0, (short) ((short) (GlobalStatus.gQ - 1 <= 1 ? 1 : GlobalStatus.gQ - 1)));
                                     return;
                                 }
@@ -18189,12 +18189,12 @@ public final class GameSceneController {
                                 return;
                             }
                         } else if (var1 == 2048 && GlobalStatus.gR == 1) {
-                            if (this.mainCanvasRef.topUi.a == 0) {
+                            if (this.mainCanvasRef.topUi.selectTabIndex == 0) {
                                 this.a((byte) 0, (short) ((short) (GlobalStatus.gQ + 1)));
                                 return;
                             }
 
-                            if (this.mainCanvasRef.topUi.a == 1) {
+                            if (this.mainCanvasRef.topUi.selectTabIndex == 1) {
                                 this.c((byte) 0, (short) ((short) (GlobalStatus.gQ + 1)));
                                 return;
                             }
@@ -18204,8 +18204,8 @@ public final class GameSceneController {
                         }
                     } else {
                         Object var2 = null;
-                        if (this.mainCanvasRef.topUi.a != 0 || GlobalStatus.jN == null) {
-                            if (this.mainCanvasRef.topUi.a == 1 && GlobalStatus.ct != null) {
+                        if (this.mainCanvasRef.topUi.selectTabIndex != 0 || GlobalStatus.jN == null) {
+                            if (this.mainCanvasRef.topUi.selectTabIndex == 1 && GlobalStatus.ct != null) {
                                 String[] var4;
                                 if (GlobalStatus.a(GlobalStatus.cv[this.mainCanvasRef.gunDongListUi.g()])) {
                                     var4 = new String[]{"查看", "拍卖", "取回"};
@@ -18231,33 +18231,33 @@ public final class GameSceneController {
                         this.sceneSubState = 1;
                     }
                 } else {
-                    if (this.mainCanvasRef.topUi.a == 0 && this.aV != 0) {
+                    if (this.mainCanvasRef.topUi.selectTabIndex == 0 && this.aV != 0) {
                         GlobalStatus.gQ = 1;
                         this.a((byte) 0, (short) GlobalStatus.gQ);
-                        this.aV = this.mainCanvasRef.topUi.a;
+                        this.aV = this.mainCanvasRef.topUi.selectTabIndex;
                         return;
                     }
 
-                    if (this.mainCanvasRef.topUi.a == 1) {
+                    if (this.mainCanvasRef.topUi.selectTabIndex == 1) {
                         GlobalStatus.gQ = 1;
                         this.c((byte) 0, (short) GlobalStatus.gQ);
-                        this.aV = this.mainCanvasRef.topUi.a;
+                        this.aV = this.mainCanvasRef.topUi.selectTabIndex;
                         return;
                     }
 
-                    if (this.mainCanvasRef.topUi.a == 2 && this.aV != 2) {
+                    if (this.mainCanvasRef.topUi.selectTabIndex == 2 && this.aV != 2) {
                         GlobalStatus.gQ = 1;
                         this.b((byte) 0, (short) GlobalStatus.gQ);
-                        this.aV = this.mainCanvasRef.topUi.a;
+                        this.aV = this.mainCanvasRef.topUi.selectTabIndex;
                         return;
                     }
                 }
-            } else if (this.mainCanvasRef.topUi.a == 0) {
+            } else if (this.mainCanvasRef.topUi.selectTabIndex == 0) {
                 if (GlobalStatus.jN != null) {
                     this.mainCanvasRef.gunDongListUi.a(GlobalStatus.h(this.mainCanvasRef.shareSb, this.mainCanvasRef.gunDongListUi.g()), 1);
                     return;
                 }
-            } else if (this.mainCanvasRef.topUi.a == 1 && GlobalStatus.ct != null) {
+            } else if (this.mainCanvasRef.topUi.selectTabIndex == 1 && GlobalStatus.ct != null) {
                 this.mainCanvasRef.gunDongListUi.a(GlobalStatus.a(this.currentSceneModeId, this.mainCanvasRef.shareSb, this.mainCanvasRef.gunDongListUi.g()), 1);
                 return;
             }
@@ -18270,7 +18270,7 @@ public final class GameSceneController {
                 }
             } else if (GlobalStatus.a(GlobalStatus.jQ[this.mainCanvasRef.gunDongListUi.g()])) {
                 if (LoadingPage.o == 0) {
-                    if (this.mainCanvasRef.topUi.a == 0) {
+                    if (this.mainCanvasRef.topUi.selectTabIndex == 0) {
                         GlobalStatus.e(this.mainCanvasRef.gunDongListUi.g());
                     } else {
                         GlobalStatus.c(this.mainCanvasRef.gunDongListUi.g());
@@ -18301,7 +18301,7 @@ public final class GameSceneController {
                 }
             } else if (GlobalStatus.a(GlobalStatus.cv[this.mainCanvasRef.gunDongListUi.g()])) {
                 if (LoadingPage.o == 0) {
-                    if (this.mainCanvasRef.topUi.a == 0) {
+                    if (this.mainCanvasRef.topUi.selectTabIndex == 0) {
                         GlobalStatus.e(this.mainCanvasRef.gunDongListUi.g());
                     } else {
                         GlobalStatus.c(this.mainCanvasRef.gunDongListUi.g());
@@ -18538,7 +18538,7 @@ public final class GameSceneController {
     }
 
     public final void Z() {
-        this.aH = this.mainCanvasRef.topUi.a;
+        this.aH = this.mainCanvasRef.topUi.selectTabIndex;
         this.sceneSubState = 0;
         if (GlobalStatus.kP != 0 && GlobalStatus.kP != 3) {
             this.da = GlobalStatus.kQ;
@@ -18948,8 +18948,8 @@ public final class GameSceneController {
                 this.mainCanvasRef.mixedUi.onClick(var1);
             }
 
-            if ((var1 == 8 || var1 == 2 || var1 == 516 || var1 == 518) && this.mainCanvasRef.topUi.a != this.as) {
-                this.d(this.mainCanvasRef.topUi.a);
+            if ((var1 == 8 || var1 == 2 || var1 == 516 || var1 == 518) && this.mainCanvasRef.topUi.selectTabIndex != this.as) {
+                this.d(this.mainCanvasRef.topUi.selectTabIndex);
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
@@ -19097,8 +19097,8 @@ public final class GameSceneController {
                 this.mainCanvasRef.mixedUi.onClick(var1);
             }
 
-            if ((var1 == 8 || var1 == 2 || var1 == 516 || var1 == 518) && this.mainCanvasRef.topUi.a != this.as) {
-                this.e(this.mainCanvasRef.topUi.a);
+            if ((var1 == 8 || var1 == 2 || var1 == 516 || var1 == 518) && this.mainCanvasRef.topUi.selectTabIndex != this.as) {
+                this.e(this.mainCanvasRef.topUi.selectTabIndex);
             }
 
             if (var1 == 268435456 || var1 == 1073741824 || var1 == 517) {
@@ -19818,7 +19818,7 @@ public final class GameSceneController {
         this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.topUi);
         this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.gunDongListUi);
         this.mainCanvasRef.mixedUi.addChild((BaseUi) this.mainCanvasRef.textPanel);
-        this.mainCanvasRef.topUi.a = GlobalStatus.mj;
+        this.mainCanvasRef.topUi.selectTabIndex = GlobalStatus.mj;
         this.mainCanvasRef.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         this.sceneSubState = 0;
         this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
@@ -19847,7 +19847,7 @@ public final class GameSceneController {
             }
 
             if (var1 == 8 || var1 == 2 || var1 == 518 || var1 == 516) {
-                this.x(this.mainCanvasRef.topUi.a);
+                this.x(this.mainCanvasRef.topUi.selectTabIndex);
                 return;
             }
 
@@ -19877,13 +19877,13 @@ public final class GameSceneController {
                     return;
                 }
             } else if (LoadingPage.o == 0) {
-                this.a(this.mainCanvasRef.topUi.a, GlobalStatus.mk[this.mainCanvasRef.gunDongListUi.g()], (byte) 2);
+                this.a(this.mainCanvasRef.topUi.selectTabIndex, GlobalStatus.mk[this.mainCanvasRef.gunDongListUi.g()], (byte) 2);
                 return;
             }
         } else if (this.sceneSubState == 2) {
             LoadingPage.b(var1);
             if (var1 == 268435456 || var1 == 517 || var1 == 1073741824) {
-                this.a(this.mainCanvasRef.topUi.a, GlobalStatus.mk[this.mainCanvasRef.gunDongListUi.g()], (byte) 1);
+                this.a(this.mainCanvasRef.topUi.selectTabIndex, GlobalStatus.mk[this.mainCanvasRef.gunDongListUi.g()], (byte) 1);
                 return;
             }
 
@@ -21078,12 +21078,12 @@ public final class GameSceneController {
         var1.drawString("可开出的珍贵物品", this.ds + 32, this.dt + 8, 0);
 
         for (int var2 = 0; var2 < 4; ++var2) {
-            MainCanvas.pngUtil.a(var1, goods, (int[]) null, (ImageSlice) null, 0, 0, this.ds + this.mainCanvasRef.textPanel.textW / 2 - 76 + var2 * 40, this.dt + (this.mainCanvasRef.textPanel.textH >> 1) - 24, 0, 0);
+            MainCanvas.pngUtil.draw(var1, goods, (int[]) null, (ImageSlice) null, 0, 0, this.ds + this.mainCanvasRef.textPanel.textW / 2 - 76 + var2 * 40, this.dt + (this.mainCanvasRef.textPanel.textH >> 1) - 24, 0, 0);
             if (var2 < GlobalStatus.ng.length) {
                 if (!GlobalStatus.ne[var2].equals("MONEY")) {
                     short var3 = (short) Integer.parseInt(GlobalStatus.ng[var2]);
                     MainCanvas.icon.loadSpriteByName(GlobalStatus.ng[var2]);
-                    MainCanvas.pngUtil.a(var1, b(var3), (int[]) null, (ImageSlice) null, 0, 0, this.ds + this.mainCanvasRef.textPanel.textW / 2 - 76 + var2 * 40, this.dt + (this.mainCanvasRef.textPanel.textH >> 1) - 24, 0, 0);
+                    MainCanvas.pngUtil.draw(var1, getIconFrame0(var3), (int[]) null, (ImageSlice) null, 0, 0, this.ds + this.mainCanvasRef.textPanel.textW / 2 - 76 + var2 * 40, this.dt + (this.mainCanvasRef.textPanel.textH >> 1) - 24, 0, 0);
                 }
 
                 if (var2 == this.aq) {
@@ -21100,7 +21100,7 @@ public final class GameSceneController {
         if (GlobalStatus.nl != null) {
             MainCanvas.icon.loadSpriteByName(GlobalStatus.nl);
             short var5 = (short) Integer.parseInt(GlobalStatus.nl);
-            MainCanvas.pngUtil.a(var1, b(var5), (int[]) null, (ImageSlice) null, 0, 0, this.ds + -70 + (this.mainCanvasRef.textPanel.textW >> 1) - 8, this.dt + (this.mainCanvasRef.textPanel.textH >> 1) + (this.mainCanvasRef.textPanel.textH >> 2) - 8, 0, 0);
+            MainCanvas.pngUtil.draw(var1, getIconFrame0(var5), (int[]) null, (ImageSlice) null, 0, 0, this.ds + -70 + (this.mainCanvasRef.textPanel.textW >> 1) - 8, this.dt + (this.mainCanvasRef.textPanel.textH >> 1) + (this.mainCanvasRef.textPanel.textH >> 2) - 8, 0, 0);
         }
 
         this.dv.a(var1, this.ds + 40 + (this.mainCanvasRef.textPanel.textW >> 1) - 40, this.dt + (this.mainCanvasRef.textPanel.textH >> 1) + (this.mainCanvasRef.textPanel.textH >> 2) - 20, 0);

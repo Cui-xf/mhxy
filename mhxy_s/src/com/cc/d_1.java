@@ -91,7 +91,7 @@ public final class d_1 {
                if (var9 == 'f' || var9 == 'i') {
                   MainCanvas.icon.loadSpriteByName(String.valueOf(var8));
                   Sprite var19;
-                  short var20 = (var19 = GameSceneController.b(var8)) == null ? 0 : var19.w;
+                  short var20 = (var19 = GameSceneController.getIconFrame0(var8)) == null ? 0 : var19.w;
                   if ((var7 += var20) > var1) {
                      var7 = var20;
                      var11.addElement(new d_1(var10));

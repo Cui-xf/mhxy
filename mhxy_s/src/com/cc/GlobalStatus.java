@@ -244,11 +244,11 @@ public final class GlobalStatus {
     /**
      * 装备槽物品 ID 数组（方法 b(DataInputStream) 解析装备包8200）
      */
-    public static short[] ab;
+    public static short[] equipmentId;
     /**
      * 装备槽耐久度数组（与 ab 配对）
      */
-    public static short[] ac;
+    public static short[] equipmentDurability;
 
     // ==================== 当前角色详细信息 ====================
     /**
@@ -258,7 +258,7 @@ public final class GlobalStatus {
     /**
      * 场景名称/地图名称字符串（方法 c(DataInputStream) 解析位置包8199时读取）
      */
-    public static String ae;
+    public static String mapName;
     /**
      * 角色名称（去掉VIP后缀的纯净名，从 roleName 派生）
      */
@@ -310,7 +310,7 @@ public final class GlobalStatus {
     /**
      * 场景/地图 ID，初始=-1
      */
-    public static short ar;
+    public static short mapId = -1;
     /**
      * 未知 short，初始=-1
      */
@@ -318,19 +318,19 @@ public final class GlobalStatus {
     /**
      * 角色目标坐标 X（位置包8199解析）
      */
-    public static short at;
+    public static short roleX;
     /**
      * 角色目标坐标 Y（位置包8199解析）
      */
-    public static short au;
+    public static short roleY;
     /**
      * 移动方向/朝向标志 byte，初始=-1
      */
-    public static byte av;
+    public static byte face = -1;
     /**
      * 另一移动方向标志 byte
      */
-    public static byte aw;
+    public static byte reflushNpcFlag;
     /**
      * 背包行数/格子数（parseBackPack中读取）
      */
@@ -544,11 +544,11 @@ public final class GlobalStatus {
     /**
      * 背包装备槽对象列表 Vector（bn 对象集合）
      */
-    public static Vector bC;
+    public static Vector equipmentSlot;
     /**
      * 装备槽数据就绪标志（方法 e()/f(DataInputStream) 解析后置true）
      */
-    public static boolean bD;
+    public static boolean equipmentSlotReady;
     /**
      * 未知 boolean，初始=false
      */
@@ -798,59 +798,56 @@ public final class GlobalStatus {
     /**
      * 已装备宠物 ID 数组（l(DataInputStream) 解析宠物包8202）
      */
-    public static int[] cz;
+    public static int[] petIds;
     /**
      * 已装备宠物名称数组
      */
-    public static String[] cA;
+    public static String[] petNames;
     /**
      * 宠物类型/槽位 byte 数组
      */
-    public static byte[] cB;
+    public static byte[] petType;
     /**
      * 宠物等级 short 数组
      */
-    public static short[] cC;
+    public static short[] petIconId;
     /**
      * 宠物等级（可用于显示，私有）
      */
-    private static short[] nT;
+    private static short[] petLevel;
     /**
      * 宠物属性描述行1（私有）
      */
-    private static String[] nU;
+    private static String[] petAttr1;
     /**
      * 宠物属性描述行2（私有）
      */
-    private static String[] nV;
+    private static String[] petAttr2;
     /**
      * 宠物属性描述行3（私有）
      */
-    private static String[] nW;
+    private static String[] petAttr3;
     /**
      * 宠物属性描述行4（私有）
      */
-    private static String[] nX;
+    private static String[] petAttr4;
     /**
      * 宠物属性描述行5（私有）
      */
-    private static String[] nY;
+    private static String[] petAttr5;
     /**
      * 宠物属性描述行6（私有）
      */
-    private static String[] nZ;
-    /**
-     * 宠物过期时间 long 数组（私有）
-     */
-    private static long[] oa;
+    private static String[] petAttr6;
+
     /**
      * 宠物附加技能说明字符串（可选，私有）
      */
-    private static String[] ob;
+    private static String[] petAttr7;
     /**
      * 宠物附属技能/属性 ID 二维数组
      */
-    public static short[][] cD;
+    public static short[][] petAttr8;
     /**
      * 已装备宠物1标志（m(DataInputStream) 解析时读取）
      */
@@ -1052,39 +1049,39 @@ public final class GlobalStatus {
     /**
      * 技能 ID 数组（n(DataInputStream) 解析技能包8203）
      */
-    public static int[] dv;
+    public static int[] skillIds;
     /**
      * 技能名称数组
      */
-    public static String[] dw;
+    public static String[] skillNames;
     /**
      * 技能类型 byte 数组
      */
-    public static byte[] dx;
+    public static byte[] skillTypes;
     /**
      * 技能子类型 byte 数组
      */
-    public static byte[] dy;
+    public static byte[] skillSubTypes;
     /**
      * 技能状态标志 byte 数组
      */
-    public static byte[] dz;
+    public static byte[] skillStatus;
     /**
      * 技能等级/冷却值1 short 数组
      */
-    public static short[] dA;
+    public static short[] skillCD1;
     /**
      * 技能冷却值2 short 数组
      */
-    public static short[] dB;
+    public static short[] skillCD2;
     /**
      * 技能附加描述字符串数组
      */
-    public static String[] dC;
+    public static String[] skillDesc2;
     /**
      * 技能描述字符串数组
      */
-    public static String[] dD;
+    public static String[] skillDesc1;
 
     // ==================== 另一技能/称号列表 ====================
     /**
@@ -1294,7 +1291,7 @@ public final class GlobalStatus {
     /**
      * 主外观槽位名称/资源路径（t() 方法读取）
      */
-    public static String[] eo;
+    public static String[] appearanceResName;
 
     // ==================== 次外观槽位 ====================
     /**
@@ -4102,7 +4099,7 @@ public final class GlobalStatus {
 
     }
 
-    public static void d() {
+    public static void clearNpcList() {
         if (npcObjects != null) {
             for (int var0 = 0; var0 < npcObjects.length; ++var0) {
                 if (npcObjects[var0] != null) {
@@ -4110,12 +4107,10 @@ public final class GlobalStatus {
                     if ((var1 = npcObjects[var0]).frame1 != null) {
                         Animation var2 = var1.frame1;
                     }
-
-                    var1.b = null;
+                    var1.npcName = null;
                     npcObjects[var0] = null;
                 }
             }
-
             npcObjects = null;
         }
 
@@ -4173,33 +4168,32 @@ public final class GlobalStatus {
     /**
      * 解析装备数据包(8200)：读取装备槽数量及各槽位 id/耐久，存入 ab/ac 数组。
      */
-    public static void b(DataInputStream var0) throws IOException {
-        byte var1;
-        ab = new short[var1 = var0.readByte()];
-        ac = new short[var1];
+    public static void parseEquipment(DataInputStream var0) throws IOException {
+        byte num = var0.readByte();
+        equipmentId = new short[num];
+        equipmentDurability = new short[num];
 
-        for (int var2 = 0; var2 < var1; ++var2) {
-            ab[var2] = var0.readShort();
-            ac[var2] = var0.readShort();
+        for (int i = 0; i < num; ++i) {
+            equipmentId[i] = var0.readShort();
+            equipmentDurability[i] = var0.readShort();
         }
-
     }
 
-    public static void f() {
-        ab = null;
-        ac = null;
+    public static void clearEquipment() {
+        equipmentId = null;
+        equipmentDurability = null;
     }
 
     /**
      * 解析角色移动/位置包(8199)：读取场景id、地图名称、目标坐标及方向标志，存入 ar/ae/at/au/av/aw 等字段。
      */
-    public static void c(DataInputStream var0) throws IOException {
-        ar = var0.readShort();
-        ae = var0.readUTF();
-        at = var0.readShort();
-        au = var0.readShort();
-        av = var0.readByte();
-        aw = var0.readByte();
+    public static void processRoleMove(DataInputStream var0) throws IOException {
+        mapId = var0.readShort();
+        mapName = var0.readUTF();
+        roleX = var0.readShort();
+        roleY = var0.readShort();
+        face = var0.readByte();
+        reflushNpcFlag = var0.readByte();
         bw = var0.readByte();
         bx = var0.readByte();
     }
@@ -4313,41 +4307,34 @@ public final class GlobalStatus {
     /**
      * 解析装备槽数据包(8201)：读取装备槽更新列表，重建 bC 集合中的装备槽对象。
      */
-    public static void e(DataInputStream var0) throws IOException {
-        short var1;
-        if ((var1 = var0.readShort()) > 0) {
-            bC.removeAllElements();
-            bC = new Vector();
-            Object var2 = null;
-
-            for (short var3 = 0; var3 < var1; ++var3) {
-                bn var4;
-                (var4 = new bn()).a(var0);
-                bC.addElement(var4);
+    public static void parseEquipmentSlot(DataInputStream var0) throws IOException {
+        short n = var0.readShort();
+        if (n > 0) {
+            equipmentSlot.removeAllElements();
+            equipmentSlot = new Vector();
+            for (short i = 0; i < n; ++i) {
+                EquipmentSlot bn = new EquipmentSlot();
+                bn.parseBn(var0);
+                equipmentSlot.addElement(bn);
             }
         } else {
-            i();
+            celarEquipmentSlot();
         }
-
         var0.readShort();
-        bD = true;
+        equipmentSlotReady = true;
     }
 
-    public static void i() {
-        if (bC != null) {
-            short var0 = (short) bC.size();
-            bn var1 = null;
-            --var0;
-
-            for (; var0 >= 0; --var0) {
-                if ((var1 = (bn) bC.elementAt(var0)) != null) {
-                    var1.b = null;
-                    var1.s = null;
-                    var1.u = null;
+    public static void celarEquipmentSlot() {
+        if (equipmentSlot != null) {
+            for (int i = equipmentSlot.size() - 1; i >= 0; --i) {
+                EquipmentSlot bn = (EquipmentSlot) equipmentSlot.elementAt(i);
+                if (bn != null) {
+                    bn.b = null;
+                    bn.s = null;
+                    bn.u = null;
                 }
             }
-
-            bC.removeAllElements();
+            equipmentSlot.removeAllElements();
         }
 
     }
@@ -4363,15 +4350,15 @@ public final class GlobalStatus {
             }
         }
 
-        if (var2 != null && var2.length > 0 && bC.size() > 0) {
+        if (var2 != null && var2.length > 0 && equipmentSlot.size() > 0) {
             Object var11 = null;
 
-            for (short var6 = (short) (bC.size() - 1); var6 >= 0; --var6) {
-                bn var12;
-                if ((var12 = (bn) bC.elementAt(var6)) != null) {
+            for (short var6 = (short) (equipmentSlot.size() - 1); var6 >= 0; --var6) {
+                EquipmentSlot var12;
+                if ((var12 = (EquipmentSlot) equipmentSlot.elementAt(var6)) != null) {
                     for (short var4 = 0; var4 < var2.length; ++var4) {
                         if (var12.h == var2[var4]) {
-                            bC.removeElementAt(var6);
+                            equipmentSlot.removeElementAt(var6);
                             break;
                         }
                     }
@@ -4382,20 +4369,20 @@ public final class GlobalStatus {
         short var13;
         if ((var13 = var0.readShort()) > 0) {
             Vector var7 = new Vector();
-            bn var16 = null;
+            EquipmentSlot var16 = null;
 
             for (short var8 = 0; var8 < var13; ++var8) {
-                bn var17;
-                (var17 = new bn()).a(var0);
+                EquipmentSlot var17;
+                (var17 = new EquipmentSlot()).parseBn(var0);
                 var7.addElement(var17);
             }
 
-            bn var9 = null;
+            EquipmentSlot var9 = null;
 
             for (short var5 = (short) (var7.size() - 1); var5 >= 0; --var5) {
-                if ((var16 = (bn) var7.elementAt(var5)) != null) {
-                    for (short var14 = 0; var14 < bC.size(); ++var14) {
-                        if ((var9 = (bn) bC.elementAt(var14)) != null && var16.h == var9.h) {
+                if ((var16 = (EquipmentSlot) var7.elementAt(var5)) != null) {
+                    for (short var14 = 0; var14 < equipmentSlot.size(); ++var14) {
+                        if ((var9 = (EquipmentSlot) equipmentSlot.elementAt(var14)) != null && var16.h == var9.h) {
                             var9.a = var16.a;
                             var9.b = var16.b;
                             var9.c = var16.c;
@@ -4426,8 +4413,8 @@ public final class GlobalStatus {
             var13 = (short) var7.size();
 
             for (short var20 = 0; var20 < var13; ++var20) {
-                if ((var16 = (bn) var7.elementAt(var20)) != null) {
-                    bC.addElement(var16);
+                if ((var16 = (EquipmentSlot) var7.elementAt(var20)) != null) {
+                    equipmentSlot.addElement(var16);
                 }
             }
 
@@ -4435,7 +4422,7 @@ public final class GlobalStatus {
         }
 
         var0.readShort();
-        bD = true;
+        equipmentSlotReady = true;
     }
 
     public static void g(DataInputStream var0) throws IOException {
@@ -4806,155 +4793,150 @@ public final class GlobalStatus {
     /**
      * 解析宠物详细数据包(8202)：读取宠物完整属性（技能、攻防、等级、亲密度等），存入 cz/cA 等数组；无宠物时调用 n() 清空。
      */
-    public static void l(DataInputStream var0) throws IOException {
-        byte var1;
-        if ((var1 = var0.readByte()) <= 0) {
+    public static void parsePetDetail(DataInputStream var0) throws IOException {
+        byte num = var0.readByte();
+        if (num <= 0) {
             n();
         } else {
-            byte var2 = 0;
-            cz = new int[var1];
-            cA = new String[var1];
-            cB = new byte[var1];
-            cC = new short[var1];
-            nU = new String[var1];
-            nV = new String[var1];
-            nW = new String[var1];
-            nX = new String[var1];
-            nY = new String[var1];
-            nZ = new String[var1];
-            nT = new short[var1];
-            oa = new long[var1];
-            ob = new String[var1];
-            cD = new short[var1][];
+            petIds = new int[num];
+            petNames = new String[num];
+            petType = new byte[num];
+            petIconId = new short[num];
+            petAttr1 = new String[num];
+            petAttr2 = new String[num];
+            petAttr3 = new String[num];
+            petAttr4 = new String[num];
+            petAttr5 = new String[num];
+            petAttr6 = new String[num];
+            petLevel = new short[num];
+            petAttr7 = new String[num];
+            petAttr8 = new short[num][];
 
-            for (int var3 = 0; var3 < var1; ++var3) {
-                cz[var3] = var0.readInt();
-                cA[var3] = var0.readUTF();
-                cB[var3] = var0.readByte();
-                cC[var3] = var0.readShort();
-                nU[var3] = var0.readUTF();
-                nV[var3] = var0.readUTF();
-                nW[var3] = var0.readUTF();
-                nX[var3] = var0.readUTF();
-                nY[var3] = var0.readUTF();
-                nZ[var3] = var0.readUTF();
-                nT[var3] = var0.readShort();
-                oa[var3] = var0.readLong();
+            for (int i = 0; i < num; ++i) {
+                petIds[i] = var0.readInt();
+                petNames[i] = var0.readUTF();
+                petType[i] = var0.readByte();
+                petIconId[i] = var0.readShort();
+                petAttr1[i] = var0.readUTF();
+                petAttr2[i] = var0.readUTF();
+                petAttr3[i] = var0.readUTF();
+                petAttr4[i] = var0.readUTF();
+                petAttr5[i] = var0.readUTF();
+                petAttr6[i] = var0.readUTF();
+                petLevel[i] = var0.readShort();
+                var0.readLong();
                 if (var0.readByte() > 0) {
-                    ob[var3] = var0.readUTF();
+                    petAttr7[i] = var0.readUTF();
                 }
-
-                if ((var2 = var0.readByte()) > 0) {
-                    cD[var3] = new short[var2];
-
-                    for (byte var4 = 0; var4 < var2; ++var4) {
-                        cD[var3][var4] = var0.readShort();
+                byte aByte = var0.readByte();
+                if (aByte > 0) {
+                    petAttr8[i] = new short[aByte];
+                    for (byte i1 = 0; i1 < aByte; ++i1) {
+                        petAttr8[i][i1] = var0.readShort();
                     }
                 }
             }
-
         }
     }
 
     public static void n() {
-        cz = null;
-        cB = null;
-        cC = null;
-        nT = null;
-        oa = null;
-        cD = null;
-        if (ob != null) {
-            for (int var0 = 0; var0 < ob.length; ++var0) {
-                ob[var0] = null;
+        petIds = null;
+        petType = null;
+        petIconId = null;
+        petLevel = null;
+        petAttr8 = null;
+        if (petAttr7 != null) {
+            for (int var0 = 0; var0 < petAttr7.length; ++var0) {
+                petAttr7[var0] = null;
             }
 
-            ob = null;
+            petAttr7 = null;
         }
 
-        if (cA != null) {
-            for (int var1 = 0; var1 < cA.length; ++var1) {
-                cA[var1] = null;
+        if (petNames != null) {
+            for (int var1 = 0; var1 < petNames.length; ++var1) {
+                petNames[var1] = null;
             }
 
-            cA = null;
+            petNames = null;
         }
 
-        if (nU != null) {
-            for (int var2 = 0; var2 < nU.length; ++var2) {
-                nU[var2] = null;
+        if (petAttr1 != null) {
+            for (int var2 = 0; var2 < petAttr1.length; ++var2) {
+                petAttr1[var2] = null;
             }
 
-            nU = null;
+            petAttr1 = null;
         }
 
-        if (nV != null) {
-            for (int var3 = 0; var3 < nV.length; ++var3) {
-                nV[var3] = null;
+        if (petAttr2 != null) {
+            for (int var3 = 0; var3 < petAttr2.length; ++var3) {
+                petAttr2[var3] = null;
             }
 
-            nV = null;
+            petAttr2 = null;
         }
 
-        if (nW != null) {
-            for (int var4 = 0; var4 < nW.length; ++var4) {
-                nW[var4] = null;
+        if (petAttr3 != null) {
+            for (int var4 = 0; var4 < petAttr3.length; ++var4) {
+                petAttr3[var4] = null;
             }
 
-            nW = null;
+            petAttr3 = null;
         }
 
-        if (nX != null) {
-            for (int var5 = 0; var5 < nX.length; ++var5) {
-                nX[var5] = null;
+        if (petAttr4 != null) {
+            for (int var5 = 0; var5 < petAttr4.length; ++var5) {
+                petAttr4[var5] = null;
             }
 
-            nX = null;
+            petAttr4 = null;
         }
 
-        if (nY != null) {
-            for (int var6 = 0; var6 < nY.length; ++var6) {
-                nY[var6] = null;
+        if (petAttr5 != null) {
+            for (int var6 = 0; var6 < petAttr5.length; ++var6) {
+                petAttr5[var6] = null;
             }
 
-            nY = null;
+            petAttr5 = null;
         }
 
-        if (nZ != null) {
-            for (int var7 = 0; var7 < nZ.length; ++var7) {
-                nZ[var7] = null;
+        if (petAttr6 != null) {
+            for (int var7 = 0; var7 < petAttr6.length; ++var7) {
+                petAttr6[var7] = null;
             }
 
-            nZ = null;
+            petAttr6 = null;
         }
 
     }
 
     public static String a(StringBuffer var0, int var1, boolean var2) {
-        for (int var4 = 0; var4 < cz.length; ++var4) {
-            if (cB[var4] == var1) {
+        for (int var4 = 0; var4 < petIds.length; ++var4) {
+            if (petType[var4] == var1) {
                 if (var0 == null) {
                     var0 = new StringBuffer();
                 } else {
                     GlobalConfig.clearStr(var0);
                 }
-                if (nU[var4] != null && nU[var4].length() > 0) {
-                    var0.append(nU[var4]);
+                if (petAttr1[var4] != null && petAttr1[var4].length() > 0) {
+                    var0.append(petAttr1[var4]);
                     var0.append('\t');
                 }
 
-                if (nV[var4] != null && nV[var4].length() > 0) {
-                    var0.append(nV[var4]);
+                if (petAttr2[var4] != null && petAttr2[var4].length() > 0) {
+                    var0.append(petAttr2[var4]);
                     var0.append('\t');
                 }
 
-                if (nW[var4] != null && nW[var4].length() > 0) {
-                    var0.append(nW[var4]);
+                if (petAttr3[var4] != null && petAttr3[var4].length() > 0) {
+                    var0.append(petAttr3[var4]);
                     var0.append('\t');
                 }
 
-                if (nT[var4] > 0) {
+                if (petLevel[var4] > 0) {
                     var0.append("等级:");
-                    var0.append(nT[var4]);
+                    var0.append(petLevel[var4]);
                     var0.append('\t');
                 }
 
@@ -5248,60 +5230,58 @@ public final class GlobalStatus {
     /**
      * 解析技能列表包(8203)：读取技能数量及各技能 id/名称/等级/冷却/属性，存入 dv/dw/dx 等数组；无技能时调用 q() 清空。
      */
-    public static void n(DataInputStream var0) throws IOException {
-        short var1;
-        if ((var1 = var0.readShort()) <= 0) {
-            q();
+    public static void parseSkillList(DataInputStream var0) throws IOException {
+        short num = var0.readShort();
+        if (num <= 0) {
+            clearSkillList();
         } else {
-            dv = new int[var1];
-            dw = new String[var1];
-            dx = new byte[var1];
-            dy = new byte[var1];
-            dz = new byte[var1];
-            dA = new short[var1];
-            dB = new short[var1];
-            dD = new String[var1];
-            dC = new String[var1];
-
-            for (int var2 = 0; var2 < var1; ++var2) {
-                dv[var2] = var0.readInt();
-                dw[var2] = var0.readUTF();
-                dx[var2] = var0.readByte();
-                dy[var2] = var0.readByte();
-                dz[var2] = var0.readByte();
-                dA[var2] = var0.readShort();
-                dB[var2] = var0.readShort();
-                dD[var2] = var0.readUTF();
-                dC[var2] = var0.readUTF();
+            skillIds = new int[num];
+            skillNames = new String[num];
+            skillTypes = new byte[num];
+            skillSubTypes = new byte[num];
+            skillStatus = new byte[num];
+            skillCD1 = new short[num];
+            skillCD2 = new short[num];
+            skillDesc1 = new String[num];
+            skillDesc2 = new String[num];
+            for (int i = 0; i < num; ++i) {
+                skillIds[i] = var0.readInt();
+                skillNames[i] = var0.readUTF();
+                skillTypes[i] = var0.readByte();
+                skillSubTypes[i] = var0.readByte();
+                skillStatus[i] = var0.readByte();
+                skillCD1[i] = var0.readShort();
+                skillCD2[i] = var0.readShort();
+                skillDesc1[i] = var0.readUTF();
+                skillDesc2[i] = var0.readUTF();
             }
-
         }
     }
 
-    public static void q() {
-        dv = null;
-        dx = null;
-        dy = null;
-        dz = null;
-        dA = null;
-        dB = null;
-        if (dw != null) {
-            for (int var0 = 0; var0 < dw.length; ++var0) {
-                dw[var0] = null;
+    public static void clearSkillList() {
+        skillIds = null;
+        skillTypes = null;
+        skillSubTypes = null;
+        skillStatus = null;
+        skillCD1 = null;
+        skillCD2 = null;
+        if (skillNames != null) {
+            for (int var0 = 0; var0 < skillNames.length; ++var0) {
+                skillNames[var0] = null;
             }
 
-            dw = null;
+            skillNames = null;
         }
 
-        if (dD != null) {
-            for (int var1 = 0; var1 < dD.length; ++var1) {
-                dD[var1] = null;
+        if (skillDesc1 != null) {
+            for (int var1 = 0; var1 < skillDesc1.length; ++var1) {
+                skillDesc1[var1] = null;
             }
 
-            dD = null;
+            skillDesc1 = null;
         }
 
-        dC = null;
+        skillDesc2 = null;
     }
 
     public static void o(DataInputStream var0) throws IOException {
@@ -5576,49 +5556,49 @@ public final class GlobalStatus {
     /**
      * 解析外观/时装数据包(8210)：读取主套装扮槽数量及各槽位配置，存入 oo/op/oq/or 等数组。
      */
-    public static void t(DataInputStream var0) throws IOException {
-        byte var1;
-        if ((var1 = var0.readByte()) > 0) {
-            oo = new byte[var1 + 2];
-            op = new byte[var1 + 2];
-            oq = new byte[var1 + 2];
-            or = new byte[var1 + 2];
-            os = new short[var1 + 2];
-            eo = new String[var1 + 2];
-            ej = new byte[var1 + 2];
-            ek = new byte[var1 + 2];
-            el = new byte[var1 + 2];
-            em = new byte[var1 + 2];
-            en = new short[var1 + 2];
-            on = new String[var1 + 2];
+    public static void parseAppearance(DataInputStream var0) throws IOException {
+        byte num = var0.readByte();
+        if (num > 0) {
+            oo = new byte[num + 2];
+            op = new byte[num + 2];
+            oq = new byte[num + 2];
+            or = new byte[num + 2];
+            os = new short[num + 2];
+            appearanceResName = new String[num + 2];
+            ej = new byte[num + 2];
+            ek = new byte[num + 2];
+            el = new byte[num + 2];
+            em = new byte[num + 2];
+            en = new short[num + 2];
+            on = new String[num + 2];
 
-            for (int var2 = 0; var2 < var1 + 2; ++var2) {
-                if (var2 < var1) {
-                    oo[var2] = var0.readByte();
-                    op[var2] = var0.readByte();
-                    oq[var2] = var0.readByte();
-                    or[var2] = var0.readByte();
-                    os[var2] = var0.readShort();
-                    if (os[var2] >= 0) {
-                        eo[var2] = var0.readUTF();
+            for (int i = 0; i < num + 2; ++i) {
+                if (i < num) {
+                    oo[i] = var0.readByte();
+                    op[i] = var0.readByte();
+                    oq[i] = var0.readByte();
+                    or[i] = var0.readByte();
+                    os[i] = var0.readShort();
+                    if (os[i] >= 0) {
+                        appearanceResName[i] = var0.readUTF();
                     } else {
-                        eo[var2] = null;
+                        appearanceResName[i] = null;
                     }
                 } else {
-                    oo[var2] = (byte) var2;
-                    op[var2] = -1;
-                    oq[var2] = 1;
-                    or[var2] = 1;
-                    os[var2] = -1;
-                    eo[var2] = null;
+                    oo[i] = (byte) i;
+                    op[i] = -1;
+                    oq[i] = 1;
+                    or[i] = 1;
+                    os[i] = -1;
+                    appearanceResName[i] = null;
                 }
 
-                ej[var2] = oo[var2];
-                ek[var2] = op[var2];
-                el[var2] = oq[var2];
-                em[var2] = or[var2];
-                en[var2] = os[var2];
-                on[var2] = eo[var2];
+                ej[i] = oo[i];
+                ek[i] = op[i];
+                el[i] = oq[i];
+                em[i] = or[i];
+                en[i] = os[i];
+                on[i] = appearanceResName[i];
             }
         }
 
@@ -6103,14 +6083,14 @@ public final class GlobalStatus {
         }
 
         if (oJ && oK >= 0) {
-            if (bC == null || bC.size() <= 0) {
+            if (equipmentSlot == null || equipmentSlot.size() <= 0) {
                 return;
             }
 
-            bn var7 = null;
+            EquipmentSlot var7 = null;
 
-            for (int var10 = 0; var10 < bC.size(); ++var10) {
-                var7 = (bn) bC.elementAt(var10);
+            for (int var10 = 0; var10 < equipmentSlot.size(); ++var10) {
+                var7 = (EquipmentSlot) equipmentSlot.elementAt(var10);
                 if (oK == var7.a) {
                     if (var7.v > 0) {
                         var7.v = 0;
@@ -6910,59 +6890,59 @@ public final class GlobalStatus {
     /**
      * 解析宠物列表包(8222)：读取角色所有宠物的类型/id/名称/等级/经验，存入 fz/fA/fB/fC 等数组。
      */
-    public static void I(DataInputStream var0) throws IOException {
-        short var1 = var0.readShort();
-        GlobalConfig.printStr("readRolePet size:" + var1);
-        if (var1 <= 0) {
-            B();
+    public static void parsePetList(DataInputStream var0) throws IOException {
+        short num = var0.readShort();
+        GlobalConfig.printStr("readRolePet size:" + num);
+        if (num <= 0) {
+            clearPet();
         } else {
             short var2 = 0;
-            fz = new byte[var1];
-            fA = new int[var1];
-            fB = new String[var1];
-            fC = new String[var1];
-            fD = new short[var1];
-            fE = new short[var1];
-            fF = new short[var1];
-            fG = new short[var1];
-            fH = new short[var1];
-            fI = new int[var1];
-            fJ = new int[var1];
-            fK = new int[var1];
-            fL = new int[var1];
-            fM = new int[var1];
-            fN = new int[var1];
-            fO = new int[var1];
-            fP = new int[var1];
-            fQ = new int[var1];
-            fR = new int[var1];
-            fS = new int[var1];
-            fT = new int[var1];
-            fU = new int[var1];
-            fV = new int[var1];
-            fX = new String[var1];
-            fW = new short[var1];
-            fY = new long[var1];
-            fZ = new long[var1];
-            ga = new long[var1];
-            pF = new long[var1];
-            gb = new short[var1][];
-            gc = new String[var1][];
-            gd = new byte[var1][];
-            ge = new byte[var1];
-            gf = new String[var1];
-            gg = new int[var1][];
-            gh = new String[var1][];
-            gi = new String[var1][];
-            pG = new int[var1][];
-            gj = new byte[var1][];
-            gk = new int[var1][];
-            gl = new String[var1][];
-            gm = new String[var1][];
-            pH = new int[var1][];
-            gn = new byte[var1][];
+            fz = new byte[num];
+            fA = new int[num];
+            fB = new String[num];
+            fC = new String[num];
+            fD = new short[num];
+            fE = new short[num];
+            fF = new short[num];
+            fG = new short[num];
+            fH = new short[num];
+            fI = new int[num];
+            fJ = new int[num];
+            fK = new int[num];
+            fL = new int[num];
+            fM = new int[num];
+            fN = new int[num];
+            fO = new int[num];
+            fP = new int[num];
+            fQ = new int[num];
+            fR = new int[num];
+            fS = new int[num];
+            fT = new int[num];
+            fU = new int[num];
+            fV = new int[num];
+            fX = new String[num];
+            fW = new short[num];
+            fY = new long[num];
+            fZ = new long[num];
+            ga = new long[num];
+            pF = new long[num];
+            gb = new short[num][];
+            gc = new String[num][];
+            gd = new byte[num][];
+            ge = new byte[num];
+            gf = new String[num];
+            gg = new int[num][];
+            gh = new String[num][];
+            gi = new String[num][];
+            pG = new int[num][];
+            gj = new byte[num][];
+            gk = new int[num][];
+            gl = new String[num][];
+            gm = new String[num][];
+            pH = new int[num][];
+            gn = new byte[num][];
 
-            for (int var3 = 0; var3 < var1; ++var3) {
+            for (int var3 = 0; var3 < num; ++var3) {
                 fz[var3] = var0.readByte();
                 fA[var3] = var0.readInt();
                 fB[var3] = var0.readUTF();
@@ -7171,7 +7151,7 @@ public final class GlobalStatus {
         return var0.toString();
     }
 
-    public static void B() {
+    public static void clearPet() {
         fz = null;
         fA = null;
         fD = null;
@@ -9204,7 +9184,7 @@ public final class GlobalStatus {
         kA = var1 == 0 ? fm[var2] : ft[var2];
     }
 
-    public static void a(bn var0) {
+    public static void a(EquipmentSlot var0) {
         ko = var0.a;
         kp = var0.b;
         kq = var0.b;
@@ -9233,33 +9213,33 @@ public final class GlobalStatus {
     }
 
     public static void a(int var0) {
-        for (int var1 = 0; var1 < cz.length; ++var1) {
-            if (cB[var1] == var0) {
-                ko = cz[var1];
-                kp = cA[var1];
-                kq = cA[var1];
-                ks = nU[var1];
-                kt = nV[var1];
-                ku = nW[var1];
-                kv = nX[var1];
-                kw = nY[var1];
-                kx = nZ[var1];
+        for (int var1 = 0; var1 < petIds.length; ++var1) {
+            if (petType[var1] == var0) {
+                ko = petIds[var1];
+                kp = petNames[var1];
+                kq = petNames[var1];
+                ks = petAttr1[var1];
+                kt = petAttr2[var1];
+                ku = petAttr3[var1];
+                kv = petAttr4[var1];
+                kw = petAttr5[var1];
+                kx = petAttr6[var1];
                 byte var2 = 0;
-                if (cD[var1] != null) {
-                    if ((var2 = (byte) cD[var1].length) > 0) {
+                if (petAttr8[var1] != null) {
+                    if ((var2 = (byte) petAttr8[var1].length) > 0) {
                         kr = new short[var2];
 
                         for (byte var3 = 0; var3 < var2; ++var3) {
-                            kr[var3] = cD[var1][var3];
+                            kr[var3] = petAttr8[var1][var3];
                         }
                     }
                 } else {
                     kr = null;
                 }
 
-                ky = nT[var1];
+                ky = petLevel[var1];
                 kz = 1;
-                kA = ob[var1];
+                kA = petAttr7[var1];
             }
         }
 
@@ -9914,11 +9894,11 @@ public final class GlobalStatus {
     }
 
     public static void N() {
-        if (bC != null && bC.size() > 0) {
+        if (equipmentSlot != null && equipmentSlot.size() > 0) {
             Object var0 = null;
 
-            for (int var1 = 0; var1 < bC.size(); ++var1) {
-                ((bn) bC.elementAt(var1)).v = 0;
+            for (int var1 = 0; var1 < equipmentSlot.size(); ++var1) {
+                ((EquipmentSlot) equipmentSlot.elementAt(var1)).v = 0;
             }
 
             oJ = false;
@@ -10728,16 +10708,16 @@ public final class GlobalStatus {
                 }
 
                 int var5;
-                if ((var5 = mJ[var1]) > 0 && var1 >= 0 && var1 <= 2 && bC != null && bC.size() > 0) {
-                    bn var2 = null;
+                if ((var5 = mJ[var1]) > 0 && var1 >= 0 && var1 <= 2 && equipmentSlot != null && equipmentSlot.size() > 0) {
+                    EquipmentSlot var2 = null;
                     int var3 = 0;
 
                     while (true) {
-                        if (var3 >= bC.size()) {
+                        if (var3 >= equipmentSlot.size()) {
                             return;
                         }
 
-                        if ((var2 = (bn) bC.elementAt(var3)) != null && var2.a == var5) {
+                        if ((var2 = (EquipmentSlot) equipmentSlot.elementAt(var3)) != null && var2.a == var5) {
                             mK[var1] = var2.i;
                             mL[var1] = var2.s;
                             break;
@@ -10859,11 +10839,11 @@ public final class GlobalStatus {
     }
 
     private static void f(int var0) {
-        if (bC != null && bC.size() > 0) {
-            bn var1 = null;
+        if (equipmentSlot != null && equipmentSlot.size() > 0) {
+            EquipmentSlot var1 = null;
 
-            for (int var2 = 0; var2 < bC.size(); ++var2) {
-                if ((var1 = (bn) bC.elementAt(var2)) != null && var1.a == var0) {
+            for (int var2 = 0; var2 < equipmentSlot.size(); ++var2) {
+                if ((var1 = (EquipmentSlot) equipmentSlot.elementAt(var2)) != null && var1.a == var0) {
                     ++var1.v;
                 }
             }
@@ -11213,9 +11193,7 @@ public final class GlobalStatus {
         T = null;
         U = null;
         V = null;
-        ar = -1;
         as = -1;
-        av = -1;
         nE = -1;
         nF = -1;
         nG = -1;
@@ -11225,7 +11203,7 @@ public final class GlobalStatus {
         bx = 0;
         by = "";
         bz = "";
-        bC = new Vector();
+        equipmentSlot = new Vector();
         bE = false;
         bF = -1;
         bG = -1;

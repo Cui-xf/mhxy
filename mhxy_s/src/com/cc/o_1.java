@@ -341,7 +341,7 @@ public final class o_1 {
                 }
 
                 if (GlobalStatus.kr[var2] > 0) {
-                    MainCanvas.pngUtil.a(var1, GameSceneController.b(GlobalStatus.kr[var2]), (int[]) null, (ImageSlice) null, 0, 0, this.j.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var2 * 17, this.j.mixedUi.Y + 39, 0, 0);
+                    MainCanvas.pngUtil.draw(var1, GameSceneController.getIconFrame0(GlobalStatus.kr[var2]), (int[]) null, (ImageSlice) null, 0, 0, this.j.mixedUi.X + 10 + GlobalConfig.font2.stringWidth("宝石:") + 2 + var2 * 17, this.j.mixedUi.Y + 39, 0, 0);
                 }
             }
 
@@ -594,11 +594,11 @@ public final class o_1 {
     }
 
     private static void f(int var0) {
-        if (GlobalStatus.bC != null && GlobalStatus.bC.size() > 0) {
-            bn var1 = null;
+        if (GlobalStatus.equipmentSlot != null && GlobalStatus.equipmentSlot.size() > 0) {
+            EquipmentSlot var1 = null;
 
-            for (int var2 = 0; var2 < GlobalStatus.bC.size(); ++var2) {
-                if ((var1 = (bn) GlobalStatus.bC.elementAt(var2)) != null && var1.a == var0) {
+            for (int var2 = 0; var2 < GlobalStatus.equipmentSlot.size(); ++var2) {
+                if ((var1 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var2)) != null && var1.a == var0) {
                     ++var1.v;
                 }
             }
@@ -837,15 +837,15 @@ public final class o_1 {
                     Object var9 = null;
                     int var11 = 0;
 
-                    bn var10000;
+                    EquipmentSlot var10000;
                     while (true) {
-                        if (var11 >= GlobalStatus.bC.size()) {
+                        if (var11 >= GlobalStatus.equipmentSlot.size()) {
                             var10000 = null;
                             break;
                         }
 
-                        bn var10;
-                        if ((var10 = (bn) GlobalStatus.bC.elementAt(var11)) != null && var10.a == var1) {
+                        EquipmentSlot var10;
+                        if ((var10 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var11)) != null && var10.a == var1) {
                             var10000 = var10;
                             break;
                         }
@@ -853,7 +853,7 @@ public final class o_1 {
                         ++var11;
                     }
 
-                    bn var8 = var10000;
+                    EquipmentSlot var8 = var10000;
                     if (var10000 != null) {
                         GlobalStatus.a(var8);
                     } else {
@@ -934,20 +934,20 @@ public final class o_1 {
                     var10002 = this.O[var6 - 2] ? this.K : this.L;
                 }
 
-                var10000.a(var10001, var10002, (int[]) null, (ImageSlice) null, 0, 0, this.G[var6][0], this.G[var6][1], 0, 0);
+                var10000.draw(var10001, var10002, (int[]) null, (ImageSlice) null, 0, 0, this.G[var6][0], this.G[var6][1], 0, 0);
             }
         }
 
         var1.setColor(255);
         var1.drawString("装备孔", this.G[0][0] + 8, this.G[0][1] - 2, 33);
         if (g != -1) {
-            this.k.a(var1, GameSceneController.b(v), (int[]) null, (ImageSlice) null, 0, 0, this.G[0][0], this.G[0][1], 0, 0);
+            this.k.draw(var1, GameSceneController.getIconFrame0(v), (int[]) null, (ImageSlice) null, 0, 0, this.G[0][0], this.G[0][1], 0, 0);
         }
 
         var1.setColor(255);
         var1.drawString("洗炼符", this.G[1][0] + 8, this.G[1][1] - 2, 33);
         if (x != -1L) {
-            this.k.a(var1, GameSceneController.b(z), (int[]) null, (ImageSlice) null, 0, 0, this.G[1][0], this.G[1][1], 0, 0);
+            this.k.draw(var1, GameSceneController.getIconFrame0(z), (int[]) null, (ImageSlice) null, 0, 0, this.G[1][0], this.G[1][1], 0, 0);
         }
 
         var1.drawString("洗炼锁", this.G[0][0] + 17, this.j.mixedUi.Y + 32 + this.H + 3, 20);

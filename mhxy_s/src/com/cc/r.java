@@ -93,11 +93,11 @@ public final class r {
    }
 
    private static void b(int var0) {
-      if (GlobalStatus.bC != null && GlobalStatus.bC.size() > 0) {
-         bn var1 = null;
+      if (GlobalStatus.equipmentSlot != null && GlobalStatus.equipmentSlot.size() > 0) {
+         EquipmentSlot var1 = null;
 
-         for(int var2 = 0; var2 < GlobalStatus.bC.size(); ++var2) {
-            if ((var1 = (bn) GlobalStatus.bC.elementAt(var2)) != null && var1.a == var0) {
+         for(int var2 = 0; var2 < GlobalStatus.equipmentSlot.size(); ++var2) {
+            if ((var1 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var2)) != null && var1.a == var0) {
                ++var1.v;
             }
          }
@@ -376,15 +376,15 @@ public final class r {
                Object var2 = null;
                int var3 = 0;
 
-               bn var10000;
+               EquipmentSlot var10000;
                while(true) {
-                  if (var3 >= GlobalStatus.bC.size()) {
+                  if (var3 >= GlobalStatus.equipmentSlot.size()) {
                      var10000 = null;
                      break;
                   }
 
-                  bn var10;
-                  if ((var10 = (bn) GlobalStatus.bC.elementAt(var3)) != null && var10.a == var1) {
+                  EquipmentSlot var10;
+                  if ((var10 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var3)) != null && var10.a == var1) {
                      var10000 = var10;
                      break;
                   }
@@ -392,7 +392,7 @@ public final class r {
                   ++var3;
                }
 
-               bn var9 = var10000;
+               EquipmentSlot var9 = var10000;
                if (var10000 != null) {
                   GlobalStatus.a(var9);
                } else {
@@ -450,11 +450,11 @@ public final class r {
       var1.drawString(this.h[1], this.g[1][0] - 2, this.g[1][1] + (var2 - GlobalConfig.font2_h) / 2, 24);
       var1.drawString(this.h[2], this.g[2][0] - 2, this.g[2][1] + (var2 - GlobalConfig.font2_h) / 2, 24);
       Sprite var11;
-      if (this.c != -1 && (var11 = GameSceneController.b(this.k)) != null) {
+      if (this.c != -1 && (var11 = GameSceneController.getIconFrame0(this.k)) != null) {
          var1.drawImage(var11.image, this.g[0][0], this.g[0][1], 20);
       }
 
-      if (this.d != -1L && (var11 = GameSceneController.b(this.n)) != null) {
+      if (this.d != -1L && (var11 = GameSceneController.getIconFrame0(this.n)) != null) {
          var1.drawImage(var11.image, this.g[1][0], this.g[1][1], 20);
       }
 
@@ -462,7 +462,7 @@ public final class r {
          var11 = null;
 
          for(int var10 = 0; var10 < this.p.length; ++var10) {
-            if ((var11 = GameSceneController.b(this.p[var10])) != null) {
+            if ((var11 = GameSceneController.getIconFrame0(this.p[var10])) != null) {
                var1.drawImage(var11.image, this.g[2 + this.f[var10]][0], this.g[2 + this.f[var10]][1], 20);
             }
          }

@@ -12,8 +12,8 @@ import java.io.IOException;
  * 由服务器包 8198(MapObjects) 下发，通过 {@link #parseNpcObject(DataInputStream)} 反序列化。
  */
 public final class NpcObject {
-    public short a;
-    public String b;
+    public short npcId;
+    public String npcName;
     public short c;
     public short d;
     public byte e;
@@ -36,9 +36,10 @@ public final class NpcObject {
     public int hashKey;
     public Animation frame1 = null;
     public boolean x = false;
-    public short y;
-    public short z;
-    public short A;
+    //npc资源的key
+    public short variantA;
+    public short variantB;
+    public short variantC;
     public String[] B = null;
     public String[] C = null;
     public byte D;
@@ -94,8 +95,8 @@ public final class NpcObject {
      * 从数据流反序列化场景对象：读取 id、名称、坐标、状态标志位、动画帧资源 id 等全部字段。
      */
     public void parseNpcObject(DataInputStream dis) throws IOException {
-        this.a = dis.readShort();
-        this.b = dis.readUTF();
+        this.npcId = dis.readShort();
+        this.npcName = dis.readUTF();
         dis.readShort();
         this.c = (short) (dis.readShort() + 8);
         this.d = (short) (dis.readShort() + 8);
@@ -137,9 +138,9 @@ public final class NpcObject {
         this.I = dis.readByte();
         this.t = dis.readByte();
         this.resName = dis.readShort();
-        this.y = dis.readShort();
-        this.z = dis.readShort();
-        this.A = dis.readShort();
+        this.variantA = dis.readShort();
+        this.variantB = dis.readShort();
+        this.variantC = dis.readShort();
         this.V = dis.readByte();
         if (this.V == 1) {
             this.W = dis.readUTF();

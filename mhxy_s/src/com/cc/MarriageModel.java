@@ -467,7 +467,7 @@ public final class MarriageModel {
          if (o != null && (var1 == 268435456 || var1 == 1073741824 || var1 == 517)) {
             int var3 = o[this.i.gunDongListUi.g()];
             byte[] var4;
-            if ((var4 = NetPayloadBuilder.a((short)4863, GlobalStatus.roleId_2, GlobalStatus.npcObjects[this.h.selectNpcIndex].a, (int)var3, (short)this.h.sceneRefreshCoordinator.j, (short)this.h.sceneRefreshCoordinator.k)) != null) {
+            if ((var4 = NetPayloadBuilder.a((short)4863, GlobalStatus.roleId_2, GlobalStatus.npcObjects[this.h.selectNpcIndex].npcId, (int)var3, (short)this.h.sceneRefreshCoordinator.j, (short)this.h.sceneRefreshCoordinator.k)) != null) {
                MainCanvas.netUtils.sendPacket(new NetPacket((short)4863, var4));
                this.h.lastSceneModeId = this.h.currentSceneModeId = 0;
                this.i.showPending((String)null);

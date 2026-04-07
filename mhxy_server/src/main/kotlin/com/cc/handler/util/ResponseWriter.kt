@@ -14,6 +14,10 @@ import java.io.DataOutputStream
  */
 object ResponseWriter {
 
+    fun send(ctx: ChannelHandlerContext, opcode: Int, hexBody: String) {
+        send(ctx, opcode, hexBody.hexToByteArray())
+    }
+
     fun send(ctx: ChannelHandlerContext, opcode: Int, body: ByteArray) {
         val buf: ByteBuf = Unpooled.buffer(1 + 2 + 4 + body.size)
         buf.writeByte(0x02)

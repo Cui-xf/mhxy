@@ -27,6 +27,5 @@ object CmdRegistry {
 
 fun registerCmd() {
     CmdRegistry.register(HandshakeHandler)
-    CmdRegistry.register(AccountLoginHandler)
     CmdRegistry.register(EnterGameHandler)
 }

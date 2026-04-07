@@ -460,7 +460,7 @@ public final class FightModel {
                         this.e = 3;
                      }
                   } else if (this.e == 2 && !h()) {
-                     if (GlobalStatus.dB != null && GlobalStatus.dB.length > 0) {
+                     if (GlobalStatus.skillCD2 != null && GlobalStatus.skillCD2.length > 0) {
                         this.z.h((int)3);
                      } else {
                         this.y.showTips("没有可用技能");
@@ -1892,9 +1892,9 @@ public final class FightModel {
             if (var1 == 2) {
                Object var9 = null;
 
-               for(int var11 = 0; var11 < GlobalStatus.bC.size(); ++var11) {
-                  bn var13;
-                  if ((var13 = (bn) GlobalStatus.bC.elementAt(var11)) != null && var10 == var13.a && var13.f == 2) {
+               for(int var11 = 0; var11 < GlobalStatus.equipmentSlot.size(); ++var11) {
+                  EquipmentSlot var13;
+                  if ((var13 = (EquipmentSlot) GlobalStatus.equipmentSlot.elementAt(var11)) != null && var10 == var13.a && var13.f == 2) {
                      var10000 = true;
                      break label104;
                   }
@@ -1910,8 +1910,8 @@ public final class FightModel {
                   break label104;
                }
             } else if (var1 == 1) {
-               for(int var14 = 0; var14 < GlobalStatus.dy.length; ++var14) {
-                  if (var10 == GlobalStatus.dv[var14] && GlobalStatus.dy[var14] == 1) {
+               for(int var14 = 0; var14 < GlobalStatus.skillSubTypes.length; ++var14) {
+                  if (var10 == GlobalStatus.skillIds[var14] && GlobalStatus.skillSubTypes[var14] == 1) {
                      var10000 = true;
                      break label104;
                   }
@@ -2344,7 +2344,7 @@ public final class FightModel {
                                  return;
                               }
 
-                              LoadingPage.drawString(var1, (String) GlobalStatus.eo[this.z.az], (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
+                              LoadingPage.drawString(var1, (String) GlobalStatus.appearanceResName[this.z.az], (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                            } else {
                               if (this.d != 2 || GlobalStatus.et[this.z.az] == -1) {
                                  return;

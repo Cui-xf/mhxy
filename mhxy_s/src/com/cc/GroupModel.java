@@ -686,7 +686,7 @@ public final class GroupModel {
         this.b.topUi.a(new String[]{"成员", "帮派", "外交", "帮战"});
         this.b.mixedUi.addChild((BaseUi) this.b.topUi);
         if (var1 == 0) {
-            this.b.topUi.a = 0;
+            this.b.topUi.selectTabIndex = 0;
             this.b.gunDongListUi.setValue((Image[]) null, GlobalStatus.iz, GlobalStatus.iA, a(GlobalStatus.iC, "战力"));
             this.b.gunDongListUi.setIcon(null);
             this.b.gunDongListUi.setIcon2(null);
@@ -697,12 +697,12 @@ public final class GroupModel {
             this.b.mixedUi.addChild((BaseUi) this.b.bottomUi);
             this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         } else if (var1 == 1) {
-            this.b.topUi.a = 1;
+            this.b.topUi.selectTabIndex = 1;
             this.b.textPanel.setText(GlobalStatus.iH, GlobalConfig.font2, (byte) 2);
             this.b.mixedUi.addChild((BaseUi) this.b.textPanel);
             this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
         } else if (var1 == 2) {
-            this.b.topUi.a = 2;
+            this.b.topUi.selectTabIndex = 2;
             String[] var4 = null;
             int[] var2 = null;
             if (GlobalStatus.jY != null && GlobalStatus.jY.length > 0) {
@@ -732,7 +732,7 @@ public final class GroupModel {
             this.b.mixedUi.layout(GlobalConfig.gameX, GlobalConfig.gameY, GlobalConfig.realWidth, GlobalConfig.realHigh);
             LoadingPage.l = 0;
         } else if (var1 == 3) {
-            this.b.topUi.a = 3;
+            this.b.topUi.selectTabIndex = 3;
             this.b.textPanel.setText(GlobalStatus.kl, GlobalConfig.font2, (byte) 2);
             this.b.bottomUi.a("确定");
             this.b.bottomUi.a(true);
@@ -748,7 +748,7 @@ public final class GroupModel {
 
     public final void i(int var1) {
         if (this.a.sceneSubState == 0) {
-            if (this.b.topUi.a == 0) {
+            if (this.b.topUi.selectTabIndex == 0) {
                 if (this.b.mixedUi != null) {
                     this.b.mixedUi.onClick(var1);
                 }
@@ -805,7 +805,7 @@ public final class GroupModel {
                 } else {
                     this.B();
                 }
-            } else if (this.b.topUi.a == 1) {
+            } else if (this.b.topUi.selectTabIndex == 1) {
                 if (this.b.mixedUi != null) {
                     this.b.mixedUi.onClick(var1);
                 }
@@ -821,7 +821,7 @@ public final class GroupModel {
                     GlobalStatus.gQ = 1;
                     this.g(this.g);
                 }
-            } else if (this.b.topUi.a == 2) {
+            } else if (this.b.topUi.selectTabIndex == 2) {
                 if (this.b.mixedUi != null) {
                     this.b.mixedUi.onClick(var1);
                 }
@@ -879,7 +879,7 @@ public final class GroupModel {
                         this.a.sceneSubState = 7;
                     }
                 }
-            } else if (this.b.topUi.a == 3) {
+            } else if (this.b.topUi.selectTabIndex == 3) {
                 if (this.b.mixedUi != null) {
                     this.b.mixedUi.onClick(var1);
                 }
@@ -923,7 +923,7 @@ public final class GroupModel {
                     this.o = "";
                     this.a(this.o);
                 }
-            } else if (this.b.topUi.a == 4) {
+            } else if (this.b.topUi.selectTabIndex == 4) {
                 if (this.b.mixedUi != null) {
                     this.b.mixedUi.onClick(var1);
                 }
@@ -2264,10 +2264,10 @@ public final class GroupModel {
         } else {
             this.a.aq = this.a.aF;
             this.a.ar = this.a.aG;
-            this.b.topUi.a = this.a.aH;
+            this.b.topUi.selectTabIndex = this.a.aH;
         }
 
-        int var1 = (this.b.topUi.a << 5) + (this.a.ar << 3) + this.a.aq;
+        int var1 = (this.b.topUi.selectTabIndex << 5) + (this.a.ar << 3) + this.a.aq;
         if (GlobalStatus.iN != null && var1 < GlobalStatus.iN.length) {
             this.b.textPanel.setFWBText(GlobalStatus.ja[var1], GlobalConfig.font2, (byte) 1);
         } else {
@@ -2286,7 +2286,7 @@ public final class GroupModel {
     }
 
     public final void p() {
-        int var1 = (this.b.topUi.a << 5) + (this.a.ar << 3) + this.a.aq;
+        int var1 = (this.b.topUi.selectTabIndex << 5) + (this.a.ar << 3) + this.a.aq;
         if (GlobalStatus.iN != null && var1 < GlobalStatus.iN.length) {
             this.b.textPanel.setFWBText(GlobalStatus.ja[var1], GlobalConfig.font2, (byte) 1);
         } else {
@@ -2298,7 +2298,7 @@ public final class GroupModel {
     }
 
     public final void p(int var1) {
-        int var2 = (this.b.topUi.a << 5) + (this.a.ar << 3) + this.a.aq;
+        int var2 = (this.b.topUi.selectTabIndex << 5) + (this.a.ar << 3) + this.a.aq;
         if (this.a.sceneSubState == 0) {
             this.a.a(GlobalStatus.iR);
             if (this.b.mixedUi != null) {
@@ -2401,7 +2401,7 @@ public final class GroupModel {
 
                         this.a.aF = this.a.aq;
                         this.a.aG = this.a.ar;
-                        this.a.aH = this.b.topUi.a;
+                        this.a.aH = this.b.topUi.selectTabIndex;
                         break;
                     case 1:
                         if (GlobalStatus.iQ[var2] > 1) {
@@ -2518,7 +2518,7 @@ public final class GroupModel {
 
     private void c(byte var1) {
         byte[] var2;
-        if ((var2 = NetPayloadBuilder.b((short) 4246, GlobalStatus.iN[(this.b.topUi.a << 5) + (this.a.ar << 3) + this.a.aq], (byte) var1, GlobalStatus.roleId_2)) != null) {
+        if ((var2 = NetPayloadBuilder.b((short) 4246, GlobalStatus.iN[(this.b.topUi.selectTabIndex << 5) + (this.a.ar << 3) + this.a.aq], (byte) var1, GlobalStatus.roleId_2)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4246, var2));
             this.a.mainCanvasRef.showPending((String) null);
         } else {
@@ -2540,16 +2540,16 @@ public final class GroupModel {
             int var7 = this.b.mixedUi.Y + 33 + this.b.topUi.b + var5;
 
             for (int var8 = 0; var8 < 32; ++var8) {
-                MainCanvas.pngUtil.a(var3, GameSceneController.goods, (int[]) null, (ImageSlice) null, 0, 0, var8 % 8 * (GameSceneController.goods.w + var4) + var6, var8 / 8 * (GameSceneController.goods.w + var5) + var7, 0, 0);
+                MainCanvas.pngUtil.draw(var3, GameSceneController.goods, (int[]) null, (ImageSlice) null, 0, 0, var8 % 8 * (GameSceneController.goods.w + var4) + var6, var8 / 8 * (GameSceneController.goods.w + var5) + var7, 0, 0);
                 var11.a.a((int) var8, var8 % 8 * (GameSceneController.goods.w + var4) + var6, var8 / 8 * (GameSceneController.goods.w + var5) + var7, (int) GameSceneController.goods.w, (int) GameSceneController.goods.h);
             }
 
             int var12 = 0;
             LoadingPage.d(var3, var6 + var11.a.aq * (GameSceneController.goods.w + var4), var7 + var11.a.ar * (GameSceneController.goods.w + var5), 17, 17);
             if (GlobalStatus.iR != null) {
-                for (int var9 = var11.b.topUi.a << 5; var9 < (GlobalStatus.iR.length > var11.b.topUi.a + 1 << 5 ? var11.b.topUi.a + 1 << 5 : GlobalStatus.iR.length); ++var9) {
+                for (int var9 = var11.b.topUi.selectTabIndex << 5; var9 < (GlobalStatus.iR.length > var11.b.topUi.selectTabIndex + 1 << 5 ? var11.b.topUi.selectTabIndex + 1 << 5 : GlobalStatus.iR.length); ++var9) {
                     int var10 = var9 % 32;
-                    MainCanvas.pngUtil.a(var3, GameSceneController.b(GlobalStatus.iR[var9]), (int[]) null, (ImageSlice) null, 0, 0, var10 % 8 * (GameSceneController.goods.w + var4) + var6 + 1, var10 / 8 * (GameSceneController.goods.w + var5) + var7 + 1, 0, 0);
+                    MainCanvas.pngUtil.draw(var3, GameSceneController.getIconFrame0(GlobalStatus.iR[var9]), (int[]) null, (ImageSlice) null, 0, 0, var10 % 8 * (GameSceneController.goods.w + var4) + var6 + 1, var10 / 8 * (GameSceneController.goods.w + var5) + var7 + 1, 0, 0);
                     if (GlobalStatus.iQ[var9] > 9) {
                         MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, GlobalStatus.iQ[var9] / 10, 0, 0, 10 + var10 % 8 * (GameSceneController.goods.w + var4) + var6, var10 / 8 * (GameSceneController.goods.w + var5) + var7 + 12, 0, 0);
                         MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, GlobalStatus.iQ[var9] % 10, 0, 0, 14 + var10 % 8 * (GameSceneController.goods.w + var4) + var6, var10 / 8 * (GameSceneController.goods.w + var5) + var7 + 12, 0, 0);
@@ -2557,14 +2557,14 @@ public final class GroupModel {
                         MainCanvas.pngUtil.a(var3, MainCanvas.num, (int[]) null, GlobalStatus.iQ[var9] % 10, 0, 0, 14 + var10 % 8 * (GameSceneController.goods.w + var4) + var6, var10 / 8 * (GameSceneController.goods.w + var5) + var7 + 12, 0, 0);
                     }
 
-                    if (var9 == (var11.a.ar << 3) + var11.a.aq + 32 * var11.b.topUi.a) {
+                    if (var9 == (var11.a.ar << 3) + var11.a.aq + 32 * var11.b.topUi.selectTabIndex) {
                         var12 = var9;
                     }
                 }
 
-                if (var12 >= 0 && var12 < GlobalStatus.iR.length && var12 == (var11.a.ar << 3) + var11.a.aq + 32 * var11.b.topUi.a) {
+                if (var12 >= 0 && var12 < GlobalStatus.iR.length && var12 == (var11.a.ar << 3) + var11.a.aq + 32 * var11.b.topUi.selectTabIndex) {
                     LoadingPage.a(var3, GlobalStatus.iO[var12] + "X" + GlobalStatus.iQ[var12], GlobalStatus.iZ[var12], var6 + var11.a.aq * (GameSceneController.goods.w + var4) + GameSceneController.goods.w / 2, var7 + var11.a.ar * (GameSceneController.goods.w + var5) + GameSceneController.goods.w / 2);
-                } else if ((var11.b.topUi.a << 5) + (var11.a.ar << 3) + var11.a.aq >= GlobalStatus.iJ) {
+                } else if ((var11.b.topUi.selectTabIndex << 5) + (var11.a.ar << 3) + var11.a.aq >= GlobalStatus.iJ) {
                     LoadingPage.a(var3, "未开启", -1L, var6 + var11.a.aq * (GameSceneController.goods.w + var4) + GameSceneController.goods.w / 2, var7 + var11.a.ar * (GameSceneController.goods.w + var5) + GameSceneController.goods.w / 2);
                 }
             }
@@ -2594,7 +2594,7 @@ public final class GroupModel {
 
     private void d(byte var1) {
         byte[] var2;
-        if ((var2 = NetPayloadBuilder.b((short) 4245, GlobalStatus.iN[(this.b.topUi.a << 5) + (this.a.ar << 3) + this.a.aq], (byte) var1, GlobalStatus.roleId_2)) != null) {
+        if ((var2 = NetPayloadBuilder.b((short) 4245, GlobalStatus.iN[(this.b.topUi.selectTabIndex << 5) + (this.a.ar << 3) + this.a.aq], (byte) var1, GlobalStatus.roleId_2)) != null) {
             MainCanvas.netUtils.sendPacket(new NetPacket((short) 4245, var2));
             this.a.mainCanvasRef.showPending((String) null);
         } else {
@@ -2707,11 +2707,11 @@ public final class GroupModel {
 
             if (var1 == 8 || var1 == 516 || var1 == 2 || var1 == 518) {
                 GlobalStatus.gQ = 1;
-                this.q(this.b.topUi.a);
-                if (this.b.topUi.a == 0) {
+                this.q(this.b.topUi.selectTabIndex);
+                if (this.b.topUi.selectTabIndex == 0) {
                     this.b.bottomUi.a("选择");
                     this.b.bottomUi.a(true);
-                } else if (this.b.topUi.a == 1) {
+                } else if (this.b.topUi.selectTabIndex == 1) {
                     this.b.bottomUi.a("购买");
                     this.b.bottomUi.a(true);
                 }
@@ -2720,7 +2720,7 @@ public final class GroupModel {
             if (var1 == 1 || var1 == 514 || var1 == 4 || var1 == 520) {
                 label159:
                 {
-                    if (this.b.topUi.a == 0) {
+                    if (this.b.topUi.selectTabIndex == 0) {
                         if (GlobalStatus.jq == null) {
                             break label159;
                         }
@@ -2728,7 +2728,7 @@ public final class GroupModel {
                         break label159;
                     }
 
-                    this.b.textPanel.setText(this.b.topUi.a == 0 ? GlobalStatus.jq[this.b.gunDongListUi.g()] : GlobalStatus.jt[this.b.gunDongListUi.g()], GlobalConfig.font2, (byte) 2);
+                    this.b.textPanel.setText(this.b.topUi.selectTabIndex == 0 ? GlobalStatus.jq[this.b.gunDongListUi.g()] : GlobalStatus.jt[this.b.gunDongListUi.g()], GlobalConfig.font2, (byte) 2);
                     this.b.textPanel.setShuRuMoShi((byte) 1);
                 }
             }
@@ -2749,7 +2749,7 @@ public final class GroupModel {
                             --GlobalStatus.gQ;
                         }
 
-                        this.q(this.b.topUi.a);
+                        this.q(this.b.topUi.selectTabIndex);
                         return;
                     }
 
@@ -2760,30 +2760,30 @@ public final class GroupModel {
                             --GlobalStatus.gQ;
                         }
 
-                        this.q(this.b.topUi.a);
+                        this.q(this.b.topUi.selectTabIndex);
                         return;
                     }
                 } else if (var1 == 2048) {
                     if (GlobalStatus.gQ <= 1 && GlobalStatus.gR == 1) {
                         ++GlobalStatus.gQ;
-                        this.q(this.b.topUi.a);
+                        this.q(this.b.topUi.selectTabIndex);
                         return;
                     }
 
                     if (GlobalStatus.gQ > 1 && GlobalStatus.gR == 1) {
                         ++GlobalStatus.gQ;
-                        this.q(this.b.topUi.a);
+                        this.q(this.b.topUi.selectTabIndex);
                         return;
                     }
                 }
             } else {
-                if (this.b.topUi.a == 0 && GlobalStatus.jo != null) {
+                if (this.b.topUi.selectTabIndex == 0 && GlobalStatus.jo != null) {
                     LoadingPage.a(0 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 11 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"购买"}, true);
                     this.a.sceneSubState = 1;
                     return;
                 }
 
-                if (this.b.topUi.a == 1 && GlobalStatus.jr != null) {
+                if (this.b.topUi.selectTabIndex == 1 && GlobalStatus.jr != null) {
                     LoadingPage.a(0 + GlobalConfig.gameX, 2 * GlobalConfig.font2_h + 11 + this.b.gunDongListUi.i() * GlobalConfig.font2_h + GlobalConfig.gameY, new String[]{"布置", "卖出"}, true);
                     this.a.sceneSubState = 2;
                     return;
