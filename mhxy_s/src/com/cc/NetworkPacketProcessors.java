@@ -2,10 +2,12 @@ package com.cc;
 
 import com.cc.resource.ResourceManager;
 import com.cc.resource.TileMap;
+import com.yinhan.kjava.main.DebugUtil;
 import com.yinhan.kjava.main.MainCanvas;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Vector;
 
@@ -32,6 +34,23 @@ public final class NetworkPacketProcessors {
      */
     private bl[] j;
 
+    private final boolean savePacket;
+    private final FileWriter netLogWriter;
+
+    public NetworkPacketProcessors() {
+        if ("true".equals(DebugUtil.SavePacket)) {
+            savePacket = true;
+            try {
+                netLogWriter = new FileWriter("net.log");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex.getMessage());
+            }
+        } else {
+            savePacket = false;
+            netLogWriter = null;
+        }
+    }
+
     public void setMainCanvas(MainCanvas var1) {
         this.mainCanvas = var1;
     }
@@ -40,28 +59,28 @@ public final class NetworkPacketProcessors {
      * 分发处理服务器下发的数据包。
      * 若为多包容器(8192)则递归处理其子包；否则根据包码路由到对应逻辑。
      */
-    public void process(NetPacket code) {
-        if (code != null) {
+    public void process(NetPacket packet) {
+        if (packet != null) {
             try {
-                short packetCode = code.getCode();
+                short packetCode = packet.getCode();
                 // 非多包容器时，将 payload 包装成流供后续 dis.readXxx() 使用
                 if (packetCode != NetPacketCode.MultiPackContainer) {
-                    if (code.payload == null) {
+                    if (packet.payload == null) {
                         return;
                     }
-
-                    this.bis = new ByteArrayInputStream(code.payload);
+                    savePacket(packet);
+                    this.bis = new ByteArrayInputStream(packet.payload);
                     this.dis = new DataInputStream(this.bis);
                 }
 
                 switch (packetCode) {
                     case NetPacketCode.MultiPackContainer: {// 8192 多包容器：递归处理所有子包
-                        if (code.child == null) {
+                        if (packet.child == null) {
                             return;
                         }
-                        while (!code.child.isEmpty()) {
-                            this.process((NetPacket) code.child.elementAt(0));
-                            code.child.removeElementAt(0);
+                        while (!packet.child.isEmpty()) {
+                            this.process((NetPacket) packet.child.elementAt(0));
+                            packet.child.removeElementAt(0);
                         }
                         return;
                     }
@@ -2290,5 +2309,27 @@ public final class NetworkPacketProcessors {
         }
 
         return var2;
+    }
+
+    private void savePacket(NetPacket packet) {
+        if (!savePacket || netLogWriter == null || packet.payload == null) {
+            return;
+        }
+        try {
+            StringBuffer sb = new StringBuffer();
+            sb.append(packet.getCode());
+            sb.append(",");
+            byte[] payload = packet.payload;
+            for (int i = 0; i < payload.length; i++) {
+                int b = payload[i] & 0xFF;
+                if (b < 16) sb.append('0');
+                sb.append(Integer.toHexString(b));
+            }
+            sb.append("\n");
+            netLogWriter.write(sb.toString());
+            netLogWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
