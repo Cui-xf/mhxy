@@ -7794,7 +7794,7 @@ public final class GlobalStatus {
                 return;
             }
 
-            MainCanvas.ae.e(String.valueOf(var2));
+            MainCanvas.ae.loadSpriteByName(String.valueOf(var2));
             hH = MainCanvas.ae.getSpriteByNameFromCache(String.valueOf(var2));
             hJ = new byte[var1];
             hK = new byte[var1];

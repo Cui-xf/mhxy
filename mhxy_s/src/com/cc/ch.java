@@ -421,7 +421,7 @@ public final class ch {
             } else if (var2 < 4) {
                this.e.a(var1, q[var2 - 1] ? this.y : this.z, (int[])null, (ImageSlice)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
             } else {
-               MainCanvas.icon.e(String.valueOf(1702));
+               MainCanvas.icon.loadSpriteByName(String.valueOf(1702));
                MainCanvas.pngUtil.a(var1, GameSceneController.b((short)1702), (int[])null, (ImageSlice)null, 0, 0, this.a[var2][0], this.a[var2][1], 0, 0);
                if (n[var2 - 4] > 99) {
                   MainCanvas.pngUtil.a(var1, MainCanvas.num, (int[])null, n[var2 - 4] / 100, 0, 0, this.a[var2][0] + 13 - 8, this.a[var2][1] + 11, 0, 0);

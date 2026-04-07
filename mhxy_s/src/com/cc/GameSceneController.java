@@ -1024,8 +1024,8 @@ public final class GameSceneController {
         this.mainCanvasRef.doRepaint();
         this.ao();
         this.mainCanvasRef.doRepaint();
-        MainCanvas.icon.e("-1000");
-        MainCanvas.icon.e("103");
+        MainCanvas.icon.loadSpriteByName("-1000");
+        MainCanvas.icon.loadSpriteByName("103");
         this.mainCanvasRef.doRepaint();
         this.aq();
         this.mainCanvasRef.doRepaint();
@@ -3665,9 +3665,9 @@ public final class GameSceneController {
             this.f = null;
             byte[] var1;
             if ((var1 = GlobalStatus.a(GlobalStatus.ar)) != null) {
-                this.f = MainCanvas.ae.a(var1);
+                this.f = MainCanvas.ae.buildTileMap(var1);
             } else {
-                this.f = MainCanvas.ae.c(String.valueOf(GlobalStatus.ar));
+                this.f = MainCanvas.ae.loadTileMapByName(String.valueOf(GlobalStatus.ar));
             }
 
             MainCanvas.pngUtil.a();
@@ -21082,7 +21082,7 @@ public final class GameSceneController {
             if (var2 < GlobalStatus.ng.length) {
                 if (!GlobalStatus.ne[var2].equals("MONEY")) {
                     short var3 = (short) Integer.parseInt(GlobalStatus.ng[var2]);
-                    MainCanvas.icon.e(GlobalStatus.ng[var2]);
+                    MainCanvas.icon.loadSpriteByName(GlobalStatus.ng[var2]);
                     MainCanvas.pngUtil.a(var1, b(var3), (int[]) null, (ImageSlice) null, 0, 0, this.ds + this.mainCanvasRef.textPanel.textW / 2 - 76 + var2 * 40, this.dt + (this.mainCanvasRef.textPanel.textH >> 1) - 24, 0, 0);
                 }
 
@@ -21098,7 +21098,7 @@ public final class GameSceneController {
         var1.setColor(9360850);
         var1.drawRect(this.ds + -70 + (this.mainCanvasRef.textPanel.textW >> 1) - 20, this.dt + (this.mainCanvasRef.textPanel.textH >> 1) + (this.mainCanvasRef.textPanel.textH >> 2) - 20, 39, 39);
         if (GlobalStatus.nl != null) {
-            MainCanvas.icon.e(GlobalStatus.nl);
+            MainCanvas.icon.loadSpriteByName(GlobalStatus.nl);
             short var5 = (short) Integer.parseInt(GlobalStatus.nl);
             MainCanvas.pngUtil.a(var1, b(var5), (int[]) null, (ImageSlice) null, 0, 0, this.ds + -70 + (this.mainCanvasRef.textPanel.textW >> 1) - 8, this.dt + (this.mainCanvasRef.textPanel.textH >> 1) + (this.mainCanvasRef.textPanel.textH >> 2) - 8, 0, 0);
         }

@@ -18,8 +18,9 @@ public final class ResourceManager {
     private String name;
     private String path;
     private Vector frameCache = new Vector();
-    private Vector d = new Vector();
     private FrameInfo[] frameInfos;
+    //地图资源id
+    private Vector mapResSpriteIdCache = new Vector();
 
     public ResourceManager(String path, String name) {
         this.name = name;
@@ -326,81 +327,213 @@ public final class ResourceManager {
         return this.getAnimationByKeyFromCache((int) key, (short) 0, (short) 0, (short) 0);
     }
 
-
-    public TileMap a(byte[] var1) {
-        TileMap var2 = null;
-        var2 = a(b(var1));
-        this.a(var2);
-        short[] var3 = this.b(var2);
-        this.batchLoadFrame1ToCache((short[]) var3, (short[]) null, (short[]) null, (short[]) null);
-        this.c(var2);
-        return var2;
+    private Animation getAnimationByIdFromCache(short id, short h, short s, short l) {
+        for (int i = 0; i < this.frameCache.size(); i++) {
+            Resource resource = (Resource) this.frameCache.elementAt(i);
+            if (resource.type == 2 && resource.info != null && resource.info.id == id) {
+                Animation animation = (Animation) resource;
+                if (animation.hsl_h == h && animation.hsl_s == s && animation.hsl_l == l) {
+                    return animation;
+                }
+            }
+        }
+        return null;
     }
 
-    public final TileMap c(String var1) {
-        int var20 = hashKey(wrapName(var1, (byte) 3).toCharArray());
-        Object var2 = null;
-        int var3 = var20;
-        ResourceManager var24 = this;
-        Object var4 = null;
-        int var5 = 0;
+    private static int[] batchHashKey(Vector names, byte type) {
+        int[] ids = new int[names.size()];
 
-        TileMap var10000;
-        while (true) {
-            if (var5 >= var24.frameCache.size()) {
-                var10000 = null;
-                break;
-            }
-
-            Resource var28;
-            if ((var28 = (Resource) var24.frameCache.elementAt(var5)).type == 3 && var28.info != null && var28.info.key == var3) {
-                var10000 = (TileMap) var28;
-                break;
-            }
-
-            ++var5;
+        for (int i = 0; i < names.size(); ++i) {
+            ids[i] = buildResourceId((String) names.elementAt(i), type);
         }
 
-        TileMap var25 = var10000;
-        if (var10000 != null) {
-            return var25;
-        } else {
-            DataInputStream var27 = null;
-            var4 = null;
-            try {
-                FrameInfo var30;
-                if ((var30 = this.getFrameInfoByKey(var20)) == null) {
-                    Object var23 = null;
-                    return null;
-                }
+        return ids;
+    }
 
-                if ((var27 = this.getFrameStream(var30)) == null) {
-                    Object var22 = null;
-
-                    return null;
-                }
-
-                var25 = a(readFrame1Data((DataInputStream) var27, (int) 0));
-                var27.close();
-                this.a(var25);
-                short[] var21 = this.b(var25);
-                this.batchLoadFrame1ToCache((short[]) var21, (short[]) null, (short[]) null, (short[]) null);
-                this.c(var25);
-                var25.info = var30;
-                return var25;
-            } catch (IOException var17) {
-                ((Throwable) var17).printStackTrace();
-            } finally {
-                try {
-                    if (var27 != null) {
-                        var27.close();
-                    }
-                } catch (IOException var13) {
-                }
-
+    private static int[] batchHashKey(String[] names, byte type) {
+        int[] ids = new int[names.length];
+        for (int i = 0; i < names.length; ++i) {
+            if (names[i].equals("")) {
+                ids[i] = -1;
+            } else {
+                ids[i] = buildResourceId((String) names[i], type);
             }
+        }
+
+        return ids;
+    }
+
+    public static int hashKey(char[] name) {
+        int var1 = name.length;
+        int var2 = 0;
+        int var3 = 0;
+
+        for (int var4 = 0; var4 < var1; ++var4) {
+            var3 = var3 * 31 + name[var2++];
+        }
+
+        return var3;
+    }
+
+    public static int buildResourceId(String name, byte type) {
+        return hashKey(wrapName(name, type).toCharArray());
+    }
+
+    public static String wrapName(String str, byte b) {
+        if (b == 0) {
+            str = str + "p";
+        } else if (b == 2) {
+            str = str + "s";
+        } else if (b == 3) {
+            str = str + "m";
+        }
+        return str;
+    }
+
+
+    public TileMap buildTileMap(byte[] data) {
+        TileMap tileMap = loadTileMap(parseByte(data));
+        this.loadTileMapSpritesToCache(tileMap);
+        short[] var3 = this.collectAnimationSpriteIds(tileMap);
+        this.batchLoadFrame1ToCache((short[]) var3, (short[]) null, (short[]) null, (short[]) null);
+        this.bindTileMapFrames(tileMap);
+        return tileMap;
+    }
+
+    private static byte[][] parseByte(byte[] bytes) {
+        DataInputStream dis = new DataInputStream(new ByteArrayInputStream(bytes));
+        byte[][] result = null;
+        try {
+            dis.readShort();
+            dis.readByte();
+            byte count = dis.readByte();
+            result = new byte[count][];
+            for (int i = 0; i < count; ++i) {
+                int len = dis.readInt();
+                result[i] = new byte[len];
+                dis.read(result[i]);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                dis.close();
+            } catch (IOException e) {
+            }
+        }
+        return result;
+    }
+
+    private static TileMap loadTileMap(byte[][] data) {
+        TileMap tileMap = new TileMap();
+        DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data[0]));
+
+        try {
+            tileMap.spriteIdHsl = new short[dis.readByte()][4];
+            for (int i = 0; i < tileMap.spriteIdHsl.length; ++i) {
+                tileMap.spriteIdHsl[i][0] = dis.readShort();
+                tileMap.spriteIdHsl[i][1] = dis.readShort();
+                tileMap.spriteIdHsl[i][2] = dis.readShort();
+                tileMap.spriteIdHsl[i][3] = dis.readShort();
+            }
+
+            tileMap.mapW = dis.readShort();
+            tileMap.mapH = dis.readShort();
+            tileMap.blockW = dis.readByte();
+            tileMap.blockH = dis.readByte();
+            tileMap.collisionW = dis.readByte();
+            tileMap.collisionH = dis.readByte();
+            tileMap.column = (byte) (tileMap.mapW / tileMap.blockW + (tileMap.mapW % tileMap.blockW == 0 ? 0 : 1));
+            tileMap.row = (byte) (tileMap.mapH / tileMap.blockH + (tileMap.mapH % tileMap.blockH == 0 ? 0 : 1));
+            int collisionCols = tileMap.mapW / tileMap.collisionW + (tileMap.mapW % tileMap.collisionW == 0 ? 0 : 1);
+            int collisionRows = tileMap.mapH / tileMap.collisionH + (tileMap.mapH % tileMap.collisionH == 0 ? 0 : 1);
+            tileMap.collisionMap = new byte[collisionCols][collisionRows];
+            short collisionCount = dis.readShort();
+            short[] collisionIds = new short[collisionCount];
+            for (int i = 0; i < collisionCount; ++i) {
+                collisionIds[i] = dis.readShort();
+                tileMap.collisionMap[collisionIds[i] % collisionCols][collisionIds[i] / collisionCols] = 1;
+            }
+
+            tileMap.mapBlock = new SpritePiece[tileMap.column][tileMap.row];
+            for (int col = 0; col < tileMap.mapBlock.length; ++col) {
+                for (int row = 0; row < tileMap.mapBlock[col].length; ++row) {
+                    if (dis.readByte() >= 0) {
+                        tileMap.mapBlock[col][row] = new SpritePiece();
+                        tileMap.mapBlock[col][row].build(dis, true);
+                    }
+                }
+            }
+
+            short fixedObjCount;
+            if ((fixedObjCount = dis.readShort()) > 0) {
+                tileMap.fixedObj = new SpritePiece[fixedObjCount];
+                for (int i = 0; i < fixedObjCount; ++i) {
+                    tileMap.fixedObj[i] = new SpritePiece();
+                    tileMap.fixedObj[i].build(dis, true);
+                }
+            }
+
+            short animObjCount;
+            if ((animObjCount = dis.readShort()) > 0) {
+                tileMap.animationObj = new SpritePiece[animObjCount];
+                for (int i = 0; i < animObjCount; ++i) {
+                    tileMap.animationObj[i] = new SpritePiece();
+                    tileMap.animationObj[i].build(dis, true);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                dis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return tileMap;
+    }
+
+    public TileMap loadTileMapByName(String name) {
+        int resourceKey = hashKey(wrapName(name, (byte) 3).toCharArray());
+
+        for (int i = 0; i < this.frameCache.size(); ++i) {
+            Resource res = (Resource) this.frameCache.elementAt(i);
+            if (res.type == 3 && res.info != null && res.info.key == resourceKey) {
+                return (TileMap) res;
+            }
+        }
+
+        FrameInfo frameInfo = this.getFrameInfoByKey(resourceKey);
+        if (frameInfo == null) {
             return null;
         }
+
+        DataInputStream dis = null;
+        try {
+            dis = this.getFrameStream(frameInfo);
+            if (dis == null) {
+                return null;
+            }
+            TileMap tileMap = loadTileMap(parseSpriteData(dis, 0));
+            this.loadTileMapSpritesToCache(tileMap);
+            short[] animSpriteIds = this.collectAnimationSpriteIds(tileMap);
+            this.batchLoadFrame1ToCache(animSpriteIds, null, null, null);
+            this.bindTileMapFrames(tileMap);
+            tileMap.info = frameInfo;
+            return tileMap;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (dis != null) {
+                try {
+                    dis.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+        return null;
     }
 
     public void loadResource(String path) {
@@ -412,12 +545,12 @@ public final class ResourceManager {
         this.doLoadFrame((int[]) var2, (short[]) null, (short[]) null, (short[]) null);
     }
 
-    public final void loadFrame(String[] var1, short[] var2, short[] var3, short[] var4) {
+    public void loadFrame(String[] var1, short[] var2, short[] var3, short[] var4) {
         int[] var5 = batchHashKey((String[]) var1, (byte) 2);
         this.doLoadFrame(var5, var2, var3, var4);
     }
 
-    public final void loadFrame(Vector var1, short[] var2, short[] var3, short[] var4) {
+    public void loadFrame(Vector var1, short[] var2, short[] var3, short[] var4) {
         int[] var5 = batchHashKey((Vector) var1, (byte) 2);
         this.doLoadFrame(var5, var2, var3, var4);
     }
@@ -445,7 +578,7 @@ public final class ResourceManager {
             short variantC = hasVariantParams ? variantCList[index] : (short) 0;
             if (resourceShortIds[index] >= 0) {
                 // 通过 this.c 中已缓存的 bc 资源先做一次去重检查。
-                if (getFrame1FromCache(resourceShortIds[index], variantA, variantB, variantC) != null) {
+                if (getAnimationByIdFromCache(resourceShortIds[index], variantA, variantB, variantC) != null) {
                     resourceShortIds[index] = -1;
                 } else {
                     //如果后面还有参数完全相同的，就跳过当前资源
@@ -468,7 +601,7 @@ public final class ResourceManager {
             short variantC2 = hasVariantParams ? variantCList[index2] : (short) 0;
             if (resourceShortId >= 0 || variantA2 != 0 || variantB2 != 0 || variantC2 != 0) {
                 // this.c 是已加载资源缓存；命中时直接从缓存资源派生一个新实例即可。
-                Animation cachedResource = getFrame1FromCache(resourceShortId, variantA2, variantB2, variantC2);
+                Animation cachedResource = getAnimationByIdFromCache(resourceShortId, variantA2, variantB2, variantC2);
                 if (cachedResource == null) {
                     DataInputStream resourceStream = null;
                     try {
@@ -563,14 +696,14 @@ public final class ResourceManager {
     }
 
     private void loadFrame1FromFile2Cache(FrameInfo var1, DataInputStream var2, short var3, short var4, short var5) throws IOException {
-        Animation var15 = buildAnimation(readFrame1Data((DataInputStream) var2, (int) 0), var3, var4, var5);
+        Animation var15 = buildAnimation(parseSpriteData((DataInputStream) var2, (int) 0), var3, var4, var5);
         short var10 = var5;
         short var9 = var4;
         short var8 = var3;
         ResourceManager var6 = this;
         Animation var11 = var15;
         ResourceManager var7 = this;
-        this.d.removeAllElements();
+        this.mapResSpriteIdCache.removeAllElements();
         short[] var10000;
         if (var15 != null && var15.spritePieces != null) {
             Object var12 = null;
@@ -580,21 +713,21 @@ public final class ResourceManager {
                     for (int var14 = 0; var14 < var11.spritePieces[var13].length; ++var14) {
                         if (var11.spritePieces[var13][var14] != null) {
                             String var19 = String.valueOf(var11.spritePieces[var13][var14].spriteId);
-                            if (!var7.d.contains(var19)) {
-                                var7.d.addElement(var19);
+                            if (!var7.mapResSpriteIdCache.contains(var19)) {
+                                var7.mapResSpriteIdCache.addElement(var19);
                             }
                         }
                     }
                 }
             }
 
-            short[] var21 = new short[var7.d.size()];
+            short[] var21 = new short[var7.mapResSpriteIdCache.size()];
 
-            for (int var22 = 0; var22 < var7.d.size(); ++var22) {
-                var21[var22] = Short.parseShort((String) var7.d.elementAt(var22));
+            for (int var22 = 0; var22 < var7.mapResSpriteIdCache.size(); ++var22) {
+                var21[var22] = Short.parseShort((String) var7.mapResSpriteIdCache.elementAt(var22));
             }
 
-            var7.d.removeAllElements();
+            var7.mapResSpriteIdCache.removeAllElements();
             var10000 = var21;
         } else {
             var10000 = null;
@@ -604,7 +737,7 @@ public final class ResourceManager {
         if (var10000 != null) {
             for (int var17 = 0; var17 < var16.length; ++var17) {
                 if (var16[var17] >= 0) {
-                    if (var6.getFrame0FromCache(var16[var17], var8, var9, var10) != null) {
+                    if (var6.getSpriteByIdFromCache(var16[var17], var8, var9, var10) != null) {
                         var16[var17] = -1;
                     } else {
                         for (int var20 = var17 + 1; var20 < var16.length; ++var20) {
@@ -618,7 +751,7 @@ public final class ResourceManager {
 
             for (int var18 = 0; var18 < var16.length; ++var18) {
                 if (var16[var18] >= 0) {
-                    var6.loadFrame(var16[var18], var8, var9, var10);
+                    var6.loadSpriteToCache(var16[var18], var8, var9, var10);
                 }
             }
         }
@@ -628,108 +761,42 @@ public final class ResourceManager {
         this.frameCache.addElement(var15);
     }
 
-    public final void e(String var1) {
-        boolean var22 = false;
-        boolean var23 = false;
-        boolean var24 = false;
-        ResourceManager var25 = this;
-        int var26 = buildResourceId((String) var1, (byte) 0);
-        byte var6 = 0;
-        byte var5 = 0;
-        byte var4 = 0;
-        int var3 = var26;
-        ResourceManager var2 = this;
-        Object var7 = null;
-        var7 = null;
-        int var8 = 0;
+    public void loadSpriteByName(String name) {
+        int resourceKey = buildResourceId(name, (byte) 0);
 
-        Sprite var38;
-        while (true) {
-            if (var8 >= var2.frameCache.size()) {
-                var38 = null;
-                break;
+        Sprite cached = null;
+        for (int i = 0; i < this.frameCache.size(); ++i) {
+            Resource res = (Resource) this.frameCache.elementAt(i);
+            if (res.type == 0 && res.info != null && res.info.key == resourceKey) {
+                Sprite sprite = (Sprite) res;
+                if (sprite.H == 0 && sprite.S == 0 && sprite.L == 0) {
+                    cached = sprite;
+                    break;
+                }
             }
-
-            Resource var31;
-            Sprite var32;
-            if ((var31 = (Resource) var2.frameCache.elementAt(var8)).type == 0 && var31.info != null && var31.info.key == var3 && (var32 = (Sprite) var31).H == var4 && var32.S == var5 && var32.L == var6) {
-                var38 = var32;
-                break;
-            }
-
-            ++var8;
         }
 
-        if (var38 == null) {
-            var2 = null;
-            FrameInfo var29;
-            if ((var29 = this.getFrameInfoByKey(var26)) != null) {
-                DataInputStream var27 = null;
-                boolean var15 = false;
-
-                label163:
-                {
-                    label162:
-                    {
-                        try {
-                            var15 = true;
-                            if ((var27 = var25.getFrameStream(var29)) != null) {
-                                var25.loadFrameAndCache(var29, var27, (short) 0, (short) 0, (short) 0);
-                                var15 = false;
-                                break label162;
-                            }
-
-                            var15 = false;
-                        } catch (Exception var20) {
-                            var20.printStackTrace();
-                            var15 = false;
-                            break label163;
-                        } finally {
-                            if (var15) {
-                                try {
-                                    if (var27 != null) {
-                                        var27.close();
-                                    }
-                                } catch (IOException var16) {
-                                }
-
-                            }
-                        }
-
-                        try {
-                            if (var27 != null) {
-                                var27.close();
-                            }
-
-                            return;
-                        } catch (IOException var19) {
-                            return;
-                        }
-                    }
-
-                    try {
-                        if (var27 != null) {
-                            var27.close();
-                        }
-
-                        return;
-                    } catch (IOException var18) {
-                        return;
-                    }
-                }
-
+        if (cached == null) {
+            FrameInfo frameInfo = this.getFrameInfoByKey(resourceKey);
+            if (frameInfo != null) {
+                DataInputStream dis = null;
                 try {
-                    if (var27 != null) {
-                        var27.close();
+                    dis = this.getFrameStream(frameInfo);
+                    if (dis != null) {
+                        this.loadSpriteToCache(frameInfo, dis, (short) 0, (short) 0, (short) 0);
                     }
-
-                    return;
-                } catch (IOException var17) {
-                    return;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    if (dis != null) {
+                        try {
+                            dis.close();
+                        } catch (IOException e) {
+                        }
+                    }
                 }
             }
         }
-
     }
 
     /**
@@ -785,91 +852,85 @@ public final class ResourceManager {
         // 加载循环：对所有未被置 -1 的条目，调用 b(short,short,short,short) 执行实际的 Frame0 加载
         for (int i = 0; i < resourceIds.length; i++) {
             if (resourceIds[i] >= 0) {
-                this.loadFrame(resourceIds[i], hasVariantParams ? var2[i] : 0, hasVariantParams ? var3[i] : 0, hasVariantParams ? var4[i] : 0);
+                this.loadSpriteToCache(resourceIds[i], hasVariantParams ? var2[i] : 0, hasVariantParams ? var3[i] : 0, hasVariantParams ? var4[i] : 0);
             }
         }
     }
 
-    private void a(TileMap var1) {
-        TileMap var3 = var1;
-        ResourceManager var2 = this;
-        this.d.removeAllElements();
-        Object var4 = null;
-        if (var1.mapBlock != null) {
-            for (int var5 = 0; var5 < var3.mapBlock.length; ++var5) {
-                for (int var6 = 0; var6 < var3.mapBlock[var5].length; ++var6) {
-                    if (var3.mapBlock[var5][var6] != null) {
-                        String var12 = String.valueOf(var3.mapBlock[var5][var6].spriteId);
-                        if (!var2.d.contains(var12)) {
-                            var2.d.addElement(var12);
+    private void loadTileMapSpritesToCache(TileMap tileMap) {
+        this.mapResSpriteIdCache.removeAllElements();
+
+        if (tileMap.mapBlock != null) {
+            for (int col = 0; col < tileMap.mapBlock.length; ++col) {
+                for (int row = 0; row < tileMap.mapBlock[col].length; ++row) {
+                    if (tileMap.mapBlock[col][row] != null) {
+                        String id = String.valueOf(tileMap.mapBlock[col][row].spriteId);
+                        if (!this.mapResSpriteIdCache.contains(id)) {
+                            this.mapResSpriteIdCache.addElement(id);
                         }
                     }
                 }
             }
         }
 
-        if (var3.fixedObj != null) {
-            for (int var17 = 0; var17 < var3.fixedObj.length; ++var17) {
-                if (var3.fixedObj[var17] != null) {
-                    String var13 = String.valueOf(var3.fixedObj[var17].spriteId);
-                    if (!var2.d.contains(var13)) {
-                        var2.d.addElement(var13);
+        if (tileMap.fixedObj != null) {
+            for (int i = 0; i < tileMap.fixedObj.length; ++i) {
+                if (tileMap.fixedObj[i] != null) {
+                    String id = String.valueOf(tileMap.fixedObj[i].spriteId);
+                    if (!this.mapResSpriteIdCache.contains(id)) {
+                        this.mapResSpriteIdCache.addElement(id);
                     }
                 }
             }
         }
 
-        if (var3.animationObj != null) {
-            for (int var18 = 0; var18 < var3.animationObj.length; ++var18) {
-                if (var3.animationObj[var18] != null && var3.animationObj[var18].type == 0) {
-                    String var14 = String.valueOf(var3.animationObj[var18].spriteId);
-                    if (!var2.d.contains(var14)) {
-                        var2.d.addElement(var14);
+        if (tileMap.animationObj != null) {
+            for (int i = 0; i < tileMap.animationObj.length; ++i) {
+                if (tileMap.animationObj[i] != null && tileMap.animationObj[i].type == 0) {
+                    String id = String.valueOf(tileMap.animationObj[i].spriteId);
+                    if (!this.mapResSpriteIdCache.contains(id)) {
+                        this.mapResSpriteIdCache.addElement(id);
                     }
                 }
             }
         }
 
-        short[] var19 = new short[var2.d.size()];
-
-        for (int var20 = 0; var20 < var2.d.size(); ++var20) {
-            var19[var20] = Short.parseShort((String) var2.d.elementAt(var20));
+        short[] spriteIds = new short[this.mapResSpriteIdCache.size()];
+        for (int i = 0; i < this.mapResSpriteIdCache.size(); ++i) {
+            spriteIds[i] = Short.parseShort((String) this.mapResSpriteIdCache.elementAt(i));
         }
+        this.mapResSpriteIdCache.removeAllElements();
 
-        var2.d.removeAllElements();
-        short[] var7 = var19;
-        short var8 = 0;
-
-        for (int var15 = 0; var15 < var7.length; ++var15) {
-            if (var7[var15] >= 0) {
-                var8 = var1.a(var7[var15]);
-                if (this.getFrame0FromCache(var7[var15], var8 < 0 ? 0 : var1.spriteIdHsl[var8][1], var8 < 0 ? 0 : var1.spriteIdHsl[var8][2], var8 < 0 ? 0 : var1.spriteIdHsl[var8][3]) != null) {
-                    var7[var15] = -1;
+        for (int i = 0; i < spriteIds.length; ++i) {
+            if (spriteIds[i] >= 0) {
+                short hslIndex = tileMap.getIndexBySpriteId(spriteIds[i]);
+                if (getSpriteByIdFromCache(spriteIds[i], hslIndex < 0 ? 0 : tileMap.spriteIdHsl[hslIndex][1], hslIndex < 0 ? 0 : tileMap.spriteIdHsl[hslIndex][2], hslIndex < 0 ? 0 : tileMap.spriteIdHsl[hslIndex][3]) != null) {
+                    spriteIds[i] = -1;
                 } else {
-                    for (int var10 = var15 + 1; var10 < var7.length; ++var10) {
-                        if (var7[var10] >= 0 && var7[var15] == var7[var10]) {
-                            var7[var15] = -1;
+                    for (int j = i + 1; j < spriteIds.length; ++j) {
+                        if (spriteIds[j] >= 0 && spriteIds[i] == spriteIds[j]) {
+                            spriteIds[i] = -1;
                         }
                     }
                 }
             }
         }
 
-        for (int var16 = 0; var16 < var7.length; ++var16) {
-            if (var7[var16] >= 0) {
-                if ((var8 = var1.a(var7[var16])) >= 0) {
-                    this.loadFrame(var7[var16], var1.spriteIdHsl[var8][1], var1.spriteIdHsl[var8][2], var1.spriteIdHsl[var8][3]);
+        for (int i = 0; i < spriteIds.length; ++i) {
+            if (spriteIds[i] >= 0) {
+                short hslIndex = tileMap.getIndexBySpriteId(spriteIds[i]);
+                if (hslIndex >= 0) {
+                    this.loadSpriteToCache(spriteIds[i], tileMap.spriteIdHsl[hslIndex][1], tileMap.spriteIdHsl[hslIndex][2], tileMap.spriteIdHsl[hslIndex][3]);
                 } else {
-                    this.loadFrame(var7[var16], (short) 0, (short) 0, (short) 0);
+                    this.loadSpriteToCache(spriteIds[i], (short) 0, (short) 0, (short) 0);
                 }
             }
         }
-
     }
 
-    private void loadFrame(short id, short variantA, short variantB, short variantC) {
+    private void loadSpriteToCache(short id, short h, short s, short l) {
         // 通过 this.c 中的已加载缓存检查，避免同一资源被重复反序列化。
-        if (getFrame0FromCache(id, variantA, variantB, variantC) != null) {
+        if (getSpriteByIdFromCache(id, h, s, l) != null) {
             return;
         }
         DataInputStream resourceStream = null;
@@ -885,7 +946,7 @@ public final class ResourceManager {
                 return;
             }
             // 解析资源内容，并在内部写回 this.c 缓存。
-            loadFrameAndCache(frameInfo, resourceStream, variantA, variantB, variantC);
+            loadSpriteToCache(frameInfo, resourceStream, h, s, l);
         } catch (IOException ioException) {
             ioException.printStackTrace();
         } finally {
@@ -898,92 +959,13 @@ public final class ResourceManager {
         }
     }
 
-    private void loadFrameAndCache(FrameInfo frameInfo, DataInputStream inputStream, short var3, short var4, short var5) throws IOException {
+    private void loadSpriteToCache(FrameInfo frameInfo, DataInputStream inputStream, short h, short s, short l) throws IOException {
         Sprite var6;
-        (var6 = buildSprite(readFrame1Data((DataInputStream) inputStream, (int) 0), var3, var4, var5)).info = frameInfo;
+        (var6 = buildSprite(parseSpriteData((DataInputStream) inputStream, (int) 0), h, s, l)).info = frameInfo;
         this.frameCache.addElement(var6);
     }
 
-    private static TileMap a(byte[][] var0) {
-        Object var1;
-        Object var10000 = var1 = new TileMap();
-        byte[] var2 = var0[0];
-        Object var15 = var10000;
-        DataInputStream var16 = new DataInputStream(new ByteArrayInputStream(var2));
-
-        try {
-            ((TileMap) var15).spriteIdHsl = new short[var16.readByte()][4];
-
-            for (int var3 = 0; var3 < ((TileMap) var15).spriteIdHsl.length; ++var3) {
-                ((TileMap) var15).spriteIdHsl[var3][0] = var16.readShort();
-                ((TileMap) var15).spriteIdHsl[var3][1] = var16.readShort();
-                ((TileMap) var15).spriteIdHsl[var3][2] = var16.readShort();
-                ((TileMap) var15).spriteIdHsl[var3][3] = var16.readShort();
-            }
-
-            ((TileMap) var15).mapW = var16.readShort();
-            ((TileMap) var15).mapH = var16.readShort();
-            ((TileMap) var15).blockW = var16.readByte();
-            ((TileMap) var15).blockH = var16.readByte();
-            ((TileMap) var15).collisionW = var16.readByte();
-            ((TileMap) var15).collisionH = var16.readByte();
-            ((TileMap) var15).column = (byte) (((TileMap) var15).mapW / ((TileMap) var15).blockW + (((TileMap) var15).mapW % ((TileMap) var15).blockW == 0 ? 0 : 1));
-            ((TileMap) var15).row = (byte) (((TileMap) var15).mapH / ((TileMap) var15).blockH + (((TileMap) var15).mapH % ((TileMap) var15).blockH == 0 ? 0 : 1));
-            int var17 = ((TileMap) var15).mapW / ((TileMap) var15).collisionW + (((TileMap) var15).mapW % ((TileMap) var15).collisionW == 0 ? 0 : 1);
-            int var4 = ((TileMap) var15).mapH / ((TileMap) var15).collisionH + (((TileMap) var15).mapH % ((TileMap) var15).collisionH == 0 ? 0 : 1);
-            ((TileMap) var15).collisionMap = new byte[var17][var4];
-            short[] var5 = new short[var4 = var16.readShort()];
-
-            for (int var6 = 0; var6 < var4; ++var6) {
-                var5[var6] = var16.readShort();
-                ((TileMap) var15).collisionMap[var5[var6] % var17][var5[var6] / var17] = 1;
-            }
-
-            ((TileMap) var15).mapBlock = new SpritePiece[((TileMap) var15).column][((TileMap) var15).row];
-
-            for (int var22 = 0; var22 < ((TileMap) var15).mapBlock.length; ++var22) {
-                for (int var18 = 0; var18 < ((TileMap) var15).mapBlock[var22].length; ++var18) {
-                    if (var16.readByte() >= 0) {
-                        ((TileMap) var15).mapBlock[var22][var18] = new SpritePiece();
-                        ((TileMap) var15).mapBlock[var22][var18].build(var16, true);
-                    }
-                }
-            }
-
-            short var23;
-            if ((var23 = var16.readShort()) > 0) {
-                ((TileMap) var15).fixedObj = new SpritePiece[var23];
-
-                for (int var19 = 0; var19 < var23; ++var19) {
-                    ((TileMap) var15).fixedObj[var19] = new SpritePiece();
-                    ((TileMap) var15).fixedObj[var19].build(var16, true);
-                }
-            }
-
-            if ((var23 = var16.readShort()) > 0) {
-                ((TileMap) var15).animationObj = new SpritePiece[var23];
-
-                for (int var20 = 0; var20 < var23; ++var20) {
-                    ((TileMap) var15).animationObj[var20] = new SpritePiece();
-                    ((TileMap) var15).animationObj[var20].build(var16, true);
-                }
-            }
-        } catch (IOException var13) {
-            ((Throwable) var13).printStackTrace();
-        } finally {
-            try {
-                var16.close();
-            } catch (IOException var12) {
-                var1 = var12;
-                ((Throwable) var12).printStackTrace();
-            }
-
-        }
-
-        return (TileMap) var1;
-    }
-
-    private static byte[][] readFrame1Data(DataInputStream var0, int var1) throws IOException {
+    private static byte[][] parseSpriteData(DataInputStream var0, int var1) throws IOException {
         var0.skipBytes(0);
         var0.readShort();
         var0.readByte();
@@ -994,73 +976,38 @@ public final class ResourceManager {
             var2[var3] = new byte[var4];
             var0.read(var2[var3]);
         }
-
         return var2;
     }
 
-    private static byte[][] b(byte[] bytes) {
-        DataInputStream dis = new DataInputStream(new ByteArrayInputStream(bytes));
-        byte[][] var1 = null;
-        try {
-
-            dis.readShort();
-            dis.readByte();
-            byte var2;
-            var1 = new byte[var2 = dis.readByte()][];
-
-            for (int var3 = 0; var3 < var2; ++var3) {
-                int var4 = dis.readInt();
-                var1[var3] = new byte[var4];
-                dis.read(var1[var3]);
-            }
-        } catch (IOException var14) {
-            ((Throwable) var14).printStackTrace();
-
-        } finally {
-            try {
-                dis.close();
-            } catch (IOException var11) {
-            }
-        }
-        return var1;
-    }
-
     private DataInputStream getFrameStream(FrameInfo frameInfo) {
-        byte[] var2 = null;
+        byte[] cachedBytes = null;
         if (this.name.equals(GlobalStatus.currentMapName) && GlobalStatus.kY != null) {
-            g var3 = null;
-
-            for (short var4 = 0; var4 < GlobalStatus.kY.size(); ++var4) {
-                if ((var3 = (g) GlobalStatus.kY.elementAt(var4)).a == frameInfo.key) {
-                    var2 = var3.b;
+            for (short i = 0; i < GlobalStatus.kY.size(); ++i) {
+                g entry = (g) GlobalStatus.kY.elementAt(i);
+                if (entry.a == frameInfo.key) {
+                    cachedBytes = entry.b;
                     break;
                 }
             }
-        } else {
-            this.name.equals((Object) null);
         }
 
-        DataInputStream var6 = null;
-        if (var2 != null) {
-            ByteArrayInputStream var7 = new ByteArrayInputStream(var2);
-            var6 = new DataInputStream(var7);
-        } else {
-            Object var8 = null;
-            InputStream var9;
-            if (this.name.equals(GlobalStatus.currentMapName) && (var9 = this.getClass().getResourceAsStream(this.path + frameInfo.key + ".rpg")) != null) {
-                var6 = new DataInputStream(var9);
-            }
+        if (cachedBytes != null) {
+            return new DataInputStream(new ByteArrayInputStream(cachedBytes));
+        }
 
-            if (var6 == null) {
-                if ((var9 = this.getClass().getResourceAsStream(this.path + frameInfo.id + ".rpg")) == null) {
-                    return null;
-                }
-
-                var6 = new DataInputStream(var9);
+        InputStream is;
+        if (this.name.equals(GlobalStatus.currentMapName)) {
+            is = this.getClass().getResourceAsStream(this.path + frameInfo.key + ".rpg");
+            if (is != null) {
+                return new DataInputStream(is);
             }
         }
 
-        return var6;
+        is = this.getClass().getResourceAsStream(this.path + frameInfo.id + ".rpg");
+        if (is == null) {
+            return null;
+        }
+        return new DataInputStream(is);
     }
 
     private FrameInfo getFrameInfoByKey(int key) {
@@ -1083,181 +1030,93 @@ public final class ResourceManager {
         return null;
     }
 
-    private short[] b(TileMap var1) {
-        this.d.removeAllElements();
-        Object var2 = null;
-        if (var1.animationObj != null) {
-            for (int var3 = 0; var3 < var1.animationObj.length; ++var3) {
-                if (var1.animationObj[var3] != null && var1.animationObj[var3].type == 2) {
-                    String var5 = String.valueOf(var1.animationObj[var3].spriteId);
-                    if (!this.d.contains(var5)) {
-                        this.d.addElement(var5);
+    private short[] collectAnimationSpriteIds(TileMap tileMap) {
+        this.mapResSpriteIdCache.removeAllElements();
+        if (tileMap.animationObj != null) {
+            for (int i = 0; i < tileMap.animationObj.length; ++i) {
+                SpritePiece piece = tileMap.animationObj[i];
+                if (piece != null && piece.type == 2) {
+                    String id = String.valueOf(piece.spriteId);
+                    if (!this.mapResSpriteIdCache.contains(id)) {
+                        this.mapResSpriteIdCache.addElement(id);
                     }
                 }
             }
         }
 
-        short[] var6 = new short[this.d.size()];
-
-        for (int var4 = 0; var4 < this.d.size(); ++var4) {
-            var6[var4] = Short.parseShort((String) this.d.elementAt(var4));
+        short[] spriteIds = new short[this.mapResSpriteIdCache.size()];
+        for (int i = 0; i < this.mapResSpriteIdCache.size(); ++i) {
+            spriteIds[i] = Short.parseShort((String) this.mapResSpriteIdCache.elementAt(i));
         }
-
-        this.d.removeAllElements();
-        return var6;
+        this.mapResSpriteIdCache.removeAllElements();
+        return spriteIds;
     }
 
 
-    private void c(TileMap var1) {
-        short var2 = 0;
-        if (var1.mapBlock != null) {
-            for (int var3 = 0; var3 < var1.mapBlock.length; ++var3) {
-                for (int var4 = 0; var4 < var1.mapBlock[var3].length; ++var4) {
-                    if (var1.mapBlock[var3][var4] != null) {
-                        if ((var2 = var1.a(var1.mapBlock[var3][var4].spriteId)) != -1) {
-                            var1.mapBlock[var3][var4].frame = this.getSpriteByIdFromCache(var1.mapBlock[var3][var4].spriteId, var1.spriteIdHsl[var2][1], var1.spriteIdHsl[var2][2], var1.spriteIdHsl[var2][3]);
+    private void bindTileMapFrames(TileMap tileMap) {
+        if (tileMap.mapBlock != null) {
+            for (int col = 0; col < tileMap.mapBlock.length; ++col) {
+                for (int row = 0; row < tileMap.mapBlock[col].length; ++row) {
+                    SpritePiece piece = tileMap.mapBlock[col][row];
+                    if (piece != null) {
+                        short hslIndex = tileMap.getIndexBySpriteId(piece.spriteId);
+                        if (hslIndex != -1) {
+                            piece.frame = this.getSpriteByIdFromCache(piece.spriteId, tileMap.spriteIdHsl[hslIndex][1], tileMap.spriteIdHsl[hslIndex][2], tileMap.spriteIdHsl[hslIndex][3]);
                         } else {
-                            var1.mapBlock[var3][var4].frame = this.getSpriteByIdFromCache((short) var1.mapBlock[var3][var4].spriteId, (short) 0, (short) 0, (short) 0);
+                            piece.frame = this.getSpriteByIdFromCache(piece.spriteId, (short) 0, (short) 0, (short) 0);
                         }
                     }
                 }
             }
         }
 
-        if (var1.fixedObj != null) {
-            for (int var11 = 0; var11 < var1.fixedObj.length; ++var11) {
-                if (var1.fixedObj[var11] != null) {
-                    if ((var2 = var1.a(var1.fixedObj[var11].spriteId)) != -1) {
-                        var1.fixedObj[var11].frame = this.getSpriteByIdFromCache(var1.fixedObj[var11].spriteId, var1.spriteIdHsl[var2][1], var1.spriteIdHsl[var2][2], var1.spriteIdHsl[var2][3]);
+        if (tileMap.fixedObj != null) {
+            for (int i = 0; i < tileMap.fixedObj.length; ++i) {
+                SpritePiece piece = tileMap.fixedObj[i];
+                if (piece != null) {
+                    short hslIndex = tileMap.getIndexBySpriteId(piece.spriteId);
+                    if (hslIndex != -1) {
+                        piece.frame = this.getSpriteByIdFromCache(piece.spriteId, tileMap.spriteIdHsl[hslIndex][1], tileMap.spriteIdHsl[hslIndex][2], tileMap.spriteIdHsl[hslIndex][3]);
                     } else {
-                        var1.fixedObj[var11].frame = this.getSpriteByIdFromCache((short) var1.fixedObj[var11].spriteId, (short) 0, (short) 0, (short) 0);
+                        piece.frame = this.getSpriteByIdFromCache(piece.spriteId, (short) 0, (short) 0, (short) 0);
                     }
                 }
             }
         }
 
-        if (var1.animationObj != null) {
-            for (int var12 = 0; var12 < var1.animationObj.length; ++var12) {
-                if (var1.animationObj[var12] != null) {
-                    SpritePiece var10000;
-                    Object var10001;
-                    if (var1.animationObj[var12].type == 0) {
-                        if ((var2 = var1.a(var1.animationObj[var12].spriteId)) != -1) {
-                            var10000 = var1.animationObj[var12];
-                            var10001 = this.getSpriteByIdFromCache(var1.animationObj[var12].spriteId, var1.spriteIdHsl[var2][1], var1.spriteIdHsl[var2][2], var1.spriteIdHsl[var2][3]);
-                        } else {
-                            var10000 = var1.animationObj[var12];
-                            var10001 = this.getSpriteByIdFromCache((short) var1.animationObj[var12].spriteId, (short) 0, (short) 0, (short) 0);
-                        }
+        if (tileMap.animationObj != null) {
+            for (int i = 0; i < tileMap.animationObj.length; ++i) {
+                SpritePiece piece = tileMap.animationObj[i];
+                if (piece == null) {
+                    continue;
+                }
+                if (piece.type == 0) {
+                    short hslIndex = tileMap.getIndexBySpriteId(piece.spriteId);
+                    if (hslIndex != -1) {
+                        piece.frame = this.getSpriteByIdFromCache(piece.spriteId, tileMap.spriteIdHsl[hslIndex][1], tileMap.spriteIdHsl[hslIndex][2], tileMap.spriteIdHsl[hslIndex][3]);
                     } else {
-                        if (var1.animationObj[var12].type != 2) {
-                            continue;
-                        }
-
-                        var10000 = var1.animationObj[var12];
-                        short var13 = var1.animationObj[var12].spriteId;
-                        ResourceManager var10 = this;
-                        Object var5 = null;
-                        int var6 = 0;
-
-                        while (true) {
-                            if (var6 >= var10.frameCache.size()) {
-                                GlobalConfig.printStr("no resource " + var13);
-                                var10001 = null;
+                        piece.frame = this.getSpriteByIdFromCache(piece.spriteId, (short) 0, (short) 0, (short) 0);
+                    }
+                } else if (piece.type == 2) {
+                    short animSpriteId = piece.spriteId;
+                    Animation found = null;
+                    for (int j = 0; j < this.frameCache.size(); ++j) {
+                        if (this.frameCache.elementAt(j) instanceof Animation) {
+                            Animation anim = (Animation) this.frameCache.elementAt(j);
+                            if (anim.info != null && anim.info.id == animSpriteId) {
+                                found = anim;
                                 break;
                             }
-
-                            Animation var14;
-                            if (var10.frameCache.elementAt(var6) instanceof Animation && (var14 = (Animation) var10.frameCache.elementAt(var6)).info != null && var14.info.id == var13) {
-                                var10001 = var14;
-                                break;
-                            }
-
-                            ++var6;
                         }
                     }
-
-                    var10000.frame = (Resource) var10001;
+                    if (found == null) {
+                        GlobalConfig.printStr("no resource " + animSpriteId);
+                    }
+                    piece.frame = found;
                 }
             }
         }
-
     }
 
-    private Animation getFrame1FromCache(short s, short s2, short s3, short s4) {
-        for (int i = 0; i < this.frameCache.size(); i++) {
-            Resource cfVar = (Resource) this.frameCache.elementAt(i);
-            if (cfVar.type == 2 && cfVar.info != null && cfVar.info.id == s) {
-                Animation bcVar = (Animation) cfVar;
-                if (bcVar.hsl_h == s2 && bcVar.hsl_s == s3 && bcVar.hsl_l == s4) {
-                    return bcVar;
-                }
-            }
-        }
-        return null;
-    }
-
-    private Sprite getFrame0FromCache(short id, short s2, short s3, short s4) {
-        for (int i = 0; i < this.frameCache.size(); i++) {
-            Resource cfVar = (Resource) this.frameCache.elementAt(i);
-            if (cfVar.type == 0 && cfVar.info != null && cfVar.info.id == id) {
-                Sprite bfVar = (Sprite) cfVar;
-                if (bfVar.H == s2 && bfVar.S == s3 && bfVar.L == s4) {
-                    return bfVar;
-                }
-            }
-        }
-        return null;
-    }
-
-    private static int[] batchHashKey(Vector names, byte type) {
-        int[] ids = new int[names.size()];
-
-        for (int i = 0; i < names.size(); ++i) {
-            ids[i] = buildResourceId((String) names.elementAt(i), type);
-        }
-
-        return ids;
-    }
-
-    private static int[] batchHashKey(String[] names, byte type) {
-        int[] ids = new int[names.length];
-        for (int i = 0; i < names.length; ++i) {
-            if (names[i].equals("")) {
-                ids[i] = -1;
-            } else {
-                ids[i] = buildResourceId((String) names[i], type);
-            }
-        }
-
-        return ids;
-    }
-
-    public static int hashKey(char[] name) {
-        int var1 = name.length;
-        int var2 = 0;
-        int var3 = 0;
-
-        for (int var4 = 0; var4 < var1; ++var4) {
-            var3 = var3 * 31 + name[var2++];
-        }
-
-        return var3;
-    }
-
-    public static int buildResourceId(String name, byte type) {
-        return hashKey(wrapName(name, type).toCharArray());
-    }
-
-    public static String wrapName(String str, byte b) {
-        if (b == 0) {
-            str = str + "p";
-        } else if (b == 2) {
-            str = str + "s";
-        } else if (b == 3) {
-            str = str + "m";
-        }
-        return str;
-    }
 
 }
