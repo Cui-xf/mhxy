@@ -1,36 +1,29 @@
 package com.cc.screens
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.Screen
-import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.Texture
-import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.cc.AssetManagerFactory
 import com.cc.FontManager
 import com.cc.MhxyGame
 
-class LoadingScreen(private val game: MhxyGame) : Screen {
+class LoadingScreen : AbstractScreen() {
 
-    private val batch = SpriteBatch()
     private val shapeRenderer = ShapeRenderer()
     private val font = FontManager.createFont(28)
 
-    val assets = AssetManagerFactory.create()
 
     init {
         // 只加载公共资源，场景专属资源由各场景自己加载
-        assets.load("title_bg.jpg", Texture::class.java)
-        assets.load("player.jpg", Texture::class.java)
+        AssetManagerFactory.PUBLIC_ASSET.load("title_bg.jpg", Texture::class.java)
+        AssetManagerFactory.PUBLIC_ASSET.load("player.jpg", Texture::class.java)
     }
 
     private var dotTimer = 0f
     private var dotCount = 0
 
-    override fun show() {}
-
-    override fun render(delta: Float) {
+    override fun update(delta: Float) {
         assets.update()
         val progress = assets.progress
 
@@ -63,14 +56,9 @@ class LoadingScreen(private val game: MhxyGame) : Screen {
         batch.end()
 
         if (assets.isFinished) {
-            game.setScreen(TitleScreen(game, assets))
+            MhxyGame.setScreen(TitleScreen(MhxyGame, assets))
         }
     }
-
-    override fun resize(width: Int, height: Int) {}
-    override fun pause() {}
-    override fun resume() {}
-    override fun hide() {}
 
     override fun dispose() {
         batch.dispose()

@@ -9,8 +9,6 @@ class LogoScreen : AbstractScreen() {
 
     private var frameCounter: Float = 260f
 
-    override fun show() {}
-
     override fun update(delta: Float) {
         frameCounter += delta * 5 * 60f
 
@@ -19,8 +17,8 @@ class LogoScreen : AbstractScreen() {
         // logo 居中绘制
         val logoW = logo.width.toFloat()
         val logoH = logo.height.toFloat()
-        val x = (SCREEN_W - logoW) / 2f
-        val y = (SCREEN_H - logoH) / 2f
+        val x = (VIRTUAL_W - logoW) / 2f
+        val y = (VIRTUAL_H - logoH) / 2f
 
         batch.begin()
         batch.setColor(1f, 1f, 1f, alpha)
@@ -28,13 +26,12 @@ class LogoScreen : AbstractScreen() {
         batch.end()
 
         if (frameCounter >= 515f) {
-            MhxyGame.setScreen(LoadingScreen(MhxyGame))
+            MhxyGame.setScreen(LoadingScreen())
             dispose()
         }
     }
 
     override fun dispose() {
-        super.dispose()
         logo.dispose()
     }
 }
