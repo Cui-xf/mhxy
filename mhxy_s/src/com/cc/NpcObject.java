@@ -220,7 +220,7 @@ public final class NpcObject {
                     var4 = var10001;
                     LoadingPage.fillRect(var1, 1009050, 150, var4, var9, var6, var7);
                     if (this.Z >= 3) {
-                        this.X.a(var1, this.Y[0] + 5, var9 + 5, 20);
+                        this.X.drawString(var1, this.Y[0] + 5, var9 + 5, 20);
                     }
                 }
 

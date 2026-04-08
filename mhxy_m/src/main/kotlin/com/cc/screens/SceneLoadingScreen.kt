@@ -25,7 +25,7 @@ class SceneLoadingScreen(
 
     private val batch = SpriteBatch()
     private val shapeRenderer = ShapeRenderer()
-    private val font = FontManager.createFont(24)
+    private val font =FontManager.SMALL_FONT
 
     private val sceneAssets = AssetManagerFactory.create()
 

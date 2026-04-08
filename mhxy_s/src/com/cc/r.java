@@ -471,7 +471,7 @@ public final class r {
       int var15 = this.a + (this.b << 1);
       LoadingPage.d(var1, this.g[var15][0], this.g[var15][1], 17, 17);
       if (this.r != null || this.o != null) {
-         this.t.a(var1, this.j.mixedUi.X + 5 + 6, this.j.mixedUi.Y + 32 + this.v + 1 + 3, 0);
+         this.t.drawString(var1, this.j.mixedUi.X + 5 + 6, this.j.mixedUi.Y + 32 + this.v + 1 + 3, 0);
       }
 
       if (this.i.sceneSubState == 0) {

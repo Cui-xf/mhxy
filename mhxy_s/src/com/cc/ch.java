@@ -464,7 +464,7 @@ public final class ch {
          u = var3.toString();
          this.e();
          if (u != null) {
-            this.g.a(var1, this.d.mixedUi.X + 5 + 6, this.d.mixedUi.Y + 32 + this.w + 6, 0);
+            this.g.drawString(var1, this.d.mixedUi.X + 5 + 6, this.d.mixedUi.Y + 32 + this.w + 6, 0);
          }
       }
 

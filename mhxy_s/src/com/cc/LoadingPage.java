@@ -52,7 +52,9 @@ public final class LoadingPage {
     private static FWBRender ae;
     //富文本颜色模式 1-单字符颜色<int1> 2-双字符颜色<int2>
     public static int fwbColorMode = 1;
-    /** 全局UI调色板：由服务器配置包8729下发覆盖，富文本/UI着色时按索引取色 */
+    /**
+     * 全局UI调色板：由服务器配置包8729下发覆盖，富文本/UI着色时按索引取色
+     */
     public static int[] colors = new int[]{16711680, 4194166, 15588145, 12066995, 12066995, 16776960, 2241484, 16777215, 15138723, 4521983, 16755438, 15095, 14221536, 31834, 13513984, 8750469, 65280, 0, 16514810, 65532, 65316, 16490750, 16197367};
     private static int[] af = new int[2];
     public static int o = 0;
@@ -723,7 +725,7 @@ public final class LoadingPage {
                 graphics.setColor(16230);
                 graphics.drawRect(Z, aa, X, Y);
                 if (i5 == 1) {
-                    V.a(graphics, Z + 4, aa + 4, 20);
+                    V.drawString(graphics, Z + 4, aa + 4, 20);
                 } else if (i5 == 2) {
                     graphics.setColor(15138723);
                     for (int i7 = 0; i7 < W.length; i7++) {
@@ -1123,7 +1125,7 @@ public final class LoadingPage {
                             var0.setColor(ab);
                             var0.drawString(ac, Z + 4, var4 + 4, 20);
                             if (ae != null) {
-                                ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
+                                ae.drawString(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                             }
                         } else {
                             fillRect(var0, 1009050, 210, Z, var4 - Y, X, Y);
@@ -1131,7 +1133,7 @@ public final class LoadingPage {
                             var0.setColor(ab);
                             var0.drawString(ac, Z + 4, var4 - Y + 4, 20);
                             if (ae != null) {
-                                ae.a(var0, Z + 4, var4 - Y + 4 + GlobalConfig.font2_h, 0);
+                                ae.drawString(var0, Z + 4, var4 - Y + 4 + GlobalConfig.font2_h, 0);
                             }
                         }
                     } else if (var4 < Y) {
@@ -1140,7 +1142,7 @@ public final class LoadingPage {
                         var0.setColor(ab);
                         var0.drawString(ac, Z + 4, var4 + 4, 20);
                         if (ae != null) {
-                            ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
+                            ae.drawString(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                         }
                     } else {
                         fillRect(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
@@ -1148,7 +1150,7 @@ public final class LoadingPage {
                         var0.setColor(ab);
                         var0.drawString(ac, Z - X + 4, var4 - Y + 4, 20);
                         if (ae != null) {
-                            ae.a(var0, Z - X + 4, var4 - Y + 4 + GlobalConfig.font2_h, 0);
+                            ae.drawString(var0, Z - X + 4, var4 - Y + 4 + GlobalConfig.font2_h, 0);
                         }
                     }
                 } else if (var5 == 36) {
@@ -1159,7 +1161,7 @@ public final class LoadingPage {
                             var0.setColor(ab);
                             var0.drawString(ac, Z + 4, var4 + 4, 20);
                             if (ae != null) {
-                                ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
+                                ae.drawString(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                             }
                         } else {
                             fillRect(var0, 1009050, 210, Z - X, var4 - Y, X, Y);
@@ -1167,7 +1169,7 @@ public final class LoadingPage {
                             var0.setColor(ab);
                             var0.drawString(ac, Z - X + 4, var4 - Y + 4, 20);
                             if (ae != null) {
-                                ae.a(var0, Z - X + 4, var4 - Y + 4 + GlobalConfig.font2_h, 0);
+                                ae.drawString(var0, Z - X + 4, var4 - Y + 4 + GlobalConfig.font2_h, 0);
                             }
                         }
                     } else if (var4 < Y) {
@@ -1176,7 +1178,7 @@ public final class LoadingPage {
                         var0.setColor(ab);
                         var0.drawString(ac, Z + 4, var4 + 4, 20);
                         if (ae != null) {
-                            ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
+                            ae.drawString(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                         }
                     } else {
                         fillRect(var0, 1009050, 210, Z, var4 - Y, X, Y);
@@ -1184,7 +1186,7 @@ public final class LoadingPage {
                         var0.setColor(ab);
                         var0.drawString(ac, Z + 4, var4 - Y + 4, 20);
                         if (ae != null) {
-                            ae.a(var0, Z + 4, var4 - Y + 4 + GlobalConfig.font2_h, 0);
+                            ae.drawString(var0, Z + 4, var4 - Y + 4 + GlobalConfig.font2_h, 0);
                         }
                     }
                 } else if (var5 == 24) {
@@ -1195,7 +1197,7 @@ public final class LoadingPage {
                             var0.setColor(ab);
                             var0.drawString(ac, Z + 4, var4 + 4 - Y, 20);
                             if (ae != null) {
-                                ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h - Y, 0);
+                                ae.drawString(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h - Y, 0);
                             }
                         } else {
                             fillRect(var0, 1009050, 210, Z, var4, X, Y);
@@ -1203,7 +1205,7 @@ public final class LoadingPage {
                             var0.setColor(ab);
                             var0.drawString(ac, Z + 4, var4 + 4, 20);
                             if (ae != null) {
-                                ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
+                                ae.drawString(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                             }
                         }
                     } else if (var4 + Y >= GlobalConfig.defaultHigh) {
@@ -1212,7 +1214,7 @@ public final class LoadingPage {
                         var0.setColor(ab);
                         var0.drawString(ac, Z + 4, var4 + 4 - Y, 20);
                         if (ae != null) {
-                            ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h - Y, 0);
+                            ae.drawString(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h - Y, 0);
                         }
                     } else {
                         fillRect(var0, 1009050, 210, Z - X, var4, X, Y);
@@ -1220,7 +1222,7 @@ public final class LoadingPage {
                         var0.setColor(ab);
                         var0.drawString(ac, Z - X + 4, var4 + 4, 20);
                         if (ae != null) {
-                            ae.a(var0, Z - X + 4, var4 + 4 + GlobalConfig.font2_h, 0);
+                            ae.drawString(var0, Z - X + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                         }
                     }
                 } else if (var3 + X <= GlobalConfig.defaultWidth) {
@@ -1230,7 +1232,7 @@ public final class LoadingPage {
                         var0.setColor(ab);
                         var0.drawString(ac, Z + 4 - X, var4 + 4 - Y, 20);
                         if (ae != null) {
-                            ae.a(var0, Z + 4 - X, var4 + 4 + GlobalConfig.font2_h - Y, 0);
+                            ae.drawString(var0, Z + 4 - X, var4 + 4 + GlobalConfig.font2_h - Y, 0);
                         }
                     } else {
                         fillRect(var0, 1009050, 210, Z, var4, X, Y);
@@ -1238,7 +1240,7 @@ public final class LoadingPage {
                         var0.setColor(ab);
                         var0.drawString(ac, Z + 4, var4 + 4, 20);
                         if (ae != null) {
-                            ae.a(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
+                            ae.drawString(var0, Z + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                         }
                     }
                 } else if (var4 + Y >= GlobalConfig.defaultHigh) {
@@ -1251,7 +1253,7 @@ public final class LoadingPage {
                     var0.setColor(ab);
                     var0.drawString(ac, Z - X + 4, var4 + 4 - Y, 20);
                     if (ae != null) {
-                        ae.a(var0, Z - X + 4, var4 + 4 + GlobalConfig.font2_h - Y, 0);
+                        ae.drawString(var0, Z - X + 4, var4 + 4 + GlobalConfig.font2_h - Y, 0);
                     }
                 } else {
                     fillRect(var0, 1009050, 210, Z - X, var4, X, Y);
@@ -1259,7 +1261,7 @@ public final class LoadingPage {
                     var0.setColor(ab);
                     var0.drawString(ac, Z - X + 4, var4 + 4, 20);
                     if (ae != null) {
-                        ae.a(var0, Z - X + 4, var4 + 4 + GlobalConfig.font2_h, 0);
+                        ae.drawString(var0, Z - X + 4, var4 + 4 + GlobalConfig.font2_h, 0);
                     }
                 }
             }
@@ -1607,7 +1609,7 @@ public final class LoadingPage {
             graphics.setColor(0);
             graphics.fillRect(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);          // 黑色填充整个屏幕
             if (loadingTips != null) {
-                loadingTips.a(graphics, GlobalConfig.defaultWidth / 2, 20, 17);            // 顶部居中绘制提示文字（anchor=TOP|HCENTER）
+                loadingTips.drawString(graphics, GlobalConfig.defaultWidth / 2, 20, Graphics.TOP | Graphics.HCENTER);            // 顶部居中绘制提示文字（anchor=TOP|HCENTER）
             }
 
             graphics.setColor(16777215);                      // 白色

@@ -8,7 +8,21 @@ version = "1.0-SNAPSHOT"
 
 val gdxVersion = "1.12.1"
 
+buildscript {
+    repositories {
+        maven("https://maven.aliyun.com/repository/public")
+        maven("https://maven.aliyun.com/repository/google")
+        maven("https://maven.aliyun.com/repository/gradle-plugin")
+        maven("https://repo.huaweicloud.com/repository/maven/")
+        mavenCentral()
+    }
+}
+
 repositories {
+    maven("https://maven.aliyun.com/repository/public")
+    maven("https://maven.aliyun.com/repository/google")
+    maven("https://maven.aliyun.com/repository/gradle-plugin")
+    maven("https://repo.huaweicloud.com/repository/maven/")
     mavenCentral()
 }
 
@@ -26,7 +40,7 @@ application {
 }
 
 kotlin {
-    jvmToolchain(25)
+    jvmToolchain(21)
 }
 
 tasks.test {

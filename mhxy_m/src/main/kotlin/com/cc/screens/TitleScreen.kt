@@ -3,27 +3,24 @@ package com.cc.screens
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.Screen
-import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.cc.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.FontManager
 import com.cc.MhxyGame
 import kotlin.math.sin
 
-class TitleScreen(
-    private val game: MhxyGame,
-    private val assets: AssetManager
-) : Screen {
+class TitleScreen : Screen {
 
     private val batch = SpriteBatch()
     private val shapeRenderer = ShapeRenderer()
-    private val titleFont = FontManager.createFont(48)
-    private val btnFont = FontManager.createFont(32)
-    private val hintFont = FontManager.createFont(20)
+    private val titleFont = FontManager.SMALL_FONT
+    private val btnFont = FontManager.SMALL_FONT
+    private val hintFont = FontManager.SMALL_FONT
 
-    private val bgTexture: Texture = assets.get("title_bg.jpg", Texture::class.java)
+    private val bgTexture: Texture = PUBLIC_ASSET.get("title_bg.jpg", Texture::class.java)
 
     // 开始按钮：竖屏 600x800，水平居中
     private val btnW = 240f
@@ -68,7 +65,7 @@ class TitleScreen(
         batch.end()
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.D)) {
-            game.setScreen(ResourceDemoScreen(game, assets))
+            MhxyGame.setScreen(ResourceDemoScreen(MhxyGame, PUBLIC_ASSET))
             dispose()
             return
         }
@@ -79,17 +76,18 @@ class TitleScreen(
 
         if ((hovering && Gdx.input.justTouched()) || Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             // 通过 SceneLoadingScreen 加载场景1专属资源再进入
-            game.setScreen(SceneLoadingScreen(
-                game = game,
-                sharedAssets = assets,
-                sceneAssetLoader = { am ->
-                    am.load("game_bg.jpg", Texture::class.java)
-                    am.load("door.jpg", Texture::class.java)
-                },
-                nextScreen = { sceneAssets ->
-                    GameScreen(game, assets, sceneAssets)
-                }
-            ))
+            MhxyGame.setScreen(
+                SceneLoadingScreen(
+                    game = MhxyGame,
+                    sharedAssets = PUBLIC_ASSET,
+                    sceneAssetLoader = { am ->
+                        am.load("game_bg.jpg", Texture::class.java)
+                        am.load("door.jpg", Texture::class.java)
+                    },
+                    nextScreen = { sceneAssets ->
+                        GameScreen(MhxyGame, PUBLIC_ASSET, sceneAssets)
+                    }
+                ))
             dispose()
         }
     }

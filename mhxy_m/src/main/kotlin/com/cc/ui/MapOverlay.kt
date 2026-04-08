@@ -32,8 +32,8 @@ class MapOverlay(
     private val miniX = panelX + 8f;   private val miniY = panelY + 16f
     private val miniW = panelW - 16f;  private val miniH = panelH - 32f
 
-    private val titleFont = FontManager.createFont(7, Color.YELLOW)
-    private val labelFont = FontManager.createFont(6, Color.WHITE)
+    private val titleFont = FontManager.SMALL_FONT
+    private val labelFont =FontManager.SMALL_FONT
 
     fun handleInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.M)) isOpen = !isOpen

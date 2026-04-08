@@ -22,8 +22,8 @@ class HudOverlay(
     var mp    : Int = 180;  val maxMp: Int = 300
     var gold  : Int = 8800
 
-    private val nameFont = FontManager.createFont(7)
-    private val statFont = FontManager.createFont(6)
+    private val nameFont = FontManager.SMALL_FONT
+    private val statFont = FontManager.SMALL_FONT
 
     fun renderBars(shapeRenderer: ShapeRenderer) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled)

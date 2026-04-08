@@ -10,9 +10,9 @@ class LogoScreen : AbstractScreen() {
     private var frameCounter: Float = 260f
 
     override fun update(delta: Float) {
-        frameCounter += delta * 5 * 60f
+        frameCounter += delta * 5 * 50f
 
-        val alpha = ((515f - frameCounter).coerceAtLeast(0f) / 255f).coerceIn(0f, 1f)
+        val alpha = (1 - (515f - frameCounter).coerceAtLeast(0f) / 255f).coerceIn(0f, 1f)
 
         // logo 居中绘制
         val logoW = logo.width.toFloat()
@@ -22,7 +22,7 @@ class LogoScreen : AbstractScreen() {
 
         batch.begin()
         batch.setColor(1f, 1f, 1f, alpha)
-        batch.draw(logo, x, y)
+        batch.draw(logo, x, y, logoW, logoH)
         batch.end()
 
         if (frameCounter >= 515f) {

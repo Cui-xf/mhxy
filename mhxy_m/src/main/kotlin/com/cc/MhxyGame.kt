@@ -16,5 +16,6 @@ object MhxyGame : Game() {
     override fun dispose() {
         batch.dispose()
         screen?.dispose()
+        FontManager.dispose()
     }
 }

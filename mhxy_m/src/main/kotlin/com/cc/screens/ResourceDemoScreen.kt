@@ -24,7 +24,7 @@ class ResourceDemoScreen(
 ) : Screen {
 
     private val batch = SpriteBatch()
-    private val font  = FontManager.createFont(20)
+    private val font  = FontManager.SMALL_FONT
 
     // ─────────────────────────────────────────────
     // 1. 静态图片
@@ -124,7 +124,7 @@ class ResourceDemoScreen(
         batch.end()
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            game.setScreen(TitleScreen(game, sharedAssets))
+            game.setScreen(TitleScreen())
             dispose()
         }
     }

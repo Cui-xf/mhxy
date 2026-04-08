@@ -37,9 +37,9 @@ class GameScreen(
 
     private val batch = SpriteBatch()
     private val shapeRenderer = ShapeRenderer()
-    private val npcFont = FontManager.createFont(18)
-    private val tipFont = FontManager.createFont(20)
-    private val demoFont = FontManager.createFont(15)
+    private val npcFont = FontManager.SMALL_FONT
+    private val tipFont = FontManager.SMALL_FONT
+    private val demoFont = FontManager.SMALL_FONT
 
     // ── 场景背景 / 门 ──────────────────────────────────────────────
     private val bgTexture: Texture = sceneAssets.get("game_bg.jpg", Texture::class.java)
@@ -219,7 +219,7 @@ class GameScreen(
             enterScene2()
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            game.setScreen(TitleScreen(game, sharedAssets))
+            game.setScreen(TitleScreen())
             dispose()
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.TAB)) {

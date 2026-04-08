@@ -2,7 +2,9 @@ package com.cc.screens
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.ScreenAdapter
+import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector3
 import com.badlogic.gdx.utils.viewport.FitViewport
 
@@ -31,6 +33,7 @@ abstract class AbstractScreen : ScreenAdapter() {
         batch.projectionMatrix = viewport.camera.combined
 
         Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
         update(delta)
     }
 
@@ -39,4 +42,15 @@ abstract class AbstractScreen : ScreenAdapter() {
     }
 
     abstract fun update(delta: Float)
+
+    /**
+     * 创建一个自动同步 viewport camera 矩阵的 ShapeRenderer。
+     * 子类用此方法替代直接 `ShapeRenderer()`，之后正常调用 `begin()` 即可。
+     */
+    protected fun createShapeRenderer(): ShapeRenderer = object : ShapeRenderer() {
+        override fun begin(type: ShapeType) {
+            projectionMatrix = viewport.camera.combined
+            super.begin(type)
+        }
+    }
 }

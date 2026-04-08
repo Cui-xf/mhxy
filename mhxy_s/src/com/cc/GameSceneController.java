@@ -2406,7 +2406,7 @@ public final class GameSceneController {
             case 0:
                 if (GlobalStatus.k != null && this.dd != null && aW[18] == 0) {
                     LoadingPage.fillRect(var1, 873078, 191, 0, this.dc, GlobalConfig.defaultWidth, GlobalConfig.font2_h + 2);
-                    this.dd.a(var1, this.db, this.dc + 1, 20);
+                    this.dd.drawString(var1, this.db, this.dc + 1, 20);
                     if (this.db <= -GlobalConfig.font2.stringWidth(GlobalStatus.k)) {
                         if (GlobalStatus.l <= 0) {
                             GlobalStatus.k = null;
@@ -21103,7 +21103,7 @@ public final class GameSceneController {
             MainCanvas.pngUtil.draw(var1, getIconFrame0(var5), (int[]) null, (ImageSlice) null, 0, 0, this.ds + -70 + (this.mainCanvasRef.textPanel.textW >> 1) - 8, this.dt + (this.mainCanvasRef.textPanel.textH >> 1) + (this.mainCanvasRef.textPanel.textH >> 2) - 8, 0, 0);
         }
 
-        this.dv.a(var1, this.ds + 40 + (this.mainCanvasRef.textPanel.textW >> 1) - 40, this.dt + (this.mainCanvasRef.textPanel.textH >> 1) + (this.mainCanvasRef.textPanel.textH >> 2) - 20, 0);
+        this.dv.drawString(var1, this.ds + 40 + (this.mainCanvasRef.textPanel.textW >> 1) - 40, this.dt + (this.mainCanvasRef.textPanel.textH >> 1) + (this.mainCanvasRef.textPanel.textH >> 2) - 20, 0);
         if (this.du) {
             for (int var6 = 0; var6 < 4; ++var6) {
                 if (var6 == this.aq) {

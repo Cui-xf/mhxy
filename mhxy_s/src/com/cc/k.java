@@ -458,7 +458,7 @@ public final class k {
       LoadingPage.d(var1, this.g[var17][0], this.g[var17][1], 17, 17);
       if (this.t != null) {
          try {
-            this.t.a(var1, this.j.mixedUi.X + 5 + 6, this.j.mixedUi.Y + this.w + 8, 0);
+            this.t.drawString(var1, this.j.mixedUi.X + 5 + 6, this.j.mixedUi.Y + this.w + 8, 0);
          } catch (Exception var11) {
             ((Throwable)var11).printStackTrace();
          }
@@ -466,7 +466,7 @@ public final class k {
 
       if (this.r != null) {
          try {
-            this.u.a(var1, this.j.mixedUi.X + 5 + 6, this.j.mixedUi.Y + 32 + this.w + 1 + 3, 0);
+            this.u.drawString(var1, this.j.mixedUi.X + 5 + 6, this.j.mixedUi.Y + 32 + this.w + 1 + 3, 0);
          } catch (Exception var10) {
             ((Throwable)var10).printStackTrace();
          }

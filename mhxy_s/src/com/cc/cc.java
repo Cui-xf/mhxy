@@ -269,7 +269,7 @@ public final class cc {
                 }
             } else if (this.a != 1 && this.a == 2) {
                 LoadingPage.draw(var1, this.mainCanvas.textPanel.textX, this.mainCanvas.textPanel.textY + this.mainCanvas.textPanel.textH + 1, this.mainCanvas.textPanel.textW, this.e + 1, 1);
-                GameSceneController.K.a(var1, this.mainCanvas.textPanel.textX + 10, this.mainCanvas.textPanel.textY + this.mainCanvas.textPanel.textH + 4, 0);
+                GameSceneController.K.drawString(var1, this.mainCanvas.textPanel.textX + 10, this.mainCanvas.textPanel.textY + this.mainCanvas.textPanel.textH + 4, 0);
             }
 
             if (this.uiSceneController.sceneSubState == 1) {

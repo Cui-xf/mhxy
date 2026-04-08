@@ -42,25 +42,23 @@ public final class FWBRender {
     /**
      * 绘制文本（左对齐模式）
      *
-     * @param var1 Graphics 画布
-     * @param var2 x 坐标
-     * @param var3 y 坐标
-     * @param var4 anchor 锚点（如 Graphics.TOP | Graphics.HCENTER）
+     * @param graphics Graphics 画布
+     * @param x        x 坐标
+     * @param y        y 坐标
+     * @param anchor   anchor 锚点（如 Graphics.TOP | Graphics.HCENTER）
      */
-    public final void a(Graphics var1, int var2, int var3, int var4) {
+    public void drawString(Graphics graphics, int x, int y, int anchor) {
         if (this.lines != null) {
-            for (int var5 = 0; var5 < this.lines.length; ++var5) {
-                if (this.lines[var5] != null) {
+            for (int i = 0; i < this.lines.length; ++i) {
+                if (this.lines[i] != null) {
                     this.d = 0;
-
-                    for (int var6 = 0; var6 < this.lines[var5].text.length; ++var6) {
-                        var1.setColor(this.lines[var5].color[var6]);
-                        var1.drawString(this.lines[var5].text[var6], var2 + this.d, var3 + var5 * GlobalConfig.font2_h, var4);
-                        this.d += GlobalConfig.font2.stringWidth(this.lines[var5].text[var6]);
+                    for (int j = 0; j < this.lines[i].text.length; ++j) {
+                        graphics.setColor(this.lines[i].color[j]);
+                        graphics.drawString(this.lines[i].text[j], x + this.d, y + i * GlobalConfig.font2_h, anchor);
+                        this.d += GlobalConfig.font2.stringWidth(this.lines[i].text[j]);
                     }
                 }
             }
-
         }
     }
 

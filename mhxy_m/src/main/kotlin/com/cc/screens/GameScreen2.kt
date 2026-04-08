@@ -30,8 +30,8 @@ class GameScreen2(
 
     private val batch = SpriteBatch()
     private val shapeRenderer = ShapeRenderer()
-    private val npcFont = FontManager.createFont(18)
-    private val demoFont = FontManager.createFont(15)
+    private val npcFont = FontManager.SMALL_FONT
+    private val demoFont = FontManager.SMALL_FONT
 
     private val bgTexture: Texture = sceneAssets.get("scene2_bg.jpg", Texture::class.java)
     private val playerTexture: Texture = sharedAssets.get("player.jpg", Texture::class.java)
