@@ -28,23 +28,23 @@ class GameScreen2(
     private val hud: HudOverlay = HudOverlay()
 ) : Screen {
 
-    private val batch         = SpriteBatch()
+    private val batch = SpriteBatch()
     private val shapeRenderer = ShapeRenderer()
-    private val npcFont       = FontManager.createFont(18)
-    private val demoFont      = FontManager.createFont(15)
+    private val npcFont = FontManager.createFont(18)
+    private val demoFont = FontManager.createFont(15)
 
-    private val bgTexture    : Texture       = sceneAssets.get("scene2_bg.jpg", Texture::class.java)
-    private val playerTexture: Texture       = sharedAssets.get("player.jpg",   Texture::class.java)
-    private val playerRegion : TextureRegion = TextureRegion(playerTexture)  // 静态图片用法
+    private val bgTexture: Texture = sceneAssets.get("scene2_bg.jpg", Texture::class.java)
+    private val playerTexture: Texture = sharedAssets.get("player.jpg", Texture::class.java)
+    private val playerRegion: TextureRegion = TextureRegion(playerTexture)  // 静态图片用法
 
-    private val mapW      = 600f
-    private val mapH      = 740f
-    private val hudH      = hud.hudH
-    private val speed     = 220f
+    private val mapW = 600f
+    private val mapH = 740f
+    private val hudH = hud.hudH
+    private val speed = 220f
     private val playerSize = 60f
 
-    private var playerX   = 270f
-    private var playerY   = 60f
+    private var playerX = 270f
+    private var playerY = 60f
 
     private val npcs = listOf(
         Triple(100f, 600f, "仙人"),
@@ -54,7 +54,7 @@ class GameScreen2(
 
     // ── 场景二专属地图（NPC、标记与场景一不同）──────────────────────
     private val mapOverlay = MapOverlay(
-        sceneName  = "场景二：副本",
+        sceneName = "场景二：副本",
         mapMarkers = listOf(
             Triple(0.17f, 0.81f, "仙人"),
             Triple(0.70f, 0.51f, "妖怪"),
@@ -83,7 +83,7 @@ class GameScreen2(
         batch.end()
 
         Gdx.gl.glEnable(GL20.GL_BLEND)
-        hud.renderBars()
+        hud.renderBars(shapeRenderer)
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled)
         for ((nx, ny, _) in npcs) {
@@ -93,6 +93,7 @@ class GameScreen2(
         shapeRenderer.end()
 
         mapOverlay.renderPanel(
+            shapeRenderer,
             playerNormX = playerX / mapW,
             playerNormY = playerY / mapH
         )
@@ -120,12 +121,13 @@ class GameScreen2(
     }
 
     private fun backToScene1() {
-        game.setScreen(SceneLoadingScreen(
-            game             = game,
-            sharedAssets     = sharedAssets,
+        game.setScreen(
+            SceneLoadingScreen(
+            game = game,
+            sharedAssets = sharedAssets,
             sceneAssetLoader = { am ->
                 am.load("game_bg.jpg", Texture::class.java)
-                am.load("door.jpg",   Texture::class.java)
+                am.load("door.jpg", Texture::class.java)
             },
             nextScreen = { sceneAssets1 ->
                 // 把同一个 hud 实例传回场景一，血量状态连续
