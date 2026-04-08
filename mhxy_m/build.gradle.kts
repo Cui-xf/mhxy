@@ -1,0 +1,45 @@
+plugins {
+    kotlin("jvm") version "2.3.10"
+    application
+}
+
+group = "com.cc"
+version = "1.0-SNAPSHOT"
+
+val gdxVersion = "1.12.1"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("com.badlogicgames.gdx:gdx:$gdxVersion")
+    implementation("com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion")
+    implementation("com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop")
+    implementation("com.badlogicgames.gdx:gdx-freetype:$gdxVersion")
+    implementation("com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop")
+    testImplementation(kotlin("test"))
+}
+
+application {
+    mainClass.set("com.cc.DesktopLauncherKt")
+}
+
+kotlin {
+    jvmToolchain(25)
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+tasks.named<JavaExec>("run") {
+    if (System.getProperty("os.name").lowercase().contains("mac")) {
+        jvmArgs("-XstartOnFirstThread")
+    }
+}
+
+// distZip / distTar 启动脚本也加上 JVM 参数
+tasks.named<CreateStartScripts>("startScripts") {
+    defaultJvmOpts = listOf("-XstartOnFirstThread")
+}
