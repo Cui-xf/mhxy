@@ -11,40 +11,16 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Rectangle
-import com.badlogic.gdx.utils.Array
 import com.badlogic.gdx.utils.Disposable
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.DataInputStream
 
-class RpgAnimationGroup(private val list: List<RpgPart>) : Disposable {
-
-    override fun dispose() {
-//        for (animation in animations) {
-//            for (frame in animation.keyFrames) {
-//                frame?.texture?.dispose()
-//            }
-//        }
-    }
-
-    fun getAnimation(): Animation<TextureRegion> {
-        //todo cxf
-    }
-}
-
-class RpgPart(val list: List<AnimationGroup>)
-
-class AnimationGroup(val animation: Animation<TextureRegion>)
-
-class TextureRegionGroup(val texture: Texture, val regionList: List<Rectangle>)
-
-private val SKIP_SIZE = "版权归苏龙德所有".toByteArray(Charsets.UTF_8).size
-
 class RpgAnimationLoader(resolver: FileHandleResolver) :
     AsynchronousAssetLoader<RpgAnimationGroup, AssetLoaderParameters<RpgAnimationGroup>>(resolver) {
     private lateinit var ruleName: String
-    private val textureCache = mutableMapOf<Rule, TextureRegionGroup>()
-    private val animationCache = mutableMapOf<Rule, TextureRegionGroup>()
+    private val textureCache = mutableMapOf<Short, PixmapGroup>()
+    private lateinit var animationGroup: RpgAnimationGroup
 
     override fun loadAsync(
         manager: AssetManager,
@@ -55,6 +31,7 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
         val rule = manager.get<RuleAsset>(ruleName)
         DataInputStream(ByteArrayInputStream(file.readBytes())).use { dis ->
             dis.read(ByteArray(SKIP_SIZE))  // 跳过魔法前缀
+            val animationMap = mutableMapOf<Int, Animation<FramePack>>()
             for (rule in rule.rules) {
                 val type = dis.readByte().toInt()
                 val num = dis.readByte()
@@ -62,35 +39,23 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
                     val size = dis.readInt()
                     ByteArray(size).also { dis.readFully(it) }
                 }
-                when (type) {
-                    1 -> {
-                        textureCache[rule] = buildSprite(data)
-                    }
-
-                    2 -> buildAnimation(data[0])
-                    else -> throw RuntimeException("资源类型错误,不是RpgAnimation")
+                if (type == 0) {//静态图
+                    textureCache[rule.id] = buildPixmapGroup(data)
+                } else { //动画
+                    animationMap[rule.key] = buildAnimation(data[0])
                 }
             }
-
-            // 回填每个 SpritePiece 的 spriteFrame 引用
-            for (anim in animCache.values) {
-                for (pieces in anim.spritePieces) {
-                    for (piece in pieces) {
-                        piece.spriteFrame = spriteCache[piece.spriteId]
-                    }
-                }
-            }
+            animationGroup = RpgAnimationGroup(animationMap)
         }
-
     }
 
-    private fun buildSprite(data: kotlin.Array<ByteArray>): TextureRegionGroup {
+    private fun buildPixmapGroup(data: Array<ByteArray>): PixmapGroup {
         val metaDis = DataInputStream(ByteArrayInputStream(data[1]))
         val w = metaDis.readInt()
         val h = metaDis.readInt()
         val regionList = parseRegionList(data[0], w, h)
-        val texture = parseTexture(data)
-        return TextureRegionGroup(texture, regionList)
+        val pixmap = parsePixmap(data)
+        return PixmapGroup(pixmap, regionList)
     }
 
     // PNG 格式常量（与原游戏一致）
@@ -98,7 +63,7 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
     private val PNG_IEND = byteArrayOf(0, 0, 0, 0, 73, 69, 78, 68, -82, 66, 96, -126)
     private val PNG_CHUNKS = arrayOf("sBIT", "IHDR", "PLTE", "tRNS", "IDAT")
 
-    private fun parseTexture(data: kotlin.Array<ByteArray>): Texture {
+    private fun parsePixmap(data: Array<ByteArray>): Pixmap {
         val out = ByteArrayOutputStream()
         out.write(PNG_HEADER)
         for (i in 1 until data.size) {
@@ -117,12 +82,8 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
             }
         }
         out.write(PNG_IEND)
-        val pixmap = Pixmap(out.toByteArray(), 0, out.size())
-        val texture = Texture(pixmap)
-        pixmap.dispose()
-        return texture
+        return Pixmap(out.toByteArray(), 0, out.size())
     }
-
 
     private fun parseRegionList(data0: ByteArray, w: Int, h: Int): List<Rectangle> {
         return if (data0.size > 4) {
@@ -149,48 +110,134 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
         }
     }
 
-    private fun buildAnimation(data: ByteArray): AnimationGroup {
-        DataInputStream(ByteArrayInputStream(data)).use { dis ->
-            val num = dis.readByte().toInt()
+    private fun buildAnimation(data: ByteArray): Animation<FramePack> {
+        return DataInputStream(ByteArrayInputStream(data)).use { dis ->
+            val packetNum = dis.readByte().toInt()
             // 跳过包围盒 x,y,w,h
             dis.readShort()
             dis.readShort()
             dis.readShort()
             dis.readShort()
-            val frames = Array(num) {
-                val pieceCount = dis.readByte().toInt() and 0xFF
-                Array(pieceCount) {
-                    SpritePiece(
-                        spriteId = dis.readShort(),
-                        type = dis.readByte(),
-                        transformX = dis.readShort(),
-                        transformY = dis.readShort(),
-                        imageSliceIndex = dis.readShort(),
-                        transformFlag = dis.readByte()
-                    )
+            val packs = Array(packetNum) {
+                val frames = mutableListOf<TransformFrame>()
+                val frameNum = dis.readByte().toInt()
+                repeat(frameNum) {
+                    val id = dis.readShort()
+                    //type
+                    dis.readByte()
+                    val transX = dis.readShort().toInt()
+                    val transY = dis.readShort().toInt()
+                    val index = dis.readShort().toInt()
+                    val transFlag = dis.readByte().toInt()
+                    val (flipX, flipY, rotation) = TRANSFORM_TABLE[transFlag]
+                    frames += TransformFrame(id, index, transX, transY, flipX, flipY, rotation)
                 }
+                FramePack(frames)
             }
-            val frameInterval = dis.readShort()
-            return AnimationFrame(frames, frameInterval)
+            val frameDuration = dis.readShort().toFloat()
+            Animation(frameDuration, *packs)
         }
     }
 
+    /**
+     * 原始 PngUtil.i[] 变换表：transformFlag(0-7) → J2ME drawRegion transform。
+     * 映射到 libGDX 的 (flipX, flipY, rotation) 三元组：
+     *   J2ME: 0=无, 1=rot90CW, 2=rot180, 3=rot270CW(=rot90CCW),
+     *         4=flipH, 5=flipH+rot90CW, 6=flipV(=rot180+flipH), 7=flipH+rot270CW
+     * i[] = {0,5,3,6,2,7,1,4}，即 transformFlag=0 → J2ME_0，transformFlag=1 → J2ME_5，…
+     */
+    private val TRANSFORM_TABLE = arrayOf(
+        // flipX,  flipY,  rotation
+        Triple(false, false, 0f),    // flag=0 → J2ME 0 = 无变换
+        Triple(true, false, 90f),   // flag=1 → J2ME 5 = flipH + rot90CW
+        Triple(false, false, 180f),  // flag=2 → J2ME 3 = rot270CW = rot90CCW = 180+rot90CW → rot180
+        Triple(true, false, 270f),  // flag=3 → J2ME 6 = flipV = flipH+rot180
+        Triple(false, false, 90f),   // flag=4 → J2ME 2 = rot180
+        Triple(true, false, 270f),  // flag=5 → J2ME 7 = flipH + rot270CW
+        Triple(false, false, 270f),  // flag=6 → J2ME 1 = rot90CW
+        Triple(true, false, 0f),    // flag=7 → J2ME 4 = flipH
+    )
+
+
     override fun loadSync(
-        manager: AssetManager,
-        fileName: String,
-        file: FileHandle,
-        parameter: AssetLoaderParameters<RpgAnimationGroup>?
+        manager: AssetManager, fileName: String, file: FileHandle, parameter: AssetLoaderParameters<RpgAnimationGroup>?
     ): RpgAnimationGroup {
-        return animation
+        animationGroup.animationMap.forEach { (_, animation) ->
+            for (pack in animation.keyFrames) {
+                for (frame in pack.frames) {
+                    if (textureCache.containsKey(frame.id)) {
+                        val group = textureCache[frame.id]!!
+                        if (group.regionList.size > frame.index) {
+                            val texture = Texture(group.pixmap)
+                            val rect = group.regionList[frame.index]
+                            frame.textureRegion = TextureRegion(
+                                texture,
+                                rect.x.toInt(),
+                                rect.y.toInt(),
+                                rect.width.toInt(),
+                                rect.height.toInt()
+                            )
+                        }
+                    }
+                }
+            }
+        }
+        textureCache.forEach { (_, group) ->
+            group.pixmap.dispose()
+        }
+
+        return animationGroup
     }
 
 
     override fun getDependencies(
-        fileName: String,
-        file: FileHandle,
-        parameter: AssetLoaderParameters<RpgAnimationGroup>?
-    ): Array<AssetDescriptor<*>>? {
+        fileName: String, file: FileHandle, parameter: AssetLoaderParameters<RpgAnimationGroup>?
+    ): com.badlogic.gdx.utils.Array<AssetDescriptor<*>>? {
         ruleName = fileName.replace(".rpg", ".rule")
-        return Array.with(RuleAssetDescriptor(ruleName))
+        return com.badlogic.gdx.utils.Array.with(RuleAssetDescriptor(ruleName))
     }
 }
+
+
+data class RpgAnimationGroup(val animationMap: Map<Int, Animation<FramePack>>) : Disposable {
+    override fun dispose() {
+        for (animation in animationMap.values) {
+            for (pack in animation.keyFrames) {
+                for (frame in pack.frames) {
+                    frame.textureRegion.texture?.dispose()
+                }
+            }
+        }
+    }
+
+    fun getAnimationByName(name: String): Animation<FramePack> {
+        return animationMap[hashKey(name + "s")]!!
+    }
+
+
+    companion object {
+        fun hashKey(name: String): Int {
+            var hash = 0
+            for (c in name.toCharArray()) hash = hash * 31 + c.code
+            return hash
+        }
+    }
+}
+
+data class FramePack(val frames: List<TransformFrame>)
+
+data class TransformFrame(
+    val id: Short,
+    val index: Int,
+    val transX: Int, //x平移
+    val transY: Int, //y平移
+    val flipX: Boolean, //水平翻转
+    val flipY: Boolean, //竖直翻转
+    val rotation: Float,  //旋转
+) {
+    lateinit var textureRegion: TextureRegion //图像切片
+}
+
+class PixmapGroup(val pixmap: Pixmap, val regionList: List<Rectangle>)
+
+private val SKIP_SIZE = "版权归苏龙德所有".toByteArray(Charsets.UTF_8).size
