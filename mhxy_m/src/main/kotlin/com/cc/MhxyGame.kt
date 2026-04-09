@@ -3,6 +3,7 @@ package com.cc
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.cc.screens.LogoScreen
+import com.cc.screens.TitleScreen2
 
 object MhxyGame : Game() {
 
@@ -10,7 +11,8 @@ object MhxyGame : Game() {
 
     override fun create() {
         batch = SpriteBatch()
-        setScreen(LogoScreen())
+//        setScreen(LogoScreen())
+        setScreen(TitleScreen2())
     }
 
     override fun dispose() {

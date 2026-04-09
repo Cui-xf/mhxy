@@ -134,14 +134,14 @@ public final class PngUtil {
 
     }
 
-    public final void draw(Graphics var1, Sprite var2, int[] var3, ImageSlice var4, int var5, int var6, int var7, int var8, int var9, int var10) {
+    public final void draw(Graphics var1, Sprite var2, int[] var3, ImageSlice var4, int var5, int var6, int var7, int var8, int var9, int transformFlag) {
         var7 -= var5;
         var8 -= var6;
         if (var2 != null && var2.image != null) {
             if (var3 != null && var3[2] > 0 && var3[3] > 0) {
                 if (var4 == null) {
                     var1.setClip(var3[0] - var5, var3[1] - var6, var3[2], var3[3]);
-                    var1.drawRegion(var2.image, 0, 0, var2.w, var2.h, i[var10], var7, var8, var9);
+                    var1.drawRegion(var2.image, 0, 0, var2.w, var2.h, i[transformFlag], var7, var8, var9);
                 } else {
                     a(var2, this.h, var4);
                     short var15 = (short) this.h[0];
@@ -150,12 +150,12 @@ public final class PngUtil {
                     short var20 = (short) this.h[3];
                     if (var15 >= 0 && var15 + var19 <= var2.w && var18 >= 0 && var18 + var20 <= var2.h && var15 < var2.w && var18 < var2.h && var19 > 0 && var20 > 0) {
                         var1.setClip(var3[0] - var5, var3[1] - var6, var3[2], var3[3]);
-                        var1.drawRegion(var2.image, var15, var18, var19, var20, i[var10], var7, var8, var9);
+                        var1.drawRegion(var2.image, var15, var18, var19, var20, i[transformFlag], var7, var8, var9);
                         var1.setClip(this.p, this.q, this.r, this.s);
                     }
                 }
             } else if (var4 == null) {
-                var1.drawRegion(var2.image, 0, 0, var2.w, var2.h, i[var10], var7, var8, var9);
+                var1.drawRegion(var2.image, 0, 0, var2.w, var2.h, i[transformFlag], var7, var8, var9);
             } else {
                 a(var2, this.h, var4);
                 short var14 = (short) this.h[0];
@@ -163,7 +163,7 @@ public final class PngUtil {
                 short var12 = (short) this.h[2];
                 short var13 = (short) this.h[3];
                 if (var14 >= 0 && var14 + var12 <= var2.w && var11 >= 0 && var11 + var13 <= var2.h && var14 < var2.w && var11 < var2.h && var12 > 0 && var13 > 0) {
-                    var1.drawRegion(var2.image, var14, var11, var12, var13, i[var10], var7, var8, var9);
+                    var1.drawRegion(var2.image, var14, var11, var12, var13, i[transformFlag], var7, var8, var9);
                 }
             }
         }

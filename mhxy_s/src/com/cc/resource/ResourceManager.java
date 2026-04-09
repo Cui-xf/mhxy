@@ -95,9 +95,9 @@ public final class ResourceManager {
             dataInputStream.read(PngUtil.skip);
             for (int i = 0; i < this.frameInfos.length; ++i) {
                 byte type = dataInputStream.readByte();
-                byte len = dataInputStream.readByte();
-                byte[][] data = new byte[len][];
-                for (int j = 0; j < len; ++j) {
+                byte num = dataInputStream.readByte();
+                byte[][] data = new byte[num][];
+                for (int j = 0; j < num; ++j) {
                     int size = dataInputStream.readInt();
                     data[j] = new byte[size];
                     dataInputStream.read(data[j]);

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector3
+import com.badlogic.gdx.utils.Disposable
 import com.badlogic.gdx.utils.viewport.FitViewport
 
 abstract class AbstractScreen : ScreenAdapter() {
@@ -16,11 +17,11 @@ abstract class AbstractScreen : ScreenAdapter() {
 
     protected val viewport = FitViewport(VIRTUAL_W, VIRTUAL_H)
     protected val batch = SpriteBatch()
+    protected val autoDispose = mutableSetOf<Disposable>()
 
     // 每帧自动更新为逻辑坐标，子类直接用
     protected var touchX = 0f
     protected var touchY = 0f
-
     private val _touchVec = Vector3()
 
     final override fun render(delta: Float) {
@@ -51,6 +52,23 @@ abstract class AbstractScreen : ScreenAdapter() {
         override fun begin(type: ShapeType) {
             projectionMatrix = viewport.camera.combined
             super.begin(type)
+        }
+    }
+
+    protected inline fun <T : Disposable> autoDispose(block: () -> T): T {
+        val element = block()
+        autoDispose.add(element)
+        return element
+    }
+
+    override fun dispose() {
+        super.dispose()
+        batch.dispose()
+        for (disposable in autoDispose) {
+            try {
+                disposable.dispose()
+            } catch (_: Exception) {
+            }
         }
     }
 }

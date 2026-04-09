@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.cc.AssetManagerFactory.PUBLIC_ASSET
+import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.FontManager
 import com.cc.MhxyGame
 import kotlin.math.sin

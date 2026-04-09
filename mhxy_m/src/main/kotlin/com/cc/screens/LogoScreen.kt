@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.cc.MhxyGame
 
 class LogoScreen : AbstractScreen() {
-    private val logo = Texture(Gdx.files.classpath("assets/logo.png"))
+    private val logo = autoDispose { Texture(Gdx.files.classpath("assets/logo.png")) }
 
     private var frameCounter: Float = 260f
 
@@ -29,9 +29,5 @@ class LogoScreen : AbstractScreen() {
             MhxyGame.setScreen(LoadingScreen())
             dispose()
         }
-    }
-
-    override fun dispose() {
-        logo.dispose()
     }
 }

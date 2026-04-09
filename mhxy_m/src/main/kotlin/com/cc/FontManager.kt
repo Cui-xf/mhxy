@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
 
 object FontManager {
-    val SMALL_FONT: BitmapFont by lazy { createFont(15) }
+    val SMALL_FONT: BitmapFont by lazy { createFont(12) }
 
     private var generator: FreeTypeFontGenerator? = null
 

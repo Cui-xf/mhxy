@@ -6,7 +6,7 @@ import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.cc.AssetManagerFactory
+import com.cc.asset.AssetManagerFactory
 import com.cc.FontManager
 import com.cc.MhxyGame
 
