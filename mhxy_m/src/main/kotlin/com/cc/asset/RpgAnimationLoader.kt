@@ -30,7 +30,7 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
     ) {
         val rule = manager.get<RuleAsset>(ruleName)
         DataInputStream(ByteArrayInputStream(file.readBytes())).use { dis ->
-            dis.read(ByteArray(SKIP_SIZE))  // 跳过魔法前缀
+            dis.skipBytes(24)  // 跳过魔法前缀
             val animationMap = mutableMapOf<Int, Animation<FramePack>>()
             for (rule in rule.rules) {
                 val type = dis.readByte().toInt()
@@ -134,7 +134,7 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
                 }
                 FramePack(frames)
             }
-            val frameDuration = dis.readShort().toFloat()
+            val frameDuration = dis.readShort().toFloat() / 1000
             Animation(frameDuration, *packs)
         }
     }
@@ -198,7 +198,6 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
     }
 }
 
-
 data class RpgAnimationGroup(val animationMap: Map<Int, Animation<FramePack>>) : Disposable {
     override fun dispose() {
         for (animation in animationMap.values) {
@@ -213,7 +212,6 @@ data class RpgAnimationGroup(val animationMap: Map<Int, Animation<FramePack>>) :
     fun getAnimationByName(name: String): Animation<FramePack> {
         return animationMap[hashKey(name + "s")]!!
     }
-
 
     companion object {
         fun hashKey(name: String): Int {
@@ -238,6 +236,4 @@ data class TransformFrame(
     lateinit var textureRegion: TextureRegion //图像切片
 }
 
-class PixmapGroup(val pixmap: Pixmap, val regionList: List<Rectangle>)
-
-private val SKIP_SIZE = "版权归苏龙德所有".toByteArray(Charsets.UTF_8).size
+data class PixmapGroup(val pixmap: Pixmap, val regionList: List<Rectangle>)

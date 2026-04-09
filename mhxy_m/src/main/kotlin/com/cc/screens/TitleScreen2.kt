@@ -25,10 +25,9 @@ class TitleScreen2 : AbstractScreen() {
 
         batch.begin()
         batch.drawImage(menuBG, VIRTUAL_W / 2, 0f)
-        batch.drawImage(logoTitle, VIRTUAL_W / 2, 0f)
-
-        batch.drawAnimation(hudie.getKeyFrame(timer), ANIM_X, ANIM_Y)
-        batch.drawAnimation(hudie2.getKeyFrame(timer), ANIM_X, ANIM_Y)
+        batch.drawImage(logoTitle, VIRTUAL_W / 2, 29f)
+        batch.drawAnimation(hudie.getKeyFrame(timer, true), ANIM_X, ANIM_Y)
+        batch.drawAnimation(hudie2.getKeyFrame(timer, true), ANIM_X, ANIM_Y)
         batch.end()
     }
 }

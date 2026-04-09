@@ -83,10 +83,10 @@ public final class PngUtil {
     }
 
     //动画
-    public static int animate(Animation frame1, long var1) {
+    public static int animate(Animation frame1, long frameStartTs) {
         if (frame1 != null && frame1.spritePieces != null) {
             byte var3 = 0;
-            if (var1 - frame1.lastTs - (long) frame1.frameInterval > 0L) {
+            if (frameStartTs - frame1.lastTs - (long) frame1.frameInterval > 0L) {
                 ++frame1.currentFrameIndex;
                 if (frame1.currentFrameIndex >= frame1.spritePieces.length) {
                     frame1.currentFrameIndex = 0;
@@ -95,7 +95,7 @@ public final class PngUtil {
                     var3 = 1;
                 }
 
-                frame1.lastTs = var1;
+                frame1.lastTs = frameStartTs;
             }
 
             return var3;

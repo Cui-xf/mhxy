@@ -86,12 +86,10 @@ fun SpriteBatch.drawAnimation(pack: FramePack, originX: Float, originY: Float) {
 
         val sw = textureRegion.regionWidth.toFloat()
         val sh = textureRegion.regionHeight.toFloat()
-        val srcX = (textureRegion.u * textureRegion.regionWidth).toInt()
-        val srcY = (textureRegion.v * textureRegion.regionHeight).toInt()
 
         // 旋转原点取切片中心
         this.draw(
-            textureRegion.texture,
+            textureRegion,
             px,
             VIRTUAL_H - py - sh,   // libGDX 左下角坐标
             sw / 2, // 旋转原点（相对左下角）
@@ -100,13 +98,7 @@ fun SpriteBatch.drawAnimation(pack: FramePack, originX: Float, originY: Float) {
             sh,
             1f,
             1f,
-            frame.rotation,
-            srcX,
-            srcY,
-            textureRegion.regionWidth,
-            textureRegion.regionHeight,
-            frame.flipX,
-            frame.flipY
+            frame.rotation
         )
     }
 }

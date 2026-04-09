@@ -42,7 +42,7 @@ class LoadingScreen : AbstractScreen() {
     }
 
     override fun update(delta: Float) {
-        progress = if (progress >= 100) 100 else progress + 1
+        progress = if (progress >= 100) 100 else progress + 5
         PUBLIC_ASSET.update()
         batch.begin()
         //顶部文字
