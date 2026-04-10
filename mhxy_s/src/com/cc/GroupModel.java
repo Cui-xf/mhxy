@@ -2530,7 +2530,7 @@ public final class GroupModel {
         if (this.b.mixedUi != null) {
             int var2 = GlobalConfig.realHigh <= 240 ? 79 : 120;
             this.b.mixedUi.draw(var1);
-            LoadingPage.draw(var1, this.b.mixedUi.X + 5, this.b.mixedUi.Y + 29 + this.b.topUi.b, this.b.mixedUi.W - 11, var2, 1);
+            LoadingPage.fillRect(var1, this.b.mixedUi.X + 5, this.b.mixedUi.Y + 29 + this.b.topUi.b, this.b.mixedUi.W - 11, var2, 1);
             LoadingPage.draw(var1);
             Graphics var3 = var1;
             GroupModel var11 = this;

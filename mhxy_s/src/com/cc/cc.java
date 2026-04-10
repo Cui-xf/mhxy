@@ -258,7 +258,7 @@ public final class cc {
             this.mainCanvas.mixedUi.draw(var1);
             if (this.a == 0) {
                 for (int var2 = 0; var2 < this.d.length; ++var2) {
-                    LoadingPage.a(var1, (Image) null, this.d[var2][0], this.d[var2][1], this.d[var2][2], this.d[var2][3], var2 == this.g);
+                    LoadingPage.drawRect(var1, (Image) null, this.d[var2][0], this.d[var2][1], this.d[var2][2], this.d[var2][3], var2 == this.g);
                     if (this.p != null && var2 < this.p.length) {
                         var1.setColor(65535);
                         var1.drawString(this.l[var2], this.d[var2][0] + (this.d[var2][2] - GlobalConfig.font2.stringWidth(this.l[var2])) / 2, this.d[var2][1] + 4, 20);
@@ -268,7 +268,7 @@ public final class cc {
                     }
                 }
             } else if (this.a != 1 && this.a == 2) {
-                LoadingPage.draw(var1, this.mainCanvas.textPanel.textX, this.mainCanvas.textPanel.textY + this.mainCanvas.textPanel.textH + 1, this.mainCanvas.textPanel.textW, this.e + 1, 1);
+                LoadingPage.fillRect(var1, this.mainCanvas.textPanel.textX, this.mainCanvas.textPanel.textY + this.mainCanvas.textPanel.textH + 1, this.mainCanvas.textPanel.textW, this.e + 1, 1);
                 GameSceneController.K.drawString(var1, this.mainCanvas.textPanel.textX + 10, this.mainCanvas.textPanel.textY + this.mainCanvas.textPanel.textH + 4, 0);
             }
 

@@ -2708,7 +2708,7 @@ public final class GameSceneController {
             case 33:
                 if (this.mainCanvasRef.mixedUi != null) {
                     this.mainCanvasRef.mixedUi.draw(var1);
-                    LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 32, this.mainCanvasRef.mixedUi.W - 11, this.bQ, 1);
+                    LoadingPage.fillRect(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 32, this.mainCanvasRef.mixedUi.W - 11, this.bQ, 1);
                     LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 62, this.mainCanvasRef.mixedUi.Y + 35, this.mainCanvasRef.mixedUi.X + 62, this.mainCanvasRef.mixedUi.Y + 29 + this.bQ);
                 }
 
@@ -3044,7 +3044,7 @@ public final class GameSceneController {
             case 63:
                 GroupModel var2;
                 if ((var2 = this.M).a.sceneSubState == 0 && var2.b.mixedUi != null) {
-                    LoadingPage.draw(var1, var2.b.mixedUi.X + 5, var2.b.mixedUi.a(), var2.b.mixedUi.W - 11, 2 * GlobalConfig.font2_h + 8, 1);
+                    LoadingPage.fillRect(var1, var2.b.mixedUi.X + 5, var2.b.mixedUi.a(), var2.b.mixedUi.W - 11, 2 * GlobalConfig.font2_h + 8, 1);
                     var1.setColor(16711680);
                     var1.drawString("处置战败方：", GlobalConfig.gameX + GlobalConfig.realWidth / 2, var2.b.mixedUi.a() + 2, 17);
                     var1.drawString("（" + GlobalStatus.kD + "分钟限时）", GlobalConfig.gameX + GlobalConfig.realWidth / 2, var2.b.mixedUi.a() + 2 + GlobalConfig.font2_h + 4, 17);
@@ -6878,7 +6878,7 @@ public final class GameSceneController {
             this.mainCanvasRef.mixedUi.setTitle(var2);
             int var12 = GlobalConfig.realHigh <= 240 ? 79 : 120;
             this.mainCanvasRef.mixedUi.draw(var1);
-            LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.W - 11, var12, 1);
+            LoadingPage.fillRect(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.W - 11, var12, 1);
             LoadingPage.draw(var1);
             Graphics var3 = var1;
             GameSceneController var13 = this;
@@ -7231,7 +7231,7 @@ public final class GameSceneController {
         if (this.mainCanvasRef.mixedUi != null) {
             this.mainCanvasRef.mixedUi.draw(var1);
             int var2 = GlobalConfig.realHigh <= 240 ? 79 : 120;
-            LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.W - 11, var2, 1);
+            LoadingPage.fillRect(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.W - 11, var2, 1);
             LoadingPage.draw(var1);
             Graphics var3 = var1;
             GameSceneController var12 = this;
@@ -7437,7 +7437,7 @@ public final class GameSceneController {
                 if (this.mainCanvasRef.mixedUi != null) {
                     this.mainCanvasRef.mixedUi.setR(30);
                     this.mainCanvasRef.mixedUi.draw(var1);
-                    LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 32, this.mainCanvasRef.mixedUi.W - 11, 30, 1);
+                    LoadingPage.fillRect(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 32, this.mainCanvasRef.mixedUi.W - 11, 30, 1);
                     LoadingPage.drawString(var1, (String) "宝石", (int) (this.mainCanvasRef.mixedUi.X + 10), this.mainCanvasRef.mixedUi.Y + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
                 }
 
@@ -8761,7 +8761,7 @@ public final class GameSceneController {
             }
         } else if (this.sceneSubMode == 1) {
             this.T.draw(var1);
-            LoadingPage.draw(var1, this.T.X + 5, this.T.Y + 32, this.T.W - 11, 30, 1);
+            LoadingPage.fillRect(var1, this.T.X + 5, this.T.Y + 32, this.T.W - 11, 30, 1);
             LoadingPage.drawString(var1, (String) "宝石", (int) (this.T.X + 10), this.T.Y + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
             if (GlobalStatus.cQ != null) {
                 for (int var8 = 0; var8 < GlobalStatus.cG.length; ++var8) {
@@ -11431,7 +11431,7 @@ public final class GameSceneController {
                             if (this.mainCanvasRef.mixedUi != null) {
                                 this.mainCanvasRef.mixedUi.setR(30);
                                 this.mainCanvasRef.mixedUi.draw(var1);
-                                LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 32, this.mainCanvasRef.mixedUi.W - 11, 30, 1);
+                                LoadingPage.fillRect(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 32, this.mainCanvasRef.mixedUi.W - 11, 30, 1);
                                 LoadingPage.drawString(var1, (String) "宝石", (int) (this.mainCanvasRef.mixedUi.X + 10), this.mainCanvasRef.mixedUi.Y + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
                             }
 
@@ -11719,7 +11719,7 @@ public final class GameSceneController {
             int var2 = GlobalConfig.realHigh <= 240 ? 79 : 120;
             this.mainCanvasRef.mixedUi.setR(var2);
             this.mainCanvasRef.mixedUi.draw(var1);
-            LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.W - 11, var2, 1);
+            LoadingPage.fillRect(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.W - 11, var2, 1);
             LoadingPage.draw(var1);
             var2 = (this.mainCanvasRef.mixedUi.W - 11 - (goods.w << 3)) / 9;
             int var3 = ((GlobalConfig.realHigh <= 240 ? 79 : 120) - 6 - (goods.w << 2)) / 5;
@@ -12110,7 +12110,7 @@ public final class GameSceneController {
                 int var2 = GlobalConfig.realHigh <= 240 ? 79 : 120;
                 this.mainCanvasRef.mixedUi.setR(var2);
                 this.mainCanvasRef.mixedUi.draw(var1);
-                LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.W - 11, var2, 1);
+                LoadingPage.fillRect(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 29 + this.mainCanvasRef.topUi.b, this.mainCanvasRef.mixedUi.W - 11, var2, 1);
                 LoadingPage.draw(var1);
                 var2 = (this.mainCanvasRef.mixedUi.W - 11 - (goods.w << 3)) / 9;
                 int var3 = ((GlobalConfig.realHigh <= 240 ? 79 : 120) - 6 - (goods.w << 2)) / 5;
@@ -14793,7 +14793,7 @@ public final class GameSceneController {
 
     private void v(Graphics var1) {
         this.mainCanvasRef.mixedUi.draw(var1);
-        LoadingPage.draw(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 29, this.mainCanvasRef.mixedUi.W - 11, this.mainCanvasRef.mixedUi.H - 30 - BottomUi.b(), 1);
+        LoadingPage.fillRect(var1, this.mainCanvasRef.mixedUi.X + 5, this.mainCanvasRef.mixedUi.Y + 29, this.mainCanvasRef.mixedUi.W - 11, this.mainCanvasRef.mixedUi.H - 30 - BottomUi.b(), 1);
         int var2 = this.mainCanvasRef.mixedUi.X + 8;
         int var3 = this.mainCanvasRef.mixedUi.Y + 32;
         int var4 = this.mainCanvasRef.mixedUi.W - 16;
@@ -21073,7 +21073,7 @@ public final class GameSceneController {
 
     private void V(Graphics var1) {
         this.mainCanvasRef.mixedUi.draw(var1);
-        LoadingPage.draw(var1, this.ds, this.dt, this.mainCanvasRef.textPanel.textW, this.mainCanvasRef.textPanel.textH >> 1, 1);
+        LoadingPage.fillRect(var1, this.ds, this.dt, this.mainCanvasRef.textPanel.textW, this.mainCanvasRef.textPanel.textH >> 1, 1);
         var1.setColor(255);
         var1.drawString("可开出的珍贵物品", this.ds + 32, this.dt + 8, 0);
 
@@ -21092,7 +21092,7 @@ public final class GameSceneController {
             }
         }
 
-        LoadingPage.draw(var1, this.ds, this.dt + (this.mainCanvasRef.textPanel.textH >> 1), this.mainCanvasRef.textPanel.textW, this.mainCanvasRef.textPanel.textH >> 1, 1);
+        LoadingPage.fillRect(var1, this.ds, this.dt + (this.mainCanvasRef.textPanel.textH >> 1), this.mainCanvasRef.textPanel.textW, this.mainCanvasRef.textPanel.textH >> 1, 1);
         var1.setColor(2917024);
         var1.fillRect(this.ds + -70 + (this.mainCanvasRef.textPanel.textW >> 1) - 20, this.dt + (this.mainCanvasRef.textPanel.textH >> 1) + (this.mainCanvasRef.textPanel.textH >> 2) - 20, 40, 40);
         var1.setColor(9360850);

@@ -51,8 +51,8 @@ public final class ba {
 
    public final void a(Graphics var1) {
       this.c.mixedUi.draw(var1);
-      LoadingPage.draw(var1, this.e, this.f, this.g, this.h - 32, 1);
-      LoadingPage.draw(var1, this.e, this.f, 80, this.h - 32, 1);
+      LoadingPage.fillRect(var1, this.e, this.f, this.g, this.h - 32, 1);
+      LoadingPage.fillRect(var1, this.e, this.f, 80, this.h - 32, 1);
       if (this.a.bf == 0 && this.a.be == 0) {
          var1.setColor(16776960);
          var1.drawRect(this.e, this.f, 80, this.h - 32);
@@ -88,7 +88,7 @@ public final class ba {
          var1.drawString("副宠", this.e + this.g - 44 + 20, this.f + (this.h - 32) / 2, 65);
       }
 
-      LoadingPage.draw(var1, this.e, this.f + this.h - 32, this.g, 32, 1);
+      LoadingPage.fillRect(var1, this.e, this.f + this.h - 32, this.g, 32, 1);
       if (GlobalStatus.mM != null) {
          var1.setColor(16776960);
          var1.drawString(GlobalStatus.mM, GlobalConfig.defaultWidth / 2, this.f + this.h - 25 + 2, 17);

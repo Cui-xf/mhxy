@@ -27,7 +27,6 @@ class LogoScreen : AbstractScreen() {
 
         if (frameCounter >= 515f) {
             MhxyGame.setScreen(LoadingScreen())
-            dispose()
         }
     }
 }

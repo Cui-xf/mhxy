@@ -1,0 +1,84 @@
+package com.cc.screens.base
+
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.utils.Disposable
+import com.cc.asset.AssetManagerFactory
+import com.cc.asset.RpgAnimationGroup
+import com.cc.render.Align
+import com.cc.render.drawAnimation
+import com.cc.render.drawImage
+import com.cc.screens.AbstractScreen
+import kotlin.random.Random
+
+object BaseBackGround : AbstractScreen(), Disposable {
+    private val menuBG = autoDispose { Texture(Gdx.files.classpath("assets/menuBG.png")) }
+    private val logoTitle = autoDispose { Texture(Gdx.files.classpath("assets/logoTitle_B.png")) }
+    private val cartoon = AssetManagerFactory.PUBLIC_ASSET.get<RpgAnimationGroup>("rpg/cartoon.rpg")
+    private val hudie = cartoon.getAnimationByName("hudie")
+    private val hudie2 = cartoon.getAnimationByName("hudie_2")
+    private val light0 = autoDispose { Texture(Gdx.files.classpath("assets/light_0.png")) }
+    private val light1 = autoDispose { Texture(Gdx.files.classpath("assets/light_1.png")) }
+    private var timer = 0f   // 动画累计时间（移动时推进）
+
+    // 原始绘制坐标：defaultWidth-100, defaultHigh-100，屏幕 240×320 → (140, 220)
+    private val ANIM_X = VIRTUAL_W - 100f
+    private val ANIM_Y = VIRTUAL_H - 100f
+
+    // 粒子 X 锚点（均匀分布，对应原始 mainPageButton_Y）
+    private val particleAnchors = FloatArray(8) { i -> VIRTUAL_W / 9f * (i + 1) }
+
+    // 粒子状态：[x, y, dx, dy, type]，共 8 个
+    private val particles = Array(8) { newParticle() }
+    private var running = true
+
+    override fun update(delta: Float) {
+        if (running) {
+            timer += delta
+        }
+        batch.begin()
+        batch.drawImage(menuBG, VIRTUAL_W / 2, 0f)
+        batch.drawImage(logoTitle, VIRTUAL_W / 2, 29f)
+        batch.drawAnimation(hudie.getKeyFrame(timer, true), ANIM_X, ANIM_Y)
+        batch.drawAnimation(hudie2.getKeyFrame(timer, true), ANIM_X, ANIM_Y)
+        drawLightParticles()
+        batch.end()
+    }
+
+    override fun pause() {
+        running = false
+    }
+
+    override fun resume() {
+        running = true
+    }
+
+    private fun drawLightParticles() {
+        val counter = (timer * 60).toInt()
+        for (p in particles) {
+            if (running) {
+                if (p[0] in 0f..VIRTUAL_W && p[1] >= 0) {
+                    if (counter and 1 == 0) {
+                        p[0] += if (Random.nextInt(10, 41) % 2 == 0) -p[2] else p[2]
+                        p[1] -= p[3]
+                    }
+                } else {
+                    val np = newParticle()
+                    np.copyInto(p)
+                }
+            }
+            val tex = if (p[4] == 0f) light0 else light1
+            batch.drawImage(tex, p[0], p[1], align = Align.LEFT)
+        }
+    }
+
+    private fun newParticle(): FloatArray {
+        return floatArrayOf(
+            particleAnchors[Random.nextInt(8)],          // x
+            VIRTUAL_H + Random.nextInt(1, 201).toFloat(), // y（屏幕下方）
+            1f,                                            // dx
+            1f,                                            // dy
+            (Random.nextInt(1, 101) % 2).toFloat()        // type: 0=light0, 1=light1
+        )
+    }
+}

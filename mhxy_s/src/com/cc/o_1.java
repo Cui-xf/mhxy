@@ -328,7 +328,7 @@ public final class o_1 {
         if (this.j.mixedUi != null) {
             this.j.mixedUi.setR(30);
             this.j.mixedUi.draw(var1);
-            LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32, this.j.mixedUi.W - 11, 30, 1);
+            LoadingPage.fillRect(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32, this.j.mixedUi.W - 11, 30, 1);
             LoadingPage.drawString(var1, (String) "宝石", (int) (this.j.mixedUi.X + 10), this.j.mixedUi.Y + 35 + GlobalConfig.getCzjz(25), 20, 16776960, 0);
         }
 
@@ -909,10 +909,10 @@ public final class o_1 {
         int var5 = (var4 = this.j.mixedUi.X + 10) + var3 + 31;
         if (this.j.mixedUi != null) {
             this.j.mixedUi.draw(var1);
-            LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32, this.j.mixedUi.W - 11, this.H, 1);
-            LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32 + this.H + 1, this.j.mixedUi.W - 11, this.I - 2, 1);
-            LoadingPage.draw(var1, var4, var2, var3, this.J - 9, 1);
-            LoadingPage.draw(var1, var5, var2, var3, this.J - 9, 1);
+            LoadingPage.fillRect(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32, this.j.mixedUi.W - 11, this.H, 1);
+            LoadingPage.fillRect(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32 + this.H + 1, this.j.mixedUi.W - 11, this.I - 2, 1);
+            LoadingPage.fillRect(var1, var4, var2, var3, this.J - 9, 1);
+            LoadingPage.fillRect(var1, var5, var2, var3, this.J - 9, 1);
         }
 
         if (this.G != null) {

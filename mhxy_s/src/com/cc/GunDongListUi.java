@@ -261,7 +261,7 @@ public final class GunDongListUi extends BaseUi {
         LoadingPage.setColor(var1, 6014420);
         var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
         var1.fillRect(this.a, this.b, this.c, this.d);
-        LoadingPage.draw(var1, this.a, this.b, this.c, this.d, 1);
+        LoadingPage.fillRect(var1, this.a, this.b, this.c, this.d, 1);
         if (this.E) {
             LoadingPage.draw(var1);
         }

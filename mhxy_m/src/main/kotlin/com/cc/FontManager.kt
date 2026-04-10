@@ -4,8 +4,9 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
+import com.badlogic.gdx.utils.Disposable
 
-object FontManager {
+object FontManager : Disposable {
     val SMALL_FONT: BitmapFont by lazy { createFont(12) }
 
     private var generator: FreeTypeFontGenerator? = null
@@ -25,7 +26,7 @@ object FontManager {
         return generator!!.generateFont(param)
     }
 
-    fun dispose() {
+    override fun dispose() {
         SMALL_FONT.dispose()
         generator?.dispose()
         generator = null

@@ -409,9 +409,9 @@ public final class ch {
    public final void a(Graphics var1) {
       if (this.d.mixedUi != null) {
          this.d.mixedUi.draw(var1);
-         LoadingPage.draw(var1, this.d.mixedUi.X + 5, this.d.mixedUi.Y + 32, (this.d.mixedUi.W - 11) / 2, this.w, 1);
-         LoadingPage.draw(var1, this.d.mixedUi.X + 5, this.d.mixedUi.Y + 32 + this.w + 1, (this.d.mixedUi.W - 11) / 2, this.x - 2, 1);
-         LoadingPage.draw(var1, this.d.mixedUi.X + 5 + (this.d.mixedUi.W - 11) / 2, this.d.mixedUi.Y + 32, (this.d.mixedUi.W - 10) / 2, this.d.mixedUi.H - 62, 1);
+         LoadingPage.fillRect(var1, this.d.mixedUi.X + 5, this.d.mixedUi.Y + 32, (this.d.mixedUi.W - 11) / 2, this.w, 1);
+         LoadingPage.fillRect(var1, this.d.mixedUi.X + 5, this.d.mixedUi.Y + 32 + this.w + 1, (this.d.mixedUi.W - 11) / 2, this.x - 2, 1);
+         LoadingPage.fillRect(var1, this.d.mixedUi.X + 5 + (this.d.mixedUi.W - 11) / 2, this.d.mixedUi.Y + 32, (this.d.mixedUi.W - 10) / 2, this.d.mixedUi.H - 62, 1);
       }
 
       if (this.a != null) {

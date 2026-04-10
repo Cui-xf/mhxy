@@ -157,12 +157,12 @@ public final class TopUi extends BaseUi {
             int var5 = 10 + GlobalConfig.font2.stringWidth(this.c[var4]);
             ++this.k;
             if (var4 == this.selectTabIndex) {
-                LoadingPage.draw(var1, this.e + var2, this.f, var5 - 1, this.b, 1);
+                LoadingPage.fillRect(var1, this.e + var2, this.f, var5 - 1, this.b, 1);
                 LoadingPage.j[0] = this.e + var2 + 3;
                 LoadingPage.j[1] = this.f + this.b - 3;
                 LoadingPage.j[2] = var5 - 6;
             } else {
-                LoadingPage.draw(var1, this.e + var2, this.f, var5 - 1, this.b, 2);
+                LoadingPage.fillRect(var1, this.e + var2, this.f, var5 - 1, this.b, 2);
             }
 
             LoadingPage.drawString(var1, this.c[var4], this.e + var2 + (var5 - 1) / 2, this.f + GlobalConfig.getCzjz(this.b), 17, var4 == this.selectTabIndex ? this.v : 5426130);

@@ -361,7 +361,7 @@ public final class LoadingPage {
         var0.drawLine(var1 + 1, var2, var3 + 1, var4);
     }
 
-    public static void draw(Graphics graphics, int x, int y, int w, int h, int color) {
+    public static void fillRect(Graphics graphics, int x, int y, int w, int h, int color) {
         if (color == 1) {
             graphics.setColor(6732228);
             graphics.fillRect(x, y, w, h);
@@ -382,7 +382,7 @@ public final class LoadingPage {
         graphics.drawRect(x + 1, y + 1, w - 2, h - 2);
     }
 
-    public static void a(Graphics var0, Image var1, int var2, int var3, int var4, int var5, boolean var6) {
+    public static void drawRect(Graphics var0, Image var1, int var2, int var3, int var4, int var5, boolean var6) {
         var0.setColor(409969);
         var0.fillRect(var2, var3, var4, var5);
         if (var6) {
@@ -559,16 +559,16 @@ public final class LoadingPage {
         var0.setColor(var2);
     }
 
-    public static void drawString(Graphics var0, String var1, int var2, int var3, int var4, int var5, int color) {
-        var0.setColor(color);
-        var0.drawString(var1, var2 - 1, var3 - 1, var4);
-        var0.drawString(var1, var2, var3 - 1, var4);
-        var0.drawString(var1, var2 - 1, var3, var4);
-        var0.drawString(var1, var2 + 1, var3, var4);
-        var0.drawString(var1, var2, var3 + 1, var4);
-        var0.drawString(var1, var2 + 1, var3 + 1, var4);
-        var0.setColor(var5);
-        var0.drawString(var1, var2, var3, var4);
+    public static void drawString(Graphics graphics, String string, int x, int y, int flag, int color1, int color2) {
+        graphics.setColor(color2);
+        graphics.drawString(string, x - 1, y - 1, flag);
+        graphics.drawString(string, x, y - 1, flag);
+        graphics.drawString(string, x - 1, y, flag);
+        graphics.drawString(string, x + 1, y, flag);
+        graphics.drawString(string, x, y + 1, flag);
+        graphics.drawString(string, x + 1, y + 1, flag);
+        graphics.setColor(color1);
+        graphics.drawString(string, x, y, flag);
     }
 
     public static void a(Graphics var0, int var1, int var2, int var3) {

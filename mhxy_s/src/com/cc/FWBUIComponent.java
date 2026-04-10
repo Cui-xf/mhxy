@@ -107,7 +107,7 @@ public final class FWBUIComponent extends UIComponent {
 
    public final void draw(Graphics graphics) {
       graphics.setClip(super.X, super.Y, super.W, super.H);
-      LoadingPage.draw(graphics, super.X, super.Y, super.W, super.H, 1);
+      LoadingPage.fillRect(graphics, super.X, super.Y, super.W, super.H, 1);
       if (this.e) {
          LoadingPage.draw(graphics);
       }

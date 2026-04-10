@@ -231,7 +231,7 @@ public final class TextPanel extends BaseUi {
 
     // 绘制文本区域、滚动条以及可选的选中高亮。
     public void draw(Graphics graphics) {
-        LoadingPage.draw(graphics, this.textX, this.textY, this.textW, this.textH, 1);
+        LoadingPage.fillRect(graphics, this.textX, this.textY, this.textW, this.textH, 1);
         if (this.f) {
             LoadingPage.draw(graphics);
         }

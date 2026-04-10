@@ -417,8 +417,8 @@ public final class r {
       short var2 = GameSceneController.goods.w;
       if (this.j.mixedUi != null) {
          this.j.mixedUi.draw(var1);
-         LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32, this.j.mixedUi.W - 11, this.v, 1);
-         LoadingPage.draw(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32 + this.v + 1, this.j.mixedUi.W - 11, this.w - 2, 1);
+         LoadingPage.fillRect(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32, this.j.mixedUi.W - 11, this.v, 1);
+         LoadingPage.fillRect(var1, this.j.mixedUi.X + 5, this.j.mixedUi.Y + 32 + this.v + 1, this.j.mixedUi.W - 11, this.w - 2, 1);
       }
 
       int var3 = this.j.mixedUi.X + GlobalConfig.font2.stringWidth("装备孔") + 10;

@@ -1,14 +1,58 @@
 package com.yinhan.kjava.main;
 
-import com.cc.*;
+import com.cc.BaseUi;
+import com.cc.BottomUi;
+import com.cc.ChongZhiModel;
+import com.cc.FWBRender;
+import com.cc.GameSceneController;
+import com.cc.GlobalConfig;
+import com.cc.GlobalStatus;
+import com.cc.GroupModel;
+import com.cc.GunDongListUi;
+import com.cc.ImageSlice;
+import com.cc.InputAction;
+import com.cc.LoadingPage;
+import com.cc.MarriageModel;
+import com.cc.MixedUi;
+import com.cc.NetPacket;
+import com.cc.NetPacketCode;
+import com.cc.NetPayloadBuilder;
+import com.cc.NetUtils;
+import com.cc.NpcObject;
+import com.cc.PageStatus;
+import com.cc.PngUtil;
+import com.cc.PopUpWindow;
+import com.cc.Sprite;
+import com.cc.TextPanel;
+import com.cc.TopUi;
+import com.cc.ag_1;
+import com.cc.be_1;
+import com.cc.bo_1;
+import com.cc.bs;
 import com.cc.resource.Animation;
 import com.cc.resource.ResourceManager;
 
-import javax.microedition.lcdui.*;
+import javax.microedition.lcdui.Alert;
+import javax.microedition.lcdui.AlertType;
+import javax.microedition.lcdui.Canvas;
+import javax.microedition.lcdui.ChoiceGroup;
+import javax.microedition.lcdui.Command;
+import javax.microedition.lcdui.CommandListener;
+import javax.microedition.lcdui.Display;
+import javax.microedition.lcdui.Displayable;
+import javax.microedition.lcdui.Form;
+import javax.microedition.lcdui.Graphics;
+import javax.microedition.lcdui.Image;
+import javax.microedition.lcdui.StringItem;
+import javax.microedition.lcdui.TextField;
 import javax.microedition.rms.RecordStore;
 import javax.microedition.rms.RecordStoreException;
 import javax.microedition.rms.RecordStoreNotOpenException;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.Vector;
 
 //public  class a_MainCanvas extends Canvas implements Runnable, CommandListener {
@@ -1146,7 +1190,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             this.renderMainPageBase(graphics);
                             if (this.mixedUi != null) {
                                 this.mixedUi.draw(graphics);
-                                LoadingPage.draw(graphics, this.mixedUi.X + 5, this.mixedUi.Y + 32, this.mixedUi.W - 11, this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150), 1);
+                                LoadingPage.fillRect(graphics, this.mixedUi.X + 5, this.mixedUi.Y + 32, this.mixedUi.W - 11, this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150), 1);
                                 LoadingPage.b(graphics, this.mixedUi.X + 80, this.mixedUi.Y + 35, this.mixedUi.X + 80, this.mixedUi.Y + 35 + this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150) - 5);
                                 graphics.setColor(2176196);
                                 int var2 = GlobalConfig.font2.stringWidth(GlobalConfig.manPaiName[0]);
@@ -1890,18 +1934,18 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         }
 
         if (this.light_0 != null && this.light_1 != null && this.mainPageButtonXY != null) {
-            for (int var2 = 0; var2 < this.mainPageButtonXY.length; ++var2) {
-                for (int var3 = 0; var3 < this.mainPageButtonXY[var2].length; ++var3) {
-                    if (this.mainPageButtonXY[var2][0] >= 0 && this.mainPageButtonXY[var2][0] <= GlobalConfig.defaultWidth && this.mainPageButtonXY[var2][1] >= 0) {
+            for (int i = 0; i < this.mainPageButtonXY.length; ++i) {
+                for (int j = 0; j < this.mainPageButtonXY[i].length; ++j) {
+                    if (this.mainPageButtonXY[i][0] >= 0 && this.mainPageButtonXY[i][0] <= GlobalConfig.defaultWidth && this.mainPageButtonXY[i][1] >= 0) {
                         if ((this.piaoDongTeXiao & 1) == 0) {
-                            this.mainPageButtonXY[var2][0] += LoadingPage.randomInt(10, 40) % 2 == 0 ? -this.mainPageButtonXY[var2][2] : this.mainPageButtonXY[var2][2];
-                            this.mainPageButtonXY[var2][1] -= this.mainPageButtonXY[var2][3];
+                            this.mainPageButtonXY[i][0] += LoadingPage.randomInt(10, 40) % 2 == 0 ? -this.mainPageButtonXY[i][2] : this.mainPageButtonXY[i][2];
+                            this.mainPageButtonXY[i][1] -= this.mainPageButtonXY[i][3];
                         }
                     } else {
-                        this.mainPageButtonXY[var2] = this.z();
+                        this.mainPageButtonXY[i] = this.z();
                     }
 
-                    graphics.drawImage(this.mainPageButtonXY[var2][4] == 0 ? this.light_0 : this.light_1, this.mainPageButtonXY[var2][0], this.mainPageButtonXY[var2][1], 20);
+                    graphics.drawImage(this.mainPageButtonXY[i][4] == 0 ? this.light_0 : this.light_1, this.mainPageButtonXY[i][0], this.mainPageButtonXY[i][1], 20);
                 }
             }
 
@@ -1919,21 +1963,21 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         return var1;
     }
 
-    private void renderMainPage(Graphics var1) {
-        this.renderMainPageBase(var1);
-        LoadingPage.drawString(var1, GlobalConfig.appVersion, (int) 5, GlobalConfig.defaultHigh - 3, 36, 6160358, 335925);
-        LoadingPage.drawString(var1, "退出", (int) (GlobalConfig.defaultWidth - 5), GlobalConfig.defaultHigh - 3, 40, 16777215, 335925);
+    private void renderMainPage(Graphics graphics) {
+        this.renderMainPageBase(graphics);
+        LoadingPage.drawString(graphics, GlobalConfig.appVersion, (int) 5, GlobalConfig.defaultHigh - 3, 36, 6160358, 335925);
+        LoadingPage.drawString(graphics, "退出", (int) (GlobalConfig.defaultWidth - 5), GlobalConfig.defaultHigh - 3, 40, 16777215, 335925);
 
-        for (int var2 = 0; var2 < this.mainPageButton.length; ++var2) {
-            if (var2 == this.mainPageIndex) {
-                var1.drawImage(this.menuItem, GlobalConfig.defaultWidth - this.menuItem.getWidth() >> 1, (this.mainPageTop_Y << 1) + this.logoTitle.getHeight() + var2 * this.menuItem.getHeight(), 20);
+        for (int i = 0; i < this.mainPageButton.length; ++i) {
+            if (i == this.mainPageIndex) {
+                graphics.drawImage(this.menuItem, GlobalConfig.defaultWidth - this.menuItem.getWidth() >> 1, (this.mainPageTop_Y << 1) + this.logoTitle.getHeight() + i * this.menuItem.getHeight(), 20);
             }
 
-            LoadingPage.drawString(var1, (String) this.mainPageButton[var2], (int) (GlobalConfig.defaultWidth >> 1), (this.mainPageTop_Y << 1) + this.logoTitle.getHeight() + var2 * this.menuItem.getHeight() + (this.menuItem.getHeight() - GlobalConfig.font2_h) / 2, 17, 16777215, 335925);
+            LoadingPage.drawString(graphics, this.mainPageButton[i], (GlobalConfig.defaultWidth >> 1), (this.mainPageTop_Y << 1) + this.logoTitle.getHeight() + i * this.menuItem.getHeight() + (this.menuItem.getHeight() - GlobalConfig.font2_h) / 2, 17, 16777215, 335925);
         }
 
         if (this.subInputAction == 1) {
-            LoadingPage.drawDialog(var1, "当前没有账号信息，是否自动注册？", new String[]{"确定", "返回"});
+            LoadingPage.drawDialog(graphics, "当前没有账号信息，是否自动注册？", new String[]{"确定", "返回"});
         }
     }
 
@@ -2246,18 +2290,18 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
     }
 
-    private void renderRoleListPage(Graphics var1) {
-        this.renderMainPageBase(var1);
+    private void renderRoleListPage(Graphics graphics) {
+        this.renderMainPageBase(graphics);
         if (this.mixedUi != null) {
-            this.mixedUi.draw(var1);
-            LoadingPage.draw(var1, this.mixedUi.X + 5, this.mixedUi.Y + 32, this.mixedUi.W - 11, this.mixedUi.setR((this.bB << 1) + 6), 1);
+            this.mixedUi.draw(graphics);
+            LoadingPage.fillRect(graphics, this.mixedUi.X + 5, this.mixedUi.Y + 32, this.mixedUi.W - 11, this.mixedUi.setR((this.bB << 1) + 6), 1);
             int var2 = (this.mixedUi.W - (this.bB << 1) - 16) / 3;
             int var3 = (this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? (this.bB << 1) + 6 : 111) - (this.bB << 1) - 6) / 3;
 
             for (int var4 = 0; var4 < 2; ++var4) {
                 for (int var5 = 0; var5 < 2; ++var5) {
                     this.a((var4 << 1) + var5, this.mixedUi.X + 8 + var2 + (var2 + this.bB) * var5, this.mixedUi.Y + 35 + var3 + (var3 + this.bB) * var4, this.bB, this.bB);
-                    LoadingPage.a(var1, (Image) null, this.actorList[(var4 << 1) + var5][0], this.actorList[(var4 << 1) + var5][1], this.bB, this.bB, var4 == this.selectActorRow && var5 == this.selectActorClo);
+                    LoadingPage.drawRect(graphics, (Image) null, this.actorList[(var4 << 1) + var5][0], this.actorList[(var4 << 1) + var5][1], this.bB, this.bB, var4 == this.selectActorRow && var5 == this.selectActorClo);
                 }
             }
 
@@ -2266,33 +2310,33 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     if (this.roleFrame_1[var6] != null && var6 == (this.selectActorRow << 1) + this.selectActorClo) {
                         if (GlobalStatus.roleGenderList[var6] == 0) {
                             if (GlobalStatus.roleJobList[var6] == 0) {
-                                pngUtil.a(var1, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 + 6, this.actorList[var6][1] + 45 + 1, 20, 0);
+                                pngUtil.a(graphics, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 + 6, this.actorList[var6][1] + 45 + 1, 20, 0);
                             } else {
-                                pngUtil.a(var1, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 + 9, this.actorList[var6][1] + 45 + 16, 20, 0);
+                                pngUtil.a(graphics, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 + 9, this.actorList[var6][1] + 45 + 16, 20, 0);
                             }
                         } else if (GlobalStatus.roleGenderList[var6] == 1) {
                             if (GlobalStatus.roleJobList[var6] == 0) {
-                                pngUtil.a(var1, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 + 8, this.actorList[var6][1] + 45 + 14, 20, 0);
+                                pngUtil.a(graphics, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 + 8, this.actorList[var6][1] + 45 + 14, 20, 0);
                             } else {
-                                pngUtil.a(var1, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 1, this.actorList[var6][1] + 45 + 9, 20, 0);
+                                pngUtil.a(graphics, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 1, this.actorList[var6][1] + 45 + 9, 20, 0);
                             }
                         } else if (GlobalStatus.roleJobList[var6] == 0) {
-                            pngUtil.a(var1, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 9, this.actorList[var6][1] + 45 + 10, 20, 0);
+                            pngUtil.a(graphics, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 9, this.actorList[var6][1] + 45 + 10, 20, 0);
                         } else {
-                            pngUtil.a(var1, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 3, this.actorList[var6][1] + 45 + 12, 20, 0);
+                            pngUtil.a(graphics, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 3, this.actorList[var6][1] + 45 + 12, 20, 0);
                         }
                     } else if (this.roleFrame_2 != null && var6 != (this.selectActorRow << 1) + this.selectActorClo) {
-                        pngUtil.a(var1, (Animation) this.roleFrame_2[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 18, this.actorList[var6][1] + 45, 20, 0);
+                        pngUtil.a(graphics, (Animation) this.roleFrame_2[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 18, this.actorList[var6][1] + 45, 20, 0);
                     }
                 }
             }
         }
 
         if (this.subInputAction == 1) {
-            LoadingPage.c(var1);
+            LoadingPage.c(graphics);
         } else {
             if (this.subInputAction == 2) {
-                LoadingPage.drawDialog(var1, "确认删除？", new String[]{"确认", "返回"});
+                LoadingPage.drawDialog(graphics, "确认删除？", new String[]{"确认", "返回"});
             }
 
         }

@@ -421,10 +421,10 @@ public final class cg_1 {
          this.f.mixedUi.draw(var1);
          this.H.draw(var1);
          this.I.draw(var1);
-         LoadingPage.draw(var1, this.f.mixedUi.X + 5, this.f.mixedUi.Y + 32, this.f.mixedUi.W - 11, this.G, 1);
+         LoadingPage.fillRect(var1, this.f.mixedUi.X + 5, this.f.mixedUi.Y + 32, this.f.mixedUi.W - 11, this.G, 1);
       }
 
-      LoadingPage.draw(var1, this.f.mixedUi.X + 5 + 25, this.f.mixedUi.Y + 32 + 10, 50, 50, 1);
+      LoadingPage.fillRect(var1, this.f.mixedUi.X + 5 + 25, this.f.mixedUi.Y + 32 + 10, 50, 50, 1);
       var1.setColor(2917024);
       var1.fillRect(this.f.mixedUi.X + 5 + 25 + this.f.mixedUi.W / 2, this.f.mixedUi.Y + 32 + 10, 50, 50);
       var1.setColor(9360850);

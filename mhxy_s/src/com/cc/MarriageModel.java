@@ -293,7 +293,7 @@ public final class MarriageModel {
          if (this.i.mixedUi != null) {
             var2 = this.i.mixedUi.X + 5;
             var3 = this.i.mixedUi.Y + this.i.mixedUi.H - (2 * GlobalConfig.font2_h + 16) - 6;
-             LoadingPage.draw(var1, var2, var3, this.i.mixedUi.W - 11, 2 * GlobalConfig.font2_h + 16, 1);
+             LoadingPage.fillRect(var1, var2, var3, this.i.mixedUi.W - 11, 2 * GlobalConfig.font2_h + 16, 1);
             this.i.mixedUi.draw(var1);
          }
 
@@ -393,7 +393,7 @@ public final class MarriageModel {
          if (this.i.mixedUi != null) {
             var2 = this.i.mixedUi.X + 5;
             var3 = this.i.mixedUi.Y + this.i.mixedUi.H - (2 * GlobalConfig.font2_h + 16) - 6;
-             LoadingPage.draw(var1, var2, var3, this.i.mixedUi.W - 11, 2 * GlobalConfig.font2_h + 16, 1);
+             LoadingPage.fillRect(var1, var2, var3, this.i.mixedUi.W - 11, 2 * GlobalConfig.font2_h + 16, 1);
             this.i.mixedUi.draw(var1);
          }
 
