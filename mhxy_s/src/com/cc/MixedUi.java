@@ -247,7 +247,7 @@ public final class MixedUi extends BaseUi {
 
         this.y = false;
         if (this.title != null) {
-            LoadingPage.a(var1, MainCanvas.title.image, MainCanvas.title.w, this.m, this.n, this.o, this.p);
+            LoadingPage.drawImage(var1, MainCanvas.title.image, MainCanvas.title.w, this.m, this.n, this.o, this.p);
             var1.drawImage(MainCanvas.close.image, this.m + this.o - 5 - MainCanvas.close.w, this.n + 1, 20);
             int var10001 = this.m + this.o - 5 - MainCanvas.close.w;
             int var10002 = this.n + 1;

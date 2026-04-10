@@ -2612,7 +2612,7 @@ public final class GroupModel {
 
     public final void c(Graphics var1) {
         if (this.a.sceneSubState == 0 && this.b.mixedUi != null) {
-            LoadingPage.a(var1, (Image) MainCanvas.tradebottom.image, (short) MainCanvas.tradebottom.w, this.b.mixedUi.X + 5, this.b.mixedUi.Y + this.b.mixedUi.H - 53, this.b.mixedUi.W - 10, MainCanvas.tradebottom.h);
+            LoadingPage.drawImage(var1, (Image) MainCanvas.tradebottom.image, (short) MainCanvas.tradebottom.w, this.b.mixedUi.X + 5, this.b.mixedUi.Y + this.b.mixedUi.H - 53, this.b.mixedUi.W - 10, MainCanvas.tradebottom.h);
             this.b.mixedUi.draw(var1);
 
             for (int var2 = 0; var2 < this.b.gunDongListUi.f(); ++var2) {

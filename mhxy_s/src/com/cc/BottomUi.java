@@ -160,7 +160,7 @@ public final class BottomUi extends BaseUi {
    // 绘制底部按钮栏及可选的左右翻页箭头。
    public final void a(Graphics var1) {
       if (this.a != null || this.buttonText != null) {
-         LoadingPage.a(var1, (Image) MainCanvas.button1.image, (short) MainCanvas.button1.w, this.c, this.d, this.e, MainCanvas.button1.h);
+         LoadingPage.drawImage(var1, (Image) MainCanvas.button1.image, (short) MainCanvas.button1.w, this.c, this.d, this.e, MainCanvas.button1.h);
          var1.setFont(GlobalConfig.font2);
          if (this.a != null) {
             LoadingPage.drawString(var1, (String)this.a, (int)this.f, this.g + GlobalConfig.getCzjz(MainCanvas.button1.h), 20, this.r, 0);

@@ -173,7 +173,7 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
 }
 
 class RpgResource(
-    val animationGroup: RpgAnimationGroup,
+    private val animationGroup: RpgAnimationGroup,
     pixmapGroup: PixmapGroup
 ) : Disposable {
     private val textureGroup = TextureGroup(pixmapGroup)
@@ -191,7 +191,7 @@ class RpgResource(
     }
 
     fun getTextureRegionByName(name: String, regionIndex: Int?): TextureRegion {
-        return textureGroup.getByKey(hashKey(name + "s"), regionIndex)
+        return textureGroup.getByKey(hashKey(name + "p"), regionIndex)
     }
 
     companion object {

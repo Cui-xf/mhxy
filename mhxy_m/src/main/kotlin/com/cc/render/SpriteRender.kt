@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.GlyphLayout
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.cc.asset.Frame
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
@@ -52,6 +53,21 @@ fun SpriteBatch.drawImage(
     val w = if (w == -1f) texture.width.toFloat() else w
     val h = if (h == -1f) texture.height.toFloat() else h
     this.draw(texture, x, y, w, h)
+}
+
+fun SpriteBatch.drawImage(
+    region: TextureRegion,
+    x: Float,
+    y: Float,
+    w: Float = -1f,
+    h: Float = -1f,
+    align: Align = Align.CENTER_TOP
+) {
+    val drawX = if (align == Align.CENTER_TOP) x - region.regionWidth / 2 else x
+    val rw = if (w == -1f) region.regionWidth.toFloat() else w
+    val rh = if (h == -1f) region.regionHeight.toFloat() else h
+    val drawY = VIRTUAL_H - y - region.regionHeight
+    this.draw(region, drawX, drawY, rw, rh)
 }
 
 fun ShapeRenderer.drawRect(

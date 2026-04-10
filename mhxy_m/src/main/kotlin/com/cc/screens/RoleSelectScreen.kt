@@ -1,9 +1,12 @@
 package com.cc.screens
 
 import com.badlogic.gdx.graphics.Color
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.cc.FontManager.SMALL_FONT
+import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
+import com.cc.asset.RpgResource
 import com.cc.render.Align
+import com.cc.render.drawImage
 import com.cc.render.drawRect
 import com.cc.render.drawString
 import com.cc.screens.base.BaseBackGround
@@ -11,7 +14,10 @@ import com.cc.screens.base.BaseBackGround
 class RoleSelectScreen : AbstractScreen() {
     private val backGround = BaseBackGround
     private val shapeRenderer = createShapeRenderer()
-//    private val titleImage = ;
+    private val titleImage = autoDispose {
+        PUBLIC_ASSET.get<RpgResource>("rpg/publicUI.rpg")
+            .getTextureRegionByName("title", null).texture
+    }
 
     // 窗口全屏：X=0, Y=0, W=240, H=320
     private val winW = VIRTUAL_W * 0.95f
@@ -46,33 +52,53 @@ class RoleSelectScreen : AbstractScreen() {
 
     override fun update(delta: Float) {
         backGround.update(delta)
-
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled)
-        drawWindow()
-        drawCellArea()
-        drawCells()
-        shapeRenderer.end()
-
         batch.begin()
-        drawWindowTitle()
-        drawNicknames()
+        drawWindow()
         batch.end()
+
+//        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled)
+//        drawWindow()
+//        drawCellArea()
+//        drawCells()
+//        shapeRenderer.end()
+//
+//        batch.begin()
+//        drawWindowTitle()
+//        drawNicknames()
+//        batch.end()
     }
 
     /** 绘制窗口外框（多层边框，对应 MixedUi.draw 的边框逻辑） */
     private fun drawWindow() {
         // 深色背景
 //        shapeRenderer.drawRect(Color.valueOf("#2A6E81"), winX, winY, winW, winH, Align.LEFT)
-        // 外边框（近似原始多层 drawRect）
-        shapeRenderer.color = Color.valueOf("#006600")
-        shapeRenderer.rect(winX, VIRTUAL_H - winY - winH, winW - 1, winH - 1)
-        shapeRenderer.color = Color.valueOf("#008800")
-        shapeRenderer.rect(winX + 1f, VIRTUAL_H - winY - winH + 1f, winW - 3f, winH - 3f)
-        shapeRenderer.color = Color.valueOf("#004400")
-        shapeRenderer.rect(winX + 2f, VIRTUAL_H - winY - winH + 2f, winW - 5f, winH - 5f)
+        drawTitleImage(winX, winY)
 
-        // 标题栏背景
-        shapeRenderer.drawRect(Color.valueOf("#336600"), winX, winY, winW, titleH + 6f, Align.LEFT)
+        // 外边框（近似原始多层 drawRect）
+//        shapeRenderer.color = Color.valueOf("#006600")
+//        shapeRenderer.rect(winX, VIRTUAL_H - winY - winH, winW - 1, winH - 1)
+//        shapeRenderer.color = Color.valueOf("#008800")
+//        shapeRenderer.rect(winX + 1f, VIRTUAL_H - winY - winH + 1f, winW - 3f, winH - 3f)
+//        shapeRenderer.color = Color.valueOf("#004400")
+//        shapeRenderer.rect(winX + 2f, VIRTUAL_H - winY - winH + 2f, winW - 5f, winH - 5f)
+//
+//         标题栏背景
+//        shapeRenderer.drawRect(Color.valueOf("#336600"), winX, winY, winW, titleH + 6f, Align.LEFT)
+    }
+
+    private fun drawTitleImage(x: Float, y: Float) {
+        val imgW = titleImage.width
+        var t = 0
+        // 绘制完整的图片
+        for (i in 0 until (winW.toInt() - imgW) step imgW) {
+            t = i
+            batch.drawImage(titleImage, x + i, y, align = Align.LEFT)
+        }
+        // 绘制最后不足一张的部分（裁剪，不拉伸）
+        if (t < winW) {
+            val textureRegion = TextureRegion(titleImage, 0, 0, winW.toInt() - t, titleImage.height)
+            batch.drawImage(textureRegion, x + t, y, align = Align.LEFT)
+        }
     }
 
     /** 绘制角色格子区域背景（对应 fillRect color=1 → 0x66AC04 + 边框） */

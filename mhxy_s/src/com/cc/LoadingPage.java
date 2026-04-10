@@ -334,15 +334,15 @@ public final class LoadingPage {
 
     }
 
-    public static void a(Graphics var0, Image var1, short var2, int var3, int var4, int var5, int var6) {
-        var0.setClip(var3, var4, var5, var6);
-        var5 = var5 / var2 + (var5 % var2 != 0 ? 1 : 0);
+    public static void drawImage(Graphics graphics, Image image, short imgW, int x, int y, int w, int h) {
+        graphics.setClip(x, y, w, h);
+        w = w / imgW + (w % imgW != 0 ? 1 : 0);
 
-        for (int var8 = 0; var8 < var5; ++var8) {
-            var0.drawImage(var1, var3 + var8 * var2, var4, 20);
+        for (int i = 0; i < w; ++i) {
+            graphics.drawImage(image, x + i * imgW, y, 20);
         }
 
-        var0.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
+        graphics.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
     }
 
     public static void b(Graphics var0, int var1, int var2, int var3, int var4) {

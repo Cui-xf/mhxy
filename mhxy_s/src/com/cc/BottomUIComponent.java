@@ -75,7 +75,7 @@ public final class BottomUIComponent extends UIComponent {
 
    public final void draw(Graphics graphics) {
       graphics.setClip(super.X, super.Y, super.W, super.H);
-      LoadingPage.a(graphics, (Image) MainCanvas.button1.image, (short) MainCanvas.button1.w, super.X, super.Y, super.W, MainCanvas.button1.h);
+      LoadingPage.drawImage(graphics, (Image) MainCanvas.button1.image, (short) MainCanvas.button1.w, super.X, super.Y, super.W, MainCanvas.button1.h);
       if (this.d != null) {
          graphics.setColor(this.a);
          graphics.drawString(this.d, super.X + 3, super.Y + (super.H - GlobalConfig.font2_h) / 2, 20);
