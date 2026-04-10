@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle
 import com.cc.FontManager.SMALL_FONT
 import com.cc.MhxyGame
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
-import com.cc.asset.RpgAnimationGroup
+import com.cc.asset.RpgResource
 import com.cc.render.*
 import kotlin.random.Random
 
@@ -38,11 +38,12 @@ class LoadingScreen : AbstractScreen() {
         // 只加载公共资源，场景专属资源由各场景自己加载
         PUBLIC_ASSET.load("title_bg.jpg", Texture::class.java)
         PUBLIC_ASSET.load("player.jpg", Texture::class.java)
-        PUBLIC_ASSET.load("rpg/cartoon.rpg", RpgAnimationGroup::class.java)
+        PUBLIC_ASSET.load("rpg/cartoon.rpg", RpgResource::class.java)
+        PUBLIC_ASSET.load("rpg/publicUI.rpg", RpgResource::class.java)
     }
 
     override fun update(delta: Float) {
-        progress = if (progress >= 100) 100 else progress + 5
+        progress = if (progress >= 100) 100 else progress + 10
         PUBLIC_ASSET.update()
         batch.begin()
         //顶部文字
@@ -83,7 +84,8 @@ class LoadingScreen : AbstractScreen() {
         )
         shapeRenderer.end()
         if (PUBLIC_ASSET.isFinished && progress >= 100) {
-            MhxyGame.setScreen(TitleScreen())
+//            MhxyGame.setScreen(TitleScreen())
+            MhxyGame.setScreen(RoleSelectScreen())
         }
     }
 }

@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.GlyphLayout
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.cc.asset.FramePack
+import com.cc.asset.Frame
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
 
 private val layout: GlyphLayout = GlyphLayout()
@@ -76,8 +76,8 @@ fun ShapeRenderer.drawRect(
  * 推进并绘制一个帧动画。
  * originX/originY 为动画锚点（原始坐标系，左上角为原点，向下为 y+）。
  */
-fun SpriteBatch.drawAnimation(pack: FramePack, originX: Float, originY: Float) {
-    for (frame in pack.frames) {
+fun SpriteBatch.drawAnimation(frames: List<Frame>, originX: Float, originY: Float) {
+    for (frame in frames) {
         val textureRegion = frame.textureRegion
         // 屏幕左上角 = libGDX 的 (0, VIRTUAL_H)
         // 原始坐标 (px, py) → libGDX y = VIRTUAL_H - py - sliceH

@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Disposable
 
 object AssetManagerFactory : Disposable {
     val PUBLIC_ASSET = create().also {
-        it.setLoader(RpgAnimationGroup::class.java, ".rpg", RpgAnimationLoader(it.fileHandleResolver))
+        it.setLoader(RpgResource::class.java, ".rpg", RpgAnimationLoader(it.fileHandleResolver))
         it.setLoader(RuleAsset::class.java, ".rule", RuleAssetLoader(it.fileHandleResolver))
     }
 

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.utils.Disposable
 import com.cc.asset.AssetManagerFactory
 import com.cc.asset.RpgAnimationGroup
+import com.cc.asset.RpgResource
 import com.cc.render.Align
 import com.cc.render.drawAnimation
 import com.cc.render.drawImage
@@ -14,7 +15,7 @@ import kotlin.random.Random
 object BaseBackGround : AbstractScreen(), Disposable {
     private val menuBG = autoDispose { Texture(Gdx.files.classpath("assets/menuBG.png")) }
     private val logoTitle = autoDispose { Texture(Gdx.files.classpath("assets/logoTitle_B.png")) }
-    private val cartoon = AssetManagerFactory.PUBLIC_ASSET.get<RpgAnimationGroup>("rpg/cartoon.rpg")
+    private val cartoon = AssetManagerFactory.PUBLIC_ASSET.get<RpgResource>("rpg/cartoon.rpg")
     private val hudie = cartoon.getAnimationByName("hudie")
     private val hudie2 = cartoon.getAnimationByName("hudie_2")
     private val light0 = autoDispose { Texture(Gdx.files.classpath("assets/light_0.png")) }

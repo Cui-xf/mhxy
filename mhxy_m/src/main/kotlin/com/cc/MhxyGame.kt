@@ -8,7 +8,6 @@ import com.cc.screens.LogoScreen
 object MhxyGame : Game() {
     override fun create() {
         setScreen(LogoScreen())
-//        setScreen(BaseBackGround())
     }
 
     override fun setScreen(screen: Screen) {
