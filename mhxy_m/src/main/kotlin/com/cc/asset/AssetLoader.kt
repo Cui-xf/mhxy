@@ -2,6 +2,9 @@ package com.cc.asset
 
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.utils.Disposable
+import kotlin.reflect.KClass
+
+val CommonAssetLoader = AssetLoader()
 
 class AssetLoader : Disposable {
     private val loadResMap = mutableMapOf<String, AssetManager>()
@@ -26,6 +29,13 @@ class AssetLoader : Disposable {
 
     fun <T> get(assetManager: AssetManager, name: String, type: Class<T>): T {
         return assetManager.get<T>(name, type)
+    }
+
+    fun <T : Any> resource(assetManager: AssetManager, name: String, type: KClass<T>): Lazy<T> {
+        this.load(assetManager, name, type.java)
+        return lazy {
+            this.get(assetManager, name, type.java)
+        }
     }
 
     override fun dispose() {

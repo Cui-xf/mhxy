@@ -27,7 +27,7 @@ abstract class AbstractScreen : ScreenAdapter() {
     protected var touchY = 0f
     private val _touchVec = Vector3()
 
-    private val assetLoader = AssetLoader()
+    protected val assetLoader = AssetLoader()
 
     final override fun render(delta: Float) {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
@@ -54,12 +54,8 @@ abstract class AbstractScreen : ScreenAdapter() {
 
     abstract fun update(delta: Float)
 
-    fun <T : Any> resource(assetManager: AssetManager, name: String, type: KClass<T>): Lazy<T> {
-        assetLoader.load(assetManager, name, type.java)
-        return lazy {
-            assetLoader.get(assetManager, name, type.java)
-        }
-    }
+    fun <T : Any> resource(assetManager: AssetManager, name: String, type: KClass<T>): Lazy<T> =
+        assetLoader.resource(assetManager, name, type)
 
     /**
      * 创建一个自动同步 viewport camera 矩阵的 ShapeRenderer。

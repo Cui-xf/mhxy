@@ -9,6 +9,7 @@ import com.cc.FontManager.SMALL_FONT
 import com.cc.MhxyGame
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.render.*
+import com.cc.screens.base.BaseBackGround
 import kotlin.random.Random
 
 
@@ -81,8 +82,7 @@ class LoadingScreen : AbstractScreen() {
         )
         shapeRenderer.end()
         if (PUBLIC_ASSET.isFinished && progress >= 100) {
-//            MhxyGame.setScreen(TitleScreen())
-            MhxyGame.setScreen(RoleSelectScreen())
+            MhxyGame.setScreen(RoleSelectScreen2())
         }
     }
 }

@@ -2,25 +2,28 @@ package com.cc.screens.base
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.Disposable
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
+import com.cc.asset.CommonAssetLoader
 import com.cc.asset.RpgAnimation
 import com.cc.render.Align
 import com.cc.render.drawAnimation
 import com.cc.render.drawImage
-import com.cc.screens.AbstractScreen
+import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
+import com.cc.screens.AbstractScreen.Companion.VIRTUAL_W
+import com.cc.ui.component.UIComponent
 import kotlin.random.Random
 
-object BaseBackGround : AbstractScreen(), Disposable {
-    private val menuBG = autoDispose { Texture(Gdx.files.classpath("assets/menuBG.png")) }
-    private val logoTitle = autoDispose { Texture(Gdx.files.classpath("assets/logoTitle_B.png")) }
+object BaseBackGround : UIComponent(CommonAssetLoader), Disposable {
+    private val menuBG = Texture(Gdx.files.classpath("assets/menuBG.png"))
+    private val logoTitle = Texture(Gdx.files.classpath("assets/logoTitle_B.png"))
+    private val light0 = Texture(Gdx.files.classpath("assets/light_0.png"))
+    private val light1 = Texture(Gdx.files.classpath("assets/light_1.png"))
 
     private val hudie by resource(PUBLIC_ASSET, "rpg/cartoon/hudie", RpgAnimation::class)
     private val hudie2 by resource(PUBLIC_ASSET, "rpg/cartoon/hudie_2", RpgAnimation::class)
-
-    private val light0 = autoDispose { Texture(Gdx.files.classpath("assets/light_0.png")) }
-    private val light1 = autoDispose { Texture(Gdx.files.classpath("assets/light_1.png")) }
-    private var timer = 0f   // 动画累计时间（移动时推进）
 
     // 原始绘制坐标：defaultWidth-100, defaultHigh-100，屏幕 240×320 → (140, 220)
     private val ANIM_X = VIRTUAL_W - 100f
@@ -32,29 +35,42 @@ object BaseBackGround : AbstractScreen(), Disposable {
     // 粒子状态：[x, y, dx, dy, type]，共 8 个
     private val particles = Array(8) { newParticle() }
     private var running = true
+    private var timer = 0f   // 动画累计时间（移动时推进）
+    override fun render(
+        batch: SpriteBatch,
+        sr: ShapeRenderer,
+        cx: Float,
+        cy: Float,
+        cw: Float,
+        ch: Float,
+        delta: Float
+    ) {
+        if (!CommonAssetLoader.isFinished()) {
+            CommonAssetLoader.update()
+            return
+        }
 
-    override fun update(delta: Float) {
         if (running) {
             timer += delta
         }
         batch.begin()
         batch.drawImage(menuBG, VIRTUAL_W / 2, 0f)
         batch.drawImage(logoTitle, VIRTUAL_W / 2, 29f)
-        batch.drawAnimation(hudie.getKeyFrame(timer, true), ANIM_X, ANIM_Y)
-        batch.drawAnimation(hudie2.getKeyFrame(timer, true), ANIM_X, ANIM_Y)
-        drawLightParticles()
+        batch.drawAnimation(hudie.getKeyFrame(delta, true), ANIM_X, ANIM_Y)
+        batch.drawAnimation(hudie2.getKeyFrame(delta, true), ANIM_X, ANIM_Y)
+        drawLightParticles(batch, delta)
         batch.end()
     }
 
-    override fun pause() {
+    fun pause() {
         running = false
     }
 
-    override fun resume() {
+    fun resume() {
         running = true
     }
 
-    private fun drawLightParticles() {
+    private fun drawLightParticles(batch: SpriteBatch, timer: Float) {
         val counter = (timer * 60).toInt()
         for (p in particles) {
             if (running) {
@@ -81,5 +97,12 @@ object BaseBackGround : AbstractScreen(), Disposable {
             1f,                                            // dy
             (Random.nextInt(1, 101) % 2).toFloat()        // type: 0=light0, 1=light1
         )
+    }
+
+    override fun dispose() {
+        menuBG.dispose()
+        logoTitle.dispose()
+        light0.dispose()
+        light1.dispose()
     }
 }

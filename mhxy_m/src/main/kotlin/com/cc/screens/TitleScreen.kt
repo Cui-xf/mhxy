@@ -14,6 +14,7 @@ import com.cc.screens.AbstractScreen.Companion.VIRTUAL_W
 import com.cc.screens.base.BaseBackGround
 
 class TitleScreen : AbstractScreen() {
+    private val sr = autoDispose { createShapeRenderer() }
     private val backGround = BaseBackGround
     private val menuItem = autoDispose { Texture(Gdx.files.classpath("assets/menuItem.png")) }
     private val menuButtons = listOf(
@@ -25,7 +26,7 @@ class TitleScreen : AbstractScreen() {
 
     override fun update(delta: Float) {
         handleInput()
-        backGround.update(delta)
+        backGround.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
         batch.begin()
         menuButtons.forEachIndexed { index, button ->
             drawButton(button, index == selectedIndex)
@@ -67,7 +68,7 @@ class TitleScreen : AbstractScreen() {
 
     private fun enterScreen(index: Int) {
         when (index) {
-            0 -> MhxyGame.setScreen(RoleSelectScreen())
+            0 -> MhxyGame.setScreen(RoleSelectScreen2())
         }
     }
 }
