@@ -1,12 +1,6 @@
 package com.cc.resource;
 
-import com.cc.FrameInfo;
-import com.cc.GlobalConfig;
-import com.cc.GlobalStatus;
-import com.cc.ImageSlice;
-import com.cc.PngUtil;
-import com.cc.Sprite;
-import com.cc.g;
+import com.cc.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
@@ -136,8 +130,8 @@ public final class ResourceManager {
         }
     }
 
-    private static Animation buildAnimation(byte[][] bytes, short var1, short var2, short var3) {
-        Animation animation = new Animation(var1, var2, var3);
+    private static Animation buildAnimation(byte[][] bytes, short h, short s, short l) {
+        Animation animation = new Animation(h, s, l);
         animation.build(bytes);
         return animation;
     }
@@ -537,7 +531,7 @@ public final class ResourceManager {
     }
 
     public void loadResource(String path) {
-        this.loadResource((String) path, (short) 0, (short) 0, (short) 0);
+        this.loadAnimation((String) path, (short) 0, (short) 0, (short) 0);
     }
 
     public void loadFrame(String[] var1) {
@@ -615,7 +609,7 @@ public final class ResourceManager {
                         if (resourceStream == null) {
                             continue;
                         }
-                        loadFrame1FromFile2Cache(resourceEntry, resourceStream, variantA2, variantB2, variantC2);
+                        loadAnimationFromFile2Cache(resourceEntry, resourceStream, variantA2, variantB2, variantC2);
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     } finally {
@@ -636,55 +630,44 @@ public final class ResourceManager {
         }
     }
 
-    public void loadResource(String path, short var2, short var3, short var4) {
-        int var21 = buildResourceId((String) path, (byte) 2);
-        short var9 = var4;
-        short var8 = var3;
-        short var7 = var2;
-        int var6 = var21;
-        ResourceManager var5 = this;
-        Object var10 = null;
-        var10 = null;
-        int var11 = 0;
+    public void loadAnimation(String path, short var2, short var3, short var4) {
+        int resourceId = buildResourceId((String) path, (byte) 2);
+        int i = 0;
 
-        Animation var28;
+        Animation animation;
         while (true) {
-            if (var11 >= var5.frameCache.size()) {
-                var28 = null;
+            if (i >= this.frameCache.size()) {
+                animation = null;
                 break;
             }
 
-            Resource var26;
+            Resource resource = (Resource) this.frameCache.elementAt(i);
             Animation var27;
-            if ((var26 = (Resource) var5.frameCache.elementAt(var11)).type == 2 && var26.info != null && var26.info.key == var6 && (var27 = (Animation) var26).hsl_h == var7 && var27.hsl_s == var8 && var27.hsl_l == var9) {
-                var28 = var27;
+            if (resource.type == 2 && resource.info != null && resource.info.key == resourceId && (var27 = (Animation) resource).hsl_h == var2 && var27.hsl_s == var3 && var27.hsl_l == var4) {
+                animation = var27;
                 break;
             }
 
-            ++var11;
+            ++i;
         }
 
-        if (var28 == null) {
-            DataInputStream var22 = null;
-            Object var23 = null;
-
+        if (animation == null) {
+            DataInputStream dis = null;
             try {
-                FrameInfo var24;
-                if ((var24 = this.getFrameInfoByKey(var21)) == null) {
+                FrameInfo frameInfo = this.getFrameInfoByKey(resourceId);
+                if (frameInfo == null) {
                     return;
                 }
-
-                if ((var22 = this.getFrameStream(var24)) != null) {
-                    this.loadFrame1FromFile2Cache(var24, var22, var2, var3, var4);
-                    return;
+                dis = this.getFrameStream(frameInfo);
+                if (dis != null) {
+                    this.loadAnimationFromFile2Cache(frameInfo, dis, var2, var3, var4);
                 }
             } catch (Exception var19) {
                 var19.printStackTrace();
-                return;
             } finally {
                 try {
-                    if (var22 != null) {
-                        var22.close();
+                    if (dis != null) {
+                        dis.close();
                     }
                 } catch (IOException var18) {
                     ((Throwable) var18).printStackTrace();
@@ -695,70 +678,58 @@ public final class ResourceManager {
         }
     }
 
-    private void loadFrame1FromFile2Cache(FrameInfo var1, DataInputStream var2, short var3, short var4, short var5) throws IOException {
-        Animation var15 = buildAnimation(parseSpriteData((DataInputStream) var2, (int) 0), var3, var4, var5);
-        short var10 = var5;
-        short var9 = var4;
-        short var8 = var3;
-        ResourceManager var6 = this;
-        Animation var11 = var15;
-        ResourceManager var7 = this;
+    private void loadAnimationFromFile2Cache(FrameInfo frameInfo, DataInputStream dis, short h, short s, short l) throws IOException {
+        Animation animation = buildAnimation(parseSpriteData((DataInputStream) dis, (int) 0), h, s, l);
         this.mapResSpriteIdCache.removeAllElements();
-        short[] var10000;
-        if (var15 != null && var15.spritePieces != null) {
-            Object var12 = null;
-
-            for (int var13 = 0; var13 < var11.spritePieces.length; ++var13) {
-                if (var11.spritePieces[var13] != null) {
-                    for (int var14 = 0; var14 < var11.spritePieces[var13].length; ++var14) {
-                        if (var11.spritePieces[var13][var14] != null) {
-                            String var19 = String.valueOf(var11.spritePieces[var13][var14].spriteId);
-                            if (!var7.mapResSpriteIdCache.contains(var19)) {
-                                var7.mapResSpriteIdCache.addElement(var19);
+        short[] spriteIdArr;
+        if (animation.spritePieces != null) {
+            for (int i = 0; i < animation.spritePieces.length; ++i) {
+                if (animation.spritePieces[i] != null) {
+                    for (int j = 0; j < animation.spritePieces[i].length; ++j) {
+                        if (animation.spritePieces[i][j] != null) {
+                            String spriteId = String.valueOf(animation.spritePieces[i][j].spriteId);
+                            if (!this.mapResSpriteIdCache.contains(spriteId)) {
+                                this.mapResSpriteIdCache.addElement(spriteId);
                             }
                         }
                     }
                 }
             }
 
-            short[] var21 = new short[var7.mapResSpriteIdCache.size()];
-
-            for (int var22 = 0; var22 < var7.mapResSpriteIdCache.size(); ++var22) {
-                var21[var22] = Short.parseShort((String) var7.mapResSpriteIdCache.elementAt(var22));
+            spriteIdArr = new short[this.mapResSpriteIdCache.size()];
+            for (int i = 0; i < this.mapResSpriteIdCache.size(); ++i) {
+                spriteIdArr[i] = Short.parseShort((String) this.mapResSpriteIdCache.elementAt(i));
             }
-
-            var7.mapResSpriteIdCache.removeAllElements();
-            var10000 = var21;
+            this.mapResSpriteIdCache.removeAllElements();
         } else {
-            var10000 = null;
+            spriteIdArr = null;
         }
 
-        short[] var16 = var10000;
-        if (var10000 != null) {
-            for (int var17 = 0; var17 < var16.length; ++var17) {
-                if (var16[var17] >= 0) {
-                    if (var6.getSpriteByIdFromCache(var16[var17], var8, var9, var10) != null) {
-                        var16[var17] = -1;
+        if (spriteIdArr != null) {
+            for (int i = 0; i < spriteIdArr.length; ++i) {
+                if (spriteIdArr[i] >= 0) {
+                    if (this.getSpriteByIdFromCache(spriteIdArr[i], h, s, l) != null) {
+                        spriteIdArr[i] = -1;
                     } else {
-                        for (int var20 = var17 + 1; var20 < var16.length; ++var20) {
-                            if (var16[var20] >= 0 && var16[var17] == var16[var20]) {
-                                var16[var17] = -1;
+                        for (int j = i + 1; j < spriteIdArr.length; ++j) {
+                            if (spriteIdArr[j] >= 0 && spriteIdArr[i] == spriteIdArr[j]) {
+                                spriteIdArr[i] = -1;
                             }
                         }
                     }
                 }
             }
 
-            for (int var18 = 0; var18 < var16.length; ++var18) {
-                if (var16[var18] >= 0) {
-                    var6.loadSpriteToCache(var16[var18], var8, var9, var10);
+            for (int i = 0; i < spriteIdArr.length; ++i) {
+                if (spriteIdArr[i] >= 0) {
+                    this.loadSpriteToCache(spriteIdArr[i], h, s, l);
                 }
             }
         }
 
-        this.boundCal(var15, var3, var4, var5);
-        var15.info = var1;
-        this.frameCache.addElement(var15);
+        this.boundCal(animation, h, s, l);
+        animation.info = frameInfo;
+        this.frameCache.addElement(animation);
     }
 
     public void loadSpriteByName(String name) {

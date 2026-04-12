@@ -1,14 +1,16 @@
 package com.cc.screens
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.Screen
 import com.badlogic.gdx.ScreenAdapter
+import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector3
 import com.badlogic.gdx.utils.Disposable
 import com.badlogic.gdx.utils.viewport.FitViewport
+import com.cc.asset.AssetLoader
+import kotlin.reflect.KClass
 
 abstract class AbstractScreen : ScreenAdapter() {
     companion object {
@@ -25,7 +27,16 @@ abstract class AbstractScreen : ScreenAdapter() {
     protected var touchY = 0f
     private val _touchVec = Vector3()
 
+    private val assetLoader = AssetLoader()
+
     final override fun render(delta: Float) {
+        Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
+        if (!assetLoader.isFinished()) {
+            assetLoader.update()
+            return
+        }
+
         _touchVec.set(Gdx.input.x.toFloat(), Gdx.input.y.toFloat(), 0f)
         viewport.unproject(_touchVec)
         touchX = _touchVec.x
@@ -34,8 +45,6 @@ abstract class AbstractScreen : ScreenAdapter() {
         viewport.apply()
         batch.projectionMatrix = viewport.camera.combined
 
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
         update(delta)
     }
 
@@ -44,6 +53,13 @@ abstract class AbstractScreen : ScreenAdapter() {
     }
 
     abstract fun update(delta: Float)
+
+    fun <T : Any> resource(assetManager: AssetManager, name: String, type: KClass<T>): Lazy<T> {
+        assetLoader.load(assetManager, name, type.java)
+        return lazy {
+            assetLoader.get(assetManager, name, type.java)
+        }
+    }
 
     /**
      * 创建一个自动同步 viewport camera 矩阵的 ShapeRenderer。
@@ -71,5 +87,6 @@ abstract class AbstractScreen : ScreenAdapter() {
             } catch (_: Exception) {
             }
         }
+        assetLoader.dispose()
     }
 }

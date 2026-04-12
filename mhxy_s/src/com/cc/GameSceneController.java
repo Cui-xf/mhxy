@@ -2298,7 +2298,7 @@ public final class GameSceneController {
                 GameSceneController var5 = this;
                 if (GlobalStatus.equipmentId != null && bn != null && this.f.collisionMap != null) {
                     for (int var6 = 0; var6 < GlobalStatus.equipmentId.length; ++var6) {
-                        MainCanvas.pngUtil.a(var4, (Animation) bn, (int[]) null, h - var5.g(), i_1 - var5.h(), GlobalStatus.equipmentId[var6], GlobalStatus.equipmentDurability[var6] + 16 - bn.h(), 20, 0);
+                        MainCanvas.pngUtil.roleSelectedAnimation(var4, (Animation) bn, (int[]) null, h - var5.g(), i_1 - var5.h(), GlobalStatus.equipmentId[var6], GlobalStatus.equipmentDurability[var6] + 16 - bn.h(), 20, 0);
                     }
                 }
 
@@ -2713,7 +2713,7 @@ public final class GameSceneController {
                 }
 
                 if (bp != null) {
-                    MainCanvas.pngUtil.a(var1, (Animation) bp, (int[]) null, 0, 0, this.mainCanvasRef.mixedUi.X + 5 + 30, this.mainCanvasRef.mixedUi.Y + 35 + (this.bQ + bp.j()) / 2, 20, 0);
+                    MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) bp, (int[]) null, 0, 0, this.mainCanvasRef.mixedUi.X + 5 + 30, this.mainCanvasRef.mixedUi.Y + 35 + (this.bQ + bp.j()) / 2, 20, 0);
                 }
 
                 var1.setColor(1539988);
@@ -3640,7 +3640,7 @@ public final class GameSceneController {
 
     public static void a(short var0, short var1, short var2, short var3) {
         for (int var4 = 0; var4 < (var0 == 701 ? 1 : 4); ++var4) {
-            MainCanvas.petfight.loadResource(var0 + "_" + var4, var1, var2, var3);
+            MainCanvas.petfight.loadAnimation(var0 + "_" + var4, var1, var2, var3);
         }
 
     }
@@ -7396,7 +7396,7 @@ public final class GameSceneController {
                     this.c(var4, var6 + this.bY[var4][0], var7 + this.bY[var4][1], MainCanvas.equipSolt[0].w, MainCanvas.equipSolt[0].h);
                 }
 
-                MainCanvas.pngUtil.a(var1, (Animation) q, (int[]) null, 0, 0, var6 + MainCanvas.equip.w / 2, var7 + (MainCanvas.equip.h - q.j()) / 2 + q.j(), 20, 0);
+                MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) q, (int[]) null, 0, 0, var6 + MainCanvas.equip.w / 2, var7 + (MainCanvas.equip.h - q.j()) / 2 + q.j(), 20, 0);
             }
 
             var1.setColor(10092544);
@@ -8669,7 +8669,7 @@ public final class GameSceneController {
                 this.c(var5, var3 + this.cc[var5][0], var4 + this.cc[var5][1], MainCanvas.equipSolt[0].w, MainCanvas.equipSolt[0].h);
             }
 
-            MainCanvas.pngUtil.a(var1, (Animation) var2, (int[]) null, 0, 0, var3 + (MainCanvas.equip.w - var2.i()) / 2, var4 + (MainCanvas.equip.h - var2.j()) / 2, 20, 0);
+            MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) var2, (int[]) null, 0, 0, var3 + (MainCanvas.equip.w - var2.i()) / 2, var4 + (MainCanvas.equip.h - var2.j()) / 2, 20, 0);
         }
 
         LoadingPage.d(var1, var3 + this.cc[this.aq][0], var4 + this.cc[this.aq][1], 17, 17);
@@ -8724,7 +8724,7 @@ public final class GameSceneController {
                     this.c(var6, var4 + this.bY[var6][0], var5 + this.bY[var6][1], MainCanvas.equipSolt[0].w, MainCanvas.equipSolt[0].h);
                 }
 
-                MainCanvas.pngUtil.a(var1, (Animation) var3, (int[]) null, 0, 0, var4 + MainCanvas.equip.w / 2, var5 + (MainCanvas.equip.h - var3.j()) / 2 + var3.j(), 20, 0);
+                MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) var3, (int[]) null, 0, 0, var4 + MainCanvas.equip.w / 2, var5 + (MainCanvas.equip.h - var3.j()) / 2 + var3.j(), 20, 0);
                 LoadingPage.drawString(var1, (String) var2, (int) (var4 + MainCanvas.equip.w / 2), var5 + 26, 17, 16776960, 0);
             }
 
@@ -9475,7 +9475,7 @@ public final class GameSceneController {
         if (this.sceneSubState == 0) {
             if (this.ch != null) {
                 PngUtil.animate(this.ch, this.mainCanvasRef.frameStartTs);
-                MainCanvas.pngUtil.a(var1, (Animation) this.ch, this.ci, 0, 0, this.mainCanvasRef.mixedUi.X + this.mainCanvasRef.mixedUi.W / 4, this.mainCanvasRef.gunDongListUi.b() + this.mainCanvasRef.gunDongListUi.d() / 2 + this.ch.h() / 2, 0, 0);
+                MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) this.ch, this.ci, 0, 0, this.mainCanvasRef.mixedUi.X + this.mainCanvasRef.mixedUi.W / 4, this.mainCanvasRef.gunDongListUi.b() + this.mainCanvasRef.gunDongListUi.d() / 2 + this.ch.h() / 2, 0, 0);
                 return;
             }
         } else if (this.sceneSubState == 1) {
@@ -10192,7 +10192,7 @@ public final class GameSceneController {
                 var1.drawRect(var7 + 9, var5 + 7, 31, 3);
                 var1.setColor(48127);
                 var1.fillRect(var7 + 1 + 9, var5 + 1 + 7, 30 * GlobalStatus.gF[this.mainCanvasRef.gunDongListUi.g()] / GlobalStatus.gE[this.mainCanvasRef.gunDongListUi.g()], 2);
-                MainCanvas.pngUtil.a(var1, (Animation) this.aI, (int[]) null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 50 - this.aI.h() - 3, 20, 0);
+                MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) this.aI, (int[]) null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 50 - this.aI.h() - 3, 20, 0);
             }
         }
 
@@ -10347,7 +10347,7 @@ public final class GameSceneController {
                 var1.drawRect(var7 + 4, var5 + 7, 31, 3);
                 var1.setColor(48127);
                 var1.fillRect(var7 + 1 + 4, var5 + 1 + 7, 30 * GlobalStatus.gF[this.mainCanvasRef.gunDongListUi.g()] / GlobalStatus.gE[this.mainCanvasRef.gunDongListUi.g()], 2);
-                MainCanvas.pngUtil.a(var1, (Animation) this.aI, (int[]) null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 21 - this.aI.h() / 2 + 6, 20, 0);
+                MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) this.aI, (int[]) null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 21 - this.aI.h() / 2 + 6, 20, 0);
             }
 
         }
@@ -10483,9 +10483,9 @@ public final class GameSceneController {
                 for (int var5 = 0; var5 < GlobalStatus.npcObjects.length; ++var5) {
                     if (GlobalStatus.npcObjects[var5] != null) {
                         if (GlobalStatus.npcObjects[var5].t == -1 && t_2 != null) {
-                            MainCanvas.pngUtil.a(var1, (Animation) t_2, (int[]) null, 0, 0, this.aB + GlobalStatus.npcObjects[var5].c * this.aD / 16 - 10, this.aC + GlobalStatus.npcObjects[var5].d * this.aD / 16 - t_2.j() - 5, 0, 0);
+                            MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) t_2, (int[]) null, 0, 0, this.aB + GlobalStatus.npcObjects[var5].c * this.aD / 16 - 10, this.aC + GlobalStatus.npcObjects[var5].d * this.aD / 16 - t_2.j() - 5, 0, 0);
                         } else if (GlobalStatus.npcObjects[var5].t == 1 && s != null) {
-                            MainCanvas.pngUtil.a(var1, (Animation) s, (int[]) null, 0, 0, this.aB + GlobalStatus.npcObjects[var5].c * this.aD / 16 - 10, this.aC + GlobalStatus.npcObjects[var5].d * this.aD / 16 - s.j() - 5, 0, 0);
+                            MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) s, (int[]) null, 0, 0, this.aB + GlobalStatus.npcObjects[var5].c * this.aD / 16 - 10, this.aC + GlobalStatus.npcObjects[var5].d * this.aD / 16 - s.j() - 5, 0, 0);
                         }
 
                         if (GlobalStatus.npcObjects[var5].npcName.length() <= 2) {
@@ -10495,7 +10495,7 @@ public final class GameSceneController {
                         }
 
                         if (bo != null) {
-                            MainCanvas.pngUtil.a(var1, (Animation) bo, (int[]) null, 0, 0, this.aB + GlobalStatus.npcObjects[var5].c * this.aD / 16, this.aC + GlobalStatus.npcObjects[var5].d * this.aD / 16, 0, 0);
+                            MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) bo, (int[]) null, 0, 0, this.aB + GlobalStatus.npcObjects[var5].c * this.aD / 16, this.aC + GlobalStatus.npcObjects[var5].d * this.aD / 16, 0, 0);
                         }
                     }
                 }
@@ -11411,7 +11411,7 @@ public final class GameSceneController {
                     var1.drawRect(var12 + 9, var6 + 7, 31, 3);
                     var1.setColor(48127);
                     var1.fillRect(var12 + 1 + 9, var6 + 1 + 7, 30 * GlobalStatus.fK[var3] / GlobalStatus.fL[var3], 2);
-                    MainCanvas.pngUtil.a(var1, (Animation) this.aI, (int[]) null, 0, 0, var12 + 25 - this.aI.g() / 2, var6 + 50 - this.aI.h() - 3, 20, 0);
+                    MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) this.aI, (int[]) null, 0, 0, var12 + 25 - this.aI.g() / 2, var6 + 50 - this.aI.h() - 3, 20, 0);
                 }
 
                 if (this.sceneSubState != 1 && this.sceneSubState != 2 && this.sceneSubState != 9) {
@@ -12659,7 +12659,7 @@ public final class GameSceneController {
                 var1.drawRect(var7 + 9, var5 + 7, 31, 3);
                 var1.setColor(48127);
                 var1.fillRect(var7 + 1 + 9, var5 + 1 + 7, 30 * GlobalStatus.gF[this.mainCanvasRef.gunDongListUi.g()] / GlobalStatus.gE[this.mainCanvasRef.gunDongListUi.g()], 2);
-                MainCanvas.pngUtil.a(var1, (Animation) this.aI, (int[]) null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 50 - this.aI.h() - 3, 20, 0);
+                MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) this.aI, (int[]) null, 0, 0, var7 + 25 - this.aI.g() / 2, var5 + 50 - this.aI.h() - 3, 20, 0);
             }
 
             if (this.sceneSubState == 1) {
@@ -15597,7 +15597,7 @@ public final class GameSceneController {
                         PngUtil var7 = MainCanvas.pngUtil;
                         bl var13 = var10000;
                         if (var10000.frame1 != null) {
-                            var7.a(var1, (Animation) var13.frame1, (int[]) null, var3, var4, var13.j + 8, var13.k + 16, 20, 0);
+                            var7.roleSelectedAnimation(var1, (Animation) var13.frame1, (int[]) null, var3, var4, var13.j + 8, var13.k + 16, 20, 0);
                             if (var13.name != null && aW[2] == 0) {
                                 if (var13.b != null && !var13.b.equals("")) {
                                     LoadingPage.drawString(var1, var13.b, var13.j - var3 + 8, var13.k - var4 - (GlobalConfig.font2_h << 1) - var13.frame1.j() + 16, 17, var13.a(var13.u, var13.p));
@@ -15618,7 +15618,7 @@ public final class GameSceneController {
                         PngUtil var22 = MainCanvas.pngUtil;
                         bp_1 var15 = var27;
                         if (var27.frame1 != null) {
-                            var22.a(var1, (Animation) var15.frame1, (int[]) null, var3, var4, var15.j + 8, var15.k + 16, 20, 0);
+                            var22.roleSelectedAnimation(var1, (Animation) var15.frame1, (int[]) null, var3, var4, var15.j + 8, var15.k + 16, 20, 0);
                             if (var15.name != null && (var15.b.equals(GlobalStatus.roleId_2) || aW[4] == 0)) {
                                 if (var15.c != null && !var15.c.equals("")) {
                                     LoadingPage.drawString(var1, var15.c, var15.j - var3 + 8, var15.k - var4 - (GlobalConfig.font2_h << 1) - var15.frame1.j() + 16, 17, 65280);
@@ -15655,7 +15655,7 @@ public final class GameSceneController {
                                 var24.a(var1, var20.frame1.spritePieces[var20.frame1.currentFrameIndex], var20.frame1.g(), var20.frame1.h(), (int[]) null, var3, var4, var20.c, var20.d, 20, 0);
                             }
                         } else if (var20.frame1 != null && var20.frame1.spritePieces != null) {
-                            var24.a(var1, (Animation) var20.frame1, (int[]) null, var3, var4, var20.c, var20.d, 20, 0);
+                            var24.roleSelectedAnimation(var1, (Animation) var20.frame1, (int[]) null, var3, var4, var20.c, var20.d, 20, 0);
                         }
 
                         if (var20.npcName != null && var20.x && aW[3] == 1) {
@@ -16525,7 +16525,7 @@ public final class GameSceneController {
         bk.addElement(MainCanvas.a(var0, var1, (byte) 2, var2, true, var3));
 
         for (int var7 = 0; var7 < bk.size(); ++var7) {
-            MainCanvas.role.loadResource((String) bk.elementAt(var7), var4, var5, var6);
+            MainCanvas.role.loadAnimation((String) bk.elementAt(var7), var4, var5, var6);
         }
 
         bk.removeAllElements();
@@ -20854,7 +20854,7 @@ public final class GameSceneController {
                     String var7 = var10002;
                     Object var3 = null;
                     int var8 = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte) 0, GlobalStatus.ay, false, var7), (byte) 2);
-                    MainCanvas.role.loadResource((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte) 0, GlobalStatus.ay, false, var7), (short) 0, (short) 0, (short) 0);
+                    MainCanvas.role.loadAnimation((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte) 0, GlobalStatus.ay, false, var7), (short) 0, (short) 0, (short) 0);
                     var10000[var4] = MainCanvas.role.getAnimationByKeyFromCache((int) var8, (short) 0, (short) 0, (short) 0);
                 }
             }
@@ -20962,7 +20962,7 @@ public final class GameSceneController {
                 var4 += 30;
             }
 
-            MainCanvas.pngUtil.a(var1, (Animation) this.dk[this.dl], (int[]) null, 0, 0, var3, var4, 20, 0);
+            MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) this.dk[this.dl], (int[]) null, 0, 0, var3, var4, 20, 0);
             if (this.dm == 0) {
                 this.dm = var3;
                 this.dn = var2 + GlobalConfig.font2_h + 10;

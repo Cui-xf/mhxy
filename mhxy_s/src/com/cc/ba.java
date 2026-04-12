@@ -59,7 +59,7 @@ public final class ba {
       }
 
       if (GlobalStatus.mx != -1 && this.a.aI != null) {
-         this.b.a(var1, (Animation)this.a.aI, (int[])null, 0, 0, this.e + 40 - this.a.aI.g() / 2, this.f + (this.h - 32) / 2 - this.a.aI.h() / 2, 0, 0);
+         this.b.roleSelectedAnimation(var1, (Animation)this.a.aI, (int[])null, 0, 0, this.e + 40 - this.a.aI.g() / 2, this.f + (this.h - 32) / 2 - this.a.aI.h() / 2, 0, 0);
       } else {
          var1.setColor(16776960);
          var1.drawString("主宠", this.e + 40, this.f + (this.h - 32) / 2, 65);
@@ -82,7 +82,7 @@ public final class ba {
       var1.setColor(this.a.bf == 1 && this.a.be == 0 ? 16776960 : 9360850);
       var1.drawRect(this.e + this.g - 44, this.f + (this.h - 32 - 40) / 2, 39, 39);
       if (GlobalStatus.mD != -1 && this.a.bd != null) {
-         this.b.a(var1, (Animation)this.a.bd, (int[])null, 0, 0, this.e + this.g - 44 + 20 - this.a.bd.g() / 2, this.f + (this.h - 32) / 2 - this.a.bd.h() / 2, 0, 0);
+         this.b.roleSelectedAnimation(var1, (Animation)this.a.bd, (int[])null, 0, 0, this.e + this.g - 44 + 20 - this.a.bd.g() / 2, this.f + (this.h - 32) / 2 - this.a.bd.h() / 2, 0, 0);
       } else {
          var1.setColor(16776960);
          var1.drawString("副宠", this.e + this.g - 44 + 20, this.f + (this.h - 32) / 2, 65);

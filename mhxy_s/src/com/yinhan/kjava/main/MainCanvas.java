@@ -484,9 +484,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
      */
     private byte selectActorRow;
     /**
-     * 角色列表每页可显示的行数
+     * 角色框每格高度
      */
-    private int bB;
+    private int subHight;
     /**
      * 角色数据二维数组（服务端返回）
      */
@@ -1190,8 +1190,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             this.renderMainPageBase(graphics);
                             if (this.mixedUi != null) {
                                 this.mixedUi.draw(graphics);
-                                LoadingPage.fillRect(graphics, this.mixedUi.X + 5, this.mixedUi.Y + 32, this.mixedUi.W - 11, this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150), 1);
-                                LoadingPage.b(graphics, this.mixedUi.X + 80, this.mixedUi.Y + 35, this.mixedUi.X + 80, this.mixedUi.Y + 35 + this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150) - 5);
+                                LoadingPage.fillRect(graphics, this.mixedUi.X + 5, this.mixedUi.Y + 32, this.mixedUi.W - 11, this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? this.subHight * 3 + 6 : 150), 1);
+                                LoadingPage.b(graphics, this.mixedUi.X + 80, this.mixedUi.Y + 35, this.mixedUi.X + 80, this.mixedUi.Y + 35 + this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? this.subHight * 3 + 6 : 150) - 5);
                                 graphics.setColor(2176196);
                                 int var2 = GlobalConfig.font2.stringWidth(GlobalConfig.manPaiName[0]);
                                 int var3 = this.mixedUi.Y + 45;
@@ -1224,7 +1224,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 }
 
                                 if (this.roleFrame_1 != null && this.roleFrame_1[this.bF * 3 + this.bE] != null) {
-                                    pngUtil.a(graphics, (Animation) this.roleFrame_1[this.bF * 3 + this.bE], (int[]) null, 0, 0, this.mixedUi.X + 40 + 5, this.mixedUi.Y + 32 + this.roleFrame_1[this.bF * 3 + this.bE].j() + (this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? (this.bB << 1) + 6 : 120) - this.roleFrame_1[this.bF * 3 + this.bE].j()) / 2, 20, 0);
+                                    pngUtil.roleSelectedAnimation(graphics, (Animation) this.roleFrame_1[this.bF * 3 + this.bE], (int[]) null, 0, 0, this.mixedUi.X + 40 + 5, this.mixedUi.Y + 32 + this.roleFrame_1[this.bF * 3 + this.bE].j() + (this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? (this.subHight << 1) + 6 : 120) - this.roleFrame_1[this.bF * 3 + this.bE].j()) / 2, 20, 0);
                                 }
                             }
                             return;
@@ -1590,7 +1590,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         }
 
         for (int var8 = 0; var8 < tempResNameList.size(); ++var8) {
-            role.loadResource((String) tempResNameList.elementAt(var8), var5, var6, var7);
+            role.loadAnimation((String) tempResNameList.elementAt(var8), var5, var6, var7);
         }
 
         tempResNameList.removeAllElements();
@@ -1925,12 +1925,12 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
         if (hudie != null) {
             PngUtil.animate(hudie, this.frameStartTs);
-            pngUtil.a(graphics, (Animation) hudie, (int[]) null, 0, 0, GlobalConfig.defaultWidth - 100, GlobalConfig.defaultHigh - 100, 0, 0);
+            pngUtil.roleSelectedAnimation(graphics, (Animation) hudie, (int[]) null, 0, 0, GlobalConfig.defaultWidth - 100, GlobalConfig.defaultHigh - 100, 0, 0);
         }
 
         if (hudie_2 != null) {
             PngUtil.animate(hudie_2, this.frameStartTs);
-            pngUtil.a(graphics, (Animation) hudie_2, (int[]) null, 0, 0, GlobalConfig.defaultWidth - 100, GlobalConfig.defaultHigh - 100, 0, 0);
+            pngUtil.roleSelectedAnimation(graphics, (Animation) hudie_2, (int[]) null, 0, 0, GlobalConfig.defaultWidth - 100, GlobalConfig.defaultHigh - 100, 0, 0);
         }
 
         if (this.light_0 != null && this.light_1 != null && this.mainPageButtonXY != null) {
@@ -2153,7 +2153,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         if (roleNum <= 0 && this.lastPageStatus != PageStatus.CREATE_CHARACTER) {
             this.roleFrame_1 = null;
             this.roleFrame_2 = null;
-            this.bB = 45;
+            this.subHight = 45;
             this.startCreateRolePage();
         } else {
             this.roleFrame_1 = new Animation[roleNum];
@@ -2164,12 +2164,12 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 this.roleFrame_2[i] = this.loadRoleFrame(this.roleFrame_2[i], GlobalStatus.roleGenderList[i], GlobalStatus.roleJobList[i], (byte) 3, (byte) 1, true);
             }
 
-            this.bB = 55;
+            this.subHight = 55;
             this.selectActorClo = 0;
             this.selectActorRow = 0;
             this.mixedUi.clean();
             this.mixedUi.setTitle("角色列表");
-            this.mixedUi.setR((this.bB << 1) + 6);
+            this.mixedUi.setR((this.subHight << 1) + 6);
             this.textPanel.setText(this.showRoleInfo(0), GlobalConfig.font2, (byte) 1);
             this.textPanel.setShuRuMoShi((byte) 1);
             this.mixedUi.addChild(this.textPanel);
@@ -2226,7 +2226,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                 if (GlobalStatus.roleIdList != null && (this.selectActorRow << 1) + this.selectActorClo < GlobalStatus.roleIdList.length) {
                     if (GlobalStatus.roleIdList.length >= 4) {
                         String[] var1 = new String[]{"进入", "删除"};
-                        LoadingPage.a(this.actorList[(this.selectActorRow << 1) + this.selectActorClo][0] + this.bB / 2, this.actorList[(this.selectActorRow << 1) + this.selectActorClo][1] + this.bB / 2, var1, false);
+                        LoadingPage.a(this.actorList[(this.selectActorRow << 1) + this.selectActorClo][0] + this.subHight / 2, this.actorList[(this.selectActorRow << 1) + this.selectActorClo][1] + this.subHight / 2, var1, false);
                         this.subInputAction = 1;
                     } else {
                         this.sendSelectRolePacket(GlobalStatus.roleIdList[(this.selectActorRow << 1) + this.selectActorClo]);
@@ -2294,39 +2294,39 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         this.renderMainPageBase(graphics);
         if (this.mixedUi != null) {
             this.mixedUi.draw(graphics);
-            LoadingPage.fillRect(graphics, this.mixedUi.X + 5, this.mixedUi.Y + 32, this.mixedUi.W - 11, this.mixedUi.setR((this.bB << 1) + 6), 1);
-            int var2 = (this.mixedUi.W - (this.bB << 1) - 16) / 3;
-            int var3 = (this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? (this.bB << 1) + 6 : 111) - (this.bB << 1) - 6) / 3;
+            LoadingPage.fillRect(graphics, this.mixedUi.X + 5, this.mixedUi.Y + 32, this.mixedUi.W - 11, this.mixedUi.setR((this.subHight << 1) + 6), 1);
+            int var2 = (this.mixedUi.W - (this.subHight << 1) - 16) / 3;
+            int var3 = (this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? (this.subHight << 1) + 6 : 111) - (this.subHight << 1) - 6) / 3;
 
-            for (int var4 = 0; var4 < 2; ++var4) {
-                for (int var5 = 0; var5 < 2; ++var5) {
-                    this.a((var4 << 1) + var5, this.mixedUi.X + 8 + var2 + (var2 + this.bB) * var5, this.mixedUi.Y + 35 + var3 + (var3 + this.bB) * var4, this.bB, this.bB);
-                    LoadingPage.drawRect(graphics, (Image) null, this.actorList[(var4 << 1) + var5][0], this.actorList[(var4 << 1) + var5][1], this.bB, this.bB, var4 == this.selectActorRow && var5 == this.selectActorClo);
+            for (int i = 0; i < 2; ++i) {
+                for (int j = 0; j < 2; ++j) {
+                    this.a((i << 1) + j, this.mixedUi.X + 8 + var2 + (var2 + this.subHight) * j, this.mixedUi.Y + 35 + var3 + (var3 + this.subHight) * i, this.subHight, this.subHight);
+                    LoadingPage.drawRect(graphics, (Image) null, this.actorList[(i << 1) + j][0], this.actorList[(i << 1) + j][1], this.subHight, this.subHight, i == this.selectActorRow && j == this.selectActorClo);
                 }
             }
 
             if (this.roleFrame_1 != null && GlobalStatus.roleNicknameList != null && GlobalStatus.roleNicknameList.length > 0) {
-                for (int var6 = 0; var6 < GlobalStatus.roleNicknameList.length; ++var6) {
-                    if (this.roleFrame_1[var6] != null && var6 == (this.selectActorRow << 1) + this.selectActorClo) {
-                        if (GlobalStatus.roleGenderList[var6] == 0) {
-                            if (GlobalStatus.roleJobList[var6] == 0) {
-                                pngUtil.a(graphics, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 + 6, this.actorList[var6][1] + 45 + 1, 20, 0);
+                for (int i = 0; i < GlobalStatus.roleNicknameList.length; ++i) {
+                    if (this.roleFrame_1[i] != null && i == (this.selectActorRow << 1) + this.selectActorClo) {
+                        if (GlobalStatus.roleGenderList[i] == 0) {
+                            if (GlobalStatus.roleJobList[i] == 0) {
+                                pngUtil.roleSelectedAnimation(graphics, this.roleFrame_1[i], (int[]) null, 0, 0, this.actorList[i][0] + 40 + 6, this.actorList[i][1] + 45 + 1, 20, 0);
                             } else {
-                                pngUtil.a(graphics, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 + 9, this.actorList[var6][1] + 45 + 16, 20, 0);
+                                pngUtil.roleSelectedAnimation(graphics, (Animation) this.roleFrame_1[i], (int[]) null, 0, 0, this.actorList[i][0] + 40 + 9, this.actorList[i][1] + 45 + 16, 20, 0);
                             }
-                        } else if (GlobalStatus.roleGenderList[var6] == 1) {
-                            if (GlobalStatus.roleJobList[var6] == 0) {
-                                pngUtil.a(graphics, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 + 8, this.actorList[var6][1] + 45 + 14, 20, 0);
+                        } else if (GlobalStatus.roleGenderList[i] == 1) {
+                            if (GlobalStatus.roleJobList[i] == 0) {
+                                pngUtil.roleSelectedAnimation(graphics, (Animation) this.roleFrame_1[i], (int[]) null, 0, 0, this.actorList[i][0] + 40 + 8, this.actorList[i][1] + 45 + 14, 20, 0);
                             } else {
-                                pngUtil.a(graphics, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 1, this.actorList[var6][1] + 45 + 9, 20, 0);
+                                pngUtil.roleSelectedAnimation(graphics, (Animation) this.roleFrame_1[i], (int[]) null, 0, 0, this.actorList[i][0] + 40 - 1, this.actorList[i][1] + 45 + 9, 20, 0);
                             }
-                        } else if (GlobalStatus.roleJobList[var6] == 0) {
-                            pngUtil.a(graphics, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 9, this.actorList[var6][1] + 45 + 10, 20, 0);
+                        } else if (GlobalStatus.roleJobList[i] == 0) {
+                            pngUtil.roleSelectedAnimation(graphics, (Animation) this.roleFrame_1[i], (int[]) null, 0, 0, this.actorList[i][0] + 40 - 9, this.actorList[i][1] + 45 + 10, 20, 0);
                         } else {
-                            pngUtil.a(graphics, (Animation) this.roleFrame_1[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 3, this.actorList[var6][1] + 45 + 12, 20, 0);
+                            pngUtil.roleSelectedAnimation(graphics, (Animation) this.roleFrame_1[i], (int[]) null, 0, 0, this.actorList[i][0] + 40 - 3, this.actorList[i][1] + 45 + 12, 20, 0);
                         }
-                    } else if (this.roleFrame_2 != null && var6 != (this.selectActorRow << 1) + this.selectActorClo) {
-                        pngUtil.a(graphics, (Animation) this.roleFrame_2[var6], (int[]) null, 0, 0, this.actorList[var6][0] + 40 - 18, this.actorList[var6][1] + 45, 20, 0);
+                    } else if (this.roleFrame_2 != null && i != (this.selectActorRow << 1) + this.selectActorClo) {
+                        pngUtil.roleSelectedAnimation(graphics, (Animation) this.roleFrame_2[i], (int[]) null, 0, 0, this.actorList[i][0] + 40 - 18, this.actorList[i][1] + 45, 20, 0);
                     }
                 }
             }
@@ -2385,13 +2385,13 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             this.roleFrame_1[var1] = this.loadRoleFrame(this.roleFrame_1[var1], (byte) (var1 % 3), (byte) (var1 < 3 ? 0 : 1), (byte) 3, (byte) 1, false);
         }
 
-        this.bB = 35;
+        this.subHight = 35;
         this.bG = 0;
         this.bE = 0;
         this.bF = 0;
         this.mixedUi.clean();
         this.mixedUi.setTitle("创建角色");
-        this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? this.bB * 3 + 6 : 150);
+        this.mixedUi.setR(GlobalConfig.realHigh <= 240 ? this.subHight * 3 + 6 : 150);
         this.textPanel.setText(GlobalConfig.menPaiMiaoShu[0], GlobalConfig.font2, (byte) 1);
         this.textPanel.setShuRuMoShi((byte) 1);
         this.bottomUi.setButtonText(new String[]{"创 建", ""});

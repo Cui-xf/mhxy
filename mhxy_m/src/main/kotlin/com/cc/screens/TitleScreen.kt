@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle
 import com.cc.FontManager.SMALL_FONT
 import com.cc.MhxyGame
 import com.cc.render.drawImage
-import com.cc.render.drawString
+import com.cc.render.wordArtString
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_W
 import com.cc.screens.base.BaseBackGround
@@ -39,13 +39,7 @@ class TitleScreen : AbstractScreen() {
         }
         val textX = button.topX
         val textY = button.topY + (menuItem.height - SMALL_FONT.capHeight) / 2
-        batch.drawString(SMALL_FONT, button.text, Color.valueOf("#052035"), textX - 1, textY - 1)
-        batch.drawString(SMALL_FONT, button.text, Color.valueOf("#052035"), textX, textY - 1)
-        batch.drawString(SMALL_FONT, button.text, Color.valueOf("#052035"), textX - 1, textY)
-        batch.drawString(SMALL_FONT, button.text, Color.valueOf("#052035"), textX + 1, textY)
-        batch.drawString(SMALL_FONT, button.text, Color.valueOf("#052035"), textX, textY + 1)
-        batch.drawString(SMALL_FONT, button.text, Color.valueOf("#052035"), textX + 1, textY + 1)
-        batch.drawString(SMALL_FONT, button.text, Color.WHITE, textX, textY)
+        batch.wordArtString(SMALL_FONT, button.text, Color.valueOf("#052035"), Color.WHITE, textX, textY)
     }
 
     private fun handleInput() {

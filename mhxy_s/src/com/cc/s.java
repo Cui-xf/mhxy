@@ -38,7 +38,7 @@ public final class s extends au {
 
    public final void a(Graphics var1, PngUtil var2, int var3, int var4, byte var5) {
       if (super.f != null) {
-         var2.a(var1, (Animation)super.f, (int[])null, var3, var4, super.h - super.f.g() / 2, super.i - super.f.h(), 20, 0);
+         var2.roleSelectedAnimation(var1, (Animation)super.f, (int[])null, var3, var4, super.h - super.f.g() / 2, super.i - super.f.h(), 20, 0);
       }
 
    }

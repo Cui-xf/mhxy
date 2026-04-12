@@ -29,7 +29,7 @@ public final class cj {
       if (this.a != null) {
          for(byte var5 = 0; var5 < this.b.length; ++var5) {
             if (this.b[var5] != 0 && this.c[var5] != 0) {
-               var2.a(var1, (Animation)this.a, (int[])null, 0, 0, this.b[var5], this.c[var5], 20, 0);
+               var2.roleSelectedAnimation(var1, (Animation)this.a, (int[])null, 0, 0, this.b[var5], this.c[var5], 20, 0);
             }
          }
       }

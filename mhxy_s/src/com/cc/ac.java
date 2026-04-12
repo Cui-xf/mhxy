@@ -204,7 +204,7 @@ public final class ac extends SceneEntity {
 
    public final void a(Graphics var1, PngUtil var2, int var3, int var4, byte var5) {
       if (super.frame1 != null) {
-         var2.a(var1, (Animation)super.frame1, (int[])null, var3, var4, super.j + 8, super.k + 16, 20, 0);
+         var2.roleSelectedAnimation(var1, (Animation)super.frame1, (int[])null, var3, var4, super.j + 8, super.k + 16, 20, 0);
          if (GlobalStatus.roleNameVip != null) {
             this.w = GlobalStatus.roleNameVip;
            LoadingPage.drawString(var1, (String)this.w, (int)(super.j + 8 - var3), super.k - var4 - GlobalConfig.font2_h - super.frame1.j() + 16, 17, GlobalStatus.bs >= 0 ? '\uff00' : GlobalStatus.roleNameColor, 0);

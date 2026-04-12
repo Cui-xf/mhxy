@@ -33,6 +33,24 @@ fun SpriteBatch.drawString(
     font.draw(this, str, x, y)
 }
 
+fun SpriteBatch.wordArtString(
+    font: BitmapFont,
+    str: String,
+    color1: Color,
+    color2: Color,
+    x: Float,
+    y: Float,
+    align: Align = Align.CENTER_TOP
+) {
+    drawString(font, str, color1, x - 1f, y - 1f, align)
+    drawString(font, str, color1, x, y - 1f, align)
+    drawString(font, str, color1, x - 1f, y, align)
+    drawString(font, str, color1, x + 1f, y, align)
+    drawString(font, str, color1, x, y + 1f, align)
+    drawString(font, str, color1, x + 1f, y + 1f, align)
+    drawString(font, str, color2, x, y, align)
+}
+
 /**
  * 图片的基准是左下角
  */
@@ -71,7 +89,8 @@ fun SpriteBatch.drawImage(
 }
 
 fun ShapeRenderer.drawRect(
-    color: Color, x: Float,
+    color: Color,
+    x: Float,
     y: Float,
     w: Float,
     h: Float,
@@ -85,6 +104,19 @@ fun ShapeRenderer.drawRect(
     val y = VIRTUAL_H - y - h
     this.color = color
     this.rect(x, y, w, h)
+}
+
+fun ShapeRenderer.drawLine(
+    color: Color,
+    x: Float,
+    y: Float,
+    x2: Float,
+    y2: Float
+) {
+    val y = VIRTUAL_H - y
+    val y2 = VIRTUAL_H - y2
+    this.color = color
+    this.line(x, y, x2, y2)
 }
 
 
@@ -119,3 +151,4 @@ fun SpriteBatch.drawAnimation(frames: List<Frame>, originX: Float, originY: Floa
     }
 }
 
+fun Int.toColor(): Color = Color.valueOf((this and 0xFFFFFF).toString(16).padStart(6, '0').uppercase())

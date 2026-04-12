@@ -178,16 +178,16 @@ public class au {
       if (this.f != null) {
          switch (this.j) {
             case 0:
-               var2.a(var1, (Animation)this.f, (int[])null, var3, var4, this.h + 16 - this.f.i() / 2, this.i + 16 - this.f.h(), 20, 0);
+               var2.roleSelectedAnimation(var1, (Animation)this.f, (int[])null, var3, var4, this.h + 16 - this.f.i() / 2, this.i + 16 - this.f.h(), 20, 0);
                return;
             case 1:
-               var2.a(var1, (Animation)this.f, (int[])null, var3, var4, this.h + 8 - this.f.i() / 2, this.i, 20, 0);
+               var2.roleSelectedAnimation(var1, (Animation)this.f, (int[])null, var3, var4, this.h + 8 - this.f.i() / 2, this.i, 20, 0);
                return;
             case 2:
-               var2.a(var1, (Animation)this.f, (int[])null, var3, var4, this.h - this.f.i() / 2, this.i + 16 - this.f.h(), 20, 0);
+               var2.roleSelectedAnimation(var1, (Animation)this.f, (int[])null, var3, var4, this.h - this.f.i() / 2, this.i + 16 - this.f.h(), 20, 0);
                break;
             case 3:
-               var2.a(var1, (Animation)this.f, (int[])null, var3, var4, this.h + 8 - this.f.i() / 2, this.i + 8 - this.f.h(), 20, 0);
+               var2.roleSelectedAnimation(var1, (Animation)this.f, (int[])null, var3, var4, this.h + 8 - this.f.i() / 2, this.i + 8 - this.f.h(), 20, 0);
                return;
          }
       }

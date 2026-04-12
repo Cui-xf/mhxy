@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Rectangle
 import com.cc.FontManager.SMALL_FONT
 import com.cc.MhxyGame
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
-import com.cc.asset.RpgResource
 import com.cc.render.*
 import kotlin.random.Random
 
@@ -38,8 +37,6 @@ class LoadingScreen : AbstractScreen() {
         // 只加载公共资源，场景专属资源由各场景自己加载
         PUBLIC_ASSET.load("title_bg.jpg", Texture::class.java)
         PUBLIC_ASSET.load("player.jpg", Texture::class.java)
-        PUBLIC_ASSET.load("rpg/cartoon.rpg", RpgResource::class.java)
-        PUBLIC_ASSET.load("rpg/publicUI.rpg", RpgResource::class.java)
     }
 
     override fun update(delta: Float) {

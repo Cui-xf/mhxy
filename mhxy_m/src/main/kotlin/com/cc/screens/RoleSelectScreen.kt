@@ -1,93 +1,183 @@
 package com.cc.screens
 
 import com.badlogic.gdx.graphics.Color
+import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
+import com.cc.FontManager.MEDIA_FONT
 import com.cc.FontManager.SMALL_FONT
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
-import com.cc.asset.RpgResource
-import com.cc.render.Align
-import com.cc.render.drawImage
-import com.cc.render.drawRect
-import com.cc.render.drawString
+import com.cc.asset.RpgAnimation
+import com.cc.render.*
 import com.cc.screens.base.BaseBackGround
 
 class RoleSelectScreen : AbstractScreen() {
     private val backGround = BaseBackGround
-    private val shapeRenderer = createShapeRenderer()
-    private val titleImage = autoDispose {
-        PUBLIC_ASSET.get<RpgResource>("rpg/publicUI.rpg")
-            .getTextureRegionByName("title", null).texture
-    }
+    private val shapeRenderer = autoDispose { createShapeRenderer() }
+
+    private val titleImage by resource(PUBLIC_ASSET, "rpg/publicUI/title.rt", TextureRegion::class)
+    private val closeImage by resource(PUBLIC_ASSET, "rpg/publicUI/close.rt", TextureRegion::class)
+
+    private val lu by resource(PUBLIC_ASSET, "rpg/publicUI/lu.rt", TextureRegion::class)
+    private val ld by resource(PUBLIC_ASSET, "rpg/publicUI/ld.rt", TextureRegion::class)
+    private val rd by resource(PUBLIC_ASSET, "rpg/publicUI/rd.rt", TextureRegion::class)
+    private val button1 by resource(PUBLIC_ASSET, "rpg/publicUI/button1.rt", TextureRegion::class)
+
+    private val roleAnimation by resource(PUBLIC_ASSET, "rpg/role/f31111", RpgAnimation::class)
 
     // 窗口全屏：X=0, Y=0, W=240, H=320
     private val winW = VIRTUAL_W * 0.95f
     private val winH = VIRTUAL_H * 0.95f
     private val winX = (VIRTUAL_W - winW) / 2
     private val winY = (VIRTUAL_H - winH) / 2
+    private val roleBox = 55f
+    private val gapW = (winW - roleBox * 2) / 3
 
-    // 每个角色格子的宽高（对应原始 bB=55）
-    private val cellSize = 55f
-
-    // 格子内容区：从窗口 Y+32 开始，高度 = bB*2+6 = 116
-    private val cellAreaX = winX + 5f
-    private val cellAreaY = winY + 32f
-    private val cellAreaW = winW - 11f
-    private val cellAreaH = cellSize * 2 + 6f   // 116
-
-    // 格子间距
-    // colSpacing = (W - bB*2 - 16) / 3 = (240 - 110 - 16) / 3 = 38
-    // rowSpacing = (cellAreaH - bB*2 - 6) / 3 = 0
-    private val colSpacing = (winW - cellSize * 2 - 16f) / 3f
-    private val rowSpacing = (cellAreaH - cellSize * 2 - 6f) / 3f
-
-    // 模拟角色数据（实际应来自 GlobalStatus）
-    private val roleNames = arrayOf("剑客甲", "道士乙", null, null)
-
-    private var selectRow = 0
-    private var selectCol = 0
-
-
-    // 标题栏高度约 16px（对应原始 title.h）
-    private val titleH = 16f
+    private var timer = 0f
 
     override fun update(delta: Float) {
+        timer += delta
+
         backGround.update(delta)
+
         batch.begin()
-        drawWindow()
+        //标题
+        drawTitleImage()
         batch.end()
+        //边框
+        border()
+        batch.begin()
+        //角上装饰
+        cornerDecoration()
+        batch.end()
+        //角色框背景
+        roleBoxBackground()
+        roleBoxBackground2()
 
-//        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled)
-//        drawWindow()
-//        drawCellArea()
-//        drawCells()
-//        shapeRenderer.end()
-//
-//        batch.begin()
-//        drawWindowTitle()
-//        drawNicknames()
-//        batch.end()
+        roleBox(0)
+
+        roleSelectedAnimation()
     }
 
-    /** 绘制窗口外框（多层边框，对应 MixedUi.draw 的边框逻辑） */
-    private fun drawWindow() {
-        // 深色背景
-//        shapeRenderer.drawRect(Color.valueOf("#2A6E81"), winX, winY, winW, winH, Align.LEFT)
-        drawTitleImage(winX, winY)
-
-        // 外边框（近似原始多层 drawRect）
-//        shapeRenderer.color = Color.valueOf("#006600")
-//        shapeRenderer.rect(winX, VIRTUAL_H - winY - winH, winW - 1, winH - 1)
-//        shapeRenderer.color = Color.valueOf("#008800")
-//        shapeRenderer.rect(winX + 1f, VIRTUAL_H - winY - winH + 1f, winW - 3f, winH - 3f)
-//        shapeRenderer.color = Color.valueOf("#004400")
-//        shapeRenderer.rect(winX + 2f, VIRTUAL_H - winY - winH + 2f, winW - 5f, winH - 5f)
-//
-//         标题栏背景
-//        shapeRenderer.drawRect(Color.valueOf("#336600"), winX, winY, winW, titleH + 6f, Align.LEFT)
+    private fun roleSelectedAnimation() {
+        val x = winX + 8 + gapW + roleBox / 2
+        val y = winY + 93
+        batch.begin()
+        val keyFrame = roleAnimation.getKeyFrame(timer, true)
+        batch.drawAnimation(keyFrame, x, y)
+        //pngUtil.roleSelectedAnimation(graphics, (Animation) this.roleFrame_1[i], (int[]) null, 0, 0, this.actorList[i][0] + 40 + 6, this.actorList[i][1] + 45 + 1, 20, 0);
+        batch.end()
     }
 
-    private fun drawTitleImage(x: Float, y: Float) {
-        val imgW = titleImage.width
+    //4个角色框
+    private fun roleBox(row: Int) {
+        repeat(2) { type ->
+            if (type == 0) {
+                shapeRenderer.begin(ShapeType.Filled)
+            } else {
+                shapeRenderer.begin(ShapeType.Line)
+            }
+            for (i in 0 until 2) {
+                for (j in 0 until 2) {
+                    val x = winX + gapW + (gapW + roleBox) * i
+                    val y = winY + 35 + roleBox * j
+                    if (type == 0) {
+                        shapeRenderer.drawRect(409969.toColor(), x, y, roleBox, roleBox, align = Align.LEFT)
+                        shapeRenderer.drawRect(
+                            if (i == row && j == row) 6597852.toColor() else 5018307.toColor(),
+                            x + 3,
+                            y + 3,
+                            roleBox - 6,
+                            roleBox - 6,
+                            align = Align.LEFT
+                        )
+                    } else {
+                        shapeRenderer.drawRect(
+                            if (i == row && j == row) 16775125.toColor() else 3775208.toColor(),
+                            x + 1,
+                            y + 1,
+                            roleBox - 2,
+                            roleBox - 2,
+                            align = Align.LEFT
+                        )
+                    }
+                }
+            }
+            shapeRenderer.end()
+        }
+
+    }
+
+    //角色框背景
+    private fun roleBoxBackground() {
+        //            LoadingPage.fillRect(graphics, this.mixedUi.X + 5, this.mixedUi.Y + 32, this.mixedUi.W - 11, this.mixedUi.setR((this.bB << 1) + 6), 1);
+        val x = winX + 5
+        val y = winY + 32
+        val w = winW - 10
+        val h = 55 * 2 + 6f
+        shapeRenderer.begin(ShapeType.Filled)
+        shapeRenderer.drawRect(6732228.toColor(), x, y, w, h, align = Align.LEFT)
+        shapeRenderer.end()
+        shapeRenderer.begin(ShapeType.Line)
+        shapeRenderer.drawRect(26540.toColor(), x, y, w, h, align = Align.LEFT)
+        shapeRenderer.drawRect(26540.toColor(), x + 2, y + 2, w - 4, h - 4, align = Align.LEFT)
+        shapeRenderer.drawRect(11267556.toColor(), x + 1, y + 1, w - 2, h - 2, align = Align.LEFT)
+        shapeRenderer.end()
+    }
+
+    private fun roleBoxBackground2() {
+        val x = winX + 5
+        val y = winY + 32 + 55 * 2 + 6f
+        val w = winW - 10
+        val h = 126f
+        shapeRenderer.begin(ShapeType.Filled)
+        shapeRenderer.drawRect(6732228.toColor(), x, y, w, h, align = Align.LEFT)
+        shapeRenderer.end()
+        shapeRenderer.begin(ShapeType.Line)
+        shapeRenderer.drawRect(26540.toColor(), x, y, w, h, align = Align.LEFT)
+        shapeRenderer.drawRect(26540.toColor(), x + 2, y + 2, w - 4, h - 4, align = Align.LEFT)
+        shapeRenderer.drawRect(11267556.toColor(), x + 1, y + 1, w - 2, h - 2, align = Align.LEFT)
+        shapeRenderer.end()
+        batch.begin()
+        batch.drawString(MEDIA_FONT, "昵称：欧阳娜娜", 2176196.toColor(), x + 4, y + 8, align = Align.LEFT)
+        batch.drawString(
+            MEDIA_FONT,
+            "等级：6",
+            2176196.toColor(),
+            x + 4,
+            y + 8 + MEDIA_FONT.lineHeight,
+            align = Align.LEFT
+        )
+        batch.end()
+    }
+
+    private fun border() {
+        shapeRenderer.begin(ShapeType.Filled)
+        //底部横线边框
+        shapeRenderer.drawRect(Color.valueOf("#0067AC"), winX, winY + 28f, winW - 1, 4f, align = Align.LEFT)
+        shapeRenderer.end()
+        shapeRenderer.begin(ShapeType.Line)
+        //底部横线
+        shapeRenderer.drawLine(Color.valueOf("#ABEDE4"), winX + 1.5f, winY + 29f, winX + winW - 2, winY + 29f)
+        //外边框
+        shapeRenderer.drawRect(Color.valueOf("#005187"), winX, winY, winW, winH, align = Align.LEFT)
+        shapeRenderer.drawRect(Color.valueOf("#1197AE"), winX + 1, winY + 1, winW - 2, winH - 2, align = Align.LEFT)
+        shapeRenderer.drawRect(Color.valueOf("#95D9E2"), winX + 2, winY + 2, winW - 4, winH - 4, align = Align.LEFT)
+        shapeRenderer.drawRect(Color.valueOf("#1197AE"), winX + 3, winY + 3, winW - 6, winH - 6, align = Align.LEFT)
+        shapeRenderer.drawRect(Color.valueOf("#005187"), winX + 4, winY + 4, winW - 8, winH - 8, align = Align.LEFT)
+        shapeRenderer.end()
+    }
+
+    private fun cornerDecoration() {
+        batch.drawImage(lu, winX, winY, align = Align.LEFT)
+        batch.drawImage(ld, winX, winY + winH - ld.regionHeight, align = Align.LEFT)
+        batch.drawImage(rd, winX + winW - rd.regionWidth, winY + winH - rd.regionHeight, align = Align.LEFT)
+    }
+
+    private fun drawTitleImage() {
+        val x = winX
+        val y = winY + 4
+        val imgW = titleImage.regionWidth
         var t = 0
         // 绘制完整的图片
         for (i in 0 until (winW.toInt() - imgW) step imgW) {
@@ -96,88 +186,30 @@ class RoleSelectScreen : AbstractScreen() {
         }
         // 绘制最后不足一张的部分（裁剪，不拉伸）
         if (t < winW) {
-            val textureRegion = TextureRegion(titleImage, 0, 0, winW.toInt() - t, titleImage.height)
+            val textureRegion = TextureRegion(titleImage, 0, 0, winW.toInt() - t, titleImage.regionHeight)
             batch.drawImage(textureRegion, x + t, y, align = Align.LEFT)
         }
-    }
-
-    /** 绘制角色格子区域背景（对应 fillRect color=1 → 0x66AC04 + 边框） */
-    private fun drawCellArea() {
-        // 填充色 0x66AC04
-        shapeRenderer.drawRect(Color.valueOf("#66AC04"), cellAreaX, cellAreaY, cellAreaW, cellAreaH, Align.LEFT)
-        // 边框
-        shapeRenderer.color = Color.valueOf("#006800")
-        shapeRenderer.rect(
-            cellAreaX,
-            VIRTUAL_H - cellAreaY - cellAreaH,
-            cellAreaW,
-            cellAreaH
+        //关闭按钮
+        batch.drawImage(closeImage, x + winW - 5 - closeImage.regionWidth, y, align = Align.LEFT)
+        //文字
+        batch.wordArtString(
+            MEDIA_FONT,
+            "角色列表",
+            Color.valueOf("#000000"),
+            Color.valueOf("#FFFED5"),
+            x + winW / 2,
+            y + (titleImage.regionHeight - MEDIA_FONT.capHeight) / 2
         )
-        shapeRenderer.color = Color.valueOf("#ACE000")
-        shapeRenderer.rect(
-            cellAreaX + 1f,
-            VIRTUAL_H - cellAreaY - cellAreaH + 1f,
-            cellAreaW - 2f,
-            cellAreaH - 2f
+        batch.drawImage(button1, 6f, 284f, 228f, button1.regionHeight.toFloat() + 1, align = Align.LEFT)
+        batch.wordArtString(
+            MEDIA_FONT,
+            "进入游戏",
+            0.toColor(),
+            16776917.toColor(),
+            16f,
+            283f + 8.5f,
+            align = Align.LEFT
         )
-        shapeRenderer.color = Color.valueOf("#006800")
-        shapeRenderer.rect(
-            cellAreaX + 2f,
-            VIRTUAL_H - cellAreaY - cellAreaH + 2f,
-            cellAreaW - 4f,
-            cellAreaH - 4f
-        )
-    }
-
-    /** 绘制 2×2 角色格子（对应 LoadingPage.drawRect） */
-    private fun drawCells() {
-        for (row in 0..1) {
-            for (col in 0..1) {
-                val cx = winX + 8f + colSpacing + (colSpacing + cellSize) * col
-                val cy = cellAreaY + 3f + rowSpacing + (rowSpacing + cellSize) * row
-                val selected = (row == selectRow && col == selectCol)
-                drawRoleCell(cx, cy, selected)
-            }
-        }
-    }
-
-    /** 单个角色格子（对应 LoadingPage.drawRect(null, x, y, bB, bB, selected)） */
-    private fun drawRoleCell(x: Float, y: Float, selected: Boolean) {
-        // 底色 0x063F31
-        shapeRenderer.drawRect(Color.valueOf("#063F31"), x, y, cellSize, cellSize, Align.LEFT)
-        // 内填充：选中高亮 0x64B41C，未选中 0x4CA527 (0x64B41C / 0x4CA527 近似)
-        val innerColor = if (selected) Color.valueOf("#FF9B15") else Color.valueOf("#394B08")
-        shapeRenderer.drawRect(innerColor, x + 3f, y + 3f, cellSize - 6f, cellSize - 6f, Align.LEFT)
-        // 内边框：选中 0xFFD215，未选中 0x397C28
-        val borderColor = if (selected) Color.valueOf("#FFD215") else Color.valueOf("#397C28")
-        shapeRenderer.color = borderColor
-        shapeRenderer.rect(
-            x + 1f,
-            VIRTUAL_H - y - cellSize + 1f,
-            cellSize - 3f,
-            cellSize - 3f
-        )
-    }
-
-    /** 绘制窗口标题文字 */
-    private fun drawWindowTitle() {
-        batch.drawString(SMALL_FONT, "角色列表", Color.valueOf("#FFEC6A"), winX + winW / 2, winY + 3f)
-    }
-
-    /** 在对应格子中绘制角色昵称（若有角色） */
-    private fun drawNicknames() {
-        for (row in 0..1) {
-            for (col in 0..1) {
-                val idx = row * 2 + col
-                val name = roleNames.getOrNull(idx) ?: continue
-                val cx = winX + 8f + colSpacing + (colSpacing + cellSize) * col
-                val cy = cellAreaY + 3f + rowSpacing + (rowSpacing + cellSize) * row
-                // 昵称显示在格子底部
-                val textX = cx + cellSize / 2
-                val textY = cy + cellSize - 4f
-                batch.drawString(SMALL_FONT, name, Color.WHITE, textX, textY)
-            }
-        }
     }
 
     override fun dispose() {

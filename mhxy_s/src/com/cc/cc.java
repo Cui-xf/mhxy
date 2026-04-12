@@ -264,7 +264,7 @@ public final class cc {
                         var1.drawString(this.l[var2], this.d[var2][0] + (this.d[var2][2] - GlobalConfig.font2.stringWidth(this.l[var2])) / 2, this.d[var2][1] + 4, 20);
                         var1.setColor(16777215);
                         var1.drawString(this.k[var2], this.d[var2][0] + (this.d[var2][2] - GlobalConfig.font2.stringWidth(this.k[var2])) / 2, this.d[var2][1] + this.d[var2][3] - GlobalConfig.font2_h - 4, 20);
-                        MainCanvas.pngUtil.a(var1, (Animation) this.f[var2], (int[]) null, 0, 0, this.d[var2][0] + this.d[var2][2] / 2, this.d[var2][1] + this.d[var2][3] / 4 * 3, 20, 0);
+                        MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) this.f[var2], (int[]) null, 0, 0, this.d[var2][0] + this.d[var2][2] / 2, this.d[var2][1] + this.d[var2][3] / 4 * 3, 20, 0);
                     }
                 }
             } else if (this.a != 1 && this.a == 2) {

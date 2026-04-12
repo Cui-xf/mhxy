@@ -6,135 +6,73 @@ import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.assets.loaders.AsynchronousAssetLoader
 import com.badlogic.gdx.assets.loaders.FileHandleResolver
 import com.badlogic.gdx.files.FileHandle
-import com.badlogic.gdx.graphics.Pixmap
-import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.TextureRegion
-import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.utils.Disposable
 import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
 import java.io.DataInputStream
 
+
 class RpgAnimationLoader(resolver: FileHandleResolver) :
-    AsynchronousAssetLoader<RpgResource, AssetLoaderParameters<RpgResource>>(resolver) {
-    private lateinit var ruleName: String
-    private val pixmapGroup = PixmapGroup()
-    private val animationGroup: RpgAnimationGroup = RpgAnimationGroup()
+    AsynchronousAssetLoader<RpgAnimation, AssetLoaderParameters<RpgAnimation>>(resolver) {
+    private var rpgAnimationComponent: RpgAnimationComponent? = null
 
     override fun loadAsync(
-        manager: AssetManager,
-        fileName: String,
+        assetManager: AssetManager,
+        name: String,
         file: FileHandle,
-        parameter: AssetLoaderParameters<RpgResource>?
+        param: AssetLoaderParameters<RpgAnimation>?
     ) {
-        val rule = manager.get<RuleAsset>(ruleName)
-        DataInputStream(ByteArrayInputStream(file.readBytes())).use { dis ->
-            dis.skipBytes(24)  // 跳过魔法前缀
-            for (rule in rule.rules) {
-                val type = dis.readByte().toInt()
-                val num = dis.readByte()
-                val data = Array(num.toInt()) {
-                    val size = dis.readInt()
-                    ByteArray(size).also { dis.readFully(it) }
-                }
-                if (type == 0) {//静态图
-                    val (pixmap, regionList) = buildPixmap(data)
-                    pixmapGroup.add(rule, pixmap, regionList)
-                } else { //动画
-                    animationGroup.add(rule, buildAnimation(data[0]))
-                }
-            }
-        }
+        val (fileName, name) = parseResourceName(name)
+        val ruleAsset = assetManager.get<RuleAsset>("${fileName}.rule")
+        rpgAnimationComponent = loadAnimation(ruleAsset, fileName, name)
     }
 
-    private fun buildPixmap(data: Array<ByteArray>): Pair<Pixmap, List<Rectangle>> {
-        val metaDis = DataInputStream(ByteArrayInputStream(data[1]))
-        val w = metaDis.readInt()
-        val h = metaDis.readInt()
-        val regionList = parseRegionList(data[0], w, h)
-        val pixmap = parsePixmap(data)
-        return Pair(pixmap, regionList)
-    }
-
-    // PNG 格式常量（与原游戏一致）
-    private val PNG_HEADER = byteArrayOf(-119, 80, 78, 71, 13, 10, 26, 10)
-    private val PNG_IEND = byteArrayOf(0, 0, 0, 0, 73, 69, 78, 68, -82, 66, 96, -126)
-    private val PNG_CHUNKS = arrayOf("sBIT", "IHDR", "PLTE", "tRNS", "IDAT")
-
-    private fun parsePixmap(data: Array<ByteArray>): Pixmap {
-        val out = ByteArrayOutputStream()
-        out.write(PNG_HEADER)
-        for (i in 1 until data.size) {
-            if (data[i].size > 4) {
-                val chunkName = PNG_CHUNKS[if (i > 4) 4 else i]
-                val bytes = data[i]
-                val contentLen = bytes.size - 4
-                val arr = ByteArray(bytes.size + 8)
-                arr[0] = (contentLen shr 24).toByte()
-                arr[1] = (contentLen shr 16).toByte()
-                arr[2] = (contentLen shr 8).toByte()
-                arr[3] = contentLen.toByte()
-                chunkName.toByteArray().copyInto(arr, 4)
-                bytes.copyInto(arr, 8)
-                out.write(arr)
-            }
-        }
-        out.write(PNG_IEND)
-        return Pixmap(out.toByteArray(), 0, out.size())
-    }
-
-    private fun parseRegionList(data0: ByteArray, w: Int, h: Int): List<Rectangle> {
-        return if (data0.size > 4) {
-            // data[0] 头2字节为 flags，从第3字节读切片
-            DataInputStream(ByteArrayInputStream(data0, 2, data0.size - 2)).use { sliceDis ->
-                val count = sliceDis.readByte().toInt() and 0xFF
-                if (count == 0) {
-                    listOf(Rectangle(0f, 0f, w.toFloat(), h.toFloat()))
-                } else {
-                    val regionList = mutableListOf<Rectangle>()
-                    repeat(count) {
-                        regionList += Rectangle(
-                            sliceDis.readShort().toFloat(),
-                            sliceDis.readShort().toFloat(),
-                            sliceDis.readShort().toFloat(),
-                            sliceDis.readShort().toFloat()
-                        )
+    private fun loadAnimation(ruleAsset: RuleAsset, file: String, name: String): RpgAnimationComponent? {
+        val key = hashKey("${name}s")
+        val component = RpgAnimationComponent()
+        if (file.endsWith("icon") || file.endsWith("petfight") || file.endsWith("role")) {
+            val rule = ruleAsset.getRuleByKey(key) ?: return null
+            val fileHandle = resolve("${file}/${rule.id}.rpg")
+            if (!fileHandle.exists()) return null
+            DataInputStream(ByteArrayInputStream(fileHandle.readBytes())).use { dis ->
+                val (frameDuration, data) = buildAnimation(readDirFileData(dis)[0])
+                component.setData(rule, frameDuration, data)
+                data.flatMap { it.toList() }
+                    .map { it[0] as Short }
+                    .distinct()
+                    .forEach { id ->
+                        loadPixmapFromFile("${file}/${id}.rpg", id)?.let { component.addPixmap(it) }
                     }
-                    regionList
+            }
+            return component
+        } else {
+            DataInputStream(ByteArrayInputStream(resolve("${file}.rpg").readBytes())).use { dis ->
+                dis.skipBytes(24)  // 跳过魔法前缀
+                for (rule in ruleAsset.rules) {
+                    val type = dis.readByte().toInt()
+                    val n = dis.readByte()
+                    val data = Array(n.toInt()) {
+                        val size = dis.readInt()
+                        ByteArray(size).also { dis.readFully(it) }
+                    }
+                    if (type == 0) {//静态图
+                        component.addPixmap(buildPixmap(rule.id, data))
+                    } else if (rule.key == key) { //动画
+                        val (frameDuration, data) = buildAnimation(data[0])
+                        component.setData(rule, frameDuration, data)
+                    }
                 }
             }
-        } else {
-            listOf(Rectangle(0f, 0f, w.toFloat(), h.toFloat()))
+            return component
         }
     }
 
-    private fun buildAnimation(data: ByteArray): RpgAnimation {
-        return DataInputStream(ByteArrayInputStream(data)).use { dis ->
-            val packetNum = dis.readByte().toInt()
-            // 跳过包围盒 x,y,w,h
-            dis.readShort()
-            dis.readShort()
-            dis.readShort()
-            dis.readShort()
-            val packs: Array<List<Frame>> = Array(packetNum) {
-                val frames = mutableListOf<Frame>()
-                val frameNum = dis.readByte().toInt()
-                repeat(frameNum) {
-                    val id = dis.readShort()
-                    //type
-                    dis.readByte()
-                    val transX = dis.readShort().toInt()
-                    val transY = dis.readShort().toInt()
-                    val index = dis.readShort().toInt()
-                    val transFlag = dis.readByte().toInt()
-                    val (flipX, flipY, rotation) = TRANSFORM_TABLE[transFlag]
-                    frames += Frame(id, index, transX, transY, flipX, flipY, rotation)
-                }
-                frames
-            }
-            val frameDuration = dis.readShort().toFloat() / 1000
-            RpgAnimation(frameDuration, packs)
+    private fun loadPixmapFromFile(file: String, id: Short): RpgTextureRegionComponent? {
+        val file = resolve(file)
+        if (!file.exists()) return null
+        DataInputStream(ByteArrayInputStream(file.readBytes())).use { dis ->
+            return buildPixmap(id, readDirFileData(dis))
         }
     }
 
@@ -157,145 +95,112 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
         Triple(true, false, 0f),    // flag=7 → J2ME 4 = flipH
     )
 
-    override fun loadSync(
-        manager: AssetManager, fileName: String, file: FileHandle, parameter: AssetLoaderParameters<RpgResource>?
-    ): RpgResource {
-        return RpgResource(animationGroup, pixmapGroup)
-    }
-
-
-    override fun getDependencies(
-        fileName: String, file: FileHandle, parameter: AssetLoaderParameters<RpgResource>?
-    ): com.badlogic.gdx.utils.Array<AssetDescriptor<*>>? {
-        ruleName = fileName.replace(".rpg", ".rule")
-        return com.badlogic.gdx.utils.Array.with(RuleAssetDescriptor(ruleName))
-    }
-}
-
-class RpgResource(
-    private val animationGroup: RpgAnimationGroup,
-    pixmapGroup: PixmapGroup
-) : Disposable {
-    private val textureGroup = TextureGroup(pixmapGroup)
-    override fun dispose() {
-        animationGroup.dispose()
-        textureGroup.dispose()
-    }
-
-    fun getAnimationByName(name: String): RpgAnimation {
-        val animation = animationGroup.getByKey(hashKey(name + "s"))
-        if (!animation.inited) {
-            animation.init(textureGroup)
+    private fun buildAnimation(data: ByteArray): Pair<Float, Array<Array<Array<*>>>> {
+        return DataInputStream(ByteArrayInputStream(data)).use { dis ->
+            val packetNum = dis.readByte().toInt()
+            // 跳过包围盒 x,y,w,h
+            dis.readShort()
+            dis.readShort()
+            dis.readShort()
+            dis.readShort()
+            val data = Array(packetNum) {
+                Array<Array<*>>(dis.readByte().toInt()) {
+                    val id = dis.readShort()
+                    //type
+                    dis.readByte()
+                    val transX = dis.readShort().toInt()
+                    val transY = dis.readShort().toInt()
+                    val index = dis.readShort().toInt()
+                    val transFlag = dis.readByte().toInt()
+                    val (flipX, flipY, rotation) = TRANSFORM_TABLE[transFlag]
+                    arrayOf<Any>(id, index, transX, transY, flipX, flipY, rotation)
+                }
+            }
+            val frameDuration = dis.readShort().toFloat() / 1000
+            Pair(frameDuration, data)
         }
+    }
+
+    override fun loadSync(
+        assetManager: AssetManager,
+        name: String,
+        file: FileHandle,
+        param: AssetLoaderParameters<RpgAnimation>?
+    ): RpgAnimation {
+        val animation = rpgAnimationComponent?.assemble() ?: throw RuntimeException(name)
+        rpgAnimationComponent = null
         return animation
     }
 
-    fun getTextureRegionByName(name: String, regionIndex: Int?): TextureRegion {
-        return textureGroup.getByKey(hashKey(name + "p"), regionIndex)
-    }
-
-    companion object {
-        fun hashKey(name: String): Int {
-            var hash = 0
-            for (c in name.toCharArray()) hash = hash * 31 + c.code
-            return hash
-        }
+    override fun getDependencies(
+        name: String,
+        file: FileHandle,
+        param: AssetLoaderParameters<RpgAnimation>?
+    ): com.badlogic.gdx.utils.Array<AssetDescriptor<*>?>? {
+        val (fileName) = parseResourceName(name)
+        return com.badlogic.gdx.utils.Array.with(RuleAssetDescriptor("${fileName}.rule"))
     }
 }
 
-class TextureGroup(pixmapGroup: PixmapGroup) : Disposable {
-    private val keyMap = mutableMapOf<Int, Pair<Texture, List<Rectangle>>>()
-    private val idMap = mutableMapOf<Short, Pair<Texture, List<Rectangle>>>()
+class RpgAnimationComponent {
+    private val picMap = mutableMapOf<Short, RpgTextureRegionComponent>()
+    private var rule: Rule? = null
+    private var frameDuration: Float? = null
+    private var data: Array<Array<Array<*>>>? = null
 
-    init {
-        pixmapGroup.map.forEach { (rule, pair) ->
-            val texture = Texture(pair.first)
-            val t = Pair(texture, pair.second)
-            keyMap[rule.key] = t
-            idMap[rule.id] = t
+
+    fun addPixmap(pic: RpgTextureRegionComponent) {
+        picMap[pic.id] = pic
+    }
+
+    fun setData(rule: Rule, frameDuration: Float, data: Array<Array<Array<*>>>) {
+        this.rule = rule
+        this.frameDuration = frameDuration
+        this.data = data
+    }
+
+    fun assemble(): RpgAnimation? {
+        if (rule == null || frameDuration == null || data == null) {
+            return null
         }
-    }
 
-    fun getById(id: Short, index: Int?): TextureRegion {
-        val (texture, rangeList) = idMap[id] ?: throw NoSuchElementException()
-        return get(texture, rangeList, index)
+        val frames = data!!.map { arr ->
+            arr.map { frame ->
+//                id, index, transX, transY, flipX, flipY, rotation
+                val id = frame[0] as Short
+                val index = frame[1] as Int
+                val transX = frame[2] as Int
+                val transY = frame[3] as Int
+                val flipX = frame[4] as Boolean
+                val flipY = frame[5] as Boolean
+                val rotation = frame[6] as Float
+                val textureRegion = picMap[id]?.assemble(index)
+                if (textureRegion==null){
+                    throw RuntimeException("aaa")
+                }
+                Frame(transX, transY, flipX, flipY, rotation, textureRegion)
+            }.toList()
+        }.toTypedArray()
+        return RpgAnimation(frameDuration!!, frames)
     }
+}
 
-    fun getByKey(key: Int, index: Int?): TextureRegion {
-        val (texture, rangeList) = keyMap[key] ?: throw NoSuchElementException()
-        return get(texture, rangeList, index)
-    }
-
-    private fun get(texture: Texture, rangeList: List<Rectangle>, index: Int?): TextureRegion {
-        if (index != null && index < rangeList.size) {
-            val rect = rangeList[index]
-            return TextureRegion(texture, rect.x.toInt(), rect.y.toInt(), rect.width.toInt(), rect.height.toInt())
-        } else {
-            return TextureRegion(texture)
-        }
-    }
-
+class RpgAnimation(frameDuration: Float, frames: Array<List<Frame>>) :
+    Animation<List<Frame>>(frameDuration, *frames), Disposable {
     override fun dispose() {
-        keyMap.values.forEach { it.first.dispose() }
-        keyMap.clear()
-        idMap.clear()
-    }
-}
-
-class RpgAnimationGroup : Disposable {
-    private val keyMap = mutableMapOf<Int, RpgAnimation>()
-    private val idMap = mutableMapOf<Short, RpgAnimation>()
-
-    fun add(rule: Rule, animation: RpgAnimation) {
-        keyMap[rule.key] = animation
-        idMap[rule.id] = animation
-    }
-
-    fun getById(id: Short): RpgAnimation {
-        return idMap[id] ?: throw NoSuchElementException()
-    }
-
-    fun getByKey(key: Int): RpgAnimation {
-        return keyMap[key] ?: throw NoSuchElementException()
-    }
-
-    override fun dispose() {
-        keyMap.clear()
-        idMap.clear()
-    }
-}
-
-class RpgAnimation(frameDuration: Float, val frames: Array<List<Frame>>) :
-    Animation<List<Frame>>(frameDuration, *frames) {
-    var inited = false
-    fun init(textureGroup: TextureGroup) {
-        if (inited) {
-            return
-        }
-        frames.forEach { list ->
-            for (frame in list) {
-                frame.textureRegion = textureGroup.getById(frame.id, frame.index)
+        for (frames in keyFrames) {
+            for (frame in frames) {
+                frame.textureRegion.texture.dispose()
             }
         }
-        inited = true
     }
 }
 
 data class Frame(
-    val id: Short,
-    val index: Int,
     val transX: Int, //x平移
     val transY: Int, //y平移
     val flipX: Boolean, //水平翻转
     val flipY: Boolean, //竖直翻转
     val rotation: Float,  //旋转
-) {
-    lateinit var textureRegion: TextureRegion //图像切片
-}
-
-class PixmapGroup {
-    val map = mutableMapOf<Rule, Pair<Pixmap, List<Rectangle>>>()
-    fun add(rule: Rule, pixmap: Pixmap, regionList: List<Rectangle>) {
-        map[rule] = Pair(pixmap, regionList)
-    }
-}
+    val textureRegion: TextureRegion //图像切片
+)

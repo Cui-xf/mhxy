@@ -91,7 +91,7 @@ public final class ck {
             PngUtil.a(this.m, this.w);
          }
 
-         var2.a(var1, (Animation)this.m, (int[])null, 0, 0, var3, var4, 20, 0);
+         var2.roleSelectedAnimation(var1, (Animation)this.m, (int[])null, 0, 0, var3, var4, 20, 0);
       }
 
    }

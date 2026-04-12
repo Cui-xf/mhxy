@@ -1237,16 +1237,16 @@ public final class FightModel {
             for(byte var6 = (byte)(GlobalStatus.fightData.length - 1); var6 >= 0; --var6) {
                if (GlobalStatus.fightData[var6].j != null) {
                   if (GlobalStatus.fightData[var6].d()) {
-                     MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ad, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
+                     MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ad, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
                   } else if (GlobalStatus.fightData[var6].b != 0 && GlobalStatus.fightData[var6].j != null) {
                      if (GlobalStatus.fightData[var6].k == 1 || GlobalStatus.fightData[var6].k == 4) {
                         GlobalStatus.fightData[var6].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], (byte)0);
                      }
 
                      if (var4.f != -1 && var4.f != 0 && var4.f != 7 && GlobalStatus.fightData[var6].m) {
-                        MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
+                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
                      } else if (var4.f == 6 && GlobalStatus.fightData[var6].l) {
-                        MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
+                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
                      }
                   }
                }
@@ -1263,27 +1263,27 @@ public final class FightModel {
                            }
 
                            if (var4.f != -1 && var4.f != 0 && GlobalStatus.fightData[var17].m) {
-                              MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                            } else if (var4.f == 6 && GlobalStatus.fightData[var17].l) {
-                              MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                            }
                         }
                      } else {
-                        MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                      }
                   } else if (var4.f == 7) {
                      for(int var7 = 0; var7 < GlobalStatus.teamBonus.length; ++var7) {
                         if (GlobalStatus.teamBonus[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.teamBonus[var7].s == 1) {
-                           MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                           MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                         } else if (GlobalStatus.teamBonus[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.teamBonus[var7].s == 0 && !GlobalStatus.fightData[var17].d()) {
                            if (GlobalStatus.fightData[var17].k == 1 || GlobalStatus.fightData[var17].k == 4) {
                               GlobalStatus.fightData[var17].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], (byte)0);
                            }
 
                            if (var4.f != -1 && var4.f != 0 && GlobalStatus.fightData[var17].m) {
-                              MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                            } else if (var4.f == 6 && GlobalStatus.fightData[var17].l) {
-                              MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                            }
                         }
                      }
@@ -1293,9 +1293,9 @@ public final class FightModel {
                      }
 
                      if (var4.f != -1 && var4.f != 0 && GlobalStatus.fightData[var17].m) {
-                        MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                      } else if (var4.f == 6 && GlobalStatus.fightData[var17].l) {
-                        MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                      }
                   }
                }
@@ -1315,7 +1315,7 @@ public final class FightModel {
                if (GlobalStatus.M[var18].m != null) {
                   if (GlobalStatus.M[var18].a()) {
                      if (t == 1 || t == 2) {
-                        MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ac, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
+                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ac, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
                      }
                   } else {
                      if (GlobalStatus.M[var18].n != 1 && GlobalStatus.M[var18].n != 4) {
@@ -1333,9 +1333,9 @@ public final class FightModel {
                      } else {
                         GlobalStatus.M[var18].a(var5, MainCanvas.pngUtil, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], (byte)0);
                         if (var4.f != -1 && var4.f != 0 && GlobalStatus.M[var18].p) {
-                           MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
+                           MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
                         } else if (var4.f == 6 && GlobalStatus.M[var18].o) {
-                           MainCanvas.pngUtil.a(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
+                           MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
                         }
                      }
 
@@ -1453,11 +1453,11 @@ public final class FightModel {
          if (this.d != 4 && this.d != 5 && this.d != 6 && this.d != 7 && this.d != 8) {
             if (this.h >= 0 && this.h <= GlobalStatus.M.length - 1) {
                PngUtil.animate(GameSceneController.select, this.y.frameStartTs);
-               MainCanvas.pngUtil.a(var2, (Animation) GameSceneController.select, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[this.h].a][0], GlobalConfig.R[GlobalStatus.M[this.h].a][1] - 10 - GlobalStatus.M[this.h].d(), 20, 0);
+               MainCanvas.pngUtil.roleSelectedAnimation(var2, (Animation) GameSceneController.select, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[this.h].a][0], GlobalConfig.R[GlobalStatus.M[this.h].a][1] - 10 - GlobalStatus.M[this.h].d(), 20, 0);
             }
          } else if (this.i >= 0 && this.i <= GlobalStatus.fightData.length - 1 && GlobalStatus.fightData[this.i].j != null) {
             PngUtil.animate(GameSceneController.select, this.y.frameStartTs);
-            MainCanvas.pngUtil.a(var2, (Animation) GameSceneController.select, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[this.i].a][0], GlobalConfig.Q[GlobalStatus.fightData[this.i].a][1] - 10 - GlobalStatus.fightData[this.i].i(), 20, 0);
+            MainCanvas.pngUtil.roleSelectedAnimation(var2, (Animation) GameSceneController.select, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[this.i].a][0], GlobalConfig.Q[GlobalStatus.fightData[this.i].a][1] - 10 - GlobalStatus.fightData[this.i].i(), 20, 0);
          }
       }
 

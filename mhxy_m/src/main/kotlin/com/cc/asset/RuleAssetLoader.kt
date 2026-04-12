@@ -10,7 +10,17 @@ import com.badlogic.gdx.utils.Array
 import java.io.ByteArrayInputStream
 import java.io.DataInputStream
 
-class RuleAsset(val rules: List<Rule>)
+class RuleAsset(val rules: List<Rule>) {
+
+    fun getRuleByKey(key: Int): Rule? {
+        return rules.find { it.key == key }
+    }
+
+    fun getRuleById(id: Short): Rule? {
+        return rules.find { it.id == id }
+    }
+}
+
 data class Rule(val key: Int, val id: Short)
 
 class RuleAssetDescriptor(fileName: String) : AssetDescriptor<RuleAsset>(fileName, RuleAsset::class.java)

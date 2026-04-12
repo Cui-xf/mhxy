@@ -111,59 +111,59 @@ public final class PngUtil {
                     this.draw(var1, (Sprite) var2.frame, var3, var2.getImageSlice(), var4, var5, var6, var7, 0, var2.transformFlag);
                     return;
                 case 2:
-                    this.a(var1, (Animation) ((Animation) var2.frame), var3, var4, var5, var6, var7, 0, var8);
+                    this.roleSelectedAnimation(var1, (Animation) ((Animation) var2.frame), var3, var4, var5, var6, var7, 0, var8);
             }
         }
 
     }
 
-    private void a(Graphics var1, SpritePiece var2, int[] var3, int var4, int var5, int var6, int var7, int var8, int var9) {
-        if (var2 != null && var2.frame != null) {
-            switch (var2.frame.type) {
+    private void roleSelectedAnimation(Graphics graphics, SpritePiece frame, int[] clip, int x, int y, int w, int h, int var8, int var9) {
+        if (frame != null && frame.frame != null) {
+            switch (frame.frame.type) {
                 case 0:
-                    var6 += var2.transformX;
-                    var7 += var2.transformY;
-                    this.draw(var1, (Sprite) var2.frame, var3, var2.getImageSlice(), var4, var5, var6, var7, 20, var2.transformFlag);
+                    w += frame.transformX;
+                    h += frame.transformY;
+                    this.draw(graphics, (Sprite) frame.frame, clip, frame.getImageSlice(), x, y, w, h, 20, frame.transformFlag);
                     return;
                 case 2:
-                    var6 += var2.transformX;
-                    var7 += var2.transformY;
-                    this.a(var1, (Animation) ((Animation) var2.frame), var3, var4, var5, var6, var7, 20, var9);
+                    w += frame.transformX;
+                    h += frame.transformY;
+                    this.roleSelectedAnimation(graphics, (Animation) ((Animation) frame.frame), clip, x, y, w, h, 20, var9);
             }
         }
 
     }
 
-    public final void draw(Graphics var1, Sprite var2, int[] var3, ImageSlice var4, int var5, int var6, int var7, int var8, int var9, int transformFlag) {
-        var7 -= var5;
-        var8 -= var6;
+    public final void draw(Graphics var1, Sprite var2, int[] clip, ImageSlice imageSlice, int x, int y, int w, int h, int topCenter, int transformFlag) {
+        w -= x;
+        h -= y;
         if (var2 != null && var2.image != null) {
-            if (var3 != null && var3[2] > 0 && var3[3] > 0) {
-                if (var4 == null) {
-                    var1.setClip(var3[0] - var5, var3[1] - var6, var3[2], var3[3]);
-                    var1.drawRegion(var2.image, 0, 0, var2.w, var2.h, i[transformFlag], var7, var8, var9);
+            if (clip != null && clip[2] > 0 && clip[3] > 0) {
+                if (imageSlice == null) {
+                    var1.setClip(clip[0] - x, clip[1] - y, clip[2], clip[3]);
+                    var1.drawRegion(var2.image, 0, 0, var2.w, var2.h, i[transformFlag], w, h, topCenter);
                 } else {
-                    a(var2, this.h, var4);
+                    a(var2, this.h, imageSlice);
                     short var15 = (short) this.h[0];
                     short var18 = (short) this.h[1];
                     short var19 = (short) this.h[2];
                     short var20 = (short) this.h[3];
                     if (var15 >= 0 && var15 + var19 <= var2.w && var18 >= 0 && var18 + var20 <= var2.h && var15 < var2.w && var18 < var2.h && var19 > 0 && var20 > 0) {
-                        var1.setClip(var3[0] - var5, var3[1] - var6, var3[2], var3[3]);
-                        var1.drawRegion(var2.image, var15, var18, var19, var20, i[transformFlag], var7, var8, var9);
+                        var1.setClip(clip[0] - x, clip[1] - y, clip[2], clip[3]);
+                        var1.drawRegion(var2.image, var15, var18, var19, var20, i[transformFlag], w, h, topCenter);
                         var1.setClip(this.p, this.q, this.r, this.s);
                     }
                 }
-            } else if (var4 == null) {
-                var1.drawRegion(var2.image, 0, 0, var2.w, var2.h, i[transformFlag], var7, var8, var9);
+            } else if (imageSlice == null) {
+                var1.drawRegion(var2.image, 0, 0, var2.w, var2.h, i[transformFlag], w, h, topCenter);
             } else {
-                a(var2, this.h, var4);
+                a(var2, this.h, imageSlice);
                 short var14 = (short) this.h[0];
                 short var11 = (short) this.h[1];
                 short var12 = (short) this.h[2];
                 short var13 = (short) this.h[3];
                 if (var14 >= 0 && var14 + var12 <= var2.w && var11 >= 0 && var11 + var13 <= var2.h && var14 < var2.w && var11 < var2.h && var12 > 0 && var13 > 0) {
-                    var1.drawRegion(var2.image, var14, var11, var12, var13, i[transformFlag], var7, var8, var9);
+                    var1.drawRegion(var2.image, var14, var11, var12, var13, i[transformFlag], w, h, topCenter);
                 }
             }
         }
@@ -175,23 +175,23 @@ public final class PngUtil {
         }
     }
 
-    public final void a(Graphics var1, Animation var2, int[] var3, int var4, int var5, int var6, int var7, int var8, int var9) {
-        if (var2 != null && var2.spritePieces != null && var2.currentFrameIndex < var2.spritePieces.length && var2.spritePieces[var2.currentFrameIndex] != null) {
-            if (var8 == 3) {
-                var6 -= var2.g() >> 1;
-                var7 -= var2.h() >> 1;
-            } else if (var8 == 17) {
-                var6 -= var2.g() >> 1;
-            } else if (var8 == 33) {
-                var6 -= var2.g() >> 1;
-                var7 -= var2.h();
-            } else if (var8 == 36) {
-                var7 -= var2.h();
+    public void roleSelectedAnimation(Graphics graphics, Animation animation, int[] clip, int x, int y, int w, int h, int time, int ignore) {
+        if (animation != null && animation.spritePieces != null && animation.currentFrameIndex < animation.spritePieces.length && animation.spritePieces[animation.currentFrameIndex] != null) {
+            if (time == 3) {
+                w -= animation.g() >> 1;
+                h -= animation.h() >> 1;
+            } else if (time == 17) {
+                w -= animation.g() >> 1;
+            } else if (time == 33) {
+                w -= animation.g() >> 1;
+                h -= animation.h();
+            } else if (time == 36) {
+                h -= animation.h();
             }
 
-            for (int var10 = 0; var10 < var2.spritePieces[var2.currentFrameIndex].length; ++var10) {
-                if (var2.spritePieces[var2.currentFrameIndex][var10] != null) {
-                    this.a(var1, (SpritePiece) var2.spritePieces[var2.currentFrameIndex][var10], var3, var4, var5, var6, var7, 20, var9);
+            for (int i2 = 0; i2 < animation.spritePieces[animation.currentFrameIndex].length; ++i2) {
+                if (animation.spritePieces[animation.currentFrameIndex][i2] != null) {
+                    this.roleSelectedAnimation(graphics, (SpritePiece) animation.spritePieces[animation.currentFrameIndex][i2], clip, x, y, w, h, 20, ignore);
                 }
             }
         }
@@ -201,7 +201,7 @@ public final class PngUtil {
     public final void a(Graphics var1, SpritePiece[] var2, short var3, short var4, int[] var5, int var6, int var7, int var8, int var9, int var10, int var11) {
         if (var2 != null) {
             for (int var12 = 0; var12 < var2.length; ++var12) {
-                this.a(var1, (SpritePiece) var2[var12], var5, var6, var7, var8, var9, 20, var11);
+                this.roleSelectedAnimation(var1, (SpritePiece) var2[var12], var5, var6, var7, var8, var9, 20, var11);
             }
 
         }

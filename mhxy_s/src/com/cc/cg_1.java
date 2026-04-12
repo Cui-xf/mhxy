@@ -433,11 +433,11 @@ public final class cg_1 {
       this.a(1, this.f.mixedUi.X + 5 + 25 + this.f.mixedUi.W / 2, this.f.mixedUi.Y + 32 + 10, 50, 50);
       LoadingPage.d(var1, this.J[this.K][0], this.J[this.K][1], 50, 50);
       if (a != -1 && this.h != null) {
-         this.g.a(var1, (Animation)this.h, (int[])null, 0, 0, this.f.mixedUi.X + 5 + 25, this.f.mixedUi.Y + 32 + 10, 0, 0);
+         this.g.roleSelectedAnimation(var1, (Animation)this.h, (int[])null, 0, 0, this.f.mixedUi.X + 5 + 25, this.f.mixedUi.Y + 32 + 10, 0, 0);
       }
 
       if (k != -1 && this.i != null) {
-         this.g.a(var1, (Animation)this.i, (int[])null, 0, 0, this.f.mixedUi.X + 5 + 25 + this.f.mixedUi.W / 2, this.f.mixedUi.Y + 32 + 10, 0, 0);
+         this.g.roleSelectedAnimation(var1, (Animation)this.i, (int[])null, 0, 0, this.f.mixedUi.X + 5 + 25 + this.f.mixedUi.W / 2, this.f.mixedUi.Y + 32 + 10, 0, 0);
       } else {
          var1.setColor(16776960);
          var1.drawString("副宠", this.f.mixedUi.X + 5 + 25 + this.f.mixedUi.W / 2 + 25, this.f.mixedUi.Y + 32 + 10 + GlobalConfig.font2_h / 4 + 25, 65);

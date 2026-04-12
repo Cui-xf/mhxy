@@ -111,7 +111,7 @@ public final class p {
 
    public final void a(Graphics var1, PngUtil var2, int var3, int var4, byte var5) {
       if (!this.d() && this.j != null) {
-         var2.a(var1, (Animation)this.j, (int[])null, 0, 0, var3, var4, 20, 0);
+         var2.roleSelectedAnimation(var1, (Animation)this.j, (int[])null, 0, 0, var3, var4, 20, 0);
       }
 
    }

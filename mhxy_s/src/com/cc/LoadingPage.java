@@ -208,7 +208,7 @@ public final class LoadingPage {
             if (MainCanvas.go_left != null) {
                 if (e != 0) {
                     PngUtil.animate(MainCanvas.go_left, System.currentTimeMillis());
-                    MainCanvas.pngUtil.a(var0, (Animation) MainCanvas.go_left, (int[]) null, 0, 0, 16, var2 + 5, 20, 0);
+                    MainCanvas.pngUtil.roleSelectedAnimation(var0, (Animation) MainCanvas.go_left, (int[]) null, 0, 0, 16, var2 + 5, 20, 0);
                     a((int[]) (E != null ? E[0] : null), 16, var2 + 5, 16, 9);
                 } else {
                     a((int[]) (E != null ? E[0] : null), 0, 0, 0, 0);
@@ -218,7 +218,7 @@ public final class LoadingPage {
             if (MainCanvas.go_right != null) {
                 if (e + d < var5.getLines()) {
                     PngUtil.animate(MainCanvas.go_right, System.currentTimeMillis());
-                    MainCanvas.pngUtil.a(var0, (Animation) MainCanvas.go_right, (int[]) null, 0, 0, var3 - 32, var2 + 5, 20, 0);
+                    MainCanvas.pngUtil.roleSelectedAnimation(var0, (Animation) MainCanvas.go_right, (int[]) null, 0, 0, var3 - 32, var2 + 5, 20, 0);
                     a((int[]) (E != null ? E[1] : null), var3 - 32, var2 + 5, 16, 9);
                 } else {
                     a((int[]) (E != null ? E[1] : null), 0, 0, 0, 0);
@@ -382,17 +382,17 @@ public final class LoadingPage {
         graphics.drawRect(x + 1, y + 1, w - 2, h - 2);
     }
 
-    public static void drawRect(Graphics var0, Image var1, int var2, int var3, int var4, int var5, boolean var6) {
+    public static void drawRect(Graphics var0, Image var1, int var2, int var3, int var4, int var5, boolean select) {
         var0.setColor(409969);
         var0.fillRect(var2, var3, var4, var5);
-        if (var6) {
+        if (select) {
             var0.setColor(6597852);
         } else {
             var0.setColor(5018307);
         }
 
         var0.fillRect(var2 + 3, var3 + 3, var4 - 6, var5 - 6);
-        if (var6) {
+        if (select) {
             var0.setColor(16775125);
         } else {
             var0.setColor(3775208);

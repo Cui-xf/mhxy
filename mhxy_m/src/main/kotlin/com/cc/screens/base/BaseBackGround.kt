@@ -3,9 +3,8 @@ package com.cc.screens.base
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.utils.Disposable
-import com.cc.asset.AssetManagerFactory
-import com.cc.asset.RpgAnimationGroup
-import com.cc.asset.RpgResource
+import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
+import com.cc.asset.RpgAnimation
 import com.cc.render.Align
 import com.cc.render.drawAnimation
 import com.cc.render.drawImage
@@ -15,9 +14,10 @@ import kotlin.random.Random
 object BaseBackGround : AbstractScreen(), Disposable {
     private val menuBG = autoDispose { Texture(Gdx.files.classpath("assets/menuBG.png")) }
     private val logoTitle = autoDispose { Texture(Gdx.files.classpath("assets/logoTitle_B.png")) }
-    private val cartoon = AssetManagerFactory.PUBLIC_ASSET.get<RpgResource>("rpg/cartoon.rpg")
-    private val hudie = cartoon.getAnimationByName("hudie")
-    private val hudie2 = cartoon.getAnimationByName("hudie_2")
+
+    private val hudie by resource(PUBLIC_ASSET, "rpg/cartoon/hudie", RpgAnimation::class)
+    private val hudie2 by resource(PUBLIC_ASSET, "rpg/cartoon/hudie_2", RpgAnimation::class)
+
     private val light0 = autoDispose { Texture(Gdx.files.classpath("assets/light_0.png")) }
     private val light1 = autoDispose { Texture(Gdx.files.classpath("assets/light_1.png")) }
     private var timer = 0f   // 动画累计时间（移动时推进）
