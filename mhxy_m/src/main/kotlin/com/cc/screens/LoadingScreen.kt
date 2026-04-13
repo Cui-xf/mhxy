@@ -3,6 +3,7 @@ package com.cc.screens
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.badlogic.gdx.math.Rectangle
 import com.cc.FontManager.SMALL_FONT
@@ -10,6 +11,7 @@ import com.cc.MhxyGame
 import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.asset.CommonAssetLoader
+import com.cc.asset.RpgAnimation
 import com.cc.render.*
 import com.cc.screens.base.BaseBackGround
 import kotlin.random.Random
@@ -42,11 +44,20 @@ class LoadingScreen : AbstractScreen() {
         PUBLIC_ASSET.load("player.jpg", Texture::class.java)
         CommonAssetLoader = AssetLoader()
         BaseBackGround.resume()
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/lu.rt", TextureRegion::class)
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/ld.rt", TextureRegion::class)
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/rd.rt", TextureRegion::class)
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/title.rt", TextureRegion::class)
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/close.rt", TextureRegion::class)
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/button1.rt", TextureRegion::class)
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/role/f31111", RpgAnimation::class)
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/role/f31112", RpgAnimation::class)
     }
 
     override fun update(delta: Float) {
         progress = if (progress >= 100) 100 else progress + 10
         PUBLIC_ASSET.update()
+        CommonAssetLoader.update()
         batch.begin()
         //顶部文字
         textRender.drawText(batch, SMALL_FONT, VIRTUAL_W / 2, 30f, Align.CENTER_TOP)
@@ -85,7 +96,7 @@ class LoadingScreen : AbstractScreen() {
             Align.LEFT
         )
         shapeRenderer.end()
-        if (PUBLIC_ASSET.isFinished && progress >= 100) {
+        if (PUBLIC_ASSET.isFinished && CommonAssetLoader.isFinished() && progress >= 100) {
             MhxyGame.setScreen(TitleScreen())
         }
     }

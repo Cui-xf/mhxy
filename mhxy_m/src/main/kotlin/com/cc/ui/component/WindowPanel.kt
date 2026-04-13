@@ -10,7 +10,12 @@ import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.render.*
 
-class WindowPanel(assetLoader: AssetLoader, block: UIContainer.() -> Unit) : UIContainer(assetLoader, block) {
+class WindowPanel(
+    assetLoader: AssetLoader,
+    var title: String = "",
+    var bottomText: String = "",
+    block: UIContainer.() -> Unit,
+) : UIContainer(assetLoader, block) {
     private val lu by resource(PUBLIC_ASSET, "rpg/publicUI/lu.rt", TextureRegion::class)
     private val ld by resource(PUBLIC_ASSET, "rpg/publicUI/ld.rt", TextureRegion::class)
     private val rd by resource(PUBLIC_ASSET, "rpg/publicUI/rd.rt", TextureRegion::class)
@@ -67,7 +72,7 @@ class WindowPanel(assetLoader: AssetLoader, block: UIContainer.() -> Unit) : UIC
         // 居中标题文字
         batch.wordArtString(
             MEDIA_FONT,
-            "角色列表",
+            title,
             Color.valueOf("#000000"),
             Color.valueOf("#FFFED5"),
             cx + cw / 2,
@@ -85,7 +90,7 @@ class WindowPanel(assetLoader: AssetLoader, block: UIContainer.() -> Unit) : UIC
         //底部文字
         batch.wordArtString(
             MEDIA_FONT,
-            "进入游戏",
+            bottomText,
             0.toColor(),
             16776917.toColor(),
             cx + 10f,
