@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.cc.FontManager.MEDIA_FONT
+import com.cc.MhxyGame
 import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.asset.RpgAnimation
@@ -32,6 +33,7 @@ class RoleSelectScreen : AbstractScreen() {
 
     override fun show() {
         window.onEvent<Int> { updateSelectedRole(it) }
+            .onEvent<String> { MhxyGame.setScreen(GameScreen()) }
         updateSelectedRole(0)
     }
 
@@ -103,8 +105,12 @@ class RoleGridPanel(
             val y = cy + roleBox * clo
 
             if (TouchContext.inTouch(x, y, roleBox, roleBox)) {
-                emit(index)
-                selectedIndex = index
+                if (selectedIndex == index) {
+                    emit("enter:${index}")
+                } else {
+                    emit(index)
+                    selectedIndex = index
+                }
             }
 
             val selected = selectedIndex == index

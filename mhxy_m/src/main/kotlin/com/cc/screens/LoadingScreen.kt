@@ -40,8 +40,6 @@ class LoadingScreen : AbstractScreen() {
         textRender = TextRender(listOf(line))
 
         // 只加载公共资源，场景专属资源由各场景自己加载
-        PUBLIC_ASSET.load("title_bg.jpg", Texture::class.java)
-        PUBLIC_ASSET.load("player.jpg", Texture::class.java)
         CommonAssetLoader = AssetLoader()
         BaseBackGround.resume()
         CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/lu.rt", TextureRegion::class)

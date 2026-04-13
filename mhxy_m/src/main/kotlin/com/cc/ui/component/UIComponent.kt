@@ -16,8 +16,9 @@ abstract class UIComponent(private val assetLoader: AssetLoader) {
     open fun handleInput() {}
 
     @Suppress("UNCHECKED_CAST")
-    inline fun <reified T : Any> onEvent(noinline handler: (T) -> Unit) {
+    inline fun <reified T : Any> onEvent(noinline handler: (T) -> Unit): UIComponent {
         listeners[T::class] = handler as (Any) -> Unit
+        return this
     }
 
     fun emit(data: Any) {
