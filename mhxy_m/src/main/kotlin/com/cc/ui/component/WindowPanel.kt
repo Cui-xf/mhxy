@@ -19,22 +19,26 @@ class WindowPanel(assetLoader: AssetLoader, block: UIContainer.() -> Unit) : UIC
     private val bottomImage by resource(PUBLIC_ASSET, "rpg/publicUI/button1.rt", TextureRegion::class)
 
     override fun renderSelf(batch: SpriteBatch, sr: ShapeRenderer, cx: Float, cy: Float, cw: Float, ch: Float) {
-        //标题和背景
-        titleImage(batch, cx, cy, cw, ch)
-        //标题下边框
         sr.begin(ShapeType.Filled)
+        //整体背景
+        sr.drawRect(2780801.toColor(), cx, cy, cw, ch, Align.LEFT)
+        //标题下边框
         sr.drawRect(Color.valueOf("#0067AC"), cx, cy + 28f, cw - 1, 4f, Align.LEFT)
         sr.end()
         sr.begin(ShapeType.Line)
+        //标题下边框高亮
         sr.drawLine(Color.valueOf("#ABEDE4"), cx + 1.5f, cy + 29f, cx + cw - 2, cy + 29f)
-        //外边框
-        sr.drawRect(Color.valueOf("#005187"), cx, cy, cw, ch, Align.LEFT)
-        sr.drawRect(Color.valueOf("#1197AE"), cx + 1, cy + 1, cw - 2, ch - 2, Align.LEFT)
-        sr.drawRect(Color.valueOf("#95D9E2"), cx + 2, cy + 2, cw - 4, ch - 4, Align.LEFT)
-        sr.drawRect(Color.valueOf("#1197AE"), cx + 3, cy + 3, cw - 6, ch - 6, Align.LEFT)
-        sr.drawRect(Color.valueOf("#005187"), cx + 4, cy + 4, cw - 8, ch - 8, Align.LEFT)
         sr.end()
-
+        //标题和背景图片
+        titleImage(batch, cx, cy, cw, ch)
+        sr.begin(ShapeType.Filled)
+        //外边框（用填充矩形拼出边框线，避免 Line 模式角点缺失）
+        sr.drawRectBorder(Color.valueOf("#005187"), cx, cy, cw, ch, Align.LEFT)
+        sr.drawRectBorder(Color.valueOf("#005187"), cx + 4, cy + 4, cw - 8, ch - 8, Align.LEFT)
+        sr.drawRectBorder(Color.valueOf("#1197AE"), cx + 1, cy + 1, cw - 2, ch - 2, Align.LEFT)
+        sr.drawRectBorder(Color.valueOf("#1197AE"), cx + 3, cy + 3, cw - 6, ch - 6, Align.LEFT)
+        sr.drawRectBorder(Color.valueOf("#95D9E2"), cx + 2, cy + 2, cw - 4, ch - 4, Align.LEFT)
+        sr.end()
         //四角装饰图（在边框之上）
         batch.begin()
         batch.drawImage(lu, cx, cy, align = Align.LEFT)

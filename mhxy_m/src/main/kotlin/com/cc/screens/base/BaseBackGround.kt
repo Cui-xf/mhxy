@@ -56,8 +56,8 @@ object BaseBackGround : UIComponent(CommonAssetLoader), Disposable {
         batch.begin()
         batch.drawImage(menuBG, VIRTUAL_W / 2, 0f)
         batch.drawImage(logoTitle, VIRTUAL_W / 2, 29f)
-        batch.drawAnimation(hudie.getKeyFrame(delta, true), ANIM_X, ANIM_Y)
-        batch.drawAnimation(hudie2.getKeyFrame(delta, true), ANIM_X, ANIM_Y)
+        batch.drawAnimation(hudie.getKeyFrame(timer, true), ANIM_X, ANIM_Y)
+        batch.drawAnimation(hudie2.getKeyFrame(timer, true), ANIM_X, ANIM_Y)
         drawLightParticles(batch, delta)
         batch.end()
     }

@@ -68,7 +68,7 @@ class TitleScreen : AbstractScreen() {
 
     private fun enterScreen(index: Int) {
         when (index) {
-            0 -> MhxyGame.setScreen(RoleSelectScreen2())
+            0 -> MhxyGame.setScreen(RoleSelectScreen())
         }
     }
 }

@@ -4,7 +4,7 @@ import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.utils.Disposable
 import kotlin.reflect.KClass
 
-val CommonAssetLoader = AssetLoader()
+lateinit var CommonAssetLoader: AssetLoader
 
 class AssetLoader : Disposable {
     private val loadResMap = mutableMapOf<String, AssetManager>()

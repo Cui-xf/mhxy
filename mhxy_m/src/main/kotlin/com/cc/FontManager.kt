@@ -15,8 +15,8 @@ object FontManager : Disposable {
 
     private fun createFont(size: Int, color: Color = Color.WHITE): BitmapFont {
         if (generator == null) {
-//            generator = FreeTypeFontGenerator(Gdx.files.classpath("assets/arial_unicode.ttf"))
-            generator = FreeTypeFontGenerator(Gdx.files.absolute("C:/Windows/Fonts/simhei.ttf"))
+            generator = FreeTypeFontGenerator(Gdx.files.classpath("assets/arial_unicode.ttf"))
+//            generator = FreeTypeFontGenerator(Gdx.files.absolute("C:/Windows/Fonts/simhei.ttf"))
         }
         val param = FreeTypeFontGenerator.FreeTypeFontParameter().apply {
             this.size = size

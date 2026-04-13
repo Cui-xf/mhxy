@@ -7,7 +7,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.badlogic.gdx.math.Rectangle
 import com.cc.FontManager.SMALL_FONT
 import com.cc.MhxyGame
+import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
+import com.cc.asset.CommonAssetLoader
 import com.cc.render.*
 import com.cc.screens.base.BaseBackGround
 import kotlin.random.Random
@@ -38,6 +40,8 @@ class LoadingScreen : AbstractScreen() {
         // 只加载公共资源，场景专属资源由各场景自己加载
         PUBLIC_ASSET.load("title_bg.jpg", Texture::class.java)
         PUBLIC_ASSET.load("player.jpg", Texture::class.java)
+        CommonAssetLoader = AssetLoader()
+        BaseBackGround.resume()
     }
 
     override fun update(delta: Float) {
@@ -82,7 +86,7 @@ class LoadingScreen : AbstractScreen() {
         )
         shapeRenderer.end()
         if (PUBLIC_ASSET.isFinished && progress >= 100) {
-            MhxyGame.setScreen(RoleSelectScreen2())
+            MhxyGame.setScreen(TitleScreen())
         }
     }
 }
