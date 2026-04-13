@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector3
 import com.badlogic.gdx.utils.Disposable
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.cc.asset.AssetLoader
+import com.cc.event.TouchContext
 import kotlin.reflect.KClass
 
 abstract class AbstractScreen : ScreenAdapter() {
@@ -36,16 +37,22 @@ abstract class AbstractScreen : ScreenAdapter() {
             assetLoader.update()
             return
         }
+        //输入
+        fillInput()
 
+        viewport.apply()
+        batch.projectionMatrix = viewport.camera.combined
+        update(delta)
+    }
+
+    private fun fillInput() {
         _touchVec.set(Gdx.input.x.toFloat(), Gdx.input.y.toFloat(), 0f)
         viewport.unproject(_touchVec)
         touchX = _touchVec.x
         touchY = _touchVec.y
-
-        viewport.apply()
-        batch.projectionMatrix = viewport.camera.combined
-
-        update(delta)
+        TouchContext.touchX = touchX
+        TouchContext.touchY = VIRTUAL_H - touchY
+        TouchContext.justTouched = Gdx.input.justTouched()
     }
 
     override fun resize(width: Int, height: Int) {

@@ -7,9 +7,9 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.math.Rectangle
 import com.cc.FontManager.SMALL_FONT
 import com.cc.MhxyGame
+import com.cc.event.TouchContext
 import com.cc.render.drawImage
 import com.cc.render.wordArtString
-import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_W
 import com.cc.screens.base.BaseBackGround
 
@@ -18,7 +18,7 @@ class TitleScreen : AbstractScreen() {
     private val backGround = BaseBackGround
     private val menuItem = autoDispose { Texture(Gdx.files.classpath("assets/menuItem.png")) }
     private val menuButtons = listOf(
-        MenuButton("登陆游戏", 0),
+        MenuButton("登录游戏", 0),
         MenuButton("注册游戏", 1),
         MenuButton("修改密码", 2),
     )
@@ -56,11 +56,13 @@ class TitleScreen : AbstractScreen() {
             enterScreen(selectedIndex)
         }
         // 触屏点击
-        if (Gdx.input.justTouched()) {
-            menuButtons.forEachIndexed { index, button ->
-                if (button.rect.contains(touchX, touchY)) {
-                    selectedIndex = index
+
+        menuButtons.forEachIndexed { index, button ->
+            if (TouchContext.inTouch(button.rect)) {
+                if (selectedIndex == index) {
                     enterScreen(selectedIndex)
+                } else {
+                    selectedIndex = index
                 }
             }
         }
@@ -79,7 +81,7 @@ private class MenuButton(val text: String, index: Int) {
     val topY: Float = menuStartY + index * menuItemH
 
     init {
-        rect = Rectangle(topX - menuItemW / 2, VIRTUAL_H - topY - menuItemH, menuItemW, menuItemH)
+        rect = Rectangle(topX - menuItemW / 2, topY, menuItemW, menuItemH)
     }
 
     companion object {

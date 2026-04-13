@@ -7,6 +7,7 @@ import com.cc.FontManager.MEDIA_FONT
 import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.asset.RpgAnimation
+import com.cc.event.TouchContext
 import com.cc.render.*
 import com.cc.screens.base.BaseBackGround
 import com.cc.ui.component.UIComponent
@@ -29,6 +30,11 @@ class RoleSelectScreen : AbstractScreen() {
     private val window = WindowPanel(assetLoader) { add(rolePanel); add(infoPanel) }
     private var timer = 0f
 
+    override fun show() {
+        window.onEvent<Int> { updateSelectedRole(it) }
+        updateSelectedRole(0)
+    }
+
     fun updateSelectedRole(index: Int) {
         val info = roleList.getOrNull(index)
         if (info != null) {
@@ -42,9 +48,6 @@ class RoleSelectScreen : AbstractScreen() {
         infoPanel.info = info
     }
 
-    override fun show() {
-        updateSelectedRole(1)
-    }
 
     override fun update(delta: Float) {
         timer += delta
@@ -96,9 +99,15 @@ class RoleGridPanel(
         animation.forEachIndexed { index, pair ->
             val row = index % 2
             val clo = index / 2
-            val selected = selectedIndex == index
             val x = cx + gapW + (gapW + roleBox) * row
             val y = cy + roleBox * clo
+
+            if (TouchContext.inTouch(x, y, roleBox, roleBox)) {
+                emit(index)
+                selectedIndex = index
+            }
+
+            val selected = selectedIndex == index
             sr.begin(ShapeType.Filled)
             sr.drawRect(409969.toColor(), x, y, roleBox, roleBox, align = Align.LEFT)
             sr.drawRect(

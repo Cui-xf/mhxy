@@ -13,6 +13,7 @@ abstract class UIContainer(assetLoader: AssetLoader, block: UIContainer.() -> Un
 
 
     fun add(c: UIComponent) {
+        c.parent = this
         children.add(c)
     }
 
