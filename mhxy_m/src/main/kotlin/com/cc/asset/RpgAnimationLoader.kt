@@ -35,16 +35,14 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
             val rule = ruleAsset.getRuleByKey(key) ?: return null
             val fileHandle = resolve("${file}/${rule.id}.rpg")
             if (!fileHandle.exists()) return null
-            DataInputStream(ByteArrayInputStream(fileHandle.readBytes())).use { dis ->
-                val (frameDuration, data) = buildAnimation(readDirFileData(dis)[0])
-                component.setData(rule, frameDuration, data)
-                data.flatMap { it.toList() }
-                    .map { it[0] as Short }
-                    .distinct()
-                    .forEach { id ->
-                        loadPixmapFromFile("${file}/${id}.rpg", id)?.let { component.addPixmap(it) }
-                    }
-            }
+            val (frameDuration, data) = buildAnimation(readRpgFileData(fileHandle)[0])
+            component.setData(rule, frameDuration, data)
+            data.flatMap { it.toList() }
+                .map { it[0] as Short }
+                .distinct()
+                .forEach { id ->
+                    loadPixmapFromFile("${file}/${id}.rpg", id)?.let { component.addPixmap(it) }
+                }
             return component
         } else {
             DataInputStream(ByteArrayInputStream(resolve("${file}.rpg").readBytes())).use { dis ->
@@ -71,9 +69,7 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
     private fun loadPixmapFromFile(file: String, id: Short): RpgTextureRegionComponent? {
         val file = resolve(file)
         if (!file.exists()) return null
-        DataInputStream(ByteArrayInputStream(file.readBytes())).use { dis ->
-            return buildPixmap(id, readDirFileData(dis))
-        }
+        return buildPixmap(id, readRpgFileData(file))
     }
 
     /**
@@ -175,7 +171,7 @@ class RpgAnimationComponent {
                 val flipY = frame[5] as Boolean
                 val rotation = frame[6] as Float
                 val textureRegion = picMap[id]?.assemble(index)
-                if (textureRegion==null){
+                if (textureRegion == null) {
                     throw RuntimeException("aaa")
                 }
                 Frame(transX, transY, flipX, flipY, rotation, textureRegion)

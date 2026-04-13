@@ -1,5 +1,6 @@
 package com.cc.asset
 
+import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.math.Rectangle
 import java.io.ByteArrayInputStream
@@ -21,15 +22,16 @@ fun parseResourceName(name: String): Pair<String, String> {
     }
 }
 
-fun readDirFileData(dis: DataInputStream): Array<ByteArray> {
-    dis.readShort()
-    dis.readByte()
-    val num = dis.readByte()
-    return Array(num.toInt()) {
-        val size = dis.readInt()
-        ByteArray(size).also { dis.readFully(it) }
+fun readRpgFileData(file: FileHandle) =
+    DataInputStream(ByteArrayInputStream(file.readBytes())).use { dis ->
+        dis.readShort()
+        dis.readByte()
+        val num = dis.readByte()
+        Array(num.toInt()) {
+            val size = dis.readInt()
+            ByteArray(size).also { dis.readFully(it) }
+        }
     }
-}
 
 fun buildPixmap(id: Short, data: Array<ByteArray>): RpgTextureRegionComponent {
     val metaDis = DataInputStream(ByteArrayInputStream(data[1]))

@@ -489,8 +489,8 @@ public final class ResourceManager {
         return tileMap;
     }
 
-    public TileMap loadTileMapByName(String name) {
-        int resourceKey = hashKey(wrapName(name, (byte) 3).toCharArray());
+    public TileMap loadTileMapByName(String id) {
+        int resourceKey = hashKey(wrapName(id, (byte) 3).toCharArray());
 
         for (int i = 0; i < this.frameCache.size(); ++i) {
             Resource res = (Resource) this.frameCache.elementAt(i);
