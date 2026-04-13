@@ -386,7 +386,7 @@ public final class ResourceManager {
 
 
     public TileMap buildTileMap(byte[] data) {
-        TileMap tileMap = loadTileMap(parseByte(data));
+        TileMap tileMap = loadTileMap(parseTileMapData(data));
         this.loadTileMapSpritesToCache(tileMap);
         short[] var3 = this.collectAnimationSpriteIds(tileMap);
         this.batchLoadFrame1ToCache((short[]) var3, (short[]) null, (short[]) null, (short[]) null);
@@ -394,7 +394,7 @@ public final class ResourceManager {
         return tileMap;
     }
 
-    private static byte[][] parseByte(byte[] bytes) {
+    private static byte[][] parseTileMapData(byte[] bytes) {
         DataInputStream dis = new DataInputStream(new ByteArrayInputStream(bytes));
         byte[][] result = null;
         try {
@@ -954,9 +954,9 @@ public final class ResourceManager {
         byte[] cachedBytes = null;
         if (this.name.equals(GlobalStatus.currentMapName) && GlobalStatus.kY != null) {
             for (short i = 0; i < GlobalStatus.kY.size(); ++i) {
-                g entry = (g) GlobalStatus.kY.elementAt(i);
-                if (entry.a == frameInfo.key) {
-                    cachedBytes = entry.b;
+                MapByteData entry = (MapByteData) GlobalStatus.kY.elementAt(i);
+                if (entry.key == frameInfo.key) {
+                    cachedBytes = entry.mapByteArray;
                     break;
                 }
             }

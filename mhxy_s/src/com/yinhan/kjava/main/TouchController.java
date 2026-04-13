@@ -1241,7 +1241,7 @@ public final class TouchController {
    }
 
    private void w(int var1, int var2) {
-      if (var1 < this.gameSceneController.aB || var1 > this.gameSceneController.aB + this.gameSceneController.f.mapW * this.gameSceneController.aD / 16 || var2 < this.gameSceneController.aC || var2 > this.gameSceneController.aC + this.gameSceneController.f.mapH * this.gameSceneController.aD / 16) {
+      if (var1 < this.gameSceneController.aB || var1 > this.gameSceneController.aB + this.gameSceneController.currentMap.mapW * this.gameSceneController.aD / 16 || var2 < this.gameSceneController.aC || var2 > this.gameSceneController.aC + this.gameSceneController.currentMap.mapH * this.gameSceneController.aD / 16) {
          this.canvas.inputAction = 536870912;
       }
 

@@ -781,7 +781,7 @@ public final class NetworkPacketProcessors {
                             byte[] frameInfo = new byte[var42];
                             GlobalStatus.currentMapName = this.dis.readUTF();
                             this.dis.read(frameInfo);
-                            MainCanvas.ae = new ResourceManager(GlobalStatus.currentMapName, frameInfo);
+                            MainCanvas.mapResourceManager = new ResourceManager(GlobalStatus.currentMapName, frameInfo);
                         }
                         GlobalStatus.skip(this.dis);
                         return;
@@ -1783,7 +1783,7 @@ public final class NetworkPacketProcessors {
                                 var14.g = var14.j[var17].l / 16 + (var14.j[var17].l % 16 == 0 ? 0 : 1);
                                 var14.h = var14.j[var17].m / 16 + (var14.j[var17].m % 16 == 0 ? 0 : 1);
                                 if (var14.e != var14.g || var14.f != var14.h) {
-                                    var14.i_1 = var14.a(MainCanvas.gameSceneController.f, var14.i_1, new bs(var14.e, var14.f), new bs(var14.g, var14.h));
+                                    var14.i_1 = var14.a(MainCanvas.gameSceneController.currentMap, var14.i_1, new bs(var14.e, var14.f), new bs(var14.g, var14.h));
                                     if (var14.i_1 != null) {
                                         var14.j[var17].f.removeAllElements();
                                         int var29 = var14.i_1.size();
@@ -1899,7 +1899,7 @@ public final class NetworkPacketProcessors {
         } else {
             MainCanvas.gameSceneController.sceneRefreshCoordinator.a((int) GlobalStatus.face);
 
-            if (MainCanvas.gameSceneController.lastCurrentSceneMode == GlobalStatus.mapId && !MainCanvas.gameSceneController.sceneRefreshCoordinator.h()) {
+            if (MainCanvas.gameSceneController.lastCurrentSceneMode == GlobalStatus.serverDataMapId && !MainCanvas.gameSceneController.sceneRefreshCoordinator.h()) {
                 if (GlobalStatus.bs == 0 && GlobalStatus.teamBonus != null && GlobalStatus.followStatus == 0) {
                     Vector var9 = new Vector();
                     this.e = GlobalStatus.teamBonus[0].j / 16 + (GlobalStatus.teamBonus[0].j % 16 == 0 ? 0 : 1);
@@ -1912,7 +1912,7 @@ public final class NetworkPacketProcessors {
                         }
 
                         Vector var10;
-                        int var3 = (var10 = this.a(MainCanvas.gameSceneController.f, var9, new bs(this.e, this.f), new bs(this.g, this.h))).size();
+                        int var3 = (var10 = this.a(MainCanvas.gameSceneController.currentMap, var9, new bs(this.e, this.f), new bs(this.g, this.h))).size();
 
                         for (int var4 = 0; var4 < GlobalStatus.teamBonus.length; ++var4) {
                             GlobalStatus.teamBonus[var4].f.removeAllElements();
@@ -1966,14 +1966,14 @@ public final class NetworkPacketProcessors {
                 }
 
                 if (GameSceneController.notInFighting()) {
-                    if (MainCanvas.gameSceneController.lastCurrentSceneMode != GlobalStatus.mapId) {
+                    if (MainCanvas.gameSceneController.lastCurrentSceneMode != GlobalStatus.serverDataMapId) {
                         MainCanvas.gameSceneController.e();
                     } else {
                         MainCanvas.gameSceneController.f();
                     }
 
                     MainCanvas.gameSceneController.sceneRefreshCoordinator.i();
-                    MainCanvas.gameSceneController.lastCurrentSceneMode = GlobalStatus.mapId;
+                    MainCanvas.gameSceneController.lastCurrentSceneMode = GlobalStatus.serverDataMapId;
                 }
 
                 MainCanvas.gameSceneController.sceneRefreshCoordinator.d();
@@ -2211,7 +2211,7 @@ public final class NetworkPacketProcessors {
         MainCanvas.gameSceneController.npcActionList = null;
         MainCanvas.gameSceneController.al = null;
         if (GameSceneController.notInFighting()) {
-            MainCanvas.pngUtil.a(MainCanvas.gameSceneController.f, GameSceneController.h, GameSceneController.i_1, true, false, 2109231);
+            MainCanvas.pngUtil.a(MainCanvas.gameSceneController.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 2109231);
             this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus = 7;
             MainCanvas.gameSceneController.lastSceneModeId = MainCanvas.gameSceneController.currentSceneModeId = 0;
         }

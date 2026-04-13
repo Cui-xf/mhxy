@@ -65,7 +65,7 @@ public final class PngUtil {
     }
 
     private static boolean b(int var0, int var1) {
-        if (GlobalStatus.hG != -1 && GlobalStatus.hG == GlobalStatus.mapId) {
+        if (GlobalStatus.hG != -1 && GlobalStatus.hG == GlobalStatus.serverDataMapId) {
             if (GlobalStatus.hJ != null && GlobalStatus.hK != null) {
                 for (short var2 = 0; var2 < GlobalStatus.hJ.length; ++var2) {
                     if (GlobalStatus.hJ[var2] == var0 && GlobalStatus.hK[var2] == var1) {

@@ -310,11 +310,11 @@ public final class GlobalStatus {
     /**
      * 场景/地图 ID，初始=-1
      */
-    public static short mapId = -1;
+    public static short serverDataMapId = -1;
     /**
      * 未知 short，初始=-1
      */
-    public static short as;
+    public static short localMapId;
     /**
      * 角色目标坐标 X（位置包8199解析）
      */
@@ -3363,7 +3363,7 @@ public final class GlobalStatus {
      */
     private static Vector serverZipResList;
     /**
-     * 当前地图名称字符串
+     * 当前地图名称字符串 "map"
      */
     public static String currentMapName;
     /**
@@ -4188,7 +4188,7 @@ public final class GlobalStatus {
      * 解析角色移动/位置包(8199)：读取场景id、地图名称、目标坐标及方向标志，存入 ar/ae/at/au/av/aw 等字段。
      */
     public static void processRoleMove(DataInputStream var0) throws IOException {
-        mapId = var0.readShort();
+        serverDataMapId = var0.readShort();
         mapName = var0.readUTF();
         roleX = var0.readShort();
         roleY = var0.readShort();
@@ -7774,8 +7774,8 @@ public final class GlobalStatus {
                 return;
             }
 
-            MainCanvas.ae.loadSpriteByName(String.valueOf(var2));
-            hH = MainCanvas.ae.getSpriteByNameFromCache(String.valueOf(var2));
+            MainCanvas.mapResourceManager.loadSpriteByName(String.valueOf(var2));
+            hH = MainCanvas.mapResourceManager.getSpriteByNameFromCache(String.valueOf(var2));
             hJ = new byte[var1];
             hK = new byte[var1];
 
@@ -10029,7 +10029,7 @@ public final class GlobalStatus {
         }
     }
 
-    public static byte[] a(short var0) {
+    public static byte[] getServerMapData(short var0) {
         if (serverZipResList != null && serverZipResList.size() > 0) {
             Object var1 = null;
 
@@ -10079,7 +10079,7 @@ public final class GlobalStatus {
                 var2 = var0.readInt();
 
                 for (int var5 = kY.size() - 1; var5 >= 0; --var5) {
-                    if (((g) kY.elementAt(var5)).a == var2) {
+                    if (((MapByteData) kY.elementAt(var5)).key == var2) {
                         kY.removeElementAt(var5);
                         break;
                     }
@@ -10103,15 +10103,15 @@ public final class GlobalStatus {
                 var13 = false;
 
                 for (int var7 = 0; var7 < kY.size(); ++var7) {
-                    g var16;
-                    if ((var16 = (g) kY.elementAt(var7)) != null && var16.a == var12) {
+                    MapByteData var16;
+                    if ((var16 = (MapByteData) kY.elementAt(var7)) != null && var16.key == var12) {
                         var13 = true;
                         break;
                     }
                 }
 
                 if (!var13) {
-                    kY.addElement(new g(var12, var11));
+                    kY.addElement(new MapByteData(var12, var11));
                 }
             }
         }
@@ -11193,7 +11193,7 @@ public final class GlobalStatus {
         T = null;
         U = null;
         V = null;
-        as = -1;
+        localMapId = -1;
         nE = -1;
         nF = -1;
         nG = -1;

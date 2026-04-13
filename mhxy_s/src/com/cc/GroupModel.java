@@ -1061,7 +1061,7 @@ public final class GroupModel {
                 GameSceneController.q = null;
                 this.a.al = null;
                 this.a.sceneSubState = 2;
-                MainCanvas.pngUtil.a(this.a.f, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
+                MainCanvas.pngUtil.a(this.a.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
                 return;
             }
         } else if (this.a.sceneSubState == 5) {
@@ -3055,13 +3055,13 @@ public final class GroupModel {
             if (this.b.keyCombination != 2 && this.b.keyCombination != 518) {
                 if (this.b.keyCombination != 1 && this.b.keyCombination != 514) {
                     if (this.b.keyCombination == 4 || this.b.keyCombination == 520) {
-                        GameSceneController.i_1 = GameSceneController.i_1 + 4 > this.a.f.mapH - GlobalConfig.defaultHigh ? this.a.f.mapH - GlobalConfig.defaultHigh : GameSceneController.i_1 + 4;
+                        GameSceneController.i_1 = GameSceneController.i_1 + 4 > this.a.currentMap.mapH - GlobalConfig.defaultHigh ? this.a.currentMap.mapH - GlobalConfig.defaultHigh : GameSceneController.i_1 + 4;
                     }
                 } else {
                     GameSceneController.i_1 = GameSceneController.i_1 - 4 < 0 ? 0 : GameSceneController.i_1 - 4;
                 }
             } else {
-                GameSceneController.h = GameSceneController.h + 4 > this.a.f.mapW - GlobalConfig.defaultWidth ? this.a.f.mapW - GlobalConfig.defaultWidth : GameSceneController.h + 4;
+                GameSceneController.h = GameSceneController.h + 4 > this.a.currentMap.mapW - GlobalConfig.defaultWidth ? this.a.currentMap.mapW - GlobalConfig.defaultWidth : GameSceneController.h + 4;
             }
         } else {
             GameSceneController.h = GameSceneController.h - 4 < 0 ? 0 : GameSceneController.h - 4;

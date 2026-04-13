@@ -207,7 +207,7 @@ public final class o_1 {
 
                             this.i.sceneSubState = 0;
                             this.i.lastSceneModeId = this.i.currentSceneModeId = 0;
-                            MainCanvas.pngUtil.a(this.i.f, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
+                            MainCanvas.pngUtil.a(this.i.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
                             return;
                         }
                     } else if (GlobalStatus.kr != null) {

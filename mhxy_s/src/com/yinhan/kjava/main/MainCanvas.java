@@ -220,7 +220,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     /**
      * UI 系统初始化用 Page
      */
-    public static ResourceManager ae;
+    public static ResourceManager mapResourceManager;
     /**
      * 图标图集（/icon/icon.rpg）
      */
@@ -998,7 +998,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             this.inputAction = 0;
                             break;
                         }
-                        case 7: { // 游戏主场景：逻辑委托给 UISceneController
+                        case PageStatus.GAME_SCENE: { // 游戏主场景：逻辑委托给 UISceneController
                             this.processGameSceneAction();
                             break;
                         }
@@ -1150,7 +1150,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             return;
                         case 1: // 等待服务器响应：绘制背景场景，再叠加 DLZ 转圈遮罩
                             if (gameSceneController != null) {
-                                gameSceneController.a(graphics);
+                                gameSceneController.render(graphics);
                             } else if (this.lastPageStatus == PageStatus.LOGO_LOADING) {
                                 this.renderLogo(graphics);
                             } else if (this.lastPageStatus != 14 && this.lastPageStatus != 3) {
@@ -1170,7 +1170,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 this.a(graphics);
                             } else {
                                 if (gameSceneController != null) {
-                                    gameSceneController.a(graphics);
+                                    gameSceneController.render(graphics);
                                 }
 
                                 this.a(graphics);
@@ -1228,8 +1228,8 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 }
                             }
                             return;
-                        case 7: // 游戏主场景：委托给 UISceneController 绘制
-                            gameSceneController.a(graphics);
+                        case PageStatus.GAME_SCENE: // 游戏主场景：委托给 UISceneController 绘制
+                            gameSceneController.render(graphics);
                             return;
                         case PageStatus.LOGO_LOADING: // Logo 启动动画页
                             this.renderLogo(graphics);
@@ -1512,7 +1512,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
     public void a() {
         role.clearAllFrame();
-        ae.clearAllFrame();
+        mapResourceManager.clearAllFrame();
         icon.clearAllFrame();
         petfight.clearAllFrame();
         this.mixedUi = new MixedUi();
@@ -1561,7 +1561,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         GlobalStatus.M = null;
         GlobalStatus.I = null;
         GlobalStatus.N = null;
-        GlobalStatus.as = -1;
+        GlobalStatus.localMapId = -1;
         this.globalLoadingMask = false;
         if (var2 == 1) {
             this.showTips("系统异常<" + var2 + ">");
@@ -2574,7 +2574,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     private void processGameSceneAction() {
         try {
             if (gameSceneController != null) {
-                gameSceneController.a();
+                gameSceneController.processGameSceneAction();
                 if (gameSceneController.currentSceneModeId != 0) {
                     this.inputAction = 0;
                 }
@@ -3035,7 +3035,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         this.keyCombination = 0;
                         this.mainMidlet.start();
                         if (gameSceneController.currentSceneModeId == 0) {
-                            pngUtil.a(gameSceneController.f, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
+                            pngUtil.a(gameSceneController.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
                         }
 
                         this.resourceLoaded = true;
@@ -3064,7 +3064,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             return;
                         }
 
-                        pngUtil.a(gameSceneController.f, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
+                        pngUtil.a(gameSceneController.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
                     }
                 } else if (var51.equals("物品关键字搜索")) {
                     String var47 = var1.getLabel();
@@ -3932,15 +3932,15 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         this.cc = var1 / 16 + (var1 % 16 == 0 ? 0 : 1);
         this.cd = var2 / 16 + (var2 % 16 == 0 ? 0 : 1);
         if (this.ca != this.cc || this.cb != this.cd) {
-            for (int var4 = 0; var4 < gameSceneController.f.collisionMap.length; ++var4) {
-                for (int var5 = 0; var5 < gameSceneController.f.collisionMap[var4].length; ++var5) {
-                    if (gameSceneController.f.collisionMap[var4][var5] == 1 && var1 >= var4 * gameSceneController.f.collisionW - 15 && var1 < var4 * gameSceneController.f.collisionW + gameSceneController.f.collisionW - 15 && var2 >= var5 * gameSceneController.f.collisionH - gameSceneController.f.collisionH && var2 < var5 * gameSceneController.f.collisionH) {
+            for (int var4 = 0; var4 < gameSceneController.currentMap.collisionMap.length; ++var4) {
+                for (int var5 = 0; var5 < gameSceneController.currentMap.collisionMap[var4].length; ++var5) {
+                    if (gameSceneController.currentMap.collisionMap[var4][var5] == 1 && var1 >= var4 * gameSceneController.currentMap.collisionW - 15 && var1 < var4 * gameSceneController.currentMap.collisionW + gameSceneController.currentMap.collisionW - 15 && var2 >= var5 * gameSceneController.currentMap.collisionH - gameSceneController.currentMap.collisionH && var2 < var5 * gameSceneController.currentMap.collisionH) {
                         return;
                     }
                 }
             }
 
-            if ((var3 = netUtils.getNetworkPacketProcessors().a(gameSceneController.f, var3, new bs(this.ca, this.cb), new bs(this.cc, this.cd))).isEmpty()) {
+            if ((var3 = netUtils.getNetworkPacketProcessors().a(gameSceneController.currentMap, var3, new bs(this.ca, this.cb), new bs(this.cc, this.cd))).isEmpty()) {
                 return;
             }
 

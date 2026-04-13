@@ -2106,7 +2106,7 @@ public final class FightModel {
       this.y.doRepaint();
       GlobalStatus.g();
       this.y.doRepaint();
-      MainCanvas.pngUtil.a(this.z.f, GameSceneController.h, GameSceneController.i_1, true, false, 1283472);
+      MainCanvas.pngUtil.a(this.z.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1283472);
       this.y.doRepaint();
       this.z.j();
       this.y.doRepaint();

@@ -34,7 +34,7 @@ public final class ab_1 {
          int i2 = -1;
          for (int i3 = 0; i3 < this.c.aO.size(); i3++) {
             s sVar2 = (s) this.c.aO.elementAt(i3);
-            if (sVar2.a != this.a && sVar2 != null && ((sVar2 == null || sVar2.f != null) && MainCanvas.pngUtil.a(this.c.f, sVar2.h, sVar2.i) != 1)) {
+            if (sVar2.a != this.a && sVar2 != null && ((sVar2 == null || sVar2.f != null) && MainCanvas.pngUtil.a(this.c.currentMap, sVar2.h, sVar2.i) != 1)) {
                int i4 = (sVar2.h - this.c.sceneRefreshCoordinator.j) * (sVar2.h - this.c.sceneRefreshCoordinator.j);
                int i5 = (sVar2.i - this.c.sceneRefreshCoordinator.k) * (sVar2.i - this.c.sceneRefreshCoordinator.k);
                if (i3 == 0) {
@@ -56,7 +56,7 @@ public final class ab_1 {
          if (sVar3 == null || sVar3.f != null) {
             int iG = sVar3.h - (sVar3.f.g() / 2);
             int iH = sVar3.i - sVar3.f.h();
-            if (MainCanvas.pngUtil.a(this.c.f, iG, iH) == 1) {
+            if (MainCanvas.pngUtil.a(this.c.currentMap, iG, iH) == 1) {
                return;
             }
             this.c.mainCanvasRef.b(iG, iH);
