@@ -1,143 +1,116 @@
-//package com.cc.asset
-//
-//import com.badlogic.gdx.assets.AssetDescriptor
-//import com.badlogic.gdx.assets.AssetLoaderParameters
-//import com.badlogic.gdx.assets.AssetManager
-//import com.badlogic.gdx.assets.loaders.AsynchronousAssetLoader
-//import com.badlogic.gdx.assets.loaders.FileHandleResolver
-//import com.badlogic.gdx.files.FileHandle
-//import com.cc.ceilDiv
-//import java.io.ByteArrayInputStream
-//import java.io.DataInputStream
-//import java.util.*
-//
-//
-//class RpgTailMapLoader(resolver: FileHandleResolver) :
-//    AsynchronousAssetLoader<TileMap, AssetLoaderParameters<TileMap>>(resolver) {
-//    override fun loadAsync(
-//        p0: AssetManager,
-//        p1: String,
-//        p2: FileHandle,
-//        p3: AssetLoaderParameters<TileMap>
-//    ) {
-//        TODO("Not yet implemented")
-//        val (dir, mapId) = parseResourceName(p1)
-//
-//    }
-//
-//    private fun loadTileMap(dir: String, mapId: String): TileMap {
-//        val hashKey = hashKey("${mapId}m")
-//        val file = resolve("${dir}/${hashKey}.rpg")
-//        val data = readRpgFileData(file)
-//        DataInputStream(ByteArrayInputStream(data[0])).use { dis ->
-//            //spriteIdHsl
-//            val n = dis.readByte().toInt()
-//            dis.skipBytes(n * 4 * 2)
-//            val mapW = dis.readShort().toInt()
-//            val mapH = dis.readShort().toInt()
-//            val blockW = dis.readByte().toInt()
-//            val blockH = dis.readByte().toInt()
-//            val collisionW = dis.readByte().toInt()
-//            val collisionH = dis.readByte().toInt()
-//            val column = mapW ceilDiv blockW
-//            val row = mapH ceilDiv blockH
-//
-//            val collisionCols: Int = mapW ceilDiv collisionW
-//            val collisionRows: Int = mapH ceilDiv collisionH
-//            val collisionBit = Array(collisionRows) {
-//                Array(collisionCols) {
-//                    false
-//                }
-//            }
-//            val collisionCount = dis.readShort().toInt()
-//            repeat(collisionCount) {
-//                val i = dis.readShort().toInt()
-//                collisionBit[i % collisionCols][i / collisionCols] = true
-//            }
-//
-//            val mapBlock = Array(column) {
-//                Array(row) {
-//                    if (dis.readByte() >= 0) {
-//                        val mapObj = MapObj()
-//                        mapObj.build(dis, true)
-//                        mapObj
-//                    } else {
-//                        null
-//                    }
-//                }
-//            }
-//
-//
-//            val fixedObjCount = dis.readShort().toInt()
-//            val fixedObj = Array(fixedObjCount) {
-////                    SpritePiece().build(dis, true)
-//                MapObj()
-//            }
-//
-//
-//            val moveObjCount = dis.readShort().toInt()
-//            val moveObj = Array(moveObjCount) {
-//                //                    SpritePiece().build(dis, true)
-//                MapObj()
-//            }
-//            return TileMap(
-//                mapW,
-//                mapH,
-//                blockW,
-//                blockH,
-//                collisionW,
-//                collisionH,
-//                row,
-//                column,
-//                mapBlock,
-//                collisionBit,
-//                fixedObj,
-//                moveObj
-//            )
+package com.cc.asset
+
+import com.badlogic.gdx.assets.AssetDescriptor
+import com.badlogic.gdx.assets.AssetLoaderParameters
+import com.badlogic.gdx.assets.AssetManager
+import com.badlogic.gdx.assets.loaders.AsynchronousAssetLoader
+import com.badlogic.gdx.assets.loaders.FileHandleResolver
+import com.badlogic.gdx.files.FileHandle
+import java.io.ByteArrayInputStream
+import java.io.DataInputStream
+import java.util.zip.GZIPInputStream
+
+
+class RpgTailMapLoader(resolver: FileHandleResolver) :
+    AsynchronousAssetLoader<TileMap, AssetLoaderParameters<TileMap>>(resolver) {
+    private var rpgTileMap: RpgTileMap? = null
+
+    override fun loadAsync(
+        p0: AssetManager,
+        p1: String,
+        p2: FileHandle,
+        p3: AssetLoaderParameters<TileMap>?
+    ) {
+        val (dir, mapId) = parseResourceName(p1)
+//        val hashKey = hashKey("${1}m")
+        val hashKey = 52685
+        val ruleAsset = getRuleAsset()
+        val dataProvider = MapDataProvider(this)
+        val mate = getMate()
+        rpgTileMap = buildRpgTileMap(mate, dataProvider, ruleAsset)
+
+    }
+
+
+    override fun loadSync(
+        p0: AssetManager,
+        p1: String,
+        p2: FileHandle,
+        p3: AssetLoaderParameters<TileMap>?
+    ): TileMap {
+        val tailMap = rpgTileMap?.toTileMap() ?: throw RuntimeException(p1)
+        rpgTileMap = null
+        return tailMap
+    }
+
+    override fun getDependencies(
+        p0: String,
+        p1: FileHandle,
+        p2: AssetLoaderParameters<TileMap>?
+    ): com.badlogic.gdx.utils.Array<AssetDescriptor<*>>? {
+        return null
+    }
+}
+
+class TileMap(
+    val mapW: Int,
+    val mapH: Int,
+    val blockW: Int,
+    val blockH: Int,
+
+    //碰撞格
+    val collisionW: Int,
+    val collisionH: Int,
+
+    //图块行列
+    val row: Int,
+    val column: Int,
+
+    //地面图块网格：j[col][row]，每格一个 SpritePiece，null 表示空格
+    val mapBlock: List<List<Frame?>>,
+
+    //碰撞图：i[col][row] == 1 表示该格不可通行
+    val collisionBit: Array<Array<Boolean>>,
+    val fixedObj: List<Frame>,
+    val moveObj: List<Frame>,
+)
+
+fun getRuleAsset(): RuleAsset {
+    val payload =
+        "00000e7800036d6170026980e0ab09000184d5d20f00028534724000038535a6ad000485467f7000058677d81400068865e0fc000788f99ea7000e88f99ec6001888f99ee5001f8970fdff002489b56cb6002589b56cd500328a0bdbfe003f8ca6f3c2004090c723890041918edf5c005193ce46ed005593ce470c005695654ee1005795654f00005895654f1f005995adeb76005c9760a29700609b7d680400699bc43a2c00739bf33c2000809bf33fe100839c718c6000879c74412700889cc1c03100899cd76c7700969d925955009f9d92597400ae9da3b02d00bd9e59331500ca9e59333400cb9e6efdf800cca0316c8800d1a044b50300d2a077dbff00d7a0cdd44d00d8a0d8229900d9a0ff8eac00daa22f538900dba302685300dfa302687200e0a302689100e1a40f5b6900e2a4a44c6100e3a4a580ce00eda4db760800faa640e60200fba838e3d800fca8645a2300fda95c7fdd0101a95c7ffc0105aacceae80109aad356ff010aab78c6c6010babd8b6860113aec408cd0118af07b2890119af3cac0e0121af47b8900122b42b4d4b0123b45a65310130b47db1920131b4a96a750132b4ceed6f0133b4ee38520136b4fbdfb50137b58d229d013bb5cd7f830144b70d8a7e0145b74230240146b74394100149b7554e98014ab7651ff8014bb767a5e2014cb767bfcc014db768c32e0150b76b03b50154b772109c0157b7811c6d0158b791a059015cb7945520015db7bef865015eb803d71a0167b97585550168b993f620016cbb3c3f77016dbb4fa5cc016ebc43df4f017bbef310ae017cc2b3dee50186c2dfc42b0187c3579acd0188c493ff810189c4b958b4018ac4c8c512018bc4c8c531018cc50cca4b018dc51e56ba018ec5ce3b230192c81f3b010195c83b86250196c83b86440197c899762c0198c8ae83990199c9604f74019dc98d368201aac9c37fd501aeca60bee801afca81ff8e01b6ca8405f501c3cb17539b01c4cb1753ba01cdcbd0b9b401d4cbd6fc2501d7cbd6fc4401dbcc8155a101decc82089b01dfcc833d0801e0cc9218a201e1ccbeb43a01e2ccbeb45901e3ceb7697301e4d06788d601f1d11bd9d201fed11ce19001ffd12040d70200d1746c580203d1c6302d0207d1dd9816020bd2092c62020cd487bc51020dd5062227020ed5062246020fd50622650210d54fb7260211d576cbc50212d576cbe4021fd5ffdeee0225d5ffdf0d0226d5ffdf2c0227d65aeaef0228d7220f770229d7be059c022ad81cd0b3022bd81cd0f1022ed88c0c0a0231d88c0c290232d8a4429b0233d8a442ba0234d9980b6b0235da0402c00236da4ae4780237da5f0a8f0238dadee791023cdadee7b0023ddb1afc7d023edba660570243dbf501bd0246dc9f18950247dc9f18b40248dc9f18d3024cdefddbcb024ddf1ae2970250df1cdeb30251df2b71990261df2c3ff10262df2d954e0263df353be00264df59bff30268df5dcc070269df60b616026ddf94be28026edf94be47026fdf94be660270df94be850271dfa017510272dfd16ef80278e0143e9b0279e0157308027ae016b982027be02c7bf1027ce0b95ea8027de0b95ec7027ee185fc12027fe1d3c2930286e2363ffd0287e2d28eb70288e2e633e00289e37cd2e9028fe4921c200290e4921c3f0291e4921c5e0292e495a3470293e4971c00029de4aebbc002a1e4aebbdf02a2e4aebbfe02a3e4b8064102a4e51c398c02a5e51c39ab02a6e51c39ca02a7e538a9ff02a8e54104b802a9e54104d702aae54104f602abe581d40d02ace5dcc49502b3e7049e8202b4e71a4ac802cde73fa3fb02e0e7417e8402f3e7e5aa1d02f4e8a8676602fee8e0a8c0030fe8ed3ce00310e8fc7d7f0311e906299a0312e922ae920313ea3a0b1f0316eaeb07820317eb16c7c30318eb16c7e20319ec50e761031aec68b224031bece3dd78031cece3dd97031dece3ddb6031eecf2e976031feffafafd032ff286358f033ef28f3846033ff2c4faf10340f2cf38fc0341f2fa99670342f2fb7a460343f326a2430347f33f4d2e0348f36d7c52034cf36ed90a034df50c0f6d034ef50c0f8c0358f7607adf0362f7b057380363f7b1145e0364f7b67bbe0368f8115b5e0369f82215b2036af889970c036bf9b97b15036cfd2681b60379fdc08cc70389fdc08d05038cfdd88ae8038dfe362365038efe3623840393fe3cd5d70398fe4f4062039bfe55cde5039cfe87279b039ffe8a5a5203a3fe92d77803aefe9c2dfb03b2fe9deac203b5ff12573303b6ff1c48d503b7ff1c491303baff2a150403beff395ac503bfff71f17f03ccffdb050f03cdffdb052e03ddfff3eb5303e30259d4a103e402afe07c03ec02b3c49a03ed0360fe6403ee058361fa03f106135c0203f2063907a103f3065ec07a03fa071710f503fb077b59ec03fc077b5a0b0400077b5a2a0401084086770402091acbf104080920ead304090bd4b141040e0bd4b19e040f0bd4b1dc04100c079ad104110c3852c804120c40686504130c98f14504140d34e5e104150e3881c304160e38e16704170e39262f04180e39b63004190e3a793f041a0e41e5d004250e48f9dc04280e511413042b0e52da2d042c0e7a2a0904360e9d463804370eba49a004380f29d7c504390f29d7e4043a0f345a5a043b0f359152043c0f3b2f3004490f4befd8044a0fa1fb07044b0fa1fb26044c0fe74e18044d1080c442044e109ea932044f10d3a01104501122cc2e0451121575e20452128e43a304671334e996046d1462cb9e046e1462cbdc04711608e271047416431cff0477165a1c8a047b174c56af047c17928814048c17928833048d17e7b685048e17e7b6a4048f189a0f96049018b942d20491193a4bd804921b5a078504931bc787ff04971d8a615504981f53ff61049920edfa1004a62262b9a204a72389677e04a823e8bc8504a923e9f0f204b024061ab904b724074f2604b8247d1f3e04b924b28afd04ba24efa18104bf267e22ae04c72693cef404cb26b9282704cc26c402a104cd26eb53f104d52729063304d6273ad58004d7276d382804d8276d881904e127a958d204ec27a958f104f0281ed7d104f4281edb9204f5281f5b3404f628b3eb2104f72a2341be04fc2a2341dd04fd2a8f7d6804fe2ac7055e04ff2ac7b85805002ac8ecc505012b793a7305022bbb35de05062bd2f06e050c2c7a716b050d2c7a718a050e2dc22438050f2e91655105102f44a16f05112fce343b0515301a9326051f30800533052331ee97660527322d8c75052a3240a04f052b3269240f052c3269e60d053032815566053a32815585053d32b573ad053e32b573cc053f32b573eb054032b5740a0541335821f30542338bc8b6054333c47687054433c67b5b054734c4e890054835c90b05054937728c6c054a38bb1747055e39dab31e055f39e9a7c1056339e9a7e0056639e9a7ff05693abd9e97056a3abd9eb6056d3abd9ed505713b31cc3705743be4630a05753c6ded8205763c6f21ef05773d67654a05783d8ec829057c3da0d3e3057d3da2b74b057e3daa3c1a05823db2e456059b3e502369059e3f2e91f105ae3f2e921005af3f2e924e05b0400d86c605b140200d2905bb440f596705c24551cdba05c54551cdd905c64551d1f705c7484629c005c8485b499f05c949a05d1505ca4adf619805cf4b77a99d05d44b77a9bc05eb4bca245e06024cab434e06034cab436d06144cab438c06214cab43ab06284d734161062f4db8b66c06304e170c0506314f7287e406324fe190ff0635503c2cd5063651900f22063b51900f41063f5429d614064356065f750647562ebcbe064858afa34106495a3431af064d5b1e43ee064e5b1e440d064f5b1e442c06505b8be1fd06515beaa46e06525bf61db706565bf61dd606575bf61df506585c09a48906595cde1615065f5f8fadde06605ff79088066160016e3a06626004b30c0666619702e1066761ba526e066e6204b23806726262ed61067564adbbad0688652480a50693654b30a9069465881126069565881145069865881164069d6591e9a1069e65da5c1d06a265dc1eb206a365df2c9906a76896864506ad68f4796d06ae6945d5cb06b6695e100206b7695f754906ba695f756806bd6b6e4adc06c06b6e4afb06c46baceec606c86baceee506d76bde0edd06dc6bde0efc06dd6bde227806de6c4070cd06e26c54442406e66db9d48506e77007d4b706f07007d4d606fd70416f1d0702712dc099070371352d2a070872a6bff9070972db8928070a73f8aba2070e73f8fad4071173fbdd88071474057ebe07157556464e071b75ba2baf072375ba2bce072475ba2c0c072875ba2c2b072b787e64f3072e787f1e77073b78805cd2073c788282b507417885d18407457a30278207467a57099f07497a6f7ae1074a7a97c8d307517a97c91107527acdfaae07587b17ecf107597bc734f807637bdce13e07647c023a7107657d379f5607667d4b8d87076d7d8bf7f7076e7d8bf816076f7da5c72907707da92f2807717daaefcf07727e549f49077356586bbb271756586bbb271756587ade274056586b01271156586b20271256586b3f271356586ae2271056586ee1271c56587a43273b56587a62273c56586b5e271456586b7d271556586ec2271b56586bf9271956586bda271856586ea3271a56586f7c272156586f3e271f56586f5d2720565872a227265658728327255658737b272d565872c1272756587625272e565872e02728565872ff2729565876c02733565876df273456586f1f271e5658733d272b56587644272f5658735c272c565876632730565876a12732565879e6273856587abf273f56587a24273a5658773c273756587a05273956587aa0273e5658df6027755658df7f27765658df9e27775658e01a277b5658e039277c5658f22527a75658f24427a85658f26327a95658f28227aa5658e321277f5658e058277d5658e302277e5658e35f27815658e37e27825658e34027805658e3db27855658e3fa27865658e41927875658e6c327885658e77d278e5658eac227945658e79c278f5658e7bb27905658e7da27915658eb3e27985658eb5d27995658eb1f27975658eb7c279a5658f20627a65658ef5c27a55658ef3d27a45658eeff27a25658eee027a15658ef1e27a35658f2a127ab5658f2c027ac0000"
+    val stream = DataInputStream(ByteArrayInputStream(payload.hexToByteArray()))
+    val i = stream.readInt()
+    val mapName = stream.readUTF()
+    val bytes = stream.readNBytes(i)
+    return parseRuleAsset(bytes)
+}
+
+
+fun getMate(): RpgTileMapMate {
+    val payload =
+        "0004ffff00000c6e1f8b0800000000000400edbd07601c499625262f6dca7b7f4af54ad7e074a10880601324d8904010ecc188cde692ec1d69472329ab2a81ca6556655d661640cced9dbcf7de7befbdf7de7befbdf7ba3b9d4e27f7dfff3f5c6664016cf6ce4adac99e2180aac81f3f7e7c1f3f227e8d5fe3d7f8357f8d5f63efcffd357ecdffe8d7fa357e337a7e8dffe2d7f88d7f8ddfe4d7f84d7f8ddfecd7f8cd7f8ddfe2d7f82d7f8ddfead7f8ad7f8ddfe6d7f86d7f8ddfeed7f8ed7f8ddfe1d7f81d7f8ddfe9d7f89d7f8ddfedd7f8dd7f8d5ff86b7cfc6b6cfd1a777e8d6ffd1a9ffc1aa35f63fbd718ff1a777f8d9d5f63f7d7d8fb35eefd1afbbfc6fd5fe3d35fe3c1af71f06b3cfc351efd1a87bfc6e35fe3b35fe3f8d778f26b9cfc1a4f7f8dd35fe3d9aff1f9aff1ed5fe3ecd7f8ceaff17bfd1acf7f8d2f7e8d97bfc6777f8ddffbd7f87d7e8d9ffa35bef76bfcfebfc61ff06b64bfc6e4d798fe1ab35f23ff35ce7f8d8b5fa3f835defd1ad7bfc62ff935fee45fe34ff935fed45fe3cff835fec65fe36ffa35fee65fe36ffb35fef95fe35ff835fec55fe35ff935fedb5fe3bffb35fefb5ff3c77ecde4d7fc0d7fcdfbbfe6a7bfe6835ff3e0d77cf86b7ef66b1efd9abfc7aff97bfe9ac7bfe6eff56b3eff35bff8355ffc9a5ffe9a2f7fcd9ff8355ffd9aaf7fcd37bfe657bfe64ffe9adffd35bff76bfebebfe6f77fcddfefd7fcfd7fcd3fe0d7cc7ecdc9af39fd35e7bf66f16bfef4aff9f6d72c7fcdc5afb9fc35ab5f73f56bfea25fb3fe359b5fb3fd35d7bfe6f5aff9835ff317ff9a3ff36bfe925ff397fe9a7fe0aff907fd9a7ff0aff987fc9a7fe8aff987fd9a7ff8aff947fc9a7fe4aff947fd9a7ff4aff9c7fc9a7fecaff9c7fd9a7ffcaff927fc9a7fe2aff9e7fe9a7fdeaff9e7ff9a7fc1aff917fe9a7fd1aff917ff9a7fc9aff997fe9a7fd9aff957ff9a7fcdaff9d7fe9a7fddaff9d7ff9a7fe3aff90ffc9affe0aff90ffd9afff0aff94ffe9affd4aff94fff9affccaff9cffe9afffbaff9ab7fcdfff3d7fa0f7eadfff0d7fa9f7fadffe5d7fef57eed5fffd7fe0d7eed1ffbb57fd35ffb37fbb57ff35ffb77fbb57ff75ffb17feda1fffdadbbff6f8d7befb6b3ff9b54f7eeda7bff6e9affd7bfddacf7fed2f7eede2d7fee95ffbedafbdf8b5ffc85ffb8ffab5ffe85ffb4ff8b5ffba5ffb6ff8b5ffc65ffbeffeb5ff9e5ffbeffbb5fffe5ff3d7faab687af9f935894afccb8ffddabfe6aff147cbafbffeaf1134709f9a5f7f6df7ebaf1734f05e8bff6adafe5aeed75fd7fdfa1bb85f7fc35b00fb75fe6c0b8c66513ea35fff31f7e93f6ff1359ffe7a415b03e13772bf26b7e8f8c65f0db01f7bbf119bd77e6df7ab8764fc5774a15348107e8d3fc3f5a6bffe3aeed75fef267ce31dffba1f4cdfdfe016347b9f5f3db81e7d7fdddfda766c7efd75dcafbffe20c3447f8d7771e314be17a7c67f554afe3aeed75fd7fdfa1bfcbf80bedeafbfaefbf537b86998e1a73f2bf4fd75dcaf2123c671b8f15703cc93cd4129fc75feee6f8abebfb6fbf5d773bffe987b2daef03c29f478fd1ba1efd765e50ffe75f304fcd86de8abbaefd7bcc5e0fdb17944552de791fad7fb86e91bd1bf1da5ebfd1a9dee1b29f93ebf46a81e92da7c9a38fa0e5a9c81b1dd64457e56e87b2ba6ed63f6ebfcb049fd3e23deac14bc518456e4874cdfb838dde43f6c667befd3705a0c3abf91fbd5d38860daf718f166fa7aace111953afe35fefeafd5dbd7b56f7171fa1af4fd75dc6b8312e0f14e1cdff719f1cdbcd39f5840f860a7f7bd5879a35336e89fbd17a9fbba6f50ff7e73f40d3ffd4695c2d7b56f51ccbeeeaf51318d8c387430de67f05f977fdfa38b5bd3378ec3affd1e98fd465195e9fd3aac40dee3d7f719fc0f81be11f6f480fdd8fbe1b099a8640ebc40c1ff551bfc3a5f8fd42166376ac4af2390a1b418fdfb1bbd077d0795cdd71cbc0f214ed48da47ecfd9f4486d28f96bbb5f7f5df7eb7b661ae2bffe1affa9fcfa635f3baf11576d5f67ba43fafeda775d839f0dfa7afcfb8d30adf935548311fafe5a5f2faff1f57ff5e86b88faebba5fdf4755bca7ae7e1f31fd9abf46e8fb6b47f31a3f04fa867ed4cdfae1c65f6fc2f7678bbe06c26fe4e8eba5e5df53ff0efcfaf5d20b9b95cdada8ae6d6f23dddfc030378ec283fb3efec36d5cec6f34bd1057d05f93a8ff5fa56f9c7f3dfa7aacfc9e59e1cd5cedfd7a1ba27a92f50d0c7323be3f04fa8269a3c1ebcd10beb15f3b818d9bf96f6098d15f7dfaaafffb63ae8b5fd3fdea6965cf1eff3aeed75b11eaa6e0f5d6bfde2602f47fdd88ce0f81bea1c1fe5963e56ff257cf349b5fe34ed9b07fe6a6fb8730b61f86aae8fffa355f0bf1bdb52bf135fdb35fe73dc5f4267c7f88f4fd709e4c6e22ea6d5c89f8d83627b46fc46c10df6f94bebfeedfdbfbf5d78efefaebbe274fdef8eb7bccfcaff36f5974ccafbfee2dd2845ff3d76fd4d419f2fd5aeed75f27fa6bb8067823f96e1cc5fbd0f74636bab1b7aff9eb87b3f2d7e1dfd0dcde88e466fade467bde38b61b7bfb9abf7e73f4bd0dffc6cdc18d48def8eb66edf9ebdd626c3776f1357ffde6e87b1bfefdd9a2ef4d54ff35feb45ff3dffc357fcddfebd7f8ad081f0ce84ffa35fe25b2b1f8ed37fb35fe23f9edd77c499f25fcdb5f449f25bf06e969fa2da5894246f37fa2df7e037ee35ffa3576f0067df607fc1abf273ee3bc4e0ac8fcdb0ecda7fcf67b6a6fbfc6aff107c1a2ff99bfe6aff19bfe1aff3010a3dff67e8dbf457f5bfd1a7f2b7edbfd357fcd3feed7fc7df5b33fffd7f84bf5b7bff2d7f8ebe5b75ff3dbbfc65fa2bffde1bfc6dfa8bffde0d7f807f4b7bfde40fe35ffdd5fe31fd777ff5d60c7bffdeffff7af041dfeae5ff3d7fc7b7fcd9fd6767fc3fffd7fe86f7f27cd28fdf66ffe9abfc6ff4af4f835f98ddfecd7f85df5dddffad7f8dde937e438ffa55ff30f82baa1cf7edb5fe377d177fff8fffb97d36fbfee53a2d5af8979c56f7ff3af091ec16fffa27cb6f8357f8d7fe5d7fca5440d7cb6fa35ff27f4f19d5f93e0fe7dfaee1f4c9ffd5a0a05dfa2b7ff887a4b80d5aff99bd2bcfd5a0a59db112ee6b77f50e0fd7ebfe6aff96b11ed7f0dfeed09fd266ffc86bfc647f8ecf7fa357f8dffe4d75cd16fbffeb35ff3d7fc877f8dbf50317d40f346187cfe6bfe1affc7aff12d7df7237e17bfedf16fbfceaff8357fcd3fe1d798eb1cfde5bfc62f0125ff577cf6397efbe5f86ddb50f7d778ae54ab8882f2db5ffb6bfce6f2edafb1fcbfff6fc5e01f21cefa357f8d5fe7effc357f8d3f953fa3f1fe9abf197df61b711f17fff7ff8037fece5ff3fffed5bfc6ef2f6ffc1abff9aff9e7e28d5f4154fb35ff49c1807efb2b0403faed0fb350fe24c2f9d7cf7fcd5fb3fe357f31de9dfe9abfe69f429474dffebabfc6af3f03257f06233ff935ffef5ff66bfe97f4dbaf35fb357f8d6ffd9abf31f581df8e7ecddf0534208ef82d7f8d7f9b7ec3671fff9a776806f1db6fff6bfe38fd261cf127916290d9fa9380fd1be28d5ff3d7110c7e8da7bfc63faafdfe1a34b6df10b8fc1ab35fe39f025604e50fe56f41973f826501d4f86bf9b75ff7fcd7fc357e258de8d7e491ff96ac1ff1dbfd5fe3cf06e46790a33f553ea3b9bc2bfc427dfc4924e9f8ec4ffe357e3b69f76bfeebbfe67fa8effe12e612fcf6c5aff92bc12fbbbfe6fffdab7ecd3f4fa9fb6bfe1aff17a0fc0ebfe6aff1afd2db86db57c4ed80f207fc1a7f22f8e5e4d7fc357fe75f0334055dfecf5ff30f510aedfe9aff197ea391ff1fbf26b0c26727bfc6ff0dcd47bffd292453d2ee1ffe35fe07f9edfffe1f7f8dff52e0d138fe5381f77fff5fbfc69fa76fbcf935fe647de31ffd3517fadb84c6cebffd9affd2af7147faa0dffe22fdac366ffc9a3ff16bfc410405237a85b9e277ffc45fe30f84e4118fff95bfe67f22bdfd9abfc7aff10fe91bf9aff12feb6f7fe4aff1cf29e47fe1d7f8f7f5b77fe4d7fcdb04ab5ff3e2d7fc1b008524f9eff935f615d3bf46a48c3efb87489fd16fbfd6aff96bfc6bbfc67f8876bfd6aff96b1eff9a7f8bfcf66bfc4fbfe67fa0bffd1ac475f4eef77fcd5fa3fc35ff21e0f2fb121ffc9affaafe36e3dff06e4612f56b2b5ffd010459e6e30f80261f911a5759fe75cf7f0de5935ff3dffc35cc8cbcf935ec3cfc1a8682dfff356c7fbf86f682dfa4e75f871498c8cfaff3bffe1a46a67ec5afa172f66beefe1aca27bf2e4daac80a7da6bafad7cf7f0d2b67bf86ca19f5abd4fa75feae5fc3e85bfa4c68f9ebcf7e0d953d7a572584deb572f16b58b9f835ac5cfc1a2a171891e1a75fc3f2d3afa1324abf59cefa3594b3e837cbb3bf867216c153bd823784efd09b6827f4263a89a86175dcaf6174dcaff8355417f2d844dbd1d80c07fe1a962bf11b732ad14a74e6ff03e635d51da332000000"
+    val stream = DataInputStream(ByteArrayInputStream(payload.hexToByteArray()))
+    val key = stream.readShort()
+    val delKey = stream.readShort()
+    val i = stream.readInt()
+    val bytes = stream.readNBytes(i)
+    return buildMapMate(DataProvider.readRpgFileData(bytes.unGzip())[0])
+}
+
+//fun main() {
+//    val mate = getMate()
+//    println(mate)
+//    for (handle in FileHandle("/Users/cxf/temp/mhxy/mhxy_m/src/main/resources/assets/rpg/map").list()) {
+//        try {
+//            val mate = getMate(handle)
+//            println("success: ${handle.name()}")
+//        } catch (e: Exception) {
+//            println("error: ${handle.name()}")
 //        }
 //    }
-//
-//    override fun loadSync(
-//        p0: AssetManager,
-//        p1: String,
-//        p2: FileHandle,
-//        p3: AssetLoaderParameters<TileMap>
-//    ): TileMap? {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun getDependencies(
-//        p0: String,
-//        p1: FileHandle,
-//        p2: AssetLoaderParameters<TileMap>
-//    ): Array<AssetDescriptor<*>> {
-//        TODO("Not yet implemented")
-//    }
-//
 //}
-//
-//
-//class TileMap(
-//    val mapW: Int,
-//    val mapH: Int,
-//    val blockW: Int,
-//    val blockH: Int,
-//
-//    //碰撞格
-//    val collisionW: Int,
-//    val collisionH: Int,
-//
-//    //图块行列
-//    val row: Int,
-//    val column: Int,
-//
-//    //地面图块网格：j[col][row]，每格一个 SpritePiece，null 表示空格
-//    val mapBlock: Array<Array<MapObj?>>,
-//
-//    //碰撞图：i[col][row] == 1 表示该格不可通行
-//    val collisionBit: Array<Array<Boolean>>,
-//    val fixedObj: Array<MapObj>,
-//    val moveObj: Array<MapObj>,
-//)
-//
-//class MapObj
+
+fun ByteArray.unGzip(): ByteArray {
+    val inputStream = GZIPInputStream(ByteArrayInputStream(this))
+    return inputStream.readAllBytes()
+}

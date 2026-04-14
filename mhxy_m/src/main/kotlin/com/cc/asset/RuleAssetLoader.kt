@@ -34,14 +34,7 @@ class RuleAssetLoader(resolver: FileHandleResolver) :
         file: FileHandle,
         parameter: AssetLoaderParameters<RuleAsset>?
     ) {
-        ruleAsset = DataInputStream(ByteArrayInputStream(file.readBytes())).use { dis ->
-            val count = dis.readShort().toInt()
-            val rules = mutableListOf<Rule>()
-            repeat(count) {
-                rules += Rule(dis.readInt(), dis.readShort())
-            }
-            RuleAsset(rules)
-        }
+        ruleAsset = parseRuleAsset(file.readBytes())
     }
 
 
@@ -64,3 +57,13 @@ class RuleAssetLoader(resolver: FileHandleResolver) :
     }
 }
 
+fun parseRuleAsset(data: ByteArray): RuleAsset {
+    DataInputStream(ByteArrayInputStream(data)).use { dis ->
+        val count = dis.readShort().toInt()
+        val rules = mutableListOf<Rule>()
+        repeat(count) {
+            rules += Rule(dis.readInt(), dis.readShort())
+        }
+        return RuleAsset(rules)
+    }
+}

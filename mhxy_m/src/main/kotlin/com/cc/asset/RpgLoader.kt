@@ -4,6 +4,7 @@ import com.badlogic.gdx.assets.loaders.AssetLoader
 import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.math.Rectangle
+import com.cc.ceilDiv
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.DataInputStream
@@ -100,19 +101,107 @@ private fun buildAnimation(data: ByteArray): Pair<Float, Array<Array<RpgFrame>>>
         dis.readShort()
         val data = Array(packetNum) {
             Array(dis.readByte().toInt()) {
-                val id = dis.readShort()
-                val type = dis.readByte()
-                val transX = dis.readShort()
-                val transY = dis.readShort()
-                val index = dis.readShort()
-                val transFlag = dis.readByte()
-                RpgFrame(id, type, transX, transY, index, transFlag)
+                buildFrame(dis)
             }
         }
         val frameDuration = dis.readShort().toFloat() / 1000
         Pair(frameDuration, data)
     }
 }
+
+private fun buildFrame(dis: DataInputStream): RpgFrame {
+    val id = dis.readShort()
+    val type = dis.readByte()
+    val transX = dis.readShort()
+    val transY = dis.readShort()
+    val index = dis.readShort()
+    val transFlag = dis.readByte()
+    return RpgFrame(id, type, transX, transY, index, transFlag)
+}
+
+//==========================
+fun buildRpgTileMap(mate: RpgTileMapMate, dataProvider: MapDataProvider, ruleAsset: RuleAsset): RpgTileMap {
+    val picMap = mutableMapOf<Short, RpgTextureRegion>()
+    val resIdSet = mutableSetOf<Short>()
+    mate.mapBlock.asSequence()
+        .flatMap { it.asSequence() }
+        .forEach {
+            if (it != null) {
+                resIdSet.add(it.resId)
+            }
+        }
+    mate.fixedObj.forEach { resIdSet.add(it.resId) }
+    mate.moveObj.forEach { resIdSet.add(it.resId) }
+
+    resIdSet.forEach { id ->
+        val rule = ruleAsset.getRuleById(id)!!
+        val textureRegion = buildRpgTextureRegion(id, rule.key, dataProvider)
+        picMap[textureRegion.id] = textureRegion
+    }
+    return RpgTileMap(mate, picMap)
+}
+
+fun buildMapMate(data: ByteArray) =
+    DataInputStream(ByteArrayInputStream(data)).use { dis ->
+        //spriteIdHsl
+        val n = dis.readByte().toInt()
+        dis.skipBytes(n * 4 * 2)
+        val mapW = dis.readShort().toInt()
+        val mapH = dis.readShort().toInt()
+        val blockW = dis.readByte().toInt()
+        val blockH = dis.readByte().toInt()
+        val collisionW = dis.readByte().toInt()
+        val collisionH = dis.readByte().toInt()
+        val column = mapW ceilDiv blockW
+        val row = mapH ceilDiv blockH
+
+        val collisionCols: Int = mapW ceilDiv collisionW
+        val collisionRows: Int = mapH ceilDiv collisionH
+        val collisionBit = Array(collisionCols) {
+            Array(collisionRows) {
+                false
+            }
+        }
+        val collisionCount = dis.readShort().toInt()
+        repeat(collisionCount) {
+            val i = dis.readShort().toInt()
+            collisionBit[i % collisionCols][i / collisionCols] = true
+        }
+
+        val mapBlock = Array(column) {
+            Array(row) {
+                if (dis.readByte() >= 0) {
+                    buildFrame(dis)
+                } else {
+                    null
+                }
+            }
+        }
+
+        val fixedObjCount = dis.readShort().toInt()
+        val fixedObj = Array(fixedObjCount) {
+            buildFrame(dis)
+        }
+
+        val moveObjCount = dis.readShort().toInt()
+        val moveObj = Array(moveObjCount) {
+            buildFrame(dis)
+        }
+        RpgTileMapMate(
+            mapW,
+            mapH,
+            blockW,
+            blockH,
+            collisionW,
+            collisionH,
+            row,
+            column,
+            mapBlock,
+            collisionBit,
+            fixedObj,
+            moveObj
+        )
+    }
 
 //==========================
 fun hashKey(name: String): Int {
@@ -135,17 +224,22 @@ interface DataProvider {
 
     fun get(id: Short): Array<ByteArray>
 
-
-    fun readRpgFileData(file: FileHandle) =
-        DataInputStream(ByteArrayInputStream(file.readBytes())).use { dis ->
-            dis.readShort()
-            dis.readByte()
-            val num = dis.readByte()
-            Array(num.toInt()) {
-                val size = dis.readInt()
-                ByteArray(size).also { dis.readFully(it) }
-            }
+    companion object {
+        fun readRpgFileData(file: FileHandle): Array<ByteArray> {
+            return readRpgFileData(file.readBytes())
         }
+
+        fun readRpgFileData(data: ByteArray) =
+            DataInputStream(ByteArrayInputStream(data)).use { dis ->
+                dis.readShort()
+                dis.readByte()
+                val num = dis.readByte()
+                Array(num.toInt()) {
+                    val size = dis.readInt()
+                    ByteArray(size).also { dis.readFully(it) }
+                }
+            }
+    }
 }
 
 class DirDataProvider(
@@ -156,12 +250,12 @@ class DirDataProvider(
     override fun get(key: Int): Array<ByteArray> {
         val rule = ruleAsset.getRuleByKey(key)!!
         val file = assetLoader.resolve("${dir}/${rule.id}.rpg")
-        return readRpgFileData(file)
+        return DataProvider.readRpgFileData(file)
     }
 
     override fun get(id: Short): Array<ByteArray> {
         val file = assetLoader.resolve("${dir}/${id}.rpg")
-        return readRpgFileData(file)
+        return DataProvider.readRpgFileData(file)
     }
 }
 
@@ -203,5 +297,19 @@ class SingleDataProvider(
             }
         }
         throw RuntimeException("资源不存在,id=${id}")
+    }
+}
+
+
+class MapDataProvider(
+    private val assetLoader: AssetLoader<*, *>,
+) : DataProvider {
+    override fun get(key: Int): Array<ByteArray> {
+        val file = assetLoader.resolve("rpg/map/${key}.rpg")
+        return DataProvider.readRpgFileData(file)
+    }
+
+    override fun get(id: Short): Array<ByteArray> {
+        throw RuntimeException("UnSupport")
     }
 }
