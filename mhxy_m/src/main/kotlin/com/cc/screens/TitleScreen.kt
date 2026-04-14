@@ -14,7 +14,6 @@ import com.cc.screens.AbstractScreen.Companion.VIRTUAL_W
 import com.cc.screens.base.BaseBackGround
 
 class TitleScreen : AbstractScreen() {
-    private val sr = autoDispose { createShapeRenderer() }
     private val backGround = BaseBackGround
     private val menuItem = autoDispose { Texture(Gdx.files.classpath("assets/menuItem.png")) }
     private val menuButtons = listOf(

@@ -21,6 +21,7 @@ abstract class AbstractScreen : ScreenAdapter() {
 
     protected val viewport = FitViewport(VIRTUAL_W, VIRTUAL_H)
     protected val batch = SpriteBatch()
+    protected val sr = createShapeRenderer()
     protected val autoDispose = mutableSetOf<Disposable>()
 
     // 每帧自动更新为逻辑坐标，子类直接用
@@ -68,7 +69,7 @@ abstract class AbstractScreen : ScreenAdapter() {
      * 创建一个自动同步 viewport camera 矩阵的 ShapeRenderer。
      * 子类用此方法替代直接 `ShapeRenderer()`，之后正常调用 `begin()` 即可。
      */
-    protected fun createShapeRenderer(): ShapeRenderer = object : ShapeRenderer() {
+    private fun createShapeRenderer(): ShapeRenderer = object : ShapeRenderer() {
         override fun begin(type: ShapeType) {
             projectionMatrix = viewport.camera.combined
             super.begin(type)
@@ -84,6 +85,7 @@ abstract class AbstractScreen : ScreenAdapter() {
     override fun dispose() {
         super.dispose()
         batch.dispose()
+        sr.dispose()
         for (disposable in autoDispose) {
             try {
                 disposable.dispose()

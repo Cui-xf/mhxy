@@ -30,6 +30,6 @@ abstract class UIComponent(private val assetLoader: AssetLoader) {
         }
     }
 
-    fun <T : Any> resource(assetManager: AssetManager, name: String, type: KClass<T>): Lazy<T> =
+    protected fun <T : Any> resource(assetManager: AssetManager, name: String, type: KClass<T>): Lazy<T> =
         assetLoader.resource(assetManager, name, type)
 }

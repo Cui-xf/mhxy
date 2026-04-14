@@ -11,13 +11,12 @@ import com.cc.asset.RpgAnimation
 import com.cc.event.TouchContext
 import com.cc.render.*
 import com.cc.screens.base.BaseBackGround
+import com.cc.screens.game.GameScreen
 import com.cc.ui.component.UIComponent
 import com.cc.ui.component.WindowPanel
 
 class RoleSelectScreen : AbstractScreen() {
     private val backGround = BaseBackGround
-    private val sr = autoDispose { createShapeRenderer() }
-
     private val windowW = VIRTUAL_W * 0.95f
     private val windowH = VIRTUAL_H * 0.95f
     private val windowX = (VIRTUAL_W - windowW) / 2

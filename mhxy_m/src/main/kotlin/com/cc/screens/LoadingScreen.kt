@@ -14,6 +14,7 @@ import com.cc.asset.CommonAssetLoader
 import com.cc.asset.RpgAnimation
 import com.cc.render.*
 import com.cc.screens.base.BaseBackGround
+import com.cc.screens.game.GameScreen
 import kotlin.random.Random
 
 
@@ -29,8 +30,6 @@ class LoadingScreen : AbstractScreen() {
         "按“#”键可打开任务栏"
     )
     private val progressBarImage = autoDispose { Texture(Gdx.files.classpath("assets/loading.png")) }
-    private val shapeRenderer = autoDispose { createShapeRenderer() }
-
     private val progressBar = Rectangle((VIRTUAL_W - 100) / 2, (VIRTUAL_H / 3 * 2) + 20, 100f, 3f)
     private val textRender: TextRender
     private var progress = 0
@@ -76,8 +75,8 @@ class LoadingScreen : AbstractScreen() {
             progressBar.y + 10,
         ) // 百分比数字
         batch.end()
-        shapeRenderer.begin(ShapeType.Filled)
-        shapeRenderer.drawRect(
+        sr.begin(ShapeType.Filled)
+        sr.drawRect(
             Color.valueOf("#F9F872"),
             progressBar.x,
             progressBar.y,
@@ -85,7 +84,7 @@ class LoadingScreen : AbstractScreen() {
             progressBar.height,
             Align.LEFT
         )
-        shapeRenderer.drawRect(
+        sr.drawRect(
             Color.valueOf("#dca248"),
             progressBar.x,
             progressBar.y + 1,
@@ -93,7 +92,7 @@ class LoadingScreen : AbstractScreen() {
             progressBar.height - 1,
             Align.LEFT
         )
-        shapeRenderer.end()
+        sr.end()
         if (PUBLIC_ASSET.isFinished && CommonAssetLoader.isFinished() && progress >= 100) {
 //            MhxyGame.setScreen(TitleScreen())
             MhxyGame.setScreen(GameScreen())
