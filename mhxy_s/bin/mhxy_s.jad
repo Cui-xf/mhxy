@@ -18,8 +18,8 @@ LargeClient: 0
 ConfigServerURL: 3g.egege.com.cn/inf/config.do?cpId=1&gameId=1
 MIDlet-Icon: icon.png
 
-#SavePacket: true
-#Server: online
+SavePacket: true
+Server: online
 
-SavePacket: false
-Server: test
+#SavePacket: false
+#Server: test

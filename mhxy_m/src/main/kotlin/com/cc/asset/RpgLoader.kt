@@ -122,23 +122,25 @@ private fun buildFrame(dis: DataInputStream): RpgFrame {
 //==========================
 fun buildRpgTileMap(mate: RpgTileMapMate, dataProvider: MapDataProvider, ruleAsset: RuleAsset): RpgTileMap {
     val picMap = mutableMapOf<Short, RpgTextureRegion>()
-    val resIdSet = mutableSetOf<Short>()
-    mate.mapBlock.asSequence()
-        .flatMap { it.asSequence() }
-        .forEach {
-            if (it != null) {
-                resIdSet.add(it.resId)
-            }
-        }
-    mate.fixedObj.forEach { resIdSet.add(it.resId) }
-    mate.moveObj.forEach { resIdSet.add(it.resId) }
+    val animMap = mutableMapOf<Short, RpgAnimationRes>()
 
-    resIdSet.forEach { id ->
+    // 静态图资源（mapBlock + fixedObj + type==0 的 moveObj）
+    val staticResIds = mutableSetOf<Short>()
+    mate.mapBlock.asSequence().flatMap { it.asSequence() }.forEach { if (it != null) staticResIds.add(it.resId) }
+    mate.fixedObj.forEach { staticResIds.add(it.resId) }
+    mate.moveObj.filter { it.type.toInt() == 0 }.forEach { staticResIds.add(it.resId) }
+    staticResIds.forEach { id ->
         val rule = ruleAsset.getRuleById(id)!!
-        val textureRegion = buildRpgTextureRegion(id, rule.key, dataProvider)
-        picMap[textureRegion.id] = textureRegion
+        picMap[id] = buildRpgTextureRegion(id, rule.key, dataProvider)
     }
-    return RpgTileMap(mate, picMap)
+
+    // 动画资源（type==2 的 moveObj）
+    mate.moveObj.filter { it.type.toInt() == 2 }.map { it.resId }.distinct().forEach { id ->
+        val rule = ruleAsset.getRuleById(id)!!
+        animMap[id] = buildRpgAnimationRes(id, rule.key, dataProvider)
+    }
+
+    return RpgTileMap(mate, picMap, animMap)
 }
 
 fun buildMapMate(data: ByteArray) =

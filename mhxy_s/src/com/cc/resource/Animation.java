@@ -96,38 +96,38 @@ public final class Animation extends Resource {
         return var1;
     }
 
-    public final Animation a(short var1, short var2, short var3) {
-        Animation var6;
-        (var6 = new Animation(var1, var2, var3)).info = super.info;
-        var6.frameInterval = this.frameInterval;
-        var6.lastTs = System.currentTimeMillis();
-        var6.spritePieces = new SpritePiece[this.spritePieces.length][];
+    public final Animation copy(short var1, short var2, short var3) {
+        Animation copy = new Animation(var1, var2, var3);
+        copy.info = super.info;
+        copy.frameInterval = this.frameInterval;
+        copy.lastTs = System.currentTimeMillis();
+        copy.spritePieces = new SpritePiece[this.spritePieces.length][];
 
-        for (int var7 = 0; var7 < this.spritePieces.length; ++var7) {
-            var6.spritePieces[var7] = new SpritePiece[this.spritePieces[var7].length];
+        for (int i = 0; i < this.spritePieces.length; ++i) {
+            copy.spritePieces[i] = new SpritePiece[this.spritePieces[i].length];
 
-            for (int var8 = 0; var8 < this.spritePieces[var7].length; ++var8) {
-                SpritePiece[] var10000 = var6.spritePieces[var7];
-                SpritePiece var4 = this.spritePieces[var7][var8];
-                SpritePiece var5;
-                (var5 = new SpritePiece()).spriteId = var4.spriteId;
+            for (int j = 0; j < this.spritePieces[i].length; ++j) {
+                SpritePiece[] var10000 = copy.spritePieces[i];
+                SpritePiece var4 = this.spritePieces[i][j];
+                SpritePiece var5 = new SpritePiece();
+                var5.spriteId = var4.spriteId;
                 var5.type = var4.type;
                 var5.imageSliceIndex = var4.imageSliceIndex;
                 var5.transformX = var4.transformX;
                 var5.transformY = var4.transformY;
-                var10000[var8] = var5;
+                var10000[j] = var5;
             }
         }
 
-        var6.frameW = this.frameW;
-        var6.frameH = this.frameH;
-        var6.x = this.x;
-        var6.y = this.y;
-        var6.w = this.w;
-        var6.h = this.h;
-        var6.c_x = this.c_x;
-        var6.c_y = this.c_y;
-        return var6;
+        copy.frameW = this.frameW;
+        copy.frameH = this.frameH;
+        copy.x = this.x;
+        copy.y = this.y;
+        copy.w = this.w;
+        copy.h = this.h;
+        copy.c_x = this.c_x;
+        copy.c_y = this.c_y;
+        return copy;
     }
 
     public final short c() {

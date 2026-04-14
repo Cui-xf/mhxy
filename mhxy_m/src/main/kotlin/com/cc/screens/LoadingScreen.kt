@@ -95,7 +95,8 @@ class LoadingScreen : AbstractScreen() {
         )
         shapeRenderer.end()
         if (PUBLIC_ASSET.isFinished && CommonAssetLoader.isFinished() && progress >= 100) {
-            MhxyGame.setScreen(TitleScreen())
+//            MhxyGame.setScreen(TitleScreen())
+            MhxyGame.setScreen(GameScreen())
         }
     }
 }

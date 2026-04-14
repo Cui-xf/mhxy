@@ -79,6 +79,7 @@ class RpgTileMapMate(
 class RpgTileMap(
     private val mate: RpgTileMapMate,
     private val picMap: Map<Short, RpgTextureRegion>,
+    private val animMap: Map<Short, RpgAnimationRes>,
 ) {
     fun toTileMap(): TileMap {
         val mapBlock = mate.mapBlock.map { row ->
@@ -87,7 +88,14 @@ class RpgTileMap(
             }
         }
         val fixedObj = mate.fixedObj.map { it.toFrame(picMap) }
-        val moveObj = mate.moveObj.map { it.toFrame(picMap) }
+        val moveObj = mate.moveObj.filter { it.type.toInt() == 0 }.map { it.toFrame(picMap) }
+        val animationObj = mate.moveObj.filter { it.type.toInt() == 2 }.map { frame ->
+            TransAnimation(
+                frame.transX.toInt(),
+                frame.transY.toInt(),
+                animMap[frame.resId]!!.toRpgAnimation()
+            )
+        }
         return TileMap(
             mate.mapW,
             mate.mapH,
@@ -96,11 +104,12 @@ class RpgTileMap(
             mate.collisionW,
             mate.collisionH,
             mate.row,
-            mate.collisionH,
+            mate.column,
             mapBlock,
             mate.collisionBit,
             fixedObj,
             moveObj,
+            animationObj,
         )
     }
 }

@@ -170,4 +170,28 @@ fun SpriteBatch.drawAnimation(frames: List<Frame>, originX: Float, originY: Floa
     }
 }
 
+/**
+ * 绘制单个地图图块 Frame，支持 flipX/flipY + rotation。
+ * screenX/screenY 为图块左上角在屏幕上的原始坐标（左上角为原点，向下为 y+）。
+ */
+fun SpriteBatch.drawFrame(frame: Frame, screenX: Float, screenY: Float) {
+    val tr = frame.textureRegion
+    if (frame.flipX != tr.isFlipX || frame.flipY != tr.isFlipY) {
+        tr.flip(frame.flipX != tr.isFlipX, frame.flipY != tr.isFlipY)
+    }
+    val px = screenX + frame.transX
+    val py = screenY + frame.transY
+    val sw = tr.regionWidth.toFloat()
+    val sh = tr.regionHeight.toFloat()
+    this.draw(
+        tr,
+        px,
+        VIRTUAL_H - py - sh,
+        sw / 2f, sh / 2f,
+        sw, sh,
+        1f, 1f,
+        frame.rotation
+    )
+}
+
 fun Int.toColor(): Color = Color.valueOf((this and 0xFFFFFF).toString(16).padStart(6, '0').uppercase())

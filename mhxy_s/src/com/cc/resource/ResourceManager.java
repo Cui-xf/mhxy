@@ -622,7 +622,7 @@ public final class ResourceManager {
                         }
                     }
                 } else {
-                    Animation clonedResource = cachedResource.a(variantA2, variantB2, variantC2);
+                    Animation clonedResource = cachedResource.copy(variantA2, variantB2, variantC2);
                     // 新派生出的资源实例同样要回写到 this.c 缓存中。
                     this.frameCache.addElement(clonedResource);
                 }
