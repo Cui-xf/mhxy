@@ -43,14 +43,14 @@ public final class ac extends SceneEntity {
    }
 
    private void s() {
-      this.u[1] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)1, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.v[1] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)1, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.u[3] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)3, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.v[3] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)3, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.u[0] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)0, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.v[0] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)0, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.u[2] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)2, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.v[2] = ResourceManager.buildResourceId((String) MainCanvas.a(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)2, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.u[1] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)1, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[1] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)1, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.u[3] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)3, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[3] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)3, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.u[0] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)0, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[0] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)0, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.u[2] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)2, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[2] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)2, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
    }
 
    public final void a() {
@@ -79,17 +79,17 @@ public final class ac extends SceneEntity {
          var2 = 0;
       }
 
-      super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
+      super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h_1] : this.u[super.h_1], var2, var3, var4);
       if (super.frame1 == null) {
          MainCanvas.loadRoleRes(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)5, GlobalStatus.ay, this.roleRideIcon, var2, var3, var4);
-         super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h] : this.u[super.h], var2, var3, var4);
+         super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h_1] : this.u[super.h_1], var2, var3, var4);
          if (super.frame1 == null) {
             GlobalStatus.ay = 0;
             this.s();
-            super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h] : this.u[super.h]);
+            super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h_1] : this.u[super.h_1]);
             if (super.frame1 == null) {
                MainCanvas.loadRoleRes(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)5, GlobalStatus.ay, this.roleRideIcon, var2, var3, var4);
-               super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h] : this.u[super.h]);
+               super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h_1] : this.u[super.h_1]);
                return;
             }
          }
@@ -135,7 +135,7 @@ public final class ac extends SceneEntity {
             super.d.i = super.k;
          }
 
-         super.d.a(super.h);
+         super.d.a(super.h_1);
       }
 
    }
@@ -194,7 +194,7 @@ public final class ac extends SceneEntity {
    private void u() {
       if (GlobalStatus.teamBonus != null && GlobalStatus.followStatus == 0) {
          for(int var1 = 0; var1 < GlobalStatus.teamBonus.length; ++var1) {
-            if (!GlobalStatus.teamBonus[var1].b.equals(GlobalStatus.roleId_2)) {
+            if (!GlobalStatus.teamBonus[var1].roleId.equals(GlobalStatus.roleId_2)) {
                GlobalStatus.teamBonus[var1].f.addElement(new short[]{super.j, super.k});
             }
          }
@@ -228,7 +228,7 @@ public final class ac extends SceneEntity {
 
    public final void a(byte var1) {
       if (GlobalStatus.bs != 0 || GlobalStatus.followStatus != 0) {
-         super.h = var1;
+         super.h_1 = var1;
          if (var1 == 0) {
             this.a = (short)(-n);
             this.b = 0;
@@ -258,10 +258,10 @@ public final class ac extends SceneEntity {
       if (this.c.isEmpty()) {
          this.a = 0;
          this.b = 0;
-         if ((this.x != super.h || !this.y || this.z != GlobalStatus.ay) && this.c.isEmpty()) {
+         if ((this.x != super.h_1 || !this.y || this.z != GlobalStatus.ay) && this.c.isEmpty()) {
             this.a(true);
             this.y = true;
-            this.x = super.h;
+            this.x = super.h_1;
             this.z = GlobalStatus.ay;
          }
       }
@@ -396,33 +396,33 @@ public final class ac extends SceneEntity {
 
                if (var2[0] != var1[0]) {
                   if (var2[0] > var1[0]) {
-                     super.h = 2;
+                     super.h_1 = 2;
                   } else {
-                     super.h = 0;
+                     super.h_1 = 0;
                   }
 
                   this.a(false);
-                  if (this.x != super.h) {
+                  if (this.x != super.h_1) {
                      this.A = true;
                   } else {
                      this.A = false;
                   }
                } else if (var2[1] != var1[1]) {
                   if (var2[1] > var1[1]) {
-                     super.h = 3;
+                     super.h_1 = 3;
                   } else {
-                     super.h = 1;
+                     super.h_1 = 1;
                   }
 
                   this.a(false);
-                  if (this.x != super.h) {
+                  if (this.x != super.h_1) {
                      this.A = true;
                   } else {
                      this.A = false;
                   }
                } else {
                   this.a(false);
-                  if (this.x != super.h) {
+                  if (this.x != super.h_1) {
                      this.A = true;
                   } else {
                      this.A = false;
@@ -438,7 +438,7 @@ public final class ac extends SceneEntity {
                   this.y = false;
                }
 
-               this.x = super.h;
+               this.x = super.h_1;
             }
 
          } else {

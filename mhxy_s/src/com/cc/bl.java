@@ -42,7 +42,7 @@ public final class bl extends SceneEntity {
       var1.readShort();
       this.c = var1.readByte();
       this.n = var1.readByte();
-      super.l = super.j = var1.readShort();
+      super.l_1 = super.j = var1.readShort();
       super.m = super.k = var1.readShort();
       this.p = var1.readByte();
       this.q = var1.readShort();
@@ -60,22 +60,22 @@ public final class bl extends SceneEntity {
          this.A = var1.readShort();
       }
 
-      this.C[1] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)1, this.o, false, this.x), (byte)2);
-      this.D[1] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)1, this.o, true, this.x), (byte)2);
-      this.C[3] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)3, this.o, false, this.x), (byte)2);
-      this.D[3] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)3, this.o, true, this.x), (byte)2);
-      this.C[0] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)0, this.o, false, this.x), (byte)2);
-      this.D[0] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)0, this.o, true, this.x), (byte)2);
-      this.C[2] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)2, this.o, false, this.x), (byte)2);
-      this.D[2] = ResourceManager.buildResourceId((String) MainCanvas.a(this.c, this.n, (byte)2, this.o, true, this.x), (byte)2);
+      this.C[1] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.c, this.n, (byte)1, this.o, false, this.x), (byte)2);
+      this.D[1] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.c, this.n, (byte)1, this.o, true, this.x), (byte)2);
+      this.C[3] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.c, this.n, (byte)3, this.o, false, this.x), (byte)2);
+      this.D[3] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.c, this.n, (byte)3, this.o, true, this.x), (byte)2);
+      this.C[0] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.c, this.n, (byte)0, this.o, false, this.x), (byte)2);
+      this.D[0] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.c, this.n, (byte)0, this.o, true, this.x), (byte)2);
+      this.C[2] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.c, this.n, (byte)2, this.o, false, this.x), (byte)2);
+      this.D[2] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.c, this.n, (byte)2, this.o, true, this.x), (byte)2);
       this.a(true);
    }
 
    private void a(boolean var1) {
       if (!this.x.equals("")) {
-         super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
+         super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.D[super.h_1] : this.C[super.h_1], this.y, this.z, this.A);
       } else {
-         super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.D[super.h] : this.C[super.h]);
+         super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.D[super.h_1] : this.C[super.h_1]);
       }
 
       if (super.frame1 == null && !this.B) {
@@ -86,9 +86,9 @@ public final class bl extends SceneEntity {
          }
 
          if (!this.x.equals("")) {
-            super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.D[super.h] : this.C[super.h], this.y, this.z, this.A);
+            super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.D[super.h_1] : this.C[super.h_1], this.y, this.z, this.A);
          } else {
-            super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.D[super.h] : this.C[super.h]);
+            super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.D[super.h_1] : this.C[super.h_1]);
          }
 
          this.B = true;
@@ -107,25 +107,25 @@ public final class bl extends SceneEntity {
                   if (super.i != null) {
                      if (super.i[0] == var5[0]) {
                         if (var5[1] > super.i[1]) {
-                           super.h = 3;
+                           super.h_1 = 3;
                         } else {
-                           super.h = 1;
+                           super.h_1 = 1;
                         }
 
                         super.i = var5;
-                        var10000 = super.h;
+                        var10000 = super.h_1;
                         break label43;
                      }
 
                      if (super.i[1] == var5[1]) {
                         if (var5[0] > super.i[0]) {
-                           super.h = 2;
+                           super.h_1 = 2;
                         } else {
-                           super.h = 0;
+                           super.h_1 = 0;
                         }
 
                         super.i = var5;
-                        var10000 = super.h;
+                        var10000 = super.h_1;
                         break label43;
                      }
                   }

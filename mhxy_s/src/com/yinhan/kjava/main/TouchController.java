@@ -52,7 +52,7 @@ public final class TouchController {
                   boolean var42;
                   label749: {
                      if (GameSceneController.notInFighting() && this.gameSceneController.sceneRefreshCoordinator.frame1 != null) {
-                        switch (this.gameSceneController.sceneRefreshCoordinator.h) {
+                        switch (this.gameSceneController.sceneRefreshCoordinator.h_1) {
                            case 0:
                               if (var1 >= this.gameSceneController.sceneRefreshCoordinator.j + 16 - this.gameSceneController.sceneRefreshCoordinator.frame1.g() / 2 - (GameSceneController.h - this.gameSceneController.g()) - 3 && var1 <= this.gameSceneController.sceneRefreshCoordinator.j + 16 + this.gameSceneController.sceneRefreshCoordinator.frame1.g() / 2 - (GameSceneController.h - this.gameSceneController.g()) - 5 && var2 >= this.gameSceneController.sceneRefreshCoordinator.k + 16 - this.gameSceneController.sceneRefreshCoordinator.frame1.h() - (GameSceneController.i_1 - this.gameSceneController.h()) && var2 <= this.gameSceneController.sceneRefreshCoordinator.k + 16 - (GameSceneController.i_1 - this.gameSceneController.h())) {
                                  this.canvas.inputAction = 536870912;

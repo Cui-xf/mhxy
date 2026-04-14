@@ -1754,7 +1754,7 @@ public final class NetworkPacketProcessors {
                                             if (GlobalStatus.o[var33] != null && GlobalStatus.o[var33].a.equals(var31.a)) {
                                                 var31.j = GlobalStatus.o[var33].j;
                                                 var31.k = GlobalStatus.o[var33].k;
-                                                var31.h = GlobalStatus.o[var33].h;
+                                                var31.h_1 = GlobalStatus.o[var33].h_1;
                                                 var35 = true;
                                                 break label234;
                                             }
@@ -1766,7 +1766,7 @@ public final class NetworkPacketProcessors {
 
                                 if (var35) {
                                     var9 = (byte) (var21[var12].k / 16);
-                                    if (((var10 = (byte) (var21[var12].j / 16)) >= var8 - 4 && var10 <= var8 + 4 && var9 >= var7 - 4 && var9 <= var7 + 4 || var23) && (Math.abs(var21[var12].l - var21[var12].j) >= 32 || Math.abs(var21[var12].m - var21[var12].k) >= 32 || var23) && var11 < var16.j.length) {
+                                    if (((var10 = (byte) (var21[var12].j / 16)) >= var8 - 4 && var10 <= var8 + 4 && var9 >= var7 - 4 && var9 <= var7 + 4 || var23) && (Math.abs(var21[var12].l_1 - var21[var12].j) >= 32 || Math.abs(var21[var12].m - var21[var12].k) >= 32 || var23) && var11 < var16.j.length) {
                                         var16.j[var11] = var21[var12];
                                         ++var11;
                                     }
@@ -1780,7 +1780,7 @@ public final class NetworkPacketProcessors {
                             if (var14.j[var17] != null) {
                                 var14.e = var14.j[var17].j / 16 + (var14.j[var17].j % 16 == 0 ? 0 : 1);
                                 var14.f = var14.j[var17].k / 16 + (var14.j[var17].k % 16 == 0 ? 0 : 1);
-                                var14.g = var14.j[var17].l / 16 + (var14.j[var17].l % 16 == 0 ? 0 : 1);
+                                var14.g = var14.j[var17].l_1 / 16 + (var14.j[var17].l_1 % 16 == 0 ? 0 : 1);
                                 var14.h = var14.j[var17].m / 16 + (var14.j[var17].m % 16 == 0 ? 0 : 1);
                                 if (var14.e != var14.g || var14.f != var14.h) {
                                     var14.i_1 = var14.a(MainCanvas.gameSceneController.currentMap, var14.i_1, new bs(var14.e, var14.f), new bs(var14.g, var14.h));
@@ -1826,7 +1826,7 @@ public final class NetworkPacketProcessors {
                     }
                 } else {
                     for (int var18 = 0; var18 < var3.length; ++var18) {
-                        var3[var18].j = var3[var18].l;
+                        var3[var18].j = var3[var18].l_1;
                         var3[var18].k = var3[var18].m;
                     }
                 }
@@ -1888,7 +1888,7 @@ public final class NetworkPacketProcessors {
                     GlobalStatus.teamBonus[i].k = GlobalStatus.roleY;
                 }
 
-                GlobalStatus.teamBonus[i].l = GlobalStatus.roleX;
+                GlobalStatus.teamBonus[i].l_1 = GlobalStatus.roleX;
                 GlobalStatus.teamBonus[i].m = GlobalStatus.roleY;
             }
         }
@@ -1904,7 +1904,7 @@ public final class NetworkPacketProcessors {
                     Vector var9 = new Vector();
                     this.e = GlobalStatus.teamBonus[0].j / 16 + (GlobalStatus.teamBonus[0].j % 16 == 0 ? 0 : 1);
                     this.f = GlobalStatus.teamBonus[0].k / 16 + (GlobalStatus.teamBonus[0].k % 16 == 0 ? 0 : 1);
-                    this.g = GlobalStatus.teamBonus[0].l / 16 + (GlobalStatus.teamBonus[0].l % 16 == 0 ? 0 : 1);
+                    this.g = GlobalStatus.teamBonus[0].l_1 / 16 + (GlobalStatus.teamBonus[0].l_1 % 16 == 0 ? 0 : 1);
                     this.h = GlobalStatus.teamBonus[0].m / 16 + (GlobalStatus.teamBonus[0].m % 16 == 0 ? 0 : 1);
                     if (this.e != this.g || this.f != this.h) {
                         if (GlobalStatus.teamBonus[0].f == null) {
@@ -1961,8 +1961,8 @@ public final class NetworkPacketProcessors {
                     MainCanvas.gameSceneController.sceneRefreshCoordinator.d.e.removeAllElements();
                     MainCanvas.gameSceneController.sceneRefreshCoordinator.d.h = GlobalStatus.roleX;
                     MainCanvas.gameSceneController.sceneRefreshCoordinator.d.i = GlobalStatus.roleY;
-                    MainCanvas.gameSceneController.sceneRefreshCoordinator.d.j = MainCanvas.gameSceneController.sceneRefreshCoordinator.h;
-                    MainCanvas.gameSceneController.sceneRefreshCoordinator.d.a(MainCanvas.gameSceneController.sceneRefreshCoordinator.h);
+                    MainCanvas.gameSceneController.sceneRefreshCoordinator.d.j = MainCanvas.gameSceneController.sceneRefreshCoordinator.h_1;
+                    MainCanvas.gameSceneController.sceneRefreshCoordinator.d.a(MainCanvas.gameSceneController.sceneRefreshCoordinator.h_1);
                 }
 
                 if (GameSceneController.notInFighting()) {
@@ -2152,33 +2152,33 @@ public final class NetworkPacketProcessors {
     }
 
     private void e() throws IOException {
-        byte var1;
-        if ((var1 = this.dis.readByte()) <= 0) {
+        byte num = this.dis.readByte();
+        if (num <= 0) {
             if (MainCanvas.gameSceneController != null) {
-                MainCanvas.gameSceneController.a((bp_1[]) null);
+                MainCanvas.gameSceneController.setRoleInfo((Role[]) null);
             }
 
         } else {
             GlobalStatus.followStatus = (short) this.dis.readByte();
-            bp_1[] var2 = new bp_1[var1];
+            Role[] roles = new Role[num];
             byte var3 = 1;
 
-            for (int var4 = 0; var4 < var1; ++var4) {
-                var2[var4] = new bp_1();
-                var2[var4].a(MainCanvas.gameSceneController, this.dis);
-                if (var2[var4].s == 1) {
-                    var2[var4].a = 0;
+            for (int i = 0; i < num; ++i) {
+                roles[i] = new Role();
+                roles[i].a(MainCanvas.gameSceneController, this.dis);
+                if (roles[i].s_1 == 1) {
+                    roles[i].a = 0;
                 } else {
-                    var2[var4].a = var3++;
+                    roles[i].a = var3++;
                 }
             }
 
-            bp_1[] var6 = var2;
+            Role[] var6 = roles;
 
             for (int var7 = 0; var7 < var6.length - 1; ++var7) {
                 for (int var8 = 0; var8 < var6.length - 1; ++var8) {
-                    bp_1 var9 = var6[var8];
-                    bp_1 var5;
+                    Role var9 = var6[var8];
+                    Role var5;
                     if ((var5 = var6[var8 + 1]).a < var9.a) {
                         var6[var8] = var5;
                         var6[var8 + 1] = var9;
@@ -2187,7 +2187,7 @@ public final class NetworkPacketProcessors {
             }
 
             if (MainCanvas.gameSceneController != null) {
-                MainCanvas.gameSceneController.a(var2);
+                MainCanvas.gameSceneController.setRoleInfo(roles);
             }
 
         }

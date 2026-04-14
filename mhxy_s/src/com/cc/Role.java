@@ -6,80 +6,85 @@ import com.yinhan.kjava.main.MainCanvas;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public final class bp_1 extends SceneEntity {
+public final class Role extends SceneEntity {
    public byte a;
-   public String b = "";
+   public String roleId = "";
    public String c;
-   public int n;
+   public int color;
    public short o;
-   public byte p;
-   public byte q;
-   public byte r;
-   public byte s;
+   public byte gender;
+   public byte job;
+   //时装外观
+   public byte appearance;
+   public byte s_1;
    public short t;
    public short u;
-   private String v = "";
-   private short w = 0;
-   private short x = 0;
-   private short y = 0;
-   private int[] z = new int[4];
-   private int[] A = new int[4];
+   //坐骑
+   private String rideIcon = "";
+   private short h = 0;
+   private short s = 0;
+   private short l = 0;
+   //移动动画
+   private int[] moveAnimation = new int[4];
+   //攻击动画
+   private int[] attackAnimation = new int[4];
 
-   public final void a(GameSceneController var1, DataInputStream var2) throws IOException {
-      var2.readByte();
-      this.b = var2.readUTF();
-      super.name = var2.readUTF();
-      this.c = var2.readUTF();
-      this.n = LoadingPage.pickColor(var2.readByte());
-      this.o = var2.readShort();
-      this.p = var2.readByte();
-      this.q = var2.readByte();
-      this.s = var2.readByte();
-      this.r = var2.readByte();
-      this.t = var2.readShort();
-      this.u = var2.readShort();
-      this.v = var2.readUTF();
-      if (!this.v.equals("")) {
-         this.w = var2.readShort();
-         this.x = var2.readShort();
-         this.y = var2.readShort();
+   public final void a(GameSceneController gameSceneController, DataInputStream dis) throws IOException {
+      dis.readByte();
+      this.roleId = dis.readUTF();
+      super.name = dis.readUTF();
+      this.c = dis.readUTF();
+      this.color = LoadingPage.pickColor(dis.readByte());
+      this.o = dis.readShort();
+      this.gender = dis.readByte();
+      this.job = dis.readByte();
+      this.s_1 = dis.readByte();
+      this.appearance = dis.readByte();
+      this.t = dis.readShort();
+      this.u = dis.readShort();
+      this.rideIcon = dis.readUTF();
+      if (!this.rideIcon.equals("")) {
+         this.h = dis.readShort();
+         this.s = dis.readShort();
+         this.l = dis.readShort();
       }
 
-      if (this.b.equals(GlobalStatus.roleId_2)) {
-         GlobalStatus.bs = (short)this.s;
+      if (this.roleId.equals(GlobalStatus.roleId_2)) {
+         GlobalStatus.bs = (short)this.s_1;
       }
 
-      super.l = var1.sceneRefreshCoordinator.j;
-      super.m = var1.sceneRefreshCoordinator.k;
-      super.j = var1.sceneRefreshCoordinator.j;
-      super.k = var1.sceneRefreshCoordinator.k;
-      this.a();
+      super.l_1 = gameSceneController.sceneRefreshCoordinator.j;
+      super.m = gameSceneController.sceneRefreshCoordinator.k;
+      super.j = gameSceneController.sceneRefreshCoordinator.j;
+      super.k = gameSceneController.sceneRefreshCoordinator.k;
+      this.setRoleResId();
       this.a(true);
    }
 
-   private void a() {
-      this.z[1] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)1, this.r, false, this.v), (byte)2);
-      this.A[1] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)1, this.r, true, this.v), (byte)2);
-      this.z[3] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)3, this.r, false, this.v), (byte)2);
-      this.A[3] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)3, this.r, true, this.v), (byte)2);
-      this.z[0] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)0, this.r, false, this.v), (byte)2);
-      this.A[0] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)0, this.r, true, this.v), (byte)2);
-      this.z[2] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)2, this.r, false, this.v), (byte)2);
-      this.A[2] = ResourceManager.buildResourceId((String) MainCanvas.a(this.q, this.p, (byte)2, this.r, true, this.v), (byte)2);
+   private void setRoleResId() {
+       this.moveAnimation[0] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.job, this.gender, (byte)0, this.appearance, false, this.rideIcon), (byte)2);
+       this.moveAnimation[1] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.job, this.gender, (byte)1, this.appearance, false, this.rideIcon), (byte)2);
+       this.moveAnimation[3] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.job, this.gender, (byte)3, this.appearance, false, this.rideIcon), (byte)2);
+       this.moveAnimation[2] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.job, this.gender, (byte)2, this.appearance, false, this.rideIcon), (byte)2);
+
+       this.attackAnimation[0] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.job, this.gender, (byte)0, this.appearance, true, this.rideIcon), (byte)2);
+       this.attackAnimation[1] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.job, this.gender, (byte)1, this.appearance, true, this.rideIcon), (byte)2);
+       this.attackAnimation[2] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.job, this.gender, (byte)2, this.appearance, true, this.rideIcon), (byte)2);
+       this.attackAnimation[3] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(this.job, this.gender, (byte)3, this.appearance, true, this.rideIcon), (byte)2);
    }
 
    private void a(boolean var1) {
-      super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
+      super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.attackAnimation[super.h_1] : this.moveAnimation[super.h_1], this.h, this.s, this.l);
       if (super.frame1 == null) {
-         MainCanvas.loadRoleRes(this.q, this.p, (byte)5, this.r, this.v, this.w, this.x, this.y);
-         super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.A[super.h] : this.z[super.h], this.w, this.x, this.y);
+         MainCanvas.loadRoleRes(this.job, this.gender, (byte)5, this.appearance, this.rideIcon, this.h, this.s, this.l);
+         super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.attackAnimation[super.h_1] : this.moveAnimation[super.h_1], this.h, this.s, this.l);
          if (super.frame1 == null) {
-            this.r = 0;
-            this.a();
-            super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.A[super.h] : this.z[super.h]);
+            this.appearance = 0;
+            this.setRoleResId();
+            super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.attackAnimation[super.h_1] : this.moveAnimation[super.h_1]);
             if (super.frame1 == null) {
-               MainCanvas.loadRoleRes(this.q, this.p, super.h, this.r, this.v, this.w, this.x, this.y);
-               super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.A[super.h] : this.z[super.h]);
+               MainCanvas.loadRoleRes(this.job, this.gender, super.h_1, this.appearance, this.rideIcon, this.h, this.s, this.l);
+               super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.attackAnimation[super.h_1] : this.moveAnimation[super.h_1]);
             }
          }
       }
@@ -104,17 +109,17 @@ public final class bp_1 extends SceneEntity {
 
                         if (var9[0] != var8[0]) {
                            if (var9[0] > var8[0]) {
-                              super.h = 2;
+                              super.h_1 = 2;
                            } else {
-                              super.h = 0;
+                              super.h_1 = 0;
                            }
 
                            this.a(false);
                         } else if (var9[1] != var8[1]) {
                            if (var9[1] > var8[1]) {
-                              super.h = 3;
+                              super.h_1 = 3;
                            } else {
-                              super.h = 1;
+                              super.h_1 = 1;
                            }
 
                            this.a(false);
@@ -163,17 +168,17 @@ public final class bp_1 extends SceneEntity {
 
                if (var7[0] != var5[0]) {
                   if (var7[0] > var5[0]) {
-                     super.h = 2;
+                     super.h_1 = 2;
                   } else {
-                     super.h = 0;
+                     super.h_1 = 0;
                   }
 
                   this.a(false);
                } else if (var7[1] != var5[1]) {
                   if (var7[1] > var5[1]) {
-                     super.h = 3;
+                     super.h_1 = 3;
                   } else {
-                     super.h = 1;
+                     super.h_1 = 1;
                   }
 
                   this.a(false);
@@ -194,13 +199,13 @@ public final class bp_1 extends SceneEntity {
    }
 
    private boolean a(byte b, int i) {
-      bp_1 bpVar;
-      if (this.s == 1) {
+      Role bpVar;
+      if (this.s_1 == 1) {
          return true;
       }
       if (GlobalStatus.teamBonus != null) {
          for (int i2 = 0; i2 < GlobalStatus.teamBonus.length; i2++) {
-            if (GlobalStatus.teamBonus[i2].s == 1) {
+            if (GlobalStatus.teamBonus[i2].s_1 == 1) {
                bpVar = GlobalStatus.teamBonus[i2];
                break;
             }
@@ -209,7 +214,7 @@ public final class bp_1 extends SceneEntity {
       } else {
          bpVar = null;
       }
-      bp_1 bpVar2 = bpVar;
+      Role bpVar2 = bpVar;
       if (i == 0) {
          if (bpVar2.a == 0) {
             if (b == 1) {

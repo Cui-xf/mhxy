@@ -18,7 +18,7 @@ public class by {
          case 2:
             return ((bl)this.c).m();
          case 3:
-            return ((bp_1)this.c).m();
+            return ((Role)this.c).m();
          case 4:
             return ((au)this.c).a();
          case 5:

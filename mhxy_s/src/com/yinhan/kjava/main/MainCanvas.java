@@ -256,7 +256,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     /**
      * 字体资源路径拼接临时 StringBuffer（复用以避免频繁分配）
      */
-    private static StringBuffer aO = new StringBuffer();
+    private static StringBuffer stringBuffer = new StringBuffer();
 
     // -------------------------------------------------------------------------
     // 等待响应 / 超时
@@ -1548,7 +1548,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         if (gameSceneController != null) {
             gameSceneController.c = false;
             gameSceneController.lastCurrentSceneMode = -1;
-            GameSceneController.R();
+            GameSceneController.leaveTeam();
             if (gameSceneController.overlayDialogController != null) {
                 gameSceneController.overlayDialogController.l();
             }
@@ -1575,22 +1575,22 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         this.serviceRepaints();
     }
 
-    public static void loadRoleRes(byte var0, byte var1, byte var2, byte var3, String var4, short var5, short var6, short var7) {
+    public static void loadRoleRes(byte job, byte gender, byte direction, byte appearance, String rideIcon, short h, short s, short l) {
         tempResNameList.removeAllElements();
-        if (var2 == 5) {
-            tempResNameList.addElement(a(var0, var1, (byte) 1, var3, false, var4));
-            tempResNameList.addElement(a(var0, var1, (byte) 3, var3, false, var4));
-            tempResNameList.addElement(a(var0, var1, (byte) 3, var3, true, var4));
-            tempResNameList.addElement(a(var0, var1, (byte) 0, var3, false, var4));
-            tempResNameList.addElement(a(var0, var1, (byte) 0, var3, true, var4));
-            tempResNameList.addElement(a(var0, var1, (byte) 2, var3, false, var4));
-            tempResNameList.addElement(a(var0, var1, (byte) 2, var3, true, var4));
+        if (direction == 5) {
+            tempResNameList.addElement(buildRoleResStr(job, gender, (byte) 1, appearance, false, rideIcon));
+            tempResNameList.addElement(buildRoleResStr(job, gender, (byte) 3, appearance, false, rideIcon));
+            tempResNameList.addElement(buildRoleResStr(job, gender, (byte) 3, appearance, true, rideIcon));
+            tempResNameList.addElement(buildRoleResStr(job, gender, (byte) 0, appearance, false, rideIcon));
+            tempResNameList.addElement(buildRoleResStr(job, gender, (byte) 0, appearance, true, rideIcon));
+            tempResNameList.addElement(buildRoleResStr(job, gender, (byte) 2, appearance, false, rideIcon));
+            tempResNameList.addElement(buildRoleResStr(job, gender, (byte) 2, appearance, true, rideIcon));
         } else {
-            tempResNameList.addElement(a(var0, var1, var2, var3, false, var4));
+            tempResNameList.addElement(buildRoleResStr(job, gender, direction, appearance, false, rideIcon));
         }
 
-        for (int var8 = 0; var8 < tempResNameList.size(); ++var8) {
-            role.loadAnimation((String) tempResNameList.elementAt(var8), var5, var6, var7);
+        for (int i = 0; i < tempResNameList.size(); ++i) {
+            role.loadAnimation((String) tempResNameList.elementAt(i), h, s, l);
         }
 
         tempResNameList.removeAllElements();
@@ -1601,26 +1601,26 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             var3 = 0;
         }
 
-        return "" + GlobalConfig.roleGenderResIds[var0] + GlobalConfig.roleJobResIds[var1] + var3 + GlobalConfig.X[var2] + (var4 ? "4" : "");
+        return "" + GlobalConfig.roleJobResIds[var0] + GlobalConfig.roleGenderResIds[var1] + var3 + GlobalConfig.roleDirectionResId[var2] + (var4 ? "4" : "");
     }
 
-    public static String a(byte var0, byte var1, byte var2, byte var3, boolean var4, String var5) {
+    public static String buildRoleResStr(byte job, byte gender, byte direction, byte appearance, boolean isAttack, String rideIcon) {
         if (GlobalConfig.ziTiMoShi == 2) {
-            var3 = 0;
+            appearance = 0;
         }
 
         if (GlobalConfig.hasRideRes) {
-            aO.delete(0, aO.length());
-            aO.append("");
-            aO.append(var5);
-            aO.append(GlobalConfig.roleGenderResIds[var0]);
-            aO.append(GlobalConfig.roleJobResIds[var1]);
-            aO.append(var3);
-            aO.append(GlobalConfig.X[var2]);
-            aO.append(var4 ? "4" : "");
-            return aO.toString();
+            stringBuffer.delete(0, stringBuffer.length());
+            stringBuffer.append("");
+            stringBuffer.append(rideIcon);
+            stringBuffer.append(GlobalConfig.roleJobResIds[job]);
+            stringBuffer.append(GlobalConfig.roleGenderResIds[gender]);
+            stringBuffer.append(appearance);
+            stringBuffer.append(GlobalConfig.roleDirectionResId[direction]);
+            stringBuffer.append(isAttack ? "4" : "");
+            return stringBuffer.toString();
         } else {
-            return "" + GlobalConfig.roleGenderResIds[var0] + GlobalConfig.roleJobResIds[var1] + var3 + GlobalConfig.X[var2] + (var4 ? "4" : "");
+            return "" + GlobalConfig.roleJobResIds[job] + GlobalConfig.roleGenderResIds[gender] + appearance + GlobalConfig.roleDirectionResId[direction] + (isAttack ? "4" : "");
         }
     }
 
@@ -2127,7 +2127,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     }
 
     public Animation loadRoleFrame(Animation var1, byte roleGender, byte roleJob, byte var4, byte var5, boolean var6) {
-        String resId = "f" + GlobalConfig.roleGenderResIds[roleGender] + GlobalConfig.roleJobResIds[roleJob] + var5 + GlobalConfig.X[3] + (var6 ? 1 : 2);
+        String resId = "f" + GlobalConfig.roleJobResIds[roleGender] + GlobalConfig.roleGenderResIds[roleJob] + var5 + GlobalConfig.roleDirectionResId[3] + (var6 ? 1 : 2);
         role.loadResource(resId);
         Animation frame = role.getAnimationByNameFromCache(resId);
         if (frame != null) {

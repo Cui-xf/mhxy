@@ -80,8 +80,8 @@ public final class ab_1 {
             return GlobalStatus.bu;
          } else {
             for(int var0 = 0; var0 < GlobalStatus.teamBonus.length; ++var0) {
-               if (GlobalStatus.teamBonus[var0].b.equals(GlobalStatus.roleId_2)) {
-                  if (GlobalStatus.teamBonus[var0].s == 1) {
+               if (GlobalStatus.teamBonus[var0].roleId.equals(GlobalStatus.roleId_2)) {
+                  if (GlobalStatus.teamBonus[var0].s_1 == 1) {
                      if (GlobalStatus.bu) {
                         return true;
                      }

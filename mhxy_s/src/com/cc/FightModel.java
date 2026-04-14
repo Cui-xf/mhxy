@@ -1273,9 +1273,9 @@ public final class FightModel {
                      }
                   } else if (var4.f == 7) {
                      for(int var7 = 0; var7 < GlobalStatus.teamBonus.length; ++var7) {
-                        if (GlobalStatus.teamBonus[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.teamBonus[var7].s == 1) {
+                        if (GlobalStatus.teamBonus[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.teamBonus[var7].s_1 == 1) {
                            MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
-                        } else if (GlobalStatus.teamBonus[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.teamBonus[var7].s == 0 && !GlobalStatus.fightData[var17].d()) {
+                        } else if (GlobalStatus.teamBonus[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.teamBonus[var7].s_1 == 0 && !GlobalStatus.fightData[var17].d()) {
                            if (GlobalStatus.fightData[var17].k == 1 || GlobalStatus.fightData[var17].k == 4) {
                               GlobalStatus.fightData[var17].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], (byte)0);
                            }

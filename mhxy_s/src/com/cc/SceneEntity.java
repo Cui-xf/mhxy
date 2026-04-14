@@ -13,11 +13,11 @@ public abstract class SceneEntity {
    public String name;
    public Vector f = new Vector();
    public Animation frame1;
-   public byte h = 3;
+   public byte h_1 = 3;
    short[] i;
    public short j = -1;
    public short k = -1;
-   public short l = -1;
+   public short l_1 = -1;
    public short m = -1;
 
    public final short m() {

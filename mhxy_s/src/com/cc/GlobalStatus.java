@@ -88,7 +88,7 @@ public final class GlobalStatus {
     /**
      * 队伍加成
      */
-    public static bp_1[] teamBonus;
+    public static Role[] teamBonus;
     /**
      * 当前场景/战斗标识 UTF 字符串（J()中赋值）
      */
@@ -4049,12 +4049,12 @@ public final class GlobalStatus {
         if (teamBonus != null) {
             for (int var0 = 0; var0 < teamBonus.length; ++var0) {
                 if (teamBonus[var0] != null) {
-                    bp_1 var1;
+                    Role var1;
                     if ((var1 = teamBonus[var0]).frame1 != null) {
                         Animation var2 = var1.frame1;
                     }
 
-                    var1.b = null;
+                    var1.roleId = null;
                     var1.name = null;
                     var1.c = null;
                     var1.frame1 = null;
