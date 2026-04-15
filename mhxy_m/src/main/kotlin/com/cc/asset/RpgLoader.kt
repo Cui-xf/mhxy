@@ -25,11 +25,11 @@ fun buildRpgTextureRegion(id: Short, key: Int?, dataProvider: DataProvider): Rpg
 }
 
 // PNG 格式常量（与原游戏一致）
-private val PNG_HEADER = byteArrayOf(-119, 80, 78, 71, 13, 10, 26, 10)
-private val PNG_IEND = byteArrayOf(0, 0, 0, 0, 73, 69, 78, 68, -82, 66, 96, -126)
-private val PNG_CHUNKS = arrayOf("sBIT", "IHDR", "PLTE", "tRNS", "IDAT")
+val PNG_HEADER = byteArrayOf(-119, 80, 78, 71, 13, 10, 26, 10)
+val PNG_IEND = byteArrayOf(0, 0, 0, 0, 73, 69, 78, 68, -82, 66, 96, -126)
+val PNG_CHUNKS = arrayOf("sBIT", "IHDR", "PLTE", "tRNS", "IDAT")
 
-private fun parsePixmap(data: Array<ByteArray>): Pixmap {
+fun parsePixmap(data: Array<ByteArray>): Pixmap {
     val out = ByteArrayOutputStream()
     out.write(PNG_HEADER)
     for (i in 1 until data.size) {
@@ -51,7 +51,7 @@ private fun parsePixmap(data: Array<ByteArray>): Pixmap {
     return Pixmap(out.toByteArray(), 0, out.size())
 }
 
-private fun parseRegionList(data0: ByteArray, w: Int, h: Int): List<Rectangle> {
+fun parseRegionList(data0: ByteArray, w: Int, h: Int): List<Rectangle> {
     return if (data0.size > 4) {
         // data[0] 头2字节为 flags，从第3字节读切片
         DataInputStream(ByteArrayInputStream(data0, 2, data0.size - 2)).use { sliceDis ->
@@ -91,7 +91,7 @@ fun buildRpgAnimationRes(id: Short, key: Int, dataProvider: DataProvider): RpgAn
     return RpgAnimationRes(id, picMap, frameDuration, data)
 }
 
-private fun buildAnimation(data: ByteArray): Pair<Float, Array<Array<RpgFrame>>> {
+fun buildAnimation(data: ByteArray): Pair<Float, Array<Array<RpgFrame>>> {
     return DataInputStream(ByteArrayInputStream(data)).use { dis ->
         val packetNum = dis.readByte().toInt()
         // 跳过包围盒 x,y,w,h
