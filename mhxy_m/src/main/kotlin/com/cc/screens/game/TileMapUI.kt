@@ -41,7 +41,7 @@ class TileMapUI(assetLoader: AssetLoader) : UIComponent(assetLoader) {
         animTime += delta
         renderMap(batch)
         if (Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
-            index++
+//            index++
         }
     }
 

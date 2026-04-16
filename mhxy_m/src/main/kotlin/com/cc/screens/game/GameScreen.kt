@@ -2,7 +2,7 @@ package com.cc.screens.game
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
-import com.cc.asset.AssetManagerFactory
+import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.asset.RpgAnimation
 import com.cc.render.drawAnimation
 import com.cc.screens.AbstractScreen
@@ -11,20 +11,15 @@ class GameScreen : AbstractScreen() {
     private val tileMap = TileMapUI(this.assetLoader)
 
     // 朝右动画（向右/向下移动），方向后缀0；格式：{gender}{job}{variant}{dirSuffix}
-    private val animRight by resource(
-        AssetManagerFactory.PUBLIC_ASSET,
-        "rpg/role/3101.anim",
-        RpgAnimation::class
-    )
+    private val animRight by resource(PUBLIC_ASSET, "rpg/role/3101.anim", RpgAnimation::class)
+
+    private val a by resource(PUBLIC_ASSET, "rpg/petfight/295_48641688.anim", RpgAnimation::class)
 
     // 朝左动画（向左/向上移动），方向后缀1
-    private val animLeft by resource(
-        AssetManagerFactory.PUBLIC_ASSET,
-        "rpg/role/3100.anim",
-        RpgAnimation::class
-    )
+    private val animLeft by resource(PUBLIC_ASSET, "rpg/role/3100.anim", RpgAnimation::class)
 
     private var animTime = 0f
+    private var animTime2 = 0f
     private var facingLeft = false
 
     private val speed = 80f
@@ -32,6 +27,8 @@ class GameScreen : AbstractScreen() {
     private var roleMapY = 100f
 
     override fun update(delta: Float) {
+        animTime2 += delta
+
         val map = tileMap.currentMap
 
         // 处理移动输入
@@ -93,6 +90,8 @@ class GameScreen : AbstractScreen() {
         val frames = anim.getKeyFrame(animTime, true) ?: return
         batch.begin()
         batch.drawAnimation(frames, screenX, screenY)
+        val keyFrame = a.getKeyFrame(animTime2, true)
+        batch.drawAnimation(keyFrame, screenX + 20, screenY + 20)
         batch.end()
     }
 }
