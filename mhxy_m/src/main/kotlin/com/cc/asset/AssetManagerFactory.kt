@@ -8,10 +8,10 @@ import com.badlogic.gdx.utils.Disposable
 
 object AssetManagerFactory : Disposable {
     val PUBLIC_ASSET = create().also {
-        it.setLoader(RuleAsset::class.java, ".rule", RuleAssetLoader(it.fileHandleResolver))
-        it.setLoader(RpgAnimation::class.java, RpgAnimationLoader(it.fileHandleResolver))
-        it.setLoader(TextureRegion::class.java, ".rt", RpgTextureRegionLoader(it.fileHandleResolver))
-        it.setLoader(TileMap::class.java, RpgTailMapLoader(it.fileHandleResolver))
+//        it.setLoader(RuleAsset::class.java, ".rule", RuleAssetLoader(it.fileHandleResolver))
+//        it.setLoader(RpgAnimation::class.java, RpgAnimationLoader(it.fileHandleResolver))
+//        it.setLoader(TextureRegion::class.java, ".rt", RpgTextureRegionLoader(it.fileHandleResolver))
+//        it.setLoader(TileMap::class.java, RpgTailMapLoader(it.fileHandleResolver))
     }
 
     fun create(): AssetManager = AssetManager(PrefixFileHandleResolver(ClasspathFileHandleResolver(), "assets/"))

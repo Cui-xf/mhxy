@@ -9,11 +9,12 @@ import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.Disposable
+import kotlinx.serialization.Serializable
 
 
 class RpgAnimationLoader(resolver: FileHandleResolver) :
     AsynchronousAssetLoader<RpgAnimation, AssetLoaderParameters<RpgAnimation>>(resolver) {
-    private var rpgAnimation: RpgAnimationRes? = null
+//    private var rpgAnimation: RpgAnimationRes? = null
 
     override fun loadAsync(
         assetManager: AssetManager,
@@ -21,16 +22,17 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
         file: FileHandle,
         param: AssetLoaderParameters<RpgAnimation>?
     ) {
-        val (fileName, name) = parseResourceName(name)
-        val ruleAsset = assetManager.get<RuleAsset>("${fileName}.rule")
-        val key = hashKey("${name}s")
-        val dirDataProvider =
-            if (fileName.endsWith("icon") || fileName.endsWith("petfight") || fileName.endsWith("role")) {
-                DirDataProvider(this, ruleAsset, fileName)
-            } else {
-                SingleDataProvider(this, ruleAsset, fileName)
-            }
-        rpgAnimation = buildRpgAnimationRes(-1, key, dirDataProvider)
+//        val (fileName, name) = parseResourceName(name)
+//        val ruleAsset = assetManager.get<RuleAsset>("${fileName}.rule")
+//        val key = hashKey("${name}s")
+//        val dirDataProvider =
+//            if (fileName.endsWith("icon") || fileName.endsWith("petfight") || fileName.endsWith("role")) {
+//                DirDataProvider(this, ruleAsset, fileName)
+//            } else {
+//                SingleDataProvider(this, ruleAsset, fileName)
+//            }
+//        rpgAnimation = buildRpgAnimationRes(-1, key, dirDataProvider)
+        TODO()
     }
 
     override fun loadSync(
@@ -39,9 +41,10 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
         file: FileHandle,
         param: AssetLoaderParameters<RpgAnimation>?
     ): RpgAnimation {
-        val animation = rpgAnimation?.toRpgAnimation() ?: throw RuntimeException(name)
-        rpgAnimation = null
-        return animation
+//        val animation = rpgAnimation?.toRpgAnimation() ?: throw RuntimeException(name)
+//        rpgAnimation = null
+//        return animation
+        TODO()
     }
 
     override fun getDependencies(
@@ -49,10 +52,26 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
         file: FileHandle,
         param: AssetLoaderParameters<RpgAnimation>?
     ): com.badlogic.gdx.utils.Array<AssetDescriptor<*>?>? {
-        val (fileName) = parseResourceName(name)
-        return com.badlogic.gdx.utils.Array.with(RuleAssetDescriptor("${fileName}.rule"))
+        return null
     }
 }
+
+@Serializable
+data class AnimT(
+    val duration: Float,
+    val frames: List<List<FrameT>>,
+)
+
+@Serializable
+data class FrameT(
+    val pic: String,
+    val index: Int,
+    val transX: Int, //x平移
+    val transY: Int, //y平移
+    val flipX: Boolean, //水平翻转
+    val flipY: Boolean, //竖直翻转
+    val rotation: Float,  //旋转
+)
 
 class RpgAnimation(frameDuration: Float, frames: Array<List<Frame>>) :
     Animation<List<Frame>>(frameDuration, *frames), Disposable {
