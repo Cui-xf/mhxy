@@ -23,7 +23,7 @@ class RoleSelectScreen : AbstractScreen() {
     private val windowY = (VIRTUAL_H - windowH) / 2
 
     private val roleList = listOf(
-        RoleInfo("欧阳娜娜", 6, "rpg/role/f31112", "rpg/role/f31111"), null, null, null
+        RoleInfo("欧阳娜娜", 6, "rpg/role/f31112.anim", "rpg/role/f31111.anim"), null, null, null
     )
     private val rolePanel = RoleGridPanel(assetLoader, roleList)
     private val infoPanel = InfoPanel(assetLoader)
@@ -54,11 +54,6 @@ class RoleSelectScreen : AbstractScreen() {
         timer += delta
         backGround.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
         window.render(batch, sr, windowX, windowY, windowW, windowH, delta)
-    }
-
-    override fun dispose() {
-        sr.dispose()
-        super.dispose()
     }
 }
 

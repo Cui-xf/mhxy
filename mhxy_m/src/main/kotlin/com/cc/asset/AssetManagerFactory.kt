@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Disposable
 object AssetManagerFactory : Disposable {
     val PUBLIC_ASSET = create().also {
         it.setLoader(RpgAnimation::class.java, RpgAnimationLoader(it.fileHandleResolver))
-        it.setLoader(TextureRegion::class.java, ".rt", RpgPicLoader(it.fileHandleResolver))
+        it.setLoader(TextureRegion::class.java, RpgPicLoader(it.fileHandleResolver))
         it.setLoader(TileMap::class.java, RpgTailMapLoader(it.fileHandleResolver))
     }
 

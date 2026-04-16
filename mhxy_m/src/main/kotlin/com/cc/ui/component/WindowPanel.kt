@@ -16,12 +16,12 @@ class WindowPanel(
     var bottomText: String = "",
     block: UIContainer.() -> Unit,
 ) : UIContainer(assetLoader, block) {
-    private val lu by resource(PUBLIC_ASSET, "rpg/publicUI/lu.rt", TextureRegion::class)
-    private val ld by resource(PUBLIC_ASSET, "rpg/publicUI/ld.rt", TextureRegion::class)
-    private val rd by resource(PUBLIC_ASSET, "rpg/publicUI/rd.rt", TextureRegion::class)
-    private val titleImage by resource(PUBLIC_ASSET, "rpg/publicUI/title.rt", TextureRegion::class)
-    private val closeImage by resource(PUBLIC_ASSET, "rpg/publicUI/close.rt", TextureRegion::class)
-    private val bottomImage by resource(PUBLIC_ASSET, "rpg/publicUI/button1.rt", TextureRegion::class)
+    private val lu by resource(PUBLIC_ASSET, "rpg/publicUI/lu.pic", TextureRegion::class)
+    private val ld by resource(PUBLIC_ASSET, "rpg/publicUI/ld.pic", TextureRegion::class)
+    private val rd by resource(PUBLIC_ASSET, "rpg/publicUI/rd.pic", TextureRegion::class)
+    private val titleImage by resource(PUBLIC_ASSET, "rpg/publicUI/title.pic", TextureRegion::class)
+    private val closeImage by resource(PUBLIC_ASSET, "rpg/publicUI/close.pic", TextureRegion::class)
+    private val bottomImage by resource(PUBLIC_ASSET, "rpg/publicUI/button1.pic", TextureRegion::class)
 
     override fun renderSelf(batch: SpriteBatch, sr: ShapeRenderer, cx: Float, cy: Float, cw: Float, ch: Float) {
         sr.begin(ShapeType.Filled)

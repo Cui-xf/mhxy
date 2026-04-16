@@ -22,8 +22,8 @@ object BaseBackGround : UIComponent(CommonAssetLoader), Disposable {
     private val light0 = Texture(Gdx.files.classpath("assets/light_0.png"))
     private val light1 = Texture(Gdx.files.classpath("assets/light_1.png"))
 
-    private val hudie by resource(PUBLIC_ASSET, "rpg/cartoon/hudie", RpgAnimation::class)
-    private val hudie2 by resource(PUBLIC_ASSET, "rpg/cartoon/hudie_2", RpgAnimation::class)
+    private val hudie by resource(PUBLIC_ASSET, "rpg/cartoon/hudie.anim", RpgAnimation::class)
+    private val hudie2 by resource(PUBLIC_ASSET, "rpg/cartoon/hudie_2.anim", RpgAnimation::class)
 
     // 原始绘制坐标：defaultWidth-100, defaultHigh-100，屏幕 240×320 → (140, 220)
     private val ANIM_X = VIRTUAL_W - 100f

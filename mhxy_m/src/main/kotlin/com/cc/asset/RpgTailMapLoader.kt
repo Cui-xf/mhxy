@@ -9,6 +9,7 @@ import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.utils.Disposable
+import com.cc.parseResourceName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
@@ -25,21 +26,23 @@ class RpgTailMapLoader(resolver: FileHandleResolver) :
         p2: FileHandle,
         p3: AssetLoaderParameters<TileMap>?
     ) {
-        val mate = loadMate("", "")
+        val (dir, name) = parseResourceName(p1)
+        val mate = loadMate(dir, name)
         val mapBlock = mate.mapBlock.flatMap { it.toList() }.filterNotNull()
         val fixedObj = mate.fixedObj
         mate.moveObj.forEach {
             if (animMap[it.anim] == null) {
-                animMap[it.anim] = loadAnim("", it.anim)
+                animMap[it.anim] = loadAnim(dir, it.anim)
             }
         }
         val animPic = animMap.values.flatMap { anim -> anim.frames.flatMap { it.toList() } }
         (mapBlock + fixedObj + animPic).forEach {
             if (picMap[it.pic] == null) {
-                val pic = loadPic("", it.pic)
+                val pic = loadPic(dir, it.pic)
                 picMap[it.pic] = pic
             }
         }
+        this.mate = mate
     }
 
 

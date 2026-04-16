@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.Disposable
+import com.cc.parseResourceName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 

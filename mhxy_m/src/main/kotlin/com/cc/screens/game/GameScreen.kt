@@ -13,14 +13,14 @@ class GameScreen : AbstractScreen() {
     // 朝右动画（向右/向下移动），方向后缀0；格式：{gender}{job}{variant}{dirSuffix}
     private val animRight by resource(
         AssetManagerFactory.PUBLIC_ASSET,
-        "rpg/role/3100",
+        "rpg/role/3101.anim",
         RpgAnimation::class
     )
 
     // 朝左动画（向左/向上移动），方向后缀1
     private val animLeft by resource(
         AssetManagerFactory.PUBLIC_ASSET,
-        "rpg/role/3101",
+        "rpg/role/3100.anim",
         RpgAnimation::class
     )
 

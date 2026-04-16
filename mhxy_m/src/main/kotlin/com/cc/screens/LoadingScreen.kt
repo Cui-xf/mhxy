@@ -41,14 +41,14 @@ class LoadingScreen : AbstractScreen() {
         // 只加载公共资源，场景专属资源由各场景自己加载
         CommonAssetLoader = AssetLoader()
         BaseBackGround.resume()
-        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/lu.rt", TextureRegion::class)
-        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/ld.rt", TextureRegion::class)
-        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/rd.rt", TextureRegion::class)
-        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/title.rt", TextureRegion::class)
-        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/close.rt", TextureRegion::class)
-        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/button1.rt", TextureRegion::class)
-        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/role/f31111", RpgAnimation::class)
-        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/role/f31112", RpgAnimation::class)
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/lu.pic", TextureRegion::class)
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/ld.pic", TextureRegion::class)
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/rd.pic", TextureRegion::class)
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/title.pic", TextureRegion::class)
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/close.pic", TextureRegion::class)
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/button1.pic", TextureRegion::class)
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/role/f31111.anim", RpgAnimation::class)
+        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/role/f31112.anim", RpgAnimation::class)
     }
 
     override fun update(delta: Float) {
@@ -94,8 +94,8 @@ class LoadingScreen : AbstractScreen() {
         )
         sr.end()
         if (PUBLIC_ASSET.isFinished && CommonAssetLoader.isFinished() && progress >= 100) {
-//            MhxyGame.setScreen(TitleScreen())
-            MhxyGame.setScreen(GameScreen())
+            MhxyGame.setScreen(TitleScreen())
+//            MhxyGame.setScreen(GameScreen())
         }
     }
 }

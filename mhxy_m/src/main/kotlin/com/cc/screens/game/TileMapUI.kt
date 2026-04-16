@@ -16,11 +16,11 @@ import com.cc.ui.component.UIComponent
 class TileMapUI(assetLoader: AssetLoader) : UIComponent(assetLoader) {
     private var index = 1
     private val list = listOf(
-        resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/map/1", TileMap::class),
-        resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/map/2", TileMap::class),
-        resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/map/3", TileMap::class),
-        resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/map/4", TileMap::class),
-        resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/map/5", TileMap::class),
+        resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/map/0_1.tmap", TileMap::class),
+        resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/map/0_4.tmap", TileMap::class),
+        resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/map/0_14.tmap", TileMap::class),
+        resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/map/0_20.tmap", TileMap::class),
+        resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/map/0_78.tmap", TileMap::class),
     )
     private lateinit var map: TileMap
     var currentMap: TileMap? = null
@@ -41,7 +41,7 @@ class TileMapUI(assetLoader: AssetLoader) : UIComponent(assetLoader) {
         animTime += delta
         renderMap(batch)
         if (Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
-//            index++
+            index++
         }
     }
 
