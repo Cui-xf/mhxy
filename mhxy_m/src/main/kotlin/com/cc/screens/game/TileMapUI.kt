@@ -81,16 +81,16 @@ class TileMapUI(assetLoader: AssetLoader) : UIComponent(assetLoader) {
     }
 
     private fun renderMoveObj(batch: SpriteBatch, camX: Float, camY: Float) {
-        for (frame in map.moveObj) {
-            batch.drawFrame(frame, -camX, -camY)
-        }
+//        for (frame in map.moveObj) {
+//            batch.drawFrame(frame, -camX, -camY)
+//        }
     }
 
     // animationObj：x/y 是地图绝对坐标，drawAnimation 内部 originX + frame.transX 是各 sprite 帧内偏移
     private fun renderAnimationObj(batch: SpriteBatch, camX: Float, camY: Float) {
-        for (anim in map.animationObj) {
-            val frames = anim.animation.getKeyFrame(animTime, true) ?: continue
-            batch.drawAnimation(frames, anim.x - camX, anim.y - camY)
-        }
+//        for (anim in map.locationAnimations) {
+//            val frames = anim.animation.getKeyFrame(animTime, true) ?: continue
+//            batch.drawAnimation(frames, anim.x - camX, anim.y - camY)
+//        }
     }
 }

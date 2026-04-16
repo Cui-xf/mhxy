@@ -1,0 +1,16 @@
+{
+    "duration": 0.15,
+    "frames": [
+        [
+            {
+                "pic": "72_46740796.pic",
+                "index": 0,
+                "transX": -17,
+                "transY": -46,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            }
+        ]
+    ]
+}

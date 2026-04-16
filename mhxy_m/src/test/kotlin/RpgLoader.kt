@@ -48,27 +48,27 @@ fun parseRegionList(data0: ByteArray, w: Int, h: Int): List<Rect> {
         DataInputStream(ByteArrayInputStream(data0, 2, data0.size - 2)).use { sliceDis ->
             val count = sliceDis.readByte().toInt() and 0xFF
             if (count == 0) {
-                listOf(Rect(0f, 0f, w.toFloat(), h.toFloat()))
+                listOf(Rect(0, 0, w, h))
             } else {
                 val regionList = mutableListOf<Rect>()
                 repeat(count) {
                     regionList += Rect(
-                        sliceDis.readShort().toFloat(),
-                        sliceDis.readShort().toFloat(),
-                        sliceDis.readShort().toFloat(),
-                        sliceDis.readShort().toFloat()
+                        sliceDis.readShort().toInt(),
+                        sliceDis.readShort().toInt(),
+                        sliceDis.readShort().toInt(),
+                        sliceDis.readShort().toInt()
                     )
                 }
                 regionList
             }
         }
     } else {
-        listOf(Rect(0f, 0f, w.toFloat(), h.toFloat()))
+        listOf(Rect(0, 0, w, h))
     }
 }
 
 //==========================
-fun buildAnimation(data: ByteArray, ruleAsset: RuleAsset): AnimT {
+fun buildAnimation(data: ByteArray, ruleAsset: RuleAsset): Anim {
     return DataInputStream(ByteArrayInputStream(data)).use { dis ->
         val packetNum = dis.readByte().toInt()
         // 跳过包围盒 x,y,w,h
@@ -82,7 +82,7 @@ fun buildAnimation(data: ByteArray, ruleAsset: RuleAsset): AnimT {
             }.toList()
         }.toList()
         val frameDuration = dis.readShort().toFloat() / 1000
-        AnimT(frameDuration, data)
+        Anim(frameDuration, data)
     }
 }
 
@@ -98,7 +98,7 @@ private val TRANSFORM_TABLE = arrayOf(
     Triple(true, false, 0f),    // flag=7 → J2ME 4 = flipH
 )
 
-private fun buildFrame(dis: DataInputStream, ruleAsset: RuleAsset): FrameT {
+private fun buildFrame(dis: DataInputStream, ruleAsset: RuleAsset): PicTransIdx {
     val id = dis.readShort()
     val type = dis.readByte()
     val transX = dis.readShort()
@@ -109,14 +109,11 @@ private fun buildFrame(dis: DataInputStream, ruleAsset: RuleAsset): FrameT {
     val (flipX, flipY, rotation) = TRANSFORM_TABLE[transFlag.toInt()]
     val rule = ruleAsset.getRuleById(id)!!
     val pic = "${rule.id}_${rule.key}.pic"
-    if (type.toInt() == 1) {
-        println("type = 1 ,id = $id index = $index")
-    }
-    return FrameT(pic, index.toInt(), transX.toInt(), transY.toInt(), flipX, flipY, rotation)
+    return PicTransIdx(pic, index.toInt(), transX.toInt(), transY.toInt(), flipX, flipY, rotation)
 }
 
 //==========================
-fun buildMapMate(data: ByteArray, ruleAsset: RuleAsset): TileMapT {
+fun buildMapMate(data: ByteArray, ruleAsset: RuleAsset): TileMapMate {
     return DataInputStream(ByteArrayInputStream(data)).use { dis ->
         //spriteIdHsl
         val n = dis.readByte().toInt()
@@ -135,8 +132,8 @@ fun buildMapMate(data: ByteArray, ruleAsset: RuleAsset): TileMapT {
         val collisionBit = Array(collisionCols) {
             Array(collisionRows) {
                 false
-            }
-        }
+            }.toMutableList()
+        }.toMutableList()
         val collisionCount = dis.readShort().toInt()
         repeat(collisionCount) {
             val i = dis.readShort().toInt()
@@ -153,16 +150,18 @@ fun buildMapMate(data: ByteArray, ruleAsset: RuleAsset): TileMapT {
             }.toList()
         }.toList()
 
+        val fixedObj = mutableListOf<PicTransIdx>()
         val fixedObjCount = dis.readShort().toInt()
-        val fixedObj = Array(fixedObjCount) {
+        fixedObj.addAll(Array(fixedObjCount) {
             buildFrame(dis, ruleAsset)
-        }.toList()
+        }.toList())
 
         val moveObjCount = dis.readShort().toInt()
-        val moveObj = Array(moveObjCount) {
+        fixedObj.addAll(Array(moveObjCount) {
             buildFrame(dis, ruleAsset)
-        }.toList()
-        TileMapT(
+        }.toList())
+
+        TileMapMate(
             mapW,
             mapH,
             blockW,
@@ -174,7 +173,7 @@ fun buildMapMate(data: ByteArray, ruleAsset: RuleAsset): TileMapT {
             mapBlock,
             collisionBit,
             fixedObj,
-            moveObj
+            emptyList()
         )
     }
 }

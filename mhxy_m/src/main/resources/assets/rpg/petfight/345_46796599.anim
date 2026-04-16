@@ -1,0 +1,36 @@
+{
+    "duration": 0.2,
+    "frames": [
+        [
+            {
+                "pic": "8_1914399652.pic",
+                "index": 3,
+                "transX": -21,
+                "transY": -17,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "8_1914399652.pic",
+                "index": 2,
+                "transX": -7,
+                "transY": -38,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            }
+        ],
+        [
+            {
+                "pic": "8_1914399652.pic",
+                "index": 1,
+                "transX": -3,
+                "transY": -41,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            }
+        ]
+    ]
+}

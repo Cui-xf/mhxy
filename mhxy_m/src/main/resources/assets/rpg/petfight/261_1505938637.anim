@@ -1,0 +1,157 @@
+{
+    "duration": 0.2,
+    "frames": [
+        [
+            {
+                "pic": "58_722613646.pic",
+                "index": 13,
+                "transX": 6,
+                "transY": 9,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "58_722613646.pic",
+                "index": 3,
+                "transX": 5,
+                "transY": 0,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "58_722613646.pic",
+                "index": 6,
+                "transX": 6,
+                "transY": 11,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "58_722613646.pic",
+                "index": 13,
+                "transX": 0,
+                "transY": 5,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            }
+        ],
+        [
+            {
+                "pic": "58_722613646.pic",
+                "index": 13,
+                "transX": 6,
+                "transY": 10,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "58_722613646.pic",
+                "index": 3,
+                "transX": 5,
+                "transY": 1,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "58_722613646.pic",
+                "index": 7,
+                "transX": 5,
+                "transY": 12,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "58_722613646.pic",
+                "index": 12,
+                "transX": 0,
+                "transY": 5,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            }
+        ],
+        [
+            {
+                "pic": "58_722613646.pic",
+                "index": 13,
+                "transX": 6,
+                "transY": 9,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "58_722613646.pic",
+                "index": 3,
+                "transX": 5,
+                "transY": 0,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "58_722613646.pic",
+                "index": 6,
+                "transX": 6,
+                "transY": 11,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "58_722613646.pic",
+                "index": 13,
+                "transX": 0,
+                "transY": 5,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            }
+        ],
+        [
+            {
+                "pic": "58_722613646.pic",
+                "index": 13,
+                "transX": 6,
+                "transY": 10,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "58_722613646.pic",
+                "index": 3,
+                "transX": 5,
+                "transY": 1,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "58_722613646.pic",
+                "index": 8,
+                "transX": 3,
+                "transY": 11,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "58_722613646.pic",
+                "index": 14,
+                "transX": 0,
+                "transY": 6,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            }
+        ]
+    ]
+}

@@ -1,4 +1,4 @@
-import com.cc.asset.TileMapT
+import com.cc.asset.TileMapMate
 import java.io.ByteArrayInputStream
 import java.io.DataInputStream
 import java.io.File
@@ -6,33 +6,34 @@ import java.util.zip.GZIPInputStream
 
 fun main() {
     val ruleAsset = getRuleAsset()
-//    for (rule in ruleAsset.rules) {
-//        val file = File("/Users/cxf/temp/mhxy/mhxy_s/res/map/${rule.key}.rpg")
-//        if (file.exists()) {
-//            val data = readRpgFileData(file.readBytes())
-//            tryPic(data, "${rule.id}_${rule.key}.png")?.let {
-//                savePic(rule, "map", it)
-//            }
-//            tryAnim(data[0], ruleAsset)?.let {
-//                saveAnim(rule, "map", it)
-//            }
-//            tryTileMap(data[0], ruleAsset)?.let {
-//                saveTileMap(rule, "map", it)
-//            }
-//        } else {
-//            println("文件不存在:${file.absolutePath}")
-//        }
-//    }
+    for (rule in ruleAsset.rules) {
+        //        val file = File("/Users/cxf/temp/mhxy/mhxy_s/res/map/${rule.key}.rpg")
+        val file = File("E:\\WORK\\mhxy\\mhxy_s\\res/map/${rule.key}.rpg")
+        if (file.exists()) {
+            val data = readRpgFileData(file.readBytes())
+            tryPic(data, "${rule.id}_${rule.key}.png")?.let {
+                savePic(rule, "map", it)
+            }
+            tryAnim(data[0], ruleAsset)?.let {
+                saveAnim(rule, "map", it)
+            }
+            tryTileMap(data[0], ruleAsset)?.let {
+                saveTileMap(rule, "map", it)
+            }
+        } else {
+            println("文件不存在:${file.absolutePath}")
+        }
+    }
     for (i in 1..5) {
         val (id, data) = getMate(i)
-        val rule = Rule(0, id)
+        val rule = Rule(id.toInt(), 0)
         tryTileMap(data, ruleAsset)?.let {
             saveTileMap(rule, "map", it)
         }
     }
 }
 
-fun tryTileMap(data: ByteArray, ruleAsset: RuleAsset): TileMapT? {
+fun tryTileMap(data: ByteArray, ruleAsset: RuleAsset): TileMapMate? {
     try {
         return buildMapMate(data, ruleAsset).also {
             println("尝试解码地图成功")
@@ -43,9 +44,9 @@ fun tryTileMap(data: ByteArray, ruleAsset: RuleAsset): TileMapT? {
     }
 }
 
-fun saveTileMap(rule: Rule, name: String, tileMapT: TileMapT) {
+fun saveTileMap(rule: Rule, name: String, tileMapMate: TileMapMate) {
     val fileName = "${rule.id}_${rule.key}"
-    File("${outDir}/${name}/${fileName}.tmap").recreate().writeText(myJson.encodeToString(tileMapT))
+    File("${outDir}/${name}/${fileName}.tmap").recreate().writeText(myJson.encodeToString(tileMapMate))
 }
 
 fun getRuleAsset(): RuleAsset {

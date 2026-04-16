@@ -6,33 +6,35 @@ import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.assets.loaders.AsynchronousAssetLoader
 import com.badlogic.gdx.assets.loaders.FileHandleResolver
 import com.badlogic.gdx.files.FileHandle
+import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.Disposable
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 
 
 class RpgAnimationLoader(resolver: FileHandleResolver) :
     AsynchronousAssetLoader<RpgAnimation, AssetLoaderParameters<RpgAnimation>>(resolver) {
-//    private var rpgAnimation: RpgAnimationRes? = null
+    private var anim: Anim? = null
+    private val picMap = mutableMapOf<String, Pair<Pic, Pixmap>>()
 
     override fun loadAsync(
         assetManager: AssetManager,
-        name: String, //rpg/role/xxx or rpg/carton/hudie
+        name: String,
         file: FileHandle,
         param: AssetLoaderParameters<RpgAnimation>?
     ) {
-//        val (fileName, name) = parseResourceName(name)
-//        val ruleAsset = assetManager.get<RuleAsset>("${fileName}.rule")
-//        val key = hashKey("${name}s")
-//        val dirDataProvider =
-//            if (fileName.endsWith("icon") || fileName.endsWith("petfight") || fileName.endsWith("role")) {
-//                DirDataProvider(this, ruleAsset, fileName)
-//            } else {
-//                SingleDataProvider(this, ruleAsset, fileName)
-//            }
-//        rpgAnimation = buildRpgAnimationRes(-1, key, dirDataProvider)
-        TODO()
+        val (dir, name) = parseResourceName(name)
+        val loadAnim = loadAnim(dir, name)
+        loadAnim.frames.flatMap { it.toList() }
+            .forEach {
+                if (picMap[it.pic] == null) {
+                    val pic = loadPic(dir, it.pic)
+                    picMap[it.pic] = pic
+                }
+            }
+        anim = loadAnim
     }
 
     override fun loadSync(
@@ -41,10 +43,11 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
         file: FileHandle,
         param: AssetLoaderParameters<RpgAnimation>?
     ): RpgAnimation {
-//        val animation = rpgAnimation?.toRpgAnimation() ?: throw RuntimeException(name)
-//        rpgAnimation = null
-//        return animation
-        TODO()
+        return anim?.toRpgAnimation(picMap)
+            ?.also {
+                anim = null
+                picMap.clear()
+            } ?: throw RuntimeException("资源加载失败:${name}")
     }
 
     override fun getDependencies(
@@ -56,14 +59,36 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
     }
 }
 
+fun loadAnim(dir: String, anim: String): Anim {
+    val fileName = "assets/${dir}/${anim}"
+    val json = ClassLoader.getSystemResourceAsStream(fileName)
+        ?.bufferedReader()?.readText()
+        ?: throw RuntimeException("找不到资源: $fileName")
+    return Json.decodeFromString(json)
+}
+
+fun Anim.toRpgAnimation(picMap: Map<String, Pair<Pic, Pixmap>>): RpgAnimation {
+    val array = frames.map { list ->
+        list.map { transIdx -> transIdx.toFrame(picMap) }
+    }.toTypedArray()
+    return RpgAnimation(duration, array)
+}
+
+fun PicTransIdx.toFrame(picMap: Map<String, Pair<Pic, Pixmap>>): Frame {
+    val (picFile, index, transX, transY, flipX, flipY, rotation) = this
+    val (pic, png) = picMap[picFile]!!
+    val textureRegion = pic.toTextureRegion(index, png)
+    return Frame(transX, transY, flipX, flipY, rotation, textureRegion)
+}
+
 @Serializable
-data class AnimT(
+data class Anim(
     val duration: Float,
-    val frames: List<List<FrameT>>,
+    val frames: List<List<PicTransIdx>>,
 )
 
 @Serializable
-data class FrameT(
+data class PicTransIdx(
     val pic: String,
     val index: Int,
     val transX: Int, //x平移

@@ -1,0 +1,54 @@
+{
+    "duration": 0.4,
+    "frames": [
+        [
+            {
+                "pic": "109_47835375.pic",
+                "index": 1,
+                "transX": -8,
+                "transY": -35,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "109_47835375.pic",
+                "index": 2,
+                "transX": -8,
+                "transY": -15,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "109_47835375.pic",
+                "index": 3,
+                "transX": -7,
+                "transY": -24,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            }
+        ],
+        [
+            {
+                "pic": "109_47835375.pic",
+                "index": 1,
+                "transX": -8,
+                "transY": -35,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "109_47835375.pic",
+                "index": 2,
+                "transX": -8,
+                "transY": -15,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            }
+        ]
+    ]
+}

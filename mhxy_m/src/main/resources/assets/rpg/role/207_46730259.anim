@@ -1,0 +1,85 @@
+{
+    "duration": 0.16,
+    "frames": [
+        [
+            {
+                "pic": "16_722822958.pic",
+                "index": 2,
+                "transX": -9,
+                "transY": -36,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "16_722822958.pic",
+                "index": 11,
+                "transX": -7,
+                "transY": -19,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            }
+        ],
+        [
+            {
+                "pic": "16_722822958.pic",
+                "index": 1,
+                "transX": -9,
+                "transY": -35,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "16_722822958.pic",
+                "index": 12,
+                "transX": -7,
+                "transY": -18,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            }
+        ],
+        [
+            {
+                "pic": "16_722822958.pic",
+                "index": 2,
+                "transX": -9,
+                "transY": -36,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "16_722822958.pic",
+                "index": 11,
+                "transX": -7,
+                "transY": -19,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            }
+        ],
+        [
+            {
+                "pic": "16_722822958.pic",
+                "index": 1,
+                "transX": -9,
+                "transY": -35,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "16_722822958.pic",
+                "index": 7,
+                "transX": -7,
+                "transY": -18,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            }
+        ]
+    ]
+}

@@ -1,0 +1,81 @@
+{
+    "duration": 0.4,
+    "frames": [
+        [
+            {
+                "pic": "97_46762899.pic",
+                "index": 2,
+                "transX": -6,
+                "transY": -34,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "97_46762899.pic",
+                "index": 1,
+                "transX": -10,
+                "transY": -22,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "97_46762899.pic",
+                "index": 4,
+                "transX": -8,
+                "transY": -12,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "97_46762899.pic",
+                "index": 6,
+                "transX": -6,
+                "transY": -22,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            }
+        ],
+        [
+            {
+                "pic": "97_46762899.pic",
+                "index": 2,
+                "transX": -6,
+                "transY": -33,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "97_46762899.pic",
+                "index": 4,
+                "transX": -8,
+                "transY": -12,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "97_46762899.pic",
+                "index": 6,
+                "transX": -6,
+                "transY": -21,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            },
+            {
+                "pic": "97_46762899.pic",
+                "index": 5,
+                "transX": -10,
+                "transY": -20,
+                "flipX": false,
+                "flipY": false,
+                "rotation": 0.0
+            }
+        ]
+    ]
+}

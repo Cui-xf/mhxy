@@ -1,19 +1,21 @@
-import com.cc.asset.AnimT
+import com.cc.asset.Anim
 import com.cc.asset.Pic
 import kotlinx.serialization.json.Json
 import java.io.DataInputStream
 import java.io.File
 import java.io.FileInputStream
 
-val outDir = "/Users/cxf/temp/mhxy/mhxy_m/src/main/resources/assets/rpg"
+//val outDir = "/Users/cxf/temp/mhxy/mhxy_m/src/main/resources/assets/rpg"
+val outDir = "E:\\WORK\\mhxy\\mhxy_m/src/main/resources/assets/rpg"
 fun main() {
     val names = listOf("cartoon", "publicUI", "skill", "ui")
     for (name in names) {
-        val ruleAsset = parseRuleAsset(File("/Users/cxf/temp/mhxy/mhxy_s/res/${name}.rule").readBytes())
-        val parse = parse("/Users/cxf/temp/mhxy/mhxy_s/res/${name}.rpg")
+//        val ruleAsset = parseRuleAsset(File("/Users/cxf/temp/mhxy/mhxy_s/res/${name}.rule").readBytes())
+//        val parse = parse("/Users/cxf/temp/mhxy/mhxy_s/res/${name}.rpg")
+        val ruleAsset = parseRuleAsset(File("E:\\WORK\\mhxy\\mhxy_s\\res/${name}.rule").readBytes())
+        val parse = parse("E:\\WORK\\mhxy\\mhxy_s\\res/${name}.rpg")
         for ((index, rule) in ruleAsset.rules.withIndex()) {
             val (type, data) = parse[index]
-            println("type = $type")
             tryPic(data, "${rule.id}_${rule.key}.png")?.let {
                 savePic(rule, name, it)
             }
@@ -48,7 +50,7 @@ fun savePic(rule: Rule, name: String, pair: Pair<Pic, ByteArray>) {
     File("${outDir}/${name}/${fileName}.pic").recreate().writeText(myJson.encodeToString(pic))
 }
 
-fun saveAnim(rule: Rule, name: String, anim: AnimT) {
+fun saveAnim(rule: Rule, name: String, anim: Anim) {
     val fileName = "${rule.id}_${rule.key}"
     File("${outDir}/${name}/${fileName}.anim").recreate().writeText(myJson.encodeToString(anim))
 }
@@ -64,7 +66,7 @@ fun tryPic(data: Array<ByteArray>, pngName: String): Pair<Pic, ByteArray>? {
     }
 }
 
-fun tryAnim(data: ByteArray, ruleAsset: RuleAsset): AnimT? {
+fun tryAnim(data: ByteArray, ruleAsset: RuleAsset): Anim? {
     return try {
         buildAnimation(data, ruleAsset).also {
             println("尝试解码动画成功")
