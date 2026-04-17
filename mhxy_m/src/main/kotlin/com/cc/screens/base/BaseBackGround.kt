@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.badlogic.gdx.utils.Disposable
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.asset.CommonAssetLoader
 import com.cc.asset.RpgAnimation
@@ -16,7 +15,7 @@ import com.cc.screens.AbstractScreen.Companion.VIRTUAL_W
 import com.cc.ui.component.UIComponent
 import kotlin.random.Random
 
-object BaseBackGround : UIComponent(CommonAssetLoader), Disposable {
+object BaseBackGround : UIComponent(CommonAssetLoader) {
     private val menuBG = Texture(Gdx.files.classpath("assets/menuBG.png"))
     private val logoTitle = Texture(Gdx.files.classpath("assets/logoTitle_B.png"))
     private val light0 = Texture(Gdx.files.classpath("assets/light_0.png"))

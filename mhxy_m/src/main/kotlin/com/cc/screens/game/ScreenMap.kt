@@ -15,6 +15,11 @@ import com.cc.ui.component.UIComponent
 class ScreenMap(assetLoader: AssetLoader) : UIComponent(assetLoader) {
     var camX: Float = 0f
     var camY: Float = 0f
+    val mapW get() = map.mapW
+    val mapH get() = map.mapH
+    val collisionBit get() = map.collisionBit
+    val collisionW get() = map.collisionW
+    val collisionH get() = map.collisionH
 
     private var index = 1
     private val list = listOf(

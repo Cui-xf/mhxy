@@ -12,8 +12,8 @@ class Npc(assetLoader: AssetLoader, private val screenMap: ScreenMap) : UICompon
     // NPC 测试数据：resName=126，地图坐标 (c, d) 为脚底中心
     // 资源路径格式：rpg/petfight/{id}_{key}.anim
     private val npcAnim by resource(PUBLIC_ASSET, "rpg/petfight/211_48761813.anim", RpgAnimation::class)
-    private val npcMapX = 200f  // 地图绝对坐标 x（脚底中心）
-    private val npcMapY = 200f  // 地图绝对坐标 y（脚底）
+    val mapX = 200f  // 地图绝对坐标 x（脚底中心）
+    val mapY = 200f  // 地图绝对坐标 y（脚底）
     private var npcAnimTime = 0f
 
     override fun render(
@@ -27,8 +27,8 @@ class Npc(assetLoader: AssetLoader, private val screenMap: ScreenMap) : UICompon
     ) {
         npcAnimTime += delta
         val frames = npcAnim.getKeyFrame(npcAnimTime, true)
-        val screenX = npcMapX - screenMap.camX
-        val screenY = npcMapY - screenMap.camY
+        val screenX = mapX - screenMap.camX
+        val screenY = mapY - screenMap.camY
         batch.begin()
         batch.drawAnimation(frames, screenX, screenY)
         batch.end()

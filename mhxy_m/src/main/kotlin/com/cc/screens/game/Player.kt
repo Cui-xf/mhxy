@@ -27,8 +27,8 @@ class Player(assetLoader: AssetLoader, private val map: ScreenMap) : UIComponent
     //朝左
     private var facingLeft = false
     private val speed = 80f
-    private var roleMapX = 100f
-    private var roleMapY = 100f
+    var roleMapX = 100f
+    var roleMapY = 100f
 
     override fun render(
         batch: SpriteBatch,

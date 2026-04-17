@@ -3,11 +3,12 @@ package com.cc.ui.component
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.utils.Disposable
 import com.cc.asset.AssetLoader
 import kotlin.reflect.KClass
 
 
-abstract class UIComponent(private val assetLoader: AssetLoader) {
+abstract class UIComponent(private val assetLoader: AssetLoader) : Disposable {
     var parent: UIContainer? = null
     val listeners = mutableMapOf<KClass<*>, (Any) -> Unit>()
 
@@ -32,4 +33,7 @@ abstract class UIComponent(private val assetLoader: AssetLoader) {
 
     protected fun <T : Any> resource(assetManager: AssetManager, name: String, type: KClass<T>): Lazy<T> =
         assetLoader.resource(assetManager, name, type)
+
+    override fun dispose() {
+    }
 }
