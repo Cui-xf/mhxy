@@ -4,6 +4,7 @@ import com.cc.screens.AbstractScreen
 
 class GameScreen : AbstractScreen() {
     private val screenMap = ScreenMap(this.assetLoader)
+    private val hud = HudUI.also { it.screenMap = this.screenMap }
     val player = Player(this.assetLoader, screenMap)
     val npc = listOf(
         Npc(this.assetLoader, screenMap),
@@ -17,5 +18,6 @@ class GameScreen : AbstractScreen() {
             npc.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
         }
         miniMap.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
+        hud.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
     }
 }

@@ -59,7 +59,7 @@ class LoadingScreen : AbstractScreen() {
         //顶部文字
         textRender.drawText(batch, SMALL_FONT, VIRTUAL_W / 2, 30f, Align.CENTER_TOP)
         // 进度条背景图
-        batch.drawImage(progressBarImage, progressBar.x - 5, progressBar.y - 4.5f, align = Align.LEFT)
+        batch.drawImage(progressBarImage, progressBar.x - 5, progressBar.y - 4.5f, align = Align.LEFT_TOP)
         batch.drawString(
             SMALL_FONT,
             "正在载入资源...",
@@ -82,7 +82,7 @@ class LoadingScreen : AbstractScreen() {
             progressBar.y,
             (progress * 100 / 100).toFloat(),
             progressBar.height,
-            Align.LEFT
+            Align.LEFT_TOP
         )
         sr.drawRect(
             Color.valueOf("#dca248"),
@@ -90,7 +90,7 @@ class LoadingScreen : AbstractScreen() {
             progressBar.y + 1,
             (progress * 100 / 100).toFloat(),
             progressBar.height - 1,
-            Align.LEFT
+            Align.LEFT_TOP
         )
         sr.end()
         if (PUBLIC_ASSET.isFinished && CommonAssetLoader.isFinished() && progress >= 100) {

@@ -14,7 +14,7 @@ class TextRender(private val lines: List<Line>) {
     /**
      * 绘制文本。
      */
-    fun drawText(batch: SpriteBatch, font: BitmapFont, x: Float, y: Float, align: Align = Align.LEFT) {
+    fun drawText(batch: SpriteBatch, font: BitmapFont, x: Float, y: Float, align: Align = Align.LEFT_TOP) {
         val y = VIRTUAL_H - y
         lines.forEachIndexed { i, line ->
             // 计算该行总宽，用于居中
@@ -36,4 +36,4 @@ class TextRender(private val lines: List<Line>) {
     }
 }
 
-enum class Align { LEFT, CENTER_TOP }
+enum class Align { LEFT_TOP, CENTER_TOP }

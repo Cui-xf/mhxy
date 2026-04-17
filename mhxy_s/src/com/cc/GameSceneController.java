@@ -4236,7 +4236,7 @@ public final class GameSceneController {
     private void f(short var1) {
         if (this.mainCanvasRef.liaoTian != null && this.mainCanvasRef.aE != null && this.mainCanvasRef.resourceLoaded) {
             if ((var1 = (byte) this.mainCanvasRef.aE.getSelectedIndex()) == 0) {
-                if (GlobalStatus.backpackCapacityLimit < 9) {
+                if (GlobalStatus.roleLevel < 9) {
                     this.mainCanvasRef.resourceLoaded = false;
                     this.mainCanvasRef.n();
                     this.mainCanvasRef.showTips("需要九级才能使用世界频道!");
@@ -5362,7 +5362,7 @@ public final class GameSceneController {
                 }
 
                 this.mainCanvasRef.shareSb.append("门派：" + GlobalConfig.manPaiName[GlobalStatus.backpackRows] + '\t');
-                this.mainCanvasRef.shareSb.append("级别：" + GlobalStatus.backpackCapacityLimit + '\t');
+                this.mainCanvasRef.shareSb.append("级别：" + GlobalStatus.roleLevel + '\t');
                 this.mainCanvasRef.shareSb.append("称号：" + GlobalStatus.roleTitle + '\t');
                 this.mainCanvasRef.shareSb.append("配偶：" + GlobalStatus.spouse + '\t');
                 this.mainCanvasRef.shareSb.append("师傅：" + GlobalStatus.master + '\t');
@@ -15715,15 +15715,15 @@ public final class GameSceneController {
             int var2 = GlobalConfig.defaultWidth - 67;
             var1.drawImage(bq.image, var2, 5, 20);
             var1.drawImage(v.image, var2 + 37, 8, 20);
-            if (GlobalStatus.backpackCapacityLimit < 10) {
-                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.backpackCapacityLimit % 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
-            } else if (GlobalStatus.backpackCapacityLimit >= 10 && GlobalStatus.backpackCapacityLimit <= 99) {
-                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.backpackCapacityLimit / 10 + 1, 0, 0, var2 + 20, 25, 0, 0);
-                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.backpackCapacityLimit % 10 + 1, 0, 0, var2 + 25, 25, 0, 0);
+            if (GlobalStatus.roleLevel < 10) {
+                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.roleLevel % 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
+            } else if (GlobalStatus.roleLevel >= 10 && GlobalStatus.roleLevel <= 99) {
+                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.roleLevel / 10 + 1, 0, 0, var2 + 20, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.roleLevel % 10 + 1, 0, 0, var2 + 25, 25, 0, 0);
             } else {
-                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.backpackCapacityLimit % 10 + 1, 0, 0, var2 + 28, 25, 0, 0);
-                MainCanvas.pngUtil.a(var1, B, (int[]) null, (GlobalStatus.backpackCapacityLimit - GlobalStatus.backpackCapacityLimit / 100 * 100) / 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
-                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.backpackCapacityLimit / 100 + 1, 0, 0, var2 + 18, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.roleLevel % 10 + 1, 0, 0, var2 + 28, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, B, (int[]) null, (GlobalStatus.roleLevel - GlobalStatus.roleLevel / 100 * 100) / 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.roleLevel / 100 + 1, 0, 0, var2 + 18, 25, 0, 0);
             }
 
             int var3 = GlobalStatus.currentHealth * 30 / GlobalStatus.totalHealth;

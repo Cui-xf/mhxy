@@ -109,14 +109,14 @@ class RoleGridPanel(
 
             val selected = selectedIndex == index
             sr.begin(ShapeType.Filled)
-            sr.drawRect(409969.toColor(), x, y, roleBox, roleBox, align = Align.LEFT)
+            sr.drawRect(409969.toColor(), x, y, roleBox, roleBox, align = Align.LEFT_TOP)
             sr.drawRect(
                 if (selected) 6597852.toColor() else 5018307.toColor(),
                 x + 3,
                 y + 3,
                 roleBox - 6,
                 roleBox - 6,
-                align = Align.LEFT
+                align = Align.LEFT_TOP
             )
             sr.end()
             sr.begin(ShapeType.Line)
@@ -126,7 +126,7 @@ class RoleGridPanel(
                 y + 1,
                 roleBox - 2,
                 roleBox - 2,
-                align = Align.LEFT
+                align = Align.LEFT_TOP
             )
             sr.end()
             if (pair != null) {
@@ -174,7 +174,7 @@ class InfoPanel(assetLoader: AssetLoader, var info: RoleInfo? = null) : UICompon
                 2176196.toColor(),
                 cx + 4,
                 cy + 8,
-                align = Align.LEFT
+                align = Align.LEFT_TOP
             )
             batch.drawString(
                 MEDIA_FONT,
@@ -182,7 +182,7 @@ class InfoPanel(assetLoader: AssetLoader, var info: RoleInfo? = null) : UICompon
                 2176196.toColor(),
                 cx + 4,
                 cy + 8 + MEDIA_FONT.lineHeight,
-                align = Align.LEFT
+                align = Align.LEFT_TOP
             )
             batch.end()
         }
@@ -191,12 +191,12 @@ class InfoPanel(assetLoader: AssetLoader, var info: RoleInfo? = null) : UICompon
 
 private fun fillBox(sr: ShapeRenderer, cx: Float, cy: Float, cw: Float, ch: Float) {
     sr.begin(ShapeType.Filled)
-    sr.drawRect(6732228.toColor(), cx, cy, cw, ch, align = Align.LEFT)
+    sr.drawRect(6732228.toColor(), cx, cy, cw, ch, align = Align.LEFT_TOP)
     sr.end()
     sr.begin(ShapeType.Line)
-    sr.drawRect(26540.toColor(), cx, cy, cw, ch, align = Align.LEFT)
-    sr.drawRect(11267556.toColor(), cx + 1, cy + 1, cw - 2, ch - 2, align = Align.LEFT)
-    sr.drawRect(26540.toColor(), cx + 2, cy + 2, cw - 4, ch - 4, align = Align.LEFT)
+    sr.drawRect(26540.toColor(), cx, cy, cw, ch, align = Align.LEFT_TOP)
+    sr.drawRect(11267556.toColor(), cx + 1, cy + 1, cw - 2, ch - 2, align = Align.LEFT_TOP)
+    sr.drawRect(26540.toColor(), cx + 2, cy + 2, cw - 4, ch - 4, align = Align.LEFT_TOP)
     sr.end()
 }
 

@@ -87,7 +87,7 @@ class MiniMap(
             Color.WHITE,
             miniLeft,
             miniTop + miniH + 2f,
-            com.cc.render.Align.LEFT
+            com.cc.render.Align.LEFT_TOP
         )
         batch.end()
     }

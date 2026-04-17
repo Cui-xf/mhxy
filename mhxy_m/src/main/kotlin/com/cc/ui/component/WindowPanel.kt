@@ -26,9 +26,9 @@ class WindowPanel(
     override fun renderSelf(batch: SpriteBatch, sr: ShapeRenderer, cx: Float, cy: Float, cw: Float, ch: Float) {
         sr.begin(ShapeType.Filled)
         //整体背景
-        sr.drawRect(2780801.toColor(), cx, cy, cw, ch, Align.LEFT)
+        sr.drawRect(2780801.toColor(), cx, cy, cw, ch, Align.LEFT_TOP)
         //标题下边框
-        sr.drawRect(Color.valueOf("#0067AC"), cx, cy + 28f, cw - 1, 4f, Align.LEFT)
+        sr.drawRect(Color.valueOf("#0067AC"), cx, cy + 28f, cw - 1, 4f, Align.LEFT_TOP)
         sr.end()
         sr.begin(ShapeType.Line)
         //标题下边框高亮
@@ -38,17 +38,17 @@ class WindowPanel(
         titleImage(batch, cx, cy, cw, ch)
         sr.begin(ShapeType.Filled)
         //外边框（用填充矩形拼出边框线，避免 Line 模式角点缺失）
-        sr.drawRectBorder(Color.valueOf("#005187"), cx, cy, cw, ch, Align.LEFT)
-        sr.drawRectBorder(Color.valueOf("#005187"), cx + 4, cy + 4, cw - 8, ch - 8, Align.LEFT)
-        sr.drawRectBorder(Color.valueOf("#1197AE"), cx + 1, cy + 1, cw - 2, ch - 2, Align.LEFT)
-        sr.drawRectBorder(Color.valueOf("#1197AE"), cx + 3, cy + 3, cw - 6, ch - 6, Align.LEFT)
-        sr.drawRectBorder(Color.valueOf("#95D9E2"), cx + 2, cy + 2, cw - 4, ch - 4, Align.LEFT)
+        sr.drawRectBorder(Color.valueOf("#005187"), cx, cy, cw, ch, Align.LEFT_TOP)
+        sr.drawRectBorder(Color.valueOf("#005187"), cx + 4, cy + 4, cw - 8, ch - 8, Align.LEFT_TOP)
+        sr.drawRectBorder(Color.valueOf("#1197AE"), cx + 1, cy + 1, cw - 2, ch - 2, Align.LEFT_TOP)
+        sr.drawRectBorder(Color.valueOf("#1197AE"), cx + 3, cy + 3, cw - 6, ch - 6, Align.LEFT_TOP)
+        sr.drawRectBorder(Color.valueOf("#95D9E2"), cx + 2, cy + 2, cw - 4, ch - 4, Align.LEFT_TOP)
         sr.end()
         //四角装饰图（在边框之上）
         batch.begin()
-        batch.drawImage(lu, cx, cy, align = Align.LEFT)
-        batch.drawImage(ld, cx, cy + ch - ld.regionHeight, align = Align.LEFT)
-        batch.drawImage(rd, cx + cw - rd.regionWidth, cy + ch - rd.regionHeight, align = Align.LEFT)
+        batch.drawImage(lu, cx, cy, align = Align.LEFT_TOP)
+        batch.drawImage(ld, cx, cy + ch - ld.regionHeight, align = Align.LEFT_TOP)
+        batch.drawImage(rd, cx + cw - rd.regionWidth, cy + ch - rd.regionHeight, align = Align.LEFT_TOP)
         batch.end()
     }
 
@@ -59,15 +59,15 @@ class WindowPanel(
         var t = 0
         for (i in 0 until (cw.toInt() - imgW) step imgW) {
             t = i
-            batch.drawImage(titleImage, cx + i, cy + 4, align = Align.LEFT)
+            batch.drawImage(titleImage, cx + i, cy + 4, align = Align.LEFT_TOP)
         }
         if (t < cw) {
             val partial = TextureRegion(titleImage, 0, 0, cw.toInt() - t, titleImage.regionHeight)
-            batch.drawImage(partial, cx + t, cy + 4, align = Align.LEFT)
+            batch.drawImage(partial, cx + t, cy + 4, align = Align.LEFT_TOP)
         }
 
         // 关闭按钮
-        batch.drawImage(closeImage, cx + cw - 5 - closeImage.regionWidth, cy + 4, align = Align.LEFT)
+        batch.drawImage(closeImage, cx + cw - 5 - closeImage.regionWidth, cy + 4, align = Align.LEFT_TOP)
 
         // 居中标题文字
         batch.wordArtString(
@@ -85,7 +85,7 @@ class WindowPanel(
             cy + ch - 4 - bottomImage.regionHeight,
             cw,
             bottomImage.regionHeight.toFloat() + 1,
-            Align.LEFT
+            Align.LEFT_TOP
         )
         //底部文字
         batch.wordArtString(
@@ -95,7 +95,7 @@ class WindowPanel(
             16776917.toColor(),
             cx + 10f,
             cy + ch - 10.5f - MEDIA_FONT.capHeight,
-            Align.LEFT
+            Align.LEFT_TOP
         )
         batch.end()
     }

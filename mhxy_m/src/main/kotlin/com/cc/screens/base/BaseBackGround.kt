@@ -84,7 +84,7 @@ object BaseBackGround : UIComponent(CommonAssetLoader) {
                 }
             }
             val tex = if (p[4] == 0f) light0 else light1
-            batch.drawImage(tex, p[0], p[1], align = Align.LEFT)
+            batch.drawImage(tex, p[0], p[1], align = Align.LEFT_TOP)
         }
     }
 

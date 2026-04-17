@@ -280,9 +280,9 @@ public final class GlobalStatus {
      */
     public static byte backPackFlag;
     /**
-     * 背包容量上限
+     * 角色等级
      */
-    public static short backpackCapacityLimit;
+    public static short roleLevel;
     /**
      * 经验值字符串
      */
@@ -4226,7 +4226,7 @@ public final class GlobalStatus {
      */
     public static void parseBackPack(DataInputStream dis) throws IOException {
         roleId_2 = dis.readUTF();
-        backpackCapacityLimit = dis.readShort();
+        roleLevel = dis.readShort();
         roleNameVip = dis.readUTF();
         backPackFlag = dis.readByte();
         backpackRows = dis.readByte();
