@@ -32,9 +32,8 @@ class ScreenMap(assetLoader: AssetLoader) : UIComponent(assetLoader) {
     private lateinit var map: TileMap
     private var animTime = 0f
 
-    //碰撞移动
-    fun collisionMove(x: Float, dx: Float, y: Float, dy: Float): Pair<Float, Float> {
-        // 碰撞检测：x/y 轴分开处理，允许沿墙滑动
+    // 纯碰撞计算，不更新相机，供怪物等非主角实体使用
+    fun collisionCheck(x: Float, dx: Float, y: Float, dy: Float): Pair<Float, Float> {
         val tX = (x + dx).coerceIn(0f, map.mapW.toFloat())
         val colX = (tX / map.collisionW).toInt().coerceIn(0, map.collisionBit.size - 1)
         val rowX = (y / map.collisionH).toInt().coerceIn(0, map.collisionBit[0].size - 1)
@@ -44,6 +43,13 @@ class ScreenMap(assetLoader: AssetLoader) : UIComponent(assetLoader) {
         val colY = (newX / map.collisionW).toInt().coerceIn(0, map.collisionBit.size - 1)
         val rowY = (tY / map.collisionH).toInt().coerceIn(0, map.collisionBit[0].size - 1)
         val newY = if (map.collisionBit[colY][rowY]) y else tY
+
+        return Pair(newX, newY)
+    }
+
+    // 碰撞移动，同时更新相机（仅主角调用）
+    fun collisionMove(x: Float, dx: Float, y: Float, dy: Float): Pair<Float, Float> {
+        val (newX, newY) = collisionCheck(x, dx, y, dy)
 
         camX = (newX - VIRTUAL_W / 2f).coerceIn(0f, (map.mapW - VIRTUAL_W).coerceAtLeast(0f))
         camY = (newY - VIRTUAL_H / 2f).coerceIn(0f, (map.mapH - VIRTUAL_H).coerceAtLeast(0f))
@@ -112,4 +118,8 @@ class ScreenMap(assetLoader: AssetLoader) : UIComponent(assetLoader) {
 //            batch.drawAnimation(frames, anim.x - camX, anim.y - camY)
 //        }
     }
+}
+
+fun ScreenMap.toScreen(x: Float, y: Float): Pair<Float, Float> {
+    return Pair(x - camX, y - camY)
 }

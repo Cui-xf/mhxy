@@ -11,7 +11,7 @@ import javax.microedition.lcdui.Graphics;
 public class au {
    public Vector e = new Vector();
    public Animation f;
-   public short g;
+   public short resId;
    public short h;
    public short i;
    public byte j;
@@ -21,12 +21,12 @@ public class au {
    private int[] d;
    private short[] k;
 
-   public au(short var1, short var2, short var3, short var4) {
-      if (var1 == 0) {
-         var1 = 701;
+   public au(short resId, short var2, short var3, short var4) {
+      if (resId == 0) {
+         resId = 701;
       }
 
-      this.g = var1;
+      this.resId = resId;
       this.a = var2;
       this.b = var3;
       this.c = var4;
@@ -34,8 +34,8 @@ public class au {
       this.a((byte)3);
    }
 
-   public au(byte var1, short var2, short var3, short var4, short var5) {
-      this.g = var2;
+   public au(byte var1, short resId, short var3, short var4, short var5) {
+      this.resId = resId;
       this.a = var3;
       this.b = var4;
       this.c = var5;
@@ -44,14 +44,14 @@ public class au {
    }
 
    private void f() {
-      if (this.g == 701) {
+      if (this.resId == 701) {
          this.d = new int[1];
-         this.d[0] = ResourceManager.buildResourceId((String)(this.g + "_" + 0), (byte)2);
+         this.d[0] = ResourceManager.buildResourceId((String)(this.resId + "_" + 0), (byte)2);
       } else {
          this.d = new int[4];
 
          for(int var1 = 0; var1 < 4; ++var1) {
-            this.d[var1] = ResourceManager.buildResourceId((String)(this.g + "_" + (var1 / 2 << 1)), (byte)2);
+            this.d[var1] = ResourceManager.buildResourceId((String)(this.resId + "_" + (var1 / 2 << 1)), (byte)2);
          }
 
       }
@@ -120,17 +120,17 @@ public class au {
 
    public final void a(byte var1) {
       this.j = var1;
-      if (this.g == 701) {
+      if (this.resId == 701) {
          this.f = MainCanvas.petfight.getAnimationByKeyFromCache(this.d[0], this.a, this.b, this.c);
          if (this.f == null) {
-            GameSceneController.a(this.g, this.a, this.b, this.c);
+            GameSceneController.a(this.resId, this.a, this.b, this.c);
             this.f = MainCanvas.petfight.getAnimationByKeyFromCache(this.d[0], this.a, this.b, this.c);
             return;
          }
       } else {
          this.f = MainCanvas.petfight.getAnimationByKeyFromCache(this.d[var1], this.a, this.b, this.c);
          if (this.f == null) {
-            GameSceneController.a(this.g, this.a, this.b, this.c);
+            GameSceneController.a(this.resId, this.a, this.b, this.c);
             this.f = MainCanvas.petfight.getAnimationByKeyFromCache(this.d[var1], this.a, this.b, this.c);
          }
       }

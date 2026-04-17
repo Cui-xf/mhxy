@@ -16,8 +16,8 @@ public final class s extends au {
    private long n;
    public byte d;
 
-   public s(int var1, short var2, short var3, short var4, short[] var5, short var6, short var7, short var8, short var9, byte var10) {
-      super(var6, var7, var8, var9);
+   public s(int var1, short var2, short var3, short var4, short[] var5, short resId, short var7, short var8, short var9, byte var10) {
+      super(resId, var7, var8, var9);
       this.a = var1;
       this.k = var2;
       this.l = var3;
@@ -48,7 +48,7 @@ public final class s extends au {
          if (super.e.size() != 0) {
             if (super.e.size() > 0 && var3 - this.n > 200L) {
                short[] var15 = (short[])super.e.elementAt(0);
-               if (super.g != 701) {
+               if (super.resId != 701) {
                   ((au)this).a(var15);
                }
 

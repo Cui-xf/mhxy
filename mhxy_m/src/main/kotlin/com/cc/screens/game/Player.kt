@@ -12,13 +12,13 @@ import com.cc.ui.component.UIComponent
 
 class Player(assetLoader: AssetLoader, private val map: ScreenMap) : UIComponent(assetLoader) {
     // 朝右动画（向右/向下移动），方向后缀0；格式：{gender}{job}{variant}{dirSuffix}
-//    private val animRight by resource(PUBLIC_ASSET, "rpg/role/3101.anim", RpgAnimation::class)
-    private val animRight by resource(PUBLIC_ASSET, "rpg/role/171_-401711000.anim", RpgAnimation::class)
+    private val animRight by resource(PUBLIC_ASSET, "rpg/role/3101.anim", RpgAnimation::class)
+//    private val animRight by resource(PUBLIC_ASSET, "rpg/role/171_-401711000.anim", RpgAnimation::class)
 //    private val animRight by resource(PUBLIC_ASSET, "rpg/role/170_-2091168342.anim", RpgAnimation::class)
 
     // 朝左动画（向左/向上移动），方向后缀1
-//    private val animLeft by resource(PUBLIC_ASSET, "rpg/role/3100.anim", RpgAnimation::class)
-    private val animLeft by resource(PUBLIC_ASSET, "rpg/role/182_-401711961.anim", RpgAnimation::class)
+    private val animLeft by resource(PUBLIC_ASSET, "rpg/role/3100.anim", RpgAnimation::class)
+//    private val animLeft by resource(PUBLIC_ASSET, "rpg/role/182_-401711961.anim", RpgAnimation::class)
 //    private val animLeft by resource(PUBLIC_ASSET, "rpg/role/183_-2091168373.anim", RpgAnimation::class)
 
 
