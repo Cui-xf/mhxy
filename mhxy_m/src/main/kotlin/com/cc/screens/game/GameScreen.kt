@@ -10,11 +10,13 @@ class GameScreen : AbstractScreen() {
         Npc(this.assetLoader, screenMap),
     )
     private val miniMap = MiniMap(this.assetLoader, screenMap, this)
-    val monsters = listOf(
-        Monster(this.assetLoader, screenMap, 300f, 300f, player),
-        Monster(this.assetLoader, screenMap, 500f, 200f, player),
-        Monster(this.assetLoader, screenMap, 150f, 450f, player),
-    )
+    val monsters = mutableListOf(
+        Monster(this.assetLoader, 1, screenMap, player, 300f, 300f),
+        Monster(this.assetLoader, 2, screenMap, player, 500f, 200f),
+        Monster(this.assetLoader, 3, screenMap, player, 150f, 450f),
+    ).also {
+        it.forEach { monster -> monster.onEvent<Int> { fightId -> enterFight(fightId) } }
+    }
 
     override fun update(delta: Float) {
         screenMap.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
@@ -24,13 +26,12 @@ class GameScreen : AbstractScreen() {
         }
         for (monster in monsters) {
             monster.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
-            if (monster.collidesWith(player.roleMapX, player.roleMapY)) {
-                // TODO: 切换到战斗界面
-                println("触发战斗！怪物位置=(${monster.mapX}, ${monster.mapY})")
-            }
         }
 //        miniMap.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
         hud.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
     }
 
+    private fun enterFight(id: Int) {
+        println("Entering fight $id")
+    }
 }

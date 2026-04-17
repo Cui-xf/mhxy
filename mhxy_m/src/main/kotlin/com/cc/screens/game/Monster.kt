@@ -1,13 +1,11 @@
 package com.cc.screens.game
 
-import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.asset.RpgAnimation
 import com.cc.render.drawAnimation
-import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
 import com.cc.ui.component.UIComponent
 import kotlin.math.abs
 import kotlin.math.sqrt
@@ -15,10 +13,11 @@ import kotlin.random.Random
 
 class Monster(
     assetLoader: AssetLoader,
+    val id: Int,
     private val screenMap: ScreenMap,
+    private val player: Player,
     startX: Float,
-    startY: Float,
-    private val player: Player
+    startY: Float
 ) : UIComponent(assetLoader) {
 
     // resName=0 默认怪物，资源 "701_0s".hashCode() = 1620484970，id=215
@@ -30,7 +29,7 @@ class Monster(
         private set
 
     private var animTime = 0f
-    private val speed = 0f
+    private val speed = 15f
 
     // 随机游走：每隔一段时间换一次方向
     private var dirX = Random.nextFloat() * 2f - 1f
@@ -50,6 +49,11 @@ class Monster(
         ch: Float,
         delta: Float
     ) {
+        if (collidesWith(player.roleMapX, player.roleMapY)) {
+            emit(id)
+            return
+        }
+
         animTime += delta
 
         // 随机游走
@@ -77,30 +81,30 @@ class Monster(
         val frames = anim.getKeyFrame(animTime, true)
 
         batch.begin()
-        batch.drawAnimation(frames, screenX, screenY)
+        //动画和锚点之间有偏移，导致碰撞检测不准
+        batch.drawAnimation(frames, screenX - 8, screenY - 25)
         batch.end()
-
-        drawDebugPlayer(sr)
+//        drawDebugPlayer(sr)
     }
 
-    fun drawDebugPlayer(sr: ShapeRenderer) {
-        var (cx, cy) = screenMap.toScreen(mapX, mapY)
-        cy = VIRTUAL_H - cy
-        sr.begin(ShapeRenderer.ShapeType.Line)
-        sr.color = Color.RED
-        sr.circle(cx, cy, collideRadius)
-        sr.line(cx - 3f, cy, cx + 3f, cy)
-        sr.line(cx, cy - 3f, cx, cy + 3f)
-        sr.end()
-
-        var (px, py) = screenMap.toScreen(player.roleMapX, player.roleMapY)
-        py = VIRTUAL_H - py
-        sr.begin(ShapeRenderer.ShapeType.Line)
-        sr.color = Color.GREEN
-        sr.line(px - 6f, py, px + 6f, py)
-        sr.line(px, py - 6f, px, py + 6f)
-        sr.end()
-    }
+//    fun drawDebugPlayer(sr: ShapeRenderer) {
+//        var (cx, cy) = screenMap.toScreen(mapX, mapY)
+//        cy = VIRTUAL_H - cy
+//        sr.begin(ShapeRenderer.ShapeType.Line)
+//        sr.color = Color.RED
+//        sr.circle(cx, cy, collideRadius)
+//        sr.line(cx - 3f, cy, cx + 3f, cy)
+//        sr.line(cx, cy - 3f, cx, cy + 3f)
+//        sr.end()
+//
+//        var (px, py) = screenMap.toScreen(player.roleMapX, player.roleMapY)
+//        py = VIRTUAL_H - py
+//        sr.begin(ShapeRenderer.ShapeType.Line)
+//        sr.color = Color.GREEN
+//        sr.line(px - 6f, py, px + 6f, py)
+//        sr.line(px, py - 6f, px, py + 6f)
+//        sr.end()
+//    }
 
     fun collidesWith(playerX: Float, playerY: Float): Boolean {
         val dx = playerX - mapX
