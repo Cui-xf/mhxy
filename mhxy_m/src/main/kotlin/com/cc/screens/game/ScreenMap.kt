@@ -7,13 +7,15 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory
 import com.cc.asset.TileMap
-import com.cc.render.drawAnimation
 import com.cc.render.drawFrame
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_W
 import com.cc.ui.component.UIComponent
 
-class TileMapUI(assetLoader: AssetLoader) : UIComponent(assetLoader) {
+class ScreenMap(assetLoader: AssetLoader) : UIComponent(assetLoader) {
+    var camX: Float = 0f
+    var camY: Float = 0f
+
     private var index = 1
     private val list = listOf(
         resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/map/0_1.tmap", TileMap::class),
@@ -23,9 +25,26 @@ class TileMapUI(assetLoader: AssetLoader) : UIComponent(assetLoader) {
         resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/map/0_78.tmap", TileMap::class),
     )
     private lateinit var map: TileMap
-    var currentMap: TileMap? = null
-        private set
     private var animTime = 0f
+
+    //碰撞移动
+    fun collisionMove(x: Float, dx: Float, y: Float, dy: Float): Pair<Float, Float> {
+        // 碰撞检测：x/y 轴分开处理，允许沿墙滑动
+        val tX = (x + dx).coerceIn(0f, map.mapW.toFloat())
+        val colX = (tX / map.collisionW).toInt().coerceIn(0, map.collisionBit.size - 1)
+        val rowX = (y / map.collisionH).toInt().coerceIn(0, map.collisionBit[0].size - 1)
+        val newX = if (map.collisionBit[colX][rowX]) x else tX
+
+        val tY = (y + dy).coerceIn(0f, map.mapH.toFloat())
+        val colY = (newX / map.collisionW).toInt().coerceIn(0, map.collisionBit.size - 1)
+        val rowY = (tY / map.collisionH).toInt().coerceIn(0, map.collisionBit[0].size - 1)
+        val newY = if (map.collisionBit[colY][rowY]) y else tY
+
+        camX = (newX - VIRTUAL_W / 2f).coerceIn(0f, (map.mapW - VIRTUAL_W).coerceAtLeast(0f))
+        camY = (newY - VIRTUAL_H / 2f).coerceIn(0f, (map.mapH - VIRTUAL_H).coerceAtLeast(0f))
+
+        return Pair(newX, newY)
+    }
 
     override fun render(
         batch: SpriteBatch,
@@ -37,17 +56,12 @@ class TileMapUI(assetLoader: AssetLoader) : UIComponent(assetLoader) {
         delta: Float
     ) {
         map = list[index].value
-        currentMap = map
         animTime += delta
         renderMap(batch)
         if (Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
 //            index++
         }
     }
-
-    // 外部可设置摄像机坐标（地图绝对坐标的左上角偏移），null 时默认居中
-    var camX: Float = 0f
-    var camY: Float = 0f
 
     private fun renderMap(batch: SpriteBatch) {
         batch.begin()
