@@ -17,7 +17,7 @@ class GameScreen : AbstractScreen() {
         for (npc in npc) {
             npc.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
         }
-        miniMap.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
+//        miniMap.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
         hud.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
     }
 }
