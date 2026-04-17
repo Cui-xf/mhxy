@@ -4,11 +4,10 @@ import java.io.DataInputStream
 import java.io.File
 import java.util.zip.GZIPInputStream
 
-fun main() {
+fun map() {
     val ruleAsset = getRuleAsset()
     for (rule in ruleAsset.rules) {
-                val file = File("/Users/cxf/temp/mhxy/mhxy_s/res/map/${rule.key}.rpg")
-//        val file = File("E:\\WORK\\mhxy\\mhxy_s\\res/map/${rule.key}.rpg")
+        val file = File("${srcRoot}/map/${rule.key}.rpg")
         if (file.exists()) {
             val data = readRpgFileData(file.readBytes())
             tryPic(data, "${rule.id}_${rule.key}.png")?.let {

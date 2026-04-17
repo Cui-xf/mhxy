@@ -5,15 +5,21 @@ import java.io.DataInputStream
 import java.io.File
 import java.io.FileInputStream
 
-val outDir = "/Users/cxf/temp/mhxy/mhxy_m/src/main/resources/assets/rpg"
-//val outDir = "E:\\WORK\\mhxy\\mhxy_m/src/main/resources/assets/rpg"
+val srcRoot = "/Users/cxf/temp/mhxy/mhxy_s/res"
+val destRoot = "/Users/cxf/temp/mhxy/mhxy_m/src/main/resources"
+val outDir = "${destRoot}/assets/rpg"
 fun main() {
+//    single()
+//    dir()
+//    map()
+    nameTrans()
+}
+
+private fun single() {
     val names = listOf("cartoon", "publicUI", "skill", "ui")
     for (name in names) {
-        val ruleAsset = parseRuleAsset(File("/Users/cxf/temp/mhxy/mhxy_s/res/${name}.rule").readBytes())
-        val parse = parse("/Users/cxf/temp/mhxy/mhxy_s/res/${name}.rpg")
-//        val ruleAsset = parseRuleAsset(File("E:\\WORK\\mhxy\\mhxy_s\\res/${name}.rule").readBytes())
-//        val parse = parse("E:\\WORK\\mhxy\\mhxy_s\\res/${name}.rpg")
+        val ruleAsset = parseRuleAsset(File("${srcRoot}/${name}.rule").readBytes())
+        val parse = parse("${srcRoot}/${name}.rpg")
         for ((index, rule) in ruleAsset.rules.withIndex()) {
             val (type, data) = parse[index]
             tryPic(data, "${rule.id}_${rule.key}.png")?.let {
