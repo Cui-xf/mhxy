@@ -23,9 +23,9 @@
                 "index": 9,
                 "transX": 0,
                 "transY": 0,
-                "flipX": true,
+                "flipX": false,
                 "flipY": false,
-                "rotation": 270.0
+                "rotation": 90.0
             },
             {
                 "pic": "137_-1665023951.pic",

@@ -5,15 +5,15 @@ import java.io.DataInputStream
 import java.io.File
 import java.io.FileInputStream
 
-//val outDir = "/Users/cxf/temp/mhxy/mhxy_m/src/main/resources/assets/rpg"
-val outDir = "E:\\WORK\\mhxy\\mhxy_m/src/main/resources/assets/rpg"
+val outDir = "/Users/cxf/temp/mhxy/mhxy_m/src/main/resources/assets/rpg"
+//val outDir = "E:\\WORK\\mhxy\\mhxy_m/src/main/resources/assets/rpg"
 fun main() {
     val names = listOf("cartoon", "publicUI", "skill", "ui")
     for (name in names) {
-//        val ruleAsset = parseRuleAsset(File("/Users/cxf/temp/mhxy/mhxy_s/res/${name}.rule").readBytes())
-//        val parse = parse("/Users/cxf/temp/mhxy/mhxy_s/res/${name}.rpg")
-        val ruleAsset = parseRuleAsset(File("E:\\WORK\\mhxy\\mhxy_s\\res/${name}.rule").readBytes())
-        val parse = parse("E:\\WORK\\mhxy\\mhxy_s\\res/${name}.rpg")
+        val ruleAsset = parseRuleAsset(File("/Users/cxf/temp/mhxy/mhxy_s/res/${name}.rule").readBytes())
+        val parse = parse("/Users/cxf/temp/mhxy/mhxy_s/res/${name}.rpg")
+//        val ruleAsset = parseRuleAsset(File("E:\\WORK\\mhxy\\mhxy_s\\res/${name}.rule").readBytes())
+//        val parse = parse("E:\\WORK\\mhxy\\mhxy_s\\res/${name}.rpg")
         for ((index, rule) in ruleAsset.rules.withIndex()) {
             val (type, data) = parse[index]
             tryPic(data, "${rule.id}_${rule.key}.png")?.let {

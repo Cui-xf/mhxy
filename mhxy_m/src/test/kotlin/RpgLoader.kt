@@ -86,16 +86,21 @@ fun buildAnimation(data: ByteArray, ruleAsset: RuleAsset): Anim {
     }
 }
 
+// PngUtil.i[] = {0,5,3,6,2,7,1,4}：将 transformFlag(0-7) 映射到 J2ME TRANS 常量
+// J2ME TRANS: 0=NONE, 1=MIRROR_ROT180(垂直翻转), 2=MIRROR(水平翻转),
+//             3=ROT180, 4=MIRROR_ROT270, 5=ROT90(顺时针90°),
+//             6=ROT270(顺时针270°), 7=MIRROR_ROT90
+// libGDX rotation 逆时针为正，J2ME ROT90(顺时针90°) → libGDX rotation = 270f
 private val TRANSFORM_TABLE = arrayOf(
-    // flipX,  flipY,  rotation
-    Triple(false, false, 0f),    // flag=0 → J2ME 0 = 无变换
-    Triple(true, false, 90f),   // flag=1 → J2ME 5 = flipH + rot90CW
-    Triple(false, false, 180f),  // flag=2 → J2ME 3 = rot270CW = rot90CCW = 180+rot90CW → rot180
-    Triple(true, false, 270f),  // flag=3 → J2ME 6 = flipV = flipH+rot180
-    Triple(false, false, 90f),   // flag=4 → J2ME 2 = rot180
-    Triple(true, false, 270f),  // flag=5 → J2ME 7 = flipH + rot270CW
-    Triple(false, false, 270f),  // flag=6 → J2ME 1 = rot90CW
-    Triple(true, false, 0f),    // flag=7 → J2ME 4 = flipH
+    // flipX,  flipY,  rotation(libGDX逆时针)
+    Triple(false, false, 0f),    // flag=0 → TRANS_NONE
+    Triple(false, false, 270f),  // flag=1 → TRANS_ROT90   (顺时针90°  = 逆时针270°)
+    Triple(false, false, 180f),  // flag=2 → TRANS_ROT180
+    Triple(false, false, 90f),   // flag=3 → TRANS_ROT270  (顺时针270° = 逆时针90°)
+    Triple(true,  false, 0f),    // flag=4 → TRANS_MIRROR  (水平翻转)
+    Triple(true,  false, 270f),  // flag=5 → TRANS_MIRROR_ROT90
+    Triple(true,  false, 180f),  // flag=6 → TRANS_MIRROR_ROT180 (垂直翻转 = 水平翻转+180°)
+    Triple(true,  false, 90f),   // flag=7 → TRANS_MIRROR_ROT270
 )
 
 private fun buildFrame(dis: DataInputStream, ruleAsset: RuleAsset): PicTransIdx {

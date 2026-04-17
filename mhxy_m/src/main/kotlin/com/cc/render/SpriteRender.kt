@@ -146,6 +146,10 @@ fun ShapeRenderer.drawLine(
 fun SpriteBatch.drawAnimation(frames: List<Frame>, originX: Float, originY: Float) {
     for (frame in frames) {
         val textureRegion = frame.textureRegion
+        // 同步 flipX/flipY 到 TextureRegion
+        if (textureRegion.isFlipX != frame.flipX) textureRegion.flip(true, false)
+        if (textureRegion.isFlipY != frame.flipY) textureRegion.flip(false, true)
+
         // 屏幕左上角 = libGDX 的 (0, VIRTUAL_H)
         // 原始坐标 (px, py) → libGDX y = VIRTUAL_H - py - sliceH
         val px = originX + frame.transX

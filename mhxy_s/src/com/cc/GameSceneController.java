@@ -15578,7 +15578,7 @@ public final class GameSceneController {
 
     }
 
-    private void y(Graphics var1) {
+    private void y(Graphics graphics) {
         try {
             by var2 = null;
             int var3 = h - this.g();
@@ -15588,49 +15588,46 @@ public final class GameSceneController {
                 if ((var2 = (by) bl.elementAt(var5)).a && var2 != null) {
                     if (var2.b == 6) {
                         SpritePiece var6 = (SpritePiece) var2.c;
-                        MainCanvas.pngUtil.a(var1, var6, ((cb) var2).d, var3, var4, var6.transformX, var6.transformY, 0);
+                        MainCanvas.pngUtil.a(graphics, var6, ((cb) var2).d, var3, var4, var6.transformX, var6.transformY, 0);
                     } else if (var2.b == 1) {
-                        this.sceneRefreshCoordinator.a(var1, MainCanvas.pngUtil, var3, var4, (byte) 0);
+                        this.sceneRefreshCoordinator.a(graphics, MainCanvas.pngUtil, var3, var4, (byte) 0);
                     } else if (var2.b == 2) {
                         bl var10000 = (bl) var2.c;
                         boolean var12 = false;
                         PngUtil var7 = MainCanvas.pngUtil;
                         bl var13 = var10000;
                         if (var10000.frame1 != null) {
-                            var7.roleSelectedAnimation(var1, (Animation) var13.frame1, (int[]) null, var3, var4, var13.j + 8, var13.k + 16, 20, 0);
+                            var7.roleSelectedAnimation(graphics, (Animation) var13.frame1, (int[]) null, var3, var4, var13.j + 8, var13.k + 16, 20, 0);
                             if (var13.name != null && aW[2] == 0) {
                                 if (var13.b != null && !var13.b.equals("")) {
-                                    LoadingPage.drawString(var1, var13.b, var13.j - var3 + 8, var13.k - var4 - (GlobalConfig.font2_h << 1) - var13.frame1.j() + 16, 17, var13.a(var13.u, var13.p));
+                                    LoadingPage.drawString(graphics, var13.b, var13.j - var3 + 8, var13.k - var4 - (GlobalConfig.font2_h << 1) - var13.frame1.j() + 16, 17, var13.a(var13.u, var13.p));
                                 }
 
-                                LoadingPage.drawString(var1, (String) var13.name, (int) (var13.j - var3 + 8), var13.k - var4 - GlobalConfig.font2_h - var13.frame1.j() + 16, 17, var13.a(var13.u, var13.p), 0);
+                                LoadingPage.drawString(graphics, (String) var13.name, (int) (var13.j - var3 + 8), var13.k - var4 - GlobalConfig.font2_h - var13.frame1.j() + 16, 17, var13.a(var13.u, var13.p), 0);
                             }
 
                             if (var13.p == 1 && y != null) {
-                                var7.draw(var1, y, (int[]) null, (ImageSlice) null, var3, var4, var13.j + 8 - (aW[2] == 0 ? GlobalConfig.font2.stringWidth(var13.name) / 2 + y.w : y.w / 2), var13.k - GlobalConfig.font2_h - 18, 20, 0);
+                                var7.draw(graphics, y, (int[]) null, (ImageSlice) null, var3, var4, var13.j + 8 - (aW[2] == 0 ? GlobalConfig.font2.stringWidth(var13.name) / 2 + y.w : y.w / 2), var13.k - GlobalConfig.font2_h - 18, 20, 0);
                             } else if (var13.p == 0 && z != null) {
-                                var7.draw(var1, z, (int[]) null, (ImageSlice) null, var3, var4, var13.j + 8 - (aW[2] == 0 ? GlobalConfig.font2.stringWidth(var13.name) / 2 + z.w : z.w / 2), var13.k - GlobalConfig.font2_h - 18, 20, 0);
+                                var7.draw(graphics, z, (int[]) null, (ImageSlice) null, var3, var4, var13.j + 8 - (aW[2] == 0 ? GlobalConfig.font2.stringWidth(var13.name) / 2 + z.w : z.w / 2), var13.k - GlobalConfig.font2_h - 18, 20, 0);
                             }
                         }
                     } else if (var2.b == 3) {
-                        Role var27 = (Role) var2.c;
-                        boolean var14 = false;
-                        PngUtil var22 = MainCanvas.pngUtil;
-                        Role var15 = var27;
-                        if (var27.frame1 != null) {
-                            var22.roleSelectedAnimation(var1, (Animation) var15.frame1, (int[]) null, var3, var4, var15.j + 8, var15.k + 16, 20, 0);
-                            if (var15.name != null && (var15.roleId.equals(GlobalStatus.roleId_2) || aW[4] == 0)) {
-                                if (var15.c != null && !var15.c.equals("")) {
-                                    LoadingPage.drawString(var1, var15.c, var15.j - var3 + 8, var15.k - var4 - (GlobalConfig.font2_h << 1) - var15.frame1.j() + 16, 17, 65280);
+                        Role role = (Role) var2.c;
+                        if (role.frame1 != null) {
+                            MainCanvas.pngUtil.roleSelectedAnimation(graphics, (Animation) role.frame1, (int[]) null, var3, var4, role.j + 8, role.k + 16, 20, 0);
+                            if (role.name != null && (role.roleId.equals(GlobalStatus.roleId_2) || aW[4] == 0)) {
+                                if (role.c   != null && !role.c.equals("")) {
+                                    LoadingPage.drawString(graphics, role.c, role.j - var3 + 8, role.k - var4 - (GlobalConfig.font2_h << 1) - role.frame1.j() + 16, 17, 65280);
                                 }
 
-                                LoadingPage.drawString(var1, (String) var15.name, (int) (var15.j - var3 + 8), var15.k - var4 - GlobalConfig.font2_h - var15.frame1.j() + 16, 17, 65280, 0);
+                                LoadingPage.drawString(graphics, (String) role.name, (int) (role.j - var3 + 8), role.k - var4 - GlobalConfig.font2_h - role.frame1.j() + 16, 17, 65280, 0);
                             }
 
-                            if (var15.s_1 == 1) {
-                                var22.draw(var1, y, (int[]) null, (ImageSlice) null, var3, var4, var15.j + 8 - (aW[4] == 0 ? GlobalConfig.font2.stringWidth(var15.name) / 2 + y.w : y.w / 2), var15.k - GlobalConfig.font2_h - 18, 20, 0);
-                            } else if (var15.s_1 == 0) {
-                                var22.draw(var1, z, (int[]) null, (ImageSlice) null, var3, var4, var15.j + 8 - (aW[4] == 0 ? GlobalConfig.font2.stringWidth(var15.name) / 2 + z.w : z.w / 2), var15.k - GlobalConfig.font2_h - 18, 20, 0);
+                            if (role.s_1 == 1) {
+                                MainCanvas.pngUtil.draw(graphics, y, (int[]) null, (ImageSlice) null, var3, var4, role.j + 8 - (aW[4] == 0 ? GlobalConfig.font2.stringWidth(role.name) / 2 + y.w : y.w / 2), role.k - GlobalConfig.font2_h - 18, 20, 0);
+                            } else if (role.s_1 == 0) {
+                                MainCanvas.pngUtil.draw(graphics, z, (int[]) null, (ImageSlice) null, var3, var4, role.j + 8 - (aW[4] == 0 ? GlobalConfig.font2.stringWidth(role.name) / 2 + z.w : z.w / 2), role.k - GlobalConfig.font2_h - 18, 20, 0);
                             }
                         }
                     } else if (var2.b == 5) {
@@ -15652,23 +15649,23 @@ public final class GameSceneController {
                         PngUtil var24 = MainCanvas.pngUtil;
                         if (aW[10] == 1) {
                             if (var20.frame1 != null && var20.frame1.spritePieces != null) {
-                                var24.a(var1, var20.frame1.spritePieces[var20.frame1.currentFrameIndex], var20.frame1.g(), var20.frame1.h(), (int[]) null, var3, var4, var20.c, var20.d, 20, 0);
+                                var24.a(graphics, var20.frame1.spritePieces[var20.frame1.currentFrameIndex], var20.frame1.g(), var20.frame1.h(), (int[]) null, var3, var4, var20.c, var20.d, 20, 0);
                             }
                         } else if (var20.frame1 != null && var20.frame1.spritePieces != null) {
-                            var24.roleSelectedAnimation(var1, (Animation) var20.frame1, (int[]) null, var3, var4, var20.c, var20.d, 20, 0);
+                            var24.roleSelectedAnimation(graphics, (Animation) var20.frame1, (int[]) null, var3, var4, var20.c, var20.d, 20, 0);
                         }
 
                         if (var20.npcName != null && var20.x && aW[3] == 1) {
-                            LoadingPage.drawString(var1, (String) var20.npcName, (int) (var20.c - var3), var20.d - (var20.frame1 == null ? 30 : var20.frame1.j()) - GlobalConfig.font2_h - var4, 17, 255, 16777215);
+                            LoadingPage.drawString(graphics, (String) var20.npcName, (int) (var20.c - var3), var20.d - (var20.frame1 == null ? 30 : var20.frame1.j()) - GlobalConfig.font2_h - var4, 17, 255, 16777215);
                         }
 
-                        var20.a(var1, var24, var3, var4, (byte) 0);
+                        var20.a(graphics, var24, var3, var4, (byte) 0);
                     } else if (var2.b == 4) {
-                        ((au) var2.c).a(var1, MainCanvas.pngUtil, var3, var4, (byte) 0);
+                        ((au) var2.c).a(graphics, MainCanvas.pngUtil, var3, var4, (byte) 0);
                     } else if (var2.b == 7) {
-                        ((s) var2.c).a(var1, MainCanvas.pngUtil, var3, var4, (byte) 0);
+                        ((s) var2.c).a(graphics, MainCanvas.pngUtil, var3, var4, (byte) 0);
                     } else if (var2.b == 8) {
-                        ((bv) var2.c).a(var1, MainCanvas.pngUtil, var3, var4, (byte) 0);
+                        ((bv) var2.c).a(graphics, MainCanvas.pngUtil, var3, var4, (byte) 0);
                     }
                 }
             }
@@ -15687,7 +15684,7 @@ public final class GameSceneController {
                             GlobalStatus.npcObjects[var19].x = true;
                         }
 
-                        GlobalStatus.npcObjects[var19].a(var1, MainCanvas.pngUtil, var3, var4, (byte) 0);
+                        GlobalStatus.npcObjects[var19].a(graphics, MainCanvas.pngUtil, var3, var4, (byte) 0);
                     }
                 }
             }

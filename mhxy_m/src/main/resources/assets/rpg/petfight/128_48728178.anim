@@ -7,18 +7,18 @@
                 "index": 2,
                 "transX": -14,
                 "transY": -34,
-                "flipX": false,
+                "flipX": true,
                 "flipY": false,
-                "rotation": 90.0
+                "rotation": 0.0
             },
             {
                 "pic": "12_-253545408.pic",
                 "index": 1,
                 "transX": -4,
                 "transY": -6,
-                "flipX": false,
+                "flipX": true,
                 "flipY": false,
-                "rotation": 90.0
+                "rotation": 0.0
             }
         ],
         [
@@ -27,18 +27,18 @@
                 "index": 1,
                 "transX": -4,
                 "transY": -6,
-                "flipX": false,
+                "flipX": true,
                 "flipY": false,
-                "rotation": 90.0
+                "rotation": 0.0
             },
             {
                 "pic": "12_-253545408.pic",
                 "index": 2,
                 "transX": -14,
                 "transY": -33,
-                "flipX": false,
+                "flipX": true,
                 "flipY": false,
-                "rotation": 90.0
+                "rotation": 0.0
             }
         ]
     ]

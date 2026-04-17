@@ -16,9 +16,9 @@
                 "index": 5,
                 "transX": -8,
                 "transY": -19,
-                "flipX": false,
+                "flipX": true,
                 "flipY": false,
-                "rotation": 90.0
+                "rotation": 0.0
             }
         ],
         [
