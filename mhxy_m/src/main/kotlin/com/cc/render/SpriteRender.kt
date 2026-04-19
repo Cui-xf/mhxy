@@ -198,4 +198,9 @@ fun SpriteBatch.drawFrame(frame: Frame, screenX: Float, screenY: Float) {
     )
 }
 
-fun Int.toColor(): Color = Color.valueOf((this and 0xFFFFFF).toString(16).padStart(6, '0').uppercase())
+private val colorCache = mutableMapOf<Int, Color>()
+fun Int.toColor(): Color {
+    return colorCache[this] ?: Color.valueOf((this and 0xFFFFFF).toString(16).padStart(6, '0').uppercase()).also {
+        colorCache[this] = it
+    }
+}

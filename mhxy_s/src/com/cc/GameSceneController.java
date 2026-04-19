@@ -166,19 +166,19 @@ public final class GameSceneController {
     /**
      * 战斗背景图（"/images/fightBG.png"）
      */
-    public static Image A;
+    public static Image fightBG;
     /**
      * 等级徽章帧（"lvl"）
      */
-    public static Sprite B;
+    public static Sprite lvl;
     /**
      * 普通底板帧（"board"，私有）
      */
-    private static Sprite bq;
+    private static Sprite board;
     /**
      * 增强底板帧（"board+"，私有）
      */
-    private static Sprite br;
+    private static Sprite board_;
     /**
      * 聊天 UI 帧
      */
@@ -194,7 +194,7 @@ public final class GameSceneController {
     /**
      * 战斗图标帧（"fighticon"）
      */
-    public static Sprite F;
+    public static Sprite fighticon;
     /**
      * 快捷键图标帧（"hotkeyicon"）
      */
@@ -3271,7 +3271,7 @@ public final class GameSceneController {
         GlobalStatus.M = null;
         GlobalStatus.localMapId = -1;
         FightModel.s = (short) FightModel.serverFightTextSpeed;
-        bq.h = 0;
+        board.h = 0;
         aW[15] = 1;
         System.gc();
     }
@@ -3616,7 +3616,7 @@ public final class GameSceneController {
 
     private void aq() {
         try {
-            A = Image.createImage("/images/fightBG.png");
+            fightBG = Image.createImage("/images/fightBG.png");
         } catch (IOException var1) {
             ((Throwable) var1).printStackTrace();
         }
@@ -3624,7 +3624,7 @@ public final class GameSceneController {
         y = MainCanvas.ui.getSpriteByNameFromCache("leader");
         z = MainCanvas.ui.getSpriteByNameFromCache("member");
         G = MainCanvas.ui.getSpriteByNameFromCache("hotkeyicon");
-        F = MainCanvas.ui.getSpriteByNameFromCache("fighticon");
+        fighticon = MainCanvas.ui.getSpriteByNameFromCache("fighticon");
         E = MainCanvas.ui.getSpriteByNameFromCache("fightnum");
         bn = MainCanvas.ui.getAnimationByNameFromCache("trans");
         u = MainCanvas.ui.getAnimationByNameFromCache("dialog");
@@ -3633,9 +3633,9 @@ public final class GameSceneController {
         bo = MainCanvas.ui.getAnimationByNameFromCache("mapnpc");
         H = MainCanvas.ui.getSpriteByNameFromCache("mystation");
         v = MainCanvas.publicUI.getSpriteByNameFromCache(GlobalConfig.JueSeWaiGuanName[GlobalStatus.backpackRows][GlobalStatus.backPackFlag]);
-        B = MainCanvas.publicUI.getSpriteByNameFromCache("lvl");
-        bq = MainCanvas.publicUI.getSpriteByNameFromCache("board");
-        br = MainCanvas.publicUI.getSpriteByNameFromCache("board+");
+        lvl = MainCanvas.publicUI.getSpriteByNameFromCache("lvl");
+        board = MainCanvas.publicUI.getSpriteByNameFromCache("board");
+        board_ = MainCanvas.publicUI.getSpriteByNameFromCache("board+");
     }
 
     public static void a(short var0, short var1, short var2, short var3) {
@@ -10441,7 +10441,7 @@ public final class GameSceneController {
                     }
 
                     if (var6 >= 8) {
-                        MainCanvas.pngUtil.a(var1, F, (int[]) null, var6 == 8 ? 0 : 2, 0, 0, var2 + 3 + var5 * 17, var3 + 3, 0, 0);
+                        MainCanvas.pngUtil.a(var1, fighticon, (int[]) null, var6 == 8 ? 0 : 2, 0, 0, var2 + 3 + var5 * 17, var3 + 3, 0, 0);
                     }
                 }
 
@@ -15711,19 +15711,19 @@ public final class GameSceneController {
     }
 
     private void A(Graphics var1) {
-        if (B != null && v.image != null && bq != null) {
+        if (lvl != null && v.image != null && board != null) {
             int var2 = GlobalConfig.defaultWidth - 67;
-            var1.drawImage(bq.image, var2, 5, 20);
+            var1.drawImage(board.image, var2, 5, 20);
             var1.drawImage(v.image, var2 + 37, 8, 20);
             if (GlobalStatus.roleLevel < 10) {
-                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.roleLevel % 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, lvl, (int[]) null, GlobalStatus.roleLevel % 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
             } else if (GlobalStatus.roleLevel >= 10 && GlobalStatus.roleLevel <= 99) {
-                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.roleLevel / 10 + 1, 0, 0, var2 + 20, 25, 0, 0);
-                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.roleLevel % 10 + 1, 0, 0, var2 + 25, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, lvl, (int[]) null, GlobalStatus.roleLevel / 10 + 1, 0, 0, var2 + 20, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, lvl, (int[]) null, GlobalStatus.roleLevel % 10 + 1, 0, 0, var2 + 25, 25, 0, 0);
             } else {
-                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.roleLevel % 10 + 1, 0, 0, var2 + 28, 25, 0, 0);
-                MainCanvas.pngUtil.a(var1, B, (int[]) null, (GlobalStatus.roleLevel - GlobalStatus.roleLevel / 100 * 100) / 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
-                MainCanvas.pngUtil.a(var1, B, (int[]) null, GlobalStatus.roleLevel / 100 + 1, 0, 0, var2 + 18, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, lvl, (int[]) null, GlobalStatus.roleLevel % 10 + 1, 0, 0, var2 + 28, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, lvl, (int[]) null, (GlobalStatus.roleLevel - GlobalStatus.roleLevel / 100 * 100) / 10 + 1, 0, 0, var2 + 23, 25, 0, 0);
+                MainCanvas.pngUtil.a(var1, lvl, (int[]) null, GlobalStatus.roleLevel / 100 + 1, 0, 0, var2 + 18, 25, 0, 0);
             }
 
             int var3 = GlobalStatus.currentHealth * 30 / GlobalStatus.totalHealth;
@@ -15763,8 +15763,8 @@ public final class GameSceneController {
             var1.drawLine(var2 + 32 - var3, 21, var2 + 32, 21);
             if (GlobalStatus.bf != 0) {
                 var1.setColor(this.mainCanvasRef.frameCounter++ % 8L / 4L == 0L ? 15984780 : 15953687);
-                var1.fillRect(var2 + 2, 24, br.w - 2, br.h);
-                var1.drawImage(br.image, var2, 24, 20);
+                var1.fillRect(var2 + 2, 24, board_.w - 2, board_.h);
+                var1.drawImage(board_.image, var2, 24, 20);
             }
 
             int var4 = 0;
@@ -16351,7 +16351,7 @@ public final class GameSceneController {
     }
 
     public final void S() {
-        byte[] var1 = NetPayloadBuilder.t((short) 4192, GlobalStatus.roleId_2, bq.L);
+        byte[] var1 = NetPayloadBuilder.t((short) 4192, GlobalStatus.roleId_2, board.L);
         NetPacket var2 = new NetPacket((short) 4192, var1);
         MainCanvas.netUtils.sendPacket(var2);
     }

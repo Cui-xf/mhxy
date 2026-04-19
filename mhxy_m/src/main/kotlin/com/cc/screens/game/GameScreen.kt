@@ -1,6 +1,14 @@
 package com.cc.screens.game
 
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.GL20
+import com.badlogic.gdx.graphics.Pixmap
+import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.badlogic.gdx.graphics.glutils.FrameBuffer
+import com.cc.MhxyGame
 import com.cc.screens.AbstractScreen
+import com.cc.screens.fight.FightScreen
 
 class GameScreen : AbstractScreen() {
     private val screenMap = ScreenMap(this.assetLoader)
@@ -29,9 +37,30 @@ class GameScreen : AbstractScreen() {
         }
 //        miniMap.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
         hud.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
+        enterFight(1)
     }
 
     private fun enterFight(id: Int) {
-        println("Entering fight $id")
+        MhxyGame.setScreen(FightScreen(id, player, captureMapSnapshot()))
+    }
+
+    /** 用 FrameBuffer 渲染当前地图帧，拷贝为普通 Texture 后立即 dispose FBO */
+    private fun captureMapSnapshot(): TextureRegion {
+        val w = VIRTUAL_W.toInt()
+        val h = VIRTUAL_H.toInt()
+        val fb = FrameBuffer(Pixmap.Format.RGBA8888, w, h, false)
+        fb.begin()
+        Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
+        batch.projectionMatrix = viewport.camera.combined
+        screenMap.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, 0f)
+        val pm = Pixmap.createFromFrameBuffer(0, 0, w, h)
+        fb.end()
+        fb.dispose()
+        viewport.apply()
+        val tex = TextureRegion(Texture(pm))
+        tex.flip(false, true)
+        pm.dispose()
+        return tex
     }
 }

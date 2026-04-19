@@ -18,7 +18,7 @@ public final class FightModel {
    private Vector w = new Vector();
    private Vector x = new Vector();
    private MainCanvas y;
-   private GameSceneController z;
+   private GameSceneController gameSceneController;
    private cj A;
    public int d;
    public int e;
@@ -55,7 +55,7 @@ public final class FightModel {
 
    public FightModel(MainCanvas var1, GameSceneController var2, byte var3) {
       this.y = var1;
-      this.z = var2;
+      this.gameSceneController = var2;
       t = (short)var3;
       var1.doRepaint();
       GlobalConfig.printStr("[FIGHT] bq_1构造: w=" + GlobalStatus.w + " -> 设置v=w");
@@ -181,7 +181,7 @@ public final class FightModel {
       this.d = 0;
       this.h = 0;
       this.e = 5;
-      this.z.az = 0;
+      this.gameSceneController.az = 0;
       if (GlobalStatus.bt) {
          serverFightTextSpeed_2 = 1;
          s = 1;
@@ -368,25 +368,25 @@ public final class FightModel {
          if (this.d == 0 || this.d == 2 || this.f > 1) {
             if (var1 == 8) {
                if (this.e == 5 || this.e == 3 && this.d > 1) {
-                  this.z.az = this.z.az <= 0 ? 9 : --this.z.az;
+                  this.gameSceneController.az = this.gameSceneController.az <= 0 ? 9 : --this.gameSceneController.az;
                }
             } else if (var1 == 2) {
                if (this.e == 5 || this.e == 3 && this.d > 1) {
-                  this.z.az = this.z.az >= 9 ? 0 : ++this.z.az;
+                  this.gameSceneController.az = this.gameSceneController.az >= 9 ? 0 : ++this.gameSceneController.az;
                }
             } else if (var1 == 1073741824) {
                if (this.e == 5 || this.e == 3 && this.d > 1) {
-                  if (this.z.az == 8) {
-                     this.z.K();
-                  } else if (this.z.az == 9) {
-                     this.z.O();
+                  if (this.gameSceneController.az == 8) {
+                     this.gameSceneController.K();
+                  } else if (this.gameSceneController.az == 9) {
+                     this.gameSceneController.O();
                      this.e = 5;
                   }
                }
             } else if (var1 == 1024) {
-               this.z.K();
+               this.gameSceneController.K();
             } else if (var1 == 2048) {
-               this.z.O();
+               this.gameSceneController.O();
                if (this.d <= 1) {
                   this.e = 5;
                } else if (this.d > 1) {
@@ -399,7 +399,7 @@ public final class FightModel {
             this.I = System.currentTimeMillis();
             if (h() && this.f != -1 && !GameSceneController.r()) {
                this.j = 0;
-               this.p = GlobalStatus.ej[this.z.az];
+               this.p = GlobalStatus.ej[this.gameSceneController.az];
                this.n = 1;
                int var60 = GlobalStatus.bt ? 0 : 1;
                int var10002 = GlobalStatus.bt ? 0 : 1;
@@ -461,12 +461,12 @@ public final class FightModel {
                      }
                   } else if (this.e == 2 && !h()) {
                      if (GlobalStatus.skillCD2 != null && GlobalStatus.skillCD2.length > 0) {
-                        this.z.h((int)3);
+                        this.gameSceneController.h((int)3);
                      } else {
                         this.y.showTips("没有可用技能");
                      }
                   } else if (this.e == 3) {
-                     this.z.e((int)6);
+                     this.gameSceneController.e((int)6);
                   } else if (this.e == 4 && !h()) {
                      if (this.j()) {
                         this.k = 1;
@@ -490,17 +490,17 @@ public final class FightModel {
                         this.d = 2;
                         this.e = 3;
                      }
-                  } else if (this.e == 5 && GlobalStatus.en[this.z.az] != -1 && this.z.az >= 0 && this.z.az < 8) {
+                  } else if (this.e == 5 && GlobalStatus.en[this.gameSceneController.az] != -1 && this.gameSceneController.az >= 0 && this.gameSceneController.az < 8) {
                      this.q();
                   }
                } else if (var1 == 513 && !GlobalStatus.bt) {
                   if (GlobalStatus.en[0] != -1) {
-                     this.z.az = 0;
-                     if (GlobalStatus.el[this.z.az] < 2) {
+                     this.gameSceneController.az = 0;
+                     if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                         this.q();
                      } else if (this.b((int)0)) {
                         this.j = 0;
-                        this.p = GlobalStatus.ej[this.z.az];
+                        this.p = GlobalStatus.ej[this.gameSceneController.az];
                         this.n = 1;
                         this.o = GlobalStatus.M[this.h].a;
                         if (this.j()) {
@@ -518,12 +518,12 @@ public final class FightModel {
                   }
                } else if (var1 == 514 && !GlobalStatus.bt) {
                   if (GlobalStatus.en[1] != -1) {
-                     this.z.az = 1;
-                     if (GlobalStatus.el[this.z.az] < 2) {
+                     this.gameSceneController.az = 1;
+                     if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                         this.q();
                      } else if (this.b((int)0)) {
                         this.j = 0;
-                        this.p = GlobalStatus.ej[this.z.az];
+                        this.p = GlobalStatus.ej[this.gameSceneController.az];
                         this.n = 1;
                         this.o = GlobalStatus.M[this.h].a;
                         if (this.j()) {
@@ -541,12 +541,12 @@ public final class FightModel {
                   }
                } else if (var1 == 515 && !GlobalStatus.bt) {
                   if (GlobalStatus.en[2] != -1) {
-                     this.z.az = 2;
-                     if (GlobalStatus.el[this.z.az] < 2) {
+                     this.gameSceneController.az = 2;
+                     if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                         this.q();
                      } else if (this.b((int)0)) {
                         this.j = 0;
-                        this.p = GlobalStatus.ej[this.z.az];
+                        this.p = GlobalStatus.ej[this.gameSceneController.az];
                         this.n = 1;
                         this.o = GlobalStatus.M[this.h].a;
                         if (this.j()) {
@@ -564,12 +564,12 @@ public final class FightModel {
                   }
                } else if (var1 == 516 && !GlobalStatus.bt) {
                   if (GlobalStatus.en[3] != -1) {
-                     this.z.az = 3;
-                     if (GlobalStatus.el[this.z.az] < 2) {
+                     this.gameSceneController.az = 3;
+                     if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                         this.q();
                      } else if (this.b((int)0)) {
                         this.j = 0;
-                        this.p = GlobalStatus.ej[this.z.az];
+                        this.p = GlobalStatus.ej[this.gameSceneController.az];
                         this.n = 1;
                         this.o = GlobalStatus.M[this.h].a;
                         if (this.j()) {
@@ -587,12 +587,12 @@ public final class FightModel {
                   }
                } else if (var1 == 517 && !GlobalStatus.bt) {
                   if (GlobalStatus.en[4] != -1) {
-                     this.z.az = 4;
-                     if (GlobalStatus.el[this.z.az] < 2) {
+                     this.gameSceneController.az = 4;
+                     if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                         this.q();
                      } else if (this.b((int)0)) {
                         this.j = 0;
-                        this.p = GlobalStatus.ej[this.z.az];
+                        this.p = GlobalStatus.ej[this.gameSceneController.az];
                         this.n = 1;
                         this.o = GlobalStatus.M[this.h].a;
                         if (this.j()) {
@@ -610,12 +610,12 @@ public final class FightModel {
                   }
                } else if (var1 == 518 && !GlobalStatus.bt) {
                   if (GlobalStatus.en[5] != -1) {
-                     this.z.az = 5;
-                     if (GlobalStatus.el[this.z.az] < 2) {
+                     this.gameSceneController.az = 5;
+                     if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                         this.q();
                      } else if (this.b((int)0)) {
                         this.j = 0;
-                        this.p = GlobalStatus.ej[this.z.az];
+                        this.p = GlobalStatus.ej[this.gameSceneController.az];
                         this.n = 1;
                         this.o = GlobalStatus.M[this.h].a;
                         if (this.j()) {
@@ -633,12 +633,12 @@ public final class FightModel {
                   }
                } else if (var1 == 519 && !GlobalStatus.bt) {
                   if (GlobalStatus.en[6] != -1) {
-                     this.z.az = 6;
-                     if (GlobalStatus.el[this.z.az] < 2) {
+                     this.gameSceneController.az = 6;
+                     if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                         this.q();
                      } else if (this.b((int)0)) {
                         this.j = 0;
-                        this.p = GlobalStatus.ej[this.z.az];
+                        this.p = GlobalStatus.ej[this.gameSceneController.az];
                         this.n = 1;
                         this.o = GlobalStatus.M[this.h].a;
                         if (this.j()) {
@@ -655,12 +655,12 @@ public final class FightModel {
                      }
                   }
                } else if (var1 == 520 && !GlobalStatus.bt && GlobalStatus.en[7] != -1) {
-                  this.z.az = 7;
-                  if (GlobalStatus.el[this.z.az] < 2) {
+                  this.gameSceneController.az = 7;
+                  if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                      this.q();
                   } else if (this.b((int)0)) {
                      this.j = 0;
-                     this.p = GlobalStatus.ej[this.z.az];
+                     this.p = GlobalStatus.ej[this.gameSceneController.az];
                      this.n = 1;
                      this.o = GlobalStatus.M[this.h].a;
                      if (this.j()) {
@@ -693,12 +693,12 @@ public final class FightModel {
                               this.o = GlobalStatus.M[this.h].a;
                            }
                         } else {
-                           if (this.z.az >= 0 && this.z.az <= 7 && GlobalStatus.bt) {
+                           if (this.gameSceneController.az >= 0 && this.gameSceneController.az <= 7 && GlobalStatus.bt) {
                               break label1626;
                            }
 
                            this.j = 0;
-                           this.p = GlobalStatus.ej[this.z.az];
+                           this.p = GlobalStatus.ej[this.gameSceneController.az];
                            this.n = 1;
                            this.o = GlobalStatus.M[this.h].a;
                         }
@@ -762,53 +762,53 @@ public final class FightModel {
                         this.e = 5;
                      } else if (this.e == 2) {
                         if (GlobalStatus.cR != null && GlobalStatus.cR.length > 0) {
-                           this.z.a(false, true);
+                           this.gameSceneController.a(false, true);
                         } else {
                            this.y.showTips("宠物没有技能!");
                         }
-                     } else if (this.e == 3 && GlobalStatus.et[this.z.az] != -1) {
+                     } else if (this.e == 3 && GlobalStatus.et[this.gameSceneController.az] != -1) {
                         this.r();
                      }
                   }
 
                   if (var1 == 513 && !GlobalStatus.bt) {
                      if (GlobalStatus.et[0] != -1) {
-                        this.z.az = 0;
+                        this.gameSceneController.az = 0;
                         this.r();
                      }
                   } else if (var1 == 514 && !GlobalStatus.bt) {
                      if (GlobalStatus.et[1] != -1) {
-                        this.z.az = 1;
+                        this.gameSceneController.az = 1;
                         this.r();
                      }
                   } else if (var1 == 515 && !GlobalStatus.bt) {
                      if (GlobalStatus.et[2] != -1) {
-                        this.z.az = 2;
+                        this.gameSceneController.az = 2;
                         this.r();
                      }
                   } else if (var1 == 516 && !GlobalStatus.bt) {
                      if (GlobalStatus.et[3] != -1) {
-                        this.z.az = 3;
+                        this.gameSceneController.az = 3;
                         this.r();
                      }
                   } else if (var1 == 517 && !GlobalStatus.bt) {
                      if (GlobalStatus.et[4] != -1) {
-                        this.z.az = 4;
+                        this.gameSceneController.az = 4;
                         this.r();
                      }
                   } else if (var1 == 518 && !GlobalStatus.bt) {
                      if (GlobalStatus.et[5] != -1) {
-                        this.z.az = 5;
+                        this.gameSceneController.az = 5;
                         this.r();
                      }
                   } else if (var1 == 519 && !GlobalStatus.bt) {
                      if (GlobalStatus.et[6] != -1) {
-                        this.z.az = 6;
+                        this.gameSceneController.az = 6;
                         this.r();
                      }
                   } else if (var1 == 520 && !GlobalStatus.bt) {
                      if (GlobalStatus.et[7] != -1) {
-                        this.z.az = 7;
+                        this.gameSceneController.az = 7;
                         this.r();
                      }
                   } else if (var1 == 536870912) {
@@ -1119,7 +1119,7 @@ public final class FightModel {
                      s = serverFightTextSpeed_2;
                   } else {
                      this.j = 0;
-                     this.p = GlobalStatus.ej[this.z.az];
+                     this.p = GlobalStatus.ej[this.gameSceneController.az];
                      this.n = 1;
                      int var61 = GlobalStatus.bt ? 0 : 1;
                      int var62 = GlobalStatus.bt ? 0 : 1;
@@ -1168,7 +1168,7 @@ public final class FightModel {
             }
 
             this.d();
-            this.z.lastSceneModeId = this.z.currentSceneModeId = 0;
+            this.gameSceneController.lastSceneModeId = this.gameSceneController.currentSceneModeId = 0;
          } else if (this.f == 5) {
             if (this.s() == 2) {
                for(byte var18 = 0; var18 < GlobalStatus.fightData.length; ++var18) {
@@ -1207,7 +1207,7 @@ public final class FightModel {
          } else if (this.f == 8) {
             this.y.mainMidlet.start();
             this.d();
-            this.z.lastSceneModeId = this.z.currentSceneModeId = 0;
+            this.gameSceneController.lastSceneModeId = this.gameSceneController.currentSceneModeId = 0;
          }
 
          if (this.f == 0 || this.f == 1) {
@@ -1224,7 +1224,7 @@ public final class FightModel {
       }
    }
 
-   public final void a(PngUtil var1, Graphics var2) {
+   public final void  a(PngUtil var1, Graphics var2) {
       var2.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
       if ((this.f == 2 || this.f == 3 || this.f == 6) && this.E != null && this.E[0].f != null && !this.E[0].f.equals("")) {
          LoadingPage.drawString(var2, (String)this.E[0].f, (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 0, 16777215);
@@ -1380,8 +1380,8 @@ public final class FightModel {
 
                   for(byte var27 = 0; var27 < GlobalStatus.fightData.length; ++var27) {
                      if (GlobalStatus.fightData[var27].e > 0 && GlobalStatus.fightData[var27].b != 0 && GlobalStatus.fightData[var27].a == i() + 3) {
-                        LoadingPage.e(var21, GlobalConfig.Q[GlobalStatus.fightData[var27].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var27].a][1] - 9 - GlobalStatus.fightData[var27].i(), GlobalStatus.fightData[var27].e * 19 / (GlobalStatus.fightData[var27].f <= 0 ? 1 : GlobalStatus.fightData[var27].f), 0);
-                        LoadingPage.e(var21, GlobalConfig.Q[GlobalStatus.fightData[var27].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var27].a][1] - 4 - GlobalStatus.fightData[var27].i(), GlobalStatus.fightData[var27].g * 19 / (GlobalStatus.fightData[var27].h <= 0 ? 1 : GlobalStatus.fightData[var27].h), 1);
+                        LoadingPage.drawHpBar(var21, GlobalConfig.Q[GlobalStatus.fightData[var27].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var27].a][1] - 9 - GlobalStatus.fightData[var27].i(), GlobalStatus.fightData[var27].e * 19 / (GlobalStatus.fightData[var27].f <= 0 ? 1 : GlobalStatus.fightData[var27].f), 0);
+                        LoadingPage.drawHpBar(var21, GlobalConfig.Q[GlobalStatus.fightData[var27].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var27].a][1] - 4 - GlobalStatus.fightData[var27].i(), GlobalStatus.fightData[var27].g * 19 / (GlobalStatus.fightData[var27].h <= 0 ? 1 : GlobalStatus.fightData[var27].h), 1);
                      }
                   }
                }
@@ -1391,11 +1391,11 @@ public final class FightModel {
                for(byte var20 = 0; var20 < GlobalStatus.fightData.length; ++var20) {
                   if (GlobalStatus.fightData[var20].e > 0 && GlobalStatus.fightData[var20].b == 0 && GlobalStatus.fightData[var20].c.equals(GlobalStatus.roleId_2)) {
                      if (GlobalStatus.fightData[var20].i == 291) {
-                        LoadingPage.e(var5, GlobalConfig.Q[GlobalStatus.fightData[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var20].a][1] - 2 - GlobalStatus.fightData[var20].i(), GlobalStatus.fightData[var20].e * 19 / (GlobalStatus.fightData[var20].f <= 0 ? 1 : GlobalStatus.fightData[var20].f), 0);
-                        LoadingPage.e(var5, GlobalConfig.Q[GlobalStatus.fightData[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var20].a][1] + 3 - GlobalStatus.fightData[var20].i(), GlobalStatus.fightData[var20].g * 19 / (GlobalStatus.fightData[var20].h <= 0 ? 1 : GlobalStatus.fightData[var20].h), 1);
+                        LoadingPage.drawHpBar(var5, GlobalConfig.Q[GlobalStatus.fightData[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var20].a][1] - 2 - GlobalStatus.fightData[var20].i(), GlobalStatus.fightData[var20].e * 19 / (GlobalStatus.fightData[var20].f <= 0 ? 1 : GlobalStatus.fightData[var20].f), 0);
+                        LoadingPage.drawHpBar(var5, GlobalConfig.Q[GlobalStatus.fightData[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var20].a][1] + 3 - GlobalStatus.fightData[var20].i(), GlobalStatus.fightData[var20].g * 19 / (GlobalStatus.fightData[var20].h <= 0 ? 1 : GlobalStatus.fightData[var20].h), 1);
                      } else {
-                        LoadingPage.e(var5, GlobalConfig.Q[GlobalStatus.fightData[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var20].a][1] - 9 - GlobalStatus.fightData[var20].i(), GlobalStatus.fightData[var20].e * 19 / (GlobalStatus.fightData[var20].f <= 0 ? 1 : GlobalStatus.fightData[var20].f), 0);
-                        LoadingPage.e(var5, GlobalConfig.Q[GlobalStatus.fightData[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var20].a][1] - 4 - GlobalStatus.fightData[var20].i(), GlobalStatus.fightData[var20].g * 19 / (GlobalStatus.fightData[var20].h <= 0 ? 1 : GlobalStatus.fightData[var20].h), 1);
+                        LoadingPage.drawHpBar(var5, GlobalConfig.Q[GlobalStatus.fightData[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var20].a][1] - 9 - GlobalStatus.fightData[var20].i(), GlobalStatus.fightData[var20].e * 19 / (GlobalStatus.fightData[var20].f <= 0 ? 1 : GlobalStatus.fightData[var20].f), 0);
+                        LoadingPage.drawHpBar(var5, GlobalConfig.Q[GlobalStatus.fightData[var20].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var20].a][1] - 4 - GlobalStatus.fightData[var20].i(), GlobalStatus.fightData[var20].g * 19 / (GlobalStatus.fightData[var20].h <= 0 ? 1 : GlobalStatus.fightData[var20].h), 1);
                      }
                   }
                }
@@ -1410,36 +1410,36 @@ public final class FightModel {
 
                if (GlobalStatus.fightData[var12].b == 0) {
                   if (GlobalStatus.fightData[var12].i == 291) {
-                     LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] - 2 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].e * 19 / GlobalStatus.fightData[var12].f, 0);
-                     LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] + 3 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].g * 19 / GlobalStatus.fightData[var12].h, 1);
+                     LoadingPage.drawHpBar(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] - 2 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].e * 19 / GlobalStatus.fightData[var12].f, 0);
+                     LoadingPage.drawHpBar(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] + 3 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].g * 19 / GlobalStatus.fightData[var12].h, 1);
                   } else {
-                     LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] - 9 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].e * 19 / GlobalStatus.fightData[var12].f, 0);
-                     LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] - 4 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].g * 19 / GlobalStatus.fightData[var12].h, 1);
+                     LoadingPage.drawHpBar(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] - 9 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].e * 19 / GlobalStatus.fightData[var12].f, 0);
+                     LoadingPage.drawHpBar(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] - 4 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].g * 19 / GlobalStatus.fightData[var12].h, 1);
                   }
                } else if (GlobalStatus.fightData[var12].b == 2) {
-                  LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] - 9 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].e * 19 / GlobalStatus.fightData[var12].f, 0);
-                  LoadingPage.e(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] - 4 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].g * 19 / GlobalStatus.fightData[var12].h, 1);
+                  LoadingPage.drawHpBar(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] - 9 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].e * 19 / GlobalStatus.fightData[var12].f, 0);
+                  LoadingPage.drawHpBar(var3, GlobalConfig.Q[GlobalStatus.fightData[var12].a][0] - 10, GlobalConfig.Q[GlobalStatus.fightData[var12].a][1] - 4 - GlobalStatus.fightData[var12].i(), GlobalStatus.fightData[var12].g * 19 / GlobalStatus.fightData[var12].h, 1);
                }
             }
          }
 
          for(byte var13 = 0; var13 < GlobalStatus.M.length; ++var13) {
             if (var13 >= 0 && !GlobalStatus.M[var13].a()) {
-               LoadingPage.e(var3, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 4 - GlobalStatus.M[var13].d(), GlobalStatus.M[var13].e * 19 / GlobalStatus.M[var13].f, 0);
+               LoadingPage.drawHpBar(var3, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 4 - GlobalStatus.M[var13].d(), GlobalStatus.M[var13].e * 19 / GlobalStatus.M[var13].f, 0);
                if (var9.h == var13 && (var9.d == 1 || var9.d == 0 || var9.d == 2 || var9.d == 3 || var9.d == 9)) {
                   LoadingPage.drawString(var3, (String) GlobalStatus.M[var13].d, (int)2, 2, 20, 14337302, 0);
                   LoadingPage.drawString(var3, (String)("" + GlobalConfig.ShangHaiLeiXing[GlobalStatus.M[var13].k]), (int)(GlobalConfig.defaultWidth - 2), 2, 24, 14337302, 0);
                }
 
                if (GlobalStatus.M[var13].i > 99) {
-                  MainCanvas.pngUtil.a(var3, GameSceneController.B, (int[])null, GlobalStatus.M[var13].i / 100 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 15, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
-                  MainCanvas.pngUtil.a(var3, GameSceneController.B, (int[])null, (GlobalStatus.M[var13].i - 100) / 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
-                  MainCanvas.pngUtil.a(var3, GameSceneController.B, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 7, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, GameSceneController.lvl, (int[])null, GlobalStatus.M[var13].i / 100 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 15, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, GameSceneController.lvl, (int[])null, (GlobalStatus.M[var13].i - 100) / 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, GameSceneController.lvl, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 7, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
                } else if (GlobalStatus.M[var13].i > 9) {
-                  MainCanvas.pngUtil.a(var3, GameSceneController.B, (int[])null, GlobalStatus.M[var13].i / 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
-                  MainCanvas.pngUtil.a(var3, GameSceneController.B, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 7, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, GameSceneController.lvl, (int[])null, GlobalStatus.M[var13].i / 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, GameSceneController.lvl, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 7, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
                } else if (GlobalStatus.M[var13].i > 1) {
-                  MainCanvas.pngUtil.a(var3, GameSceneController.B, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
+                  MainCanvas.pngUtil.a(var3, GameSceneController.lvl, (int[])null, GlobalStatus.M[var13].i % 10 + 1, 0, 0, GlobalConfig.R[GlobalStatus.M[var13].a][0] - 11, GlobalConfig.R[GlobalStatus.M[var13].a][1] - 11 - GlobalStatus.M[var13].d(), 0, 0);
                }
 
                if (var9.h == var13 && GlobalStatus.M[var13].l == 1) {
@@ -1740,15 +1740,15 @@ public final class FightModel {
          this.C = this.y.frameStartTs;
          if (--s <= 0) {
             if (GlobalStatus.bt && c <= 0) {
-               this.z.O();
+               this.gameSceneController.O();
                c = 0;
                this.e = 5;
                return;
             }
 
             this.j = 0;
-            this.z.az = this.z.az <= GlobalStatus.ej.length - 1 && this.z.az >= 0 ? this.z.az : 0;
-            this.p = GlobalStatus.ej[this.z.az];
+            this.gameSceneController.az = this.gameSceneController.az <= GlobalStatus.ej.length - 1 && this.gameSceneController.az >= 0 ? this.gameSceneController.az : 0;
+            this.p = GlobalStatus.ej[this.gameSceneController.az];
             this.n = 1;
             this.h = this.h <= GlobalStatus.M.length - 1 && this.h >= 0 ? this.h : 0;
             this.a((byte)(GlobalStatus.bt ? 0 : 1), GlobalStatus.bt ? 0 : 1, (byte)1, GlobalStatus.M[this.h].a, (byte)(GlobalStatus.bt ? 0 : 1), GlobalStatus.bt ? 0 : 1, (byte)1, GlobalStatus.M[this.h].a);
@@ -1763,18 +1763,18 @@ public final class FightModel {
    }
 
    private void q() {
-      if (GlobalStatus.en[this.z.az] != -1 && this.z.az >= 0 && this.z.az < 8) {
+      if (GlobalStatus.en[this.gameSceneController.az] != -1 && this.gameSceneController.az >= 0 && this.gameSceneController.az < 8) {
          this.j = 0;
-         this.p = GlobalStatus.ej[this.z.az];
-         if (h() && GlobalStatus.ek[this.z.az] != 2) {
+         this.p = GlobalStatus.ej[this.gameSceneController.az];
+         if (h() && GlobalStatus.ek[this.gameSceneController.az] != 2) {
             this.y.showTips("只能使用复活道具");
             return;
          }
 
-         if (GlobalStatus.el[this.z.az] == 2) {
+         if (GlobalStatus.el[this.gameSceneController.az] == 2) {
             this.n = 1;
             this.o = GlobalStatus.M[this.h].a;
-            if (c() > 1 && c() > GlobalStatus.em[this.z.az]) {
+            if (c() > 1 && c() > GlobalStatus.em[this.gameSceneController.az]) {
                this.d = 1;
                return;
             }
@@ -1791,14 +1791,14 @@ public final class FightModel {
             return;
          }
 
-         if (GlobalStatus.el[this.z.az] == 1) {
+         if (GlobalStatus.el[this.gameSceneController.az] == 1) {
             this.n = 0;
             this.i = f() < 0 ? this.i : f();
             this.d = 7;
             return;
          }
 
-         if (GlobalStatus.el[this.z.az] == 0) {
+         if (GlobalStatus.el[this.gameSceneController.az] == 0) {
             this.n = 0;
             this.o = this.i = i();
             if (this.j()) {
@@ -1816,22 +1816,22 @@ public final class FightModel {
    }
 
    private void r() {
-      if (GlobalStatus.er[this.z.az] == 2) {
+      if (GlobalStatus.er[this.gameSceneController.az] == 2) {
          this.l = 1;
-         if (c() > 1 && c() > GlobalStatus.es[this.z.az]) {
+         if (c() > 1 && c() > GlobalStatus.es[this.gameSceneController.az]) {
             this.k = 0;
-            this.q = GlobalStatus.ep[this.z.az];
+            this.q = GlobalStatus.ep[this.gameSceneController.az];
             this.d = 3;
          } else {
-            this.a(this.j, this.p, this.n, this.o, (byte)0, this.z.az, (byte)1, GlobalStatus.M[this.h].a);
+            this.a(this.j, this.p, this.n, this.o, (byte)0, this.gameSceneController.az, (byte)1, GlobalStatus.M[this.h].a);
             this.f = -1;
             this.e = 5;
          }
-      } else if (GlobalStatus.er[this.z.az] == 1) {
+      } else if (GlobalStatus.er[this.gameSceneController.az] == 1) {
          this.l = 0;
          this.k = 0;
-         this.q = GlobalStatus.ep[this.z.az];
-         if (b() > 1 && b() > GlobalStatus.es[this.z.az]) {
+         this.q = GlobalStatus.ep[this.gameSceneController.az];
+         if (b() > 1 && b() > GlobalStatus.es[this.gameSceneController.az]) {
             this.i = this.g();
             this.d = 8;
          } else {
@@ -1842,9 +1842,9 @@ public final class FightModel {
             this.e = 5;
          }
       } else {
-         if (GlobalStatus.er[this.z.az] == 0) {
+         if (GlobalStatus.er[this.gameSceneController.az] == 0) {
             this.k = 0;
-            this.q = GlobalStatus.ep[this.z.az];
+            this.q = GlobalStatus.ep[this.gameSceneController.az];
             this.m = (byte)(i() + 3);
             this.l = 0;
             this.i = this.g();
@@ -1857,7 +1857,7 @@ public final class FightModel {
    }
 
    private boolean b(int var1) {
-      return c() <= 1 || GlobalStatus.ek != null && c() <= GlobalStatus.em[this.z.az];
+      return c() <= 1 || GlobalStatus.ek != null && c() <= GlobalStatus.em[this.gameSceneController.az];
    }
 
    public static int b() {
@@ -2099,16 +2099,16 @@ public final class FightModel {
       this.y.doRepaint();
       GlobalStatus.p();
       this.y.doRepaint();
-      this.z.c = false;
+      this.gameSceneController.c = false;
       this.y.doRepaint();
       this.u = null;
-      this.z.T();
+      this.gameSceneController.T();
       this.y.doRepaint();
       GlobalStatus.g();
       this.y.doRepaint();
-      MainCanvas.pngUtil.a(this.z.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1283472);
+      MainCanvas.pngUtil.a(this.gameSceneController.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1283472);
       this.y.doRepaint();
-      this.z.j();
+      this.gameSceneController.j();
       this.y.doRepaint();
       this.y.globalLoadingMask = false;
       r = System.currentTimeMillis();
@@ -2264,13 +2264,13 @@ public final class FightModel {
 
          for(int var4 = 0; var4 < this.N.length; ++var4) {
             if (var2 >= this.N[var4][0] && var2 <= this.N[var4][0] + this.N[var4][2] && var3 >= this.N[var4][1] && var3 <= this.N[var4][1] + this.N[var4][3]) {
-               if (this.z.az != var4 || this.e != var1) {
+               if (this.gameSceneController.az != var4 || this.e != var1) {
                   this.e = var1;
-                  this.z.az = (byte)(var4 - 1);
+                  this.gameSceneController.az = (byte)(var4 - 1);
                   return 2;
                }
 
-               if (this.z.az == var4 && this.e == var1) {
+               if (this.gameSceneController.az == var4 && this.e == var1) {
                   return this.O[var4];
                }
             }
@@ -2283,9 +2283,9 @@ public final class FightModel {
    private void d(Graphics var1) {
       if (GlobalStatus.ej != null) {
          if (this.d != 0 && this.d != 1 && this.d != 4) {
-            this.z.a(var1, 0, GlobalConfig.defaultHigh - 22, 1);
+            this.gameSceneController.a(var1, 0, GlobalConfig.defaultHigh - 22, 1);
          } else {
-            this.z.a(var1, 0, GlobalConfig.defaultHigh - 22, 0);
+            this.gameSceneController.a(var1, 0, GlobalConfig.defaultHigh - 22, 0);
          }
 
          for(byte var2 = 0; var2 < GlobalStatus.ej.length; ++var2) {
@@ -2301,7 +2301,7 @@ public final class FightModel {
                var10003 = null;
                var10004 = var2 + 1;
             } else {
-               MainCanvas.pngUtil.a(var1, GameSceneController.F, (int[])null, var2 == 8 ? 0 : 2, 0, 0, 3 + GlobalStatus.ej[var2] * 17, GlobalConfig.defaultHigh - 19, 0, 0);
+               MainCanvas.pngUtil.a(var1, GameSceneController.fighticon, (int[])null, var2 == 8 ? 0 : 2, 0, 0, 3 + GlobalStatus.ej[var2] * 17, GlobalConfig.defaultHigh - 19, 0, 0);
                var10000 = MainCanvas.pngUtil;
                var10001 = var1;
                var10002 = GameSceneController.G;
@@ -2326,11 +2326,11 @@ public final class FightModel {
 
          if (this.e == 5 && GlobalStatus.ej != null || this.e == 3 && GlobalStatus.ej != null && this.d > 1) {
             for(byte var7 = 0; var7 < GlobalStatus.ej.length; ++var7) {
-               if (var7 == this.z.az) {
+               if (var7 == this.gameSceneController.az) {
                   var1.setColor(16711680);
                   LoadingPage.d(var1, 2 + var7 * 17, GlobalConfig.defaultHigh - 20, 17, 17);
                   if (this.f == 0) {
-                     switch (this.z.az) {
+                     switch (this.gameSceneController.az) {
                         case 0:
                         case 1:
                         case 2:
@@ -2340,17 +2340,17 @@ public final class FightModel {
                         case 6:
                         case 7:
                            if (this.d == 0) {
-                              if (GlobalStatus.en[this.z.az] == -1) {
+                              if (GlobalStatus.en[this.gameSceneController.az] == -1) {
                                  return;
                               }
 
-                              LoadingPage.drawString(var1, (String) GlobalStatus.appearanceResName[this.z.az], (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
+                              LoadingPage.drawString(var1, (String) GlobalStatus.appearanceResName[this.gameSceneController.az], (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                            } else {
-                              if (this.d != 2 || GlobalStatus.et[this.z.az] == -1) {
+                              if (this.d != 2 || GlobalStatus.et[this.gameSceneController.az] == -1) {
                                  return;
                               }
 
-                              LoadingPage.drawString(var1, (String) GlobalStatus.eu[this.z.az], (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
+                              LoadingPage.drawString(var1, (String) GlobalStatus.eu[this.gameSceneController.az], (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                            }
 
                            return;
@@ -2602,7 +2602,7 @@ public final class FightModel {
 
    public final void l() {
       this.d();
-      this.z.lastSceneModeId = this.z.currentSceneModeId = 0;
+      this.gameSceneController.lastSceneModeId = this.gameSceneController.currentSceneModeId = 0;
    }
 
    public final void m() {

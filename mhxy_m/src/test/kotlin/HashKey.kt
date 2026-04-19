@@ -18,6 +18,10 @@ val list = listOf(
     "rpg/publicUI/board_.pic",
     "rpg/publicUI/jm.pic",
     "rpg/publicUI/lvl.pic",
+    "rpg/publicUI/rim.pic",
+    "rpg/ui/fighticon.pic",
+    "rpg/icon/-1000.pic",
+    "rpg/publicUI/goods.pic",
 )
 
 fun nameTrans() {
@@ -48,5 +52,9 @@ fun hashKey(name: String, type: String): Int {
     var hash = 0
     for (c in name.toCharArray()) hash = hash * 31 + c.code
     return hash
+}
+
+fun main() {
+    nameTrans()
 }
 

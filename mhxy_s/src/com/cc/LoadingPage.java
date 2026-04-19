@@ -1562,7 +1562,7 @@ public final class LoadingPage {
         var0.drawLine(var1 + var3 - 4, var2 + var4, var1 + var3, var2 + var4);
     }
 
-    public static void e(Graphics var0, int var1, int var2, int var3, int var4) {
+    public static void drawHpBar(Graphics var0, int var1, int var2, int var3, int var4) {
         var0.setColor(16777215);
         var0.fillRect(var1 + 1, var2 + 1, 20, 2);
         var0.setColor(var4 == 0 ? 16711680 : '믿');

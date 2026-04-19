@@ -297,8 +297,8 @@ public final class PngUtil {
         }
 
         this.a(var1, var2, var3, 0, 0, false);
-        if (GameSceneController.A != null) {
-            MainCanvas.pngUtil.graphics.drawImage(GameSceneController.A, this.j - GameSceneController.A.getWidth() >> 1, this.k - GameSceneController.A.getHeight() - 16 >> 1, 20);
+        if (GameSceneController.fightBG != null) {
+            MainCanvas.pngUtil.graphics.drawImage(GameSceneController.fightBG, this.j - GameSceneController.fightBG.getWidth() >> 1, this.k - GameSceneController.fightBG.getHeight() - 16 >> 1, 20);
         }
 
         LoadingPage.fillRect(this.graphics, 4017771, 159, 0, 0, this.j, this.k);

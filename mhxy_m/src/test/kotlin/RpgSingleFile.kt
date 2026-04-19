@@ -5,8 +5,10 @@ import java.io.DataInputStream
 import java.io.File
 import java.io.FileInputStream
 
-val srcRoot = "/Users/cxf/temp/mhxy/mhxy_s/res"
-val destRoot = "/Users/cxf/temp/mhxy/mhxy_m/src/main/resources"
+//val srcRoot = "/Users/cxf/temp/mhxy/mhxy_s/res"
+val srcRoot = "E:\\WORK\\mhxy\\mhxy_s\\res"
+//val destRoot = "/Users/cxf/temp/mhxy/mhxy_m/src/main/resources"
+val destRoot = "E:\\WORK\\mhxy\\mhxy_m\\src\\main\\resources"
 val outDir = "${destRoot}/assets/rpg"
 fun main() {
 //    single()
