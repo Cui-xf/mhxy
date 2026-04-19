@@ -22,6 +22,8 @@ val list = listOf(
     "rpg/ui/fighticon.pic",
     "rpg/icon/-1000.pic",
     "rpg/publicUI/goods.pic",
+    "rpg/publicUI/num.pic",
+    "rpg/publicUI/button_back.pic",
 )
 
 fun nameTrans() {

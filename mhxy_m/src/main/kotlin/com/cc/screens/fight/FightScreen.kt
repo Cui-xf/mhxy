@@ -10,6 +10,8 @@ import com.cc.FontManager
 import com.cc.MhxyGame
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.asset.RpgAnimation
+import com.cc.asset.loadPic
+import com.cc.asset.toTextureRegion
 import com.cc.event.TouchContext
 import com.cc.render.*
 import com.cc.screens.AbstractScreen
@@ -40,15 +42,22 @@ class FightScreen(
     private val playerAnim by resource(PUBLIC_ASSET, "rpg/role/241_1836956646.anim", RpgAnimation::class)
     private val enemyAnim by resource(PUBLIC_ASSET, "rpg/petfight/211_48761813.anim", RpgAnimation::class)
     private val rim by resource(PUBLIC_ASSET, "rpg/publicUI/rim.pic", TextureRegion::class)
+    //技能栏底图
+    private val goods by resource(PUBLIC_ASSET, "rpg/publicUI/goods.pic", TextureRegion::class)
+    //数字
+    private val num by resource(PUBLIC_ASSET, "rpg/publicUI/num.pic", TextureRegion::class)
+    //icon
+    private val slotIcon by resource(PUBLIC_ASSET, "rpg/icon/0_47714320.pic", TextureRegion::class)
+    //聊天和自动
+    private val fighticon by resource(PUBLIC_ASSET, "rpg/ui/fighticon.pic", TextureRegion::class)
 
 
     // ── 行动菜单按钮精灵（publicUI/49_983005409.pic，含6个region：0=全条，1-5=单按钮）──
     //   每个按钮 26×16，index 1=攻击 2=防御 3=技能 4=道具 5=逃跑
     private val fightMenuPic by resource(PUBLIC_ASSET, "rpg/publicUI/49_983005409.pic", TextureRegion::class)
 
-
-    // ── 按钮背景（button1.pic 68×24，用于"返回"按钮底图）────────────
-    private val buttonBg by resource(PUBLIC_ASSET, "rpg/publicUI/button1.pic", TextureRegion::class)
+    // ── 返回按钮（button_back.pic 37×20）────────────
+    private val buttonBack by resource(PUBLIC_ASSET, "rpg/publicUI/button_back.pic", TextureRegion::class)
 
     // ── 战斗状态 ──────────────────────────────────────────────────
     /** 当前选中行动：0=攻击 1=防御 2=技能 3=道具 4=逃跑 */
@@ -62,7 +71,7 @@ class FightScreen(
 
     // 行动按钮区域（左侧5个，x=1，y 从 218 开始，每格16px高，宽26px）
     // 与Java: MainCanvas.pngUtil.a(var1, Z, null, var2+1, 0, 0, 1, defaultHigh-102+(var2<<4), 0, 0)
-    private val ACTION_BTN_X = 1f
+    private val ACTION_BTN_X = 0f
     private val ACTION_BTN_Y0 = 320f - 102f   // = 218f
     private val ACTION_BTN_H = 16f
     private val ACTION_BTN_W = 26f
@@ -73,11 +82,11 @@ class FightScreen(
     private val SKILL_SLOT_H = 17f
     private val SKILL_BAR_SLOTS = 10
 
-    // 返回按钮（右下角）
-    private val BACK_BTN_W = 34f
+    // 返回按钮触摸区域（button_back.pic 37×20，右下角对齐）
+    private val BACK_BTN_W = 37f
     private val BACK_BTN_H = 20f
-    private val BACK_BTN_X = VIRTUAL_W - BACK_BTN_W - 2f
-    private val BACK_BTN_Y = VIRTUAL_H - BACK_BTN_H - 2f
+    private val BACK_BTN_X = VIRTUAL_W - BACK_BTN_W
+    private val BACK_BTN_Y = VIRTUAL_H - BACK_BTN_H
 
     // ── 演示用血量数据 ─────────────────────────────────────────────
     private val playerHp = 80f
@@ -280,56 +289,47 @@ class FightScreen(
 
     /** 层7：底部技能快捷栏（参照 FightModel.d() + GameSceneController.a(Graphics,int,int,int,int,int,int)） */
     private fun drawSkillBar() {
-        val totalW = SKILL_BAR_SLOTS * SKILL_SLOT_W + 4f
+        // 参照 GameSceneController.a(Graphics,int,int,int,int,int,int)
+        // var6 = SKILL_BAR_SLOTS, var2=0, var3=SKILL_BAR_Y
         val barX = 0f
-        val barY = SKILL_BAR_Y - 1f   // 298-1=297
+        val barY = SKILL_BAR_Y
+        val totalW = SKILL_BAR_SLOTS * 17f + 4f
+        val totalH = 21f
 
-        sr.begin(ShapeType.Filled)
-        // 背景：深色填充
-        sr.drawRect(Color.valueOf("0d1a2aff"), barX, barY - 1f, totalW, SKILL_SLOT_H + 4f, Align.LEFT_TOP)
-        sr.end()
-
-        sr.begin(ShapeType.Filled)
-        // 外边框（浅绿色）
-        sr.drawRectBorder(Color.valueOf("3e7a3eff"), barX, barY - 1f, totalW, SKILL_SLOT_H + 4f, Align.LEFT_TOP)
-        // 内边框（深蓝色）
-        sr.drawRectBorder(Color.valueOf("1a2c4aff"), barX + 1f, barY, totalW - 2f, SKILL_SLOT_H + 2f, Align.LEFT_TOP)
-
-        // 每个格子
-        for (i in 0 until SKILL_BAR_SLOTS) {
-            val slotX = barX + 2f + i * SKILL_SLOT_W
-            val slotY = barY + 1f
-            sr.drawRect(Color.valueOf("1e3050ff"), slotX, slotY, SKILL_SLOT_W - 1f, SKILL_SLOT_H - 1f, Align.LEFT_TOP)
-        }
-        sr.end()
-
-        // 格子编号（1-8 显示数字，9=聊天记录，10=自动）
-        val font = FontManager.SMALL_FONT
+        // 每个格子画 goods 底图，前两格画 icon，0-7格左上角画数字编号（1-8）
+        // 参照 FightModel.d(Graphics): pngUtil.a(var1, MainCanvas.num, null, var2+1, 0,0, 3+ej[var2]*17, defaultHigh-19, 0,0)
         batch.begin()
-        for (i in 0 until 8) {
-            val slotX = 2f + i * SKILL_SLOT_W + SKILL_SLOT_W / 2f
-            val slotY = barY + 2f
-            batch.drawString(font, (i + 1).toString(), Color.GRAY, slotX, slotY, Align.CENTER_TOP)
+        for (i in 0 until SKILL_BAR_SLOTS) {
+            val slotX = barX + 2f + i * 17f
+            batch.drawImage(goods, slotX, barY + 2f, align = Align.LEFT_TOP)
+            if (i < 2) {
+                batch.drawImage(slotIcon, slotX + 1f, barY + 3f, align = Align.LEFT_TOP)
+            }
+            if (i < 8) {
+                // num.pic 帧 index = i+1（数字1-8），每帧 3×5，x = (i+1)*3
+                val numRegion = TextureRegion(num.texture, (i + 1) * 3, 0, 3, 5)
+                batch.drawImage(numRegion, slotX, barY + 3f, align = Align.LEFT_TOP)
+            } else {
+                // 第9格(i=8)：fighticon 帧0（左半16px=聊天），第10格(i=9)：帧2（右半16px=自动）
+                val iconX = if (i == 8) 0 else 16
+                val fighticonRegion =
+                    TextureRegion(fighticon.texture, fighticon.regionX + iconX, fighticon.regionY, 16, 16)
+                batch.drawImage(fighticonRegion, slotX + 1f, barY + 3f, align = Align.LEFT_TOP)
+            }
         }
         batch.end()
+
+        sr.begin(ShapeType.Filled)
+        sr.drawRectBorder(15975.toColor(), barX, barY, totalW, totalH, Align.LEFT_TOP)           // 外边框
+        sr.drawRectBorder(11267556.toColor(), barX + 1f, barY + 1f, totalW - 2f, totalH - 2f, Align.LEFT_TOP) // 内边框
+        sr.end()
     }
 
-    /** 层8：右下角"返回"按钮 */
+    /** 层8：右下角"返回"按钮，参照 FightModel.a(PngUtil,Graphics):1497
+     *  drawImage(button_back.image, defaultWidth-button_back.w, defaultHigh-button_back.h) */
     private fun drawReturnButton() {
-        // 绘制按钮底图（button1.pic 68×24，裁剪为 34×20 显示）
-        val region = TextureRegion(
-            buttonBg.texture,
-            buttonBg.regionX, buttonBg.regionY,
-            BACK_BTN_W.toInt(), BACK_BTN_H.toInt()
-        )
-
         batch.begin()
-        batch.drawImage(region, BACK_BTN_X, BACK_BTN_Y, align = Align.LEFT_TOP)
-        val font = FontManager.SMALL_FONT
-        batch.drawString(
-            font, "返回", Color.WHITE,
-            BACK_BTN_X + BACK_BTN_W / 2f, BACK_BTN_Y + 4f, Align.CENTER_TOP
-        )
+        batch.drawImage(buttonBack, BACK_BTN_X, BACK_BTN_Y, align = Align.LEFT_TOP)
         batch.end()
     }
 
