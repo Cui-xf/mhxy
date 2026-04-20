@@ -14,7 +14,7 @@ public final class bv {
    public Animation d;
    public short e;
    public short f;
-   public short g;
+   public short resName;
    public int h;
    public byte i = -1;
    public int[] j;
@@ -27,7 +27,7 @@ public final class bv {
       this.c = var1;
       this.e = var2;
       this.f = var3;
-      this.g = var4;
+      this.resName = var4;
       this.i = var5;
    }
 
@@ -36,11 +36,11 @@ public final class bv {
       var1.readUTF();
       this.e = var1.readShort();
       this.f = var1.readShort();
-      this.g = var1.readShort();
+      this.resName = var1.readShort();
       byte var2 = var1.readByte();
       this.j = new int[var2];
       this.k = new String[var2];
-      this.h = ResourceManager.buildResourceId((String)String.valueOf(this.g), (byte)2);
+      this.h = ResourceManager.buildResourceId((String)String.valueOf(this.resName), (byte)2);
 
       for(int var3 = 0; var3 < var2; ++var3) {
          this.j[var3] = var1.readInt();

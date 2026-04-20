@@ -93,15 +93,15 @@ public final class FightModel {
       GlobalConfig.Q[4][1] = (short)(GlobalConfig.ZhanDouZuoBiao1[4][1] + (var3 << 2));
       GlobalConfig.Q[5][0] = (short)(GlobalConfig.ZhanDouZuoBiao1[5][0] + var2 * 3);
       GlobalConfig.Q[5][1] = (short)(GlobalConfig.ZhanDouZuoBiao1[5][1] + (var3 << 2));
-      GlobalStatus.fightData = new p[GlobalStatus.I.length];
+      GlobalStatus.fightData = new FightRoleData[GlobalStatus.fightRoleData1.length];
       if (t == 0) {
          GlobalStatus.M = new ck[GlobalStatus.N.length];
       } else if (t == 1 || t == 2) {
-         GlobalStatus.M = new ck[GlobalStatus.J.length];
+         GlobalStatus.M = new ck[GlobalStatus.fightRoleData2.length];
       }
 
-      for(int var1 = 0; var1 < GlobalStatus.I.length; ++var1) {
-         GlobalStatus.fightData[var1] = GlobalStatus.I[var1].c();
+      for(int var1 = 0; var1 < GlobalStatus.fightRoleData1.length; ++var1) {
+         GlobalStatus.fightData[var1] = GlobalStatus.fightRoleData1[var1].c();
          GlobalStatus.fightData[var1].b((byte)1);
       }
 
@@ -131,21 +131,21 @@ public final class FightModel {
             GlobalStatus.M[var4].b((byte)1);
          }
       } else if (t == 1 || t == 2) {
-         for(byte var5 = 0; var5 < GlobalStatus.J.length; ++var5) {
-            GlobalStatus.M[var5] = GlobalStatus.J[var5].b();
+         for(byte var5 = 0; var5 < GlobalStatus.fightRoleData2.length; ++var5) {
+            GlobalStatus.M[var5] = GlobalStatus.fightRoleData2[var5].b();
             GlobalStatus.M[var5].b((byte)1);
          }
       }
 
-      if (GlobalStatus.I != null) {
-         for(byte var6 = 0; var6 < GlobalStatus.I.length; ++var6) {
-            if (GlobalStatus.I[var6] != null) {
-               GlobalStatus.I[var6].e();
-               GlobalStatus.I[var6] = null;
+      if (GlobalStatus.fightRoleData1 != null) {
+         for(byte var6 = 0; var6 < GlobalStatus.fightRoleData1.length; ++var6) {
+            if (GlobalStatus.fightRoleData1[var6] != null) {
+               GlobalStatus.fightRoleData1[var6].e();
+               GlobalStatus.fightRoleData1[var6] = null;
             }
          }
 
-         GlobalStatus.I = null;
+         GlobalStatus.fightRoleData1 = null;
       }
 
       if (t == 0) {
@@ -159,15 +159,15 @@ public final class FightModel {
 
             GlobalStatus.N = null;
          }
-      } else if (GlobalStatus.J != null) {
-         for(byte var8 = 0; var8 < GlobalStatus.J.length; ++var8) {
-            if (GlobalStatus.J[var8] != null) {
-               GlobalStatus.J[var8].e();
-               GlobalStatus.J[var8] = null;
+      } else if (GlobalStatus.fightRoleData2 != null) {
+         for(byte var8 = 0; var8 < GlobalStatus.fightRoleData2.length; ++var8) {
+            if (GlobalStatus.fightRoleData2[var8] != null) {
+               GlobalStatus.fightRoleData2[var8].e();
+               GlobalStatus.fightRoleData2[var8] = null;
             }
          }
 
-         GlobalStatus.J = null;
+         GlobalStatus.fightRoleData2 = null;
       }
 
       GlobalStatus.K = GlobalStatus.L;
@@ -199,25 +199,25 @@ public final class FightModel {
       } else {
          if (this.f != 10) {
             FightModel var2 = this;
-            if (GameSceneController.ac != null) {
-               PngUtil.animate(GameSceneController.ac, this.y.frameStartTs);
+            if (GameSceneController.dead != null) {
+               PngUtil.animate(GameSceneController.dead, this.y.frameStartTs);
             }
 
-            if (GameSceneController.ad != null) {
-               PngUtil.animate(GameSceneController.ad, this.y.frameStartTs);
+            if (GameSceneController.dead2 != null) {
+               PngUtil.animate(GameSceneController.dead2, this.y.frameStartTs);
             }
 
-            if (GameSceneController.ae != null) {
-               PngUtil.animate(GameSceneController.ae, this.y.frameStartTs);
+            if (GameSceneController.defence != null) {
+               PngUtil.animate(GameSceneController.defence, this.y.frameStartTs);
             }
 
             if (GlobalStatus.fightData != null) {
                for(byte var3 = 0; var3 < GlobalStatus.fightData.length; ++var3) {
                   if (GlobalStatus.fightData[var3].k == 1) {
-                     p var10000 = GlobalStatus.fightData[var3];
+                     FightRoleData var10000 = GlobalStatus.fightData[var3];
                      long var10 = var2.y.frameStartTs;
                      PngUtil var7 = MainCanvas.pngUtil;
-                     p var6 = var10000;
+                     FightRoleData var6 = var10000;
                      if (var10000.j != null && !var6.d()) {
                         PngUtil.animate(var6.j, var10);
                      } else {
@@ -490,11 +490,11 @@ public final class FightModel {
                         this.d = 2;
                         this.e = 3;
                      }
-                  } else if (this.e == 5 && GlobalStatus.en[this.gameSceneController.az] != -1 && this.gameSceneController.az >= 0 && this.gameSceneController.az < 8) {
+                  } else if (this.e == 5 && GlobalStatus.npcResName1[this.gameSceneController.az] != -1 && this.gameSceneController.az >= 0 && this.gameSceneController.az < 8) {
                      this.q();
                   }
                } else if (var1 == 513 && !GlobalStatus.bt) {
-                  if (GlobalStatus.en[0] != -1) {
+                  if (GlobalStatus.npcResName1[0] != -1) {
                      this.gameSceneController.az = 0;
                      if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                         this.q();
@@ -517,7 +517,7 @@ public final class FightModel {
                      }
                   }
                } else if (var1 == 514 && !GlobalStatus.bt) {
-                  if (GlobalStatus.en[1] != -1) {
+                  if (GlobalStatus.npcResName1[1] != -1) {
                      this.gameSceneController.az = 1;
                      if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                         this.q();
@@ -540,7 +540,7 @@ public final class FightModel {
                      }
                   }
                } else if (var1 == 515 && !GlobalStatus.bt) {
-                  if (GlobalStatus.en[2] != -1) {
+                  if (GlobalStatus.npcResName1[2] != -1) {
                      this.gameSceneController.az = 2;
                      if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                         this.q();
@@ -563,7 +563,7 @@ public final class FightModel {
                      }
                   }
                } else if (var1 == 516 && !GlobalStatus.bt) {
-                  if (GlobalStatus.en[3] != -1) {
+                  if (GlobalStatus.npcResName1[3] != -1) {
                      this.gameSceneController.az = 3;
                      if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                         this.q();
@@ -586,7 +586,7 @@ public final class FightModel {
                      }
                   }
                } else if (var1 == 517 && !GlobalStatus.bt) {
-                  if (GlobalStatus.en[4] != -1) {
+                  if (GlobalStatus.npcResName1[4] != -1) {
                      this.gameSceneController.az = 4;
                      if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                         this.q();
@@ -609,7 +609,7 @@ public final class FightModel {
                      }
                   }
                } else if (var1 == 518 && !GlobalStatus.bt) {
-                  if (GlobalStatus.en[5] != -1) {
+                  if (GlobalStatus.npcResName1[5] != -1) {
                      this.gameSceneController.az = 5;
                      if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                         this.q();
@@ -632,7 +632,7 @@ public final class FightModel {
                      }
                   }
                } else if (var1 == 519 && !GlobalStatus.bt) {
-                  if (GlobalStatus.en[6] != -1) {
+                  if (GlobalStatus.npcResName1[6] != -1) {
                      this.gameSceneController.az = 6;
                      if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                         this.q();
@@ -654,7 +654,7 @@ public final class FightModel {
                         this.d = 1;
                      }
                   }
-               } else if (var1 == 520 && !GlobalStatus.bt && GlobalStatus.en[7] != -1) {
+               } else if (var1 == 520 && !GlobalStatus.bt && GlobalStatus.npcResName1[7] != -1) {
                   this.gameSceneController.az = 7;
                   if (GlobalStatus.el[this.gameSceneController.az] < 2) {
                      this.q();
@@ -766,48 +766,48 @@ public final class FightModel {
                         } else {
                            this.y.showTips("宠物没有技能!");
                         }
-                     } else if (this.e == 3 && GlobalStatus.et[this.gameSceneController.az] != -1) {
+                     } else if (this.e == 3 && GlobalStatus.npcResName2[this.gameSceneController.az] != -1) {
                         this.r();
                      }
                   }
 
                   if (var1 == 513 && !GlobalStatus.bt) {
-                     if (GlobalStatus.et[0] != -1) {
+                     if (GlobalStatus.npcResName2[0] != -1) {
                         this.gameSceneController.az = 0;
                         this.r();
                      }
                   } else if (var1 == 514 && !GlobalStatus.bt) {
-                     if (GlobalStatus.et[1] != -1) {
+                     if (GlobalStatus.npcResName2[1] != -1) {
                         this.gameSceneController.az = 1;
                         this.r();
                      }
                   } else if (var1 == 515 && !GlobalStatus.bt) {
-                     if (GlobalStatus.et[2] != -1) {
+                     if (GlobalStatus.npcResName2[2] != -1) {
                         this.gameSceneController.az = 2;
                         this.r();
                      }
                   } else if (var1 == 516 && !GlobalStatus.bt) {
-                     if (GlobalStatus.et[3] != -1) {
+                     if (GlobalStatus.npcResName2[3] != -1) {
                         this.gameSceneController.az = 3;
                         this.r();
                      }
                   } else if (var1 == 517 && !GlobalStatus.bt) {
-                     if (GlobalStatus.et[4] != -1) {
+                     if (GlobalStatus.npcResName2[4] != -1) {
                         this.gameSceneController.az = 4;
                         this.r();
                      }
                   } else if (var1 == 518 && !GlobalStatus.bt) {
-                     if (GlobalStatus.et[5] != -1) {
+                     if (GlobalStatus.npcResName2[5] != -1) {
                         this.gameSceneController.az = 5;
                         this.r();
                      }
                   } else if (var1 == 519 && !GlobalStatus.bt) {
-                     if (GlobalStatus.et[6] != -1) {
+                     if (GlobalStatus.npcResName2[6] != -1) {
                         this.gameSceneController.az = 6;
                         this.r();
                      }
                   } else if (var1 == 520 && !GlobalStatus.bt) {
-                     if (GlobalStatus.et[7] != -1) {
+                     if (GlobalStatus.npcResName2[7] != -1) {
                         this.gameSceneController.az = 7;
                         this.r();
                      }
@@ -1197,11 +1197,11 @@ public final class FightModel {
                this.f = 3;
             }
          } else if (this.f == 6) {
-            if (PngUtil.animate(GameSceneController.ab, this.y.frameStartTs) == 2) {
+            if (PngUtil.animate(GameSceneController._27, this.y.frameStartTs) == 2) {
                this.f = 1;
             }
          } else if (this.f == 7) {
-            if (PngUtil.animate(GameSceneController.aa, this.y.frameStartTs) == 2) {
+            if (PngUtil.animate(GameSceneController.quit, this.y.frameStartTs) == 2) {
                this.f = 8;
             }
          } else if (this.f == 8) {
@@ -1237,16 +1237,16 @@ public final class FightModel {
             for(byte var6 = (byte)(GlobalStatus.fightData.length - 1); var6 >= 0; --var6) {
                if (GlobalStatus.fightData[var6].j != null) {
                   if (GlobalStatus.fightData[var6].d()) {
-                     MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ad, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
+                     MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.dead2, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
                   } else if (GlobalStatus.fightData[var6].b != 0 && GlobalStatus.fightData[var6].j != null) {
                      if (GlobalStatus.fightData[var6].k == 1 || GlobalStatus.fightData[var6].k == 4) {
                         GlobalStatus.fightData[var6].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], (byte)0);
                      }
 
                      if (var4.f != -1 && var4.f != 0 && var4.f != 7 && GlobalStatus.fightData[var6].m) {
-                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
+                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.defence, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
                      } else if (var4.f == 6 && GlobalStatus.fightData[var6].l) {
-                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
+                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController._27, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var6].a][0], GlobalConfig.Q[GlobalStatus.fightData[var6].a][1], 0, 0);
                      }
                   }
                }
@@ -1255,7 +1255,7 @@ public final class FightModel {
             for(byte var17 = 0; var17 < GlobalStatus.fightData.length; ++var17) {
                if (GlobalStatus.fightData[var17].b == 0 && GlobalStatus.fightData[var17].j != null) {
                   if (GlobalStatus.fightData[var17].c.equals(GlobalStatus.roleId_2)) {
-                     var5.drawImage(GameSceneController.H.image, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0] - GameSceneController.H.w / 2, GlobalConfig.Q[GlobalStatus.fightData[var17].a][1] - GameSceneController.H.h / 2, 20);
+                     var5.drawImage(GameSceneController.mystation.image, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0] - GameSceneController.mystation.w / 2, GlobalConfig.Q[GlobalStatus.fightData[var17].a][1] - GameSceneController.mystation.h / 2, 20);
                      if ((var4.f != 7 || GlobalStatus.bs != 1) && (var4.f != 7 || GlobalStatus.bs != -1) && (var4.f != 7 || GlobalStatus.followStatus != 1)) {
                         if (!GlobalStatus.fightData[var17].d()) {
                            if (GlobalStatus.fightData[var17].k == 1 || GlobalStatus.fightData[var17].k == 4) {
@@ -1263,27 +1263,27 @@ public final class FightModel {
                            }
 
                            if (var4.f != -1 && var4.f != 0 && GlobalStatus.fightData[var17].m) {
-                              MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.defence, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                            } else if (var4.f == 6 && GlobalStatus.fightData[var17].l) {
-                              MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController._27, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                            }
                         }
                      } else {
-                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.quit, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                      }
                   } else if (var4.f == 7) {
                      for(int var7 = 0; var7 < GlobalStatus.teamBonus.length; ++var7) {
                         if (GlobalStatus.teamBonus[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.teamBonus[var7].s_1 == 1) {
-                           MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.aa, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                           MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.quit, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                         } else if (GlobalStatus.teamBonus[var7].name.equals(GlobalStatus.fightData[var17].d) && GlobalStatus.teamBonus[var7].s_1 == 0 && !GlobalStatus.fightData[var17].d()) {
                            if (GlobalStatus.fightData[var17].k == 1 || GlobalStatus.fightData[var17].k == 4) {
                               GlobalStatus.fightData[var17].a(var5, MainCanvas.pngUtil, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], (byte)0);
                            }
 
                            if (var4.f != -1 && var4.f != 0 && GlobalStatus.fightData[var17].m) {
-                              MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.defence, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                            } else if (var4.f == 6 && GlobalStatus.fightData[var17].l) {
-                              MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                              MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController._27, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                            }
                         }
                      }
@@ -1293,9 +1293,9 @@ public final class FightModel {
                      }
 
                      if (var4.f != -1 && var4.f != 0 && GlobalStatus.fightData[var17].m) {
-                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.defence, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                      } else if (var4.f == 6 && GlobalStatus.fightData[var17].l) {
-                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
+                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController._27, (int[])null, 0, 0, GlobalConfig.Q[GlobalStatus.fightData[var17].a][0], GlobalConfig.Q[GlobalStatus.fightData[var17].a][1], 0, 0);
                      }
                   }
                }
@@ -1315,7 +1315,7 @@ public final class FightModel {
                if (GlobalStatus.M[var18].m != null) {
                   if (GlobalStatus.M[var18].a()) {
                      if (t == 1 || t == 2) {
-                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ac, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
+                        MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.dead, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
                      }
                   } else {
                      if (GlobalStatus.M[var18].n != 1 && GlobalStatus.M[var18].n != 4) {
@@ -1333,9 +1333,9 @@ public final class FightModel {
                      } else {
                         GlobalStatus.M[var18].a(var5, MainCanvas.pngUtil, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], (byte)0);
                         if (var4.f != -1 && var4.f != 0 && GlobalStatus.M[var18].p) {
-                           MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ae, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
+                           MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.defence, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
                         } else if (var4.f == 6 && GlobalStatus.M[var18].o) {
-                           MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController.ab, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
+                           MainCanvas.pngUtil.roleSelectedAnimation(var5, (Animation) GameSceneController._27, (int[])null, 0, 0, GlobalConfig.R[GlobalStatus.M[var18].a][0], GlobalConfig.R[GlobalStatus.M[var18].a][1], 0, 0);
                         }
                      }
 
@@ -1763,7 +1763,7 @@ public final class FightModel {
    }
 
    private void q() {
-      if (GlobalStatus.en[this.gameSceneController.az] != -1 && this.gameSceneController.az >= 0 && this.gameSceneController.az < 8) {
+      if (GlobalStatus.npcResName1[this.gameSceneController.az] != -1 && this.gameSceneController.az >= 0 && this.gameSceneController.az < 8) {
          this.j = 0;
          this.p = GlobalStatus.ej[this.gameSceneController.az];
          if (h() && GlobalStatus.ek[this.gameSceneController.az] != 2) {
@@ -2102,11 +2102,11 @@ public final class FightModel {
       this.gameSceneController.c = false;
       this.y.doRepaint();
       this.u = null;
-      this.gameSceneController.T();
+      this.gameSceneController.setRoleResNames();
       this.y.doRepaint();
       GlobalStatus.g();
       this.y.doRepaint();
-      MainCanvas.pngUtil.a(this.gameSceneController.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1283472);
+      MainCanvas.pngUtil.drawMap(this.gameSceneController.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1283472);
       this.y.doRepaint();
       this.gameSceneController.j();
       this.y.doRepaint();
@@ -2140,7 +2140,7 @@ public final class FightModel {
 
    }
 
-   private static void a(p var0, ae var1) {
+   private static void a(FightRoleData var0, ae var1) {
       var0.e = var1.g;
       var0.g = var1.h;
       var0.f = var1.i;
@@ -2168,10 +2168,10 @@ public final class FightModel {
    }
 
    private void b(Graphics var1) {
-      if (GameSceneController.Z != null) {
+      if (GameSceneController.fightmenu != null) {
          for(byte var2 = 0; var2 < 5; ++var2) {
             int var10003 = GlobalConfig.defaultHigh - 102 + (var2 << 4);
-            short var6 = GameSceneController.Z.h;
+            short var6 = GameSceneController.fightmenu.h;
             boolean var3 = true;
             int var5 = var10003;
             var3 = true;
@@ -2182,7 +2182,7 @@ public final class FightModel {
                this.L[var2][3] = var6;
             }
 
-            MainCanvas.pngUtil.a(var1, GameSceneController.Z, (int[])null, var2 + 1, 0, 0, 1, GlobalConfig.defaultHigh - 102 + (var2 << 4), 0, 0);
+            MainCanvas.pngUtil.a(var1, GameSceneController.fightmenu, (int[])null, var2 + 1, 0, 0, 1, GlobalConfig.defaultHigh - 102 + (var2 << 4), 0, 0);
             if (var2 == this.e) {
                var1.setColor(16711680);
                LoadingPage.d(var1, 1, GlobalConfig.defaultHigh - 102 + (this.e << 4), 25, 15);
@@ -2222,10 +2222,10 @@ public final class FightModel {
    }
 
    private void c(Graphics var1) {
-      if (GameSceneController.Z != null) {
+      if (GameSceneController.fightmenu != null) {
          for(byte var2 = 0; var2 < 3; ++var2) {
             int var10003 = GlobalConfig.defaultHigh - 70 + (var2 << 4);
-            short var6 = GameSceneController.Z.h;
+            short var6 = GameSceneController.fightmenu.h;
             boolean var3 = true;
             int var5 = var10003;
             var3 = true;
@@ -2236,7 +2236,7 @@ public final class FightModel {
                this.M[var2][3] = var6;
             }
 
-            MainCanvas.pngUtil.a(var1, GameSceneController.Z, (int[])null, var2 + 1, 0, 0, 1, GlobalConfig.defaultHigh - 70 + (var2 << 4), 0, 0);
+            MainCanvas.pngUtil.a(var1, GameSceneController.fightmenu, (int[])null, var2 + 1, 0, 0, 1, GlobalConfig.defaultHigh - 70 + (var2 << 4), 0, 0);
             if (var2 == this.e) {
                var1.setColor(16711680);
                LoadingPage.d(var1, 1, GlobalConfig.defaultHigh - 70 + (var2 << 4), 25, 15);
@@ -2304,7 +2304,7 @@ public final class FightModel {
                MainCanvas.pngUtil.a(var1, GameSceneController.fighticon, (int[])null, var2 == 8 ? 0 : 2, 0, 0, 3 + GlobalStatus.ej[var2] * 17, GlobalConfig.defaultHigh - 19, 0, 0);
                var10000 = MainCanvas.pngUtil;
                var10001 = var1;
-               var10002 = GameSceneController.G;
+               var10002 = GameSceneController.hotkeyicon;
                var10003 = null;
                var10004 = var2 == 8 ? 0 : 1;
             }
@@ -2340,13 +2340,13 @@ public final class FightModel {
                         case 6:
                         case 7:
                            if (this.d == 0) {
-                              if (GlobalStatus.en[this.gameSceneController.az] == -1) {
+                              if (GlobalStatus.npcResName1[this.gameSceneController.az] == -1) {
                                  return;
                               }
 
                               LoadingPage.drawString(var1, (String) GlobalStatus.appearanceResName[this.gameSceneController.az], (int)(GlobalConfig.defaultWidth / 2), GlobalConfig.defaultHigh - 22 - GlobalConfig.font2_h, 17, 16776960, 0);
                            } else {
-                              if (this.d != 2 || GlobalStatus.et[this.gameSceneController.az] == -1) {
+                              if (this.d != 2 || GlobalStatus.npcResName2[this.gameSceneController.az] == -1) {
                                  return;
                               }
 
@@ -2597,7 +2597,7 @@ public final class FightModel {
       serverFightTextSpeed_2 = var10000;
       s = var10000;
       c = (short)(GlobalStatus.bt ? 25 : 0);
-      GameSceneController.aW[15] = (byte)(GlobalStatus.bt ? 0 : 1);
+      GameSceneController.roleConfig[15] = (byte)(GlobalStatus.bt ? 0 : 1);
    }
 
    public final void l() {
@@ -2644,11 +2644,11 @@ public final class FightModel {
          var13 = (var9 + 2) * 7;
       }
 
-      var1.drawRegion(GameSceneController.E.image, var2 >= 0 ? 8 : 0, var5 == 0 ? 0 : 10, 8, 10, 0, var3 - var13, var4, 0);
+      var1.drawRegion(GameSceneController.fightnum.image, var2 >= 0 ? 8 : 0, var5 == 0 ? 0 : 10, 8, 10, 0, var3 - var13, var4, 0);
       var6 = var2 >= 0 ? var2 : -var2;
 
       for(int var10 = var9; var10 >= 0; --var10) {
-         var1.drawRegion(GameSceneController.E.image, 16 + var6 / d(var10) * 7, var5 == 0 ? 0 : 10, 7, 10, 0, var3 + 8 + (var9 - var10) * 7 - var13, var4, 0);
+         var1.drawRegion(GameSceneController.fightnum.image, 16 + var6 / d(var10) * 7, var5 == 0 ? 0 : 10, 7, 10, 0, var3 + 8 + (var9 - var10) * 7 - var13, var4, 0);
          var6 %= d(var10);
       }
 

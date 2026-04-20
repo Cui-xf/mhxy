@@ -20,7 +20,7 @@ public final class PngUtil {
     private static byte[] i = new byte[]{0, 5, 3, 6, 2, 7, 1, 4};
     private int j = 0;
     private int k = 0;
-    private Image l = null;
+    private Image image = null;
     private Graphics graphics = null;
     private int n = 0;
     private int o = 0;
@@ -207,14 +207,14 @@ public final class PngUtil {
         }
     }
 
-    public final void a(int var1, int var2, int var3, int var4) {
+    public final void createImage(int var1, int var2, int var3, int var4) {
         int var5 = (var3 + this.t - 1) / this.t * this.t;
         int var6 = (var4 + this.t - 1) / this.t * this.t;
         this.n = -1;
         this.o = -1;
-        if (this.l == null) {
-            this.l = Image.createImage(var5 + 2 * this.t, var6 + 2 * this.t);
-            this.graphics = this.l.getGraphics();
+        if (this.image == null) {
+            this.image = Image.createImage(var5 + 2 * this.t, var6 + 2 * this.t);
+            this.graphics = this.image.getGraphics();
         }
 
         this.p = var1;
@@ -236,7 +236,7 @@ public final class PngUtil {
 
             for (int var8 = this.j / this.t; var8 > 0; --var8) {
                 this.graphics.setClip(var8 * this.t, 0, this.t, this.k);
-                this.graphics.drawImage(this.l, this.t, 0, 0);
+                this.graphics.drawImage(this.image, this.t, 0, 0);
             }
 
             this.graphics.setClip(0, 0, this.t, this.k);
@@ -244,14 +244,14 @@ public final class PngUtil {
         } else if (this.n - var2 <= -this.t) {
             this.n += this.t;
             this.graphics.setClip(0, 0, this.j - this.t, this.k);
-            this.graphics.drawImage(this.l, -this.t, 0, 0);
+            this.graphics.drawImage(this.image, -this.t, 0, 0);
             this.graphics.setClip(this.j - this.t, 0, this.t, this.k);
             this.a(this.graphics, var1, this.n - this.t, this.o - this.t, var5, var6);
         } else if (this.o - var3 < this.t) {
             if (this.o - var3 <= -this.t) {
                 this.o += this.t;
                 this.graphics.setClip(0, 0, this.j, this.k - this.t);
-                this.graphics.drawImage(this.l, 0, -this.t, 0);
+                this.graphics.drawImage(this.image, 0, -this.t, 0);
                 this.graphics.setClip(0, this.k - this.t, this.j, this.t);
                 this.a(this.graphics, var1, this.n - this.t, this.o - this.t, var5, var6);
             }
@@ -261,7 +261,7 @@ public final class PngUtil {
 
             for (int var7 = this.k / this.t; var7 > 0; --var7) {
                 this.graphics.setClip(0, var7 * this.t, this.j, this.t);
-                this.graphics.drawImage(this.l, 0, this.t, 0);
+                this.graphics.drawImage(this.image, 0, this.t, 0);
             }
 
             this.graphics.setClip(0, 0, this.j, this.t);
@@ -273,7 +273,7 @@ public final class PngUtil {
         var1.setClip(this.p, this.q, var2.mapW < this.r ? var2.mapW : this.r, var2.mapH < this.s ? var2.mapH : this.s);
         this.a(var2, var3, var4, 0, 0, true);
         var1.setClip(this.p, this.q, var2.mapW < this.r ? var2.mapW : this.r, var2.mapH < this.s ? var2.mapH : this.s);
-        var1.drawImage(this.l, this.p + (this.n - var3) - this.t, this.q + (this.o - var4) - this.t, 0);
+        var1.drawImage(this.image, this.p + (this.n - var3) - this.t, this.q + (this.o - var4) - this.t, 0);
         var1.setClip(0, 0, this.j, this.k);
     }
 
@@ -284,7 +284,7 @@ public final class PngUtil {
             var1.setClip(this.p, this.q, this.r, this.s);
         }
 
-        var1.drawImage(this.l, this.p + (this.n - var3) - this.t, this.q + (this.o - var4) - this.t, 0);
+        var1.drawImage(this.image, this.p + (this.n - var3) - this.t, this.q + (this.o - var4) - this.t, 0);
         var1.setClip(0, 0, this.j, this.k);
     }
 
@@ -304,7 +304,7 @@ public final class PngUtil {
         LoadingPage.fillRect(this.graphics, 4017771, 159, 0, 0, this.j, this.k);
     }
 
-    public final void a(TileMap var1, int var2, int var3, boolean var4, boolean var5, int var6) {
+    public final void drawMap(TileMap var1, int var2, int var3, boolean var4, boolean var5, int var6) {
         this.n = -1;
         this.o = -1;
         if (this.p != 0 || this.q != 0) {
@@ -341,7 +341,7 @@ public final class PngUtil {
         if (var2.fixedObj != null) {
             for (int var9 = 0; var9 < var2.fixedObj.length; ++var9) {
                 if (var2.fixedObj[var9] != null) {
-                    this.a(var2.fixedObj[var9], this.g);
+                    this.draw(var2.fixedObj[var9], this.g);
                     if (var2.fixedObj[var9].transformX - var3 + this.g[0] - var1.getClipX() > 0 && var2.fixedObj[var9].transformX - var3 - var1.getClipX() < var1.getClipWidth() && var2.fixedObj[var9].transformY - var4 + this.g[1] - var1.getClipY() > 0 && var2.fixedObj[var9].transformY - var4 - var1.getClipY() < var1.getClipHeight()) {
                         this.a(var1, var2.fixedObj[var9], (int[]) null, var3, var4, var2.fixedObj[var9].transformX, var2.fixedObj[var9].transformY, var5);
                     }
@@ -352,7 +352,7 @@ public final class PngUtil {
         if (var2.animationObj != null) {
             for (int var10 = 0; var10 < var2.animationObj.length; ++var10) {
                 if (var2.animationObj[var10] != null && var2.animationObj[var10].frame != null && (var2.animationObj[var10].frame.type != 2 || ((Animation) var2.animationObj[var10].frame).spritePieces == null || ((Animation) var2.animationObj[var10].frame).spritePieces.length <= 1)) {
-                    this.a(var2.animationObj[var10], this.g);
+                    this.draw(var2.animationObj[var10], this.g);
                     if (var2.animationObj[var10].transformX - var3 + this.g[0] - var1.getClipX() > 0 && var2.animationObj[var10].transformX - var3 - var1.getClipX() < var1.getClipWidth() && var2.animationObj[var10].transformY - var4 + this.g[1] - var1.getClipY() > 0 && var2.animationObj[var10].transformY - var4 - var1.getClipY() < var1.getClipHeight()) {
                         this.a(var1, var2.animationObj[var10], (int[]) null, var3, var4, var2.animationObj[var10].transformX, var2.animationObj[var10].transformY, var5);
                     }
@@ -363,12 +363,12 @@ public final class PngUtil {
         if (GlobalStatus.npcObjects != null && var6) {
             for (int var11 = 0; var11 < GlobalStatus.npcObjects.length; ++var11) {
                 if (GlobalStatus.npcObjects[var11] != null) {
-                    if (GameSceneController.aW[3] == 0 && GlobalStatus.npcObjects[var11].npcName != null) {
+                    if (GameSceneController.roleConfig[3] == 0 && GlobalStatus.npcObjects[var11].npcName != null) {
                         var1.setFont(GlobalConfig.font2);
                         LoadingPage.drawString(var1, (String) GlobalStatus.npcObjects[var11].npcName, (int) (GlobalStatus.npcObjects[var11].c - var3), GlobalStatus.npcObjects[var11].d - (GlobalStatus.npcObjects[var11].frame1 == null ? 30 : GlobalStatus.npcObjects[var11].frame1.j()) - GlobalConfig.font2_h - var4, 17, 255, 16777215);
                     }
 
-                    if (GlobalStatus.npcObjects[var11].frame1 != null && GlobalStatus.npcObjects[var11].frame1.spritePieces != null && GameSceneController.aW[10] == 1) {
+                    if (GlobalStatus.npcObjects[var11].frame1 != null && GlobalStatus.npcObjects[var11].frame1.spritePieces != null && GameSceneController.roleConfig[10] == 1) {
                         this.a(var1, GlobalStatus.npcObjects[var11].frame1.spritePieces[GlobalStatus.npcObjects[var11].frame1.currentFrameIndex], GlobalStatus.npcObjects[var11].frame1.g(), GlobalStatus.npcObjects[var11].frame1.h(), (int[]) null, var3, var4, GlobalStatus.npcObjects[var11].c, GlobalStatus.npcObjects[var11].d, 20, var5);
                         var1.setFont(GlobalConfig.font2);
                     }
@@ -414,7 +414,7 @@ public final class PngUtil {
 
     }
 
-    public final void a(SpritePiece var1, int[] var2) {
+    public final void draw(SpritePiece var1, int[] var2) {
         if (var1.frame != null) {
             switch (var1.frame.type) {
                 case 0:

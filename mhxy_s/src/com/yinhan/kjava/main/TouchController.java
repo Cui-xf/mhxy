@@ -30,14 +30,14 @@ public final class TouchController {
                } else {
                   if (GlobalStatus.npcObjects != null) {
                      for(int var37 = 0; var37 < GlobalStatus.npcObjects.length; ++var37) {
-                        if (GlobalStatus.npcObjects[var37] != null && GlobalStatus.npcObjects[var37].x && GameSceneController.u != null && (var1 >= GlobalStatus.npcObjects[var37].c -
+                        if (GlobalStatus.npcObjects[var37] != null && GlobalStatus.npcObjects[var37].x && GameSceneController.dialog != null && (var1 >= GlobalStatus.npcObjects[var37].c -
                         GameSceneController.h + this.gameSceneController.g() - GlobalStatus.npcObjects[var37].c() / 2 && var1 <= GlobalStatus.npcObjects[var37].c - GameSceneController.h + this.gameSceneController.g() + GlobalStatus.npcObjects[var37].c() / 2 && var2 >= GlobalStatus.npcObjects[var37].d -
                         GameSceneController.i_1 + this.gameSceneController.h() - GlobalStatus.npcObjects[var37].d() && var2 <= GlobalStatus.npcObjects[var37].d - GameSceneController.i_1 + this.gameSceneController.h() || var1 >= GlobalStatus.npcObjects[var37].c -
                         GameSceneController.h + this.gameSceneController.g() + GlobalStatus.npcObjects[var37].c() / 2 && var1 <= GlobalStatus.npcObjects[var37].c - GameSceneController.h + this.gameSceneController.g() + GlobalStatus.npcObjects[var37].c() / 2 +
-                        GameSceneController.u.i() && var2 >= GlobalStatus.npcObjects[var37].d - GameSceneController.i_1 + this.gameSceneController.h() - GlobalStatus.npcObjects[var37].d() && var2 <= GlobalStatus.npcObjects[var37].d -
-                        GameSceneController.i_1 + this.gameSceneController.h() - GlobalStatus.npcObjects[var37].d() + GameSceneController.u.j() || var1 >= GlobalStatus.npcObjects[var37].c - GameSceneController.h + this.gameSceneController.g() -
-                        GameSceneController.s.i() / 2 && var1 <= GlobalStatus.npcObjects[var37].c - GameSceneController.h + this.gameSceneController.g() + GameSceneController.s.i() / 2 && var2 >= GlobalStatus.npcObjects[var37].d -
-                        GameSceneController.i_1 + this.gameSceneController.h() - GlobalStatus.npcObjects[var37].d() - GlobalConfig.font2_h - GameSceneController.s.j() && var2 <= GlobalStatus.npcObjects[var37].d - GameSceneController.i_1 + this.gameSceneController.h() - GlobalStatus.npcObjects[var37].d() - GlobalConfig.font2_h)) {
+                        GameSceneController.dialog.i() && var2 >= GlobalStatus.npcObjects[var37].d - GameSceneController.i_1 + this.gameSceneController.h() - GlobalStatus.npcObjects[var37].d() && var2 <= GlobalStatus.npcObjects[var37].d -
+                        GameSceneController.i_1 + this.gameSceneController.h() - GlobalStatus.npcObjects[var37].d() + GameSceneController.dialog.j() || var1 >= GlobalStatus.npcObjects[var37].c - GameSceneController.h + this.gameSceneController.g() -
+                        GameSceneController.wenhao.i() / 2 && var1 <= GlobalStatus.npcObjects[var37].c - GameSceneController.h + this.gameSceneController.g() + GameSceneController.wenhao.i() / 2 && var2 >= GlobalStatus.npcObjects[var37].d -
+                        GameSceneController.i_1 + this.gameSceneController.h() - GlobalStatus.npcObjects[var37].d() - GlobalConfig.font2_h - GameSceneController.wenhao.j() && var2 <= GlobalStatus.npcObjects[var37].d - GameSceneController.i_1 + this.gameSceneController.h() - GlobalStatus.npcObjects[var37].d() - GlobalConfig.font2_h)) {
                            this.gameSceneController.a(1073741824);
                            if (!this.gameSceneController.sceneRefreshCoordinator.c.isEmpty()) {
                               this.gameSceneController.sceneRefreshCoordinator.c.removeAllElements();
@@ -142,7 +142,7 @@ public final class TouchController {
                      }
                   }
 
-                  if (GameSceneController.aW[6] == 0 && var1 >= 2 && var1 <= 2 + MainCanvas.pngUtil.e && var2 >= 2 + GlobalConfig.font2_h && var2 <= 2 + GlobalConfig.font2_h + MainCanvas.pngUtil.f) {
+                  if (GameSceneController.roleConfig[6] == 0 && var1 >= 2 && var1 <= 2 + MainCanvas.pngUtil.e && var2 >= 2 + GlobalConfig.font2_h && var2 <= 2 + GlobalConfig.font2_h + MainCanvas.pngUtil.f) {
                      this.canvas.inputAction = 519;
                      if (!this.gameSceneController.sceneRefreshCoordinator.c.isEmpty()) {
                         this.gameSceneController.sceneRefreshCoordinator.c.removeAllElements();
@@ -180,8 +180,8 @@ public final class TouchController {
                            this.gameSceneController.sceneRefreshCoordinator.c.removeAllElements();
                            this.gameSceneController.sceneRefreshCoordinator.a(true);
                         }
-                     } else if (var1 >= GlobalConfig.defaultWidth - 67 + 37 && var1 <= GlobalConfig.defaultWidth - 67 + 37 + GameSceneController.v.image.getWidth() && var2 >= 8 && var2 <=
-                     GameSceneController.v.image.getHeight() + 8) {
+                     } else if (var1 >= GlobalConfig.defaultWidth - 67 + 37 && var1 <= GlobalConfig.defaultWidth - 67 + 37 + GameSceneController.avatar.image.getWidth() && var2 >= 8 && var2 <=
+                     GameSceneController.avatar.image.getHeight() + 8) {
                         this.canvas.inputAction = 2048;
                      } else if (var1 >= GlobalConfig.defaultWidth - 67 && var1 <= GlobalConfig.defaultWidth - 67 + 33 && var2 >= 5 && var2 <= 18) {
                         this.canvas.inputAction = 515;
@@ -1219,7 +1219,7 @@ public final class TouchController {
 
          if (this.gameSceneController.sceneSubState == 4 || this.gameSceneController.sceneSubState == 12) {
             if (this.gameSceneController.sceneSubMode == 1) {
-               this.canvas.inputAction = this.gameSceneController.T.hintCheck(var1, var2);
+               this.canvas.inputAction = this.gameSceneController.mixedUi.hintCheck(var1, var2);
                return;
             }
 
@@ -1233,8 +1233,8 @@ public final class TouchController {
                this.canvas.a((String)"请输入决斗金额", (int)2);
             }
          }
-      } else if (this.gameSceneController.T != null) {
-         this.canvas.inputAction = this.gameSceneController.T.hintCheck(var1, var2);
+      } else if (this.gameSceneController.mixedUi != null) {
+         this.canvas.inputAction = this.gameSceneController.mixedUi.hintCheck(var1, var2);
          return;
       }
 
@@ -1360,8 +1360,8 @@ public final class TouchController {
             return;
          }
 
-         if (this.gameSceneController.sceneSubState == 2 && this.gameSceneController.T != null) {
-            this.canvas.inputAction = this.gameSceneController.T.hintCheck(var1, var2);
+         if (this.gameSceneController.sceneSubState == 2 && this.gameSceneController.mixedUi != null) {
+            this.canvas.inputAction = this.gameSceneController.mixedUi.hintCheck(var1, var2);
          }
       }
 
@@ -1380,7 +1380,7 @@ public final class TouchController {
          }
 
          if (this.gameSceneController.sceneSubState == 3) {
-            this.canvas.inputAction = this.gameSceneController.T.hintCheck(var1, var2);
+            this.canvas.inputAction = this.gameSceneController.mixedUi.hintCheck(var1, var2);
             return;
          }
 
@@ -1391,7 +1391,7 @@ public final class TouchController {
             }
 
             if (this.gameSceneController.sceneSubMode == 1) {
-               this.canvas.inputAction = this.gameSceneController.T.hintCheck(var1, var2);
+               this.canvas.inputAction = this.gameSceneController.mixedUi.hintCheck(var1, var2);
                return;
             }
          } else if (this.gameSceneController.sceneSubState == 9) {
@@ -1951,13 +1951,13 @@ public final class TouchController {
          int var5 = GlobalConfig.font2.stringWidth("同意(点击申请结婚)");
          int var6 = GlobalConfig.font2.stringWidth("拒绝");
          if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + GlobalConfig.font2_h) {
-            this.canvas.inputAction = this.gameSceneController.S.d == 0 ? 1073741824 : this.canvas.inputAction;
-            this.gameSceneController.S.d = 0;
+            this.canvas.inputAction = this.gameSceneController.marriageModel.d == 0 ? 1073741824 : this.canvas.inputAction;
+            this.gameSceneController.marriageModel.d = 0;
          }
 
          if (var1 >= var3 + 4 && var2 >= var4 + 5 + GlobalConfig.font2_h + 5 && var1 <= var3 + 4 + var6 && var2 <= var4 + 5 + GlobalConfig.font2_h + 5 + GlobalConfig.font2_h) {
-            this.canvas.inputAction = this.gameSceneController.S.d == 1 ? 1073741824 : this.canvas.inputAction;
-            this.gameSceneController.S.d = 1;
+            this.canvas.inputAction = this.gameSceneController.marriageModel.d == 1 ? 1073741824 : this.canvas.inputAction;
+            this.gameSceneController.marriageModel.d = 1;
          }
       }
 
@@ -1971,13 +1971,13 @@ public final class TouchController {
          int var5 = GlobalConfig.font2.stringWidth("离婚(点击申请离婚)");
          int var6 = GlobalConfig.font2.stringWidth("取消离婚");
          if (var1 >= var3 + 4 && var2 >= var4 + 5 && var1 <= var3 + 4 + var5 && var2 <= var4 + 5 + GlobalConfig.font2_h) {
-            this.canvas.inputAction = this.gameSceneController.S.g == 0 ? 1073741824 : this.canvas.inputAction;
-            this.gameSceneController.S.g = 0;
+            this.canvas.inputAction = this.gameSceneController.marriageModel.g == 0 ? 1073741824 : this.canvas.inputAction;
+            this.gameSceneController.marriageModel.g = 0;
          }
 
          if (var1 >= var3 + 4 && var2 >= var4 + 5 + GlobalConfig.font2_h + 5 && var1 <= var3 + 4 + var6 && var2 <= var4 + 5 + GlobalConfig.font2_h + 5 + GlobalConfig.font2_h) {
-            this.canvas.inputAction = this.gameSceneController.S.g == 1 ? 1073741824 : this.canvas.inputAction;
-            this.gameSceneController.S.g = 1;
+            this.canvas.inputAction = this.gameSceneController.marriageModel.g == 1 ? 1073741824 : this.canvas.inputAction;
+            this.gameSceneController.marriageModel.g = 1;
          }
       }
 
@@ -2042,8 +2042,8 @@ public final class TouchController {
    }
 
    private void ao(int var1, int var2) {
-      if (this.gameSceneController.T != null) {
-         this.canvas.inputAction = this.gameSceneController.T.hintCheck(var1, var2);
+      if (this.gameSceneController.mixedUi != null) {
+         this.canvas.inputAction = this.gameSceneController.mixedUi.hintCheck(var1, var2);
       }
 
    }
@@ -2118,7 +2118,7 @@ public final class TouchController {
             }
 
             if (this.gameSceneController.sceneSubState == 3) {
-               this.canvas.inputAction = this.gameSceneController.T.hintCheck(var1, var2);
+               this.canvas.inputAction = this.gameSceneController.mixedUi.hintCheck(var1, var2);
             }
          }
       }

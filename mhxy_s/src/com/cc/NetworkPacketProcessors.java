@@ -245,7 +245,7 @@ public final class NetworkPacketProcessors {
                         if (var46 == 1) {
                             MainCanvas.gameSceneController.M.y();
                         } else {
-                            MainCanvas.gameSceneController.N();
+                            MainCanvas.gameSceneController.drawMap();
                         }
 
                         return;
@@ -268,7 +268,7 @@ public final class NetworkPacketProcessors {
                                 }
 
                                 MainCanvas.gameSceneController.sceneSubState = 6;
-                                MainCanvas.gameSceneController.a(GlobalStatus.en);
+                                MainCanvas.gameSceneController.loadNpcRes(GlobalStatus.npcResName1);
                                 return;
                             }
 
@@ -277,7 +277,7 @@ public final class NetworkPacketProcessors {
                                     this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus;
                                 }
 
-                                MainCanvas.gameSceneController.a(GlobalStatus.en);
+                                MainCanvas.gameSceneController.loadNpcRes(GlobalStatus.npcResName1);
                                 MainCanvas.gameSceneController.sceneSubState = 8;
                             }
                             return;
@@ -286,8 +286,8 @@ public final class NetworkPacketProcessors {
                     }
                     case 8211:
                         GlobalStatus.D(this.dis);
-                        MainCanvas.gameSceneController.a(GlobalStatus.fs);
-                        MainCanvas.gameSceneController.a(GlobalStatus.fl);
+                        MainCanvas.gameSceneController.loadNpcRes(GlobalStatus.iconName3);
+                        MainCanvas.gameSceneController.loadNpcRes(GlobalStatus.iconName4);
                         if (this.mainCanvas.pageStatus == 1) {
                             this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus;
                         }
@@ -363,7 +363,7 @@ public final class NetworkPacketProcessors {
                     case 8217:
                         this.e();
                         if (MainCanvas.gameSceneController.currentSceneModeId == 100) {
-                            MainCanvas.gameSceneController.N();
+                            MainCanvas.gameSceneController.drawMap();
                         } else if (MainCanvas.gameSceneController.currentSceneModeId == 7) {
                             MainCanvas.gameSceneController.b((byte) MainCanvas.gameSceneController.aV);
                             break;
@@ -659,7 +659,7 @@ public final class NetworkPacketProcessors {
                                 }
 
                                 MainCanvas.gameSceneController.sceneSubState = 2;
-                                MainCanvas.gameSceneController.a(GlobalStatus.et);
+                                MainCanvas.gameSceneController.loadNpcRes(GlobalStatus.npcResName2);
                             }
 
                             return;
@@ -684,7 +684,7 @@ public final class NetworkPacketProcessors {
                             }
 
                             if (MainCanvas.gameSceneController.currentSceneModeId == 100) {
-                                MainCanvas.gameSceneController.N();
+                                MainCanvas.gameSceneController.drawMap();
                                 break;
                             }
                         }
@@ -817,7 +817,7 @@ public final class NetworkPacketProcessors {
                         }
 
                         if (MainCanvas.gameSceneController.currentSceneModeId == 100) {
-                            MainCanvas.gameSceneController.N();
+                            MainCanvas.gameSceneController.drawMap();
                         }
 
                         return;
@@ -852,9 +852,9 @@ public final class NetworkPacketProcessors {
                             if (GlobalStatus.mq < 4) {
                                 MainCanvas.gameSceneController.ae();
                             } else if (GlobalStatus.mq == 4) {
-                                MainCanvas.gameSceneController.N();
+                                MainCanvas.gameSceneController.drawMap();
                             } else if (GlobalStatus.mq == 5) {
-                                MainCanvas.gameSceneController.N();
+                                MainCanvas.gameSceneController.drawMap();
                             } else if (GlobalStatus.mq == 6) {
                                 this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus;
                             }
@@ -864,7 +864,7 @@ public final class NetworkPacketProcessors {
                         return;
                     case 8272:
                         if (MainCanvas.gameSceneController != null) {
-                            MainCanvas.gameSceneController.N();
+                            MainCanvas.gameSceneController.drawMap();
                         }
 
                         return;
@@ -873,7 +873,7 @@ public final class NetworkPacketProcessors {
                         LoadingPage.h = 0;
                         if (!MainCanvas.gameSceneController.c && MainCanvas.gameSceneController.currentSceneModeId != 0 && MainCanvas.gameSceneController.currentSceneModeId != 25) {
                             this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus = 7;
-                            MainCanvas.gameSceneController.N();
+                            MainCanvas.gameSceneController.drawMap();
                         }
 
                         return;
@@ -882,7 +882,7 @@ public final class NetworkPacketProcessors {
                         int var53 = this.dis.readInt();
                         if (MainCanvas.gameSceneController.currentSceneModeId != 0 && MainCanvas.gameSceneController.currentSceneModeId != 25 && GlobalStatus.fightData == null) {
                             this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus = 7;
-                            MainCanvas.gameSceneController.N();
+                            MainCanvas.gameSceneController.drawMap();
                         }
 
                         this.mainCanvas.b(var41 + 8, var53 + 16);
@@ -1076,7 +1076,7 @@ public final class NetworkPacketProcessors {
                     case 8453:
                         GlobalStatus.S(this.dis);
                         if (MainCanvas.gameSceneController != null) {
-                            MainCanvas.gameSceneController.U();
+                            MainCanvas.gameSceneController.loadMapAnimation();
                         }
 
                         return;
@@ -1179,7 +1179,7 @@ public final class NetworkPacketProcessors {
                     case 8715:
                         GlobalStatus.ag(this.dis);
                         if (MainCanvas.gameSceneController != null) {
-                            MainCanvas.gameSceneController.U();
+                            MainCanvas.gameSceneController.loadMapAnimation();
                         }
 
                         return;
@@ -1502,7 +1502,7 @@ public final class NetworkPacketProcessors {
                     case 9216:
                         MarriageModel.a(this.dis);
                         if (MarriageModel.a != null) {
-                            MainCanvas.gameSceneController.S.a((int) 0);
+                            MainCanvas.gameSceneController.marriageModel.a((int) 0);
                         } else {
                             this.mainCanvas.showTips("暂无求爱信息!");
                         }
@@ -1511,7 +1511,7 @@ public final class NetworkPacketProcessors {
                     case 9217:
                         MarriageModel.b(this.dis);
                         if (MarriageModel.b != null) {
-                            MainCanvas.gameSceneController.S.b();
+                            MainCanvas.gameSceneController.marriageModel.b();
                         } else {
                             this.mainCanvas.showTips("求爱信息不存在!");
                         }
@@ -1519,15 +1519,15 @@ public final class NetworkPacketProcessors {
                         return;
                     case 9218:
                         MarriageModel.c(this.dis);
-                        MainCanvas.gameSceneController.S.c();
+                        MainCanvas.gameSceneController.marriageModel.c();
                         return;
                     case 9219:
                         MarriageModel.d(this.dis);
-                        MainCanvas.gameSceneController.S.d();
+                        MainCanvas.gameSceneController.marriageModel.d();
                         return;
                     case 9220:
                         MarriageModel.e(this.dis);
-                        MainCanvas.gameSceneController.S.f();
+                        MainCanvas.gameSceneController.marriageModel.f();
                         return;
                     case 9221:
                         if (GameSceneController.notInFighting()) {
@@ -1706,8 +1706,8 @@ public final class NetworkPacketProcessors {
         try {
             if (MainCanvas.gameSceneController != null && MainCanvas.gameSceneController.currentSceneModeId != 25 && MainCanvas.gameSceneController.currentSceneModeId != 18) {
                 byte var2;
-                if ((var2 = var1.readByte()) > GameSceneController.aW[0] && GlobalStatus.bw == 0) {
-                    var2 = GameSceneController.aW[0];
+                if ((var2 = var1.readByte()) > GameSceneController.roleConfig[0] && GlobalStatus.bw == 0) {
+                    var2 = GameSceneController.roleConfig[0];
                 }
 
                 bl[] var3 = new bl[var2];
@@ -2195,11 +2195,11 @@ public final class NetworkPacketProcessors {
 
     private void f() throws IOException {
         byte var1 = this.dis.readByte();
-        if (GlobalStatus.fl != null) {
+        if (GlobalStatus.iconName4 != null) {
             GlobalStatus.v();
         }
 
-        if (GlobalStatus.fs != null) {
+        if (GlobalStatus.iconName3 != null) {
             GlobalStatus.w();
         }
 
@@ -2211,7 +2211,7 @@ public final class NetworkPacketProcessors {
         MainCanvas.gameSceneController.npcActionList = null;
         MainCanvas.gameSceneController.al = null;
         if (GameSceneController.notInFighting()) {
-            MainCanvas.pngUtil.a(MainCanvas.gameSceneController.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 2109231);
+            MainCanvas.pngUtil.drawMap(MainCanvas.gameSceneController.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 2109231);
             this.mainCanvas.pageStatus = this.mainCanvas.lastPageStatus = 7;
             MainCanvas.gameSceneController.lastSceneModeId = MainCanvas.gameSceneController.currentSceneModeId = 0;
         }

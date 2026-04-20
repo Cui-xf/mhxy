@@ -153,7 +153,7 @@ public final class ch {
       }
 
       if (h != -1) {
-         this.c.a(new short[]{j});
+         this.c.loadNpcRes(new short[]{j});
       }
 
       if (this.y == null) {

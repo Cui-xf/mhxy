@@ -12,7 +12,7 @@ public final class EquipmentSlot {
     public byte f;
     public byte g;
     public short h;
-    public short i;
+    public short resName;
     public String j;
     public String k;
     public String l;
@@ -36,7 +36,7 @@ public final class EquipmentSlot {
         this.e = var1.readByte();
         this.f = var1.readByte();
         this.g = var1.readByte();
-        this.i = var1.readShort();
+        this.resName = var1.readShort();
         this.j = var1.readUTF();
         this.k = var1.readUTF();
         this.l = var1.readUTF();

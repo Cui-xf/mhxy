@@ -6,7 +6,7 @@ import com.yinhan.kjava.main.MainCanvas;
 import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
 
-public final class p {
+public final class FightRoleData {
    public byte a;
    public byte b;
    public String c;
@@ -56,9 +56,9 @@ public final class p {
       return var1;
    }
 
-   public final p c() {
-      p var1;
-      (var1 = new p()).a = this.a;
+   public final FightRoleData c() {
+      FightRoleData var1;
+      (var1 = new FightRoleData()).a = this.a;
       var1.b = this.b;
       var1.c = this.c;
       var1.d = this.d;

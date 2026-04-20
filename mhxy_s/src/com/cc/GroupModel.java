@@ -620,9 +620,9 @@ public final class GroupModel {
                 this.b.showPending((String) null);
             }
         } else if (this.a.sceneSubState == 2) {
-            this.a.T.onClick(var1);
+            this.a.mixedUi.onClick(var1);
             if (var1 == 268435456 || var1 == 536870912 || var1 == 1073741824 || var1 == 517) {
-                this.a.T.clear();
+                this.a.mixedUi.clear();
                 this.f();
             }
         }
@@ -1038,18 +1038,18 @@ public final class GroupModel {
                 this.b.showPending((String) null);
             }
         } else if (this.a.sceneSubState == 3) {
-            this.a.T.onClick(var1);
+            this.a.mixedUi.onClick(var1);
             if (var1 == 268435456 || var1 == 536870912) {
-                this.a.T.clear();
+                this.a.mixedUi.clear();
                 this.a.sceneSubState = 2;
                 return;
             }
         } else if (this.a.sceneSubState == 4) {
-            this.a.a(GlobalStatus.cJ);
+            this.a.loadNpcRes(GlobalStatus.cJ);
             this.a.g(var1);
             if (var1 == 536870912) {
                 if (this.a.sceneSubMode == 1) {
-                    this.a.T.clear();
+                    this.a.mixedUi.clear();
                     this.a.sceneSubMode = 0;
                     return;
                 }
@@ -1061,7 +1061,7 @@ public final class GroupModel {
                 GameSceneController.q = null;
                 this.a.al = null;
                 this.a.sceneSubState = 2;
-                MainCanvas.pngUtil.a(this.a.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
+                MainCanvas.pngUtil.drawMap(this.a.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
                 return;
             }
         } else if (this.a.sceneSubState == 5) {
@@ -1646,7 +1646,7 @@ public final class GroupModel {
     }
 
     public final void l() {
-        this.a.a(this.w);
+        this.a.loadNpcRes(this.w);
         this.k = new int[5];
         this.l = new int[5][4];
         this.m = new int[5][4];
@@ -1984,7 +1984,7 @@ public final class GroupModel {
     }
 
     public final void n() {
-        this.a.a(this.A);
+        this.a.loadNpcRes(this.A);
         this.i[0] = GlobalStatus.iK[0];
         this.i[1] = GlobalStatus.iM[0];
         this.i[2] = GlobalStatus.iL[0];
@@ -2300,7 +2300,7 @@ public final class GroupModel {
     public final void p(int var1) {
         int var2 = (this.b.topUi.selectTabIndex << 5) + (this.a.ar << 3) + this.a.aq;
         if (this.a.sceneSubState == 0) {
-            this.a.a(GlobalStatus.iR);
+            this.a.loadNpcRes(GlobalStatus.iR);
             if (this.b.mixedUi != null) {
                 this.b.mixedUi.onClick(var1);
             }

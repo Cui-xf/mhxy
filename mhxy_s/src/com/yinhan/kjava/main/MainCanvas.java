@@ -216,7 +216,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
     /**
      * 游戏场景存档数据 Page
      */
-    public static ResourceManager ad;
+    public static ResourceManager skill;
     /**
      * UI 系统初始化用 Page
      */
@@ -1072,9 +1072,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                     }
 
                     if (gameSceneController != null) {
-                        gameSceneController.d();
+                        gameSceneController.run();
                         if (this.pageStatus == 7) {
-                            gameSceneController.c();
+                            gameSceneController.handleNet();
                         }
                     }
                 }
@@ -1559,7 +1559,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
 
         GlobalStatus.fightData = null;
         GlobalStatus.M = null;
-        GlobalStatus.I = null;
+        GlobalStatus.fightRoleData1 = null;
         GlobalStatus.N = null;
         GlobalStatus.localMapId = -1;
         this.globalLoadingMask = false;
@@ -2544,7 +2544,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
             }
 
             if (GlobalStatus.kP == 3) {
-                gameSceneController.N();
+                gameSceneController.drawMap();
             }
         } else if (gameSceneController.currentSceneModeId == 1) {
             gameSceneController.sceneSubState = var1;
@@ -2608,9 +2608,9 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         DataOutputStream var2 = new DataOutputStream(var1);
 
         try {
-            for (int var3 = 0; var3 < GameSceneController.aW.length; ++var3) {
+            for (int var3 = 0; var3 < GameSceneController.roleConfig.length; ++var3) {
                 if (var3 != 15) {
-                    var2.writeByte(GameSceneController.aW[var3]);
+                    var2.writeByte(GameSceneController.roleConfig[var3]);
                 }
             }
 
@@ -2621,16 +2621,16 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
         }
     }
 
-    public void k() {
+    public void setRoleConfig() {
         if (containStore(GlobalStatus.roleId_2)) {
             RecordStore var15 = null;
 
             try {
                 DataInputStream var1 = getRecord1(var15 = openRecordStore(GlobalStatus.roleId_2, false));
 
-                for (int var2 = 0; var2 < GameSceneController.aW.length; ++var2) {
+                for (int var2 = 0; var2 < GameSceneController.roleConfig.length; ++var2) {
                     if (var2 != 15) {
-                        GameSceneController.aW[var2] = var1.readByte();
+                        GameSceneController.roleConfig[var2] = var1.readByte();
                     }
                 }
             } catch (Exception var13) {
@@ -3035,7 +3035,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                         this.keyCombination = 0;
                         this.mainMidlet.start();
                         if (gameSceneController.currentSceneModeId == 0) {
-                            pngUtil.a(gameSceneController.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
+                            pngUtil.drawMap(gameSceneController.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
                         }
 
                         this.resourceLoaded = true;
@@ -3064,7 +3064,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             return;
                         }
 
-                        pngUtil.a(gameSceneController.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
+                        pngUtil.drawMap(gameSceneController.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
                     }
                 } else if (var51.equals("物品关键字搜索")) {
                     String var47 = var1.getLabel();
@@ -3669,7 +3669,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                             gameSceneController.ak.append(var89);
                             long var96;
                             if ((var96 = gameSceneController.n()) > 0L) {
-                                gameSceneController.S.a(var61, var82, var96);
+                                gameSceneController.marriageModel.a(var61, var82, var96);
                                 this.inputAction = 0;
                                 this.keyCombination = 0;
                                 this.mainMidlet.start();
@@ -3713,7 +3713,7 @@ public class MainCanvas extends Canvas implements Runnable, CommandListener {
                                 return;
                             }
 
-                            gameSceneController.S.b((byte) 1);
+                            gameSceneController.marriageModel.b((byte) 1);
                         } else {
                             this.showTips("请输入“OK” ！");
                         }

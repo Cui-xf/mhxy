@@ -82,11 +82,11 @@ public final class as {
       }
 
       if (c != -1) {
-         this.b.a(new short[]{d});
+         this.b.loadNpcRes(new short[]{d});
       }
 
       if (g != null) {
-         this.b.a(g);
+         this.b.loadNpcRes(g);
       }
 
       as var3 = this;

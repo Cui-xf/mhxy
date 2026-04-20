@@ -72,7 +72,7 @@ public final class o_1 {
             this.l = new int[GlobalStatus.kr.length][4];
         }
 
-        this.i.a(GlobalStatus.kr);
+        this.i.loadNpcRes(GlobalStatus.kr);
         this.j.mixedUi.clean();
         this.j.mixedUi.setTitle(GlobalStatus.kp);
         this.j.mixedUi.setDrawBackground(false);
@@ -207,7 +207,7 @@ public final class o_1 {
 
                             this.i.sceneSubState = 0;
                             this.i.lastSceneModeId = this.i.currentSceneModeId = 0;
-                            MainCanvas.pngUtil.a(this.i.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
+                            MainCanvas.pngUtil.drawMap(this.i.currentMap, GameSceneController.h, GameSceneController.i_1, true, false, 1009050);
                             return;
                         }
                     } else if (GlobalStatus.kr != null) {
@@ -671,11 +671,11 @@ public final class o_1 {
         }
 
         if (g != -1) {
-            this.i.a(new short[]{v});
+            this.i.loadNpcRes(new short[]{v});
         }
 
         if (x != -1L) {
-            this.i.a(new short[]{z});
+            this.i.loadNpcRes(new short[]{z});
         }
 
         this.j.mixedUi.clean();

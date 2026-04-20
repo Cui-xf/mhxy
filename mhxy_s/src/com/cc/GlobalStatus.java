@@ -160,15 +160,15 @@ public final class GlobalStatus {
     /**
      * 战斗中己方参战角色数据（p[] 类型）
      */
-    public static p[] fightData;
+    public static FightRoleData[] fightData;
     /**
      * 己方参战角色数据数组（方法 e() 解析）
      */
-    public static p[] I;
+    public static FightRoleData[] fightRoleData1;
     /**
      * 敌方参战角色/召唤物数据数组（方法 d() 解析）
      */
-    public static p[] J;
+    public static FightRoleData[] fightRoleData2;
     /**
      * 战斗相关计数，初始=-1
      */
@@ -278,7 +278,7 @@ public final class GlobalStatus {
     /**
      * 背包标志字节（parseBackPack中读取，如银行标识）
      */
-    public static byte backPackFlag;
+    public static byte avatarClo;
     /**
      * 角色等级
      */
@@ -334,7 +334,7 @@ public final class GlobalStatus {
     /**
      * 背包行数/格子数（parseBackPack中读取）
      */
-    public static byte backpackRows;
+    public static byte avatarRows;
     /**
      * 背包相关字节（parseBackPack中读取，初始0）
      */
@@ -656,7 +656,7 @@ public final class GlobalStatus {
     /**
      * 物品属性数组1
      */
-    public static short[] cb;
+    public static short[] iconName1;
     /**
      * 物品属性数组2
      */
@@ -748,7 +748,7 @@ public final class GlobalStatus {
     /**
      * 物品等级需求数组
      */
-    public static short[] cx;
+    public static short[] iconName2;
     /**
      * 物品描述字段1（属性描述行1，私有）
      */
@@ -943,7 +943,7 @@ public final class GlobalStatus {
     /**
      * 主装备格附加属性 short 数组
      */
-    public static short[] cX;
+    public static short[] npcResName3;
     /**
      * 主装备格隐藏属性 short 数组（方法 c() 中读取，私有）
      */
@@ -1267,7 +1267,7 @@ public final class GlobalStatus {
     /**
      * 主外观槽位 ID short 数组（从 os 复制）
      */
-    public static short[] en;
+    public static short[] npcResName1;
     /**
      * 主外观槽位类型原始数组（t() 方法读入，私有）
      */
@@ -1317,7 +1317,7 @@ public final class GlobalStatus {
     /**
      * 次外观槽位 ID 数组（从 oy 复制）
      */
-    public static short[] et;
+    public static short[] npcResName2;
     /**
      * 次外观槽位类型原始数组（私有）
      */
@@ -1529,7 +1529,7 @@ public final class GlobalStatus {
     /**
      * 商城物品另一属性 short 数组
      */
-    public static short[] fl;
+    public static short[] iconName4;
     /**
      * 商城物品描述行1（私有）
      */
@@ -1611,7 +1611,7 @@ public final class GlobalStatus {
     /**
      * 另一组物品另一属性 short 数组
      */
-    public static short[] fs;
+    public static short[] iconName3;
     /**
      * 另一组描述行1（私有）
      */
@@ -4010,15 +4010,15 @@ public final class GlobalStatus {
     }
 
     public static void a() {
-        if (I != null) {
-            for (int var0 = 0; var0 < I.length; ++var0) {
-                if (I[var0] != null) {
-                    I[var0].e();
-                    I[var0] = null;
+        if (fightRoleData1 != null) {
+            for (int var0 = 0; var0 < fightRoleData1.length; ++var0) {
+                if (fightRoleData1[var0] != null) {
+                    fightRoleData1[var0].e();
+                    fightRoleData1[var0] = null;
                 }
             }
 
-            I = null;
+            fightRoleData1 = null;
         }
 
         if (N != null) {
@@ -4032,15 +4032,15 @@ public final class GlobalStatus {
             N = null;
         }
 
-        if (J != null) {
-            for (int var2 = 0; var2 < J.length; ++var2) {
-                if (J[var2] != null) {
-                    J[var2].e();
-                    J[var2] = null;
+        if (fightRoleData2 != null) {
+            for (int var2 = 0; var2 < fightRoleData2.length; ++var2) {
+                if (fightRoleData2[var2] != null) {
+                    fightRoleData2[var2].e();
+                    fightRoleData2[var2] = null;
                 }
             }
 
-            J = null;
+            fightRoleData2 = null;
         }
 
     }
@@ -4228,8 +4228,8 @@ public final class GlobalStatus {
         roleId_2 = dis.readUTF();
         roleLevel = dis.readShort();
         roleNameVip = dis.readUTF();
-        backPackFlag = dis.readByte();
-        backpackRows = dis.readByte();
+        avatarClo = dis.readByte();
+        avatarRows = dis.readByte();
         roleTitle = dis.readUTF();
         roleNameColor = LoadingPage.pickColor(dis.readByte());
         versus = dis.readLong();
@@ -4391,7 +4391,7 @@ public final class GlobalStatus {
                             var9.f = var16.f;
                             var9.g = var16.g;
                             var9.h = var16.h;
-                            var9.i = var16.i;
+                            var9.resName = var16.resName;
                             var9.j = var16.j;
                             var9.k = var16.k;
                             var9.l = var16.l;
@@ -4553,7 +4553,7 @@ public final class GlobalStatus {
             bY = new int[var1];
             bZ = new String[var1];
             ca = new byte[var1];
-            cb = new short[var1];
+            iconName1 = new short[var1];
             cc = new short[var1];
             cd = new short[var1];
             ce = new short[var1];
@@ -4574,7 +4574,7 @@ public final class GlobalStatus {
                 bY[var3] = var0.readInt();
                 bZ[var3] = var0.readUTF();
                 ca[var3] = var0.readByte();
-                cb[var3] = var0.readShort();
+                iconName1[var3] = var0.readShort();
                 cc[var3] = var0.readShort();
                 cd[var3] = var0.readShort();
                 ce[var3] = var0.readShort();
@@ -4603,7 +4603,7 @@ public final class GlobalStatus {
         bY = null;
         cp = null;
         ca = null;
-        cb = null;
+        iconName1 = null;
         cc = null;
         cd = null;
         ce = null;
@@ -4673,7 +4673,7 @@ public final class GlobalStatus {
             cu = new String[var1];
             cv = new byte[var1];
             cw = new byte[var1];
-            cx = new short[var1];
+            iconName2 = new short[var1];
             nJ = new String[var1];
             nK = new String[var1];
             nL = new String[var1];
@@ -4690,7 +4690,7 @@ public final class GlobalStatus {
                 cu[var3] = var0.readUTF();
                 cv[var3] = var0.readByte();
                 cw[var3] = var0.readByte();
-                cx[var3] = var0.readShort();
+                iconName2[var3] = var0.readShort();
                 nJ[var3] = var0.readUTF();
                 nK[var3] = var0.readUTF();
                 nL[var3] = var0.readUTF();
@@ -4719,7 +4719,7 @@ public final class GlobalStatus {
         ct = null;
         cv = null;
         cw = null;
-        cx = null;
+        iconName2 = null;
         nP = null;
         cy = null;
         nS = null;
@@ -5082,7 +5082,7 @@ public final class GlobalStatus {
             cW = new short[var1];
             of = new short[var1];
             cY = new String[var1];
-            cX = new short[var1];
+            npcResName3 = new short[var1];
             cZ = new byte[var1];
             da = new String[var1];
 
@@ -5093,7 +5093,7 @@ public final class GlobalStatus {
                 cU[var2] = var0.readByte();
                 cV[var2] = var0.readByte();
                 cW[var2] = var0.readShort();
-                cX[var2] = var0.readShort();
+                npcResName3[var2] = var0.readShort();
                 of[var2] = var0.readShort();
                 if (cR[var2] != 1) {
                     cY[var2] = var0.readUTF();
@@ -5569,7 +5569,7 @@ public final class GlobalStatus {
             ek = new byte[num + 2];
             el = new byte[num + 2];
             em = new byte[num + 2];
-            en = new short[num + 2];
+            npcResName1 = new short[num + 2];
             on = new String[num + 2];
 
             for (int i = 0; i < num + 2; ++i) {
@@ -5597,7 +5597,7 @@ public final class GlobalStatus {
                 ek[i] = op[i];
                 el[i] = oq[i];
                 em[i] = or[i];
-                en[i] = os[i];
+                npcResName1[i] = os[i];
                 on[i] = appearanceResName[i];
             }
         }
@@ -5620,7 +5620,7 @@ public final class GlobalStatus {
             eq = new byte[var1 + 2];
             er = new byte[var1 + 2];
             es = new byte[var1 + 2];
-            et = new short[var1 + 2];
+            npcResName2 = new short[var1 + 2];
             ot = new String[var1 + 2];
 
             for (int var2 = 0; var2 < var1 + 2; ++var2) {
@@ -5648,7 +5648,7 @@ public final class GlobalStatus {
                 eq[var2] = ov[var2];
                 er[var2] = ow[var2];
                 es[var2] = ox[var2];
-                et[var2] = oy[var2];
+                npcResName2[var2] = oy[var2];
                 ot[var2] = eu[var2];
             }
         }
@@ -5884,53 +5884,53 @@ public final class GlobalStatus {
     }
 
     private static void d(DataInputStream var0, byte var1) throws IOException {
-        J = new p[var1];
+        fightRoleData2 = new FightRoleData[var1];
 
         for (int var2 = 0; var2 < var1; ++var2) {
-            J[var2] = new p();
-            J[var2].b = var0.readByte();
-            J[var2].a = var0.readByte();
-            J[var2].c = var0.readUTF();
-            J[var2].d = var0.readUTF();
-            J[var2].e = var0.readInt();
-            J[var2].f = var0.readInt();
-            J[var2].g = var0.readInt();
-            J[var2].h = var0.readInt();
-            if (J[var2].b == 0) {
-                J[var2].i = var0.readShort();
-                J[var2].a(var0.readByte());
+            fightRoleData2[var2] = new FightRoleData();
+            fightRoleData2[var2].b = var0.readByte();
+            fightRoleData2[var2].a = var0.readByte();
+            fightRoleData2[var2].c = var0.readUTF();
+            fightRoleData2[var2].d = var0.readUTF();
+            fightRoleData2[var2].e = var0.readInt();
+            fightRoleData2[var2].f = var0.readInt();
+            fightRoleData2[var2].g = var0.readInt();
+            fightRoleData2[var2].h = var0.readInt();
+            if (fightRoleData2[var2].b == 0) {
+                fightRoleData2[var2].i = var0.readShort();
+                fightRoleData2[var2].a(var0.readByte());
             } else {
-                J[var2].b = 1;
-                J[var2].i = var0.readShort();
-                J[var2].p = var0.readShort();
-                J[var2].q = var0.readShort();
-                J[var2].r = var0.readShort();
+                fightRoleData2[var2].b = 1;
+                fightRoleData2[var2].i = var0.readShort();
+                fightRoleData2[var2].p = var0.readShort();
+                fightRoleData2[var2].q = var0.readShort();
+                fightRoleData2[var2].r = var0.readShort();
             }
         }
 
     }
 
     private static void e(DataInputStream var0, byte var1) throws IOException {
-        I = new p[var1];
+        fightRoleData1 = new FightRoleData[var1];
 
         for (int var2 = 0; var2 < var1; ++var2) {
-            I[var2] = new p();
-            I[var2].b = var0.readByte();
-            I[var2].a = var0.readByte();
-            I[var2].c = var0.readUTF();
-            I[var2].d = var0.readUTF();
-            I[var2].e = var0.readInt();
-            I[var2].f = var0.readInt();
-            I[var2].g = var0.readInt();
-            I[var2].h = var0.readInt();
-            if (I[var2].b == 0) {
-                I[var2].i = var0.readShort();
-                I[var2].a(var0.readByte());
+            fightRoleData1[var2] = new FightRoleData();
+            fightRoleData1[var2].b = var0.readByte();
+            fightRoleData1[var2].a = var0.readByte();
+            fightRoleData1[var2].c = var0.readUTF();
+            fightRoleData1[var2].d = var0.readUTF();
+            fightRoleData1[var2].e = var0.readInt();
+            fightRoleData1[var2].f = var0.readInt();
+            fightRoleData1[var2].g = var0.readInt();
+            fightRoleData1[var2].h = var0.readInt();
+            if (fightRoleData1[var2].b == 0) {
+                fightRoleData1[var2].i = var0.readShort();
+                fightRoleData1[var2].a(var0.readByte());
             } else {
-                I[var2].i = var0.readShort();
-                I[var2].p = var0.readShort();
-                I[var2].q = var0.readShort();
-                I[var2].r = var0.readShort();
+                fightRoleData1[var2].i = var0.readShort();
+                fightRoleData1[var2].p = var0.readShort();
+                fightRoleData1[var2].q = var0.readShort();
+                fightRoleData1[var2].r = var0.readShort();
             }
         }
 
@@ -5976,7 +5976,7 @@ public final class GlobalStatus {
             fp = new byte[var2];
             fq = new byte[var2];
             fr = new short[var2];
-            fs = new short[var2];
+            iconName3 = new short[var2];
             oN = new String[var2];
             oO = new String[var2];
             oP = new String[var2];
@@ -5994,7 +5994,7 @@ public final class GlobalStatus {
                 fp[var4] = var1.readByte();
                 fq[var4] = var1.readByte();
                 fr[var4] = (short) var1.readByte();
-                fs[var4] = var1.readShort();
+                iconName3[var4] = var1.readShort();
                 oN[var4] = var1.readUTF();
                 oO[var4] = var1.readUTF();
                 oP[var4] = var1.readUTF();
@@ -6027,7 +6027,7 @@ public final class GlobalStatus {
             fi = new byte[var2];
             fj = new byte[var2];
             fk = new short[var2];
-            fl = new short[var2];
+            iconName4 = new short[var2];
             oA = new String[var2];
             oB = new String[var2];
             oC = new String[var2];
@@ -6045,7 +6045,7 @@ public final class GlobalStatus {
                 fi[var14] = var1.readByte();
                 fj[var14] = var1.readByte();
                 fk[var14] = (short) var1.readByte();
-                fl[var14] = var1.readShort();
+                iconName4[var14] = var1.readShort();
                 oA[var14] = var1.readUTF();
                 oB[var14] = var1.readUTF();
                 oC[var14] = var1.readUTF();
@@ -6068,8 +6068,8 @@ public final class GlobalStatus {
             }
         } else {
             v();
-            GameSceneController.c(fs);
-            GameSceneController.c(fl);
+            GameSceneController.clearIconCache(iconName3);
+            GameSceneController.clearIconCache(iconName4);
         }
 
         if (var1.readByte() == 1) {
@@ -6361,11 +6361,11 @@ public final class GlobalStatus {
         fj = null;
         fi = null;
         fk = null;
-        fl = null;
+        iconName4 = null;
         fh = null;
         fj = null;
         fk = null;
-        fl = null;
+        iconName4 = null;
         oG = null;
         oH = null;
         oI = null;
@@ -6440,11 +6440,11 @@ public final class GlobalStatus {
         fq = null;
         fp = null;
         fr = null;
-        fs = null;
+        iconName3 = null;
         fo = null;
         fq = null;
         fr = null;
-        fs = null;
+        iconName3 = null;
         oT = null;
         oU = null;
         oV = null;
@@ -8722,7 +8722,7 @@ public final class GlobalStatus {
             cu = new String[var1];
             cv = new byte[var1];
             cw = new byte[var1];
-            cx = new short[var1];
+            iconName2 = new short[var1];
             nJ = new String[var1];
             nK = new String[var1];
             nL = new String[var1];
@@ -8740,7 +8740,7 @@ public final class GlobalStatus {
                 cu[var3] = var0.readUTF();
                 cv[var3] = var0.readByte();
                 cw[var3] = var0.readByte();
-                cx[var3] = var0.readShort();
+                iconName2[var3] = var0.readShort();
                 nJ[var3] = var0.readUTF();
                 nK[var3] = var0.readUTF();
                 nL[var3] = var0.readUTF();
@@ -10718,7 +10718,7 @@ public final class GlobalStatus {
                         }
 
                         if ((var2 = (EquipmentSlot) equipmentSlot.elementAt(var3)) != null && var2.a == var5) {
-                            mK[var1] = var2.i;
+                            mK[var1] = var2.resName;
                             mL[var1] = var2.s;
                             break;
                         }

@@ -133,7 +133,7 @@ public final class GlobalConfig {
     /**
      * 角色外观资源映射（二维数组，jm/jf/fm/ff/lm/lf）
      */
-    public static final String[][] JueSeWaiGuanName = new String[][]{{"jm", "jf"}, {"fm", "ff"}, {"lm", "lf"}};
+    public static final String[][] avatarResName = new String[][]{{"jm", "jf"}, {"fm", "ff"}, {"lm", "lf"}};
     /**
      * 光系属性标识：LIGHT、FIRE、COLD、NONE
      */

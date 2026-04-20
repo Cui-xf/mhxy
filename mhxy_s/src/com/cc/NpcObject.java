@@ -197,14 +197,14 @@ public final class NpcObject {
     }
 
     public final void a(Graphics var1, PngUtil var2, int var3, int var4, byte var5) {
-        if (this.t == -1 && GameSceneController.t_2 != null || this.I == 100 && GameSceneController.t_2 != null) {
-            var2.roleSelectedAnimation(var1, (Animation) GameSceneController.t_2, (int[]) null, var3, var4, this.c - GameSceneController.t_2.i() / 2, this.d - (this.frame1 == null ? 30 : this.frame1.j()) - GlobalConfig.font2_h - GameSceneController.t_2.j(), 20, var5);
-        } else if (this.t == 1 && GameSceneController.s != null) {
-            var2.roleSelectedAnimation(var1, (Animation) GameSceneController.s, (int[]) null, var3, var4, this.c - GameSceneController.s.i() / 2, this.d - (this.frame1 == null ? 30 : this.frame1.j()) - GlobalConfig.font2_h - GameSceneController.s.j(), 20, var5);
+        if (this.t == -1 && GameSceneController.gantanhao != null || this.I == 100 && GameSceneController.gantanhao != null) {
+            var2.roleSelectedAnimation(var1, (Animation) GameSceneController.gantanhao, (int[]) null, var3, var4, this.c - GameSceneController.gantanhao.i() / 2, this.d - (this.frame1 == null ? 30 : this.frame1.j()) - GlobalConfig.font2_h - GameSceneController.gantanhao.j(), 20, var5);
+        } else if (this.t == 1 && GameSceneController.wenhao != null) {
+            var2.roleSelectedAnimation(var1, (Animation) GameSceneController.wenhao, (int[]) null, var3, var4, this.c - GameSceneController.wenhao.i() / 2, this.d - (this.frame1 == null ? 30 : this.frame1.j()) - GlobalConfig.font2_h - GameSceneController.wenhao.j(), 20, var5);
         }
 
-        if (this.x && GameSceneController.u != null) {
-            var2.roleSelectedAnimation(var1, (Animation) GameSceneController.u, (int[]) null, var3, var4, this.c + (this.frame1 == null ? 8 : this.frame1.i() / 2), this.d - (this.frame1 == null ? 30 : this.frame1.j()), 20, var5);
+        if (this.x && GameSceneController.dialog != null) {
+            var2.roleSelectedAnimation(var1, (Animation) GameSceneController.dialog, (int[]) null, var3, var4, this.c + (this.frame1 == null ? 8 : this.frame1.i() / 2), this.d - (this.frame1 == null ? 30 : this.frame1.j()), 20, var5);
             if (this.X != null && this.Y != null && this.U != 0) {
                 var1.setClip(0, 0, GlobalConfig.defaultWidth, GlobalConfig.defaultHigh);
                 if (this.Z >= 0) {

@@ -231,15 +231,15 @@ public final class k {
       }
 
       if (this.c != -1) {
-         this.i.a(new short[]{this.k});
+         this.i.loadNpcRes(new short[]{this.k});
       }
 
       if (this.d != -1) {
-         this.i.a(new short[]{this.n});
+         this.i.loadNpcRes(new short[]{this.n});
       }
 
       if (this.p != null) {
-         this.i.a(this.p);
+         this.i.loadNpcRes(this.p);
       }
 
       this.b();

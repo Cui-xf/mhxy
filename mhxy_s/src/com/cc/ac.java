@@ -43,14 +43,14 @@ public final class ac extends SceneEntity {
    }
 
    private void s() {
-      this.u[1] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)1, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.v[1] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)1, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.u[3] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)3, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.v[3] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)3, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.u[0] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)0, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.v[0] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)0, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.u[2] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)2, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
-      this.v[2] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)2, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.u[1] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.avatarRows, GlobalStatus.avatarClo, (byte)1, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[1] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.avatarRows, GlobalStatus.avatarClo, (byte)1, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.u[3] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.avatarRows, GlobalStatus.avatarClo, (byte)3, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[3] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.avatarRows, GlobalStatus.avatarClo, (byte)3, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.u[0] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.avatarRows, GlobalStatus.avatarClo, (byte)0, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[0] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.avatarRows, GlobalStatus.avatarClo, (byte)0, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.u[2] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.avatarRows, GlobalStatus.avatarClo, (byte)2, GlobalStatus.ay, false, GlobalStatus.roleCurrentRideIcon), (byte)2);
+      this.v[2] = ResourceManager.buildResourceId((String) MainCanvas.buildRoleResStr(GlobalStatus.avatarRows, GlobalStatus.avatarClo, (byte)2, GlobalStatus.ay, true, GlobalStatus.roleCurrentRideIcon), (byte)2);
    }
 
    public final void a() {
@@ -81,14 +81,14 @@ public final class ac extends SceneEntity {
 
       super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h_1] : this.u[super.h_1], var2, var3, var4);
       if (super.frame1 == null) {
-         MainCanvas.loadRoleRes(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)5, GlobalStatus.ay, this.roleRideIcon, var2, var3, var4);
+         MainCanvas.loadRoleRes(GlobalStatus.avatarRows, GlobalStatus.avatarClo, (byte)5, GlobalStatus.ay, this.roleRideIcon, var2, var3, var4);
          super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h_1] : this.u[super.h_1], var2, var3, var4);
          if (super.frame1 == null) {
             GlobalStatus.ay = 0;
             this.s();
             super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h_1] : this.u[super.h_1]);
             if (super.frame1 == null) {
-               MainCanvas.loadRoleRes(GlobalStatus.backpackRows, GlobalStatus.backPackFlag, (byte)5, GlobalStatus.ay, this.roleRideIcon, var2, var3, var4);
+               MainCanvas.loadRoleRes(GlobalStatus.avatarRows, GlobalStatus.avatarClo, (byte)5, GlobalStatus.ay, this.roleRideIcon, var2, var3, var4);
                super.frame1 = MainCanvas.role.getAnimationByKeyFromCache(var1 ? this.v[super.h_1] : this.u[super.h_1]);
                return;
             }
@@ -215,12 +215,12 @@ public final class ac extends SceneEntity {
          }
 
          if (GlobalStatus.bs == 1) {
-            var2.draw(var1, GameSceneController.y, (int[])null, (ImageSlice)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - GameSceneController.y.w, super.k - GlobalConfig.font2_h - 18, 20, 0);
+            var2.draw(var1, GameSceneController.leader, (int[])null, (ImageSlice)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - GameSceneController.leader.w, super.k - GlobalConfig.font2_h - 18, 20, 0);
             return;
          }
 
          if (GlobalStatus.bs == 0) {
-            var2.draw(var1, GameSceneController.z, (int[])null, (ImageSlice)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - GameSceneController.z.w, super.k - GlobalConfig.font2_h - 18, 20, 0);
+            var2.draw(var1, GameSceneController.member, (int[])null, (ImageSlice)null, var3, var4, super.j + 8 - GlobalConfig.font2.stringWidth(this.w) / 2 - GameSceneController.member.w, super.k - GlobalConfig.font2_h - 18, 20, 0);
          }
       }
 

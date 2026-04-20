@@ -112,7 +112,7 @@ public final class cc {
             }
 
             if (var1 == 536870912) {
-                this.uiSceneController.N();
+                this.uiSceneController.drawMap();
                 this.a();
                 return;
             }
@@ -220,14 +220,14 @@ public final class cc {
                 this.mainCanvas.showPending((String) null);
             }
         } else if (this.uiSceneController.sceneSubState == 3) {
-            this.uiSceneController.T.onClick(var1);
+            this.uiSceneController.mixedUi.onClick(var1);
             if (var1 == 536870912) {
-                this.uiSceneController.T.clear();
+                this.uiSceneController.mixedUi.clear();
                 this.uiSceneController.sceneSubState = 1;
                 return;
             }
         } else if (this.uiSceneController.sceneSubState == 4) {
-            this.uiSceneController.a(GlobalStatus.cJ);
+            this.uiSceneController.loadNpcRes(GlobalStatus.cJ);
             this.uiSceneController.g(var1);
             if (var1 == 536870912) {
                 if (this.uiSceneController.sceneSubMode == 0) {
@@ -235,7 +235,7 @@ public final class cc {
                         GlobalStatus.o();
                     }
 
-                    this.uiSceneController.T.clear();
+                    this.uiSceneController.mixedUi.clear();
                     this.uiSceneController.sceneSubState = 1;
                     return;
                 }
@@ -283,7 +283,7 @@ public final class cc {
             }
 
             if (this.uiSceneController.sceneSubState == 3) {
-                this.uiSceneController.T.draw(var1);
+                this.uiSceneController.mixedUi.draw(var1);
             }
         }
 

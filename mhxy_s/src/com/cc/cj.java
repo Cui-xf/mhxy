@@ -13,9 +13,9 @@ public final class cj {
    public cj(int var1, int var2) {
       this.b = new int[var2];
       this.c = new int[var2];
-      this.a = MainCanvas.ad.getAnimationByNameFromCache(String.valueOf(var1));
+      this.a = MainCanvas.skill.getAnimationByNameFromCache(String.valueOf(var1));
       if (this.a == null || this.a.spritePieces == null || this.a.spritePieces[0] == null || this.a.spritePieces[0][0] == null || this.a.spritePieces[0][0].frame == null) {
-         this.a = MainCanvas.ad.getAnimationByNameFromCache(String.valueOf(10));
+         this.a = MainCanvas.skill.getAnimationByNameFromCache(String.valueOf(10));
       }
 
    }

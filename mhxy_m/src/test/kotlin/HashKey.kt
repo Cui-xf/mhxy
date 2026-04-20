@@ -24,10 +24,25 @@ val list = listOf(
     "rpg/publicUI/goods.pic",
     "rpg/publicUI/num.pic",
     "rpg/publicUI/button_back.pic",
+    "rpg/skill/27.anim",
+    "rpg/skill/quit.anim",
+    "rpg/skill/dead.anim",
+    "rpg/skill/dead2.anim",
+    "rpg/skill/defence.anim",
+    "rpg/ui/trans.anim",
+    "rpg/ui/leader.pic",
+    "rpg/ui/member.pic",
+    "rpg/ui/fighticon.pic",
+    "rpg/ui/fightnum.pic",
+    "rpg/ui/trans.anim",
+    "rpg/ui/dialog.anim",
+    "rpg/ui/?.anim",
+    "rpg/ui/!.anim",
+    "rpg/ui/mapnpc.anim",
 )
 
-fun nameTrans() {
-    for (string in list) {
+fun nameTrans(list2: List<String> = emptyList()) {
+    for (string in (list2)) {
         val (dir, fullName) = parseResourceName(string)
         val split = fullName.split(".")
         val name = split[0]
