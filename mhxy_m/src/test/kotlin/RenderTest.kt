@@ -26,14 +26,11 @@ fun main() {
 
 object TestScreen : AbstractScreen() {
     private val anim = listOf(
-        "rpg/skill/12.anim",
-        "rpg/skill/13.anim",
-        "rpg/skill/14.anim",
-        "rpg/skill/30.anim",
-        "rpg/skill/31.anim",
-        "rpg/skill/32.anim",
+        "rpg/role/ride_200_1914870686.anim",
+        "rpg/role/ride_33_-2091426516.anim",
+        "rpg/role/ride_107_-2063492534.anim",
     ).also {
-        nameTrans(it)
+//        nameTrans(it)
     }.map {
         resource(PUBLIC_ASSET, it, RpgAnimation::class)
     }

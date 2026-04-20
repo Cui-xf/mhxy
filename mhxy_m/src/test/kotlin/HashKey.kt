@@ -72,22 +72,21 @@ fun hashKey(name: String, type: String): Int {
 }
 
 fun main() {
-    val pathname = "${destRoot}/assets/rpg/icon"
-    val ext = "pic"
-    val l = mutableMapOf<Int, Int>()
-    for (i in 0..10000) {
-        val hashKey = hashKey("$i", ext)
-        l[hashKey] = i
-    }
+//    val listOf = listOf(
+//        "rpg/role/f241001.anim",
+//        "rpg/role/f241002.anim",
+//        "rpg/role/f241004.anim",
+//        "rpg/role/f241011.anim",
+//        "rpg/role/f241012.anim",
+//        "rpg/role/f241014.anim",
+//    )
 
-    for (file in File(pathname).listFiles()!!) {
-        l.forEach { (hashKey, name) ->
-            if (file.name.contains("$hashKey") && file.extension == ext) {
-                val dist = "${file.parent}/${name}.${file.extension}"
-                println(dist)
-                file.renameTo(File(dist))
-            }
-        }
-    }
+    val listOf = listOf(
+        "rpg/petfight/2111.anim",
+        "rpg/petfight/2112.anim",
+        "rpg/petfight/2113.anim",
+        "rpg/petfight/2114.anim",
+    )
+    nameTrans(listOf)
 }
 
