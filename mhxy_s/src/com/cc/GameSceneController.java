@@ -16645,8 +16645,8 @@ public final class GameSceneController {
             if (var10000) {
                 this.tempResName.removeAllElements();
 
-                for (int var5 = 0; var5 < npcResNames.length; ++var5) {
-                    this.tempResName.addElement(String.valueOf(npcResNames[var5]));
+                for (int i = 0; i < npcResNames.length; ++i) {
+                    this.tempResName.addElement(String.valueOf(npcResNames[i]));
                 }
 
                 MainCanvas.icon.batchLoadFrame0(this.tempResName, (short[]) null, (short[]) null, (short[]) null);
