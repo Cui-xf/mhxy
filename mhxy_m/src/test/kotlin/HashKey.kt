@@ -72,6 +72,11 @@ fun hashKey(name: String, type: String): Int {
 }
 
 fun main() {
-    nameTrans()
+    val l = mutableListOf<String>()
+    for (i in Short.MIN_VALUE..Short.MAX_VALUE) {
+        l.add("rpg/skill/${i}.anim")
+    }
+    println(l)
+    nameTrans(l)
 }
 

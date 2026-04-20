@@ -562,7 +562,7 @@ public final class GameSceneController {
     /**
      * 技能特效预览帧（mode=123 技能特效界面，加载技能动画帧，私有）
      */
-    private Animation ch;
+    private Animation skillAnim;
     /**
      * 技能特效界面左半区触摸区域 [x,y,w,h]（私有）
      */
@@ -1567,7 +1567,7 @@ public final class GameSceneController {
                                                     case 1:
                                                         this.aw = false;
                                                         this.aJ = false;
-                                                        ch.clear();
+                                                        skillAnim.clear();
                                                         this.V.a(true);
                                                         break label986;
                                                     case 2:
@@ -1752,7 +1752,7 @@ public final class GameSceneController {
                         }
                     } else if (LoadingPage.o == 3) {
                         this.aw = true;
-                        ch.clear();
+                        skillAnim.clear();
                         int var28 = -1;
 
                         for (int var35 = 0; var35 < GlobalStatus.petIds.length; ++var35) {
@@ -9423,7 +9423,7 @@ public final class GameSceneController {
                 (MainCanvas.skill = new ResourceManager("/", "skill")).loadResource();
             }
 
-            this.ch = MainCanvas.skill.getAnimationByNameFromCache(String.valueOf(GlobalStatus.mR[this.mainCanvasRef.gunDongListUi.g()]));
+            this.skillAnim = MainCanvas.skill.getAnimationByNameFromCache(String.valueOf(GlobalStatus.mR[this.mainCanvasRef.gunDongListUi.g()]));
             this.mainCanvasRef.pageStatus = this.mainCanvasRef.lastPageStatus;
             this.lastSceneModeId = this.currentSceneModeId = 123;
         }
@@ -9433,7 +9433,7 @@ public final class GameSceneController {
         if (this.sceneSubState == 0) {
             this.mainCanvasRef.mixedUi.onClick(var1);
             if (var1 == 1 || var1 == 4) {
-                this.ch = MainCanvas.skill.getAnimationByNameFromCache("" + GlobalStatus.mR[this.mainCanvasRef.gunDongListUi.g()]);
+                this.skillAnim = MainCanvas.skill.getAnimationByNameFromCache("" + GlobalStatus.mR[this.mainCanvasRef.gunDongListUi.g()]);
                 this.mainCanvasRef.gunDongListUi.a(GlobalStatus.mS[this.mainCanvasRef.gunDongListUi.g()], 1);
                 return;
             }
@@ -9473,9 +9473,9 @@ public final class GameSceneController {
     private void h(Graphics var1) {
         this.mainCanvasRef.mixedUi.draw(var1);
         if (this.sceneSubState == 0) {
-            if (this.ch != null) {
-                PngUtil.animate(this.ch, this.mainCanvasRef.frameStartTs);
-                MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) this.ch, this.ci, 0, 0, this.mainCanvasRef.mixedUi.X + this.mainCanvasRef.mixedUi.W / 4, this.mainCanvasRef.gunDongListUi.b() + this.mainCanvasRef.gunDongListUi.d() / 2 + this.ch.h() / 2, 0, 0);
+            if (this.skillAnim != null) {
+                PngUtil.animate(this.skillAnim, this.mainCanvasRef.frameStartTs);
+                MainCanvas.pngUtil.roleSelectedAnimation(var1, (Animation) this.skillAnim, this.ci, 0, 0, this.mainCanvasRef.mixedUi.X + this.mainCanvasRef.mixedUi.W / 4, this.mainCanvasRef.gunDongListUi.b() + this.mainCanvasRef.gunDongListUi.d() / 2 + this.skillAnim.h() / 2, 0, 0);
                 return;
             }
         } else if (this.sceneSubState == 1) {
@@ -11146,7 +11146,7 @@ public final class GameSceneController {
                             }
                         } else if (LoadingPage.o == 3) {
                             this.aJ = true;
-                            ch.clear();
+                            skillAnim.clear();
                             int var2 = -1;
 
                             for (int var25 = 0; var25 < GlobalStatus.jH.length; ++var25) {

@@ -26,8 +26,12 @@ fun main() {
 
 object TestScreen : AbstractScreen() {
     private val anim = listOf(
-        "rpg/ui/mapnpc.anim",
-//        "rpg/ui/mystation.anim",
+        "rpg/skill/12.anim",
+        "rpg/skill/13.anim",
+        "rpg/skill/14.anim",
+        "rpg/skill/30.anim",
+        "rpg/skill/31.anim",
+        "rpg/skill/32.anim",
     ).also {
         nameTrans(it)
     }.map {
