@@ -70,7 +70,7 @@ class FightScreen(
     private val rim        by resource(PUBLIC_ASSET, "rpg/publicUI/rim.pic",              TextureRegion::class)
     private val goods      by resource(PUBLIC_ASSET, "rpg/publicUI/goods.pic",            TextureRegion::class)
     private val num        by resource(PUBLIC_ASSET, "rpg/publicUI/num.pic",              TextureRegion::class)
-    private val slotIcon   by resource(PUBLIC_ASSET, "rpg/icon/0_47714320.pic",           TextureRegion::class)
+    private val slotIcon   by resource(PUBLIC_ASSET, "rpg/icon/1606.pic",           TextureRegion::class)
     private val fighticon  by resource(PUBLIC_ASSET, "rpg/ui/fighticon.pic",              TextureRegion::class)
     private val fightMenuPic by resource(PUBLIC_ASSET, "rpg/publicUI/49_983005409.pic",   TextureRegion::class)
     private val buttonBack by resource(PUBLIC_ASSET, "rpg/publicUI/button_back.pic",      TextureRegion::class)
@@ -274,7 +274,7 @@ class FightScreen(
     private fun resolveAnim(unit: FightUnit, state: UnitAnimState): RpgAnimation {
         return when (unit.type) {
             UnitType.ROLE -> when (unit.side) {
-                UnitSide.PLAYER -> if (state == UnitAnimState.ATTACK) roleAttackAnim else roleIdleAnim
+                UnitSide.PLAYER -> if (state == UnitAnimState.ATTACK) roleAttackAnim else deadAnim
                 UnitSide.ENEMY  -> if (state == UnitAnimState.ATTACK) enemyAttackAnim else enemyIdleAnim
             }
             UnitType.PET -> when (unit.appearId) {

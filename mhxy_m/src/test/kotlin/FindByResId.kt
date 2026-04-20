@@ -1,10 +1,10 @@
 import java.io.File
 
 val str = listOf(
-    "94_51529459.pic",
+    "25_1720722403.pic",
 )
 
-val file = "${destRoot}/assets/rpg/petfight"
+val file = "${destRoot}/assets/rpg/role"
 fun main() {
     for (item in File(file).listFiles()) {
         val readText = item.readText()

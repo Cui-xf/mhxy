@@ -27,8 +27,9 @@ fun main() {
 object TestScreen : AbstractScreen() {
     private val anim = listOf(
         "rpg/role/ride_200_1914870686.anim",
-        "rpg/role/ride_33_-2091426516.anim",
-        "rpg/role/ride_107_-2063492534.anim",
+        "rpg/role/ride_199_-1462250572.anim",
+        "rpg/role/ride_198_1913947165.anim",
+        "rpg/role/ride_157_1886242496.anim",
     ).also {
 //        nameTrans(it)
     }.map {
