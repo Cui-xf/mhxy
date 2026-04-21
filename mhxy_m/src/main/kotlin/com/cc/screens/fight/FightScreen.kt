@@ -13,7 +13,6 @@ import com.cc.asset.RpgAnimation
 import com.cc.event.TouchContext
 import com.cc.render.*
 import com.cc.screens.AbstractScreen
-import com.cc.screens.game.Player
 
 /**
  * 战斗场景 - 参照原 Java 版 FightModel + GameSceneController 实现
@@ -26,8 +25,6 @@ import com.cc.screens.game.Player
  *   skill:    {skillId}.anim             id>=10 才有特效
  */
 class FightScreen(
-    private val monsterId: Int = 1,
-    player: Player,
     private val backGround: TextureRegion
 ) : AbstractScreen() {
 
@@ -35,45 +32,45 @@ class FightScreen(
 
     // ── 角色动画（role 目录，f{id}0{dir}{action}.anim） ──────────────────────
     // id=30：我方角色外观；id=31：敌方角色外观
-    private val roleIdleAnim   by resource(PUBLIC_ASSET, "rpg/role/f30011.anim",  RpgAnimation::class) // 我方待机
-    private val roleAttackAnim by resource(PUBLIC_ASSET, "rpg/role/f30012.anim",  RpgAnimation::class) // 我方攻击
-    private val enemyIdleAnim  by resource(PUBLIC_ASSET, "rpg/role/f31011.anim",  RpgAnimation::class) // 敌方待机
+    private val roleIdleAnim by resource(PUBLIC_ASSET, "rpg/role/f30011.anim", RpgAnimation::class) // 我方待机
+    private val roleAttackAnim by resource(PUBLIC_ASSET, "rpg/role/f30012.anim", RpgAnimation::class) // 我方攻击
+    private val enemyIdleAnim by resource(PUBLIC_ASSET, "rpg/role/f31011.anim", RpgAnimation::class) // 敌方待机
     private val enemyAttackAnim by resource(PUBLIC_ASSET, "rpg/role/f31012.anim", RpgAnimation::class) // 敌方攻击
 
     // ── 宠物动画（petfight 目录，{id}{action}.anim） ─────────────────────────
     // 我方宠物 id=100/102/103；敌方宠物 id=104
-    private val pet100IdleAnim   by resource(PUBLIC_ASSET, "rpg/petfight/1001.anim", RpgAnimation::class)
+    private val pet100IdleAnim by resource(PUBLIC_ASSET, "rpg/petfight/1001.anim", RpgAnimation::class)
     private val pet100AttackAnim by resource(PUBLIC_ASSET, "rpg/petfight/1002.anim", RpgAnimation::class)
-    private val pet100HitAnim    by resource(PUBLIC_ASSET, "rpg/petfight/1003.anim", RpgAnimation::class)
-    private val pet102IdleAnim   by resource(PUBLIC_ASSET, "rpg/petfight/1021.anim", RpgAnimation::class)
+    private val pet100HitAnim by resource(PUBLIC_ASSET, "rpg/petfight/1003.anim", RpgAnimation::class)
+    private val pet102IdleAnim by resource(PUBLIC_ASSET, "rpg/petfight/1021.anim", RpgAnimation::class)
     private val pet102AttackAnim by resource(PUBLIC_ASSET, "rpg/petfight/1022.anim", RpgAnimation::class)
-    private val pet102HitAnim    by resource(PUBLIC_ASSET, "rpg/petfight/1023.anim", RpgAnimation::class)
-    private val pet103IdleAnim   by resource(PUBLIC_ASSET, "rpg/petfight/1031.anim", RpgAnimation::class)
+    private val pet102HitAnim by resource(PUBLIC_ASSET, "rpg/petfight/1023.anim", RpgAnimation::class)
+    private val pet103IdleAnim by resource(PUBLIC_ASSET, "rpg/petfight/1031.anim", RpgAnimation::class)
     private val pet103AttackAnim by resource(PUBLIC_ASSET, "rpg/petfight/1032.anim", RpgAnimation::class)
-    private val pet103HitAnim    by resource(PUBLIC_ASSET, "rpg/petfight/1033.anim", RpgAnimation::class)
-    private val pet104IdleAnim   by resource(PUBLIC_ASSET, "rpg/petfight/1041.anim", RpgAnimation::class)
+    private val pet103HitAnim by resource(PUBLIC_ASSET, "rpg/petfight/1033.anim", RpgAnimation::class)
+    private val pet104IdleAnim by resource(PUBLIC_ASSET, "rpg/petfight/1041.anim", RpgAnimation::class)
     private val pet104AttackAnim by resource(PUBLIC_ASSET, "rpg/petfight/1042.anim", RpgAnimation::class)
-    private val pet104HitAnim    by resource(PUBLIC_ASSET, "rpg/petfight/1043.anim", RpgAnimation::class)
+    private val pet104HitAnim by resource(PUBLIC_ASSET, "rpg/petfight/1043.anim", RpgAnimation::class)
 
     // ── 技能特效动画（skill 目录） ────────────────────────────────────────────
-    private val skillAnim10 by resource(PUBLIC_ASSET, "rpg/skill/10.anim",  RpgAnimation::class)
-    private val skillAnim12 by resource(PUBLIC_ASSET, "rpg/skill/12.anim",  RpgAnimation::class)
-    private val skillAnim13 by resource(PUBLIC_ASSET, "rpg/skill/13.anim",  RpgAnimation::class)
-    private val skillAnim14 by resource(PUBLIC_ASSET, "rpg/skill/14.anim",  RpgAnimation::class)
-    private val skillAnim16 by resource(PUBLIC_ASSET, "rpg/skill/16.anim",  RpgAnimation::class)
-    private val skillAnim20 by resource(PUBLIC_ASSET, "rpg/skill/20.anim",  RpgAnimation::class)
-    private val skillAnim22 by resource(PUBLIC_ASSET, "rpg/skill/22.anim",  RpgAnimation::class)
-    private val deadAnim    by resource(PUBLIC_ASSET, "rpg/skill/dead.anim",     RpgAnimation::class)
-    private val defenceAnim by resource(PUBLIC_ASSET, "rpg/skill/defence.anim",  RpgAnimation::class)
+    private val skillAnim10 by resource(PUBLIC_ASSET, "rpg/skill/10.anim", RpgAnimation::class)
+    private val skillAnim12 by resource(PUBLIC_ASSET, "rpg/skill/12.anim", RpgAnimation::class)
+    private val skillAnim13 by resource(PUBLIC_ASSET, "rpg/skill/13.anim", RpgAnimation::class)
+    private val skillAnim14 by resource(PUBLIC_ASSET, "rpg/skill/14.anim", RpgAnimation::class)
+    private val skillAnim16 by resource(PUBLIC_ASSET, "rpg/skill/16.anim", RpgAnimation::class)
+    private val skillAnim20 by resource(PUBLIC_ASSET, "rpg/skill/20.anim", RpgAnimation::class)
+    private val skillAnim22 by resource(PUBLIC_ASSET, "rpg/skill/22.anim", RpgAnimation::class)
+    private val deadAnim by resource(PUBLIC_ASSET, "rpg/skill/dead.anim", RpgAnimation::class)
+    private val defenceAnim by resource(PUBLIC_ASSET, "rpg/skill/defence.anim", RpgAnimation::class)
 
     // ── UI 资源 ───────────────────────────────────────────────────────────────
-    private val rim        by resource(PUBLIC_ASSET, "rpg/publicUI/rim.pic",              TextureRegion::class)
-    private val goods      by resource(PUBLIC_ASSET, "rpg/publicUI/goods.pic",            TextureRegion::class)
-    private val num        by resource(PUBLIC_ASSET, "rpg/publicUI/num.pic",              TextureRegion::class)
-    private val slotIcon   by resource(PUBLIC_ASSET, "rpg/icon/1606.pic",           TextureRegion::class)
-    private val fighticon  by resource(PUBLIC_ASSET, "rpg/ui/fighticon.pic",              TextureRegion::class)
-    private val fightMenuPic by resource(PUBLIC_ASSET, "rpg/publicUI/49_983005409.pic",   TextureRegion::class)
-    private val buttonBack by resource(PUBLIC_ASSET, "rpg/publicUI/button_back.pic",      TextureRegion::class)
+    private val rim by resource(PUBLIC_ASSET, "rpg/publicUI/rim.pic", TextureRegion::class)
+    private val goods by resource(PUBLIC_ASSET, "rpg/publicUI/goods.pic", TextureRegion::class)
+    private val num by resource(PUBLIC_ASSET, "rpg/publicUI/num.pic", TextureRegion::class)
+    private val slotIcon by resource(PUBLIC_ASSET, "rpg/icon/1606.pic", TextureRegion::class)
+    private val fighticon by resource(PUBLIC_ASSET, "rpg/ui/fighticon.pic", TextureRegion::class)
+    private val fightMenuPic by resource(PUBLIC_ASSET, "rpg/publicUI/49_983005409.pic", TextureRegion::class)
+    private val buttonBack by resource(PUBLIC_ASSET, "rpg/publicUI/button_back.pic", TextureRegion::class)
 
     // ── 战斗数据模型 ──────────────────────────────────────────────────────────
     private val model = FightModel()
@@ -82,13 +79,13 @@ class FightScreen(
     private var animTime = 0f
 
     // ── 布局常量（与原 Java 版对应） ─────────────────────────────────────────
-    private val ACTION_BTN_X  = 0f
+    private val ACTION_BTN_X = 0f
     private val ACTION_BTN_Y0 = 320f - 102f   // = 218f
-    private val ACTION_BTN_H  = 16f
-    private val ACTION_BTN_W  = 26f
+    private val ACTION_BTN_H = 16f
+    private val ACTION_BTN_W = 26f
 
-    private val SKILL_BAR_Y    = 320f - 22f   // = 298f
-    private val SKILL_SLOT_W   = 17f
+    private val SKILL_BAR_Y = 320f - 22f   // = 298f
+    private val SKILL_SLOT_W = 17f
     private val SKILL_BAR_SLOTS = 10
 
     private val BACK_BTN_W = 37f
@@ -98,7 +95,7 @@ class FightScreen(
 
     // 战场6个位置坐标（对应 GlobalConfig.Q 我方 / GlobalConfig.R 敌方）
     private val PLAYER_POS = Array(6) { i -> playerPos(i) }
-    private val ENEMY_POS  = Array(6) { i -> enemyPos(i)  }
+    private val ENEMY_POS = Array(6) { i -> enemyPos(i) }
 
     // ── 技能列表弹窗滚动 ──────────────────────────────────────────────────────
     private var skillListScroll = 0
@@ -136,10 +133,10 @@ class FightScreen(
         }
 
         when (model.phase) {
-            FightPhase.PLAYER_CHOOSE  -> handleMenuInput(tx, ty)
-            FightPhase.SELECT_TARGET  -> handleTargetInput(tx, ty)
-            FightPhase.SELECT_SKILL   -> handleSkillListInput(tx, ty)
-            FightPhase.BATTLE_END     -> MhxyGame.setScreen(com.cc.screens.game.GameScreen())
+            FightPhase.PLAYER_CHOOSE -> handleMenuInput(tx, ty)
+            FightPhase.SELECT_TARGET -> handleTargetInput(tx, ty)
+            FightPhase.SELECT_SKILL -> handleSkillListInput(tx, ty)
+            FightPhase.BATTLE_END -> MhxyGame.setScreen(com.cc.screens.game.GameScreen())
             else -> {}
         }
     }
@@ -193,7 +190,9 @@ class FightScreen(
     }
 
     private fun handleSkillListInput(tx: Float, ty: Float) {
-        if (tx < SKILL_LIST_X || tx > SKILL_LIST_X + SKILL_LIST_W) { model.onCancel(); return }
+        if (tx < SKILL_LIST_X || tx > SKILL_LIST_X + SKILL_LIST_W) {
+            model.onCancel(); return
+        }
         val skills = model.actingPlayer().skills
         skills.forEachIndexed { idx, skill ->
             val rowY = SKILL_LIST_Y + idx * SKILL_LIST_ROW_H
@@ -240,8 +239,10 @@ class FightScreen(
     private fun drawBackground() {
         batch.begin()
         batch.drawImage(backGround, 0f, 0f, align = Align.LEFT_TOP)
-        batch.drawImage(fightBgTexture, VIRTUAL_W / 2, (VIRTUAL_H - fightBgTexture.height) / 2,
-            align = Align.CENTER_TOP)
+        batch.drawImage(
+            fightBgTexture, VIRTUAL_W / 2, (VIRTUAL_H - fightBgTexture.height) / 2,
+            align = Align.CENTER_TOP
+        )
         batch.end()
         Gdx.gl.glEnable(GL20.GL_BLEND)
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA)
@@ -256,7 +257,7 @@ class FightScreen(
 
     private fun drawAllUnits() {
         batch.begin()
-        model.enemyUnits.forEach  { drawUnit(it) }
+        model.enemyUnits.forEach { drawUnit(it) }
         model.playerUnits.forEach { drawUnit(it) }
         batch.end()
     }
@@ -275,28 +276,32 @@ class FightScreen(
         return when (unit.type) {
             UnitType.ROLE -> when (unit.side) {
                 UnitSide.PLAYER -> if (state == UnitAnimState.ATTACK) roleAttackAnim else deadAnim
-                UnitSide.ENEMY  -> if (state == UnitAnimState.ATTACK) enemyAttackAnim else enemyIdleAnim
+                UnitSide.ENEMY -> if (state == UnitAnimState.ATTACK) enemyAttackAnim else enemyIdleAnim
             }
+
             UnitType.PET -> when (unit.appearId) {
                 100 -> when (state) {
                     UnitAnimState.ATTACK -> pet100AttackAnim
-                    UnitAnimState.HIT    -> pet100HitAnim
-                    else                 -> pet100IdleAnim
+                    UnitAnimState.HIT -> pet100HitAnim
+                    else -> pet100IdleAnim
                 }
+
                 102 -> when (state) {
                     UnitAnimState.ATTACK -> pet102AttackAnim
-                    UnitAnimState.HIT    -> pet102HitAnim
-                    else                 -> pet102IdleAnim
+                    UnitAnimState.HIT -> pet102HitAnim
+                    else -> pet102IdleAnim
                 }
+
                 103 -> when (state) {
                     UnitAnimState.ATTACK -> pet103AttackAnim
-                    UnitAnimState.HIT    -> pet103HitAnim
-                    else                 -> pet103IdleAnim
+                    UnitAnimState.HIT -> pet103HitAnim
+                    else -> pet103IdleAnim
                 }
+
                 else -> when (state) {  // 104 及其他
                     UnitAnimState.ATTACK -> pet104AttackAnim
-                    UnitAnimState.HIT    -> pet104HitAnim
-                    else                 -> pet104IdleAnim
+                    UnitAnimState.HIT -> pet104HitAnim
+                    else -> pet104IdleAnim
                 }
             }
         }
@@ -316,7 +321,7 @@ class FightScreen(
             if (u.isDead) return@forEach
             val (x, y) = PLAYER_POS[u.id]
             drawBar(x, y + offY - 5, u.hp.toFloat() / u.maxHp, 16711680.toColor(), 10945027.toColor())
-            drawBar(x, y + offY,     u.mp.toFloat() / u.maxMp, 48127.toColor(),    230064.toColor())
+            drawBar(x, y + offY, u.mp.toFloat() / u.maxMp, 48127.toColor(), 230064.toColor())
         }
         sr.end()
         batch.begin()
@@ -392,12 +397,16 @@ class FightScreen(
             val alpha = (fn.timer / 1.2f).coerceIn(0f, 1f)
             if (fn.value > 0) {
                 // 治疗：绿色
-                batch.wordArtString(font, "+${fn.value}", Color(0f, 0f, 0f, alpha),
-                    Color(0.2f, 1f, 0.2f, alpha), x, y)
+                batch.wordArtString(
+                    font, "+${fn.value}", Color(0f, 0f, 0f, alpha),
+                    Color(0.2f, 1f, 0.2f, alpha), x, y
+                )
             } else {
                 // 伤害：白/红
-                batch.wordArtString(font, "${fn.value}", Color(0f, 0f, 0f, alpha),
-                    Color(1f, 0.9f, 0.1f, alpha), x, y)
+                batch.wordArtString(
+                    font, "${fn.value}", Color(0f, 0f, 0f, alpha),
+                    Color(1f, 0.9f, 0.1f, alpha), x, y
+                )
             }
         }
         batch.end()
@@ -429,15 +438,18 @@ class FightScreen(
         val font = FontManager.SMALL_FONT
         val text = menuLabels[selectedMenuIdx]
         batch.begin()
-        batch.wordArtString(font, text, Color.BLACK, Color.YELLOW,
-            VIRTUAL_W / 2f, VIRTUAL_H - 22f - font.lineHeight)
+        batch.wordArtString(
+            font, text, Color.BLACK, Color.YELLOW,
+            VIRTUAL_W / 2f, VIRTUAL_H - 22f - font.lineHeight
+        )
         batch.end()
     }
 
     // ── 技能快捷栏（底部）────────────────────────────────────────────────────
 
     private fun drawSkillBar() {
-        val barX = 0f; val barY = SKILL_BAR_Y
+        val barX = 0f;
+        val barY = SKILL_BAR_Y
         batch.begin()
         for (i in 0 until SKILL_BAR_SLOTS) {
             val slotX = barX + 2f + i * 17f
@@ -457,7 +469,7 @@ class FightScreen(
         }
         batch.end()
         sr.begin(ShapeType.Filled)
-        sr.drawRectBorder(15975.toColor(),    barX, barY, SKILL_BAR_SLOTS * 17f + 4f, 21f, Align.LEFT_TOP)
+        sr.drawRectBorder(15975.toColor(), barX, barY, SKILL_BAR_SLOTS * 17f + 4f, 21f, Align.LEFT_TOP)
         sr.drawRectBorder(11267556.toColor(), barX + 1f, barY + 1f, SKILL_BAR_SLOTS * 17f + 2f, 19f, Align.LEFT_TOP)
         sr.end()
     }
@@ -482,8 +494,10 @@ class FightScreen(
         // 显示目标名称
         val font = FontManager.SMALL_FONT
         batch.begin()
-        batch.wordArtString(font, target.name, Color.BLACK, Color.YELLOW,
-            VIRTUAL_W / 2f, VIRTUAL_H - 22f - font.lineHeight)
+        batch.wordArtString(
+            font, target.name, Color.BLACK, Color.YELLOW,
+            VIRTUAL_W / 2f, VIRTUAL_H - 22f - font.lineHeight
+        )
         batch.end()
     }
 
@@ -498,8 +512,10 @@ class FightScreen(
         // 背景框
         sr.begin(ShapeType.Filled)
         sr.color = Color(0f, 0f, 0.1f, 0.9f)
-        sr.rect(SKILL_LIST_X, VIRTUAL_H - SKILL_LIST_Y - totalH,
-            SKILL_LIST_W, totalH)
+        sr.rect(
+            SKILL_LIST_X, VIRTUAL_H - SKILL_LIST_Y - totalH,
+            SKILL_LIST_W, totalH
+        )
         sr.end()
         sr.begin(ShapeType.Filled)
         sr.drawRectBorder(Color.CYAN, SKILL_LIST_X, SKILL_LIST_Y, SKILL_LIST_W, totalH, Align.LEFT_TOP)
@@ -510,8 +526,10 @@ class FightScreen(
         if (selIdx >= 0) {
             val selY = SKILL_LIST_Y + selIdx * SKILL_LIST_ROW_H
             sr.begin(ShapeType.Filled)
-            sr.drawRect(Color(0.2f, 0.4f, 0.8f, 0.6f), SKILL_LIST_X + 1f, selY + 1f,
-                SKILL_LIST_W - 2f, SKILL_LIST_ROW_H - 2f, Align.LEFT_TOP)
+            sr.drawRect(
+                Color(0.2f, 0.4f, 0.8f, 0.6f), SKILL_LIST_X + 1f, selY + 1f,
+                SKILL_LIST_W - 2f, SKILL_LIST_ROW_H - 2f, Align.LEFT_TOP
+            )
             sr.end()
         }
 
@@ -519,8 +537,10 @@ class FightScreen(
         skills.forEachIndexed { idx, skill ->
             val rowY = SKILL_LIST_Y + idx * SKILL_LIST_ROW_H + 3f
             val mpColor = if (model.actingPlayer().mp >= skill.mpCost) Color.WHITE else Color.GRAY
-            batch.wordArtString(font, "${skill.name}  MP:${skill.mpCost}", Color.BLACK, mpColor,
-                SKILL_LIST_X + 4f, rowY, Align.LEFT_TOP)
+            batch.wordArtString(
+                font, "${skill.name}  MP:${skill.mpCost}", Color.BLACK, mpColor,
+                SKILL_LIST_X + 4f, rowY, Align.LEFT_TOP
+            )
         }
         batch.end()
     }
@@ -530,14 +550,17 @@ class FightScreen(
     private fun drawBattleLog() {
         if (model.phase == FightPhase.PLAYER_CHOOSE ||
             model.phase == FightPhase.SELECT_SKILL ||
-            model.phase == FightPhase.BATTLE_END) return
+            model.phase == FightPhase.BATTLE_END
+        ) return
         val font = FontManager.SMALL_FONT
         val logs = model.battleLog.takeLast(3)
         batch.begin()
         logs.forEachIndexed { i, text ->
             val y = 60f + (logs.size - 1 - i) * (font.lineHeight + 2f)
-            batch.wordArtString(font, text, Color.BLACK, Color(1f, 0.95f, 0.7f, 1f),
-                VIRTUAL_W / 2f, y)
+            batch.wordArtString(
+                font, text, Color.BLACK, Color(1f, 0.95f, 0.7f, 1f),
+                VIRTUAL_W / 2f, y
+            )
         }
         batch.end()
     }
@@ -573,27 +596,33 @@ class FightScreen(
     // ── 位置坐标计算（对应 Java GlobalConfig.Q/R + FightModel.a() 初始化） ───
 
     private fun playerPos(index: Int): Pair<Float, Float> {
-        val cx = 160f; val cy = 250f; val dx = 38f; val dy = 24f
+        val cx = 160f;
+        val cy = 250f;
+        val dx = 38f;
+        val dy = 24f
         return when (index) {
             0 -> Pair(cx - dx * 2, cy)
-            1 -> Pair(cx - dx,     cy - dy)
-            2 -> Pair(cx,          cy - dy * 2)
-            3 -> Pair(cx - dx,     cy + dy)
-            4 -> Pair(cx,          cy)
-            5 -> Pair(cx + dx,     cy - dy)
+            1 -> Pair(cx - dx, cy - dy)
+            2 -> Pair(cx, cy - dy * 2)
+            3 -> Pair(cx - dx, cy + dy)
+            4 -> Pair(cx, cy)
+            5 -> Pair(cx + dx, cy - dy)
             else -> Pair(cx, cy)
         }
     }
 
     private fun enemyPos(index: Int): Pair<Float, Float> {
-        val cx = 90f; val cy = 110f; val dx = 34f; val dy = 20f
+        val cx = 90f;
+        val cy = 110f;
+        val dx = 34f;
+        val dy = 20f
         return when (index) {
-            0 -> Pair(cx - dx,     cy + dy)
-            1 -> Pair(cx,          cy)
-            2 -> Pair(cx + dx,     cy - dy)
-            3 -> Pair(cx - dx,     cy - dy)
-            4 -> Pair(cx,          cy + dy)
-            5 -> Pair(cx + dx,     cy)
+            0 -> Pair(cx - dx, cy + dy)
+            1 -> Pair(cx, cy)
+            2 -> Pair(cx + dx, cy - dy)
+            3 -> Pair(cx - dx, cy - dy)
+            4 -> Pair(cx, cy + dy)
+            5 -> Pair(cx + dx, cy)
             else -> Pair(cx, cy)
         }
     }

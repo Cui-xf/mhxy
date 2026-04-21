@@ -5,15 +5,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
+import com.badlogic.gdx.math.Rectangle
 import com.cc.FontManager.MEDIA_FONT
 import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
+import com.cc.event.TouchContext
 import com.cc.render.*
 
 class WindowPanel(
     assetLoader: AssetLoader,
     var title: String = "",
-    var bottomText: String = "",
+    var bottomText: String? = null,
     block: UIContainer.() -> Unit,
 ) : UIContainer(assetLoader, block) {
     private val lu by resource(PUBLIC_ASSET, "rpg/publicUI/lu.pic", TextureRegion::class)
@@ -66,8 +68,12 @@ class WindowPanel(
             batch.drawImage(partial, cx + t, cy + 4, align = Align.LEFT_TOP)
         }
 
+        val closeRect = Rectangle(
+            cx + cw - 5 - closeImage.regionWidth, cy + 4,
+            closeImage.regionWidth.toFloat(), closeImage.regionHeight.toFloat()
+        )
         // 关闭按钮
-        batch.drawImage(closeImage, cx + cw - 5 - closeImage.regionWidth, cy + 4, align = Align.LEFT_TOP)
+        batch.drawImage(closeImage, closeRect.x, closeRect.y, align = Align.LEFT_TOP)
 
         // 居中标题文字
         batch.wordArtString(
@@ -78,26 +84,33 @@ class WindowPanel(
             cx + cw / 2,
             cy + 4 + (titleImage.regionHeight - MEDIA_FONT.capHeight) / 2
         )
-        //底部图片
-        batch.drawImage(
-            bottomImage,
-            cx,
-            cy + ch - 4 - bottomImage.regionHeight,
-            cw,
-            bottomImage.regionHeight.toFloat() + 1,
-            Align.LEFT_TOP
-        )
-        //底部文字
-        batch.wordArtString(
-            MEDIA_FONT,
-            bottomText,
-            0.toColor(),
-            16776917.toColor(),
-            cx + 10f,
-            cy + ch - 10.5f - MEDIA_FONT.capHeight,
-            Align.LEFT_TOP
-        )
+
+        bottomText?.let {
+            //底部图片
+            batch.drawImage(
+                bottomImage,
+                cx,
+                cy + ch - 4 - bottomImage.regionHeight,
+                cw,
+                bottomImage.regionHeight.toFloat() + 1,
+                Align.LEFT_TOP
+            )
+            //底部文字
+            batch.wordArtString(
+                MEDIA_FONT,
+                it,
+                0.toColor(),
+                16776917.toColor(),
+                cx + 10f,
+                cy + ch - 10.5f - MEDIA_FONT.capHeight,
+                Align.LEFT_TOP
+            )
+        }
         batch.end()
+
+        if (TouchContext.inTouch(closeRect)) {
+            emit("close")
+        }
     }
 
     override fun border(): Border {

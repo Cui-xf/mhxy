@@ -14,8 +14,6 @@ abstract class UIComponent(private val assetLoader: AssetLoader) : Disposable {
 
     abstract fun render(batch: SpriteBatch, sr: ShapeRenderer, cx: Float, cy: Float, cw: Float, ch: Float, delta: Float)
 
-    open fun handleInput() {}
-
     @Suppress("UNCHECKED_CAST")
     inline fun <reified T : Any> onEvent(noinline handler: (T) -> Unit): UIComponent {
         listeners[T::class] = handler as (Any) -> Unit
@@ -23,10 +21,14 @@ abstract class UIComponent(private val assetLoader: AssetLoader) : Disposable {
     }
 
     fun emit(data: Any) {
-        val handler = listeners[data::class]
-        if (handler != null) {
-            handler(data)
-        } else {
+        var handled = false
+        listeners.forEach { (type, handler) ->
+            if (type.isInstance(data)) {
+                handler(data)
+                handled = true
+            }
+        }
+        if (!handled) {
             parent?.emit(data)
         }
     }

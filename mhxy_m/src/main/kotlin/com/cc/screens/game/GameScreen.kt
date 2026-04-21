@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.FrameBuffer
 import com.cc.MhxyGame
 import com.cc.screens.AbstractScreen
-import com.cc.screens.fight.FightScreen
+import com.cc.screens.fight2.FightScreen2
 
 class GameScreen : AbstractScreen() {
     private val screenMap = ScreenMap(this.assetLoader)
@@ -41,7 +41,7 @@ class GameScreen : AbstractScreen() {
     }
 
     private fun enterFight(id: Int) {
-        MhxyGame.setScreen(FightScreen(id, player, captureMapSnapshot()))
+        MhxyGame.setScreen(FightScreen2(id, player, captureMapSnapshot()))
     }
 
     /** 用 FrameBuffer 渲染当前地图帧，拷贝为普通 Texture 后立即 dispose FBO */
