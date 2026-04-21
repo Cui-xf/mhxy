@@ -85,16 +85,17 @@ class WindowPanel(
             cy + 4 + (titleImage.regionHeight - MEDIA_FONT.capHeight) / 2
         )
 
+        //底部图片
+        batch.drawImage(
+            bottomImage,
+            cx,
+            cy + ch - 4 - bottomImage.regionHeight,
+            cw,
+            bottomImage.regionHeight.toFloat() + 1,
+            Align.LEFT_TOP
+        )
+        
         bottomText?.let {
-            //底部图片
-            batch.drawImage(
-                bottomImage,
-                cx,
-                cy + ch - 4 - bottomImage.regionHeight,
-                cw,
-                bottomImage.regionHeight.toFloat() + 1,
-                Align.LEFT_TOP
-            )
             //底部文字
             batch.wordArtString(
                 MEDIA_FONT,

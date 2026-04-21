@@ -3,8 +3,12 @@ package com.cc.screens.fight2.model
 import kotlin.reflect.KClass
 
 sealed interface Action
+
+//返回
+object Back : Action
 object SkillButton : Action
 data class SelectSkill(val skill: String) : Action
+
 
 sealed class FightState(
     register: FightState.() -> Unit,
@@ -34,6 +38,7 @@ object WaitAction : FightState({
 //等待选择技能
 object WaitSelectSkill : FightState({
     r<SelectSkill> { WaitSelectTarget(it.skill) }
+    r<Back> { WaitAction }
 })
 
 data class WaitSelectTarget(
