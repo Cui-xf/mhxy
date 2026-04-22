@@ -162,7 +162,7 @@ class FightRole(
         val touchH = 40f
         for (role in aliveTargets) {
             val (x, y) = role.getPos()
-            if (TouchContext.inTouch(x - touchW / 2, y - touchH / 2, touchW, touchH)) {
+            if (TouchContext.inTouch(x - touchW / 2, y - touchH, touchW, touchH)) {
                 if (isSingle) {
                     if (state.selectedTarget == role) {
                         // 再次点击同一个角色 → 确认选择

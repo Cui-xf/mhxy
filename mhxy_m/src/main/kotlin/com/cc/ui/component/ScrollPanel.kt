@@ -33,16 +33,31 @@ class ScrollPanel(
     private var lastTouchY = 0f
     private var pendingClick = false
 
+    // 滚动条拖动状态
+    private var draggingThumb = false
+    private var lastThumbTouchY = 0f
+
     override fun renderSelf(batch: SpriteBatch, sr: ShapeRenderer, cx: Float, cy: Float, cw: Float, ch: Float) {
-        handleTouch(cx, cy, cw, ch)
         val contentW = cw - border().right
         val contentH = child.preferredHeight(contentW)
         val maxScroll = (contentH - ch).coerceAtLeast(0f)
-        scrollY = MathUtils.clamp(scrollY, 0f, maxScroll)
 
         if (contentH > ch) {
             val trackX = cx + cw - up.regionWidth
+            val trackW = up.regionWidth.toFloat()
+            val upH = up.regionHeight.toFloat()
+            val downH = down.regionHeight.toFloat()
+            val slideArea = ch - upH - downH
+            val thumbH = (slideArea * ch / contentH).coerceAtLeast(6f)
+            val scrollRatio = if (maxScroll > 0f) scrollY / maxScroll else 0f
+            val thumbY = cy + upH + scrollRatio * (slideArea - thumbH)
+
+            handleTouch(cx, cy, cw, ch, trackX, trackW, thumbY, thumbH, slideArea, maxScroll)
+            scrollY = MathUtils.clamp(scrollY, 0f, maxScroll)
             drawScrollBar(batch, sr, trackX, cy, ch, contentH, maxScroll)
+        } else {
+            handleTouch(cx, cy, cw, ch, 0f, 0f, 0f, 0f, 0f, 0f)
+            scrollY = MathUtils.clamp(scrollY, 0f, maxScroll)
         }
     }
 
@@ -114,13 +129,41 @@ class ScrollPanel(
         sr.drawRectBorder(trackX, thumbY, trackW, thumbH, thumbBorders, 1801628.toColor(), Align.LEFT_TOP)
     }
 
-    private fun handleTouch(cx: Float, cy: Float, cw: Float, ch: Float) {
-        // 手指按下：开始追踪
-        if (TouchContext.inTouch(cx, cy, cw, ch)) {
+    private fun handleTouch(
+        cx: Float, cy: Float, cw: Float, ch: Float,
+        thumbX: Float, thumbW: Float, thumbY: Float, thumbH: Float,
+        slideArea: Float, maxScroll: Float,
+    ) {
+        // 手指按下：判断落在滚动条滑块还是内容区
+        if (TouchContext.inTouch(thumbX, thumbY, thumbW, thumbH)) {
+            // 点击在滑块上，开始拖动滚动条
+            draggingThumb = true
+            lastThumbTouchY = TouchContext.touchY
+            TouchContext.justTouched = false
+        } else if (TouchContext.inTouch(cx, cy, cw, ch)) {
             dragging = true
             scrolled = false
             lastTouchY = TouchContext.touchY
         }
+
+        // 滚动条滑块拖动
+        if (draggingThumb) {
+            val touched = Gdx.input.isTouched
+            if (touched) {
+                val deltaY = TouchContext.touchY - lastThumbTouchY
+                if (deltaY != 0f && slideArea > 0f && maxScroll > 0f) {
+                    // 滑块向下拖动(deltaY>0) → scrollY增加 → 显示下方内容
+                    scrollY += deltaY * maxScroll / slideArea
+                    lastThumbTouchY = TouchContext.touchY
+                }
+            } else {
+                draggingThumb = false
+            }
+            TouchContext.justTouched = false
+            return
+        }
+
+        // 内容区拖动
         if (dragging) {
             val touched = Gdx.input.isTouched
             if (touched) {
