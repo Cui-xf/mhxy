@@ -39,10 +39,12 @@ val list = listOf(
     "rpg/ui/?.anim",
     "rpg/ui/!.anim",
     "rpg/ui/mapnpc.anim",
+    "rpg/publicUI/up.pic",
+    "rpg/publicUI/down.pic",
 )
 
 fun nameTrans(list2: List<String> = emptyList()) {
-    for (string in (list2)) {
+    for (string in (list)) {
         val (dir, fullName) = parseResourceName(string)
         val split = fullName.split(".")
         val name = split[0]

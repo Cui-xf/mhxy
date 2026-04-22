@@ -1,26 +1,11 @@
-import com.badlogic.gdx.Game
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
+package render
+
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.asset.RpgAnimation
 import com.cc.render.*
 import com.cc.screens.AbstractScreen
-
-fun main() {
-    val config = Lwjgl3ApplicationConfiguration().apply {
-        setTitle("Demo")
-//        setWindowedMode(480, 640)
-        setWindowedMode(240, 320)
-        setResizable(true)
-        setForegroundFPS(60)
-    }
-    try {
-        Lwjgl3Application(TestGame, config)
-    } catch (e: Exception) {
-        e.printStackTrace()
-    }
-}
+import nameTrans
 
 object TestScreen2 : AbstractScreen() {
     override fun update(delta: Float) {
@@ -100,10 +85,3 @@ object TestScreen : AbstractScreen() {
         dY = 0f
     }
 }
-
-object TestGame : Game() {
-    override fun create() {
-        setScreen(TestScreen2)
-    }
-}
-

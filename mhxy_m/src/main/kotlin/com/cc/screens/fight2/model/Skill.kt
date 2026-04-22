@@ -21,4 +21,20 @@ val SKILLS = listOf(
     Skill(1004, "治愈术", 15, SkillTarget.SINGLE_ALLY, -1.5f),  // 治疗
     Skill(1005, "群体治愈", 30, SkillTarget.ALL_ALLIES, -1.0f),  // 群治
     Skill(1006, "圣光", 28, SkillTarget.ALL_ENEMIES, 1.4f),
+
+    Skill(1000, "火球术", 20, SkillTarget.SINGLE_ENEMY, 1.8f),
+    Skill(1001, "冰霜箭", 18, SkillTarget.SINGLE_ENEMY, 1.6f),
+    Skill(1002, "雷击", 25, SkillTarget.ALL_ENEMIES, 1.2f),
+    Skill(1003, "烈焰风暴", 35, SkillTarget.ALL_ENEMIES, 1.0f),
+    Skill(1004, "治愈术", 15, SkillTarget.SINGLE_ALLY, -1.5f),  // 治疗
+    Skill(1005, "群体治愈", 30, SkillTarget.ALL_ALLIES, -1.0f),  // 群治
+    Skill(1006, "圣光", 28, SkillTarget.ALL_ENEMIES, 1.4f),
+
+    Skill(1000, "火球术", 20, SkillTarget.SINGLE_ENEMY, 1.8f),
+    Skill(1001, "冰霜箭", 18, SkillTarget.SINGLE_ENEMY, 1.6f),
+    Skill(1002, "雷击", 25, SkillTarget.ALL_ENEMIES, 1.2f),
+    Skill(1003, "烈焰风暴", 35, SkillTarget.ALL_ENEMIES, 1.0f),
+    Skill(1004, "治愈术", 15, SkillTarget.SINGLE_ALLY, -1.5f),  // 治疗
+    Skill(1005, "群体治愈", 30, SkillTarget.ALL_ALLIES, -1.0f),  // 群治
+    Skill(1006, "圣光", 28, SkillTarget.ALL_ENEMIES, 1.4f),
 )
