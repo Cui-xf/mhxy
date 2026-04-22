@@ -17,18 +17,20 @@ abstract class AbstractScreen : ScreenAdapter() {
     companion object {
         const val VIRTUAL_W = 240f
         const val VIRTUAL_H = 320f
+        val viewport = FitViewport(VIRTUAL_W, VIRTUAL_H)
+        private val _touchVec = Vector3()
+        private fun fillInput() {
+            _touchVec.set(Gdx.input.x.toFloat(), Gdx.input.y.toFloat(), 0f)
+            viewport.unproject(_touchVec)
+            TouchContext.touchX = _touchVec.x
+            TouchContext.touchY = VIRTUAL_H - _touchVec.y
+            TouchContext.justTouched = Gdx.input.justTouched()
+        }
     }
 
-    protected val viewport = FitViewport(VIRTUAL_W, VIRTUAL_H)
     protected val batch = SpriteBatch()
     protected val sr = createShapeRenderer()
     protected val autoDispose = mutableSetOf<Disposable>()
-
-    // 每帧自动更新为逻辑坐标，子类直接用
-    protected var touchX = 0f
-    protected var touchY = 0f
-    private val _touchVec = Vector3()
-
     protected val assetLoader = AssetLoader()
 
     final override fun render(delta: Float) {
@@ -46,15 +48,6 @@ abstract class AbstractScreen : ScreenAdapter() {
         update(delta)
     }
 
-    private fun fillInput() {
-        _touchVec.set(Gdx.input.x.toFloat(), Gdx.input.y.toFloat(), 0f)
-        viewport.unproject(_touchVec)
-        touchX = _touchVec.x
-        touchY = _touchVec.y
-        TouchContext.touchX = touchX
-        TouchContext.touchY = VIRTUAL_H - touchY
-        TouchContext.justTouched = Gdx.input.justTouched()
-    }
 
     override fun resize(width: Int, height: Int) {
         viewport.update(width, height, true)

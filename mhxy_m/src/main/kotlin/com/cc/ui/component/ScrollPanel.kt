@@ -11,6 +11,7 @@ import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.event.TouchContext
 import com.cc.render.*
+import com.cc.screens.AbstractScreen
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
 
 class ScrollPanel(
@@ -60,7 +61,14 @@ class ScrollPanel(
         val innerW = cw - left - right
         val innerH = ch - top - bottom
 
-        val scissorRect = Rectangle(innerX, VIRTUAL_H - innerY - innerH, innerW, innerH)
+        val clipArea = Rectangle(innerX, VIRTUAL_H - innerY - innerH, innerW, innerH)
+        val scissorRect = Rectangle()
+        val vp = AbstractScreen.viewport
+        ScissorStack.calculateScissors(
+            vp.camera, vp.screenX.toFloat(), vp.screenY.toFloat(),
+            vp.screenWidth.toFloat(), vp.screenHeight.toFloat(),
+            batch.transformMatrix, clipArea, scissorRect
+        )
 
         val contentH = child.preferredHeight(innerW)
 
