@@ -31,10 +31,6 @@ sealed class FightState(
         handlers[T::class] = { action, _ -> handler(action as T) }
     }
 
-    internal inline fun <reified T : Action> r(state: FightState) {
-        handlers[T::class] = { _, _ -> state }
-    }
-
     fun on(action: Action, fightModel: FightModel): FightState {
         return handlers[action::class]?.invoke(action, fightModel) ?: this
     }
@@ -42,12 +38,12 @@ sealed class FightState(
 
 // 等待玩家选择行动
 object WaitAction : FightState({
-    r<SkillButton>(WaitSelectSkill)
+    r<SkillButton> { WaitSelectSkill }
 })
 
 //等待选择技能
 object WaitSelectSkill : FightState({
-    r<Back>(WaitAction)
+    r<Back> { WaitAction }
     r<SelectSkill> { WaitSelectTarget(it.skill) }
 })
 
@@ -57,7 +53,7 @@ data class WaitSelectTarget(
     /** 单体技能当前选中的角色，null 表示尚未初始化 */
     var selectedTarget: Role? = null
 ) : FightState({
-    r<Back>(WaitSelectSkill)
+    r<Back> { WaitSelectSkill }
     r<SelectTarget> { action, model ->
         model.actionList += "${skill.name}_${action.target.name}"
         if (model.actionList.size >= 2) {
