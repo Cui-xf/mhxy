@@ -3,7 +3,6 @@ package com.cc.screens.fight2
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.render.Align
@@ -63,16 +62,8 @@ class QuickBar(assetLoader: AssetLoader, fightModel: FightModel) : UIComponent(a
 
         val totalW = SKILL_BAR_SLOTS * SKILL_SLOT_W + 4f
         val totalH = 21f
-        sr.begin(ShapeType.Filled)
-        sr.drawRectBorder(15975.toColor(), 0f, SKILL_BAR_Y, totalW, totalH, Align.LEFT_TOP)           // 外边框
-        sr.drawRectBorder(
-            11267556.toColor(),
-            0f + 1f,
-            SKILL_BAR_Y + 1f,
-            totalW - 2f,
-            totalH - 2f,
-            Align.LEFT_TOP
-        ) // 内边框
-        sr.end()
+
+        val borders = listOf(Pair(1, 15975.toColor()), Pair(1, 11267556.toColor()))
+        sr.drawRectBorder(0f, SKILL_BAR_Y, totalW, totalH, borders, align = Align.LEFT_TOP) //外边框
     }
 }

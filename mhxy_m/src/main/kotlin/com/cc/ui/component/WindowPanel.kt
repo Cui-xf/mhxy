@@ -38,14 +38,17 @@ class WindowPanel(
         sr.end()
         //标题和背景图片
         titleImage(batch, cx, cy, cw, ch)
-        sr.begin(ShapeType.Filled)
-        //外边框（用填充矩形拼出边框线，避免 Line 模式角点缺失）
-        sr.drawRectBorder(Color.valueOf("#005187"), cx, cy, cw, ch, Align.LEFT_TOP)
-        sr.drawRectBorder(Color.valueOf("#005187"), cx + 4, cy + 4, cw - 8, ch - 8, Align.LEFT_TOP)
-        sr.drawRectBorder(Color.valueOf("#1197AE"), cx + 1, cy + 1, cw - 2, ch - 2, Align.LEFT_TOP)
-        sr.drawRectBorder(Color.valueOf("#1197AE"), cx + 3, cy + 3, cw - 6, ch - 6, Align.LEFT_TOP)
-        sr.drawRectBorder(Color.valueOf("#95D9E2"), cx + 2, cy + 2, cw - 4, ch - 4, Align.LEFT_TOP)
-        sr.end()
+
+        //外边框
+        val borders = listOf(
+            Pair(1, Color.valueOf("#005187")),
+            Pair(1, Color.valueOf("#1197AE")),
+            Pair(1, Color.valueOf("#95D9E2")),
+            Pair(1, Color.valueOf("#1197AE")),
+            Pair(1, Color.valueOf("#005187")),
+        )
+        sr.drawRectBorder(cx, cy, cw, ch, borders, align = Align.LEFT_TOP)
+
         //四角装饰图（在边框之上）
         batch.begin()
         batch.drawImage(lu, cx, cy, align = Align.LEFT_TOP)
@@ -94,7 +97,7 @@ class WindowPanel(
             bottomImage.regionHeight.toFloat() + 1,
             Align.LEFT_TOP
         )
-        
+
         bottomText?.let {
             //底部文字
             batch.wordArtString(
@@ -115,6 +118,6 @@ class WindowPanel(
     }
 
     override fun border(): Border {
-        return Border(31f, 29f, 4f, 5f)
+        return Border(31f, 29f, 5f, 5f)
     }
 }

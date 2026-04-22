@@ -12,7 +12,6 @@ import com.cc.render.Align
 import com.cc.render.drawImage
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_W
-import com.cc.screens.fight.FightScreen
 import com.cc.screens.fight2.model.FightModel
 import com.cc.ui.component.UIComponent
 
@@ -41,7 +40,7 @@ class ReturnButton(assetLoader: AssetLoader, fightModel: FightModel, private val
         batch.end()
 
         if (TouchContext.inTouch(rect)) {
-            MhxyGame.screen = FightScreen(backGround)
+//            MhxyGame.screen = FightScreen(backGround)
         }
     }
 }

@@ -24,11 +24,8 @@ class SkillList(assetLoader: AssetLoader, private val fightModel: FightModel) : 
 
     private val skillTab = SkillTab(assetLoader, res)  // res: Map<Int, Lazy<TextureRegion>>
     private val window = WindowPanel(assetLoader, "人物技能", null) {
-        // 标签名对应 GameSceneController.java:9669
-        //   this.mainCanvasRef.topUi.a(new String[]{" 技能   ", "  心法  ", "  附魔  "});
-        add(TabGroup(assetLoader, listOf("技能1", "技能2")) {
-            add(skillTab)
-            add(skillTab)
+        add(TabGroup(assetLoader, listOf("技能", "技能2")) {
+//            add(skillTab)
         })
     }
 
@@ -173,7 +170,7 @@ class SkillTab(
                 batch.drawImage(icon, iconX, iconY, iconSize, iconSize, Align.LEFT_TOP)
                 batch.end()
                 sr.begin(ShapeType.Filled)
-                sr.drawRectBorder(iconBorderColor, iconX, iconY, iconSize, iconSize, Align.LEFT_TOP)
+//                sr.drawRectBorder(iconBorderColor, iconX, iconY, iconSize, iconSize, Align.LEFT_TOP)
                 sr.end()
             }
 

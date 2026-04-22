@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.math.Rectangle
 import com.cc.asset.Frame
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
 
@@ -106,24 +107,6 @@ fun ShapeRenderer.drawRect(
     this.rect(x, y, w, h)
 }
 
-/** 用4条填充矩形（1px）绘制空心矩形边框，避免 ShapeType.Line 的角点缺失问题。
- *  必须在 ShapeType.Filled 的 begin/end 块内调用。*/
-fun ShapeRenderer.drawRectBorder(
-    color: Color,
-    x: Float,
-    y: Float,
-    w: Float,
-    h: Float,
-    align: Align = Align.CENTER_TOP
-) {
-    val lx = if (align == Align.CENTER_TOP) x - w / 2 else x
-    val ly = VIRTUAL_H - y - h
-    this.color = color
-    this.rect(lx, ly, w, 1f)           // 底边
-    this.rect(lx, ly + h - 1f, w, 1f)  // 顶边
-    this.rect(lx, ly, 1f, h)           // 左边
-    this.rect(lx + w - 1f, ly, 1f, h)  // 右边
-}
 
 fun ShapeRenderer.drawLine(
     color: Color,

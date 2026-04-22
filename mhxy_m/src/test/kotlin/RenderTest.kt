@@ -4,9 +4,7 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.asset.RpgAnimation
-import com.cc.render.Align
-import com.cc.render.drawAnimation
-import com.cc.render.drawImage
+import com.cc.render.*
 import com.cc.screens.AbstractScreen
 
 fun main() {
@@ -21,6 +19,33 @@ fun main() {
         Lwjgl3Application(TestGame, config)
     } catch (e: Exception) {
         e.printStackTrace()
+    }
+}
+
+object TestScreen2 : AbstractScreen() {
+    override fun update(delta: Float) {
+        val path = listOf(
+            Pair(0f, 0f),   //顶点1
+            Pair(0f, 50f),  //顶点2 和顶点1-4 在一条直线
+            Pair(0f, 50f),  //顶点3 和顶点1-4 在一条直线
+            Pair(0f, 100f), //顶点4
+            Pair(100f, 100f),
+            Pair(100f, 50f),
+            Pair(50f, 50f),
+            Pair(50f, 0f),
+        )
+        sr.surround(
+            path, listOf(
+                Pair(1, 26540.toColor()),
+                Pair(1, 11267556.toColor()),
+                Pair(1, 26540.toColor()),
+            )
+        )
+
+//        val rect2 = Rectangle(0f, 110f, 100f, 100f)
+//        sr.surround(rect2.toPath(), listOf(Pair(3, 26540.toColor())))
+//        sr.surround(rect2.toPath(), listOf(Pair(2, 11267556.toColor())))
+//        sr.surround(rect2.toPath(), listOf(Pair(1, 26540.toColor())))
     }
 }
 
@@ -78,7 +103,7 @@ object TestScreen : AbstractScreen() {
 
 object TestGame : Game() {
     override fun create() {
-        setScreen(TestScreen)
+        setScreen(TestScreen2)
     }
 }
 

@@ -17,7 +17,7 @@ abstract class UIContainer(assetLoader: AssetLoader, block: UIContainer.() -> Un
         children.add(c)
     }
 
-    override fun render(
+    final override fun render(
         batch: SpriteBatch,
         sr: ShapeRenderer,
         cx: Float,
@@ -27,6 +27,18 @@ abstract class UIContainer(assetLoader: AssetLoader, block: UIContainer.() -> Un
         delta: Float
     ) {
         renderSelf(batch, sr, cx, cy, cw, ch)
+        renderChildren(batch, sr, cx, cy, cw, ch, delta)
+    }
+
+    open fun renderChildren(
+        batch: SpriteBatch,
+        sr: ShapeRenderer,
+        cx: Float,
+        cy: Float,
+        cw: Float,
+        ch: Float,
+        delta: Float
+    ) {
         val (top, bottom, left, right) = border()
         children.forEach { it.render(batch, sr, cx + left, cy + top, cw - left - right, ch - top - bottom, delta) }
     }
