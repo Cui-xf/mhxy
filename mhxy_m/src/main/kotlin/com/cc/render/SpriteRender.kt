@@ -25,10 +25,11 @@ fun SpriteBatch.drawString(
     align: Align = Align.CENTER_TOP
 ) {
     font.color = color
-    val x = if (align == Align.CENTER_TOP) {
-        x - (layout.setText(font, str).let { layout.width }) / 2
-    } else {
-        x
+    layout.setText(font, str)
+    val x = when (align) {
+        Align.CENTER_TOP -> x - layout.width / 2
+        Align.RIGHT_TOP -> x - layout.width
+        Align.LEFT_TOP -> x
     }
     val y = VIRTUAL_H - y
     font.draw(this, str, x, y)

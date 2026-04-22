@@ -36,4 +36,4 @@ class TextRender(private val lines: List<Line>) {
     }
 }
 
-enum class Align { LEFT_TOP, CENTER_TOP }
+enum class Align { LEFT_TOP, CENTER_TOP, RIGHT_TOP }

@@ -14,6 +14,8 @@ abstract class UIComponent(private val assetLoader: AssetLoader) : Disposable {
 
     abstract fun render(batch: SpriteBatch, sr: ShapeRenderer, cx: Float, cy: Float, cw: Float, ch: Float, delta: Float)
 
+    open fun preferredHeight(width: Float): Float = 0f
+
     @Suppress("UNCHECKED_CAST")
     inline fun <reified T : Any> onEvent(noinline handler: (T) -> Unit): UIComponent {
         listeners[T::class] = handler as (Any) -> Unit

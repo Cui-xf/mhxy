@@ -15,7 +15,7 @@ import com.cc.ui.component.UIComponent
 data class ClickEvent(val x: Float, val y: Float, val index: Int)
 
 object ScrollPanelTest : AbstractScreen() {
-    private val panel = ScrollPanel(this.assetLoader, contentHeight = 180f) {
+    private val panel = ScrollPanel(this.assetLoader) {
         add(Content(assetLoader))
     }.onEvent<ClickEvent> { e ->
         println("clicked at: (${e.x}, ${e.y}) index: ${e.index}")
@@ -30,10 +30,12 @@ class Content(assetLoader: AssetLoader) : UIComponent(assetLoader) {
     private val colors = listOf(
         Color.RED, Color.GREEN,
         Color.BLUE, Color.YELLOW,
-        Color.CYAN, Color.MAGENTA, Color.ORANGE, Color.PURPLE,
+//        Color.CYAN, Color.MAGENTA, Color.ORANGE, Color.PURPLE,
     )
 
     private val blockH = 50f
+
+    override fun preferredHeight(width: Float): Float = colors.size * blockH
 
     override fun render(
         batch: SpriteBatch,

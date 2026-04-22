@@ -54,8 +54,6 @@ class ActionButton(assetLoader: AssetLoader, fightModel: FightModel) : UICompone
             batch.drawImage(button.textureRegion, button.rect.x, button.rect.y, align = Align.LEFT_TOP)
         }
         batch.end()
-        //todo del
-        emit(SkillButton)
         buttons.firstOrNull { TouchContext.inTouch(it.rect) }?.also {
             tipText = it.text
             when (it.text) {

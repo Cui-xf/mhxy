@@ -34,6 +34,7 @@ class FightScreen2(
     }
 
     private fun handleAction(action: Action) {
+        println("handleAction: $action")
         fightModel.state = fightModel.state.on(action)
     }
 }

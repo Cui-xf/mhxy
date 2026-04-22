@@ -21,6 +21,7 @@ class FightRole(
 ) : UIComponent(assetLoader) {
     private val res = loadRes()
 
+    //血条装饰
     private val rim by resource(PUBLIC_ASSET, "rpg/publicUI/rim.pic", TextureRegion::class)
 
     private var timer = 0f

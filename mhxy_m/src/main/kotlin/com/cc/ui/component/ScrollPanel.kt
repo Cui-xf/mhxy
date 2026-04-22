@@ -15,7 +15,6 @@ import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
 
 class ScrollPanel(
     assetLoader: AssetLoader,
-    private val contentHeight: Float = 300f,
     block: UIContainer.() -> Unit,
 ) : UIContainer(assetLoader, block) {
     private val up by resource(PUBLIC_ASSET, "rpg/publicUI/up.pic", TextureRegion::class)
@@ -26,6 +25,7 @@ class ScrollPanel(
         Pair(1, 5555146.toColor()),
     )
 
+    private val child get() = children.first()
     private var scrollY = 0f
     private var dragging = false
     private var scrolled = false
@@ -34,12 +34,14 @@ class ScrollPanel(
 
     override fun renderSelf(batch: SpriteBatch, sr: ShapeRenderer, cx: Float, cy: Float, cw: Float, ch: Float) {
         handleTouch(cx, cy, cw, ch)
-        val maxScroll = (contentHeight - ch).coerceAtLeast(0f)
+        val contentW = cw - border().right
+        val contentH = child.preferredHeight(contentW)
+        val maxScroll = (contentH - ch).coerceAtLeast(0f)
         scrollY = MathUtils.clamp(scrollY, 0f, maxScroll)
 
-        if (contentHeight > ch) {
+        if (contentH > ch) {
             val trackX = cx + cw - up.regionWidth
-            drawScrollBar(batch, sr, trackX, cy, ch, maxScroll)
+            drawScrollBar(batch, sr, trackX, cy, ch, contentH, maxScroll)
         }
     }
 
@@ -60,11 +62,11 @@ class ScrollPanel(
 
         val scissorRect = Rectangle(innerX, VIRTUAL_H - innerY - innerH, innerW, innerH)
 
+        val contentH = child.preferredHeight(innerW)
+
         batch.flush()
         if (ScissorStack.pushScissors(scissorRect)) {
-            children.forEach {
-                it.render(batch, sr, innerX, innerY - scrollY, innerW, contentHeight, delta)
-            }
+            child.render(batch, sr, innerX, innerY - scrollY, innerW, contentH, delta)
             batch.flush()
             ScissorStack.popScissors()
         }
@@ -76,6 +78,7 @@ class ScrollPanel(
         trackX: Float,
         trackY: Float,
         trackH: Float,
+        contentH: Float,
         maxScroll: Float,
     ) {
         val trackW = up.regionWidth.toFloat()
@@ -96,7 +99,7 @@ class ScrollPanel(
 
         // 滑块
         val slideArea = trackH - upH - downH
-        val thumbH = (slideArea * trackH / contentHeight).coerceAtLeast(6f)
+        val thumbH = (slideArea * trackH / contentH).coerceAtLeast(6f)
         val scrollRatio = if (maxScroll > 0f) scrollY / maxScroll else 0f
         val thumbY = trackY + upH + scrollRatio * (slideArea - thumbH)
 
