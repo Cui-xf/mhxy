@@ -16,5 +16,7 @@ class FightModel {
     )
 
     var state: FightState = WaitAction
+
+    val actionList = mutableListOf<String>()
 }
 

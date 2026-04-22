@@ -7,43 +7,68 @@ sealed interface Action
 //返回
 object Back : Action
 object SkillButton : Action
-data class SelectSkill(val skill: String) : Action
+data class SelectSkill(val skill: Skill) : Action
+data class SelectTarget(val target: Role) : Action
 
 
 sealed class FightState(
     register: FightState.() -> Unit,
 ) {
     @PublishedApi
-    internal val handlers = mutableMapOf<KClass<*>, (Action) -> FightState>()
+    internal val handlers = mutableMapOf<KClass<*>, (Action, FightModel) -> FightState>()
 
     init {
         register()
     }
 
     @Suppress("UNCHECKED_CAST")
-    internal inline fun <reified T : Action> r(noinline handler: (T) -> FightState) {
-        handlers[T::class] = handler as (Action) -> FightState
+    internal inline fun <reified T : Action> r(noinline handler: (T, FightModel) -> FightState) {
+        handlers[T::class] = handler as (Action, FightModel) -> FightState
     }
 
-    fun on(action: Action): FightState {
-        return handlers[action::class]?.invoke(action) ?: this
+    @Suppress("UNCHECKED_CAST")
+    internal inline fun <reified T : Action> r(noinline handler: (T) -> FightState) {
+        handlers[T::class] = { action, _ -> handler(action as T) }
+    }
+
+    internal inline fun <reified T : Action> r(state: FightState) {
+        handlers[T::class] = { _, _ -> state }
+    }
+
+    fun on(action: Action, fightModel: FightModel): FightState {
+        return handlers[action::class]?.invoke(action, fightModel) ?: this
     }
 }
 
 // 等待玩家选择行动
 object WaitAction : FightState({
-    r<SkillButton> { WaitSelectSkill }
+    r<SkillButton>(WaitSelectSkill)
 })
 
 //等待选择技能
 object WaitSelectSkill : FightState({
+    r<Back>(WaitAction)
     r<SelectSkill> { WaitSelectTarget(it.skill) }
-    r<Back> { WaitAction }
 })
 
+//选择目标
 data class WaitSelectTarget(
-    private val action: String
-) : FightState({})
+    val skill: Skill,
+    /** 单体技能当前选中的角色，null 表示尚未初始化 */
+    var selectedTarget: Role? = null
+) : FightState({
+    r<Back>(WaitSelectSkill)
+    r<SelectTarget> { action, model ->
+        model.actionList += "${skill.name}_${action.target.name}"
+        if (model.actionList.size >= 2) {
+            Animating
+        } else {
+            WaitAction
+        }
+    }
+})
+
+object Animating : FightState({})
 
 //
 //SELECT_SKILL,       // 玩家选技能（弹出技能列表）

@@ -30,7 +30,7 @@ class SkillList(assetLoader: AssetLoader, private val fightModel: FightModel) : 
 
     init {
         window.onEvent<String> { if (it == "close") emit(Back) }
-        window.onEvent<Skill> { emit(SelectSkill(it.name)) }
+        window.onEvent<Skill> { emit(SelectSkill(it)) }
     }
 
     private val border = 10f
