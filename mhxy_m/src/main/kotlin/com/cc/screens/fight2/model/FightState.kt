@@ -55,7 +55,7 @@ data class WaitSelectTarget(
 ) : FightState({
     r<Back> { WaitSelectSkill }
     r<SelectTarget> { action, model ->
-        model.fightInstruction += FightInstruction(model.self, SkillCasting(skill, listOf(action.target)))
+        model.installInstruction(skill, action.target)
         if (model.fightInstruction.size >= 2) {
             WaitSync("等待中...")
         } else {
