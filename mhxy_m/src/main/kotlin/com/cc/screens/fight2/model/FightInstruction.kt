@@ -9,5 +9,5 @@ sealed interface Command
 
 data class SkillCasting(
     val skill: Skill,
-    val target: Role,
+    val target: List<Role>,
 ) : Command

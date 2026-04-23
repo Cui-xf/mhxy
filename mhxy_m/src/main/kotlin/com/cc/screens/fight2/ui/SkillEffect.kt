@@ -50,11 +50,12 @@ class SkillEffect(
 
         val anim = anims[skillId - 990]?.value
             ?: anims[10]!!.value  // 找不到对应特效时用 id=10 兜底
+        val frames = anim.getKeyFrame(timer, false)
 
-        val (tx, ty) = targetPos
         batch.begin()
-
-        batch.drawAnimation(anim.getKeyFrame(timer, false), tx, ty)
+        targetPos.forEach {
+            batch.drawAnimation(frames, it.posX, it.posY)
+        }
         batch.end()
 
         if (timer >= anim.animationDuration) {

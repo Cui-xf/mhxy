@@ -59,11 +59,12 @@ class AnimationDriver(
         return when (phase) {
             Phase.MOVE_TO_TARGET -> {
                 if (target != null) {
+                    val major = target[0]
                     if (phaseTimer <= delta) {
                         val sx = src.posX
                         val sy = src.posY
-                        val tx = target.posX
-                        val ty = target.posY
+                        val tx = major.posX
+                        val ty = major.posY
 
                         val signX = if (tx > sx) 1f else -1f
                         srcStartX = sx
@@ -89,7 +90,7 @@ class AnimationDriver(
                     val cmd = instr.command
                     if (cmd is SkillCasting && cmd.skill.hasAnim && target != null) {
                         // 有技能特效，挂起等 SkillEffect 组件完成
-                        skillEffectRequest = SkillEffectRequest(cmd.skill.id, Pair(target.posX, target.posY))
+                        skillEffectRequest = SkillEffectRequest(cmd.skill.id, target)
                         phase = Phase.SKILL_EFFECT
                         phaseTimer = 0f
                     } else {
@@ -119,9 +120,9 @@ class AnimationDriver(
             }
 
             Phase.HIT -> {
-                target?.animState = RoleAnimState.HIT
+                target?.forEach { it.animState = RoleAnimState.HIT }
                 if (phaseTimer >= HIT_DURATION) {
-                    target?.animState = RoleAnimState.IDLE
+                    target?.forEach { it.animState = RoleAnimState.IDLE }
                     instrIndex++
                     phase = Phase.MOVE_TO_TARGET
                     phaseTimer = 0f
@@ -141,5 +142,5 @@ enum class Phase { MOVE_TO_TARGET, ATTACK, SKILL_EFFECT, MOVE_BACK, HIT }
 
 data class SkillEffectRequest(
     val skillId: Int,
-    val targetPos: Pair<Float, Float>,
+    val target: List<Role>,
 )

@@ -53,7 +53,9 @@ class FightScreen2(
         if (newState is WaitSync) {
             Timer.schedule(object : Timer.Task() {
                 override fun run() {
-                    handleAction(PlaybackAnimation(fightModel.fightInstruction.toList()))
+                    val list = fightModel.fightInstruction.toList()
+                    fightModel.fightInstruction.clear()
+                    handleAction(PlaybackAnimation(list))
                 }
             }, 2f)
         }
