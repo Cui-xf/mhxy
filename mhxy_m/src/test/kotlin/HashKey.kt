@@ -47,6 +47,10 @@ val list = listOf(
     "rpg/publicUI/trigon_d.pic",
     "rpg/publicUI/trigon_l.pic",
     "rpg/publicUI/trigon_r.pic",
+    "rpg/publicUI/rd0.pic",
+    "rpg/publicUI/ru0.pic",
+    "rpg/publicUI/lu0.pic",
+    "rpg/publicUI/ld0.pic",
 )
 
 fun nameTrans(list2: List<String> = emptyList()) {

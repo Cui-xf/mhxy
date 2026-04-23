@@ -152,6 +152,8 @@ fun inTouch(rect: Rectangle, clear: Boolean = false): Boolean {
 
 ## 7. 资源加载体系
 
+**注意！！！**: kotlin项目的资源是从java项目迁移过来的，有些资源在kotlin项目找不到，说明只是还还没有迁移过来，这时候需要提示用户迁移这部分资源，然后再继续，而不是随意用一个现有资源代替
+
 ### 7.1 架构
 
 ```

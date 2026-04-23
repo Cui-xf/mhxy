@@ -1,9 +1,12 @@
 package com.cc.screens.fight2
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.badlogic.gdx.utils.Timer
 import com.cc.screens.AbstractScreen
 import com.cc.screens.fight2.model.Action
 import com.cc.screens.fight2.model.FightModel
+import com.cc.screens.fight2.model.PlaybackAnimation
+import com.cc.screens.fight2.model.WaitSync
 import com.cc.screens.game.Player
 
 class FightScreen2(
@@ -21,6 +24,7 @@ class FightScreen2(
         autoDispose { QuickBar(this.assetLoader, fightModel) },
         autoDispose { ReturnButton(this.assetLoader, fightModel, backGround) },
         autoDispose { SkillList(this.assetLoader, fightModel) },
+        autoDispose { WaitSyncDialog(this.assetLoader, fightModel) },
     )
 
     init {
@@ -35,6 +39,14 @@ class FightScreen2(
 
     private fun handleAction(action: Action) {
         println("handleAction: $action")
-        fightModel.state = fightModel.state.on(action, fightModel)
+        val newState = fightModel.state.on(action, fightModel)
+        fightModel.state = newState
+        if (newState is WaitSync) {
+            Timer.schedule(object : Timer.Task() {
+                override fun run() {
+                    handleAction(PlaybackAnimation(fightModel.actionList.toList()))
+                }
+            }, 2f)
+        }
     }
 }
