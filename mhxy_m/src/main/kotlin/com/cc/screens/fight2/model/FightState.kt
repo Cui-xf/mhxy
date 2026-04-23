@@ -9,6 +9,7 @@ object Back : Action
 object SkillButton : Action
 data class SelectSkill(val skill: Skill) : Action
 data class SelectTarget(val target: Role) : Action
+data class PlaybackAnimation(val data: List<String>) : Action
 
 
 sealed class FightState(
@@ -49,22 +50,31 @@ object WaitSelectSkill : FightState({
 
 //选择目标
 data class WaitSelectTarget(
-    val skill: Skill,
-    /** 单体技能当前选中的角色，null 表示尚未初始化 */
-    var selectedTarget: Role? = null
+    val skill: Skill
 ) : FightState({
     r<Back> { WaitSelectSkill }
     r<SelectTarget> { action, model ->
         model.actionList += "${skill.name}_${action.target.name}"
         if (model.actionList.size >= 2) {
-            Animating
+            WaitSync("等待中...")
         } else {
             WaitAction
         }
     }
+}) {
+    /** 单体技能当前选中的角色，null 表示尚未初始化 */
+    var selectedTarget: Role? = null
+}
+
+//等待Server同步
+data class WaitSync(val tips: String) : FightState({
+    r<PlaybackAnimation> {
+        Animating(it.data)
+    }
 })
 
-object Animating : FightState({})
+data class Animating(val data: List<String>) : FightState({}) {
+}
 
 //
 //SELECT_SKILL,       // 玩家选技能（弹出技能列表）
