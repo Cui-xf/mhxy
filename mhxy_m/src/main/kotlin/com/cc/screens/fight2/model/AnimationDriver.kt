@@ -56,9 +56,9 @@ class AnimationDriver(
         }
         phaseTimer += delta
 
-        val instr = instruction[instrIndex]
+        val instr = instruction[instrIndex] as SkillCasting
         val src = instr.src
-        val target = (instr.command as? SkillCasting)?.target
+        val target = instr?.target
 
         return when (phase) {
             Phase.MOVE_TO_TARGET -> {
@@ -91,10 +91,9 @@ class AnimationDriver(
                 src.animState = RoleAnimState.ATTACKING
                 if (phaseTimer >= ATTACK_DURATION) {
                     src.animState = RoleAnimState.IDLE
-                    val cmd = instr.command
-                    if (cmd is SkillCasting && cmd.skill.hasAnim && target != null) {
+                    if (instr.skill.hasAnim && target != null) {
                         // 有技能特效，挂起等 SkillEffect 组件完成
-                        skillEffectRequest = SkillEffectRequest(cmd.skill.id, target)
+                        skillEffectRequest = SkillEffectRequest(instr.skill.id, target)
                         phase = Phase.SKILL_EFFECT
                         phaseTimer = 0f
                     } else {
@@ -125,9 +124,15 @@ class AnimationDriver(
 
             Phase.HIT -> {
                 target?.forEach { it.animState = RoleAnimState.HIT }
-                val cmd = instr.command
-                if (phaseTimer <= delta && cmd is SkillCasting && target != null) {
+                if (phaseTimer <= delta && target != null) {
                     hitRequest = HitRequest(target, cmd.result)
+                    // 将结果应用到角色属性
+                    target.zip(cmd.result).forEach { (role, result) ->
+                        when (result.field) {
+                            Field.HP -> role.hp = (role.hp + result.value.toInt()).coerceIn(0, role.maxHp)
+                            Field.MP -> role.mp = (role.mp + result.value.toInt()).coerceIn(0, role.maxMp)
+                        }
+                    }
                 }
                 if (phaseTimer >= HIT_DURATION) {
                     hitRequest = null

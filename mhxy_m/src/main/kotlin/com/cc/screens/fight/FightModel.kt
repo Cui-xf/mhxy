@@ -82,7 +82,7 @@
 //    ANIMATING,          // 双方动画播放中
 //    ROUND_RESULT,       // 显示回合结算数字
 //    ENEMY_TURN,         // 敌方自动行动
-//    BATTLE_END,         // 战斗结束
+//    BattleEnd,         // 战斗结束
 //}
 //
 //enum class MenuAction { ATTACK, DEFEND, SKILL, ITEM, ESCAPE }
@@ -485,13 +485,13 @@
 //            aliveEnemies().isEmpty() -> {
 //                battleResult = true
 //                battleLog.add("战斗胜利！")
-//                phase = FightPhase.BATTLE_END
+//                phase = FightPhase.BattleEnd
 //                true
 //            }
 //            alivePlayers().isEmpty() -> {
 //                battleResult = false
 //                battleLog.add("战斗失败...")
-//                phase = FightPhase.BATTLE_END
+//                phase = FightPhase.BattleEnd
 //                true
 //            }
 //            else -> false

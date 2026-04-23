@@ -136,7 +136,7 @@
 //            FightPhase.PLAYER_CHOOSE -> handleMenuInput(tx, ty)
 //            FightPhase.SELECT_TARGET -> handleTargetInput(tx, ty)
 //            FightPhase.SELECT_SKILL -> handleSkillListInput(tx, ty)
-//            FightPhase.BATTLE_END -> MhxyGame.setScreen(com.cc.screens.game.GameScreen())
+//            FightPhase.BattleEnd -> MhxyGame.setScreen(com.cc.screens.game.GameScreen())
 //            else -> {}
 //        }
 //    }
@@ -550,7 +550,7 @@
 //    private fun drawBattleLog() {
 //        if (model.phase == FightPhase.PLAYER_CHOOSE ||
 //            model.phase == FightPhase.SELECT_SKILL ||
-//            model.phase == FightPhase.BATTLE_END
+//            model.phase == FightPhase.BattleEnd
 //        ) return
 //        val font = FontManager.SMALL_FONT
 //        val logs = model.battleLog.takeLast(3)
@@ -568,7 +568,7 @@
 //    // ── 战斗结束覆盖层 ────────────────────────────────────────────────────────
 //
 //    private fun drawBattleEndOverlay() {
-//        if (model.phase != FightPhase.BATTLE_END) return
+//        if (model.phase != FightPhase.BattleEnd) return
 //        Gdx.gl.glEnable(GL20.GL_BLEND)
 //        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA)
 //        sr.begin(ShapeType.Filled)

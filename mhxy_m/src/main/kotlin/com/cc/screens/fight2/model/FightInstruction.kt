@@ -1,17 +1,13 @@
 package com.cc.screens.fight2.model
 
-data class FightInstruction(
-    val src: Role,
-    val command: Command
-)
-
-sealed interface Command
+sealed interface FightInstruction
 
 data class SkillCasting(
+    val src: Role,
     val skill: Skill,
     val target: List<Role>,
     val result: List<Result>
-) : Command
+) : FightInstruction
 
 data class Result(
     val field: Field,
