@@ -9,7 +9,7 @@ object Back : Action
 object SkillButton : Action
 data class SelectSkill(val skill: Skill) : Action
 data class SelectTarget(val target: Role) : Action
-data class PlaybackAnimation(val data: List<String>) : Action
+data class PlaybackAnimation(val instructions: List<FightInstruction>) : Action
 
 
 sealed class FightState(
@@ -54,8 +54,8 @@ data class WaitSelectTarget(
 ) : FightState({
     r<Back> { WaitSelectSkill }
     r<SelectTarget> { action, model ->
-        model.actionList += "${skill.name}_${action.target.name}"
-        if (model.actionList.size >= 2) {
+        model.fightInstruction += FightInstruction(model.self, SkillCasting(skill, action.target))
+        if (model.fightInstruction.size >= 2) {
             WaitSync("等待中...")
         } else {
             WaitAction
@@ -69,11 +69,11 @@ data class WaitSelectTarget(
 //等待Server同步
 data class WaitSync(val tips: String) : FightState({
     r<PlaybackAnimation> {
-        Animating(it.data)
+        Animating(it.instructions)
     }
 })
 
-data class Animating(val data: List<String>) : FightState({}) {
+data class Animating(val instructions: List<FightInstruction>) : FightState({}) {
 }
 
 //

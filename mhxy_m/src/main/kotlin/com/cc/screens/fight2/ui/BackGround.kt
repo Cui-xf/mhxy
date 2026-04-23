@@ -1,4 +1,4 @@
-package com.cc.screens.fight2
+package com.cc.screens.fight2.ui
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
@@ -7,12 +7,10 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.cc.asset.AssetLoader
 import com.cc.render.Align
 import com.cc.render.drawImage
-import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
-import com.cc.screens.AbstractScreen.Companion.VIRTUAL_W
+import com.cc.screens.AbstractScreen
 import com.cc.ui.component.UIComponent
 
 class BackGround(
@@ -34,17 +32,17 @@ class BackGround(
         batch.drawImage(mapBg, 0f, 0f, align = Align.LEFT_TOP)
         batch.drawImage(
             fightBg,
-            VIRTUAL_W / 2,
-            (VIRTUAL_H - fightBg.height) / 2,
+            AbstractScreen.VIRTUAL_W / 2,
+            (AbstractScreen.VIRTUAL_H - fightBg.height) / 2,
             align = Align.CENTER_TOP
         )
         batch.end()
 
         Gdx.gl.glEnable(GL20.GL_BLEND)
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA)
-        sr.begin(ShapeType.Filled)
+        sr.begin(ShapeRenderer.ShapeType.Filled)
         sr.color = Color(0f, 0f, 0f, 0.6f)
-        sr.rect(0f, 0f, VIRTUAL_W, VIRTUAL_H)
+        sr.rect(0f, 0f, AbstractScreen.VIRTUAL_W, AbstractScreen.VIRTUAL_H)
         sr.end()
         Gdx.gl.glDisable(GL20.GL_BLEND)
     }

@@ -1,4 +1,4 @@
-package com.cc.screens.fight2
+package com.cc.screens.fight2.ui
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion

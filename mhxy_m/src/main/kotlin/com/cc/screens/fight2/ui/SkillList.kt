@@ -1,4 +1,4 @@
-package com.cc.screens.fight2
+package com.cc.screens.fight2.ui
 
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Color.valueOf

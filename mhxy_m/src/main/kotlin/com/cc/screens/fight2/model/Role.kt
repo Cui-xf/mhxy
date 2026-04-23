@@ -16,3 +16,18 @@ data class Role(
 
 enum class Side { PLAYER, ENEMY }
 enum class Type { ROLE, PET }
+
+fun Role.getPos(): Pair<Float, Float> {
+    val dx = 38
+    val dy = 24
+    val (centerX, centerY) = if (this.side == Side.PLAYER) Pair(160f, 250f) else Pair(100f, 100f)
+    return when (index) {
+        0 -> Pair(centerX - dx * 2, centerY)
+        1 -> Pair(centerX - dx * 1, centerY - dy * 1)
+        2 -> Pair(centerX, centerY - dy * 2)
+        3 -> Pair(centerX - dx * 1, centerY + dy * 1)
+        4 -> Pair(centerX, centerY)
+        5 -> Pair(centerX + dx * 1, centerY - dy * 1)
+        else -> throw RuntimeException("无效的坐标")
+    }
+}

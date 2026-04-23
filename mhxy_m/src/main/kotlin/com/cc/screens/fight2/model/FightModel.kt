@@ -15,8 +15,9 @@ class FightModel {
         Role(5, Side.ENEMY, Type.PET, "p1", 0, 80, 60, 100, 100),
     )
 
+    val self: Role = players.random()
     var state: FightState = WaitAction
 
-    val actionList = mutableListOf<String>()
+    val fightInstruction = mutableListOf<FightInstruction>()
 }
 
