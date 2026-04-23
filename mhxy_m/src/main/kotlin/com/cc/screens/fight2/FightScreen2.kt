@@ -2,10 +2,12 @@ package com.cc.screens.fight2
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.Timer
+import com.cc.MhxyGame
 import com.cc.screens.AbstractScreen
 import com.cc.screens.fight2.model.*
 import com.cc.screens.fight2.ui.*
 import com.cc.screens.fight2.ui.SelectTarget
+import com.cc.screens.game.GameScreen
 import com.cc.screens.game.Player
 
 class FightScreen2(
@@ -49,6 +51,10 @@ class FightScreen2(
 
     private fun handleAction(action: Action) {
         println("handleAction: $action")
+        if (action is EndTheBattle) {
+            MhxyGame.screen = GameScreen()
+        }
+
         val newState = fightModel.state.on(action, fightModel)
         fightModel.state = newState
         if (newState is WaitSync) {

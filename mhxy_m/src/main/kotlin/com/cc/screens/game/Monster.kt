@@ -16,17 +16,12 @@ class Monster(
     val id: Int,
     private val screenMap: ScreenMap,
     private val player: Player,
-    startX: Float,
-    startY: Float
+    private var mapX: Float,
+    private var mapY: Float
 ) : UIComponent(assetLoader) {
 
     // resName=0 默认怪物，资源 "701_0s".hashCode() = 1620484970，id=215
     private val anim by resource(PUBLIC_ASSET, "rpg/petfight/215_1620484970.anim", RpgAnimation::class)
-
-    var mapX = startX
-        private set
-    var mapY = startY
-        private set
 
     private var animTime = 0f
     private val speed = 15f

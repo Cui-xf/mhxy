@@ -54,12 +54,16 @@ class AnimationDriver(
         if (instrIndex >= instruction.size) {
             return AnimationDone
         }
+        return when (val instr = instruction[instrIndex]) {
+            is FightFinish -> EndTheBattle
+            is SkillCasting -> driveAnim(delta, instr)
+        }
+    }
+
+    private fun driveAnim(delta: Float, skillCasting: SkillCasting): Action? {
         phaseTimer += delta
-
-        val instr = instruction[instrIndex] as SkillCasting
-        val src = instr.src
-        val target = instr?.target
-
+        val src = skillCasting.src
+        val target = skillCasting?.target
         return when (phase) {
             Phase.MOVE_TO_TARGET -> {
                 if (target != null) {
@@ -91,9 +95,9 @@ class AnimationDriver(
                 src.animState = RoleAnimState.ATTACKING
                 if (phaseTimer >= ATTACK_DURATION) {
                     src.animState = RoleAnimState.IDLE
-                    if (instr.skill.hasAnim && target != null) {
+                    if (skillCasting.skill.hasAnim && target != null) {
                         // 有技能特效，挂起等 SkillEffect 组件完成
-                        skillEffectRequest = SkillEffectRequest(instr.skill.id, target)
+                        skillEffectRequest = SkillEffectRequest(skillCasting.skill.id, target)
                         phase = Phase.SKILL_EFFECT
                         phaseTimer = 0f
                     } else {
@@ -125,9 +129,9 @@ class AnimationDriver(
             Phase.HIT -> {
                 target?.forEach { it.animState = RoleAnimState.HIT }
                 if (phaseTimer <= delta && target != null) {
-                    hitRequest = HitRequest(target, cmd.result)
+                    hitRequest = HitRequest(target, skillCasting.result)
                     // 将结果应用到角色属性
-                    target.zip(cmd.result).forEach { (role, result) ->
+                    target.zip(skillCasting.result).forEach { (role, result) ->
                         when (result.field) {
                             Field.HP -> role.hp = (role.hp + result.value.toInt()).coerceIn(0, role.maxHp)
                             Field.MP -> role.mp = (role.mp + result.value.toInt()).coerceIn(0, role.maxMp)

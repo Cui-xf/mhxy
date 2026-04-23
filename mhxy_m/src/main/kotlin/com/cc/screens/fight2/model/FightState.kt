@@ -11,6 +11,7 @@ data class SelectSkill(val skill: Skill) : Action
 data class SelectTarget(val target: Role) : Action
 data class PlaybackAnimation(val instructions: List<FightInstruction>) : Action
 object AnimationDone : Action
+object EndTheBattle : Action
 
 
 sealed class FightState(
@@ -55,8 +56,7 @@ data class WaitSelectTarget(
 ) : FightState({
     r<Back> { WaitSelectSkill }
     r<SelectTarget> { action, model ->
-        model.installInstruction(skill, action.target)
-        if (model.fightInstruction.size >= 2) {
+        if (model.installInstruction(skill, action.target)) {
             WaitSync("等待中...")
         } else {
             WaitAction

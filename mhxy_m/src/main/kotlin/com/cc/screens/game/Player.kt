@@ -4,13 +4,15 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
+import com.cc.asset.CommonAssetLoader
 import com.cc.asset.RpgAnimation
 import com.cc.render.drawAnimation
 import com.cc.ui.component.UIComponent
 
-class Player(assetLoader: AssetLoader, private val map: ScreenMap) : UIComponent(assetLoader) {
+object Player : UIComponent(CommonAssetLoader) {
+    lateinit var map: ScreenMap
+
     // 朝右动画（向右/向下移动），方向后缀0；格式：{gender}{job}{variant}{dirSuffix}
     private val animRight by resource(PUBLIC_ASSET, "rpg/role/3101.anim", RpgAnimation::class)
 //    private val animRight by resource(PUBLIC_ASSET, "rpg/role/171_-401711000.anim", RpgAnimation::class)
@@ -28,7 +30,7 @@ class Player(assetLoader: AssetLoader, private val map: ScreenMap) : UIComponent
     private var facingLeft = false
     private val speed = 80f
     var roleMapX = 300f
-    var roleMapY = 500f
+    var roleMapY = 320f
 
     override fun render(
         batch: SpriteBatch,

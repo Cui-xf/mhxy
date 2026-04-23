@@ -32,6 +32,7 @@ abstract class AbstractScreen : ScreenAdapter() {
     protected val sr = createShapeRenderer()
     protected val autoDispose = mutableSetOf<Disposable>()
     protected val assetLoader = AssetLoader()
+    private var resLoadFinish = false
 
     final override fun render(delta: Float) {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
@@ -39,7 +40,11 @@ abstract class AbstractScreen : ScreenAdapter() {
         if (!assetLoader.isFinished()) {
             assetLoader.update()
             return
+        } else if (!resLoadFinish) {
+            resLoadFinish = true
+            init()
         }
+        
         //输入
         fillInput()
 
@@ -48,6 +53,8 @@ abstract class AbstractScreen : ScreenAdapter() {
         update(delta)
     }
 
+    //资源首次加载完调用
+    open fun init() {}
 
     override fun resize(width: Int, height: Int) {
         viewport.update(width, height, true)

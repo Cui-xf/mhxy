@@ -12,8 +12,8 @@ import com.cc.screens.fight2.FightScreen2
 
 class GameScreen : AbstractScreen() {
     private val screenMap = ScreenMap(this.assetLoader)
+    val player = Player.also { it.map = screenMap }
     private val hud = HudUI.also { it.screenMap = this.screenMap }
-    val player = Player(this.assetLoader, screenMap)
     val npc = listOf(
         Npc(this.assetLoader, screenMap),
     )
@@ -24,6 +24,10 @@ class GameScreen : AbstractScreen() {
         Monster(this.assetLoader, 3, screenMap, player, 150f, 450f),
     ).also {
         it.forEach { monster -> monster.onEvent<Int> { fightId -> enterFight(fightId) } }
+    }
+
+    override fun init() {
+        screenMap.collisionMove(player.roleMapX, 0f, player.roleMapY, 0f)
     }
 
     override fun update(delta: Float) {
@@ -37,7 +41,6 @@ class GameScreen : AbstractScreen() {
         }
 //        miniMap.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
         hud.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
-        enterFight(1)
     }
 
     private fun enterFight(id: Int) {

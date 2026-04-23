@@ -17,3 +17,5 @@ data class Result(
 enum class Field {
     HP, MP
 }
+
+object FightFinish : FightInstruction

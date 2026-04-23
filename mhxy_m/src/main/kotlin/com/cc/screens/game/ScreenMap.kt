@@ -1,12 +1,11 @@
 package com.cc.screens.game
 
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory
 import com.cc.asset.TileMap
+import com.cc.render.drawAnimation
 import com.cc.render.drawFrame
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_W
@@ -29,7 +28,7 @@ class ScreenMap(assetLoader: AssetLoader) : UIComponent(assetLoader) {
         resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/map/0_20.tmap", TileMap::class),
         resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/map/0_78.tmap", TileMap::class),
     )
-    private lateinit var map: TileMap
+    private val map by lazy { list[index].value }
     private var animTime = 0f
 
     // 纯碰撞计算，不更新相机，供怪物等非主角实体使用
@@ -66,19 +65,14 @@ class ScreenMap(assetLoader: AssetLoader) : UIComponent(assetLoader) {
         ch: Float,
         delta: Float
     ) {
-        map = list[index].value
         animTime += delta
         renderMap(batch)
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
-//            index++
-        }
     }
 
     private fun renderMap(batch: SpriteBatch) {
         batch.begin()
         renderMapBlock(batch, camX, camY)
         renderFixedObj(batch, camX, camY)
-        renderMoveObj(batch, camX, camY)
         renderAnimationObj(batch, camX, camY)
         batch.end()
     }
@@ -105,18 +99,13 @@ class ScreenMap(assetLoader: AssetLoader) : UIComponent(assetLoader) {
         }
     }
 
-    private fun renderMoveObj(batch: SpriteBatch, camX: Float, camY: Float) {
-//        for (frame in map.moveObj) {
-//            batch.drawFrame(frame, -camX, -camY)
-//        }
-    }
-
     // animationObj：x/y 是地图绝对坐标，drawAnimation 内部 originX + frame.transX 是各 sprite 帧内偏移
     private fun renderAnimationObj(batch: SpriteBatch, camX: Float, camY: Float) {
-//        for (anim in map.locationAnimations) {
-//            val frames = anim.animation.getKeyFrame(animTime, true) ?: continue
-//            batch.drawAnimation(frames, anim.x - camX, anim.y - camY)
-//        }
+        for (locationAnimation in map.locationAnimation) {
+            val frames = locationAnimation.animation.getKeyFrame(animTime, true) ?: continue
+            val (x, y) = locationAnimation.getKeyFrame(animTime)
+            batch.drawAnimation(frames, x - camX, y - camY)
+        }
     }
 }
 
