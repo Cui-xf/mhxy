@@ -37,6 +37,10 @@ class AnimationDriver(
     var skillEffectRequest: SkillEffectRequest? = null
         private set
 
+    /** FightRole 组件读取此字段在目标头上显示命中数字，null 表示当前无需显示 */
+    var hitRequest: HitRequest? = null
+        private set
+
     /** SkillEffect 组件播放完毕后调用此方法，driver 继续推进 */
     fun onSkillEffectDone() {
         if (phase == Phase.SKILL_EFFECT) {
@@ -121,7 +125,12 @@ class AnimationDriver(
 
             Phase.HIT -> {
                 target?.forEach { it.animState = RoleAnimState.HIT }
+                val cmd = instr.command
+                if (phaseTimer <= delta && cmd is SkillCasting && target != null) {
+                    hitRequest = HitRequest(target, cmd.result)
+                }
                 if (phaseTimer >= HIT_DURATION) {
+                    hitRequest = null
                     target?.forEach { it.animState = RoleAnimState.IDLE }
                     instrIndex++
                     phase = Phase.MOVE_TO_TARGET
@@ -143,4 +152,9 @@ enum class Phase { MOVE_TO_TARGET, ATTACK, SKILL_EFFECT, MOVE_BACK, HIT }
 data class SkillEffectRequest(
     val skillId: Int,
     val target: List<Role>,
+)
+
+data class HitRequest(
+    val targets: List<Role>,
+    val results: List<Result>,
 )

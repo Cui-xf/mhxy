@@ -43,8 +43,7 @@ class SkillEffect(
         ch: Float,
         delta: Float
     ) {
-        val state = fightModel.state as? Animating ?: return
-        val driver = state.driver
+        val driver = (fightModel.state as? Animating ?: return).driver
         val (skillId, targetPos) = driver.skillEffectRequest ?: return
         val timer = driver.phaseTimer
 

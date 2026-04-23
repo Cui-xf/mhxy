@@ -26,6 +26,7 @@ class FightScreen2(
         autoDispose { SelectTarget(this.assetLoader, fightModel) },
         autoDispose { WaitSyncDialog(this.assetLoader, fightModel) },
         autoDispose { SkillEffect(this.assetLoader, fightModel) },
+        autoDispose { HitNumber(this.assetLoader, fightModel) },
     )
 
     init {

@@ -14,8 +14,8 @@ data class SkillCasting(
 ) : Command
 
 data class Result(
-    private val field: Field,
-    private val value: Float,
+    val field: Field,
+    val value: Float,
 )
 
 enum class Field {
