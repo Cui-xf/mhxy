@@ -11,10 +11,10 @@ object TouchContext {
     operator fun component2() = touchY
     operator fun component3() = justTouched
 
-    fun inTouch(x: Float, y: Float, width: Float, height: Float, clear: Boolean = false) =
+    fun inTouch(x: Float, y: Float, width: Float, height: Float, clear: Boolean = true) =
         inTouch(Rectangle(x, y, width, height), clear)
 
-    fun inTouch(rect: Rectangle, clear: Boolean = false): Boolean {
+    fun inTouch(rect: Rectangle, clear: Boolean = true): Boolean {
         val hit = justTouched && rect.contains(touchX, touchY)
         if (hit && clear) justTouched = false
         return hit

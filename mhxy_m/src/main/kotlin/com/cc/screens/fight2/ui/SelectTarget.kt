@@ -7,8 +7,10 @@ import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.asset.RpgAnimation
 import com.cc.event.TouchContext
 import com.cc.render.drawAnimation
-import com.cc.screens.fight2.model.*
+import com.cc.screens.fight2.model.FightModel
 import com.cc.screens.fight2.model.SelectTarget
+import com.cc.screens.fight2.model.SkillTarget
+import com.cc.screens.fight2.model.WaitSelectTarget
 import com.cc.ui.component.UIComponent
 
 class SelectTarget(
@@ -55,8 +57,7 @@ class SelectTarget(
         val animTargets = if (isSingle) listOf(state.selectedTarget!!) else aliveTargets
         batch.begin()
         for (role in animTargets) {
-            val (x, y) = role.getPos()
-            batch.drawAnimation(selectAnim.getKeyFrame(timer, true), x, y + animOffY)
+            batch.drawAnimation(selectAnim.getKeyFrame(timer, true), role.posX, role.posY + animOffY)
         }
         batch.end()
 
@@ -64,7 +65,8 @@ class SelectTarget(
         val touchW = 30f
         val touchH = 40f
         for (role in aliveTargets) {
-            val (x, y) = role.getPos()
+            val x = role.posX
+            val y = role.posY
             if (TouchContext.inTouch(x - touchW / 2, y - touchH, touchW, touchH)) {
                 if (isSingle) {
                     if (state.selectedTarget == role) {

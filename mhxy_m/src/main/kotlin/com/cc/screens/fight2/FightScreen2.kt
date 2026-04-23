@@ -3,19 +3,9 @@ package com.cc.screens.fight2
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.Timer
 import com.cc.screens.AbstractScreen
-import com.cc.screens.fight2.model.Action
-import com.cc.screens.fight2.model.FightModel
-import com.cc.screens.fight2.model.PlaybackAnimation
-import com.cc.screens.fight2.model.WaitSync
-import com.cc.screens.fight2.ui.ActionButton
-import com.cc.screens.fight2.ui.BackGround
-import com.cc.screens.fight2.ui.FightRole
-import com.cc.screens.fight2.ui.QuickBar
-import com.cc.screens.fight2.ui.ReturnButton
+import com.cc.screens.fight2.model.*
+import com.cc.screens.fight2.ui.*
 import com.cc.screens.fight2.ui.SelectTarget
-import com.cc.screens.fight2.ui.SkillList
-import com.cc.screens.fight2.ui.Tips
-import com.cc.screens.fight2.ui.WaitSyncDialog
 import com.cc.screens.game.Player
 
 class FightScreen2(
@@ -35,6 +25,7 @@ class FightScreen2(
         autoDispose { SkillList(this.assetLoader, fightModel) },
         autoDispose { SelectTarget(this.assetLoader, fightModel) },
         autoDispose { WaitSyncDialog(this.assetLoader, fightModel) },
+        autoDispose { SkillEffect(this.assetLoader, fightModel) },
     )
 
     init {
@@ -42,6 +33,14 @@ class FightScreen2(
     }
 
     override fun update(delta: Float) {
+        fightModel.state.let { state ->
+            if (state is Animating) {
+                state.driver.update(delta)?.also { action ->
+                    handleAction(action)
+                }
+            }
+        }
+
         for (component in component) {
             component.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
         }

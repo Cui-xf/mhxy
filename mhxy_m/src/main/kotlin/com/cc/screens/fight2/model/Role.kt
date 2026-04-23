@@ -12,12 +12,24 @@ data class Role(
     val maxMp: Int,
 ) {
     val isAlive get() = hp > 0
+    var animState: RoleAnimState
+    var posX: Float
+    var posY: Float
+
+    init {
+        val (x, y) = getPos()
+        posX = x
+        posY = y
+        animState = RoleAnimState.IDLE
+    }
 }
 
 enum class Side { PLAYER, ENEMY }
 enum class Type { ROLE, PET }
+enum class RoleAnimState { IDLE, ATTACKING, HIT }
 
-fun Role.getPos(): Pair<Float, Float> {
+
+private fun Role.getPos(): Pair<Float, Float> {
     val dx = 38
     val dy = 24
     val (centerX, centerY) = if (this.side == Side.PLAYER) Pair(160f, 250f) else Pair(100f, 100f)

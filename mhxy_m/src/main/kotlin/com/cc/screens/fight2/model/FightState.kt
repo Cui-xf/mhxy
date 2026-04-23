@@ -10,6 +10,7 @@ object SkillButton : Action
 data class SelectSkill(val skill: Skill) : Action
 data class SelectTarget(val target: Role) : Action
 data class PlaybackAnimation(val instructions: List<FightInstruction>) : Action
+object AnimationDone : Action
 
 
 sealed class FightState(
@@ -68,13 +69,14 @@ data class WaitSelectTarget(
 
 //等待Server同步
 data class WaitSync(val tips: String) : FightState({
-    r<PlaybackAnimation> {
-        Animating(it.instructions)
+    r<PlaybackAnimation> { action, _ ->
+        Animating(AnimationDriver(action.instructions))
     }
 })
 
-data class Animating(val instructions: List<FightInstruction>) : FightState({}) {
-}
+data class Animating(val driver: AnimationDriver) : FightState({
+    r<AnimationDone> { WaitAction }
+})
 
 //
 //SELECT_SKILL,       // 玩家选技能（弹出技能列表）

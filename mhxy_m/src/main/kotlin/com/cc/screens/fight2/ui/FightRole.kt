@@ -11,7 +11,7 @@ import com.cc.asset.RpgAnimation
 import com.cc.render.*
 import com.cc.screens.fight2.model.FightModel
 import com.cc.screens.fight2.model.Role
-import com.cc.screens.fight2.model.getPos
+import com.cc.screens.fight2.model.RoleAnimState
 import com.cc.ui.component.UIComponent
 
 class FightRole(
@@ -22,6 +22,10 @@ class FightRole(
 
     //血条装饰
     private val rim by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/publicUI/rim.pic", TextureRegion::class)
+
+    // 攻击/受击动画
+    private val roleAttack by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/role/f30012.anim", RpgAnimation::class)
+    private val roleHit by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/skill/dead.anim", RpgAnimation::class)
 
     private var timer = 0f
     override fun render(
@@ -42,21 +46,20 @@ class FightRole(
     private fun roleAnim(batch: SpriteBatch) {
         batch.begin()
         fightModel.players.forEach {
-            val (x, y) = it.getPos()
-            batch.drawAnimation(it.getAnim(timer), x, y)
+            batch.drawAnimation(it.getAnim(timer), it.posX, it.posY)
         }
         fightModel.enemy.forEach {
-            val (x, y) = it.getPos()
-            batch.drawAnimation(it.getAnim(timer), x, y)
+            batch.drawAnimation(it.getAnim(timer), it.posX, it.posY)
         }
         batch.end()
     }
 
     private fun Role.getAnim(timer: Float): List<Frame> {
-        return if (this.isAlive) {
-            res[0].value.getKeyFrame(timer, true)
-        } else {
-            res[2].value.getKeyFrame(timer, true)
+        return when {
+            !this.isAlive -> res[2].value.getKeyFrame(timer, true)
+            this.animState == RoleAnimState.ATTACKING -> roleAttack.getKeyFrame(timer, true)
+            this.animState == RoleAnimState.HIT -> roleHit.getKeyFrame(timer, true)
+            else -> res[0].value.getKeyFrame(timer, true)
         }
     }
 
@@ -65,26 +68,26 @@ class FightRole(
         val offY = -42
         sr.begin(ShapeRenderer.ShapeType.Filled)
         fightModel.players.forEach {
-            val (pBarX, pBarY) = it.getPos()
+            val pBarX = it.posX
+            val pBarY = it.posY
             drawBar(sr, pBarX, pBarY + offY - 5, it.hp, it.maxHp, 16711680.toColor(), 10945027.toColor())
             drawBar(sr, pBarX, pBarY + offY, it.mp, it.maxMp, 48127.toColor(), 230064.toColor())
         }
         fightModel.enemy.forEach {
-            val (eBarX, eBarY) = it.getPos()
-            drawBar(sr, eBarX, eBarY + offY, it.hp, it.maxHp, 16711680.toColor(), 10945027.toColor())
+            drawBar(sr, it.posX, it.posY + offY, it.hp, it.maxHp, 16711680.toColor(), 10945027.toColor())
         }
         sr.end()
 
         // rim 边框装饰
         batch.begin()
         fightModel.players.forEach {
-            val (pBarX, pBarY) = it.getPos()
+            val pBarX = it.posX
+            val pBarY = it.posY
             batch.drawImage(rim, pBarX, pBarY + offY - 5)
             batch.drawImage(rim, pBarX, pBarY + offY)
         }
         fightModel.enemy.forEach {
-            val (eBarX, eBarY) = it.getPos()
-            batch.drawImage(rim, eBarX, eBarY + offY)
+            batch.drawImage(rim, it.posX, it.posY + offY)
         }
         batch.end()
     }
@@ -105,7 +108,8 @@ class FightRole(
         return listOf(playerAnim, enemyAnim, dead, dead2)
     }
 
-    //    private fun selectAperture() {
+//        绘制self指示器
+//        private fun selectAperture() {
 //        sr.begin(ShapeType.Line)
 //        sr.color = Color.valueOf("4fc3f7ff")
 //        val (x, y) = getPos(4, "player")
