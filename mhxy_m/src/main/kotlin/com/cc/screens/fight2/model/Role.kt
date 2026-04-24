@@ -24,7 +24,7 @@ data class Role(
     }
 }
 
-enum class Side { PLAYER, ENEMY }
+enum class Side { ALLY, ENEMY }
 enum class Type { ROLE, PET }
 enum class RoleAnimState { IDLE, ATTACKING, HIT }
 
@@ -32,7 +32,7 @@ enum class RoleAnimState { IDLE, ATTACKING, HIT }
 private fun Role.getPos(): Pair<Float, Float> {
     val dx = 38
     val dy = 24
-    val (centerX, centerY) = if (this.side == Side.PLAYER) Pair(160f, 250f) else Pair(100f, 100f)
+    val (centerX, centerY) = if (this.side == Side.ALLY) Pair(160f, 250f) else Pair(100f, 100f)
     return when (index) {
         0 -> Pair(centerX - dx * 2, centerY)
         1 -> Pair(centerX - dx * 1, centerY - dy * 1)

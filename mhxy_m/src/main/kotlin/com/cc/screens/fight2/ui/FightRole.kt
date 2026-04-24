@@ -45,7 +45,7 @@ class FightRole(
 
     private fun roleAnim(batch: SpriteBatch) {
         batch.begin()
-        fightModel.players.forEach {
+        fightModel.ally.forEach {
             batch.drawAnimation(it.getAnim(timer), it.posX, it.posY)
         }
         fightModel.enemy.forEach {
@@ -67,7 +67,7 @@ class FightRole(
     private fun drawHp(batch: SpriteBatch, sr: ShapeRenderer) {
         val offY = -42
         sr.begin(ShapeRenderer.ShapeType.Filled)
-        fightModel.players.forEach {
+        fightModel.ally.forEach {
             val pBarX = it.posX
             val pBarY = it.posY
             drawBar(sr, pBarX, pBarY + offY - 5, it.hp, it.maxHp, 16711680.toColor(), 10945027.toColor())
@@ -80,7 +80,7 @@ class FightRole(
 
         // rim 边框装饰
         batch.begin()
-        fightModel.players.forEach {
+        fightModel.ally.forEach {
             val pBarX = it.posX
             val pBarY = it.posY
             batch.drawImage(rim, pBarX, pBarY + offY - 5)

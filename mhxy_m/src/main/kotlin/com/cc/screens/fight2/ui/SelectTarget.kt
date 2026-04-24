@@ -40,7 +40,7 @@ class SelectTarget(
         val skill = state.skill
         val candidates = when (skill.target) {
             SkillTarget.SINGLE_ENEMY, SkillTarget.ALL_ENEMIES -> fightModel.enemy
-            SkillTarget.SINGLE_ALLY, SkillTarget.ALL_ALLIES -> fightModel.players
+            SkillTarget.SINGLE_ALLY, SkillTarget.ALL_ALLIES -> fightModel.ally
         }
         val aliveTargets = candidates.filter { it.isAlive }
         if (aliveTargets.isEmpty()) return

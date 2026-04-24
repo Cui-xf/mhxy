@@ -4,32 +4,50 @@ import kotlin.random.Random
 
 
 class FightModel {
-    val players = listOf(
-        Role(0, Side.PLAYER, Type.PET, "p1", 0, 80, 60, 100, 100),
-        Role(1, Side.PLAYER, Type.PET, "p1", 0, 80, 60, 100, 100),
-        Role(2, Side.PLAYER, Type.PET, "p1", 0, 80, 60, 100, 100),
-        Role(3, Side.PLAYER, Type.ROLE, "p1", 0, 80, 60, 100, 100),
-        Role(4, Side.PLAYER, Type.ROLE, "p1", 0, 80, 60, 100, 100),
-        Role(5, Side.PLAYER, Type.ROLE, "p1", 0, 80, 60, 100, 100),
+    val ally = listOf(
+        Role(0, Side.ALLY, Type.PET, "p1", 0, 80, 60, 100, 100),
+        Role(1, Side.ALLY, Type.PET, "p1", 0, 80, 60, 100, 100),
+        Role(2, Side.ALLY, Type.PET, "p1", 0, 80, 60, 100, 100),
+        Role(3, Side.ALLY, Type.ROLE, "p1", 0, 80, 60, 100, 100),
+        Role(4, Side.ALLY, Type.ROLE, "p1", 0, 80, 60, 100, 100),
+        Role(5, Side.ALLY, Type.ROLE, "p1", 0, 80, 60, 100, 100),
     )
     val enemy = listOf(
         Role(3, Side.ENEMY, Type.PET, "p1", 0, 80, 60, 100, 100),
         Role(5, Side.ENEMY, Type.PET, "p1", 0, 80, 60, 100, 100),
     )
 
-    val self: Role = players.random()
-    var state: FightState = WaitAction
+    val self: Role = ally[5]
+    val pet: Role? = ally[2]
 
+    var state: FightState = WaitAction(self)
     val fightInstruction = mutableListOf<FightInstruction>()
+
+    var tipText: String = ""
 }
 
 //模拟服务器装配指令
-fun FightModel.installInstruction(skill: Skill, target: Role): Boolean {
+fun FightModel.installInstruction(src: Role, skill: Skill, target: Role): Role? {
+    if (src == self) {
+        addInstruction(skill, target, src)
+        if (pet != null) {
+            return pet
+        }
+    } else if (src == pet) {
+        addInstruction(skill, target, src)
+        return null
+    } else {
+        throw RuntimeException("无效指令")
+    }
+    return null
+}
+
+private fun FightModel.addInstruction(skill: Skill, target: Role, src: Role) {
     val target = when (skill.target) {
         SkillTarget.SINGLE_ENEMY, SkillTarget.SINGLE_ALLY -> listOf(target)
         SkillTarget.ALL_ENEMIES, SkillTarget.ALL_ALLIES -> {
-            val role = if (target.side == Side.PLAYER) {
-                players
+            val role = if (target.side == Side.ALLY) {
+                ally
             } else {
                 enemy
             }
@@ -40,12 +58,5 @@ fun FightModel.installInstruction(skill: Skill, target: Role): Boolean {
     val result = target.map {
         Result(Field.HP, -Random.nextInt(30, 50) * skill.power)
     }
-
-    fightInstruction += SkillCasting(self, skill, target, result)
-    if (fightInstruction.size >= 1) {
-        fightInstruction += FightFinish
-        return true
-    } else {
-        return false
-    }
+    fightInstruction += SkillCasting(src, skill, target, result)
 }

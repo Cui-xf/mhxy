@@ -44,7 +44,7 @@ class SkillList(assetLoader: AssetLoader, private val fightModel: FightModel) : 
         ch: Float,
         delta: Float
     ) {
-        if (fightModel.state != WaitSelectSkill) return
+        if (fightModel.state !is WaitSelectSkill) return
         window.render(batch, sr, cx + border, cy + border, cw - border * 2, ch - border * 2, delta)
     }
 

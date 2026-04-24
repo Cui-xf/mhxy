@@ -6,7 +6,7 @@ sealed interface Action
 
 //返回
 object Back : Action
-object SkillButton : Action
+data class SkillButton(val role: Role) : Action
 data class SelectSkill(val skill: Skill) : Action
 data class SelectTarget(val target: Role) : Action
 data class PlaybackAnimation(val instructions: List<FightInstruction>) : Action
@@ -40,26 +40,28 @@ sealed class FightState(
 }
 
 // 等待玩家选择行动
-object WaitAction : FightState({
-    r<SkillButton> { WaitSelectSkill }
+data class WaitAction(val role: Role) : FightState({
+    r<SkillButton> { WaitSelectSkill(it.role) }
 })
 
 //等待选择技能
-object WaitSelectSkill : FightState({
-    r<Back> { WaitAction }
-    r<SelectSkill> { WaitSelectTarget(it.skill) }
+data class WaitSelectSkill(val role: Role) : FightState({
+    r<Back> { WaitAction(role) }
+    r<SelectSkill> { WaitSelectTarget(role, it.skill) }
 })
 
 //选择目标
 data class WaitSelectTarget(
+    val src: Role,
     val skill: Skill
 ) : FightState({
-    r<Back> { WaitSelectSkill }
+    r<Back> { WaitSelectSkill(src) }
     r<SelectTarget> { action, model ->
-        if (model.installInstruction(skill, action.target)) {
+        val nextRole = model.installInstruction(src, skill, action.target)
+        if (nextRole == null) {
             WaitSync("等待中...")
         } else {
-            WaitAction
+            WaitAction(nextRole)
         }
     }
 }) {
@@ -75,5 +77,7 @@ data class WaitSync(val tips: String) : FightState({
 })
 
 data class Animating(val driver: AnimationDriver) : FightState({
-    r<AnimationDone> { WaitAction }
+    r<AnimationDone> { _, model ->
+        WaitAction(model.self)
+    }
 })
