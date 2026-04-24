@@ -7,10 +7,8 @@ import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.asset.RpgAnimation
 import com.cc.event.TouchContext
 import com.cc.render.drawAnimation
-import com.cc.screens.fight2.model.FightModel
+import com.cc.screens.fight2.model.*
 import com.cc.screens.fight2.model.SelectTarget
-import com.cc.screens.fight2.model.SkillTarget
-import com.cc.screens.fight2.model.WaitSelectTarget
 import com.cc.ui.component.UIComponent
 
 class SelectTarget(
@@ -37,30 +35,18 @@ class SelectTarget(
     }
 
     private fun selectTarget(batch: SpriteBatch, state: WaitSelectTarget) {
-        val skill = state.skill
-        val candidates = when (skill.target) {
-            SkillTarget.SINGLE_ENEMY, SkillTarget.ALL_ENEMIES -> fightModel.enemy
-            SkillTarget.SINGLE_ALLY, SkillTarget.ALL_ALLIES -> fightModel.ally
-        }
-        val aliveTargets = candidates.filter { it.isAlive }
+        val aliveTargets = getAliveTargets(state)
         if (aliveTargets.isEmpty()) return
-
-        val isSingle = skill.target == SkillTarget.SINGLE_ENEMY || skill.target == SkillTarget.SINGLE_ALLY
-
-        // 单体：默认选中第一个存活角色
-        if (isSingle && state.selectedTarget == null) {
+        if (state.selectedTarget == null) {
             state.selectedTarget = aliveTargets.first()
         }
 
-        // 播放选择动画：单体只在选中角色头上播放，群体在所有存活角色上播放
-        val animOffY = -55f
-        val animTargets = if (isSingle) listOf(state.selectedTarget!!) else aliveTargets
-        batch.begin()
-        for (role in animTargets) {
-            batch.drawAnimation(selectAnim.getKeyFrame(timer, true), role.posX, role.posY + animOffY)
+        state.selectedTarget?.let {
+            val animOffY = -55f
+            batch.begin()
+            batch.drawAnimation(selectAnim.getKeyFrame(timer, true), it.posX, it.posY + animOffY)
+            batch.end()
         }
-        batch.end()
-
         // 点击处理
         val touchW = 30f
         val touchH = 40f
@@ -68,21 +54,26 @@ class SelectTarget(
             val x = role.posX
             val y = role.posY
             if (TouchContext.inTouch(x - touchW / 2, y - touchH, touchW, touchH)) {
-                if (isSingle) {
-                    if (state.selectedTarget == role) {
-                        // 再次点击同一个角色 → 确认选择
-                        emit(SelectTarget(role))
-                    } else {
-                        // 首次点击 / 切换目标
-                        state.selectedTarget = role
-                    }
-                } else {
-                    // 群体技能：点击任意角色即确认
+                if (state.selectedTarget == role) {
+                    // 再次点击同一个角色 → 确认选择
                     emit(SelectTarget(role))
+                } else {
+                    // 首次点击 / 切换目标
+                    state.selectedTarget = role
                 }
                 break
             }
         }
+    }
+
+    private fun getAliveTargets(state: WaitSelectTarget): List<Role> {
+        val skill = state as Skill
+        val candidates = when (skill.target) {
+            SkillTarget.SINGLE_ENEMY, SkillTarget.ALL_ENEMIES -> fightModel.enemy
+            SkillTarget.SINGLE_ALLY, SkillTarget.ALL_ALLIES -> fightModel.ally
+        }
+        val aliveTargets = candidates.filter { it.isAlive }
+        return aliveTargets
     }
 
 }

@@ -1,7 +1,5 @@
 package com.cc.screens.fight2.model
 
-import kotlin.random.Random
-
 
 class FightModel {
     val ally = listOf(
@@ -21,42 +19,49 @@ class FightModel {
     val pet: Role? = ally[2]
 
     var state: FightState = WaitAction(self)
-    val fightInstruction = mutableListOf<FightInstruction>()
+    val fightInstruction = mutableListOf<RoleInstruction>()
+
+    var tempInstruction: RoleInstruction? = null
 
     var tipText: String = ""
 }
 
 //模拟服务器装配指令
-fun FightModel.installInstruction(src: Role, skill: Skill, target: Role): Role? {
-    if (src == self) {
-        addInstruction(skill, target, src)
+fun FightModel.installInstruction(): FightState {
+    return if (tempInstruction?.src == self) {
+        addInstruction()
         if (pet != null) {
-            return pet
+            WaitAction(pet)
+        } else {
+            WaitSync()
         }
-    } else if (src == pet) {
-        addInstruction(skill, target, src)
-        return null
+    } else if (tempInstruction?.src == pet) {
+        addInstruction()
+        WaitSync()
     } else {
         throw RuntimeException("无效指令")
     }
-    return null
 }
 
-private fun FightModel.addInstruction(skill: Skill, target: Role, src: Role) {
-    val target = when (skill.target) {
-        SkillTarget.SINGLE_ENEMY, SkillTarget.SINGLE_ALLY -> listOf(target)
-        SkillTarget.ALL_ENEMIES, SkillTarget.ALL_ALLIES -> {
-            val role = if (target.side == Side.ALLY) {
-                ally
-            } else {
-                enemy
-            }
-            val other = role.first { it.index != target.index }
-            listOf(target, other)
-        }
-    }
-    val result = target.map {
-        Result(Field.HP, -Random.nextInt(30, 50) * skill.power)
-    }
-    fightInstruction += SkillCasting(src, skill, target, result)
+private fun FightModel.addInstruction() {
+//    val skill = (tempInstruction?.action as? RoleAction.Magic)?.skill
+//    if (skill != null) {
+//        val target = when (skill.target) {
+//            SkillTarget.SINGLE_ENEMY, SkillTarget.SINGLE_ALLY -> null
+//            SkillTarget.ALL_ENEMIES, SkillTarget.ALL_ALLIES -> {
+//                val role = if (target.side == Side.ALLY) {
+//                    ally
+//                } else {
+//                    enemy
+//                }
+//                val other = role.first { it.index != target.index }
+//                listOf(target, other)
+//            }
+//        }
+//        val result = target.map {
+//            Result(Field.HP, -Random.nextInt(30, 50) * skill.power)
+//        }
+//    }
+    fightInstruction += tempInstruction!!
+    tempInstruction = null
 }

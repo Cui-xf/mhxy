@@ -4,12 +4,12 @@ import kotlin.reflect.KClass
 
 sealed interface Action
 
-//返回
-object Back : Action
-data class SkillButton(val role: Role) : Action
+object Back : Action //返回
+data class RoleActionButton(val roleActionType: RoleActionType) : Action
 data class SelectSkill(val skill: Skill) : Action
+data class SelectItem(val item: String) : Action
 data class SelectTarget(val target: Role) : Action
-data class PlaybackAnimation(val instructions: List<FightInstruction>) : Action
+data class PlaybackAnimation(val instructions: List<RoleInstruction>) : Action
 object AnimationDone : Action
 object EndTheBattle : Action
 
@@ -41,28 +41,60 @@ sealed class FightState(
 
 // 等待玩家选择行动
 data class WaitAction(val role: Role) : FightState({
-    r<SkillButton> { WaitSelectSkill(it.role) }
+    r<RoleActionButton> { action, model ->
+        when (action.roleActionType) {
+            RoleActionType.ATTACK -> {
+                model.tempInstruction = RoleInstruction(role, RoleAction.Attack())
+                WaitSelectTarget(this)
+            }
+
+            RoleActionType.DEFEND -> {
+                model.tempInstruction = RoleInstruction(role, RoleAction.Defend)
+                model.installInstruction()
+            }
+
+            RoleActionType.MAGIC -> {
+                model.tempInstruction = RoleInstruction(role, RoleAction.Magic())
+                WaitSelectSkill
+            }
+
+            RoleActionType.ITEM -> {
+                model.tempInstruction = RoleInstruction(role, RoleAction.Item())
+                WaitSelectItem
+            }
+
+            RoleActionType.ESCAPE -> {
+                model.tempInstruction = RoleInstruction(role, RoleAction.Escape)
+                model.installInstruction()
+            }
+        }
+    }
 })
 
 //等待选择技能
-data class WaitSelectSkill(val role: Role) : FightState({
-    r<Back> { WaitAction(role) }
-    r<SelectSkill> { WaitSelectTarget(role, it.skill) }
+object WaitSelectSkill : FightState({
+    r<Back> { _, model -> WaitAction(model.tempInstruction!!.src) }
+    r<SelectSkill> { action, model ->
+        (model.tempInstruction?.action as? RoleAction.Magic)?.skill = action.skill
+        WaitSelectTarget(this)
+    }
+})
+
+//等待选择道具
+object WaitSelectItem : FightState({
+    r<Back> { _, model -> WaitAction(model.tempInstruction!!.src) }
+    r<SelectItem> { action, model ->
+        (model.tempInstruction?.action as? RoleAction.Item)?.item = action.item
+        WaitSelectTarget(this)
+    }
 })
 
 //选择目标
-data class WaitSelectTarget(
-    val src: Role,
-    val skill: Skill
-) : FightState({
-    r<Back> { WaitSelectSkill(src) }
+data class WaitSelectTarget(private val lastState: FightState) : FightState({
+    r<Back> { lastState }
     r<SelectTarget> { action, model ->
-        val nextRole = model.installInstruction(src, skill, action.target)
-        if (nextRole == null) {
-            WaitSync("等待中...")
-        } else {
-            WaitAction(nextRole)
-        }
+        (model.tempInstruction?.action as? RoleAction.TargetableAction)?.target = listOf(action.target)
+        model.installInstruction()
     }
 }) {
     /** 单体技能当前选中的角色，null 表示尚未初始化 */
@@ -70,7 +102,7 @@ data class WaitSelectTarget(
 }
 
 //等待Server同步
-data class WaitSync(val tips: String) : FightState({
+data class WaitSync(val tips: String = "等待中...") : FightState({
     r<PlaybackAnimation> { action, _ ->
         Animating(AnimationDriver(action.instructions))
     }

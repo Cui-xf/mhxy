@@ -10,10 +10,7 @@ import com.cc.event.TouchContext
 import com.cc.render.Align
 import com.cc.render.drawImage
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
-import com.cc.screens.fight2.model.FightModel
-import com.cc.screens.fight2.model.SkillButton
-import com.cc.screens.fight2.model.Type
-import com.cc.screens.fight2.model.WaitAction
+import com.cc.screens.fight2.model.*
 import com.cc.ui.component.UIComponent
 
 class ActionButton(assetLoader: AssetLoader, private val fightModel: FightModel) : UIComponent(assetLoader) {
@@ -24,7 +21,7 @@ class ActionButton(assetLoader: AssetLoader, private val fightModel: FightModel)
     private val BNT_W = 26
     private val BTN_H = 16
     private val buttons by lazy {
-        Action.entries.mapIndexed { it, action ->
+        RoleActionType.entries.mapIndexed { it, action ->
             // 从全条纹理里切出第 i 个按钮（x = i*26, y=0, w=26, h=16）
             Button(TextureRegion(fightMenuPic, it * BNT_W, 0, BNT_W, BTN_H), action)
         }
@@ -43,11 +40,12 @@ class ActionButton(assetLoader: AssetLoader, private val fightModel: FightModel)
         val role = (fightModel.state as? WaitAction)?.role ?: return
         val visibleButtons = when (role.type) {
             Type.ROLE -> buttons
-            Type.PET -> buttons.filter { it.action == Action.ATTACK || it.action == Action.DEFEND || it.action == Action.MAGIC }
+            Type.PET -> buttons.filter { it.type == RoleActionType.ATTACK || it.type == RoleActionType.DEFEND || it.type == RoleActionType.MAGIC }
         }
-        // 从下往上顺排：第0个在最底部，依次叠上去
+        // 底部对齐：最底部按钮固定在5个按钮时的底部位置，往上排
+        val startY = BTN_Y0 + (5 - visibleButtons.size) * BTN_H
         val rects = visibleButtons.mapIndexed { i, _ ->
-            Rectangle(BTN_X, BTN_Y0 + i * BTN_H, BNT_W.toFloat(), BTN_H.toFloat())
+            Rectangle(BTN_X, startY + i * BTN_H, BNT_W.toFloat(), BTN_H.toFloat())
         }
         batch.begin()
         for ((button, rect) in visibleButtons.zip(rects)) {
@@ -57,27 +55,14 @@ class ActionButton(assetLoader: AssetLoader, private val fightModel: FightModel)
 
 
         visibleButtons.zip(rects).firstOrNull { (_, rect) -> TouchContext.inTouch(rect) }?.also { (it, _) ->
-            fightModel.tipText = it.action.label
-            when (it.action) {
-                Action.ATTACK -> emit(SkillButton(role))
-                Action.DEFEND -> emit(SkillButton(role))
-                Action.MAGIC -> emit(SkillButton(role))
-                Action.ITEM -> emit(SkillButton(role))
-                Action.ESCAPE -> emit(SkillButton(role))
-            }
+            fightModel.tipText = it.type.label
+            emit(RoleActionButton(it.type))
         }
     }
 }
 
-private enum class Action(val label: String) {
-    ATTACK("攻击"),
-    DEFEND("防御"),
-    MAGIC("法术"),
-    ITEM("道具"),
-    ESCAPE("逃跑"),
-}
 
 private class Button(
     val textureRegion: TextureRegion,
-    val action: Action,
+    val type: RoleActionType,
 )

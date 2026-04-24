@@ -8,6 +8,7 @@ import com.cc.asset.RpgAnimation
 import com.cc.render.drawAnimation
 import com.cc.screens.fight2.model.Animating
 import com.cc.screens.fight2.model.FightModel
+import com.cc.screens.fight2.model.Phase
 import com.cc.ui.component.UIComponent
 
 /**
@@ -44,7 +45,7 @@ class SkillEffect(
         delta: Float
     ) {
         val driver = (fightModel.state as? Animating ?: return).driver
-        val (skillId, targetPos) = driver.skillEffectRequest ?: return
+        val (skillId, targetPos) = driver.phase as? Phase.SKILL_EFFECT ?: return
         val timer = driver.phaseTimer
 
         val anim = anims[skillId - 990]?.value

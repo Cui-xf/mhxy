@@ -5,10 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
-import com.cc.screens.fight2.model.Animating
-import com.cc.screens.fight2.model.Field
-import com.cc.screens.fight2.model.FightModel
-import com.cc.screens.fight2.model.Result
+import com.cc.screens.fight2.model.*
 import com.cc.ui.component.UIComponent
 
 /**
@@ -31,6 +28,7 @@ class HitNumber(
 
     // 最大向上漂移像素（对应 Java 版 f 最大 24）
     private val MAX_DRIFT = 24f
+
     // 漂移速度：60px/s，与 Java 版每帧+4（15fps）等效
     private val DRIFT_SPEED = 60f
 
@@ -44,7 +42,7 @@ class HitNumber(
         delta: Float,
     ) {
         val driver = (fightModel.state as? Animating ?: return).driver
-        val (targets, results) = driver.hitRequest ?: return
+        val (targets, results) = driver.phase as? Phase.HIT ?: return
         val drift = (driver.phaseTimer * DRIFT_SPEED).coerceAtMost(MAX_DRIFT)
 
         val tex = fightnumRegion.texture
@@ -80,7 +78,9 @@ class HitNumber(
         // 计算数字位数（至少1位）
         var digitCount = 0
         var tmp = absValue
-        do { tmp /= 10; digitCount++ } while (tmp > 0)
+        do {
+            tmp /= 10; digitCount++
+        } while (tmp > 0)
 
         // 居中偏移：与 Java 版一致 (digitCount+2)/2*7，即 (var9+2)/2*7
         val centerOffset = (digitCount + 2) / 2 * 7
