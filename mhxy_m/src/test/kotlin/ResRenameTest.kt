@@ -1,3 +1,6 @@
+import com.cc.asset.role.buildRoleResId
+import com.cc.screens.fight.model.*
+
 val dir = "E:\\WORK\\mhxy\\mhxy_m\\src\\main\\resources\\assets\\rpg\\role"
 fun main() {
     val res = listOf(
@@ -38,35 +41,7 @@ fun main() {
     )
 
     val list = listOf(
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Phenix, Dir.Left, Act.Move),
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Phenix, Dir.Left, Act.Idle),
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Phenix, Dir.Right, Act.Move),
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Phenix, Dir.Right, Act.Idle),
-
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Phenix, Dir.Left, Act.Move),
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Phenix, Dir.Left, Act.Idle),
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Phenix, Dir.Right, Act.Move),
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Phenix, Dir.Right, Act.Idle),
-
-        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Phenix, Dir.Left, Act.Move),
-        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Phenix, Dir.Left, Act.Idle),
-        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Phenix, Dir.Right, Act.Move),
-        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Phenix, Dir.Right, Act.Idle),
-
-        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Phenix, Dir.Left, Act.Move),
-        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Phenix, Dir.Left, Act.Idle),
-        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Phenix, Dir.Right, Act.Move),
-        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Phenix, Dir.Right, Act.Idle),
-
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Phenix, Dir.Left, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Phenix, Dir.Left, Act.Idle),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Phenix, Dir.Right, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Phenix, Dir.Right, Act.Idle),
-
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Phenix, Dir.Left, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Phenix, Dir.Left, Act.Idle),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Phenix, Dir.Right, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Phenix, Dir.Right, Act.Idle),
+        buildRoleResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Phenix, Dir.Left, RoleAnimState.Move),
     )
     res.zip(list).forEach { (oldName, newName) ->
         val oldFile = java.io.File(dir, oldName)
@@ -79,37 +54,3 @@ fun main() {
         }
     }
 }
-
-fun buildResId(
-    job: RoleJob,
-    gender: RoleGender,
-    appearance: Appearance,
-    ride: Ride,
-    dir: Dir,
-    act: Act
-): String {
-    return "${job}_${gender}_${appearance}_${ride}_${dir}_${act}.anim"
-}
-
-enum class RoleJob { JJF, FCS, LG }
-
-enum class RoleGender { Boy, Girl }
-
-enum class Appearance {
-    Default
-}
-
-enum class Dir { Up, Down, Left, Right }
-
-enum class Ride {
-    None,   //无
-    RedDragon,//红色龙
-    SomersaultCloud,//筋斗云
-    RedWildebeest,  //红色角马
-    Tiger,  //老虎
-    IronWolf,//铁狼
-    Turtle, //乌龟
-    Phenix,//凤凰
-}
-
-enum class Act { Idle, Move, Attack }

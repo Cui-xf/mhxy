@@ -1,4 +1,4 @@
-package com.cc.screens.fight2.ui
+package com.cc.screens.fight.ui
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
@@ -10,7 +10,7 @@ import com.cc.event.TouchContext
 import com.cc.render.Align
 import com.cc.render.drawImage
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
-import com.cc.screens.fight2.model.*
+import com.cc.screens.fight.model.*
 import com.cc.ui.component.UIComponent
 
 class ActionButton(assetLoader: AssetLoader, private val fightModel: FightModel) : UIComponent(assetLoader) {

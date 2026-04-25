@@ -1,4 +1,4 @@
-package com.cc.screens.fight2.ui
+package com.cc.screens.fight.ui
 
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Color.valueOf
@@ -10,7 +10,7 @@ import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.event.TouchContext
 import com.cc.render.*
-import com.cc.screens.fight2.model.*
+import com.cc.screens.fight.model.*
 import com.cc.ui.component.ScrollPanel
 import com.cc.ui.component.TabGroup
 import com.cc.ui.component.UIComponent

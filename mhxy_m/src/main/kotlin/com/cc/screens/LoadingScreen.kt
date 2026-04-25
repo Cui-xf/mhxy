@@ -47,8 +47,6 @@ class LoadingScreen : AbstractScreen() {
         CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/title.pic", TextureRegion::class)
         CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/close.pic", TextureRegion::class)
         CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/publicUI/button1.pic", TextureRegion::class)
-        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/role/f31111.anim", RpgAnimation::class)
-        CommonAssetLoader.resource(PUBLIC_ASSET, "rpg/role/f31112.anim", RpgAnimation::class)
     }
 
     override fun update(delta: Float) {

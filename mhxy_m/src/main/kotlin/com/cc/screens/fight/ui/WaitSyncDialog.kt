@@ -1,4 +1,4 @@
-package com.cc.screens.fight2.ui
+package com.cc.screens.fight.ui
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
@@ -13,8 +13,8 @@ import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.render.*
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_W
-import com.cc.screens.fight2.model.FightModel
-import com.cc.screens.fight2.model.WaitSync
+import com.cc.screens.fight.model.FightModel
+import com.cc.screens.fight.model.WaitSync
 import com.cc.ui.component.UIComponent
 
 class WaitSyncDialog(assetLoader: AssetLoader, private val fightModel: FightModel) : UIComponent(assetLoader) {

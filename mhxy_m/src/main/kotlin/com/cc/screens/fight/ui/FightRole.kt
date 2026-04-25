@@ -1,4 +1,4 @@
-package com.cc.screens.fight2.ui
+package com.cc.screens.fight.ui
 
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
@@ -8,10 +8,9 @@ import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory
 import com.cc.asset.Frame
 import com.cc.asset.RpgAnimation
+import com.cc.asset.role.buildRoleResId
 import com.cc.render.*
-import com.cc.screens.fight2.model.FightModel
-import com.cc.screens.fight2.model.Role
-import com.cc.screens.fight2.model.RoleAnimState
+import com.cc.screens.fight.model.*
 import com.cc.ui.component.UIComponent
 
 class FightRole(
@@ -24,8 +23,10 @@ class FightRole(
     private val rim by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/publicUI/rim.pic", TextureRegion::class)
 
     // 攻击/受击动画
-    private val roleAttack by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/role/f30012.anim", RpgAnimation::class)
-    private val roleHit by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/skill/dead.anim", RpgAnimation::class)
+    //上方阵亡
+    val dead by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/skill/dead.anim", RpgAnimation::class)
+    //下方阵亡
+    val dead2 by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/skill/dead2.anim", RpgAnimation::class)
 
     private var timer = 0f
     override fun render(
@@ -46,20 +47,29 @@ class FightRole(
     private fun roleAnim(batch: SpriteBatch) {
         batch.begin()
         fightModel.ally.forEach {
-            batch.drawAnimation(it.getAnim(timer), it.posX, it.posY)
+            it.getAnim(timer)?.let { frames -> batch.drawAnimation(frames, it.posX, it.posY) }
         }
         fightModel.enemy.forEach {
-            batch.drawAnimation(it.getAnim(timer), it.posX, it.posY)
+            it.getAnim(timer)?.let { frames -> batch.drawAnimation(frames, it.posX, it.posY) }
         }
         batch.end()
     }
 
-    private fun Role.getAnim(timer: Float): List<Frame> {
+    private fun Role.getAnim(timer: Float): List<Frame>? {
         return when {
-            !this.isAlive -> res[2].value.getKeyFrame(timer, true)
-            this.animState == RoleAnimState.ATTACKING -> roleAttack.getKeyFrame(timer, true)
-            this.animState == RoleAnimState.HIT -> roleHit.getKeyFrame(timer, true)
-            else -> res[0].value.getKeyFrame(timer, true)
+            !this.isAlive -> dead.getKeyFrame(timer, true)
+            this.animState == RoleAnimState.Attack -> res[Triple(
+                this.side,
+                this.index,
+                this.animState
+            )]!!.value.getKeyFrame(timer, true)
+
+            this.animState == RoleAnimState.Hit -> dead2.getKeyFrame(timer, true)
+            else -> res[Triple(
+                this.side,
+                this.index,
+                this.animState
+            )]!!.value.getKeyFrame(timer, true)
         }
     }
 
@@ -100,12 +110,17 @@ class FightRole(
         sr.drawRect(color2, x - w / 2 + 1f, y + 2f, fill, 1f, Align.LEFT_TOP)
     }
 
-    private fun loadRes(): List<Lazy<RpgAnimation>> {
-        val playerAnim = resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/role/f30011.anim", RpgAnimation::class)
-        val enemyAnim = resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/role/f30011.anim", RpgAnimation::class)
-        val dead = resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/skill/dead.anim", RpgAnimation::class)
-        val dead2 = resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/skill/dead2.anim", RpgAnimation::class)
-        return listOf(playerAnim, enemyAnim, dead, dead2)
+    private fun loadRes(): Map<Triple<Side, Int, RoleAnimState>, Lazy<RpgAnimation>> {
+        val map = mutableMapOf<Triple<Side, Int, RoleAnimState>, Lazy<RpgAnimation>>()
+        val stateList = listOf(RoleAnimState.Idle, RoleAnimState.Attack)
+        for (role in (fightModel.ally + fightModel.enemy)) {
+            for (state in stateList) {
+                val resId = buildRoleResId(role.job, role.gender, role.appearance, Ride.None, role.dir, state)
+                val resource = resource(AssetManagerFactory.PUBLIC_ASSET, resId, RpgAnimation::class)
+                map[Triple(role.side, role.index, state)] = resource
+            }
+        }
+        return map
     }
 
 //        绘制self指示器

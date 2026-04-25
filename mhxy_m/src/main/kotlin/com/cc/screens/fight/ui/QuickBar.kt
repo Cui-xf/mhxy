@@ -1,4 +1,4 @@
-package com.cc.screens.fight2.ui
+package com.cc.screens.fight.ui
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
@@ -10,7 +10,7 @@ import com.cc.render.drawImage
 import com.cc.render.drawRectBorder
 import com.cc.render.toColor
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
-import com.cc.screens.fight2.model.FightModel
+import com.cc.screens.fight.model.FightModel
 import com.cc.ui.component.UIComponent
 
 class QuickBar(assetLoader: AssetLoader, fightModel: FightModel) : UIComponent(assetLoader) {

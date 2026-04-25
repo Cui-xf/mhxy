@@ -7,21 +7,37 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.asset.CommonAssetLoader
 import com.cc.asset.RpgAnimation
+import com.cc.asset.role.buildRoleResId
 import com.cc.render.drawAnimation
+import com.cc.screens.fight.model.*
 import com.cc.ui.component.UIComponent
 
 object Player : UIComponent(CommonAssetLoader) {
     lateinit var map: ScreenMap
 
-    // 朝右动画（向右/向下移动），方向后缀0；格式：{gender}{job}{variant}{dirSuffix}
-    private val animRight by resource(PUBLIC_ASSET, "rpg/role/3101.anim", RpgAnimation::class)
-//    private val animRight by resource(PUBLIC_ASSET, "rpg/role/171_-401711000.anim", RpgAnimation::class)
-//    private val animRight by resource(PUBLIC_ASSET, "rpg/role/170_-2091168342.anim", RpgAnimation::class)
+    private val rightIdle by resource(
+        PUBLIC_ASSET,
+        buildRoleResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Tiger, Dir.Right, RoleAnimState.Idle),
+        RpgAnimation::class
+    )
 
-    // 朝左动画（向左/向上移动），方向后缀1
-    private val animLeft by resource(PUBLIC_ASSET, "rpg/role/3100.anim", RpgAnimation::class)
-//    private val animLeft by resource(PUBLIC_ASSET, "rpg/role/182_-401711961.anim", RpgAnimation::class)
-//    private val animLeft by resource(PUBLIC_ASSET, "rpg/role/183_-2091168373.anim", RpgAnimation::class)
+    private val rightMove by resource(
+        PUBLIC_ASSET,
+        buildRoleResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Tiger, Dir.Right, RoleAnimState.Move),
+        RpgAnimation::class
+    )
+
+    private val leftIdle by resource(
+        PUBLIC_ASSET,
+        buildRoleResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Tiger, Dir.Left, RoleAnimState.Idle),
+        RpgAnimation::class
+    )
+
+    private val leftMove by resource(
+        PUBLIC_ASSET,
+        buildRoleResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Tiger, Dir.Left, RoleAnimState.Move),
+        RpgAnimation::class
+    )
 
 
     private var animTime = 0f
@@ -43,9 +59,8 @@ object Player : UIComponent(CommonAssetLoader) {
     ) {
         val (dx, dy) = handleInput(delta)
         val moving = dx != 0f || dy != 0f
-        animTime += delta * 0.5f
+        animTime += delta
         if (moving) {
-            animTime += delta
             // 更新朝向：左/上朝左，右/下朝右
             facingLeft = when {
                 dx < 0f -> true
@@ -56,14 +71,16 @@ object Player : UIComponent(CommonAssetLoader) {
             val (newX, newY) = map.collisionMove(roleMapX, dx, roleMapY, dy)
             roleMapX = newX
             roleMapY = newY
-        } else {
-            animTime = 0f
         }
 
         val screenX = roleMapX - map.camX
         val screenY = roleMapY - map.camY
 
-        val anim = if (facingLeft) animLeft else animRight
+        val anim = if (facingLeft) {
+            if (moving) leftMove else leftIdle
+        } else {
+            if (moving) rightMove else rightIdle
+        }
         val frames = anim.getKeyFrame(animTime, true)
 
         batch.begin()

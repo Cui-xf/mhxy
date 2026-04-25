@@ -1,4 +1,4 @@
-package com.cc.screens.fight2.ui
+package com.cc.screens.fight.ui
 
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
@@ -9,7 +9,7 @@ import com.cc.render.Align
 import com.cc.render.wordArtString
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_H
 import com.cc.screens.AbstractScreen.Companion.VIRTUAL_W
-import com.cc.screens.fight2.model.FightModel
+import com.cc.screens.fight.model.FightModel
 import com.cc.ui.component.UIComponent
 
 class Tips(assetLoader: AssetLoader, private val fightModel: FightModel) : UIComponent(assetLoader) {

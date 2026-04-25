@@ -1,18 +1,18 @@
-package com.cc.screens.fight2.model
+package com.cc.screens.fight.model
 
 
 class FightModel {
     val ally = listOf(
-        Role(0, Side.ALLY, Type.PET, "p1", 0, 80, 60, 100, 100),
-        Role(1, Side.ALLY, Type.PET, "p1", 0, 80, 60, 100, 100),
-        Role(2, Side.ALLY, Type.PET, "p1", 0, 80, 60, 100, 100),
-        Role(3, Side.ALLY, Type.ROLE, "p1", 0, 80, 60, 100, 100),
-        Role(4, Side.ALLY, Type.ROLE, "p1", 0, 80, 60, 100, 100),
-        Role(5, Side.ALLY, Type.ROLE, "p1", 0, 80, 60, 100, 100),
+        Role(0, "p1", RoleJob.FCS, RoleGender.Boy, Appearance.Default, Side.ALLY, Type.PET, 80, 60, 100, 100),
+        Role(1, "p1", RoleJob.FCS, RoleGender.Boy, Appearance.Default, Side.ALLY, Type.PET, 80, 60, 100, 100),
+        Role(2, "p1", RoleJob.FCS, RoleGender.Boy, Appearance.Default, Side.ALLY, Type.PET, 80, 60, 100, 100),
+        Role(3, "p1", RoleJob.FCS, RoleGender.Boy, Appearance.Default, Side.ALLY, Type.ROLE, 80, 60, 100, 100),
+        Role(4, "p1", RoleJob.FCS, RoleGender.Boy, Appearance.Default, Side.ALLY, Type.ROLE, 80, 60, 100, 100),
+        Role(5, "p1", RoleJob.LG, RoleGender.Girl, Appearance.Default, Side.ALLY, Type.ROLE, 80, 60, 100, 100),
     )
     val enemy = listOf(
-        Role(3, Side.ENEMY, Type.PET, "p1", 0, 80, 60, 100, 100),
-        Role(5, Side.ENEMY, Type.PET, "p1", 0, 80, 60, 100, 100),
+        Role(3, "p1", RoleJob.FCS, RoleGender.Boy, Appearance.Default, Side.ENEMY, Type.ROLE, 80, 60, 100, 100),
+        Role(5, "p1", RoleJob.FCS, RoleGender.Boy, Appearance.Default, Side.ENEMY, Type.ROLE, 80, 60, 100, 100),
     )
 
     val self: Role = ally[5]

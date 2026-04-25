@@ -1,4 +1,4 @@
-package com.cc.screens.fight2.model
+package com.cc.screens.fight.model
 
 enum class SkillTarget { SINGLE_ENEMY, ALL_ENEMIES, SINGLE_ALLY, ALL_ALLIES }
 

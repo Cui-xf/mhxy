@@ -1,4 +1,4 @@
-package com.cc.screens.fight2.model
+package com.cc.screens.fight.model
 
 import kotlin.reflect.KClass
 

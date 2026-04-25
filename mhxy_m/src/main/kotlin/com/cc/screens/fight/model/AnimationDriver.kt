@@ -1,4 +1,4 @@
-package com.cc.screens.fight2.model
+package com.cc.screens.fight.model
 
 
 private const val MOVE_DURATION = 0.3f
@@ -62,7 +62,7 @@ class AttackAnimHandler : PhaseHandler {
     private var timer = 0f
 
     override fun onEnter(instr: RoleInstruction) {
-        instr.src.animState = RoleAnimState.ATTACKING
+        instr.src.animState = RoleAnimState.Attack
         timer = 0f
     }
 
@@ -72,7 +72,7 @@ class AttackAnimHandler : PhaseHandler {
     }
 
     override fun onExit(instr: RoleInstruction) {
-        instr.src.animState = RoleAnimState.IDLE
+        instr.src.animState = RoleAnimState.Idle
     }
 }
 
@@ -138,7 +138,7 @@ class HitHandler : PhaseHandler {
     override fun onEnter(instr: RoleInstruction) {
         targets = (instr.action as TargetableAction).target
         results = instr.result ?: emptyList()
-        targets.forEach { it.animState = RoleAnimState.HIT }
+        targets.forEach { it.animState = RoleAnimState.Hit }
         timer = 0f
         applied = false
     }
@@ -158,7 +158,7 @@ class HitHandler : PhaseHandler {
     }
 
     override fun onExit(instr: RoleInstruction) {
-        targets.forEach { it.animState = RoleAnimState.IDLE }
+        targets.forEach { it.animState = RoleAnimState.Idle }
     }
 }
 
