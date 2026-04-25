@@ -21,22 +21,39 @@ enum class RoleActionType(val label: String) {
     ESCAPE("逃跑"),
 }
 
-sealed class RoleAction(val type: RoleActionType) {
-    abstract class TargetableAction(type: RoleActionType) : RoleAction(type) {
-        lateinit var target: List<Role>
-    }
+interface TargetableAction {
+    var target: List<Role>
+}
 
-    class Attack : TargetableAction(RoleActionType.ATTACK) {
-        var skillId: Int? = null
+interface SkillEffectAction : TargetableAction {
+    fun getSkillId(): Int?
+}
+
+sealed class RoleAction(val type: RoleActionType) {
+    class Attack : RoleAction(RoleActionType.ATTACK), SkillEffectAction {
+        override lateinit var target: List<Role>
+        var skillId1: Int? = null
+        override fun getSkillId(): Int? {
+            return skillId1
+        }
     }
 
     object Defend : RoleAction(RoleActionType.DEFEND)
-    class Magic : TargetableAction(RoleActionType.MAGIC) {
+
+    class Magic : RoleAction(RoleActionType.MAGIC), SkillEffectAction {
+        override lateinit var target: List<Role>
         lateinit var skill: Skill
+        override fun getSkillId(): Int {
+            return skill.id
+        }
     }
 
-    class Item : TargetableAction(RoleActionType.ITEM) {
+    class Item : RoleAction(RoleActionType.ITEM), SkillEffectAction {
+        override lateinit var target: List<Role>
         lateinit var item: String
+        override fun getSkillId(): Int {
+            return 0
+        }
     }
 
     object Escape : RoleAction(RoleActionType.ESCAPE)

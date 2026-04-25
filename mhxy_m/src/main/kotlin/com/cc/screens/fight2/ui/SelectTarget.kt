@@ -35,7 +35,7 @@ class SelectTarget(
     }
 
     private fun selectTarget(batch: SpriteBatch, state: WaitSelectTarget) {
-        val aliveTargets = getAliveTargets(state)
+        val aliveTargets = getAliveTargets()
         if (aliveTargets.isEmpty()) return
         if (state.selectedTarget == null) {
             state.selectedTarget = aliveTargets.first()
@@ -66,14 +66,28 @@ class SelectTarget(
         }
     }
 
-    private fun getAliveTargets(state: WaitSelectTarget): List<Role> {
-        val skill = state as Skill
-        val candidates = when (skill.target) {
-            SkillTarget.SINGLE_ENEMY, SkillTarget.ALL_ENEMIES -> fightModel.enemy
-            SkillTarget.SINGLE_ALLY, SkillTarget.ALL_ALLIES -> fightModel.ally
+    private fun getAliveTargets(): List<Role> {
+        val action = fightModel.tempInstruction?.action ?: return emptyList<Role>()
+        when (action) {
+            is RoleAction.Attack -> {
+                return fightModel.enemy
+            }
+
+            is RoleAction.Item -> {
+                return fightModel.ally
+            }
+
+            is RoleAction.Magic -> {
+                val target = action.skill.target
+                return if (target == SkillTarget.SINGLE_ENEMY || target == SkillTarget.ALL_ENEMIES) {
+                    fightModel.enemy
+                } else {
+                    fightModel.ally
+                }
+            }
+
+            RoleAction.Defend, RoleAction.Escape -> throw RuntimeException("UN SUPPORT")
         }
-        val aliveTargets = candidates.filter { it.isAlive }
-        return aliveTargets
     }
 
 }

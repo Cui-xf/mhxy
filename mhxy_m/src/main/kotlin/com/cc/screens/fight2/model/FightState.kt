@@ -93,7 +93,7 @@ object WaitSelectItem : FightState({
 data class WaitSelectTarget(private val lastState: FightState) : FightState({
     r<Back> { lastState }
     r<SelectTarget> { action, model ->
-        (model.tempInstruction?.action as? RoleAction.TargetableAction)?.target = listOf(action.target)
+        (model.tempInstruction?.action as? TargetableAction)?.target = listOf(action.target)
         model.installInstruction()
     }
 }) {

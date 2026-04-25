@@ -42,8 +42,10 @@ class HitNumber(
         delta: Float,
     ) {
         val driver = (fightModel.state as? Animating ?: return).driver
-        val (targets, results) = driver.phase as? Phase.HIT ?: return
-        val drift = (driver.phaseTimer * DRIFT_SPEED).coerceAtMost(MAX_DRIFT)
+        val handler = driver.currentHandler as? HitHandler ?: return
+        val targets = handler.targets
+        val results = handler.results
+        val drift = (handler.timer * DRIFT_SPEED).coerceAtMost(MAX_DRIFT)
 
         val tex = fightnumRegion.texture
         val baseRegionX = fightnumRegion.regionX

@@ -8,15 +8,15 @@ import com.cc.asset.RpgAnimation
 import com.cc.render.drawAnimation
 import com.cc.screens.fight2.model.Animating
 import com.cc.screens.fight2.model.FightModel
-import com.cc.screens.fight2.model.Phase
+import com.cc.screens.fight2.model.SkillEffectHandler
 import com.cc.ui.component.UIComponent
 
 /**
  * 技能特效渲染组件。
  *
- * 监听 AnimationDriver.skillEffectRequest：
- *  - 有请求时在目标位置播放对应技能动画（不循环）
- *  - 动画播完后调用 driver.onSkillEffectDone() 通知驱动器继续
+ * 监听 AnimationDriver.currentHandler：
+ *  - 当前阶段为 SkillEffectHandler 时在目标位置播放对应技能动画（不循环）
+ *  - 动画播完后调用 handler.markDone() 通知驱动器继续
  */
 class SkillEffect(
     assetLoader: AssetLoader,
@@ -45,21 +45,21 @@ class SkillEffect(
         delta: Float
     ) {
         val driver = (fightModel.state as? Animating ?: return).driver
-        val (skillId, targetPos) = driver.phase as? Phase.SKILL_EFFECT ?: return
-        val timer = driver.phaseTimer
+        val handler = driver.currentHandler as? SkillEffectHandler ?: return
+        val timer = handler.timer
 
-        val anim = anims[skillId - 990]?.value
+        val anim = anims[handler.skillId - 990]?.value
             ?: anims[10]!!.value  // 找不到对应特效时用 id=10 兜底
         val frames = anim.getKeyFrame(timer, false)
 
         batch.begin()
-        targetPos.forEach {
+        handler.targets.forEach {
             batch.drawAnimation(frames, it.posX, it.posY)
         }
         batch.end()
 
         if (timer >= anim.animationDuration) {
-            driver.onSkillEffectDone()
+            handler.markDone()
         }
     }
 }

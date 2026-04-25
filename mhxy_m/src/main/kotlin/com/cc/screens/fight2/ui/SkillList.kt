@@ -45,7 +45,7 @@ class SkillList(assetLoader: AssetLoader, private val fightModel: FightModel) : 
         delta: Float
     ) {
         if (fightModel.state !is WaitSelectSkill) return
-        window.render(batch, sr, cx + border, cy + border, cw - border * 2, ch - border * 2, delta)
+        window.render(batch, sr, cx + border, cy + border, cw - border * 2, ch - border * 3 - 2, delta)
     }
 
     // 预加载所有技能图标，对应：
