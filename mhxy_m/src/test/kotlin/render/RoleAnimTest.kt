@@ -13,35 +13,35 @@ import com.cc.ui.component.UIComponent
 
 object RoleAnimTest : AbstractScreen() {
     val map = listOf(
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Left, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Left, Act.Idle),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Right, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Right, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Left, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Left, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Right, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Right, Act.Idle),
 
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.RedDragon, Dir.Left, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.RedDragon, Dir.Left, Act.Idle),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.RedDragon, Dir.Right, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.RedDragon, Dir.Right, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.RedDragon, Dir.Left, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.RedDragon, Dir.Left, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.RedDragon, Dir.Right, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.RedDragon, Dir.Right, Act.Idle),
 
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.SomersaultCloud, Dir.Left, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.SomersaultCloud, Dir.Left, Act.Idle),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.SomersaultCloud, Dir.Right, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.SomersaultCloud, Dir.Right, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.SomersaultCloud, Dir.Left, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.SomersaultCloud, Dir.Left, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.SomersaultCloud, Dir.Right, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.SomersaultCloud, Dir.Right, Act.Idle),
 
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Left, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Left, Act.Idle),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Right, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Right, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Left, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Left, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Right, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Right, Act.Idle),
 
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.RedDragon, Dir.Left, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.RedDragon, Dir.Left, Act.Idle),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.RedDragon, Dir.Right, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.RedDragon, Dir.Right, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.RedDragon, Dir.Left, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.RedDragon, Dir.Left, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.RedDragon, Dir.Right, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.RedDragon, Dir.Right, Act.Idle),
 
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.SomersaultCloud, Dir.Left, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.SomersaultCloud, Dir.Left, Act.Idle),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.SomersaultCloud, Dir.Right, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.SomersaultCloud, Dir.Right, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.SomersaultCloud, Dir.Left, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.SomersaultCloud, Dir.Left, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.SomersaultCloud, Dir.Right, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.SomersaultCloud, Dir.Right, Act.Idle),
     ).map {
         resource(PUBLIC_ASSET, "rpg/role/${it}", RpgAnimation::class)
     }
@@ -62,7 +62,7 @@ object RoleAnimTest : AbstractScreen() {
             }
 
             override fun preferredHeight(width: Float): Float {
-                return 2000f
+                return 2500f
             }
         })
     }
