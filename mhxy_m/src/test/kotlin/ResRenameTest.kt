@@ -1,70 +1,71 @@
 val dir = "E:\\WORK\\mhxy\\mhxy_m\\src\\main\\resources\\assets\\rpg\\role"
 fun main() {
     val res = listOf(
-        "ride_110_-2062569013.anim",
-        "ride_111_484868199.anim",
-        "ride_126_-2062568982.anim",
-        "ride_125_484869160.anim",
-
-        "ride_109_-2062539222.anim",
-        "ride_108_485791720.anim",
-        "ride_128_-2062539191.anim",
-        "ride_129_485792681.anim",
-
-        "ride_115_-2064416055.anim",
-        "ride_114_427609897.anim",
-        "ride_121_-2064416024.anim",
-        "ride_122_427610858.anim",
-
-        "ride_113_-2064386264.anim",
-        "ride_112_428533418.anim",
-        "ride_123_-2064386233.anim",
-        "ride_124_428534379.anim",
-        
-
-        "ride_107_-2063492534.anim",
-        "ride_118_456239048.anim",
-        "ride_130_-2063492503.anim",
-        "ride_127_456240009.anim",
+        "ride_189_-1461356842.anim",
+        "ride_190_1942576316.anim",
+        "ride_164_-1461356811.anim",
+        "ride_163_1942577277.anim",
 
 
-        "ride_116_-2063462743.anim",
-        "ride_117_457162569.anim",
-        "ride_120_-2063462712.anim",
-        "ride_119_457163530.anim",
+        "ride_191_-1461327051.anim",
+        "ride_192_1943499837.anim",
+        "ride_162_-1461327020.anim",
+        "ride_161_1943500798.anim",
+
+
+        "ride_197_-1462280363.anim",
+        "ride_198_1913947165.anim",
+        "ride_156_-1462280332.anim",
+        "ride_155_1913948126.anim",
+
+
+        "ride_199_-1462250572.anim",
+        "ride_200_1914870686.anim",
+        "ride_154_-1462250541.anim",
+        "ride_141_1914871647.anim",
+
+
+        "ride_193_-1463203884.anim",
+        "ride_194_1885318014.anim",
+        "ride_160_-1463203853.anim",
+        "ride_159_1885318975.anim",
+
+        "ride_195_-1463174093.anim",
+        "ride_196_1886241535.anim",
+        "ride_158_-1463174062.anim",
+        "ride_157_1886242496.anim",
     )
 
     val list = listOf(
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.IronWolf, Dir.Left, Act.Move),
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.IronWolf, Dir.Left, Act.Idle),
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.IronWolf, Dir.Right, Act.Move),
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.IronWolf, Dir.Right, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
 
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.IronWolf, Dir.Left, Act.Move),
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.IronWolf, Dir.Left, Act.Idle),
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.IronWolf, Dir.Right, Act.Move),
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.IronWolf, Dir.Right, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
 
-        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.IronWolf, Dir.Left, Act.Move),
-        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.IronWolf, Dir.Left, Act.Idle),
-        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.IronWolf, Dir.Right, Act.Move),
-        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.IronWolf, Dir.Right, Act.Idle),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
 
-        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.IronWolf, Dir.Left, Act.Move),
-        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.IronWolf, Dir.Left, Act.Idle),
-        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.IronWolf, Dir.Right, Act.Move),
-        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.IronWolf, Dir.Right, Act.Idle),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
 
+        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
+        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
+        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
+        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
 
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.IronWolf, Dir.Left, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.IronWolf, Dir.Left, Act.Idle),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.IronWolf, Dir.Right, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.IronWolf, Dir.Right, Act.Idle),
-
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.IronWolf, Dir.Left, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.IronWolf, Dir.Left, Act.Idle),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.IronWolf, Dir.Right, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.IronWolf, Dir.Right, Act.Idle),
+        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
+        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
+        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
+        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
     )
     res.zip(list).forEach { (oldName, newName) ->
         val oldFile = java.io.File(dir, oldName)
@@ -106,6 +107,7 @@ enum class Ride {
     RedWildebeest,  //红色角马
     Tiger,  //老虎
     IronWolf,//铁狼
+    Turtle, //乌龟
 }
 
 enum class Act { Idle, Move, Attack }

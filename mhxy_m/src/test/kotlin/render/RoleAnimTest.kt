@@ -1,5 +1,6 @@
 package render
 
+import buildResId
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
@@ -12,39 +13,35 @@ import com.cc.ui.component.UIComponent
 
 object RoleAnimTest : AbstractScreen() {
     val map = listOf(
-        "ride_110_-2062569013.anim",
-        "ride_111_484868199.anim",
-        "ride_126_-2062568982.anim",
-        "ride_125_484869160.anim",
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
 
-        "ride_109_-2062539222.anim",
-        "ride_108_485791720.anim",
-        "ride_128_-2062539191.anim",
-        "ride_129_485792681.anim",
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
 
-        "ride_115_-2064416055.anim",
-        "ride_114_427609897.anim",
-        "ride_121_-2064416024.anim",
-        "ride_122_427610858.anim",
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
 
-        "ride_113_-2064386264.anim",
-        "ride_112_428533418.anim",
-        "ride_123_-2064386233.anim",
-        "ride_124_428534379.anim",
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
 
+        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
+        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
+        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
+        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
 
-
-        "ride_107_-2063492534.anim",
-        "ride_118_456239048.anim",
-        "ride_130_-2063492503.anim",
-        "ride_127_456240009.anim",
-
-
-        "ride_116_-2063462743.anim",
-        "ride_117_457162569.anim",
-        "ride_120_-2063462712.anim",
-        "ride_119_457163530.anim",
-
+        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
+        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
+        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
+        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
     ).map {
         resource(PUBLIC_ASSET, "rpg/role/${it}", RpgAnimation::class)
     }
