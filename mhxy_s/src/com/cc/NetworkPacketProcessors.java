@@ -2108,6 +2108,7 @@ public final class NetworkPacketProcessors {
                         var6.d = var0.readByte();
                         var6.e = var0.readShort();
                         var6.f = var0.readUTF();
+                        System.out.println("[FIGHT 8206] side=" + var6.b + " actionType=" + var6.d + " animId=" + var6.e + " text=" + var6.f);
                     }
 
                     MainCanvas.gameSceneController.overlayDialogController.a(var4);

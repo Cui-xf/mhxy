@@ -4,6 +4,7 @@ package com.cc.screens.fight.model
 private const val MOVE_DURATION = 0.3f
 private const val ATTACK_DURATION = 0.5f
 private const val HIT_DURATION = 0.4f
+private const val HIT_RECOIL = 3f          // 受击后退像素距离
 private const val DEFEND_DURATION = 0.5f
 private const val ATTACK_OFFSET = 20f
 
@@ -42,9 +43,9 @@ class MoveToTargetHandler : PhaseHandler {
         val target = (instr.action as TargetableAction).target[0]
         srcStartX = src.posX
         srcStartY = src.posY
-        val signX = if (target.posX > src.posX) 1f else -1f
-        srcEndX = target.posX - signX * ATTACK_OFFSET
-        srcEndY = target.posY
+        val sign = if (target.posX > src.posX) 1f else -1f
+        srcEndX = target.posX - sign * ATTACK_OFFSET
+        srcEndY = target.posY - sign * ATTACK_OFFSET
         timer = 0f
     }
 
@@ -78,7 +79,7 @@ class AttackAnimHandler : PhaseHandler {
 
 /** 挂起等待 SkillEffect 组件播放完毕后回调 */
 class SkillEffectHandler(
-    val skillId: Int,
+    val resId: String,
     val targets: List<Role>,
 ) : PhaseHandler {
     var done = false
@@ -125,7 +126,7 @@ class MoveBackHandler(
     }
 }
 
-/** 受击：播放受击动画 + 应用伤害/治疗数值 */
+/** 受击：播放受击动画 + 应用伤害/治疗数值 + 后退插值动画 */
 class HitHandler : PhaseHandler {
     var timer = 0f
         private set
@@ -135,10 +136,14 @@ class HitHandler : PhaseHandler {
         private set
     private var applied = false
 
+    // 每个 target 的原始坐标
+    private var originPositions: List<Pair<Float, Float>> = emptyList()
+
     override fun onEnter(instr: RoleInstruction) {
         targets = (instr.action as TargetableAction).target
         results = instr.result ?: emptyList()
         targets.forEach { it.animState = RoleAnimState.Hit }
+        originPositions = targets.map { it.posX to it.posY }
         timer = 0f
         applied = false
     }
@@ -154,11 +159,34 @@ class HitHandler : PhaseHandler {
                 }
             }
         }
+        // 后退再归位插值：前半段往后退，后半段回到原位
+        val halfDuration = HIT_DURATION / 2f
+        targets.forEachIndexed { i, role ->
+            val (originX, originY) = originPositions[i]
+            // 友方(ALLY)向右下退，敌方(ENEMY)向左上退
+            val sign = if (role.side == Side.ALLY) 1f else -1f
+            val recoilX = originX + sign * HIT_RECOIL
+            val recoilY = originY + sign * HIT_RECOIL
+            if (timer <= halfDuration) {
+                val t = (timer / halfDuration).coerceIn(0f, 1f)
+                role.posX = lerp(originX, recoilX, t)
+                role.posY = lerp(originY, recoilY, t)
+            } else {
+                val t = ((timer - halfDuration) / halfDuration).coerceIn(0f, 1f)
+                role.posX = lerp(recoilX, originX, t)
+                role.posY = lerp(recoilY, originY, t)
+            }
+        }
         return timer >= HIT_DURATION
     }
 
     override fun onExit(instr: RoleInstruction) {
-        targets.forEach { it.animState = RoleAnimState.Idle }
+        // 确保归位到精确原始坐标
+        targets.forEachIndexed { i, role ->
+            role.posX = originPositions[i].first
+            role.posY = originPositions[i].second
+            role.animState = RoleAnimState.Idle
+        }
     }
 }
 
@@ -179,24 +207,25 @@ fun buildPhases(instr: RoleInstruction): List<PhaseHandler> {
         is RoleAction.Attack -> listOfNotNull(
             MoveToTargetHandler(),
             AttackAnimHandler(),
-            action.getSkillId()?.let { SkillEffectHandler(it, action.target) },
-            MoveBackHandler(instr.src.posX, instr.src.posY),
+            action.getResId()?.let { SkillEffectHandler(it, action.target) },
             HitHandler(),
+            MoveBackHandler(instr.src.posX, instr.src.posY),
         )
 
         is RoleAction.Magic -> listOfNotNull(
             AttackAnimHandler(),
-            SkillEffectHandler(action.getSkillId(), action.target),
+            SkillEffectHandler(action.getResId(), action.target),
             HitHandler(),
         )
 
         is RoleAction.Defend -> listOf(
+            SkillEffectHandler("defence.anim", listOf(instr.src)),
             DefendHandler(),
         )
 
-        is RoleAction.Item -> listOf(
+        is RoleAction.Item -> listOfNotNull(
             AttackAnimHandler(),
-            SkillEffectHandler(action.getSkillId(), action.target),
+            action.getResId()?.let { SkillEffectHandler(it, action.target) },
             HitHandler(),
         )
 

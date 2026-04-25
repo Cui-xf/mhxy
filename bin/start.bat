@@ -15,7 +15,7 @@
 @REM E:\WORK\mhxy\jdk8u472-b08\bin\java.exe  -cp "E:\WORK\mhxy\KEmulatorLite\KEmulator.jar" emulator.Emulator -jar "C:\Users\qaq\j2mewtk\2.5.2\apps\Games\bin\games.jar" -awt -lwj
 
 @REM 32位jdk 闭源模拟器
-E:\WORK\mhxy\jdk8u472-b08\bin\java.exe -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -cp "E:\WORK\mhxy\KEmulatorLite\KEmulator.jar" emulator.Emulator -jar "E:\WORK\mhxy\mhxy_s\bin\mhxy_s.jar" -awt -lwj
+E:\WORK\mhxy\jdk8u472-b08\bin\java.exe -Dsun.stdout.encoding=UTF-8 -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -cp "E:\WORK\mhxy\KEmulatorLite\KEmulator.jar" emulator.Emulator -jar "E:\WORK\mhxy\mhxy_s\bin\mhxy_s.jar" -awt -lwj
 
 
 @REM 反编译 java

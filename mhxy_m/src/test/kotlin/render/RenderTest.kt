@@ -22,7 +22,7 @@ fun main() {
 
 object TestGame : Game() {
     override fun create() {
-        setScreen(RoleAnimTest)
+        setScreen(SkillTest)
     }
 }
 

@@ -1,5 +1,7 @@
 package com.cc.screens.fight.model
 
+import kotlin.random.Random
+
 
 class FightModel {
     val ally = listOf(
@@ -37,6 +39,12 @@ fun FightModel.installInstruction(): FightState {
         }
     } else if (tempInstruction?.src == pet) {
         addInstruction()
+        val action = RoleAction.Attack()
+        action.target = listOf(ally[3])
+        tempInstruction = RoleInstruction(enemy[0], action)
+        tempInstruction?.result = listOf(Result(Field.HP, 10f))
+        fightInstruction += tempInstruction!!
+        tempInstruction = null
         WaitSync()
     } else {
         throw RuntimeException("无效指令")
@@ -44,24 +52,14 @@ fun FightModel.installInstruction(): FightState {
 }
 
 private fun FightModel.addInstruction() {
-//    val skill = (tempInstruction?.action as? RoleAction.Magic)?.skill
-//    if (skill != null) {
-//        val target = when (skill.target) {
-//            SkillTarget.SINGLE_ENEMY, SkillTarget.SINGLE_ALLY -> null
-//            SkillTarget.ALL_ENEMIES, SkillTarget.ALL_ALLIES -> {
-//                val role = if (target.side == Side.ALLY) {
-//                    ally
-//                } else {
-//                    enemy
-//                }
-//                val other = role.first { it.index != target.index }
-//                listOf(target, other)
-//            }
-//        }
-//        val result = target.map {
-//            Result(Field.HP, -Random.nextInt(30, 50) * skill.power)
-//        }
-//    }
+    (tempInstruction!!.action as? TargetableAction)?.target?.let {
+        val result = it.map {
+            Result(Field.HP, -Random.nextFloat() * 50)
+        }
+        tempInstruction!!.result = result
+    }
+
+
     fightInstruction += tempInstruction!!
     tempInstruction = null
 }

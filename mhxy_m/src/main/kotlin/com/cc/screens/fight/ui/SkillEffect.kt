@@ -8,6 +8,7 @@ import com.cc.asset.RpgAnimation
 import com.cc.render.drawAnimation
 import com.cc.screens.fight.model.Animating
 import com.cc.screens.fight.model.FightModel
+import com.cc.screens.fight.model.SKILLS
 import com.cc.screens.fight.model.SkillEffectHandler
 import com.cc.ui.component.UIComponent
 
@@ -24,16 +25,9 @@ class SkillEffect(
 ) : UIComponent(assetLoader) {
 
     // 按技能 id 逐一注册，id >= 10 才有特效（参考旧版 FightScreen）
-    private val anims: Map<Int, Lazy<RpgAnimation>> = mapOf(
-        10 to resource(PUBLIC_ASSET, "rpg/skill/10.anim", RpgAnimation::class),
-        12 to resource(PUBLIC_ASSET, "rpg/skill/12.anim", RpgAnimation::class),
-        13 to resource(PUBLIC_ASSET, "rpg/skill/13.anim", RpgAnimation::class),
-        14 to resource(PUBLIC_ASSET, "rpg/skill/14.anim", RpgAnimation::class),
-        16 to resource(PUBLIC_ASSET, "rpg/skill/16.anim", RpgAnimation::class),
-        20 to resource(PUBLIC_ASSET, "rpg/skill/20.anim", RpgAnimation::class),
-        21 to resource(PUBLIC_ASSET, "rpg/skill/21.anim", RpgAnimation::class),
-        22 to resource(PUBLIC_ASSET, "rpg/skill/22.anim", RpgAnimation::class),
-    )
+    private val anims: Map<String, Lazy<RpgAnimation>> = SKILLS.associate {
+        it.resId to resource(PUBLIC_ASSET, "rpg/skill/${it.resId}.anim", RpgAnimation::class)
+    }
 
     override fun render(
         batch: SpriteBatch,
@@ -48,8 +42,8 @@ class SkillEffect(
         val handler = driver.currentHandler as? SkillEffectHandler ?: return
         val timer = handler.timer
 
-        val anim = anims[handler.skillId - 990]?.value
-            ?: anims[10]!!.value  // 找不到对应特效时用 id=10 兜底
+        val anim = anims[handler.resId]?.value
+            ?: anims["10.anim"]!!.value  // 找不到对应特效时用 id=10 兜底
         val frames = anim.getKeyFrame(timer, false)
 
         batch.begin()

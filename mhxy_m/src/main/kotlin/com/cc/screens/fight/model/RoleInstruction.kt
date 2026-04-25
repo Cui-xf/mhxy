@@ -26,15 +26,15 @@ interface TargetableAction {
 }
 
 interface SkillEffectAction : TargetableAction {
-    fun getSkillId(): Int?
+    fun getResId(): String?
 }
 
 sealed class RoleAction(val type: RoleActionType) {
     class Attack : RoleAction(RoleActionType.ATTACK), SkillEffectAction {
         override lateinit var target: List<Role>
-        var skillId1: Int? = null
-        override fun getSkillId(): Int? {
-            return skillId1
+        var skillId: Int? = null
+        override fun getResId(): String? {
+            return null
         }
     }
 
@@ -43,16 +43,16 @@ sealed class RoleAction(val type: RoleActionType) {
     class Magic : RoleAction(RoleActionType.MAGIC), SkillEffectAction {
         override lateinit var target: List<Role>
         lateinit var skill: Skill
-        override fun getSkillId(): Int {
-            return skill.id
+        override fun getResId(): String {
+            return skill.resId
         }
     }
 
     class Item : RoleAction(RoleActionType.ITEM), SkillEffectAction {
         override lateinit var target: List<Role>
         lateinit var item: String
-        override fun getSkillId(): Int {
-            return 0
+        override fun getResId(): String? {
+            return null
         }
     }
 

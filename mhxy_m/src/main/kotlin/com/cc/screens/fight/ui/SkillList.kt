@@ -48,15 +48,9 @@ class SkillList(assetLoader: AssetLoader, private val fightModel: FightModel) : 
         window.render(batch, sr, cx + border, cy + border, cw - border * 2, ch - border * 3 - 2, delta)
     }
 
-    // 预加载所有技能图标，对应：
-    //   GameSceneController.java:16677-16684  getIconFrame0(short var0)
-    //     → MainCanvas.icon.getSpriteByNameFromCache(String.valueOf(var0))
-    //   GameSceneController.java:16686-16706  b(short[] var0) → Image[]
-    // 图标 ID 对应 GlobalStatus.skillCD2[]，此处简化用技能 id 直接对应
-    // 用 Lazy 委托注册加载但延迟取值，首次渲染时 assetManager 已完成加载（AbstractScreen.java:37-40）
-    private fun loadRes(): Map<Int, Lazy<TextureRegion>> {
+    private fun loadRes(): Map<String, Lazy<TextureRegion>> {
         return SKILLS.associate { skill ->
-            skill.id to resource(PUBLIC_ASSET, "rpg/icon/${skill.id}.pic", TextureRegion::class)
+            skill.resId to resource(PUBLIC_ASSET, "rpg/icon/${skill.icon}.pic", TextureRegion::class)
         }
     }
 
@@ -69,7 +63,7 @@ class SkillList(assetLoader: AssetLoader, private val fightModel: FightModel) : 
 
 class SkillTab(
     assetLoader: AssetLoader,
-    private val res: Map<Int, Lazy<TextureRegion>>,
+    private val res: Map<String, Lazy<TextureRegion>>,
 ) : UIComponent(assetLoader) {
     val skills = SKILLS
     private val rowHeight: Float = 16f + 2
@@ -110,7 +104,7 @@ class SkillTab(
                 sr.end()
             }
 
-            val icon = res[skill.id]!!.value
+            val icon = res[skill.resId]!!.value
             val iconX = rowX + 1f
             val iconSize = icon.regionHeight.toFloat()
             val iconY = rowY + (rowH - iconSize) / 2f

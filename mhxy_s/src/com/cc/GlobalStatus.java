@@ -5254,6 +5254,11 @@ public final class GlobalStatus {
                 skillCD2[i] = var0.readShort();
                 skillDesc1[i] = var0.readUTF();
                 skillDesc2[i] = var0.readUTF();
+
+                System.out.println("Skill: id=" + skillIds[i]
+                        + " name=" + skillNames[i]
+                        + " iconId=" + skillCD2[i]
+                        + " animId=" + skillIds[i]);
             }
         }
     }

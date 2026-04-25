@@ -24,9 +24,10 @@ class FightRole(
 
     // 攻击/受击动画
     //上方阵亡
-    val dead by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/skill/dead.anim", RpgAnimation::class)
+    val enemyDead by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/skill/dead.anim", RpgAnimation::class)
+
     //下方阵亡
-    val dead2 by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/skill/dead2.anim", RpgAnimation::class)
+    val allyDead by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/skill/dead2.anim", RpgAnimation::class)
 
     private var timer = 0f
     override fun render(
@@ -57,14 +58,19 @@ class FightRole(
 
     private fun Role.getAnim(timer: Float): List<Frame>? {
         return when {
-            !this.isAlive -> dead.getKeyFrame(timer, true)
+            !this.isAlive -> (if (side == Side.ENEMY) enemyDead else allyDead).getKeyFrame(timer, true)
             this.animState == RoleAnimState.Attack -> res[Triple(
                 this.side,
                 this.index,
                 this.animState
             )]!!.value.getKeyFrame(timer, true)
 
-            this.animState == RoleAnimState.Hit -> dead2.getKeyFrame(timer, true)
+            this.animState == RoleAnimState.Hit -> res[Triple(
+                this.side,
+                this.index,
+                RoleAnimState.Idle
+            )]!!.value.getKeyFrame(timer, true)
+
             else -> res[Triple(
                 this.side,
                 this.index,
