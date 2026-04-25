@@ -1,6 +1,5 @@
 package render
 
-import buildResId
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
@@ -13,35 +12,41 @@ import com.cc.ui.component.UIComponent
 
 object RoleAnimTest : AbstractScreen() {
     val map = listOf(
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
+        "ride_184_-2091198164.anim",
+        "ride_181_-402635482.anim",
+        "ride_169_-2091198133.anim",
+        "ride_172_-402634521.anim",
 
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
 
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
+        "ride_183_-2091168373.anim",
+        "ride_182_-401711961.anim",
+        "ride_170_-2091168342.anim",
+        "ride_171_-401711000.anim",
 
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
-        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
 
-        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
-        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
-        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
-        buildResId(RoleJob.JJF, RoleGender.Boy, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
+        "ride_185_-2093045206.anim",
+        "ride_180_-459893784.anim",
+        "ride_168_-2093045175.anim",
+        "ride_173_-459892823.anim",
 
-        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Move),
-        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Left, Act.Idle),
-        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Move),
-        buildResId(RoleJob.JJF, RoleGender.Girl, Appearance.Default, Ride.Turtle, Dir.Right, Act.Idle),
+
+        "ride_186_-2093015415.anim",
+        "ride_179_-458970263.anim",
+        "ride_167_-2093015384.anim",
+        "ride_174_-458969302.anim",
+
+
+
+        "ride_188_-2092121685.anim",
+        "ride_177_-431264633.anim",
+        "ride_176_-2092121654.anim",
+        "ride_165_-431263672.anim",
+
+
+        "ride_187_-2092091894.anim",
+        "ride_178_-430341112.anim",
+        "ride_166_-2092091863.anim",
+        "ride_175_-430340151.anim",
     ).map {
         resource(PUBLIC_ASSET, "rpg/role/${it}", RpgAnimation::class)
     }
@@ -78,8 +83,8 @@ object RoleAnimTest : AbstractScreen() {
         batch.begin()
         for (lazy in map) {
             val frame = lazy.value.getKeyFrame(timer, true)
-            dY += frame[0].textureRegion.texture.height * 1.3f
-            batch.drawAnimation(frame, VIRTUAL_W / 2, cy + dY)
+            dY += 80f
+            batch.drawAnimation(frame, VIRTUAL_W / 2, cy + dY + 100)
         }
         batch.end()
         dY = 0f
