@@ -12,39 +12,39 @@ import com.cc.ui.component.UIComponent
 
 object RoleAnimTest : AbstractScreen() {
     val map = listOf(
+        "ride_110_-2062569013.anim",
+        "ride_111_484868199.anim",
+        "ride_126_-2062568982.anim",
+        "ride_125_484869160.anim",
 
-        "ride_151_-110029281.anim",
-        "ride_150_884057747.anim",
-        "ride_131_-110029250.anim",
-        "ride_132_884058708.anim",
+        "ride_109_-2062539222.anim",
+        "ride_108_485791720.anim",
+        "ride_128_-2062539191.anim",
+        "ride_129_485792681.anim",
 
-        "ride_152_-109999490.anim",
-        "ride_153_884981268.anim",
-        "ride_106_-109999459.anim",
-        "ride_105_884982229.anim",
+        "ride_115_-2064416055.anim",
+        "ride_114_427609897.anim",
+        "ride_121_-2064416024.anim",
+        "ride_122_427610858.anim",
 
-
-        "ride_146_-111876323.anim",
-        "ride_147_826799445.anim",
-        "ride_136_-111876292.anim",
-        "ride_135_826800406.anim",
-
-
-        "ride_148_-111846532.anim",
-        "ride_149_827722966.anim",
-        "ride_134_-111846501.anim",
-        "ride_133_827723927.anim",
-
-        "ride_142_-110952802.anim",
-        "ride_143_855428596.anim",
-        "ride_140_-110952771.anim",
-        "ride_139_855429557.anim",
+        "ride_113_-2064386264.anim",
+        "ride_112_428533418.anim",
+        "ride_123_-2064386233.anim",
+        "ride_124_428534379.anim",
 
 
-        "ride_145_-110923011.anim",
-        "ride_144_856352117.anim",
-        "ride_137_-110922980.anim",
-        "ride_138_856353078.anim",
+
+        "ride_107_-2063492534.anim",
+        "ride_118_456239048.anim",
+        "ride_130_-2063492503.anim",
+        "ride_127_456240009.anim",
+
+
+        "ride_116_-2063462743.anim",
+        "ride_117_457162569.anim",
+        "ride_120_-2063462712.anim",
+        "ride_119_457163530.anim",
+
     ).map {
         resource(PUBLIC_ASSET, "rpg/role/${it}", RpgAnimation::class)
     }
