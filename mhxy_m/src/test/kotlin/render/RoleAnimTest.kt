@@ -1,8 +1,5 @@
 package render
 
-import Act
-import Appearance
-import buildResId
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
@@ -15,16 +12,40 @@ import com.cc.ui.component.UIComponent
 
 object RoleAnimTest : AbstractScreen() {
     val map = listOf(
-        "ride_89_-2033939862.anim",
-        "ride_88_1372371880.anim",
-        "ride_96_-2033939831.anim",
-        "ride_97_1372372841.anim",
 
-        "ride_90_-2033910071.anim",
-        "ride_91_1373295401.anim",
-        "ride_95_1373296362.anim",
-        "ride_94_-2033910040.anim",
-        ).map {
+        "ride_151_-110029281.anim",
+        "ride_150_884057747.anim",
+        "ride_131_-110029250.anim",
+        "ride_132_884058708.anim",
+
+        "ride_152_-109999490.anim",
+        "ride_153_884981268.anim",
+        "ride_106_-109999459.anim",
+        "ride_105_884982229.anim",
+
+
+        "ride_146_-111876323.anim",
+        "ride_147_826799445.anim",
+        "ride_136_-111876292.anim",
+        "ride_135_826800406.anim",
+
+
+        "ride_148_-111846532.anim",
+        "ride_149_827722966.anim",
+        "ride_134_-111846501.anim",
+        "ride_133_827723927.anim",
+
+        "ride_142_-110952802.anim",
+        "ride_143_855428596.anim",
+        "ride_140_-110952771.anim",
+        "ride_139_855429557.anim",
+
+
+        "ride_145_-110923011.anim",
+        "ride_144_856352117.anim",
+        "ride_137_-110922980.anim",
+        "ride_138_856353078.anim",
+    ).map {
         resource(PUBLIC_ASSET, "rpg/role/${it}", RpgAnimation::class)
     }
 
