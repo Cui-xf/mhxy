@@ -1,0 +1,74 @@
+package render
+
+import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
+import com.cc.asset.RpgAnimation
+import com.cc.render.drawAnimation
+import com.cc.screens.AbstractScreen
+import com.cc.ui.component.ScrollPanel
+import com.cc.ui.component.UIComponent
+
+
+object RoleAnimTest : AbstractScreen() {
+    val map = listOf(
+        "1100.anim",
+        "11004.anim",
+        "1101.anim",
+        "11014.anim",
+
+        "ride_34_-1203922835.anim",
+        "ride_35_-1978498811.anim",
+        "ride_37_-1203921874.anim",
+        "ride_36_-1978498780.anim",
+
+        "ride_58_-2007127962.anim",
+        "ride_33_-2091426516.anim",
+        "ride_59_-2007127931.anim",
+        "ride_60_-2091425555.anim",
+
+    ).map {
+        resource(PUBLIC_ASSET, "rpg/role/${it}", RpgAnimation::class)
+    }
+
+
+    private val sc = ScrollPanel(this.assetLoader) {
+        add(object : UIComponent(assetLoader) {
+            override fun render(
+                batch: SpriteBatch,
+                sr: ShapeRenderer,
+                cx: Float,
+                cy: Float,
+                cw: Float,
+                ch: Float,
+                delta: Float
+            ) {
+                anim(delta, cy)
+            }
+
+            override fun preferredHeight(width: Float): Float {
+                return 2000f
+            }
+        })
+    }
+
+    private var timer = 0f
+    private var dY = 0f
+    override fun update(delta: Float) {
+        sc.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
+    }
+
+    private fun anim(delta: Float, cy: Float) {
+        timer += delta
+        batch.begin()
+        for (lazy in map) {
+            val frame = lazy.value.getKeyFrame(timer, true)
+            dY += frame[0].textureRegion.texture.height * 1.3f
+            batch.drawAnimation(frame, VIRTUAL_W / 2, cy + dY)
+        }
+        batch.end()
+        dY = 0f
+    }
+}
+
+
