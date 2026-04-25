@@ -1,7 +1,7 @@
 import java.io.File
 
 val str = listOf(
-    "17_722602610.pic",
+    "13_799123196.pic",
 )
 
 val file = "${destRoot}/assets/rpg/role"

@@ -1,5 +1,6 @@
 package render
 
+import buildResId
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
@@ -12,21 +13,35 @@ import com.cc.ui.component.UIComponent
 
 object RoleAnimTest : AbstractScreen() {
     val map = listOf(
-        "1100.anim",
-        "11004.anim",
-        "1101.anim",
-        "11014.anim",
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Left, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Left, Act.Idle),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Right, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Right, Act.Idle),
 
-        "ride_34_-1203922835.anim",
-        "ride_35_-1978498811.anim",
-        "ride_37_-1203921874.anim",
-        "ride_36_-1978498780.anim",
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.RedDragon, Dir.Left, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.RedDragon, Dir.Left, Act.Idle),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.RedDragon, Dir.Right, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.RedDragon, Dir.Right, Act.Idle),
 
-        "ride_58_-2007127962.anim",
-        "ride_33_-2091426516.anim",
-        "ride_59_-2007127931.anim",
-        "ride_60_-2091425555.anim",
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.SomersaultCloud, Dir.Left, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.SomersaultCloud, Dir.Left, Act.Idle),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.SomersaultCloud, Dir.Right, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Boy, Appearance.Default, Ride.SomersaultCloud, Dir.Right, Act.Idle),
 
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Left, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Left, Act.Idle),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Right, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Right, Act.Idle),
+
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.RedDragon, Dir.Left, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.RedDragon, Dir.Left, Act.Idle),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.RedDragon, Dir.Right, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.RedDragon, Dir.Right, Act.Idle),
+
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.SomersaultCloud, Dir.Left, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.SomersaultCloud, Dir.Left, Act.Idle),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.SomersaultCloud, Dir.Right, Act.Move),
+        buildResId(RoleJob.FCS, RoleGender.Girl, Appearance.Default, Ride.SomersaultCloud, Dir.Right, Act.Idle),
     ).map {
         resource(PUBLIC_ASSET, "rpg/role/${it}", RpgAnimation::class)
     }
