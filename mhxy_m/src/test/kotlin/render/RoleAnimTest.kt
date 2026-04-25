@@ -15,16 +15,16 @@ import com.cc.ui.component.UIComponent
 
 object RoleAnimTest : AbstractScreen() {
     val map = listOf(
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Up, Act.Idle),
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Up, Act.Attack),
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Down, Act.Idle),
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Down, Act.Attack),
+        "ride_89_-2033939862.anim",
+        "ride_88_1372371880.anim",
+        "ride_96_-2033939831.anim",
+        "ride_97_1372372841.anim",
 
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Up, Act.Idle),
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Up, Act.Attack),
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Down, Act.Idle),
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Down, Act.Attack),
-    ).map {
+        "ride_90_-2033910071.anim",
+        "ride_91_1373295401.anim",
+        "ride_95_1373296362.anim",
+        "ride_94_-2033910040.anim",
+        ).map {
         resource(PUBLIC_ASSET, "rpg/role/${it}", RpgAnimation::class)
     }
 

@@ -1,27 +1,27 @@
 val dir = "E:\\WORK\\mhxy\\mhxy_m\\src\\main\\resources\\assets\\rpg\\role"
 fun main() {
     val res = listOf(
-        "f30011.anim",
-        "f30012.anim",
-        "f30111.anim",
-        "f30112.anim",
+        "ride_89_-2033939862.anim",
+        "ride_88_1372371880.anim",
+        "ride_96_-2033939831.anim",
+        "ride_97_1372372841.anim",
 
-        "f31011.anim",
-        "f31012.anim",
-        "f31111.anim",
-        "f31112.anim",
+        "ride_90_-2033910071.anim",
+        "ride_91_1373295401.anim",
+        "ride_95_1373296362.anim",
+        "ride_94_-2033910040.anim",
     )
 
     val list = listOf(
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Up, Act.Idle),
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Up, Act.Attack),
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Down, Act.Idle),
-        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.None, Dir.Down, Act.Attack),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.RedWildebeest, Dir.Left, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.RedWildebeest, Dir.Left, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.RedWildebeest, Dir.Right, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Boy, Appearance.Default, Ride.RedWildebeest, Dir.Right, Act.Idle),
 
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Up, Act.Idle),
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Up, Act.Attack),
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Down, Act.Idle),
-        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.None, Dir.Down, Act.Attack),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.RedWildebeest, Dir.Left, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.RedWildebeest, Dir.Left, Act.Idle),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.RedWildebeest, Dir.Right, Act.Move),
+        buildResId(RoleJob.LG, RoleGender.Girl, Appearance.Default, Ride.RedWildebeest, Dir.Right, Act.Idle),
     )
     res.zip(list).forEach { (oldName, newName) ->
         val oldFile = java.io.File(dir, oldName)
@@ -57,7 +57,10 @@ enum class Appearance {
 enum class Dir { Up, Down, Left, Right }
 
 enum class Ride {
-    None, RedDragon, SomersaultCloud
+    None,   //无
+    RedDragon,//红色龙
+    SomersaultCloud,//筋斗云
+    RedWildebeest,  //红色角马
 }
 
 enum class Act { Idle, Move, Attack }
