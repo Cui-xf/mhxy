@@ -30,7 +30,7 @@ data class Role(
 
 enum class Side { ALLY, ENEMY }
 enum class Type { ROLE, PET }
-enum class RoleAnimState { Idle, Move, Attack, Hit }
+enum class RoleAnimState { Idle, Move, Attack, Hit, Escape }
 enum class RoleJob { JJF, FCS, LG }
 enum class RoleGender { Boy, Girl }
 enum class Appearance { Default }

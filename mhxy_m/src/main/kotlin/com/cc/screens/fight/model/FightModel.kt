@@ -42,7 +42,7 @@ fun FightModel.installInstruction(): FightState {
         val action = RoleAction.Attack()
         action.target = listOf(ally[3])
         tempInstruction = RoleInstruction(enemy[0], action)
-        tempInstruction?.result = listOf(Result(Field.HP, 10f))
+        tempInstruction?.result = listOf(Hurt(10))
         fightInstruction += tempInstruction!!
         tempInstruction = null
         WaitSync()
@@ -53,8 +53,12 @@ fun FightModel.installInstruction(): FightState {
 
 private fun FightModel.addInstruction() {
     (tempInstruction!!.action as? TargetableAction)?.target?.let {
-        val result = it.map {
-            Result(Field.HP, -Random.nextFloat() * 50)
+        val result = it.map { role ->
+            if (role.side == Side.ALLY) {
+                Restore(Field.HP, Random.nextInt(0, 50))
+            } else {
+                Hurt(Random.nextInt(0, 10))
+            }
         }
         tempInstruction!!.result = result
     }

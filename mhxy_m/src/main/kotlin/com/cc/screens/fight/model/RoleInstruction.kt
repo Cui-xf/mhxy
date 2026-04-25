@@ -59,10 +59,15 @@ sealed class RoleAction(val type: RoleActionType) {
     object Escape : RoleAction(RoleActionType.ESCAPE)
 }
 
-data class Result(
-    val field: Field,
-    val value: Float,
-)
+sealed interface Result
+
+//伤害
+data class Hurt(val volume: Int) : Result
+
+//回复
+data class Restore(val field: Field, val volume: Int) : Result
+
+data class Seal(val num: String) : Result
 
 enum class Field {
     HP, MP

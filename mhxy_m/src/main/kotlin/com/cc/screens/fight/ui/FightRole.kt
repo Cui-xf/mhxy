@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory
+import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.asset.Frame
 import com.cc.asset.RpgAnimation
 import com.cc.asset.role.buildRoleResId
@@ -22,12 +23,14 @@ class FightRole(
     //血条装饰
     private val rim by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/publicUI/rim.pic", TextureRegion::class)
 
-    // 攻击/受击动画
     //上方阵亡
     val enemyDead by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/skill/dead.anim", RpgAnimation::class)
 
     //下方阵亡
     val allyDead by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/skill/dead2.anim", RpgAnimation::class)
+
+    //逃跑
+    val quit by resource(PUBLIC_ASSET, "rpg/skill/quit.anim", RpgAnimation::class)
 
     private var timer = 0f
     override fun render(
@@ -71,6 +74,7 @@ class FightRole(
                 RoleAnimState.Idle
             )]!!.value.getKeyFrame(timer, true)
 
+            this.animState == RoleAnimState.Escape -> quit.getKeyFrame(timer, true)
             else -> res[Triple(
                 this.side,
                 this.index,

@@ -6,6 +6,7 @@ private const val ATTACK_DURATION = 0.5f
 private const val HIT_DURATION = 0.4f
 private const val HIT_RECOIL = 3f          // 受击后退像素距离
 private const val DEFEND_DURATION = 0.5f
+private const val ESCAPE_DURATION = 0.5f
 private const val ATTACK_OFFSET = 20f
 
 // ─── PhaseHandler 接口 ───────────────────────────────────────────────
@@ -153,28 +154,38 @@ class HitHandler : PhaseHandler {
         if (!applied) {
             applied = true
             targets.zip(results).forEach { (role, result) ->
-                when (result.field) {
-                    Field.HP -> role.hp = (role.hp + result.value.toInt()).coerceIn(0, role.maxHp)
-                    Field.MP -> role.mp = (role.mp + result.value.toInt()).coerceIn(0, role.maxMp)
+                when (result) {
+                    is Hurt -> role.hp = (role.hp - result.volume).coerceIn(0, role.maxHp)
+                    is Restore -> {
+                        when (result.field) {
+                            Field.HP -> role.hp = (role.hp + result.volume).coerceIn(0, role.maxHp)
+                            Field.MP -> role.mp = (role.mp + result.volume).coerceIn(0, role.maxMp)
+                        }
+                    }
+
+                    is Seal -> TODO()
                 }
+
             }
         }
         // 后退再归位插值：前半段往后退，后半段回到原位
         val halfDuration = HIT_DURATION / 2f
         targets.forEachIndexed { i, role ->
-            val (originX, originY) = originPositions[i]
-            // 友方(ALLY)向右下退，敌方(ENEMY)向左上退
-            val sign = if (role.side == Side.ALLY) 1f else -1f
-            val recoilX = originX + sign * HIT_RECOIL
-            val recoilY = originY + sign * HIT_RECOIL
-            if (timer <= halfDuration) {
-                val t = (timer / halfDuration).coerceIn(0f, 1f)
-                role.posX = lerp(originX, recoilX, t)
-                role.posY = lerp(originY, recoilY, t)
-            } else {
-                val t = ((timer - halfDuration) / halfDuration).coerceIn(0f, 1f)
-                role.posX = lerp(recoilX, originX, t)
-                role.posY = lerp(recoilY, originY, t)
+            if (results[i] is Hurt) {
+                val (originX, originY) = originPositions[i]
+                // 友方(ALLY)向右下退，敌方(ENEMY)向左上退
+                val sign = if (role.side == Side.ALLY) 1f else -1f
+                val recoilX = originX + sign * HIT_RECOIL
+                val recoilY = originY + sign * HIT_RECOIL
+                if (timer <= halfDuration) {
+                    val t = (timer / halfDuration).coerceIn(0f, 1f)
+                    role.posX = lerp(originX, recoilX, t)
+                    role.posY = lerp(originY, recoilY, t)
+                } else {
+                    val t = ((timer - halfDuration) / halfDuration).coerceIn(0f, 1f)
+                    role.posX = lerp(recoilX, originX, t)
+                    role.posY = lerp(recoilY, originY, t)
+                }
             }
         }
         return timer >= HIT_DURATION
@@ -200,6 +211,23 @@ class DefendHandler : PhaseHandler {
     }
 }
 
+class EscapeHandler : PhaseHandler {
+    private var timer = 0f
+
+    override fun onEnter(instr: RoleInstruction) {
+        instr.src.animState = RoleAnimState.Escape
+    }
+
+    override fun onExit(instr: RoleInstruction) {
+        instr.src.animState = RoleAnimState.Idle
+    }
+
+    override fun update(delta: Float, instr: RoleInstruction): Boolean {
+        timer += delta
+        return timer >= ESCAPE_DURATION
+    }
+}
+
 // ─── 流程编排：工厂方法 ────────────────────────────────────────────
 
 fun buildPhases(instr: RoleInstruction): List<PhaseHandler> {
@@ -219,7 +247,7 @@ fun buildPhases(instr: RoleInstruction): List<PhaseHandler> {
         )
 
         is RoleAction.Defend -> listOf(
-            SkillEffectHandler("defence.anim", listOf(instr.src)),
+            SkillEffectHandler("defence", listOf(instr.src)),
             DefendHandler(),
         )
 
@@ -229,7 +257,9 @@ fun buildPhases(instr: RoleInstruction): List<PhaseHandler> {
             HitHandler(),
         )
 
-        is RoleAction.Escape -> emptyList()
+        is RoleAction.Escape -> listOf(
+            EscapeHandler()
+        )
     }
 }
 

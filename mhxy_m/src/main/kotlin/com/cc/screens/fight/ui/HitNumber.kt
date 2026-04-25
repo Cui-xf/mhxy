@@ -1,5 +1,6 @@
 package com.cc.screens.fight.ui
 
+import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
@@ -7,6 +8,7 @@ import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.screens.fight.model.*
 import com.cc.ui.component.UIComponent
+import kotlin.math.abs
 
 /**
  * 战斗命中数字显示组件
@@ -53,7 +55,21 @@ class HitNumber(
         batch.begin()
         targets.forEachIndexed { i, role ->
             val result = results.getOrNull(i) ?: return@forEachIndexed
-            drawNumber(batch, tex, baseRegionX, baseRegionY, result, role.posX, role.posY, drift)
+            val (rowY, value) = when (result) {
+                is Hurt -> (baseRegionY + 10) to -result.volume
+                is Restore -> (baseRegionY + if (result.field == Field.HP) 10 else 0) to result.volume
+                is Seal -> TODO()
+            }
+            drawNumber(
+                batch,
+                tex,
+                baseRegionX,
+                rowY,
+                role.posX,
+                role.posY,
+                value,
+                drift,
+            )
         }
         batch.end()
     }
@@ -64,21 +80,18 @@ class HitNumber(
      */
     private fun drawNumber(
         batch: SpriteBatch,
-        tex: com.badlogic.gdx.graphics.Texture,
+        tex: Texture,
         baseRegionX: Int,
-        baseRegionY: Int,
-        result: Result,
+        rowY: Int,
         x: Float,
         y: Float,
-        drift: Float,
+        value: Int,
+        drift: Float
     ) {
-        val value = result.value.toInt()
-        val absValue = if (value < 0) -value else value
-        // HP变化用白色行（y=10），MP变化用蓝色行（y=0）
-        val rowY = baseRegionY + if (result.field == Field.HP) 10 else 0
 
         // 计算数字位数（至少1位）
         var digitCount = 0
+        val absValue = abs(value)
         var tmp = absValue
         do {
             tmp /= 10; digitCount++

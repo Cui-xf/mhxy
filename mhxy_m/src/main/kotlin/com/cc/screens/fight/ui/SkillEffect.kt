@@ -25,8 +25,12 @@ class SkillEffect(
 ) : UIComponent(assetLoader) {
 
     // 按技能 id 逐一注册，id >= 10 才有特效（参考旧版 FightScreen）
-    private val anims: Map<String, Lazy<RpgAnimation>> = SKILLS.associate {
+    private val anims = SKILLS.associate {
         it.resId to resource(PUBLIC_ASSET, "rpg/skill/${it.resId}.anim", RpgAnimation::class)
+    }.toMutableMap()
+
+    init {
+        anims["defence"] = resource(PUBLIC_ASSET, "rpg/skill/defence.anim", RpgAnimation::class)
     }
 
     override fun render(
@@ -43,17 +47,17 @@ class SkillEffect(
         val timer = handler.timer
 
         val anim = anims[handler.resId]?.value
-            ?: anims["10.anim"]!!.value  // 找不到对应特效时用 id=10 兜底
-        val frames = anim.getKeyFrame(timer, false)
+        anim?.let {
+            val frames = anim.getKeyFrame(timer, false)
 
-        batch.begin()
-        handler.targets.forEach {
-            batch.drawAnimation(frames, it.posX, it.posY)
-        }
-        batch.end()
-
-        if (timer >= anim.animationDuration) {
-            handler.markDone()
-        }
+            batch.begin()
+            handler.targets.forEach {
+                batch.drawAnimation(frames, it.posX, it.posY)
+            }
+            batch.end()
+            if (timer >= anim.animationDuration) {
+                handler.markDone()
+            }
+        } ?: handler.markDone()
     }
 }
