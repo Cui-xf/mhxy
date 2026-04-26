@@ -21,7 +21,7 @@ class FightModel {
     val pet: Role? = ally[2]
 
     var state: FightState = WaitAction(self)
-    val fightInstruction = mutableListOf<RoleInstruction>()
+    val fightInstruction = mutableListOf<Instruction>()
 
     var tempInstruction: RoleInstruction? = null
 
@@ -30,6 +30,13 @@ class FightModel {
 
 //模拟服务器装配指令
 fun FightModel.installInstruction(): FightState {
+    if (tempInstruction?.action is RoleAction.Escape) {
+        fightInstruction += tempInstruction!!
+        fightInstruction += FinishInstruction
+        tempInstruction = null
+        return WaitSync()
+    }
+
     return if (tempInstruction?.src == self) {
         addInstruction()
         if (pet != null) {
@@ -62,7 +69,6 @@ private fun FightModel.addInstruction() {
         }
         tempInstruction!!.result = result
     }
-
 
     fightInstruction += tempInstruction!!
     tempInstruction = null

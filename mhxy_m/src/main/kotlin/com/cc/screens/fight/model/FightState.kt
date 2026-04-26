@@ -9,7 +9,7 @@ data class RoleActionButton(val roleActionType: RoleActionType) : Action
 data class SelectSkill(val skill: Skill) : Action
 data class SelectItem(val item: ItemData) : Action
 data class SelectTarget(val target: Role) : Action
-data class PlaybackAnimation(val instructions: List<RoleInstruction>) : Action
+data class PlaybackAnimation(val instructions: List<Instruction>) : Action
 object AnimationDone : Action
 object EndTheBattle : Action
 
