@@ -10,6 +10,7 @@ import com.cc.MhxyGame
 import com.cc.screens.AbstractScreen
 import com.cc.screens.fight.FightScreen
 import com.cc.screens.game.ui.GameItemList
+import com.cc.screens.game.ui.MenuPopup
 
 class GameScreen : AbstractScreen() {
     private val screenMap = ScreenMap(this.assetLoader)
@@ -25,6 +26,7 @@ class GameScreen : AbstractScreen() {
 
     //背包
     private val itemList = autoDispose { GameItemList(this.assetLoader) }
+    private val menuPopup = autoDispose { MenuPopup(this.assetLoader) }
     val monsters = mutableListOf(
         Monster(this.assetLoader, 1, screenMap, player, 300f, 300f),
         Monster(this.assetLoader, 2, screenMap, player, 500f, 200f),
@@ -50,12 +52,14 @@ class GameScreen : AbstractScreen() {
         hud.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
         sideMenu.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
         itemList.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
+        menuPopup.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
     }
 
     private fun handleMenuClick(click: SideMenu.MenuClick) {
         when (click.id) {
-            "map" -> miniMap.toggle()
-            "bag" -> itemList.toggle()
+            "map"  -> miniMap.toggle()
+            "bag"  -> itemList.toggle()
+            "menu" -> menuPopup.toggle()
         }
     }
 
