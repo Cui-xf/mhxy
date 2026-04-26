@@ -46,7 +46,7 @@ object Player : UIComponent(CommonAssetLoader) {
     private var facingLeft = false
     private val speed = 80f
     var roleMapX = 300f
-    var roleMapY = 320f
+    var roleMapY = 500f
 
     override fun render(
         batch: SpriteBatch,

@@ -7,7 +7,7 @@ sealed interface Action
 object Back : Action //返回
 data class RoleActionButton(val roleActionType: RoleActionType) : Action
 data class SelectSkill(val skill: Skill) : Action
-data class SelectItem(val item: String) : Action
+data class SelectItem(val item: ItemData) : Action
 data class SelectTarget(val target: Role) : Action
 data class PlaybackAnimation(val instructions: List<RoleInstruction>) : Action
 object AnimationDone : Action

@@ -11,6 +11,8 @@ import com.cc.render.*
 class TabGroup(
     assetLoader: AssetLoader,
     private val labels: List<String>,
+    /** 固定总高度（含tab栏+内容+border），为null则填满父容器 */
+    private val fixedHeight: Float? = null,
     block: UIContainer.() -> Unit,
 ) : UIContainer(assetLoader, block) {
 
@@ -32,21 +34,26 @@ class TabGroup(
         ch: Float,
         delta: Float
     ) {
+        val h = fixedHeight ?: ch
         val (top, bottom, left, right) = border()
         for ((index, child) in children.withIndex()) {
             if (index == selectedIndex) {
-                child.render(batch, sr, cx + left, cy + top, cw - left - right, ch - top - bottom, delta)
+                child.render(batch, sr, cx + left, cy + top, cw - left - right, h - top - bottom, delta)
             }
         }
     }
 
     override fun renderSelf(batch: SpriteBatch, sr: ShapeRenderer, cx: Float, cy: Float, cw: Float, ch: Float) {
+        val h = fixedHeight ?: ch
         val tabW = (cw + tabSize - 1) / tabSize //共用间隙
         // 先处理触摸
         for (i in labels.indices) {
             val tabX = cx + i * (tabW - 1) //共用间隙
             if (TouchContext.inTouch(tabX, cy, tabW, tabBarHeight)) {
-                selectedIndex = i
+                if (selectedIndex != i) {
+                    selectedIndex = i
+                    emit(TabChange(i))
+                }
             }
         }
         // 先绘制未选中的tab
@@ -68,8 +75,8 @@ class TabGroup(
             val path = listOf(
                 Pair(tabX, contentTop),
                 Pair(cx, contentTop),
-                Pair(cx, cy + ch),
-                Pair(cx + cw, cy + ch),
+                Pair(cx, cy + h),
+                Pair(cx + cw, cy + h),
                 Pair(cx + cw, contentTop),
                 Pair(tabX + tabW, contentTop),
                 Pair(tabX + tabW, cy),
@@ -86,3 +93,5 @@ class TabGroup(
 
     override fun border(): Border = Border(tabBarHeight, 3f, 3f, 3f)
 }
+
+data class TabChange(val index: Int)

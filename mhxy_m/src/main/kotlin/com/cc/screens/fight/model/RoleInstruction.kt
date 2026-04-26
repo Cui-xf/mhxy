@@ -50,9 +50,9 @@ sealed class RoleAction(val type: RoleActionType) {
 
     class Item : RoleAction(RoleActionType.ITEM), SkillEffectAction {
         override lateinit var target: List<Role>
-        lateinit var item: String
+        lateinit var item: ItemData
         override fun getResId(): String? {
-            return null
+            return "27"
         }
     }
 

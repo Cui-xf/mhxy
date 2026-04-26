@@ -1,4 +1,4 @@
-package com.cc.screens.fight.ui
+package com.cc.screens.base
 
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Color.valueOf
@@ -10,30 +10,32 @@ import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.event.TouchContext
 import com.cc.render.*
-import com.cc.screens.fight.model.*
-import com.cc.ui.component.ScrollPanel
-import com.cc.ui.component.TabGroup
-import com.cc.ui.component.UIComponent
-import com.cc.ui.component.WindowPanel
+import com.cc.screens.fight.model.SKILLS
+import com.cc.screens.fight.model.Skill
+import com.cc.ui.component.*
 
-class SkillList(assetLoader: AssetLoader, private val fightModel: FightModel) : UIComponent(assetLoader) {
+class SkillWindow(
+    assetLoader: AssetLoader,
+    title: String,
+) : UIComponent(assetLoader) {
+    companion object {
+        private const val BORDER = 10f
+    }
+
     private val res = loadRes()
 
     private val skillTab = SkillTab(assetLoader, res)  // res: Map<Int, Lazy<TextureRegion>>
-    private val window = WindowPanel(assetLoader, "人物技能", null) {
-        add(TabGroup(assetLoader, listOf("技能", "技能2")) {
+    private val window = WindowPanel(assetLoader, title, null) {
+        add(TabGroup(assetLoader, listOf("技能")) {
             add(ScrollPanel(assetLoader) {
                 add(skillTab)
             })
         })
+    }.onEvent<Close> {
+        emit(it)
+    }.onEvent<Skill> {
+        emit(ClickSkill(it))
     }
-
-    init {
-        window.onEvent<String> { if (it == "close") emit(Back) }
-        window.onEvent<Skill> { emit(SelectSkill(it)) }
-    }
-
-    private val border = 10f
 
     override fun render(
         batch: SpriteBatch,
@@ -44,8 +46,7 @@ class SkillList(assetLoader: AssetLoader, private val fightModel: FightModel) : 
         ch: Float,
         delta: Float
     ) {
-        if (fightModel.state !is WaitSelectSkill) return
-        window.render(batch, sr, cx + border, cy + border, cw - border * 2, ch - border * 3 - 2, delta)
+        window.render(batch, sr, cx + BORDER, cy + BORDER, cw - BORDER * 2, ch - BORDER * 3 - 2, delta)
     }
 
     private fun loadRes(): Map<String, Lazy<TextureRegion>> {
@@ -90,7 +91,6 @@ class SkillTab(
             if (TouchContext.inTouch(rowX, rowY, rowW, rowH)) {
                 if (lastSelected == i) {
                     select = skill
-                    break
                 } else {
                     lastSelected = i
                 }
@@ -143,3 +143,5 @@ class SkillTab(
         }
     }
 }
+
+data class ClickSkill(val skill: Skill)

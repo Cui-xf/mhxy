@@ -40,6 +40,10 @@ class SelectTarget(
         if (state.selectedTarget == null) {
             state.selectedTarget = aliveTargets.first()
         }
+        if (aliveTargets.size == 1) {
+            emit(SelectTarget(aliveTargets.first()))
+            return
+        }
 
         state.selectedTarget?.let {
             val animOffY = -55f

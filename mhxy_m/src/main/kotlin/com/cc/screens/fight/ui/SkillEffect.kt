@@ -31,6 +31,7 @@ class SkillEffect(
 
     init {
         anims["defence"] = resource(PUBLIC_ASSET, "rpg/skill/defence.anim", RpgAnimation::class)
+        anims["27"] = resource(PUBLIC_ASSET, "rpg/skill/27.anim", RpgAnimation::class)
     }
 
     override fun render(

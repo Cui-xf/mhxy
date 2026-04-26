@@ -113,7 +113,7 @@ class WindowPanel(
         batch.end()
 
         if (TouchContext.inTouch(closeRect)) {
-            emit("close")
+            emit(Close)
         }
     }
 
@@ -121,3 +121,5 @@ class WindowPanel(
         return Border(31f, 29f, 5f, 5f)
     }
 }
+
+object Close
