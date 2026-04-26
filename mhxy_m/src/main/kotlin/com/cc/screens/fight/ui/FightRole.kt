@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.cc.asset.AssetLoader
-import com.cc.asset.AssetManagerFactory
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.asset.Frame
 import com.cc.asset.RpgAnimation
@@ -21,13 +20,13 @@ class FightRole(
     private val res = loadRes()
 
     //血条装饰
-    private val rim by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/publicUI/rim.pic", TextureRegion::class)
+    private val rim by resource(PUBLIC_ASSET, "rpg/publicUI/rim.pic", TextureRegion::class)
 
     //上方阵亡
-    val enemyDead by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/skill/dead.anim", RpgAnimation::class)
+    val enemyDead by resource(PUBLIC_ASSET, "rpg/skill/dead.anim", RpgAnimation::class)
 
     //下方阵亡
-    val allyDead by resource(AssetManagerFactory.PUBLIC_ASSET, "rpg/skill/dead2.anim", RpgAnimation::class)
+    val allyDead by resource(PUBLIC_ASSET, "rpg/skill/dead2.anim", RpgAnimation::class)
 
     //逃跑
     val quit by resource(PUBLIC_ASSET, "rpg/skill/quit.anim", RpgAnimation::class)
@@ -126,7 +125,7 @@ class FightRole(
         for (role in (fightModel.ally + fightModel.enemy)) {
             for (state in stateList) {
                 val resId = buildRoleResId(role.job, role.gender, role.appearance, Ride.None, role.dir, state)
-                val resource = resource(AssetManagerFactory.PUBLIC_ASSET, resId, RpgAnimation::class)
+                val resource = resource(PUBLIC_ASSET, resId, RpgAnimation::class)
                 map[Triple(role.side, role.index, state)] = resource
             }
         }

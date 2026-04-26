@@ -18,6 +18,9 @@ class GameScreen : AbstractScreen() {
         Npc(this.assetLoader, screenMap),
     )
     private val miniMap = MiniMap(this.assetLoader, screenMap, this)
+    private val sideMenu = SideMenu(this.assetLoader).also {
+        it.onEvent<SideMenu.MenuClick> { click -> handleMenuClick(click) }
+    }
     val monsters = mutableListOf(
         Monster(this.assetLoader, 1, screenMap, player, 300f, 300f),
         Monster(this.assetLoader, 2, screenMap, player, 500f, 200f),
@@ -39,8 +42,15 @@ class GameScreen : AbstractScreen() {
         for (monster in monsters) {
             monster.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
         }
-//        miniMap.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
+        miniMap.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
         hud.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
+        sideMenu.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
+    }
+
+    private fun handleMenuClick(click: SideMenu.MenuClick) {
+        when (click.id) {
+            "map" -> miniMap.toggle()
+        }
     }
 
     private fun enterFight(id: Int) {

@@ -18,10 +18,13 @@ class MiniMap(
     private val gameScreen: GameScreen
 ) : UIComponent(assetLoader) {
     // 小地图
-    private val miniScale = 4f                      // 缩放比，对应原始 fenBianLv=8
+    private val miniScale = 3f                      // 缩放比，对应原始 fenBianLv=8
     private val miniLeft = 2f                       // 小地图左上角 x
     private val miniTop = 2f + 12f                  // 小地图左上角 y（留出字体高度）
     private lateinit var miniMapTex: Texture         // 碰撞底图纹理（初始化一次）
+    private var visible = false
+
+    fun toggle() { visible = !visible }
 
     override fun render(
         batch: SpriteBatch,
@@ -32,6 +35,7 @@ class MiniMap(
         ch: Float,
         delta: Float
     ) {
+        if (!visible) return
         val miniW = (map.mapW / miniScale).toInt()
         val miniH = (map.mapH / miniScale).toInt()
 
