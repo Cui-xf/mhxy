@@ -84,6 +84,7 @@ abstract class AbstractScreen : ScreenAdapter() {
 
     override fun dispose() {
         super.dispose()
+        TouchContext.reset()
         batch.dispose()
         sr.dispose()
         for (disposable in autoDispose) {

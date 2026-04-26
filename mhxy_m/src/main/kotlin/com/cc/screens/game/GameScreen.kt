@@ -1,89 +1,32 @@
 package com.cc.screens.game
 
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.GL20
-import com.badlogic.gdx.graphics.Pixmap
-import com.badlogic.gdx.graphics.Texture
-import com.badlogic.gdx.graphics.g2d.TextureRegion
-import com.badlogic.gdx.graphics.glutils.FrameBuffer
 import com.cc.MhxyGame
 import com.cc.screens.AbstractScreen
 import com.cc.screens.fight.FightScreen
-import com.cc.screens.game.ui.GameItemList
-import com.cc.screens.game.ui.MenuPopup
+import com.cc.screens.game.hud.GameHud
+import com.cc.screens.game.world.FightStarter
+import com.cc.screens.game.world.GameWorld
+import com.cc.screens.game.world.Player
 
 class GameScreen : AbstractScreen() {
-    private val screenMap = ScreenMap(this.assetLoader)
-    val player = Player.also { it.map = screenMap }
-    private val hud = HudUI.also { it.screenMap = this.screenMap }
-    val npc = listOf(
-        Npc(this.assetLoader, screenMap),
-    )
-    private val miniMap = MiniMap(this.assetLoader, screenMap, this)
-    private val sideMenu = SideMenu(this.assetLoader).also {
-        it.onEvent<SideMenu.MenuClick> { click -> handleMenuClick(click) }
-    }
 
-    //背包
-    private val itemList = autoDispose { GameItemList(this.assetLoader) }
-    private val menuPopup = autoDispose { MenuPopup(this.assetLoader) }
-    val monsters = mutableListOf(
-        Monster(this.assetLoader, 1, screenMap, player, 300f, 300f),
-        Monster(this.assetLoader, 2, screenMap, player, 500f, 200f),
-        Monster(this.assetLoader, 3, screenMap, player, 150f, 450f),
-    ).also {
-        it.forEach { monster -> monster.onEvent<Int> { fightId -> enterFight(fightId) } }
-    }
+    private val gameWorld = autoDispose { GameWorld(this.assetLoader) }
+
+    private val gameHud = autoDispose { GameHud(this.assetLoader, gameWorld) }
 
     override fun init() {
-        screenMap.collisionMove(player.roleMapX, 0f, player.roleMapY, 0f)
+        gameWorld.onEvent<FightStarter> {
+            enterFight(it)
+        }
+        gameWorld.screenMap.collisionMove(Player.roleMapX, 0f, Player.roleMapY, 0f)
     }
 
     override fun update(delta: Float) {
-        screenMap.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
-        player.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
-        for (npc in npc) {
-            npc.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
-        }
-        for (monster in monsters) {
-            monster.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
-        }
-        miniMap.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
-        hud.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
-        sideMenu.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
-        itemList.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
-        menuPopup.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
+        gameWorld.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
+        gameHud.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, delta)
     }
 
-    private fun handleMenuClick(click: SideMenu.MenuClick) {
-        when (click.id) {
-            "map"  -> miniMap.toggle()
-            "bag"  -> itemList.toggle()
-            "menu" -> menuPopup.toggle()
-        }
-    }
-
-    private fun enterFight(id: Int) {
-        MhxyGame.setScreen(FightScreen(captureMapSnapshot()))
-    }
-
-    /** 用 FrameBuffer 渲染当前地图帧，拷贝为普通 Texture 后立即 dispose FBO */
-    private fun captureMapSnapshot(): TextureRegion {
-        val w = VIRTUAL_W.toInt()
-        val h = VIRTUAL_H.toInt()
-        val fb = FrameBuffer(Pixmap.Format.RGBA8888, w, h, false)
-        fb.begin()
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
-        batch.projectionMatrix = viewport.camera.combined
-        screenMap.render(batch, sr, 0f, 0f, VIRTUAL_W, VIRTUAL_H, 0f)
-        val pm = Pixmap.createFromFrameBuffer(0, 0, w, h)
-        fb.end()
-        fb.dispose()
-        viewport.apply()
-        val tex = TextureRegion(Texture(pm))
-        tex.flip(false, true)
-        pm.dispose()
-        return tex
+    private fun enterFight(fightStarter: FightStarter) {
+        MhxyGame.setScreen(FightScreen(fightStarter.mapSnapshot))
     }
 }
