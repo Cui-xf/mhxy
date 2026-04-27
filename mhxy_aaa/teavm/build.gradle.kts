@@ -7,7 +7,10 @@ val gdxTeaVMVersion: String by project
 
 sourceSets.main {
     resources.srcDir(rootProject.file("assets").path)
-    resources.srcDir(rootProject.layout.buildDirectory.dir("generated/font"))
+}
+
+tasks.named<ProcessResources>("processResources") {
+    from(project(":core").tasks.named("collectChars"))
 }
 
 val mainClassName = "com.cc.teavm.TeaVMBuilder"
@@ -24,39 +27,52 @@ dependencies {
     implementation(project(":core"))
 }
 
-tasks.register<JavaExec>("runRelease") {
-    description = "Run the TeaVM application hosted via a local Jetty server at http://localhost:8080/"
-    group = "application"
-    dependsOn(tasks.classes, rootProject.tasks.named("collectChars"))
-    mainClass.set(mainClassName)
-    classpath = sourceSets.main.get().runtimeClasspath
-    args("run")
-}
+val assetsDir = sourceSets.main.get().output.resourcesDir!!.absolutePath
 
-tasks.register<JavaExec>("runDebug") {
-    description = "Run the TeaVM application with debug enabled hosted via a local Jetty server at http://localhost:8080/"
-    group = "application"
-    dependsOn(tasks.classes, rootProject.tasks.named("collectChars"))
-    mainClass.set(mainClassName)
-    classpath = sourceSets.main.get().runtimeClasspath
-    args("debug", "run")
-}
+val distDir = layout.buildDirectory.dir("dist")
 
 tasks.register<JavaExec>("buildRelease") {
     description = "Build the TeaVM application; doesn't run directly"
     group = "build"
-    dependsOn(tasks.classes)
+    dependsOn(tasks.classes, project(":core").tasks.named("collectChars"))
     mainClass.set(mainClassName)
     classpath = sourceSets.main.get().runtimeClasspath
+    args("--assets=$assetsDir")
+    inputs.files(sourceSets.main.get().runtimeClasspath)
+    inputs.dir(assetsDir)
+    outputs.dir(distDir)
 }
 
 tasks.register<JavaExec>("buildDebug") {
     description = "Build the TeaVM application with debug enabled; doesn't run directly"
     group = "build"
-    dependsOn(tasks.classes)
+    dependsOn(tasks.classes, project(":core").tasks.named("collectChars"))
     mainClass.set(mainClassName)
     classpath = sourceSets.main.get().runtimeClasspath
-    args("debug")
+    args("debug", "--assets=$assetsDir")
+    inputs.files(sourceSets.main.get().runtimeClasspath)
+    inputs.dir(assetsDir)
+    outputs.dir(distDir)
+}
+
+tasks.register<JavaExec>("runRelease") {
+    description = "Run the TeaVM application hosted via a local Jetty server at http://localhost:8080/"
+    group = "application"
+    dependsOn("buildRelease")
+    mainClass.set(mainClassName)
+    classpath = sourceSets.main.get().runtimeClasspath
+    args("run", "--assets=$assetsDir")
+    outputs.upToDateWhen { false }
+}
+
+tasks.register<JavaExec>("runDebug") {
+    description = "Run the TeaVM application with debug enabled hosted via a local Jetty server at http://localhost:8080/"
+    group = "application"
+    dependsOn("buildDebug")
+    mainClass.set(mainClassName)
+    classpath = sourceSets.main.get().runtimeClasspath
+    args("debug", "run", "--assets=$assetsDir")
+    outputs.upToDateWhen { false }
 }
 
 tasks.register("run") {

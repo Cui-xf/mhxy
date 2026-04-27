@@ -55,7 +55,7 @@ class RpgPicLoader(resolver: FileHandleResolver) :
 }
 
 fun loadPic(dir: String, name: String): Pair<Pic, Pixmap> {
-    val fileName = "assets/${dir}/${name}"
+    val fileName = "${dir}/${name}"
     val json = ClassLoader.getSystemResourceAsStream(fileName)
         ?.bufferedReader()?.readText()
         ?: throw RuntimeException("找不到资源: $fileName")
@@ -80,7 +80,7 @@ fun JsonValue.toRect(): Rect {
 }
 
 private fun loadPng(dir: String, name: String): Pixmap {
-    val fileName = "assets/${dir}/${name}"
+    val fileName = "${dir}/${name}"
     val bytes = ClassLoader.getSystemResourceAsStream(fileName)
         ?.readBytes()
         ?: throw RuntimeException("找不到资源: $fileName")

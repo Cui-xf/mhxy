@@ -5,6 +5,7 @@ package com.cc.teavm
 import com.cc.MhxyGame
 import com.github.xpenatan.gdx.teavm.backends.web.WebApplication
 import com.github.xpenatan.gdx.teavm.backends.web.WebApplicationConfiguration
+import com.github.xpenatan.gdx.teavm.backends.web.WebAssetPreloadListener
 
 /** Launches the TeaVM/HTML application. */
 fun main() {
@@ -15,6 +16,9 @@ fun main() {
         //// If width and height are both 0, then the app will use all available space.
         width = 240
         height = 320
+        preloadListener = WebAssetPreloadListener { assetLoader ->
+            assetLoader.loadScript("freetype.js")
+        }
     }
     WebApplication(MhxyGame, config)
 }

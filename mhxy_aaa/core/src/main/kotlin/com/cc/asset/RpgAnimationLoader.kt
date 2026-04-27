@@ -61,7 +61,7 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
 }
 
 fun loadAnim(dir: String, anim: String): Anim {
-    val fileName = "assets/${dir}/${anim}"
+    val fileName = "${dir}/${anim}"
     val json = ClassLoader.getSystemResourceAsStream(fileName)
         ?.bufferedReader()?.readText()
         ?: throw RuntimeException("找不到资源: $fileName")

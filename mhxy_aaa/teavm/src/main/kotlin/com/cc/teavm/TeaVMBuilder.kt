@@ -20,19 +20,22 @@ object TeaVMBuilder {
         val debug = "debug" in arguments
         // 是否在构建完成后启动 Jetty 服务器
         val startJetty = "run" in arguments
+        // Gradle processResources 输出目录，包含全部合并后的资源
+        val assetsPath = arguments.firstOrNull { it.startsWith("--assets=") }
+            ?.removePrefix("--assets=") ?: "../assets"
 
         // 配置 Web 后端：页面标题、画布尺寸、Jetty 端口
         val webBackend = WebBackend()
             .setHtmlTitle("mhxy_m")
-            .setHtmlWidth(800)
-            .setHtmlHeight(600)
+            .setHtmlWidth(240)
+            .setHtmlHeight(320)
             .setStartJettyAfterBuild(startJetty)
             .setJettyPort(8080)
 //            .setWebAssembly(true) // 改用 WASM 输出替代 JS
 
         TeaCompiler(webBackend)
-            // 打包 assets 目录下的资源文件
-            .addAssets(AssetFileHandle("../assets"))
+            // 打包 Gradle processResources 合并后的全部资源
+            .addAssets(AssetFileHandle(assetsPath))
             // debug 用 SIMPLE 优化（保留可读性），release 用 ADVANCED（体积更小）
             .setOptimizationLevel(if (debug) TeaVMOptimizationLevel.SIMPLE else TeaVMOptimizationLevel.ADVANCED)
             // 浏览器端的运行入口

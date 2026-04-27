@@ -70,7 +70,7 @@ class RpgTailMapLoader(resolver: FileHandleResolver) :
 }
 
 fun loadMate(dir: String, name: String): TileMapMate {
-    val fileName = "assets/${dir}/${name}"
+    val fileName = "${dir}/${name}"
     val json = ClassLoader.getSystemResourceAsStream(fileName)
         ?.bufferedReader()?.readText()
         ?: throw RuntimeException("找不到资源: $fileName")
