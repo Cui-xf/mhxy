@@ -14,8 +14,8 @@ fun main() {
         //width = 640
         //height = 480
         //// If width and height are both 0, then the app will use all available space.
-        width = 240
-        height = 320
+        width = 0
+        height = 0
         preloadListener = WebAssetPreloadListener { assetLoader ->
             assetLoader.loadScript("freetype.js")
         }

@@ -58,21 +58,19 @@ tasks.register<JavaExec>("buildDebug") {
 tasks.register<JavaExec>("runRelease") {
     description = "Run the TeaVM application hosted via a local Jetty server at http://localhost:8080/"
     group = "application"
-    dependsOn("buildRelease")
+    dependsOn(tasks.classes, project(":core").tasks.named("collectChars"))
     mainClass.set(mainClassName)
     classpath = sourceSets.main.get().runtimeClasspath
     args("run", "--assets=$assetsDir")
-    outputs.upToDateWhen { false }
 }
 
 tasks.register<JavaExec>("runDebug") {
     description = "Run the TeaVM application with debug enabled hosted via a local Jetty server at http://localhost:8080/"
     group = "application"
-    dependsOn("buildDebug")
+    dependsOn(tasks.classes, project(":core").tasks.named("collectChars"))
     mainClass.set(mainClassName)
     classpath = sourceSets.main.get().runtimeClasspath
     args("debug", "run", "--assets=$assetsDir")
-    outputs.upToDateWhen { false }
 }
 
 tasks.register("run") {

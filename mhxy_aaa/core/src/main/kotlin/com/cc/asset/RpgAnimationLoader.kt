@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.Disposable
 import com.badlogic.gdx.utils.JsonReader
 import com.badlogic.gdx.utils.JsonValue
 import com.cc.parseResourceName
+import ktx.assets.toInternalFile
 
 
 class RpgAnimationLoader(resolver: FileHandleResolver) :
@@ -62,9 +63,7 @@ class RpgAnimationLoader(resolver: FileHandleResolver) :
 
 fun loadAnim(dir: String, anim: String): Anim {
     val fileName = "${dir}/${anim}"
-    val json = ClassLoader.getSystemResourceAsStream(fileName)
-        ?.bufferedReader()?.readText()
-        ?: throw RuntimeException("找不到资源: $fileName")
+    val json = fileName.toInternalFile().readString("UTF-8")
     return JsonReader().parse(json).toAnim()
 }
 

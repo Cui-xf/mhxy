@@ -15,7 +15,7 @@ import com.cc.screens.base.BaseBackGround
 
 class TitleScreen : AbstractScreen() {
     private val backGround = BaseBackGround
-    private val menuItem = autoDispose { Texture(Gdx.files.classpath("assets/menuItem.png")) }
+    private val menuItem by resource("menuItem.png", Texture::class)
     private val menuButtons = listOf(
         MenuButton("登录游戏", 0),
         MenuButton("注册游戏", 1),

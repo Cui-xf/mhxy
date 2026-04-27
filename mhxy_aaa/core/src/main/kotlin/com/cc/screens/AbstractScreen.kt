@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector3
 import com.badlogic.gdx.utils.Disposable
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.cc.asset.AssetLoader
+import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.event.TouchContext
 import ktx.app.KtxScreen
 import kotlin.reflect.KClass
@@ -64,6 +65,9 @@ abstract class AbstractScreen : KtxScreen {
 
     fun <T : Any> resource(assetManager: AssetManager, name: String, type: KClass<T>): Lazy<T> =
         assetLoader.resource(assetManager, name, type)
+
+    protected fun <T : Any> resource(name: String, type: KClass<T>): Lazy<T> =
+        assetLoader.resource(PUBLIC_ASSET, name, type)
 
     /**
      * 创建一个自动同步 viewport camera 矩阵的 ShapeRenderer。

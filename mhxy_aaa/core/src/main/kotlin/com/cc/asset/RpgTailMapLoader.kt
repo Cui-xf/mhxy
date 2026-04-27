@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.Disposable
 import com.badlogic.gdx.utils.JsonReader
 import com.badlogic.gdx.utils.JsonValue
 import com.cc.parseResourceName
+import ktx.assets.toInternalFile
 
 
 class RpgTailMapLoader(resolver: FileHandleResolver) :
@@ -71,9 +72,7 @@ class RpgTailMapLoader(resolver: FileHandleResolver) :
 
 fun loadMate(dir: String, name: String): TileMapMate {
     val fileName = "${dir}/${name}"
-    val json = ClassLoader.getSystemResourceAsStream(fileName)
-        ?.bufferedReader()?.readText()
-        ?: throw RuntimeException("找不到资源: $fileName")
+    val json = fileName.toInternalFile().readString("UTF-8")
     return JsonReader().parse(json).toTileMapMate()
 }
 

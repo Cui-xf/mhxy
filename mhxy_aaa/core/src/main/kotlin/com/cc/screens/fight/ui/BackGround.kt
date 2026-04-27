@@ -17,7 +17,7 @@ class BackGround(
     assetLoader: AssetLoader,
     private val mapBg: TextureRegion
 ) : UIComponent(assetLoader) {
-    private val fightBg = Texture(Gdx.files.classpath("assets/fightBG.png"))
+    private val fightBg by resource("fightBG.png", Texture::class)
 
     override fun render(
         batch: SpriteBatch,

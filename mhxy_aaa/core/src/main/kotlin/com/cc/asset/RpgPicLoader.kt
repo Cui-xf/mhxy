@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.JsonReader
 import com.badlogic.gdx.utils.JsonValue
 import com.cc.parseResourceName
+import ktx.assets.toInternalFile
 
 
 class RpgPicLoader(resolver: FileHandleResolver) :
@@ -56,9 +57,7 @@ class RpgPicLoader(resolver: FileHandleResolver) :
 
 fun loadPic(dir: String, name: String): Pair<Pic, Pixmap> {
     val fileName = "${dir}/${name}"
-    val json = ClassLoader.getSystemResourceAsStream(fileName)
-        ?.bufferedReader()?.readText()
-        ?: throw RuntimeException("找不到资源: $fileName")
+    val json = fileName.toInternalFile().readString("UTF-8")
     val pic = JsonReader().parse(json).toPic()
     val png = loadPng(dir, pic.png)
     return Pair(pic, png)
@@ -81,9 +80,7 @@ fun JsonValue.toRect(): Rect {
 
 private fun loadPng(dir: String, name: String): Pixmap {
     val fileName = "${dir}/${name}"
-    val bytes = ClassLoader.getSystemResourceAsStream(fileName)
-        ?.readBytes()
-        ?: throw RuntimeException("找不到资源: $fileName")
+    val bytes = fileName.toInternalFile().readBytes()
     return Pixmap(bytes, 0, bytes.size)
 }
 

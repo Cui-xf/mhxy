@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.Disposable
 import com.cc.asset.AssetLoader
+import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import kotlin.reflect.KClass
 
 
@@ -37,6 +38,9 @@ abstract class UIComponent(private val assetLoader: AssetLoader) : Disposable {
 
     protected fun <T : Any> resource(assetManager: AssetManager, name: String, type: KClass<T>): Lazy<T> =
         assetLoader.resource(assetManager, name, type)
+
+    protected fun <T : Any> resource(name: String, type: KClass<T>): Lazy<T> =
+        assetLoader.resource(PUBLIC_ASSET, name, type)
 
     override fun dispose() {
     }
