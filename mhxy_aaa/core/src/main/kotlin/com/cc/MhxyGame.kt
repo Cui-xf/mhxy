@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import ktx.app.KtxGame
 import ktx.app.KtxScreen
 import ktx.async.KtxAsync
+import ktx.async.MainDispatcher
 
 object MhxyGame : KtxGame<KtxScreen>(clearScreen = true) {
     private var pendingScreen: KtxScreen? = null
@@ -25,7 +26,7 @@ object MhxyGame : KtxGame<KtxScreen>(clearScreen = true) {
         ws.onMessage = { msg -> println("[WS] received: $msg") }
         ws.onClose = { code, reason -> println("[WS] closed: $code $reason") }
         ws.onError = { err -> println("[WS] error: ${err.message}") }
-        KtxAsync.launch {
+        KtxAsync.launch(MainDispatcher) {
             try {
                 ws.connectSuspend("ws://127.0.0.1:20009")
                 println("[WS] connected to ws://127.0.0.1:20009")
