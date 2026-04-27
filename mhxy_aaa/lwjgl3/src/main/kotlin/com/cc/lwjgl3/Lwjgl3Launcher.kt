@@ -5,12 +5,15 @@ package com.cc.lwjgl3
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
 import com.cc.MhxyGame
+import com.cc.lwjgl3.net.DesktopNetProvider
+import com.cc.net.Net
 
 /** Launches the desktop (LWJGL3) application. */
 fun main() {
     if (StartupHelper.startNewJvmIfRequired()) {
         return
     }
+    Net.provider = DesktopNetProvider()
     Lwjgl3Application(MhxyGame, Lwjgl3ApplicationConfiguration().apply {
         setTitle("mhxy_m")
         useVsync(true)

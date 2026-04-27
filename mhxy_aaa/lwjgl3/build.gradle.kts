@@ -78,13 +78,12 @@ tasks.named<Jar>("jar") {
 tasks.register("dist") {
     dependsOn("jar")
 }
-
 construo {
     name.set(appName)
     humanName.set(appName)
     jlink {
         guessModulesFromJar.set(false)
-        modules.addAll("java.base", "java.management", "java.desktop", "jdk.unsupported")
+        modules.addAll("java.base", "java.management", "java.desktop", "java.net.http", "jdk.unsupported")
     }
     targets.create("linuxX64", Target.Linux::class.java) {
         architecture.set(Target.Architecture.X86_64)
