@@ -1,12 +1,12 @@
 import com.cc.asset.Anim
 import com.cc.asset.Pic
-import kotlinx.serialization.json.Json
 import java.io.DataInputStream
 import java.io.File
 import java.io.FileInputStream
 
 //val srcRoot = "/Users/cxf/temp/mhxy/mhxy_s/res"
 val srcRoot = "E:\\WORK\\mhxy\\mhxy_s\\res"
+
 //val destRoot = "/Users/cxf/temp/mhxy/mhxy_m/src/main/resources"
 val destRoot = "E:\\WORK\\mhxy\\mhxy_m\\src\\main\\resources"
 val outDir = "${destRoot}/assets/rpg"
@@ -55,12 +55,12 @@ fun savePic(rule: Rule, name: String, pair: Pair<Pic, ByteArray>) {
     val (pic, png) = pair
     val fileName = "${rule.id}_${rule.key}"
     File("${outDir}/${name}/${fileName}.png").recreate().writeBytes(png)
-    File("${outDir}/${name}/${fileName}.pic").recreate().writeText(myJson.encodeToString(pic))
+//    File("${outDir}/${name}/${fileName}.pic").recreate().writeText(myJson.encodeToString(pic))
 }
 
 fun saveAnim(rule: Rule, name: String, anim: Anim) {
     val fileName = "${rule.id}_${rule.key}"
-    File("${outDir}/${name}/${fileName}.anim").recreate().writeText(myJson.encodeToString(anim))
+//    File("${outDir}/${name}/${fileName}.anim").recreate().writeText(myJson.encodeToString(anim))
 }
 
 fun tryPic(data: Array<ByteArray>, pngName: String): Pair<Pic, ByteArray>? {
@@ -87,6 +87,6 @@ fun tryAnim(data: ByteArray, ruleAsset: RuleAsset): Anim? {
 
 fun File.recreate() = apply { parentFile?.mkdirs(); if (exists()) delete(); createNewFile() }
 
-val myJson = Json {
-    prettyPrint = true
-}
+//val myJson = Json {
+//    prettyPrint = true
+//}

@@ -45,7 +45,7 @@ fun tryTileMap(data: ByteArray, ruleAsset: RuleAsset): TileMapMate? {
 
 fun saveTileMap(rule: Rule, name: String, tileMapMate: TileMapMate) {
     val fileName = "${rule.id}_${rule.key}"
-    File("${outDir}/${name}/${fileName}.tmap").recreate().writeText(myJson.encodeToString(tileMapMate))
+//    File("${outDir}/${name}/${fileName}.tmap").recreate().writeText(myJson.encodeToString(tileMapMate))
 }
 
 fun getRuleAsset(): RuleAsset {

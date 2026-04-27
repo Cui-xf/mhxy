@@ -9,9 +9,9 @@ import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.badlogic.gdx.utils.JsonReader
+import com.badlogic.gdx.utils.JsonValue
 import com.cc.parseResourceName
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
 
 
 class RpgPicLoader(resolver: FileHandleResolver) :
@@ -59,9 +59,24 @@ fun loadPic(dir: String, name: String): Pair<Pic, Pixmap> {
     val json = ClassLoader.getSystemResourceAsStream(fileName)
         ?.bufferedReader()?.readText()
         ?: throw RuntimeException("找不到资源: $fileName")
-    val pic = Json.decodeFromString<Pic>(json)
+    val pic = JsonReader().parse(json).toPic()
     val png = loadPng(dir, pic.png)
     return Pair(pic, png)
+}
+
+fun JsonValue.toPic(): Pic {
+    val png = getString("png")
+    val region = mutableListOf<Rect>()
+    var item = get("region").child
+    while (item != null) {
+        region.add(item.toRect())
+        item = item.next
+    }
+    return Pic(png, region)
+}
+
+fun JsonValue.toRect(): Rect {
+    return Rect(getInt("x"), getInt("y"), getInt("w"), getInt("h"))
 }
 
 private fun loadPng(dir: String, name: String): Pixmap {
@@ -77,10 +92,6 @@ fun Pic.toTextureRegion(index: Int = 0, png: Pixmap): TextureRegion {
     return TextureRegion(Texture(png), x, y, w, h)
 }
 
-@Serializable
-data
+data class Pic(val png: String, val region: List<Rect>)
 
-class Pic(val png: String, val region: List<Rect>)
-
-@Serializable
 data class Rect(val x: Int, val y: Int, val w: Int, val h: Int)

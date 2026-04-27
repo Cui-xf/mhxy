@@ -10,9 +10,9 @@ import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.Disposable
+import com.badlogic.gdx.utils.JsonReader
+import com.badlogic.gdx.utils.JsonValue
 import com.cc.parseResourceName
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
 
 
 class RpgAnimationLoader(resolver: FileHandleResolver) :
@@ -65,7 +65,36 @@ fun loadAnim(dir: String, anim: String): Anim {
     val json = ClassLoader.getSystemResourceAsStream(fileName)
         ?.bufferedReader()?.readText()
         ?: throw RuntimeException("找不到资源: $fileName")
-    return Json.decodeFromString(json)
+    return JsonReader().parse(json).toAnim()
+}
+
+fun JsonValue.toAnim(): Anim {
+    val duration = getFloat("duration")
+    val frames = mutableListOf<List<PicTransIdx>>()
+    var frameItem = get("frames").child
+    while (frameItem != null) {
+        val list = mutableListOf<PicTransIdx>()
+        var picItem = frameItem.child
+        while (picItem != null) {
+            list.add(picItem.toPicTransIdx())
+            picItem = picItem.next
+        }
+        frames.add(list)
+        frameItem = frameItem.next
+    }
+    return Anim(duration, frames)
+}
+
+fun JsonValue.toPicTransIdx(): PicTransIdx {
+    return PicTransIdx(
+        pic = getString("pic"),
+        index = getInt("index"),
+        transX = getInt("transX"),
+        transY = getInt("transY"),
+        flipX = getBoolean("flipX"),
+        flipY = getBoolean("flipY"),
+        rotation = getFloat("rotation")
+    )
 }
 
 fun Anim.toRpgAnimation(picMap: Map<String, Pair<Pic, Pixmap>>): RpgAnimation {
@@ -82,13 +111,11 @@ fun PicTransIdx.toFrame(picMap: Map<String, Pair<Pic, Pixmap>>): Frame {
     return Frame(transX, transY, flipX, flipY, rotation, textureRegion)
 }
 
-@Serializable
 data class Anim(
     val duration: Float,
     val frames: List<List<PicTransIdx>>,
 )
 
-@Serializable
 data class PicTransIdx(
     val pic: String,
     val index: Int,

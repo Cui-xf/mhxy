@@ -17,3 +17,7 @@ dependencies {
 tasks.named<Jar>("jar") {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
+
+tasks.named<Test>("test") {
+    failOnNoDiscoveredTests.set(false)
+}

@@ -9,9 +9,9 @@ import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.utils.Disposable
+import com.badlogic.gdx.utils.JsonReader
+import com.badlogic.gdx.utils.JsonValue
 import com.cc.parseResourceName
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
 
 
 class RpgTailMapLoader(resolver: FileHandleResolver) :
@@ -74,7 +74,82 @@ fun loadMate(dir: String, name: String): TileMapMate {
     val json = ClassLoader.getSystemResourceAsStream(fileName)
         ?.bufferedReader()?.readText()
         ?: throw RuntimeException("找不到资源: $fileName")
-    return Json.decodeFromString(json)
+    return JsonReader().parse(json).toTileMapMate()
+}
+
+fun JsonValue.toTileMapMate(): TileMapMate {
+    val mapBlock = mutableListOf<List<PicTransIdx?>>()
+    var row = get("mapBlock").child
+    while (row != null) {
+        val cols = mutableListOf<PicTransIdx?>()
+        var col = row.child
+        while (col != null) {
+            cols.add(if (col.isNull) null else col.toPicTransIdx())
+            col = col.next
+        }
+        mapBlock.add(cols)
+        row = row.next
+    }
+
+    val collisionBit = mutableListOf<List<Boolean>>()
+    var cRow = get("collisionBit").child
+    while (cRow != null) {
+        val cols = mutableListOf<Boolean>()
+        var col = cRow.child
+        while (col != null) {
+            cols.add(col.asBoolean())
+            col = col.next
+        }
+        collisionBit.add(cols)
+        cRow = cRow.next
+    }
+
+    val fixedObj = mutableListOf<PicTransIdx>()
+    var fItem = get("fixedObj").child
+    while (fItem != null) {
+        fixedObj.add(fItem.toPicTransIdx())
+        fItem = fItem.next
+    }
+
+    val moveObj = mutableListOf<LocationAnim>()
+    var mItem = get("moveObj").child
+    while (mItem != null) {
+        moveObj.add(mItem.toLocationAnim())
+        mItem = mItem.next
+    }
+
+    return TileMapMate(
+        mapW = getInt("mapW"),
+        mapH = getInt("mapH"),
+        blockW = getInt("blockW"),
+        blockH = getInt("blockH"),
+        collisionW = getInt("collisionW"),
+        collisionH = getInt("collisionH"),
+        row = getInt("row"),
+        column = getInt("column"),
+        mapBlock = mapBlock,
+        collisionBit = collisionBit,
+        fixedObj = fixedObj,
+        moveObj = moveObj
+    )
+}
+
+fun JsonValue.toLocationAnim(): LocationAnim {
+    val frames = mutableListOf<Location>()
+    var item = get("frames").child
+    while (item != null) {
+        frames.add(item.toLocation())
+        item = item.next
+    }
+    return LocationAnim(
+        duration = getFloat("duration"),
+        frames = frames,
+        anim = getString("anim")
+    )
+}
+
+fun JsonValue.toLocation(): Location {
+    return Location(getInt("x"), getInt("y"))
 }
 
 fun TileMapMate.toTileMap(picMap: MutableMap<String, Pair<Pic, Pixmap>>, animMap: MutableMap<String, Anim>): TileMap {
@@ -112,7 +187,6 @@ fun LocationAnim.toLocationAnimation(
     return LocationAnimation(duration, frames.toTypedArray(), rpgAnimation)
 }
 
-@Serializable
 data class TileMapMate(
     val mapW: Int,
     val mapH: Int,
@@ -136,14 +210,12 @@ data class TileMapMate(
     val moveObj: List<LocationAnim>,
 )
 
-@Serializable
 data class LocationAnim(
     val duration: Float,
     val frames: List<Location>,
     val anim: String
 )
 
-@Serializable
 data class Location(
     val x: Int,
     val y: Int
