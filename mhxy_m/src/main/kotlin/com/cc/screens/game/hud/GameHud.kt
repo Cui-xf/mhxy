@@ -16,6 +16,7 @@ class GameHud(assetLoader: AssetLoader, gameWorld: GameWorld) : UIComponent(asse
 
     private val menuPopup = MenuPopup(assetLoader)
     private val itemList = GameItemList(assetLoader)
+    private val characterAttrUI = CharacterAttrUI(assetLoader)
 
     init {
         menuPopup.onEvent<MenuPopup.MenuItemClick> { click -> handleMenuItemClick(click) }
@@ -32,6 +33,7 @@ class GameHud(assetLoader: AssetLoader, gameWorld: GameWorld) : UIComponent(asse
         menuPopup.render(batch, sr, cx, cy, cw, ch, delta)
 
         itemList.render(batch, sr, cx, cy, cw, ch, delta)
+        characterAttrUI.render(batch, sr, cx, cy, cw, ch, delta)
     }
 
     private fun handleSideMenuClick(click: SideMenu.MenuClick) {
@@ -43,11 +45,9 @@ class GameHud(assetLoader: AssetLoader, gameWorld: GameWorld) : UIComponent(asse
     }
 
     private fun handleMenuItemClick(click: MenuPopup.MenuItemClick) {
-//        menuPopup.hide()
         when (click.id) {
-            "item" -> {
-                itemList.show()
-            }
+            "item" -> itemList.show()
+            "character_attr" -> characterAttrUI.show()
         }
     }
 }

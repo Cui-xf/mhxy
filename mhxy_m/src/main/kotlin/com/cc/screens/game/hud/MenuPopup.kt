@@ -39,19 +39,64 @@ class MenuPopup(assetLoader: AssetLoader) : UIComponent(assetLoader) {
             "character", "人物", listOf(
                 Item("character_attr", "属性"),
                 Item("character_skill", "技能"),
-                Item("character_state", "状态"),
+                Item("character_effect", "特效"),
+                Item("character_equip", "装备"),
+                Item("character_point", "配点"),
+                Item("character_title", "称号"),
+                Item("character_achieve", "成就"),
+                Item("character_active", "活跃"),
             )
         ),
-        Item("shop", "商城"),
+        Item(
+            "shop", "商城", listOf(
+                Item("shop_bean_city", "豆城"),
+                Item("shop_warehouse", "仓库"),
+                Item("shop_recharge", "充值"),
+                Item("shop_exchange", "换豆"),
+                Item("shop_balance", "余额"),
+                Item("shop_desc", "说明"),
+            )
+        ),
         Item("item", "道具"),
         Item("task", "任务"),
-        Item("guild", "帮派"),
+        Item(
+            "guild", "帮派", listOf(
+                Item("guild_enter", "进入"),
+                Item("guild_view", "查看"),
+                Item("guild_invite", "邀请"),
+                Item("guild_manage", "任免"),
+                Item("guild_quit", "弃帮"),
+            )
+        ),
         Item("house", "住宅"),
         Item("mount", "坐骑"),
         Item("pet", "宠物"),
-        Item("function", "功能"),
-        Item("social", "社交"),
-        Item("system", "系统"),
+        Item(
+            "function", "功能", listOf(
+                Item("function_enchant", "附魔"),
+                Item("function_star", "升星"),
+                Item("function_refine", "洗练"),
+                Item("function_teleport", "传送"),
+                Item("function_compose", "合成"),
+            )
+        ),
+        Item(
+            "social", "社交", listOf(
+                Item("social_friend", "好友"),
+                Item("social_chat", "聊天"),
+                Item("social_nearby", "周围"),
+            )
+        ),
+        Item(
+            "system", "系统", listOf(
+                Item("system_setting", "设置"),
+                Item("system_help", "帮助"),
+                Item("system_auto", "自动"),
+                Item("system_detach", "脱离"),
+                Item("system_role", "角色"),
+                Item("system_quit", "退出"),
+            )
+        ),
     )
 
     // 当前显示的列表：null = 一级，非 null = 该项的子菜单

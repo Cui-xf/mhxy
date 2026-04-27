@@ -64,7 +64,7 @@ class TabGroup(
             val textX = tabX + tabW / 2f
             val textY = cy + (tabBarHeight - SMALL_FONT.capHeight) / 2f
             batch.begin()
-            batch.drawString(SMALL_FONT, label, 16449445.toColor(), textX, textY, Align.CENTER_TOP)
+            batch.drawString(SMALL_FONT, label, 5426130.toColor(), textX, textY, Align.CENTER_TOP)
             batch.end()
         }
         // 再绘制选中的tab（覆盖在未选中tab之上）
