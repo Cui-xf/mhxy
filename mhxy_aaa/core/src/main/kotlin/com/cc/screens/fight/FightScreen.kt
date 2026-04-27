@@ -50,7 +50,7 @@ class FightScreen(
     private fun handleAction(action: Action) {
         println("handleAction: $action")
         if (action is EndTheBattle) {
-            MhxyGame.screen = GameScreen()
+            MhxyGame.setScreen(GameScreen())
         }
 
         val newState = fightModel.state.on(action, fightModel)

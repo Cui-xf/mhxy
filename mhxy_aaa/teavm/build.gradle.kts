@@ -7,6 +7,7 @@ val gdxTeaVMVersion: String by project
 
 sourceSets.main {
     resources.srcDir(rootProject.file("assets").path)
+    resources.srcDir(rootProject.layout.buildDirectory.dir("generated/font"))
 }
 
 val mainClassName = "com.cc.teavm.TeaVMBuilder"
@@ -26,7 +27,7 @@ dependencies {
 tasks.register<JavaExec>("runRelease") {
     description = "Run the TeaVM application hosted via a local Jetty server at http://localhost:8080/"
     group = "application"
-    dependsOn(tasks.classes)
+    dependsOn(tasks.classes, rootProject.tasks.named("collectChars"))
     mainClass.set(mainClassName)
     classpath = sourceSets.main.get().runtimeClasspath
     args("run")
@@ -35,7 +36,7 @@ tasks.register<JavaExec>("runRelease") {
 tasks.register<JavaExec>("runDebug") {
     description = "Run the TeaVM application with debug enabled hosted via a local Jetty server at http://localhost:8080/"
     group = "application"
-    dependsOn(tasks.classes)
+    dependsOn(tasks.classes, rootProject.tasks.named("collectChars"))
     mainClass.set(mainClassName)
     classpath = sourceSets.main.get().runtimeClasspath
     args("debug", "run")

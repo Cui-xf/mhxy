@@ -1,6 +1,5 @@
 package com.cc.screens
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.TextureRegion
@@ -11,10 +10,10 @@ import com.cc.MhxyGame
 import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.asset.CommonAssetLoader
-import com.cc.asset.RpgAnimation
 import com.cc.render.*
 import com.cc.screens.base.BaseBackGround
 import com.cc.screens.game.GameScreen
+import ktx.assets.toInternalFile
 import kotlin.random.Random
 
 
@@ -29,7 +28,7 @@ class LoadingScreen : AbstractScreen() {
         "按“*”键可打开聊天栏",
         "按“#”键可打开任务栏"
     )
-    private val progressBarImage = autoDispose { Texture(Gdx.files.classpath("assets/loading.png")) }
+    private val progressBarImage = autoDispose { Texture("loading.png".toInternalFile()) }
     private val progressBar = Rectangle((VIRTUAL_W - 100) / 2, (VIRTUAL_H / 3 * 2) + 20, 100f, 3f)
     private val textRender: TextRender
     private var progress = 0

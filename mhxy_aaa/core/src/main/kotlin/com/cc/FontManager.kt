@@ -1,22 +1,30 @@
 package com.cc
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
 import com.badlogic.gdx.utils.Disposable
+import ktx.assets.toInternalFile
 
 object FontManager : Disposable {
     val SMALL_FONT: BitmapFont by lazy { createFont(12) }
     val MEDIA_FONT: BitmapFont by lazy { createFont(14) }
 
     private var generator: FreeTypeFontGenerator? = null
+    private var extraChars: String = ""
+
+    // 在游戏启动时调用一次，加载 assets/font_chars.txt
+    fun init() {
+        val file = "font_chars.txt".toInternalFile()
+        if (file.exists()) {
+            extraChars = file.readString("UTF-8")
+        }
+    }
 
     private fun createFont(size: Int, color: Color = Color.WHITE): BitmapFont {
         if (generator == null) {
-            generator = FreeTypeFontGenerator(Gdx.files.classpath("assets/arial_unicode.ttf"))
-//            generator = FreeTypeFontGenerator(Gdx.files.absolute("C:/Windows/Fonts/simhei.ttf"))
+            generator = FreeTypeFontGenerator("arial_unicode.ttf".toInternalFile())
         }
         val param = FreeTypeFontGenerator.FreeTypeFontParameter().apply {
             this.size = size
@@ -25,7 +33,7 @@ object FontManager : Disposable {
             minFilter = Texture.TextureFilter.Nearest
             magFilter = Texture.TextureFilter.Nearest
             hinting = FreeTypeFontGenerator.Hinting.Full
-            incremental = true
+            characters = FreeTypeFontGenerator.DEFAULT_CHARS + extraChars
         }
         return generator!!.generateFont(param)
     }

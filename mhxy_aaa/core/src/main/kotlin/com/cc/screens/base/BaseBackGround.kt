@@ -1,6 +1,5 @@
 package com.cc.screens.base
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
@@ -16,10 +15,10 @@ import com.cc.ui.component.UIComponent
 import kotlin.random.Random
 
 object BaseBackGround : UIComponent(CommonAssetLoader) {
-    private val menuBG = Texture(Gdx.files.classpath("assets/menuBG.png"))
-    private val logoTitle = Texture(Gdx.files.classpath("assets/logoTitle_B.png"))
-    private val light0 = Texture(Gdx.files.classpath("assets/light_0.png"))
-    private val light1 = Texture(Gdx.files.classpath("assets/light_1.png"))
+    private val menuBG by resource(PUBLIC_ASSET, "menuBG.png", Texture::class)
+    private val logoTitle by resource(PUBLIC_ASSET, "logoTitle_B.png", Texture::class)
+    private val light0 by resource(PUBLIC_ASSET, "light_0.png", Texture::class)
+    private val light1 by resource(PUBLIC_ASSET, "light_1.png", Texture::class)
 
     private val hudie by resource(PUBLIC_ASSET, "rpg/cartoon/hudie.anim", RpgAnimation::class)
     private val hudie2 by resource(PUBLIC_ASSET, "rpg/cartoon/hudie_2.anim", RpgAnimation::class)

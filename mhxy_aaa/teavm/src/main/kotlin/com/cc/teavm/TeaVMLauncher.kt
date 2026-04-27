@@ -2,9 +2,9 @@
 
 package com.cc.teavm
 
-import com.github.xpenatan.gdx.teavm.backends.web.WebApplicationConfiguration
+import com.cc.MhxyGame
 import com.github.xpenatan.gdx.teavm.backends.web.WebApplication
-import com.cc.Mhxy
+import com.github.xpenatan.gdx.teavm.backends.web.WebApplicationConfiguration
 
 /** Launches the TeaVM/HTML application. */
 fun main() {
@@ -13,8 +13,8 @@ fun main() {
         //width = 640
         //height = 480
         //// If width and height are both 0, then the app will use all available space.
-        width = 0
-        height = 0
+        width = 240
+        height = 320
     }
-    WebApplication(Mhxy(), config)
+    WebApplication(MhxyGame, config)
 }

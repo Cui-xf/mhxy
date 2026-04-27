@@ -1,8 +1,7 @@
 package com.cc.asset
 
 import com.badlogic.gdx.assets.AssetManager
-import com.badlogic.gdx.assets.loaders.resolvers.ClasspathFileHandleResolver
-import com.badlogic.gdx.assets.loaders.resolvers.PrefixFileHandleResolver
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.Disposable
 
@@ -13,7 +12,7 @@ object AssetManagerFactory : Disposable {
         it.setLoader(TileMap::class.java, RpgTailMapLoader(it.fileHandleResolver))
     }
 
-    fun create(): AssetManager = AssetManager(PrefixFileHandleResolver(ClasspathFileHandleResolver(), "assets/"))
+    fun create(): AssetManager = AssetManager(InternalFileHandleResolver())
 
     override fun dispose() {
         PUBLIC_ASSET.dispose()

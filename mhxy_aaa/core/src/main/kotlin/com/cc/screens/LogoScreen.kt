@@ -1,11 +1,11 @@
 package com.cc.screens
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.cc.MhxyGame
+import ktx.assets.toInternalFile
 
 class LogoScreen : AbstractScreen() {
-    private val logo = autoDispose { Texture(Gdx.files.classpath("assets/logo.png")) }
+    private val logo = autoDispose { Texture("logo.png".toInternalFile()) }
 
     private var frameCounter: Float = 260f
 

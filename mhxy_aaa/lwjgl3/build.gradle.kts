@@ -13,6 +13,7 @@ val appName: String by project
 
 sourceSets.main {
     resources.srcDir(rootProject.file("assets").path)
+    resources.srcDir(rootProject.layout.buildDirectory.dir("generated/font"))
 }
 
 application {
@@ -46,6 +47,7 @@ dependencies {
 }
 
 tasks.named<JavaExec>("run") {
+    dependsOn(rootProject.tasks.named("collectChars"))
     workingDir = rootProject.file("assets")
     jvmArgs("--enable-native-access=ALL-UNNAMED")
     val os = System.getProperty("os.name").lowercase()
