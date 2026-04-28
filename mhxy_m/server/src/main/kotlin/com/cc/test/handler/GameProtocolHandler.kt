@@ -1,6 +1,6 @@
-package com.cc.handler
+package com.cc.test.handler
 
-import com.cc.handler.cmd.CmdRegistry
+import com.cc.test.handler.cmd.CmdRegistry
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.ByteBufInputStream
 import io.netty.channel.ChannelHandlerContext

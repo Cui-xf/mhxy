@@ -1,6 +1,8 @@
 package com.cc.screens.game
 
 import com.cc.MhxyGame
+import com.cc.common.net.EnterFight
+import com.cc.net.NetChannel
 import com.cc.screens.AbstractScreen
 import com.cc.screens.fight.FightScreen
 import com.cc.screens.game.hud.GameHud
@@ -27,6 +29,7 @@ class GameScreen : AbstractScreen() {
     }
 
     private fun enterFight(fightStarter: FightStarter) {
+        NetChannel.send(EnterFight(fightStarter.id))
         MhxyGame.setScreen(FightScreen(fightStarter.mapSnapshot))
     }
 }

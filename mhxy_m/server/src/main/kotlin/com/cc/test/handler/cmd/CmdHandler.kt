@@ -1,4 +1,4 @@
-package com.cc.handler.cmd
+package com.cc.test.handler.cmd
 
 import io.netty.channel.ChannelHandlerContext
 import java.io.DataInputStream

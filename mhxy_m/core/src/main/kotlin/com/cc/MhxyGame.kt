@@ -2,10 +2,8 @@ package com.cc
 
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.Screen
-import com.badlogic.gdx.utils.Json
 import com.cc.asset.AssetManagerFactory
-import com.cc.common.dto.TestPojo
-import com.cc.net.Net
+import com.cc.net.NetChannel
 import com.cc.screens.LogoScreen
 
 object MhxyGame : Game() {
@@ -13,17 +11,14 @@ object MhxyGame : Game() {
 
     override fun create() {
         FontManager.init()
-
-
-        val json = Json()
-        val pojo = TestPojo("lalala")
-        val toJson = json.toJson(pojo)
-        println(toJson)
-        val fromJson = json.fromJson(TestPojo::class.java, toJson)
-        println(fromJson)
-
         connectServer()
         setScreen(LogoScreen())
+    }
+
+    private fun connectServer() {
+        NetChannel.send("startUp").then {
+            println("Connected server:${it}")
+        }
     }
 
     override fun render() {
@@ -38,13 +33,6 @@ object MhxyGame : Game() {
 
     override fun setScreen(screen: Screen) {
         pendingScreen = screen
-    }
-
-    private fun connectServer() {
-        val channel = Net.webSocket("ws://127.0.0.1:20009")
-        channel.onMessage = { msg -> println("[WS] received: $msg") }
-        channel.onClose = { code, reason -> println("[WS] closed: $code $reason") }
-        channel.onError = { err -> println("[WS] error: ${err.message}") }
     }
 
     override fun dispose() {

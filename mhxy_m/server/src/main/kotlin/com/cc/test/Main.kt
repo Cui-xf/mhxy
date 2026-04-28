@@ -1,8 +1,8 @@
-package com.cc
+package com.cc.test
 
-import com.cc.handler.TCPFrameDecoder
-import com.cc.handler.GameProtocolHandler
-import com.cc.handler.cmd.registerCmd
+import com.cc.test.handler.TCPFrameDecoder
+import com.cc.test.handler.GameProtocolHandler
+import com.cc.test.handler.cmd.registerCmd
 import io.netty.bootstrap.ServerBootstrap
 import io.netty.channel.ChannelInitializer
 import io.netty.channel.MultiThreadIoEventLoopGroup

@@ -1,6 +1,6 @@
-package com.cc.handler.cmd
+package com.cc.test.handler.cmd
 
-import com.cc.handler.util.ResponseWriter
+import com.cc.test.handler.util.ResponseWriter
 import io.netty.channel.ChannelHandlerContext
 import java.io.DataInputStream
 import java.util.*

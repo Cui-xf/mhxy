@@ -1,4 +1,4 @@
-package com.cc.handler
+package com.cc.test.handler
 
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext

@@ -1,5 +1,7 @@
 package com.cc.util
 
+import com.badlogic.gdx.utils.Json
+
 infix fun Int.ceilDiv(divisor: Int): Int {
     return (this + divisor - 1) / divisor
 }
@@ -12,3 +14,5 @@ fun parseResourceName(name: String): Pair<String, String> {
         throw RuntimeException("无效的资源名称")
     }
 }
+
+val JSON = Json()

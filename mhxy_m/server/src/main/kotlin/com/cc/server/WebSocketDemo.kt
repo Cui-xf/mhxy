@@ -1,5 +1,6 @@
-package com.cc
+package com.cc.server
 
+import com.cc.server.handler.cmd.CmdDispatcher
 import io.netty.bootstrap.ServerBootstrap
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInitializer
@@ -12,7 +13,6 @@ import io.netty.handler.codec.http.HttpObjectAggregator
 import io.netty.handler.codec.http.HttpServerCodec
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler
-import java.util.concurrent.TimeUnit
 
 const val WS_PORT = 20009
 
@@ -44,27 +44,18 @@ fun main() {
 }
 
 class WsDemoHandler : SimpleChannelInboundHandler<TextWebSocketFrame>() {
-    private var tick = 0
-
     override fun userEventTriggered(ctx: ChannelHandlerContext, evt: Any) {
         if (evt is WebSocketServerProtocolHandler.HandshakeComplete) {
             println("[WS] client connected: ${ctx.channel().remoteAddress()}")
             ctx.writeAndFlush(TextWebSocketFrame("hello from server"))
-
-            ctx.executor().scheduleAtFixedRate({
-                if (ctx.channel().isActive) {
-                    ctx.writeAndFlush(TextWebSocketFrame("tick ${++tick}"))
-                }
-            }, 3, 3, TimeUnit.SECONDS)
         }
         super.userEventTriggered(ctx, evt)
     }
 
     override fun channelRead0(ctx: ChannelHandlerContext, msg: TextWebSocketFrame) {
         val text = msg.text()
-        println("[WS] received: $text")
         val (reqId, payload) = text.split("|")
-        ctx.writeAndFlush(TextWebSocketFrame("${reqId}|echo: $payload"))
+        CmdDispatcher.dispatch(ctx, reqId, payload)
     }
 
     override fun channelInactive(ctx: ChannelHandlerContext) {
