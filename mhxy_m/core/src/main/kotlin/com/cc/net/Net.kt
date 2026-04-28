@@ -9,5 +9,9 @@ object Net {
     lateinit var provider: NetProvider
 
     fun http(): GameHttp = provider.createHttp()
-    fun webSocket(): GameWebSocket = provider.createWebSocket()
+    fun webSocket(url: String): GameWebSocket {
+        val ws = provider.createWebSocket()
+        ws.connect(url)
+        return ws
+    }
 }
