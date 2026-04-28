@@ -15,7 +15,8 @@ import java.io.File
  * 传入 "debug" 参数时关闭混淆、生成 source map，方便浏览器调试。
  */
 object TeaVMBuilder {
-    @JvmStatic fun main(arguments: Array<String>) {
+    @JvmStatic
+    fun main(arguments: Array<String>) {
         // 是否 debug 模式（关闭混淆、生成 source map）
         val debug = "debug" in arguments
         // 是否在构建完成后启动 Jetty 服务器
@@ -50,7 +51,8 @@ object TeaVMBuilder {
             .setSourceFilePolicy(if (debug) TeaVMSourceFilePolicy.COPY else TeaVMSourceFilePolicy.DO_NOTHING)
             // 提供 core 模块源码路径，用于 source map 映射
             .addSourceFileProvider(DirectorySourceFileProvider(File("../core/src/main/kotlin")))
-            // 如需反射支持，在此注册对应类或包，例如：.addReflectionClass("com.cc.SomeClass")
+            // 如需反射支持，在此注册对应类或包，例如：
+            .addReflectionClass("com.cc.common.dto.**")
             .build(File("build/dist"))
     }
 }

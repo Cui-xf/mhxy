@@ -25,6 +25,7 @@ val ktxVersion: String by project
 val kotlinVersion: String by project
 
 dependencies {
+    api(project(":common"))
     api("com.badlogicgames.gdx:gdx:$gdxVersion")
     api("com.badlogicgames.gdx:gdx-freetype:$gdxVersion")
     api("io.github.libktx:ktx-assets:${ktxVersion}")

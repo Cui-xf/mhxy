@@ -10,6 +10,7 @@ buildscript {
     }
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${properties["kotlinVersion"]}")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:${properties["kotlinVersion"]}")
     }
 }
 
