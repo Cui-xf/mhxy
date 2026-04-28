@@ -5,7 +5,8 @@ import com.cc.handler.GameProtocolHandler
 import com.cc.handler.cmd.registerCmd
 import io.netty.bootstrap.ServerBootstrap
 import io.netty.channel.ChannelInitializer
-import io.netty.channel.nio.NioEventLoopGroup
+import io.netty.channel.MultiThreadIoEventLoopGroup
+import io.netty.channel.nio.NioIoHandler
 import io.netty.channel.socket.SocketChannel
 import io.netty.channel.socket.nio.NioServerSocketChannel
 
@@ -13,8 +14,8 @@ const val PORT = 20008
 
 fun main() {
     registerCmd()
-    val boss = NioEventLoopGroup(1)
-    val worker = NioEventLoopGroup()
+    val boss = MultiThreadIoEventLoopGroup(1, NioIoHandler.newFactory())
+    val worker = MultiThreadIoEventLoopGroup(NioIoHandler.newFactory())
 
     try {
         ServerBootstrap()

@@ -51,8 +51,7 @@ object TeaVMBuilder {
             .setSourceFilePolicy(if (debug) TeaVMSourceFilePolicy.COPY else TeaVMSourceFilePolicy.DO_NOTHING)
             // 提供 core 模块源码路径，用于 source map 映射
             .addSourceFileProvider(DirectorySourceFileProvider(File("../core/src/main/kotlin")))
-            // 如需反射支持，在此注册对应类或包，例如：
-            .addReflectionClass("com.cc.common.dto.**")
+            .setReflectionListener(CustomReflectionListener())
             .build(File("build/dist"))
     }
 }

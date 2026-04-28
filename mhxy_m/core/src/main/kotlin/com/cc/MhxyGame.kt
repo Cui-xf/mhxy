@@ -2,7 +2,9 @@ package com.cc
 
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.Screen
+import com.badlogic.gdx.utils.Json
 import com.cc.asset.AssetManagerFactory
+import com.cc.common.dto.TestPojo
 import com.cc.net.Net
 import com.cc.screens.LogoScreen
 
@@ -11,6 +13,15 @@ object MhxyGame : Game() {
 
     override fun create() {
         FontManager.init()
+
+
+        val json = Json()
+        val pojo = TestPojo("lalala")
+        val toJson = json.toJson(pojo)
+        println(toJson)
+        val fromJson = json.fromJson(TestPojo::class.java, toJson)
+        println(fromJson)
+
         connectServer()
         setScreen(LogoScreen())
     }
