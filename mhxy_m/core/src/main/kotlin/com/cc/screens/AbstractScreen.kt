@@ -1,6 +1,7 @@
 package com.cc.screens
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.ScreenAdapter
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
@@ -11,10 +12,9 @@ import com.badlogic.gdx.utils.viewport.FitViewport
 import com.cc.asset.AssetLoader
 import com.cc.asset.AssetManagerFactory.PUBLIC_ASSET
 import com.cc.event.TouchContext
-import ktx.app.KtxScreen
 import kotlin.reflect.KClass
 
-abstract class AbstractScreen : KtxScreen {
+abstract class AbstractScreen : ScreenAdapter() {
     companion object {
         const val VIRTUAL_W = 240f
         const val VIRTUAL_H = 320f
