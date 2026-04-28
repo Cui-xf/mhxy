@@ -27,11 +27,15 @@ abstract class GameWebSocket {
     abstract fun close(code: Int = 1000, reason: String = "")
 
     protected fun onRawMessage(raw: String) {
-        val idx = raw.indexOf('|')
-        val reqId = raw.substring(0, idx).toLong()
-        val payload = raw.substring(idx + 1)
-        val promise = pending.remove(reqId)
-        if (promise?.onSuccess != null) promise.resolve(payload) else onMessage?.invoke(raw)
+        if (raw.indexOf("|") > 0) {
+            val idx = raw.indexOf('|')
+            val reqId = raw.substring(0, idx).toLong()
+            val payload = raw.substring(idx + 1)
+            val promise = pending.remove(reqId)
+            if (promise?.onSuccess != null) promise.resolve(payload) else onMessage?.invoke(raw)
+        } else {
+            onMessage?.invoke(raw)
+        }
         cleanIfNeeded()
     }
 

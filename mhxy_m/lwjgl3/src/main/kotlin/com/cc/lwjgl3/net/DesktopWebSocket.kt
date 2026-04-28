@@ -7,14 +7,9 @@ import java.net.http.HttpClient
 import java.net.http.WebSocket
 import java.util.concurrent.CompletionStage
 
-class DesktopWebSocket : GameWebSocket {
+class DesktopWebSocket : GameWebSocket() {
     private var ws: WebSocket? = null
     private val client = HttpClient.newBuilder().build()
-
-    override var onOpen: (() -> Unit)? = null
-    override var onMessage: ((String) -> Unit)? = null
-    override var onClose: ((Int, String) -> Unit)? = null
-    override var onError: ((Throwable) -> Unit)? = null
 
     override fun connect(url: String) {
         client.newWebSocketBuilder()
@@ -25,7 +20,7 @@ class DesktopWebSocket : GameWebSocket {
             }
     }
 
-    override fun send(message: String) {
+    override fun sendRaw(message: String) {
         ws?.sendText(message, true)
     }
 
@@ -39,7 +34,6 @@ class DesktopWebSocket : GameWebSocket {
         override fun onOpen(webSocket: WebSocket) {
             ws = webSocket
             webSocket.request(1)
-            Gdx.app.postRunnable { onOpen?.invoke() }
         }
 
         override fun onText(webSocket: WebSocket, data: CharSequence, last: Boolean): CompletionStage<*>? {
@@ -47,7 +41,7 @@ class DesktopWebSocket : GameWebSocket {
             if (last) {
                 val msg = textBuffer.toString()
                 textBuffer.clear()
-                Gdx.app.postRunnable { onMessage?.invoke(msg) }
+                Gdx.app.postRunnable { onRawMessage(msg) }
             }
             webSocket.request(1)
             return null

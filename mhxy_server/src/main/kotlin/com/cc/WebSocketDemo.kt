@@ -1,7 +1,9 @@
 package com.cc
 
 import io.netty.bootstrap.ServerBootstrap
-import io.netty.channel.*
+import io.netty.channel.ChannelHandlerContext
+import io.netty.channel.ChannelInitializer
+import io.netty.channel.SimpleChannelInboundHandler
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.SocketChannel
 import io.netty.channel.socket.nio.NioServerSocketChannel
@@ -58,8 +60,10 @@ class WsDemoHandler : SimpleChannelInboundHandler<TextWebSocketFrame>() {
     }
 
     override fun channelRead0(ctx: ChannelHandlerContext, msg: TextWebSocketFrame) {
-        println("[WS] received: ${msg.text()}")
-        ctx.writeAndFlush(TextWebSocketFrame("echo: ${msg.text()}"))
+        val text = msg.text()
+        println("[WS] received: $text")
+        val (reqId, payload) = text.split("|")
+        ctx.writeAndFlush(TextWebSocketFrame("${reqId}|echo: $payload"))
     }
 
     override fun channelInactive(ctx: ChannelHandlerContext) {
