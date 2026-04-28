@@ -10,6 +10,7 @@ object MhxyGame : Game() {
     private var pendingScreen: Screen? = null
 
     override fun create() {
+        FontManager.init()
         connectServer()
         setScreen(LogoScreen())
     }
