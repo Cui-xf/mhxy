@@ -9,8 +9,6 @@ abstract class GameWebSocket {
         private const val cleanPerResolves = 50
         private const val cleanIntervalMs = 30_000L
         private const val timeoutMs = 60_000L
-
-        private val idGenerator = AtomicLong(0)
     }
 
     var onMessage: ((String) -> Unit)? = null
@@ -39,7 +37,7 @@ abstract class GameWebSocket {
         cleanIfNeeded()
     }
 
-    fun send(payload: String): WsPromise {
+    fun send(reqId: payload: String): WsPromise {
         val requestId = idGenerator.addAndGet(1)
         val promise = WsPromise()
         pending[requestId] = promise
