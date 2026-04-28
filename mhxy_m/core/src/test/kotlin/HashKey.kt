@@ -1,4 +1,4 @@
-import com.cc.parseResourceName
+import com.cc.util.parseResourceName
 import java.io.File
 
 val list = listOf(

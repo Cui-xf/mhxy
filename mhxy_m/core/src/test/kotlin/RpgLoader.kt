@@ -1,5 +1,5 @@
 import com.cc.asset.*
-import com.cc.ceilDiv
+import com.cc.util.ceilDiv
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.DataInputStream

@@ -1,4 +1,4 @@
-package com.cc
+package com.cc.util
 
 infix fun Int.ceilDiv(divisor: Int): Int {
     return (this + divisor - 1) / divisor

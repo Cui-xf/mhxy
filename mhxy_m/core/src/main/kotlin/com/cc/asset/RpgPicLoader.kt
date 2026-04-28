@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.JsonReader
 import com.badlogic.gdx.utils.JsonValue
-import com.cc.parseResourceName
+import com.cc.util.parseResourceName
 import ktx.assets.toInternalFile
 
 
