@@ -17,7 +17,7 @@ class DesktopWebSocket : GameWebSocket() {
             .exceptionally { err ->
                 Gdx.app.postRunnable { onError?.invoke(err.cause ?: err) }
                 null
-            }
+            }.join()
     }
 
     override fun sendRaw(message: String) {

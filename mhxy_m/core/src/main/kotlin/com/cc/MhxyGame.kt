@@ -2,9 +2,13 @@ package com.cc
 
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.Screen
+import com.badlogic.gdx.utils.TimeUtils
 import com.cc.asset.AssetManagerFactory
+import com.cc.common.net.Handshake
+import com.cc.common.net.Ticket
 import com.cc.net.NetChannel
 import com.cc.screens.LogoScreen
+import kotlin.concurrent.thread
 
 object MhxyGame : Game() {
     private var pendingScreen: Screen? = null
@@ -16,8 +20,16 @@ object MhxyGame : Game() {
     }
 
     private fun connectServer() {
-        NetChannel.send("startUp").then {
+        NetChannel.send(Handshake(TimeUtils.millis())).then {
             println("Connected server:${it}")
+        }
+        thread {
+            while (true) {
+                NetChannel.send(Ticket(TimeUtils.millis())).then {
+                    println("Connected server:${it}")
+                }
+                Thread.sleep(3000)
+            }
         }
     }
 

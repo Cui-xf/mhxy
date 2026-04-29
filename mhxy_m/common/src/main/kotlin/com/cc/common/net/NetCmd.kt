@@ -1,23 +1,38 @@
 package com.cc.common.net
 
 import java.util.concurrent.atomic.AtomicLong
+import kotlin.reflect.KClass
 
-sealed class NetCmd {
+sealed interface NetCmd {
     companion object {
-        val IdGenerator = AtomicLong(0)
+        private val IdGenerator = AtomicLong(0)
+        val cmdMap: Map<Int, KClass<out NetCmd>> = NetCmd::class.sealedSubclasses
+            .associateBy { it.simpleName!!.hashCode() }
 
-        fun String.deCode(): Pair<String, String> {
-            return Pair(this.substring(0, 3).toInt(), substring(3))
+        inline fun <reified T : NetCmd> String.decode(toCmd: (String, KClass<out NetCmd>) -> T): Triple<Long, Int, T>? {
+            val first = indexOf('|')
+            val second = indexOf('|', first + 1)
+            val reqId = substring(0, first).toLong()
+            val cmdCode = substring(first + 1, second).toInt()
+            val json = substring(second + 1)
+            val klass = cmdMap[cmdCode]
+            return klass?.let {
+                Triple(reqId, cmdCode, toCmd(json, it))
+            }
         }
 
         fun genReqId(): Long {
             return IdGenerator.incrementAndGet()
         }
-
-        fun encode(cmd: NetCmd, json: String): String {
-            return "${cmd.javaClass.simpleName}|${json}"
-        }
     }
+
+    fun encode(reqId: Long, toJson: (NetCmd) -> String): String {
+        return "${reqId}|${code()}|${toJson(this)}"
+    }
+
+    fun code() = this.javaClass.simpleName.hashCode()
 }
 
-data class EnterFight(val monsterId: Int) : NetCmd()
+data class Handshake(val time: Long = 0) : NetCmd
+data class Ticket(val ping: Long = 0) : NetCmd
+data class EnterFight(val monsterId: Int = 0) : NetCmd

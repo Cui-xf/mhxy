@@ -8,11 +8,11 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame
 class TextFrameHandler : SimpleChannelInboundHandler<TextWebSocketFrame>() {
     override fun channelRead0(ctx: ChannelHandlerContext, msg: TextWebSocketFrame) {
         val text = msg.text()
-        val (reqId, payload) = text.split("|")
-        CmdDispatcher.dispatch(ctx, reqId, payload)
+        CmdDispatcher.dispatch(ctx, text)
     }
 
     override fun exceptionCaught(ctx: ChannelHandlerContext, cause: Throwable) {
+        cause.printStackTrace()
         println("[WS] error: ${cause.message}")
         ctx.close()
     }

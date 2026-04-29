@@ -1,7 +1,9 @@
 package com.cc.net
 
 import com.badlogic.gdx.utils.TimeUtils
-import java.util.concurrent.atomic.AtomicLong
+import com.cc.common.net.NetCmd
+import com.cc.common.net.NetCmd.Companion.decode
+import com.cc.util.JSON
 
 
 abstract class GameWebSocket {
@@ -25,23 +27,25 @@ abstract class GameWebSocket {
     abstract fun close(code: Int = 1000, reason: String = "")
 
     protected fun onRawMessage(raw: String) {
-        if (raw.indexOf("|") > 0) {
-            val idx = raw.indexOf('|')
-            val reqId = raw.substring(0, idx).toLong()
-            val payload = raw.substring(idx + 1)
-            val promise = pending.remove(reqId)
-            if (promise?.onSuccess != null) promise.resolve(payload) else onMessage?.invoke(raw)
-        } else {
+        val (reqId, code, cmd) = raw.decode { json, klass ->
+            JSON.fromJson(klass.java, json)
+        } ?: run {
             onMessage?.invoke(raw)
+            return
         }
+        val promise = pending.remove(reqId)
+        if (promise?.onSuccess != null) promise.resolve(cmd) else onMessage?.invoke(raw)
+
         cleanIfNeeded()
     }
 
-    fun send(reqId: payload: String): WsPromise {
-        val requestId = idGenerator.addAndGet(1)
+    fun send(cmd: NetCmd): WsPromise {
+        val reqId = NetCmd.genReqId()
         val promise = WsPromise()
-        pending[requestId] = promise
-        sendRaw("$requestId|$payload")
+        pending[reqId] = promise
+        sendRaw(cmd.encode(reqId) {
+            JSON.toJson(it)
+        })
         cleanIfNeeded()
         return promise
     }
@@ -61,13 +65,13 @@ abstract class GameWebSocket {
 
 class WsPromise {
     val createTime: Long = TimeUtils.millis()
-    var onSuccess: ((String) -> Unit)? = null
+    var onSuccess: ((NetCmd) -> Unit)? = null
 
-    internal fun resolve(response: String) {
+    internal fun resolve(response: NetCmd) {
         onSuccess?.invoke(response)
     }
 
-    fun then(onSuccess: (String) -> Unit): WsPromise {
+    fun then(onSuccess: (NetCmd) -> Unit): WsPromise {
         this.onSuccess = onSuccess
         return this
     }

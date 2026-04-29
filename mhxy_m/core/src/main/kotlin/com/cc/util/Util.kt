@@ -1,6 +1,7 @@
 package com.cc.util
 
 import com.badlogic.gdx.utils.Json
+import com.badlogic.gdx.utils.JsonWriter
 
 infix fun Int.ceilDiv(divisor: Int): Int {
     return (this + divisor - 1) / divisor
@@ -15,4 +16,4 @@ fun parseResourceName(name: String): Pair<String, String> {
     }
 }
 
-val JSON = Json()
+val JSON = Json(JsonWriter.OutputType.json)
